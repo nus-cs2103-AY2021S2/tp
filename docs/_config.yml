@@ -1,5 +1,5 @@
 title: "AB-3"
-theme: minima
+theme: jekyll-theme-slate
 
 header_pages:
   - UserGuide.md
