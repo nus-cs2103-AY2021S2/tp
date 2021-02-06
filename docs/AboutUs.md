@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Azeem Vasanwala
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/team/azeem.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/DrWala)]
+[[portfolio](team/azeem.md)]
 
-* Role: Project Advisor
+* Role: TBD
+* Responsibilities: TBD
 
-### Jane Doe
+### Benedict Khoo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/team/benedict.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/benedictkhoomw)]
+[[portfolio](team/benedict.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: TBD
+* Responsibilities: TBD
 
-### Johnny Doe
+### Colin Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/team/colin.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/colintkn)] 
+[[portfolio](team/colin.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: TBD
+* Responsibilities: TBD
 
-### Jean Doe
+### Ian Soo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/team/ian.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/stein414)]
+[[portfolio](team/ian.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: TBD
+* Responsibilities: TBD
 
-### James Doe
+### Linh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/team/linh.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cnlinh)]
+[[portfolio](team/linh.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: TBD
+* Responsibilities: TBD
