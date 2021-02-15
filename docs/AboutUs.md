@@ -7,9 +7,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## StoreMando Project Team
 
-### John Doe
+### Jay Chen
 
 <img src="images/johndoe.png" width="200px">
 
@@ -17,43 +17,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Member 1
 
-### Jane Doe
+### Wei Hao
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
+* Role: Member 2
 * Responsibilities: UI
 
-### Johnny Doe
+### Fazil
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Member 3
 * Responsibilities: Data
 
-### Jean Doe
+### Kumaran
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Member 4
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Amanda Ang
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Member 5
 * Responsibilities: UI
