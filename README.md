@@ -1,3 +1,5 @@
+* This is the **first iteration of NUS Module Planner**, a Software Engineering project for NUS CS2103 based on AB3 by SEEDU <br>
+
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
 ![Ui](docs/images/Ui.png)
