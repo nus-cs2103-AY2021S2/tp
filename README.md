@@ -13,4 +13,4 @@ users can learn Japanese at a comfortable pace with this application.
 - help \- displays help, input command for specific help
 
 #### Product website
-The product website is now live [here](https://ay2021s2-cs2103-t13-1.github.io/tp/).
+The product website is now live [here](https://ay2021s2-cs2103t-t13-1.github.io/tp/).
