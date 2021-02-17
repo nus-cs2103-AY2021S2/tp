@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import javax.print.DocFlavor;
 import java.util.HashSet;
 import java.util.Set;
 
