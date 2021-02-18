@@ -156,6 +156,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
+        String themePath = ThemeManager.getThemePath();
+        Theme t = ThemeManager.getTheme();
         this.getMainScene().getStylesheets().clear();
         this.getMainScene().getStylesheets().add(ThemeManager.getThemePath());
         primaryStage.show();
@@ -167,7 +169,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getGuiSettings().getThemePath());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

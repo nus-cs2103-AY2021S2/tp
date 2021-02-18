@@ -16,6 +16,7 @@ public class GuiSettings implements Serializable {
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+    private final String themePath;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -24,15 +25,17 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
+        themePath = null;
     }
 
     /**
      * Constructs a {@code GuiSettings} with the specified height, width and position.
      */
-    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, String themePath) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
+        this.themePath = themePath;
     }
 
     public double getWindowWidth() {
@@ -45,6 +48,10 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public String getThemePath() {
+        return this.themePath;
     }
 
     @Override
@@ -60,7 +67,8 @@ public class GuiSettings implements Serializable {
 
         return windowWidth == o.windowWidth
                 && windowHeight == o.windowHeight
-                && Objects.equals(windowCoordinates, o.windowCoordinates);
+                && Objects.equals(windowCoordinates, o.windowCoordinates)
+                && Objects.equals(themePath, o.themePath);
     }
 
     @Override

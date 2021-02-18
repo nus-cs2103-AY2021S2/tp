@@ -26,22 +26,24 @@ public class ThemeManager {
 		ThemeManager.updateCss();
 	}
 
+	static Theme getTheme() {
+		return ThemeManager.theme;
+	}
+
 	static String getThemePath() {
 		return ThemeManager.tmpUrl;
 	}
 
 	public static void setTheme(Theme newTheme) {
-		if (!newTheme.equals(ThemeManager.theme)) {
-			ThemeManager.updateCss();
-		}
 		ThemeManager.theme = newTheme;
+		ThemeManager.updateCss();
 	}
 
 	public static String getCss() {
 	 	return ThemeManager.css;
 	}
 
-	private static void updateCss() {
+	private static boolean updateCss() {
 		ThemeManager.css = ThemeManager.CSS_TEMPLATE;
 		ThemeManager.css = ThemeManager.css.replaceAll("\\$foreground", ThemeManager.theme.foreground);
 		ThemeManager.css = ThemeManager.css.replaceAll("\\$background", ThemeManager.theme.background);
@@ -57,7 +59,8 @@ public class ThemeManager {
 			out.close();
 			ThemeManager.tmpUrl = "file:///" + temp.getAbsolutePath().replace(File.separator, "/");
 		} catch (IOException ioException) {
-
+			return false;
 		}
+		return true;
 	}
 }

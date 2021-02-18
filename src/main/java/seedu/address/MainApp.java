@@ -2,6 +2,7 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
@@ -28,8 +30,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
+import seedu.address.ui.*;
 
 /**
  * Runs the application.
@@ -64,6 +65,12 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
+
+        Optional<Theme> optionalTheme = JsonUtil.readJsonFile(
+                Paths.get(model.getGuiSettings().getThemePath()), Theme.class);
+
+        // ThemeManager.setTheme(optionalTheme.orElse(ThemeFactory.build("")));
+        ThemeManager.setTheme(optionalTheme.get());
 
         ui = new UiManager(logic);
     }

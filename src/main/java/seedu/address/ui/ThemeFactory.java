@@ -11,22 +11,10 @@ public class ThemeFactory {
 
 	static {
 		DEFAULT_COLOR = new String[] {
-				"#272822",
-				"#f92672",
-				"#a6e22e",
-				"#f4bf75",
-				"#66d9ef",
-				"#ae81ff",
-				"#a1efe4",
-				"#f8f8f2",
-				"#75715e",
-				"#f92672",
-				"#a6e22e",
-				"#f4bf75",
-				"#66d9ef",
-				"#ae81ff",
-				"#a1efe4",
-				"#f9f8f5"
+				"#272822", "#f92672", "#a6e22e", "#f4bf75",
+				"#66d9ef", "#ae81ff", "#a1efe4", "#f8f8f2",
+				"#75715e", "#f92672", "#a6e22e", "#f4bf75",
+				"#66d9ef", "#ae81ff", "#a1efe4", "#f9f8f5"
 		};
 	}
 
@@ -35,6 +23,7 @@ public class ThemeFactory {
 		try {
 			theme = JsonUtil.fromJsonString(json, Theme.class);
 		} catch (IOException exception) {
+			System.out.println(exception.toString());
 			theme = new Theme(DEFAULT_FOREGROUND, DEFAULT_BACKGROUND, DEFAULT_COLOR);
 		}
 		return theme;

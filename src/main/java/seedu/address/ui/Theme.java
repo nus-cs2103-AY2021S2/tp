@@ -1,9 +1,17 @@
 package seedu.address.ui;
 
-public class Theme {
+import java.io.Serializable;
+
+public class Theme implements Serializable {
 	public final String foreground;
 	public final String background;
 	public final String[] color;
+
+	public Theme() {
+		foreground = "";
+		background = "";
+		color = null;
+	}
 
 	public Theme(String foreground, String background, String[] color) {
 		this.foreground = foreground;
