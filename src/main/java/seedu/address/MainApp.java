@@ -66,11 +66,13 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        Optional<Theme> optionalTheme = JsonUtil.readJsonFile(
-                Paths.get(model.getGuiSettings().getThemePath()), Theme.class);
-
-        // ThemeManager.setTheme(optionalTheme.orElse(ThemeFactory.build("")));
-        ThemeManager.setTheme(optionalTheme.get());
+        if (model.getGuiSettings().getThemePath() == null) {
+            ThemeManager.setTheme(ThemeFactory.build(""));
+        } else {
+            Optional<Theme> optionalTheme = JsonUtil.readJsonFile(
+                    Paths.get(model.getGuiSettings().getThemePath()), Theme.class);
+            ThemeManager.setTheme(optionalTheme.orElse(ThemeFactory.build("")));
+        }
 
         ui = new UiManager(logic);
     }
