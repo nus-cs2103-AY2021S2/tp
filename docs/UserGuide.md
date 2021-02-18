@@ -168,7 +168,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 
