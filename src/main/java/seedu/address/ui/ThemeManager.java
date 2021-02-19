@@ -78,7 +78,8 @@ public class ThemeManager {
 
 	/**
 	 * Sets the current theme of the application.
-	 * @param newTheme The new theme to be used.
+	 *
+	 * @param newTheme  The new theme to be used.
 	 * @param themePath The path of the new theme to be used.
 	 */
 	public static void setTheme(Theme newTheme, String themePath) {
@@ -89,6 +90,7 @@ public class ThemeManager {
 
 	/**
 	 * Updates the css and css file to be used by the application.
+	 *
 	 * @return true if the update was successful otherwise false.
 	 */
 	private static boolean updateCss() {

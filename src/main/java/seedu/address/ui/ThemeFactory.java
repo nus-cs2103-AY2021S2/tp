@@ -26,10 +26,11 @@ public class ThemeFactory {
 
 	/**
 	 * Loads a theme from a given file path.
+	 *
 	 * @param path The path of the JSON theme file.
-	 * @return Thr loaded Theme instance.
-	 * @throws InvalidThemeException The theme is malformed or is missing certain variables.
-	 * @throws FileNotFoundException The theme file cannot be located.
+	 * @return The loaded Theme instance.
+	 * @throws InvalidThemeException   The theme is malformed or is missing certain variables.
+	 * @throws FileNotFoundException   The theme file cannot be located.
 	 * @throws DataConversionException An error occurred when parsing the theme.
 	 */
 	public static Theme load(Path path) throws InvalidThemeException, FileNotFoundException, DataConversionException {
@@ -46,6 +47,7 @@ public class ThemeFactory {
 
 	/**
 	 * Returns the default theme.
+	 *
 	 * @return The default Theme instance.
 	 */
 	public static Theme getDefaultTheme() {
