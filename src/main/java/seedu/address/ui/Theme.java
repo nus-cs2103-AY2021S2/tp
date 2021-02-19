@@ -19,6 +19,19 @@ public class Theme implements Serializable {
 		this.color = color;
 	}
 
+	public boolean isValid() {
+		if (this.foreground.isEmpty() || this.background.isEmpty()) {
+			return false;
+		}
+		if (color == null) {
+			return false;
+		}
+		if (color.length != 16) {
+			return false;
+		}
+		return true;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == this) {

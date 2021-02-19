@@ -1,5 +1,6 @@
 package seedu.address;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,6 +32,7 @@ import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.*;
+import seedu.address.ui.exceptions.InvalidThemeException;
 
 /**
  * Runs the application.
@@ -66,15 +68,28 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        if (model.getGuiSettings().getThemePath() == null) {
-            ThemeManager.setTheme(ThemeFactory.build(""));
-        } else {
-            Optional<Theme> optionalTheme = JsonUtil.readJsonFile(
-                    Paths.get(model.getGuiSettings().getThemePath()), Theme.class);
-            ThemeManager.setTheme(optionalTheme.orElse(ThemeFactory.build("")));
-        }
-
         ui = new UiManager(logic);
+
+        initTheme();
+    }
+
+    private void initTheme() {
+        if (model.getGuiSettings().getThemePath() == null) {
+            logger.info("No theme specified. Applying default theme ...");
+            ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), null);
+        } else {
+            logger.info("Loading theme" + model.getGuiSettings().getThemePath() + " ...");
+            try {
+                Theme theme = ThemeFactory.load(Paths.get(model.getGuiSettings().getThemePath()));
+                ThemeManager.setTheme(theme, model.getGuiSettings().getThemePath());
+                return;
+            } catch (DataConversionException | InvalidThemeException exception) {
+                logger.warning("Invalid " + model.getGuiSettings().getThemePath() + " theme supplied");
+            } catch (FileNotFoundException fileNotFoundException) {
+                logger.warning("Theme " + model.getGuiSettings().getThemePath() + " not found");
+            }
+            ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), model.getGuiSettings().getThemePath());
+        }
     }
 
     /**

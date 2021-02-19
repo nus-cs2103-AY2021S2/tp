@@ -42,6 +42,8 @@ public class UiManager implements Ui {
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
+            ThemeManager.setScene(mainWindow.getMainScene());
+            ThemeManager.applyThemeToScene();
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
