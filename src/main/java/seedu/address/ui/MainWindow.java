@@ -54,10 +54,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Scene mainScene;
 
-    public Scene getMainScene() {
-        return this.mainScene;
-    }
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -74,6 +70,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+    }
+
+    public Scene getMainScene() {
+        return this.mainScene;
     }
 
     public Stage getPrimaryStage() {
