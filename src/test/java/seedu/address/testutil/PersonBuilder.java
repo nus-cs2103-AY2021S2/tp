@@ -38,7 +38,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        remark = new Remark("HI");
+        remark = new Remark("");
     }
 
     /**
