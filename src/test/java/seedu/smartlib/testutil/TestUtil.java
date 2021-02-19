@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.model.Model;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * A utility class for test cases.

@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.smartlib.logic.commands.AddCommand;
 import seedu.smartlib.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**

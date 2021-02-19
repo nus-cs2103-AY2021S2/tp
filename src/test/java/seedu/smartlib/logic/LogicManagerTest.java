@@ -24,10 +24,10 @@ import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
-import seedu.smartlib.model.ReadOnlyAddressBook;
+import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.UserPrefs;
-import seedu.smartlib.model.person.Reader;
-import seedu.smartlib.storage.JsonAddressBookStorage;
+import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.storage.JsonSmartLibStorage;
 import seedu.smartlib.storage.JsonUserPrefsStorage;
 import seedu.smartlib.storage.StorageManager;
 import seedu.smartlib.testutil.PersonBuilder;
@@ -43,8 +43,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonSmartLibStorage addressBookStorage =
+                new JsonSmartLibStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -71,8 +71,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonSmartLibStorage addressBookStorage =
+                new JsonSmartLibIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -129,7 +129,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSmartLib(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +149,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonSmartLibIoExceptionThrowingStub extends JsonSmartLibStorage {
+        private JsonSmartLibIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlySmartLib addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.smartlib.commons.exceptions.IllegalValueException;
-import seedu.smartlib.model.AddressBook;
-import seedu.smartlib.model.ReadOnlyAddressBook;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlySmartLib source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,16 +45,16 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public SmartLib toModelType() throws IllegalValueException {
+        SmartLib smartLib = new SmartLib();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Reader reader = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(reader)) {
+            if (smartLib.hasPerson(reader)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(reader);
+            smartLib.addPerson(reader);
         }
-        return addressBook;
+        return smartLib;
     }
 
 }

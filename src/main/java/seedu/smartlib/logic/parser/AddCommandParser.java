@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 
 import seedu.smartlib.logic.commands.AddCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
-import seedu.smartlib.model.person.*;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.*;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**

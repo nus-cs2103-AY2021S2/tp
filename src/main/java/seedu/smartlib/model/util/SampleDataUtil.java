@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.smartlib.model.AddressBook;
-import seedu.smartlib.model.ReadOnlyAddressBook;
-import seedu.smartlib.model.person.*;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.reader.*;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**
@@ -37,8 +37,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlySmartLib getSampleAddressBook() {
+        SmartLib sampleAb = new SmartLib();
         for (Reader sampleReader : getSamplePersons()) {
             sampleAb.addPerson(sampleReader);
         }

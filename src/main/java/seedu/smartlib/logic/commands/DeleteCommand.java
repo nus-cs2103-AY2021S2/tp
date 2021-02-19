@@ -8,7 +8,7 @@ import seedu.smartlib.commons.core.Messages;
 import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

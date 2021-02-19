@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.logic.commands.EditCommand;
 import seedu.smartlib.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.smartlib.model.person.Address;
-import seedu.smartlib.model.person.Email;
-import seedu.smartlib.model.person.Name;
-import seedu.smartlib.model.person.Phone;
+import seedu.smartlib.model.reader.Address;
+import seedu.smartlib.model.reader.Email;
+import seedu.smartlib.model.reader.Name;
+import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.tag.Tag;
 import seedu.smartlib.testutil.EditPersonDescriptorBuilder;
 

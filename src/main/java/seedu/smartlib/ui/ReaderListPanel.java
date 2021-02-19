@@ -8,14 +8,14 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.smartlib.commons.core.LogsCenter;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
+public class ReaderListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(ReaderListPanel.class);
 
     @FXML
     private ListView<Reader> personListView;
@@ -23,7 +23,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Reader> readerList) {
+    public ReaderListPanel(ObservableList<Reader> readerList) {
         super(FXML);
         personListView.setItems(readerList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(reader, getIndex() + 1).getRoot());
+                setGraphic(new ReaderCard(reader, getIndex() + 1).getRoot());
             }
         }
     }

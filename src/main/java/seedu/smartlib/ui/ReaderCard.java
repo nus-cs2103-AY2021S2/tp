@@ -7,12 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ReaderCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -44,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Reader reader, int displayedIndex) {
+    public ReaderCard(Reader reader, int displayedIndex) {
         super(FXML);
         this.reader = reader;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ReaderCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        ReaderCard card = (ReaderCard) other;
         return id.getText().equals(card.id.getText())
                 && reader.equals(card.reader);
     }

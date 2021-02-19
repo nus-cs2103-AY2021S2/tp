@@ -1,4 +1,4 @@
-package seedu.smartlib.model.person;
+package seedu.smartlib.model.reader;
 
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 

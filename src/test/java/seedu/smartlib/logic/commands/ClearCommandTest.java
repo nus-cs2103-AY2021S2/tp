@@ -5,7 +5,7 @@ import static seedu.smartlib.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.model.AddressBook;
+import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.UserPrefs;
@@ -24,7 +24,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+        expectedModel.setSmartLib(new SmartLib());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

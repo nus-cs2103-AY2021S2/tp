@@ -1,4 +1,4 @@
-package seedu.smartlib.model.person;
+package seedu.smartlib.model.reader;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

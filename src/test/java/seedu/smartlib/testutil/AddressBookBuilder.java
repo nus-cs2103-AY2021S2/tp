@@ -1,7 +1,7 @@
 package seedu.smartlib.testutil;
 
-import seedu.smartlib.model.AddressBook;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -10,25 +10,25 @@ import seedu.smartlib.model.person.Reader;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private SmartLib smartLib;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        smartLib = new SmartLib();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public AddressBookBuilder(SmartLib smartLib) {
+        this.smartLib = smartLib;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withPerson(Reader reader) {
-        addressBook.addPerson(reader);
+        smartLib.addPerson(reader);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public SmartLib build() {
+        return smartLib;
     }
 }

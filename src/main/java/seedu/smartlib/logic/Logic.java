@@ -7,8 +7,8 @@ import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.logic.commands.CommandResult;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
-import seedu.smartlib.model.ReadOnlyAddressBook;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * API of the Logic component
@@ -26,9 +26,9 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.smartlib.model.Model#getAddressBook()
+     * @see seedu.smartlib.model.Model#getSmartLib()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlySmartLib getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Reader> getFilteredPersonList();

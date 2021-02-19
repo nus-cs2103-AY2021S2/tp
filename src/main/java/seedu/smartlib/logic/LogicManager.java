@@ -13,8 +13,8 @@ import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.logic.parser.SmartLibParser;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.Model;
-import seedu.smartlib.model.ReadOnlyAddressBook;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.storage.Storage;
 
 /**
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getSmartLib());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlySmartLib getAddressBook() {
+        return model.getSmartLib();
     }
 
     @Override

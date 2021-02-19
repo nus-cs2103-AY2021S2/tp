@@ -15,15 +15,11 @@ import seedu.smartlib.commons.util.ConfigUtil;
 import seedu.smartlib.commons.util.StringUtil;
 import seedu.smartlib.logic.Logic;
 import seedu.smartlib.logic.LogicManager;
-import seedu.smartlib.model.AddressBook;
-import seedu.smartlib.model.Model;
-import seedu.smartlib.model.ModelManager;
-import seedu.smartlib.model.ReadOnlyAddressBook;
-import seedu.smartlib.model.ReadOnlyUserPrefs;
-import seedu.smartlib.model.UserPrefs;
+import seedu.smartlib.model.*;
+import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.util.SampleDataUtil;
-import seedu.smartlib.storage.AddressBookStorage;
-import seedu.smartlib.storage.JsonAddressBookStorage;
+import seedu.smartlib.storage.SmartLibStorage;
+import seedu.smartlib.storage.JsonSmartLibStorage;
 import seedu.smartlib.storage.JsonUserPrefsStorage;
 import seedu.smartlib.storage.Storage;
 import seedu.smartlib.storage.StorageManager;
@@ -56,8 +52,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        SmartLibStorage smartLibStorage = new JsonSmartLibStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(smartLibStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,8 +70,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlySmartLib> addressBookOptional;
+        ReadOnlySmartLib initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -84,10 +80,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new SmartLib();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new SmartLib();
         }
 
         return new ModelManager(initialData, userPrefs);

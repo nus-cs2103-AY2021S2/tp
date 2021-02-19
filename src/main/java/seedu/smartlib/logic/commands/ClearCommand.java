@@ -2,7 +2,7 @@ package seedu.smartlib.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.smartlib.model.AddressBook;
+import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setSmartLib(new SmartLib());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

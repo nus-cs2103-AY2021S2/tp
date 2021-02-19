@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.smartlib.commons.exceptions.IllegalValueException;
-import seedu.smartlib.model.person.*;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.*;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**

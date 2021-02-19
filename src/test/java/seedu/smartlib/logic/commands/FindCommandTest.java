@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.UserPrefs;
-import seedu.smartlib.model.person.NameContainsKeywordsPredicate;
+import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

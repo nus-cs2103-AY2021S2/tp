@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.LogsCenter;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,26 +19,26 @@ import seedu.smartlib.model.person.Reader;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final SmartLib smartLib;
     private final UserPrefs userPrefs;
     private final FilteredList<Reader> filteredReaders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySmartLib addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.smartLib = new SmartLib(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredReaders = new FilteredList<>(this.addressBook.getPersonList());
+        filteredReaders = new FilteredList<>(this.smartLib.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new SmartLib(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -79,29 +79,29 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setSmartLib(ReadOnlySmartLib smartLib) {
+        this.smartLib.resetData(smartLib);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlySmartLib getSmartLib() {
+        return smartLib;
     }
 
     @Override
     public boolean hasPerson(Reader reader) {
         requireNonNull(reader);
-        return addressBook.hasPerson(reader);
+        return smartLib.hasPerson(reader);
     }
 
     @Override
     public void deletePerson(Reader target) {
-        addressBook.removePerson(target);
+        smartLib.removePerson(target);
     }
 
     @Override
     public void addPerson(Reader reader) {
-        addressBook.addPerson(reader);
+        smartLib.addPerson(reader);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setPerson(Reader target, Reader editedReader) {
         requireAllNonNull(target, editedReader);
 
-        addressBook.setPerson(target, editedReader);
+        smartLib.setPerson(target, editedReader);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return smartLib.equals(other.smartLib)
                 && userPrefs.equals(other.userPrefs)
                 && filteredReaders.equals(other.filteredReaders);
     }

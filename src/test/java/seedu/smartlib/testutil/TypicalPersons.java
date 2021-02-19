@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.smartlib.model.AddressBook;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -62,8 +62,8 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static SmartLib getTypicalAddressBook() {
+        SmartLib ab = new SmartLib();
         for (Reader reader : getTypicalPersons()) {
             ab.addPerson(reader);
         }
