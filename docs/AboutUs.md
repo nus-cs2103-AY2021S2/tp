@@ -18,6 +18,7 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 [[portfolio](team/yueyanglee.md)]
 
 * Role: Integration
+* Responsibilities: In charge of CRD commands
 
 ### Joel Ho
 
@@ -27,17 +28,18 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 [[portfolio](team/joelho.md)]
 
 * Role: Code Quality
-* Responsibilities: UI
+* Responsibilities: In charge of UI
 
 ### Zechariah Tan
 
 <img src="images/zechariahtan.png" width="200px">
 
+[[homepage](www.zechariahtan.com)]
 [[github](http://github.com/zechariahtan)] 
 [[portfolio](team/zechariahtan.md)]
 
 * Role: Testing
-* Responsibilities: Data
+* Responsibilities: In charge of Storage
 
 ### Terence Chew
 
@@ -48,7 +50,7 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 [[portfolio](team/terencechew.md)]
 
 * Role: Team Lead
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: In charge of Model
 
 ### Mark Chow
 
@@ -58,4 +60,4 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 [[portfolio](team/markwong.md)]
 
 * Role: Documentation
-* Responsibilities: UI
+* Responsibilities: In charge of Logic
