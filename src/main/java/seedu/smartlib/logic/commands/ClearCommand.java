@@ -2,8 +2,8 @@ package seedu.smartlib.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.Model;
+import seedu.smartlib.model.SmartLib;
 
 /**
  * Clears the address book.
