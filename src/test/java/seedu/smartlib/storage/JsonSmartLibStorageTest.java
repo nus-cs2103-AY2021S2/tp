@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.smartlib.commons.exceptions.DataConversionException;
-import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.SmartLib;
 
 public class JsonSmartLibStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
