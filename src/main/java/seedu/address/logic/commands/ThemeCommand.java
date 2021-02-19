@@ -1,10 +1,8 @@
 package seedu.address.logic.commands;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.ui.Theme;
 import seedu.address.ui.ThemeFactory;
 import seedu.address.ui.ThemeManager;
 import seedu.address.ui.exceptions.InvalidThemeException;
@@ -13,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 
@@ -31,8 +28,9 @@ public class ThemeCommand extends Command {
 	private final Path themePath;
 
 	/**
-	 * Creates a ThemeCommand to apply the theme located at specified {@code String}
-	 * @param themePathStr
+	 * Creates a ThemeCommand to apply the theme located at specified {@code path}
+	 *
+	 * @param themePathStr The path to the theme to be applied.
 	 */
 	public ThemeCommand(String themePathStr) {
 		requireNonNull(themePathStr);

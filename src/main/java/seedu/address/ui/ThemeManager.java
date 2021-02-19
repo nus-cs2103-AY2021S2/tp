@@ -10,22 +10,35 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
 import java.util.stream.Collectors;
 
+/**
+ * Class for managing the theme of the application. Stores data on what theme is currently being applied.
+ */
 public class ThemeManager {
+	/**
+	 * Template of the css used by the application.
+	 */
 	private static String CSS_TEMPLATE;
 
-	/* Current theme used by the application */
+	/**
+	 * Current theme used by the application
+	 */
 	private static Theme theme = null;
 
-	/* Path of the current theme */
+	/**
+	 * Path of the current theme
+	 */
 	private static String themePath = null;
 
-	/* Path of the css file currently in use */
+	/**
+	 * Path of the css file currently in use
+	 */
 	private static String cssCacheUrl = null;
 
-	/* Scene to be applied to */
+	/**
+	 * The mainScene property from a MainWindow instance.
+	 */
 	private static Scene scene = null;
 
 	static {
@@ -38,6 +51,7 @@ public class ThemeManager {
 
 	/**
 	 * Sets the scene for themes to be applied to.
+	 *
 	 * @param scene The scene for themes to be applied to.
 	 */
 	public static void setScene(Scene scene) {
@@ -46,22 +60,37 @@ public class ThemeManager {
 
 	/**
 	 * Gets the theme currently in use by the application.
+	 *
 	 * @return The theme currently in use by the application.
 	 */
 	public static Theme getTheme() {
 		return ThemeManager.theme;
 	}
 
+	/**
+	 * Gets the path of the JSON theme file currently being applied.
+	 *
+	 * @return Path of the JSON theme file currently being applied.
+	 */
 	public static String getThemePath() {
 		return themePath;
 	}
 
+	/**
+	 * Sets the current theme of the application.
+	 * @param newTheme The new theme to be used.
+	 * @param themePath The path of the new theme to be used.
+	 */
 	public static void setTheme(Theme newTheme, String themePath) {
 		ThemeManager.theme = newTheme;
 		ThemeManager.themePath = themePath;
 		ThemeManager.updateCss();
 	}
 
+	/**
+	 * Updates the css and css file to be used by the application.
+	 * @return true if the update was successful otherwise false.
+	 */
 	private static boolean updateCss() {
 		String cssString = ThemeManager.CSS_TEMPLATE;
 		cssString = cssString
@@ -84,6 +113,9 @@ public class ThemeManager {
 		return true;
 	}
 
+	/**
+	 * Applies the current theme to the application.
+	 */
 	public static void applyThemeToScene() {
 		ThemeManager.scene.getStylesheets().clear();
 		ThemeManager.scene.getStylesheets().add(ThemeManager.cssCacheUrl);

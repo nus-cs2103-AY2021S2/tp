@@ -1,16 +1,7 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.Theme;
-
-import java.io.FileNotFoundException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 

@@ -73,6 +73,9 @@ public class MainApp extends Application {
         initTheme();
     }
 
+    /**
+     * Initializes the content of ThemeManager with the theme in the GuiSetting of model.
+     */
     private void initTheme() {
         if (model.getGuiSettings().getThemePath() == null) {
             logger.info("No theme specified. Applying default theme ...");
