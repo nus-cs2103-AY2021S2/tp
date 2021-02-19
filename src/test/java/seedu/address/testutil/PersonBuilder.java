@@ -45,6 +45,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        remark = personToCopy.getRemark();
     }
 
     /**
@@ -87,12 +88,12 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags, remark);
-    }
-
     public PersonBuilder withRemark(String remarkStub) {
         this.remark = new Remark(remarkStub);
         return this;
+    }
+
+    public Person build() {
+        return new Person(name, phone, email, address, tags, remark);
     }
 }
