@@ -5,55 +5,57 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `chewterence[at]u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Yue Yang Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yueyanglee.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](www.lyueyang.space)]
+[[github](https://github.com/lyueyang)]
+[[portfolio](team/yueyanglee.md)]
 
-* Role: Project Advisor
+* Role: Integration
 
-### Jane Doe
+### Joel Ho
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joelho.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/joelho)]
+[[portfolio](team/joelho.md)]
 
-* Role: Team Lead
+* Role: Code Quality
 * Responsibilities: UI
 
-### Johnny Doe
+### Zechariah Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zechariahtan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/zechariahtan)] 
+[[portfolio](team/zechariahtan.md)]
 
-* Role: Developer
+* Role: Testing
 * Responsibilities: Data
 
-### Jean Doe
+### Terence Chew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/terencechew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](www.chewterence.com)]
+[[github](http://github.com/chewterence)]
+[[portfolio](team/terencechew.md)]
 
-* Role: Developer
+* Role: Team Lead
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Mark Chow
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/markwong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/markmcwong)]
+[[portfolio](team/markwong.md)]
 
-* Role: Developer
+* Role: Documentation
 * Responsibilities: UI
