@@ -18,29 +18,29 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.smartlib.model.person.Reader;
-import seedu.smartlib.model.person.exceptions.DuplicatePersonException;
+import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.reader.exceptions.DuplicatePersonException;
 import seedu.smartlib.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class SmartLibTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final SmartLib smartLib = new SmartLib();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), smartLib.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> smartLib.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        SmartLib newData = getTypicalAddressBook();
+        smartLib.resetData(newData);
+        assertEquals(newData, smartLib);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newReaders);
+        SmartLibStub newData = new SmartLibStub(newReaders);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> smartLib.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> smartLib.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(smartLib.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        smartLib.addPerson(ALICE);
+        assertTrue(smartLib.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        smartLib.addPerson(ALICE);
         Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(smartLib.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> smartLib.getPersonList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class SmartLibStub implements ReadOnlySmartLib {
         private final ObservableList<Reader> readers = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Reader> readers) {
+        SmartLibStub(Collection<Reader> readers) {
             this.readers.setAll(readers);
         }
 

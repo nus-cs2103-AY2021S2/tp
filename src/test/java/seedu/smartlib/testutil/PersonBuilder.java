@@ -3,8 +3,8 @@ package seedu.smartlib.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.smartlib.model.person.*;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.*;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 import seedu.smartlib.model.util.SampleDataUtil;
 

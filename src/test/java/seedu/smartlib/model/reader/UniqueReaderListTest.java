@@ -1,4 +1,4 @@
-package seedu.smartlib.model.person;
+package seedu.smartlib.model.reader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.model.person.exceptions.DuplicatePersonException;
-import seedu.smartlib.model.person.exceptions.PersonNotFoundException;
+import seedu.smartlib.model.reader.exceptions.DuplicatePersonException;
+import seedu.smartlib.model.reader.exceptions.PersonNotFoundException;
 import seedu.smartlib.testutil.PersonBuilder;
 
 public class UniqueReaderListTest {

@@ -1,4 +1,4 @@
-package seedu.smartlib.model.person;
+package seedu.smartlib.model.reader;
 
 import java.util.List;
 import java.util.function.Predicate;

@@ -1,12 +1,12 @@
 package seedu.smartlib.model;
 
 import javafx.collections.ObservableList;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.Reader;
 
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlySmartLib {
 
     /**
      * Returns an unmodifiable view of the persons list.

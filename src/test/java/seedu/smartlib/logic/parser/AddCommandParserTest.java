@@ -32,8 +32,8 @@ import static seedu.smartlib.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.logic.commands.AddCommand;
-import seedu.smartlib.model.person.*;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.*;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 import seedu.smartlib.testutil.PersonBuilder;
 

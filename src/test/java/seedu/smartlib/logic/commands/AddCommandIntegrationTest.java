@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.UserPrefs;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.testutil.PersonBuilder;
 
 /**
@@ -29,7 +29,7 @@ public class AddCommandIntegrationTest {
     public void execute_newPerson_success() {
         Reader validReader = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSmartLib(), new UserPrefs());
         expectedModel.addPerson(validReader);
 
         assertCommandSuccess(new AddCommand(validReader), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Reader readerInList = model.getAddressBook().getPersonList().get(0);
+        Reader readerInList = model.getSmartLib().getPersonList().get(0);
         assertCommandFailure(new AddCommand(readerInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

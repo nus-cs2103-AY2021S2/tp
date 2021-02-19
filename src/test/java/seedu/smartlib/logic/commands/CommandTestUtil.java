@@ -15,10 +15,10 @@ import java.util.List;
 
 import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
-import seedu.smartlib.model.AddressBook;
+import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.Model;
-import seedu.smartlib.model.person.NameContainsKeywordsPredicate;
-import seedu.smartlib.model.person.Reader;
+import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -104,11 +104,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        SmartLib expectedSmartLib = new SmartLib(actualModel.getSmartLib());
         List<Reader> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedSmartLib, actualModel.getSmartLib());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**
