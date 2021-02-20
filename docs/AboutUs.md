@@ -22,19 +22,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Daniel Lau Yew En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/daniellau.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/daniellau88)]
+[[portfolio](team/daniellau.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: DevOps (CI)
 
 ### Lauren Lee Hui Ying
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/daniellau.md)]
 
 * Role: 
 * Responsibilities: 
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/daniellau.md)]
 
 * Role: 
 * Responsibilities: 
@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/daniellau.md)]
 
 * Role: 
 * Responsibilities: 
