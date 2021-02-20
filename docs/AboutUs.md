@@ -48,12 +48,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Marcus Lee Eugene
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcusleeeugene.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/marcusleeeugene)]
+[[portfolio](team/marcusleeeugene.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Lead, Developer
+* Responsibilities: Scheduling and tracking, Code quality 
+* [Git] expert 
