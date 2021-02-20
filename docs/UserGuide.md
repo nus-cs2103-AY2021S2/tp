@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-CHesse Inventory Management (ChIM) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Chesse Inventory Management (CHIM) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
+* Table of Contentsser 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -42,15 +42,39 @@ CHesse Inventory Management (ChIM) is a **desktop app for managing contacts, opt
 
 </div>
 
-### [Feature Name]
+### List customer: `listcustomer`
 
-[Feature Description]
+Displays the customers in CHIM.
 
-Format: [Command Format]
+Format: `listcustomer`
+
+
+### Mark order as complete: `done`
+
+Marks an incomplete order as complete from CHIM, identified by its index.
+
+Format: `done ORDER_INDEX`
+* Marks the order at the specified `ORDER_INDEX`.
+* The `ORDER_INDEX` must be a positive integer.
+
+
+### Search for customer: `search`
+
+Searches for a customer in CHIM.
+
+Format: `search n/NAME`
+* Search is case-insensitive, e.g Betty will match betty
 
 Examples:
-* [Example 1]
-* [Example 2]
+* `search n/Betty`
+* `search n/Robin Lee`
+
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -66,5 +90,8 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
-**[Command Name]** | [Format & Examples]
+**List Customer** | `listcustomer`
+**Mark Done** | `done INDEX`<br> e.g., `done 2`
+**Search** | `search n/NAME` <br> e.g. `search n/Betty`
+**Exit** | `exit`
 
