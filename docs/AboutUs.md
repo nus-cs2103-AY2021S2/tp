@@ -9,25 +9,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Donavan Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Donavanty.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Donavanty)]
+[[portfolio](team/Donavan.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Documentation
 
-### Jane Doe
+### Dinesh S/O Magesvaran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dineshmagesvaran.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/dineshmagesvaran)]
+[[portfolio](team/dineshmagesvaran.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Testing
 
 ### Johnny Doe
 
@@ -38,22 +38,23 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Chong Sidney
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sidney011100.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sidney011100)]
+[[portfolio](team/sidney011100.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines
+
+### Marcus Lee Eugene
+
+<img src="images/marcusleeeugene.png" width="200px">
+
+[[github](http://github.com/marcusleeeugene)]
+[[portfolio](team/marcusleeeugene.md)]
+
+* Role: Team Lead, Developer
+* Responsibilities: Scheduling and tracking, Code quality 
+* [Git] expert 
