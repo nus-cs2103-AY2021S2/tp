@@ -217,7 +217,7 @@ Action | Format, Examples
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g. `redit 1 p/91234567 e/johndoe@example.com`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
 **Add a room** |  `oadd n/ROOM_NO t/TYPE o/OCCUPY_STATUS [g/TAG]` <br> e.g. `oadd n/17-101 t/single_no_ac o/Occupied g/SHN`
-**List all rooms** |  `olist` 
+**List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
 **Edit a room record** |  `oedit INDEX [n/ROOM_NO] [t/TYPE] [g/TAG] [o/OCCUPY_STATUS]` <br> e.g. `oedit 1 o/Occupied`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
