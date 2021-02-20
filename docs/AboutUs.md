@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Prabhakaran Gokul
+
+<img src="images/prabhakarangokul.png" width="200px">
+
+[[github](https://github.com/Prabhakaran-Gokul/)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developers
+* Responsibilities: Integration
 ### Donavan Lim
 
 <img src="images/Donavanty.png" width="200px">
