@@ -49,5 +49,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/marcusleeeugene.md)]
 
 * Role: Team Lead, Developer
-* Responsibilities: Scheduling and tracking, Code quality 
-* [Git] expert 
+* Responsibilities: Scheduling and tracking, Code quality
+* [Git] expert
