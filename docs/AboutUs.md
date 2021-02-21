@@ -9,6 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Glenn Lee
+
+<img src="images/glennljs.png" width="200px">
+
+[[github](http://github.com/glennljs)]
+
+=======
 ### Justin Peh Yu Xiang
 
 <img src="images/pyuxiang.png" width="200px">
