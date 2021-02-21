@@ -29,3 +29,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/garyljj.png" width="200px">
 
 [[github](https://github.com/garyljj)]
+
+### Zheng Ruoxin
+
+<img src="images/zhengruoxin.png" width="200px">
+
+[[github](https://github.com/zhengruoxin)]
