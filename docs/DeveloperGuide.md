@@ -257,6 +257,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `**`     | user who enjoys planning ahead             | search dates                                               | see tasks in a time period                             |
+| `*`      | busy student                               | search free times                                          | find times to relax                                    |
+| `**`     | efficient student                          | look at the number of completed tasks each week            | I can monitor my productivity                          |
+| `**`     | student with a plan                        | access the important reminders and tasks for the day/week  | I can remind myself to be on task and follow my plan   |
+| `**`     | experienced user                           | execute multiple commands at a time                        | improve the efficiency of my workflow                  |
+| `**`     | long term user/student                     | Delete and wipe all my current tasks                       | I can use it in a clean slate for future semesters     |
 
 *{More to be added}*
 
