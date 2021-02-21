@@ -22,3 +22,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nickyfoo.png" width="200px">
 
 [[github](http://github.com/nickyfoo)]
+
+
+### Gary Lee Jia Jin
+
+<img src="images/garyljj.png" width="200px">
+
+[[github](https://github.com/garyljj)]
