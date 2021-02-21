@@ -42,6 +42,26 @@ Chesse Inventory Management (CHIM) is a **desktop app for managing contacts, opt
 
 </div>
 
+### Adding a customer: `addcustomer`
+
+Adds a customer to the CHIM.
+
+Format: `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER a/ADDRESS`
+
+Example: `addcustomer n/John Doe p/65555555 a/Blk 436 Serangoon Gardens St 26 #01-01`
+
+
+### Remove an order: `removeorder`
+
+Removes a specific order from CHIM, identified by its index.
+
+Format: `removeorder ORDER_INDEX`
+* Removes the order at the specified `ORDER_INDEX`. The index must be a positive integer.
+
+Example: `removeorder 2`
+* Removes the second order in the list of orders.
+
+
 ### List customer: `listcustomer`
 
 Displays the customers in CHIM.

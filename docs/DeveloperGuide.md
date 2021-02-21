@@ -75,29 +75,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User adds a customer by specifying name, phone number and address.
-2. CHIM creates the new customer and shows details of the new customer.  
-   Use case ends.
+2. CHIM creates the new customer and shows details of the new customer.
+
+Use case ends.
 
 **Extensions**
 * 1a. The given phone number is invalid.
-  * 1a1. CHIM displays an error message.   
-    Use case resumes at step 1.
+  * 1a1. CHIM displays an error message.
+
+Use case resumes at step 1.
+
 * 1b. The given phone number is a duplicated customer.
-  * 2a1. CHIM displays an error message.  
-    Use case resumes at step 1.
-    
+  * 1b1. CHIM displays an error message.
+
+Use case resumes at step 1.
+
 #### Use case: Remove an Order
 
 **MSS**
 
 1. User enters an order number to remove.
-2. CHIM removes the order from the list of orders. 
-   Use case ends.
+2. CHIM removes the order from the list of orders.
+
+Use case ends.
 
 **Extensions**
 * 1a. No such order with the specified order number exists.
-  * 1a1. CHIM displays an error message.   
-    Use case resumes at step 1.
+  * 1a1. CHIM displays an error message.
+
+Use case resumes at step 1.
 
 #### Use case: List customers
 
