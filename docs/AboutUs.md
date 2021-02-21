@@ -13,8 +13,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/pyuxiang.png" width="200px">
 
+
 [[homepage](https://pyuxiang.com/)]
 [[github](https://github.com/pyuxiang)]
+
+### Foo Chuan Le, Nicholas
+
+<img src="images/nickyfoo.png" width="200px">
+
+[[github](http://github.com/nickyfoo)]
+
 
 ### Gary Lee Jia Jin
 
