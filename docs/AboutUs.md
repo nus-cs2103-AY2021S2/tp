@@ -17,44 +17,44 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
 ### Daniel Lau Yew En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/daniellau.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/daniellau88)]
+[[portfolio](team/daniellau.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: DevOps (CI)
 
 ### Lauren Lee Hui Ying
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/daniellau.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
 ### Lim Li Quan
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/daniellau.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
 ### Ng Wei Xue
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/daniellau.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
