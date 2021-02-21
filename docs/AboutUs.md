@@ -36,3 +36,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/garyljj.png" width="200px">
 
 [[github](https://github.com/garyljj)]
+
+### Lee Pai Joo Yvelle
+
+<img src="images/ellevy.png" width="200px">
+
+[[github](https://github.com/ellevy)]
