@@ -255,6 +255,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *` | new user exploring the app | see the app populated with sample data | know how the app will look like when it is in use |
+| `* * *` | user ready to starting to use the app | purge all current data | get rid of sample data used for exploring the app |
+| `* * *` | new user exploring the app | view a help page/ use a help command | know what functions are available/ learn the correct syntax for functions |
+| `* * *` | user starting to use the app | tag contacts to an organization/module | easily look up relevant contacts for the organization/module |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 | `* *`    | user who enjoys planning ahead             | search dates                                               | see tasks in a time period                       |
@@ -277,6 +281,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | returning user                             | delete completed/irrelevant tasks                          | reduce clutter on HippoCampus                       |
 | `*`      | returning user                             | delete all tasks/deadlines related to a tag                | reduce clutter and prepare for subsequent modules   |
 | `*`      | returning user                             | replace tags (e.g. all cs2103 to cs3203)                   | transfer contacts                                   |
+| `*` | potential user exploring the app | import existing data from similiar apps | compare features between apps to decide whether I’d like to use the app |
+| `*` | student | add my Modules | easily organise my contacts and tasks based on module |
+| `*` | user starting to use the app | tag meetings to an organisation/module | know what organisation/module the meeting is for |
+| `**` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
 
 *{More to be added}*
 
