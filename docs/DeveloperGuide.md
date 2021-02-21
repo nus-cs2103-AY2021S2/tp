@@ -277,6 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | returning user                             | delete completed/irrelevant tasks                          | reduce clutter on HippoCampus                       |
 | `*`      | returning user                             | delete all tasks/deadlines related to a tag                | reduce clutter and prepare for subsequent modules   |
 | `*`      | returning user                             | replace tags (e.g. all cs2103 to cs3203)                   | transfer contacts                                   |
+
 *{More to be added}*
 
 ### Use cases
@@ -310,11 +311,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. HippoCampus should be usable by a novice who has never used a CLI addressbook before. 
+2. HippoCampus should work on any _mainstream OS_ with minimally Java `11` installed.
+3. HippoCampus Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical 
+   usage.
+4. HippoCampus should store data _locally only_, in a human editable text file, for privacy reasons.
+5. HippoCampus should only be for a _single user_ and should not require interaction with other users of HippoCampus.
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+    should be able to accomplish most of the tasks faster using commands than using the mouse.
+7. The source code should be open source. 
+8. HippoCampus should work without requiring an installer, the installation of any additional software, or any 
+   external connections.
+9. The total file size should not exceed _100MB_.
 
 ### Glossary
 
