@@ -9,6 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Glenn Lee
+
+<img src="images/glennljs.png" width="200px">
+
+[[github](http://github.com/glennljs)]
+
+=======
 ### Justin Peh Yu Xiang
 
 <img src="images/pyuxiang.png" width="200px">
@@ -35,3 +42,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhengruoxin.png" width="200px">
 
 [[github](https://github.com/zhengruoxin)]
+
+### Lee Pai Joo Yvelle
+
+<img src="images/ellevy.png" width="200px">
+
+[[github](https://github.com/ellevy)]
