@@ -22,7 +22,7 @@ src/test/data/sandbox/
 docs/_site/
 
 # VSCode files
-/bin
+bin/
 .classpath
 .project
 .settings

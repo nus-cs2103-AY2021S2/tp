@@ -14,3 +14,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/glennljs.png" width="200px">
 
 [[github](http://github.com/glennljs)]
+
+=======
+### Justin Peh Yu Xiang
+
+<img src="images/pyuxiang.png" width="200px">
+
+[[homepage](https://pyuxiang.com/)]
+[[github](https://github.com/pyuxiang)]
+
+### Gary Lee Jia Jin
+
+<img src="images/garyljj.png" width="200px">
+
+[[github](https://github.com/garyljj)]
