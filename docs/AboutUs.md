@@ -15,3 +15,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://pyuxiang.com/)]
 [[github](https://github.com/pyuxiang)]
+
+### Gary Lee Jia Jin
+
+<img src="images/garyljj.png" width="200px">
+
+[[github](https://github.com/garyljj)]
