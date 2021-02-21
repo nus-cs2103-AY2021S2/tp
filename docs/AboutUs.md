@@ -32,9 +32,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lauren Lee Hui Ying
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/laurenlhy.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/laurenlhy)] 
+[[portfolio](team/laurenlhy.md)]
 
 * Role: 
 * Responsibilities: 
