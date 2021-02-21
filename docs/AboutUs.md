@@ -1,59 +1,66 @@
----
-layout: page
-title: About Us
----
+#About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email at our individual emails below!
 
 ## Project team
 
-### John Doe
+### Kelvin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zoeykobe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[Github](https://github.com/zoeykobe)  
+[portfolio](team/kelvin.md)
 
-* Role: Project Advisor
+* Role: Team Leader
 
-### Jane Doe
+### Friscilia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/frisciliasultan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[github](https://github.com/frisciliasultan)  
+[[portfolio](team/friscilia.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing
 
-### Jean Doe
+### Isaiah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zaiah0505.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](https://github.com/Zaiah0505)  
+[portfolio](team/isaiah.md)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Scheduling and Tracking, UI
+
+### Jody
+
+<img src="images/jodylorah.png" width="200px">
+
+[github](https://github.com/JodyLorah)  
+[portfolio](team/jodylorah.md)
+
+* Role: Developer
+* Responsibilities: Code Quality
+
+### Qin Liang
+
+<img src="images/tomashiwa.png" width="200px">
+
+[github](http://github.com/Tomashiwa)  
+[portfolio](team/qinliang.md)
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Shaun
+
+<img src="images/juzzanoob.png" width="200px">
+
+[github](http://github.com/Juzzanoob)  
+[portfolio](team/shaun.md)
+
+* Role: Developer
+* Responsibilities: Documentation
