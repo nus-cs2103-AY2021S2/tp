@@ -73,19 +73,15 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a apparent: `add`
 
-Adds a person to the address book.
+Adds a new apartment to the list of apartment,default for CLEANING_STATUS and BOOKING_STATUS is ‘cleaned’ and ‘not-booked’ respectively.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: ` add n/NAME_OF_APARTMENT a/ADDRESS [clean/[y or n]] [book/[y or n]] [p/LOCK_PASSWORD] [d/BOOKING_DETAILS]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Melville Park a/22 Simei Street 1, #10-02, S529948`
+* `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n book/y`
 
 ### Listing all persons : `list`
 
