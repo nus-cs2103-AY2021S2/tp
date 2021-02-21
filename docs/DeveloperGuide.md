@@ -270,6 +270,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | disorganized person                        | set recurring tasks                      | have the same periodic reminder without keying it in manually  |
 | `*`      | reflective person                          | look at completed tasks/an archive       | reminisce on the past semester and feel accomplished           |
 | `* *`    | student with many modules and activities   | color code tags                          | differentiate tasks easily                                     |
+| `* * *`  | returning user                             | sort/search through contacts based on organisation/module  | contact the relevant people to set up a meeting     |
+| `*`      | returning user                             | edit a deadline/meeting that was pushed back               | properly reflect the updated times                  |
+| `*`      | returning user                             | change the task description of an existing task            | reflect the changed task                            |
+| `* *`    | returning user                             | mark tasks as complete                                     | review my productivity                              |
+| `* *`    | returning user                             | delete completed/irrelevant tasks                          | reduce clutter on HippoCampus                       |
+| `*`      | returning user                             | delete all tasks/deadlines related to a tag                | reduce clutter and prepare for subsequent modules   |
+| `*`      | returning user                             | replace tags (e.g. all cs2103 to cs3203)                   | transfer contacts                                   | 
 
 *{More to be added}*
 
