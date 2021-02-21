@@ -276,8 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | returning user                             | mark tasks as complete                                     | review my productivity                              |
 | `* *`    | returning user                             | delete completed/irrelevant tasks                          | reduce clutter on HippoCampus                       |
 | `*`      | returning user                             | delete all tasks/deadlines related to a tag                | reduce clutter and prepare for subsequent modules   |
-| `*`      | returning user                             | replace tags (e.g. all cs2103 to cs3203)                   | transfer contacts                                   | 
-
+| `*`      | returning user                             | replace tags (e.g. all cs2103 to cs3203)                   | transfer contacts                                   |
 *{More to be added}*
 
 ### Use cases
