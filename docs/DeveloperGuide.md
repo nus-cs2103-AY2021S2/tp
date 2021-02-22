@@ -2,16 +2,17 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-* [**Getting started**](#getting_started)
+# Table of Contents
+* [**Getting started**](#setting-up-getting-started)
 * [**Design**](#design)
 * [**Implementation**](#implementation)
-* [**Documentation, logging, testing, configuration, dev-ops**](#documentation)
-* [**Appendix: Requirements**](#requirements)
+* [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+* [**Appendix: Requirements**](#appendix-requirements)
+* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="getting_started">**Setting up, getting started**</a>
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
