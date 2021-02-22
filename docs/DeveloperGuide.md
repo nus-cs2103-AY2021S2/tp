@@ -241,13 +241,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* an owner of a private book loan service
+* prefers desktop apps over other types
+* types fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is proficient with using CLI apps
+* is very meticulous
+* wants to keep track of his/her loans
+* wants to keep track of the details of all of his/her books
+* wants to keep track of the condition of the book before and after the loan
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: systematic management of books and borrowers' information.
+* It would be a pain for private book loan services to have to keep track of their books by paper.
+* By having a reliable system to keep track of things, it would help save the owners of private book loan services an immense amount of time.
 
 
 ### User stories
