@@ -17,24 +17,12 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 
-
-### Zen Lee
-
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Nguyen Son Linh
 
 <img src="images/linhns.png" width="200px">
 
 [[github](http://github.com/linhns)]
+[[portfolio](team/linhns.md)]
 
 * Role: Integration and Git
 * Responsibilities: Manage team repository
@@ -57,8 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 
-### James Doe
-
+### Zen Lee
 
 <img src="images/zen.png" width="200px">
 
