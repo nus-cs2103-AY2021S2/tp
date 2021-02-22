@@ -13,14 +13,15 @@ fi
 
 BRANCH_EXIST=$(git branch --list $BRANCH_TO_SYNC)
 
-if [[ -z ${BRANCH_EXIST} ]]; then
+if [[ -z ${BRANCH_EXIST} ]]; 
+then
     echo "Branch to sync does not exist."
     exit
 fi
 
 CURRENT_BRANCH=`git branch`
 
-if [[ $CURRENT_BRANCH != *"*	master"* ]];
+if [[ $CURRENT_BRANCH != *"*	$BRANCH_TO_SYNC"* ]];
 then
 	echo "Switching to branch master..."
 	git checkout master
