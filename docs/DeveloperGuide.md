@@ -2,8 +2,27 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+# Table of Contents
+* [**Getting started**](#setting-up-getting-started)
+* [**Design**](#design)
+    * [**Architecture**](#architecture)
+    * [**UI component**](#ui-component)
+    * [**Logic component**](#logic-component)
+    * [**Model component**](#model-component)
+    * [**Storage component**](#storage-component)
+    * [**Common classes**](#common-classes)
+* [**Implementation**](#implementation)
+* [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+* [**Appendix: Requirements**](#appendix-requirements)
+    * [**Product scope**](#product-scope)
+    * [**User stories**](#user-stories)
+    * [**Use cases**](#use-cases)
+    * [**Non-functional requirements**](#non-functional-requirements)
+    * [**Glossary**](#glossary)
+* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+    * [**Launch and shutdown**](#launch-and-shutdown)
+    * [**Deleting a reader**](#deleting-a-reader)
+    * [**Saving data**](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -236,13 +255,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* an owner of a private book loan service
+* prefers desktop apps over other types
+* types fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is proficient with using CLI apps
+* is very meticulous
+* wants to keep track of his/her loans
+* wants to keep track of the details of all of his/her books
+* wants to keep track of the condition of the book before and after the loan
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: systematic management of books and borrowers' information.
+* It would be a pain for private book loan services to have to keep track of their books by paper.
+* By having a reliable system to keep track of things, it would help save the owners of private book loan services an immense amount of time.
 
 
 ### User stories
@@ -251,14 +276,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new book                 |                                                                        |
+| `* * *`  | user                                       | delete a book                  | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | list all books                 | keep track of my books                                                 |
+| `* * *`  | user                                       | find a book by name            | locate details of books without having to go through the entire list   |
 | `* * *`  | user                                       | add a new reader               |                                                                        |
 | `* * *`  | user                                       | delete a reader                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | list all readers               | keep track of my readers                                               |
 | `* * *`  | user                                       | find a reader by name          | locate details of readers without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many readers in the address book | sort readers by name           | locate a reader easily                                                 |
-
-*{More to be added}*
+| `* * *`  | user                                       | record the borrowing of a book | keep track of whether the book is borrowed out                         |
+| `* * *`  | user                                       | record the returning of a book | keep track of whether the book has been returned                       |
+| `* *`    | meticulous user                            | keep track of due date of a book | ensure that the book is returned on time                             |
+| `* *`    | concerned user                             | keep track of cost of each book | ensure that I receive the correct reimbursement for lost books        |
+| `* *`    | meticulous user                            | keep track of readers' borrow records | know my readers' preferences and fill my store with suitable books |
+| `* *`    | user                                       | rank the most borrowed books   | know my readers' preferences and increase the quantity of these books  |
+| `* *`    | user                                       | rank the least borrowed books  | know my readers' preferences and reduce the quantity of these books    |
+| `*`      | user with a huge membership base           | find readers using other particulars | differentiate between readers with similar names                 |
+| `*`      | user                                       | rank the readers who borrowed most books | reward him/her for his/her studiousness                      |
+| `*`      | user                                       | sort books by name             | locate a book easily                                                   |
+| `*`      | user                                       | sort readers by name           | locate a reader easily                                                 |
+| `*`      | user                                       | tag books based on their genre | local a book easily                                                    |
+| `*`      | user                                       | find a book by their genre     | locate a book easily                                                   |
+| `*`      | user                                       | sort books by their genre      | locate a book easily                                                   |
+| `*`      | concerned user                             | remind readers to return books | get my readers to return their books on time                           |
+| `*`      | concerned but lazy user                     | automate my reminders          | get my readers to return their books on time without putting in any extra effort |
 
 ### Use cases
 
