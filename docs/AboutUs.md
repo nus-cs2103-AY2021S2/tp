@@ -8,6 +8,16 @@ We are a team based in the [School of Computing, National University of Singapor
 ## Project team
 
 
+### Loo Yeou Tzer
+
+<img src="images/yeoutzer.png" width="200px">
+
+[[github](https://github.com/yeoutzer)]
+[[portfolio](team/yeoutzer.md)]
+
+* Role: Developer
+
+
 ### Zen Lee
 
 ### John Doe
@@ -57,3 +67,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/zenlee.md)]
 
 * Role: Developer
+
