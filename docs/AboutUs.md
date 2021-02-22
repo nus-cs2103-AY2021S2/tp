@@ -41,8 +41,9 @@ You can reach us at the email `imposter[at]comp.nus.edu.sg`
 
 ### Tan Jin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tjtanjin.png" width="200px">
 
+[[homepage](https://tjtanjin.com/)]
 [[github](http://github.com/tjtanjin)]
 [[portfolio](team/tjtanjin.md)]
 
