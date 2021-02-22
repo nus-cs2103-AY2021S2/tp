@@ -87,6 +87,17 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+### Adding a profile picture: `picture`
+
+Adds a profile picture to an existing person in FriendDex.
+
+Format: `picture INDEX FILE_PATH`
+
+* The image of the person should be at FILE_PATH.
+
+Examples:
+* `picture 1 /Users/john/Desktop/jake.png`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in FriendDex.
@@ -109,6 +120,16 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Recording a meeting: `meeting`
+
+Records a meeting with an existing person in FriendDex.
+
+Format: `meeting INDEX d/DATETIME desc/DESCRIPTION`
+
+Examples:
+* `meeting 1 d/16-02-2021 1130 desc/We had lunch together!`
+* `meeting 2 d/17-02-2021 1930 desc/We went to see the sunset!`
 
 ### Locating persons by name: `find`
 
