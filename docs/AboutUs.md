@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lim Zi Qiang, Marcus
 
-<img src="images/marcus.jpg" width="200px">
+<img src="images/marcus.png" width="200px">
 
 [[github](https://github.com/marc-97)]
 [[portfolio](team/marcus.md)]
