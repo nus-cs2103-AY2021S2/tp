@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.smartlib.commons.core.GuiSettings;
-import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.UserPrefs;
 
 public class StorageManagerTest {

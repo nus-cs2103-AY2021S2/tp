@@ -15,8 +15,8 @@ import java.util.List;
 
 import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
-import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.Model;
+import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.testutil.EditPersonDescriptorBuilder;

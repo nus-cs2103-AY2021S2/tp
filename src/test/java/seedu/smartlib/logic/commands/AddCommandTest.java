@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
-import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.ReadOnlyUserPrefs;
+import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.testutil.PersonBuilder;
 

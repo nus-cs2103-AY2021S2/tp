@@ -22,8 +22,8 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Name;
-import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.Phone;
+import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**
