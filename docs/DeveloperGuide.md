@@ -3,11 +3,15 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+* [**Getting started**](#getting_started)
+* [**Design**](#design)
+* [**Implementation**](#implementation)
+* [**Documentation, logging, testing, configuration, dev-ops**](#documentation)
+* [**Appendix: Requirements**](#requirements)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## <a name="getting_started">**Setting up, getting started**</a>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
