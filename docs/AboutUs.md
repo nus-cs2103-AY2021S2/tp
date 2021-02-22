@@ -3,21 +3,11 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+ImPoster developer team is based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `imposter[at]comp.nus.edu.sg`
 
 ## Project team
-
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
 
 ### Juliet Teoh
 
@@ -27,33 +17,44 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/julietteoh.md)]
 
 * Role: Developer
-* Responsibilities: Updating existing AB3 commands to fit our product, Updating documentation of product
+* Responsibilities: Update existing AB3 commands | Update documentation
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
+### Liu Yong Liang
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tlylt)]
+[[portfolio](team/tlylt.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Update new features response | Ensure code quality
 
-### James Doe
+### Ong Jun Xiong
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ong6)] 
+[[portfolio](team/ong6.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Update existing AB3 commands | Update documentation
+
+### Tan Jin
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/tjtanjin)]
+[[portfolio](team/tjtanjin.md)]
+
+* Role: Developer
+* Responsibilities: Update new features command | Ensure smooth integrations
+
+### Warren Ng
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/nightraven49)]
+[[portfolio](team/nightraven49.md)]
+
+* Role: Developer
+* Responsibilities: Update user interface | Ensure quality assurance
