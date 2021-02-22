@@ -262,21 +262,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `iScam` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a client**
 
 **MSS**
 1. User requests to add a client with parameters like name, contact details, age etc.
-2. AddressBook shows the client to be added.
+2. iScam shows the client to be added.
 3. User confirm the addition.
-4. AddressBook adds the client.
+4. iScam adds the client.
 
     Use case ends.
 
 **Extensions**
-* 1a. AddressBook detects an error in the given client.
-    * 1a1. AddressBook requests for correction.
+* 1a. iScam detects an error in the given client.
+    * 1a1. iScam requests for correction.
     * 1a2. User corrected the client info.
     * Steps 1a1-1a2 are repeated until the data entered are correct. 
       
@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 3a. User chooses to cancel the addition.
-    * 3a1. AddressBook requests to confirm the cancellation.
+    * 3a1. iScam requests to confirm the cancellation.
     * 3a2. User confirms the cancellation.
       
       Use case ends.
@@ -293,13 +293,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to list clients.
-2. AddressBook shows a list of clients.
+2. iScam shows a list of clients.
 
    Use case ends.
 
 **Extensions**
 * 1a. The list is empty.
-    * 1a1. AddressBook shows a message to indicate that there is no client.
+    * 1a1. iScam shows a message to indicate that there is no client.
       
       Use case ends.
 
@@ -307,15 +307,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to update a client with new parameters.
-2. AddressBook shows a preview of the updated client.
+2. iScam shows a preview of the updated client.
 3. User confirm the update.
-4. AddressBook updates the client.
+4. iScam updates the client.
 
     Use case ends.
 
 **Extensions**
-* 1a. AddressBook detects an error in the new parameters.
-    * 1a1. AddressBook requests for correction.
+* 1a. iScam detects an error in the new parameters.
+    * 1a1. iScam requests for correction.
     * 1a2. User corrected the update info.
     * Steps 1a1-1a2 are repeated until the data entered are correct. 
       
@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 
 * 3a. User chooses to cancel the update.
-    * 3a1. AddressBook requests to confirm the cancellation.
+    * 3a1. iScam requests to confirm the cancellation.
     * 3a2. User confirms the cancellation.
       
       Use case ends.
@@ -332,19 +332,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to find clients that matches a search term.
-2. AddressBook shows a list of qualified clients.
+2. iScam shows a list of qualified clients.
 
     Use case ends.
 
 **Extensions**
 * 1a. There is no client in AddressBook.
-    * 1a1. AddressBook shows a message to indicate that there is no client.
+    * 1a1. iScam shows a message to indicate that there is no client.
 
         Use case ends.
     
 
 * 1b. The search term is empty.
-    * 1b1. AddressBook shows a message to indicate that a search term is required.
+    * 1b1. iScam shows a message to indicate that a search term is required.
     
         Use case ends
 
@@ -352,15 +352,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to delete a client.
-2. AddressBook requests to confirm the deletion.
+2. iScam requests to confirm the deletion.
 3. User confirms the deletion.
-4. AddressBook delete the client.
+4. iScam delete the client.
 
     Use case ends.
 
 **Extensions**
 * 1a. The client does not exist.
-    * 1a1. AddressBook requests for correction.
+    * 1a1. iScam requests for correction.
     * 1a2. User corrected which client to delete.
     * Steps 1a1-1a2 are repeated until the client entered is valid.
         
@@ -368,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 2a. User chooses to cancel the deletion.
-    * 2a1. AddressBook requests to confirm the cancellation.
+    * 2a1. iScam requests to confirm the cancellation.
     * 2a2. User confirms the cancellation.
     
         Use case ends.
@@ -377,19 +377,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to add a meeting with a client.
-2. AddressBook adds the meeting.
+2. iScam adds the meeting.
     
     Use case ends.
 
 **Extensions**
 * 1a. The client does not exist.
-    * 1a1. AddressBook shows a message to indicate that the client specified does not exist.
+    * 1a1. iScam shows a message to indicate that the client specified does not exist.
     
         Use case ends.
     
 
-* 1b. AddressBook detects an error in the parameters.
-    * 1b1. AddressBook requests for correction.
+* 1b. iScam detects an error in the parameters.
+    * 1b1. iScam requests for correction.
     * 1b2. User corrected the parameters.
     * Steps 1b1-1b2 are repeated until the parameters entered are correct.
     
@@ -397,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 
 * 1c. A meeting with that date and time already exists.
-    * 1c1. AddressBook shows a message that a meeting with that date and time already exists.
+    * 1c1. iScam shows a message that a meeting with that date and time already exists.
         
         Use case ends.
 
@@ -405,13 +405,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to list meetings.
-2. AddressBook shows a list of meetings.
+2. iScam shows a list of meetings.
     
     Use case ends.
 
 **Extensions**
 * 1a. The list is empty.
-    * 1a1. AddressBook shows a message to indicate that there is no client.
+    * 1a1. iScam shows a message to indicate that there is no client.
       
         Use case ends.
 
@@ -419,15 +419,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to update a meeting with new parameters.
-2. AddressBook shows a preview of the updated meeting.
+2. iScam shows a preview of the updated meeting.
 3. User confirms the update.
-4. AddressBook updates the meeting.
+4. iScam updates the meeting.
     
     Use case ends.
 
 **Extensions**
-* 1a. AddressBook detects an error with the new parameters.
-    * 1a1. AddressBook requests for correction.
+* 1a. iScam detects an error with the new parameters.
+    * 1a1. iScam requests for correction.
     * 1a2. User corrected the parameters.
     * Steps 1a1-1a2 are repeated until the parameters entered are correct. 
       
@@ -435,13 +435,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 
 * 1b. The new parameters' date or time is in conflict with other existing meetings.
-    * 1b1. AddressBook shows a message that a meeting with that date and time already exists.
+    * 1b1. iScam shows a message that a meeting with that date and time already exists.
 
         Use case ends.
 
 
 * 2a. User chooses to cancel the update.
-    * 2a1. AddressBook requests to confirm the cancellation.
+    * 2a1. iScam requests to confirm the cancellation.
     * 2a2. User confirms the cancellation.
       
         Use case ends.
@@ -451,15 +451,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to delete a meeting.
-2. AddressBook requests to confirm the deletion.
+2. iScam requests to confirm the deletion.
 3. User confirms the deletion.
-4. AddressBook delete the meeting.
+4. iScam delete the meeting.
 
     Use case ends.
 
 **Extensions**
 * 1a. The meeting does not exist.
-    * 1a1. AddressBook requests for correction.
+    * 1a1. iScam requests for correction.
     * 1a2. User corrected which meeting to delete.
     * Steps 1a1-1a2 are repeated until the meeting entered is valid.
         
@@ -467,7 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 2a. User chooses to cancel the deletion.
-    * 2a1. AddressBook requests to confirm the cancellation.
+    * 2a1. iScam requests to confirm the cancellation.
     * 2a2. User confirms the cancellation.
     
         Use case ends.
