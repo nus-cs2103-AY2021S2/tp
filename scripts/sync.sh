@@ -13,7 +13,7 @@ fi
 
 BRANCH_EXIST=$(git branch --list $BRANCH_TO_SYNC)
 
-if [[ -z ${BRANCH_EXIST} ]]; 
+if [[ -z ${BRANCH_EXIST} ]];
 then
     echo "Branch to sync does not exist."
     exit
