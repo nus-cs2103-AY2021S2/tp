@@ -261,10 +261,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user starting to use the app | tag contacts to an organization/module | easily look up relevant contacts for the organization/module |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `* *`    | user who enjoys planning ahead             | search dates                                               | see tasks in a time period                       |
+| `* *`    | user who enjoys planning ahead             | search dates                                               | see tasks in a time period
+| `*` | busy student | check timetable | never be late |
+| `*` | busy student | track my meetings | see when I am free ||
 | `*`      | busy student                               | search free times                                          | find times to relax                              |
 | `* *`    | efficient student                          | look at the number of completed tasks each week            | monitor my productivity                          |
 | `* *`    | student with a plan                        | access the important reminders and tasks for the day/week  | remind myself to be on task and follow my plan   |
+| `**` | forgetful student | record all my deadlines | easily access all deadlines due |
+| `*` | hardworking student | diligently plan my deadlines | always keep on task |
+| `**` | social butterfly | keep track of events | always remember the things to attend |
+| `**` | friend | record birthdays | wish my friends on time |
 | `* *`    | experienced user                           | execute multiple commands at a time                        | improve the efficiency of my workflow            |
 | `* *`    | long term user/student                     | Delete and wipe all my current tasks                       | use it in a clean slate for future semesters     |
 | `*`      | student taking many modules                | check exam dates                         |                                                                |
@@ -285,6 +291,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | student | add my Modules | easily organise my contacts and tasks based on module |
 | `*` | user starting to use the app | tag meetings to an organisation/module | know what organisation/module the meeting is for |
 | `**` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
+| `**` | expert user | create shortcuts | run multiple repeated commands at once to save time |
+
 
 *{More to be added}*
 
