@@ -30,14 +30,14 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Vu Minh Hieu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vuminhhieunus2019.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/vuminhhieunus2019)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI
 
 ### Lim Zi Qiang, Marcus
 
