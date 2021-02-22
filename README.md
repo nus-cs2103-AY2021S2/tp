@@ -7,3 +7,5 @@
 Example usages:
 * as an application to take notes of important information.
 * as a revision tool for students to revise for their examinations.
+
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
