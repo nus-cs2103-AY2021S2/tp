@@ -9,44 +9,17 @@ You can reach us at the email `zhengyong@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Ang Zheng Yong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/arsatis.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/arsatis)]
+[[portfolio](team/arsatis.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team Lead, Scheduling and Tracking
+* Responsibilities:
+    * Responsible for overall project coordination.
+    * In charge of defining, assigning, and tracking project tasks.
 
 ### Guo Yichao
 
@@ -55,5 +28,41 @@ You can reach us at the email `zhengyong@u.nus.edu`
 [[github](http://github.com/gycc7253)]
 [[portfolio](team/gycc7253.md)]
 
-* Role: DocumenTation
-* Responsibilities: IC of Documentation
+* Role: Documentation
+* Responsibilities:
+    * Responsible for the quality of various project documents.
+
+### Huang Nanxi
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Code quality, Deliverables and Deadlines
+* Responsibilities:
+    * Looks after code quality, ensures adherence to coding standards, etc.
+    * Ensure project deliverables are done on time and in the right format.
+
+### Loh Guo Jun
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]i
+[[portfolio](team/johndoe.md)]
+
+* Role: Testing
+* Responsibilities:
+    * Ensures the testing of the project is done properly and on time.
+
+### Zhang Guangzesheng
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Integration, UI
+* Responsibilities:
+    * In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
+    * In charge of ensuring the GUI is up to standard.
