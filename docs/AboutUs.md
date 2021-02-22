@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/julietteoh.md)]
 
 * Role: Developer
-* Responsibilities: Updating existing AB3 commands to fit our product, Updating documentations of product
+* Responsibilities: Updating existing AB3 commands to fit our product, Updating documentation of product
 
 ### Johnny Doe
 
