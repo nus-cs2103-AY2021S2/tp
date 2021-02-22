@@ -23,8 +23,8 @@ CURRENT_BRANCH=`git branch`
 
 if [[ $CURRENT_BRANCH != *"*	$BRANCH_TO_SYNC"* ]];
 then
-	echo "Switching to branch master..."
-	git checkout master
+	echo "Switching to branch $BRANCH_TO_SYNC..."
+	git checkout $BRANCH_TO_SYNC
 fi
 
 REMOTE=`git remote -v`
