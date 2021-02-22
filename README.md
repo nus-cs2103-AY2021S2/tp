@@ -14,3 +14,21 @@
 * It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+# SmartLib
+
+SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SmartLib can systematically manage your books and borrowers’ information in a more efficient manner than traditional GUI apps.
+
+Type the command in the command box and press Enter to access various features. e.g. typing listbook and pressing Enter will list all the current in-store books.
+
+## Features
+* Adding a book: addbook
+* Deleting a book: deletebook
+* Listing all books: listbook
+* Locating books by name: findbook
+* Adding a reader: addreader
+* Deleting a reader: deletereader
+* Locating readers by name: listreader
+* Finding a reader: findreader
+* Borrowing a book: borrow
+* Returning a book: return
