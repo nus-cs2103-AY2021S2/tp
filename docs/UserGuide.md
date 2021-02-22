@@ -128,19 +128,18 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an apartment : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified apartment from the list of apartments.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the apartment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed apartments list (i.e. **NOT** zero-indexed).
+* The index must be a **positive integer** (>0)
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 3` deletes the 3rd apartment in the list of apartments.
 
 ### Clearing all entries : `clear`
 
