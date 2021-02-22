@@ -30,15 +30,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Project Advisor
 
-### Jane Doe
+### Nguyen Son Linh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/linhns.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/linhns)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Integration and Git
+* Responsibilities: Manage team repository
 
 ### Vu Minh Hieu
 
