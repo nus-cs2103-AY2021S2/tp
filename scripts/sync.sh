@@ -44,4 +44,3 @@ echo "Merging upstream with master..."
 git merge upstream/master
 echo "Pushing local master to remote repository..."
 git push
-
