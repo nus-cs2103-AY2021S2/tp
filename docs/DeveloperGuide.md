@@ -299,7 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                       | find a book by their genre     | locate a book easily                                                   |
 | `*`      | user                                       | sort books by their genre      | locate a book easily                                                   |
 | `*`      | concerned user                             | remind readers to return books | get my readers to return their books on time                           |
-| `*`      | concerned by lazy user                     | automate my reminders          | get my readers to return their books on time without putting in any extra effort |
+| `*`      | concerned but lazy user                     | automate my reminders          | get my readers to return their books on time without putting in any extra effort |
 
 ### Use cases
 
