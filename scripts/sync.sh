@@ -28,7 +28,7 @@ fi
 
 REMOTE=`git remote -v`
 
-if [[ $REMOTE == *"upstream	https://github.com/AY2021S2-CS2103T-T12-4/tp.git (fetch)"* 
+if [[ $REMOTE == *"upstream	https://github.com/AY2021S2-CS2103T-T12-4/tp.git (fetch)"*
     && $REMOTE == *"upstream	https://github.com/AY2021S2-CS2103T-T12-4/tp.git (push)"* ]];
 then
     echo "Upstream found..."
