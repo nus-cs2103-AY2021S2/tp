@@ -479,8 +479,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 clients and meetings without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  A user should be able to quickly identify the purpose of different interface elements through larger buttons, recognizable color scheme etc. 
-4.  An average user should be able to get a grasp on the user interface within a few iteration of usage
+4.  A user should be able to quickly identify the purpose of different interface elements through larger buttons, recognizable color scheme etc. 
+5.  An average user should be able to get a grasp on the user interface within a few iteration of usage
 
 *{More to be added}*
 
