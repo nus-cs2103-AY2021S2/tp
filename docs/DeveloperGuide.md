@@ -236,29 +236,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is an insurance agent
+* has a need to manage a significant number of clients
+* has significant number of client meetings
+* has a need to track clients' insurance policy expiration date
+* has a lot of details to remember for each client
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+* save time by generating a consolidation of meetings and deadlines with the clients
+* target clients better by receiving reminders and tips before a client meeting (client's favourite food, profile)
+* increase customer retention by receiving reminders of when the client's insurance is expiring
+* improve convenience by providing a one page solution to an insurance agent's fast pace life
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                 | I can …​                                             | So that I can…​                                                     |
+| -------- | ------------------------------------------ | ------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                  | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                        |                                                                        |
+| `* * *`  | user                                       | delete a person                                         | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                   | locate details of persons without having to go through the entire list |
+| `* * *`  | popular insurance agent                    | view all my appointments without browsing the whole app | get a quick reminder of my appointments                                |
+| `* * *`  | busy insurance agent                       | schedule my meetings with my contacts                   | know when I am meeting my clients                                      |
+| `* * *`  | insurance agent                            | track my clients’ insurance expiry                      | remind my clients to renew their contract                              |
+| `* *`    | user                                       | hide private contact details                            | minimize chance of someone else seeing them by accident                |
+| `* *`    | time-constrained insurance agent           | view my tasks and appointments in a chronological list  | know what work to prioritize                                           |
+| `* *`    | opportunistic insurance agent              | filter my clients by their existing insurance plans     | upsell a new, similar plan to them                                     |
+| `*`      | user with many persons in the address book | sort persons by name                                    | locate a person easily                                                 |
+| `*`      | insurance agent with many contacts         | save my client’s likes/dislikes                         | interact with them more personally                                     |
 
 ### Use cases
 
