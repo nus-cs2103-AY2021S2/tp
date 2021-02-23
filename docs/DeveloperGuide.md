@@ -263,7 +263,6 @@ _{Explain here how the data archiving feature will be implemented}_
 | Customized UI       | User               | Choose between light/dark mode for the app                                             | It fits the aesthetics of my comptuer                               |
 | Customized UI       | Artsy User         | Customize the way the application looks                                                | It matches the aesthetics of my computer                            |
 |                     |                    |                                                                                        |                                                                     |
-|                     |                    |                                                                                        |                                                                     |
 | User Guide          | New User           | Easily access the user guide                                                           | I can understand how the app works easily                           |
 | User Guide          | New User           | Search for frequently asked question in the application                                | I can find help easily                                              |
 |                     |                    |                                                                                        |                                                                     |
