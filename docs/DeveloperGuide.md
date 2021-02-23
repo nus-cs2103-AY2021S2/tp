@@ -249,14 +249,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                        | So that I can…​                              |
+| -------- | ------------------------------------------ | -------------------------------------- | ----------------------------------------------- |
+| `* * *`  | new user                                   | view valid commands                    | remember how to use the App                     |
+| `* * *`  | user                                       | view a flashcard                       |                                                 |
+| `* * *`  | user                                       | see the answer to a flashcard          | check if I answered correctly                   |
+| `* * *`  | user                                       | start a practice run of all flashcards | practice all flashcards in a single session     |
+| `* *`    | user                                       | view all flashcards                    | study the flashcards before a session           |
 
 *{More to be added}*
 
@@ -290,12 +289,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+<!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  The product should be available for download and usage after each release.
+3.  The product'size should not exceed 100MB.
+4.  The product should be an offline application, which should work either with or without presence of internet
+    connection.
+5.  The product should allow one user to have different instances of the application running at the same time.
+6.  The product should be able to hold up to 2000 Japanese words without a noticeable sluggishness in performance for typical usage.
+7.  The project's design in source code should be easy to maintain and extend.
+8.  The project should be open-sourced.
+9.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
+    beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
+    of the learnings faster using commands than using the mouse.
+10. A user should find interecting with the user interface easy, even if he/she is relatively new to the application.
+11. More to be added.
 
 ### Glossary
 
