@@ -29,14 +29,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Member 2
 * Responsibilities: UI
 
-### Fazil
+### Mohamed Fazil
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/md-fazil.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Md-Fazil)] [[portfolio](team/mohamedfazil.md)]
 
-* Role: Member 3
-* Responsibilities: Data
+* Roles & Responsibilities: In charge of documentation and integration. Git Expert. 
 
 ### Kumaran
 
