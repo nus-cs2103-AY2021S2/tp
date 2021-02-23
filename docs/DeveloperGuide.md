@@ -249,14 +249,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I can …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | Student trying to decide where to eat      | look at the places i have visited before | Decide where I shall re-visit                            |
+
 
 *{More to be added}*
 
@@ -264,36 +260,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC02: List all restaurants**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all restaurants.
+2.  FoodDiary displays all the restaurants.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. FoodDiary detects invalid command from user.
 
-  Use case ends.
+    * 1a1. FoodDiary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
 
-* 3a. The given index is invalid.
+      Use case resumes from step 2.
 
-    * 3a1. AddressBook shows an error message.
+* 2a. No Restaurants to display.
 
-      Use case resumes at step 2.
+    * 2a1. Tells users that there are no restaurants.
+    * 1a2. User enters correct syntax.
+
+      Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+Non-functional requirements specify the constraints under which the system for The Food Diary is developed and operated.
+The Food Diary system is made up of the front-end, which is interchangeably referred to as the User Interface (UI), 
+and the back-end, which handles data management and operations.
+
+#### Technical requirements:
+
+* The system should be operable on Windows, MacOS and Linux operating systems, with Java 11 or above installed.
+
+#### Performance requirements:
+
+* The system should be loaded up within 2 seconds or less.
+* The UI should appear within 2 seconds or less and be responsive to User input.
+* The back-end should be responsive to processing User input at the same time the UI appears.
+* The back-end should be able to handle 1,000 or more data entries (Food Diary entries) without noticeable sluggishness 
+  in performance for typical usage.
+
+#### Usability requirements:
+
+* The user should have access to a keyboard, and be proficient with typing alphanumeric English characters for commands 
+  to accomplish most of the usages of The Food Diary.
+
 
 *{More to be added}*
 
