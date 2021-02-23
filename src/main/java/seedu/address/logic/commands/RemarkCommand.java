@@ -20,8 +20,6 @@ public class RemarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_REMARK + "Likes to swim.";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
-
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
 
     private final Index index;
