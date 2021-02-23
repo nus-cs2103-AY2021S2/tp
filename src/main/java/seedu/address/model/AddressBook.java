@@ -22,7 +22,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         persons = new UniquePersonList();
     }
 
@@ -109,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+            || (other instanceof AddressBook // instanceof handles nulls
+            && persons.equals(((AddressBook) other).persons));
     }
 
     @Override
