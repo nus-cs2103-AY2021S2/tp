@@ -166,9 +166,35 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Add a food review: add
 
-_Details coming soon ..._
+Adds a food review to the Food Diary.
+
+Format: `add n/<RESTAURANT NAME> a/ADDRESS d/DESCRIPTION c/CATEGORIES`   
+    
+Parameters:
+    
+   1. `Name (of restaurant)`
+   2. `Address`
+   3. `Description/review`
+   4. `Categories (tag)`
+
+Example:
+    
+    add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim 
+    
+    
+### Delete a food review: delete
+    
+Deletes a food review from the Food Diary.
+
+Format: `delete n/NAME` or `delete i/INDEX`
+
+Parameter: `Restaurant name` or `Index`
+   
+Example:
+   
+    delete n/McDonald’s Clementi Mall
 
 --------------------------------------------------------------------------------------------------------------------
 
