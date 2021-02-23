@@ -1,6 +1,5 @@
 ---
-layout: page
-title: About Us
+layout: page title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -51,10 +50,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ng Wei Xue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/weixue123.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/daniellau.md)]
+[[github](http://github.com/weixue123)]
+[[portfolio](team/weixue123.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Documentation
