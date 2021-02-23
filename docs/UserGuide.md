@@ -62,6 +62,22 @@ Example: `removeorder 2`
 * Removes the second order in the list of orders.
 
 
+### List orders: `listorder`
+
+Displays all incomplete orders in CHIM.
+
+Format: `listorder`
+
+
+### List cheese: `listcheese`
+
+Displays the current inventory count. If a cheese type is specified, then display the current inventory count for that particular cheese.
+
+Format: `listcheese [t/CHEESE_TYPE]`
+
+Examples: `listcheese Mozzarella`
+
+
 ### List customer: `listcustomer`
 
 Displays the customers in CHIM.

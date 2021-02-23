@@ -11,14 +11,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aaron Saw Min Sern
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aaronsms.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/aaronsms)]
+[[portfolio](team/aaronsms.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Software Testing
 
 ### Daniel Lau Yew En
 

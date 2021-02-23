@@ -77,18 +77,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User adds a customer by specifying name, phone number and address.
 2. CHIM creates the new customer and shows details of the new customer.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 * 1a. The given phone number is invalid.
   * 1a1. CHIM displays an error message.
 
-Use case resumes at step 1.
+    Use case resumes at step 1.
 
 * 1b. The given phone number is a duplicated customer.
   * 1b1. CHIM displays an error message.
 
-Use case resumes at step 1.
+    Use case resumes at step 1.
 
 #### Use case: Remove an Order
 
@@ -97,13 +97,54 @@ Use case resumes at step 1.
 1. User enters an order number to remove.
 2. CHIM removes the order from the list of orders.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 * 1a. No such order with the specified order number exists.
   * 1a1. CHIM displays an error message.
 
-Use case resumes at step 1.
+    Use case resumes at step 1.
+
+#### Use case: List orders
+
+**MSS**
+
+1. User enters the command to list all the orders recorded in CHIM.
+2. CHIM displays a list with the customers’ summary details.
+
+   Use case ends.
+
+**Extensions**
+* 1a. CHIM does not have any orders added.
+  * 1a1. CHIM informs the user that there are no orders recorded in the application.
+
+    Use case resumes at step 1.
+
+#### Use case: List cheese
+
+**MSS**
+
+1. User enters the command to list all the cheeses recorded in CHIM.
+2. CHIM displays all the cheeses in CHIM.
+
+   Use case ends.
+
+**Extensions**
+* 1a. CHIM does not have any cheese added.
+  * 1a1. CHIM informs the user that there is no cheese recorded in the application.
+
+    Use case resumes at step 1.
+
+* 1b. User provides an optional parameter, CHEESE_TYPE.
+  * 1b1. User enters a valid CHEESE_TYPE.
+    * 1b1a1. CHIM displays the current inventory count for the specific cheese_TYPE.
+
+      Use case resumes at step 1.
+
+  * 1b1. User enters a invalid CHEESE_TYPE.
+    * 1b1b1. CHIM displays an error message.
+
+      Use case resumes at step 1.
 
 #### Use case: List customers
 
@@ -126,6 +167,8 @@ Use case resumes at step 1.
 **MSS**
 1. User enters the index of the order to be marked as complete.
 1. CHIM marks the order as complete.
+
+   Use case ends.
 
 **Extensions**
 * 1a. User provides an index which does not exist.
