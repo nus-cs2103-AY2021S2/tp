@@ -274,28 +274,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### UC1 - Add a person
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a person
+2. CoLAB adds the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given arguments are invalid.
+  
+    * 1a1. CoLAB shows an error message.
+    
+        Use case resumes at step 1.
 
-  Use case ends.
+#### UC2 - Find details of a specific person
+
+**MSS**
+
+1. User requests to find a person.
+2. CoLAB shows a list of persons that match user's query. 
+3. User requests to view more details about a specific person in the list.
+4. CoLAB shows more information about the person in the list.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of persons is empty. 
+    
+    Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CoLAB shows an error message.
 
       Use case resumes at step 2.
+
+
+#### UC3 - Delete a person
+
+**MSS**
+
+1. User requests to list persons.
+2. CoLAB shows a list of persons.
+3. User requests to delete a specific person in the list.
+4. CoLAB deletes the person.
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of persons is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+      
+        Use case resumes at step 2.
+
+#### UC4 - Purge all entries from the app
+
+**MSS**
+
+1. User requests to delete all entries from the app.
+2. CoLAB asks user to confirm request.
+3. User confirms that they want to delete all entries.
+4. CoLAB deletes all data from the app.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User decides not to delete all entries.
+
+  Use case ends.
+
+#### UC5 - Find all persons that take a certain module
+
+**MSS**
+
+1. User requests to list all persons by modules taken.
+2. CoLAB lists all entries who have taken the modules.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given modules are invalid
+
+    * 1a1. CoLAB shows an error message.
+        
+        Use case resumes at step 1.
+
+* 2a. The list of persons is empty.
+    
+    Use case ends.
+
+#### UC6 - Adding or Modifying information about a person
+
+**MSS**
+
+1. User requests to edit information about a person.
+2. CoLAB updates entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given arguments are invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -310,7 +406,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
+* **MSS**: Main Success Scenario
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
