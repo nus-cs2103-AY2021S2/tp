@@ -260,8 +260,8 @@ _{Explain here how the data archiving feature will be implemented}_
 | Friend details      | Forgetful User     | Track how much debt is owed by/to the person                                           | I can get my money back or pay the money back.                      |
 |                     | User               | Store dietary habits/allergies on the contact                                          | I don't accidentally kill him when buying food for him              |
 |                     |                    |                                                                                        |                                                                     |
-| Customsied UI       | User               | Choose between light/dark mode for the app                                             | It fits the aesthetics of my comptuer                               |
-| Customsied UI       | Artsy User         | Customize the way the application looks                                                | It matches the aesthetics of my computer                            |
+| Customized UI       | User               | Choose between light/dark mode for the app                                             | It fits the aesthetics of my comptuer                               |
+| Customized UI       | Artsy User         | Customize the way the application looks                                                | It matches the aesthetics of my computer                            |
 |                     |                    |                                                                                        |                                                                     |
 |                     |                    |                                                                                        |                                                                     |
 | User Guide          | New User           | Easily access the user guide                                                           | I can understand how the app works easily                           |
@@ -289,9 +289,9 @@ _{Explain here how the data archiving feature will be implemented}_
 |                     |                    |                                                                                        |                                                                     |
 | Profile             | Forgetful User     | Add a profile picture to the contact                                                   | I can remember how they look like                                   |
 |                     |                    |                                                                                        |                                                                     |
-| Relationship mgmt   | Good friend        | Set a desired frequency for meeting each contact                                       | I am reminded to meet my friends either weekly, monthly, yearly etc |
-| Relationship mgmt   | Forgetful friend   | Be reminded of who i should meet soon                                                  |                                                                     |
-| Relationship mgmt   | Friend             | See upcoming dates (birthdays/special dates/due-to-meet)                               |                                                                     |
+| Relationship management   | Good friend        | Set a desired frequency for meeting each contact                                       | I am reminded to meet my friends either weekly, monthly, yearly etc |
+| Relationship management   | Forgetful friend   | Be reminded of who i should meet soon                                                  |                                                                     |
+| Relationship management   | Friend             | See upcoming dates (birthdays/special dates/due-to-meet)                               |                                                                     |
 |                     |                    |                                                                                        |                                                                     |
 | Dashboard           | User               | See upcoming birthdays at a glance                                                     | I know what to expect in the week to come                           |
 | Dashboard           | User               | See upcoming events at a glance                                                        |                                                                     |
@@ -402,7 +402,7 @@ _{Explain here how the data archiving feature will be implemented}_
   
     * 3a1. FriendDex shows an error message and displays the correct format for the command.
       
-        Use case Ends
+        Use case ends
     
 * 3b. A supplied Date field is in an invalid format.
   
