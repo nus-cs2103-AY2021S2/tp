@@ -52,9 +52,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/cheng20010201.png" width="200px">
 
-[github](http://github.com/cheng20010201)
-
-[portfolio](team/cheng20010201.md)
+[[github](http://github.com/cheng20010201)]
+[[portfolio](team/cheng20010201.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Scheduling and Tracking
