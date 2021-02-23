@@ -17,7 +17,7 @@ What are you waiting for? Start tracking your university life now!
 
 ## Acknowledgements
 
-- This application was built upon the AddressBook-Level3 project that was created by the [SE-EDU initiative](https://se-education.org).
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 - Libraries used:
   - [JavaFX](https://openjfx.io/)
   - [Jackson](https://github.com/FasterXML/jackson)
