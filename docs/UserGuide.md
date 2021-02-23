@@ -3,10 +3,32 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# SunRez v1.2 User Guide
+SunRez is a **desktop app for managing student housing services, optimized for use via a Command Line Interface** (CLI). SunRez keeps track of maintenance issues, student and room records and offers efficient management for users who can type fast.
 
-* Table of Contents
-{:toc}
+- [Quick start](#quick-start)
+- [Features](#features)
+    * [Show help : `help`](#show-help--help)
+    * [Add a resident : `radd`](#add-a-resident--radd)
+    * [List all residents : `rlist`](#list-all-residents--rlist)
+    * [Find residents : `rfind`](#find-residents--rfind)
+    * [Edit a resident record : `redit`](#edit-a-resident-record--redit)
+    * [Delete a resident : `rdel`](#delete-a-resident--rdel)
+    * [Add a room : `oadd`](#add-a-room--oadd)
+    * [List all rooms : `olist`](#list-all-rooms--olist)
+    * [Find rooms : `ofind`](#find-rooms--ofind)
+    * [Edit a room record : `oedit`](#edit-a-room-record----oedit)
+    * [Delete a room : `odel`](#delete-a-room----odel)
+    * [Add an open issue : `iadd`](#add-an-open-issue--iadd)
+    * [List all issues : `ilist`](#list-all-issues--ilist)
+    * [Find issues : `ifind`](#find-issues--ifind)
+    * [Edit an issue record : `iedit`](#edit-an-issue-record--iedit)
+    * [Close an issue : `iclose`](#close-an-issue--iclose)
+    * [Delete an issue : `idel`](#delete-an-issue--idel)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,27 +36,25 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `sunrez.jar` from [here](https://github.com/AY2021S2-CS2103-T14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your SunRez.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`rlist`** : Lists all residents.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, and as a 2nd year student.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`rdel`**`3` : Deletes the 3rd resident shown in the current resident list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`exit`** : Exits the app.
 
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -48,16 +68,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `d/DESCRIPTION [t/TIMESTAMP]` can be used as `d/Broken chair t/2020-03-23` or as `d/Broken chair`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `n/John Doe n/Jane Doe`, only `n/Jane Doe` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -66,7 +83,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -128,7 +145,7 @@ Finds residents whose names contain any of the given keywords.
 
 Format: `rfind KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
