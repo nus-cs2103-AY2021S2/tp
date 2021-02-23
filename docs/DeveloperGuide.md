@@ -249,14 +249,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                        | So that I can…​                              |
+| -------- | ------------------------------------------ | -------------------------------------- | ----------------------------------------------- |
+| `* * *`  | new user                                   | view valid commands                    | remember how to use the App                     |
+| `* * *`  | user                                       | view a flashcard                       |                                                 |
+| `* * *`  | user                                       | see the answer to a flashcard          | check if I answered correctly                   |
+| `* * *`  | user                                       | start a practice run of all flashcards | practice all flashcards in a single session     |
+| `* *`    | user                                       | view all flashcards                    | study the flashcards before a session           |
 
 *{More to be added}*
 
