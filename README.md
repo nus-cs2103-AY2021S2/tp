@@ -3,13 +3,72 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Team](#team)
+- [Contributing](#contributing)
+
+### Introduction
+
+imPoster does what [postman](https://www.postman.com/) does but in a simple and
+minimalistic style that is easy for anyone to pick up. The latest releases for
+download are available
+[here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
+
+### Features
+
+imPoster runs locally on your computer and simplifies the process of building an
+API. We offer support for the following tasks:
+
+1. Sending and Receiving requests.
+2. Saving requests to be used again later.
+3. Testing requests.
+
+For more details on the features and their usage, please refer to the
+[user guide](https://github.com/AY2021S2-CS2103T-T12-4/tp).
+
+### Technologies
+
+Technologies used by imPoster are:
+
+##### Made with:
+
+<p align="center">
+  <img height="150" width="150" src="https://i.imgur.com/5zlrxVc.png"/>
+</p>
+<p align="center">
+Java
+</p>
+
+##### Deployed on:
+
+<p align="center">
+None (Local Application)
+</p>
+
+##### Project Repository
+
+```
+https://github.com/AY2021S2-CS2103T-T12-4/tp
+```
+
+### Setup
+
+Download the JAR file and run it.
+
+<!-- add pic here -->
+
+### About Us
+
+View the details about our team [here](docs/AboutUs.md)
+
+### Contributing
+
+If you have code to contribute to the project, open a pull request and describe
+clearly the changes and what they are intended to do (enhancement, bug fixes
+etc). Alternatively, you may simply raise bugs or suggestions by opening an
+issue.
