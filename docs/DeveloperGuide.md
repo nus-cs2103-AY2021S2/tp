@@ -249,10 +249,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I can …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Student trying to decide where to eat      | look at the places i have visited before | Decide where I shall re-visit                            |
 
+| Priority | As a …​                                    | I want to …​                                       | So that I can…​                                                         |
+| -------- | ------------------------------------------ | -------------------------------------------------| ---------------------------------------------------------------------- |
+| `* * *`  | user with little patience                  | easily add names of places I have visited        | I can efficiently add a review to a place I have visited               |
+| `* * *`  | Student trying to decide where to eat      | look at the places i have visited before         | Decide where I shall re-visit                                          |
 
 *{More to be added}*
 
@@ -260,14 +261,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+
 **UC02: List all restaurants**
 
 **MSS**
 
 1.  User requests to list all restaurants.
 2.  FoodDiary displays all the restaurants.
-
-    Use case ends.
 
 **Extensions**
 
@@ -284,8 +284,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters correct syntax.
 
       Use case ends.
+=======
+**UC01: Add a restaurant**
 
-*{More to be added}*
+**MSS**
+
+1.  User adds a restaurant
+2.  FoodDiary adds a new restaurant to the app.
+    Use case ends.
+
+**Extensions**
+
+* 1a.  FoodDiary detects invalid command from user.
+      	
+	*   1a1. FoodDiary warns user about wrong syntax.
+      	
+    *	1a2. User enters correct syntax
+      	
+      	Use case resumes from step 2
+
+* 2a. FoodDiary detects duplicate restaurant that is already reviewed
+       
+    *	2a1. FoodDiary warns user about duplicate
+    
+    *	2a2. Suggests user to either delete or update review
+    
+       	Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -310,13 +335,23 @@ and the back-end, which handles data management and operations.
 * The user should have access to a keyboard, and be proficient with typing alphanumeric English characters for commands 
   to accomplish most of the usages of The Food Diary.
 
+#### Project scope:
+* The system should mainly comprise the handling of Food Diary-entry addition, deletion, and listing.
+* The system would not be responsible for features involving multiple users
 
-*{More to be added}*
+#### Scalability requirements:
+* The system can handle a larger user base with many more food reviews being added to it
+* Program is extendable for future addition of features easily 
+
+#### Other Noteworthy Points:
+
+* The system should preserve data keyed in by the user
 
 ### Glossary
+The glossary serves to ensure that all stakeholders, including users, have a common understanding of the noteworthy terms, and abbreviations.
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Sluggishness**: The system starts to be slow in displaying user input when typed, and processing user input when entered.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
