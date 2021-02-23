@@ -1,13 +1,15 @@
 ---
-layout: page title: User Guide
+layout: page
+title: User Guide
 ---
 
 Chesse Inventory Management (CHIM) is a **desktop app for managing the contacts, inventory, and orders of a home-based
-cheese making business. The app is optimized for use via a Command Line Interface** (CLI) while still having the 
-benefits of a Graphical User Interface (GUI). If you can type fast, CHIM can get your contact management tasks done 
+cheese making business. The app is optimized for use via a Command Line Interface** (CLI) while still having the
+benefits of a Graphical User Interface (GUI). If you can type fast, CHIM can get your contact management tasks done
 faster than traditional GUI apps.
 
-* Table of Content {:toc}
+* Table of Content
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +81,7 @@ Format: `removeorder ORDER_INDEX`
 Example: `removeorder 2`
 * Removes the second order in the list of orders.
 
-### Listing incomplete orders: `listorder`
+### Listing orders: `listorder`
 
 Displays all incomplete orders in CHIM.
 
@@ -87,8 +89,7 @@ Format: `listorder`
 
 ### Listing cheese: `listcheese`
 
-Displays the current inventory count. If a cheese type is specified, then display the current inventory count for that
-particular cheese.
+Displays the current inventory count. If a cheese type is specified, then display the current inventory count for that particular cheese.
 
 Format: `listcheese [t/CHEESE_TYPE]`
 
@@ -111,7 +112,7 @@ Format: `done ORDER_INDEX`
 Examples: `done 2`
 * Mark the second order in the list of orders as complete.
 
-### Searching for a customer: `search`
+### Searching for customers: `search`
 
 Searches for a customer in CHIM.
 
@@ -134,14 +135,13 @@ Format: `exit`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action  | Format, Examples
+Action | Format, Examples
 --------|------------------
 **Add Order** | `addorder t/CHEESE_TYPE q/QUANTITY p/PHONE_NUMBER` <br> e.g. `addorder t/Parmesan q/2 p/65555555`
 **Add Cheese** | `addcheese t/CHEESE_TYPE q/QUANTITY` <br> e.g. `addcheese t/CHEESE_TYPE q/QUANTITY`
