@@ -254,14 +254,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
+| `* * *`  | user                                       | add a new person               | keep track of details from peers I have crossed paths with             |
+| `* * *`  | user                                       | edit a person's details        | update their details when there is change                              |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | tag a person with tags         | easily keep track of who the contact is                                |
+| `* *`    | University Student                         | find contacts by modules taken | easily find contacts who take the same module as me                    |
+| `* *`    | Student Teaching Assistant                 | find contacts by tutorial group| easily find contacts of students in my class                           |
+| `* *`    | user                                       | purge all data in the app      | start my address book from fresh                                       |
+| `*`      | long time user                             | archive data files             | refer to old address books when needed                                 |
+
 
 *{More to be added}*
 
