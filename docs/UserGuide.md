@@ -87,11 +87,16 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### View all the food reviews : `list`
 
-Shows a list of all persons in the address book.
+Lists all the restaurants with food reviews.
 
 Format: `list`
+
+Parameter: none
+
+Example:
+(Refer to mockup)
 
 ### Editing a person : `edit`
 
@@ -209,10 +214,6 @@ Example:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add** | `add n/<RESTAURANT NAME> a/ADDRESS d/DESCRIPTION c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim`
+**Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
-**Help** | `help`
