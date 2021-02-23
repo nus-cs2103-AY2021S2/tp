@@ -22,4 +22,3 @@ What are you waiting for? Start tracking your university life now!
   - [JavaFX](https://openjfx.io/)
   - [Jackson](https://github.com/FasterXML/jackson)
   - [JUnit5](https://github.com/junit-team/junit5)
-  
