@@ -35,15 +35,15 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 * Roles & Responsibilities: In charge of documentation and integration. Git Expert. 
 
-### Kumaran
+### Kumaran S/O Selvvaratnam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kumsssss.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kumsssss)]
+[[portfolio](team/kumaran.md)]
 
-* Role: Member 4
-* Responsibilities: Dev Ops + Threading
+* Role & Responsibilities: In charge of Code Quality and Model, 
+  Testing Expert
 
 ### Amanda Ang
 
