@@ -2,6 +2,7 @@
 layout: page
 title: CoLAB User Guide
 ---
+
 CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to keep track of people they have crossed paths with in university**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your contact management tasks done faster than traditional GUI apps.
 
 # Table of Contents
@@ -20,7 +21,9 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
     - [Exiting the Program](#exiting-the-program--exit)
     - [Saving the Data](#saving-the-data)
     - [Editing the Data File](#editing-the-data-file)
-    - [Archiving Data Files](#archiving-data-files-coming-in-v20)
+    - [View more details about a person](#view-more-details-about-a-person-coming-soon)
+    - [Undo/Redo](#undoredo-coming-soon)
+    - [Archiving Data Files](#archiving-data-files-coming-soon)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 - [Acknowledgements](#acknowledgements)
@@ -183,7 +186,23 @@ CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Adva
 If your changes to the data file makes its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### View more details about a person `[coming soon]`
+
+Format: `view INDEX`
+
+* Shows more details about the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `view 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `view 1` deletes the 1st person in the results of the `find` command.
+
+### Undo/Redo `[coming soon]`
+
+_Details coming soon ..._
+
+### Archiving data files `[coming soon]`
 
 _Details coming soon ..._
 
