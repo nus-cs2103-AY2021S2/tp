@@ -11,10 +11,10 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 ### Chen Yan Jia Jay
 
-<img src="images/jaychen.png" width="200px">
+<img src="images/jaychenyj.png" width="200px">
 
 [[github](https://github.com/JayChenYJ)]
-[[portfolio](team/jaychen.md)]
+[[portfolio](team/jaychenyj.md)]
 
 * Role & Responsibilities: Team Lead, Scheduling and tracking, Deliverables and deadlines
 
