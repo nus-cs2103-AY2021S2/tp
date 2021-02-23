@@ -291,15 +291,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+* Technical requirements:
+  * CoLAB should work on any _mainstream OS_ on both 32-bit and 64-bit architectures as long as it has Java `11` or above installed.
+  * CoLAB should work under _common screen resolutions_. (i.e. the window should not be out of boundary)
+* Performance requirements:
+  * CoLAB should be able to hold _up to 1000 persons_ without a noticeable sluggishness in performance for typical usage.
+  * The response to any command should be shown within 1 second.
+* Constraints:
+  * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
+  * CoLAB must be open source under [the MIT Licnese](https://raw.githubusercontent.com/AY2021S2-CS2103T-T11-2/tp/master/LICENSE).
+* Quality requirements:
+  * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+  * A user familiar with CLI tools should find CoLAB commands very intuitive.
+  * A user who has no experience with CLI tools should be able to find CoLAB easy to use with the help of the [_User Guide_](UserGuide.md).
+* Process requirements:
+  * the project is expected to adhere to a schedule that delivers a feature set every two weeks.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Common screen resolutions**: minimum _640×480_, maximum _3840×2160_
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
