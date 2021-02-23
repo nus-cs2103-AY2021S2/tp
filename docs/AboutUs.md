@@ -18,15 +18,14 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 * Role & Responsibilities: Team Lead, Scheduling and tracking, Deliverables and deadlines
 
-### Wei Hao
+### Chew Wei Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chewwh09.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chewwh09)]
+[[portfolio](team/chewwh09.md)]
 
-* Role: Member 2
-* Responsibilities: UI
+* Roles and Responsibilities: Logic expert, Code Quality, Documentation
 
 ### Mohamed Fazil
 
