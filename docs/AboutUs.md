@@ -55,5 +55,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/github-amanda)]
 [[portfolio](team/amandaang.md)]
 
-* Role: Member 5
-* Responsibilities: UI Expert, Testing Expert and SourceTree Expert
+* Roles & Responsibilities: UI Expert, Testing Expert & SourceTree Expert
