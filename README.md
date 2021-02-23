@@ -16,3 +16,4 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 * For the detailed documentation of this project, see
   the **[StoreMando Product Website](https://ay2021s2-cs2103t-w10-2.github.io/tp/)**.
+  
