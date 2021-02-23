@@ -5,7 +5,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to keep track of people they have crossed paths with in university**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your contact management tasks done faster than traditional GUI apps.
+CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to keep track of people they have crossed paths with.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your contact management tasks done faster than traditional GUI apps.
 
 What are you waiting for? Start tracking your university life now!
 
