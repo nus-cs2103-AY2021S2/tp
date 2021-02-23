@@ -19,15 +19,15 @@ You can reach us at the email `imposter[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Update existing AB3 commands | Update documentation
 
-### Liu Yong Liang
+### Liu Yongliang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tlylt.png" width="200px">
 
 [[github](http://github.com/tlylt)]
 [[portfolio](team/tlylt.md)]
 
 * Role: Developer
-* Responsibilities: Update new features response | Ensure code quality
+* Responsibilities: Update new features | Ensure code quality
 
 ### Ong Jun Xiong
 
@@ -41,10 +41,11 @@ You can reach us at the email `imposter[at]comp.nus.edu.sg`
 
 ### Tan Jin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tjtanjin.png" width="200px">
 
 [[github](http://github.com/tjtanjin)]
 [[portfolio](team/tjtanjin.md)]
+[[homepage](https://tjtanjin.com/)]
 
 * Role: Developer
 * Responsibilities: Update new features command | Ensure smooth integrations
