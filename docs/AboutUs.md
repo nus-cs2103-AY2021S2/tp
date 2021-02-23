@@ -19,12 +19,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Member 1
 
-### Wei Hao
+### Chew Wei Hao
 
-<img src="images/weihao.png" width="200px">
+<img src="images/chewwh09.png" width="200px">
 
 [[github](http://github.com/chewwh09)]
-[[portfolio](team/weihao.md)]
+[[portfolio](team/chewwh09.md)]
 
 * Roles and Responsibilities: Logic expert, Code Quality, Documentation
 
