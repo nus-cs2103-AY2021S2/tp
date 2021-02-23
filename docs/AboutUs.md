@@ -19,6 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
+### Lan Yu Xuan
+
+<img src="images/jellybeano.png" width="200px">
+
+[ [github](http://github.com/Jellybeano) ] [ [portfolio](team/lanyuxuan.md) ]
+
+* Role: Team Lead
+* Responsibilities: Documentation
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
