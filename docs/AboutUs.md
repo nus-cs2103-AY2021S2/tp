@@ -5,19 +5,18 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0406389@u.nus.edu`
 
 ## StoreMando Project Team
 
-### Jay Chen
+### Chen Yan Jia Jay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaychenyj.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/JayChenYJ)]
+[[portfolio](team/jaychenyj.md)]
 
-* Role: Member 1
+* Role & Responsibilities: Team Lead, Scheduling and tracking, Deliverables and deadlines
 
 ### Wei Hao
 
