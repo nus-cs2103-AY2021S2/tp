@@ -61,7 +61,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Teng Xin Wei
 
 <img src="images/xinweit.png" width = "200px">
-[[github](http://github.com/xinweit)] 
+[[github](http://github.com/xinweit)]
 [[portfolio](team/tengxinwei.md)]
 * Role:
 * Responsibilities: Documentation + Code quality
