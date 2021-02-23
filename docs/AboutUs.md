@@ -43,9 +43,9 @@ You can reach us at the email `imposter[at]comp.nus.edu.sg`
 
 <img src="images/tjtanjin.png" width="200px">
 
-[[homepage](https://tjtanjin.com/)]
 [[github](http://github.com/tjtanjin)]
 [[portfolio](team/tjtanjin.md)]
+[[homepage](https://tjtanjin.com/)]
 
 * Role: Developer
 * Responsibilities: Update new features command | Ensure smooth integrations
