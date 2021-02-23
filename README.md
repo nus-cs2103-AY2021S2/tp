@@ -60,6 +60,8 @@ https://github.com/AY2021S2-CS2103T-T12-4/tp
 
 Download the JAR file and run it.
 
+<!-- To elaborate on in the future. -->
+
 <!-- add pic here -->
 
 ### About Us
