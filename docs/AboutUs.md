@@ -21,13 +21,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wei Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/weihao.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chewwh09)]
+[[portfolio](team/weihao.md)]
 
-* Role: Member 2
-* Responsibilities: UI
+* Roles and Responsibilities: Logic expert, Code Quality, Documentation
 
 ### Fazil
 
