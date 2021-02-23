@@ -105,6 +105,47 @@ Use case ends.
 
 Use case resumes at step 1.
 
+#### Use case: List orders
+
+**MSS**
+
+1. User enters the command to list all the orders recorded in CHIM.
+2. CHIM displays a list with the customers’ summary details.
+
+   Use case ends.
+
+**Extensions**
+* 1a. CHIM does not have any orders added.
+  * 1a1. CHIM informs the user that there are no orders recorded in the application.
+
+    Use case resumes at step 1.
+
+#### Use case: List cheese
+
+**MSS**
+
+1. User enters the command to list all the cheeses recorded in CHIM.
+2. CHIM displays all the cheeses in CHIM.
+
+   Use case ends.
+
+**Extensions**
+* 1a. CHIM does not have any cheese added.
+  * 1a1. CHIM informs the user that there is no cheese recorded in the application.
+
+    Use case resumes at step 1.
+
+* 1b. User provides an optional parameter, CHEESE_TYPE.
+  * 1b1. User enters a valid CHEESE_TYPE.
+    * 1b1a1. CHIM displays the current inventory count for the specific cheese_TYPE.
+
+      Use case resumes at step 1.
+
+  * 1b1. User enters a invalid CHEESE_TYPE.
+    * 1b1b1. CHIM displays an error message.
+
+      Use case resumes at step 1.
+
 #### Use case: List customers
 
 **MSS**
