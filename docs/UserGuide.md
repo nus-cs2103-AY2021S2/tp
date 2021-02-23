@@ -10,17 +10,20 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 - [Table of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Command Format](#command-format)
-    - [Seeking Help](#seeking-help)
-    - [Quitting the Application](#quitting-the-application)
-    - [Adding Todos](#adding-todos)
-    - [Adding Deadlines](#adding-deadlines)
-    - [Adding Events](#adding-events)
-    - [List out all tasks](#list-out-all-tasks)
-    - [Mark task as done](#mark-task-as-done)
-    - [Deleting a task](#deleting-a-task)
-    - [Finding a task](#finding-a-task)
-- [Saving your data](#saving-your-data)
+    - [Notes about the Command Format](#features)
+    - [Viewing Help](#viewing-help--help)
+    - [Adding a Person](#adding-a-person-add)
+    - [List all Persons](#listing-all-persons--list)
+    - [Editing a Person](#editing-a-person--edit)
+    - [Locating Persons by Name](#locating-persons-by-name-find)
+    - [Deleting a Person](#deleting-a-person--delete)
+    - [Clearing all entries](#clearing-all-entries--clear)
+    - [Exiting the Program](#exiting-the-program--exit)
+    - [Saving the Data](#saving-the-data)
+    - [Editing the Data File](#editing-the-data-file)
+    - [Archiving Data Files](#archiving-data-files-coming-in-v20)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 - [Acknowledgements](#acknowledgements)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -205,3 +208,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+# Acknowledgements
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
