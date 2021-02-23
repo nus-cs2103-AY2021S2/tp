@@ -1,3 +1,4 @@
+
 #About Us
 
 ---
@@ -8,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project Team
 
----
+
 ### Wong Khia Xeng
 
 <img src="images/khiaxeng.png" width="200px">
