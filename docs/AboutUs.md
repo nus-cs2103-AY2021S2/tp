@@ -21,10 +21,10 @@ You can reach us at the email `imposter[at]comp.nus.edu.sg`
 
 ### Liu Yongliang
 
-<img src="images/yongliang.png" width="200px">
+<img src="images/tlylt.png" width="200px">
 
 [[github](http://github.com/tlylt)]
-[[portfolio](team/yongliang.md)]
+[[portfolio](team/tlylt.md)]
 
 * Role: Developer
 * Responsibilities: Update new features | Ensure code quality
