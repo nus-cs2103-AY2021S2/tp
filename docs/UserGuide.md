@@ -97,7 +97,7 @@ Format: `list`
 
 Edits the booking/cleaning status of an existing residence
 
-Format: `edit u/(un)clean[INDEX] u/(un)book[INDEX]`
+Format: `edit u/(un)clean [INDEX] u/(un)book [INDEX]`
 
 * Edits the residence status at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields (either clean or book status) must be provided.
@@ -182,7 +182,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit u/(un)clean[INDEX] u/(un)book [INDEX]`<br> e.g.,`edit u/unclean 2 u/unbook 2`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit** | `edit u/(un)clean [INDEX] u/(un)book [INDEX]`<br> e.g.,`edit u/unclean 2 u/unbook 2`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Shaughnessy`
 **List** | `list`
 **Help** | `help`
