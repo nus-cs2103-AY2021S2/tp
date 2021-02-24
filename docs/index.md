@@ -16,9 +16,9 @@ What are you waiting for? Start tracking your university life now!
 
 ## Site Map
 
-- **[User Guide](docs/UserGuide.md)**
-- **[Developer Guide](docs/DeveloperGuide.md)**
-- **[About US](docs/AboutUs.md)**
+- **[User Guide](UserGuide.md)**
+- **[Developer Guide](DeveloperGuide.md)**
+- **[About US](AboutUs.md)**
 
 ## Acknowledgements
 
