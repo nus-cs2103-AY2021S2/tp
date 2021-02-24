@@ -1,42 +1,35 @@
----
-layout: page
-title: About Us
----
-
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Prabhakaran Gokul
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/prabhakarangokul.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Prabhakaran-Gokul/)]
+[[portfolio](team/prabhakarangokul.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Integration
+### Donavan Lim
+
+<img src="images/Donavanty.png" width="200px">
+
+[[github](https://github.com/Donavanty)]
+[[portfolio](team/Donavan.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
+### Dinesh S/O Magesvaran
+
+<img src="images/dineshmagesvaran.png" width="200px">
+
+[[github](http://github.com/dineshmagesvaran)]
+[[portfolio](team/dineshmagesvaran.md)]
+
+* Role: Developer
+* Responsibilities: Testing
 
 ### Chong Sidney
 
@@ -48,12 +41,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Deliverables and Deadlines
 
-### James Doe
+### Marcus Lee Eugene
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcusleeeugene.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/marcusleeeugene)]
+[[portfolio](team/marcusleeeugene.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Lead, Developer
+* Responsibilities: Scheduling and tracking, Code quality
+* [Git] expert
