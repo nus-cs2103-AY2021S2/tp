@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/wangtao.png" width="200px">
 
 [[github](http://github.com/wangtao0717)]
-[[portfolio](team/wangtao.md)]
+[[portfolio](team/wangtao0717.md)]
 
 * Role: Developer
 * Responsibilities: _TBC_
