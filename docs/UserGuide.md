@@ -8,6 +8,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Table of Contents
 {:toc}
 
+    * Description
+    * Features
+        * add
+        * delete
+        * list
+    * Command Summary
+    * UI mock-up
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -35,6 +43,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+## Description
+
+The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI).
+
+The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -171,9 +186,35 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Add a food review: add
 
-_Details coming soon ..._
+Adds a food review to the Food Diary.
+
+Format: `add n/<RESTAURANT NAME> a/ADDRESS d/DESCRIPTION c/CATEGORIES`   
+    
+Parameters:
+    
+   1. `Name (of restaurant)`
+   2. `Address`
+   3. `Description/review`
+   4. `Categories (tag)`
+
+Example:
+    
+    add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim 
+    
+    
+### Delete a food review: delete
+    
+Deletes a food review from the Food Diary.
+
+Format: `delete n/NAME` or `delete i/INDEX`
+
+Parameter: `Restaurant name` or `Index`
+   
+Example:
+   
+    delete n/McDonald’s Clementi Mall
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -191,3 +232,10 @@ Action | Format, Examples
 **Add** | `add n/<RESTAURANT NAME> a/ADDRESS d/DESCRIPTION c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim`
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
+**Help** | `help`
+
+## <center> **Appendix** </center> 
+
+### UI Mock-up 
+
+![Ui Mock-up](images/UiMockUp.png)
