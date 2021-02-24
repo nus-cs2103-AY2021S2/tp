@@ -236,56 +236,162 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* student currently enrolled in a university
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* supports only features a university student needs without additional clutter
+* information organised by categories relevant to university students (e.g. tag by modules)
+* manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
+| `* * *`  | user                                       | add a new person               | keep track of details from peers I have crossed paths with             |
+| `* * *`  | user                                       | edit a person's details        | update their details when there is change                              |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | tag a person with tags         | easily keep track of who the contact is                                |
+| `* *`    | University Student                         | find contacts by modules taken | easily find contacts who take the same module as me                    |
+| `* *`    | Student Teaching Assistant                 | find contacts by tutorial group| easily find contacts of students in my class                           |
+| `* *`    | user                                       | purge all data in the app      | start my address book from fresh                                       |
+| `*`      | long time user                             | archive data files             | refer to old address books when needed                                 |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### UC1 - Add a person
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a person
+2. CoLAB adds the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given arguments are invalid.
+  
+    * 1a1. CoLAB shows an error message.
+    
+        Use case resumes at step 1.
 
-  Use case ends.
+#### UC2 - Find details of a specific person
+
+**MSS**
+
+1. User requests to find a person.
+2. CoLAB shows a list of persons that match user's query. 
+3. User requests to view more details about a specific person in the list.
+4. CoLAB shows more information about the person in the list.
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of persons is empty. 
+    
+    Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CoLAB shows an error message.
 
       Use case resumes at step 2.
+
+
+#### UC3 - Delete a person
+
+**MSS**
+
+1. User requests to list persons.
+2. CoLAB shows a list of persons.
+3. User requests to delete a specific person in the list.
+4. CoLAB deletes the person.
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of persons is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+      
+        Use case resumes at step 2.
+
+#### UC4 - Purge all entries from the app
+
+**MSS**
+
+1. User requests to delete all entries from the app.
+2. CoLAB asks user to confirm request.
+3. User confirms that they want to delete all entries.
+4. CoLAB deletes all data from the app.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User decides not to delete all entries.
+
+  Use case ends.
+
+#### UC5 - Find all persons that take a certain module
+
+**MSS**
+
+1. User requests to list all persons by modules taken.
+2. CoLAB lists all entries who have taken the modules.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given modules are invalid
+
+    * 1a1. CoLAB shows an error message.
+        
+        Use case resumes at step 1.
+
+* 2a. The list of persons is empty.
+    
+    Use case ends.
+
+#### UC6 - Adding or Modifying information about a person
+
+**MSS**
+
+1. User requests to edit information about a person.
+2. CoLAB updates entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given arguments are invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -299,8 +405,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, macOS
+* **MSS**: Main Success Scenario
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
