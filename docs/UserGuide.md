@@ -97,7 +97,7 @@ Format: `list`
 
 Edits the booking/cleaning status of an existing residence
 
-Format: `edit u/(un)clean[INDEX] u/(un)book [INDEX]`
+Format: `edit u/(un)clean[INDEX] u/(un)book[INDEX]`
 
 * Edits the residence status at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields (either clean or book status) must be provided.
