@@ -113,7 +113,7 @@ Shows a list of all persons in CoLAB.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person : `edit` `[coming soon]`
 
 Edits an existing person in CoLAB.
 
