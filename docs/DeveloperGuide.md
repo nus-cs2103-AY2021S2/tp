@@ -30,13 +30,23 @@ The Food Diary will **allow students to save time and effort** when finding plac
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+This product caters to food-fervent NUS students who would ideally benefit from
+keeping records of food options tasted in the vicinity of NUS.
+
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+
+* can type fast and prefers typing to mouse interactions
+
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:
+
+The Food Diary will allow NUS foodies to save time and effort when finding places to eat around the NUS vicinity.
+The Food Diary especially caters to students chiefly on 3 aspects
+– One, the ability for users to log personal food reviews tagged under different categories for future reference;
+Two, the ability to effortlessly reference food options based on relevant filters in a user-friendly GUI;
+and Three, the ability to import and export their personal food diary to share with friends.
 
 
 ### User stories
