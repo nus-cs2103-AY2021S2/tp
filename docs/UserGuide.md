@@ -155,7 +155,7 @@ Format: `exit`
 * Archiving of Data Files
 * Night Mode
 * Mass Operations (e.g. mass delete, mass edit)
-* Calendar View 
+* Calendar View
 * _and much more!_
 
 --------------------------------------------------------------------------------------------------------------------
