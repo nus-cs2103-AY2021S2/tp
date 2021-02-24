@@ -26,6 +26,12 @@ The Food Diary is a desktop app for managing food diary entries, optimized with 
 
 The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
 
+The Food Diary will allow students to save time and effort when finding places to 
+eat around the NUS vicinity. The Food Diary especially caters to students chiefly on 3 aspects:
+1. The ability for users to log personal food reviews tagged under different categories for future reference.
+2. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI
+3. The ability to import and export their personal food diary to share with friends.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
