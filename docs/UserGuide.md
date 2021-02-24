@@ -8,6 +8,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Table of Contents
 {:toc}
 
+    * Description
+    * Features
+        * add
+        * delete
+        * list
+    * Command Summary
+    * UI mock-up
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -35,6 +43,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+## Description
+
+The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI).
+
+The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -1,7 +1,3 @@
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
 --------------------------------------------------------------------------------------------------------------------
 ## Developer Guide for v1.2
 
@@ -15,8 +11,18 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
     - Non-Functional Requirements 
     - Glossary 
     - UI Mock-Up
+--------------------------------------------------------------------------------------------------------------------
     
-## Description 
+## **Description**
+
+The Food Diary is a **desktop app for managing food diary entries**, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI).
+
+The Food Diary **caters to food-passionate NUS students** who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
+
+The Food Diary will **allow students to save time and effort** when finding places to eat around the NUS vicinity. The Food Diary especially caters to students chiefly on 3 aspects:
+1. The ability for users to log personal food reviews tagged under different categories for future reference;
+1. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI; and
+1. The ability to import and export their personal food diary to share with friends.
 
 ## **Appendix: Requirements**
 
@@ -42,6 +48,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * * ` | User wanting to add a food experience to a particular restaurant | Add a food experience | I can refer back to the particular element that defined my food experience  |
 | `* * *`  | user with little patience                  | easily add names of places I have visited        | I can efficiently add a review to a place I have visited               |
 | `* * *`  | Student trying to decide where to eat      | look at the places i have visited before         | Decide where I shall re-visit                                          |
+| `* * *`  | User who would like to create custom category of food place | Add the category of the place   | I can have a specific view of certain places                           |
 
 *{More to be added}*
 
@@ -98,6 +105,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**UC04: Add category**
+
+**MSS**
+
+1. User adds a new category
+2. FoodDiary adds the new category into the app
+   
+Use case ends.
+
+**Extensions**
+
+* 1a. FoodDiary detects invalid command from user
+    * 1a1. FoodDiary warns user about wrong syntax
+    * 1a2. User enters correct syntax
+      
+      Use case resumes from step 2
+* 1b. New category already exists
+    * 1b1. FoodDiary tells user that the category already exists
+      
+      Use case ends.
+
 **UC05: Add food experience of Restaurant**
 
 **MSS**
@@ -118,6 +146,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
     
+*	2a2. Suggests user to either delete or update review
+    
+  Use case ends.
+    
+
 ### Non-Functional Requirements
 
 Non-functional requirements specify the constraints under which the system for The Food Diary is developed and operated.
