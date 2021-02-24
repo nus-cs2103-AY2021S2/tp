@@ -7,6 +7,13 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
+### Muhammad Assyarul Ariffin Bin Omar
+
+<img src="images/assyarul.png" width="200px">
+
+[[github](https://github.com/assyarul)]
+* Role: Developer
+
 ### Chester How
 
 <img src="images/chesterhow.png" width="200px">
@@ -14,9 +21,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[homepage](https://chester.how)]
 [[github](https://github.com/chesterhow)]
 
-### Muhammad Assyarul Ariffin Bin Omar
-
-<img src="images/assyarul.png" width="200px">
-
-[[github](https://github.com/assyarul)]
 * Role: Developer
+* Responsibilities: UI + Integration
