@@ -3,7 +3,10 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+RemindMe is a desktop app for keeping track of user events and deadlines,
+optimized for use via Command Line Interface(CLI) while still having the benefits of a Graphic User Interface(GUI).  
+RemindMe allows students to be always aware of exams and events deadline as there will be reminder pop-ups and
+calendar for students to see!
 
 * Table of Contents
 {:toc}
@@ -12,13 +15,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java 11 or above installed on your computer. You can download Java 11 via the link: https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html
+   If you are a Windows user, here is a tutorial on how to set up Java 11:
+   https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `remindme.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the home folder for your RemindMe.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double click the file to start the app. Alternatively, you can run the command line java -jar RemindMe.jar in your terminal to start the application. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -32,6 +37,12 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`clear`** : Deletes all contacts.
 
+   * **`deadline`** `description by DD/MM/YYYY TIME`: Adds a task with a deadline.
+     
+   * **`ordered list`**: Displays an order list of items.
+     
+   * ** `calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
+     
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -142,33 +153,34 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+###Viewing Calendar of the current month
+Shows an image of the calendar with your reminders (e.g. tasks, assignments datelines, and friends’ birthday) for each specific dates.  
+![result for 'calendar'](images/calendarResult.png)  
+Format: `calendar`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
-Format: `clear`
+Format: `clear``
+
+### Saving the data
+
+RemindMe save your data in the hard disk automatically after every command that changes the data. There is no need for you to save manually.
+
+### Editing the data file
+
+AddressBook data are saved as a JSON file `[JAR file location]/data/remindme.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, RemindMe will discard all data and start with an empty data file at the next run.
+</div>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+Format: `exit
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,4 +201,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**View Calendar** | `calendar`
 **Help** | `help`
