@@ -10,7 +10,7 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -38,7 +38,7 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -188,14 +188,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 Action | Format, Examples
 --------|------------------
@@ -207,6 +207,6 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 
-# Acknowledgements
+# **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
