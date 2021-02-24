@@ -7,6 +7,7 @@ public class RegexUtil {
 
     // Miscellaneous regex expressions
     public static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
+
     // Original regex expression for AB3, for reference purposes
     /*
      * The first character of the address and name must not be a whitespace,
@@ -17,6 +18,19 @@ public class RegexUtil {
     public static final String REGEX_AB3_EMAIL = getAb3EmailRegex();
     public static final String REGEX_AB3_PHONE = "\\d{3,}";
     public static final String REGEX_AB3_TAG = "\\p{Alnum}+";
+
+    // Regex expressions that might be useful in project Weeblingo
+    public static final String REGEX_JAP_WORD =
+            "[(\\p{InHIRAGANA}|\\p{InKATAKANA})"
+            + "|\\p{InCJK_Unified_Ideographs}}]*"; // There should be no spaces in Jap words. \\w at the end?
+    public static final String REGEX_JAP_SENTENCE =
+            "[(\\p{InHIRAGANA}|\\p{InKATAKANA})|\\p{InCJK_Unified_Ideographs}|"
+            + "\\p{InCJK_Symbols_and_Punctuation}]"
+            + "[(\\p{InHIRAGANA}|\\p{InKATAKANA})|\\p{InCJK_Unified_Ideographs}|"
+                    + "\\p{InCJK_Symbols_and_Punctuation} ]*"; // The first character cannot be space. \\w at the end?
+    public static final String REGEX_ENG_WORD = "[\\p{Alpha}]*"; // There should be no spaces in English words.
+    public static final String REGEX_ENG_SENTENCE = "[\\p{Alpha}][\\p{Punct}]"
+            + "[\\p{Alpha}][\\p{Punct} ]*"; // The first character cannot be space.
 
     /**
      * Gets the regex expression for AB3 email model.
