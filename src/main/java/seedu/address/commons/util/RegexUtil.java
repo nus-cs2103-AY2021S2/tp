@@ -22,6 +22,8 @@ public class RegexUtil {
     // Regex expressions that might be useful in project Weeblingo
     public static final String REGEX_JAP_WORD =
             "[(\\p{InHIRAGANA}|\\p{InKATAKANA})"
+            + "|\\p{InCJK_Unified_Ideographs}}]"
+            + "[(\\p{InHIRAGANA}|\\p{InKATAKANA})"
             + "|\\p{InCJK_Unified_Ideographs}}]*"; // There should be no spaces in Jap words. \\w at the end?
     public static final String REGEX_JAP_SENTENCE =
             "[(\\p{InHIRAGANA}|\\p{InKATAKANA})|\\p{InCJK_Unified_Ideographs}|"
