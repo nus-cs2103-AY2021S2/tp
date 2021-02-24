@@ -292,7 +292,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | user starting to use the app | tag meetings to an organisation/module | know what organisation/module the meeting is for |
 | `**` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
 | `**` | expert user | create shortcuts | run multiple repeated commands at once to save time |
-
+| `* *` | night owl | enable dark mode | use the app safely in dark environments |
+| `*` | overworked student | see my tasks/events in as a weekly view / monthly calendar | prioritize todos |
+| `*` | tech-savvy student | synchronize my todo list with cloud applications, e.g., Google Calendar | access todos from multiple platforms |
+| `*` | satisfied student | share links to the application with my friends and family on social media | encourage close contacts to use the application |
+| `*` | efficient student | group and manage multiple todos together | save time processing todos |
+| `* *` | efficient student | add priority levels to each todo | prioritize the order of todos |
 
 *{More to be added}*
 
