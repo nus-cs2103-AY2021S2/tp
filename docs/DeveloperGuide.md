@@ -243,6 +243,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is a goal-driven individual and seeks new challenges.
 
 **Value proposition**:
+
 * makes relationship management easier for the user
     * keeps track of personal relationship with users' friends
 * manages relationship faster than a mouse-driven app.
