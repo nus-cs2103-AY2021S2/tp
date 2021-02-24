@@ -30,25 +30,38 @@ The Food Diary will **allow students to save time and effort** when finding plac
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+This product caters to food-fervent NUS students who would ideally benefit from
+keeping records of food options tasted in the vicinity of NUS.
+
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+
+* can type fast and prefers typing to mouse interactions
+
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:
+
+The Food Diary will allow NUS foodies to save time and effort when finding places to eat around the NUS vicinity.
+The Food Diary especially caters to students chiefly on 3 aspects
+– One, the ability for users to log personal food reviews tagged under different categories for future reference;
+Two, the ability to effortlessly reference food options based on relevant filters in a user-friendly GUI;
+and Three, the ability to import and export their personal food diary to share with friends.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * * ` | User wanting to add a food experience to a particular restaurant | Add a food experience | I can refer back to the particular element that defined my food experience  |
-| `* * *`  | user with little patience                  | easily add names of places I have visited        | I can efficiently add a review to a place I have visited               |
-| `* * *`  | Student trying to decide where to eat      | look at the places i have visited before         | Decide where I shall re-visit                                          |
-| `* * *`  | User who would like to create custom category of food place | Add the category of the place   | I can have a specific view of certain places                           |
+| Priority| As a …​                                                       | I want to …​                                  | So that I can…​                                             |
+| ------- | ---------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------- |
+| `* * *` | User wanting to add a food experience to a particular restaurant | Add a food experience                            | refer back to the particular element that defined my food experience  |
+| `* * *` | User with little patience and time                               | Add names of places I have visited               | efficiently add a review to a place I have visited               |
+| `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had          | easily show them to my friends              |
+| `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before         | decide where I shall re-visit                                          |
+| `* * *` | User who would like to create custom category of food place      | Add the category of the place                    | I can have a specific view of certain places                           |
+| `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
+
 
 *{More to be added}*
 
@@ -140,15 +153,36 @@ Use case ends.
 * 1a. FoodDiary detects invalid command from user
     * 1a1. FoodDiary warns user about wrong syntax
     * 1a2. User enters correct syntax
+      
       Use case resumes from step 2
 * 2a. No restaurant found
     * 2a1. FoodDiary tells user that no restaurants found
 
-  Use case ends.
+      Use case ends.
     
-*	2a2. Suggests user to either delete or update review
+    *	2a2. Suggests user to either delete or update review
+         
+         Use case ends.
+
+**UC06: Delete a Restaurant**
+
+**MSS**
+1. User deletes a restaurant or food place
+2. Food diary removes the restaurant from list 
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user 
+    * 1a1. FoodDiary warns user about wrong syntax
+    * 1a2. User enters correct syntax
     
-  Use case ends.
+* 2a. No restaurants found 
+    * 2a1. FoodDiary tells user that no restaurants found.
+
+      Use case ends.
+
+    
+    
+
     
 
 ### Non-Functional Requirements
@@ -190,6 +224,10 @@ and the back-end, which handles data management and operations.
 The glossary serves to ensure that all stakeholders, including users, have a common understanding of the noteworthy terms, and abbreviations.
 
 * **Sluggishness**: The system starts to be slow in displaying user input when typed, and processing user input when entered.
+
+### UI Mockup
+
+![Ui Mock-up](images/UiMockUp.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
