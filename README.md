@@ -13,7 +13,7 @@ What are you waiting for? Start tracking your university life now!
 
 - **[User Guide](docs/UserGuide.md)**
 - **[Developer Guide](docs/DeveloperGuide.md)**
-- **[About US](docs/AboutUs.md)**
+- **[About Us](docs/AboutUs.md)**
 
 ## Acknowledgements
 

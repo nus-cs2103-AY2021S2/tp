@@ -18,7 +18,7 @@ What are you waiting for? Start tracking your university life now!
 
 - **[User Guide](UserGuide.md)**
 - **[Developer Guide](DeveloperGuide.md)**
-- **[About US](AboutUs.md)**
+- **[About Us](AboutUs.md)**
 
 ## Acknowledgements
 
