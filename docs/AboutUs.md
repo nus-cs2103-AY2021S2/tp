@@ -9,14 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## CoLAB Project team
 
-### Fang Samuel
+### Fang Junwei, Samuel
 
 <img src="images/samuelfangjw.png" width="200px">
 
 [[github](https://github.com/samuelfangjw)]
 [[portfolio](team/samuelfangjw.md)]
 
-* Role: Deliverables and deadlines
+* Role: Developer, In charge of deliverables and deadlines
 * Responsibilities: UI
 
 ### Vevel Selvam
@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/vevek)]
 [[portfolio](team/vevek.md)]
 
-* Role: Integration
+* Role: Developer, In charge of integration
 * Responsibilities: Model, Logic
 
 ### Nguyen Duc Danh
@@ -36,16 +36,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Eriksen2411)]
 [[portfolio](team/eriksen2411.md)]
 
-* Role: Documentation
+* Role: Developer, In charge of documentation
 * Responsibilities: Storage
 
-### Li Rouchen
+### Li Ruochen
 
 <img src="images/lirc572.png" width="200px">
 
 [[github](https://github.com/lirc572)]
 [[portfolio](team/lirc572.md)]
 
-* Role: Code quality
-* Responsibilities: Test
+* Role: Developer, In charge of code quality
+* Responsibilities: Tests
 
