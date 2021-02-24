@@ -140,6 +140,16 @@ Examples:
 * `meeting 1 d/16-02-2021 1130 desc/We had lunch together!`
 * `meeting 2 d/17-02-2021 1930 desc/We went to see the sunset!`
 
+### Save a special date: `date`
+
+Save a special date for an existing person in FriendDex.
+
+Format: `date 1 d/DATE t/TITLE`
+
+Examples:
+* `date 1 d/16-02-2021 t/Anniversary`
+* `date 2 d/17-02-2021 t/Dog's birthday`
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -184,9 +194,19 @@ Exits the program.
 
 Format: `exit`
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Dashboard
+### Upcoming Events
+
+FriendDex displays your upcoming events on the right panel, such as upcoming birthdays and special dates.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Data Storage
 ### Saving the data
 
-FriendDex data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FriendDex data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -195,10 +215,6 @@ FriendDex data is saved as a JSON file `[JAR file location]/data/frienddex.json`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FriendDex will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
