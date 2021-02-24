@@ -89,22 +89,19 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a residence : `edit`
 
-Edits an existing person in the address book.
+Edits the booking/cleaning status of an existing residence
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit u/(un)clean [INDEX] u/(un)book [INDEX]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* Edits the residence status at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields (either clean or book status) must be provided.
+* If both fields are provided, `INDEX` field should be of the same value.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit u/clean 1` Edits the clean status of the 1st residence on the list from `Unclean` to `Clean`. Booking status remains unchanged from original value.
+*  `edit u/unclean 2 u/unbook 2`  Edits the clean status of the 2nd residence on the list from `Unclean` to `Clean`, booking status of the same residence from `Booked` to `Unbooked`.
 
 ### Locating apartments by name: `find`
 
@@ -180,7 +177,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit** | `edit u/(un)clean [INDEX] u/(un)book [INDEX]`<br> e.g.,`edit u/unclean 2 u/unbook 2`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Shaughnessy`
 **List** | `list`
 **Help** | `help`
