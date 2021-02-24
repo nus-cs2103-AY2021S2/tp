@@ -267,10 +267,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy student                               | search free times                                          | find times to relax                              |
 | `* *`    | efficient student                          | look at the number of completed tasks each week            | monitor my productivity                          |
 | `* *`    | student with a plan                        | access the important reminders and tasks for the day/week  | remind myself to be on task and follow my plan   |
-| `**` | forgetful student | record all my deadlines | easily access all deadlines due |
+| `* *` | forgetful student | record all my deadlines | easily access all deadlines due |
 | `*` | hardworking student | diligently plan my deadlines | always keep on task |
-| `**` | social butterfly | keep track of events | always remember the things to attend |
-| `**` | friend | record birthdays | wish my friends on time |
+| `* *` | social butterfly | keep track of events | always remember the things to attend |
+| `* *` | friend | record birthdays | wish my friends on time |
 | `* *`    | experienced user                           | execute multiple commands at a time                        | improve the efficiency of my workflow            |
 | `* *`    | long term user/student                     | Delete and wipe all my current tasks                       | use it in a clean slate for future semesters     |
 | `*`      | student taking many modules                | check exam dates                         |                                                                |
@@ -290,9 +290,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | potential user exploring the app | import existing data from similiar apps | compare features between apps to decide whether I’d like to use the app |
 | `*` | student | add my Modules | easily organise my contacts and tasks based on module |
 | `*` | user starting to use the app | tag meetings to an organisation/module | know what organisation/module the meeting is for |
-| `**` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
-| `**` | expert user | create shortcuts | run multiple repeated commands at once to save time |
-
+| `* *` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
+| `* *` | expert user | create shortcuts | run multiple repeated commands at once to save time |
+| `* *` | night owl | enable dark mode | use the app safely in dark environments |
+| `*` | overworked student | see my tasks/events in as a weekly view / monthly calendar | prioritize todos |
+| `*` | tech-savvy student | synchronize my todo list with cloud applications, e.g., Google Calendar | access todos from multiple platforms |
+| `*` | satisfied student | share links to the application with my friends and family on social media | encourage close contacts to use the application |
+| `*` | efficient student | group and manage multiple todos together | save time processing todos |
+| `* *` | efficient student | add priority levels to each todo | prioritize the order of todos |
 
 *{More to be added}*
 
