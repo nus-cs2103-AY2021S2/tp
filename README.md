@@ -4,7 +4,7 @@
 
 ##Introduction<br>
 * ResidenceTracker is a command line based desktop application that helps landlords to manage their residences that they rented out.
-* It provides convenience to the  user by providing a centralised overview of all his/her residences and their respective booking/cleaning statuses. 
+* It provides convenience to the user by providing a centralised overview of all his/her residences and their respective booking/cleaning statuses. 
 
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
