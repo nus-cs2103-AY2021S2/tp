@@ -73,19 +73,25 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a property: `add property`
 
-Adds a person to the address book.
+Adds a property to the app.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]​`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/ 609477 d/31-12-2021`
+* `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000`
+
+### Adding an appointment: `add appointment`
+
+Adds an appointment to the app.
+
+Format: `add appointment n/NAME r/REMARKS d/DATE [t/TIME]​`
+
+Examples:
+* `add appointment n/Meet Alex r/at M hotel d/17-2-2021`
+* `add appointment n/Meet Alex r/at M hotel d/17-2-2021 t/1500`
 
 ### Listing all persons : `list`
 
