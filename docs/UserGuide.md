@@ -19,7 +19,6 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
 3. Double-click the file to start the app.<br>
    ![Ui](images/Ui.png)
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
