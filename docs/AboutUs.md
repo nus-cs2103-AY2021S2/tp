@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/samuelfangjw)]
 [[portfolio](team/samuelfangjw.md)]
 
-* Role: Developer, In charge of deliverables and deadlines
+* Role: Developer, in charge of Deliverables and Deadlines
 * Responsibilities: UI
 
 ### Vevel Selvam
@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/vevek)]
 [[portfolio](team/vevek.md)]
 
-* Role: Developer, In charge of integration
+* Role: Developer, in charge of Integration
 * Responsibilities: Model, Logic
 
 ### Nguyen Duc Danh
@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Eriksen2411)]
 [[portfolio](team/eriksen2411.md)]
 
-* Role: Developer, In charge of documentation
+* Role: Developer, in charge of Documentation
 * Responsibilities: Storage
 
 ### Li Ruochen
@@ -46,6 +46,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/lirc572)]
 [[portfolio](team/lirc572.md)]
 
-* Role: Developer, In charge of code quality
+* Role: Developer, in charge of Code quality
 * Responsibilities: Tests
 
