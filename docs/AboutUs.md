@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `chewterence[at]u.nus.edu`
+You can reach us at the email `chewterence@u.nus.edu`
 
 ## Project team
 
@@ -13,9 +13,7 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 
 <img src="images/yueyanglee.png" width="200px">
 
-[[homepage](www.lyueyang.space)]
-[[github](https://github.com/lyueyang)]
-[[portfolio](team/yueyanglee.md)]
+[Homepage](https://www.lyueyang.space) | [Github](https://github.com/lyueyang) | [Portfolio](team/yueyanglee.md)
 
 * Role: Integration
 * Responsibilities: In charge of CRD commands
@@ -24,8 +22,7 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 
 <img src="images/joelho.png" width="200px">
 
-[[github](http://github.com/joelho)]
-[[portfolio](team/joelho.md)]
+[Github](http://github.com/joelho) | [Portfolio](team/joelho.md)
 
 * Role: Code Quality
 * Responsibilities: In charge of UI
@@ -34,9 +31,7 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 
 <img src="images/zechariahtan.png" width="200px">
 
-[[homepage](www.zechariahtan.com)]
-[[github](http://github.com/zechariahtan)] 
-[[portfolio](team/zechariahtan.md)]
+[Homepage](https://www.zechariahtan.com) | [Github](http://github.com/zechariahtan) | [Portfolio](team/zechariahtan.md)
 
 * Role: Testing
 * Responsibilities: In charge of Storage
@@ -45,9 +40,7 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 
 <img src="images/terencechew.png" width="200px">
 
-[[homepage](www.chewterence.com)]
-[[github](http://github.com/chewterence)]
-[[portfolio](team/terencechew.md)]
+[Homepage](https://www.chewterence.com) | [Github](http://github.com/chewterence) | [Portfolio](team/terencechew.md)
 
 * Role: Team Lead
 * Responsibilities: In charge of Model
@@ -56,8 +49,7 @@ You can reach us at the email `chewterence[at]u.nus.edu`
 
 <img src="images/markwong.png" width="200px">
 
-[[github](http://github.com/markmcwong)]
-[[portfolio](team/markwong.md)]
+[Github](http://github.com/markmcwong) | [Portfolio](team/markwong.md)
 
 * Role: Documentation
 * Responsibilities: In charge of Logic
