@@ -334,12 +334,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+<!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  The product should be available for download and usage after each release.
+3.  The product'size should not exceed 100MB.
+4.  The product should be an offline application, which should work either with or without presence of internet
+    connection.
+5.  The product should allow one user to have different instances of the application running at the same time.
+6.  The product should be able to hold up to 2000 Japanese words without a noticeable sluggishness in performance for typical usage.
+7.  The project's design in source code should be easy to maintain and extend.
+8.  The project should be open-sourced.
+9.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
+    beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
+    of the learnings faster using commands than using the mouse.
+10. A user should find interecting with the user interface easy, even if he/she is relatively new to the application.
+11. More to be added.
 
 ### Glossary
 
