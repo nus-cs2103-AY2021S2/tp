@@ -1,46 +1,33 @@
----
-layout: page
-title: User Guide
----
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# User Guide
 
-* Table of Contents
-{:toc}
+GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any IT company quickly arrange carpooling in order to lower their carbon footprint. The platform follows that of a command-line interface (CLI) such that power users that are familiar can efficiently navigate the program.
+
+- Quick start
+- Features
+    - Create passengers: `create`
+    - Read passengers: `list`
+    - Search for passengers: `search`
+    - Delete passengers: `delete`
+    - Select passengers to be driven: `drive`
+- FAQ
+- Command summary
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+1. Ensure you have java 11 or above installed in your computer
+2. Download the latest `GreenMileageEfforts.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
+3. Copy the file to the folder you want to use as the *home* folder for your **GreenMileageEfforts**.
+4. Double click the file to start the app.
+5. Type the command in the command box and press `Enter` to execute it
+6. Refer to the [Features]() below for the details on each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-
-<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -61,8 +48,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
+  
 
 ### Viewing help : `help`
 
@@ -79,9 +65,6 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -162,9 +145,6 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -172,10 +152,11 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q:** Where can I find the data stored by the address book?
+
+**A:** The json file containing the data stored is named `addressbook.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,10 +164,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**create** | `create n/NAME a/ADDRESS t/TIME` <br> e.g., `create n/Mike Hunt a/Geylang t/18:00`
+**list** | `list`
+**search** | `search CONSTRAINT`<br> e.g., `search female or search available`
+**delete** | `delete INDEX`<br> e.g.,`delete 3`
+**drive** | `drive INDEX INDEX INDEX...`<br> e.g., `drive 2 3 4`
