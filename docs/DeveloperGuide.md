@@ -265,7 +265,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | -------------------------------------------------| ---------------------------------------------------------------------- |
 | `* * *`  | user with little patience                  | easily add names of places I have visited        | I can efficiently add a review to a place I have visited               |
 | `* * *`  | Student trying to decide where to eat      | look at the places i have visited before         | Decide where I shall re-visit                                          |
-| `* * *`  | User who wants to look up the places I have visited | View the list of experiences I have had | I can easily show them to my friends                                   |
+| `* * *`  | User who would like to create custom category of food place | Add the category of the place   | I can have a specific view of certain places                           |
 
 *{More to be added}*
 
