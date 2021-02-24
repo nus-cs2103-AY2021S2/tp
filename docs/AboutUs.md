@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Chloe Lau
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mesyeux.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mesyeux/ip)]
+[[portfolio](team/mesyeux.md)]
 
 * Role: Developer
 * Responsibilities: UI
