@@ -143,15 +143,36 @@ Use case ends.
 * 1a. FoodDiary detects invalid command from user
     * 1a1. FoodDiary warns user about wrong syntax
     * 1a2. User enters correct syntax
+      
       Use case resumes from step 2
 * 2a. No restaurant found
     * 2a1. FoodDiary tells user that no restaurants found
 
-  Use case ends.
+      Use case ends.
     
-*	2a2. Suggests user to either delete or update review
+    *	2a2. Suggests user to either delete or update review
+         
+         Use case ends.
+
+**UC06: Delete a Restaurant**
+
+**MSS**
+1. User deletes a restaurant or food place
+2. Food diary removes the restaurant from list 
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user 
+    * 1a1. FoodDiary warns user about wrong syntax
+    * 1a2. User enters correct syntax
     
-  Use case ends.
+* 2a. No restaurants found 
+    * 2a1. FoodDiary tells user that no restaurants found.
+
+      Use case ends.
+
+    
+    
+
     
 
 ### Non-Functional Requirements
@@ -193,6 +214,10 @@ and the back-end, which handles data management and operations.
 The glossary serves to ensure that all stakeholders, including users, have a common understanding of the noteworthy terms, and abbreviations.
 
 * **Sluggishness**: The system starts to be slow in displaying user input when typed, and processing user input when entered.
+
+### UI Mockup
+
+![Ui Mock-up](images/UiMockUp.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
