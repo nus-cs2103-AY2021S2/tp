@@ -11,3 +11,5 @@
 * It is named `HippoCampus` because the hippocampus is a part of the brain that plays a major role in **memory** and **learning**
 * For new users keen to start using HippoCampus, check out the **[User Guide](docs/UserGuide.md)**.
 * For the detailed documentation of this project, see the **[Developer Guide](docs/DeveloperGuide.md)**.
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
