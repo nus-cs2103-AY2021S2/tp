@@ -27,11 +27,11 @@ Given below are my contributions to the project.
     * to be updated
 
 * **Enhancements to existing features**:
-    * Come out with Ui-mockup(Pull requests [\#23]())
+    * Come out with Ui-mockup(Pull requests [\#23](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/23))
 
 * **Documentation**:
     * User Guide:
-        * Added documentations for the introduction and Quick Start
+        * Added documentations for the introduction and Quick Start [\#25](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/25)
     * Developer Guide:
         * Added documentations for Target user profile, value proposition, and user stories.
 
