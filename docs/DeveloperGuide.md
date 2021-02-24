@@ -293,12 +293,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: Delete a task**
+**Use case: UCXX - Delete a task**
 
 **MSS**
 
 1. User requests to list tasks.
-2. SOChedule shoes a list of tasks.
+2. SOChedule shows a list of tasks.
 3. User chooses to delete a task.
 4. User enters the index of the task to be deleted.
 5. SOChedule displays a success message for deleting the task.
@@ -309,6 +309,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The task list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UCXX - Delete a task**
+      
+**MSS**
+
+1. User requests to list events.
+2. SOChedule shows a list of events.
+3. User chooses to delete an event.
+4. User enters the index of the event to be deleted.
+5. SOChedule displays a success message for deleting the event.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The event scheduler is empty.
 
   Use case ends.
 
