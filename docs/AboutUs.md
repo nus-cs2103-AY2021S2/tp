@@ -9,51 +9,41 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Glenn Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glennljs.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/glennljs)]
 
-* Role: Project Advisor
+### Justin Peh Yu Xiang
 
-### Jane Doe
+<img src="images/pyuxiang.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://pyuxiang.com/)]
+[[github](https://github.com/pyuxiang)]
 
-* Role: Team Lead
-* Responsibilities: UI
+### Foo Chuan Le, Nicholas
 
-### Johnny Doe
+<img src="images/nickyfoo.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/nickyfoo)]
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+### Gary Lee Jia Jin
 
-### Jean Doe
+<img src="images/garyljj.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/garyljj)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Zheng Ruoxin
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/zhengruoxin.png" width="200px">
 
-### James Doe
+[[github](https://github.com/zhengruoxin)]
 
-<img src="images/johndoe.png" width="200px">
+### Lee Pai Joo Yvelle
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/ellevy.png" width="200px">
 
-* Role: Developer
-* Responsibilities: UI
+[[github](https://github.com/ellevy)]

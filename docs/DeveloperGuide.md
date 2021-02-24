@@ -255,14 +255,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *` | new user exploring the app | see the app populated with sample data | know how the app will look like when it is in use |
+| `* * *` | user ready to starting to use the app | purge all current data | get rid of sample data used for exploring the app |
+| `* * *` | new user exploring the app | view a help page/ use a help command | know what functions are available/ learn the correct syntax for functions |
+| `* * *` | user starting to use the app | tag contacts to an organization/module | easily look up relevant contacts for the organization/module |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `**`     | user who enjoys planning ahead             | search dates                                               | see tasks in a time period                             |
-| `*`      | busy student                               | search free times                                          | find times to relax                                    |
-| `**`     | efficient student                          | look at the number of completed tasks each week            | I can monitor my productivity                          |
-| `**`     | student with a plan                        | access the important reminders and tasks for the day/week  | I can remind myself to be on task and follow my plan   |
-| `**`     | experienced user                           | execute multiple commands at a time                        | improve the efficiency of my workflow                  |
-| `**`     | long term user/student                     | Delete and wipe all my current tasks                       | I can use it in a clean slate for future semesters     |
+| `* *`    | user who enjoys planning ahead             | search dates                                               | see tasks in a time period
+| `*` | busy student | check timetable | never be late |
+| `*` | busy student | track my meetings | see when I am free ||
+| `*`      | busy student                               | search free times                                          | find times to relax                              |
+| `* *`    | efficient student                          | look at the number of completed tasks each week            | monitor my productivity                          |
+| `* *`    | student with a plan                        | access the important reminders and tasks for the day/week  | remind myself to be on task and follow my plan   |
+| `**` | forgetful student | record all my deadlines | easily access all deadlines due |
+| `*` | hardworking student | diligently plan my deadlines | always keep on task |
+| `**` | social butterfly | keep track of events | always remember the things to attend |
+| `**` | friend | record birthdays | wish my friends on time |
+| `* *`    | experienced user                           | execute multiple commands at a time                        | improve the efficiency of my workflow            |
+| `* *`    | long term user/student                     | Delete and wipe all my current tasks                       | use it in a clean slate for future semesters     |
+| `*`      | student taking many modules                | check exam dates                         |                                                                |
+| `* *`    | forgetful person                           | take down notes                          |                                                                |
+| `* *`    | clumsy person                              | undo/edit misspelled names/numbers/notes | fix mistakes                                                   |
+| `*`      | disorganized person                        | view a calendar                          | see all tasks in the coming month                              |
+| `*`      | disorganized person                        | set recurring tasks                      | have the same periodic reminder without keying it in manually  |
+| `*`      | reflective person                          | look at completed tasks/an archive       | reminisce on the past semester and feel accomplished           |
+| `* *`    | student with many modules and activities   | color code tags                          | differentiate tasks easily                                     |
+| `* * *`  | returning user                             | sort/search through contacts based on organisation/module  | contact the relevant people to set up a meeting     |
+| `*`      | returning user                             | edit a deadline/meeting that was pushed back               | properly reflect the updated times                  |
+| `*`      | returning user                             | change the task description of an existing task            | reflect the changed task                            |
+| `* *`    | returning user                             | mark tasks as complete                                     | review my productivity                              |
+| `* *`    | returning user                             | delete completed/irrelevant tasks                          | reduce clutter on HippoCampus                       |
+| `*`      | returning user                             | delete all tasks/deadlines related to a tag                | reduce clutter and prepare for subsequent modules   |
+| `*`      | returning user                             | replace tags (e.g. all cs2103 to cs3203)                   | transfer contacts                                   |
+| `*` | potential user exploring the app | import existing data from similiar apps | compare features between apps to decide whether I’d like to use the app |
+| `*` | student | add my Modules | easily organise my contacts and tasks based on module |
+| `*` | user starting to use the app | tag meetings to an organisation/module | know what organisation/module the meeting is for |
+| `**` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
+| `**` | expert user | create shortcuts | run multiple repeated commands at once to save time |
+
 
 *{More to be added}*
 
@@ -297,11 +327,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. HippoCampus should be usable by a novice who has never used a CLI addressbook before. 
+2. HippoCampus should work on any _mainstream OS_ with minimally Java `11` installed.
+3. HippoCampus Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical 
+   usage.
+4. HippoCampus should store data _locally only_, in a human editable text file, for privacy reasons.
+5. HippoCampus should only be for a _single user_ and should not require interaction with other users of HippoCampus.
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+    should be able to accomplish most of the tasks faster using commands than using the mouse.
+7. The source code should be open source. 
+8. HippoCampus should work without requiring an installer, the installation of any additional software, or any 
+   external connections.
+9. The total file size should not exceed _100MB_.
 
 ### Glossary
 
