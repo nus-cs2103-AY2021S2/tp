@@ -21,56 +21,78 @@ AB3 DG links here for references:
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* has a need to test a significant number of APIs
+* prefers a quick means of testing APIs
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable with APIs
+* is keen to develop software products that involve APIs
+* requires testing of APIs in projects or work-related tasks
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* beautify response
+* save requests for quick execution again
+* general analysis/recommendation system based on certain metrics
+* no need to create any account
+* easy to get started
+* unintrusive
+* great user experience
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                         |
+| -------- | ------------------------------------------ | ------------------------------ | --------------------------------------------------|
+| `* * *`  | new user                                   | view a quick description of APIs| quickly review the concepts of APIs|
+| `* * *`  | long time user                             | test my APIs on the fly               | run API tests anytime |
+| `* * *`  | new API developer                          | clear error messages                | quickly learn where I went wrong             |
+| `* * *`  | API tester                                 | a focused simple design          | quickly validate the state of an endpoint |
+| `* * *`  | new user                                   | have an optional features walkthrough   | have a broad overview of functionalities |
+| `*`      | expert user     | have API recommendations | help to optimise or are more suited for my product                                 |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ImPoster` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an API route**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User inputs formatted command 
+2.  ImPoster adds the command
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given command is invalid.
 
-  Use case ends.
+    * 2a1. ImPoster shows an error message.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 1.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Locate an saved API by name**
 
-      Use case resumes at step 2.
+**MSS**
+
+1.  User inputs formatted command 
+2.  ImPoster searches the existing records
+3.  ImPoster returns all matching API records
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given search result is empty.
+
+    * 2a1. ImPoster shows a friendly message about mistyped keywords.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
