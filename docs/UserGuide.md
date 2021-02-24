@@ -1,32 +1,12 @@
 ---
 layout: page
-title: CoLAB User Guide
+title: User Guide
 ---
 
 CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to keep track of people they have crossed paths with.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your contact management tasks done faster than traditional GUI apps.
 
-# Table of Contents
-- [CoLab User Guide](#colab-user-guide)
-- [Table of Contents](#table-of-contents)
-- [Quick Start](#quick-start)
-- [Features](#features)
-    - [Notes about the Command Format](#features)
-    - [Viewing Help](#viewing-help--help)
-    - [Adding a Person](#adding-a-person-add)
-    - [List all Persons](#listing-all-persons--list)
-    - [Editing a Person](#editing-a-person--edit)
-    - [Locating Persons by Name](#locating-persons-by-name-find)
-    - [Deleting a Person](#deleting-a-person--delete)
-    - [Clearing all entries](#clearing-all-entries--clear)
-    - [Exiting the Program](#exiting-the-program--exit)
-    - [Saving the Data](#saving-the-data)
-    - [Editing the Data File](#editing-the-data-file)
-    - [View more details about a person](#view-more-details-about-a-person-coming-soon)
-    - [Undo/Redo](#undoredo-coming-soon)
-    - [Archiving Data Files](#archiving-data-files-coming-soon)
-- [FAQ](#faq)
-- [Command Summary](#command-summary)
-- [Acknowledgements](#acknowledgements)
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
