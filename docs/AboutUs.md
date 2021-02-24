@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Tay Kai Xiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kaixiangtay.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kaixiangtay)]
+[[portfolio](team/kaixiangtay.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Code quality
 
 ### Johnny Doe
 
