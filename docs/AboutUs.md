@@ -46,12 +46,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops
 
-### James Doe
+### Wang Tao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wangtao0717.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wangtao0717)]
+[[portfolio](team/wangtao0717.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: _TBC_
