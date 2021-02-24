@@ -18,15 +18,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Code Quality and Documentation
 * Responsibilities: _TBC_
 
-### Jane Doe
+### Aw Zhen Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/awzhenyi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/awzhenyi)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: _TBC_
 
 ### Teng Shu Wei Jared
 
