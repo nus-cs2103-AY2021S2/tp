@@ -87,9 +87,17 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Viewing all Assignments : `list assignments`
 
-Shows a list of all persons in the address book.
+Shows an ordered list of all (past and future) assignments sorted by date
+
+Format: `list`
+
+
+
+### Viewing all Events : `list events`
+
+Shows an ordered list of all (past and future) events sorted by date
 
 Format: `list`
 
