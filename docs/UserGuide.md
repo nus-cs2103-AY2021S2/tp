@@ -25,7 +25,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
- 
+
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FriendDex.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
