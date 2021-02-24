@@ -113,7 +113,7 @@ Shows a list of all persons in CoLAB.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person : `edit` `[coming soon]`
 
 Edits an existing person in CoLAB.
 
@@ -178,7 +178,7 @@ Format: `exit`
 
 CoLAB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Editing the data file 
 
 CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Advanced users are welcome to update data directly by editing that data file.
 
