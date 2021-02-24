@@ -3,10 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FlashBack is a **desktop app for managing flashcards and interactive learning, optimized for use via a Command Line Interface** (CLI) while still
-having the benefits of a Graphical User Interface (GUI). If you can type fast, 
-FlashBack can solve your flashcards actions faster than traditional GUI apps. 
-
+FlashBack is a **desktop app for managing flashcards and interactive learning, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FlashBack can solve your flashcards actions faster than traditional GUI apps.
 * Table of Contents
 {:toc}
 
