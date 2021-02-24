@@ -73,7 +73,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a apparent: `add`
+### Adding an apartment: `add`
 
 Adds a new apartment to the list of apartment,default for CLEANING_STATUS and BOOKING_STATUS is ‘cleaned’ and ‘not-booked’ respectively.
 
