@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/markuz5116.png" width="200px">
 
 [[github](http://github.com/markuz5116)]
-[[portfolio](team/marcusong.md)]
+[[portfolio](team/markuz5116.md)]
 
 * Role: Team Lead
 * Responsibilities: Deliverables and Deadlines
