@@ -356,7 +356,7 @@ _{Explain here how the data archiving feature will be implemented}_
       
       Use case ends
 
-**Use case: Create Friend Groups**
+**Use case: Create a friend group**
 
 **MSS**
 
@@ -418,6 +418,8 @@ _{Explain here how the data archiving feature will be implemented}_
 4.  The application should be portable (The user should be able to copy content over to another computer using some storage medium and still be able to work).
 5.  Should work on most mainstream keyboards (works without numpad/touchbar etc).
 
+### Glossary
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 -------------------------------------------------------------------------------------
 
