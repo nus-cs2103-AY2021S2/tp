@@ -264,6 +264,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: See flash cards one by one**
+
+**MSS**
+
+1.  User requests to view flash cards
+2.  WeebLingo shows a new flash card on the screen
+3.  User clicks next
+4.  Go to step 2 again
+
+**Extensions**
+
+* 2a. All flash cards have been shown.
+
+  Use case ends.
+
+**Use case: Take a quiz**
+
+**MSS**
+
+1.  User clicks quiz
+2.  WeebLingo shows a new question on the screen
+3.  User enters his answer
+4.  WeebLingo shows whether user's answer is correct/wrong
+5.  WeebLingo displays correct answer if user's answer is wrong
+6.  WeebLingo removes this question from the list of questions for this session
+7.  Go to step 2 again
+    
+**Extensions**
+
+* 2a. All questions have been shown.
+
+  Use case ends.
+
+**Use case: Save and see all my study data**
+
+**MSS**
+
+1.  User looks at a flashcard
+2.  User can save a flashcard if he is confident he has learnt the japanese word
+3.  WeebLingo saves the learnt flashcard to a storage file
+4.  User can request to see all learnt flashcards
+
+    Use case ends.
+
 **Use case: Delete a person**
 
 **MSS**
