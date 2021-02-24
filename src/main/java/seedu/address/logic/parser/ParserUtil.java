@@ -43,6 +43,8 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
+        // It is possible to get empty string "" for trimmedName,
+        // but this case will be handled by Name.isValidName(String test)
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
