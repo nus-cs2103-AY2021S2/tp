@@ -4,7 +4,8 @@
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## Feature List
-* Deleting a task: `delete`
+* Deleting a task: `delete task`
+* Deleting an event: `delete event`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,6 +48,15 @@ Format: `delete task i/ID`
 Examples:
 * `delete task i/2` deletes the second task in the task list.
 
+### Deleting an event: `delete event`
+Deletes an event from the SOChedule Event Scheduler.
+
+Format: `delete event i/ID`
+* `i/`: is followed by the event id.
+
+Examples:
+* `delete event i/3` deletes the third event from the Event Scheduler.
+
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -67,7 +77,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete task i/2`<br> e.g., `delete task i/2`
+**Delete** | `delete task i/2`<br>`delete event i/3`<br> e.g., `delete task i/2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
