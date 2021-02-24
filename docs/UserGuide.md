@@ -2,12 +2,15 @@
 layout: page
 title: User Guide
 ---
+
 ###  Done by (CS2103-T14-2):
 Donavan Lim, Marcus Lee Eugene, Sidney Chong, Dinesh S/O Magesvaran, Prabhakaran Gokul
 
 ---
 
 * Table of Contents
+{:toc}
+  
     * Description
     * Features
         * add
