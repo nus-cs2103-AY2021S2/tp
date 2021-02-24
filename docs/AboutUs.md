@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### V R Soorya
 
-<img src="images/soorya.png" width="200px">
+<img src="images/vrsoorya.png" width="200px">
 
 [[github](http://github.com/vrsoorya)]
-[[portfolio](team/soorya.md)]
+[[portfolio](team/vrsoorya.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops
