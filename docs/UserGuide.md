@@ -24,7 +24,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all residences in the app.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
@@ -66,7 +66,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -83,9 +83,9 @@ Examples:
 * `add n/Melville Park a/22 Simei Street 1, #10-02, S529948`
 * `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n book/y`
 
-### Listing all persons : `list`
+### Listing all apartments : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all residences in the app.
 
 Format: `list`
 
@@ -181,3 +181,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Shaughnessy`
 **List** | `list`
 **Help** | `help`
+**Exit** | `exit`
