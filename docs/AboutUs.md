@@ -66,3 +66,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Integration, Scheduling and Tracking
+
+### Teng Xin Wei
+
+<img src="images/xinweit.png" width = "200px">
+
+[[github](http://github.com/xinweit)]
+[[portfolio](team/tengxinwei.md)]
+
+* Role: Developer
+* Responsibilities: Documentation + Code quality
+
