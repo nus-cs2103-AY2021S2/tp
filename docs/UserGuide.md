@@ -12,7 +12,13 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
 
 ## Quick start
 
-_Coming Soon..._
+1. Ensure you have Java `11` or above installed in your Computer.
+
+2. Download the latest `HippoCampus.jar` from [here](https://github.com/AY2021S2-CS2103-W16-3/tp/releases).
+
+3. Double-click the file to start the app.<br>
+   ![Ui](images/Ui.png)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
