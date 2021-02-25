@@ -1,41 +1,58 @@
 ---
-layout: page
-title: User Guide
+
+RemindMe User Guide v1.1
 ---
+This user guide provide [start-up](#start-up) instructions as well as detailed descriptions and usage of
+all the [features](#features) in the RemindMe app. You can also access the product website via this [link.](https://ay2021s2-cs2103t-w15-1.github.io/tp/)
 
-RemindMe is a desktop app for keeping track of user events and deadlines,
-optimized for use via Command Line Interface(CLI) while still having the benefits of a Graphic User Interface(GUI).  
-RemindMe allows students to be always aware of exams and events deadline as there will be reminder pop-ups and
-calendar for students to see!
+<div style="page-break-after: always;"></div>
 
-* Table of Contents
-{:toc}
+## Table of Contents
+
+* **[Introduction](#introduction)**
+* **[Start-up](#Start-up)**
+* **[Features](#features)**
+    * **[1. Show help page : `help`]()**
+    * **[2. Add an event/examination]()**
+    * **[3. Add an event/examination]()**
+    * **[4. Delete an event/examination]()**
+    * **[5. Edit a task]()**
+    * **[6. Delete a task]()**
+    * **[7. Calendar View]()**
+    * **[8. Pop-up Reminder]()**
+* **[Glossary](#glossary)**
+* **[Command summary](#command-summary)**
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Introduction
+RemindMe is a desktop app for keeping track of user events and deadlines,
+optimized for use via Command Line Interface(CLI) while still having the benefits of a Graphic User Interface(GUI).
 
-1. Ensure you have Java 11 or above installed on your computer. You can download Java 11 via the link: https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html
-   If you are a Windows user, here is a tutorial on how to set up Java 11:
-   https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows
+Objectives of RemindMe:
+1. Allow students to be aware of deadlines of school events and exams.
+2. Allow students to have a calendar view of their school curriculums/schedules. 
 
-1. Download the latest `remindme.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the home folder for your RemindMe.
+## Start-up
 
-1. Double click the file to start the app. Alternatively, you can run the command line java -jar RemindMe.jar in your terminal to start the application. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Ensure you have Java 11 or above installed on your computer. You can download Java 11 via this [link.](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html)
+   * If you are a Windows user, [here](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows) is a tutorial on how to set up Java 11:
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+2. Download the latest RemindMe.jar from our GitHub release page.
+Copy the file to the folder you want to use as the home folder for your RemindMe.
+Double click the file to start the app. 
+   
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+3. Alternatively, you can run the command line java -jar RemindMe.jar in your terminal to start the application.
+Type the command in the command box and press Enter to execute it.
+The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)   
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+4. Refer to the Features below for details of each command.
 
    * **`deadline`** `description by DD/MM/YYYY TIME`: Adds a task with a deadline.
      
@@ -45,7 +62,6 @@ calendar for students to see!
      
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,14 +198,9 @@ Exits the program.
 
 Format: `exit
 
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
+## Glossary
+* Examination: Consists of a start time, end time, date which it occurs on and the subject.
+* Event: Consists of a start time, end time and the date which it occurs on.
 
 ## Command summary
 
