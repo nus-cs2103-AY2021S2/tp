@@ -28,7 +28,7 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 
 1. Copy the file to the folder you want to use as the _home folder_ for your WeebLingo application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
+1. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. <br>
    ![Ui](images/UiNew.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -90,12 +90,6 @@ Format: `next`
 Lists out all current flashcards.
 
 Format: `list`
-
-### Ending the session: `end`
-
-Ends the current session, saving progress.
-
-Format: `end`
 
 ### Ending the session: `end`
 
