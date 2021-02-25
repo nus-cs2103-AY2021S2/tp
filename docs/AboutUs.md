@@ -4,10 +4,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Prabhakaran Gokul
 
-<img src="images/prabhakarangokul.png" width="200px">
+<img src="images/prabhakaran-gokul.png" width="200px">
 
 [[github](https://github.com/Prabhakaran-Gokul/)]
-[[portfolio](team/prabhakaran-gokul.md)]
+[[portfolio](team/prabhakarangokul.md)]
 
 * Role: Developer
 * Responsibilities: Integration
