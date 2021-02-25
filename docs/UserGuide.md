@@ -154,6 +154,67 @@ Exits the program.
 
 Format: `exit`
 
+### Add a room : `oadd`
+
+Adds a room to the housing management system.
+
+Format: `oadd n/ROOM_NO t/TYPE o/OCCUPY_STATUS [g/TAG]`
+
+Example:
+
+* `oadd n/10-112 t/single_no_ac o/Occupied g/SHN` Adds a room numbered `10-112` of type `single_no_ac` with the tag `SHN` and occupy status `Occupied`.
+
+
+### List all rooms : `olist`
+
+Shows a list of all rooms in the system sorted by room number.
+
+Format: `olist`
+
+
+### Find rooms : `ofind`
+
+Finds rooms that contain any of the given keywords.
+
+Format: `ofind KEYWORD [MORE_KEYWORDS]`
+
+* The search matches any part of the room number. e.g `10` will match `10-111` and `14-101`
+* The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
+* Only the room number is searched.
+* Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`
+
+Examples:
+
+* `ofind 10-` returns `10-100`, `10-101`, and `10-102`.
+* `ofind 10- 15-` returns `10-100`, `10-101`, `15-100`, and`15-101`.
+* `ofind 10` returns `09-100`, `09-110`, `10-100`, and `10-101`.
+
+
+### Edit a room record : `oedit`
+
+Edits an existing room record.
+
+Format: `oedit INDEX [n/ROOM_NO] [t/TYPE] [o/OCCUPY_STATUS] [g/TAG]`
+
+* Edits the room at the specified INDEX. The index refers to the index number shown in the displayed room list. The index must be a positive integer 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Example:
+
+* `oedit 1 o/Occupied g/SHN` Edits the status of the 1st room and tag to be `Occupied` and `SHN` respectively.
+
+
+### Delete a room : `odel`
+
+Deletes a room at the specified index.
+
+Format: `odel INDEX`
+
+Examples:
+
+* `odel 1` Deletes the 1st room in the room list.
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
