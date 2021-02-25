@@ -199,7 +199,7 @@ Action | Format, Examples
 * Deleting members’ details: deleteMember
 * Viewing members’ details: viewMembers
 
-### Adding Task: `addTask`  
+### 1. Adding Task: `addTask`  
 Adds a task and its description to the list.
 
 Format: addTask DESCRIPTION
@@ -207,11 +207,26 @@ Format: addTask DESCRIPTION
 Examples: addTask assignment
 
 
-### Deleting Task: `deleteTask`
+### 2. Deleting Task: `deleteTask`
 Deletes a task from the list.
 
 Format: deleteTask INDEX
 
 Examples: deleteTask 1
+
+### 3. View Task: `viewTasks`
+Views the list of tasks that the user has added into the application
+
+Format: `viewTasks`
+
+Examples: `viewTasks`
+
+### 4. Adding Member: `addMember`
+
+Adds a member and his/ her contract number to contact list
+
+Format: `addMember NAME`
+
+Examples: `addMember Dylan 64529356`
 
 
