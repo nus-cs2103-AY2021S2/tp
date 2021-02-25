@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/prabhakarangokul.png" width="200px">
 
 [[github](https://github.com/Prabhakaran-Gokul/)]
-[[portfolio](team/prabhakarangokul.md)]
+[[portfolio](team/prabhakaran-gokul.md)]
 
 * Role: Developer
 * Responsibilities: Integration
