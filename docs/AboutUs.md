@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/DrWala)]
 [[portfolio](team/azeem.md)]
 
-* Role: TBD
+* Role: Developer
 * Responsibilities:
     * Testing
     * Rooms feature
