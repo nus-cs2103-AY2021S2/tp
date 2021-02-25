@@ -3,11 +3,14 @@
 [![Java CI](https://github.com/AY2021S2-CS2103T-T11-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-T11-2/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T11-2/tp/branch/master/graph/badge.svg?token=2NR2SMZ01E)](https://codecov.io/gh/AY2021S2-CS2103T-T11-2/tp)
 
-![Ui](docs/images/Ui.png)
+![Logo](docs/images/logo.png)
+
 
 CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to keep track of people they have crossed paths with.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your contact management tasks done faster than traditional GUI apps.
 
 What are you waiting for? Start tracking your university life now!
+
+![Ui](docs/images/Ui.png)
 
 ## Site Map
 
