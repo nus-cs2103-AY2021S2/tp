@@ -18,3 +18,10 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.info-display {
+    -fx-background-image: url("../images/logo_inverted.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}
