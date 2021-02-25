@@ -5,55 +5,26 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Maurice Mok
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Maurice.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[homepage](https://github.com/Maurice2n97)]
+[[github](https://github.com/Maurice2n97)]
+[[portfolio](Maurice)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### Chen Yuheng
 
-[[github](http://github.com/johndoe)]
+<img src="images/skinnychenpi.png" width="200px">
+
+[[github](http://github.com/skinnychenpi)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Undecided
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
