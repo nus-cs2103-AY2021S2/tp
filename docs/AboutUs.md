@@ -19,15 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Wang Yuchen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/w-yuchen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/w-yuchen)]
+[[portfolio](team/w-yuchen.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation, Testing
 
 ### Johnny Doe
 
