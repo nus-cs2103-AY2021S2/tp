@@ -20,7 +20,7 @@ public class Plan {
     private final Email email;
 
     // Data fields
-    private final Semesters[] semesters;
+    private Semester[] semesters;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -32,6 +32,19 @@ public class Plan {
         requireAllNonNull(phone, email, description, tags);
         this.phone = phone;
         this.email = email;
+        this.description = description;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Semesters MUST have at least 1 semester within it
+     */
+    public Plan(Phone phone, Email email, Description description, Set<Tag> tags, Semester[] semesters) {
+        requireAllNonNull(phone, email, description, tags, semesters);
+        this.phone = phone;
+        this.email = email;
+        this.semesters = semesters;
         this.description = description;
         this.tags.addAll(tags);
     }
