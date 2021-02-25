@@ -8,6 +8,18 @@ We are a team based in the [School of Computing, National University of Singapor
 ## Project team
 
 
+### Heng Yi Qun
+
+<img src="images/yiqun.png" width="200px">
+
+[[github](http://github.com/hengyiqun)]
+
+[[portfolio]()]
+
+* Role: Developer
+* Responsibilities: Features
+
+
 ### ToTo Tokaeo
 
 <img src="images/totoyoyo.png" width="200px">
