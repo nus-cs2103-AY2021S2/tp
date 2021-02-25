@@ -16,21 +16,5 @@ It is written in Java.
 
 Given below are my contributions to the project.
 
-* **New Feature**: To be updated.
-
-* **Code contributed**: to be updated.
-
-* **Project management**: to be updated.
-
-* **Enhancements to existing features**:
-    * Come out with Ui-mockup(Pull requests [\#23](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/23)).
-
-* **Documentation**:
-    * User Guide:
-        * Added documentations for the introduction and Quick Start [\#25](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/25)
-    * Developer Guide:
-        * Added documentations for Target user profile, value proposition, and user stories.
-
-* **Community**:
-    * PRs reviewed (with non-trivial review comments): to be updated.
+To be updated.
  
