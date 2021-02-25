@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Member 4
 * Responsibilities: Dev Ops + Threading
 
-### Amanda Ang
+### Amanda Ang Yee Min
 
 <img src="images/github-amanda.png" width="200px">
 
