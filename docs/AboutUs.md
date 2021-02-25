@@ -7,16 +7,16 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/prabhakarangokul.png" width="200px">
 
 [[github](https://github.com/Prabhakaran-Gokul/)]
-[[portfolio](team/prabhakarangokul.md)]
+[[portfolio](team/prabhakaran-gokul.md)]
 
 * Role: Developer
 * Responsibilities: Integration
 ### Donavan Lim
 
-<img src="images/Donavanty.png" width="200px">
+<img src="images/donavanty.png" width="200px">
 
-[[github](https://github.com/Donavanty)]
-[[portfolio](team/Donavan.md)]
+[[github](https://github.com/donavanty)]
+[[portfolio](team/donavanty.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
