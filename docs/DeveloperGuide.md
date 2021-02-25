@@ -236,13 +236,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* has to manage a considerable number of residences
+* is constantly renting out residences; high turnover rate
+* needs to frequently update cleaning agency to clean residences between bookings
+* prefers working on their laptop over using their phone
+* is able to type quickly
+* prefers using a keyboard to using a mouse
+* is reasonably familiar with CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: easily keep track of residences and inform cleaning agency whenever necessary
 
 
 ### User stories
