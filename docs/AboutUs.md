@@ -9,7 +9,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Jason Tay
 
-<img src="images/jasontay.png" width="200px">
+<img src="images/jay9645.png" width="200px">
 
 [[github](https://github.com/jay9645)]
 
@@ -17,7 +17,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Jeremy Lee
 
-<img src="images/jeremylee.png" width="200px">
+<img src="images/jlxw48.png" width="200px">
 
 [[github](http://github.com/jlxw48)]
 
@@ -26,7 +26,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ng Boon Hong
 
-<img src="images/ngboonhong.png" width="200px">
+<img src="images/nbh99.png" width="200px">
 
 [[github](http://github.com/NBH99)] 
 
