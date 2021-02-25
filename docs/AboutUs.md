@@ -26,14 +26,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: 
 * Responsibilities: 
 
-### Johnny Doe
+### Li Jiahe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lijiahe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ljhgab)]
+[[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: 
+* Responsibilities: 
 
 ### Jean Doe
 
