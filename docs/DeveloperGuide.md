@@ -297,6 +297,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
 
+**Use case: UCXX - Add a task**
+
+1. User wishes to add a new task.
+2. User enters the required parameters.
+3. SOChedule displays a success message for adding the task.
+
+**Extensions**
+
+* 2a. The given parameters are invalid.
+
+    * 2 a1. SOChedule shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UCXX - List tasks**
+
+1. User wishes to add a new task.
+2. User enters the corresponding command.
+3. SOChedule displays all tasks.
+
+
 **Use case: UCXX - Delete a task**
 
 **MSS**
