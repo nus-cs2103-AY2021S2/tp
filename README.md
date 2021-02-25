@@ -1,3 +1,5 @@
+
+[![Java CI](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml)
 ![Logo](docs/images/Logo.png)
 
 * The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) 
@@ -10,9 +12,15 @@ options tasted in the vicinity of NUS.
 
 ![Ui](docs/images/Ui.png)
 
-## Site Map
+## Acknowledgements
 
-* [User Guide](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/docs/UserGuide.md)
-* [Developer Guide](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/docs/DeveloperGuide.md)
+## Site Map
+* For new users who are new to using The Food Diary, visit [User Guide](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/docs/UserGuide.md)
+* For more detailed documentation of our The Food Diary, visit [Developer Guide](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/docs/DeveloperGuide.md)
 * [About Us](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/docs/AboutUs.md)
 
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+### Libraries Used:
+* JavaFX
+* Jackson
+* JUnit5
