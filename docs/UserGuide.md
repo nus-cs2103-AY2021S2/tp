@@ -17,14 +17,15 @@ SunRez is a **desktop app for managing student housing services, optimized for u
     * [Add a room : `oadd`](#add-a-room--oadd)
     * [List all rooms : `olist`](#list-all-rooms--olist)
     * [Find rooms : `ofind`](#find-rooms--ofind)
-    * [Edit a room record : `oedit`](#edit-a-room-record----oedit)
-    * [Delete a room : `odel`](#delete-a-room----odel)
+    * [Edit a room record : `oedit`](#edit-a-room-record--oedit)
+    * [Delete a room : `odel`](#delete-a-room--odel)
     * [Add an open issue : `iadd`](#add-an-open-issue--iadd)
     * [List all issues : `ilist`](#list-all-issues--ilist)
     * [Find issues : `ifind`](#find-issues--ifind)
     * [Edit an issue record : `iedit`](#edit-an-issue-record--iedit)
     * [Close an issue : `iclose`](#close-an-issue--iclose)
     * [Delete an issue : `idel`](#delete-an-issue--idel)
+    * [Exiting the program : `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
@@ -185,17 +186,6 @@ Example:
 
 * `rdel 1` deletes the 1st resident in the resident list.
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ### Add a room : `oadd`
 
@@ -258,6 +248,85 @@ Examples:
 
 * `odel 1` Deletes the 1st room in the room list.
 
+
+### Add an open issue : `iadd`
+
+Adds an issue to the housing management system.
+
+Format: `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
+
+Example:
+
+* `iadd r/10-100 d/Broken light c/Furniture` Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
+
+
+### List all issues : `ilist`
+
+Shows a list of all issues in the system sorted by timestamp.
+
+Format: `ilist`
+
+
+### Find issues : `ifind`
+
+Finds issues that contain any of the given keywords.
+
+Format: `ifind KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `broken` will match `Broken`
+* The order of the keywords does not matter. e.g. `Broken light` will match `light broken`
+* Only the description is searched.
+* Issues matching at least one keyword will be returned (i.e. OR search). e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
+
+Examples:
+
+* `ifind chair` returns `Broken chair` and `Chair missing wheel`.
+* `ifind wardrobe table` returns `Wardrobe door broke`, `Table unstable`, and `Table stuck in wardrobe`.
+
+### Edit an issue record : `iedit`
+
+Edits an existing issue record.
+
+Format: `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
+
+* Edits the issue at the specified INDEX. The index refers to the index number shown in the displayed issue list. The index must be a positive integer 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Example:
+
+* `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
+
+
+### Close an issue : `iclose`
+
+Marks as closed an issue at the specified index.
+
+Format: `iclose INDEX`
+
+Example:
+
+* `iclose 1` Closes the 1st issue.
+
+
+### Delete an issue : `idel`
+
+Deletes an issues at the specified index.
+
+Format: `idel INDEX`
+
+Example:
+
+* `idel 1` Deletes the 1st issue.
+
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -285,7 +354,6 @@ _Details coming soon ..._
 
 ## Command summary
 
-
 Action | Format, Examples
 --------|------------------
 **Show help** | `help`
@@ -294,3 +362,15 @@ Action | Format, Examples
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g. `redit 1 p/91234567 e/johndoe@example.com`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
+**Add a room** |  `oadd n/ROOM_NO t/TYPE o/OCCUPY_STATUS [g/TAG]` <br> e.g. `oadd n/17-101 t/single_no_ac o/Occupied g/SHN`
+**List all rooms** |  `olist`
+**Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
+**Edit a room record** |  `oedit INDEX [n/ROOM_NO] [t/TYPE] [g/TAG] [o/OCCUPY_STATUS]` <br> e.g. `oedit 1 o/Occupied`
+**Delete a room** | `odel INDEX` <br> e.g. `odel 1`
+**Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture`
+**List all issues** | `ilist`
+**Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
+**Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iedit 1 r/20-109 s/Closed`
+**Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
+**Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
+**Exit the app** | `exit`
