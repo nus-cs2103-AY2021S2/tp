@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Room;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -19,16 +20,18 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+    private final String room;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email) {
+            @JsonProperty("email") String email, @JsonProperty("room") String room) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.room = room;
     }
 
     /**
@@ -38,6 +41,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        room = source.getRoom().value;
     }
 
     /**
@@ -70,7 +74,12 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        return new Person(modelName, modelPhone, modelEmail);
+        if (!Room.isValidRoom(room)) {
+            throw new IllegalValueException(Room.MESSAGE_CONSTRAINTS);
+        }
+        final Room modelRoom = new Room(room);
+
+        return new Person(modelName, modelPhone, modelEmail, modelRoom);
     }
 
 }

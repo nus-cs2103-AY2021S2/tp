@@ -14,15 +14,17 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Room room;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email) {
-        requireAllNonNull(name, phone, email);
+    public Person(Name name, Phone phone, Email email, Room room) {
+        requireAllNonNull(name, phone, email, room);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.room = room;
     }
 
     public Name getName() {
@@ -35,6 +37,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 
     /**
@@ -67,13 +73,14 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail());
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getRoom().equals(getRoom());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email);
+        return Objects.hash(name, phone, email, room);
     }
 
     @Override
@@ -83,7 +90,9 @@ public class Person {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail());
+                .append(getEmail())
+                .append("; Room: ")
+                .append(getRoom());
 
         return builder.toString();
     }

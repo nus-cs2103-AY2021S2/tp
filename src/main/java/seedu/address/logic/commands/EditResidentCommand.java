@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Room;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -33,9 +35,12 @@ public class EditResidentCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ROOM + "ROOM] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_ROOM + "0123";
+
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -87,8 +92,10 @@ public class EditResidentCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Room updatedRoom = editPersonDescriptor.getRoom().orElse(personToEdit.getRoom());
 
-        return new Person(updatedName, updatedPhone, updatedEmail);
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedRoom);
     }
 
     @Override
@@ -117,6 +124,7 @@ public class EditResidentCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Room room;
 
         public EditPersonDescriptor() {}
 
@@ -127,6 +135,7 @@ public class EditResidentCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setRoom(toCopy.room);
         }
 
         /**
@@ -160,6 +169,14 @@ public class EditResidentCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setRoom(Room room) {
+            this.room = room;
+        }
+
+        public Optional<Room> getRoom() {
+            return Optional.ofNullable(room);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -177,7 +194,8 @@ public class EditResidentCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail());
+                    && getEmail().equals(e.getEmail())
+                    && getRoom().equals(e.getRoom());
         }
     }
 }

@@ -8,6 +8,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Room;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -73,4 +75,22 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
+
+    /**
+     * Parses a {@code String room} into an {@code Room}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code room} is invalid.
+     */
+    public static Room parseRoom(String room) throws ParseException {
+        requireNonNull(room);
+        String trimmedRoom = room.trim();
+        if (!Room.isValidRoom(trimmedRoom)) {
+            throw new ParseException(Room.MESSAGE_CONSTRAINTS);
+        }
+        return new Room(trimmedRoom);
+    }
+
+
+
 }
