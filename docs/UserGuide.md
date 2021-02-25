@@ -25,9 +25,9 @@ SunRez is a **desktop app for managing student housing services, optimized for u
     * [Edit an issue record : `iedit`](#edit-an-issue-record--iedit)
     * [Close an issue : `iclose`](#close-an-issue--iclose)
     * [Delete an issue : `idel`](#delete-an-issue--idel)
+    * [Exiting the program : `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
-    * [Exiting the program : `exit`](#exiting-the-program--exit)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
