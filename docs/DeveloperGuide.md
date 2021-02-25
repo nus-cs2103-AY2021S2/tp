@@ -179,12 +179,7 @@ Use case ends.
     * 2a1. FoodDiary tells user that no restaurants found.
 
       Use case ends.
-
     
-    
-
-    
-
 ### Non-Functional Requirements
 
 Non-functional requirements specify the constraints under which the system for The Food Diary is developed and operated.
