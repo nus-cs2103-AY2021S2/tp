@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/tjtanjin.png/ImPoster.png" />
+  <img src="images/ImPoster.png" />
   <h1 align="center">ImPoster Workflow Guide</h1>
 </p>
 
