@@ -1,4 +1,7 @@
 ---
+layout: page
+title: User Guide
+---
 
 RemindMe User Guide v1.1
 ---
@@ -41,7 +44,6 @@ Objectives of RemindMe:
    * If you are a Windows user, [here](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows) is a tutorial on how to set up Java 11:
 
 
-
 2. Download the latest RemindMe.jar from our GitHub release page.
 Copy the file to the folder you want to use as the home folder for your RemindMe.
 Double click the file to start the app. 
@@ -49,11 +51,18 @@ Double click the file to start the app.
 
 3. Alternatively, you can run the command line java -jar RemindMe.jar in your terminal to start the application.
 Type the command in the command box and press Enter to execute it.
-   
+The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)   
 
 4. Refer to the Features below for details of each command.
 
-
+   * **`deadline`** `description by DD/MM/YYYY TIME`: Adds a task with a deadline.
+     
+   * **`ordered list`**: Displays an order list of items.
+     
+   * ** `calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
+     
+   * **`exit`** : Exits the app.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -173,31 +182,34 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+###Viewing Calendar of the current month
+Shows an image of the calendar with your reminders (e.g. tasks, assignments datelines, and friends’ birthday) for each specific dates.  
+![result for 'calendar'](images/calendarResult.png)  
+Format: `calendar`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
-Format: `clear`
+Format: `clear``
+
+### Saving the data
+
+RemindMe save your data in the hard disk automatically after every command that changes the data. There is no need for you to save manually.
+
+### Editing the data file
+
+AddressBook data are saved as a JSON file `[JAR file location]/data/remindme.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, RemindMe will discard all data and start with an empty data file at the next run.
+</div>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-
+Format: `exit
 
 ## Glossary
 * Examination: Consists of a start time, end time, date which it occurs on and the subject.
@@ -213,4 +225,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**View Calendar** | `calendar`
 **Help** | `help`
