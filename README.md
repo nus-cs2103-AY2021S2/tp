@@ -1,6 +1,8 @@
 [![Java CI](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml)
 
-![Logo](docs/images/Logo.png)
+<div align="center">
+    <img alt="Logo" src="docs/images/Logo.png">
+</div>
 
 * The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) 
 and packaged with a Graphical User Interface (GUI).
