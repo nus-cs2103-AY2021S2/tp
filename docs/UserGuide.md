@@ -191,6 +191,29 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 
+## Features:
+* Adding Task: addTask
+* Deleting Task: deleteTask
+* Viewing Tasks: viewTasks
+* Adding member: addMember
+* Deleting members’ details: deleteMember
+* Viewing members’ details: viewMembers
+
+### 1. Adding Task: `addTask`  
+Adds a task and its description to the list.
+
+Format: addTask DESCRIPTION
+
+Examples: addTask assignment
+
+
+### 2. Deleting Task: `deleteTask`
+Deletes a task from the list.
+
+Format: deleteTask INDEX
+
+Examples: deleteTask 1
+
 ### 3. View Task: `viewTasks`
 Views the list of tasks that the user has added into the application
 
