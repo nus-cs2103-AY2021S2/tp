@@ -17,26 +17,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
 * Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+### Jaryl Loh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaryl.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jxrrelo)]
+[[portfolio](team/jaryl.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI
+
+### Lai Yu Heem
+
+<img src="images/yuheem.png" width="200px">
+
+[[github](http://github.com/yuheem)] [[portfolio](team/yuheem.md)]
+
+* Role: Developer
+* Responsibilities: To be updated
 
 ### Jean Doe
 
