@@ -36,15 +36,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: 
 * Responsibilities: 
 
-### Jean Doe
+### Yap Jing Kang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yapjingkang.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/souluseless)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: 
+* Responsibilities:
 
 ### James Doe
 
