@@ -154,6 +154,78 @@ Exits the program.
 
 Format: `exit`
 
+
+### Add an open issue : `iadd`
+
+Adds an issue to the housing management system.
+
+Format: `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
+
+Example:
+
+* `iadd r/10-100 d/Broken light c/Furniture` Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
+
+
+### List all issues : `ilist`
+
+Shows a list of all issues in the system sorted by timestamp.
+
+Format: `ilist`
+
+
+### Find issues : `ifind`
+
+Finds issues that contain any of the given keywords.
+
+Format: `ifind KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `broken` will match `Broken`
+* The order of the keywords does not matter. e.g. `Broken light` will match `light broken`
+* Only the description is searched.
+* Issues matching at least one keyword will be returned (i.e. OR search). e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
+
+Examples:
+
+* `ifind chair` returns `Broken chair` and `Chair missing wheel`.
+* `ifind wardrobe table` returns `Wardrobe door broke`, `Table unstable`, and `Table stuck in wardrobe`.
+
+### Edit an issue record : `iedit`
+
+Edits an existing issue record.
+
+Format: `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
+
+* Edits the issue at the specified INDEX. The index refers to the index number shown in the displayed issue list. The index must be a positive integer 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Example:
+
+* `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
+
+
+### Close an issue : `iclose`
+
+Marks as closed an issue at the specified index.
+
+Format: `iclose INDEX`
+
+Example:
+
+* `iclose 1` Closes the 1st issue.
+
+
+### Delete an issue : `idel`
+
+Deletes an issues at the specified index.
+
+Format: `idel INDEX`
+
+Example:
+
+* `idel 1` Deletes the 1st issue.
+
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -190,3 +262,9 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture`
+**List all issues** | `ilist`
+**Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
+**Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iedit 1 r/20-109 s/Closed`
+**Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
+**Delete an issue** | `idel INDEX` <br> e.g. `idel 1`

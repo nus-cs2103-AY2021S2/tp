@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/team/colin.jpg" width="200px">
 
-[[github](https://github.com/colintkn)] 
+[[github](https://github.com/colintkn)]
 [[portfolio](team/colin.md)]
 
 * Role: TBD
@@ -46,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/stein414)]
 [[portfolio](team/ian.md)]
 
-* Role: TBD
-* Responsibilities: TBD
+* Role: Code Quality, VS Code Expert
+* Responsibilities: Issues
 
 ### Linh
 
