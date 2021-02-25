@@ -249,41 +249,123 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
+| -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `* * *`  | SOC Student                           | Add a task to my schedule                                              | I can track my task better                                                   |
+| `* * *`  | SOC Student                           | Allocate a priority score to a task                                    | I can prioritise my time better                                              |
+| `* * *`  | SOC Student                           | Edit a task in my schedule                                             | I can have flexibility in my schedule                                        |
+| `* *`    | SOC Student                           | Mark a task complete in my schedule                                    | I can track which tasks I have completed                                     |
+| `*`      | SOC Student                           | Delete a task from my schedule from my schedule                        | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | View tasks in my schedule                                              | I can have a better sense of what will happen in the following days or weeks |
+| `* * *`  | SOC Student                           | Sort my tasks in my schedule in various orderings                      | I can prioritise my time better                                              |
+| `* * *`  | Forgetful SOC Student                 | Get reminders from SOChedule regarding task deadlines                  | I will not lose track of my tasks                                            |
+| `* * *`  | SOC student under huge workload       | View my schedule to see my free time slots                             | I can allocate my time better and fill it up with more tasks                 |
+| `* * *`  | SOC Student                           | View the people that I need to work with for a specific event          | I can keep in touch with the person better                                   |
+| `* * *`  | SOC Student                           | Add an event (with the required information) to my schedule            | I can track my time better                                                   |
+| `* *`    | SOC Student                           | Add recurring events (with the required information) to my schedule    | I can plan ahead for my schedule                                             |
+| `*`      | SOC Student                           | Add a person that I have to work with to an event in my schedule       | I can track who I need to work with for an even                              |
+| `* * *`  | SOC Student                           | Add a meeting link to an event in my schedule                          | I can quickly join a online meeting                                          |
+| `* * *`  | SOC Student                           | Edit event description in my schedule                                  | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | Edit the event time in my schedule                                     | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | Mark an event complete in my schedule                                  | I can track which events I have completed                                    |
+| `* * *`  | SOC Student                           | Delete an event from my schedule from my schedule                      | I can have flexibility in my schedule                                        |
+| `* *`    | SOC Student                           | Remove the person I am working with for an event                       | I can track who I need to work with for an event                             |
+| `*`      | SOC Student                           | View events in my schedule                                             | I can have a better sense of what will happen in the following days or weeks |
+| `* * *`  | SOC Student                           | View events for today                                                  | I can have a better sense of what will happen in the following hours         |
+| `* * *`  | SOC Student                           | Sort the tasks based on the deadline                                   | I can proceed with the task that is closer to the deadline                   |
+| `*`      | SOC Student                           | Get alerts for impending events                                        | I can prepare ahead of time for the event                                    |
+| `* * *`  | SOC Student                           | Add the schedule of what I want to do and what I really do             | I can reflect which part of the day being not productive                     |
+| `* * *`  | SOC Student                           | Set alert time frame for events                                        | I can prepare ahead of time                                                  |
+| `* *`    | SOC Student                           | Set colours to events                                                  | I can categorise my events                                                   |
+| `* *`    | SOC Student                           | Set colours to tasks                                                   | I can categorise my tasks                                                    |
+| `*`      | SOC Student                           | highlight the events that are very important                           | I can differentiate the important tasks from the rest                        |
+| `* * *`  | SOC Student                           | record the progress of a habit user want to cultivate                  | I can cultivate a lot of good habits                                         |
+| `* * *`  | SOC Student                           | write a diary each day                                                 | I can record my life                                                         |
+| `*`      | SOC Student with many project modules | know who I am doing the task with                                      | it is easier to schedule meetings or discussions with my group mates         |
+| `* * *`  | SOC Student                           | keep track of the progress of each module                              | I can finish all tasks well and on time                                      |
+| `* * *`  | SOC Student                           | categorise my tasks                                                    | I can group my tasks to have a clearer schedule                              |
+| `* * *`  | SOC Student                           | find out the free time between events                                  | fill in other activities to achieve better time management                   |
+| `* * *`  | SOC Student taking several projects   | have a better sense on the project tasks assigned and the due date     | I can finish the tasks assigned on time                                      |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UCXX - Delete a task**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list tasks.
+2. SOChedule shows a list of tasks.
+3. User chooses to delete a task.
+4. User enters the index of the task to be deleted.
+5. SOChedule displays a success message for deleting the task.
+
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The task list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UCXX - Mark a task as completed**
+
+**MSS**
+
+1. User requests to list tasks.
+2. SOChedule shows a list of tasks.
+3. User chooses to mark a task as completed.
+4. User enters the index of the task to be marked.
+5. SOChedule displays a success message for marking the task as completed.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+
+      Use case resumes at step 2.
+
+
+**Use case: UCXX - Delete an event**
+      
+**MSS**
+
+1. User requests to list events.
+2. SOChedule shows a list of events.
+3. User chooses to delete an event.
+4. User enters the index of the event to be deleted.
+5. SOChedule displays a success message for deleting the event.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The event scheduler is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message.
 
       Use case resumes at step 2.
 
@@ -292,8 +374,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to hold up to 500 events without a noticeable sluggishness in performance for typical usage.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  Should give a response to user's input within 5 seconds.
+6.  The user interface should be intuitive to an SOC freshman with little knowledge about programming.
+7.  The source code should be open source.
 
 *{More to be added}*
 

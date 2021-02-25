@@ -1,7 +1,4 @@
----
-layout: page
-title: About Us
----
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -9,34 +6,35 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Cheng Yu Feng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chengyufeng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/YuFeng0930)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: 
+* Responsibilities:
 
-### Jane Doe
+### Ding You Jia, Danelynn
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/youjia.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/icelenaugust)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: 
+* Responsibilities: 
 
-### Johnny Doe
+### Li Jiahe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lijiahe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ljhgab)]
+[[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: 
+* Responsibilities: 
 
 ### Jean Doe
 
