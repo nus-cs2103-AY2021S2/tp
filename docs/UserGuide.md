@@ -190,3 +190,14 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction 
+HEY MATEz, is a desktop application that allows CCA leaders to track members of 
+a CCA and track the tasks that have to be carried out by the CCA. It is also 
+a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI) 
+as this application is catered to people who are used to typing on the keyboard frequently.
+
+## Mockup of Application
+![Ui](images/Ui.png)
