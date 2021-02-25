@@ -241,37 +241,50 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* tech-savvy insurance agents
+* have to manage large number of client related information
+* mainly use laptops on the go 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven app
+* a central avenue to store information about their clients
+* typing-based easier to use than the trackpads 
+* do not allow the user to insert attachments or group policies in our application.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add a new client               |                                                                        |
+| `* * *`  | user                                       | delete a client                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
+| `* * *`  | forgetful user                             | store many clients details     | remember them easily                                                   |
+| `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the app                                        |
+| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy.                   |
+| `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
+| `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
+| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
+| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ClientBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a client**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list clients
+2.  ClientBook shows a list of clients
+3.  User requests to delete a specific client in the list
+4.  ClientBook deletes the client
 
     Use case ends.
 
@@ -283,17 +296,105 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClientBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
+**Use case: Add a client**
+
+**MSS**
+
+1.  User requests to add a client
+2.  ClientBook adds the client.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user input does not follow the format required.
+
+  * 1a1. ClientBook shows an error message.
+    
+    Use case resumes at step 1.
+
+**Use case: List all clients**
+
+**MSS**
+
+1.  User requests to list clients
+2.  ClientBook shows a list of clients
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Edit a client**
+
+**MSS**
+
+1.  User requests to list clients
+2.  ClientBook shows a list of clients
+3.  User requests to edit a specific client in the list
+4.  ClientBook edits the client
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ClientBook shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: Find a client**
+
+**MSS**
+
+1.  User requests to find clients with keywords
+2.  ClientBook shows a list of clients that matches keywords
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of matched clients is empty.
+
+  Use case ends.
+
+**Use case: Filter list of clients**
+
+**MSS**
+
+1.  User requests to filter clients with details
+2.  ClientBook shows a list of clients that matches details
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of matched clients is empty.
+
+  Use case ends.
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to have the client information stored in a file that can easily transfer/share between computers
+5.  Should be able to use ClientBook even if there is no internet around the vicinity.
+6.  Should be able to have ClientBook stay on for a long period of time.
 
 *{More to be added}*
 
