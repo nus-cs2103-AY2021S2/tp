@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Dylan Ghee Shao Kang
 
-<img src="images/dylan_profile.png" width="200px">
+<img src="images/zatkiller.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/zatkiller)]
@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lim Jean Tong, Rachel
 
-<img src="images/rachel.png" width="200px">
+<img src="images/rachelljt.png" width="200px">
 
 [[github](http://github.com/rachelljt)]
 [[portfolio](team/johndoe.md)]
@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tasha Marion Wan hui lin
 
-<img src="images/tashawan.png" width="200px">
+<img src="images/tashawan23.png" width="200px">
 
 [[github](https://github.com/tashawan23)]
 [[portfolio](team/tashawan.md)]
