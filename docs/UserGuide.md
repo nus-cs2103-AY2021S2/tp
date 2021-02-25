@@ -92,6 +92,16 @@ Examples:
 * `run -x GET -u https://www.google.com`
 * `run -x GET -u https://www.yahoo.com`
 
+### Sending an API call from API list: `send`
+
+Calls an API from from the API list.
+
+Format: `send INDEX​`
+
+Examples:
+* `send 1` calls the 1st API from the API list.
+* `send 2` calls the 2nd API from the API list.
+
 ### Listing all saved API requests: `list`
 
 Shows a list of all API routes in the API list.

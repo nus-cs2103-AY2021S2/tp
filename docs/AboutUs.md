@@ -31,9 +31,9 @@ You can reach us at the email `imposter[at]comp.nus.edu.sg`
 
 ### Ong Jun Xiong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ong6.png" width="200px">
 
-[[github](http://github.com/ong6)] 
+[[github](http://github.com/ong6)]
 [[portfolio](team/ong6.md)]
 
 * Role: Developer
