@@ -339,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. SOChedule shows an error message.
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
 
       Use case resumes at step 2.
 
@@ -374,8 +374,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to hold up to 500 events without a noticeable sluggishness in performance for typical usage.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  Should give a response to user's input within 5 seconds.
+6.  The user interface should be intuitive to an SOC freshman with little knowledge about programming.
+7.  The source code should be open source.
 
 *{More to be added}*
 
