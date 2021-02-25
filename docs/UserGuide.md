@@ -65,7 +65,7 @@ Taskify is a **desktop app for students manage their tasks (academics/personal/C
 
 
 
-###Command Action: `keyword(first word of command)`
+### Command Action: `keyword(first word of command)`
 
 Command Desription
 
