@@ -17,9 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/azeem.md)]
 
 * Role: Developer
-* Responsibilities:
-    * Testing
-    * Rooms feature
+* Responsibilities: Testing, Rooms feature
 
 ### Benedict Khoo
 
