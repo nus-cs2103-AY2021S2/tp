@@ -255,21 +255,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                             |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new client               |                                                                        |
 | `* * *`  | user                                       | delete a client                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily                                                 |
-| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |    
 | `* * *`  | forgetful user                             | store many clients details     | remember them easily                                                   |
 | `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the app                                        |
 | `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy.                   |
 | `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
-| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
 | `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
+| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
+| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
+| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily                                                 |
 
 *{More to be added}*
 
@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. ClientBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 **Use case: Add a client**
 
@@ -313,7 +313,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The user input does not follow the format required.
 
-  * 3a1. ClientBook shows an error message.
+  * 1a1. ClientBook shows an error message.
     
     Use case resumes at step 1.
 
@@ -353,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. ClientBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
 
 **Use case: Find a client**
 
@@ -366,7 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of matched clients is empty.
 
   Use case ends.
 
@@ -381,7 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of matched clients is empty.
 
   Use case ends.
     
