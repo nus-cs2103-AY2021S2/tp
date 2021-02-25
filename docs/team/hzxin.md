@@ -1,7 +1,8 @@
 ---
 layout: page
-title:Huang Zhenxin's Project Portfolio Page
+title: Huang Zhenxin's Project Portfolio Page
 ---
+
 ## Introduction
 This page serves to document my contributions to the project RemindMe under NUS module CS2103T in AY20/21 semester 2.
 
@@ -21,7 +22,7 @@ Given below are my contributions to the project.
     * Credits: 
 
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: to be updated.
 
 * **Project management**:
     * to be updated
@@ -36,8 +37,6 @@ Given below are my contributions to the project.
         * Added documentations for Target user profile, value proposition, and user stories.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#]()
+    * PRs reviewed (with non-trivial review comments): to be updated.
  
-    
-
-_
+ 
