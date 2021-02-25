@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.policy.Policy;
+import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,12 +26,12 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Policy> policies = new ArrayList<>();
+    private final ArrayList<InsurancePolicy> policies = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Policy> policies) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<InsurancePolicy> policies) {
         requireAllNonNull(name, phone, email, address, tags, policies);
         this.name = name;
         this.phone = phone;
@@ -79,7 +79,7 @@ public class Person {
      * Returns an immutable policy arraylist, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Policy> getPolicies() {
+    public List<InsurancePolicy> getPolicies() {
         return Collections.unmodifiableList(policies);
     }
 
@@ -142,7 +142,7 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        List<Policy> policies = getPolicies();
+        List<InsurancePolicy> policies = getPolicies();
         if (!policies.isEmpty()) {
             builder.append("; Tags: ");
             policies.forEach(builder::append);

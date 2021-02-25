@@ -1,21 +1,21 @@
-package seedu.address.model.policy;
+package seedu.address.model.insurancepolicy;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Policy in the address book.
+ * Represents an InsurancePolicy in the address book.
  * Guarantees: immutable;
  */
-public class Policy {
+public class InsurancePolicy {
 
     public final String policyId;
 
     /**
-     * Constructs a {@code Policy}.
+     * Constructs an {@code InsurancePolicy}.
      *
      * @param policyId the Id associated with the policy.
      */
-    public Policy(String policyId) {
+    public InsurancePolicy(String policyId) {
         requireNonNull(policyId);
         this.policyId = policyId;
     }
@@ -28,8 +28,8 @@ public class Policy {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Policy // instanceof handles nulls
-                && policyId.equals(((Policy) other).policyId)); // state check
+                || (other instanceof InsurancePolicy // instanceof handles nulls
+                && policyId.equals(((InsurancePolicy) other).policyId)); // state check
     }
 
     @Override
