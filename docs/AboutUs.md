@@ -11,13 +11,13 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 
 ### Azeem Vasanwala
 
-<img src="images/team/azeem.jpg" width="200px">
+<img src="images/drwala.png" width="200px">
 
 [[github](https://github.com/DrWala)]
 [[portfolio](team/azeem.md)]
 
-* Role: TBD
-* Responsibilities: TBD
+* Role: Developer
+* Responsibilities: Testing, Rooms feature
 
 ### Benedict Khoo
 
