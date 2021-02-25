@@ -177,6 +177,9 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: What if I want to have more features implemented in the product?
+**A**: Feel free to contact us at e0406389@u.nus.edu!
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
