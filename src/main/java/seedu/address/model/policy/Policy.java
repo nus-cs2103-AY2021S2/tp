@@ -13,7 +13,7 @@ public class Policy {
     /**
      * Constructs a {@code Policy}.
      *
-     * @param policyId the Id associatied with the policy.
+     * @param policyId the Id associated with the policy.
      */
     public Policy(String policyId) {
         requireNonNull(policyId);
