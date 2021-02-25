@@ -45,21 +45,21 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Chocolate Milk`.
+  e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is a parameter which can be used as `add n/Chocolate Milk`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [e/EXPIRY_DATE]` can be used as `n/Olive Oil e/2020-10-10` or as `n/Olive Oil`.
+  e.g `n/ITEM_NAME [e/EXPIRY_DATE]` can be used as `n/Olive Oil e/2020-10-10` or as `n/Olive Oil`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/favourite`, `t/favourite t/drink` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME l/LOCATION`, `l/LOCATION n/NAME` is also acceptable.
+  e.g. if the command specifies `n/ITEM_NAME l/LOCATION`, `l/LOCATION n/ITEM_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `e/2020-10-10 e/2020-08-08`, only `e/2020-08-08` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -82,11 +82,13 @@ Examples:
 
 Shows a list of all items in the inventory.
 
-Format: `list`
+Format: `list [l/LOCATION]`
+
+* You can view all items in the inventory by typing 'list' without specifying location.
 
 ### Updating an item's details : `update`
 
-Edits an existing item in the inventory.
+Updating an existing item in the inventory.
 
 Format: `update INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
 
@@ -119,7 +121,7 @@ Examples:
 * `find potato chip` returns `Potato Biscuit`, `chocolate chip`<br>
 
 
-### Deleting a person : `delete`
+### Deleting an item : `delete`
 
 Deletes the specified item from the inventory.
 
