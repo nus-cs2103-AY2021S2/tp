@@ -309,18 +309,18 @@ Use case ends.
 </pre>
 
 <pre>
-Use Case UC003: List tution appointments
+Use Case UC003: List tuition appointments
 View the list of personal tuition appointments.
 
 <b>System: Tutor Tracker</b>
 <b>Actor: User</b>
 
-<b>Preconditions: Appointments list must exist.</b>
-<b>Guarantees: A view of the schedule of appointments.</b>
+<b>Preconditions: Appointment list must exist.</b>
+<b>Guarantees: A view of the schedule of tuition appointments.</b>
 
 <b>MSS</b>
-1. User requests to view the list of appointments.
-2. Tutor Tracker displays the list of appointments to the user.
+1. User requests to view the list of tuition appointments.
+2. Tutor Tracker displays the list of tuition appointments to the user.
    Use case ends.
 </pre>
 
