@@ -17,7 +17,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lin Lue
 
-<img src="images/linlue.jpg" width="200px">
+<img src="images/linlue.png" width="200px">
 
 [[github](https://github.com/lue97)]
 
