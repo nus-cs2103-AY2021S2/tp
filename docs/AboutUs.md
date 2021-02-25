@@ -51,7 +51,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 
 ### Linh
 
-<img src="images/linh.jpg" width="200px">
+<img src="images/linh.png" width="200px">
 
 [[github](https://github.com/cnlinh)]
 [[portfolio](team/linh.md)]
