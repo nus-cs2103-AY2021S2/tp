@@ -5,55 +5,50 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Heng Yi Qun
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/yiqun.png" width="200px">
 
-* Role: Project Advisor
+[[github](http://github.com/hengyiqun)]
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[portfolio]()]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Features
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### ToTo Tokaeo
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/totoyoyo.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/totoyoyo)]
+[[portfolio](team/totoyoyo.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Dates and Time Management
+
+### Maurice Mok
+
+<img src="images/Maurice.png" width="200px">
+
+[[homepage](https://github.com/Maurice2n97)]
+[[github](https://github.com/Maurice2n97)]
+[[portfolio](Maurice)]
+
+* Role: Developer
+
+
+### Chen Yuheng
+
+<img src="images/skinnychenpi.png" width="200px">
+
+[[github](http://github.com/skinnychenpi)]
+[[portfolio](team/skinnychenpi.md)]
+
+* Role: Developer
+* Responsibilities: Undecided
+
+
