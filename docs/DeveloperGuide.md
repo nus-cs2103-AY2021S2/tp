@@ -249,20 +249,59 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                                    | So that I can…​                                                                |
+| -------- | ------------------------------------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                             | refer to instructions when I forget how to use the App                            |
+| `* * *`  | user                                       | be able to add a property                                          | keep track of my clients' properties                                              |
+| `* * *`  | user                                       | be able to add an appointment                                      | keep track of my upcoming schedule                                                |
+| `* * *`  | user                                       | delete a person                                                    | remove entries that I no longer need                                              |
+| `* * *`  | user                                       | find a person by name                                              | locate details of persons without having to go through the entire list            |
+| `* *`    | potential user exploring the app           | see the app populated with sample data                             | easily see how the app looks like when it is in use                               |
+| `* *`    | user                                       | hide private contact details                                       | minimize chance of someone else seeing them by accident                           |
+| `* *`    | careless user                              | be able to categorize housing information based on predefined tags | prevent typos while keying in information and avoid storing the wrong information |
+| `*`      | user with many persons in the address book | sort persons by name                                               | locate a person easily                                                            |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PocketEsate` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - Add a property**
+
+**MSS**
+
+1. User request to add a property
+2. PocketEstate shows an updated list of properties
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The property to be added has missing required fields.
+
+    * 1a1. PocketEstate shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC02 - Add an appointment**
+
+**MSS**
+
+1. User request to add an appointment
+2. PocketEstate shows an updated list of appointments
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The appointment to be added has missing required fields.
+
+    * 1a1. PocketEstate shows an error message.
+
+      Use case ends.
+
 
 **Use case: Delete a person**
 
@@ -291,9 +330,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster by using commands over the mouse.
+3. Should be able to hold up to 500 properties and 500 appointments concurrently without a noticeable sluggishness in performance for typical usage.
+4. The app should respond within two seconds after each user command.
+5. The GUI of the app should clearly differentiate the different property types (HDB ![hdb_icon](images/hdb_16.png), Condo ![condo_icon](images/condo_16.png), Landed ![landed_icon](images/landed_16.png), etc.) of each property in the list.
+6. The app should be able to run without internet connection.
+7. The app should be resizable and can be enlarged to the maximum window width.
+8. There should be sample data in the app when the user opens the app for the first time.
 
 *{More to be added}*
 
