@@ -21,13 +21,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Benedict Khoo
 
-<img src="images/team/benedict.jpg" width="200px">
+<img src="images/benedictkhoomw.png" width="200px">
 
 [[github](https://github.com/benedictkhoomw)]
 [[portfolio](team/benedict.md)]
 
-* Role: TBD
-* Responsibilities: TBD
+* Role: Developer
+* Responsibilities: Documentation, Storage Integration
 
 ### Colin Tan
 
