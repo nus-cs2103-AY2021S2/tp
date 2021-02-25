@@ -1,4 +1,7 @@
 ---
+layout: page
+title: User Guide
+---
 
 RemindMe User Guide v1.1
 ---
@@ -13,13 +16,12 @@ all the [features](#features) in the RemindMe app. You can also access the produ
 * **[Start-up](#Start-up)**
 * **[Features](#features)**
     * **[1. Show help page : `help`]()**
-    * **[2. Add an event/examination]()**
-    * **[3. Add an event/examination]()**
-    * **[4. Delete an event/examination]()**
-    * **[5. Edit a task]()**
-    * **[6. Delete a task]()**
-    * **[7. Calendar View]()**
-    * **[8. Pop-up Reminder]()**
+    * **[2. Add an event/examination: `event/deadline (DESCRIPTION) (DD/MM/YYYY TIME)`]()**
+    * **[3. Delete an event/examination: `delete (INDEX)`]()**
+    * **[4. Edit a task]()**
+    * **[5. Delete a task]()**
+    * **[6. Calendar View]()**
+    * **[7. Pop-up Reminder]()**
 * **[Glossary](#glossary)**
 * **[Command summary](#command-summary)**
 
@@ -42,7 +44,6 @@ Objectives of RemindMe:
    * If you are a Windows user, [here](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows) is a tutorial on how to set up Java 11:
 
 
-
 2. Download the latest RemindMe.jar from our GitHub release page.
 Copy the file to the folder you want to use as the home folder for your RemindMe.
 Double click the file to start the app. 
@@ -50,11 +51,18 @@ Double click the file to start the app.
 
 3. Alternatively, you can run the command line java -jar RemindMe.jar in your terminal to start the application.
 Type the command in the command box and press Enter to execute it.
-   
+The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)   
 
 4. Refer to the Features below for details of each command.
 
-
+   * **`deadline`** `description by DD/MM/YYYY TIME`: Adds a task with a deadline.
+     
+   * **`ordered list`**: Displays an order list of items.
+     
+   * ** `calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
+     
+   * **`exit`** : Exits the app.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -85,28 +93,53 @@ Type the command in the command box and press Enter to execute it.
 
 </div>
 
-### Viewing help : `help`
+### *Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### *Turn on/off reminder: `remind`
 
-### Adding a person: `add`
+Turns on and off the reminder system. If remind is on,
+a reminder would pop out when starting the app RemindMe regarding
+the upcoming tasks.
 
-Adds a person to the address book.
+(insert image of reminder here)
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `remind`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Outcome:
+
+* `reminder is turned on!`
+* `reminder is turned off!`
+
+### *Adding an Assignment/Event: `event/deadline`
+
+Adds an assignment with a deadline or event to the calendar.
+
+Format: 
+
+* `event (DESCRIPTION) /from (DD/MM/YYYY TIME) /to (DD/MM/YYYY TIME)`
+
+* `deadline (DESCRIPTION) /by (DD/MM/YYYY TIME)`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `event Christmas Party /from 25/12/2021 1800 /to 25/12/2021 2300`
+* `deadline CS2103 Assignment /by 03/03/2021 2359`
+
+### *Deleting an Assignment/Event: `delete`
+
+Deletes an assignment with a deadline or event from the calendar.
+
+Format: 
+
+* `delete /from (DD/MM/YYYY) /index (INDEX)`
+
+Examples:
+* `delete /from 25/12/2021 /index 1`
 
 ### Listing all persons : `list`
 
@@ -163,37 +196,40 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### *Viewing Calendar of the current month
+Shows an image of the calendar with your reminders (e.g. tasks, assignments datelines, and friends’ birthday) for each specific dates.  
+![result for 'calendar'](images/calendarResult.png)  
+Format: `calendar`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
-Format: `clear`
+Format: `clear``
+
+### *Saving the data
+
+RemindMe save your data in the hard disk automatically after every command that changes the data. There is no need for you to save manually.
+
+### *Editing the data file
+
+AddressBook data are saved as a JSON file `[JAR file location]/data/remindme.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, RemindMe will discard all data and start with an empty data file at the next run.
+</div>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-
+Format: `exit
 
 ## Glossary
 * Examination: Consists of a start time, end time, date which it occurs on and the subject.
 * Event: Consists of a start time, end time and the date which it occurs on.
 
-## Command summary
+## Command summary (AB3)
 
 Action | Format, Examples
 --------|------------------
@@ -203,4 +239,21 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**View Calendar** | `calendar`
 **Help** | `help`
+
+## Command summary (RemindMe) 
+
+Action | Format, Examples
+--------|----------------
+Add assignment | `(assignment type) (assignment description) (assignment details)`
+Delete assignment | `delete (assignment description)`
+View assignments | `view A`
+View events | `view E`
+Turn on/off reminder | `remind`
+See commands available | `help`
+View calendar | `calendar`
+Save data | `save`
+Edit data | `edit`
+
+

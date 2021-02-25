@@ -1,7 +1,8 @@
 ---
 layout: page
-title:Huang Zhenxin's Project Portfolio Page
+title: Huang Zhenxin's Project Portfolio Page
 ---
+
 ## Introduction
 This page serves to document my contributions to the project RemindMe under NUS module CS2103T in AY20/21 semester 2.
 
@@ -27,17 +28,13 @@ Given below are my contributions to the project.
     * to be updated
 
 * **Enhancements to existing features**:
-    * Come out with Ui-mockup(Pull requests [\#23]())
+    * Come out with Ui-mockup(Pull requests [\#23](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/23))
 
 * **Documentation**:
     * User Guide:
-        * Added documentations for the introduction and Quick Start
+        * Added documentations for the introduction and Quick Start [\#25](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/25)
     * Developer Guide:
         * Added documentations for Target user profile, value proposition, and user stories.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#]()
- 
-    
-
-_
