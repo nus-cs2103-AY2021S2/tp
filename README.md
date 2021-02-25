@@ -10,3 +10,6 @@ For more information on how to use PocketEstate, please refer to our User Guide.
 
 ## Developer Guide
 For more information on the development of PocketEstate, please refer to our Developer Guide. 
+
+## Acknowledgement
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
