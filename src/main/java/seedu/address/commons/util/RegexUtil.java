@@ -20,19 +20,20 @@ public class RegexUtil {
     public static final String REGEX_AB3_TAG = "\\p{Alnum}+";
 
     // Regex expressions that might be useful in project Weeblingo
+    // The first character of the string to check cannot be white space
     public static final String REGEX_JAP_WORD =
             "[(\\p{InHIRAGANA}|\\p{InKATAKANA})"
             + "|\\p{InCJK_Unified_Ideographs}}]"
             + "[(\\p{InHIRAGANA}|\\p{InKATAKANA})"
-            + "|\\p{InCJK_Unified_Ideographs}}]*"; // There should be no spaces in Jap words. \\w at the end?
+            + "|\\p{InCJK_Unified_Ideographs}}]*";
     public static final String REGEX_JAP_SENTENCE =
             "[(\\p{InHIRAGANA}|\\p{InKATAKANA})|\\p{InCJK_Unified_Ideographs}|"
-            + "\\p{InCJK_Symbols_and_Punctuation}]"
+            + "\\p{InCJK_Symbols_and_Punctuation}|\\p{Alnum}|\\p{Punct}]"
             + "[(\\p{InHIRAGANA}|\\p{InKATAKANA})|\\p{InCJK_Unified_Ideographs}|"
-                    + "\\p{InCJK_Symbols_and_Punctuation} ]*"; // The first character cannot be space. \\w at the end?
-    public static final String REGEX_ENG_WORD = "[\\p{Alpha}]*"; // There should be no spaces in English words.
-    public static final String REGEX_ENG_SENTENCE = "[\\p{Alpha}][\\p{Punct}]"
-            + "[\\p{Alpha}][\\p{Punct} ]*"; // The first character cannot be space.
+                    + "\\p{InCJK_Symbols_and_Punctuation}|\\p{Alnum}|\\p{Punct} ]*";
+    public static final String REGEX_ENG_WORD = "[\\p{Alpha}][\\p{Alpha}]*";
+    public static final String REGEX_ENG_SENTENCE = "[\\p{Alnum}|\\p{Punct}]"
+            + "[\\p{Alnum}|\\p{Punct} ]*";
 
     /**
      * Gets the regex expression for AB3 email model.
