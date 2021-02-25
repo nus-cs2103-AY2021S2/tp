@@ -1,3 +1,5 @@
+![Logo](docs/images/Logo.png)
+
 The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) 
 and packaged with a Graphical User Interface (GUI).
 
