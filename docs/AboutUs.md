@@ -17,16 +17,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
 * Role: Team Lead
+
+### Jaryl Loh
+
+<img src="images/jaryl.png" width="200px">
+
+[[github](http://github.com/jxrrelo)]
+[[portfolio](team/jaryl.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
 ### Lai Yu Heem
