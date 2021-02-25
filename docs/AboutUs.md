@@ -41,13 +41,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ian Soo
 
-<img src="images/team/ian.jpg" width="200px">
+<img src="images/stein414.jpg" width="200px">
 
 [[github](https://github.com/stein414)]
 [[portfolio](team/ian.md)]
 
-* Role: Code Quality, VS Code Expert
-* Responsibilities: Issues
+* Role: Developer, VS Code Expert
+* Responsibilities: Code Quality, Issue Feature
 
 ### Linh
 
