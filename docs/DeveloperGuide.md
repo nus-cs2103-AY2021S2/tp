@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Developer Guide
----
+--------------------------------------------------------------------------------------------------------------------
 * Table of Contents
 {:toc}
 
@@ -236,72 +236,139 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- has a need to find a driver/passenger to travel between workspace and home
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Eliminate the need for human interaction such as requiring HR personnel to manage to maintain social distancing
+--------------------------------------------------------------------------------------------------------------------
+## User Stories
 
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-### User stories
+[User stories](https://www.notion.so/fdceefc124da47a5a34d6a86c4260214)
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+## Use Cases
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+**Use case: Select a passenger to be picked up**
 
-*{More to be added}*
+1. Driver search (with or without criteria) or list out passengers available to be picked up
+2. GME shows a list of persons
+3. Driver choose and view the details of the specific passenger
+4. Driver requests to add the specific passenger to the driver's carpooling group
 
-### Use cases
+    Use case ends
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+***Extensions***
 
-**Use case: Delete a person**
+- The list is empty.
 
-**MSS**
+    Use case ends
+--------------------------------------------------------------------------------------------------------------------
+**Use case: Search for specific type of passengers**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Driver choose the criteria that the passengers need to fulfil in order to be picked up
+2. Driver initiates the search
+3. GME shows a list of persons that fulfils the criteria
 
     Use case ends.
 
-**Extensions**
+***Extensions***
 
-* 2a. The list is empty.
+- No passenger fulfils the criteria
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+- Criteria is empty.
 
-    * 3a1. AddressBook shows an error message.
+    ***List all passengers*** instead
+--------------------------------------------------------------------------------------------------------------------
+**Use case: Creates a passenger profile**
 
-      Use case resumes at step 2.
+1. Passenger fills out their name, contact number and pickup address
+2. GME verifies that all the required fields are not empty
+3. GME asks the passenger to confirm all data input is correct
 
-*{More to be added}*
+    Use case ends
 
-### Non-Functional Requirements
+***Extensions***
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+- Any required field is missing
 
-*{More to be added}*
+    GME warns the user to input the data missing
 
+- User indicates to cancel
+
+    Use case end
+--------------------------------------------------------------------------------------------------------------------
+**Use case: Delete a passenger** **profile**
+
+1. Passenger indicates they would like to delete their profile
+2. GME warns the passenger that the action is irreversible and data cannot be recovered
+3. GME verifies that the passenger wish to continue with the action
+4. GME deletes the specific passenger's profile
+
+***Extensions***
+
+- User indicates to cancel
+
+    Use case end
+--------------------------------------------------------------------------------------------------------------------
+**Use case: Filter passengers' destination and pickup point based on location**
+
+1. Driver choose the location for pickup point or destination
+2. Driver specify the distance radius from the location that the drivers prefers the passenger to be in.
+3. GME shows a list of passenger that fulfils the criteria
+
+***Extensions***
+
+- No passenger fulfils the criteria
+
+    Use case ends
+
+- Driver do not specify the location or distance radius
+
+    GME prompts the user to provide the missing criteria
+--------------------------------------------------------------------------------------------------------------------
+**Use case:** **Find only female drivers**
+
+1. Passenger creates the carpooling event.
+2. Passenger choose the criteria with `**Driver**: female only`
+3. Only female driver will be able to search the passenger that indicated the preference
+
+***Extensions***
+
+- No female driver searches for passenger
+
+    The passenger will not be shown on any list to be chosen to be picked up
+
+    Use case ends
+--------------------------------------------------------------------------------------------------------------------
+## Non-Functional Requirements
+
+1. **Usability**:
+    - GME shall work on any *mainstream OS* as long as it has Java `11` or above installed.
+    - GME's interface shall be user-friendly and easy to use by using mouse when not using commands, meaning all buttons and interaction should be self-explanatory and intuitive which can be used by people without training.
+    - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. **Reliability**:
+    - GME shall allow drivers to pick passengers throughout the week ant any time during the day, up to 6 passengers depending on car size.
+    - GME Should be able to hold up to 1000 persons (drivers and passengers included) without a noticeable sluggishness in performance for typical usage.
+3. **Security:** 
+    - Only users that creates their own profile can view their private information and change the privacy settings
+4. **Integrity**
+    - All monetary amounts (including passenger's tips) must be accurate to two decimal places and in SGD.
+    - All geolocation coordinates must be accurate to six decimal places.
+    - All email and phone numbers provided by users must pass through format check.
+    - All time-related data that is presented to user must be accurate to minutes, and use `DD-MM-YYYY` format
+    - All timestamps for any events occurred recorded by the GME shall be in UTC (Universal Time Coordinated) when placed into permanent storage.
+5. **Flexibility**
+    - GME shall be able to process different date formats input by user and converts to `DD-MM-YYYY`
+--------------------------------------------------------------------------------------------------------------------
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+- **Mainstream OS**: Windows, Linux, Unix, MacOS
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
