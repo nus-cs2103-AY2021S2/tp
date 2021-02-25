@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -51,10 +51,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Linh
 
-<img src="images/team/linh.jpg" width="200px">
+<img src="images/cnlinh.png" width="200px">
 
 [[github](https://github.com/cnlinh)]
 [[portfolio](team/linh.md)]
 
-* Role: TBD
-* Responsibilities: TBD
+* Role: Team Lead
+* Responsibilities: UI
