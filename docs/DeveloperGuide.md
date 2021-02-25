@@ -249,14 +249,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                                    | So that I can…​                                                                |
+| -------- | ------------------------------------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                             | refer to instructions when I forget how to use the App                            |
+| `* * *`  | user                                       | be able to add a property                                          | keep track of my clients' properties                                              |
+| `* * *`  | user                                       | be able to add an appointment                                      | keep track of my upcoming schedule                                                |
+| `* * *`  | user                                       | delete a person                                                    | remove entries that I no longer need                                              |
+| `* * *`  | user                                       | find a person by name                                              | locate details of persons without having to go through the entire list            |
+| `* *`    | potential user exploring the app           | see the app populated with sample data                             | easily see how the app looks like when it is in use                               |
+| `* *`    | user                                       | hide private contact details                                       | minimize chance of someone else seeing them by accident                           |
+| `*`      | user with many persons in the address book | sort persons by name                                               | locate a person easily                                                            |
+| `*`      | careless user                              | be able to categorize housing information based on predefined tags | prevent typos while keying in information and avoid storing the wrong information |
 
 *{More to be added}*
 
