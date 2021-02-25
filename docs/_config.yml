@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "GreenMileageEfforts"
 theme: jekyll-theme-slate
 
 header_pages:
@@ -8,7 +8,9 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+avatar: "images/gme.png"
+
+repository: "AY2021S2-CS2103T-W10-1/tp"
 github_icon: "images/github-icon.png"
 
 plugins:
