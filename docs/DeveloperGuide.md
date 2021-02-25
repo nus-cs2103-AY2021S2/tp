@@ -45,12 +45,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                         |
 | -------- | ------------------------------------------ | ------------------------------ | --------------------------------------------------|
-| `* * *`  | new user                                   | view a quick description of APIs| quickly review the concepts of APIs|
-| `* * *`  | long time user                             | test my APIs on the fly               | run API tests anytime |
+| `* * *`  | new user                                   | view a quick description of APIs| quickly review the concepts of APIs              |
+| `* * *`  | long time user                             | test my APIs on the fly               | run API tests anytime                      |
+| `* * *`  | long-term user                             | quickly load my previous APIs |  save time and not have to type them all out again |
+| `* * *`  | experienced developer                      | test out my API multiple times repeatedly |  know if my API can cope under significant traffic |
 | `* * *`  | new API developer                          | clear error messages                | quickly learn where I went wrong             |
-| `* * *`  | API tester                                 | a focused simple design          | quickly validate the state of an endpoint |
+| `* * *`  | API tester                                 | a focused simple design          | quickly validate the state of an endpoint       |
 | `* * *`  | new user                                   | have an optional features walkthrough   | have a broad overview of functionalities |
-| `*`      | expert user     | have API recommendations | help to optimise or are more suited for my product                                 |
+| `*`      | expert user                                | have API recommendations | help to optimise or are more suited for my product      |
 
 
 *{More to be added}*
@@ -91,6 +93,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The given search result is empty.
 
     * 2a1. ImPoster shows a friendly message about mistyped keywords.
+
+      Use case resumes at step 1.
+
+**Use case: Run a saved API**
+
+**MSS**
+
+1.  User inputs formatted command calling on a saved API
+2.  ImPoster runs the API
+3.  ImPoster saves the outputs in a file that the user can view
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no return result as the API call resulted in an error.
+
+    * 2a1. ImPoster shows a message informing the user that an error has occured.
 
       Use case resumes at step 1.
 
