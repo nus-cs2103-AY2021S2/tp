@@ -258,8 +258,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name                                              | locate details of persons without having to go through the entire list            |
 | `* *`    | potential user exploring the app           | see the app populated with sample data                             | easily see how the app looks like when it is in use                               |
 | `* *`    | user                                       | hide private contact details                                       | minimize chance of someone else seeing them by accident                           |
+| `* *`    | careless user                              | be able to categorize housing information based on predefined tags | prevent typos while keying in information and avoid storing the wrong information |
 | `*`      | user with many persons in the address book | sort persons by name                                               | locate a person easily                                                            |
-| `*`      | careless user                              | be able to categorize housing information based on predefined tags | prevent typos while keying in information and avoid storing the wrong information |
 
 *{More to be added}*
 
