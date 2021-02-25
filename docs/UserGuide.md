@@ -30,6 +30,10 @@ imPoster is a **desktop app for running and testing APIs, optimized for use via 
 
    * **`delete`**`3` : Deletes the 3rd API shown in the current list.
 
+   * **`run`**`-x GET -u https://www.google.com` : Run a Get request to `https://www.google.com` on the fly.
+   
+   * **`send`**`3` : Run the 3rd API shown in the current list.
+
    * **`clear`** : Deletes all APIs in the current list.
 
    * **`exit`** : Exits the app.
@@ -194,6 +198,8 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add -x METHOD -u URL` <br> e.g., `add -x GET -u https://www.google.com`
+**Run** | `run -x METHOD -u URL` <br> e.g., `run -x GET -u https://www.yahoo.com`
+**Send** | `send INDEX` <br> e.g., `send 1`
 **Clear** | `clear`
 **Remove** | `remove INDEX`<br> e.g., `remove 3`
 **Edit** | `edit INDEX [-x METHOD] [-u URL]`<br> e.g.,`edit 1 -u https://facebook.com`
