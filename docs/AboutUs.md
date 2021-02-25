@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Colin Tan
 
-<img src="images/colintkn.jpg" width="200px">
+<img src="images/colintkn.png" width="200px">
 
 [[github](https://github.com/colintkn)] 
 [[portfolio](team/colin.md)]
