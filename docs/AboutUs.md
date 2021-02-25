@@ -31,13 +31,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Colin Tan
 
-<img src="images/team/colin.jpg" width="200px">
+<img src="images/team/colintkn.jpg" width="200px">
 
 [[github](https://github.com/colintkn)] 
 [[portfolio](team/colin.md)]
 
-* Role: TBD
-* Responsibilities: TBD
+* Role: Developer
+* Responsibilities: Integration, Resident Feature 
 
 ### Ian Soo
 
