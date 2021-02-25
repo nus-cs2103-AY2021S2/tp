@@ -236,14 +236,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS SOC Student
+* Prefer using CLI rather than GUI
+* Struggle to manage their schedule
+* Have a lot commitments (6 modules, TA and RA roles while balancing a part time internship)
+* Can type fast, hate mouse
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+* Provide a simple platform for target users to manage their schedule
+* CLI commands to manage meetings or schedule with some contacts
+* CLI commands to add tasks and reminders
+* GUI to display the schedule of user
 
 ### User stories
 
