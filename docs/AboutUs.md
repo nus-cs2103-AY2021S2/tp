@@ -11,23 +11,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Dylan Ghee
 
-<img src="images/dylan_profile.png" width="200px">
+<img src="images/zatkiller.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/zatkiller)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Software Developer
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
 
 ### Chee Erynne
 
@@ -40,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Rachel Lim
 
-<img src="images/rachel.png" width="200px">
+<img src="images/rachelljt.png" width="200px">
 
 [[github](http://github.com/rachelljt)]
 [[portfolio](team/johndoe.md)]
@@ -50,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tasha Wan
 
-<img src="images/tashawan.png" width="200px">
+<img src="images/tashawan23.png" width="200px">
 
 [[github](https://github.com/tashawan23)]
 [[portfolio](team/tashawan.md)]
