@@ -1,6 +1,6 @@
 ---
 layout: page
-title:Huang Zhenxin's Project Portfolio Page
+title: Huang Zhenxin's Project Portfolio Page
 ---
 ## Introduction
 This page serves to document my contributions to the project RemindMe under NUS module CS2103T in AY20/21 semester 2.
