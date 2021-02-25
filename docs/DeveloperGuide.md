@@ -1,12 +1,17 @@
 ---
 layout: page
 title: Developer Guide
---------------------------------------------------------------------------------------------------------------------
+---
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Setting up, getting started**
+
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -248,7 +253,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-[User stories](https://www.notion.so/fdceefc124da47a5a34d6a86c4260214)
+|Priority|As a …​                    |I want to …​                                                     |So that                                                                                         |
+|--------|---------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+|* * *   |Driver                     |select passengers to be picked up                                |I can carpool with my colleagues                                                                |
+|* * *   |Driver                     |search for specific type of passengers                           |I can see if any passengers fulfil my criteria and view their carpool details                   |
+|* * *   |Driver                     |list all passengers                                              |                                                                                                |
+|* * *   |Passenger                  |create my profile                                                |                                                                                                |
+|* * *   |Passenger                  |delete my profile                                                |my data will not be stored when I have stopped the service                                      |
+|* *     |Driver                     |filter passengers' destination and pickup point based on location|I don't have to spend too long to pick up or drop off passengers and minimise my travelling time|
+|* *     |Female Passenger           |find only female drivers                                         |I can be comfortable                                                                            |
+|*       |User concerned with privacy|limit the information I want to disclose                         |my private information exposed is limited                                                       |
+|*       |Driver                     |Indicate one-off trips                                           |                                                                                                |
+|* *     |Passenger                  |edit drop off location                                           |change the destination if needed and be more flexible                                           |
+|*       |Passenger                  |indicate the price willing to pay                                |I can incentivise the drivers to more likely to choose me and pick me up on time                |
+
 
 ## Use Cases
 
