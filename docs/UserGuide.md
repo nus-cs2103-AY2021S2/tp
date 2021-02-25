@@ -1,4 +1,7 @@
 ---
+layout: page
+title: User Guide
+---
 
 RemindMe User Guide v1.1
 ---
