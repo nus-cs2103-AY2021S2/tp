@@ -262,32 +262,119 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `BudgetTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a Financial Record**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Actor requests to add a financial record
+2.  Actor inputs description and amount
+3.  System shows the most recently added financial record
+4.  Actor acknowledges the addition
 
     Use case ends.
 
+**Use case: Delete a Financial Record**
+
+**MSS**
+
+1.  Actor requests to delete a financial record
+2.  Actor inputs desired index of financial record to be deleted
+3.  System shows the most recently deleted financial record
+4.  Actor acknowledges the deletion
+
+    Use case ends
+
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given index is invalid.
+    
+    * 2a1. System shows an error message.
+      
+      Use case resumes at step 1.
 
-  Use case ends.
+**Use case: View a Financial Record**
 
-* 3a. The given index is invalid.
+1.  Actor requests to view a financial record
+2.  Actor inputs desired index of financial record to view
+3.  System shows the financial record with corresponding index
+4.  Actor completes viewing the desired financial record
 
-    * 3a1. AddressBook shows an error message.
+    Use case ends
 
-      Use case resumes at step 2.
+**Extensions**
 
-*{More to be added}*
+* 2a. The given index is invalid.
+    
+    * 2a1. System shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: View current month's Financial Records**
+
+1.  Actor requests to view current month's financial records
+2.  System shows the current month's financial records
+3.  Actor completes viewing the current month's financial record
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The current month does not contain any financial records.
+    
+    * 1a1. System shows an error message.
+      
+      Use case ends.
+
+**Use case: Set a budget**
+
+1.  Actor requests to set budget
+2.  Actor inputs desired budget amount
+3.  System shows newly set monthly budget
+4.  Actor acknowledges newly set monthly budget
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The given budget amount is invalid.
+    
+    * 1a1. System shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: View monthly budget**
+
+1.  Actor requests to view monthly budget
+2.  System shows monthly budget
+3.  Actor completes viewing monthly budget
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Monthly budget is not set.
+    
+    * 1a1. System shows an error message.
+      
+      Use case ends.
+
+**Use case: View remaining budget for the current month**
+
+1.  Actor requests to view remaining budget for the current month
+2.  System shows the remaining budget for the current month
+3.  Actor completes viewing the remaining budget for the current month
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Monthly budget is not set.
+    
+    * 1a1. System shows an error message.
+      
+      Use case ends.
 
 ### Non-Functional Requirements
 
