@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Dylan Ghee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dylan_profile.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/zatkiller)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Software Developer
 
 ### Jane Doe
 
@@ -29,20 +29,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Chee Erynne
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cheeerynne.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/cheeerynne)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Rachel Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rachel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/rachelljt)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
