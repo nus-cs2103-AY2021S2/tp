@@ -236,27 +236,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+
 * prefer desktop apps over other types
 * can type fast
-* prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: help students manage their tasks in a systematic and efficient manner
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | University student                         | add task                       | track task                                                             |
+| `* * *`  | University student                         | check off a task               | view which tasks have been completed                                   |
+| `* * *`  | University student                         | delete tasks                   | declutter the list of task                                             |
+| `* * *`  | University student                         | view deadline of task          | do task that is more urgent                                            |
+| `* *`    | Organized university student               | List all my tasks in a structured manner   | Feel more in control of my schedules and tasks             |
+| `*`      | Lazy university student                    | Tag the task based on category         | Organise my tasks efficiently                                  |
+| `*`      | Lazy university student                    | View the tasks based on category tags         |Locate tasks easily                                      |
 
 *{More to be added}*
 
@@ -292,15 +292,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 100 tasks without a noticeable sluggishness in performance for typical usage.
+3.  A user should be able to easily see why their commands are invalid
+4.  The app should be able to save data locally
+5.  The app should be able to run with or without internet connection
+6.  The product should not take above 10 seconds to execute any commands.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
