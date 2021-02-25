@@ -236,13 +236,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* CCA / Club head who is managing many members
+* Needs an efficient and organised method to assign tasks to these members.
+* Need to manage a significant number of members
 * prefer desktop apps over other types
-* can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -251,12 +251,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user starting to use the app| view who have been added into my contacts | have a better overview of the members in my CCA and access their information easily|
+| `* * *`  | forgetful CCA leader |can view who have been added into my contacts | add the remaining members too |
+| `* * *`  | CCA leader with many tasks to be done in the CCA | add tasks into the application | better manage the tasks |
+| `* * *`  | CCA leader with tasks that are no longer relevant | delete tasks that are either completed or unnecessary |  the list remains organized and clear |
+| `* *`    |  CCA leader with projects and tasks piling up | view a list of tasks that is to be completed by members of the CCA | |
+| `*`      |  CCA leader who has members leaving the CCA | e able to remove details of the user from that application | better manage my members |
 
 *{More to be added}*
 
