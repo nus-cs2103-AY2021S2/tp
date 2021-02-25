@@ -18,4 +18,13 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 
 
+### Chen Yuheng
+
+<img src="images/skinnychenpi.png" width="200px">
+
+[[github](http://github.com/skinnychenpi)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Undecided
 
