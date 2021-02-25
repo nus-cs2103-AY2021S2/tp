@@ -2,13 +2,14 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
+* This is a **Software Engineering (SE) project by students**, which aims to **help insurance agents manage their huge numbers of clients through a desktop application** (called _ClientBook_).
+* Example usages:
+  * Insurance agents can easily manage (_add_, _search_, _edit_, _delete_) their client's contacts in this application.
+  * Insurance agents can add remarks or notes about things they need to remember about a particular client.
+  * Insurance agents can include clients' portfolio ID in their clients' contact profile too.
+* For the detailed documentation of this application, see our **[User Guide](https://e-education.org/addressbook-level3)**.
+* For the detailed documentation of this project, see our **[Developer Guide](https://e-education.org/addressbook-level3)**.
+* The project simulates an ongoing software project for a desktop application.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
