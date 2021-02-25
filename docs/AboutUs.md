@@ -13,7 +13,6 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/yiqun.png" width="200px">
 
 [[github](http://github.com/hengyiqun)]
-
 [[portfolio]()]
 
 * Role: Developer
@@ -32,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Maurice Mok
 
-<img src="images/Maurice.png" width="200px">
+<img src="images/maurice2n97.png" width="200px">
 
 [[homepage](https://github.com/Maurice2n97)]
 [[github](https://github.com/Maurice2n97)]
