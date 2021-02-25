@@ -13,13 +13,12 @@ all the [features](#features) in the RemindMe app. You can also access the produ
 * **[Start-up](#Start-up)**
 * **[Features](#features)**
     * **[1. Show help page : `help`]()**
-    * **[2. Add an event/examination]()**
-    * **[3. Add an event/examination]()**
-    * **[4. Delete an event/examination]()**
-    * **[5. Edit a task]()**
-    * **[6. Delete a task]()**
-    * **[7. Calendar View]()**
-    * **[8. Pop-up Reminder]()**
+    * **[2. Add an event/examination: `event/deadline (DESCRIPTION) (DD/MM/YYYY TIME)`]()**
+    * **[3. Delete an event/examination: `delete (INDEX)`]()**
+    * **[4. Edit a task]()**
+    * **[5. Delete a task]()**
+    * **[6. Calendar View]()**
+    * **[7. Pop-up Reminder]()**
 * **[Glossary](#glossary)**
 * **[Command summary](#command-summary)**
 
@@ -94,19 +93,30 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an Assignment/Event: `event/deadline`
 
-Adds a person to the address book.
+Adds an assignment with a deadline or event to the calendar.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* `event (DESCRIPTION) /from (DD/MM/YYYY TIME) /to (DD/MM/YYYY TIME)`
+
+* `deadline (DESCRIPTION) /by (DD/MM/YYYY TIME)`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `event Christmas Party /from 25/12/2021 1800 /to 25/12/2021 2300`
+* `deadline CS2103 Assignment /by 03/03/2021 2359`
+
+### Deleting an Assignment/Event: `delete`
+
+Deletes an assignment with a deadline or event from the calendar.
+
+Format: 
+
+* `delete /from (DD/MM/YYYY) /index (INDEX)`
+
+Examples:
+* `delete /from 25/12/2021 /index 1`
 
 ### Listing all persons : `list`
 
