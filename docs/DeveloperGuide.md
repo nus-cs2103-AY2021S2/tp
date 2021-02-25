@@ -236,13 +236,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Property agent who has a need to manage a significant number of properties and appointments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: PocketEstate enables easy organization of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
 
 
 ### User stories
@@ -259,6 +259,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | potential user exploring the app           | see the app populated with sample data                             | easily see how the app looks like when it is in use                               |
 | `* *`    | user                                       | hide private contact details                                       | minimize chance of someone else seeing them by accident                           |
 | `* *`    | careless user                              | be able to categorize housing information based on predefined tags | prevent typos while keying in information and avoid storing the wrong information |
+| `* *`    | user                                       | update the status of property listings(completed, Option, Sale Agreement) | follow up with clients on time                                             |
+| `* *`    | user                                       | edit the deadline of the property listing                          | extend the time period for selling the property                                   |
+| `* *`    | user                                       | edit the name of the property listing                              | change the name of the property when I have made a mistake                        |
+| `* *`    | user                                       | edit the address of the property listing                           | change the address of the property when I have made a mistake                     |
 | `*`      | user with many persons in the address book | sort persons by name                                               | locate a person easily                                                            |
 
 *{More to be added}*
@@ -297,6 +301,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The appointment to be added has missing required fields.
+
+    * 1a1. PocketEstate shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC03 - Edit a property**
+
+**MSS**
+
+1. User request to edit a property
+2. PocketEstate shows an updated list of properties
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The property to be edited has unrecognized fields.
+
+    * 1a1. PocketEstate updates the recognized fields.
+    * 1a2. PocketEstate shows an error message with the unrecognized fields.
+
+      Use case resumes from step 2.
+
+
+**Use case: UC04 - Edit an appointment**
+
+**MSS**
+
+1. User request to edit an appointment
+2. PocketEstate shows an updated list of appointments
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The appointment to be edited has unrecognized fields.
+
+    * 1a1. PocketEstate updates the recognized fields.
+    * 1a2. PocketEstate shows an error message with the unrecognized fields.
+
+      Use case resumes from step 2.
+      
+      
+**Use case: UC05 - Update status of a property**
+
+**MSS**
+
+1. User request to update status of a property
+2. PocketEstate shows an updated list of properties
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The property to be updated has incorrect fields.
 
     * 1a1. PocketEstate shows an error message.
 
