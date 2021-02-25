@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer, in charge of Deliverables and Deadlines
 * Responsibilities: UI
 
-### Vevel Selvam
+### Vevek Selvam
 
 <img src="images/vevek.png" width="200px">
 
