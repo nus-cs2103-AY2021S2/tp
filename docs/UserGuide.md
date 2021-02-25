@@ -93,16 +93,30 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
 
 </div>
 
-### Viewing help : `help`
+### *Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### *Turn on/off reminder: `remind`
 
-### Adding an Assignment/Event: `event/deadline`
+Turns on and off the reminder system. If remind is on,
+a reminder would pop out when starting the app RemindMe regarding
+the upcoming tasks.
+
+(insert image of reminder here)
+
+Format: `remind`
+
+Outcome:
+
+* `reminder is turned on!`
+* `reminder is turned off!`
+
+### *Adding an Assignment/Event: `event/deadline`
 
 Adds an assignment with a deadline or event to the calendar.
 
@@ -116,7 +130,7 @@ Examples:
 * `event Christmas Party /from 25/12/2021 1800 /to 25/12/2021 2300`
 * `deadline CS2103 Assignment /by 03/03/2021 2359`
 
-### Deleting an Assignment/Event: `delete`
+### *Deleting an Assignment/Event: `delete`
 
 Deletes an assignment with a deadline or event from the calendar.
 
@@ -182,7 +196,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-###Viewing Calendar of the current month
+### *Viewing Calendar of the current month
 Shows an image of the calendar with your reminders (e.g. tasks, assignments datelines, and friends’ birthday) for each specific dates.  
 ![result for 'calendar'](images/calendarResult.png)  
 Format: `calendar`
@@ -193,11 +207,11 @@ Clears all entries from the address book.
 
 Format: `clear``
 
-### Saving the data
+### *Saving the data
 
 RemindMe save your data in the hard disk automatically after every command that changes the data. There is no need for you to save manually.
 
-### Editing the data file
+### *Editing the data file
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/remindme.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -215,7 +229,7 @@ Format: `exit
 * Examination: Consists of a start time, end time, date which it occurs on and the subject.
 * Event: Consists of a start time, end time and the date which it occurs on.
 
-## Command summary
+## Command summary (AB3)
 
 Action | Format, Examples
 --------|------------------
@@ -227,3 +241,19 @@ Action | Format, Examples
 **List** | `list`
 **View Calendar** | `calendar`
 **Help** | `help`
+
+## Command summary (RemindMe) 
+
+Action | Format, Examples
+--------|----------------
+Add assignment | `(assignment type) (assignment description) (assignment details)`
+Delete assignment | `delete (assignment description)`
+View assignments | `view A`
+View events | `view E`
+Turn on/off reminder | `remind`
+See commands available | `help`
+View calendar | `calendar`
+Save data | `save`
+Edit data | `edit`
+
+
