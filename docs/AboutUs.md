@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Amanda Ang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/github-amanda.png" width="200px">
 
 [[github](http://github.com/github-amanda)]
 [[portfolio](team/amandaang.md)]
