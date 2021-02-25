@@ -395,9 +395,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all events in the SOChedule.
-1. SOChedule displays a list of all events added to the SOChedule.  
+1. SOChedule displays a list of all events added.  
    Use case ends.
 
+**Extensions**
+
+* 1a. No events have been added.
+    * 1a1. SOChedule displays an empty list.  
+      Use case ends.
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
