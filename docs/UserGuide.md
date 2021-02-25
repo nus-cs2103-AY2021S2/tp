@@ -4,7 +4,8 @@
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## Feature List
-* Deleting a task: `delete task`
+* Deleting a task: `delete task` 
+* Marking a task as done : `done task`
 * Deleting an event: `delete event`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -13,9 +14,9 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `SOChedule.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your SOChedule.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -47,6 +48,15 @@ Format: `delete task i/ID`
 
 Examples:
 * `delete task i/2` deletes the second task in the task list.
+
+### Marking a task as done: `done task`
+Marks a task from SOChedule Task List as completed.
+
+Format: `done task i/ID`
+* `i/`: is followed by the task id.
+
+Examples:
+* `done task i/1` marks the first task in the task list as completed.
 
 ### Deleting an event: `delete event`
 Deletes an event from the SOChedule Event Scheduler.
