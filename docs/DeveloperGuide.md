@@ -265,7 +265,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PocketEsate` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - Add a property**
+
+**MSS**
+
+1. User request to add a property
+2. PocketEstate shows an updated list of properties
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The property to be added has missing required fields.
+
+    * 1a1. PocketEstate shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC02 - Add an appointment**
+
+**MSS**
+
+1. User request to add an appointment
+2. PocketEstate shows an updated list of appointments
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The appointment to be added has missing required fields.
+
+    * 1a1. PocketEstate shows an error message.
+
+      Use case ends.
+
 
 **Use case: Delete a person**
 
