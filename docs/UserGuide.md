@@ -190,3 +190,20 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+### 3. View Task: `viewTasks`
+Views the list of tasks that the user has added into the application
+
+Format: `viewTasks`
+
+Examples: `viewTasks`
+
+### 4. Adding Member: `addMember`
+
+Adds a member and his/ her contract number to contact list
+
+Format: `addMember NAME`
+
+Examples: `addMember Dylan 64529356`
+
+
