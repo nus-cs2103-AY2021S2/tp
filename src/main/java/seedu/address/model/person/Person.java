@@ -26,12 +26,12 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<InsurancePolicy> policies = new ArrayList<>();
+    private final List<InsurancePolicy> policies = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<InsurancePolicy> policies) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<InsurancePolicy> policies) {
         requireAllNonNull(name, phone, email, address, tags, policies);
         this.name = name;
         this.phone = phone;
