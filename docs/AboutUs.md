@@ -37,11 +37,11 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 [[portfolio](team/colin.md)]
 
 * Role: Developer
-* Responsibilities: Integration, Resident Feature 
+* Responsibilities: Integration, Resident Feature
 
 ### Ian Soo
 
-<img src="images/stein414.jpg" width="200px">
+<img src="images/stein414.png" width="200px">
 
 [[github](https://github.com/stein414)]
 [[portfolio](team/ian.md)]
