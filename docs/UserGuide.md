@@ -184,7 +184,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/amanda's favourite`
-**Delete** | `delete n/ITEM_NAME l/LOCATION`<br> e.g., `delete n/koko krunch l/fridge`
+**Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Update** | `update INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
 **List** | `list [l/LOCATION]`<br> e.g., `list l/fridge`
-**Search** | `search n/ITEM_NAME`<br> e.g, `search n/koko krunch`
+**Find** | `find KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch`
