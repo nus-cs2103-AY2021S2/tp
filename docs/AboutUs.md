@@ -1,59 +1,48 @@
----
-layout: page
-title: About Us
----
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## Project Team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Wong Khia Xeng
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/khiaxeng.png" width="200px">
 
-* Role: Project Advisor
+[Github](https://github.com/khiaxeng)
+[[portfolio](team/khiaxeng.md)]
 
-### Jane Doe
+* Role: Undecided
+* Responsibilities: Undecided
 
-<img src="images/johndoe.png" width="200px">
+### Heng Yong Ming
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/hengyongming.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
+[Github](https://github.com/hengyongming)
+[[portfolio](team/yongming.md)]
 
-### Johnny Doe
+* Role: Undecided
+* Responsibilities: Undecided
 
-<img src="images/johndoe.png" width="200px">
+### Noel Matthew Issac
+<img src="images/noelmathewisaac.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[Github](https://github.com/noelmathewisaac)
+[[portfolio](team/noel.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Undecided
+* Responsibilities: Undecided
 
-### Jean Doe
+### Joven Pua Zai Xiong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/csmortal.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[Github](https://github.com/CSmortal)
+[[portfolio](team/jovenpua.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Undecided
+* Responsibilities: Undecided
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
