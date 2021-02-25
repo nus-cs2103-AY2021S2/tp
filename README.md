@@ -15,9 +15,9 @@ What are you waiting for? Start tracking your university life now!
 
 ## Site Map
 
-- **[User Guide](docs/UserGuide.md)**
-- **[Developer Guide](docs/DeveloperGuide.md)**
-- **[About Us](docs/AboutUs.md)**
+- **[User Guide](https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html)**
+- **[Developer Guide](https://ay2021s2-cs2103t-t11-2.github.io/tp/DeveloperGuide.html)**
+- **[About Us](https://ay2021s2-cs2103t-t11-2.github.io/tp/AboutUs.html)**
 
 ## Acknowledgements
 
