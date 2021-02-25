@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/team/colin.jpg" width="200px">
 
-[[github](https://github.com/colintkn)] 
+[[github](https://github.com/colintkn)]
 [[portfolio](team/colin.md)]
 
 * Role: TBD
