@@ -17,20 +17,36 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 ## Quick start
 
+
 1. Ensure you have Java 11 or above installed in your Computer.
 1. Download the latest FlashBack.jar.
 1. Copy the file to the folder you want to use as the home folder for your FlashBack.
 1. Type the command in the command box and press Enter to execute it:
-    * **`list`** and pressing Enter to view all the cards by the added order.
+    * **`add`**`k/ Einstein’s Equation d/ e=mc^2 t/ Physics` and pressing `enter` will add a new card.
 1. Refer to the Features below for details of each command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
+
+### Adding a new card: `add`
+
+Adds a new card to the card list.
+
+Format: `add k/ KEYWORD d/ DESCRIPTION [t/ TOPIC]` <br />
+Note: The TOPIC is optional when adding a new card.
+
+Examples:
+* `add k/ Einstein’s Equation d/ e=mc^2 t/ Physics`
+* `add k/ Independence day of Singapore d/ August 9th 1965 t/ History`
+
+
 ### Listing all cards : `list`
 
 Shows all cards in the card list.
+
 
 Format: `list`
 
@@ -139,4 +155,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+
+**Add** | `add k/ KEYWORD d/ DESCRIPTION [t/ TOPIC]` <br> e.g., `add k/ Einstein’s Equation d/ e=mc^2 t/ Physics`
+
 **List** | `list`
+
