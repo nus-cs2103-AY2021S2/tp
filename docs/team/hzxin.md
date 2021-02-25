@@ -16,16 +16,10 @@ It is written in Java.
 Given below are my contributions to the project.
 
 * **New Feature**: To be updated
-    * What it does: 
-    * Justification: 
-    * Highlights:
-    * Credits: 
-
 
 * **Code contributed**: to be updated.
 
-* **Project management**:
-    * to be updated
+* **Project management**: to be updated
 
 * **Enhancements to existing features**:
     * Come out with Ui-mockup(Pull requests [\#23](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/23))
@@ -38,5 +32,4 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): to be updated.
- 
  
