@@ -318,8 +318,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: UCXX - Mark a task as completed**
 
-**Use case: UCXX - Delete a task**
+**MSS**
+
+1. User requests to list tasks.
+2. SOChedule shows a list of tasks.
+3. User chooses to mark a task as completed.
+4. User enters the index of the task to be marked.
+5. SOChedule displays a success message for marking the task as completed.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UCXX - Delete an event**
       
 **MSS**
 
