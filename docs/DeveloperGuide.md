@@ -12,12 +12,32 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+**Tutor Tracker** is a desktop tuition management application meant for secondary students to track their tuition information, such as upcoming tuition appointments and tutor's contact information.
+It focuses on the Command Line Interface (CLI) while providing users with a simple and clean Graphical User Interface (GUI).
+Thus, the main interaction with **Tutor Tracker** will be done through commands.
+
+Tutor Tracker is an all-in-one tuition management solution for tech-savvy secondary school students. 
+The features of Tutor Tracker includes:
+
+- Viewing of tutors' profile
+- Adding new tuition appointments
+- Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
+- Viewing upcoming tuition appointments
+
+The purpose of this Developer Guide is to help you understand the design and implementation of Tutor Tracker to get started on your contributions to Tutor Tracker.
 
 ## **Design**
+This section will help you learn more about the design and structure of Tutor Tracker. Each section will describe and explains how each component of the application works.
+It's noteworthy to mention that the Tutor Tracker follows an Object-Oriented Programming paradigm.
+
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+
+_Figure 1. Architecture Diagram of Tutor Tracker_
+
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -27,31 +47,24 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+The application consists of 6 main components"
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+| Component | Description                                                            
+| -------- | ------------------------------------------ |  
+| `Main`     |**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). <br/>It is responsible for: <li>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</li> <li>At shut down: Shuts down the components and invokes cleanup methods where necessary.</li>|
+| [**`UI`**](#ui-component)  | The UI of the App. |
+| [**`Logic`**](#logic-component)| The command executor.|
+| [**`Model`**](#model-component)| Holds the data of the App in memory.|
+| [**`Storage`**](#storage-component)| Reads data from, and writes data to, the hard disk. |
+| [**`Commons`**](#common-classes)| Represents a collection of classes used by multiple other components.|
 
-The rest of the App consists of four components.
-
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
-Each of the four components,
-
+For each of `UI`, `Logic`, `Model` and `Storage` component,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_appointment 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -62,7 +75,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -78,15 +91,15 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `TutorTrackerParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding an appointment).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_appointment 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
