@@ -201,3 +201,41 @@ as this application is catered to people who are used to typing on the keyboard 
 
 ## Mockup of Application
 ![Ui](images/Ui.png)
+
+## Features:
+* Adding Task: addTask
+* Deleting Task: deleteTask
+* Viewing Tasks: viewTasks
+* Adding member: addMember
+* Deleting members’ details: deleteMember
+* Viewing members’ details: viewMembers
+
+### 1. Adding Task: `addTask`  
+Adds a task and its description to the list.
+
+Format: addTask DESCRIPTION
+
+Examples: addTask assignment
+
+
+### 2. Deleting Task: `deleteTask`
+Deletes a task from the list.
+
+Format: deleteTask INDEX
+
+Examples: deleteTask 1
+
+### 3. View Task: `viewTasks`
+Views the list of tasks that the user has added into the application
+
+Format: `viewTasks`
+
+Examples: `viewTasks`
+
+### 4. Adding Member: `addMember`
+
+Adds a member and his/ her contract number to contact list
+
+Format: `addMember NAME`
+
+Examples: `addMember Dylan 64529356`
