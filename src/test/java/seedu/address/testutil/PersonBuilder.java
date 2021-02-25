@@ -12,13 +12,8 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Plan objects.
  */
 public class PersonBuilder {
-
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Phone phone;
-    private Email email;
     private Description description;
     private Set<Tag> tags;
 
@@ -26,8 +21,6 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
         description = new Description(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -36,8 +29,6 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code planToCopy}.
      */
     public PersonBuilder(Plan planToCopy) {
-        phone = planToCopy.getPhone();
-        email = planToCopy.getEmail();
         description = planToCopy.getDescription();
         tags = new HashSet<>(planToCopy.getTags());
     }
@@ -65,24 +56,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Phone} of the {@code Plan} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Plan} that we are building.
-     */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
     public Plan build() {
-        return new Plan(phone, email, description, tags);
+        return new Plan(description, tags);
     }
 
 }

@@ -14,11 +14,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Plan {
-
-    // Identity fields
-    private final Phone phone;
-    private final Email email;
-
     // Data fields
     private Semester[] semesters;
     private final Description description;
@@ -28,10 +23,8 @@ public class Plan {
      * Every field must be present and not null.
      * Semesters MUST have at least 1 semester within it
      */
-    public Plan(Phone phone, Email email, Description description, Set<Tag> tags) {
-        requireAllNonNull(phone, email, description, tags);
-        this.phone = phone;
-        this.email = email;
+    public Plan(Description description, Set<Tag> tags) {
+        requireAllNonNull(description, tags);
         this.description = description;
         this.tags.addAll(tags);
     }
@@ -40,21 +33,11 @@ public class Plan {
      * Every field must be present and not null.
      * Semesters MUST have at least 1 semester within it
      */
-    public Plan(Phone phone, Email email, Description description, Set<Tag> tags, Semester[] semesters) {
-        requireAllNonNull(phone, email, description, tags, semesters);
-        this.phone = phone;
-        this.email = email;
+    public Plan(Description description, Set<Tag> tags, Semester[] semesters) {
+        requireAllNonNull(description, tags, semesters);
         this.semesters = semesters;
         this.description = description;
         this.tags.addAll(tags);
-    }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public Description getDescription() {
@@ -84,26 +67,20 @@ public class Plan {
         }
 
         Plan otherPlan = (Plan) other;
-        return otherPlan.getPhone().equals(getPhone())
-                && otherPlan.getEmail().equals(getEmail())
-                && otherPlan.getDescription().equals(getDescription())
+        return otherPlan.getDescription().equals(getDescription())
                 && otherPlan.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(phone, email, description, tags);
+        return Objects.hash(description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Description: ")
+        builder.append("; Description: ")
                 .append(getDescription());
 
         Set<Tag> tags = getTags();

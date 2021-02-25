@@ -16,23 +16,17 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Plan[] getSamplePersons() {
         return new Plan[] {
-            new Plan(new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Description("Blk 30 Geylang Street 29, #06-40"),
+            new Plan(new Description("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Plan(new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Description("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Plan(new Description("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Plan(new Phone("93210283"), new Email("charlotte@example.com"),
-                new Description("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Plan(new Description("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Plan(new Phone("91031282"), new Email("lidavid@example.com"),
-                new Description("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            new Plan(new Description("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Plan(new Phone("92492021"), new Email("irfan@example.com"),
-                new Description("Blk 47 Tampines Street 20, #17-35"),
+            new Plan(new Description("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Plan(new Phone("92624417"), new Email("royb@example.com"),
-                new Description("Blk 45 Aljunied Street 85, #11-31"),
+            new Plan(new Description("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
     }
