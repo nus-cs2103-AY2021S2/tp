@@ -239,3 +239,20 @@ Adds a member and his/ her contract number to contact list
 Format: `addMember NAME`
 
 Examples: `addMember Dylan 64529356`
+
+### 5. Delete Member: `deleteMember`
+
+Delete a member and his/ her contract number from the contact list
+
+Format: `deleteMember NAME`
+
+Examples: `deleteMember Rachel`
+
+### 6. View Member: `viewMembers`
+
+View the list of members the user has added
+
+Format: `viewMembers `
+
+Examples: `viewMembers `
+
