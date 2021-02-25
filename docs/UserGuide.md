@@ -203,27 +203,27 @@ as this application is catered to people who are used to typing on the keyboard 
 ![Ui](images/Ui.png)
 
 ## Features:
-* Adding Task: addTask
-* Deleting Task: deleteTask
-* Viewing Tasks: viewTasks
-* Adding member: addMember
-* Deleting members’ details: deleteMember
-* Viewing members’ details: viewMembers
+* Adding Task: `addTask`
+* Deleting Task: `deleteTask`
+* Viewing Tasks: `viewTasks`
+* Adding member: `addMember`
+* Deleting members’ details: `deleteMember`
+* Viewing members’ details: `viewMembers`
 
 ### 1. Adding Task: `addTask`  
 Adds a task and its description to the list.
 
-Format: addTask DESCRIPTION
+Format: `addTask DESCRIPTION`
 
-Examples: addTask assignment
+Examples: `addTask assignment`
 
 
 ### 2. Deleting Task: `deleteTask`
 Deletes a task from the list.
 
-Format: deleteTask INDEX
+Format: `deleteTask INDEX`
 
-Examples: deleteTask 1
+Examples: `deleteTask 1`
 
 ### 3. View Task: `viewTasks`
 Views the list of tasks that the user has added into the application
