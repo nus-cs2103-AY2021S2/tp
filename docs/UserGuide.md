@@ -190,3 +190,28 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
+## Features:
+* Adding Task: addTask
+* Deleting Task: deleteTask
+* Viewing Tasks: viewTasks
+* Adding member: addMember
+* Deleting members’ details: deleteMember
+* Viewing members’ details: viewMembers
+
+### Adding Task: `addTask`  
+Adds a task and its description to the list.
+
+Format: addTask DESCRIPTION
+
+Examples: addTask assignment
+
+
+### Deleting Task: `deleteTask`
+Deletes a task from the list.
+
+Format: deleteTask INDEX
+
+Examples: deleteTask 1
+
+
