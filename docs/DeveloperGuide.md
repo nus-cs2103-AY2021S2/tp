@@ -49,16 +49,16 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 The application consists of 6 main components"
 
-| Component | Description                                                            
-| -------- | ------------------------------------------ |  
-| `Main`     |**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). <br/>It is responsible for: <li>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</li> <li>At shut down: Shuts down the components and invokes cleanup methods where necessary.</li>|
-| [**`UI`**](#ui-component)  | The UI of the App. |
-| [**`Logic`**](#logic-component)| The command executor.|
-| [**`Model`**](#model-component)| Holds the data of the App in memory.|
-| [**`Storage`**](#storage-component)| Reads data from, and writes data to, the hard disk. |
-| [**`Commons`**](#common-classes)| Represents a collection of classes used by multiple other components.|
+| Component                           | Description                                                            
+| ----------------------------------- | -------------------------------------------------------------------- |  
+| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). <br/>It is responsible for: <li>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</li> <li>At shut down: Shuts down the components and invokes cleanup methods where necessary.</li>|
+| [**`UI`**](#ui-component)           | The UI of the App.                                                   |
+| [**`Logic`**](#logic-component)     | The command executor.                                                |
+| [**`Model`**](#model-component)     | Holds the data of the App in memory.                                 |
+| [**`Storage`**](#storage-component) | Reads data from, and writes data to, the hard disk.                  |
+| [**`Commons`**](#common-classes)    | Represents a collection of classes used by multiple other components.|
 
-For each of `UI`, `Logic`, `Model` and `Storage` component,
+For each of `UI`, `Logic`, `Model` and `Storage` component, it
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
@@ -101,7 +101,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_appointment 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete appointment_1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -263,44 +263,66 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| -------- | --------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `* * *`  | brand new user                                | see usage instructions                                                                        | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | student                                       | add new tutor details                                                                         | keep track of a new tutor that I have heard about                                         |
+| `* * *`  | student                                       | view personal information of a tutor (i.e., email, location, subject, background, age, etc.)  | determine whether I should choose this tutor & contact tutors directly for queries        |                                |
+| `* * *`  | student                                       | add an tuition appointment                                                                    |                                                                                           |
+| `* * *`  | student                                       | view my tuition appointment                                                                   | view the details of the tuition appointment (i.e., tutor's name, location, date and time) |
+| `* * *`  | student                                       | delete a tuition appointment                                                                  | know that the tuition appointment is cancelled                                            |
+| `* * *`  | student                                       | check my personal tuition appointment schedule                                                | know the timing of all my tuition appointments                                            |
+| `* * *`  | student                                       | filter tutors by their subject discipline                                                     | find a tutor that caters to my needs (academic)                                           |
+| `* * *`  | student                                       | filter tutor by cost                                                                          | find a tutor that fits into budget as well                                                |
+| `* * *`  | student                                       | filter a tutor by his/her name                                                                | view his/her profile                                                                      |
+| `* * *`  | student                                       | filter tutors by their years of experience                                                    | find a tutor with experience within the range of my expectation                           |
+| `* * *`  | student                                       | filter tutors by their available timeslots                                                    | find a tutor with matched tuition time                                                    |
+| `* * *`  | student                                       | filter tutors by their available location                                                     | find tutors in a specific area                                                            |
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+### Appointment
+<pre>
+Use Case UC001: Add an appointment
+</pre>
+<pre>
+Use Case UC002: Delete an appointment
 
-**MSS**
+<b>MSS</b>
+1. User requests to list persons
+2. AddressBook shows a list of persons
+3. User requests to delete a specific person in the list
+4. AddressBook deletes the person.
+Use case ends.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+<b>Extensions</b>
+2a. The list is empty.
     Use case ends.
 
-**Extensions**
+3a. The given index is invalid.
+    3a1. AddressBook shows an error message.
+    Use case resumes at step 2.
 
-* 2a. The list is empty.
+<b>{More to be added}</b>
+</pre>
 
-  Use case ends.
+<pre>
+Use Case UC003: List tution appointments
+View the list of personal tuition appointments.
 
-* 3a. The given index is invalid.
+<b>System: Tutor Tracker</b>
+<b>Actor: User</b>
 
-    * 3a1. AddressBook shows an error message.
+<b>Preconditions: Appointments list must exist.</b>
+<b>Guarantees: A view of the schedule of appointments.</b>
 
-      Use case resumes at step 2.
-
-*{More to be added}*
+<b>MSS</b>
+1. User requests to view the list of appointments.
+2. Tutor Tracker displays the list of appointments to the user.
+   Use case ends.
+</pre>
 
 ### Non-Functional Requirements
 
