@@ -44,12 +44,11 @@ You can reach us at the email `e0406389@u.nus.edu`
 
 * Role & Responsibilities: In charge of Code Quality and Model, Testing Expert
 
-### Amanda Ang
+### Amanda Ang Yee Min
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/github-amanda.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/github-amanda)]
+[[portfolio](team/amandaang.md)]
 
-* Role: Member 5
-* Responsibilities: UI
+* Roles & Responsibilities: UI Expert, Testing Expert & SourceTree Expert
