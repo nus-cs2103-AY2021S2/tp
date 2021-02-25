@@ -142,6 +142,35 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Changing the week : `week`
+
+Changes the week shown and all events to the corresponding week.
+
+Format: `week INDEX` `week next` `week prev` `week first` `week last`
+
+* Shows events of the week at the specified `INDEX`.
+* The index **must be a positive integer** from 1, 2, 3, …​
+
+Examples:
+* `week 2` shows the 2nd week of events.
+* `week next` shows the next week of events.
+* `week prev` shows the previous week of events.
+* `week first` shows the first week of events.
+* `week last` shows the last week of events.
+
+### Changing the year : `year`
+
+Changes the year shown and all events to the corresponding year.
+
+Format: `year YEAR` `year next` `year prev`
+
+* The year entered **must be a 4 digit positive integer** ranging from 2021 onwards.
+
+Examples:
+* `year 2022` shows events of the year 2022.
+* `year next` shows events of the next year.
+* `year prev` shows events of the previous year.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -190,3 +219,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Week** | `week INDEX` `week next` `week prev` `week first` `week last` <br> e.g., `week 2`
+**Year** | `year YEAR` `year next` `year prev` <br> e.g., `year 2022`
