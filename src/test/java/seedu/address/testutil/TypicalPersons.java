@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_A;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -24,35 +24,35 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withQuestion("alice@example.com")
+            .withAnswer("123, Jurong West Ave 6, #08-111").withQuestion("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
+            .withAnswer("311, Clementi Ave 2, #02-25")
             .withQuestion("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withQuestion("heinz@example.com").withAddress("wall street").build();
+            .withQuestion("heinz@example.com").withAnswer("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withQuestion("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+            .withQuestion("cornelia@example.com").withAnswer("10th street").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withQuestion("werner@example.com").withAddress("michegan ave").build();
+            .withQuestion("werner@example.com").withAnswer("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withQuestion("lydia@example.com").withAddress("little tokyo").build();
+            .withQuestion("lydia@example.com").withAnswer("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withQuestion("anna@example.com").withAddress("4th street").build();
+            .withQuestion("anna@example.com").withAnswer("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withQuestion("stefan@example.com").withAddress("little india").build();
+            .withQuestion("stefan@example.com").withAnswer("little india").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withQuestion("hans@example.com").withAddress("chicago ave").build();
+            .withQuestion("hans@example.com").withAnswer("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withQuestion(VALID_QUESTION_A).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withQuestion(VALID_QUESTION_A).withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withQuestion(VALID_QUESTION_B).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withQuestion(VALID_QUESTION_B).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

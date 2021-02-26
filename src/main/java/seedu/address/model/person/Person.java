@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the answer book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -21,18 +21,18 @@ public class Person {
     private final Question question;
 
     // Data fields
-    private final Address address;
+    private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Question question, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, question, address, tags);
+    public Person(Name name, Phone phone, Question question, Answer answer, Set<Tag> tags) {
+        requireAllNonNull(name, phone, question, answer, tags);
         this.name = name;
         this.phone = phone;
         this.question = question;
-        this.address = address;
+        this.answer = answer;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Person {
         return question;
     }
 
-    public Address getAddress() {
-        return address;
+    public Answer getAnswer() {
+        return answer;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getQuestion().equals(getQuestion())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getAnswer().equals(getAnswer())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, question, address, tags);
+        return Objects.hash(name, phone, question, answer, tags);
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Person {
                 .append(getPhone())
                 .append("; question: ")
                 .append(getQuestion())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; answer: ")
+                .append(getAnswer());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
