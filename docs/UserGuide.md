@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FriendDex is a **relationship management tool for CLI enthusiasts** looking to enhance their social life while not compromising on getting things done quickly. Managing your relationship goals should not be anymore tedious than coding.
+FriendDex is a **relationship management tool for CLI enthusiasts** looking to enhance their social life while not compromising on getting things done quickly. Managing your relationship goals should not be any more tedious than coding.
 
 * Table of Contents
 {:toc}
@@ -48,7 +48,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -56,7 +56,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -66,7 +66,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -122,7 +122,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -156,7 +156,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -208,7 +208,6 @@ Example:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If the theme supplied is not found or unreadable, then the default theme will be applied.
 </div>
---------------------------------------------------------------------------------------------------------------------
 
 ## Dashboard
 ### Upcoming Events
@@ -243,8 +242,6 @@ A valid theme is a JSON object containing the following fields:
 A sample theme (Monokai Dark)
 ```
 {
-  "name": "",
-  "author": "",
   "color": [
     "#272822",
     "#f92672",
