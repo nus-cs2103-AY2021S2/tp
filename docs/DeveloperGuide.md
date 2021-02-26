@@ -236,13 +236,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a large number of venue bookings
+* has to ensure bookings abide by restrictions
+* need to check that the bookings are valid
+* are administrative personnels of schools or organisations
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* manage bookings faster than a typical mouse/GUI driven app
+* ease of managing bookings since it is a centralised system
+* automatically keeps track of room usage, conflicts and rule violations
+* clear and structured way to avoid ambiguity
 
 
 ### User stories
@@ -251,14 +259,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* * *`  | admin in charge of facilities              | add venues                     |                                                                        |
+| `* * *`  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue                       |
+| `* * *`  | admin in charge of facilities              | delete venues                  |                                                                        |
+| `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
+| `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the booker decides to amend the booking    |
+| `* * *`  | admin in charge of facilities              | delete bookings                |                                                                        |
+| `* *`    | admin in charge of facilities              | query booking information of a particular venue | quickly find out the relevant information instead of search one by one |
+| `*`      | admin in charge of facilities              | be able to access past data           | easily check the history of certain venues                      |
 
 ### Use cases
 
