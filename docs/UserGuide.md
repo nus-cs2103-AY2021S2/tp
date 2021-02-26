@@ -147,7 +147,7 @@ Shows a list of all events. Events are sorted by date
 
 Format: `list`
 
-### Listing all assignments : `list assignments `
+### Listing all assignments : `list assignments`
 
 Shows a list of all assignments. Assignments are sorted by date.
 
