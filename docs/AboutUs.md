@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/godjuansan)] [[portfolio](team/johndoe.md)]
 
-* Role: Full-Stack Developer
-* Responsibilities: N/A
+* Role: Member
+* Responsibilities: Full-Stack Developer
 
 ### Jean Doe
 
