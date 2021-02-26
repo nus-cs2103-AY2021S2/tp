@@ -60,7 +60,7 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
      
    * **`ordered list`**: Displays an order list of items.
      
-   * ** `calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
+   * **`calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
      
    * **`exit`** : Exits the app.
 
