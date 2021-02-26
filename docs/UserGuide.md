@@ -6,7 +6,10 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 ## Feature List
 * Deleting a task: `delete task` 
 * Marking a task as done : `done task`
+* Adding an event: `add event`
 * Deleting an event: `delete event`
+* Listing all events: `list event`
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -77,6 +80,18 @@ Format: `done task i/ID`
 Examples:
 * `done task i/1` marks the first task in the task list as completed.
 
+### Adding an event: `add event`
+Adds an event to the SOChedule Event Scheduler.
+Format: `add event n/TASKNAME d/DATE (YYYY-MM-DD)`
+* `n/`is followed by the task name, it is case-sensitive.
+* `d/`is followed by the event date, it has to be a **valid date**
+  and in the format of **YYYY-MM-DD**. 
+  Here, Y is the year, M is the month, D is the day and all has to be integers.
+  
+Examples:
+* `add event n/CS2103 meeting d/2021-02-27` adds an event with name `CS2103` and date `2021-02-27` 
+to the SOChedule Event Scheduler.
+  
 ### Deleting an event: `delete event`
 Deletes an event from the SOChedule Event Scheduler.
 
@@ -86,6 +101,9 @@ Format: `delete event i/ID`
 Examples:
 * `delete event i/3` deletes the third event from the Event Scheduler.
 
+### Listing all events: `list event`
+Lists all events from SOChedule Event Scheduler.
+Format: `list event`
 
 ### Archiving data files `[coming in v2.0]`
 
