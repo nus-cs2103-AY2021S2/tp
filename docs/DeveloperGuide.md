@@ -291,9 +291,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+Non-functional requirements specify the constraints under which the system for PlanIT is developed and operated.
+
+#### Technical requirements:
+* The system should be compatible on Windows, OS-X and Linux operating systems, with only version Java 11 
+  (no other version) installed.
+* The system should work on both 32-bit and 64-bit environments.  
+
+#### Performance requirements:
+* The system should be loaded up within 2 seconds or less.
+* The User Interface should be responsive to user input and loaded up within 2 seconds.
+* The system should be able to handle 1,000 or more task data entries without noticeable sluggishness
+  in performance for typical usage.
+
+#### Usability requirements:
+* The user should have a keyboard and well-verse in typing alphanumeric keys on the keyboard.
+
+#### Testability requirements:
+* The system is not dependent on any remote servers so that it can be tested by anyone at any time without restrictions.
+
+#### Scalability requirements:
+* The program is easily extendable for addition of features.
+
+#### Data requirements:
+* The system file size should not exceed 100 MB.
+* The system should save data entered by the user in a human editable file without any use 
+  of external database management system.
+
+#### Project scope:
+* The features within the system is only catered to a single user.
+* The system is catered to user who can type fast and prefer typing over any other means.
 
 *{More to be added}*
 
