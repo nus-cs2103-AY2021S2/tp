@@ -383,8 +383,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: UC09 - Edit a venue**
 
-**Use case: UC09 - Exit the program**
+**MSS**
+
+1.  User requests to edit information about a specific venue.
+2.  BookCoin To The Moon edits the venue information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The venue requested cannot be found.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+**Use case: UC10 - Edit a booking**
+
+**MSS**
+
+1.  User requests to edit information about a specific booking.
+2.  BookCoin To The Moon edits the booking information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The booking requested cannot be found.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+
+**Use case: UC11 - Exit the program**
 
 **MSS**
 
