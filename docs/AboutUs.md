@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation, Testing
 
-### Jean Doe
+### Chiang Kee Woon Jonathan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/banchiang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/banchiang)]
+[[portfolio](team/banchiang.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality checking
 
 ### Marcus Ong
 
