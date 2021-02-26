@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
+import java.awt.Taskbar;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -39,6 +43,16 @@ public class UiManager implements Ui {
 
         // Set the application icon
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+
+        // Set taskbar icon for macOS
+        try {
+            BufferedImage iconApplication = ImageIO.read(getClass().getResource(ICON_APPLICATION));
+            if (iconApplication != null) {
+                Taskbar.getTaskbar().setIconImage(iconApplication);
+            }
+        } catch (IOException e) {
+            logger.warning(StringUtil.getDetails(e));
+        }
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
