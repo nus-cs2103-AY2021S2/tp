@@ -402,7 +402,7 @@ Use case ends.
 
 * 1b. The date provided for the event is invalid
 
-    * 1b1. SOChedule displays an error message suggesting that date provied for the event 
+    * 1b1. SOChedule displays an error message suggesting that date provided for the event 
       is invalid, or not following the `YYYY-MM-DD` format.  
       Use case ends.
       

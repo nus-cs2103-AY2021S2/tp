@@ -82,15 +82,17 @@ Examples:
 
 ### Adding an event: `add event`
 Adds an event to the SOChedule Event Scheduler.
-Format: `add event n/TASKNAME d/DATE [c/CATEGORY]... [t/TAG]...`
+Format: `add event n/TASKNAME s/STARTDATE [st/STARTTIME] e/ENDDATE [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
 * `n/` is followed by the task name, it is case-sensitive.
-* `d/` is followed by the event date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
+* `s/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
+* `st/` is followed by the time in 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers. It is optional.
+* `e/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
+* `et/` is followed by the time in 24-hour format and in the format of **hh:mm**. It is optional.
 * `c/` is followed by the category. It is optional.
 * `t/` is followed by the tag. It is optional.
   
 Examples:
-* `add event n/CS2103 meeting d/2021-02-27` adds an event with name `CS2103` and date `2021-02-27` 
-to the SOChedule Event Scheduler.
+* `add event n/CS2103 meeting s/2021-02-27 st/15:00 e/2021-02-27 et/17:00` adds an event with name `CS2103` and its respective attributes to the SOChedule Event Scheduler.
   
 ### Deleting an event: `delete event`
 Deletes an event from the SOChedule Event Scheduler.
@@ -137,6 +139,6 @@ Action | Format, Examples
 ###Event-related commands
 Action | Format, Examples
 --------|------------------
-**Add** | `add event n/TASKNAME d/DATE [c/CATEGORY]... [t/TAG]...`<br> e.g., `add event n/CS2103 meeting d/2021-02-27`
+**Add** | `add event n/TASKNAME s/STARTDATE [st/STARTTIME] e/ENDDATE [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`<br> e.g., `add event n/CS2103 meeting s/2021-02-27 st/15:00 e/2021-02-27 et/17:00`
 **Delete** | `delete event i/INDEX`<br>e.g., `delete event i/3`
 **List** | `list event`
