@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Booking**: A person's request to occupy the room for a specific amount of time at a specific date
 
 --------------------------------------------------------------------------------------------------------------------
 
