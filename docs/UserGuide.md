@@ -154,7 +154,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS] [p/]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -162,11 +162,13 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* If the `p/` flag is set, then the argument(s) `KEYWORD [MORE KEYWORDS]` shall be treated as a regular expression.
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find ^a.*h$ p/` returns `Alex Yeoh`
 
 ### Deleting a person : `delete`
 
@@ -199,8 +201,7 @@ Format: `exit`
 Format `theme THEME_PATH`
 
 * Applies the theme specified in `THEME_PATH`.
-* The currently applied theme will be saved and applied on subsequent sessions.
-* See also: [Theme](#theme)
+* The current applied theme will be saved and applied on subsequent sessions.
 
 Example:
 * `theme theme/solarized.dark.json` applies the theme `solarized.dark.json` located at `./theme/`.
@@ -208,6 +209,9 @@ Example:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If the theme supplied is not found or unreadable, then the default theme will be applied.
 </div>
+
+See also:
+* [Theme](#theme)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -288,5 +292,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Record a meeting** | `meeting INDEX d/DATETIME desc/DESCRIPTION` <br> e.g. `meeting 2 d/17-02-2021 1930 desc/We went to see the sunset!`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Theme** | `theme THEME_PATH`<br> e.g., `theme theme/solarized.dark.json`
 **List** | `list`
 **Help** | `help`
