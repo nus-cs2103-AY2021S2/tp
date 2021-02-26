@@ -28,13 +28,30 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `dietrack.jar` from [here](https://github.com/AY2021S2-CS2103T-T12-2/tp/releases).
+1. Download the latest `dietrack.jar`.
 
-3. Copy the file to the folder you will be launching DieTrack from on a daily basis.
+1. Copy the file to the folder you will be launching DieTrack from on a daily basis.
 
-4. Double-click the file to start the app. The GUI should appear in a few seconds. Note how the app contains some sample data.
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+   
+   * **`bmi`**`h/150 w/70 i/75`: Initializes the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg.
+
+   * **`bmi`**`query`: Queries the current user's BMI with its height and weight information.
+
+   * **`bmi`**`update h/170 w/70 i/80`: Updates the current user BMI to height of 170cm, weight of 70kg and ideal weight of 80kg.
+
+   * **`plan`**`bmi recommended`: Queries the recommended diet plans based on user's BMI.
+
+   * **`plan`**`t/Protein`: Queries more information of the Protein diet plan.
+
+   * **`food`**`d/today n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for today.
+   
+   * **`food`**`query d/today`: Queries the food intake for today.
+
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
