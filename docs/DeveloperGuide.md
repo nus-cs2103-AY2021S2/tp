@@ -236,14 +236,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS SOC Student
+* Prefer using CLI rather than GUI
+* Struggle to manage their schedule
+* Have a lot commitments (6 modules, TA and RA roles while balancing a part time internship)
+* Can type fast, hate mouse
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
 
+* Provide a simple platform for target users to manage their schedule
+* CLI commands to manage meetings or schedule with some contacts
+* CLI commands to add tasks and reminders
+* GUI to display the schedule of user
 
 ### User stories
 
@@ -292,6 +296,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
+
+**Use case: UCXX - Add a task**
+
+1. User wishes to add a new task.
+2. User enters the required parameters.
+3. SOChedule displays a success message for adding the task.
+
+**Extensions**
+
+* 2a. The given parameters are invalid.
+
+    * 2 a1. SOChedule shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UCXX - List tasks**
+
+1. User wishes to add a new task.
+2. User enters the corresponding command.
+3. SOChedule displays all tasks.
+
 
 **Use case: UCXX - Delete a task**
 

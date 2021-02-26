@@ -43,6 +43,25 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 
 ## Features
 
+### Adding a task: `add task`
+Adds a task to SOChedule Task List.
+
+Format: `add task n/TASKNAME [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
+* n/: is followed by the task name.
+* d/: is followed by the date, with the format YYYY-MM-DD. It is optional.
+* p/: is followed by the priority, with 0 being highest and 9 being lowest. Other inputs are not accepted. It is optional.
+* c/: is followed by the category. It is optional.
+* t/: is followed by the tag. It is optional.
+
+Examples:
+* `add task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent` adds a new task named "CS2103 assignment" with the respective parameters.
+* `add task n/CCA admin work d/2021-02-28 p/2 c/CCA` adds a new task "CCA admin work" with the respective parameters.
+
+### Listing all tasks: `list task`
+Lists all tasks from SOChedule Task List.
+
+Format: `list task`
+
 ### Deleting a task: `delete task`
 Deletes a task from SOChedule Task List.
 
@@ -103,11 +122,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Add** | `add task n/TASKNAME [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...` <br> e.g., `add task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent`
 **Delete** | `delete task i/2`<br>`delete event i/3`<br> e.g., `delete task i/2`
-**Done** | `done i/INDEX`<br>e.g., `done i/1`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Done** | `done task i/INDEX`<br>e.g., `done task i/1`**List** | `list`
+**List** | `list task`
 **Help** | `help`
+**Exit** | `exit`
