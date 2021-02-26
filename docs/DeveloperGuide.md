@@ -318,7 +318,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-      Use case ends.
+  Use case ends.
 
 **Use case: UC02 - Search for a reader's information**
 
@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-      Use case ends.
+  Use case ends.
 
 **Use case: UC03 - Find the most or least borrowed books**
 
@@ -348,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-      Use case ends.
+  Use case ends.
 
 **Use case: UCX - Delete a reader**
 
