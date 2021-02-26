@@ -236,42 +236,44 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+
 * prefer desktop apps over other types
 * can type fast
-* prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: help students manage their tasks in a systematic and efficient manner
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | University student                         | add task                       | track task                                                             |
+| `* * *`  | University student                         | check off a task               | view which tasks have been completed                                   |
+| `* * *`  | University student                         | delete tasks                   | declutter the list of task                                             |
+| `* * *`  | University student                         | view deadline of task          | do task that is more urgent                                            |
+| `* *`    | Organized university student               | List all my tasks in a structured manner   | Feel more in control of my schedules and tasks             |
+| `*`      | Lazy university student                    | Tag the task based on category         | Organise my tasks efficiently                                  |
+| `*`      | Lazy university student                    | View the tasks based on category tags         |Locate tasks easily                                      |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Taskify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+---
+**Use case 1: Delete a Task**
+
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all Tasks
+2.  Taskify shows a list of Tasks
+3.  User requests to delete a specific Task in the list
+4.  Taskify deletes the Task
 
     Use case ends.
 
@@ -283,24 +285,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Taskify shows an error message.
 
       Use case resumes at step 2.
+---
+**Use case 2: Add a Task**
+
+**MSS**
+
+1.  User requests to add a Task to the list
+2.  Taskify adds the Task to the list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The Task to be added already exists in the list
+    * 1a1. **Taskify informs the User that there is already such a Task**
+    
+* 1b. Taskify detects errors in the User's input
+    * 1b1. **Settled later**
+---
+**Use case 3: Mark a Task as complete**
+
+**MSS**
+1.  User requests to list all Tasks
+2.  Taskify shows a list of Tasks
+3.  User requests to mark a Task as complete
+4.  Taskify marks the Task as complete
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The Task is already marked as complete
+    * 3a1. **Settled Later**
+---
+**Use case 4: View deadline of a Task**
+
+---
+**Use case 5: List all Tasks**
+
+---
+**Use case 6: Tag a Task**
+
+---
+**Use case 7: View Tasks with specific tag(s)**
+
+---
+**Use case 8: Modify a Task's tag(s)**
+
+    
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 100 tasks without a noticeable sluggishness in performance for typical usage.
+3.  A user should be able to easily see why their commands are invalid
+4.  The app should be able to save data locally
+5.  The app should be able to run with or without internet connection
+6.  The product should not take above 10 seconds to execute any commands.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
