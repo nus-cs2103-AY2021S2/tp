@@ -256,6 +256,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | be able to add an appointment                                      | keep track of my upcoming schedule                                                |
 | `* * *`  | user                                       | delete a person                                                    | remove entries that I no longer need                                              |
 | `* * *`  | user                                       | find a person by name                                              | locate details of persons without having to go through the entire list            |
+| `* * *`  | user                                       | list all properties on sale                                        | know the number of properties and I have to sell                                  |
+| `* * *`  | user                                       | list all properties on sale                                        | know which properties and I have to sell                                          |
+| `* * *`  | user                                       | view the client asking price of a property                         | keep the price in mind when negotiating with the buyer                            |
+| `* * *`  | user                                       | view the properties in the                                         | prioritize selling properties with a more urgent deadline                         |
 | `* *`    | potential user exploring the app           | see the app populated with sample data                             | easily see how the app looks like when it is in use                               |
 | `* *`    | user                                       | hide private contact details                                       | minimize chance of someone else seeing them by accident                           |
 | `* *`    | careless user                              | be able to categorize housing information based on predefined tags | prevent typos while keying in information and avoid storing the wrong information |
@@ -302,7 +306,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC03 - Listing all properties and appointments**
 
+**MSS**
+
+1. User requests to list all properties and appointments.
+2. PocketEstate shows the entire list of properties and appointments.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. List command used has unrecognized fields.
+
+    * 3a1. PocketEstate shows an error message.
+
+      Use case ends.
+    
 **Use case: Delete a person**
 
 **MSS**
@@ -325,7 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -345,6 +365,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code and Deadline,
+    optional attributes: Client name, Client contact, Client email, Client asking price, Remarks
+* **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date,  optional attribute: Time
 
 --------------------------------------------------------------------------------------------------------------------
 
