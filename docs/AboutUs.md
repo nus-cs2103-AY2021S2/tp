@@ -11,50 +11,50 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aaron Saw Min Sern
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aaronsms.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/aaronsms)]
+[[portfolio](team/aaronsms.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Software Testing
 
 ### Daniel Lau Yew En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/daniellau.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/daniellau88)]
+[[portfolio](team/daniellau.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: DevOps (CI)
 
 ### Lauren Lee Hui Ying
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/laurenlhy.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/laurenlhy)]
+[[portfolio](team/laurenlhy.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
 ### Lim Li Quan
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/daniellau.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:
 
 ### Ng Wei Xue
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/daniellau.md)]
 
-* Role: 
-* Responsibilities: 
+* Role:
+* Responsibilities:

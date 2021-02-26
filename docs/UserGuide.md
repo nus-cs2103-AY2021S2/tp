@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-CHesse Inventory Management (ChIM) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Chesse Inventory Management (CHIM) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
+* Table of Content
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -42,15 +42,75 @@ CHesse Inventory Management (ChIM) is a **desktop app for managing contacts, opt
 
 </div>
 
-### [Feature Name]
+### Adding a customer: `addcustomer`
 
-[Feature Description]
+Adds a customer to the CHIM.
 
-Format: [Command Format]
+Format: `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER a/ADDRESS`
+
+Example: `addcustomer n/John Doe p/65555555 a/Blk 436 Serangoon Gardens St 26 #01-01`
+
+
+### Remove an order: `removeorder`
+
+Removes a specific order from CHIM, identified by its index.
+
+Format: `removeorder ORDER_INDEX`
+* Removes the order at the specified `ORDER_INDEX`. The index must be a positive integer.
+
+Example: `removeorder 2`
+* Removes the second order in the list of orders.
+
+
+### List orders: `listorder`
+
+Displays all incomplete orders in CHIM.
+
+Format: `listorder`
+
+
+### List cheese: `listcheese`
+
+Displays the current inventory count. If a cheese type is specified, then display the current inventory count for that particular cheese.
+
+Format: `listcheese [t/CHEESE_TYPE]`
+
+Examples: `listcheese Mozzarella`
+
+
+### List customer: `listcustomer`
+
+Displays the customers in CHIM.
+
+Format: `listcustomer`
+
+
+### Mark order as complete: `done`
+
+Marks an incomplete order as complete from CHIM, identified by its index.
+
+Format: `done ORDER_INDEX`
+* Marks the order at the specified `ORDER_INDEX`.
+* The `ORDER_INDEX` must be a positive integer.
+
+
+### Search for customer: `search`
+
+Searches for a customer in CHIM.
+
+Format: `search n/NAME`
+* Search is case-insensitive, e.g Betty will match betty
 
 Examples:
-* [Example 1]
-* [Example 2]
+* `search n/Betty`
+* `search n/Robin Lee`
+
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -66,5 +126,8 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
-**[Command Name]** | [Format & Examples]
+**List Customer** | `listcustomer`
+**Mark Done** | `done INDEX`<br> e.g., `done 2`
+**Search** | `search n/NAME` <br> e.g. `search n/Betty`
+**Exit** | `exit`
 
