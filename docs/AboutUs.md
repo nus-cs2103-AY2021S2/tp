@@ -9,31 +9,38 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Max Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maxxng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/maxxng)]
+[[portfolio](team/maxxng.md)]
+
+### Lee Han Bin
+
+<img src="images/habi39.png" width="200px">
+
+[[homepage](http://www.comp.nus.edu.sg/~habi39)]
+[[github](https://github.com/habi39)]
+[[portfolio](team/habi39.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Tay Kai Xiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kaixiangtay.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kaixiangtay)]
+[[portfolio](team/kaixiangtay.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Code quality
 
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/maxxng.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -43,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/maxxng.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -54,6 +61,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/LimJunxue)]
 [[portfolio](team/limjunxue.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### Chloe Lau
+
+<img src="images/mesyeux.png" width="200px">
+
+[[github](http://github.com/mesyeux/ip)]
+[[portfolio](team/mesyeux.md)]
 
 * Role: Developer
 * Responsibilities: UI
