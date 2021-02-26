@@ -259,7 +259,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | list all properties on sale                                        | know the number of properties and I have to sell                                  |
 | `* * *`  | user                                       | list all properties on sale                                        | know which properties and I have to sell                                          |
 | `* * *`  | user                                       | view the client asking price of a property                         | keep the price in mind when negotiating with the buyer                            |
-| `* * *`  | user                                       | view the properties in the                                         | prioritize selling properties with a more urgent deadline                         |
+| `* * *`  | user                                       | view the properties in the order of nearest deadline               | prioritize selling properties with a more urgent deadline                         |
 | `* *`    | potential user exploring the app           | see the app populated with sample data                             | easily see how the app looks like when it is in use                               |
 | `* *`    | user                                       | hide private contact details                                       | minimize chance of someone else seeing them by accident                           |
 | `* *`    | careless user                              | be able to categorize housing information based on predefined tags | prevent typos while keying in information and avoid storing the wrong information |
