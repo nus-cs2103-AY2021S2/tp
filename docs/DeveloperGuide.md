@@ -236,13 +236,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a large number of venue bookings
+* has to ensure bookings abide by restrictions
+* need to check that the bookings are valid
+* are administrative personnels of schools or organisations
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* manage bookings faster than a typical mouse/GUI driven app
+* ease of managing bookings since it is a centralised system
+* automatically keeps track of room usage, conflicts and rule violations
+* clear and structured way to avoid ambiguity
 
 
 ### User stories
@@ -251,14 +259,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| `* * *`  | admin in charge of facilities              | add venues                     |                                                                        |
+| `* * *`  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue                       |
+| `* * *`  | admin in charge of facilities              | delete venues                  |                                                                        |
+| `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
+| `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the booker decides to amend the booking    |
+| `* * *`  | admin in charge of facilities              | delete bookings                |                                                                        |
+| `* *`    | admin in charge of facilities              | query booking information of a particular venue | quickly find out the relevant information instead of search one by one |
+| `*`      | admin in charge of facilities              | be able to access past data           | easily check the history of certain venues                      |
 
 ### Use cases
 
@@ -292,15 +300,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 venues and bookings without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Should be able to perform queries quickly even with significant amounts of data present.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Booking**: A person's request to occupy the room for a specific amount of time at a specific date
 
 --------------------------------------------------------------------------------------------------------------------
 
