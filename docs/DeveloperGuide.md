@@ -288,7 +288,137 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+    
+---
 
+### Use Case: `UC01` - add assignment
+
+**MSS:**
+
+1. User enters the details of assignment.
+2. System adds assignment and displays assignments info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects an error in format in entered data.
+    * 1a1. System display error message.
+    <br> Use case ends.
+
+### Use Case: `UC02` - delete assignment
+
+**MSS:**
+
+1. User enters number to delete a assignment.
+2. System deletes assignment and displays assignments info.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in number in entered data (out of range).
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC03` - view assignments
+
+**MSS:**
+
+1. User enters the command to view assignments.
+2. System shows list of assignments.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC04` - view events
+
+**MSS:**
+
+1. User enters the command to view events.
+2. System shows list of events.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC05` - toggle reminder
+
+**MSS:**
+
+1. User wants to turn on reminder for system.
+2. User enters command to turn on reminder.
+3. System display message that reminder is on.
+   <br> Step 1 - 3 are the same for off.
+   <br> Use case ends at step 3.
+
+**Extensions:**
+
+* 2a. System detects an error in formatting of command.
+    * 2a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC06` - view help
+
+**MSS:**
+
+1. User enters the command to view help.
+2. System shows help and url for more in depth help.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC07` - view calendar
+
+**MSS:**
+
+1. User enters the command to view calendar.
+2. System shows calendar.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC08` - save data
+
+**MSS:**
+
+1. User enters the command to sava data.
+2. System saves data and show saved message.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC09` - edit data
+
+**MSS:**
+
+1. User enters the command to edit data.
+2. System edit data and show edited message.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
