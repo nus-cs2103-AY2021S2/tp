@@ -367,7 +367,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. SOChedule shows an error message indicating the invalidity of the index.
 
       Use case resumes at step 2.
+      
+**Use case: UCXX - Add an event**
 
+**MSS**
+
+1. User requests to add a new event.
+1. SOChedule displays a success message for adding the event.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. Some required information about the event is missing in the command.
+  
+    * 1a1. SOChedule displays an error message suggesting that information provided when creating
+      the event is incomplete.  
+      Use case ends.
+
+* 1b. The date provided for the event is invalid
+
+    * 1b1. SOChedule displays an error message suggesting that date provied for the event 
+      is invalid, or not following the `YYYY-MM-DD` format.  
+      Use case ends.
 
 **Use case: UCXX - Delete an event**
       
@@ -394,6 +415,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: UCXX - List events**
+
+**MSS**
+
+1. User requests to list all events in the SOChedule.
+1. SOChedule displays a list of all events added.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. No events have been added.
+    * 1a1. SOChedule displays an empty list.  
+      Use case ends.
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
