@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Michael Png
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maikongeh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/maikongeh)]
+[[portfolio](team/maikongeh.md)]
+
+* Role: Developer
+* Responsibility: Testing
 
 ### Huang Zhenxin
 
