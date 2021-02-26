@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Michael Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maikongeh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/maikongeh)]
+[[portfolio](team/maikongeh.md)]
+
+* Role: Developer
+* Responsibility: Testing
 
 ### Huang Zhenxin
 
@@ -38,15 +39,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation, Testing
 
-### Jean Doe
+### Chiang Kee Woon Jonathan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/banchiang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/banchiang)]
+[[portfolio](team/banchiang.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code Quality checking
 
 ### Marcus Ong
 

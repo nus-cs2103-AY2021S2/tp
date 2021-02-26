@@ -141,9 +141,15 @@ Format:
 Examples:
 * `delete /from 25/12/2021 /index 1`
 
-### Listing all persons : `list`
+### Listing all events : `list events`
 
-Shows a list of all persons in the address book.
+Shows a list of all events. Events are sorted by date
+
+Format: `list`
+
+### Listing all assignments : `list assignments`
+
+Shows a list of all assignments. Assignments are sorted by date.
 
 Format: `list`
 
