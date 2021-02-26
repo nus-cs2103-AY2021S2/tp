@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -17,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -56,6 +59,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parsePoliciesForEdit(argMultimap.getAllValues(PREFIX_INSURANCE_POLICY))
+                .ifPresent(editPersonDescriptor::setPolicies);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -77,6 +82,24 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> policyId} into a {@code List<InsurancePolicy>} if {@code policies} is non-empty.
+     * If {@code policies} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<InsurancePolicy>} containing zero policies.
+     */
+    private Optional<List<InsurancePolicy>> parsePoliciesForEdit(Collection<String> policyIds) throws ParseException {
+        assert policyIds != null;
+
+        if (policyIds.isEmpty()) {
+            return Optional.empty();
+        }
+
+        Collection<String> policyList = policyIds.size() == 1 && policyIds.contains("")
+                ? Collections.emptySet()
+                : policyIds;
+        return Optional.of(ParserUtil.parsePolicies(policyList));
     }
 
 }
