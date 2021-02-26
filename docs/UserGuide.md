@@ -1,18 +1,26 @@
----
-layout: page
-title: User Guide
----
+## Introduction
 
 DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals in this app much faster than other traditional GUI-based diet tracking apps.
 
-* Table of Contents
-- [Quick start] (##Quick-start)
-- [Features] (##Features)
-- [Body Mass Index (BMI) Tracker] (##1.-Body-Mass-Tracker)
-  * [Input weight, height and ideal weight] (###1.1-Input-weight,-height-and-ideal-weight-:-`bmi`)
-  * [Query weight, height and BMI] (###1.3-Update-weight,-height-and-ideal-weight-:-`bmi-update`)
-  * [Update weight, height and ideal weight]
-  
+## Table of Contents
+
+<!--ts-->
+* [Introduction](##Introduction)
+* [Quick start](##Quick-start)
+* [Features](##Features)
+* [Body Mass Index (BMI) Tracker](##1.-Body-Mass-Tracker)
+  * [Input weight, height and ideal weight](###1.1-Input-weight,-height-and-ideal-weight-:-`bmi`)
+  * [Query weight, height and BMI](###1.3-Update-weight,-height-and-ideal-weight-:-`bmi-update`)
+  * [Update weight, height and ideal weight](###1.3-Update-weight,-height-and-ideal-weight-:-`bmi-update`)
+* [Diet Plan Selector](##2.-Diet-Plan-Selector)
+  * [Get diet recommendations based on current BMI](###2.1-Get-diet-recommendations-based-on-current-BMI-:-`plan-diet-recommend`)
+  * [View active diet plan](###2.2-View-active-diet-plan-:-`plan`)
+  * [Select active diet plan](###2.3-Select-active-diet-plan-:-`plan-select`)
+* [Macronutrients Tracker](##-3.-Macronutrients-Tracker)
+  * [Input carbohydrates, fats and protein intake](###3.1-Input-carbohydrates,-fats-and-protein-intake-:-`food`)
+  * [List food intake for certain days](###3.2-List-food-intake-for-certain-days-:-`food-query`)
+* [Command summary](##Command-summary)
+<!--te-->
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -118,7 +126,7 @@ Examples:
 ### 2.3 Select active diet plan : `plan select`
 
 
-## 3. Macro-nutrients Tracker
+## 3. Macronutrients Tracker
 
 Clears all entries from the address book.
 
