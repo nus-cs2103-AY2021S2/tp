@@ -45,22 +45,21 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         // Set taskbar icon for macOS
-        try {
-            BufferedImage iconApplication = ImageIO.read(getClass().getResource(ICON_APPLICATION));
-            if (iconApplication != null) {
-                Taskbar.getTaskbar().setIconImage(iconApplication);
+        if (Taskbar.isTaskbarSupported()) {
+            BufferedImage applicationIcon = getBufferedImage(ICON_APPLICATION);
+            Taskbar taskbar = Taskbar.getTaskbar();
+            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE) && applicationIcon != null) {
+                Taskbar.getTaskbar().setIconImage(applicationIcon);
             }
-        } catch (IOException e) {
-            logger.warning(StringUtil.getDetails(e));
         }
 
+        // Set up main window
         try {
             mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
+            mainWindow.show(); // This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
-            // Maximise window
-            primaryStage.setMaximized(true);
+            primaryStage.setMaximized(true); // Maximise window
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -69,6 +68,16 @@ public class UiManager implements Ui {
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
+    }
+
+    private BufferedImage getBufferedImage(String imagePath) {
+        try {
+            BufferedImage iconApplication = ImageIO.read(getClass().getResource(imagePath));
+            return iconApplication;
+        } catch (IOException e) {
+            logger.warning(StringUtil.getDetails(e));
+            return null;
+        }
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
