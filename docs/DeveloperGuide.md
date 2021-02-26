@@ -299,6 +299,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UCXX - Add a task**
 
+**MSS**
+
 1. User wishes to add a new task.
 2. User enters the required parameters.
 3. SOChedule displays a success message for adding the task.
@@ -313,10 +315,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UCXX - List tasks**
 
+**MSS**
+
 1. User wishes to add a new task.
 2. User enters the corresponding command.
 3. SOChedule displays all tasks.
-
 
 **Use case: UCXX - Delete a task**
 
