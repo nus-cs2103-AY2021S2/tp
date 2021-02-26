@@ -150,6 +150,6 @@ Action | Format, Examples
 **List Orders** | `listorder`
 **List Cheese** | `listcheese [t/CHEESE_TYPE]` <br> e.g. `listcheese t/Mozzarella`
 **List Customer** | `listcustomer`
-**Mark As Done** | `done INDEX` <br> e.g., `done 2`
+**Mark As Done** | `done INDEX` <br> e.g. `done 2`
 **Search** | `search n/NAME` <br> e.g. `search n/Betty`
 **Exit** | `exit`
