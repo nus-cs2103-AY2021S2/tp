@@ -236,43 +236,83 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is a young programmer studying in NUS Computer Science
+* prefers typing to mouse interactions  
+* has difficulty maintaining personal relationships
+* cannot recall previous conversations with others
+* is a goal-driven individual and seeks new challenges.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* makes relationship management easier for the user
+    * keeps track of personal relationship with users' friends
+* manages relationship faster than a mouse-driven app.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Category            | As a/an...         | I can...                                                                               | So that...                                                          |
+|---------------------|--------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| Birthdays           | Forgetful User     | Add a birthday to a contact                                                            | I can remember when that person's birthday is                       |
+|                     |                    |                                                                                        |                                                                     |
+| Grouping/tagging    | Forgetful User     | Tags to identify people with the same name                                             | I can easily differentiate between friends who has the same name.   |
+| Grouping/tagging    | Orderly User       | Create new friend groups                                                               | Customize my own categories of friends                              |
+| Grouping/tagging    | Orderly User       | Group my contacts by categories                                                        | I easily check contacts in a certain category                       |
+|                     |                    |                                                                                        |                                                                     |
+| Friend details      | Forgetful User     | Track how much debt is owed by/to the person                                           | I can get my money back or pay the money back.                      |
+|                     | User               | Store dietary habits/allergies on the contact                                          | I don't accidentally kill him when buying food for him              |
+|                     |                    |                                                                                        |                                                                     |
+| Customized UI       | User               | Choose between light/dark mode for the app                                             | It fits the aesthetics of my comptuer                               |
+| Customized UI       | Artsy User         | Customize the way the application looks                                                | It matches the aesthetics of my computer                            |
+|                     |                    |                                                                                        |                                                                     |
+| User Guide          | New User           | Easily access the user guide                                                           | I can understand how the app works easily                           |
+| User Guide          | New User           | Search for frequently asked question in the application                                | I can find help easily                                              |
+|                     |                    |                                                                                        |                                                                     |
+| Reminders           | Forgetful User     | Add reminders for special dates                                                        | I can remember my anniversary                                       |
+|                     |                    |                                                                                        |                                                                     |
+| Notes               | Forgetful User     | Takes notes on specific user                                                           | I can remember certain things                                       |
+|                     |                    |                                                                                        |                                                                     |
+| Calendar            | Visual User        | Have a calendar view of birthdays for the month                                        | I can plan my timetable ahead                                       |
+| Calendar            | New User           | See who are the friends I have not met in a long time                                  | I am reminded to meet them soon                                     |
+|                     |                    |                                                                                        |                                                                     |
+| UX                  | Expert User        | Perform most tasks with a single command                                               | I can save time                                                     |
+| UX                  | Non-Technical User | Have the option to use the mouse                                                       | I will not be overwhelmed by the CLI                                |
+| UX                  | New User           | Easily undo previous commands                                                          | I do not have to be afraid of making mistakes                       |
+|                     |                    |                                                                                        |                                                                     |
+| Storage/backup/data | Tech-Savvy User    | Export/import information from the application                                         | I can back up the data                                              |
+|                     | Tech-Savvy User    | Detect conflicts when importing information                                            | I can detect if there are any changes to the after exporting        |
+|                     |                    |                                                                                        |                                                                     |
+| Search              | Forgetful User     | See suggested commands as i type in the command bar                                    | I do not have to memorise all commands                              |
+| Search              | Tech-Savvy User    | Search for contacts via regex                                                          | I can find contacts easily                                          |
+| Search              | User               | Search for my contacts by name                                                         | I can find contacts easily                                          |
+| Search              | Intermediate User  | Sort search result on different things                                                 | I can find whatever I'm looking for easily                          |
+| Search              | Experienced User   | Write SQL like statements to search for things                                         | I can have full control over search                                 |
+|                     |                    |                                                                                        |                                                                     |
+| Profile             | Forgetful User     | Add a profile picture to the contact                                                   | I can remember how they look like                                   |
+|                     |                    |                                                                                        |                                                                     |
+| Relationship management   | Good friend        | Set a desired frequency for meeting each contact                                       | I am reminded to meet my friends either weekly, monthly, yearly etc |
+| Relationship management   | Forgetful friend   | Be reminded of who i should meet soon                                                  |                                                                     |
+| Relationship management   | Friend             | See upcoming dates (birthdays/special dates/due-to-meet)                               |                                                                     |
+|                     |                    |                                                                                        |                                                                     |
+| Dashboard           | User               | See upcoming birthdays at a glance                                                     | I know what to expect in the week to come                           |
+| Dashboard           | User               | See upcoming events at a glance                                                        |                                                                     |
+| Dashboard           | User               | See goals that will reach deadline                                                     |                                                                     |
+| Dashboard           | Friend             | See which friends I have to meet soon                                                  |                                                                     |
+|                     |                    |                                                                                        |                                                                     |
+| Friendship Journal  | User               | Record brief summary of last meeting with the other person (include last meeting date) | I know why we last met.                                             |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FriendDex` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add profile picture to person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1.  User requests to list persons.
+2.  FriendDex shows a list of persons.
+3.  User requests to add a picture to a person in the list.
+4.  FriendDex attaches a picture to the person.
+    
     Use case ends.
 
 **Extensions**
@@ -281,28 +321,107 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. User supplies an invalid file location to FriendDex
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FriendDex shows an error message of the error.
+      
+      Use case resumes at step 2.
+    
+* 3b. User supplies a valid file location but wrong file format
 
+    * 3b1. FriendDex shows an error message of the error.
+      
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add birthday to a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  FriendDex shows a list of persons
+3.  User requests to add a birthday to a specific person in the list
+4.  FriendDex stores the birthday information for the person
+    
+    Use case ends
+    
+**Extensions**
+
+* 2a. The list is empty
+  
+  Use case ends
+  
+* 3a. The given date is invalid
+  
+    * 3a1. FriendDex shows an error message, and the accepted date format(s)
+      
+      Use case ends
+
+**Use case: Create a friend group**
+
+**MSS**
+
+1.  User requests to list persons
+2.  FriendDex shows a list of persons
+3.  User requests to add a group of friends to a new friend group.
+4.  FriendDex creates the friend group and adds the group of friends to the friend group.
+    
+    Use case ends
+
+**Extensions**
+
+* 3a. The friend group is already existing.
+  
+    * 3a1. FriendDex will add the indicated group to the existing group.
+      
+      Use case ends
+      
+* 4a. Some indicated users already exist in the friend group
+  
+    * 4a1. FriendDex will indicate the contacts that already exist in the friend group.
+      
+      Use case ends
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  FriendDex shows a list of persons.
+3.  User requests to edit a specific person in the list.
+4.  FriendDex stores the edited information.
+    
+    Use case ends
+
+**Extensions**
+
+* 2a. The list is empty.
+      
+  Use case ends
+  
+* 3a. The new details supplied contain formatting errors.
+  
+    * 3a1. FriendDex shows an error message and displays the correct format for the command.
+      
+        Use case ends
+    
+* 3b. A supplied Date field is in an invalid format.
+  
+    * 3b1. FriendDex shows an error message and displays the accepted date formats.
+        
+        Use case ends
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  Should work on any mainstream OS as long as it has Java 11 or above installed.
+2.  The application should be able to support up to 1000 contacts.
+3.  The system should respond within two seconds.
+4.  The application should be portable (The user should be able to copy content over to another computer using some storage medium and still be able to work).
+5.  Should work on most mainstream keyboards (works without numpad/touchbar etc).
 
 ### Glossary
-
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
---------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 

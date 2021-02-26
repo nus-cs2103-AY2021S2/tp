@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-FriendDex is a **relationship management tool for CLI enthusiasts** looking to enhance their social life while not compromising on getting things done quickly. Managing your relationship goals should not be anymore tedious than coding.
+FriendDex is a **relationship management tool for CLI enthusiasts** looking to enhance their social life while not compromising on getting things done quickly. Managing your relationship goals should not be any more tedious than coding.
 
 * Table of Contents
 {:toc}
@@ -48,7 +48,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -56,7 +56,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -66,7 +66,7 @@ FriendDex is a **relationship management tool for CLI enthusiasts** looking to e
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -102,7 +102,7 @@ Adds a profile picture to an existing person in FriendDex.
 
 Format: `picture INDEX FILE_PATH`
 
-* The image of the person should be at FILE_PATH.
+* The image of the person should be at `FILE_PATH`.
 
 Examples:
 * `picture 1 /Users/john/Desktop/jake.png`
@@ -122,7 +122,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -154,19 +154,21 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS] [p/]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* If the `p/` flag is set, then the argument(s) `KEYWORD [MORE KEYWORDS]` shall be treated as a regular expression.
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find ^a.*h$ p/` returns `Alex Yeoh`
 
 ### Deleting a person : `delete`
 
@@ -194,6 +196,23 @@ Exits the program.
 
 Format: `exit`
 
+### Styling the application : `theme`
+
+Format `theme THEME_PATH`
+
+* Applies the theme specified in `THEME_PATH`.
+* The current applied theme will be saved and applied on subsequent sessions.
+
+Example:
+* `theme theme/solarized.dark.json` applies the theme `solarized.dark.json` located at `./theme/`.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If the theme supplied is not found or unreadable, then the default theme will be applied.
+</div>
+
+See also:
+* [Theme](#theme)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Dashboard
@@ -216,6 +235,42 @@ FriendDex data is saved as a JSON file `[JAR file location]/data/frienddex.json`
 If your changes to the data file makes its format invalid, FriendDex will discard all data and start with an empty data file at the next run.
 </div>
 
+## Theme
+### Theme format
+
+A valid theme is a JSON object containing the following fields:
+| Name         | Type         | Description                                                                                                                                                             |
+|--------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `foreground` | `String`     | The foreground color of the application in valid hex color string                                                                                                       |
+| `background` | `String`     | The background color of the application in valid hex color string                                                                                                       |
+| `color`      | `String[16]` | Colors 0 to 15 of the application in valid hex color strings. Refer to [XTerm colors](https://invisible-island.net/xterm/manpage/xterm.html#h3-VT100-Widget-Resources). |
+
+A sample theme (Monokai Dark)
+```
+{
+  "color": [
+    "#272822",
+    "#f92672",
+    "#a6e22e",
+    "#f4bf75",
+    "#66d9ef",
+    "#ae81ff",
+    "#a1efe4",
+    "#f8f8f2",
+    "#75715e",
+    "#f92672",
+    "#a6e22e",
+    "#f4bf75",
+    "#66d9ef",
+    "#ae81ff",
+    "#a1efe4",
+    "#f9f8f5"
+  ],
+  "foreground": "#f8f8f2",
+  "background": "#272822"
+}
+```
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -237,5 +292,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Record a meeting** | `meeting INDEX d/DATETIME desc/DESCRIPTION` <br> e.g. `meeting 2 d/17-02-2021 1930 desc/We went to see the sunset!`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Theme** | `theme THEME_PATH`<br> e.g., `theme theme/solarized.dark.json`
 **List** | `list`
 **Help** | `help`
