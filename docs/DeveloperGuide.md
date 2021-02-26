@@ -1,3 +1,33 @@
+### Product Scope
+
+**Target user profile**
+  * want to start a diet
+  * track their progress against a diet plan
+  * track the macronutrients of the food consumed
+  * is comfortable with command-line interface
+
+**Value proposition**: quickly input daily food intake and calculate their macronutrients to check if diet plan is progressing as planned
+
+### User stories
+Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
+
+|Priority|   As a ...   |   I want to ...  |   So that I can​ ...   |
+|------------|------------------|----------------------|---------------------------|
+|`***`|User|Set a deadline for my diet plan|Stay on track of when the diet finishes|
+|`***`|User|Add a new diet plan|Start a new diet plan|
+|`***`|User|Delete my diet plan|Give up on the current diet plan|
+|`***`|User|Track my weight|See if the diet is working|
+|`***`|User|View a list of recommended diets|find out what to diet on as I am not sure|
+|`***`|First-time User|Skim through some example templates|Know how the application works|
+|`**`|Long-time User|See a history of my past diet|I can backtrack what diets I have been on|
+|`**`|Frequent user|Store information on the popular foods that I eat|Quickly input my intake for the day|
+|`**`|User|Customize my diet plan|Adjust my diet plan to fit my needs|
+|`**`|User with dietary requirements|Filter the list of diets to fit my dietary requirements|Choose diets that are suited to my dietary needs|
+|`*`|Social Users|See/Give reviews on diets|Know which diets are more effective for others|
+|`*`|Social Users|Connect with peers to see their dietary plans and progress|Stay up-to-date with my peers and possibly motivate myself|
+
+*{More to be added}*
+
 ### Use cases
 
 (For all use cases below, the **Body Mass Index (BMI) Tracker** is the `BMITracker`, **Diet Plan Selector** is the `DietSelector`, **Macronutrients Tracker** is the `MacroTracker` and the **Actor** is the `user`, unless specified otherwise)
