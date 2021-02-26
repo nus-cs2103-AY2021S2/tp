@@ -31,6 +31,7 @@ You can reach us at the email `zhengyong@u.nus.edu`
 * Role: Documentation
 * Responsibilities:
     * Responsible for the quality of various project documents.
+    * Responsible for distributing of Documentation related jobs.
 
 ### Huang Nanxi
 
