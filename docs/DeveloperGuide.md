@@ -262,16 +262,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorPets` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a new contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User keys in the contact to be added
+2.  TutorPets shows the added contact into the list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+    * 1a1. TutorPets shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Clears all entries contact**
+
+**MSS**
+
+1.  User enters clears all entries contact command
+2.  TutorPets clears all the contact in list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+    * 1a1. TutorPets shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a student contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  TutorPets shows a list of students’ contact
+3.  User requests to delete a specific contact from the list
+4.  TutorPets deletes the person
 
     Use case ends.
 
@@ -283,9 +317,70 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorPets shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Editing an existing contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  TutorPets shows a list of students’ contact
+3.  User requests to edit a specific contact from the list
+4.  TutorPets edits the selected contact
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+    * 1a1. TutorPets shows an error message.
+
+      Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorPets shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Exit TutorPets**
+
+**MSS**
+
+1.  User enters exit into command prompt
+2.  TutorPets saves the current contact in the list and exits.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+    * 1a1. TutorPets shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Search for a student contact**
+
+**MSS**
+
+1.  User enters the student name or specified keyword to be searched.
+2.  TutorPets shows a list of searched students.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The search result list is empty.
+
+  Use case ends.
 
 *{More to be added}*
 
