@@ -145,6 +145,28 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd reader in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st reader in the results of the `find` command.
 
+### Borrowing a book : `borrow`
+
+Records a borrowing activity.
+
+Format: `borrow b/BID r/RID`
+
+* Let reader at the specified id RID borrow the book specified by id BID
+
+Examples:
+* `borrow b/23412 r/342w` records a rental entry that reader whose ID is 342 borrowed a book whose ID is 23412
+
+### Returning a book : `return`
+
+Records a returning activity.
+
+Format: `return b/BID r/RID`
+
+* Let reader at the specified id RID return the book specified by id BID
+
+Examples:
+* `return b/23412 r/342w` records a rental entry that reader whose ID is 342 returned a book whose ID is 23412
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
