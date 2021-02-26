@@ -12,8 +12,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/xuanqi966)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer, Team lead
-* Responsibilities: UI
+* Role: Developer, team lead
+* Responsibilities: 
 
 ### Ni Jiaying
 
@@ -22,8 +22,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/ninijiaying)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Integration
+* Role: Developer, integration
+* Responsibilities: 
 
 ### Vanessa Tay
 
@@ -31,8 +31,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/vvan-essa)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Deliverables and deadline
+* Role: Developer, deliverables and deadlines
+* Responsibilities: 
 
 ### Ho Jie Feng
 
@@ -41,8 +41,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/hojiefeng)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Code Quality
+* Role: Developer, code quality
+* Responsibilities: 
 
 ### Wu Weiming
 
@@ -51,5 +51,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/ming-00)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Documentation
+* Role: Developer, documentation
+* Responsibilities: 
