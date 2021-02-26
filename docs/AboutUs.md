@@ -31,9 +31,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Otto Alexander Sutianto
 
-<img src="images/Otto.jpeg" width="200px">
+<img src="images/godjuansan.jpeg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/godjuansan)] [[portfolio](team/johndoe.md)]
 
 * Role: Full-Stack Developer
 * Responsibilities: N/A
