@@ -4,21 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Represents a Flashcard's Question.
+ * Guarantees: immutable; is valid as declared in {@link #isValidQuestion(String)}
  */
-public class Email {
+public class Question {
 
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
-            + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + ") .\n"
-            + "2. This is followed by a '@' and then a domain name. "
-            + "The domain name must:\n"
-            + "    - be at least 2 characters long\n"
-            + "    - start and end with alphanumeric characters\n"
-            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.";
+    public static final String MESSAGE_CONSTRAINTS = "";
     // alphanumeric and special characters
     private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
     private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
@@ -30,20 +22,20 @@ public class Email {
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Question}.
      *
-     * @param email A valid email address.
+     * @param question A valid question.
      */
-    public Email(String email) {
-        requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+    public Question(String question) {
+        requireNonNull(question);
+        checkArgument(isValidQuestion(question), MESSAGE_CONSTRAINTS);
+        value = question;
     }
 
     /**
      * Returns if a given string is a valid email.
      */
-    public static boolean isValidEmail(String test) {
+    public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -55,8 +47,8 @@ public class Email {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                || (other instanceof Question // instanceof handles nulls
+                && value.equals(((Question) other).value)); // state check
     }
 
     @Override
