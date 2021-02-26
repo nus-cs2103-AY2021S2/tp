@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,13 +203,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -281,32 +281,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a person
 2. CoLAB adds the person
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given arguments are invalid.
-  
+
     * 1a1. CoLAB shows an error message.
-    
-        Use case resumes at step 1.
+
+      Use case resumes at step 1.
 
 #### UC2 - Find details of a specific person
 
 **MSS**
 
 1. User requests to find a person.
-2. CoLAB shows a list of persons that match user's query. 
+2. CoLAB shows a list of persons that match user's query.
 3. User requests to view more details about a specific person in the list.
 4. CoLAB shows more information about the person in the list.
-    
-    Use case ends.
+
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list of persons is empty. 
-    
-    Use case ends.
+* 2a. The list of persons is empty.
+
+  Use case ends.
 
 * 3a. The given index is invalid.
 
@@ -323,20 +323,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. CoLAB shows a list of persons.
 3. User requests to delete a specific person in the list.
 4. CoLAB deletes the person.
-   
-    Use case ends.
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list of persons is empty.
 
-    Use case ends.
+  Use case ends.
 
 * 3a. The given index is invalid.
 
     * 3a1. CoLAB shows an error message.
-      
-        Use case resumes at step 2.
+
+      Use case resumes at step 2.
 
 #### UC4 - Purge all entries from the app
 
@@ -369,12 +369,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given modules are invalid
 
     * 1a1. CoLAB shows an error message.
-        
-        Use case resumes at step 1.
+
+      Use case resumes at step 1.
 
 * 2a. The list of persons is empty.
-    
-    Use case ends.
+
+  Use case ends.
 
 #### UC6 - Adding or Modifying information about a person
 
@@ -398,20 +398,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 * Technical requirements:
-  * CoLAB should work on any _mainstream OS_ on both 32-bit and 64-bit architectures as long as it has Java `11` or above installed.
-  * CoLAB should work under _common screen resolutions_. (i.e. the window should not be out of boundary)
+    * CoLAB should work on any _mainstream OS_ on both 32-bit and 64-bit architectures as long as it has Java `11` or above installed.
+    * CoLAB should work under _common screen resolutions_. (i.e. the window should not be out of boundary)
 * Performance requirements:
-  * CoLAB should be able to hold _up to 1000 persons_ without a noticeable sluggishness in performance for typical usage.
-  * The response to any command should be shown _within 1 second_.
+    * CoLAB should be able to hold _up to 1000 persons_ without a noticeable sluggishness in performance for typical usage.
+    * The response to any command should be shown _within 1 second_.
 * Constraints:
-  * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
-  * CoLAB must be open source under [the MIT License](https://raw.githubusercontent.com/AY2021S2-CS2103T-T11-2/tp/master/LICENSE).
+    * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
+    * CoLAB must be open source under [the MIT License](https://raw.githubusercontent.com/AY2021S2-CS2103T-T11-2/tp/master/LICENSE).
 * Quality requirements:
-  * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-  * A user familiar with CLI tools should find CoLAB commands very intuitive.
-  * A user who has no experience with CLI tools should be able to find CoLAB easy to use with the help of the [_User Guide_](UserGuide.md).
+    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+    * A user familiar with CLI tools should find CoLAB commands very intuitive.
+    * A user who has no experience with CLI tools should be able to find CoLAB easy to use with the help of the [_User Guide_](UserGuide.md).
 * Process requirements:
-  * the project is expected to adhere to a schedule that delivers a feature set every two weeks.
+    * the project is expected to adhere to a schedule that delivers a feature set every two weeks.
 
 ### Glossary
 
@@ -435,15 +435,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -452,16 +452,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -469,6 +469,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
