@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.plan.Description;
 
 public class DescriptionTest {
@@ -32,6 +33,7 @@ public class DescriptionTest {
         // valid addresses
         assertTrue(Description.isValidAddress("Blk 456, Den Road, #01-355"));
         assertTrue(Description.isValidAddress("-")); // one character
-        assertTrue(Description.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Description.isValidAddress("Leng Inc; 1234 Market St; "
+                + "San Francisco CA 2349879; USA")); // long address
     }
 }
