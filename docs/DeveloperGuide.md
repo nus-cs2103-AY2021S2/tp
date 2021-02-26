@@ -250,16 +250,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                                    | I want to …​                                                         | So that I can…​                          |
-| -------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------- |
-| `* * *`  | user who stores expendable items not at a central location                    | add the location of each item to a central location before placing them | locate it easily later                      |
-| `* * *`  | user who is lazy to move around and consolidate the items at a specific place | search all the items at a specific place                                |                                             |
-| `* * *`  | forgetful user living in a household with many items                          | check if I have a particular item at home                               | prevent myself from buying it accidentally  |
-| `* * *`  | user who has a storeroom filled with many expendable items                    | know the expiry items of all the items from a single location           | keep track of them one by one               |
-| `* *`    | user who uses and stocks up household items often                             | update the expiry dates and quantities of the items                     |                                             |
-| `*`      | user who likes things to be organized                                         | know an overview of all the items categorised into the different rooms  |                                             |
-| `*`      | user who has a lot of expendable items                                        | sort my items to see which item expires first                           | stock them up first                         |
-| `*`      | forgetful user                                                                | know where specific items are placed                                    | locate them easily with a simple search     |
+| Priority | As a …​                     | I want to …​    | So that I can…​                                        |
+| -------- | ------------------------------ | ------------------ | --------------------------------------------------------- |
+| `* * *`  | user                           | delete my item     | remove it when it is expired                              |
+| `* * *`  | impulsive buyer                | add my item        | put my item into the system                               |
+| `* *`    | well-organized user            | list down my items | ensure that my items are in the correct location          |
+| `* *`    | forgetful user                 | search for my item     | locate them easily                                        |
+| `*`      | user who stocks up items daily | update my items    | change the items' expiry dates and quantities accordingly |
+
 
 ### Use cases
 
