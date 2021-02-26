@@ -3,10 +3,14 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SmartLib can systematically manage your books and borrowers’ information in a more efficient manner than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+# Table of Contents
+* [Quick start](#quick-start)
+* [Features](#features)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,16 +25,14 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`listbook`** and pressing Enter will list all the current books in store.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`addreader`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named `John Doe` to SmartLib.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`deletereader`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`listbook`** : Lists all contacts.
 
    * **`exit`** : Exits the app.
 
@@ -64,6 +66,32 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
+### Listing all readers : `listreader`
+
+Shows a list of all readers in the address book.
+
+Format: `list`
+
+### Locating readers by name: `findreader`
+
+Finds readers whose names contain any of the given keywords.
+
+Format: `findreader KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findreader John` returns `john` and `John Doe`
+* `findreader alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'findreader alex david'](images/findAlexDavidResult.png)
+
+## The contents from here onwards are to be removed by the last editor
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -71,7 +99,6 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a reader: `add`
 
@@ -86,12 +113,6 @@ A reader can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all readers : `list`
-
-Shows a list of all readers in the address book.
-
-Format: `list`
 
 ### Editing a reader : `edit`
 
@@ -109,24 +130,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st reader to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd reader to be `Betsy Crower` and clears all existing tags.
-
-### Locating readers by name: `find`
-
-Finds readers whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a reader : `delete`
 

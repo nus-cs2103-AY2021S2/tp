@@ -3,26 +3,26 @@ layout: page
 title: Developer Guide
 ---
 # Table of Contents
-* [**Getting started**](#setting-up-getting-started)
-* [**Design**](#design)
-    * [**Architecture**](#architecture)
-    * [**UI component**](#ui-component)
-    * [**Logic component**](#logic-component)
-    * [**Model component**](#model-component)
-    * [**Storage component**](#storage-component)
-    * [**Common classes**](#common-classes)
-* [**Implementation**](#implementation)
-* [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
-* [**Appendix: Requirements**](#appendix-requirements)
-    * [**Product scope**](#product-scope)
-    * [**User stories**](#user-stories)
-    * [**Use cases**](#use-cases)
-    * [**Non-functional requirements**](#non-functional-requirements)
-    * [**Glossary**](#glossary)
-* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
-    * [**Launch and shutdown**](#launch-and-shutdown)
-    * [**Deleting a reader**](#deleting-a-reader)
-    * [**Saving data**](#saving-data)
+* [Getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+* [Implementation](#implementation)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-functional requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a reader](#deleting-a-reader)
+    * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -303,16 +303,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `SmartLib` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a reader**
+**Use case: UC01 - List all readers**
 
 **MSS**
 
-1.  User requests to list readers
-2.  AddressBook shows a list of readers
-3.  User requests to delete a specific reader in the list
-4.  AddressBook deletes the reader
+1.  User requests to list readers.
+2.  SmartLib shows a list of readers (if any).
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC02 - Search for a reader's information**
+
+**MSS**
+
+1.  User finds a reader by his or her name.
+2.  SmartLib shows a list of readers with the given name.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC03 - Find the most or least borrowed books**
+
+**MSS**
+
+1.  User requests to list books.
+2.  SmartLib shows a list of books.
+3.  User requests to sort the books by popularity.
+4.  SmartLib sorts the books based on the number of times the books were borrowed.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UCX - Delete a reader**
+
+**MSS**
+
+1.  User requests to list readers.
+2.  SmartLib shows a list of readers.
+3.  User requests to delete a specific reader in the list.
+4.  SmartLib deletes the reader.
 
     Use case ends.
 
