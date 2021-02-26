@@ -373,6 +373,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: UC09 - Borrow a book**
+
+**MSS**
+
+1.  User enter book id and reader id to allow that reader to borrow a book
+2.  SmartLib displays successful borrowing information
+
+**Extensions**
+
+* 1a. The book does not exist
+* 1b. The reader does not exist
+* 1c. The book is currently not available
+* 1d. The reader has borrowed more than the number of books allowed
+
+  Use case ends.
+
+**Use case: UC10 - Return a book**
+
+**MSS**
+
+1.  User enter book id and reader id to allow that reader to return a book
+2.  SmartLib displays successful returning information
+
+**Extensions**
+
+* 1a. The book does not exist
+* 1b. The reader does not exist
+* 1c. The book is not currently borrowed under that reader
+* 1d. The book in loan has exceeded expire date, extra charge
+
+  Use case ends.
+
+**Use case: UC11 - Check a reader's balance**
+
+**MSS**
+
+1.  User enter reader id to check the balance left in reader's account
+2.  SmartLib displays reader's balance information
+
+**Extensions**
+
+* 1a. The reader does not exist
+
+  Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
