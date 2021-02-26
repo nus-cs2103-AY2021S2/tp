@@ -256,40 +256,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
 | -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `* * *`  | SOC Student                           | Add a task to my schedule                                              | I can track my task better                                                   |
-| `* * *`  | SOC Student                           | Allocate a priority score to a task                                    | I can prioritise my time better                                              |
-| `* * *`  | SOC Student                           | Edit a task in my schedule                                             | I can have flexibility in my schedule                                        |
-| `* *`    | SOC Student                           | Mark a task complete in my schedule                                    | I can track which tasks I have completed                                     |
-| `*`      | SOC Student                           | Delete a task from my schedule from my schedule                        | I can have flexibility in my schedule                                        |
+| `* *`    | SOC Student                           | Allocate a priority score to a task                                    | I can prioritise my time better                                              |
+| `* *`    | SOC Student                           | Edit a task in my schedule                                             | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | Mark a task complete in my schedule                                    | I can track which tasks I have completed                                     |
+| `* * *`  | SOC Student                           | Delete a task from my schedule from my schedule                        | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | View tasks in my schedule                                              | I can have a better sense of what will happen in the following days or weeks |
-| `* * *`  | SOC Student                           | Sort my tasks in my schedule in various orderings                      | I can prioritise my time better                                              |
-| `* * *`  | Forgetful SOC Student                 | Get reminders from SOChedule regarding task deadlines                  | I will not lose track of my tasks                                            |
-| `* * *`  | SOC student under huge workload       | View my schedule to see my free time slots                             | I can allocate my time better and fill it up with more tasks                 |
-| `* * *`  | SOC Student                           | View the people that I need to work with for a specific event          | I can keep in touch with the person better                                   |
+| `* *`    | SOC Student                           | Sort my tasks in my schedule in various orderings                      | I can prioritise my time better                                              |
+| `*`      | Forgetful SOC Student                 | Get reminders from SOChedule regarding task deadlines                  | I will not lose track of my tasks                                            |
+| `* *`    | SOC student under huge workload       | View my schedule to see my free time slots                             | I can allocate my time better and fill it up with more tasks                 |
+| `*`      | SOC Student                           | View the people that I need to work with for a specific event          | I can keep in touch with the person better                                   |
 | `* * *`  | SOC Student                           | Add an event (with the required information) to my schedule            | I can track my time better                                                   |
 | `* *`    | SOC Student                           | Add recurring events (with the required information) to my schedule    | I can plan ahead for my schedule                                             |
 | `*`      | SOC Student                           | Add a person that I have to work with to an event in my schedule       | I can track who I need to work with for an even                              |
-| `* * *`  | SOC Student                           | Add a meeting link to an event in my schedule                          | I can quickly join a online meeting                                          |
-| `* * *`  | SOC Student                           | Edit event description in my schedule                                  | I can have flexibility in my schedule                                        |
-| `* * *`  | SOC Student                           | Edit the event time in my schedule                                     | I can have flexibility in my schedule                                        |
-| `* * *`  | SOC Student                           | Mark an event complete in my schedule                                  | I can track which events I have completed                                    |
+| `*`      | SOC Student                           | Add a meeting link to an event in my schedule                          | I can quickly join a online meeting                                          |
+| `* *`    | SOC Student                           | Edit event description in my schedule                                  | I can have flexibility in my schedule                                        |
+| `* *`    | SOC Student                           | Edit the event time in my schedule                                     | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | Delete an event from my schedule from my schedule                      | I can have flexibility in my schedule                                        |
-| `* *`    | SOC Student                           | Remove the person I am working with for an event                       | I can track who I need to work with for an event                             |
-| `*`      | SOC Student                           | View events in my schedule                                             | I can have a better sense of what will happen in the following days or weeks |
-| `* * *`  | SOC Student                           | View events for today                                                  | I can have a better sense of what will happen in the following hours         |
-| `* * *`  | SOC Student                           | Sort the tasks based on the deadline                                   | I can proceed with the task that is closer to the deadline                   |
+| `*`      | SOC Student                           | Remove the person I am working with for an event                       | I can track who I need to work with for an event                             |
+| `* * *`  | SOC Student                           | View events in my schedule                                             | I can have a better sense of what will happen in the following days or weeks |
+| `* *`    | SOC Student                           | View events for today                                                  | I can have a better sense of what will happen in the following hours         |
+| `* *`    | SOC Student                           | Sort the tasks based on the deadline                                   | I can proceed with the task that is closer to the deadline                   |
 | `*`      | SOC Student                           | Get alerts for impending events                                        | I can prepare ahead of time for the event                                    |
-| `* * *`  | SOC Student                           | Add the schedule of what I want to do and what I really do             | I can reflect which part of the day being not productive                     |
-| `* * *`  | SOC Student                           | Set alert time frame for events                                        | I can prepare ahead of time                                                  |
+| `*`      | SOC Student                           | Add the schedule of what I want to do and what I really do             | I can reflect which part of the day being not productive                     |
+| `*`      | SOC Student                           | Set alert time frame for events                                        | I can prepare ahead of time                                                  |
 | `* *`    | SOC Student                           | Set colours to events                                                  | I can categorise my events                                                   |
 | `* *`    | SOC Student                           | Set colours to tasks                                                   | I can categorise my tasks                                                    |
-| `*`      | SOC Student                           | highlight the events that are very important                           | I can differentiate the important tasks from the rest                        |
-| `* * *`  | SOC Student                           | record the progress of a habit user want to cultivate                  | I can cultivate a lot of good habits                                         |
-| `* * *`  | SOC Student                           | write a diary each day                                                 | I can record my life                                                         |
+| `* *`    | SOC Student                           | highlight the events that are very important                           | I can differentiate the important tasks from the rest                        |
+| `*`      | SOC Student                           | record the progress of a habit user want to cultivate                  | I can cultivate a lot of good habits                                         |
+| `*`      | SOC Student                           | write a diary each day                                                 | I can record my life                                                         |
 | `*`      | SOC Student with many project modules | know who I am doing the task with                                      | it is easier to schedule meetings or discussions with my group mates         |
-| `* * *`  | SOC Student                           | keep track of the progress of each module                              | I can finish all tasks well and on time                                      |
-| `* * *`  | SOC Student                           | categorise my tasks                                                    | I can group my tasks to have a clearer schedule                              |
-| `* * *`  | SOC Student                           | find out the free time between events                                  | fill in other activities to achieve better time management                   |
-| `* * *`  | SOC Student taking several projects   | have a better sense on the project tasks assigned and the due date     | I can finish the tasks assigned on time                                      |
+| `*`      | SOC Student                           | keep track of the progress of each module                              | I can finish all tasks well and on time                                      |
+| `* *`    | SOC Student                           | categorise my tasks                                                    | I can group my tasks to have a clearer schedule                              |
+| `* *`    | SOC Student                           | find out the free time between events                                  | fill in other activities to achieve better time management                   |
+| `*`      | SOC Student taking several projects   | have a better sense on the project tasks assigned and the due date     | I can finish the tasks assigned on time                                      |
 
 *{More to be added}*
 
@@ -297,73 +296,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: UCXX - Add a task**
+**Use case: UC01 - Add a task**
 
 **MSS**
 
 1. User wishes to add a new task.
 2. User enters the required parameters.
 3. SOChedule displays a success message for adding the task.
+<br><br>
+Use case ends.
 
 **Extensions**
 
-* 2a. The given parameters are invalid.
+* 2a. Some required information about the event is missing in the command.
 
-    * 2 a1. SOChedule shows an error message.
+    * 1a1. SOChedule displays an error message suggesting that information provided when creating
+      the event is incomplete.  
+      Use case ends.
 
-      Use case resumes at step 1.
 
-**Use case: UCXX - List tasks**
+* 2b. The date provided for the event is invalid
+
+    * 1b1. SOChedule displays an error message suggesting that date provied for the event
+      is invalid, or not following the `YYYY-MM-DD` format.  
+      Use case ends.
+
+**Use case: UC02 - List tasks**
 
 **MSS**
 
 1. User wishes to add a new task.
 2. User enters the corresponding command.
 3. SOChedule displays all tasks.
+<br><br>
+Use case ends.   
 
-**Use case: UCXX - Delete a task**
+**Use case: UC03 - Delete a task**
 
 **MSS**
 
-1. User requests to list tasks.
+1. User requests to <u> list tasks (UC02)</u>. 
 2. SOChedule shows a list of tasks.
 3. User chooses to delete a task.
 4. User enters the index of the task to be deleted.
 5. SOChedule displays a success message for deleting the task.
-
-
-    Use case ends.
+<br><br>
+Use case ends.
 
 **Extensions**
 
 * 2a. The task list is empty.
 
   Use case ends.
-
+  
+  <br>
+  
 * 3a. The given index is invalid.
 
     * 3a1. SOChedule shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: UCXX - Mark a task as completed**
+**Use case: UC04 - Mark a task as completed**
 
 **MSS**
 
-1. User requests to list tasks.
+1. User requests to <u> list tasks (UC02)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to mark a task as completed.
 4. User enters the index of the task to be marked.
 5. SOChedule displays a success message for marking the task as completed.
-
-
-    Use case ends.
+<br><br>
+Use case ends.   
 
 **Extensions**
 
 * 2a. The task list is empty.
 
   Use case ends.
+
 
 * 3a. The given index is invalid.
 
@@ -371,13 +382,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
       
-**Use case: UCXX - Add an event**
+**Use case: UC05 - Add an event**
 
 **MSS**
 
 1. User requests to add a new event.
-1. SOChedule displays a success message for adding the event.  
-   Use case ends.
+1. SOChedule displays a success message for adding the event.
+<br><br>
+Use case ends.
 
 **Extensions**
 
@@ -387,24 +399,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       the event is incomplete.  
       Use case ends.
 
+
 * 1b. The date provided for the event is invalid
 
     * 1b1. SOChedule displays an error message suggesting that date provied for the event 
       is invalid, or not following the `YYYY-MM-DD` format.  
       Use case ends.
+      
+**Use case: UC06 - List events**
 
-**Use case: UCXX - Delete an event**
+**MSS**
+
+1. User requests to list all events in the SOChedule.
+1. SOChedule displays a list of all events added.
+<br><br>
+Use case ends.
+
+**Extensions**
+
+* 1a. No events have been added.
+    * 1a1. SOChedule displays an empty list.  
+      Use case ends.
+      
+**Use case: UC07 - Delete an event**
       
 **MSS**
 
-1. User requests to list events.
+1. User requests to <u> list events (UC06)</u>.
 2. SOChedule shows a list of events.
 3. User chooses to delete an event.
 4. User enters the index of the event to be deleted.
 5. SOChedule displays a success message for deleting the event.
-
-
-    Use case ends.
+<br><br>
+Use case ends.   
 
 **Extensions**
 
@@ -412,25 +439,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+
 * 3a. The given index is invalid.
 
     * 3a1. SOChedule shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: UCXX - List events**
-
-**MSS**
-
-1. User requests to list all events in the SOChedule.
-1. SOChedule displays a list of all events added.  
-   Use case ends.
-
-**Extensions**
-
-* 1a. No events have been added.
-    * 1a1. SOChedule displays an empty list.  
-      Use case ends.
       
 *{More to be added}*
 
@@ -449,7 +464,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Event**: Activities that start at a specific time and ends at a specific time.
+* **Task**: Activities to be undertaken that can be marked complete/incomplete. Optionally it has a date field to indicate deadlines.
 
 --------------------------------------------------------------------------------------------------------------------
 
