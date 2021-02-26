@@ -130,6 +130,28 @@ Examples:
 * `search raffles hwa` returns students studying in `Raffles Institution`,
   `Hwa chong institution`, and also students whose name consists of Hwa or Raffles if there is any.
 
+Searches for a student’s contact whose contact name contains any of the given keywords.
+
+Format: `search n/KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive.
+
+  E.g. `TAN` will match `Tan`
+* The order of the keywords does not matter.
+
+  E.g. `Tan Alice` will match `Alice Tan`
+* Only the name is searched.
+* Only full words will be matched.
+
+  E.g. `Ta` will not match `Tan`
+* Contacts matching at least one keyword will be returned.
+
+  E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`
+
+Examples:
+* `search n/eliza` returns `Eliza` and `Eliza Ng`
+* `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
+
 Searches for contacts from a specific school using keywords
 
 Format: `search s/KEYWORD [MORE_KEYWORDS]`
