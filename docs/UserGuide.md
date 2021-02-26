@@ -102,7 +102,7 @@ Adds a profile picture to an existing person in FriendDex.
 
 Format: `picture INDEX FILE_PATH`
 
-* The image of the person should be at FILE_PATH.
+* The image of the person should be at `FILE_PATH`.
 
 Examples:
 * `picture 1 /Users/john/Desktop/jake.png`
@@ -194,6 +194,20 @@ Exits the program.
 
 Format: `exit`
 
+### Styling the application : `theme`
+
+Format `theme THEME_PATH`
+
+* Applies the theme specified in `THEME_PATH`.
+* The currently applied theme will be saved and applied on subsequent sessions.
+* See also: [Theme](#theme)
+
+Example:
+* `theme theme/solarized.dark.json` applies the theme `solarized.dark.json` located at `./theme/`.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If the theme supplied is not found or unreadable, then the default theme will be applied.
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Dashboard
@@ -215,6 +229,44 @@ FriendDex data is saved as a JSON file `[JAR file location]/data/frienddex.json`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FriendDex will discard all data and start with an empty data file at the next run.
 </div>
+
+## Theme
+### Theme format
+
+A valid theme is a JSON object containing the following fields:
+| Name         | Type         | Description                                                                                                                                                             |
+|--------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `foreground` | `String`     | The foreground color of the application in valid hex color string                                                                                                       |
+| `background` | `String`     | The background color of the application in valid hex color string                                                                                                       |
+| `color`      | `String[16]` | Colors 0 to 15 of the application in valid hex color strings. Refer to [XTerm colors](https://invisible-island.net/xterm/manpage/xterm.html#h3-VT100-Widget-Resources). |
+
+A sample theme (Monokai Dark)
+```
+{
+  "name": "",
+  "author": "",
+  "color": [
+    "#272822",
+    "#f92672",
+    "#a6e22e",
+    "#f4bf75",
+    "#66d9ef",
+    "#ae81ff",
+    "#a1efe4",
+    "#f8f8f2",
+    "#75715e",
+    "#f92672",
+    "#a6e22e",
+    "#f4bf75",
+    "#66d9ef",
+    "#ae81ff",
+    "#a1efe4",
+    "#f9f8f5"
+  ],
+  "foreground": "#f8f8f2",
+  "background": "#272822"
+}
+```
 
 --------------------------------------------------------------------------------------------------------------------
 
