@@ -209,6 +209,8 @@ Example:
 If the theme supplied is not found or unreadable, then the default theme will be applied.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Dashboard
 ### Upcoming Events
 
