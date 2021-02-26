@@ -4,12 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
 
 import java.util.Iterator;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 
 // To implement:
 // Class: Tutor, DuplicateTagException, TagNotFoundException
@@ -21,7 +23,7 @@ public class TutorList implements Iterable<Tutor> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent tutor as the given argument.
      */
     public boolean contains(Tutor toCheck) {
         requireNonNull(toCheck);
@@ -29,8 +31,8 @@ public class TutorList implements Iterable<Tutor> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds tutor to the list.
+     * The tutor must not already exist in the list.
      */
     public void add(Tutor toAdd) {
         requireNonNull(toAdd);
@@ -40,9 +42,24 @@ public class TutorList implements Iterable<Tutor> {
         internalList.add(toAdd);
     }
 
+    public void setTutor(Tutor target, Tutor editedTutor) {
+        requireAllNonNull(target, editedTutor);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TutorNotFoundException();
+        }
+
+        if (!target.isSameTutor(editedTutor) && contains(editedTutor)) {
+            throw new DuplicateTutorException();
+        }
+
+        internalList.set(index, editedTutor);
+    }
+
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent tutor from the list.
+     * The tutor must exist in the list.
      */
     public void remove(Tutor toRemove) {
         requireNonNull(toRemove);
@@ -57,8 +74,8 @@ public class TutorList implements Iterable<Tutor> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code tutors}.
+     * {@code tutors} must not contain duplicate tutors.
      */
     public void setTutors(List<Tutor> tutors) {
         requireAllNonNull(tutors);
@@ -94,7 +111,7 @@ public class TutorList implements Iterable<Tutor> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code tutors} contains only unique tutors.
      */
     private boolean tutorsAreUnique(List<Tutor> tutors) {
         for (int i = 0; i < tutors.size() - 1; i++) {
