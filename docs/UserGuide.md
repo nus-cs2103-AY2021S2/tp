@@ -14,25 +14,29 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `diettrack.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you will be launching DieTrack from on a daily basis.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
+   
+   * **`bmi`**`h/150 w/70 i/75`: Initializes the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg.
 
-   * **`list`** : Lists all contacts.
+   * **`bmi`**`query`: Queries the current user's BMI with its height and weight information.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`bmi`**`update h/170 w/70 i/80`: Updates the current user BMI to height of 170cm, weight of 70kg and ideal weight of 80kg.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`plan`**`bmi recommended`: Queries the recommended diet plans based on user's BMI.
 
-   * **`clear`** : Deletes all contacts.
+   * **`plan`**`t/Protein`: Queries more information of the Protein diet plan.
 
-   * **`exit`** : Exits the app.
+   * **`food`**`d/today n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for today.
+   
+   * **`food`**`query d/today`: Queries the food intake for today.
 
 1. Refer to the [Features](#features) below for details of each command.
 
