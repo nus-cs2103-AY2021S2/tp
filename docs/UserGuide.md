@@ -123,7 +123,7 @@ Outcome:
 * `reminder is turned on!`
 * `reminder is turned off!`
 
-### Add an Assignment/Event/Exam: `event/deadline`
+### Add an Assignment/Event/Exam: `assignment/event/exam`
 
 Adds an assignment/event/exam with deadlines or/and module to the calendar.
 
