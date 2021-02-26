@@ -143,7 +143,7 @@ Examples:
 
 ### Listing all events : `list events`
 
-Shows a list of all events. Events are sorted by date
+Shows a list of all events. Events are sorted by date.
 
 Format: `list`
 
