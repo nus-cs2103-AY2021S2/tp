@@ -262,16 +262,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Taskify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+---
+**Use case 1: Delete a Task**
+
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all Tasks
+2.  Taskify shows a list of Tasks
+3.  User requests to delete a specific Task in the list
+4.  Taskify deletes the Task
 
     Use case ends.
 
@@ -283,9 +285,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Taskify shows an error message.
 
       Use case resumes at step 2.
+---
+**Use case 2: Add a Task**
+
+**MSS**
+
+1.  User requests to add a Task to the list
+2.  Taskify adds the Task to the list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The Task to be added already exists in the list
+    * 1a1. **Taskify informs the User that there is already such a Task**
+    
+* 1b. Taskify detects errors in the User's input
+    * 1b1. **Settled later**
+---
+**Use case 3: Mark a Task as complete**
+
+**MSS**
+1.  User requests to list all Tasks
+2.  Taskify shows a list of Tasks
+3.  User requests to mark a Task as complete
+4.  Taskify marks the Task as complete
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The Task is already marked as complete
+    * 3a1. **Settled Later**
+---
+**Use case 4: View deadline of a Task**
+
+---
+**Use case 5: List all Tasks**
+
+---
+**Use case 6: Tag a Task**
+
+---
+**Use case 7: View Tasks with specific tag(s)**
+
+---
+**Use case 8: Modify a Task's tag(s)**
+
+    
 
 *{More to be added}*
 
