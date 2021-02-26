@@ -36,31 +36,19 @@ git
 * Role: Developer
 * Responsibilities: Code quality
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/maxxng.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/maxxng.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
 ### Chloe Lau
 
 <img src="images/mesyeux.png" width="200px">
 
 [[github](http://github.com/mesyeux/ip)]
 [[portfolio](team/mesyeux.md)]
+
+### Lim Junxue
+
+<img src="images/limjunxue.png" width="200px">
+
+[[github](http://github.com/LimJunxue)]
+[[portfolio](team/limjunxue.md)]
 
 * Role: Developer
 * Responsibilities: UI
