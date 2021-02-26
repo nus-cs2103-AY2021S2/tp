@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/dvdweien.png" width="200px">
 
 [[github](http://github.com/dvdweien)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/dvdweien.md)]
 
 * Role: Developer
 * Responsibilities: Integration
