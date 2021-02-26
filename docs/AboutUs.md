@@ -1,59 +1,55 @@
----
-layout: page
-title: About Us
----
+#About Us
 
+Bookcoin to the Moon was developed by the team CS2103-W17-3.
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wang Xuanqi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xuanqi966.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/xuanqi966)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer, team lead
+* Responsibilities: 
 
-### Jane Doe
+### Ni Jiaying
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ninijiaying.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ninijiaying)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer, integration
+* Responsibilities: 
 
-### Johnny Doe
+### Vanessa Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vvan-essa.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/vvan-essa)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Developer, deliverables and deadlines
+* Responsibilities: 
 
-### Jean Doe
+### Ho Jie Feng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hojiefeng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/hojiefeng)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer, code quality
+* Responsibilities: 
 
-### James Doe
+### Wu Weiming
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ming-00.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ming-00)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer, documentation
+* Responsibilities: 
