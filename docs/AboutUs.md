@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Yap Jing Kang
 
-<img src="images/yapjingkang.png" width="200px">
+<img src="images/souluseless.png" width="200px">
 
 [[github](http://github.com/souluseless)]
 [[portfolio](team/johndoe.md)]
