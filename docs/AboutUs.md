@@ -16,6 +16,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/maxxng)]
 [[portfolio](team/maxxng.md)]
 
+### Lee Han Bin
+
+<img src="images/habi39.png" width="200px">
+
+[[homepage](http://www.comp.nus.edu.sg/~habi39)]
+[[github](https://github.com/habi39)]
+[[portfolio](team/habi39.md)]
+
 * Role: Project Advisor
 
 ### Tay Kai Xiang
