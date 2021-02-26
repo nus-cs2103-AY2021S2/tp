@@ -270,32 +270,170 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `BookCoin To The Moon` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a venue**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to delete a specific venue.
+2.  BookCoin To The Moon deletes the venue.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given venue is invalid.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC02 - Delete a booking**
+
+**MSS**
+
+1.  User requests to delete a specific booking.
+2.  BookCoin To The Moon deletes the booking.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given booking is invalid.
+
+    * 1a1. AddressBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC03 - Add a venue**
+
+**MSS**
+
+1.  User requests to add a new venue into the system.
+2.  BookCoin To The Moon adds the venue into the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The venue to be added is already in the system.
+    * 1a1. BookCoin To The Moon shows an error message.
 
   Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC04 - Add a booking**
 
-      Use case resumes at step 2.
+**MSS**
 
-*{More to be added}*
+1.  User requests to add a new booking into the system.
+2.  BookCoin To The Moon adds the booking into the system.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The booking to be added is already in the system.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+**Use case: UC05 - List all bookings**
+
+**MSS**
+
+1.  User requests to list all bookings.
+2.  BookCoin To The Moon shows a list of bookings.
+
+    Use case ends.
+
+**Use case: UC06 - List all venues**
+
+**MSS**
+
+1.  User requests to list all venues.
+2.  BookCoin To The Moon shows a list of venues.
+
+    Use case ends.
+
+**Use case: UC07 - Find a booking**
+
+**MSS**
+
+1.  User requests to find information about a specific booking.
+2.  BookCoin To The Moon shows the information for that booking.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The booking requested cannot be found.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+**Use case: UC08 - Find a venue**
+
+**MSS**
+
+1.  User requests to find information about a specific venue.
+2.  BookCoin To The Moon shows the information for that venue.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The venue requested cannot be found.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+**Use case: UC09 - Edit a venue**
+
+**MSS**
+
+1.  User requests to edit information about a specific venue.
+2.  BookCoin To The Moon edits the venue information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The venue requested cannot be found.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+**Use case: UC10 - Edit a booking**
+
+**MSS**
+
+1.  User requests to edit information about a specific booking.
+2.  BookCoin To The Moon edits the booking information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The booking requested cannot be found.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+
+**Use case: UC11 - Exit the program**
+
+**MSS**
+
+1.  User requests to exit the program.
+2.  BookCoin To The Moon closes the window and terminates.
+
+    Use case ends.
+
+
 
 ### Non-Functional Requirements
 
