@@ -5,21 +5,21 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 ## Table of Contents
 
 <!--ts-->
-* [Introduction](##Introduction)
-* [Quick start](##Quick-start)
-* [Features](##Features)
-* [Body Mass Index (BMI) Tracker](##1.-Body-Mass-Tracker)
-  * [Input weight, height and ideal weight](###1.1-Input-weight,-height-and-ideal-weight-:-`bmi`)
-  * [Query weight, height and BMI](###1.3-Update-weight,-height-and-ideal-weight-:-`bmi-update`)
-  * [Update weight, height and ideal weight](###1.3-Update-weight,-height-and-ideal-weight-:-`bmi-update`)
-* [Diet Plan Selector](##2.-Diet-Plan-Selector)
-  * [Get diet recommendations based on current BMI](###2.1-Get-diet-recommendations-based-on-current-BMI-:-`plan-diet-recommend`)
-  * [View active diet plan](###2.2-View-active-diet-plan-:-`plan`)
-  * [Select active diet plan](###2.3-Select-active-diet-plan-:-`plan-select`)
-* [Macronutrients Tracker](##-3.-Macronutrients-Tracker)
-  * [Input carbohydrates, fats and protein intake](###3.1-Input-carbohydrates,-fats-and-protein-intake-:-`food`)
-  * [List food intake for certain days](###3.2-List-food-intake-for-certain-days-:-`food-query`)
-* [Command summary](##Command-summary)
+* [Introduction](#introduction)
+* [Quick start](#quick-start)
+* [Features](#features)
+* [Body Mass Index (BMI) Tracker](#1-body-mass-index-bmi-tracker)
+  * [Input weight, height and ideal weight](#11-input-weight-height-and-ideal-weight)
+  * [Query weight, height and BMI](#12-query-weight-height-and-bmi)
+  * [Update weight, height and ideal weight](#13-update-weight-height-and-ideal-weight)
+* [Diet Plan Selector](#2-diet-plan-selector)
+  * [Get diet recommendations based on current BMI](#21-get-diet-recommendations-based-on-current-bmi)
+  * [View active diet plan](#22-view-active-diet-plan)
+  * [Select active diet plan](#23-select-active-diet-plan)
+* [Macronutrients Tracker](#3-macronutrients-tracker)
+  * [Input carbohydrates, fats and protein intake](#31-input-carbohydrates-fats-and-protein-intake)
+  * [List food intake for certain days](#32-list-food-intake-for-certain-days)
+* [Command summary](#command-summary)
 <!--te-->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 
 ## 1. Body Mass Index (BMI) Tracker
 
-### 1.1 Input weight, height and ideal weight : `bmi`
+### 1.1 Input weight, height and ideal weight
 
 Shows a message explaning how to access the help page.
 
@@ -54,7 +54,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### 1.2 Query weight, height and BMI : `bmi query`
+### 1.2 Query weight, height and BMI
 
 Adds a person to the address book.
 
@@ -68,7 +68,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### 1.3 Update weight, height and ideal weight : `bmi update`
+### 1.3 Update weight, height and ideal weight
 
 Shows a list of all persons in the address book.
 
@@ -91,7 +91,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### 2.1 Get diet recommendations based on current BMI : `plan diet recommend`
+### 2.1 Get diet recommendations based on current BMI
 
 Finds persons whose names contain any of the given keywords.
 
@@ -109,7 +109,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### 2.2 View active diet plan : `plan`
+### 2.2 View active diet plan
 
 Deletes the specified person from the address book.
 
@@ -123,7 +123,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### 2.3 Select active diet plan : `plan select`
+### 2.3 Select active diet plan
 
 
 ## 3. Macronutrients Tracker
@@ -132,13 +132,13 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### 3.1 Input carbohydrates, fats and protein intake : `food`
+### 3.1 Input carbohydrates, fats and protein intake
 
 Exits the program.
 
 Format: `exit`
 
-### 3.2 List food intake for certain days : `food query`
+### 3.2 List food intake for certain days
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
