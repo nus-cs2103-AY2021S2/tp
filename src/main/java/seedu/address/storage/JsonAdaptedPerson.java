@@ -10,8 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.plan.*;
+
 import seedu.address.model.plan.Description;
+import seedu.address.model.plan.Plan;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,7 +58,8 @@ class JsonAdaptedPerson {
         }
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Description.class.getSimpleName()));
         }
         if (!Description.isValidAddress(address)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
