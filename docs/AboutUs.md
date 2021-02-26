@@ -12,13 +12,15 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/assyarul.png" width="200px">
 
 [[github](https://github.com/assyarul)]
+
 * Role: Developer
 
 ### Lin Lue
 
-<img src="images/linlue.jpg" width="200px">
+<img src="images/linlue.png" width="200px">
 
 [[github](https://github.com/lue97)]
+
 * Role: Developer
 
 ### Chester How
@@ -30,3 +32,11 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: UI + Integration
+
+### Tan Jun Han Ivan
+
+<img src="images/ivan.png" width="200px">
+
+[[github](https://github.com/ivantjh)]
+
+* Role: Developer
