@@ -21,7 +21,7 @@ class JsonAdaptedInsurancePolicy {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code InsurancePolicy} into this class for Jackson use.
      */
     public JsonAdaptedInsurancePolicy(InsurancePolicy source) {
         policyId = source.policyId;
