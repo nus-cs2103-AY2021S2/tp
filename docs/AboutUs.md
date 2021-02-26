@@ -36,24 +36,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code quality
 
-### Johnny Doe
+### Chloe Lau
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mesyeux.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/maxxng.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/maxxng.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/mesyeux/ip)]
+[[portfolio](team/mesyeux.md)]
 
 ### Lim Junxue
 
@@ -61,16 +49,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/LimJunxue)]
 [[portfolio](team/limjunxue.md)]
-
-* Role: Developer
-* Responsibilities: UI
-
-### Chloe Lau
-
-<img src="images/mesyeux.png" width="200px">
-
-[[github](http://github.com/mesyeux/ip)]
-[[portfolio](team/mesyeux.md)]
 
 * Role: Developer
 * Responsibilities: UI
