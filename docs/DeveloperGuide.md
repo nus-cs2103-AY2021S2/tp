@@ -236,29 +236,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* residents in a household
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: A centralized inventory manager that helps to track the location of items in a household, their individual quantities and respective expiry dates.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                                                    | I want to …​                                                         | So that I can…​                          |
+| -------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------- |
+| `* * *`  | user who stores expendable items not at a central location                    | add the location of each item to a central location before placing them | locate it easily later                      |
+| `* * *`  | user who is lazy to move around and consolidate the items at a specific place | search all the items at a specific place                                |                                             |
+| `* * *`  | forgetful user living in a household with many items                          | check if I have a particular item at home                               | prevent myself from buying it accidentally  |
+| `* * *`  | user who has a storeroom filled with many expendable items                    | know the expiry items of all the items from a single location           | keep track of them one by one               |
+| `* *`    | user who uses and stocks up household items often                             | update the expiry dates and quantities of the items                     |                                             |
+| `*`      | user who likes things to be organized                                         | know an overview of all the items categorised into the different rooms  |                                             |
+| `*`      | user who has a lot of expendable items                                        | sort my items to see which item expires first                           | stock them up first                         |
+| `*`      | forgetful user                                                                | know where specific items are placed                                    | locate them easily with a simple search     |
 
 ### Use cases
 
