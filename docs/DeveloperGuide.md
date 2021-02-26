@@ -275,13 +275,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The tutor name/date/time is empty.
+* 1a. The tutor name, date of appointment or start and end time is empty.
   
     * 1a1. TutorTracker shows an error message.
     
       Use case ends.
 
-* 1b. The given date/time is invalid.
+* 1b. The given date or start and end time is invalid.
 
     * 1b1. TutorTracker shows an error message.
 
@@ -300,7 +300,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Appointment**: An event in user's local schedule with related details, including tutor's name, date of appointment, start and end time and location(optional).
+* **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
+* **Years of Experience**: Years of experience of tutoring a specific subject.
+* **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
 
 --------------------------------------------------------------------------------------------------------------------
 
