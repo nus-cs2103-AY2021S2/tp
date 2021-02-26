@@ -11,6 +11,9 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+// To implement:
+// Class: Tutor, DuplicateTagException, TagNotFoundException
+// Method: isSameTutor
 public class TutorList implements Iterable<Tutor> {
 
     private final ObservableList<Tutor> internalList = FXCollections.observableArrayList();
@@ -32,7 +35,7 @@ public class TutorList implements Iterable<Tutor> {
     public void add(Tutor toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTutorException();
         }
         internalList.add(toAdd);
     }
@@ -44,18 +47,23 @@ public class TutorList implements Iterable<Tutor> {
     public void remove(Tutor toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new TutorNotFoundException();
         }
+    }
+
+    public void setTutors(seedu.address.model.person.TutorList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Tutor> tutors) {
+    public void setTutors(List<Tutor> tutors) {
         requireAllNonNull(tutors);
         if (!tutorsAreUnique(tutors)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTutorException();
         }
 
         internalList.setAll(tutors);
