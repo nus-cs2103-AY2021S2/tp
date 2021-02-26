@@ -5,55 +5,51 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email ``
 
 ## Project team
 
-### John Doe
+### Kingsley Kuan Jun Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kingsleykuan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/kingsleykuan)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Koh Vinleon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glatituden.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/glatituden)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Lim Yong Jian Jared
+
+<img src="images/jared98lyj.png" width="200px">
+
+[[github](http://github.com/jared98lyj)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+
+### Winnie Ho Yi Xuan
+
+<img src="images/winniehyx.png" width="200px">
+
+[[github](http://github.com/winniehyx)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+
+### Zou Yuting
+
+<img src="images/yutingzou.png" width="200px">
+
+[[github](http://github.com/yutingzou)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
