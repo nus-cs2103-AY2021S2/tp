@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Michael Png
+### Michael Ong
 
 <img src="images/maikongeh.png" width="200px">
 
