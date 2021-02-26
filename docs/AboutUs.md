@@ -11,10 +11,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Alzahrani Riyadh Hamdan S
 
-<img src="images/Riyadh.jpg" width="200px">
+<img src="images/riyadh-h.jpg" width="200px">
 
 [[github](https://github.com/riyadh-h)]
-[[portfolio](team/Riyadh.md)]
+[[portfolio](team/riyadh-h.md)]
 
 * Role: Member
 * Responsibilities: Full Stack Developer
