@@ -2,13 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -121,4 +124,19 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code Collection<String> policies} into a {@code List<InsurancePolicy>}.
+     */
+    public static List<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
+        requireNonNull(policies);
+        final List<InsurancePolicy> policyList = new ArrayList<>();
+        for (String policyId : policies) {
+            requireNonNull(policyId);
+            policyList.add(new InsurancePolicy(policyId));
+        }
+        return policyList;
+    }
+
+
 }
