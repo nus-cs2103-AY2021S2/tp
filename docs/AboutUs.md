@@ -23,7 +23,7 @@ You can reach us at the email `zhengyong@u.nus.edu`
 
 ### Guo Yichao
 
-<img src="images/yichao.png" width="200px">
+<img src="images/gycc7253.png" width="200px">
 
 [[github](http://github.com/gycc7253)]
 [[portfolio](team/gycc7253.md)]
