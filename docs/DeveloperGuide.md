@@ -45,7 +45,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 **Value proposition**:
 1. Specific properties of each cheese
-2. Track order status of each cheese (either by batch or by individual)
+2. Track order status of each cheese (either by batches or individually)
 
 
 ### User stories
@@ -69,6 +69,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `CHIM` and the **Actor** is the `user`, unless specified otherwise)
+
+#### Use case: Input a new order
+
+**MSS**
+
+1. User adds an order by specifying the cheese type and quantity of the order, and the phone number of the customer.
+2. CHIM creates the order.
+3. CHIM shows the details of the new order.
+
+   Use case ends.
+
+**Extensions**
+1a. The given cheese quantity is invalid.
+  * 1a1. CHIM shows an error message.
+    
+    Use case resumes at step 1.
+
+1b. The customer with the given phone number cannot be found.
+  * 1b1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+2a. The current cheese supply is insufficient to fulfil the order.
+  * 2a1. CHIM will show a warning message.
+
+    Use case resumes at step 3.
+
+#### Use case: Input a cheese
+
+**MSS**
+
+1. User adds a cheese to the inventory by specifying its type and quantity.
+2. CHIM shows a confirmation message that the cheese has been added.
+   
+   Use case ends.
+
+**Extensions**
+1a. The given cheese quantity is invalid.
+  * 1a1. CHIM shows an error message.
+
+    Use case reumes at step 1.
 
 #### Use case: Input a Customer
 
