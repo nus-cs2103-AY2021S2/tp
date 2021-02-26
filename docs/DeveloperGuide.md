@@ -1,6 +1,6 @@
 ### Use cases
 
-(For all use cases below, the **Body Mass Index (BMI) Tracker** is the `BMITracker`, **Diet Plan Selector** is the `DietSelector`, **Macronutrients Tracker is the `MacroTracker` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **Body Mass Index (BMI) Tracker** is the `BMITracker`, **Diet Plan Selector** is the `DietSelector`, **Macronutrients Tracker** is the `MacroTracker` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Calculate BMI**
 
