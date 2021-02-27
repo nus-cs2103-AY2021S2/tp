@@ -146,6 +146,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
+#### Use case: Remove a cheese
+
+**MSS**
+
+1. User enters the index of cheese to be removed.
+2. CHIM removes the cheese from the list of cheese.
+   
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. CHIM responds that there are no existing customers. 
+      
+        Use case ends.
+* 1b. No such cheese with the specified cheese number.
+    * 1b1. CHIM shows an error message.
+    
+        Use case resumes at step 1.
+
+#### Use case: Remove a customer
+
+**MSS**
+
+1. User enters the index of the customer to be removed.
+2. CHIM deletes the customer.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. CHIM responds that there are no existing customers.
+      
+        Use case ends.
+* 1b. The given index is invalid.
+    * 1b1. CHIM shows an error message.
+
+        Use case resumes at step 1.
+
+
 #### Use case: List orders
 
 **MSS**
