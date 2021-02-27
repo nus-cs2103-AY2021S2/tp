@@ -258,10 +258,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
+| `* * *`  | user                                       | add a new student               | keep track of that student's vaccination status                                                                       |
 | `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | user with many persons in the address book | sort persons by _vaccine type_ | Create appointments more easily, depending on which vaccine is administered |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
@@ -307,7 +307,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Vaccine type**: Singapore has two approved COVID-19 vaccines, one developed by Pfizer-BioNTech, 
+  the other by Moderna. Both require two doses, 21 days apart for Pfizer-BioNTech, 28 days apart for Moderna.
+  Two appointments must therefore be created per student. 
 
 --------------------------------------------------------------------------------------------------------------------
 
