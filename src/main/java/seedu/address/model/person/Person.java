@@ -16,7 +16,6 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Phone phone;
     private final Question question;
 
     // Data fields
@@ -26,16 +25,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Phone phone, Question question, Answer answer, Set<Tag> tags) {
-        requireAllNonNull(phone, question, answer, tags);
-        this.phone = phone;
+    public Person(Question question, Answer answer, Set<Tag> tags) {
+        requireAllNonNull(question, answer, tags);
         this.question = question;
         this.answer = answer;
         this.tags.addAll(tags);
-    }
-
-    public Phone getPhone() {
-        return phone;
     }
 
     public Question getQuestion() {
@@ -82,8 +76,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getQuestion().equals(getQuestion())
+        return otherPerson.getQuestion().equals(getQuestion())
                 && otherPerson.getAnswer().equals(getAnswer())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -91,15 +84,13 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(phone, question, answer, tags);
+        return Objects.hash(question, answer, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Phone: ")
-                .append(getPhone())
-                .append("; question: ")
+        builder.append("; question: ")
                 .append(getQuestion())
                 .append("; answer: ")
                 .append(getAnswer());

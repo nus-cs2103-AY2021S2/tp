@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -21,7 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Answer;
 import seedu.address.model.person.Question;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,12 +33,10 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_QUESTION + "question] "
             + "[" + PREFIX_ANSWER + "answer] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
             + PREFIX_QUESTION + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -90,12 +86,11 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Question updatedQuestion = editPersonDescriptor.getQuestion().orElse(personToEdit.getQuestion());
         Answer updatedAnswer = editPersonDescriptor.getAnswer().orElse(personToEdit.getAnswer());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedPhone, updatedQuestion, updatedAnswer, updatedTags);
+        return new Person(updatedQuestion, updatedAnswer, updatedTags);
     }
 
     @Override
@@ -121,7 +116,6 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Phone phone;
         private Question question;
         private Answer answer;
         private Set<Tag> tags;
@@ -133,7 +127,6 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setPhone(toCopy.phone);
             setQuestion(toCopy.question);
             setAnswer(toCopy.answer);
             setTags(toCopy.tags);
@@ -143,15 +136,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(phone, question, answer, tags);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+            return CollectionUtil.isAnyNonNull(question, answer, tags);
         }
 
         public void setQuestion(Question question) {
@@ -202,8 +187,7 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getPhone().equals(e.getPhone())
-                    && getQuestion().equals(e.getQuestion())
+            return getQuestion().equals(e.getQuestion())
                     && getAnswer().equals(e.getAnswer())
                     && getTags().equals(e.getTags());
         }

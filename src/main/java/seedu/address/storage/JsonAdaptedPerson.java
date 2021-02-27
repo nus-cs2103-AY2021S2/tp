@@ -13,7 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Answer;
 import seedu.address.model.person.Question;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,7 +22,6 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String phone;
     private final String question;
     private final String answer;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -32,10 +30,8 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("phone") String phone,
-            @JsonProperty("question") String question, @JsonProperty("answer") String answer,
+    public JsonAdaptedPerson(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.phone = phone;
         this.question = question;
         this.answer = answer;
         if (tagged != null) {
@@ -47,7 +43,6 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        phone = source.getPhone().value;
         question = source.getQuestion().value;
         answer = source.getAnswer().value;
         tagged.addAll(source.getTags().stream()
@@ -66,14 +61,6 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
         if (question == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName()));
         }
@@ -91,7 +78,7 @@ class JsonAdaptedPerson {
         final Answer modelAnswer = new Answer(answer);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelPhone, modelquestion, modelAnswer, modelTags);
+        return new Person(modelquestion, modelAnswer, modelTags);
     }
 
 }

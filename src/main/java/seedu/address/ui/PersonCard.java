@@ -31,8 +31,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label answer;
     @FXML
     private Label question;
@@ -46,7 +44,6 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        phone.setText(person.getPhone().value);
         answer.setText(person.getAnswer().value);
         question.setText(person.getQuestion().value);
         person.getTags().stream()
