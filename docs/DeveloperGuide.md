@@ -236,13 +236,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage exams or events deadlines
 * prefer desktop apps over other types
-* can type fast
+* tend to forget upcoming events/exams
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage deadlines and events faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -251,12 +251,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | new user                                   | see instructions help page     | refer to help page when I forget how to use the App                 |
+| `* * *`  | student taking numerous modules            | add events/exams/assignments deadlines              |                                                                        |
+| `* * *`  | user                                       | delete a deadline               | view the ones that matter                                  |
+| `* * *`  | user                                       | edit a deadline          | can adjust schedule when there is a change of plan |
+| `* *`    | user                                       | view events in a calendar view   | to have a better sense of the upcoming events                |
+| `* *`      | forgetful student | get reminded about the most urgent events/assignments/exams          | finish the deadlines on time   
+| `* `    | student                                    | distinguish among modules,exams and assignments | |
+| `* `    | student                                     | view which friend of mine is enrolled in the same module/event | seek help from them |
 
 *{More to be added}*
 
@@ -286,7 +288,137 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+    
+---
 
+### Use Case: `UC01` - add assignment
+
+**MSS:**
+
+1. User enters the details of assignment.
+2. System adds assignment and displays assignments info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects an error in format in entered data.
+    * 1a1. System display error message.
+    <br> Use case ends.
+
+### Use Case: `UC02` - delete assignment
+
+**MSS:**
+
+1. User enters number to delete a assignment.
+2. System deletes assignment and displays assignments info.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in number in entered data (out of range).
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC03` - view assignments
+
+**MSS:**
+
+1. User enters the command to view assignments.
+2. System shows list of assignments.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC04` - view events
+
+**MSS:**
+
+1. User enters the command to view events.
+2. System shows list of events.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC05` - toggle reminder
+
+**MSS:**
+
+1. User wants to turn on reminder for system.
+2. User enters command to turn on reminder.
+3. System display message that reminder is on.
+   <br> Step 1 - 3 are the same for off.
+   <br> Use case ends at step 3.
+
+**Extensions:**
+
+* 2a. System detects an error in formatting of command.
+    * 2a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC06` - view help
+
+**MSS:**
+
+1. User enters the command to view help.
+2. System shows help and url for more in depth help.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC07` - view calendar
+
+**MSS:**
+
+1. User enters the command to view calendar.
+2. System shows calendar.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC08` - save data
+
+**MSS:**
+
+1. User enters the command to sava data.
+2. System saves data and show saved message.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+
+### Use Case: `UC09` - edit data
+
+**MSS:**
+
+1. User enters the command to edit data.
+2. System edit data and show edited message.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -300,7 +432,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Module**: A school module consists of module ID and module name. 
+* **Examination**: Consists of a start time, end time and date which it occurs on and the relevant module.
+* **Event**: Consists of a start time, end time, and the date which it occurs on.
+* **Assignment**: Consists of a deadlines and the relevant module.
 
 --------------------------------------------------------------------------------------------------------------------
 
