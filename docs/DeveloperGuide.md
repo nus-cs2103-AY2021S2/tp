@@ -275,15 +275,15 @@ _**(more to be added)**_
 
     Use case ends.
 
-**Extensions**
-
 * 3a. The command has invalid date-time format.
 
     * 3a1. StoreMando shows an error message.
-    
+
     * 3a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 3.
+
+
 
 **Use case: UC2 - Delete an item in a specific area**
 
@@ -311,8 +311,58 @@ _**(more to be added)**_
     * 3b1. StoreMando shows an error message.
 
     * 3b2. StoreMando prompt the user for a correct input.
-
+    
       Use case resumes at step 3.
+    
+**Use case: UC3 - List all items in a specific location**
+
+**MSS**
+
+1.  User requests to display all items in that specific location.
+2.  StoreMando displays all items in that specific location.
+
+    Use case ends. 
+
+**Extensions**
+
+* 1a. The location does not exist in the storage.
+
+    * 1a1. StoreMando shows an error message.
+
+    * 1a2. StoreMando prompts the user for a correct input.
+
+      Use case resumes at step 1.
+    
+**Use case: UC4 - Find an item**
+
+**MSS**
+
+1.  User wants to find a particular item with the item’s name.
+2.  StoreMando returns a list of all items whose name contains the given keyword.
+
+    Use case ends.
+
+**Use case: UC5 - Update an item**
+
+**MSS**
+
+1.  User finds a <u>specific item (UC4)</u> that he wants to update.
+2.  StoreMando returns a list of all items whose name contains the given keyword.
+3.  User requests to update that particular item with the new values.
+4.  StoreMando updates and stores the new data, then displays it.    
+    
+    Use case ends.
+
+**Extensions**
+
+* 3a. The item details do not match any item in the storage.
+  
+    * 3a1. StoreMando shows an error message.
+      
+    * 3a2. StoreMando prompt the user for a correct input.
+      
+      Use case resumes at step 3.
+    
 
 *{More to be added}*
 
