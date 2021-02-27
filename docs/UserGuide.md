@@ -110,11 +110,11 @@ Shows the current active diet plan previously selected by the user.
 **Format:** `plan current`
 
 **Expected output:** 
-You are on the Weight Loss Diet (Less-carbs)
-Here's the information tailored to your BMI:
-Daily calories intake: 1,648 kcal
-Daily Protein intake: 145 g
-Daily Carbohydrates intake: 143 g
+You are on the Weight Loss Diet (Less-carbs)\
+Here's the information tailored to your BMI:\
+Daily calories intake: 1,648 kcal\
+Daily Protein intake: 145 g\
+Daily Carbohydrates intake: 143 g\
 Daily Fat intake: 55 g
 
 ### 2.3 Select active diet plan
@@ -126,11 +126,11 @@ Changes the current active diet plan to the newly specified plan.
 **Example:** `start p/1`
 
 **Expected output:**
-You are now on the Weight Loss Diet (Less-carbs)!
-Here's the information tailored to your BMI:
-Daily calories intake: 1,648 kcal
-Daily Protein intake: 145 g
-Daily Carbohydrates intake: 143 g
+You are now on the Weight Loss Diet (Less-carbs)!\
+Here's the information tailored to your BMI:\
+Daily calories intake: 1,648 kcal\
+Daily Protein intake: 145 g\
+Daily Carbohydrates intake: 143 g\
 Daily Fat intake: 55 g
 
 ### 2.4 List all available diet plans
