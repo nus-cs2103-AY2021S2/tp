@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ssagit)]
 [[portfolio](team/ssagit.md)]
 
-* Role: Project Advisor
+* Role: Scheduling & Tracking
 
 ### Jane Doe
 
