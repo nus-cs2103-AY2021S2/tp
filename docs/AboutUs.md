@@ -39,13 +39,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lim Li Quan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ahquanz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/daniellau.md)]
+[[github](http://github.com/ahquanz)]
 
-* Role:
-* Responsibilities:
+[[portfolio](team/ahquanz.md)]
+
+* Role: Developer
+* Responsibilities: 
 
 ### Ng Wei Xue
 
