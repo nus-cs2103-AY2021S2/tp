@@ -38,9 +38,9 @@ You can reach us at the email `e0406245@u.nus.edu`
 
 ### Keith Low Jun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/keithlow.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/fairyinabottle4)] [[portfolio](team/keithlow.md)]
 
 * Role: Developer
 * Responsibilities: Data
