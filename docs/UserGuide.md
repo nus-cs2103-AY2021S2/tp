@@ -96,6 +96,7 @@ Shows a list of all properties and appointments in the app.
 
 Format: `list`
 
+
 ### Sorting : `sort`
 
 Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
@@ -113,13 +114,11 @@ Examples:
 *  `sort appointment asc deadline` Sorts `appointment` by `deadline` in ascending order.
 *  `sort property desc price` Sorts `property` by `price` in descending order.
 
-### Editing an entry : `edit`
+### Editing a property : `edit`
 
-Overwrites the information of the property/appointment according to the flags provided.
+Overwrites the information of the property according to the flags provided.
 
-Formats: 
-* `edit INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]`
-* `edit INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`
+Formats: `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]`
 
 Description:
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
@@ -127,8 +126,21 @@ Description:
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit 1 r/Urgent to sell cn/Alice` Edits the remark and client name of the 1st property to be `Urgent to sell` and `Alice` respectively.
-*  `edit 3 d/2021-03-28 r/at M hotel` Edits the date and remark of the 3rd appointment to be `2021-03-28` and `at M hotel` respectively.
+*  `edit property 1 r/Urgent to sell cn/Alice` Edits the remark and client name of the 1st property to be `Urgent to sell` and `Alice` respectively.
+
+### Editing an appointment : `edit appointment`
+
+Overwrites the information of the appointment according to the flags provided.
+
+Formats: `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`
+
+Description:
+* Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edit appointment 3 d/2021-03-28 r/at M hotel` Edits the date and remark of the 3rd appointment to be `2021-03-28` and `at M hotel` respectively.
 
 ### Updating the status of a property : `update`
 
@@ -243,7 +255,10 @@ Action | Format, Examples
 **Add appointment** | `add appointment n/NAME r/REMARKS d/DATE [t/TIME]` <br> e.g., `add appointment n/Meet Alex r/at M hotel d/17-2-2021 t/1500`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]`<br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
+**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
+**Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
+**Update status** | `update INDEX [proceed][cancel]`<br> e.g.,`update 3 proceed`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Sort** | `sort appointment [asc or desc] <deadline or task type>`<br> e.g., `sort appointment asc deadline`<br><br>`sort property [asc or desc] <price or location or housing type>`<br> e.g., `sort property asc price`
