@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Alzahrani Riyadh Hamdan S
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/riyadh-h.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/riyadh-h)]
+[[portfolio](team/riyadh-h.md)]
 
-* Role: Project Advisor
+* Role: Member
+* Responsibilities: Full Stack Developer
 
-### Jane Doe
+### Dick Jessen William
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jessen11.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jessen11)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Full Stack Developer
 
-### James Doe
+### Otto Alexander Sutianto
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/godjuansan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/godjuansan)] [[portfolio](team/johndoe.md)]
+
+* Role: Member
+* Responsibilities: Full-Stack Developer
+
+### Teo Hoe Keat
+
+<img src="images/teohoekeat.png" width="200px">
+
+[[github](http://github.com/teohoekeat)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Member
+* Responsibilities: Full Stack Developer
+
+### Tian Xindi
+
+<img src="images/xinditian.png" width="200px">
+
+[[github](http://github.com/XindiTian)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Member
+* Responsibilities: Full Stack Developer

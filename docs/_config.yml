@@ -1,5 +1,5 @@
 title: "Dictionote"
-theme: minima
+theme: jekyll-theme-time-machine
 
 header_pages:
   - UserGuide.md
