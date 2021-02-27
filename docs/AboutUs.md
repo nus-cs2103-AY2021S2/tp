@@ -28,13 +28,13 @@ You can reach us at the email `e0406245@u.nus.edu`
 
 ### Lim Si Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/siting.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/SiTingST)]
+[[portfolio](team/limsiting.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Data 
 
 ### Keith Low Jun
 
