@@ -248,7 +248,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students
 
 
 ### User stories
@@ -270,6 +270,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Vax@NUS` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a student entry**
+
+**MSS**
+
+1.  User requests to add a specific student entry.
+2.  System prompts for student details.
+3.  User input the respective details.
+4.  System adds the student entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The specified student entry exist in the system.
+
+    * 1a1. System shows an error message.
+  
+        Use case ends.
+
+
+* 3a. User does not give input to all the required fields to add a student entry.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.
+    
+  Use case ends.
+
+
+**Use case: Add a vaccination appointment**
+
+**MSS**
+
+1.  User requests to add a vaccination appointment.
+2.  System prompts for details about the vaccination appointment.
+3.  User input the respective details.
+4.  System adds the vaccination appointment.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User does not give input to all the required fields to add a vaccination appointment.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.
+        
+* 4a. The given appointment date and time clashes with an existing vaccination appointment for another student.
+    
+   * 4a1. System shows an error message.
+
+      Use case ends.  
+  
+  
 **Use case: Delete a student**
 
 **MSS**
