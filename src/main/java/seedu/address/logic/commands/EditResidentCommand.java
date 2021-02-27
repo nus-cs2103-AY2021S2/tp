@@ -39,7 +39,7 @@ public class EditResidentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_ROOM + "0123";
+            + PREFIX_ROOM + "#01-23";
 
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -142,7 +142,7 @@ public class EditResidentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email);
+            return CollectionUtil.isAnyNonNull(name, phone, email, room);
         }
 
         public void setName(Name name) {

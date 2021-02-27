@@ -5,6 +5,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Room;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -54,6 +55,15 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(new Email(email));
         return this;
     }
+
+    /**
+     * Sets the {@code Room} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRoom(String room) {
+        descriptor.setRoom(new Room(room));
+        return this;
+    }
+
 
     public EditPersonDescriptor build() {
         return descriptor;

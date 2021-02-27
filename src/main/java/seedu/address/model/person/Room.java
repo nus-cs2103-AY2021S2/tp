@@ -10,9 +10,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Room {
     public static final String MESSAGE_CONSTRAINTS =
-            "Room numbers should only contain numbers, and it should be at least 4 digits long";
-    public static final String VALIDATION_REGEX = "\\d{4,}";
+            "Room should be of the format #floor-unit"
+            + "and adhere to the following constraints:\n"
+            + "1. The floor should only contain 2 to 3 numeric characters\n"
+            + "2. This is followed by a '-' and then a unit. "
+            + "The unit must:\n"
+            + "    - contain 2 to 3 numeric characters\n";
     public static final String UNALLOCATED_REGEX = "Room unallocated";
+    public static final String FLOOR_REGEX = "\\d{2,3}";
+    public static final String UNIT_REGEX = "\\d{2,3}";
+    public static final String VALIDATION_REGEX = "#" + FLOOR_REGEX + "-" + UNIT_REGEX;
+
     public final String value;
 
     /**
