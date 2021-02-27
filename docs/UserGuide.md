@@ -101,8 +101,8 @@ Format: `list`
 Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
 
 Formats:
-* `sort appointment <asc or desc> [deadline or task type]`
-* `sort property <asc or desc> [price or location or housing type]`
+* `sort appointment [asc or desc] <deadline or task type>`
+* `sort property [asc or desc] <price or location or housing type>`
 
 Description:
 * Sorts appointment or property by the specified sorting key in ascending or descending order.
@@ -246,6 +246,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Sort** | `sort appointment <asc or desc> [deadline or task type]`<br> e.g., `sort appointment asc deadline`<br><br>`sort property <asc or desc> [price or location or housing type]`<br> e.g., `sort property asc price`
+**Sort** | `sort appointment [asc or desc] <deadline or task type>`<br> e.g., `sort appointment asc deadline`<br><br>`sort property [asc or desc] <price or location or housing type>`<br> e.g., `sort property asc price`
 **Remove an entry** | `delete <appointment or property> INDEX`<br> e.g., `delete appointment 7`
 **Help** | `help`
