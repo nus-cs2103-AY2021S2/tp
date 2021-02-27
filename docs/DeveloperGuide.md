@@ -272,24 +272,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Vax@NUS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: List all students**
-
-**MSS**
-
-1.  User requests to list all students.
-1.  System displays all student records.
-
-    Use case ends.
-    
-**Extensions**
-
-1. List students by vaccination status.
-1. List students by their priority for vaccination.
-   
-   Use case ends.
-
-*{More to be added}*
-
 **Use case: Delete a student**
 
 **MSS**
@@ -313,23 +295,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. User does not confirm.
 
   Use case ends.
-
-*{More to be added}*
-
-**Use case: List all upcoming appointments**
-
-**MSS**
-
-1.  User requests to list all upcoming vaccination appointments.
-1.  System displays all appointments.
-
-    Use case ends.
-
-**Extensions**
-
-1. Group appointments by date.
-
-   Use case ends.
 
 *{More to be added}*
 
