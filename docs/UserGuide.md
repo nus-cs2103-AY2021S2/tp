@@ -66,30 +66,32 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+**Format:** `command`
 
-Format: `help`
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 
 ### 1.2 Query weight, height and BMI
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Format:** `command`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 ### 1.3 Update weight, height and ideal weight
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+**Format:** `command`
+
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 ## 2. Diet Plan Selector
 
@@ -149,17 +151,31 @@ Here are the available diet plans:
 
 Clears all entries from the address book.
 
-Format: `clear`
+**Format:** `command`
+
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 ### 3.1 Input carbohydrates, fats and protein intake
 
 Exits the program.
 
-Format: `exit`
+**Format:** `command`
+
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 ### 3.2 List food intake for certain days
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+**Format:** `command`
+
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 --------------------------------------------------------------------------------------------------------------------
 
