@@ -97,53 +97,53 @@ Format: `list`
 
 Gets a recommended diet plan based on the user's current BMI stored in the system.
 
-Format: `plan recommended bmi`
+**Format:** `plan recommended bmi`
 
-Expected output: 
-> Here is the recommended diet plan for your BMI of 29.4:
-> Weight Loss Diet (Less-carbs)
+**Expected output:**
+Here is the recommended diet plan for your BMI of 29.4:
+1) Weight Loss Diet (Less-carbs)
 
 ### 2.2 View active diet plan
 
 Shows the current active diet plan previously selected by the user.
 
-Format: `plan current`
+**Format:** `plan current`
 
-Expected output: 
-> You are on the Weight Loss Diet (Less-carbs)
-> Here's the information tailored to your BMI:
-> Daily calories intake: 1,648 kcal
-> Daily Protein intake: 145 g
-> Daily Carbohydrates intake: 143 g
-> Daily Fat intake: 55 g
+**Expected output:** 
+You are on the Weight Loss Diet (Less-carbs)
+Here's the information tailored to your BMI:
+Daily calories intake: 1,648 kcal
+Daily Protein intake: 145 g
+Daily Carbohydrates intake: 143 g
+Daily Fat intake: 55 g
 
 ### 2.3 Select active diet plan
 
 Changes the current active diet plan to the newly specified plan.
 
-Format: `start p/plan`
+**Format:** `start p/plan`
 
-Example: `start p/1`
+**Example:** `start p/1`
 
-Expected output:
-> You are now on the Weight Loss Diet (Less-carbs)!
-> Here's the information tailored to your BMI:
-> Daily calories intake: 1,648 kcal
-> Daily Protein intake: 145 g
-> Daily Carbohydrates intake: 143 g
-> Daily Fat intake: 55 g
+**Expected output:**
+You are now on the Weight Loss Diet (Less-carbs)!
+Here's the information tailored to your BMI:
+Daily calories intake: 1,648 kcal
+Daily Protein intake: 145 g
+Daily Carbohydrates intake: 143 g
+Daily Fat intake: 55 g
 
 ### 2.4 List all available diet plans
 
 Displays a list of available diet plans.
 
-Format: `plans`
+**Format:** `plans`
 
-Expected output:
-> Here are the available diet plans:
-> 1) Weight Loss Diet
-> 2) Weight Gain Diet
-> 3) Muscle Gain Diet
+**Expected output:**
+Here are the available diet plans:
+1) Weight Loss Diet
+2) Weight Gain Diet
+3) Muscle Gain Diet
 
 ## 3. Macronutrients Tracker
 
