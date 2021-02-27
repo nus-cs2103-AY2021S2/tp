@@ -8,7 +8,7 @@
   Command Line Interface (CLI)**, as the app will have very limited UI interaction features.
 
 
-###Example usages:
+### Example usages:
 
 * Create, read, update and delete (CRUD) of student profiles which details critical information such as:
     * Contact information
@@ -17,7 +17,7 @@
     * Medical history, existing medical conditions and allergies
 * Creating and managing vaccination appointments for students
 
-###Problems addressed:
+### Problems addressed:
 
 * Eliminates the need for the university to use the Ministry of Health's database.
 * This in turn simplifies the process of contacting, monitoring and administering vaccines for students.
@@ -25,9 +25,9 @@
 * **Goal:** To create a COVID-free NUS campus where student and academic life can flourish without restrictions.
 
 
-###Planned Features:
+### Planned Features:
 
-####v1.2
+#### v1.2
 
 1. On top of the fields already available in AB3, the user will be able to input the following:
     * Student's matriculation number
@@ -40,7 +40,7 @@
    the summarised information on the UI can be viewed.
 1. Create vaccination appointments and display them on the UI.
 
-####v1.3
+#### v1.3
 
 1. Detect duplicate entries.
 1. Sort vaccination appointments and display only upcoming ones.
