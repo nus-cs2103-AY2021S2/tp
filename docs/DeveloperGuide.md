@@ -264,6 +264,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: UC1 - Add an item**
+
+**MSS**
+
+1.  User requests for the storage list.
+2.  StoreMando displays the storage list.
+3.  User input the add command with the item details.
+4.  StoreMando adds the item into the storage and displays the updated list.
+
+    Use case ends.
+
+* 3a. The command has invalid date-time format.
+
+    * 3a1. StoreMando shows an error message.
+
+    * 3a2. StoreMando prompt the user for a correct input.
+
+      Use case resumes at step 3.
+
+
+
+**Use case: UC2 - Delete an item in a specific area**
+
+**MSS**
+
+1.  User wants to <u> list all items in a specific location (UC3). </u>
+2.  StoreMando displays all items in the location.
+3.  User deletes the item in the location.
+4.  StoreMando displays the updated storage.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The item details don't match any item in the storage.
+
+    * 3a1. StoreMando shows an error message.
+
+    * 3a2. StoreMando prompt the user for a correct input.
+
+      Use case resumes at step 3.
+
+* 3b. The command has an out-of-range index.
+
+    * 3b1. StoreMando shows an error message.
+
+    * 3b2. StoreMando prompt the user for a correct input.
+    
+      Use case resumes at step 3.
+    
 **Use case: UC3 - List all items in a specific location**
 
 **MSS**
@@ -271,18 +321,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to display all items in that specific location.
 2.  StoreMando displays all items in that specific location.
 
-    Use case ends.
+    Use case ends. 
 
 **Extensions**
 
 * 1a. The location does not exist in the storage.
-  
-    * 1a1. StoreMando shows an error message.
-      
-    * 1a2. StoreMando prompts the user for a correct input.
-    
-      Use case resumes at step 1.
 
+    * 1a1. StoreMando shows an error message.
+
+    * 1a2. StoreMando prompts the user for a correct input.
+
+      Use case resumes at step 1.
+    
 **Use case: UC4 - Find an item**
 
 **MSS**
@@ -312,21 +362,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a2. StoreMando prompt the user for a correct input.
       
       Use case resumes at step 3.
+    
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 line items in the house without any sluggish performance for typical usage.
+2.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
