@@ -14,7 +14,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.us.among.commons.exceptions.DataConversionException;
 import seedu.us.among.model.EndpointList;
 import seedu.us.among.model.ReadOnlyEndpointList;
-import seedu.us.among.testutil.Assert;
 import seedu.us.among.testutil.TypicalEndpoints;
 
 public class JsonEndpointListStorageTest {
@@ -25,7 +24,7 @@ public class JsonEndpointListStorageTest {
 
     @Test
     public void readEndpointList_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> readEndpointList(null));
+        assertThrows(NullPointerException.class, () -> readEndpointList(null));
     }
 
     private java.util.Optional<ReadOnlyEndpointList> readEndpointList(String filePath) throws Exception {
@@ -45,17 +44,17 @@ public class JsonEndpointListStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> readEndpointList("notJsonFormatEndpointList.json"));
+        assertThrows(DataConversionException.class, () -> readEndpointList("notJsonFormatEndpointList.json"));
     }
 
     @Test
     public void readEndpointList_invalidEndpointList_throwDataConversionException() {
-        Assert.assertThrows(DataConversionException.class, () -> readEndpointList("invalidEndpointList.json"));
+        assertThrows(DataConversionException.class, () -> readEndpointList("invalidEndpointList.json"));
     }
 
     @Test
     public void readEndpointList_invalidAndValidEndpointList_throwDataConversionException() {
-        Assert.assertThrows(DataConversionException.class, () -> readEndpointList("invalidAndValidEndpointList.json"));
+        assertThrows(DataConversionException.class, () -> readEndpointList("invalidAndValidEndpointList.json"));
     }
 
     @Test
@@ -86,7 +85,7 @@ public class JsonEndpointListStorageTest {
 
     @Test
     public void saveEndpointList_nullEndpointList_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveEndpointList(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveEndpointList(null, "SomeFile.json"));
     }
 
     /**
@@ -103,6 +102,6 @@ public class JsonEndpointListStorageTest {
 
     @Test
     public void saveEndpointList_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveEndpointList(new EndpointList(), null));
+        assertThrows(NullPointerException.class, () -> saveEndpointList(new EndpointList(), null));
     }
 }

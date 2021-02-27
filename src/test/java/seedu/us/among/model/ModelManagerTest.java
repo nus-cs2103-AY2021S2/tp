@@ -3,7 +3,10 @@ package seedu.us.among.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.model.Model.PREDICATE_SHOW_ALL_ENDPOINTS;
 import static seedu.us.among.testutil.Assert.assertThrows;
+import static seedu.us.among.testutil.TypicalEndpoints.ALICE;
+import static seedu.us.among.testutil.TypicalEndpoints.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,8 +18,6 @@ import org.junit.jupiter.api.Test;
 import seedu.us.among.commons.core.GuiSettings;
 import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
 import seedu.us.among.testutil.EndpointListBuilder;
-import seedu.us.among.testutil.Assert;
-import seedu.us.among.testutil.TypicalEndpoints;
 
 public class ModelManagerTest {
 
@@ -31,7 +32,7 @@ public class ModelManagerTest {
 
     @Test
     public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
 
     @Test
@@ -50,7 +51,7 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
     }
 
     @Test
@@ -62,7 +63,7 @@ public class ModelManagerTest {
 
     @Test
     public void setEndpointListFilePath_nullPath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setEndpointListFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setEndpointListFilePath(null));
     }
 
     @Test
@@ -74,28 +75,28 @@ public class ModelManagerTest {
 
     @Test
     public void hasEndpoint_nullEndpoint_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.hasEndpoint(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasEndpoint(null));
     }
 
     @Test
     public void hasEndpoint_endpointNotInEndpointList_returnsFalse() {
-        assertFalse(modelManager.hasEndpoint(TypicalEndpoints.ALICE));
+        assertFalse(modelManager.hasEndpoint(ALICE));
     }
 
     @Test
     public void hasEndpoint_endpointInEndpointList_returnsTrue() {
-        modelManager.addEndpoint(TypicalEndpoints.ALICE);
-        assertTrue(modelManager.hasEndpoint(TypicalEndpoints.ALICE));
+        modelManager.addEndpoint(ALICE);
+        assertTrue(modelManager.hasEndpoint(ALICE));
     }
 
     @Test
     public void getFilteredEndpointList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEndpointList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEndpointList().remove(0));
     }
 
     @Test
     public void equals() {
-        EndpointList endpointList = new EndpointListBuilder().withEndpoint(TypicalEndpoints.ALICE).withEndpoint(TypicalEndpoints.BENSON).build();
+        EndpointList endpointList = new EndpointListBuilder().withEndpoint(ALICE).withEndpoint(BENSON).build();
         EndpointList differentEndpointList = new EndpointList();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,12 +118,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentEndpointList, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TypicalEndpoints.ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(endpointList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredEndpointList(Model.PREDICATE_SHOW_ALL_ENDPOINTS);
+        modelManager.updateFilteredEndpointList(PREDICATE_SHOW_ALL_ENDPOINTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

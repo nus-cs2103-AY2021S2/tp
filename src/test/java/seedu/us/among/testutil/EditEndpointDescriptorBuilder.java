@@ -4,13 +4,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Email;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
 import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;
-import seedu.us.among.logic.commands.EditCommand;
 
 /**
  * A utility class to help with building EditEndpointDescriptor objects.

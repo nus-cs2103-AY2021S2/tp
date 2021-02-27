@@ -15,7 +15,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.us.among.commons.core.GuiSettings;
 import seedu.us.among.commons.exceptions.DataConversionException;
 import seedu.us.among.model.UserPrefs;
-import seedu.us.among.testutil.Assert;
 
 public class JsonUserPrefsStorageTest {
 
@@ -26,7 +25,7 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void readUserPrefs_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> readUserPrefs(null));
+        assertThrows(NullPointerException.class, () -> readUserPrefs(null));
     }
 
     private Optional<UserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder) throws DataConversionException {
@@ -41,7 +40,7 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void readUserPrefs_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> readUserPrefs("NotJsonFormatUserPrefs.json"));
+        assertThrows(DataConversionException.class, () -> readUserPrefs("NotJsonFormatUserPrefs.json"));
     }
 
     private Path addToTestDataPathIfNotNull(String userPrefsFileInTestDataFolder) {
@@ -80,12 +79,12 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void savePrefs_nullPrefs_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveUserPrefs(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveUserPrefs(null, "SomeFile.json"));
     }
 
     @Test
     public void saveUserPrefs_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveUserPrefs(new UserPrefs(), null));
+        assertThrows(NullPointerException.class, () -> saveUserPrefs(new UserPrefs(), null));
     }
 
     /**

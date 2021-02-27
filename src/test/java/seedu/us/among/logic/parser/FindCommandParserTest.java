@@ -1,5 +1,6 @@
 package seedu.us.among.logic.parser;
 
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.us.among.logic.commands.FindCommand;
 import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
-import seedu.us.among.commons.core.Messages;
 
 public class FindCommandParserTest {
 
@@ -17,7 +17,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test

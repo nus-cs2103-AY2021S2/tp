@@ -12,7 +12,6 @@ import seedu.us.among.commons.exceptions.IllegalValueException;
 import seedu.us.among.commons.util.JsonUtil;
 import seedu.us.among.model.EndpointList;
 import seedu.us.among.testutil.TypicalEndpoints;
-import seedu.us.among.testutil.Assert;
 
 public class JsonSerializableEndpointListTest {
 
@@ -34,14 +33,14 @@ public class JsonSerializableEndpointListTest {
     public void toModelType_invalidEndpointFile_throwsIllegalValueException() throws Exception {
         JsonSerializableEndpointList dataFromFile = JsonUtil.readJsonFile(INVALID_ENDPOINT_FILE,
                 JsonSerializableEndpointList.class).get();
-        Assert.assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateEndpoints_throwsIllegalValueException() throws Exception {
         JsonSerializableEndpointList dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ENDPOINT_FILE,
                 JsonSerializableEndpointList.class).get();
-        Assert.assertThrows(IllegalValueException.class, JsonSerializableEndpointList.MESSAGE_DUPLICATE_ENDPOINT,
+        assertThrows(IllegalValueException.class, JsonSerializableEndpointList.MESSAGE_DUPLICATE_ENDPOINT,
                 dataFromFile::toModelType);
     }
 

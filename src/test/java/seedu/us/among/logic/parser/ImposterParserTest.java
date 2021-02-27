@@ -2,7 +2,10 @@ package seedu.us.among.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.us.among.testutil.Assert.assertThrows;
+import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,9 +27,6 @@ import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
 import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 import seedu.us.among.testutil.EndpointBuilder;
 import seedu.us.among.testutil.EndpointUtil;
-import seedu.us.among.commons.core.Messages;
-import seedu.us.among.testutil.Assert;
-import seedu.us.among.testutil.TypicalIndexes;
 
 public class ImposterParserTest {
 
@@ -48,8 +48,8 @@ public class ImposterParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_ENDPOINT.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_ENDPOINT), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ENDPOINT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_ENDPOINT), command);
     }
 
     @Test
@@ -57,8 +57,8 @@ public class ImposterParserTest {
         Endpoint endpoint = new EndpointBuilder().build();
         EditCommand.EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder(endpoint).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + TypicalIndexes.INDEX_FIRST_ENDPOINT.getOneBased() + " " + EndpointUtil.getEditEndpointDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_ENDPOINT, descriptor), command);
+                + INDEX_FIRST_ENDPOINT.getOneBased() + " " + EndpointUtil.getEditEndpointDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_ENDPOINT, descriptor), command);
     }
 
     @Test
@@ -89,12 +89,12 @@ public class ImposterParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        Assert.assertThrows(ParseException.class, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        Assert.assertThrows(ParseException.class, Messages.MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

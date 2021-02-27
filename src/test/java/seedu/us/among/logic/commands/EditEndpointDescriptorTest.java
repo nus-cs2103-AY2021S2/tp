@@ -2,10 +2,17 @@ package seedu.us.among.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.us.among.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.us.among.logic.commands.EditCommand.EditEndpointDescriptor;
 import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 
 public class EditEndpointDescriptorTest {
@@ -13,39 +20,39 @@ public class EditEndpointDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditEndpointDescriptor descriptorWithSameValues = new EditCommand.EditEndpointDescriptor(CommandTestUtil.DESC_AMY);
-        Assertions.assertTrue(CommandTestUtil.DESC_AMY.equals(descriptorWithSameValues));
+        EditEndpointDescriptor descriptorWithSameValues = new EditEndpointDescriptor(DESC_AMY);
+        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        Assertions.assertTrue(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_AMY));
+        assertTrue(DESC_AMY.equals(DESC_AMY));
 
         // null -> returns false
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(null));
+        assertFalse(DESC_AMY.equals(null));
 
         // different types -> returns false
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(5));
+        assertFalse(DESC_AMY.equals(5));
 
         // different values -> returns false
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_BOB));
+        assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditEndpointDescriptor editedAmy = new EditEndpointDescriptorBuilder(CommandTestUtil.DESC_AMY).withName(CommandTestUtil.VALID_NAME_BOB).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        EditEndpointDescriptor editedAmy = new EditEndpointDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditEndpointDescriptorBuilder(CommandTestUtil.DESC_AMY).withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        editedAmy = new EditEndpointDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditEndpointDescriptorBuilder(CommandTestUtil.DESC_AMY).withEmail(CommandTestUtil.VALID_EMAIL_BOB).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        editedAmy = new EditEndpointDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditEndpointDescriptorBuilder(CommandTestUtil.DESC_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        editedAmy = new EditEndpointDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditEndpointDescriptorBuilder(CommandTestUtil.DESC_AMY).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        editedAmy = new EditEndpointDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

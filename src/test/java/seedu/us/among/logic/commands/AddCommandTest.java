@@ -22,13 +22,12 @@ import seedu.us.among.model.ReadOnlyEndpointList;
 import seedu.us.among.model.ReadOnlyUserPrefs;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.testutil.EndpointBuilder;
-import seedu.us.among.testutil.Assert;
 
 public class AddCommandTest {
 
     @Test
     public void constructor_nullEndpoint_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
@@ -48,7 +47,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validEndpoint);
         ModelStub modelStub = new ModelStubWithEndpoint(validEndpoint);
 
-        Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENDPOINT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENDPOINT, () ->
+                addCommand.execute(modelStub));
     }
 
     @Test

@@ -8,8 +8,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.us.among.commons.util.CollectionUtil;
-import seedu.us.among.model.endpoint.exceptions.ApiEndpointNotFoundException;
 import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
+import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -58,7 +58,7 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ApiEndpointNotFoundException();
+            throw new EndpointNotFoundException();
         }
 
         if (!target.isSameEndpoint(editedEndpoint) && contains(editedEndpoint)) {
@@ -75,7 +75,7 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
     public void remove(Endpoint toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ApiEndpointNotFoundException();
+            throw new EndpointNotFoundException();
         }
     }
 

@@ -3,7 +3,12 @@ package seedu.us.among.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.commons.core.Messages.MESSAGE_ENDPOINTS_LISTED_OVERVIEW;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.us.among.testutil.TypicalEndpoints.CARL;
+import static seedu.us.among.testutil.TypicalEndpoints.ELLE;
+import static seedu.us.among.testutil.TypicalEndpoints.FIONA;
+import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,15 +19,13 @@ import seedu.us.among.model.Model;
 import seedu.us.among.model.ModelManager;
 import seedu.us.among.model.UserPrefs;
 import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
-import seedu.us.among.commons.core.Messages;
-import seedu.us.among.testutil.TypicalEndpoints;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalEndpoints.getTypicalEndpointList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalEndpoints.getTypicalEndpointList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalEndpointList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalEndpointList(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -53,22 +56,22 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noEndpointFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_ENDPOINTS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_ENDPOINTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEndpointList(predicate);
-        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredEndpointList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleEndpointsFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_ENDPOINTS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_ENDPOINTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEndpointList(predicate);
-        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalEndpoints.CARL, TypicalEndpoints.ELLE, TypicalEndpoints.FIONA), model.getFilteredEndpointList());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEndpointList());
     }
 
     /**

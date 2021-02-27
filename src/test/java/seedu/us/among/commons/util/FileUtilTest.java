@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.us.among.testutil.Assert;
 
 public class FileUtilTest {
 
@@ -18,7 +17,7 @@ public class FileUtilTest {
         assertFalse(FileUtil.isValidPath("a\0"));
 
         // null path -> throws NullPointerException
-        Assert.assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
+        assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
     }
 
 }

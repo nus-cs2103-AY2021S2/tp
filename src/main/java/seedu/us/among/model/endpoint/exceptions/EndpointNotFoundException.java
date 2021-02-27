@@ -3,4 +3,4 @@ package seedu.us.among.model.endpoint.exceptions;
 /**
  * Signals that the operation is unable to find the specified endpoint.
  */
-public class ApiEndpointNotFoundException extends RuntimeException {}
+public class EndpointNotFoundException extends RuntimeException {}

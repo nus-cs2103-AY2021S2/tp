@@ -1,7 +1,14 @@
 package seedu.us.among.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX;
+import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.us.among.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.us.among.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.us.among.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.us.among.testutil.Assert.assertThrows;
+import static seedu.us.among.testutil.TypicalEndpoints.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -24,10 +31,6 @@ import seedu.us.among.storage.JsonEndpointListStorage;
 import seedu.us.among.storage.JsonUserPrefsStorage;
 import seedu.us.among.storage.StorageManager;
 import seedu.us.among.testutil.EndpointBuilder;
-import seedu.us.among.commons.core.Messages;
-import seedu.us.among.logic.commands.CommandTestUtil;
-import seedu.us.among.testutil.Assert;
-import seedu.us.among.testutil.TypicalEndpoints;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -50,13 +53,13 @@ public class LogicManagerTest {
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, Messages.MESSAGE_UNKNOWN_COMMAND);
+        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -76,9 +79,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
-                + CommandTestUtil.ADDRESS_DESC_AMY;
-        Endpoint expectedEndpoint = new EndpointBuilder(TypicalEndpoints.AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY;
+        Endpoint expectedEndpoint = new EndpointBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEndpoint(expectedEndpoint);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -87,7 +90,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredEndpointList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEndpointList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEndpointList().remove(0));
     }
 
     /**
@@ -139,7 +142,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
-        Assert.assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
 
