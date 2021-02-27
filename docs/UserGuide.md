@@ -90,13 +90,31 @@ Examples:
 * `add appointment n/Meet Alex r/at M hotel d/17-2-2021`
 * `add appointment n/Meet Alex r/at M hotel d/17-2-2021 t/1500`
 
-### Listing all persons : `list`
+### Listing all properties and appointments : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all properties and appointments in the app.
 
 Format: `list`
 
-### Editing a property entry : `edit property`
+
+### Sorting : `sort`
+
+Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
+
+Formats:
+* `sort appointment [asc or desc] <deadline or task type>`
+* `sort property [asc or desc] <price or location or housing type>`
+
+Description:
+* Sorts appointment or property by the specified sorting key in ascending or descending order.
+* The default order is `asc` if the order field is not specified.
+* The sorting key field must be specified.
+
+Examples:
+*  `sort appointment asc deadline` Sorts `appointment` by `deadline` in ascending order.
+*  `sort property desc price` Sorts `property` by `price` in descending order.
+
+### Editing a property : `edit`
 
 Overwrites the information of the property according to the flags provided.
 
@@ -110,7 +128,7 @@ Description:
 Examples:
 *  `edit property 1 r/Urgent to sell cn/Alice` Edits the remark and client name of the 1st property to be `Urgent to sell` and `Alice` respectively.
 
-### Editing an appointment entry : `edit appointment`
+### Editing an appointment : `edit appointment`
 
 Overwrites the information of the appointment according to the flags provided.
 
@@ -143,6 +161,22 @@ Description:
 Examples:
 *  `update 1 new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 proceed` Moves the status of the 3rd property to next one.
+
+### Removing an entry : `delete`
+
+Deletes the specified property or appointment from the app.
+
+Formats:
+* `delete appointment INDEX`
+* `delete property INDEX`
+
+Description:
+* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* The field INDEX must be provided.
+
+Examples:
+*  `delete appointment 7` Deletes the `appointment` at index `7`.
+*  `delete property 7` Deletes the `property` at index `7`.
 
 ### Locating persons by name: `find`
 
@@ -227,4 +261,6 @@ Action | Format, Examples
 **Update status** | `update INDEX [proceed][cancel]`<br> e.g.,`update 3 proceed`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Sort** | `sort appointment [asc or desc] <deadline or task type>`<br> e.g., `sort appointment asc deadline`<br><br>`sort property [asc or desc] <price or location or housing type>`<br> e.g., `sort property asc price`
+**Remove an entry** | `delete <appointment or property> INDEX`<br> e.g., `delete appointment 7`
 **Help** | `help`
