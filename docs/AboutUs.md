@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Alzahrani Riyadh Hamdan S
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/riyadh-h.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/riyadh-h)]
+[[portfolio](team/riyadh-h.md)]
 
-* Role: Project Advisor
+* Role: Member
+* Responsibilities: Full Stack Developer
 
 ### Jane Doe
 
