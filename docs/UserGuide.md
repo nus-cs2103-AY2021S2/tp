@@ -3,38 +3,67 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+RemindMe User Guide v1.1
+---
+This user guide provide [start-up](#start-up) instructions as well as detailed descriptions and usage of
+all the [features](#features) in the RemindMe app. You can also access the product website via this [link.](https://ay2021s2-cs2103t-w15-1.github.io/tp/)
 
-* Table of Contents
-{:toc}
+<div style="page-break-after: always;"></div>
+
+## Table of Contents
+
+* **[Introduction](#introduction)**
+* **[Start-up](#Start-up)**
+* **[Features](#features)**
+    * **[1. Show help page : `help`]()**
+    * **[2. Add an event/examination: `event/deadline (DESCRIPTION) (DD/MM/YYYY TIME)`]()**
+    * **[3. Delete an event/examination: `delete (INDEX)`]()**
+    * **[4. Edit a task]()**
+    * **[5. Delete a task]()**
+    * **[6. Calendar View]()**
+    * **[7. Pop-up Reminder]()**
+* **[Glossary](#glossary)**
+* **[Command summary](#command-summary)**
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Introduction
+RemindMe is a desktop app for keeping track of user events and deadlines,
+optimized for use via Command Line Interface(CLI) while still having the benefits of a Graphic User Interface(GUI).
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Objectives of RemindMe:
+1. Allow students to be aware of deadlines of school events and exams.
+2. Allow students to have a calendar view of their school curriculums/schedules. 
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+## Start-up
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Ensure you have Java 11 or above installed on your computer. You can download Java 11 via this [link.](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html)
+   * If you are a Windows user, [here](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-windows) is a tutorial on how to set up Java 11:
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+2. Download the latest RemindMe.jar from our GitHub release page.
+Copy the file to the folder you want to use as the home folder for your RemindMe.
+Double click the file to start the app. 
+   
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+3. Alternatively, you can run the command line java -jar RemindMe.jar in your terminal to start the application.
+Type the command in the command box and press Enter to execute it.
+The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)   
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+4. Refer to the Features below for details of each command.
 
-   * **`clear`** : Deletes all contacts.
-
+   * **`deadline`** `description by DD/MM/YYYY TIME`: Adds a task with a deadline.
+     
+   * **`ordered list`**: Displays an order list of items.
+     
+   * **`calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
+     
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -64,32 +93,63 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### *Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### *Turn on/off reminder: `remind`
 
-### Adding a person: `add`
+Turns on and off the reminder system. If remind is on,
+a reminder would pop out when starting the app RemindMe regarding
+the upcoming tasks.
 
-Adds a person to the address book.
+(insert image of reminder here)
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `remind`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Outcome:
+
+* `reminder is turned on!`
+* `reminder is turned off!`
+
+### *Adding an Assignment/Event: `event/deadline`
+
+Adds an assignment with a deadline or event to the calendar.
+
+Format: 
+
+* `event (DESCRIPTION) /from (DD/MM/YYYY TIME) /to (DD/MM/YYYY TIME)`
+
+* `deadline (DESCRIPTION) /by (DD/MM/YYYY TIME)`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `event Christmas Party /from 25/12/2021 1800 /to 25/12/2021 2300`
+* `deadline CS2103 Assignment /by 03/03/2021 2359`
 
-### Listing all persons : `list`
+### *Deleting an Assignment/Event: `delete`
 
-Shows a list of all persons in the address book.
+Deletes an assignment with a deadline or event from the calendar.
+
+Format: 
+
+* `delete /from (DD/MM/YYYY) /index (INDEX)`
+
+Examples:
+* `delete /from 25/12/2021 /index 1`
+
+### Listing all events : `list events`
+
+Shows a list of all events. Events are sorted by date.
+
+Format: `list`
+
+### Listing all assignments : `list assignments`
+
+Shows a list of all assignments. Assignments are sorted by date.
 
 Format: `list`
 
@@ -142,44 +202,40 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### *Viewing Calendar of the current month
+Shows an image of the calendar with your reminders (e.g. tasks, assignments datelines, and friends’ birthday) for each specific dates.  
+![result for 'calendar'](images/calendarResult.png)  
+Format: `calendar`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
-Format: `clear`
+Format: `clear``
+
+### *Saving the data
+
+RemindMe save your data in the hard disk automatically after every command that changes the data. There is no need for you to save manually.
+
+### *Editing the data file
+
+AddressBook data are saved as a JSON file `[JAR file location]/data/remindme.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, RemindMe will discard all data and start with an empty data file at the next run.
+</div>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+Format: `exit
 
-### Saving the data
+## Glossary
+* Examination: Consists of a start time, end time, date which it occurs on and the subject.
+* Event: Consists of a start time, end time and the date which it occurs on.
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
+## Command summary (AB3)
 
 Action | Format, Examples
 --------|------------------
@@ -189,4 +245,21 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**View Calendar** | `calendar`
 **Help** | `help`
+
+## Command summary (RemindMe) 
+
+Action | Format, Examples
+--------|----------------
+Add assignment | `(assignment type) (assignment description) (assignment details)`
+Delete assignment | `delete (assignment description)`
+View assignments | `view A`
+View events | `view E`
+Turn on/off reminder | `remind`
+See commands available | `help`
+View calendar | `calendar`
+Save data | `save`
+Edit data | `edit`
+
+
