@@ -332,7 +332,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to delete a specific student.
 2.  System prompts for confirmation of deletion.
 3.  User confirms.
-4.  System deletes the student.
+4.  System deletes the student. 
 
     Use case ends.
 
