@@ -260,7 +260,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new student               | keep track of that student's vaccination status                                                                       |
 | `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by matriculation number          | locate details of students without having to go through the entire list |
 | `* *`    | user with many persons in the address book | sort persons by _vaccine type_ | Create appointments more easily, depending on which vaccine is administered |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
