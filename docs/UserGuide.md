@@ -10,8 +10,11 @@ The app is optimized for use via a Command Line Interface (CLI) while still havi
 benefits of a Graphical User Interface (GUI). If you can type fast, CHIM can get your management tasks done
 faster than traditional GUI apps.
 
-* Table of Content
-{:toc}
+* Table of Content 
+  - [Quick start](#quick-start)
+  - [Features](#features)
+  - [FAQ](#faq)
+  - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -83,6 +86,24 @@ Format: `removeorder ORDER_INDEX`
 Example: `removeorder 2`
 * Removes the second order in the list of orders.
 
+### Remove cheese from inventory: `removecheese`
+
+Removes some specified quantity of a specified cheese type from the inventory.
+
+Format: `removecheese CHEESE_INDEX`
+* Removes the cheese at the specified `CHEESE_INDEX`. The index must be a positive integer.
+
+Example: `removecheese 2`
+
+### Remove customer: `removecustomer`
+
+Removes a customer from the list of customers, using their phone number as identifier.
+
+Format: `removecustomer p/PHONE_NUMBER`
+
+Example: `removecustomer p/65555555`
+
+
 ### Listing orders: `listorder`
 
 Displays all incomplete orders in CHIM.
@@ -95,7 +116,7 @@ Displays the current inventory count. If a cheese type is specified, then displa
 
 Format: `listcheese [t/CHEESE_TYPE]`
 
-Examples: `listcheese t/Mozzarella`
+Example: `listcheese t/Mozzarella`
 
 ### Listing customers: `listcustomer`
 
@@ -111,7 +132,7 @@ Format: `done ORDER_INDEX`
 * Marks the order at the specified `ORDER_INDEX`.
 * The `ORDER_INDEX` must be a positive integer.
 
-Examples: `done 2`
+Example: `done 2`
 * Mark the second order in the list of orders as complete.
 
 ### Searching for customers: `search`
@@ -149,6 +170,8 @@ Action | Format, Examples
 **Add Cheese** | `addcheese t/CHEESE_TYPE q/QUANTITY` <br> e.g. `addcheese t/CHEESE_TYPE q/QUANTITY`
 **Add Customer** | `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER a/ADDRESS` <br> e.g. `addcustomer n/John Doe p/65555555 a/Blk 436 Serangoon Gardens St 26 #01-01`
 **Remove Order** | `removeorder ORDER_INDEX` <br> e.g. `removeorder 2`
+**Remove Cheese** | `removecheese CHEESE_INDEX` <br> Example: `removecheese 5`
+**Remove Customer**| `removecustomer p/PHONE_NUMBER` <br> Example: `removecustomer p/65555555`
 **List Orders** | `listorder`
 **List Cheese** | `listcheese [t/CHEESE_TYPE]` <br> e.g. `listcheese t/Mozzarella`
 **List Customer** | `listcustomer`
