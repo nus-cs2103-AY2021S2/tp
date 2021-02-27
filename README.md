@@ -1,6 +1,6 @@
 # TutorBuddy
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2021S2-CS2103T-T11-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2021S2-CS2103T-T11-1/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/Ui.png)
 
@@ -14,3 +14,8 @@
 * It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+**Acknowledgements**
+
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
