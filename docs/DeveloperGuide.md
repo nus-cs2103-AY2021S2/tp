@@ -296,7 +296,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  RemindMe should be able to respond within one seconds.
 5.  RemindMe should be usable by novice who has no prior experience with coding.
-6.  RemindMe datafile should be at most 50MB.
 
 *{More to be added}*
 
