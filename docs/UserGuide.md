@@ -138,9 +138,20 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: What do I do if I accidentally deleted a student? 
+<br>
+**A**: We regret to inform you that deletion is permanent. You will have to manually re-add the student.
 
+**Q**: What can be included in medical details?
+<br>
+**A**: Allergies and past medical history. 
+
+**Q**: Will I be able to amend a student’s details?
+<br>
+**A**: Unfortunately, this feature is not available at the moment, but plans are in the works to make this a reality.
+
+**Q** : Will I be able to add other types of appointment besides vaccination appointment?
+**A** : No, the current version only allows you to add vaccination appointments and not any other type of apppointments. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
