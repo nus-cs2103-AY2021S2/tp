@@ -153,15 +153,15 @@ _Details coming soon ..._
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
- 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME i/MATRICULATION_NUMBER p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., ` add n/John Doe i/A1234567X p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
+**Add** | `add n/NAME i/MATRICULATION_NUMBER p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., ` add n/John Doe 
+i/A1234567X p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **List Students** | `list students`
 **Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
 **Delete** | `delete /MATRICULATION_NUMBER` <br> e.g., `delete A1234567X`
-**Clear** | `clear`
