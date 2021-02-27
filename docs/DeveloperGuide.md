@@ -264,28 +264,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add an item**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests for the storage list.
+2.  StoreMando displays the storage list.
+3.  User input the add command with the item details.
+4.  StoreMando adds the item into the storage and displays the updated list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The command has invalid date-time format.
 
-  Use case ends.
+    * 3a1. StoreMando shows an error message.
+    
+    * 3a2. StoreMando prompt the user for a correct input.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 3.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: UC2 - Delete an item in a specific area**
 
-      Use case resumes at step 2.
+**MSS**
+
+1.  User wants to <u> list all items in a specific location (UC3). </u>
+2.  StoreMando displays all items in the location.
+3.  User deletes the item in the location.
+4.  StoreMando displays the updated storage.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The item details don't match any item in the storage.
+
+    * 3a1. StoreMando shows an error message.
+
+    * 3a2. StoreMando prompt the user for a correct input.
+
+      Use case resumes at step 3.
+
+* 3b. The command has an out-of-range index.
+
+    * 3b1. StoreMando shows an error message.
+
+    * 3b2. StoreMando prompt the user for a correct input.
+
+      Use case resumes at step 3.
 
 *{More to be added}*
 
