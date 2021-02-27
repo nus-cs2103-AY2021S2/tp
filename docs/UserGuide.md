@@ -7,27 +7,27 @@ Besides maintaining dog profiles for each unique dog, managers can view daily cl
 schedules on Pawbook to better plan the day’s activities.**
 
 This document is created by **CS2103T-T10-Group1**.</br>
-● Charles Lee Lin Ta</br>
-● John Alec Mendoza Branzuela</br>
-● Kou Yong Kang</br>
-● Lam Xuan Yi, Shaelyn</br>
-● Wei Yutong</br>
-● Zhang Anli</br>
+* Charles Lee Lin Ta</br>
+* John Alec Mendoza Branzuela</br>
+* Kou Yong Kang</br>
+* Lam Xuan Yi, Shaelyn</br>
+* Wei Yutong</br>
+* Zhang Anli</br>
 ---
-**● Quick start**</br>
-**● Features**
-* Adding a dog/owner/program to database: add
-* Deleting a dog/owner/program profile: delete
-* Show the list of dogs based on search: list
-* Enrol a dog to a program: enrol
-* Drop a dog from a program: drop
-* View daily schedule: schedule
-* Editing raw file
-* Application instructions: help
-* Exiting the application: exit
+* **Quick start**</br>
+* **Features**
+  * Adding a dog/owner/program to database: add
+  * Deleting a dog/owner/program profile: delete
+  * Show the list of dogs based on search: list
+  * Enrol a dog to a program: enrol
+  * Drop a dog from a program: drop
+  * View daily schedule: schedule
+  * Editing raw file
+  * Application instructions: help
+  * Exiting the application: exit
 
-**● FAQ**</br>
-**● Command Summary**
+* **FAQ**</br>
+* **Command Summary**
 
 ###**Quick start**
 1. Ensure you have **Java 11 or above** installed in your Computer.
@@ -40,7 +40,7 @@ This document is created by **CS2103T-T10-Group1**.</br>
    typing add and pressing Enter will allow you to start adding information to
    the database.
 
-**#Please refer to the features below for details of each command.**
+**NOTE: Please refer to the features below for details of each command.**
 
 ----
 ###**Features of Pawbook**</br>
