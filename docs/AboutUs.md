@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tian Xindi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xinditian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/XindiTian)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Member
+* Responsibilities: Full Stack Developer
