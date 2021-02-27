@@ -9,15 +9,15 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.us.among.commons.core.Messages;
 import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Email;
+import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
 import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;
-import seedu.us.among.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new AddCommand object

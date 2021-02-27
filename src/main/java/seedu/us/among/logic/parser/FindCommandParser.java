@@ -2,10 +2,10 @@ package seedu.us.among.logic.parser;
 
 import java.util.Arrays;
 
+import seedu.us.among.commons.core.Messages;
 import seedu.us.among.logic.commands.FindCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
-import seedu.us.among.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new FindCommand object

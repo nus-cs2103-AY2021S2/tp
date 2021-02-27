@@ -70,8 +70,9 @@ public class ImPoster extends Application {
 
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s API endpoint list and {@code userPrefs}. <br>
-     * The data from the sample API endpoint list will be used instead if {@code storage}'s API endpoint list is not found,
-     * or an empty API endpoint list will be used instead if errors occur when reading {@code storage}'s API endpoint list.
+     * The data from the sample API endpoint list will be used instead if {@code storage}'s API endpoint list is not
+     * found, or an empty API endpoint list will be used instead if errors occur when reading {@code storage}'s API
+     * endpoint list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyEndpointList> endpointListOptional;

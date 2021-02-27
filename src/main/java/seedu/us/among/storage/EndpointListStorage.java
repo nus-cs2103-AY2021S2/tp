@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.us.among.commons.exceptions.DataConversionException;
-import seedu.us.among.model.ReadOnlyEndpointList;
 import seedu.us.among.model.EndpointList;
+import seedu.us.among.model.ReadOnlyEndpointList;
 
 /**
  * Represents a storage for {@link EndpointList}.

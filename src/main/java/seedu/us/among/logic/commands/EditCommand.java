@@ -19,8 +19,8 @@ import seedu.us.among.commons.util.CollectionUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Email;
+import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
 import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;
@@ -90,7 +90,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Endpoint} with the details of {@code endpointToEdit}
      * edited with {@code editEndpointDescriptor}.
      */
-    private static Endpoint createEditedEndpoint(Endpoint endpointToEdit, EditEndpointDescriptor editEndpointDescriptor) {
+    private static Endpoint createEditedEndpoint(Endpoint endpointToEdit,
+             EditEndpointDescriptor editEndpointDescriptor) {
         assert endpointToEdit != null;
 
         Name updatedName = editEndpointDescriptor.getName().orElse(endpointToEdit.getName());

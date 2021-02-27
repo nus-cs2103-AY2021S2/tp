@@ -1,7 +1,5 @@
 package seedu.us.among.model.endpoint;
 
-import seedu.us.among.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;
 
@@ -38,7 +36,7 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        AppUtil.checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
     }
 

@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.us.among.commons.exceptions.IllegalValueException;
 import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Email;
+import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
 import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;

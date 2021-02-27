@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.us.among.model.tag.Tag;
-import seedu.us.among.commons.util.CollectionUtil;
 
 /**
  * Represents a Endpoint in the address book.
@@ -29,7 +28,7 @@ public class Endpoint {
      * Every field must be present and not null.
      */
     public Endpoint(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;

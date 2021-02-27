@@ -12,11 +12,11 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.tag.Tag;
-import seedu.us.among.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -38,7 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditEndpointDescriptor editEndpointDescriptor = new EditCommand.EditEndpointDescriptor();

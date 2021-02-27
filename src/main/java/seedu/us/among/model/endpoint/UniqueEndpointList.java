@@ -7,16 +7,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
-import seedu.us.among.model.endpoint.exceptions.ApiEndpointNotFoundException;
 import seedu.us.among.commons.util.CollectionUtil;
+import seedu.us.among.model.endpoint.exceptions.ApiEndpointNotFoundException;
+import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A endpoint is considered unique by comparing using {@code Endpoint#isSamePerson(Endpoint)}. As such, adding and updating of
- * persons uses Endpoint#isSamePerson(Endpoint) for equality so as to ensure that the endpoint being added or updated is
- * unique in terms of identity in the UniqueEndpointList. However, the removal of a endpoint uses Endpoint#equals(Object) so
- * as to ensure that the endpoint with exactly the same fields will be removed.
+ * A endpoint is considered unique by comparing using {@code Endpoint#isSamePerson(Endpoint)}. As such, adding and
+ * updating of persons uses Endpoint#isSamePerson(Endpoint) for equality so as to ensure that the endpoint being
+ * added or updated is unique in terms of identity in the UniqueEndpointList. However, the removal of a endpoint
+ * uses Endpoint#equals(Object) so as to ensure that the endpoint with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

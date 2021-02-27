@@ -6,11 +6,10 @@ import java.util.List;
 
 import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
-import seedu.us.among.logic.endpoint.EndpointCaller;
 import seedu.us.among.logic.commands.exceptions.CommandException;
+import seedu.us.among.logic.endpoint.EndpointCaller;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.commons.util.CollectionUtil;
 
 /**
  * Calls a saved API endpoint using it's displayed index from the API endpoints list.
@@ -31,7 +30,7 @@ public class SendCommand extends Command {
      * @param index of the endpoint in the API endpoints list to call
      */
     public SendCommand(Index index) {
-        CollectionUtil.requireAllNonNull(index);
+        requireAllNonNull(index);
 
         this.index = index;
     }

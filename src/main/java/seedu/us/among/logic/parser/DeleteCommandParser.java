@@ -1,9 +1,9 @@
 package seedu.us.among.logic.parser;
 
+import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.DeleteCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
-import seedu.us.among.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

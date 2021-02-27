@@ -1,7 +1,5 @@
 package seedu.us.among.model.endpoint;
 
-import seedu.us.among.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;
 
@@ -29,7 +27,7 @@ public class Name {
      */
     public Name(String name) {
         requireNonNull(name);
-        AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
 

@@ -7,9 +7,9 @@ import seedu.us.among.commons.core.GuiSettings;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.model.Model;
 import seedu.us.among.model.ReadOnlyEndpointList;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.Model;
 
 /**
  * API of the Logic component

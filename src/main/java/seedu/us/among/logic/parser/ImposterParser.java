@@ -3,6 +3,7 @@ package seedu.us.among.logic.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.us.among.commons.core.Messages;
 import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.ClearCommand;
 import seedu.us.among.logic.commands.Command;
@@ -14,7 +15,6 @@ import seedu.us.among.logic.commands.HelpCommand;
 import seedu.us.among.logic.commands.ListCommand;
 import seedu.us.among.logic.commands.SendCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
-import seedu.us.among.commons.core.Messages;
 
 /**
  * Parses user input.

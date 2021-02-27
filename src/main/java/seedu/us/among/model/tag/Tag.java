@@ -1,7 +1,5 @@
 package seedu.us.among.model.tag;
 
-import seedu.us.among.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;
 
@@ -23,7 +21,7 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        AppUtil.checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
 

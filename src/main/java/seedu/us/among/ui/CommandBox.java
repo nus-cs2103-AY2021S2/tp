@@ -4,10 +4,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.us.among.logic.Logic;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
-import seedu.us.among.logic.Logic;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

@@ -77,7 +77,8 @@ public class EndpointList implements ReadOnlyEndpointList {
     /**
      * Replaces the given endpoint {@code target} in the list with {@code editedEndpoint}.
      * {@code target} must exist in the API endpoint list.
-     * The endpoint identity of {@code editedEndpoint} must not be the same as another existing endpoint in the API endpoint list.
+     * The endpoint identity of {@code editedEndpoint} must not be the same as another existing endpoint in the
+     * API endpoint list.
      */
     public void setEndpoint(Endpoint target, Endpoint editedEndpoint) {
         requireNonNull(editedEndpoint);

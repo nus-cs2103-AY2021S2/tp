@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given endpoint {@code target} with {@code editedEndpoint}.
      * {@code target} must exist in the API endpoint list.
-     * The endpoint identity of {@code editedEndpoint} must not be the same as another existing endpoint in the API endpoint list.
+     * The endpoint identity of {@code editedEndpoint} must not be the same as another existing endpoint in the
+     * API endpoint list.
      */
     void setEndpoint(Endpoint target, Endpoint editedEndpoint);
 

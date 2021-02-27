@@ -1,7 +1,5 @@
 package seedu.us.among.model.endpoint;
 
-import seedu.us.among.commons.util.AppUtil;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;
 
@@ -24,7 +22,7 @@ public class Phone {
      */
     public Phone(String phone) {
         requireNonNull(phone);
-        AppUtil.checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
 

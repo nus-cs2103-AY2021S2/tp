@@ -1,6 +1,7 @@
 package seedu.us.among.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -11,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.us.among.commons.core.GuiSettings;
 import seedu.us.among.commons.core.LogsCenter;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.commons.util.CollectionUtil;
 
 /**
  * Represents the in-memory model of the API endpoint list data.
@@ -28,7 +28,7 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyEndpointList endpointList, ReadOnlyUserPrefs userPrefs) {
         super();
-        CollectionUtil.requireAllNonNull(endpointList, userPrefs);
+        requireAllNonNull(endpointList, userPrefs);
 
         logger.fine("Initializing with API endpoint list: " + endpointList + " and user prefs " + userPrefs);
 
@@ -107,7 +107,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setEndpoint(Endpoint target, Endpoint editedEndpoint) {
-        CollectionUtil.requireAllNonNull(target, editedEndpoint);
+        requireAllNonNull(target, editedEndpoint);
 
         endpointList.setEndpoint(target, editedEndpoint);
     }
