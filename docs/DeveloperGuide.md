@@ -275,22 +275,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a specific student entry.
-2.  System prompts for student details.
-3.  User input the respective details.
+2.  System prompts for student's details.
+3.  User inputs the respective details.
 4.  System adds the student entry.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The specified student entry exist in the system.
+* 1a. The specified student entry exists in the system.
 
     * 1a1. System shows an error message.
   
         Use case ends.
 
 
-* 3a. User does not give input to all the required fields to add a student entry.
+* 3a. User does not give sufficient inputs to add a student entry.
 
     * 3a1. System shows an error message.
   
@@ -305,14 +305,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a vaccination appointment.
 2.  System prompts for details about the vaccination appointment.
-3.  User input the respective details.
+3.  User inputs the respective details.
 4.  System adds the vaccination appointment.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. User does not give input to all the required fields to add a vaccination appointment.
+* 3a. 3a. User does not give sufficient inputs to add a vaccination appointment.
 
     * 3a1. System shows an error message.
   
