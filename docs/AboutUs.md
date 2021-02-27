@@ -34,7 +34,7 @@ You can reach us at the email `e0406245@u.nus.edu`
 [[portfolio](team/limsiting.md)]
 
 * Role: Developer
-* Responsibilities: Data 
+* Responsibilities: Data  
 
 ### Keith Low Jun
 
