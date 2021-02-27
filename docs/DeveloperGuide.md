@@ -256,8 +256,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | be able to add an appointment                                      | keep track of my upcoming schedule                                                |
 | `* * *`  | user                                       | delete a person                                                    | remove entries that I no longer need                                              |
 | `* * *`  | user                                       | find a person by name                                              | locate details of persons without having to go through the entire list            |
-| `* * *`  | user                                       | list all properties on sale                                        | know the number of properties and I have to sell                                  |
-| `* * *`  | user                                       | list all properties on sale                                        | know which properties and I have to sell                                          |
+| `* * *`  | user                                       | list all properties on sale                                        | know the number of properties that I have to sell                                 |
+| `* * *`  | user                                       | list all properties on sale                                        | know which properties I have to sell                                              |
 | `* * *`  | user                                       | view the client asking price of a property                         | keep the price in mind when negotiating with the buyer                            |
 | `* * *`  | user                                       | view the properties in the order of nearest deadline               | prioritize selling properties with a more urgent deadline                         |
 | `* *`    | potential user exploring the app           | see the app populated with sample data                             | easily see how the app looks like when it is in use                               |
@@ -345,7 +345,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-    
 *{More to be added}*
 
 ### Non-Functional Requirements

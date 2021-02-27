@@ -90,9 +90,9 @@ Examples:
 * `add appointment n/Meet Alex r/at M hotel d/17-2-2021`
 * `add appointment n/Meet Alex r/at M hotel d/17-2-2021 t/1500`
 
-### Listing all persons : `list`
+### Listing all properties and appointments : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all properties and appointments in the app.
 
 Format: `list`
 
