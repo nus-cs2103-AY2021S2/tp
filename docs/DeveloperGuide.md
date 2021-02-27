@@ -236,13 +236,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-Savvy CS2103T Student
+* want to ask questions
+* need to find answers
+* prefers to take notes
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* Main problem: no organized platform to facilitate extra learning outside of class.
+* Sub-Problems
+    * Easy and quick way for students to get answers for CS2103T questions.
+    * Easy for students to take notes.
+    * Easy way for students to find their classmates.
+    
+* Limitations:
+    * Unable to provide students with thorough materials/all the answers.
+    * Unable to play videos from lectures.
 
 
 ### User stories
