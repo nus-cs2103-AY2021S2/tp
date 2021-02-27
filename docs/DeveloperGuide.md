@@ -248,7 +248,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students
 
 
 ### User stories
@@ -260,7 +260,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new student               | keep track of that student's vaccination status                                                                       |
 | `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by matriculation number          | locate details of students without having to go through the entire list |
 | `* *`    | user with many persons in the address book | sort persons by _vaccine type_ | Create appointments more easily, depending on which vaccine is administered |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
@@ -270,6 +270,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Vax@NUS` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a student entry**
+
+**MSS**
+
+1.  User requests to add a specific student entry.
+2.  System prompts for student details.
+3.  User input the respective details.
+4.  System adds the student entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The specified student entry exist in the system.
+
+    * 1a1. System shows an error message.
+  
+        Use case ends.
+
+
+* 3a. User does not give input to all the required fields to add a student entry.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.
+    
+  Use case ends.
+
+
+**Use case: Add a vaccination appointment**
+
+**MSS**
+
+1.  User requests to add a vaccination appointment.
+2.  System prompts for details about the vaccination appointment.
+3.  User input the respective details.
+4.  System adds the vaccination appointment.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User does not give input to all the required fields to add a vaccination appointment.
+
+    * 3a1. System shows an error message.
+  
+        Use case ends.
+        
+* 4a. The given appointment date and time clashes with an existing vaccination appointment for another student.
+    
+   * 4a1. System shows an error message.
+
+      Use case ends.  
+  
+  
 **Use case: Delete a student**
 
 **MSS**
@@ -277,7 +332,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to delete a specific student.
 2.  System prompts for confirmation of deletion.
 3.  User confirms.
-4.  System deletes the student.
+4.  System deletes the student. 
 
     Use case ends.
 
