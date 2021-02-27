@@ -16,4 +16,4 @@ Type the command in the command box and press Enter to access various features. 
 
 ## Acknowledgements
 
-* This project belongs to National University of Singapore
+* The original source of the project is AB3(AddressBook Level 3), which is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
