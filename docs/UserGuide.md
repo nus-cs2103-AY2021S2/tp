@@ -165,4 +165,3 @@ Action | Format, Examples
 **Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
 **Delete** | `delete /MATRICULATION_NUMBER` <br> e.g., `delete A1234567X`
 **Clear** | `clear`
-
