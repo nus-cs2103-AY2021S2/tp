@@ -260,15 +260,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new student               | keep track of that student's vaccination status                                                                       |
 | `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
-| `* * *`  | user                                       | find a person by matriculation number          | locate details of students without having to go through the entire list |
-| `* * *`  | user                                       | add a new student              | keep track of that student's vaccination status                        |
-| `* * *`  | user                                       | list all students              | view all student records at one go                                     |
-| `* * *`  | user                                       | delete a student               | remove entries that I no longer need or accidentally added             |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by matriculation number          | locate details of students without having to go through the entire list |
+| `* * *`  | user                                       | list all students              | view all student records at one go                                     |
 | `* * *`  | user                                       | list all upcoming appointments | view all appointments at one go
-| `* *`    | user with many persons in the address book | sort persons by _vaccine type_ | Create appointments more easily, depending on which vaccine is administered |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-                                      |
+| `*`      | user with many students in the address book | sort students by name           | locate a student easily                                                 |
 
 *{More to be added}*
 
@@ -281,22 +277,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a specific student entry.
-2.  System prompts for student details.
-3.  User input the respective details.
+2.  System prompts for student's details.
+3.  User inputs the respective details.
 4.  System adds the student entry.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The specified student entry exist in the system.
+* 1a. The specified student entry exists in the system.
 
     * 1a1. System shows an error message.
   
         Use case ends.
 
 
-* 3a. User does not give input to all the required fields to add a student entry.
+* 3a. User does not give sufficient inputs to add a student entry.
 
     * 3a1. System shows an error message.
   
@@ -311,14 +307,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a vaccination appointment.
 2.  System prompts for details about the vaccination appointment.
-3.  User input the respective details.
+3.  User inputs the respective details.
 4.  System adds the vaccination appointment.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. User does not give input to all the required fields to add a vaccination appointment.
+* 3a. 3a. User does not give sufficient inputs to add a vaccination appointment.
 
     * 3a1. System shows an error message.
   
@@ -338,7 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to delete a specific student.
 2.  System prompts for confirmation of deletion.
 3.  User confirms.
-4.  System deletes the student.
+4.  System deletes the student. 
 
     Use case ends.
 
