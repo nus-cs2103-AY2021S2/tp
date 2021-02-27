@@ -156,7 +156,7 @@ Action | Format, Examples
 **Help** | `help`
 
 **Action**  | **Format, Examples**
---------|-----------------
+-------------|-----------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS ` <br> e.g., ` add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **List Students** | `list students`
 **Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
