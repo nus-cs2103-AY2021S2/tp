@@ -146,12 +146,15 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: What do I do if I accidentally deleted a student? 
+<br>
 **A**: We regret to inform you that deletion is permanent. You will have to manually re-add the student.
 
 **Q**: What can be included in medical details?
+<br>
 **A**: Allergies and past medical history. 
 
 **Q**: Will I be able to amend a student’s details?
+<br>
 **A**: Unfortunately, this feature is not available at the moment, but plans are in the works to make this a reality.
 
 --------------------------------------------------------------------------------------------------------------------
