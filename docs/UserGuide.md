@@ -96,6 +96,18 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+### Sorting : `sort`
+
+Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
+
+Formats:
+* `sort appointment <asc or desc> [deadline or task type]`
+* `sort property <asc or desc> [price or location or housing type]`
+
+Examples:
+*  `sort appointment asc deadline` Sorts `appointment` by `deadline` in ascending order.
+*  `sort property desc price` Sorts `property` by `price` in descending order.
+
 ### Editing an entry : `edit`
 
 Overwrites the information of the property/appointment according to the flags provided.
