@@ -3,13 +3,20 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are a team of Year 2 Computer Science students based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+
+Our team members are:
+* [Tran Nguyen Manh Dan](#tran-nguyen-manh-dan)
+* [Lim Si Ting](#lim-si-ting)
+* [Keith Low Jun](#keith-low-jun)
+* [Yoong Yi En](#yoong-yi-en)
+
+You can reach us at the email `e0406245@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Tran Nguyen Manh Dan
 
 <img src="images/johndoe.png" width="200px">
 
@@ -19,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Lim Si Ting
 
 <img src="images/johndoe.png" width="200px">
 
@@ -29,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Keith Low Jun
 
 <img src="images/johndoe.png" width="200px">
 
@@ -38,22 +45,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Yoong Yi En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yienyoong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yienyoong)]
+[[portfolio](team/yienyoong.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
