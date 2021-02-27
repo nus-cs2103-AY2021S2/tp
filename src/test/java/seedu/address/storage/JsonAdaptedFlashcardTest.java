@@ -1,9 +1,9 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.JsonAdaptedFlashcard.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalFlashcards.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import seedu.address.model.person.Answer;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Question;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedFlashcardTest {
     private static final String INVALID_ANSWER = " ";
     private static final String INVALID_QUESTION = "how do you spell elephant?";
     private static final String INVALID_TAG = "#friend";
@@ -27,49 +27,49 @@ public class JsonAdaptedPersonTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+    public void toModelType_validFlashcardDetails_returnsFlashcard() throws Exception {
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(BENSON);
+        assertEquals(BENSON, flashcard.toModelType());
     }
 
 
     @Test
     public void toModelType_invalidQuestion_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_QUESTION, VALID_ANSWER, VALID_TAGS);
+        JsonAdaptedFlashcard flashcard =
+                new JsonAdaptedFlashcard(INVALID_QUESTION, VALID_ANSWER, VALID_TAGS);
         String expectedMessage = Question.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_nullQuestion_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_ANSWER, VALID_TAGS);
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(null, VALID_ANSWER, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_invalidAnswer_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_QUESTION, INVALID_ANSWER, VALID_TAGS);
+        JsonAdaptedFlashcard flashcard =
+                new JsonAdaptedFlashcard(VALID_QUESTION, INVALID_ANSWER, VALID_TAGS);
         String expectedMessage = Answer.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_nullAnswer_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_QUESTION, null, VALID_TAGS);
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(VALID_QUESTION, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_QUESTION, VALID_ANSWER, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        JsonAdaptedFlashcard flashcard =
+                new JsonAdaptedFlashcard(VALID_QUESTION, VALID_ANSWER, invalidTags);
+        assertThrows(IllegalValueException.class, flashcard::toModelType);
     }
 
 }

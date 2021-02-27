@@ -3,12 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.CARL;
+import static seedu.address.testutil.TypicalFlashcards.ELLE;
+import static seedu.address.testutil.TypicalFlashcards.FIONA;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,28 +50,28 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different flashcard -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noFlashcardFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
         QuestionContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredFlashcardList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleFlashcardsFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
         QuestionContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredFlashcardList());
     }
 
     /**

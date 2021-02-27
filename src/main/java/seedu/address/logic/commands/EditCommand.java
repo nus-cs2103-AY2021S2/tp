@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,19 +18,19 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Answer;
+import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.Question;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the answer book.
+ * Edits the details of an existing flashcard in the answer book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the flashcard identified "
+            + "by the index number used in the displayed flashcard list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_QUESTION + "question] "
@@ -39,58 +39,58 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUESTION + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_FLASHCARD_SUCCESS = "Edited Flashcard: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the answer book.";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the answer book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditFlashcardDescriptor editFlashcardDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the flashcard in the filtered flashcard list to edit
+     * @param editFlashcardDescriptor details to edit the flashcard with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditFlashcardDescriptor editFlashcardDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editFlashcardDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editFlashcardDescriptor = new EditFlashcardDescriptor(editFlashcardDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Flashcard> lastShownList = model.getFilteredFlashcardList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Flashcard flashcardToEdit = lastShownList.get(index.getZeroBased());
+        Flashcard editedFlashcard = createEditedFlashcard(flashcardToEdit, editFlashcardDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!flashcardToEdit.isSameFlashcard(editedFlashcard) && model.hasFlashcard(editedFlashcard)) {
+            throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setFlashcard(flashcardToEdit, editedFlashcard);
+        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+        return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Flashcard} with the details of {@code flashcardToEdit}
+     * edited with {@code editFlashcardDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Flashcard createEditedFlashcard(Flashcard flashcardToEdit, EditFlashcardDescriptor editFlashcardDescriptor) {
+        assert flashcardToEdit != null;
 
-        Question updatedQuestion = editPersonDescriptor.getQuestion().orElse(personToEdit.getQuestion());
-        Answer updatedAnswer = editPersonDescriptor.getAnswer().orElse(personToEdit.getAnswer());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Question updatedQuestion = editFlashcardDescriptor.getQuestion().orElse(flashcardToEdit.getQuestion());
+        Answer updatedAnswer = editFlashcardDescriptor.getAnswer().orElse(flashcardToEdit.getAnswer());
+        Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
 
-        return new Person(updatedQuestion, updatedAnswer, updatedTags);
+        return new Flashcard(updatedQuestion, updatedAnswer, updatedTags);
     }
 
     @Override
@@ -108,25 +108,25 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editFlashcardDescriptor.equals(e.editFlashcardDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the flashcard with. Each non-empty field value will replace the
+     * corresponding field value of the flashcard.
      */
-    public static class EditPersonDescriptor {
+    public static class EditFlashcardDescriptor {
         private Question question;
         private Answer answer;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditFlashcardDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditFlashcardDescriptor(EditFlashcardDescriptor toCopy) {
             setQuestion(toCopy.question);
             setAnswer(toCopy.answer);
             setTags(toCopy.tags);
@@ -180,12 +180,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditFlashcardDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditFlashcardDescriptor e = (EditFlashcardDescriptor) other;
 
             return getQuestion().equals(e.getQuestion())
                     && getAnswer().equals(e.getAnswer())

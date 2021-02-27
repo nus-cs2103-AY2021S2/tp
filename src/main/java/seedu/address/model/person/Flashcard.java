@@ -10,10 +10,10 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the answer book.
+ * Represents a Flashcard in the answer book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Flashcard {
 
     // Identity fields
     private final Question question;
@@ -25,7 +25,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Question question, Answer answer, Set<Tag> tags) {
+    public Flashcard(Question question, Answer answer, Set<Tag> tags) {
         requireAllNonNull(question, answer, tags);
         this.question = question;
         this.answer = answer;
@@ -52,13 +52,13 @@ public class Person {
      * Returns true if both persons have the same question.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameFlashcard(Flashcard otherFlashcard) {
+        if (otherFlashcard == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getQuestion().equals(getQuestion());
+        return otherFlashcard != null
+                && otherFlashcard.getQuestion().equals(getQuestion());
     }
 
     /**
@@ -71,14 +71,14 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Flashcard)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getQuestion().equals(getQuestion())
-                && otherPerson.getAnswer().equals(getAnswer())
-                && otherPerson.getTags().equals(getTags());
+        Flashcard otherFlashcard = (Flashcard) other;
+        return otherFlashcard.getQuestion().equals(getQuestion())
+                && otherFlashcard.getAnswer().equals(getAnswer())
+                && otherFlashcard.getTags().equals(getTags());
     }
 
     @Override

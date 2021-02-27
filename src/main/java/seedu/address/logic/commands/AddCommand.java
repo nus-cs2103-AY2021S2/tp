@@ -7,16 +7,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Flashcard;
 
 /**
- * Adds a person to the address book.
+ * Adds a flashcard to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard to the address book. "
             + "Parameters: "
             + PREFIX_QUESTION + "EMAIL "
             + PREFIX_ANSWER + "ADDRESS "
@@ -27,28 +27,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the address book";
 
-    private final Person toAdd;
+    private final Flashcard toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Flashcard}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Flashcard flashcard) {
+        requireNonNull(flashcard);
+        toAdd = flashcard;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasFlashcard(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
 
-        model.addPerson(toAdd);
+        model.addFlashcard(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

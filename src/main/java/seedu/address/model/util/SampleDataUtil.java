@@ -8,31 +8,31 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Answer;
 import seedu.address.model.person.Question;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Flashcard;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Question("alexyeoh@example.com"),
+    public static Flashcard[] getSampleFlashcards() {
+        return new Flashcard[] {
+            new Flashcard(new Question("alexyeoh@example.com"),
                 new Answer("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Person(new Question("berniceyu@example.com"),
+            new Flashcard(new Question("berniceyu@example.com"),
                 new Answer("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Question("charlotte@example.com"),
+            new Flashcard(new Question("charlotte@example.com"),
                 new Answer("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Person(new Question("lidavid@example.com"),
+            new Flashcard(new Question("lidavid@example.com"),
                 new Answer("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Person(new Question("irfan@example.com"),
+            new Flashcard(new Question("irfan@example.com"),
                 new Answer("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Person(new Question("royb@example.com"),
+            new Flashcard(new Question("royb@example.com"),
                 new Answer("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
@@ -40,8 +40,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Flashcard sampleFlashcard : getSampleFlashcards()) {
+            sampleAb.addFlashcard(sampleFlashcard);
         }
         return sampleAb;
     }

@@ -12,7 +12,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Answer;
 import seedu.address.model.person.Question;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Flashcard;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,9 +38,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(email, answer, tagList);
+        Flashcard flashcard = new Flashcard(email, answer, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(flashcard);
     }
 
     /**
