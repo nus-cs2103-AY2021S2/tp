@@ -157,8 +157,9 @@ _Details coming soon ..._
 <br>
 **A**: Unfortunately, this feature is not available at the moment, but plans are in the works to make this a reality.
 
-**Q** : Will I be able to add other types of appointment besides vaccination appointment?
-**A** : No, the current version only allows you to add vaccination appointments and not any other type of apppointments. 
+**Q** : Will I be able to add other types of appointments besides vaccination appointments?
+<br>
+**A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
