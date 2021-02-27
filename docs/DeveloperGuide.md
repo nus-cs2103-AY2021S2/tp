@@ -253,7 +253,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                     | I want to …​            | So that I can…​                                        |
 | -------- | ------------------------------ | -------------------------- | --------------------------------------------------------- |
 | `* * *`  | user                           | delete an item             | remove it when it is expired or used up                   |
-| `* * *`  | impulsive buyer                | add a new item             |                                                           |
+| `* * *`  | impulsive buyer                | add a new item             | keep track of it                                          |
 | `* *`    | well-organized user            | list down all items        | ensure that my items are in the correct location          |
 | `* *`    | forgetful user with many items | search for an item quickly | locate them easily                                        |
 | `*`      | user who stocks up items daily | update my items            | change the items' expiry dates and quantities accordingly |
