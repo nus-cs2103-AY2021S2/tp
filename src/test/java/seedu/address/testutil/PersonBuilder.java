@@ -5,7 +5,6 @@ import java.util.Set;
 
 import seedu.address.model.person.Answer;
 import seedu.address.model.person.Question;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -16,12 +15,10 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_QUESTION = "あ";
     public static final String DEFAULT_ANSWER = "a";
 
-    private Name name;
     private Phone phone;
     private Question question;
     private Answer answer;
@@ -31,7 +28,6 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         question = new Question(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
@@ -42,19 +38,10 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
         phone = personToCopy.getPhone();
         question = personToCopy.getQuestion();
         answer = personToCopy.getAnswer();
         tags = new HashSet<>(personToCopy.getTags());
-    }
-
-    /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withName(String name) {
-        this.name = new Name(name);
-        return this;
     }
 
     /**
@@ -90,7 +77,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, question, answer, tags);
+        return new Person(phone, question, answer, tags);
     }
 
 }

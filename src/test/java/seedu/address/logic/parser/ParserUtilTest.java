@@ -16,18 +16,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Question;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ANSWER = " ";
     private static final String INVALID_QUESTION = "how do you spell elephant?";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ANSWER = "a";
     private static final String VALID_QUESTION = "あ";
@@ -54,29 +51,6 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
-    }
-
-    @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
-    }
-
-    @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
-    }
-
-    @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
-    }
-
-    @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test

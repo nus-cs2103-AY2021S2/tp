@@ -16,7 +16,6 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
     private final Phone phone;
     private final Question question;
 
@@ -27,17 +26,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Question question, Answer answer, Set<Tag> tags) {
-        requireAllNonNull(name, phone, question, answer, tags);
-        this.name = name;
+    public Person(Phone phone, Question question, Answer answer, Set<Tag> tags) {
+        requireAllNonNull(phone, question, answer, tags);
         this.phone = phone;
         this.question = question;
         this.answer = answer;
         this.tags.addAll(tags);
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public Phone getPhone() {
@@ -61,7 +55,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same question.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,7 +64,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getQuestion().equals(getQuestion());
     }
 
     /**
@@ -88,8 +82,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
+        return otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getQuestion().equals(getQuestion())
                 && otherPerson.getAnswer().equals(getAnswer())
                 && otherPerson.getTags().equals(getTags());
@@ -98,14 +91,13 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, question, answer, tags);
+        return Objects.hash(phone, question, answer, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
+        builder.append("; Phone: ")
                 .append(getPhone())
                 .append("; question: ")
                 .append(getQuestion())
