@@ -28,7 +28,7 @@ You can reach us at the email `e0406245@u.nus.edu`
 
 ### Lim Si Ting
 
-<img src="images/siting.png" width="200px">
+<img src="images/limsiting.png" width="200px">
 
 [[github](https://github.com/SiTingST)]
 [[portfolio](team/limsiting.md)]
