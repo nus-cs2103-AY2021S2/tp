@@ -255,20 +255,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a student                | remove entries that I no longer need or accidentally added                                |
+| `* * *`  | user                                       | list all students              | view all student records at one go                                     |
+| `* * *`  | user                                       | delete a student               | remove entries that I no longer need or accidentally added             |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | list all upcoming appointments | view all appointments at one go                                    |
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `Vax@NUS` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: List all students**
+
+**MSS**
+
+1.  User requests to list all students.
+1.  System displays all student records.
+
+    Use case ends.
+    
+**Extensions**
+
+1. List students by vaccination status.
+1. List students by their priority for vaccination.
+   
+   Use case ends.
+
+*{More to be added}*
 
 **Use case: Delete a student**
 
@@ -293,6 +313,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. User does not confirm.
 
   Use case ends.
+
+*{More to be added}*
+
+**Use case: List all upcoming appointments**
+
+**MSS**
+
+1.  User requests to list all upcoming vaccination appointments.
+1.  System displays all appointments.
+
+    Use case ends.
+
+**Extensions**
+
+1. Group appointments by date.
+
+   Use case ends.
 
 *{More to be added}*
 
