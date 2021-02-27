@@ -66,98 +66,116 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+**Format:** `command`
 
-Format: `help`
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 
 ### 1.2 Query weight, height and BMI
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Format:** `command`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 ### 1.3 Update weight, height and ideal weight
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+**Format:** `command`
+
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 ## 2. Diet Plan Selector
 
-Edits an existing person in the address book.
+### 2.1 Get diet recommendation based on current BMI
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Gets a recommended diet plan based on the user's current BMI stored in the system.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+**Format:** `plan recommended bmi`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### 2.1 Get diet recommendations based on current BMI
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+**Expected output:**
+Here is the recommended diet plan for your BMI of 29.4:
+1) Weight Loss Diet (Less-carbs)
 
 ### 2.2 View active diet plan
 
-Deletes the specified person from the address book.
+Shows the current active diet plan previously selected by the user.
 
-Format: `delete INDEX`
+**Format:** `plan current`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+**Expected output:** 
+You are on the Weight Loss Diet (Less-carbs)\
+Here's the information tailored to your BMI:\
+Daily calories intake: 1,648 kcal\
+Daily Protein intake: 145 g\
+Daily Carbohydrates intake: 143 g\
+Daily Fat intake: 55 g
 
 ### 2.3 Select active diet plan
 
+Changes the current active diet plan to the newly specified plan.
+
+**Format:** `start p/plan`
+
+**Example:** `start p/1`
+
+**Expected output:**
+You are now on the Weight Loss Diet (Less-carbs)!\
+Here's the information tailored to your BMI:\
+Daily calories intake: 1,648 kcal\
+Daily Protein intake: 145 g\
+Daily Carbohydrates intake: 143 g\
+Daily Fat intake: 55 g
+
+### 2.4 List all available diet plans
+
+Displays a list of available diet plans.
+
+**Format:** `plans`
+
+**Expected output:**
+Here are the available diet plans:
+1) Weight Loss Diet
+2) Weight Gain Diet
+3) Muscle Gain Diet
 
 ## 3. Macronutrients Tracker
 
 Clears all entries from the address book.
 
-Format: `clear`
+**Format:** `command`
+
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 ### 3.1 Input carbohydrates, fats and protein intake
 
 Exits the program.
 
-Format: `exit`
+**Format:** `command`
+
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 ### 3.2 List food intake for certain days
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+**Format:** `command`
+
+**Expected output:** 
+Expected outcome\
+Expected outcome
 
 --------------------------------------------------------------------------------------------------------------------
 
