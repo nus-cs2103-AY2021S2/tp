@@ -389,6 +389,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should work without requiring an installer.
+5.  Should not depend on remote server.
+6.  Everything should be packaged into a single JAR file.
+7.  JAR file should not exceed 100MB.
+8.  System should be usable and understandable by a novice.
+9.  System should be able to run even if the data file has errors arising from a user manually editing it.
+10. Users should be comfortable with the system even after not using it for a period of time.
+11. System should be able to store up to 500 contacts.
+12. System should be able to function if a user overwrites the data file with another data file that is named the same.
 
 *{More to be added}*
 
