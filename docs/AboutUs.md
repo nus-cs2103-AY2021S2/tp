@@ -58,3 +58,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Integration
+
+### Cao Peng
+
+<img src="images/cp-john.png" width="200px">
+
+[[github](http://github.com/cp-john)]
+[[portfolio](team/cp-john.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality
