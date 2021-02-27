@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tian Xindi
 
-<img src="images/Xindi.png" width="200px">
+<img src="images/xinditian.png" width="200px">
 
 [[github](http://github.com/XindiTian)]
 [[portfolio](team/johndoe.md)]
