@@ -259,30 +259,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add new tutor details**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User inputs tutor details.
+2. TutorTracker confirms that tutor details have been added to list.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Tutor details already exists in list.
+   * 2a1. AddressBook shows an error message
 
-  Use case ends.
+   Use case resumes at step 1.
 
-* 3a. The given index is invalid.
+**Use case: List all tutors**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User requests to list tutors.
+2. TutorTracker shows a list of tutors.
+
+   Use case ends.
 
 *{More to be added}*
 
