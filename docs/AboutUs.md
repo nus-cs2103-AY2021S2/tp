@@ -28,10 +28,10 @@ You can reach us at the email `e0406245@u.nus.edu`
 
 ### Lim Si Ting
 
-<img src="images/limsiting.png" width="200px">
+<img src="images/sitingst.png" width="200px">
 
 [[github](https://github.com/SiTingST)]
-[[portfolio](team/limsiting.md)]
+[[portfolio](team/sitingst.md)]
 
 * Role: Developer
 * Responsibilities: Data  
