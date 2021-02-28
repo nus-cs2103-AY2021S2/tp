@@ -1,4 +1,7 @@
 ---
+layout: page
+title: User Guide
+---
 ## User Guide
 
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
