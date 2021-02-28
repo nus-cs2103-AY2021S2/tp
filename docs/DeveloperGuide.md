@@ -279,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. TutorPets shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: Clears all entries contact**
 
@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. TutorPets shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: Delete a student contact**
 
