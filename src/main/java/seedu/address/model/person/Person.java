@@ -24,6 +24,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private PersonType personType;
     /**
      * Every field must be present and not null.
      */
@@ -50,6 +51,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public PersonType getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(PersonType personType) {
+        this.personType = personType;
     }
 
     /**
@@ -119,5 +128,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }
