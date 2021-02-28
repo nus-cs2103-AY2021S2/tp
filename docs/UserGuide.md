@@ -7,14 +7,14 @@ title: User Guide
 It is optimised for users who prefer typing.
 
 ### Table of Contents
-* Quick start
-* Features
-* FAQ
-* Command summary
+* [Quick start](#start)
+* [Features](#features)
+* [FAQ](#faq)
+* [Command summary](#summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## <a name="start"></a> Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -66,11 +66,9 @@ It is optimised for users who prefer typing.
 
 </div>
 
-### Viewing help : `help`
+### View Commands : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Displays a list of possible commands along with each of their formats respectively.
 
 Format: `help`
 
@@ -84,9 +82,9 @@ Format: `add TITLE`
 Examples:
 * `add eat dinner`
 
-### Listing all persons : `list`
+### Listing all tasks : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all tasks in the planner.
 
 Format: `list`
 
@@ -163,20 +161,16 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## <a name="faq"></a> FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## <a name="summary"></a> Command summary
 
 Action | Format, Examples
 --------|------------------
