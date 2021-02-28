@@ -248,12 +248,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *` | User | Add new tutor details                              | I can keep track of a new tutor that I have heard about         |
+| `* * *` | User | List all tutors                                    | See all known tutors                                            |
+| `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
+| `* * *` | User | Get the email address of a tutor                   | Contact tutors directly for queries                             |
+| `* * *` | User | Add tuition appointment                            | I can keep track of appointments I have made                    |
+| `* * *` | User | View my tuition appointments                       | I can keep track of appointments                                |
+| `* * *` | User | Delete a tuition appointment                       | I can remove canceled appointments                              |
+| `* * *` | User | Check my own tuition appointments list             | I can know the timing of ALL my appointments in order           |
+| `* * *` | User | Filter tutors by their subject discipline          | Find a tutor that caters to my needs (academic)                 |
+| `* * *` | User | Filter tutor by cost                               | Find a tutor that fits into budget as well                      |
+| `* * *` | User | Filter a tutor by his/her name                     | View tutor's profile                                            |
+| `* * *` | User | Filter tutors by their years of experience         | Find a tutor with experience within the range of my expectation |
+| `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
+| `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
 
 *{More to be added}*
 
