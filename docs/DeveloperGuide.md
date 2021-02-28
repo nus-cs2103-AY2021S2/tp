@@ -427,6 +427,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to delete a specific book in the list.
 4.  SmartLib deletes the book.
 
+**Use case: UC12 - Delete a reader**
+**Guarantee: Reader will be deleted from the registered reader base**
+
+**MSS**
+
+1.  User requests to list readers
+2.  SmartLib shows a list of readers
+3.  User requests to delete a specific reader in the list
+4.  SmartLib deletes the person
+
     Use case ends.
 
 **Extensions**
@@ -458,6 +468,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2. 
 
+**Use case: UC13 - Add a reader**
+**Guarantee: New reader will be added into the registered reader base**
+
+**MSS**
+
+1. User enters data about the reader to be added
+2. SmartLib confirms the addition
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. SmartLib detects an error in the entered data.
+
+    * 1a1. SmartLib requests for the correct data.
+
+      1a2. User enters new data.
+
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 2.
+    
+
+**Use case: UC14 - Add a reader**
+**Guarantee: New reader will be added into the registered reader base**
+
+**MSS**
+
+1. User enters data about the reader to be added
+2. SmartLib detects that the reader has already been added.
+3. User proceeds to enter new data to add another reader.
+   Steps 1-3 are repeated until the data entered is a non-existing reader
+4. SmartLib confirms the addition.
+
+   Use case ends.
 
 *{More to be added}*
 

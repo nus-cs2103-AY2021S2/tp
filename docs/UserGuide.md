@@ -123,19 +123,15 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a reader: `add`
+### Adding a reader: `addreader`
 
-Adds a reader to the address book.
+Adds a reader to SmartLib's registered reader base .
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A reader can have any number of tags (including 0)
-</div>
+Format: `addreader n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe p/88888888 e/betsycrowe@example.com a/Newgate Prison`
 
 ### Editing a reader : `edit`
 
@@ -154,19 +150,23 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st reader to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd reader to be `Betsy Crower` and clears all existing tags.
 
-### Deleting a reader : `delete`
+### Deleting a reader : `deletereader`
 
-Deletes the specified reader from the address book.
+Deletes the specified reader from SmartLib's registered reader base.
 
-Format: `delete INDEX`
+Format: `deletereader INDEX`
 
 * Deletes the reader at the specified `INDEX`.
 * The index refers to the index number shown in the displayed reader list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd reader in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st reader in the results of the `find` command.
+* deletereader 1
+* deletereader 2
+
+Tip:
+* `listreader` followed by `deletereader 2` deletes the 2nd reader in the displayed reader list.
+
 
 ### Borrowing a book : `borrow`
 
@@ -231,9 +231,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add reader** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete reader** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
