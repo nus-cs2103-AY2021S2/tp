@@ -321,6 +321,8 @@ unless specified otherwise)
         1b1. HippoCampus requests for the correct data.
         Use case ends.
 
+
+
     Use case: UC8 - Get Help
     MSS:
       1. User requests for help with the help command.
@@ -340,6 +342,8 @@ unless specified otherwise)
         1c1. HippoCampus shows the user an example of correct format
         1c2. HippoCampus requests for the correct data.
         Use case ends.
+
+
 
     Use case: UC9 - Exit HippoCampus
     MSS:
