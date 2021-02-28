@@ -306,6 +306,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `HippoCampus` application while the **Actor** is the `user`,
 unless specified otherwise)
 
+    Use case: UC3 - Delete a contact
+    MSS:
+      1. User enters the contact to be deleted with the delete command.
+      2. HippoCampus displays the list of contacts without the deleted contact.
+      Use case ends.
+
+    Extensions:
+      1a.  The list is empty or index is invalid.
+        1a1. HippoCampus shows an error message.
+      1b. No parameters / non-integer parameters are supplied.
+        1b1. HippoCampus shows the user an example of the correct format.
+        1b2. HippoCampus requests for the correct data.
+      Use case ends.
+
+
+
     Use case: UC4 - Edit a contact
     MSS:
       1. User enters the details and index of the person whose contact should be edited.
