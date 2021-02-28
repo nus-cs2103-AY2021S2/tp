@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-//imports
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -63,3 +62,4 @@ public class AddCommand extends Command {
                 && toAdd.equals(((AddCommand) other).toAdd));
     }
 }
+
