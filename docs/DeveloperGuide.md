@@ -262,30 +262,271 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Pawbook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a dog profile**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User request to add a dog profile to the list.
+2.  Pawbook adds the dog.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Dog name is not specified.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User adds dog name.
 
       Use case resumes at step 2.
+
+* 1b. Dog breed is not specified.
+
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User adds dog breed.
+
+      Use case resumes at step 2.
+
+* 1c. Owner ID is not specified.
+
+    * 1c1. Pawbook shows an error message.
+    * 1c2. User adds owner ID.
+
+      Use case resumes at step 2.
+
+* 1d. Tag is not specified.
+
+    * 1d1. Pawbook shows an error message.
+    * 1d2. User adds tag.
+
+      Use case resumes at step 2.
+
+**Use case: UC02 - Add an owner profile**
+
+**MSS**
+
+1.  User request to add an owner profile to the list.
+2.  Pawbook adds the owner.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Owner name is not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User adds owner name.
+
+      Use case resumes at step 2.
+
+* 1b. Owner phone number is not specified.
+
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User adds owner phone number.
+
+      Use case resumes at step 2.
+
+* 1c. Owner email is not specified.
+
+    * 1c1. Pawbook shows an error message.
+    * 1c2. User adds owner email.
+
+      Use case resumes at step 2.
+    
+* 1d. Owner address is not specified.
+
+    * 1d1. Pawbook shows an error message.
+    * 1d2. User adds owner address.
+
+      Use case resumes at step 2.
+
+**Use case: UC03 - Add a program**
+
+**MSS**
+
+1.  User request to add a program.
+2.  Pawbook adds the program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Program name is not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User adds program name.
+
+      Use case resumes at step 2.
+
+* 1b. Program time is not specified.
+
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User adds program time.
+
+      Use case resumes at step 2.
+
+**Use case: UC04 - Delete a dog/owner profile or program**
+
+**MSS**
+
+1.  User requests to delete a specific dog/owner/program in the list.
+2.  Pawbook deletes the dog/owner/program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given dog/owner/program ID is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User enters correct dog/owner/program ID.
+
+      Use case resumes at step 2.
+
+**Use case: UC05 - List**
+
+**MSS**
+
+1.  User requests to list dogs of a particular program.
+2.  Pawbook lists the related dogs.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given program name is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User enters correct program name.
+
+      Use case resumes at step 2.
+
+* 1b. The class name is invalid/not specified.
+
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User enters correct class name.
+
+      Use case resumes at step 2.
+
+* 1c. Dog breed is not specified.
+
+    * 1c1. Pawbook shows an error message.
+    * 1c2. User enters correct dog breed.
+
+      Use case resumes at step 2.
+
+* 1d. Tag is not specified.
+
+    * 1d1. Pawbook shows an error message.
+    * 1d2. User enters correct tag.
+
+      Use case resumes at step 2.
+
+**Use case: UC06 - Enrol dog to a program**
+
+**MSS**
+
+1.  User requests to enrol a dog to a program.
+2.  Pawbook enrol the dog to the correct program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The program ID is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User enters correct program ID.
+
+      Use case resumes at step 2.
+
+* 1b. The program name is invalid/not specified.
+
+    * 1c1. Pawbook shows an error message.
+    * 1c2. User enters correct program name.
+
+      Use case resumes at step 2.
+
+**Use case: UC07 - Drop a dog from a program**
+
+**MSS**
+
+1.  User requests to drop a dog from a program.
+2.  Pawbook drop a dog from a program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The dog ID is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User enters correct dog ID.
+
+      Use case resumes at step 2.
+
+* 1b. The program name is invalid/not specified.
+
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User enters correct program name.
+
+      Use case resumes at step 2.
+
+**Use case: UC08 - View schedule**
+
+**MSS**
+
+1.  User requests to view schedule.
+2.  Pawbook shows the schedule.
+
+    Use case ends.
+
+**Use case: UC09 - Create program**
+
+**MSS**
+
+1.  User requests to create a new program.
+2.  Pawbook creates a new program.
+
+    Use case ends.
+    
+**Extensions**
+ 
+* 1a. The program name is not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User enters correct program name.
+
+      Use case resumes at step 2.
+
+* 1b. The program time is not specified.
+
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User enters correct program time.
+
+      Use case resumes at step 2.
+
+**Use case: UC010 - View instructions**
+
+**MSS**
+
+1.  User requests to view instructions.
+2.  Pawbook shows the list of instructions available.
+
+    Use case ends.
+
+**Use case: UC011 - Exit**
+
+**MSS**
+
+1.  User requests to exit the program.
+2.  Pawbook shows goodbye message.
+3.  Pawbook terminated.
+
+    Use case ends.
+
 
 *{More to be added}*
 
