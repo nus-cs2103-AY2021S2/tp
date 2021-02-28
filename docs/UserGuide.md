@@ -31,7 +31,7 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
   e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
+  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[-t TAG]…​` can be used as ` ` (i.e. 0 times), `-t friend`, `-t friend -t family` etc.
@@ -39,7 +39,7 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
 * Parameters can be in any order.<br>
   e.g. if the command specifies `-n NAME -p PHONE_NUMBER`, the alternative `-p PHONE_NUMBER -n NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit` and `clear`) will be ignored.<br>
@@ -85,7 +85,7 @@ Format: `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG�
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list (not sorted). The index must be a positive integer that is a valid number in the list.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `-t` without specifying any tags after it.
 
 Examples:
@@ -98,7 +98,7 @@ Finds persons whose names contain the given keywords and/or is associated with t
 
 Format: `find [-n NAME] [-t TAG]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
 * Partial matches to names are returned, e.g. `lliam` will match `williams`.
 * Only full tags will be matched.
 
@@ -111,7 +111,7 @@ Examples:
 Shows a list of all persons in the HippoCamus' Contact List.
 
 Format: `list [-s SORT_ORDER]`
-* List out all contacts by default; does not alter the index position of each contact.
+* List out all contacts by default.
 * `-s` list out all contacts sorted according to `SORT_ORDER`.
 * Possible values of `SORT_ORDER`:
   * `asc`: ascending lexicographical order
@@ -134,7 +134,7 @@ Examples:
 
 ### Show help : `help`
 
-Shows a messgae explaining a list of available commands.
+Shows a message explaining a list of available commands.
 
 Format: `help [COMMAND]`
 * List all available commands.
