@@ -39,25 +39,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Ensure the testing of the project 
   is done properly and on time.
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
 ### Sun Yucheng
 
 <img src="images/cheng20010201.png" width="200px">
@@ -77,4 +58,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Documentation + Code quality
+
+### Zhang Xinyi
+
+<img src="images/xyzhang00.png" width="200px">
+
+[[github](https://github.com/xyzhang00)] [[portfolio](team/zhangxinyi.md)]
+
+* Role: Developer
+* Responsibilities: Code quality
 
