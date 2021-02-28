@@ -329,9 +329,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Question**: An Japanese character/word 
+* **Question**: A Japanese character/word 
 * **Answer**: The reading/definition of the Japanese given in the corresponding question
-* **Flashcard**: An object containing a question and its answer
+* **Flashcard**: An object that can display a question and its answer
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
