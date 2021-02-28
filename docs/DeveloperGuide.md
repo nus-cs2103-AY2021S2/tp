@@ -403,8 +403,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **Private tuition teachers**: Freelance tuition teachers not belonging to any organisations
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Novice**: A user that is new to using TutorsPet
 
 --------------------------------------------------------------------------------------------------------------------
 
