@@ -148,6 +148,33 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+# figo2127's edits (starting here):
+
+### Adding a tag: `tag`
+
+Adds a tag to a task.
+
+Format: `tag INDEX [t/TAGNAME]` 
+
+* Attaches a tag to the task associated with INDEX. Tag can be used to identify related tasks.
+
+Examples:
+
+* `tag 1 [t/SoftwareEng]`
+
+### Searching tasks: `find`
+
+Searches for a task with its associated tag.
+
+Format: `find KEYWORD`
+
+Examples:
+
+* `find CS2103T`
+
+# End of figo2127's edits
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
