@@ -173,6 +173,7 @@ The user will be able to see the current daily food intake and how far off, or i
 **Example:** `food query d/today`
 
 **Expected output:** 
+
 Summary Food Intake for the Day (2021-02-28):\
 Tomatoes: 170 kcal\
 Onions: 340 kcal\
