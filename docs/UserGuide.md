@@ -128,7 +128,7 @@ Format: `find session KEYWORD`
 Example:<br>
 The command `list session` will show the following:
 
-# | Sessions
+\# | Sessions
 ---- |---------
 1 | John Lee<br>15/2/2021 13:00<br>2h $60/h<br>Computer Science
 2 | Johnz Lee<br>16/2/2021 14:00<br>1.5h $30/h<br>Math
