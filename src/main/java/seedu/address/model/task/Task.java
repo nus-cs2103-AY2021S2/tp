@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.common.Category;
+import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 
@@ -16,7 +17,7 @@ import seedu.address.model.common.Tag;
 public class Task {
     // Fields
     private final Name name;
-    private final Deadline deadline;
+    private final Date deadline;
     private final Priority priority;
     private final Category category;
     private final Set<Tag> tags = new HashSet<>();
@@ -24,7 +25,7 @@ public class Task {
     /**
      * Name field must be present and not null.
      */
-    public Task(Name name, Deadline deadline, Priority priority, Category category, Set<Tag> tags) {
+    public Task(Name name, Date deadline, Priority priority, Category category, Set<Tag> tags) {
         requireAllNonNull(name);
         this.name = name;
         this.deadline = deadline;

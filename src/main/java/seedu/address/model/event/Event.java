@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.common.Category;
+import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 
@@ -16,18 +17,18 @@ import seedu.address.model.common.Tag;
 public class Event {
     // Fields
     private final Name name;
-    private final StartDate startDate;
-    private final StartTime startTime;
-    private final EndDate endDate;
-    private final EndTime endTime;
+    private final Date startDate;
+    private final Time startTime;
+    private final Date endDate;
+    private final Time endTime;
     private final Category category;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Name field must be present and not null.
      */
-    public Event(Name name, StartDate startDate, StartTime startTime,
-                EndDate endDate, EndTime endTime, Category category, Set<Tag> tags) {
+    public Event(Name name, Date startDate, Time startTime,
+                Date endDate, Time endTime, Category category, Set<Tag> tags) {
         requireAllNonNull(name, startDate, endDate);
         this.name = name;
         this.startDate = startDate;
