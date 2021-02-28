@@ -1,0 +1,34 @@
+# Sends notification to organization Telegram group
+#
+# Triggered on opening of pull request. By default, pull requests from forks of public repos do not have access to
+# organization secret tokens, which is required to access Telegram bot token and target group chat, in order to invoke
+# sendMessage to desired Telegram group chat. Circumvented by using `pull_request_target` that runs the action
+# in the context of the base forked commit for security.
+#
+# References:
+# - Guide for telegram-action: https://dev.to/nikhilvemula/get-notified-via-telegram-when-pull-request-is-raised-4ha4
+# - About GitHub secrets: https://docs.github.com/en/actions/reference/encrypted-secrets
+# - Why PR_target: https://github.blog/2020-08-03-github-actions-improvements-for-fork-and-pull-request-workflows/
+# - PR target descriptor: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target
+# - Retrieving pull request number: https://github.community/t/how-to-get-the-github-pull-request-id-number/126558/2
+
+name: Telegram PR notification
+on:
+  pull_request_target:
+    branches: [ master ]  # only PR to master branch invokes workflow
+    types: [ opened ]     # 'synchronize' -> update, 'edited' -> modified
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+    - name: Send notification
+      uses: appleboy/telegram-action@beaf02496b42e8584e144c9ef273af028f51f616  # lock-in to fixed commit
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          New PR created:
+          [#${{ github.event.pull_request.number }}](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/${{ github.event.pull_request.number }})

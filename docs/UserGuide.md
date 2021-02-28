@@ -14,7 +14,7 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `HippoCampus.jar` from [here](https://github.com/AY2021S2-CS2103-W16-3/tp/releases).
 
 3. Double-click the file to start the app.<br>
    ![Ui](images/Ui.png)
@@ -49,7 +49,7 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
 
 ### Adding contacts : `add`
 
-Adds a person to the address book.
+Adds a person to the HippoCampus' Contacts List.
 
 Format: `add NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​`<br>
 * The birthday must be in a valid date format, e.g. 13 Jan
@@ -59,13 +59,13 @@ Examples:
 
 ### Clearing all data : `clear`
 
-Removes all contacts from the address book.
+Removes all contacts from the HippoCamus' Contact List.
 
 Format: `clear`
 
 ### Deleting contacts : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the HippoCamus' Contact List.
 
 Format: `delete INDEX [INDEX…]`
 
@@ -79,7 +79,7 @@ Examples:
 
 ### Editing contacts : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the HippoCamus' Contact List.
 
 Format: `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG…​ [-b BIRTHDAY]`
 
@@ -108,7 +108,7 @@ Examples:
 
 ### Listing contacts : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the HippoCamus' Contact List.
 
 Format: `list [-s SORT_ORDER]`
 * List out all contacts by default; does not alter the index position of each contact.
@@ -150,9 +150,13 @@ Exits the app.
 
 Format: `exit`
 
-### Archiving data files `[coming in v1.3]`
-
-_Details coming soon ..._
+### Coming Soon (Additional Features)
+* Add/Edit/Delete Modules and Tasks/Deliverables
+* Archiving of Data Files
+* Night Mode
+* Mass Operations (e.g. mass delete, mass edit)
+* Calendar View
+* _and much more!_
 
 --------------------------------------------------------------------------------------------------------------------
 

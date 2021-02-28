@@ -267,10 +267,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy student                               | search free times                                          | find times to relax                              |
 | `* *`    | efficient student                          | look at the number of completed tasks each week            | monitor my productivity                          |
 | `* *`    | student with a plan                        | access the important reminders and tasks for the day/week  | remind myself to be on task and follow my plan   |
-| `**` | forgetful student | record all my deadlines | easily access all deadlines due |
+| `* *` | forgetful student | record all my deadlines | easily access all deadlines due |
 | `*` | hardworking student | diligently plan my deadlines | always keep on task |
-| `**` | social butterfly | keep track of events | always remember the things to attend |
-| `**` | friend | record birthdays | wish my friends on time |
+| `* *` | social butterfly | keep track of events | always remember the things to attend |
+| `* *` | friend | record birthdays | wish my friends on time |
 | `* *`    | experienced user                           | execute multiple commands at a time                        | improve the efficiency of my workflow            |
 | `* *`    | long term user/student                     | Delete and wipe all my current tasks                       | use it in a clean slate for future semesters     |
 | `*`      | student taking many modules                | check exam dates                         |                                                                |
@@ -290,53 +290,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | potential user exploring the app | import existing data from similiar apps | compare features between apps to decide whether I’d like to use the app |
 | `*` | student | add my Modules | easily organise my contacts and tasks based on module |
 | `*` | user starting to use the app | tag meetings to an organisation/module | know what organisation/module the meeting is for |
-| `**` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
-| `**` | expert user | create shortcuts | run multiple repeated commands at once to save time |
-
+| `* *` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
+| `* *` | expert user | create shortcuts | run multiple repeated commands at once to save time |
+| `* *` | night owl | enable dark mode | use the app safely in dark environments |
+| `*` | overworked student | see my tasks/events in as a weekly view / monthly calendar | prioritize todos |
+| `*` | tech-savvy student | synchronize my todo list with cloud applications, e.g., Google Calendar | access todos from multiple platforms |
+| `*` | satisfied student | share links to the application with my friends and family on social media | encourage close contacts to use the application |
+| `*` | efficient student | group and manage multiple todos together | save time processing todos |
+| `* *` | efficient student | add priority levels to each todo | prioritize the order of todos |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HippoCampus` application while the **Actor** is the `user`,
+unless specified otherwise)
 
-**Use case: Delete a person**
+    System: HippoCampus
+    Use case: UC8 - Get Help
+    MSS:
+      1. User requests for help with the help command.
+      2. HippoCampus displays all available commands.
+      Use case ends.
+    
+    Extensions:
+      1a. User supplied a specific command as a parameter.
+        1a1. HippoCampus displays help for the specific command supplied.
+        Use case ends.
 
-**MSS**
+      1b. User supplied an unrecognised command as a parameter.
+        1b1. HippoCampus displays an error.
+        Use case ends.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
+      1c. HippoCampus detects an error in the entered data.
+        1c1. HippoCampus shows the user an example of correct format
+        1c2. HippoCampus requests for the correct data.
+        Use case ends.
 
 ### Non-Functional Requirements
 
-1. HippoCampus should be usable by a novice who has never used a CLI addressbook before. 
+1. HippoCampus should be usable by a novice who has never used a CLI addressbook before.
 2. HippoCampus should work on any _mainstream OS_ with minimally Java `11` installed.
-3. HippoCampus Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical 
+3. HippoCampus Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical
    usage.
 4. HippoCampus should store data _locally only_, in a human editable text file, for privacy reasons.
 5. HippoCampus should only be for a _single user_ and should not require interaction with other users of HippoCampus.
-6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
     should be able to accomplish most of the tasks faster using commands than using the mouse.
-7. The source code should be open source. 
-8. HippoCampus should work without requiring an installer, the installation of any additional software, or any 
+7. The source code should be open source.
+8. HippoCampus should work without requiring an installer, the installation of any additional software, or any
    external connections.
 9. The total file size should not exceed _100MB_.
 
