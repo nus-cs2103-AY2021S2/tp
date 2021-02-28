@@ -15,7 +15,7 @@ Given below are my contributions to the project.`to be updated`
 
 * **New Feature**:
 
-* **Code contributed**: [RepoSense link](https://github.com/xyzhang00/tp)
+* **Code contributed**: [RepoSense link]()
 
 * **Project management**:
 
