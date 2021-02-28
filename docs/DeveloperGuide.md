@@ -258,37 +258,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### User Stories : Main/UI
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        | Category       |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- | -------------------- |
-| `* * *`  | Template for must have user stories        | Template                       | Template                                                               | Template             |
-| `* *`    | Template for nice to have                  | Template                       | Template                                                               | Template             |
-| `*`      | Template for unlikely to have              | Template                       | Template                                                               | Template             |
+| -------- | ------------------------------- | ----------------------------------------- | -------------------------------------------------------------- | -------------------- |
+| `* *`    | CS2103 Student                  | View note and dictionary side-by-side     | Easily copy a note from dictionary | Main/UI/UX         |
+| `* *`    | CS2103 Student                  | Open and close Contact panel              | Have more space for other content  | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Dictionary panel           | Have more space for other content  | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Dictionary manager panel   | Have more space for other content  | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Note panel                 | Have more space for other content  | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Note Manager panel         | Have more space for other content  | Main/Non-essential |
+| | | | | |
+| `* * *`  | Template for must have user stories        | Template                       | Template                                                | Dictionary/<insert>  |
+| `* *`    | Template for nice to have                  | Template                       | Template                                                | Dictionary/<insert>  |
+| `*`      | Template for unlikely to have              | Template                       | Template                                                | Dictionary/<insert>  |
+| | | | | |
+| `* * *`  | Template for must have user stories        | Template                       | Template                                                | Note/<insert>  |
+| `* *`    | Template for nice to have                  | Template                       | Template                                                | Note/<insert>  |
+| `*`      | Template for unlikely to have              | Template                       | Template                                                | Note/<insert>  |
+| | | | | |
+| `* * *`  | Template for must have user stories        | Template                       | Template                                                | Contact/<insert>  |
+| `* *`    | Template for nice to have                  | Template                       | Template                                                | Contact/<insert>  |
+| `*`      | Template for unlikely to have              | Template                       | Template                                                | Contact/<insert>  |
 
-
-#### User Stories : Dictionary Function
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        | Category       |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- | -------------------- |
-| `* * *`  | Template for must have user stories        | Template                       | Template                                                               | Template             |
-| `* *`    | Template for nice to have                  | Template                       | Template                                                               | Template             |
-| `*`      | Template for unlikely to have              | Template                       | Template                                                               | Template             |
-
-
-#### User Stories : Note Function
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        | Category       |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- | -------------------- |
-| `* * *`  | Template for must have user stories        | Template                       | Template                                                               | Template             |
-| `* *`    | Template for nice to have                  | Template                       | Template                                                               | Template             |
-| `*`      | Template for unlikely to have              | Template                       | Template                                                               | Template             |
-
-#### User Stories : Contact Function
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        | Category       |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- | -------------------- |
-| `* * *`  | Template for must have user stories        | Template                       | Template                                                               | Template             |
-| `* *`    | Template for nice to have                  | Template                       | Template                                                               | Template             |
-| `*`      | Template for unlikely to have              | Template                       | Template                                                               | Template             |
 
 *{More to be added}*
 
 ### Use cases
+
 
 (For all use cases below, the **System** is the `Dictionote` and the **Actor** is the `user`, unless specified otherwise)
 
