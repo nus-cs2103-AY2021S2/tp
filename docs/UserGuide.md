@@ -26,9 +26,9 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
    * **`list`** : [Coming Soon]
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : [Coming Soon]
+   * **`add`** `n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : [Coming Soon]
 
-   * **`delete`**`3` : [Coming Soon]
+   * **`delete`** `3` : [Coming Soon]
 
    * **`clear`** : [Coming Soon]
 
@@ -64,31 +64,108 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 </div>
 
-### Adding a person: `add`
+### Adding an appointment: `add`
 [Coming Soon]
-Format:
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+Adds an appointment to the schedule.<br>
+
+Format: `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Raises an exception if there are conflicts in schedule for the patient and the doctor.<br>
+
+* Automatically fills empty optional fields if there is a previous record of the patient.<br>
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* The appointment can have any number of tags (including 0). It is recommended to use the tags to define the purpose of the appointment.<br>
+
 </div><br>
 
 Examples:
 
-### Listing all persons : `list`
-[Coming Soon]
-Format:
+* `add n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-### Editing a person : `edit`
+* `add n/Betsy Crowe dr/Who d/2021-01-01 1800 t/drug screening e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+
+### Listing all appointments : `list`
 [Coming Soon]
-Format:
+
+Changes the displayed appointment list to show all appointments in the appointment schedule.<br>
+
+Format: `list`
+
+
+### Editing an appointment : `edit`
+[Coming Soon]
+
+Edits an existing appointment in the schedule.<br>
+
+Format: `edit INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment schedule list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+
+* At least one of the optional fields must be provided.<br>
+
+* Existing values will be updated to the input values.<br>
+
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.<br>
+
+* You can remove all the person’s tags by typing t/ without specifying any tags after it.<br>
+
+* Raises an exception if there are conflicts in the new schedule for the patient and the doctor.<br>
 
 Examples:
 
-### Deleting a person : `delete`
+* `edit 1 dr/Who d/2021-01-01 1200` Edits the assigned doctor and appointment datetime under the 1st appointment to dr.Who and 01 Jan 2021 12pm respectively.
+
+* `edit 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
+
+
+### Locating appointments by fields : `find`
 [Coming Soon]
-Format:
+
+Format: `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
+
+* At least one of the optional fields must be provided.<br>
+
+* The search is case-insensitive. e.g `hans` will match `Hans`<br>
+
+* Only full words will be matched. e.g. `han` will not match `Hans`<br>
+
+* Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find n/Hans Bo` will match both patients `Hans Gruber` and `Bo Young`.
+
+* Certain fields such as datetime, phone number and email do not support a search by keywords and require a match with the entire field description for the search condition to be satisfied.
+
+* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find n/Hans Bo dr/Grey` will match appointments that satisfy both:
+  - Grey in the assigned doctor's name; and
+  - Either Hans or Bo in the patient's name.
 
 Examples:
+
+* `find n/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
+
+* `find dr/Grey Who t/brain surgery` returns appointments with doctors `grey` or `who` and are tagged as `brain surgery`.
+
+
+### Deleting an appointment : `delete`
+[Coming Soon]
+
+Deletes the specified appointment from the schedule.
+
+Format: `delete INDEX`
+
+* Deletes the appointment at the specified INDEX.
+
+* The index refers to the index number shown in the displayed appointment list.
+
+* The index must be a <strong>positive integer</strong> 1, 2, 3, …​
+
+Examples:
+
+* `list` followed by `delete 2` deletes the 2nd appointment in the entire appointment schedule.
+
+* `find Betsy` followed by `delete 1 ` deletes the 1st appointment in the results of the `find` command.
 
 ### Exiting the program : `exit`
 
@@ -104,7 +181,7 @@ App-Ointment data are saved in the hard disk automatically after any command tha
 
 App-Ointment data are saved as a JSON file `[JAR file location]/data/App-Ointment.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, App-Ointment will discard all data and start with an empty data file at the next run.
 </div><br>
 
@@ -121,7 +198,8 @@ If your changes to the data file makes its format invalid, App-Ointment will dis
 [Coming Soon]
 Action | Format, Examples
 --------|------------------
-**Add** | 
-**Delete** |
-**Edit** |
-**List** |
+**Add** | `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `add n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+**Delete** | `delete INDEX`<br>e.g., `delete 2`
+**Edit** | `edit INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit 1 dr/Who d/2021-01-01 1200`
+**List** | `list`
+**find** | [Coming Soon]
