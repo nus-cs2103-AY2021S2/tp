@@ -87,11 +87,25 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all dogs : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of dogs in the specified category/program.
 
-Format: `list`
+Format: `list [n/NAME] [c/CLASS] [b/BREED] [t/TAG]...`
+
+Examples:
+
+1. List all golden retrievers in the school
+   
+   Example: `list b/golden retriever`
+2. List all dogs enrolled in the puppy program
+   
+   Example: `list c/puppy`
+3. List all brown dogs
+   
+   Example: `list t/brown`
+
+*If the argument is left blank i.e `list`, all the dog profiles in the school will be displayed*
 
 ### Editing a person : `edit`
 
