@@ -66,6 +66,29 @@ SmartLib is a desktop app for managing private book loaning services owning less
 
 </div>
 
+### Adding a book : `addbook`
+
+Adds a book to the book list.
+
+Format: `addbook n/NAME a/AUTHOR p/PUBLISHER i/ISBN`
+
+Examples:
+* addbook n/Harry Porter a/JK Rowling p/NUS i/978-3-16-148410-0
+* addbook n/Hunger Games a/unknown p/publisher 1 i/978-3-16-148410-0
+
+### Deleting a book: `deletebook`
+
+Deletes a specific book from the book list.
+
+Format: `deletebook INDEX`
+
+* Deletes the book at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+* listbook followed by `deletebook 2` deletes the 2nd book in the book list.
+
 ### Listing all readers : `listreader`
 
 Shows a list of all readers in the address book.
