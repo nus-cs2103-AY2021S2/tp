@@ -66,6 +66,7 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 ### Adding an appointment: `add`
 [Coming Soon]
+
 Adds an appointment to the schedule.<br>
 
 Format: `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
