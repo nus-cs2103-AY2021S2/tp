@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
     beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
     of the learning faster using commands than using the mouse.
-10. A user should find interesting with the user interface easy, even if he/she is relatively new to the application.
+10. A user should find interacting with the user interface easy, even if he/she is relatively new to the application.
 11. More to be added.
 
 ### Glossary
