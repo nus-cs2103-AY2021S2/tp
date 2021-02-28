@@ -143,8 +143,8 @@ Displays a list of available diet plans.
 
 **Expected output:**
 Here are the available diet plans:
-1) Weight Loss Diet\
-2) Weight Gain Diet\
+1) Weight Loss Diet
+2) Weight Gain Diet
 3) Muscle Gain Diet
 
 ## 3. Macronutrients Tracker
@@ -160,7 +160,8 @@ For daily meals, the user is required to enter his/her current intake of macronu
 `food d/today n/onions p/20 c/0 f/100`
 
 **Expected output:** 
-Tomatoes (Protein: 10g, Carbohydrates: 10g, Fats:10g) has been tracked. 170 kcal consumed.\
+
+Tomatoes (Protein: 10g, Carbohydrates: 10g, Fats:10g) has been tracked. 170 kcal consumed.
 Onions (Protein: 20g, Carbohydrates: 0g, Fats:100g) has been tracked. 340 kcal consumed.
 
 ### 3.2 List food intake for certain days
@@ -172,10 +173,10 @@ The user will be able to see the current daily food intake and how far off, or i
 **Example:** `food query d/today`
 
 **Expected output:** 
-Summary Food Intake for the Day (2021-02-28):\
-Tomatoes: 170kcal\
-Onions: 340kcal\
-Total Calories Intake: 510kcal
+Summary Food Intake for the Day (2021-02-28):
+Tomatoes: 170 kcal
+Onions: 340 kcal
+Total Calories Intake: 510 kcal
 
 
 --------------------------------------------------------------------------------------------------------------------
