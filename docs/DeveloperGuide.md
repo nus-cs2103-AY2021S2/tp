@@ -255,7 +255,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new event                              |                                                                        |
 | `* * *`  | user                                       | edit an existing event                       |                                                                        |
 | `* * *`  | user                                       | delete an existing event                     |                                                                        |
-| `* * *`  | user                                       | get a weekly view of all events in that week | organize important tasks better                                        |
+| `* * *`  | user                                       | get a weekly view of all events in that week | get an overview of how busy the coming week is                         |
 | `* * *`  | user                                       | add a new person                             |                                                                        |
 | `* * *`  | user                                       | delete a person                              | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | edit a person                                | edit entries to update changes in details                              |
