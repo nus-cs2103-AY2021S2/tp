@@ -219,5 +219,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Week** | `week WEEK_NUMBER` `week first` `week next` `week prev` `week last` <br> e.g., `week 2`
+**Week** | `week {WEEK_NUMBER \| first \| next \| prev \| last...}` <br> e.g., `week 2`
 **Year** | `year YEAR_NUMBER` `year next` `year prev` <br> e.g., `year 2022`
