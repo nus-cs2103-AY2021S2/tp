@@ -369,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SmartLib shows an error message.
 
       Use case resumes at step 2.
 
@@ -417,6 +417,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The reader does not exist
 
   Use case ends.
+
+**Use case: UCX - Delete a book**
+
+**MSS**
+
+1.  User requests to list books.
+2.  SmartLib shows a list of books.
+3.  User requests to delete a specific book in the list.
+4.  SmartLib deletes the book.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SmartLib shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UCX - Add a book**
+
+**MSS**
+
+1.  User requests to add a book to the list.
+2.  SmartLib adds the book to the list and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The format of the `addbook` command is incomplete.
+  
+    * 1a1. SmartLib requests the user to reenter the command.
+    
+    Use case resumes at step 2. 
+
 
 *{More to be added}*
 
