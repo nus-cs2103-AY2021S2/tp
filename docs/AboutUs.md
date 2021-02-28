@@ -49,12 +49,13 @@ You can reach us at the email `zhengyong@u.nus.edu`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]i
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gj0407790)]
+[[portfolio](team/gj0407790.md)]
 
 * Role: Testing
 * Responsibilities:
     * Ensures the testing of the project is done properly and on time.
+    * Ensures the number of test case is sufficient.
 
 ### Zhang Guangzesheng
 
