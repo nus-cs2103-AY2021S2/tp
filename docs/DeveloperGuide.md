@@ -321,7 +321,6 @@ unless specified otherwise)
         1b1. HippoCampus requests for the correct data.
         Use case ends.
 
-    System: HippoCampus
     Use case: UC8 - Get Help
     MSS:
       1. User requests for help with the help command.
@@ -347,7 +346,6 @@ unless specified otherwise)
       1. User enters exit command.
       2. HippoCampus exits and closes the window.
       Use case ends.
-
 
 ### Non-Functional Requirements
 
