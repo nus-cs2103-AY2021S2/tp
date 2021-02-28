@@ -303,32 +303,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HippoCampus` application while the **Actor** is the `user`,
+unless specified otherwise)
 
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
+    System: HippoCampus
+    Use case: UC8 - Get Help
+    MSS:
+      1. User requests for help with the help command.
+      2. HippoCampus displays all available commands.
+      Use case ends.
     
-*{More to be added}*
+    Extensions:
+      1a. User supplied a specific command as a parameter.
+        1a1. HippoCampus displays help for the specific command supplied.
+        Use case ends.
+
+      1b. User supplied an unrecognised command as a parameter.
+        1b1. HippoCampus displays an error.
+        Use case ends.
+
+      1c. HippoCampus detects an error in the entered data.
+        1c1. HippoCampus shows the user an example of correct format
+        1c2. HippoCampus requests for the correct data.
+        Use case ends.
 
 ### Non-Functional Requirements
 
