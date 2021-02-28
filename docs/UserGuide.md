@@ -4,14 +4,11 @@ title: User Guide
 ---
 _**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your contact management tasks done faster than traditional GUI apps.
 
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-=======
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -56,6 +53,8 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Parameters in triangle brackets must be supplied together in order as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied in order.
+
 </div>
 
 ### Add new tutor details: `add_tutor`
@@ -66,16 +65,20 @@ Details:
 * Name
 * Phone Number
 * Email
-* Address
+* Gender
+* Location (multiple allowed)
 * Subjects (multiple allowed)
-* Hourly Rate
-* Years of Experience
+    * Subject Name
+    * Hourly Rate
+    * Education Level
+    * Years of Experience
+    * Qualifications
 
 Format:
-`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT... r/RATE y/YEARS`
+`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...`
 
 Example Input:
-`add_tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English s/Mathematics (Sec 3, 4, JC) r/60 y/6`
+`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
 
 ### List all tutors: `list_tutors`
 
