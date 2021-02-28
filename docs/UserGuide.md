@@ -143,39 +143,40 @@ Displays a list of available diet plans.
 
 **Expected output:**
 Here are the available diet plans:
-1) Weight Loss Diet
-2) Weight Gain Diet
+1) Weight Loss Diet\
+2) Weight Gain Diet\
 3) Muscle Gain Diet
 
 ## 3. Macronutrients Tracker
 
-Clears all entries from the address book.
-
-**Format:** `command`
-
-**Expected output:** 
-Expected outcome\
-Expected outcome
-
 ### 3.1 Input carbohydrates, fats and protein intake
 
-Exits the program.
+For daily meals, the user is required to enter his/her current intake of macronutrients, in terms of carbohydrates, fats, and proteins. The metric unit of measurement specified is in grams, delimited by commas.
 
-**Format:** `command`
+
+**Format:** `food d/DATE n/NAME p/PROTEINS c/CARBOHYDRATES f/FATS`
+
+**Example:** `food d/today n/tomatoes p/10 c/10 f/10`\
+`food d/today n/onions p/20 c/0 f/100`
 
 **Expected output:** 
-Expected outcome\
-Expected outcome
+Tomatoes (Protein: 10g, Carbohydrates: 10g, Fats:10g) has been tracked. 170 kcal consumed.\
+Onions (Protein: 20g, Carbohydrates: 0g, Fats:100g) has been tracked. 340 kcal consumed.
 
 ### 3.2 List food intake for certain days
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+The user will be able to see the current daily food intake and how far off, or if they have exceeded their daily calorie intake requirement.
 
-**Format:** `command`
+**Format:** `food query d/DATE`
+
+**Example:** `food query d/today`
 
 **Expected output:** 
-Expected outcome\
-Expected outcome
+Summary Food Intake for the Day (2021-02-28):\
+Tomatoes: 170kcal\
+Onions: 340kcal\
+Total Calories Intake: 510kcal
+
 
 --------------------------------------------------------------------------------------------------------------------
 
