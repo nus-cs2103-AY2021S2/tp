@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Charles Lee Lin Ta
 
-<img src="images/charles.png" width="200px">
+<img src="images/charleslee01.png" width="200px">
 
 [[github](https://github.com/CharlesLee01)]
 
