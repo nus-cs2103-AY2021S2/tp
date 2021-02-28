@@ -43,7 +43,7 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -287,7 +287,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | returning user                             | delete completed/irrelevant tasks                          | reduce clutter on HippoCampus                       |
 | `*`      | returning user                             | delete all tasks/deadlines related to a tag                | reduce clutter and prepare for subsequent modules   |
 | `*`      | returning user                             | replace tags (e.g. all cs2103 to cs3203)                   | transfer contacts                                   |
-| `*` | potential user exploring the app | import existing data from similiar apps | compare features between apps to decide whether I’d like to use the app |
+| `*` | potential user exploring the app | import existing data from similar apps | compare features between apps to decide whether I’d like to use the app |
 | `*` | student | add my Modules | easily organise my contacts and tasks based on module |
 | `*` | user starting to use the app | tag meetings to an organisation/module | know what organisation/module the meeting is for |
 | `* *` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
@@ -306,7 +306,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `HippoCampus` application while the **Actor** is the `user`,
 unless specified otherwise)
 
-    System: HippoCampus
+    Use case: UC7 - Find tags
+    MSS:
+      1. User enters details to search for tags with the tags command.
+      2. HippoCampus displays all tags.
+      Use case ends.
+
+    Extensions:
+      1a. HippoCampus detects wrong parameters.
+        1a1. HippoCampus displays an error message.
+        1a2. HippoCampus prompts users to re-enter input.
+        Use case ends.
+      1b. HippoCampus detects specific tags supplied.
+        1b1. HippoCampus displays all tags matching the name of the specified tag.
+        Use case ends.
+
+
     Use case: UC8 - Get Help
     MSS:
       1. User requests for help with the help command.
@@ -329,7 +344,7 @@ unless specified otherwise)
 
 ### Non-Functional Requirements
 
-1. HippoCampus should be usable by a novice who has never used a CLI addressbook before.
+1. HippoCampus should be usable by a novice who has never used a CLI address book before.
 2. HippoCampus should work on any _mainstream OS_ with minimally Java `11` installed.
 3. HippoCampus Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical
    usage.
