@@ -9,17 +9,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Question {
 
-    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
+    public static final String MESSAGE_CONSTRAINTS = "";
+    public static final String VALIDATION_REGEX = generatePublicFields();
+
+    public final String value;
+
     // alphanumeric and special characters
+    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
     private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
     private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
-    public static final String MESSAGE_CONSTRAINTS = "";
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
-            + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
-    public final String value;
 
     /**
      * Constructs an {@code Question}.
@@ -37,6 +38,11 @@ public class Question {
      */
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public static String generatePublicFields(){
+        return LOCAL_PART_REGEX + "@" + DOMAIN_FIRST_CHARACTER_REGEX
+                + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
     }
 
     @Override
