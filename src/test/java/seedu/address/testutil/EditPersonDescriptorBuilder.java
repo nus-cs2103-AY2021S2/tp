@@ -11,6 +11,7 @@ import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.VaccinationStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -78,6 +79,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code vaccinationStatus} of the {@code vaccinationStatus} that we are building.
+     */
+    public EditPersonDescriptorBuilder withVacStatus(String vaccinationStatus) {
+        descriptor.setVaccinationStatus(new VaccinationStatus(vaccinationStatus));
         return this;
     }
 

@@ -16,6 +16,7 @@ import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.VaccinationStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String vaccinationStatus;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,12 +42,14 @@ class JsonAdaptedPerson {
                              @JsonProperty("matriculationNumber") String matriculationNumber,
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("vaccinationStatus") String vaccinationStatus,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.matriculationNumber = matriculationNumber;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.vaccinationStatus = vaccinationStatus;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +64,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        vaccinationStatus = source.getVaccinationStatus().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -118,8 +123,19 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (vaccinationStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    VaccinationStatus.class.getSimpleName()));
+        }
+        if (!VaccinationStatus.isValidStatus(vaccinationStatus)) {
+            throw new IllegalValueException(VaccinationStatus.MESSAGE_CONSTRAINTS);
+        }
+
+        final VaccinationStatus modelVacStatus = new VaccinationStatus(vaccinationStatus);
+
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelMatric, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelMatric, modelPhone, modelEmail, modelAddress, modelVacStatus, modelTags);
     }
 
 }

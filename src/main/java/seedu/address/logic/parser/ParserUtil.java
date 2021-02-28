@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.VaccinationStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,6 +95,22 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+
+    /**
+     * Parses a {@code String vaccinationStatus} into a {@code vaccinationStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code vaccinationStatus} is invalid.
+     */
+    public static VaccinationStatus parseVacStatus(String vaccinationStatus) throws ParseException {
+        requireNonNull(vaccinationStatus);
+        String trimmedVacStatus = vaccinationStatus.trim();
+        if (!VaccinationStatus.isValidStatus(trimmedVacStatus)) {
+            throw new ParseException(VaccinationStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new VaccinationStatus(trimmedVacStatus);
     }
 
     /**

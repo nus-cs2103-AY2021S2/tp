@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label vaccinationStatus;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -55,6 +57,8 @@ public class PersonCard extends UiPart<Region> {
         //matriculationNumber.setText(person.getMatriculationNumber().value);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
+        //to be added in the future when the space in the PersonCard is added
+        //vaccinationStatus.setText(person.getVaccinationStatus().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
