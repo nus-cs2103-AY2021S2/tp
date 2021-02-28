@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### John Alec Mendoza Branzuela
 
-<img src="images/johnAboutUs.jpeg" width="200px">
+<img src="images/branzuelajohn.png" width="200px">
 
 [[github](http://github.com/branzuelajohn)]
 [[portfolio](team/branzuelajohn.md)]
