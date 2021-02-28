@@ -18,10 +18,10 @@ You can reach us at the email `e0406245@u.nus.edu`
 
 ### Dan Tran
 
-<img src="images/dann.jpeg" width="200px">
+<img src="images/picasdan9.png" width="200px">
 
 [[github](https://github.com/picasdan9)]
-[[portfolio](team/dantran.md)]
+[[portfolio](team/picasdan9.md)]
 
 * Role: Developer
 * Responsibilities: DevOps
