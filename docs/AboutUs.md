@@ -11,22 +11,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Charles Lee Lin Ta
 
-<!--suppress ALL -->
-<img src="images/charles.png" width="200px">
+<img src="images/charleslee01.png" width="200px">
 
 [[github](https://github.com/CharlesLee01)]
 
 * Role: Developer
 * Responsibilities: Add command
 
-### Jane Doe
+### John Alec Mendoza Branzuela
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/branzuelajohn.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/branzuelajohn)]
+[[portfolio](team/branzuelajohn.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Kou Yong Kang
