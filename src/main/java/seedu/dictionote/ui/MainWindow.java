@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -49,6 +50,21 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private SplitPane mainSplitPanel;
+
+    @FXML
+    private StackPane dictionaryListPlaceholder;
+
+    @FXML
+    private StackPane dictionaryContentPlaceholder;
+
+    @FXML
+    private StackPane noteListPlaceholder;
+
+    @FXML
+    private StackPane noteContentPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
