@@ -26,9 +26,9 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
    * **`list`** : [Coming Soon]
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : [Coming Soon]
+   * **`add`** `n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : [Coming Soon]
 
-   * **`delete`**`3` : [Coming Soon]
+   * **`delete`** `3` : [Coming Soon]
 
    * **`clear`** : [Coming Soon]
 
@@ -66,6 +66,7 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 ### Adding an appointment: `add`
 [Coming Soon]
+
 Adds an appointment to the schedule.<br>
 
 Format: `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
@@ -74,7 +75,7 @@ Format: `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/T
 
 * Automatically fills empty optional fields if there is a previous record of the patient.<br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
 * The appointment can have any number of tags (including 0). It is recommended to use the tags to define the purpose of the appointment.<br>
 
@@ -86,14 +87,18 @@ Examples:
 
 * `add n/Betsy Crowe dr/Who d/2021-01-01 1800 t/drug screening e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+
 ### Listing all appointments : `list`
 [Coming Soon]
+
 Changes the displayed appointment list to show all appointments in the appointment schedule.<br>
 
 Format: `list`
 
+
 ### Editing an appointment : `edit`
 [Coming Soon]
+
 Edits an existing appointment in the schedule.<br>
 
 Format: `edit INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
@@ -116,8 +121,10 @@ Examples:
 
 * `edit 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
 
+
 ### Locating appointments by fields : `find`
 [Coming Soon]
+
 Format: `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
 
 * At least one of the optional fields must be provided.<br>
@@ -140,8 +147,10 @@ Examples:
 
 * `find dr/Grey Who t/brain surgery` returns appointments with doctors `grey` or `who` and are tagged as `brain surgery`.
 
+
 ### Deleting an appointment : `delete`
 [Coming Soon]
+
 Deletes the specified appointment from the schedule.
 
 Format: `delete INDEX`
@@ -172,7 +181,7 @@ App-Ointment data are saved in the hard disk automatically after any command tha
 
 App-Ointment data are saved as a JSON file `[JAR file location]/data/App-Ointment.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, App-Ointment will discard all data and start with an empty data file at the next run.
 </div><br>
 
@@ -189,7 +198,8 @@ If your changes to the data file makes its format invalid, App-Ointment will dis
 [Coming Soon]
 Action | Format, Examples
 --------|------------------
-**Add** | 
-**Delete** |
-**Edit** |
-**List** |
+**Add** | `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `add n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+**Delete** | `delete INDEX`<br>e.g., `delete 2`
+**Edit** | `edit INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit 1 dr/Who d/2021-01-01 1200`
+**List** | `list`
+**find** | [Coming Soon]
