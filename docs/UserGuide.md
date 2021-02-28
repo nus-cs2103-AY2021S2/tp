@@ -64,31 +64,79 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 </div>
 
-### Adding a person: `add`
+### Adding an appointment: `add`
 [Coming Soon]
-Format:
+Adds an appointment to the schedule.<br>
+
+Format: `add n/PATIENT dr/DOCTOR d/DATETIME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Raises an exception if there are conflicts in schedule for the patient and the doctor.<br>
+
+* Automatically fills empty optional fields if there is a previous record of the patient.<br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+
+* The appointment can have any number of tags (including 0). It is recommended to use the tags to define the purpose of the appointment.<br>
+
 </div><br>
 
 Examples:
 
-### Listing all persons : `list`
-[Coming Soon]
-Format:
+* `add n/John Doe dr/Grey d/2021-01-01 1200 t/brain surgery p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-### Editing a person : `edit`
+* `add n/Betsy Crowe dr/Who d/2021-01-01 1800 t/drug screening e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Listing all appointments : `list`
 [Coming Soon]
-Format:
+Changes the displayed appointment list to show all appointments in the appointment schedule.<br>
+
+Format: `list`
+
+### Editing an appointment : `edit`
+[Coming Soon]
+Edits an existing appointment in the schedule.<br>
+
+Format: `edit INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment schedule list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+
+* At least one of the optional fields must be provided.<br>
+
+* Existing values will be updated to the input values.<br>
+
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.<br>
+
+* You can remove all the person’s tags by typing t/ without specifying any tags after it.<br>
+
+* Raises an exception if there are conflicts in the new schedule for the patient and the doctor.<br>
 
 Examples:
 
-### Deleting a person : `delete`
+* `edit 1 dr/Who d/2021-01-01 1200` Edits the assigned doctor and appointment datetime under the 1st appointment to dr.Who and 01 Jan 2021 12pm respectively.
+
+* `edit 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
+
+### Locating appointments by fields : `find`
 [Coming Soon]
-Format:
+Format: `find `
+
+### Deleting an appointment : `delete`
+[Coming Soon]
+Deletes the specified appointment from the schedule.
+
+Format: `delete INDEX`
+
+* Deletes the appointment at the specified INDEX.
+
+* The index refers to the index number shown in the displayed appointment list.
+
+* The index must be a <strong>positive integer</strong> 1, 2, 3, …​
 
 Examples:
+
+* `list` followed by `delete 2` deletes the 2nd appointment in the entire appointment schedule.
+
+* `find Betsy` followed by `delete 1 ` deletes the 1st appointment in the results of the `find` command.
 
 ### Exiting the program : `exit`
 
