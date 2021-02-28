@@ -249,20 +249,64 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new flashcard               |                                                                        |
-| `* * *`  | user                                       | delete a flashcard                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a flashcard by name          | locate details of flashcards without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many flashcards in the address book | sort flashcards by name           | locate a flashcard easily                                                 |
+| Priority | As a …​                                 | I want to …​                        | So that I can…​                              |
+| -------- | ------------------------------------------ | -------------------------------------- | ----------------------------------------------- |
+| `* * *`  | new user                                   | view valid commands                    | remember how to use the App                     |
+| `* * *`  | user                                       | view a flashcard                       |                                                 |
+| `* * *`  | user                                       | see the answer to a flashcard          | check if I answered correctly                   |
+| `* * *`  | user                                       | start a practice run of all flashcards | practice all flashcards in a single session     |
+| `* *`    | user                                       | view all flashcards                    | study the flashcards before a session           |
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+
+
+**Use case: See flash cards one by one**
+
+**MSS**
+
+1.  User requests to view flash cards
+2.  WeebLingo shows a new flash card on the screen
+3.  User clicks next
+4.  Go to step 2 again
+
+**Extensions**
+
+* 2a. All flash cards have been shown.
+
+  Use case ends.
+
+**Use case: Take a quiz**
+
+**MSS**
+
+1.  User clicks quiz
+2.  WeebLingo shows a new question on the screen
+3.  User enters his answer
+4.  WeebLingo shows whether user's answer is correct/wrong
+5.  WeebLingo displays correct answer if user's answer is wrong
+6.  WeebLingo removes this question from the list of questions for this session
+7.  Go to step 2 again
+    
+**Extensions**
+
+* 2a. All questions have been shown.
+
+  Use case ends.
+
+**Use case: Save and see all my study data**
+
+**MSS**
+
+1.  User looks at a flashcard
+2.  User can save a flashcard if he is confident he has learnt the japanese word
+3.  WeebLingo saves the learnt flashcard to a storage file
+4.  User can request to see all learnt flashcards
+
+    Use case ends.
 
 **Use case: Delete a flashcard**
 
