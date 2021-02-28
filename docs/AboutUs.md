@@ -9,44 +9,44 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Low En Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/enhao25.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/enhao25)]
+[[portfolio](team/enhao25.md)]
 
-* Role: Project Advisor
+* Role: Deliverables and deadlines / Scheduling and tracking
+* Responsibilities: Ensuring that the project is on track.
 
-### Jane Doe
+### Wong Choon Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yungweezy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yungweezy)]
+[[portfolio](team/yungweezy.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead / Integration
+* Responsibilities: Responsible for overall project coordination and integration.
 
-### Johnny Doe
+### Sunaga Shion
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nowknowing.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nowknowing)] [[portfolio](team/nowknowing.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time.
 
-### Jean Doe
+### Samuel Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samleewy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/samleewy)]
+[[portfolio](team/samleewy.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Code Quality
+* Responsibilities: Ensuring that coding standards are enforced in accordance with checkstyles
 
 ### James Doe
 
