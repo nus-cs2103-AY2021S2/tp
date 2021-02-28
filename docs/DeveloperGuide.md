@@ -315,10 +315,11 @@ unless specified otherwise)
     Extensions:
       1a.  The list is empty or index is invalid.
         1a1. HippoCampus shows an error message.
+        Use case ends.
       1b. No parameters / non-integer parameters are supplied.
         1b1. HippoCampus shows the user an example of the correct format.
         1b2. HippoCampus requests for the correct data.
-      Use case ends.
+        Use case ends.
 
 
 
