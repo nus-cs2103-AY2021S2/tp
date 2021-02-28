@@ -238,7 +238,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * has to manage a considerable number of residences
 * is constantly renting out residences; high turnover rate
-* needs to frequently update cleaning agency to clean residences between bookings
 * prefers working on their laptop over using their phone
 * is able to type quickly
 * prefers using a keyboard to using a mouse
