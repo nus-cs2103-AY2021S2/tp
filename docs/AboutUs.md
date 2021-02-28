@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Wang Yuanzhe
+### Jane Doe
 
-<img src="images/aiwassprime.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/AiwassPrime)]
+[[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Develop AddressBook3.5
+* Role: Team Lead
+* Responsibilities: UI
 
 ### Johnny Doe
 

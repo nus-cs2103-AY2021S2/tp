@@ -4,15 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's remark in the address book.
- * Guarantees: immutable; is always valid
+ * Guarantees: immutable; is valid
  */
 public class Remark {
     public final String value;
 
     /**
-     * The builder of Remark.
+     * Constructs an {@code Remark}.
      *
-     * @param remark the details
+     * @param remark A valid remark.
      */
     public Remark(String remark) {
         requireNonNull(remark);
@@ -35,4 +35,5 @@ public class Remark {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
