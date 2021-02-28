@@ -11,6 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Charles Lee Lin Ta
 
+<!--suppress ALL -->
 <img src="images/charles.png" width="200px">
 
 [[github](https://github.com/CharlesLee01)]
@@ -28,11 +29,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Kou Yong Kang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kouyk.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/kouyk)] [[portfolio](team/yongkang.md)]
 
 * Role: Developer
 * Responsibilities: Data
