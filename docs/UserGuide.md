@@ -151,6 +151,20 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Sorting of contacts : `sort`
+
+Sorts the contacts displayed according to a specified field.
+
+FormatL `sort FIELDNAME`
+
+* Sorts according to the field specified by `FIELDNAME`
+* `FIELDNAME` is only restricted to the following cases:
+    * Sort by name : `name`
+    * Sort by priority (Coming in v1.3) : `priority`
+    * Sort by last seen date (Coming in v1.3) : `lastSeenDate`
+
+Examples:
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
