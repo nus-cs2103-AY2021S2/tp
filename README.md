@@ -13,6 +13,8 @@ BudgetBaby has the following features to enhance your life:
 
 Hurry and start tracking your expenses now!
 
+![Ui](docs/images/Ui.png)
+
 ## Site Map
 
 * [User Guide](docs/UserGuide.md)
