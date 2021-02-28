@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 ## Introduction
 
 DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals in this app much faster than other traditional GUI-based diet tracking apps.
