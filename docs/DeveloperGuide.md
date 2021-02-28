@@ -241,14 +241,14 @@ _{Explain here how the data archiving feature will be implemented}_
 * need to find answers
 * prefers to take notes
 
-**Value proposition**: 
+**Value proposition**:
 
 * Main problem: no organized platform to facilitate extra learning outside of class.
 * Sub-Problems
     * Easy and quick way for students to get answers for CS2103T questions.
     * Easy for students to take notes.
     * Easy way for students to find their classmates.
-    
+
 * Limitations:
     * Unable to provide students with thorough materials/all the answers.
     * Unable to play videos from lectures.
@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### User Requirement
 1. Typing Preferred User
     * user should be targeting user who can type fast
-    * user should have above average typing speed for regular English text 
+    * user should have above average typing speed for regular English text
 
 #### Software Requirement
 1. Single User
@@ -312,9 +312,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * data should be stored locally and should be in a human editable text file.
 1. Single File
     * should work with a single JAR file
-1. File Size 
+1. File Size
     * file sizes of the deliverables should not exceed the `100MB`
-        
+
 
 
 #### Dependency Requirement
@@ -340,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * do not use expandable panels, embedded videos, animated GIFs etc.
 1. File Size
     * file sizes of documents should not exceed the `15MB`
-    
+
 
 ### Glossary
 

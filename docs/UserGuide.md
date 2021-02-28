@@ -87,7 +87,7 @@ Format: `open Option`
     * `-nl`: Note list panel
     * `-l`: Both dictionary list and note list panel
     * `-a` : All panel
-    
+
 Examples:
 * `open -c`
     * show contact panel
