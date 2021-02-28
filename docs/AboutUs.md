@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead / Integration
 * Responsibilities: Responsible for overall project coordination and integration.
 
-### Johnny Doe
+### Sunaga Shion
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nowknowing.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nowknowing)] [[portfolio](team/nowknowing.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time.
 
 ### Jean Doe
 
