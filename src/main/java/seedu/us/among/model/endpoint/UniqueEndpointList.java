@@ -1,13 +1,13 @@
 package seedu.us.among.model.endpoint;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.us.among.commons.util.CollectionUtil;
 import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 
@@ -54,7 +54,7 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
      * The endpoint identity of {@code editedEndpoint} must not be the same as another existing endpoint in the list.
      */
     public void setEndpoint(Endpoint target, Endpoint editedEndpoint) {
-        CollectionUtil.requireAllNonNull(target, editedEndpoint);
+        requireAllNonNull(target, editedEndpoint);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
@@ -89,7 +89,7 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
      * {@code endpoints} must not contain duplicate endpoints.
      */
     public void setEndpoints(List<Endpoint> endpoints) {
-        CollectionUtil.requireAllNonNull(endpoints);
+        requireAllNonNull(endpoints);
         if (!personsAreUnique(endpoints)) {
             throw new DuplicateApiEndpointException();
         }

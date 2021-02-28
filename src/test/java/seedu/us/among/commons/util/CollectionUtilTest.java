@@ -87,7 +87,7 @@ public class CollectionUtilTest {
      * if {@code objects} or any element of {@code objects} is null.
      */
     private void assertNullPointerExceptionThrown(Object... objects) {
-        assertThrows(NullPointerException.class, () -> CollectionUtil.requireAllNonNull(objects));
+        assertThrows(NullPointerException.class, () -> requireAllNonNull(objects));
     }
 
     /**
