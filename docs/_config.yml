@@ -1,5 +1,5 @@
 title: "Tutor Tracker"
-theme: minima
+theme: jekyll-theme-minimal
 
 header_pages:
   - UserGuide.md
