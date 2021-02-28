@@ -306,6 +306,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `HippoCampus` application while the **Actor** is the `user`,
 unless specified otherwise)
 
+    Use case: UC4 - Edit a contact
+    MSS:
+      1. User enters the details and index of the person whose contact should be edited.
+      2. HippoCampus displays the updated details.
+      Use case ends.
+    
+    Extensions:
+      1a. No index is supplied/ non integer parameters.
+        1a1. HippoCampus shows the user an example of the correct format.
+        1a2. HippoCampus requests for the correct data.
+        Use case ends.
+      1b. Index exceeds valid range/ no edit parameters supplied.
+        1b1. HippoCampus requests for the correct data.
+        Use case ends.
+
+
+
     Use case: UC7 - Find tags
     MSS:
       1. User enters details to search for tags with the tags command.
@@ -320,6 +337,7 @@ unless specified otherwise)
       1b. HippoCampus detects specific tags supplied.
         1b1. HippoCampus displays all tags matching the name of the specified tag.
         Use case ends.
+
 
 
     Use case: UC8 - Get Help
@@ -341,6 +359,14 @@ unless specified otherwise)
         1c1. HippoCampus shows the user an example of correct format
         1c2. HippoCampus requests for the correct data.
         Use case ends.
+
+
+
+    Use case: UC9 - Exit HippoCampus
+    MSS:
+      1. User enters exit command.
+      2. HippoCampus exits and closes the window.
+      Use case ends.
 
 ### Non-Functional Requirements
 
