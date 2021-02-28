@@ -242,7 +242,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Have a lot commitments (6 modules, TA and RA roles while balancing a part time internship)
 * Can type fast, hate mouse
 
-**Value proposition**: 
+**Value proposition**:
 
 * Provide a simple platform for target users to manage their schedule
 * CLI commands to manage meetings or schedule with some contacts
@@ -311,14 +311,14 @@ Use case ends.
 * 2a. Some required information about the event is missing in the command.
 
     * 1a1. SOChedule displays an error message suggesting that information provided when creating
-      the event is incomplete.  
+      the event is incomplete.
       Use case ends.
 
 
 * 2b. The date provided for the event is invalid
 
     * 1b1. SOChedule displays an error message suggesting that date provied for the event
-      is invalid, or not following the `YYYY-MM-DD` format.  
+      is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
 **Use case: UC02 - List tasks**
@@ -335,7 +335,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>. 
+1. User requests to <u> list tasks (UC02)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to delete a task.
 4. User enters the index of the task to be deleted.
@@ -367,7 +367,7 @@ Use case ends.
 4. User enters the index of the task to be marked.
 5. SOChedule displays a success message for marking the task as completed.
 <br><br>
-Use case ends.   
+Use case ends.
 
 **Extensions**
 
@@ -381,7 +381,7 @@ Use case ends.
     * 3a1. SOChedule shows an error message indicating the invalidity of the index.
 
       Use case resumes at step 2.
-      
+    
 **Use case: UC05 - Add an event**
 
 **MSS**
@@ -396,14 +396,14 @@ Use case ends.
 * 1a. Some required information about the event is missing in the command.
   
     * 1a1. SOChedule displays an error message suggesting that information provided when creating
-      the event is incomplete.  
+      the event is incomplete.
       Use case ends.
 
 
 * 1b. The date provided for the event is invalid
 
-    * 1b1. SOChedule displays an error message suggesting that date provided for the event 
-      is invalid, or not following the `YYYY-MM-DD` format.  
+    * 1b1. SOChedule displays an error message suggesting that date provided for the event
+      is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
       
 **Use case: UC06 - List events**
@@ -418,7 +418,7 @@ Use case ends.
 **Extensions**
 
 * 1a. No events have been added.
-    * 1a1. SOChedule displays an empty list.  
+    * 1a1. SOChedule displays an empty list.
       Use case ends.
       
 **Use case: UC07 - Delete an event**
@@ -431,7 +431,7 @@ Use case ends.
 4. User enters the index of the event to be deleted.
 5. SOChedule displays a success message for deleting the event.
 <br><br>
-Use case ends.   
+Use case ends.
 
 **Extensions**
 
