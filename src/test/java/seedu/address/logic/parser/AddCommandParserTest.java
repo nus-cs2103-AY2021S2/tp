@@ -124,32 +124,39 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + INVALID_NAME_DESC
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + INVALID_PHONE_DESC
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
+        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB
+                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, PERSON_TYPE_DESC_STUDENT + INVALID_NAME_DESC + PHONE_DESC_BOB
+                        + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + PERSON_TYPE_DESC_STUDENT + NAME_DESC_BOB
+                        + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
