@@ -248,14 +248,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *` | User | Add new tutor details                              | I can keep track of a new tutor that I have heard about         |
+| `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
 | `* * *` | User | List all tutors                                    | See all known tutors                                            |
 | `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
 | `* * *` | User | Get the email address of a tutor                   | Contact tutors directly for queries                             |
-| `* * *` | User | Add tuition appointment                            | I can keep track of appointments I have made                    |
-| `* * *` | User | View my tuition appointments                       | I can keep track of appointments                                |
-| `* * *` | User | Delete a tuition appointment                       | I can remove canceled appointments                              |
-| `* * *` | User | Check my own tuition appointments list             | I can know the timing of ALL my appointments in order           |
+| `* * *` | User | Add tuition appointment                            | Keep track of appointments I have made                          |
+| `* * *` | User | View my tuition appointments                       | Keep track of appointments                                      |
+| `* * *` | User | Delete a tuition appointment                       | Remove canceled appointments                                    |
+| `* * *` | User | Check my own tuition appointments list             | Know the timing of ALL my appointments in order                 |
 | `* * *` | User | Filter tutors by their subject discipline          | Find a tutor that caters to my needs (academic)                 |
 | `* * *` | User | Filter tutor by cost                               | Find a tutor that fits into budget as well                      |
 | `* * *` | User | Filter a tutor by his/her name                     | View tutor's profile                                            |
@@ -263,11 +263,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
 | `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
 
+
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `TutorTracker` and the **Actor** is the `user`, unless specified otherwise)
+
 
 **Use case: Add new tutor details**
 
@@ -276,14 +278,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User inputs tutor details.
 2. TutorTracker confirms that tutor details have been added to list.
 
-   Use case ends.
-
 **Extensions**
-
 * 2a. Tutor details already exists in list.
    * 2a1. AddressBook shows an error message
 
    Use case resumes at step 1.
+
+**Use case: Add an appointment**
+
+**MSS**
+
+1.  User requests to add an appointment.
+2.  TutorTracker adds the appointment and displays the new appointment.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The tutor name, date of appointment or start and end time is empty.
+  
+    * 1a1. TutorTracker shows an error message.
+    
+      Use case ends.
+
+* 1b. The given date or start and end time is invalid.
+
+    * 1b1. TutorTracker shows an error message.
+
+      Use case ends.
 
 **Use case: List all tutors**
 
@@ -293,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. TutorTracker shows a list of tutors.
 
    Use case ends.
-
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -307,7 +328,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Appointment**: An event in user's local schedule with related details, including tutor's name, date of appointment, start and end time and location(optional).
+* **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
+* **Years of Experience**: Years of experience of tutoring a specific subject.
+* **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
 
 --------------------------------------------------------------------------------------------------------------------
 
