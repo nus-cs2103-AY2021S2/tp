@@ -41,7 +41,7 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-   
+
    * **`bmi`**`h/150 w/70 i/75`: Initializes the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg.
 
    * **`bmi`**`query`: Queries the current user's BMI with its height and weight information.
@@ -53,7 +53,7 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
    * **`plan`**`t/Protein`: Queries more information of the Protein diet plan.
 
    * **`food`**`d/today n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for today.
-   
+
    * **`food`**`query d/today`: Queries the food intake for today.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -73,7 +73,7 @@ Shows a message explaning how to access the help page.
 
 **Format:** `command`
 
-**Expected output:** 
+**Expected output:**
 Expected outcome\
 Expected outcome
 
@@ -84,7 +84,7 @@ Adds a person to the address book.
 
 **Format:** `command`
 
-**Expected output:** 
+**Expected output:**
 Expected outcome\
 Expected outcome
 
@@ -94,7 +94,7 @@ Shows a list of all persons in the address book.
 
 **Format:** `command`
 
-**Expected output:** 
+**Expected output:**
 Expected outcome\
 Expected outcome
 
@@ -116,7 +116,7 @@ Shows the current active diet plan previously selected by the user.
 
 **Format:** `plan current`
 
-**Expected output:** 
+**Expected output:**
 You are on the Weight Loss Diet (Less-carbs)\
 Here's the information tailored to your BMI:\
 Daily calories intake: 1,648 kcal\
@@ -164,7 +164,7 @@ For daily meals, the user is required to enter his/her current intake of macronu
 **Example:** `food d/today n/tomatoes p/10 c/10 f/10`\
 `food d/today n/onions p/20 c/0 f/100`
 
-**Expected output:** 
+**Expected output:**
 
 Tomatoes (Protein: 10g, Carbohydrates: 10g, Fats:10g) has been tracked. 170 kcal consumed.\
 Onions (Protein: 20g, Carbohydrates: 0g, Fats:100g) has been tracked. 340 kcal consumed.
@@ -177,7 +177,7 @@ The user will be able to see the current daily food intake and how far off, or i
 
 **Example:** `food query d/today`
 
-**Expected output:** 
+**Expected output:**
 
 Summary Food Intake for the Day (2021-02-28):\
 Tomatoes: 170 kcal\

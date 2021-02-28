@@ -55,7 +55,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  BMITracker displays information for height and weight
 
     Use case ends.
-    
+
 **Use case: Update height and weight**
 
 **MSS**
@@ -66,7 +66,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 4.  BMITracker updates the height, weight and BMI of the user
 
     Use case ends.
-    
+
 **Use case: Add food item as consumption**
 
 **MSS**
@@ -85,7 +85,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  DietSelector displays a list of diet recommendation based on user's BMI
 
     Use case ends.
-    
+
 **Use case: View diet plan**
 
 **MSS**
@@ -94,7 +94,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  DietSelector displays a detailed requirement for that certain diet type
 
     Use case ends.
-    
+
 **Use case: Add food item as an intake**
 
 **MSS**
@@ -103,17 +103,17 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  MacroTracker tracks the food and computes the total kilo calories consumption for the day
 
     Use case ends.
-    
+
 **Extensions**
 *  1a. The food item exists.
 
    * 1a1. MacroTracker updates food item details in the list of food.
-  
+
 *  1b. The food item does not exists.
-   
+
    * 1b1. MacroTracker adds the food item into the list of food.
-  
-   Use case resumes at step 2. 
+
+   Use case resumes at step 2.
 
 **Use case: Display current food intake for the day**
 
@@ -123,7 +123,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  MacroTracker displays the summary intake for that day.
 
     Use case ends.
-    
+
 *{More to be added}*
 
 ### Non-Functional Requirements
