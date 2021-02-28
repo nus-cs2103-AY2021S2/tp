@@ -144,7 +144,7 @@ Examples:
 
 ### Sorting of contacts : `sort`
 
-Sorts the contacts displayed according to a specified field. 
+Sorts the contacts displayed according to a specified field.
 
 FormatL `sort FIELDNAME`
 
@@ -153,7 +153,7 @@ FormatL `sort FIELDNAME`
     * Sort by name : `name`
     * Sort by priority (Coming in v1.3) : `priority`
     * Sort by last seen date (Coming in v1.3) : `lastSeenDate`
-    
+
 Examples:
 
 ### Clearing all entries : `clear`
