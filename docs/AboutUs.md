@@ -46,14 +46,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/samleewy.md)]
 
 * Role: Code Quality
-* Responsibilities: Ensuring that coding standards are enforced in accordance with checkstyles
+* Responsibilities: Ensuring that coding standards are enforced in accordance with checkstyles.
 
-### James Doe
+### Goh Jun Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jonahhgohh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jonahhgohh)]
+[[portfolio](team/jonahhgohh.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Ensure that coding standards are enforced.
