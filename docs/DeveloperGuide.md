@@ -236,71 +236,348 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Nina works as a housing service management officer for a Residential College* (in NUS). She is the sole manager of the office. She:
+* has to manage a large number of residents and rooms (> 600)
+* needs to efficiently assign rooms to residents
+* handles room allocation exercise every semester
+* needs to track room issues reported by students during the semester
+* needs to update the issue lifecycle (reported => maintenance ongoing => fixed/closed)
+* prefers typing over interacting via GUI
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage residents, rooms, and allocations faster than a typical GUI app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a … | I want to … | So that I can…|
+| - | - | - | - |
+| `* * *` | new user | see usage instructions | refer to instructions if I forget how to use the app |
+| `* * *` | confused user | have a help command | learn how to use the application |
+| `* * *` | user | add a new person | |
+| `* * *` | user | add issues | |
+| `* * *` | user | see a list of pending tasks sorted by deadline | prioritise which to do |
+| `* * *` | user | search for tasks | |
+| `* * *` | user | close issues | focus on open issues |
+| `* * *` | user | update issues | |
+| `* * *` | user | remove issues | |
+| `* * *` | user | add residents | |
+| `* * *` | user | search for residents | |
+| `* * *` | user | update resident details | ensure their information is up to date |
+| `* * *` | user | remove residents | |
+| `* * *` | user | add new rooms | |
+| `* * *` | user | see a list of rooms with their statuses | know which rooms are available |
+| `* * *` | user | search for rooms | |
+| `* * *` | user | update room details | |
+| `* * *` | user | remove rooms | |
+| `* *` | user | see both available rooms and unassigned residents side by side | easily match residents to rooms |
+| `* *` | careless user | undo previous commands | easily fix any errors I might make |
+| `* *` | careless user | redo previous commands | easily fix an erroneous undo |
+| `* * *` | user | allocate a resident to a room | |
+| `* * *` | user | deallocate a resident from a room | |
 
-*{More to be added}*
+## Use cases
 
-### Use cases
+(For all use cases below, the **System** is the `SunRez` and the **Actor** is the `user`, unless specified otherwise. All Use Cases are prefixed with `UC` followed by a 3 digit code)
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+### UC-001 Add a resident
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a specific resident to the list.
+2. SunRez adds the resident and saves the changes.
 
+Use case ends.
+
+**Extensions**
+
+* 1a. The resident's details are incorrectly formatted (e.g phone number/email/year format does not conform, OR room number is invalid).
+    * 1a1. SunRez displays an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
     Use case ends.
+* 1b. The resident's phone number or email are in use by an existing resident.
+    * 1b1. SunRez displays an error stating which field is already in use and requests the user to try again after fixing the stated error.
+    Use case ends.
+* 2a. Sunrez encounters an error while saving the content.
+    * 2a1. SunRez shows an error message and requests the user to try their command again.
+    Use case ends.
+
+
+### UC-002 List all residents
+
+**MSS**
+
+1. User requests to list residents.
+2. SunRez shows a list of residents.
+
+Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
+    Use case ends.
 
+
+### UC-003 Find residents
+
+**MSS**
+
+1. User searches for a resident by keywords.
+2. SunRez shows a list of residents whose name contain any of the keywords.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. There are no residents matching the keywords.
+    * 2a1. An empty list is displayed.
+    Use case ends.
+
+### UC-004 Edit a resident record
+
+**MSS**
+
+1. User requests to list residents.
+2. SunRez shows a list of residents.
+3. User requests to edit a specific resident based on the index from the list displayed in step 2.
+4. SunRez edits the residents and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list of residents is empty.
+    Use case ends.
+* 3a. The resident's details are invalid (e.g phone number/email/dob format does not conform, OR room number is invalid).
+    * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
+    Use case resumes at step 2.
+
+
+### UC-005 Delete a resident
+
+**MSS**
+
+1. User requests to list residents.
+2. SunRez shows a list of residents.
+3. User requests to delete a specific resident based on the index from the list displayed in step 2.
+4. SunRez deletes the specified resident and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list of residents is empty.
+    Use case ends.
+* 3a. The specified resident does not exist.
+    * SunRez shows an error message.
+    Use case resumes at step 2.
+
+
+### UC-006 Add a room
+
+**MSS**
+
+1. User requests to add a specific room to the list.
+2. SunRez adds the room and saves the changes.
+
+Use case ends.
+
+**Extensions**
+* 1a. The room's details are invalid (e.g room number format is not valid).
+    * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
   Use case ends.
 
+
+### UC-007 List all rooms
+
+Similar to *UC-002 List all residents*, just replace residents with rooms.
+
+
+### UC-008 Find rooms
+
+Similar to *UC-003 Find residents*, just replace resident with room.
+
+
+### UC-009 Edit a room record
+
+**MSS**
+
+1. User requests to list rooms.
+2. SunRez shows a list of rooms.
+3. User requests to edit a specific room based on the index from the list displayed in step 2.
+4. SunRez edits the room and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list of rooms is empty.
+    Use case ends.
+* 3a. The room's details are invalid (e.g room number format is not valid).
+    * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
+    Use case resumes at step 2.
+
+
+### UC-010 Delete a room
+
+Similar to *UC-005 Delete a resident*, just replace resident with room.
+
+
+### UC-011 Add an open issue
+
+**MSS**
+
+1. User requests to add a specific open issue to the list.
+2. SunRez adds the issue and saves the changes.
+
+Use case ends.
+
+**Extensions**
+* 1a. The issue's details are invalid (e.g invalid room number).
+    * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
+  Use case ends.
+
+
+### UC-012 List all issues
+
+Similar to *UC-002 List all residents*, just replace residents with issues.
+
+### UC-013 Find issues
+
+Similar to *UC-003 Find residents*, just replace residents with issues.
+
+### UC-014 Edit an issue record
+
+**MSS**
+
+1. User requests to list issues.
+2. SunRez shows a list of issues.
+3. User requests to edit a specific issue based on the index from the list displayed in step 2.
+4. SunRez edits the issue and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list of issue is empty.
+    Use case ends.
+* 3a. The issue's details are invalid (e.g invalid room number).
+    * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
+    Use case resumes at step 2.
+
+
+### UC-015 Close an issue
+
+**MSS**
+
+1. User requests to list issues.
+2. SunRez shows a list of issues.
+3. User requests to mark a specific issue as closed based on the index from the list displayed in step 2.
+4. SunRez marks the issue as closed and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+Use case ends.
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+    * 3a1. SunRez shows an error message.
       Use case resumes at step 2.
 
-*{More to be added}*
+### UC-016 Delete an issue
 
-### Non-Functional Requirements
+Similar to *UC-005 Delete a resident*, just replace resident with issue.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+### UC-017 Undo Previous Command
+
+**MSS**
+
+1.  User requests to undo previous command.
+2.  Previous command is undone and SunRez's state is reverted to before that command.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. There are no previous commands that change state.
+    * 1a1 SunRez shows an error message.
+    Use case ends.
+
+### UC-018 Redo Previous Command
+
+**MSS**
+
+1.  User requests to redo previously undone command.
+2.  Previous undone command is redone and SunRez's state is updated accordingly.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. There are no previously undone commands.
+    * 1a1 SunRez shows an error message.
+    Use case ends.
+
+### UC-019 Allocate a Room
+
+**MSS**
+
+1. User requests to list unassigned residents and unallocated rooms.
+2. SunRez displays unassigned residents and unallocated rooms side-by-side.
+3. User requests to allocate a room to a resident.
+4. SunRez allocates the room and saves the changes.
+
+**Extensions**
+
+* 2a. There are no unassigned residents or unassigned.
+    Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SunRez shows an error message.
+      Use case resumes at step 2.
+
+
+### UC-020 Deallocate a Room
+
+**MSS**
+
+1. User requests to list room allocations.
+2. SunRez displays rooms, each with its corresponding allocated resident.
+3. User requests to deallocate a room based on the index from the list displayed in step 2.
+4. SunRez deallocates the room and saves the changes.
+
+**Extensions**
+
+* 2a. There are no unassigned residents or unassigned.
+    Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SunRez shows an error message.
+      Use case resumes at step 2.
+
+
+## Non-Functional Requirements
+
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 records (residents, rooms and issues) without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should be able to learn the basic commands within half an hour of initial usage.
+5. Should work without the internet.
+6. Should be a highly portable to enable transfer between different computers with different OS.
+7. Executable program should occupy less than 20MB on the computer.
+8. Should not require an installer.
+9. The data should not be stored in a Database Management System (DBMS).
+10. Should not depend on any remote server.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Residential College (RC)**: A university residence for students that offers a 2-year program at NUS
+* **NUS**: The National University of Singapore
+* **Resident**: A university student staying in the Residential College
+* **Issue**: A maintenance problem that concerns the condition of a room
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -319,33 +596,17 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases … }_
 
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -353,4 +614,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases … }_
