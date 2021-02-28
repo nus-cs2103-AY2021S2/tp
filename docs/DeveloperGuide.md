@@ -251,13 +251,17 @@ _{Explain here how the data archiving feature will be implemented}_
 ### User stories
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new appointment               |                                                                        |
-| `* * *`  | user                                       | delete an appointment                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find an appointment by specific fields         | locate details of relevant appointments without having to go through the entire list |
-| `*`      | user with many persons in the address book | sort appointments by specific fields           | locate a category of appointments easily                                                 |
+| Priority | As a …​                                      | I want to …​                              | So that I can…​                                                     |
+| -------- | ------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------- |
+| `* * *`  | new user                                    | see usage instructions                   | refer to instructions when I forget how to use the App              |
+| `* * *`  | user                                        | add a new appointment                    |                                                                     |
+| `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
+| `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
+| `* *`    | user                                        | lookup previous records of a patient     | fill in missing information where ommitted by the patient           |
+| `* *`    | user with many appointments in the schedule | be reminded of overdue appointments      | take the appropriate action to resolve the issues                   |
+| `* *`    | user with many appointments in the schedule | tag appointments with urgency categories | more urgent appointments can take priority                          |
+| `*`      | user with many appointments in the schedule | sort appointments by specific fields     | locate a category of appointments easily                            |
+| `*`      | user with many appointments in the schedule | automatically recommended available timings and doctors for new appointments | create appointments without manually checking availability in the schedule |
 
 *{More to be added}*
 
