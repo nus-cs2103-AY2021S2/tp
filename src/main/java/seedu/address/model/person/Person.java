@@ -17,6 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final MatriculationNumber matriculationNumber;
     private final Phone phone;
     private final Email email;
 
@@ -27,9 +28,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, MatriculationNumber matriculationNumber, Phone phone, Email email, Address address,
+                  Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
+        this.matriculationNumber = matriculationNumber;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -38,6 +41,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public MatriculationNumber getMatriculationNumber() {
+        return this.matriculationNumber;
     }
 
     public Phone getPhone() {
