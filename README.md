@@ -15,7 +15,7 @@ Head on to our User Guide and Developer Guide to find out more!
 
 ### Contributors
 - [Visnu S/O Ravindran](https://github.com/VisnuRavi/)
-- [Bannerjee Aditya](https://github.com/adidoesnt)
+- [Banerjee Aditya](https://github.com/adidoesnt)
 - [Arihant Jain](https://github.com/arihantjain97)
 - [Cao Jiahao, Jonathan](https://github.com/Jonathan-Cao)
   <br>
