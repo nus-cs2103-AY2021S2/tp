@@ -261,21 +261,30 @@ _{Explain here how the data archiving feature will be implemented}_
 *{More to be added}*
 
 ### Non-Functional Requirements
+_Non-functional requirements specify the constraints under which App-Ointment is developed and operated._
 
-[Coming Soon]
+#### Constraints:
+* The system should be backward compatible with data produced by earlier versions of the system.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Technical requirements:
+* Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
+#### Performance requirements:
+* Should be able to hold up to 1000 appointments without a noticeable sluggishness in performance for typical usage.
+
+#### Quality requirements:
+* A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+#### Notes about project scope:
+* The App-Ointment data file is private and local to the user.
 *{More to be added}*
 
 ### Glossary
 
-[Coming Soon]
-
+* **System**: The App-Ointment App
+* **User**: The Receptionist, not the patient or doctor
+* **Appointment Schedule**: The list of appointments maintained in the App-Ointment, arranged by appointment datetime.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 *{More to be added}*
 
