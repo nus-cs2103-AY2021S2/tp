@@ -249,14 +249,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                    | So that I can…​                                                       |
+| -------- | ------------------------------------------ | ---------------------------------- | ----------------------------------------------------------------------   |
+| `* * *`  | new user                                   | See a list of all commands         | refer to instructions when I forget how to use the App                   |
+| `* * *`  | user                                       | add a new residence                | keep track of all my residences                                                                         |
+| `* * *`  | user                                       | delete a residence                 | remove places that I no longer need to track                             |
+| `* * *`  | user                                       | find a residence by name           | locate details of residence without having to go through the entire list |
+| `* *`    | user                                       | edit a residence status            | keep track of all my residences status as and when they change           |
+| `*`      | user owning and renting out many residences| view list of all residence status  | minimize the time needed to get a quick overview of all my residences    |
+| `*`      | busy advanced user                         | clear user input quickly           | my time is used more efficiently                                         |
 
 *{More to be added}*
 
