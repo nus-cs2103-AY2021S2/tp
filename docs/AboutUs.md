@@ -8,33 +8,33 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Cheng Yu Feng
 
-<img src="images/chengyufeng.png" width="200px">
+<img src="images/yufeng0930.png" width="200px">
 
 [[github](https://github.com/YuFeng0930)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Events Team
 
 ### Ding You Jia, Danelynn
 
-<img src="images/youjia.png" width="200px">
+<img src="images/icelenaugust.png" width="200px">
 
 [[github](http://github.com/icelenaugust)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Tasks Team
 
 ### Li Jiahe
 
-<img src="images/lijiahe.png" width="200px">
+<img src="images/ljhgab.png" width="200px">
 
 [[github](https://github.com/ljhgab)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities: 
+* Role: Developer
+* Responsibilities: Tasks Team
 
 ### Yap Jing Kang
 
@@ -43,8 +43,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/souluseless)]
 [[portfolio](team/johndoe.md)]
 
-* Role: 
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Tasks Team
 
 ### Yu Jiaxiang
 
@@ -54,4 +54,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/litone01.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: Events Team
