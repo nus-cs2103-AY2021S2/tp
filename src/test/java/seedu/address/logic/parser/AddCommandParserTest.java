@@ -1,35 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_A;
-import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_B;
-import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_A;
-import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_B;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import seedu.address.model.person.Answer;
-import static seedu.address.testutil.TypicalFlashcards.AMY;
-import static seedu.address.testutil.TypicalFlashcards.BOB;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Question;
-import seedu.address.model.person.Flashcard;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.FlashcardBuilder;
-
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 

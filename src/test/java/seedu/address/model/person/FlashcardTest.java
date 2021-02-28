@@ -1,18 +1,5 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFlashcards.ALICE;
-import static seedu.address.testutil.TypicalFlashcards.BOB;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.testutil.FlashcardBuilder;
-
 public class FlashcardTest {
 
     //commented out for now
