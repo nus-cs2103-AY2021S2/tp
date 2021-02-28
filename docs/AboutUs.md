@@ -17,7 +17,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Lin Lue
 
-<img src="images/linlue.png" width="200px">
+<img src="images/lue97.png" width="200px">
 
 [[github](https://github.com/lue97)]
 
@@ -35,7 +35,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Tan Jun Han Ivan
 
-<img src="images/ivan.png" width="200px">
+<img src="images/ivantjh.png" width="200px">
 
 [[github](https://github.com/ivantjh)]
 
