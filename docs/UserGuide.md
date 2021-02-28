@@ -9,17 +9,17 @@ It allows for faster and more effective student management.
 
 **Table of Contents**
 * [Quick start](#quick-start)
-* Features
-    * Listing all students: `list student`
-    * Locating student profile by name: `find student`
-    * Adding a student: `add student`
-    * Listing all tuition sessions: `list session`
-    * Locating a tuition session by students name / date: `find session`
-    * Adding a tuition session: `add session`
-    * Deleting a tuition session: `delete session`
-    * Exiting the program: `exit`
-* FAQ
-* Command Summary
+* [Features](#features)
+    * [Listing all students: `list student`](#listing-all-students-list-student)
+    * [Locating student profile by name: `find student`](#locating-student-profile-by-name-find-student)
+    * [Adding a student: `add student`](#adding-a-student-add-student)
+    * [Listing all tuition sessions: `list session`](#listing-all-tuition-sessions-list-session)
+    * [Locating tuition session by student name / date: `find session`](#locating-tuition-session-by-student-name-/-date-find-session)
+    * [Adding a tuition session: `add session`](#adding-a-tuition-session-add-session)
+    * [Deleting a tuition session: `delete session`](#deleting-a-tuition-session-delete-session)
+    * [Exit the program: `exit`](#exit-the-program-exit)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ It allows for faster and more effective student management.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `TutorBuddy.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `TutorBuddy.jar` from [here](#).
 
 3. Copy the file to the folder you want to use as the home folder for your TutorBuddy application.
 
@@ -59,13 +59,13 @@ It allows for faster and more effective student management.
 
 ## Features
 
-### Listing all students : `list student`
+### Listing all students: `list student`
 
 Shows a list of all students in the TutorBuddy
 
 Format: `list student` <br>
 
-### Locating student profile by name : `find student`
+### Locating student profile by name: `find student`
 
 Finds students that matches the keyword given
 
@@ -76,7 +76,7 @@ Format: `find student KEYWORD`
 
 Example:
 
-# | Student Name
+\# | Student Name
 ---- |---------
 1 | John Lee
 2 | Johnz Tan
