@@ -1,17 +1,14 @@
 package seedu.address.model.event;
 
-import seedu.address.model.event.EndDate;
-import seedu.address.model.event.EndTime;
-import seedu.address.model.event.StartDate;
-import seedu.address.model.event.StartTime;
-import seedu.address.model.common.Name;
-import seedu.address.model.common.Category;
-import seedu.address.model.common.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.common.Category;
+import seedu.address.model.common.Name;
+import seedu.address.model.common.Tag;
+
 
 /**
  * Represents an event in SOChedule.

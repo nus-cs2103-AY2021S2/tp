@@ -1,15 +1,14 @@
 package seedu.address.model.task;
 
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Priority;
-import seedu.address.model.common.Name;
-import seedu.address.model.common.Category;
-import seedu.address.model.common.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.common.Category;
+import seedu.address.model.common.Name;
+import seedu.address.model.common.Tag;
+
 
 /**
  * Represents a task in SOChedule.
