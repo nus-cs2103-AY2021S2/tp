@@ -29,33 +29,33 @@ We are a team based in the [School of Computing, National University of Singapor
 * Responsibilities:
 * Backup Responsibilities:
 
-### Chia Jia-xi, Kymie
+### Chia Jia-Xi, Kymie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kymie.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kwmiw)]
+[[portfolio](team/kwmiw.md)]
 
 * Role: Developer
-* Responsibilities: Testing
+* Responsibilities: Integration, Documentation
 * Backup Responsibilities:
 
 ### Png Zheng Jie, Sebastian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pngsebastian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/pngsebastian)]
+[[portfolio](team/pngsebastian.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: Documentation
 * Backup Responsibilities:
 
 ### Zhang Peng
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/icytornado)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
