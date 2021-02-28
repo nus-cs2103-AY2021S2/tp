@@ -252,10 +252,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                    | So that I can…​                                                       |
 | -------- | ------------------------------------------ | ---------------------------------- | ----------------------------------------------------------------------   |
 | `* * *`  | new user                                   | See a list of all commands         | refer to instructions when I forget how to use the App                   |
-| `* * *`  | user                                       | add a new residence                |                                                                          |
+| `* * *`  | user                                       | add a new residence                | keep track of all my residences                                                                         |
 | `* * *`  | user                                       | delete a residence                 | remove places that I no longer need to track                             |
 | `* * *`  | user                                       | find a residence by name           | locate details of residence without having to go through the entire list |
-| `* *`    | user                                       | edit a residence status            | keep track of all my residences as and when they change status           |
+| `* *`    | user                                       | edit a residence status            | keep track of all my residences status as and when they change           |
 | `*`      | user owning and renting out many residences| view list of all residence status  | minimize the time needed to get a quick overview of all my residences    |
 | `*`      | busy advanced user                         | clear user input quickly           | my time is used more efficiently                                         |
 
