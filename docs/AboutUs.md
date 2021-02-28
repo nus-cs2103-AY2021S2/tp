@@ -35,10 +35,10 @@ You can reach us at the email `zhengyong@u.nus.edu`
 
 ### Huang Nanxi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nanxi-huang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nanxi-huang)]
+[[portfolio](team/nanxi-huang.md)]
 
 * Role: Code quality, Deliverables and Deadlines
 * Responsibilities:
