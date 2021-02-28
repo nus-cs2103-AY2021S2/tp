@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-imPoster is a **desktop app for running and testing APIs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, imPoster can enable you to test your APIs more conveniently than traditional GUI apps.
+ImPoster is a **desktop application for running and testing APIs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ImPoster can enable you to test your APIs more conveniently than traditional GUI applications.
 
 * Table of Contents
 {:toc}
@@ -14,29 +14,29 @@ imPoster is a **desktop app for running and testing APIs, optimized for use via 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `imposter.jar` from [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for ImPoster.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the application. A GUI similar to the one shown below should appear in a few seconds. Note how the application contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all APIs in the API list.
+   * **`list`** : Lists all API endpoints in the API endpoint list.
 
-   * **`add`**`-x GET -u https://www.google.com` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`-x GET -u https://www.google.com` : Adds an API endpoint to the API endpoint list.
 
-   * **`delete`**`3` : Deletes the 3rd API shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd API endpoint using the index shown in the API endpoint list.
 
-   * **`run`**`-x GET -u https://www.google.com` : Run a Get request to `https://www.google.com` on the fly.
+   * **`run`**`-x GET -u https://www.google.com` : Runs a `GET` request to `https://www.google.com` on the fly.
    
-   * **`send`**`3` : Run the 3rd API shown in the current list.
+   * **`send`**`3` : Runs the 3rd API endpoint using the index shown in the API endpoint list.
 
-   * **`clear`** : Deletes all APIs in the current list.
+   * **`clear`** : Deletes all API endpoints in the API endpoint list.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits the application.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -49,19 +49,19 @@ imPoster is a **desktop app for running and testing APIs, optimized for use via 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add -x METHOD`, `METHOD` is a parameter which can be used as `add -x GET`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `edit INDEX [-x METHOD] [-u URL]` can be used as `edit 1 -x GET` or `edit 1 -u https://www.google.com`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as `find KEYWORD1` or `find KEYWORD1 KEYWORD2 KEYWORD3`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `-x METHOD -u URL`, `-u URL -x METHOD` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `-x GET -x POST`, only `-x POST` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -117,7 +117,7 @@ Format: `list`
 Edits an existing saved API.
 
 Format: `edit INDEX [-x METHOD] [-u URL]`
-* Edits the API route at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+* Edits the API endpoint at the specified INDEX. The index refers to the index number shown in the displayed API endpoint list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -135,7 +135,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `maps google` will match `google maps`
 * Only the name is searched.
 * Only full words will be matched e.g. `googl` will not match `google`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* API endpoints matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `foo bar` will return `foo cup`, `bar water`
 
 Examples:
@@ -174,10 +174,10 @@ Imposter data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ImPoster data are saved as a JSON file `[JAR file location]/data/imposter.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ImPoster will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -189,20 +189,20 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the application in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ImPoster home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add -x METHOD -u URL` <br> e.g., `add -x GET -u https://www.google.com`
-**Run** | `run -x METHOD -u URL` <br> e.g., `run -x GET -u https://www.yahoo.com`
-**Send** | `send INDEX` <br> e.g., `send 1`
-**Clear** | `clear`
-**Remove** | `remove INDEX`<br> e.g., `remove 3`
-**Edit** | `edit INDEX [-x METHOD] [-u URL]`<br> e.g.,`edit 1 -u https://facebook.com`
-**Find** | ` find KEYWORD [MORE_KEYWORDS]…​`<br> e.g., `find maps`
-**List** | `list`
-**Help** | `help`
+Action  |  Format  | Example
+--------|----------|---------
+**Add** | `add -x METHOD -u URL` <br> | `add -x GET -u https://www.google.com`
+**Run** | `run -x METHOD -u URL` <br> | `run -x GET -u https://www.yahoo.com`
+**Send** | `send INDEX` <br> | `send 1`
+**Clear** | `clear` | `clear`
+**Remove** | `remove INDEX`<br> | `remove 3`
+**Edit** | `edit INDEX [-x METHOD] [-u URL]`<br> | `edit 1 -u https://facebook.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]…​`<br> | `find maps`
+**List** | `list` | `list`
+**Help** | `help` | `help`
