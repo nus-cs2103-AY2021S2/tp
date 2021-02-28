@@ -118,7 +118,27 @@ Examples:
 
 ### Locating appointments by fields : `find`
 [Coming Soon]
-Format: `find `
+Format: `find [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
+
+* At least one of the optional fields must be provided.<br>
+
+* The search is case-insensitive. e.g `hans` will match `Hans`<br>
+
+* Only full words will be matched. e.g. `han` will not match `Hans`<br>
+
+* Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find n/Hans Bo` will match both patients `Hans Gruber` and `Bo Young`.
+
+* Certain fields such as datetime, phone number and email do not support a search by keywords and require a match with the entire field description for the search condition to be satisfied.
+
+* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find n/Hans Bo dr/Grey` will match appointments that satisfy both:
+  - Grey in the assigned doctor's name; and
+  - Either Hans or Bo in the patient's name.
+
+Examples:
+
+* `find n/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
+
+* `find dr/Grey Who t/brain surgery` returns appointments with doctors `grey` or `who` and are tagged as `brain surgery`.
 
 ### Deleting an appointment : `delete`
 [Coming Soon]
