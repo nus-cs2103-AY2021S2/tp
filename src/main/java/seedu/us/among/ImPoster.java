@@ -48,7 +48,7 @@ public class ImPoster extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing EndpointList ]===========================");
+        logger.info("=============================[ Initializing imPoster ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());

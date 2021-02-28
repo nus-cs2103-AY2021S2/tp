@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
-import seedu.us.among.commons.core.Messages;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.DeleteCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
@@ -21,7 +22,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 
