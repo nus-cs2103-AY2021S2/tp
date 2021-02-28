@@ -20,10 +20,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Pang Jiarong, Jacob
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jacob-pang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Jacob-Pang)]
+[[portfolio](team/jacob-pang.md)]
 
 * Role: Developer
 * Responsibilities:
