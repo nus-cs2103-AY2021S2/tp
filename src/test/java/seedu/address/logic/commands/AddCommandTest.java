@@ -24,50 +24,52 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
-//    @Test
-//    public void execute_flashcardAcceptedByModel_addSuccessful() throws Exception {
-//        ModelStubAcceptingFlashcardAdded modelStub = new ModelStubAcceptingFlashcardAdded();
-//        Flashcard validFlashcard = new FlashcardBuilder().build();
-//
-//        CommandResult commandResult = new AddCommand(validFlashcard).execute(modelStub);
-//
-//        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFlashcard), commandResult.getFeedbackToUser());
-//        assertEquals(Arrays.asList(validFlashcard), modelStub.flashcardsAdded);
-//    }
+    //    @Test
+    //    public void execute_flashcardAcceptedByModel_addSuccessful() throws Exception {
+    //        ModelStubAcceptingFlashcardAdded modelStub = new ModelStubAcceptingFlashcardAdded();
+    //        Flashcard validFlashcard = new FlashcardBuilder().build();
+    //
+    //        CommandResult commandResult = new AddCommand(validFlashcard).execute(modelStub);
+    //
+    //        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFlashcard),
+    //        commandResult.getFeedbackToUser());
+    //        assertEquals(Arrays.asList(validFlashcard), modelStub.flashcardsAdded);
+    //    }
 
-//    @Test
-//    public void execute_duplicateflashcard_throwsCommandException() {
-//        Flashcard validFlashcard = new FlashcardBuilder().build();
-//        AddCommand addCommand = new AddCommand(validFlashcard);
-//        ModelStub modelStub = new ModelStubWithFlashcard(validFlashcard);
-//
-//        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FLASHCARD, () -> addCommand.execute(modelStub));
-//    }
+    //    @Test
+    //    public void execute_duplicateflashcard_throwsCommandException() {
+    //        Flashcard validFlashcard = new FlashcardBuilder().build();
+    //        AddCommand addCommand = new AddCommand(validFlashcard);
+    //        ModelStub modelStub = new ModelStubWithFlashcard(validFlashcard);
+    //
+    //        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FLASHCARD,
+    //        () -> addCommand.execute(modelStub));
+    //    }
 
     //to be implemented when add command is implemented
-//    @Test
-//    public void equals() {
-//        Flashcard alice = new FlashcardBuilder().withName("Alice").build();
-//        Flashcard bob = new FlashcardBuilder().withName("Bob").build();
-//        AddCommand addAliceCommand = new AddCommand(alice);
-//        AddCommand addBobCommand = new AddCommand(bob);
-//
-//        // same object -> returns true
-//        assertTrue(addAliceCommand.equals(addAliceCommand));
-//
-//        // same values -> returns true
-//        AddCommand addAliceCommandCopy = new AddCommand(alice);
-//        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-//
-//        // different types -> returns false
-//        assertFalse(addAliceCommand.equals(1));
-//
-//        // null -> returns false
-//        assertFalse(addAliceCommand.equals(null));
-//
-//        // different flashcard -> returns false
-//        assertFalse(addAliceCommand.equals(addBobCommand));
-//    }
+    //    @Test
+    //    public void equals() {
+    //        Flashcard alice = new FlashcardBuilder().withName("Alice").build();
+    //        Flashcard bob = new FlashcardBuilder().withName("Bob").build();
+    //        AddCommand addAliceCommand = new AddCommand(alice);
+    //        AddCommand addBobCommand = new AddCommand(bob);
+    //
+    //        // same object -> returns true
+    //        assertTrue(addAliceCommand.equals(addAliceCommand));
+    //
+    //        // same values -> returns true
+    //        AddCommand addAliceCommandCopy = new AddCommand(alice);
+    //        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+    //
+    //        // different types -> returns false
+    //        assertFalse(addAliceCommand.equals(1));
+    //
+    //        // null -> returns false
+    //        assertFalse(addAliceCommand.equals(null));
+    //
+    //        // different flashcard -> returns false
+    //        assertFalse(addAliceCommand.equals(addBobCommand));
+    //    }
 
     /**
      * A default model stub that have all of the methods failing.

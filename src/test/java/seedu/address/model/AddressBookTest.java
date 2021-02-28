@@ -26,47 +26,49 @@ public class AddressBookTest {
         assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
     }
 
-//    @Test
-//    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-//        AddressBook newData = getTypicalAddressBook();
-//        addressBook.resetData(newData);
-//        assertEquals(newData, addressBook);
-//    }
+    //    @Test
+    //    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    //        AddressBook newData = getTypicalAddressBook();
+    //        addressBook.resetData(newData);
+    //        assertEquals(newData, addressBook);
+    //    }
 
-//    @Test
-//    public void resetData_withDuplicateFlashcards_throwsDuplicateFlashcardException() {
-//        // Two flashcards with the same identity fields
-//        Flashcard editedAlice = new FlashcardBuilder(ALICE).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_HUSBAND)
-//                .build();
-//        List<Flashcard> newFlashcards = Arrays.asList(ALICE, editedAlice);
-//        AddressBookStub newData = new AddressBookStub(newFlashcards);
-//
-//        assertThrows(DuplicateFlashcardException.class, () -> addressBook.resetData(newData));
-//    }
+    //    @Test
+    //    public void resetData_withDuplicateFlashcards_throwsDuplicateFlashcardException() {
+    //        // Two flashcards with the same identity fields
+    //        Flashcard editedAlice = new FlashcardBuilder(ALICE).withAnswer(VALID_ANSWER_B)
+    //        .withTags(VALID_TAG_HUSBAND)
+    //                .build();
+    //        List<Flashcard> newFlashcards = Arrays.asList(ALICE, editedAlice);
+    //        AddressBookStub newData = new AddressBookStub(newFlashcards);
+    //
+    //        assertThrows(DuplicateFlashcardException.class, () -> addressBook.resetData(newData));
+    //    }
 
     @Test
     public void hasFlashcard_nullFlashcard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasFlashcard(null));
     }
 
-//    @Test
-//    public void hasFlashcard_flashcardNotInAddressBook_returnsFalse() {
-//        assertFalse(addressBook.hasFlashcard(ALICE));
-//    }
+    //    @Test
+    //    public void hasFlashcard_flashcardNotInAddressBook_returnsFalse() {
+    //        assertFalse(addressBook.hasFlashcard(ALICE));
+    //    }
 
-//    @Test
-//    public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
-//        addressBook.addFlashcard(ALICE);
-//        assertTrue(addressBook.hasFlashcard(ALICE));
-//    }
+    //    @Test
+    //    public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
+    //        addressBook.addFlashcard(ALICE);
+    //        assertTrue(addressBook.hasFlashcard(ALICE));
+    //    }
 
-//    @Test
-//    public void hasFlashcard_flashcardWithSameIdentityFieldsInAddressBook_returnsTrue() {
-//        addressBook.addFlashcard(ALICE);
-//        Flashcard editedAlice = new FlashcardBuilder(ALICE).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_HUSBAND)
-//                .build();
-//        assertTrue(addressBook.hasFlashcard(editedAlice));
-//    }
+    //    @Test
+    //    public void hasFlashcard_flashcardWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    //        addressBook.addFlashcard(ALICE);
+    //        Flashcard editedAlice = new FlashcardBuilder(ALICE).withAnswer(VALID_ANSWER_B)
+    //        .withTags(VALID_TAG_HUSBAND)
+    //                .build();
+    //        assertTrue(addressBook.hasFlashcard(editedAlice));
+    //    }
 
     @Test
     public void getFlashcardList_modifyList_throwsUnsupportedOperationException() {

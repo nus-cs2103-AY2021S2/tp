@@ -21,7 +21,8 @@ public class EditFlashcardDescriptorTest {
 //        assertFalse(DESC_AMY.equals(DESC_BOB));
 //
 //        // different question -> returns false
-//        EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_AMY).withQuestion(VALID_QUESTION_B).build();
+//        EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_AMY)
+//        .withQuestion(VALID_QUESTION_B).build();
 //        assertFalse(DESC_AMY.equals(editedAmy));
 //
 //        // different answer -> returns false

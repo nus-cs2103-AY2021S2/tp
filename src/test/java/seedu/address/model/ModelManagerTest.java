@@ -69,56 +69,57 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.hasFlashcard(null));
     }
 
-//    @Test
-//    public void hasFlashcard_flashcardNotInAddressBook_returnsFalse() {
-//        assertFalse(modelManager.hasFlashcard(ALICE));
-//    }
+    //    @Test
+    //    public void hasFlashcard_flashcardNotInAddressBook_returnsFalse() {
+    //        assertFalse(modelManager.hasFlashcard(ALICE));
+    //    }
 
-//    @Test
-//    public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
-//        modelManager.addFlashcard(ALICE);
-//        assertTrue(modelManager.hasFlashcard(ALICE));
-//    }
+    //    @Test
+    //    public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
+    //        modelManager.addFlashcard(ALICE);
+    //        assertTrue(modelManager.hasFlashcard(ALICE));
+    //    }
 
     @Test
     public void getFilteredFlashcardList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredFlashcardList().remove(0));
+        assertThrows(UnsupportedOperationException.class, ()
+            -> modelManager.getFilteredFlashcardList().remove(0));
     }
 
-//    @Test
-//    public void equals() {
-//        AddressBook addressBook = new AddressBookBuilder().withFlashcard(ALICE).withFlashcard(BENSON).build();
-//        AddressBook differentAddressBook = new AddressBook();
-//        UserPrefs userPrefs = new UserPrefs();
-//
-//        // same values -> returns true
-//        modelManager = new ModelManager(addressBook, userPrefs);
-//        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-//        assertTrue(modelManager.equals(modelManagerCopy));
-//
-//        // same object -> returns true
-//        assertTrue(modelManager.equals(modelManager));
-//
-//        // null -> returns false
-//        assertFalse(modelManager.equals(null));
-//
-//        // different types -> returns false
-//        assertFalse(modelManager.equals(5));
-//
-//        // different addressBook -> returns false
-//        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-//
-//        // different filteredList -> returns false
-//        String[] keywords = ALICE.getQuestion().value.split("\\s+");
-//        modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-//
-//        // resets modelManager to initial state for upcoming tests
-//        modelManager.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-//
-//        // different userPrefs -> returns false
-//        UserPrefs differentUserPrefs = new UserPrefs();
-//        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-//        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
-//    }
+    //    @Test
+    //    public void equals() {
+    //        AddressBook addressBook = new AddressBookBuilder().withFlashcard(ALICE).withFlashcard(BENSON).build();
+    //        AddressBook differentAddressBook = new AddressBook();
+    //        UserPrefs userPrefs = new UserPrefs();
+    //
+    //        // same values -> returns true
+    //        modelManager = new ModelManager(addressBook, userPrefs);
+    //        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+    //        assertTrue(modelManager.equals(modelManagerCopy));
+    //
+    //        // same object -> returns true
+    //        assertTrue(modelManager.equals(modelManager));
+    //
+    //        // null -> returns false
+    //        assertFalse(modelManager.equals(null));
+    //
+    //        // different types -> returns false
+    //        assertFalse(modelManager.equals(5));
+    //
+    //        // different addressBook -> returns false
+    //        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+    //
+    //        // different filteredList -> returns false
+    //        String[] keywords = ALICE.getQuestion().value.split("\\s+");
+    //        modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
+    //        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+    //
+    //        // resets modelManager to initial state for upcoming tests
+    //        modelManager.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+    //
+    //        // different userPrefs -> returns false
+    //        UserPrefs differentUserPrefs = new UserPrefs();
+    //        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+    //        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    //    }
 }
