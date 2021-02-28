@@ -9,51 +9,38 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Cao Jiahao, Jonathan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jonathan-cao.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Jonathan-Cao)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI, Storage
 
-### Jean Doe
+### Banerjee Aditya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/adidoesnt.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/adidoesnt)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Logic (Parser)
+
+### Arihant Jain
+
+<img src="images/arihantjain97.png" width="200px">
+
+[[github](https://github.com/arihantjain97)]
+
+* Role: Developer
+* Responsibilities: Model
+
+### Visnu S/O Ravindran
+
+<img src="images/visnuravi.png" width="200px">
+
+[[github](https://github.com/VisnuRavi)]
+
+* Role: Developer
+* Responsibilities: Logic (Commands)
