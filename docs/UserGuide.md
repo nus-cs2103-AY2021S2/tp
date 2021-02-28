@@ -146,13 +146,13 @@ Examples:
 
 Changes the week shown and all events to the corresponding week.
 
-Format: `week INDEX` `week next` `week prev` `week first` `week last`
+Format: `week {WEEK_NUMBER | first | next | prev | last}`
 
-* Shows events of the week at the specified `INDEX`.
-* The index **must be a positive integer** from 1, 2, 3, …​
+* Shows events of the week at the specified `WEEK_NUMBER`.
+* The `WEEK_NUMBER` **must be a positive integer** from 1, 2, 3, …​
 
 Examples:
-* `week 2` shows the 2nd week of events.
+* `week 2` shows events of the second week of the year.
 * `week next` shows the next week of events.
 * `week prev` shows the previous week of events.
 * `week first` shows the first week of events.
@@ -162,7 +162,7 @@ Examples:
 
 Changes the year shown and all events to the corresponding year.
 
-Format: `year YEAR` `year next` `year prev`
+Format: `year {YEAR_NUMBER | next | prev}`
 
 * The year entered **must be a 4 digit positive integer** ranging from 2021 onwards.
 
@@ -219,5 +219,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Week** | `week INDEX` `week next` `week prev` `week first` `week last` <br> e.g., `week 2`
-**Year** | `year YEAR` `year next` `year prev` <br> e.g., `year 2022`
+**Week** | `week WEEK_NUMBER` `week first` `week next` `week prev` `week last` <br> e.g., `week 2`
+**Year** | `year YEAR_NUMBER` `year next` `year prev` <br> e.g., `year 2022`
