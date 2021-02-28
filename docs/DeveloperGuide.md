@@ -236,14 +236,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Tech-savvy secondary school students in Singapore who to need to search for tutors and manage their tuition appointments, and prefer CLI over GUI.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+The demand for tuition in Singapore is escalating, especially among secondary school students. A large amount of time and money has been invested in finding tutors and managing ever growing lists of tuition appointments. Currently, there are limited number of apps and websites that cater to this need, particularly in a streamlined typing oriented CLI. Therefore, this app aims to assist secondary school students in streamlining the process of searching for tutors and managing their tuition appointments. These students can search for an ideal tutor based on their personal preferences (such as subjects, expertise, years of experience, cost, availability etc.), and cut down on the time taken tracking their favoured tutors and tuition appointments.
 
 ### User stories
 
@@ -251,13 +248,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                   | add a new appointment with a tutor | refer to appointment details in my own schedule |
+| `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
+| `* * *` | User | List all tutors                                    | See all known tutors                                            |
+| `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
+| `* * *` | User | Get the email address of a tutor                   | Contact tutors directly for queries                             |
+| `* * *` | User | Add tuition appointment                            | Keep track of appointments I have made                          |
+| `* * *` | User | View my tuition appointments                       | Keep track of appointments                                      |
+| `* * *` | User | Delete a tuition appointment                       | Remove canceled appointments                                    |
+| `* * *` | User | Check my own tuition appointments list             | Know the timing of ALL my appointments in order                 |
+| `* * *` | User | Filter tutors by their subject discipline          | Find a tutor that caters to my needs (academic)                 |
+| `* * *` | User | Filter tutor by cost                               | Find a tutor that fits into budget as well                      |
+| `* * *` | User | Filter a tutor by his/her name                     | View tutor's profile                                            |
+| `* * *` | User | Filter tutors by their years of experience         | Find a tutor with experience within the range of my expectation |
+| `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
+| `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
+
 
 *{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `TutorTracker` and the **Actor** is the `user`, unless specified otherwise)
+
+
+**Use case: Add new tutor details**
+
+**MSS**
+
+1. User inputs tutor details.
+2. TutorTracker confirms that tutor details have been added to list.
+
+**Extensions**
+* 2a. Tutor details already exists in list.
+   * 2a1. AddressBook shows an error message
+
+   Use case resumes at step 1.
 
 **Use case: Add an appointment**
 
@@ -266,10 +291,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add an appointment.
 2.  TutorTracker adds the appointment and displays the new appointment.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
-
 * 1a. The tutor name, date of appointment or start and end time is empty.
   
     * 1a1. TutorTracker shows an error message.
@@ -282,6 +306,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: List all tutors**
+
+**MSS**
+
+1. User requests to list tutors.
+2. TutorTracker shows a list of tutors.
+
+   Use case ends.
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
