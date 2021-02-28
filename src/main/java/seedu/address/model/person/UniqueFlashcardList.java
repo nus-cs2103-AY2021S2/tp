@@ -13,10 +13,11 @@ import seedu.address.model.person.exceptions.FlashcardNotFoundException;
 
 /**
  * A list of flashcards that enforces uniqueness between its elements and does not allow nulls.
- * A flashcard is considered unique by comparing using {@code Flashcard#isSameFlashcard(Flashcard)}. As such, adding and updating of
- * flashcards uses Flashcard#isSameFlashcard(Flashcard) for equality so as to ensure that the flashcard being added or updated is
- * unique in terms of identity in the UniqueFlashcardList. However, the removal of a flashcard uses Flashcard#equals(Object) so
- * as to ensure that the flashcard with exactly the same fields will be removed.
+ * A flashcard is considered unique by comparing using {@code Flashcard#isSameFlashcard(Flashcard)}.
+ * As such, adding and updating of flashcards uses Flashcard#isSameFlashcard(Flashcard) for equality so as to ensure
+ * that the flashcard being added or updated is unique in terms of identity in the UniqueFlashcardList.
+ * However, the removal of a flashcard uses Flashcard#equals(Object) so as to ensure that the flashcard with exactly
+ * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
