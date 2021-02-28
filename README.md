@@ -11,7 +11,7 @@ BudgetBaby has the following features to enhance your life:
 * Track monthly expenses
 * and more to come soon...
 
-Hurry and start tracking your expenses now! 
+Hurry and start tracking your expenses now!
 
 ## Site Map
 
@@ -22,4 +22,4 @@ Hurry and start tracking your expenses now!
 ## Acknowledgements
 
 * This project is based on the ADdressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5) 
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
