@@ -5,7 +5,14 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email ``
+You can reach us at the emails:
+```
+kingsley.kuan[at]u.nus.edu
+vinleon[at]u.nus.edu
+jared_lyj[at]u.nus.edu
+e0425411[at]u.nus.edu
+zou.yuting[at]u.nus.edu
+```
 
 ## Project team
 
@@ -14,42 +21,42 @@ You can reach us at the email ``
 <img src="images/kingsleykuan.png" width="200px">
 
 [[github](https://github.com/kingsleykuan)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/kingsleykuan.md)]
 
-* Role: Developer
+* Role: Documentation, Testing
 
 ### Koh Vinleon
 
 <img src="images/glatituden.png" width="200px">
 
 [[github](http://github.com/glatituden)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/glatituden.md)]
 
-* Role: Developer
+* Role: Integration
 
 ### Lim Yong Jian Jared
 
 <img src="images/jared98lyj.png" width="200px">
 
 [[github](http://github.com/jared98lyj)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jared98lyj.md)]
 
-* Role: Developer
+* Role: Scheduling and tracking
 
 ### Winnie Ho Yi Xuan
 
 <img src="images/winniehyx.png" width="200px">
 
 [[github](http://github.com/winniehyx)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/winniehyx.md)]
 
-* Role: Developer
+* Role: Deliverables and deadlines
 
 ### Zou Yuting
 
 <img src="images/yutingzou.png" width="200px">
 
 [[github](http://github.com/yutingzou)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yutingzou.md)]
 
-* Role: Developer
+* Role: Code quality
