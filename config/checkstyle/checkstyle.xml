@@ -77,7 +77,6 @@
     -->
     <module name="UnusedImports"/>
 
-    <module name="AvoidStarImport"/>
 
     <!--
     NAMING CHECKS

@@ -3,29 +3,33 @@ layout: page
 title: User Guide
 ---
 
-FlashBack is a **desktop app for managing flashcards and interactive learning, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FlashBack can solve your flashcards actions faster than traditional GUI apps.
+
+FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
 * Table of Contents
 {:toc}
+* Quick start
+*  Features
+    *  Listing all cards: list
+*  Command Summary
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
 
+1. Ensure you have Java 11 or above installed in your Computer.
 1. Download the latest FlashBack.jar.
+1. Copy the file to the folder you want to use as the home folder for your FlashBack.
+1. Type the command in the command box and press Enter to execute it:
+    * **`add`**`k/ Einstein’s Equation d/ e=mc^2 t/ Physics` and pressing `enter` will add a new card.
+1. Refer to the Features below for details of each command.
 
-1. Copy the file to the folder you want to use as the _home folder_ for FlashBack.
-
-1. Type the command in the command box and press Enter to execute it. <br>
-
-   * **`add`**`k/ Einstein’s Equation d/ e=mc^2 t/ Physics` and pressing `enter` will add a new card.
-
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
 
 ### Adding a new card: `add`
 
@@ -38,11 +42,14 @@ Examples:
 * `add k/ Einstein’s Equation d/ e=mc^2 t/ Physics`
 * `add k/ Independence day of Singapore d/ August 9th 1965 t/ History`
 
-### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+### Listing all cards : `list`
+
+Shows all cards in the card list.
+
 
 Format: `list`
+
 
 ### Editing a person : `edit`
 
@@ -79,19 +86,18 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a card : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified card from the card list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the card at the specified `INDEX`.
+* The index refers to the index number shown in the displayed card list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd card in the card list.
 
 ### Viewing a card : `view`
 
@@ -141,11 +147,15 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FlashBack home folder.
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
+
 **Add** | `add k/ KEYWORD d/ DESCRIPTION [t/ TOPIC]` <br> e.g., `add k/ Einstein’s Equation d/ e=mc^2 t/ Physics`
+
+**List** | `list`
 
