@@ -13,7 +13,7 @@ You can reach us at the email `chewterence@u.nus.edu`
 
 <img src="images/yueyanglee.png" width="200px">
 
-[Homepage](https://www.lyueyang.space) | [Github](https://github.com/lyueyang) | [Portfolio](team/yueyanglee.md)
+[Homepage](https://www.lyueyang.space) | [Github](https://github.com/lyueyang) | [Portfolio](team/lyueyang.md)
 
 * Role: Integration
 * Responsibilities: In charge of CRD commands
