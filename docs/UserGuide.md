@@ -155,3 +155,24 @@ The user will have to manually update the current semester as time progresses.
 
 Example output:
 [IMG]
+
+### Set plan as the master plan: `master`
+
+Format: `master p/PLAN_NUMBER`
+
+This command must be done by the user at least once before they can use other commands.
+Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
+
+Example output:
+[IMG]
+
+### Create history: `current semester`
+
+Format: `current semester s/SEMESTER_NUMBER`
+
+Marks the supplied semester as the current semester of the master plan.
+This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
+The user will have to manually update the current semester as time progresses.
+
+Example output:
+[IMG]
