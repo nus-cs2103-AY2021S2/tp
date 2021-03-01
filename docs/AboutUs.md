@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Lee Ze Xin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/figo2127.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/figo2127)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Backend
 
 ### Johnny Doe
 
