@@ -1,0 +1,1 @@
+Hello, I am Winnie, a Year 2 Computer Science student. I like to spot fashion trends and operate an online shop that buy and sell clothing.
