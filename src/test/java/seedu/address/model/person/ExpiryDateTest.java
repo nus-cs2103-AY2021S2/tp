@@ -54,7 +54,7 @@ public class ExpiryDateTest {
         assertTrue(ExpiryDate.isValidExpiryDate("test@localhost")); // alphabets only
         assertTrue(ExpiryDate.isValidExpiryDate("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters local part
         assertTrue(ExpiryDate.isValidExpiryDate("123@145")); // numeric local part and domain name
-        assertTrue(ExpiryDate.isValidExpiryDate("a1+be!@example1.com")); // mixture of alphanumeric and special characters
+        assertTrue(ExpiryDate.isValidExpiryDate("a1+b!@e.com")); // mixture of alphanumeric and special characters
         assertTrue(ExpiryDate.isValidExpiryDate("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(ExpiryDate.isValidExpiryDate("if.you.dream.it_you.can.do.it@example.com")); // long local part
     }

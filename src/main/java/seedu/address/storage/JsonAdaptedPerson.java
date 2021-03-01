@@ -87,7 +87,8 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         if (expiryDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ExpiryDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ExpiryDate.class.getSimpleName()));
         }
         if (!ExpiryDate.isValidExpiryDate(expiryDate)) {
             throw new IllegalValueException(ExpiryDate.MESSAGE_CONSTRAINTS);
