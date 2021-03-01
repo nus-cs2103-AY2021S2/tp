@@ -143,19 +143,19 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find CS2103` returns `cs2103` and `CS2103 team project`
 
-### Deleting a person : `delete`
+### Deleting a task : `delete`
 
-Deletes the specified person from the address book.
+Deletes an existing task from the task list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd task in the task list.
+* `find Work` followed by `delete 1` deletes the 1st task in the result of the `find` command.
 
 ### Clearing all entries : `clear`
 
