@@ -20,5 +20,4 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments):
   * Contributed to forum discussions (examples: )
   * Reported bugs and suggestions for other teams in the class (examples: )
-  * Some parts of the history feature I added was adopted by several other class mates ()
   
