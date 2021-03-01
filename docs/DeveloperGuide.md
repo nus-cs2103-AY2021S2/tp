@@ -290,12 +290,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Non-Functional Requirements
+**Technical Requirements**:
+* Application should be able to launch in any operating
+  systems (Linux, Max, Windows) with JDK 11 installed on computer.
+* Should be able to
+  run on both 32-bit and 64-bit systems.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+**Performance Requirements**
+* Response to user command (add, delete, update, retrieve)
+  should be visible within 2 seconds.
+* Should be able to hold at least 10000 persons
+  and appointments without any noticeable decrease in loading time.
 
-*{More to be added}*
+**Quality Requirements**
+* Interface can be used by a user with no programming
+  experience, i.e., user should not be expected to key in complicated commands or
+  logical statements to get a desired output.
+
+**Process Requirements**
+* Project to be updated with one new feature/improvement from
+  each member each week.
+* Updates will be pushed to each teammates' individual branches,
+  where PRS are made to the master branch.
+
+
 
 ### Glossary
 
