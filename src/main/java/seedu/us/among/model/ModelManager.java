@@ -116,7 +116,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Endpoint} backed by the internal list of
-     * {@code versionedImposter}
+     * {@code versionedimPoster}
      */
     @Override
     public ObservableList<Endpoint> getFilteredEndpointList() {
