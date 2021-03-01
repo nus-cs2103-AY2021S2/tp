@@ -12,8 +12,7 @@ public class Remark {
 
     /**
      * Creates a Remark object to be associated with a Person object.
-     * @param
-     * remark a non null remark
+     * @param remark a non null remark
      */
     public Remark(String remark) {
         requireNonNull(remark);
