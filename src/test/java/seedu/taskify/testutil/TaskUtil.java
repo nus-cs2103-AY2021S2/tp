@@ -1,9 +1,9 @@
 package seedu.taskify.testutil;
 
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -46,7 +46,8 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));
+        descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
+                .append(description.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {

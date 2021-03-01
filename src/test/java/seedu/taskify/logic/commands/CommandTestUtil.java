@@ -3,9 +3,9 @@ package seedu.taskify.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.testutil.Assert.assertThrows;
 
@@ -49,7 +49,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_DESCRIPTION_DESC = " "
+            + PREFIX_DESCRIPTION + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -62,10 +63,12 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                           .withDescription(VALID_DESCRIPTION_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                           .withDescription(VALID_DESCRIPTION_AMY).withEmail(VALID_EMAIL_AMY)
+                           .withAddress(VALID_ADDRESS_AMY)
                            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                           .withDescription(VALID_DESCRIPTION_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                           .withDescription(VALID_DESCRIPTION_BOB)
+                           .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

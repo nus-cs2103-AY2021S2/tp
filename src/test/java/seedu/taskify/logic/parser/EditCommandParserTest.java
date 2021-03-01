@@ -3,25 +3,25 @@ package seedu.taskify.logic.parser;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
+import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
@@ -38,9 +38,9 @@ import seedu.taskify.logic.commands.EditCommand;
 import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
+import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Description;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -82,7 +82,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid description
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
+                Description.MESSAGE_CONSTRAINTS); // invalid description
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -90,9 +91,11 @@ public class EditCommandParserTest {
         // invalid description followed by valid email
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC + EMAIL_DESC_AMY, Description.MESSAGE_CONSTRAINTS);
 
-        // valid description followed by invalid description. The test case for invalid description followed by valid description
+        // valid description followed by invalid description.
+        // The test case for invalid description followed by valid description
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + DESCRIPTION_DESC_BOB + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DESCRIPTION_DESC_BOB
+                + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error
@@ -101,8 +104,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_DESCRIPTION_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
+                        + VALID_DESCRIPTION_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test

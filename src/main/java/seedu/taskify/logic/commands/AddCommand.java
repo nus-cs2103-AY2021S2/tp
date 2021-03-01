@@ -2,9 +2,9 @@ package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.taskify.logic.commands.exceptions.CommandException;

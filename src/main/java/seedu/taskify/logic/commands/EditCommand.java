@@ -2,9 +2,9 @@ package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -21,9 +21,9 @@ import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
+import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Task;
 
 /**

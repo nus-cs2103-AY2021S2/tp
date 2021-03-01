@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
+import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -79,7 +79,8 @@ class JsonAdaptedTask {
         final Name modelName = new Name(name);
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);

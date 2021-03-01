@@ -2,12 +2,12 @@ package seedu.taskify.testutil;
 
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 

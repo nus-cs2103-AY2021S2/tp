@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.taskify.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.taskify.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalTasks.AMY;
 

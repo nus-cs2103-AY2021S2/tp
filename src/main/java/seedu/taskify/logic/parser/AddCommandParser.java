@@ -2,9 +2,9 @@ package seedu.taskify.logic.parser;
 
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -14,9 +14,9 @@ import seedu.taskify.logic.commands.AddCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
+import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -32,7 +32,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_EMAIL)
                     || !argMultimap.getPreamble().isEmpty()) {

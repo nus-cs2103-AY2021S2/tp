@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
+import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Task;
 
 
