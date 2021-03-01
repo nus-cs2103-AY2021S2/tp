@@ -296,7 +296,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a deadline to a task**
+
+**MSS**
+1. User _adds a task to the list_.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to add a deadline to a specified task.
+4. PlanIt shows task with updated deadline and updates list.
+
+**Extensions**
+* 4a. The given index is invalid.
+    * 4a1. PlanIt shows error message.
+    
+        Use case resumes at step 3.
+
+**Use case: Delete a task**
+
+**MSS**
+1. User _adds a task to the list_.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to delete a specified task.
+4. PlanIt shows task that was deleted and updates list.
+
+**Extensions**
+* 4a. The given index is invalid.
+    * 4a1. PlanIt shows error message.
+
+      Use case resumes at step 3.
+
+**Use case: Find matching tasks**
+
+**MSS**
+1. User _adds a task to the list_.
+2. PlanIt shows task added to the list and updates list.
+3. User enters command to find tasks with given keywords.
+4. PlanIt shows all tasks containing given keywords.
+
+**Extensions**
+* 4a. There are no matching tasks.
+    * 4a1. PlanIt shows no matching tasks.
+
+      Use case ends.
+    
 
 ### Non-Functional Requirements
 
