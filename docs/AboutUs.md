@@ -30,14 +30,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibility: Developer for ModuleBook 3.5
 
-### Johnny Doe
+### Lee Ze Xin
+
+<img src="images/figo2127.png" width="200px">
+
+[[github](http://github.com/figo2127)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Backend
+
+### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Dev Ops + Threading
 
 ### Jean Doe
 
