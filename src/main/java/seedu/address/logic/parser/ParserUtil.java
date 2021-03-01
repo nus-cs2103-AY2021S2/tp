@@ -89,11 +89,11 @@ public class ParserUtil {
      */
     public static ExpiryDate parseExpiryDate(String expiryDate) throws ParseException {
         requireNonNull(expiryDate);
-        String trimmedEmail = expiryDate.trim();
-        if (!ExpiryDate.isValidExpiryDate(trimmedEmail)) {
+        String trimmedExpiryDate = expiryDate.trim();
+        if (!ExpiryDate.isValidExpiryDate(trimmedExpiryDate)) {
             throw new ParseException(ExpiryDate.MESSAGE_CONSTRAINTS);
         }
-        return new ExpiryDate(trimmedEmail);
+        return new ExpiryDate(trimmedExpiryDate);
     }
 
     /**
