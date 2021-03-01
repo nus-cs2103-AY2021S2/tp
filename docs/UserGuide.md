@@ -173,6 +173,20 @@ Exits the program.
 
 Format: `exit`
 
+### Viewing help: `help`
+[Coming soon]
+
+Format: `help`
+
+Showing a message containing the url to the User Guide page
+
+### Cleaning all entries: `clear`
+[Coming soon]
+
+Format: `clear`
+
+Clearing all entries from the record
+
 ### Saving the data
 
 App-Ointment data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -202,4 +216,8 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br>e.g., `delete 2`
 **Edit** | `edit INDEX [n/PATIENT] [dr/DOCTOR] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g., `edit 1 dr/Who d/2021-01-01 1200`
 **List** | `list`
+**exit** | [Coming soon]
+**Find** | [Coming soon]
 **find** | [Coming Soon]
+**help** | [Coming Soon]
+**clear** | [Coming Soon]
