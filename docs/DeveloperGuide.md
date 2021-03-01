@@ -315,7 +315,7 @@ Use case ends.
 
 *{More to be added}*
 
+### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flash card**: A card that contains study materials with its topic name
-
 --------------------------------------------------------------------------------------------------------------------
