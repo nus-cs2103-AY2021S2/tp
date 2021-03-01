@@ -48,7 +48,6 @@ GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
 
 ### Viewing help : `help`
 
