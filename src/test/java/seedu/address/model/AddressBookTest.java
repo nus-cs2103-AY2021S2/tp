@@ -28,7 +28,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getItemList());
     }
 
     @Test
@@ -56,18 +56,18 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasItem(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasItem(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addItem(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        assertTrue(addressBook.hasItem(ALICE));
     }
 
     @Test
@@ -75,12 +75,12 @@ public class AddressBookTest {
         addressBook.addItem(ALICE);
         Item editedAlice = new ItemBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasItem(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getItemList().remove(0));
     }
 
     /**
@@ -94,7 +94,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Item> getPersonList() {
+        public ObservableList<Item> getItemList() {
             return items;
         }
     }

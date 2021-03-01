@@ -14,7 +14,7 @@ import seedu.address.model.person.UniqueItemList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueItemList persons;
+    private final UniqueItemList items;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,14 +24,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniqueItemList();
+        items = new UniqueItemList();
     }
 
     public AddressBook() {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Items in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -44,8 +44,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the item list with {@code items}.
      * {@code items} must not contain duplicate items.
      */
-    public void setPersons(List<Item> items) {
-        this.persons.setItems(items);
+    public void setItems(List<Item> items) {
+        this.items.setItems(items);
     }
 
     /**
@@ -54,7 +54,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setItems(newData.getItemList());
     }
 
     //// item-level operations
@@ -62,9 +62,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a item with the same identity as {@code item} exists in the address book.
      */
-    public boolean hasPerson(Item item) {
+    public boolean hasItem(Item item) {
         requireNonNull(item);
-        return persons.contains(item);
+        return items.contains(item);
     }
 
     /**
@@ -72,7 +72,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The item must not already exist in the address book.
      */
     public void addItem(Item p) {
-        persons.add(p);
+        items.add(p);
     }
 
     /**
@@ -80,42 +80,42 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The item identity of {@code editedItem} must not be the same as another existing item in the address book.
      */
-    public void setPerson(Item target, Item editedItem) {
+    public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
 
-        persons.setItem(target, editedItem);
+        items.setItem(target, editedItem);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Item key) {
-        persons.remove(key);
+    public void removeItem(Item key) {
+        items.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return items.asUnmodifiableObservableList().size() + " items";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Item> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Item> getItemList() {
+        return items.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddressBook // instanceof handles nulls
-            && persons.equals(((AddressBook) other).persons));
+            && items.equals(((AddressBook) other).items));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return items.hashCode();
     }
 }

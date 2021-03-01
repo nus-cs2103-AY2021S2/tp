@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredItems = new FilteredList<>(this.addressBook.getPersonList());
+        filteredItems = new FilteredList<>(this.addressBook.getItemList());
     }
 
     public ModelManager() {
@@ -91,12 +91,12 @@ public class ModelManager implements Model {
     @Override
     public boolean hasItem(Item item) {
         requireNonNull(item);
-        return addressBook.hasPerson(item);
+        return addressBook.hasItem(item);
     }
 
     @Override
     public void deleteItem(Item target) {
-        addressBook.removePerson(target);
+        addressBook.removeItem(target);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
 
-        addressBook.setPerson(target, editedItem);
+        addressBook.setItem(target, editedItem);
     }
 
     //=========== Filtered Item List Accessors =============================================================
