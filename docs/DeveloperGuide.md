@@ -249,14 +249,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | As a …​                                   | I want to …​                                                    | So that I can…​                                                                                   |
+|----------|----------------------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `* * *`  | User                                         | view all the possible commands that I can execute                  | I know what functionalities I can make use of when using the program.                        |
+| `* * *`  | User                                         | add orders for the day                                             | track the total number of orders for the day                                                 |
+| `* * *`  | User                                         | delete orders for the day                                          | track the total number of orders for the day                                                 |
+| `* * *`  | User                                         | list all my orders for the day                                     | view what orders I have to fulfil for the day                                                |
+| `* * *`  | User                                         | retrieve data stored in the previous sessions                      | <obvious>                                                                                    |
+| `* * *`  | User logging in after a long time            | Delete all orders, reset the application                           | so that I can start on a clean slate since the previous orders are now meaningless to me     |
+| `* *`    | Advanced user                                | set up shortcuts and shortforms                                    | I can reduce the time it takes to enter orders.                                              |
+| `* *`    | User                                         | receive reminders for the orders due soon                          | I remember and complete them on time.                                                        |
+| `* *`    | User who's at least slightly experienced     | delete multiple orders at one go                                   | I can track mass cancellations if they occur                                                 |
+| `* *`    | User                                         | sort the orders according to which one needs to be completed first | I can prioritise the orders to work on for that day/                                         |
+| `* *`    | User that works a lot at night               | set the application to dark mode                                   | my eyes remain healthy                                                                       |
+| `* *`    | User                                         | add recipes                                                        | so that i know what ingredients are required for a particular order                          |
+| `* *`    | User                                         | edit individual orders                                             | i can update orders if a customer changes it instead of deleting and readding another order. |
+| `* *`    | User                                         | add notes and special requests for orders                          | details on customized orders can be mentioned together with the main order.                  |
+| `* *`    | User who loves stats                         | View my most ordered products                                      | I know what to promote more                                                                  |
+| `* *`    | Regular user                                 | keep track of duplicate orders in case of accidental entering      | to not make more than necessary, waste time and resources.                                   |
+| `* *`    | User                                         | find the orders made by a certain customer                         | I can retrieve information about the orders that this customer have made before, if needed.  |
+| `* *`    | User                                         | keep track of how many times a user has ordered with the company   | Discounts if they have ordered more than x number of times.                                  |
+| `* *`    | User                                         | input multiple order descriptions at one shot                      | I don't need to input multiple entries for customers who order more than one type of cake    |
+| `* *`    | User                                         | set prices and costs of orders                                     | I can note how much profit I am earning                                                      |
+| `*`      | User who does delivery                       | Group orders by location                                           | easier and more efficient to deliver.                                                        |
+| `*`      | User who does delivery                       | View a suggested delivery route/delivery plan                      | I don't need to do dijkstra's by myself                                                      |
+| `*`      | User                                         | load the app quickly                                               | I can access the data quickly in case I forgot to prepare any                                |
+| `*`      | Cautious User                                | sync my data to other services                                     | I won't lose my data if I forget my password or if I wipe my hard disk :')                   |
+| `*`      | User                                         | save a particular customer's information                           | I can quickly add another order from this customer next time                                 |
+| `*`      | User logging in after a long time            | Refresher on the advanced commands                                 | <obvious>                                                                                    |
+| `*`      | Regular user                                 | keep track of the money payed/owed by the customer                 | I can ensure that all my dues have been received.                                            |
+| `*`      | User who wants to reward loyal customers     | keep track of repeating customers                                  | give rewards to loyal customers                                                              |
+| `*`      | User who finds social media platforms tiring | view the platforms that most of my orders come from                | I know which platform I should spend more time promoting on                                  |
+| `*`      | Advanced user                                | keep track of promo codes and minimum order discounts              | Discounts to those who meet the mentioned criteria only.                                     |
+|          |                                              |                                                                    |                                                                                              |
 
 *{More to be added}*
 
