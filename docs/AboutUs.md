@@ -53,11 +53,11 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Zhang Peng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/icytornado.png" width="200px">
 
 [[github](https://github.com/icytornado)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/icytornado.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: Code Quality, Integration
 * Backup Responsibilities:
