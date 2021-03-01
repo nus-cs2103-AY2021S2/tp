@@ -9,51 +9,46 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Lee Rong Jieh
+
+<img src="images/lrj689.png" width="200px">
+
+[[github](https://github.com/lrj689)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
 ### Loh Jun Yong Kevin
 
 <img src="images/kevinlohjunyong.png" width="200px">
 
-
 [[github](https://github.com/kevinlohjunyong)]
-
 
 * Role: Project Advisor
 
-### Jane Doe
+### Nicholas Tanvis
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nicholastanvis.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nicholastanvis)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Shen Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/goatygoatygoat.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/goatygoatygoat)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Toh Sihui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tsh22.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tsh22)]
 
 * Role: Developer
 * Responsibilities: UI
