@@ -264,14 +264,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 01: List all tasks**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to see all tasks.
+
+2.  ModuleBook3.5 presents tasks in list form.
 
     Use case ends.
 
@@ -281,9 +280,87 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case 02: Delete a task**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to delete a specific task in the list.
+
+3.  ModuleBook 3.5 deletes the task.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case 03: Mark task as done**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to mark a task as done.
+
+3.  ModuleBook 3.5 marks the task as done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The task at given index is already done.
+
+    * 3b1. ModuleBook 3.5 shows an already done message.
+
+      Use case resumes at step 2.
+
+**Use case 04: Mark task as not done**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to mark a task as not done.
+
+3.  ModuleBook 3.5 marks the task as not done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The task at given index is not done yet.
+
+    * 3b1. ModuleBook 3.5 shows a not done message.
 
       Use case resumes at step 2.
 
