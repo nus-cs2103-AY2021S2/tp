@@ -13,26 +13,26 @@ import seedu.address.model.person.Item;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class ItemListPanel extends UiPart<Region> {
+    private static final String FXML = "ItemListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ItemListPanel.class);
 
     @FXML
     private ListView<Item> personListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ItemListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Item> itemList) {
+    public ItemListPanel(ObservableList<Item> itemList) {
         super(FXML);
         personListView.setItems(itemList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new ItemListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code ItemCard}.
      */
-    class PersonListViewCell extends ListCell<Item> {
+    class ItemListViewCell extends ListCell<Item> {
         @Override
         protected void updateItem(Item item, boolean empty) {
             super.updateItem(item, empty);

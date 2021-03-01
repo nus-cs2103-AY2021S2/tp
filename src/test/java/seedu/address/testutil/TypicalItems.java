@@ -60,7 +60,7 @@ public class TypicalItems {
     private TypicalItems() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical itemss.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();

@@ -61,8 +61,8 @@ public class Item {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both items have the same name.
+     * This defines a weaker notion of equality between two items.
      */
     public boolean isSameItem(Item otherItem) {
         if (otherItem == this) {
@@ -74,8 +74,8 @@ public class Item {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both items have the same identity and data fields.
+     * This defines a stronger notion of equality between two items.
      */
     @Override
     public boolean equals(Object other) {

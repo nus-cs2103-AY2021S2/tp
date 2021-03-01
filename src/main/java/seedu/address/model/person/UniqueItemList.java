@@ -12,9 +12,9 @@ import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of items that enforces uniqueness between its elements and does not allow nulls.
  * A item is considered unique by comparing using {@code Item#isSameItem(Item)}. As such, adding and updating of
- * persons uses Item#isSameItem(Item) for equality so as to ensure that the item being added or updated is
+ * items uses Item#isSameItem(Item) for equality so as to ensure that the item being added or updated is
  * unique in terms of identity in the UniqueItemList. However, the removal of a item uses Item#equals(Object) so
  * as to ensure that the item with exactly the same fields will be removed.
  * <p>
@@ -53,7 +53,7 @@ public class UniqueItemList implements Iterable<Item> {
      * {@code target} must exist in the list.
      * The item identity of {@code editedItem} must not be the same as another existing item in the list.
      */
-    public void setPerson(Item target, Item editedItem) {
+    public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
 
         int index = internalList.indexOf(target);
@@ -79,7 +79,7 @@ public class UniqueItemList implements Iterable<Item> {
         }
     }
 
-    public void setPersons(UniqueItemList replacement) {
+    public void setItems(UniqueItemList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniqueItemList implements Iterable<Item> {
      * Replaces the contents of this list with {@code items}.
      * {@code items} must not contain duplicate items.
      */
-    public void setPersons(List<Item> items) {
+    public void setItems(List<Item> items) {
         requireAllNonNull(items);
-        if (!personsAreUnique(items)) {
+        if (!itemsAreUnique(items)) {
             throw new DuplicateItemException();
         }
 
@@ -124,7 +124,7 @@ public class UniqueItemList implements Iterable<Item> {
     /**
      * Returns true if {@code items} contains only unique items.
      */
-    private boolean personsAreUnique(List<Item> items) {
+    private boolean itemsAreUnique(List<Item> items) {
         for (int i = 0; i < items.size() - 1; i++) {
             for (int j = i + 1; j < items.size(); j++) {
                 if (items.get(i).isSameItem(items.get(j))) {

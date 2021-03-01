@@ -46,9 +46,9 @@ public class EditCommand extends Command {
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Item: %1$s";
+    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This item already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the address book.";
 
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
@@ -75,22 +75,22 @@ public class EditCommand extends Command {
         }
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
-        Item editedItem = createEditedPerson(itemToEdit, editItemDescriptor);
+        Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
 
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedItem));
+        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 
     /**
      * Creates and returns a {@code Item} with the details of {@code itemToEdit}
      * edited with {@code editItemDescriptor}.
      */
-    private static Item createEditedPerson(Item itemToEdit, EditItemDescriptor editItemDescriptor) {
+    private static Item createEditedItem(Item itemToEdit, EditItemDescriptor editItemDescriptor) {
         assert itemToEdit != null;
 
         Name updatedName = editItemDescriptor.getName().orElse(itemToEdit.getName());

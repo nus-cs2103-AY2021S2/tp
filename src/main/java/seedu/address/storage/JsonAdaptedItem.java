@@ -65,9 +65,9 @@ class JsonAdaptedItem {
      * @throws IllegalValueException if there were any data constraints violated in the adapted item.
      */
     public Item toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> itemTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            itemTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,7 +102,7 @@ class JsonAdaptedItem {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(itemTags);
         return new Item(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
