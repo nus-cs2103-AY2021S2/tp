@@ -86,9 +86,9 @@ test your APIs more conveniently than traditional GUI applications.
 
 </div>
 
-### General Commands
+### <ins>General Commands</ins>
 
-#### View help : `help`
+#### View help: `help`
 
 Description: Get the link to the user guide to the application in the form of a pop up window.
 
@@ -96,13 +96,13 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-#### Exiting the program : `exit`
+#### Exit program: `exit`
 
 Description: Exit the application.
 
 Format: `exit`
 
-### Endpoint Commands
+### <ins>Endpoint Commands</ins>
 
 #### Add an API endpoint: `add`
 
@@ -152,7 +152,7 @@ Description: Show a list of all API endpoints in the API endpoint list.
 
 Format: `list`
 
-#### Clear all saved API endpoints : `clear`
+#### Clear all saved API endpoints: `clear`
 
 Description: Clear all API endpoints in the API endpoint list.
 
@@ -211,14 +211,14 @@ with the file that contains the data of your previous imPoster home folder.
 
 ## Command summary
 
-### General Commands
+### <ins>General Commands</ins>
 
 | Action     | Format                                | Example                                |
 | ---------- | ------------------------------------- | -------------------------------------- |
 | **Help**   | `help`                                | `help`                                 |
 | **Exit**   | `exit`                                | `exit`                                 |
 
-### Endpoint Commands
+### <ins>Endpoint Commands</ins>
 
 | Action     | Format                                | Example                                |
 | ---------- | ------------------------------------- | -------------------------------------- |
