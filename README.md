@@ -1,4 +1,5 @@
-* This is the **first iteration of NUS Module Planner**, a Software Engineering project for NUS CS2103 based on AB3 by SEEDU <br>
+* This is the **first iteration of NUS Module Planner**, a Software Engineering project for NUS CS2103<br>
+* *This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).*
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
