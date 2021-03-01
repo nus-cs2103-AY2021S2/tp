@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -98,8 +99,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,  updatedRemark, updatedTags);
+        Remark updatedRemark = personToEdit.getRemark();
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
     }
 
     @Override
