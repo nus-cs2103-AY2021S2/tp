@@ -127,25 +127,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExpiryDate((String) null));
     }
 
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+        assertThrows(ParseException.class, () -> ParserUtil.parseExpiryDate(INVALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         ExpiryDate expectedExpiryDate = new ExpiryDate(VALID_EMAIL);
-        assertEquals(expectedExpiryDate, ParserUtil.parseEmail(VALID_EMAIL));
+        assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         ExpiryDate expectedExpiryDate = new ExpiryDate(VALID_EMAIL);
-        assertEquals(expectedExpiryDate, ParserUtil.parseEmail(emailWithWhitespace));
+        assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(emailWithWhitespace));
     }
 
     @Test

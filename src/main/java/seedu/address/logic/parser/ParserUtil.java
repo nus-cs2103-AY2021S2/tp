@@ -82,14 +82,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code ExpiryDate}.
+     * Parses a {@code String expiryDate} into an {@code ExpiryDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code expiryDate} is invalid.
      */
-    public static ExpiryDate parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
+    public static ExpiryDate parseExpiryDate(String expiryDate) throws ParseException {
+        requireNonNull(expiryDate);
+        String trimmedEmail = expiryDate.trim();
         if (!ExpiryDate.isValidExpiryDate(trimmedEmail)) {
             throw new ParseException(ExpiryDate.MESSAGE_CONSTRAINTS);
         }
