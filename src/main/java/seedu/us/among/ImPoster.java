@@ -174,7 +174,7 @@ public class ImPoster extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping ImPoster ] =============================");
+        logger.info("============================ [ Stopping imPoster ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

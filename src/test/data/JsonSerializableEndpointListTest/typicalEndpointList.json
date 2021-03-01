@@ -1,5 +1,5 @@
 {
-  "_comment": "ImPoster save file which contains the same Endpoint values as in TypicalEndpoints#getTypicalEndpointList()",
+  "_comment": "imPoster save file which contains the same Endpoint values as in TypicalEndpoints#getTypicalEndpointList()",
   "endpoints" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
