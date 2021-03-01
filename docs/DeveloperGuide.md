@@ -257,16 +257,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​ | So that I can…​ |
+| -------- | ---------- | --------------- | ------------------ |
+| `* * *`  | new user | see usage instructions | refer to instructions when I forget how to use the App |
+| `* * *`  | user | add a new deadline | know when to complete it by |
+| `* * *`  | user | mark a task as done | remove tasks from the list after completing them |
+| `* * *`  | user | view when a task is due | understand how much time I have to complete it |
+| `* * *`  | returning user | view all the tasks previously set | avoid resetting all the tasks |
+| `* * *`  | user | search for a task using keywords | find matching tasks quickly |
+| `* * *`  | user | view all my tasks in a list | track tasks I have not done |
 
-*{More to be added}*
+*{Updated for v1.2}*
 
 ### Use cases
 
