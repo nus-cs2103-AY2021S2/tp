@@ -110,8 +110,6 @@ Format: `add/delete p/PLAN_NUMBER`
 - Trying to add a plan that already exist will not be allowed
 - Trying to delete a plan that does not exist will not be allowed
 
-
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
