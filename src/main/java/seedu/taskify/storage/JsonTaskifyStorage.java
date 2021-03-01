@@ -12,18 +12,18 @@ import seedu.taskify.commons.exceptions.DataConversionException;
 import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.commons.util.FileUtil;
 import seedu.taskify.commons.util.JsonUtil;
-import seedu.taskify.model.ReadOnlyAddressBook;
+import seedu.taskify.model.ReadOnlyTaskify;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access TaskifyParser data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonTaskifyStorage implements TaskifyStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonTaskifyStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonTaskifyStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -32,7 +32,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException {
+    public Optional<ReadOnlyTaskify> readAddressBook() throws DataConversionException {
         return readAddressBook(filePath);
     }
 
@@ -42,11 +42,11 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTaskify> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableTaskify> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTaskify.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -60,21 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveAddressBook(ReadOnlyTaskify taskify) throws IOException {
+        saveAddressBook(taskify, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyTaskify)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveAddressBook(ReadOnlyTaskify taskify, Path filePath) throws IOException {
+        requireNonNull(taskify);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaskify(taskify), filePath);
     }
 
 }

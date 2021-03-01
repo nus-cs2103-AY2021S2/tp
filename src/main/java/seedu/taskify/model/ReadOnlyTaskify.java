@@ -6,7 +6,7 @@ import seedu.taskify.model.task.Task;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyTaskify {
 
     /**
      * Returns an unmodifiable view of the tasks list.

@@ -2,8 +2,9 @@ package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.taskify.model.AddressBook;
 import seedu.taskify.model.Model;
+import seedu.taskify.model.Taskify;
+
 
 /**
  * Clears the address book.
@@ -17,7 +18,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setAddressBook(new Taskify());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.taskify.commons.core.GuiSettings;
-import seedu.taskify.model.AddressBook;
-import seedu.taskify.model.ReadOnlyAddressBook;
+import seedu.taskify.model.ReadOnlyTaskify;
+import seedu.taskify.model.Taskify;
 import seedu.taskify.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonTaskifyStorage taskifyStorage = new JsonTaskifyStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(taskifyStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,16 +48,16 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void taskifyReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonTaskifyStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTaskifyParserStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        Taskify original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyTaskify retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new Taskify(retrieved));
     }
 
     @Test

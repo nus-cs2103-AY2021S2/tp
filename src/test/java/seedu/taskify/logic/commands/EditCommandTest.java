@@ -19,9 +19,9 @@ import org.junit.jupiter.api.Test;
 import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
-import seedu.taskify.model.AddressBook;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.ModelManager;
+import seedu.taskify.model.Taskify;
 import seedu.taskify.model.UserPrefs;
 import seedu.taskify.model.task.Task;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +92,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

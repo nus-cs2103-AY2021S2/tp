@@ -44,17 +44,17 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setAddressBookFilePath(Path taskifyFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code taskify}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyTaskify taskify);
 
     /**
-     * Returns the AddressBook
+     * Returns the TaskifyParser
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskify getAddressBook();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the address book.

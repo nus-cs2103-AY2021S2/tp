@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.taskify.model.AddressBook;
+import seedu.taskify.model.Taskify;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -61,10 +61,10 @@ public class TypicalTasks {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical tasks.
+     * Returns an {@code TaskifyParser} with all the typical tasks.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Taskify getTypicalAddressBook() {
+        Taskify ab = new Taskify();
         for (Task task : getTypicalTasks()) {
             ab.addTask(task);
         }

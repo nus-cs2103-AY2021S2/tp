@@ -29,9 +29,9 @@ import seedu.taskify.testutil.EditTaskDescriptorBuilder;
 import seedu.taskify.testutil.TaskBuilder;
 import seedu.taskify.testutil.TaskUtil;
 
-public class AddressBookParserTest {
+public class TaskifyParserParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TaskifyParser parser = new TaskifyParser();
 
     @Test
     public void parseCommand_add() throws Exception {

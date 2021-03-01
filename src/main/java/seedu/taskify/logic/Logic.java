@@ -7,7 +7,7 @@ import seedu.taskify.commons.core.GuiSettings;
 import seedu.taskify.logic.commands.CommandResult;
 import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.logic.parser.exceptions.ParseException;
-import seedu.taskify.model.ReadOnlyAddressBook;
+import seedu.taskify.model.ReadOnlyTaskify;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -25,11 +25,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TaskifyParser.
      *
      * @see seedu.taskify.model.Model#getAddressBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskify getAddressBook();
 
     /**
      * Returns an unmodifiable view of the filtered list of tasks

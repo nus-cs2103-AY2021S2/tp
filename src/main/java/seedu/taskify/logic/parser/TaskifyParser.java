@@ -20,7 +20,7 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TaskifyParser {
 
     /**
      * Used for initial separation of command word and args.

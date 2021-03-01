@@ -15,8 +15,8 @@ import java.util.List;
 
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.exceptions.CommandException;
-import seedu.taskify.model.AddressBook;
 import seedu.taskify.model.Model;
+import seedu.taskify.model.Taskify;
 import seedu.taskify.model.task.NameContainsKeywordsPredicate;
 import seedu.taskify.model.task.Task;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
@@ -104,11 +104,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        Taskify expectedTaskify = new Taskify(actualModel.getAddressBook());
         List<Task> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTaskList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedTaskify, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
     }
 

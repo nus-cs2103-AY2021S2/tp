@@ -10,10 +10,10 @@ import seedu.taskify.commons.core.LogsCenter;
 import seedu.taskify.logic.commands.Command;
 import seedu.taskify.logic.commands.CommandResult;
 import seedu.taskify.logic.commands.exceptions.CommandException;
-import seedu.taskify.logic.parser.AddressBookParser;
+import seedu.taskify.logic.parser.TaskifyParser;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.Model;
-import seedu.taskify.model.ReadOnlyAddressBook;
+import seedu.taskify.model.ReadOnlyTaskify;
 import seedu.taskify.model.task.Task;
 import seedu.taskify.storage.Storage;
 
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TaskifyParser taskifyParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        taskifyParser = new TaskifyParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = taskifyParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyTaskify getAddressBook() {
         return model.getAddressBook();
     }
 

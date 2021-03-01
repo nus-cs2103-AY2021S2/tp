@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.taskify.model.AddressBook;
-import seedu.taskify.model.ReadOnlyAddressBook;
+import seedu.taskify.model.ReadOnlyTaskify;
+import seedu.taskify.model.Taskify;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Email;
@@ -14,7 +14,7 @@ import seedu.taskify.model.task.Phone;
 import seedu.taskify.model.task.Task;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code TaskifyParser} with sample data.
  */
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyTaskify getSampleAddressBook() {
+        Taskify sampleAb = new Taskify();
         for (Task sampleTask : getSampleTasks()) {
             sampleAb.addTask(sampleTask);
         }

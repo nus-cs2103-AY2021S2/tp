@@ -23,25 +23,25 @@ import seedu.taskify.model.task.exceptions.DuplicateTaskException;
 import seedu.taskify.testutil.TaskBuilder;
 
 
-public class AddressBookTest {
+public class TaskifyParserTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Taskify taskify = new Taskify();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getTaskList());
+        assertEquals(Collections.emptyList(), taskify.getTaskList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> taskify.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        Taskify newData = getTypicalAddressBook();
+        taskify.resetData(newData);
+        assertEquals(newData, taskify);
     }
 
     @Test
@@ -50,47 +50,47 @@ public class AddressBookTest {
         Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                                    .build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newTasks);
+        TaskifyStub newData = new TaskifyStub(newTasks);
 
-        assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTaskException.class, () -> taskify.resetData(newData));
     }
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTask(null));
+        assertThrows(NullPointerException.class, () -> taskify.hasTask(null));
     }
 
     @Test
     public void hasTask_taskNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasTask(ALICE));
+        assertFalse(taskify.hasTask(ALICE));
     }
 
     @Test
     public void hasTask_taskInAddressBook_returnsTrue() {
-        addressBook.addTask(ALICE);
-        assertTrue(addressBook.hasTask(ALICE));
+        taskify.addTask(ALICE);
+        assertTrue(taskify.hasTask(ALICE));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addTask(ALICE);
+        taskify.addTask(ALICE);
         Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                                    .build();
-        assertTrue(addressBook.hasTask(editedAlice));
+        assertTrue(taskify.hasTask(editedAlice));
     }
 
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTaskList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> taskify.getTaskList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose tasks list can violate interface constraints.
+     * A stub ReadOnlyTaskify whose tasks list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class TaskifyStub implements ReadOnlyTaskify {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Task> tasks) {
+        TaskifyStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
         }
 

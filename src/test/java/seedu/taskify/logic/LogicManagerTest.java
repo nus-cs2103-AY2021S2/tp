@@ -24,10 +24,10 @@ import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.ModelManager;
-import seedu.taskify.model.ReadOnlyAddressBook;
+import seedu.taskify.model.ReadOnlyTaskify;
 import seedu.taskify.model.UserPrefs;
 import seedu.taskify.model.task.Task;
-import seedu.taskify.storage.JsonAddressBookStorage;
+import seedu.taskify.storage.JsonTaskifyStorage;
 import seedu.taskify.storage.JsonUserPrefsStorage;
 import seedu.taskify.storage.StorageManager;
 import seedu.taskify.testutil.TaskBuilder;
@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonTaskifyStorage taskifyStorage =
+                new JsonTaskifyStorage(temporaryFolder.resolve("taskify.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(taskifyStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -70,12 +70,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonTaskifyIoExceptionThrowingStub
+        JsonTaskifyStorage taskifyStorage =
+                new JsonTaskifyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(taskifyStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -154,13 +154,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonTaskifyIoExceptionThrowingStub extends JsonTaskifyStorage {
+        private JsonTaskifyIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyTaskify taskify, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.taskify.commons.core.GuiSettings;
 import seedu.taskify.logic.commands.exceptions.CommandException;
-import seedu.taskify.model.AddressBook;
 import seedu.taskify.model.Model;
-import seedu.taskify.model.ReadOnlyAddressBook;
+import seedu.taskify.model.ReadOnlyTaskify;
 import seedu.taskify.model.ReadOnlyUserPrefs;
+import seedu.taskify.model.Taskify;
 import seedu.taskify.model.task.Task;
 import seedu.taskify.testutil.TaskBuilder;
 
@@ -106,7 +106,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setAddressBookFilePath(Path taskifyFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,12 +116,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyTaskify newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTaskify getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,8 +188,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTaskify getAddressBook() {
+            return new Taskify();
         }
     }
 

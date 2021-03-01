@@ -15,18 +15,18 @@ import seedu.taskify.commons.util.ConfigUtil;
 import seedu.taskify.commons.util.StringUtil;
 import seedu.taskify.logic.Logic;
 import seedu.taskify.logic.LogicManager;
-import seedu.taskify.model.AddressBook;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.ModelManager;
-import seedu.taskify.model.ReadOnlyAddressBook;
+import seedu.taskify.model.ReadOnlyTaskify;
 import seedu.taskify.model.ReadOnlyUserPrefs;
+import seedu.taskify.model.Taskify;
 import seedu.taskify.model.UserPrefs;
 import seedu.taskify.model.util.SampleDataUtil;
-import seedu.taskify.storage.AddressBookStorage;
-import seedu.taskify.storage.JsonAddressBookStorage;
+import seedu.taskify.storage.JsonTaskifyStorage;
 import seedu.taskify.storage.JsonUserPrefsStorage;
 import seedu.taskify.storage.Storage;
 import seedu.taskify.storage.StorageManager;
+import seedu.taskify.storage.TaskifyStorage;
 import seedu.taskify.storage.UserPrefsStorage;
 import seedu.taskify.ui.Ui;
 import seedu.taskify.ui.UiManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing TaskifyParser ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskifyStorage taskifyStorage = new JsonTaskifyStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(taskifyStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,20 +74,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaskify> taskifyOptional;
+        ReadOnlyTaskify initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            taskifyOptional = storage.readAddressBook();
+            if (!taskifyOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TaskifyParser");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = taskifyOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty TaskifyParser");
+            initialData = new Taskify();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskifyParser");
+            initialData = new Taskify();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskifyParser");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting TaskifyParser " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
