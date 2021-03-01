@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final ItemName name;
     private final Phone phone;
     private final Email email;
 
@@ -27,7 +27,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(ItemName name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -36,7 +36,7 @@ public class Person {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public ItemName getItemName() {
         return name;
     }
 
@@ -70,7 +70,7 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+            && otherPerson.getItemName().equals(getItemName());
     }
 
     /**
@@ -88,7 +88,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getItemName().equals(getItemName())
             && otherPerson.getPhone().equals(getPhone())
             && otherPerson.getEmail().equals(getEmail())
             && otherPerson.getAddress().equals(getAddress())
@@ -104,7 +104,7 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getItemName())
             .append("; Phone: ")
             .append(getPhone())
             .append("; Email: ")
