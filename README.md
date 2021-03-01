@@ -14,7 +14,7 @@
 
 ### Introduction
 
-imPoster does what [Postman](https://www.postman.com/) does but in a simple and
+imPoster contains most of the features of [postman](https://www.postman.com/) and is implemented in a simple and
 minimalistic style that is easy for anyone to pick up. The latest releases for
 download are available
 [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).

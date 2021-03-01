@@ -35,16 +35,14 @@ test your APIs more conveniently than traditional GUI applications.
    - **`add`**`-x GET -u https://www.google.com` : Adds an API endpoint to the
      API endpoint list.
 
-   - **`delete`**`3` : Deletes the 3rd API endpoint using the index shown in the
-     API endpoint list.
+   * **`add`**`-x GET -u https://www.google.com t/important` : Adds an API endpoint to the API endpoint list, tagging it as important.
 
-   - **`run`**`-x GET -u https://www.google.com` : Runs a `GET` request to
-     `https://www.google.com` on the fly.
+   * **`remove`**`3` : Removes the 3rd API endpoint using the index shown in the API endpoint list.
 
    - **`send`**`3` : Runs the 3rd API endpoint using the index shown in the API
      endpoint list.
 
-   - **`clear`** : Deletes all API endpoints in the API endpoint list.
+   * **`clear`** : Removes all API endpoints in the API endpoint list.
 
    - **`exit`** : Exits the application.
 
@@ -95,12 +93,13 @@ Format: `help`
 
 Adds an API route to API list.
 
-Format: `add -x METHOD -u URL`
+Format: `add -x METHOD -u URL [t/TAG]…`
+
+**Tip:** A person can have any number of tags (including 0)
 
 Examples:
-
-- `add -x GET -u https://www.google.com`
-- `add -x GET -u https://www.yahoo.com`
+* `add -x GET -u https://www.google.com`
+* `add -x GET -u https://www.yahoo.com t/important`
 
 ### Running an API call directly: `run`
 
@@ -117,7 +116,7 @@ Examples:
 
 Calls an API from from the API list.
 
-Format: `send INDEX​`
+Format: `send INDEX`
 
 Examples:
 
@@ -134,18 +133,17 @@ Format: `list`
 
 Edits an existing saved API.
 
-Format: `edit INDEX [-x METHOD] [-u URL]`
-
-- Edits the API endpoint at the specified INDEX. The index refers to the index
-  number shown in the displayed API endpoint list. The index must be a positive
-  integer 1, 2, 3, …​
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
+Format: `edit INDEX [-x METHOD] [-u URL] [t/TAG]…`
+* Edits the API endpoint at the specified INDEX. The index refers to the index number shown in the displayed API endpoint list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values. 
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
 Examples:
-
-- `edit 1 -u https://facebook.com. Edits the URL of the 1st API route to be https://facebook.com.`
-- `edit 2 -x POST. Edits the METHOD of the 2nd API route to be POST.`
+* `edit 1 -u https://facebook.com` Edits the URL of the 1st API route to be `https://facebook.com.`
+* `edit 3 -x POST` Edits the METHOD of the 3rd API route to be POST.
+* `edit 2 -u https://www.taylorswift.com t/` Edits the URL of the 2nd endpoint to be `https://www.taylorswift.com` and clears all existing tags.
 
 ### Locating API by name: `find`
 
@@ -226,12 +224,13 @@ with the file that contains the data of your previous imPoster home folder.
 
 | Action     | Format                                | Example                                |
 | ---------- | ------------------------------------- | -------------------------------------- |
-| **Add**    | `add -x METHOD -u URL` <br>           | `add -x GET -u https://www.google.com` |
+| **Add**    | `add -x METHOD -u URL [t/TAG]…` <br>  | `add -x GET -u https://www.google.com` |
 | **Run**    | `run -x METHOD -u URL` <br>           | `run -x GET -u https://www.yahoo.com`  |
 | **Send**   | `send INDEX` <br>                     | `send 1`                               |
 | **Clear**  | `clear`                               | `clear`                                |
 | **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
-| **Edit**   | `edit INDEX [-x METHOD] [-u URL]`<br> | `edit 1 -u https://facebook.com`       |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br>  | `find maps`                            |
+| **Edit**   | `edit INDEX [-x METHOD] [-u URL] [t/TAG]`<br> | `edit 1 -u https://facebook.com` |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br>  | `find maps`                            |
 | **List**   | `list`                                | `list`                                 |
 | **Help**   | `help`                                | `help`                                 |
+

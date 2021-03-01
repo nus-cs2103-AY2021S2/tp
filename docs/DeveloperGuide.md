@@ -142,7 +142,24 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 1.
 
-_{More to be added}_
+**MSS**
+
+1.  User enters command to remove an API endpoint
+2.  ImPoster makes a call to remove the corresponding API endpoint from its memory
+3.  API call is successful and response is shown to the user
+4.  ImPoster updates and saves the remaining API endpoints to a file that the user can view
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The API endpoint that the user wants to remove is empty
+
+    * 1a1. ImPoster forwards and shows an error message to the user
+
+      Use case resumes at step 1.
+
+*{More to be added}*
 
 ### Non-Functional Requirements
 
