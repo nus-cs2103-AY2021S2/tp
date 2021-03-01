@@ -72,6 +72,55 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+
+### Add/Delete Semester to/from Plan: `add/delete`
+Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`  
+Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`  
+
+The output will show whether the operation was successful and include the 
+semester number in its output.  
+
+Constraints:
+* Trying to add a semester that already exist will not be allowed
+* Trying to delete a semester that does not exist will not be allowed
+
+
+### Add/Delete module to/from semester: `add/delete`
+Format: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+Format: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+Tip: A user can view module info to see more details about it. (See `info`)
+
+This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and 
+`SEM_NUMBER`, and outputs meta details about the module being 
+added/deleted, as well as whether the addition/deletion was successful or not.   
+The details to output are as follows:  
+* Module addition/deletion success status
+* Semester number
+* Module code
+
+Constraints:  
+* Trying to add a module that already exists will not be allowed
+* Trying to add/delete a nonexistent module code/plan number/semester 
+  number will not be allowed  
+  
+Prompts:  
+* Adding a module without prerequisites fulfilled results in a warning
+
+### View module info: `info`
+Format: `info m/MODULE_CODE`
+Tip: A user can also add a module to a plan/semester (See `add/delete`)
+By default, yhis command takes in one optional argument, `MODULE_CODE`, 
+and outputs the module information including:  
+* Brief Description
+* Number of MCs
+* Semesters available
+* Pre-requisites
+* Preclusions  
+
+Constraints:  
+* Module has to exist
+
+
 ### Check graduation : `validate plans`
 
 Format: `validate plans [p/PLAN_NUMBER]`
