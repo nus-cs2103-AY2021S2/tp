@@ -350,30 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UCX - Delete a reader**
-
-**MSS**
-
-1.  User requests to list readers.
-2.  SmartLib shows a list of readers.
-3.  User requests to delete a specific reader in the list.
-4.  SmartLib deletes the reader.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. SmartLib shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC09 - Borrow a book**
+**Use case: UC04 - Borrow a book**
 
 **MSS**
 
@@ -389,7 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC10 - Return a book**
+**Use case: UC05 - Return a book**
 
 **MSS**
 
@@ -405,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC11 - Check a reader's balance**
+**Use case: UC06 - Check a reader's balance**
 
 **MSS**
 
@@ -418,16 +395,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UCX - Delete a book**
+**Use case: UC07 - Delete a reader**
 
-**MSS**
-
-1.  User requests to list books.
-2.  SmartLib shows a list of books.
-3.  User requests to delete a specific book in the list.
-4.  SmartLib deletes the book.
-
-**Use case: UC12 - Delete a reader**
 **Guarantee: Reader will be deleted from the registered reader base**
 
 **MSS**
@@ -451,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UCX - Add a book**
+**Use case: UC08 - Add a book**
 
 **MSS**
 
@@ -468,7 +437,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2. 
 
-**Use case: UC13 - Add a reader**
+**Use case: UC09 - Delete a book**
+
+**MSS**
+
+1.  User requests to list books.
+2.  SmartLib shows a list of books.
+3.  User requests to delete a specific book in the list.
+4.  SmartLib deletes the book.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SmartLib shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC10 - Add a reader**
+
 **Guarantee: New reader will be added into the registered reader base**
 
 **MSS**
@@ -489,35 +482,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the data entered are correct.
 
       Use case resumes from step 2.
-    
 
-**Use case: UC14 - Add a reader**
-**Guarantee: New reader will be added into the registered reader base**
+* 1b. SmartLib detects that the reader has already been added.
 
-**MSS**
+    * 1b1. User proceeds to enter new data to add another reader.
 
-1. User enters data about the reader to be added
-2. SmartLib detects that the reader has already been added.
-3. User proceeds to enter new data to add another reader.
-   Steps 1-3 are repeated until the data entered is a non-existing reader
-4. SmartLib confirms the addition.
+    * 1b2. Steps 1b and 1b1 are repeated until the data entered is a non-existing reader
 
-   Use case ends.
-
-*{More to be added}*
+      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 readers without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Portability and compatibility across different devices.
+5.  The SmartLib system should respond within one second.
+6.  The user inferface must be intuitive and clear, so that new users can use the app without much difficulty.
+7.  The product is offered as a free online service.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Regex**: A string of text that allows you to create patterns that help match, locate, and manage text
 
 --------------------------------------------------------------------------------------------------------------------
 
