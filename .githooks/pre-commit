@@ -13,7 +13,7 @@ echo "Running pre-commit checkstyle test..."
 # checkstyle test exit code
 CHECKSTYLE_RESULT=$?
 
-if [ ! $CHECKSTYLE_RESULT -eq 0 ]; 
+if [ ! $CHECKSTYLE_RESULT -eq 0 ];
 then
     echo "Commit abandoned as checkstyle test failed."
     exit $CHECKSTYLE_RESULT
@@ -26,7 +26,7 @@ echo "Running pre-commit test cases..."
 # test cases exit code
 TEST_RESULT=$?
 
-if [ ! $TEST_RESULT -eq 0 ]; 
+if [ ! $TEST_RESULT -eq 0 ];
 then
     echo "Commit abandoned as test cases failed."
     exit $TEST_RESULT
