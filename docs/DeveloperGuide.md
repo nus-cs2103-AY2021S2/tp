@@ -366,7 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Non-functional requirements specify the constraints under which the system for PlanIT is developed and operated.
 
 #### Technical requirements:
-* The system should be compatible on Windows, OS-X and Linux operating systems, with only version Java 11 
+* The system should be compatible on mainstream OS, with only version Java 11 
   (no other version) installed.
 * The system should work on both 32-bit and 64-bit environments.  
 
@@ -399,7 +399,6 @@ Non-functional requirements specify the constraints under which the system for P
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
