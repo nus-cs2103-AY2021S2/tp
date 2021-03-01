@@ -236,27 +236,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS Computer Science student
+* In his/her second year of studies
+* Taking tough CS modules (e.g. CS3230, CS2106, CS2103T)
+* Requires organization of tasks pertaining to the modules he/she is taking
+* Prefers to use the keyboard compared to a mouse
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage module related tasks faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                               | So that I can…​                                                                |
+| -------- | ------------------------------------------ | --------------------------------------------- | --------------------------------------------------------------------------------- |
+| `* * *`  | student                                    | add task to list                              | I can keep track of my module-related tasks and stay organized                    |
+| `* * *`  | student                                    | delete a task from the list                   | remove the tasks I have completed or don't want anymore                           |
+| `* *`    | meticulous student                         | mark a task as done                           | keep track of tasks that I have completed                                         |
+| `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
+| `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
+| `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
+| `*`      | user with many persons in the address book | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
 
 *{More to be added}*
 
