@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Alzahrani Riyadh Hamdan S
 
-<img src="images/riyadh-h.jpg" width="200px">
+<img src="images/riyadh-h.png" width="200px">
 
 [[github](https://github.com/riyadh-h)]
 [[portfolio](team/riyadh-h.md)]
