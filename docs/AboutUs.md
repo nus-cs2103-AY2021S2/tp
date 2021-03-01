@@ -13,21 +13,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/lrj689.png" width="200px">
 
-
 [[github](https://github.com/lrj689)]
 
-
 * Role: Developer
+* Responsibilities: Documentation
 
-### Jane Doe
+### Loh Jun Yong Kevin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kevinlohjunyong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kevinlohjunyong)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Project Advisor
 
 ### Nicholas Tanvis
 
