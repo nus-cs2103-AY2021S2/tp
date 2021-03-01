@@ -79,7 +79,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (quantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Quantity.class.getSimpleName()));
         }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
