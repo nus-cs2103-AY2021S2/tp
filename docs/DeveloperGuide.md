@@ -301,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8.  The product is free.
 9.  The system should work on both `32-bit` and `64-bit` environments.
 10. The deadline should not contain tasks deemed offensive (terrorism, bombing, etc).
-11. The application can be used **without** internet.  
+11. The application can be used **without** internet.
 
 ### Glossary
 
