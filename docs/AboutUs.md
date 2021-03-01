@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Chia Jia-Xi, Kymie
 
-<img src="images/kymie.jpg" width="200px">
+<img src="images/kwmiw.png" width="200px">
 
 [[github](http://github.com/kwmiw)]
 [[portfolio](team/kwmiw.md)]
