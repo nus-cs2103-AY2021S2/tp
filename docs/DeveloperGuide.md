@@ -102,7 +102,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the Tutor Hunter data.
+* stores the Tutor Tracker data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * 
 
@@ -252,8 +252,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | View my tuition applications   | I can keep track of the tuitions I that I have applied                 |
-| `* * *`  | user                                       | Delete a tuition application   | I can reverse the tuition application                                  |
+| `* * *`  | user                                       | View my tuition applications   | keep track of the tuitions I that I have applied                 |
+| `* * *`  | user                                       | Delete a tuition application   | reverse the tuition application                                  |
 
 
 ### Use cases
@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list applications
 2.  TutorTracker shows a list of applications
 3.  User requests to delete a specific application in the list
-4.  TutorTracker deletes the person
+4.  TutorTracker deletes that specific application.
 
     Use case ends.
 
