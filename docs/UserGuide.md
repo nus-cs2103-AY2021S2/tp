@@ -62,6 +62,48 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
+### Opening UI Panel: `open`
+
+Open selected UI Panel.
+
+Format: `open Option`
+
+* The following `Option` are supported
+    * `-c`: Contact panel
+    * `-d`: Dictionary content panel
+    * `-dl`: Dictionary list panel
+    * `-n`: Note content panel
+    * `-nl`: Note list panel
+    * `-l`: Both dictionary list and note list panel
+    * `-a` : All panel
+
+Examples:
+* `open -c`
+    * show contact panel
+* `open -a`
+    * show all panel
+
+### Closing UI Panel: `close`
+
+Close selected UI Panel.
+
+Format: `close Option`
+
+* The following `Option` are supported
+    * `-c`: Contact panel
+    * `-d`: Dictionary content panel
+    * `-dl`: Dictionary list panel
+    * `-n`: Note content panel
+    * `-nl`: Note list panel
+    * `-l`: Both dictionary list and note list panel
+    * `-a` : All panel
+
+Examples:
+* `close -c`
+    * close contact panel
+* `close -a`
+    * close all panel
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -174,8 +216,10 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
+**Close** | `close Option` <br> e.g., `close -c`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Open** | `open Option` <br> e.g., `open -c`
