@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.3` (3 releases) on GitHub
+  * Managed releases `v1.1` (1 release) on GitHub
 
 * **Enhancements to existing features**:
 
