@@ -6,7 +6,7 @@ title: User Guide
 Taskify is a **desktop app for students manage their tasks (academics/personal/CCA) in a systematic and efficient manner, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Taskify can get your task management done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,15 +24,15 @@ Taskify is a **desktop app for students manage their tasks (academics/personal/C
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all tasks.
+    * **`list`** : Lists all tasks.
 
-   * **`add`**`[TASK Description]` : Adds a task with the specified description to the task list
+    * **`add`**`[TASK Description]` : Adds a task with the specified description to the task list
 
-   * **`delete`**`3` : Deletes the task with the specified task number.
+    * **`delete`**`3` : Deletes the task with the specified task number.
 
-   * **`help`** : Show all the commands and formats.
+    * **`help`** : Show all the commands and formats.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of more commands and details.
 
