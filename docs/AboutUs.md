@@ -9,15 +9,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### He Qiyuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qy-h00.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[homepage](https://qy-h00.github.io/)]
+[[github](https://github.com/qy-h00)]
+[[portfolio](team/qy-h00.md)]
+
+* Role: Developer
+* Responsibility: Developer for ModuleBook 3.5
+
+### Lee Ze Xin
+
+<img src="images/figo2127.png" width="200px">
+
+[[github](http://github.com/figo2127)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Backend
 
 ### Wang Yuanzhe
 
@@ -28,15 +39,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Develop AddressBook3.5
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
 
 ### Jean Doe
 
@@ -57,3 +59,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
