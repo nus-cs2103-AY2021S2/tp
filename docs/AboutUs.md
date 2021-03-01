@@ -47,7 +47,7 @@ You can reach us at the email `zhengyong@u.nus.edu`
 
 ### Loh Guo Jun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gj0407790.png" width="200px">
 
 [[github](http://github.com/gj0407790)]
 [[portfolio](team/gj0407790.md)]
