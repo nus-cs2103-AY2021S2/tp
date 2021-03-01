@@ -280,6 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **1a.** App-Ointment detects an invalid command from the user.
     * **1a1.** App-Ointment prompts user that the command is not recognised.<br>
     * **1a2.** App-Ointment executes the `help` command.<br>
+    Steps 1a1 to 1a2 are repeated until command entered is recognised.
     Use case ends.
 
 
@@ -291,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**    
 * **1a.** App-Ointment detetcs an invalid subcommand format.
     * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
-    * **1a2.** User enters correct subcommand syntax.<br>
+    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
     Use case resumes from step 2.
     
 * **2a.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
@@ -317,7 +318,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * **1a.** App-Ointment detects an invalid subcommand format.
     * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
-    * **1a2.** User enters correct subcommand syntax.<br>
+    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
     Use case resumes from step 2.
 
 * **1b.** The currently displayed list of appointments is empty.
@@ -326,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **2a.** The index out of the bounds of the displayed list of appointments.
     * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of appointments.<br>
-    * **2a2.** User enters a valid index<br>
+    Steps 2a1 is repeated until the index entered is correct/free from errors.
     Use case resumes from step 2.
 
 * **2b.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
@@ -342,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * **1a.** System detects an invalid subcommand format.
     * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
-    * **1a2.** User enters correct subcommand syntax.<br>
+    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
     Use case resumes from step 2.
 
 * **2a.** There are no appointments to display.
