@@ -220,9 +220,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-### <ins>Calls Use Cases</ins>
-
-**Use case C01 - Call a saved API endpoint**
+**Use case E07 - Call a saved API endpoint**
 
 **MSS**
 
@@ -255,7 +253,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 1.
 
-**Use case C02 - Call an API endpoint directly without saving**
+**Use case E08 - Call an API endpoint directly without saving**
 
 **MSS**
 
