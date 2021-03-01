@@ -241,7 +241,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage flashcards faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -254,6 +254,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | add a new card                 |                                                                     |
 | `* * *`  | long-time user                             | delete an old card             | remove some notes that I am no longer needed                                 |
 | `* * *`  | student                                    | view all my notes   | easily refer back to study               |                                                |
+| `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly
 
 *{More to be added}*
 
