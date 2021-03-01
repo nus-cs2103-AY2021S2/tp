@@ -264,28 +264,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Adding a task**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1. User enters command to add a task to the list.
+2. PlanIT shows the resulting list after adding task to it.
+    
     Use case ends.
 
 **Extensions**
+* 1a. PlanIT detects a command of the wrong format.
+  
+    * 1a1. PlanIT requests for user to input command in correct format.
+    * 1a2. User enters command in correct format.
+    
+    Steps 1a1-1a2 are repeated until the data entered is correct.
+    
+    Use case resumes from step 2.
 
-* 2a. The list is empty.
+**Use case: Viewing all possible commands**
 
-  Use case ends.
+**MSS**
 
-* 3a. The given index is invalid.
+1. User enters command to view all possible commands.
+2. PlanIT displays all possible commands to user.  
 
-    * 3a1. AddressBook shows an error message.
+   Use case ends.
 
-      Use case resumes at step 2.
+**Use case: Viewing all tasks**
+
+**MSS**
+
+1. User enters command to view the list of tasks.
+2. PlanIT displays the complete list of tasks.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. PlanIT detects a command to view only uncompleted tasks.
+    
+    * 1a1. PlanIT displays only uncompleted tasks.
+    
+    Use case ends.
 
 *{More to be added}*
 
