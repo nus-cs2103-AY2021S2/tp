@@ -8,21 +8,21 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicateItemException;
 import seedu.address.model.person.exceptions.ItemNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A item is considered unique by comparing using {@code Item#isSamePerson(Item)}. As such, adding and updating of
  * persons uses Item#isSamePerson(Item) for equality so as to ensure that the item being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a item uses Item#equals(Object) so
+ * unique in terms of identity in the UniqueItemList. However, the removal of a item uses Item#equals(Object) so
  * as to ensure that the item with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
  * @see Item#isSamePerson(Item)
  */
-public class UniquePersonList implements Iterable<Item> {
+public class UniqueItemList implements Iterable<Item> {
 
     private final ObservableList<Item> internalList = FXCollections.observableArrayList();
     private final ObservableList<Item> internalUnmodifiableList =
@@ -43,7 +43,7 @@ public class UniquePersonList implements Iterable<Item> {
     public void add(Item toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateItemException();
         }
         internalList.add(toAdd);
     }
@@ -62,7 +62,7 @@ public class UniquePersonList implements Iterable<Item> {
         }
 
         if (!target.isSamePerson(editedItem) && contains(editedItem)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateItemException();
         }
 
         internalList.set(index, editedItem);
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Item> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueItemList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -91,7 +91,7 @@ public class UniquePersonList implements Iterable<Item> {
     public void setPersons(List<Item> items) {
         requireAllNonNull(items);
         if (!personsAreUnique(items)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateItemException();
         }
 
         internalList.setAll(items);
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Item> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniquePersonList // instanceof handles nulls
-            && internalList.equals(((UniquePersonList) other).internalList));
+            || (other instanceof UniqueItemList // instanceof handles nulls
+            && internalList.equals(((UniqueItemList) other).internalList));
     }
 
     @Override
