@@ -95,11 +95,14 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits multiple items in Focuris.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format for Person: `edit P[INDEX] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Format for Event: `edit E[INDEX] [n/NAME] [s/STARTTIME] [e/ENDTIME] [d/DATE] [t/TAG]…​`
+
+* Edits the item at the specified `INDEX`. The index refers to the type of item, followed by index number shown in the respective displayed item list. The index **must be a positive integer** 1, 2, 3, …​
+* The format of `INDEX` is `[P/E][NUMBER]`  
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -107,8 +110,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit P1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit P2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit E1 n/CS2030s` Edits the name of the 1st Event to `CS2030s`.
 
 ### Locating persons by name: `find`
 
@@ -132,15 +136,15 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `delete [P/E][INDEX]`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the person at the specified `INDEX` of person list (`P`) or event list (`E`).
+* The index refers to the index number shown in the respective displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list -p` followed by `delete 2` deletes the 2nd person in Focuris.
+* `find CS2100` followed by `delete 1` deletes the 1st Event in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
