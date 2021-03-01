@@ -236,13 +236,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Mainly NUS computing students
+* has a need to manage a significant number of task, most of which has deadlines
+* For computing students, task at hand may take longer than expected
+* Might have many last minute task.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+* Manage tasks faster than a typical mouse/GUI driven app
+* A quick way to view all tasks due on a specified day
+* Able to quickly search for an available timing for a particular task
+* Organising tasks according to projects/modules/deadline so that users can view these tasks with different filters
+* Able to adjust and edit task according to user needs
 
 
 ### User stories
