@@ -72,6 +72,36 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Check graduation : `validate plans`
+Format: `validate plans [p/PLAN_NUMBER]`
+
+When no PLAN_NUMBER is specified:
+  - Shows list of plans that are still valid
+    - Each row is a plan
+        - Each plan has 4 column attributes:
+          - Shows plan number
+          - Shows how many MCs the plan has
+          - Shows how many MCs completed
+          - Shows how many semesters remaining in plan
+
+With `[p/PLAN_NUMBER]`
+- Shows header
+  - Shows plan number
+  - Shows how many MCs the plan has
+  - Shows how many MCs completed
+  - Shows how many semesters remaining in plan
+- Shows rows of modules placed in respective semesters
+  - Shows X tables of X semesters
+  - Each table has a header of how many MCs the semester will have
+  - Each table shows module details
+
+### Show history: `history`
+Format: `history`
+
+The above command takes no arguments and shows the user a list of modules that they have completed up until before the current semester.
+
+The output format of history will follow the output format of show p/PLAN_NUMBER.
+
 ### List a summary of all plans: `list plans`
 Format: `list plans`
 Tip: A user can view an individual plan to see more details about it. (See show p/PLAN_NUMBER)
@@ -103,6 +133,7 @@ Example output:
 
 ### Create Plan: `add/delete`
 Format: `add/delete p/PLAN_NUMBER`
+
 #### Shows 2 rows
 - Whether plan is added/deleted is successful/unsuccessful
 - Plan number 
@@ -111,13 +142,11 @@ Format: `add/delete p/PLAN_NUMBER`
 - Trying to delete a plan that does not exist will not be allowed
 
 ### Clearing all entries : `clear`
-
 Clears all entries from the address book.
 
 Format: `clear`
 
 ### Exiting the program : `exit`
-
 Exits the program.
 
 Format: `exit`
