@@ -315,7 +315,6 @@ View the list of personal tuition appointments.
 <b>System: Tutor Tracker</b>
 <b>Actor: User</b>
 
-<b>Preconditions: Appointment list must exist.</b>
 <b>Guarantees: A view of the schedule of tuition appointments.</b>
 
 <b>MSS</b>
