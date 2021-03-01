@@ -13,16 +13,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/qy-h00.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/qy-h00)]
-[[portfolio](team/qy-h00.md)]
-
-* Role: Project Advisor
-
-### He Qiyuan
-
-<img src="images/qy-h00.png" width="200px">
-
 [[homepage](https://qy-h00.github.io/)]
 [[github](https://github.com/qy-h00)]
 [[portfolio](team/qy-h00.md)]
@@ -40,15 +30,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Backend
 
-### Jean Doe
+### Wang Yuanzhe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aiwassprime.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/AiwassPrime)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Develop AddressBook3.5
 
 ### Jean Doe
 
