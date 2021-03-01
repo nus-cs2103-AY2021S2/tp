@@ -72,6 +72,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+
 # User Commands
 ## General Commands
 
@@ -143,6 +144,23 @@ Example output:
 
 
 ## Semester commands
+
+### Show the number of MCs the user is currently taking
+Format `Show MCs`
+
+Example output: `The current MCs you are taking is xxx`
+
+### Calculate and show the current CAP (Cumulative academic points) of the student
+Format `Show CAP`
+
+This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP 
+using this formula
+
+![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
+
+
+Example output `Current CAP is xxx`
+
 ### Add/Delete Semester to/from Plan: `add/delete`
 Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`  
 Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`  
