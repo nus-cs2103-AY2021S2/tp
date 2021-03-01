@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Email;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
 import seedu.us.among.model.endpoint.Phone;
@@ -34,7 +33,6 @@ public class EditEndpointDescriptorBuilder {
         descriptor = new EditCommand.EditEndpointDescriptor();
         descriptor.setName(endpoint.getName());
         descriptor.setPhone(endpoint.getPhone());
-        descriptor.setEmail(endpoint.getEmail());
         descriptor.setAddress(endpoint.getAddress());
         descriptor.setTags(endpoint.getTags());
     }
@@ -52,14 +50,6 @@ public class EditEndpointDescriptorBuilder {
      */
     public EditEndpointDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code EditEndpointDescriptor} that we are building.
-     */
-    public EditEndpointDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
         return this;
     }
 

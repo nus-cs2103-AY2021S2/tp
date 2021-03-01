@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX;
 import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.us.among.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.us.among.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.us.among.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.us.among.testutil.Assert.assertThrows;
@@ -79,7 +78,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Endpoint expectedEndpoint = new EndpointBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
