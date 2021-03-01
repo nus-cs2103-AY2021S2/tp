@@ -72,6 +72,79 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+
+# User Commands
+## General Commands
+
+### Check graduation : `validate`
+
+Format: `validate [p/PLAN_NUMBER]`
+
+If the optional argument `[p/PLAN_NUMBER]` is provided:  
+- Shows header
+    - Shows plan number
+    - Shows how many MCs the plan has
+    - Shows how many MCs completed
+    - Shows how many semesters remaining in plan
+- Shows rows of modules placed in respective semesters
+    - Shows X tables of X semesters
+    - Each table has a header of how many MCs the semester will have
+    - Each table shows module details
+
+Otherwise:  
+- Shows list of plans that are still valid
+    - Each row is a plan
+        - Each plan has 4 column attributes:
+            - Shows plan number
+            - Shows how many MCs the plan has
+            - Shows how many MCs completed
+            - Shows how many semesters remaining in plan
+
+> Tip: A plan is valid if the modules contained in its history match those of
+> the current Master Plan.  
+> This ensures that any valid plan is a viable option for the user.
+
+## Plan commands
+### List a summary of all plans: `list plans`
+
+Format: `list plans`
+Tip: A user can view an individual plan to see more details about it. (See show p/PLAN_NUMBER)
+
+Format: `master p/PLAN_NUMBER`
+
+This command must be done by the user at least once before they can use other commands.
+Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
+
+Example output:
+[IMG]
+
+### Create Plan: `add/delete`
+
+Format: `add/delete p/PLAN_NUMBER`
+
+Shows 2 rows:
+- Whether plan is added/deleted is successful/unsuccessful
+- Plan number
+
+Constraints:
+- Trying to add a plan that already exist will not be allowed
+- Trying to delete a plan that does not exist will not be allowed
+
+### Set Plan as Master Plan: `master`
+
+Format: `master p/PLAN_NUMBER`
+
+This command must be done by the user at least once before they can use other commands.
+Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
+
+Example output:
+[IMG]
+
+
+
+
+## Semester commands
+
 ### Show the number of MCs the user is currently taking
 Format `Show MCs`
 
@@ -87,7 +160,7 @@ using this formula
 
 
 Example output `Current CAP is xxx`
-=======
+
 ### Add/Delete Semester to/from Plan: `add/delete`
 Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`  
 Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`  
@@ -99,6 +172,35 @@ Constraints:
 * Trying to add a semester that already exist will not be allowed
 * Trying to delete a semester that does not exist will not be allowed
 
+
+### Set Semester as in-progress: `semester current`
+Format: `sem s/SEM_NUMBER current/`
+
+Marks the supplied semester as the current semester of the master plan.
+This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
+The user will have to manually update the current semester as time progresses.
+
+Example output:
+[IMG]
+
+
+### Show history: `history`
+
+Format: `history`
+
+The above command takes no arguments and shows the user a list of modules that 
+they have completed up until before the *current semester*.
+
+> Tip: The *current semester* is the semester that was marked using 
+> the `semester current` command.
+
+Example output:
+[IMG]
+
+
+
+
+## Module commands
 
 ### Add/Delete module to/from semester: `add/delete`
 Format: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
@@ -136,66 +238,6 @@ Constraints:
 * Module has to exist
 
 
-### Check graduation : `validate plans`
-
-Format: `validate plans [p/PLAN_NUMBER]`
-
-When no PLAN_NUMBER is specified:
-
-- Shows list of plans that are still valid
-  - Each row is a plan
-    - Each plan has 4 column attributes:
-      - Shows plan number
-      - Shows how many MCs the plan has
-      - Shows how many MCs completed
-      - Shows how many semesters remaining in plan
-
-With `[p/PLAN_NUMBER]`
-
-- Shows header
-  - Shows plan number
-  - Shows how many MCs the plan has
-  - Shows how many MCs completed
-  - Shows how many semesters remaining in plan
-- Shows rows of modules placed in respective semesters
-  - Shows X tables of X semesters
-  - Each table has a header of how many MCs the semester will have
-  - Each table shows module details
-
-### Show history: `history`
-
-Format: `history`
-
-The above command takes no arguments and shows the user a list of modules that they have completed up until before the current semester.
-
-The output format of history will follow the output format of show p/PLAN_NUMBER.
-
-### List a summary of all plans: `list plans`
-
-Format: `list plans`
-Tip: A user can view an individual plan to see more details about it. (See show p/PLAN_NUMBER)
-
-Format: `master p/PLAN_NUMBER`
-
-This command must be done by the user at least once before they can use other commands.
-Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
-
-Example output:
-[IMG]
-
-### Create Plan: `add/delete`
-
-Format: `add/delete p/PLAN_NUMBER`
-
-#### Shows 2 rows
-
-- Whether plan is added/deleted is successful/unsuccessful
-- Plan number
-
-#### Constraints
-
-- Trying to add a plan that already exist will not be allowed
-- Trying to delete a plan that does not exist will not be allowed
 
 ### Clearing all entries : `clear`
 
@@ -208,35 +250,3 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
-
-### Saving the data
-
-Format: `current semester s/SEMESTER_NUMBER`
-
-Marks the supplied semester as the current semester of the master plan.
-This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
-The user will have to manually update the current semester as time progresses.
-
-Example output:
-[IMG]
-
-### Set plan as the master plan: `master`
-
-Format: `master p/PLAN_NUMBER`
-
-This command must be done by the user at least once before they can use other commands.
-Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
-
-Example output:
-[IMG]
-
-### Create history: `current semester`
-
-Format: `current semester s/SEMESTER_NUMBER`
-
-Marks the supplied semester as the current semester of the master plan.
-This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
-The user will have to manually update the current semester as time progresses.
-
-Example output:
-[IMG]

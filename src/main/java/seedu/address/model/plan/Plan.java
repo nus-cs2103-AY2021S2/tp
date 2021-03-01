@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Plan {
     // Data fields
-    private Semester[] semesters;
+    private List<Semester> semesters;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -33,7 +34,7 @@ public class Plan {
      * Every field must be present and not null.
      * Semesters MUST have at least 1 semester within it
      */
-    public Plan(Description description, Set<Tag> tags, Semester[] semesters) {
+    public Plan(Description description, Set<Tag> tags, List<Semester> semesters) {
         requireAllNonNull(description, tags, semesters);
         this.semesters = semesters;
         this.description = description;
