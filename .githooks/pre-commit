@@ -1,0 +1,39 @@
+#!/bin/sh
+# To use, place this file within the .githooks folder
+# and run the following command from the project root:
+# git config --local core.hooksPath .githooks/
+
+# stash unstaged files
+git stash --keep-index
+
+# run checkstyle test
+echo "Running pre-commit checkstyle test..."
+./gradlew checkstyleMain checkstyleTest
+
+# checkstyle test exit code
+CHECKSTYLE_RESULT=$?
+
+if [ ! $CHECKSTYLE_RESULT -eq 0 ]; 
+then
+    echo "Commit abandoned as checkstyle test failed."
+    exit $CHECKSTYLE_RESULT
+fi
+
+# run test cases
+echo "Running pre-commit test cases..."
+./gradlew test
+
+# test cases exit code
+TEST_RESULT=$?
+
+if [ ! $TEST_RESULT -eq 0 ]; 
+then
+    echo "Commit abandoned as test cases failed."
+    exit $TEST_RESULT
+fi
+
+# unstash unstaged files
+git stash pop
+
+# pass both checkstyle test and test cases
+exit 0
