@@ -190,3 +190,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**view_tutor** | `view_tutor 1` <br> e.g., Name: John Doe <br> Phone Number: 98765432 <br> Email Address: johnd@example.com <br> Address: John street, block 123, #01-01 <br> Subject Expertise: English, Mathematics (Sec 3, 4, JC) <br> Hourly Rate: SGD60/hr <br> Years of Experience: 6
