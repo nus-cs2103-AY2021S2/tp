@@ -13,7 +13,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/yiqun.png" width="200px">
 
 [[github](http://github.com/hengyiqun)]
-[[portfolio]()]
+[[portfolio](team/maurice2n97.md)]
 
 * Role: Developer
 * Responsibilities: Features
