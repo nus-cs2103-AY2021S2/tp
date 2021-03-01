@@ -72,3 +72,32 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Check graduation : `validate plans`
+Format: `validate plans [p/PLAN_NUMBER]`
+
+When no PLAN_NUMBER is specified:
+  - Shows list of plans that are still valid
+    - Each row is a plan
+        - Each plan has 4 column attributes:
+          - Shows plan number
+          - Shows how many MCs the plan has
+          - Shows how many MCs completed
+          - Shows how many semesters remaining in plan
+
+With `[p/PLAN_NUMBER]`
+- Shows header
+  - Shows plan number
+  - Shows how many MCs the plan has
+  - Shows how many MCs completed
+  - Shows how many semesters remaining in plan
+- Shows rows of modules placed in respective semesters
+  - Shows X tables of X semesters
+  - Each table has a header of how many MCs the semester will have
+  - Each table shows module details
+
+### Show history: `history`
+Format: `history`
+
+The above command takes no arguments and shows the user a list of modules that they have completed up until before the current semester.
+
+The output format of history will follow the output format of show p/PLAN_NUMBER.
