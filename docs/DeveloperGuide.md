@@ -19,13 +19,19 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* NUS students
+* has a hard time organising and planning what modules to take
+* prefer desktop apps over phone apps
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* want to have a good way to check all MCs
+* wants to have a good way to check all fulfilled pre-requisites
+* wants to have a good way to plan for all their modules
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* managing study plan is much easier than existing choices (i.e. WHAT-IF report)
+* planning for modules is more automatic/convenient than manual inputs (NUSMOD)
 
 
 ### User stories
