@@ -95,7 +95,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        ExpiryDate updatedExpiryDate = editPersonDescriptor.getEmail().orElse(personToEdit.getExpiryDate());
+        ExpiryDate updatedExpiryDate = editPersonDescriptor.getExpiryDate().orElse(personToEdit.getExpiryDate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.expiryDate);
+            setExpiryDate(toCopy.expiryDate);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -169,11 +169,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(ExpiryDate expiryDate) {
+        public void setExpiryDate(ExpiryDate expiryDate) {
             this.expiryDate = expiryDate;
         }
 
-        public Optional<ExpiryDate> getEmail() {
+        public Optional<ExpiryDate> getExpiryDate() {
             return Optional.ofNullable(expiryDate);
         }
 
@@ -219,7 +219,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
-                && getEmail().equals(e.getEmail())
+                && getExpiryDate().equals(e.getExpiryDate())
                 && getAddress().equals(e.getAddress())
                 && getTags().equals(e.getTags());
         }

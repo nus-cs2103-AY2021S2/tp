@@ -34,7 +34,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getExpiryDate());
+        descriptor.setExpiryDate(person.getExpiryDate());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }
@@ -59,7 +59,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code ExpiryDate} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new ExpiryDate(email));
+        descriptor.setExpiryDate(new ExpiryDate(email));
         return this;
     }
 
