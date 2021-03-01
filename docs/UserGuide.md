@@ -137,7 +137,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the task list.
-* `find Work` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+* `find Work` followed by `delete 1` deletes the 1st task in the result of the `find` command.
 
 ### Clearing all entries : `clear`
 
