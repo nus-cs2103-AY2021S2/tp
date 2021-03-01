@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Joel Ho's Project Portfolio Page
 ---
 
 ## Project: AddressBook Level 3
@@ -17,10 +17,10 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=joelho)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed releases `v1.1` - `v1.1` (1 release) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
