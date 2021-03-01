@@ -294,6 +294,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should work on both 32-bit and 64-bit environments.
+5.  A user who is new to the app should be able to familiarise themselves with it within a few uses.
+6.  All commands should be explained in the user guide, including the format of the command and examples of how it is used.
+7.  A user should be able to identify which categories and which child is related to each contact at a glance.  
+8. Should be able to differentiate tags immediately.
+9. Should be able to access important contacts immediately after app is opened.
+10. Should be able to restore address book with up to 1000 persons from backup file within seconds if app crashes and in-app data is lost.
+11. Should be able to locate local backup file easily.
+12. App UI should look uniform across different OSes to ensure that usage of application is similar regardless of OS.
+13. Should be able to view all data with or without app window maximised.
+14. Should be able to customise app UI for comfortable viewing without having to search up hexadecimal codes.
 
 *{More to be added}*
 
