@@ -62,7 +62,7 @@ You can reach us at the email `zhengyong@u.nus.edu`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/.md)]
 
 * Role: Integration, UI
 * Responsibilities:
