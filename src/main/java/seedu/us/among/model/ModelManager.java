@@ -95,7 +95,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteEndpoint(Endpoint target) {
+    public void removeEndpoint(Endpoint target) {
         endpointList.removeEndpoint(target);
     }
 

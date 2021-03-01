@@ -58,10 +58,10 @@ public interface Model {
     boolean hasEndpoint(Endpoint endpoint);
 
     /**
-     * Deletes the given endpoint.
+     * Removes the given endpoint.
      * The endpoint must exist in the API endpoint list.
      */
-    void deleteEndpoint(Endpoint target);
+    void removeEndpoint(Endpoint target);
 
     /**
      * Adds the given endpoint.

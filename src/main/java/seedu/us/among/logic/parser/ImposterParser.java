@@ -9,13 +9,13 @@ import java.util.regex.Pattern;
 import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.ClearCommand;
 import seedu.us.among.logic.commands.Command;
-import seedu.us.among.logic.commands.DeleteCommand;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.commands.ExitCommand;
 import seedu.us.among.logic.commands.FindCommand;
 import seedu.us.among.logic.commands.HelpCommand;
 import seedu.us.among.logic.commands.ListCommand;
 import seedu.us.among.logic.commands.SendCommand;
+import seedu.us.among.logic.commands.RemoveCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,8 +51,8 @@ public class ImposterParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
