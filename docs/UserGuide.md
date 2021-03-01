@@ -32,7 +32,7 @@ title: User Guide
 
     * **`rlist`** : Lists all residents.
 
-    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student, assigned to room `01-234`.
+    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student, allocated to room `01-234`.
 
     * **`rdel`**`3` : Deletes the 3rd resident shown in the current resident list.
 
