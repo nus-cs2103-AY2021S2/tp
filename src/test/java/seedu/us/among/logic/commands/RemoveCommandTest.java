@@ -20,31 +20,31 @@ import seedu.us.among.model.endpoint.Endpoint;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code RemoveCommand}.
  */
-public class DeleteCommandTest {
+public class RemoveCommandTest {
 
     private Model model = new ModelManager(getTypicalEndpointList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Endpoint endpointToDelete = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENDPOINT);
+        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_ENDPOINT);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ENDPOINT_SUCCESS, endpointToDelete);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ENDPOINT_SUCCESS, endpointToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getEndpointList(), new UserPrefs());
-        expectedModel.deleteEndpoint(endpointToDelete);
+        expectedModel.removeEndpoint(endpointToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEndpointList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -52,15 +52,15 @@ public class DeleteCommandTest {
         showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
 
         Endpoint endpointToDelete = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENDPOINT);
+        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_ENDPOINT);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ENDPOINT_SUCCESS, endpointToDelete);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ENDPOINT_SUCCESS, endpointToDelete);
 
         Model expectedModel = new ModelManager(model.getEndpointList(), new UserPrefs());
-        expectedModel.deleteEndpoint(endpointToDelete);
+        expectedModel.removeEndpoint(endpointToDelete);
         showNoEndpoint(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,21 +71,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of API endpoint list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ENDPOINT);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ENDPOINT);
+        RemoveCommand deleteFirstCommand = new RemoveCommand(INDEX_FIRST_ENDPOINT);
+        RemoveCommand deleteSecondCommand = new RemoveCommand(INDEX_SECOND_ENDPOINT);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ENDPOINT);
+        RemoveCommand deleteFirstCommandCopy = new RemoveCommand(INDEX_FIRST_ENDPOINT);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

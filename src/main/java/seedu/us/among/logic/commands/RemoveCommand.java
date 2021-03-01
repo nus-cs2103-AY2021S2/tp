@@ -11,22 +11,22 @@ import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Endpoint;
 
 /**
- * Deletes an API endpoint identified using it's displayed index from the API endpoint list.
+ * Removes an API endpoint identified using it's displayed index from the API endpoint list.
  */
-public class DeleteCommand extends Command {
+public class RemoveCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes an API endpoint identified using it's displayed index from the API endpoint list.\n"
+            + ": Remove an API endpoint identified using it's displayed index from the API endpoint list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ENDPOINT_SUCCESS = "Deleted endpoint: %1$s";
+    public static final String MESSAGE_REMOVE_ENDPOINT_SUCCESS = "Remove endpoint: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public RemoveCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -39,15 +39,15 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
         }
 
-        Endpoint endpointToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteEndpoint(endpointToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ENDPOINT_SUCCESS, endpointToDelete));
+        Endpoint endpointToRemove = lastShownList.get(targetIndex.getZeroBased());
+        model.removeEndpoint(endpointToRemove);
+        return new CommandResult(String.format(MESSAGE_REMOVE_ENDPOINT_SUCCESS, endpointToRemove));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof RemoveCommand // instanceof handles nulls
+                && targetIndex.equals(((RemoveCommand) other).targetIndex)); // state check
     }
 }

@@ -130,7 +130,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteEndpoint(Endpoint target) {
+        public void removeEndpoint(Endpoint target) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.ClearCommand;
-import seedu.us.among.logic.commands.DeleteCommand;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.commands.ExitCommand;
 import seedu.us.among.logic.commands.FindCommand;
 import seedu.us.among.logic.commands.HelpCommand;
 import seedu.us.among.logic.commands.ListCommand;
+import seedu.us.among.logic.commands.RemoveCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
@@ -46,10 +46,10 @@ public class ImposterParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ENDPOINT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_ENDPOINT), command);
+    public void parseCommand_remove() throws Exception {
+        RemoveCommand command = (RemoveCommand) parser.parseCommand(
+                RemoveCommand.COMMAND_WORD + " " + INDEX_FIRST_ENDPOINT.getOneBased());
+        assertEquals(new RemoveCommand(INDEX_FIRST_ENDPOINT), command);
     }
 
     @Test
