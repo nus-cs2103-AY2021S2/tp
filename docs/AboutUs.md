@@ -19,3 +19,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibility: Developer for ModuleBook 3.5
 
+### Umer Siddiqui
+
+<img src="images/umergta.png" width="200px">
+
+[[github](https://github.com/umergta)]
+
+### Lee Ze Xin
+
+<img src="images/figo2127.png" width="200px">
+
+[[github](http://github.com/figo2127)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Backend
+
+### Wang Yuanzhe
+
+<img src="images/aiwassprime.png" width="200px">
+
+[[github](https://github.com/AiwassPrime)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Develop AddressBook3.5
+
+### He Qiyuan
+
+<img src="images/qy-h00.png" width="200px">
+
+[[homepage](https://qy-h00.github.io/)]
+[[github](https://github.com/qy-h00)]
+[[portfolio](team/qy-h00.md)]
+
+* Role: Developer
+* Responsibility: Developer for ModuleBook 3.5
+
+
+
+
