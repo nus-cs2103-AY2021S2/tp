@@ -268,16 +268,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Focuris` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Focuris shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Focuris deletes the person
 
     Use case ends.
 
@@ -289,9 +289,295 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Focuris shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  Focuris adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The format to add a person is invalid.
+
+    * 1a1. Focuris shows an error message.
+    
+      Use case resumes at step 1.
+
+* 1b. The person already exists in Focuris.
+
+    * 1b1. Focuris shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Focuris shows a list of persons
+3.  User requests to edit a specific person in the list
+4.  Focuris edits the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Focuris shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. No fields are provided to edit.
+
+    * 3b1. Focuris shows an error message.
+      
+      Use case resumes at step 2.
+
+**Use case: Find a person**
+
+**MSS**
+
+1.  User requests to find a person
+2.  Focuris shows a list of persons whose names contain any of the given words
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no such person with the given keyword
+  
+  Use case ends.
+
+**Use case: Request help**
+
+**MSS**
+
+1.  User requests help
+2.  Focuris shows a link to the User Guide.
+
+    Use case ends.
+
+**Use case: List events in a particular week**
+
+**MSS**
+
+1.  User requests to list events in a particular week
+2.  Focuris shows all events pertaining to the week
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no events in that week.
+
+  Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1a1. Focuris shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: List events in a particular year**
+
+**MSS**
+
+1.  User requests to list events in a particular year
+2.  Focuris shows all events pertaining to the year
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no events in that year.
+
+  Use case ends.
+  
+* 1b. The given year is invalid.
+
+    * 1a1. Focuris shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Reset list of events to current date**
+
+**MSS**
+
+1.  User requests to list events to current date
+2.  Focuris shows all current events
+
+    Use case ends.
+
+**Use case: Show list of all persons**
+
+**MSS**
+
+1.  User requests to list all persons in Focuris
+2.  Focuris shows all persons
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Show list of all events**
+
+**MSS**
+
+1.  User requests to list all events in Focuris
+2.  Focuris shows all events
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Delete an event**
+
+**MSS**
+
+1.  User requests to list events
+2.  Focuris shows a list of events
+3.  User requests to delete a specific event in the list
+4.  Focuris deletes the event
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Focuris shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add an event**
+
+**MSS**
+
+1.  User requests to add an event
+2.  Focuris adds the event
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The format to add an event is invalid.
+
+    * 1a1. Focuris shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The event already exists in Focuris.
+
+    * 1b1. Focuris shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Edit an event**
+
+**MSS**
+
+1.  User requests to list all events
+2.  Focuris shows a list of events
+3.  User requests to edit a specific event in the list
+4.  Focuris edits the event
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Focuris shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. No fields are provided to edit.
+
+    * 3b1. Focuris shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find an event**
+
+**MSS**
+
+1.  User requests to find an event
+2.  Focuris shows a list of events related to the matching keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There is no such event with the given keyword
+
+  Use case ends.
+
+**Use case: Clear all entries of persons**
+
+**MSS**
+
+1.  User requests to clear all entries of persons in Focuris
+2.  Focuris clears the entries of persons.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is already cleared.
+
+  Use case ends.
+
+**Use case: Clear all entries of events**
+
+**MSS**
+
+1.  User requests to clear all entries of events in Focuris
+2.  Focuris clears the entries of events.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is already cleared.
+
+  Use case ends.
+
+**Use case: Exit Focuris**
+
+**MSS**
+
+1.  User requests to exit Focuris
+2.  Focuris closes.
+
+    Use case ends.
 
 *{More to be added}*
 
