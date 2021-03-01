@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/vuminhhieunus2019.png" width="200px">
 
-[[github](https://github.com/vuminhhieunus2019)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/vuminhhieunus2019)] [[portfolio](team/vuminhhieu.md)]
 
 * Role: Developer
 * Responsibilities: UI
