@@ -234,15 +234,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Independent Tutors
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of student contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: 
+* Cut down admin overhead for independent tutors
+* All in one platform to manage their student’s information
+
 
 
 ### User stories
@@ -262,45 +266,116 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+*(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: Delete a person**
+**Use case: UC01 - Create a student profile**
 
-**MSS**
+MSS:
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters the add student command, together with the student details.
+2. TutorBuddy creates the profile in the background.
+3. TutorBuddy displays the success message.
 
     Use case ends.
 
-**Extensions**
+**Extensions:**
 
-* 2a. The list is empty.
+* 1a. TutorBuddy detects an error in the entered data.
+    * 1a1. TutorBuddy displays an error message.
+
+    Use case ends.
+
+**Use case: UC02 - Delete a student profile**
+
+MSS:
+
+1. User enters the delete student command, along with the student’s name.
+2. TutorBuddy verifies that the student profile exists.
+3. TutorBuddy prompts the user to confirm the deletion.
+4. User confirms the deletion.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the entered command.
+    * 2a1. TutorBuddy displays error messages to the user.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. TutorBuddy detects that the user does not exist.
+    * 3a1. TutorBuddy displays an error message for unknown student profiles.
 
-    * 3a1. AddressBook shows an error message.
+  Use case ends.
 
-      Use case resumes at step 2.
+* 4a. User cancels the confirmation of deletion.
+    * 4a1. Student profile is not created; the student is returned to the home page.
+
+  Use case ends.
+
+**Use case: UC03 - Find a student’s profile**
+
+MSS:
+
+1. User enters the find student command, along with a keyword from the student’s name.
+2. TutorBuddy displays all students’ profiles matching the keyword if any.
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. TutorBuddy detects empty keyword field
+    * 1a1. TutorBuddy displays an error message for no keyword specified.
+
+  Use case ends.
+
+**Use case: UC04 - Create a session**
+
+**Preconditions: Student profile linked to session has been created.**
+
+MSS:
+
+1. User enters the add session command, together with the session details.
+2. TutorBuddy creates the session.
+3. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. TutorBuddy detects an error in the entered data.
+    * 1a1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+* 1b. TutorBuddy detects another session that the user has in the same timeframe.
+    * 1b1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+**Use case: UC05 -  Getting the emails from the application**
+
+MSS:
+
+1. User enters the command to get the email from TutorBuddy.
+2. TutorBuddy returns a list of all the email addresses to the user.
+3. User copies the email address given.
+
+   Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. The user should have enough space on their computer to ensure that data will be stored in the application without errors.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* CLI: Command Line Interface where users can interact with their OS system.
 
 --------------------------------------------------------------------------------------------------------------------
 
