@@ -20,6 +20,8 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private TextField commandTextField;
+    @FXML
+    private TextField commandKeyword;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -27,6 +29,7 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        commandKeyword.setVisible(false);
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
