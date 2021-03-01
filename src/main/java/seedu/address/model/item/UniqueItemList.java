@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.item;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateItemException;
-import seedu.address.model.person.exceptions.ItemNotFoundException;
+import seedu.address.model.item.exceptions.DuplicateItemException;
+import seedu.address.model.item.exceptions.ItemNotFoundException;
 
 /**
  * A list of items that enforces uniqueness between its elements and does not allow nulls.

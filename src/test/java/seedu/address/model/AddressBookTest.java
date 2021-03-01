@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Item;
-import seedu.address.model.person.exceptions.DuplicateItemException;
+import seedu.address.model.item.Item;
+import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.testutil.ItemBuilder;
 
 public class AddressBookTest {
@@ -44,7 +44,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateItems_throwsDuplicateItemException() {
         // Two items with the same identity fields
         Item editedAlice = new ItemBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -55,23 +55,23 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasItem_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasItem(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasItem_itemNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasItem(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasItem_itemInAddressBook_returnsTrue() {
         addressBook.addItem(ALICE);
         assertTrue(addressBook.hasItem(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasItem_itemWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addItem(ALICE);
         Item editedAlice = new ItemBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -79,7 +79,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getItemList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getItemList().remove(0));
     }
 

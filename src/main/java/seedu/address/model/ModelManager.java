@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Item;
+import seedu.address.model.item.Item;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -102,7 +102,7 @@ public class ModelManager implements Model {
     @Override
     public void addItem(Item item) {
         addressBook.addItem(item);
-        updateFilteredItemList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override

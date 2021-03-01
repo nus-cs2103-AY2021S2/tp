@@ -23,7 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Item;
+import seedu.address.model.item.Item;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 import seedu.address.testutil.ItemBuilder;
 
@@ -53,8 +53,8 @@ public class EditCommandTest {
         Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
         Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
 
-        ItemBuilder ItemInList = new ItemBuilder(lastItem);
-        Item editedItem = ItemInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        ItemBuilder itemInList = new ItemBuilder(lastItem);
+        Item editedItem = itemInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BOB)

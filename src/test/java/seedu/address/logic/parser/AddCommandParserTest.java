@@ -32,11 +32,11 @@ import static seedu.address.testutil.TypicalItems.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Item;
-import seedu.address.model.person.Phone;
+import seedu.address.model.item.Address;
+import seedu.address.model.item.Email;
+import seedu.address.model.item.Item;
+import seedu.address.model.item.Name;
+import seedu.address.model.item.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ItemBuilder;
 

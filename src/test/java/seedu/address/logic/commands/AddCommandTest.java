@@ -20,7 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Item;
+import seedu.address.model.item.Item;
 import seedu.address.testutil.ItemBuilder;
 
 public class AddCommandTest {
@@ -38,7 +38,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validItem), modelStub.ItemsAdded);
+        assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
     }
 
     @Test
@@ -171,18 +171,18 @@ public class AddCommandTest {
      * A Model stub that always accept the item being added.
      */
     private class ModelStubAcceptingItemAdded extends ModelStub {
-        final ArrayList<Item> ItemsAdded = new ArrayList<>();
+        final ArrayList<Item> itemsAdded = new ArrayList<>();
 
         @Override
         public boolean hasItem(Item item) {
             requireNonNull(item);
-            return ItemsAdded.stream().anyMatch(item::isSameItem);
+            return itemsAdded.stream().anyMatch(item::isSameItem);
         }
 
         @Override
         public void addItem(Item item) {
             requireNonNull(item);
-            ItemsAdded.add(item);
+            itemsAdded.add(item);
         }
 
         @Override

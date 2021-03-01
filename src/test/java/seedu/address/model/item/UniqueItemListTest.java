@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicateItemException;
-import seedu.address.model.person.exceptions.ItemNotFoundException;
+import seedu.address.model.item.exceptions.DuplicateItemException;
+import seedu.address.model.item.exceptions.ItemNotFoundException;
 import seedu.address.testutil.ItemBuilder;
 
 public class UniqueItemListTest {
@@ -29,18 +29,18 @@ public class UniqueItemListTest {
     }
 
     @Test
-    public void contains_ItemNotInList_returnsFalse() {
+    public void contains_itemNotInList_returnsFalse() {
         assertFalse(uniqueItemList.contains(ALICE));
     }
 
     @Test
-    public void contains_ItemInList_returnsTrue() {
+    public void contains_itemInList_returnsTrue() {
         uniqueItemList.add(ALICE);
         assertTrue(uniqueItemList.contains(ALICE));
     }
 
     @Test
-    public void contains_ItemWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
         uniqueItemList.add(ALICE);
         Item editedAlice = new ItemBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -115,7 +115,7 @@ public class UniqueItemListTest {
     }
 
     @Test
-    public void remove_ItemDoesNotExist_throwsItemNotFoundException() {
+    public void remove_itemDoesNotExist_throwsItemNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> uniqueItemList.remove(ALICE));
     }
 

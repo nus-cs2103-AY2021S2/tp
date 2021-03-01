@@ -6,18 +6,18 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Item;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.item.Address;
+import seedu.address.model.item.Email;
+import seedu.address.model.item.Item;
+import seedu.address.model.item.Name;
+import seedu.address.model.item.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Item[] getSamplePersons() {
+    public static Item[] getSampleItems() {
         return new Item[]{
             new Item(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -42,7 +42,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Item sampleItem : getSamplePersons()) {
+        for (Item sampleItem : getSampleItems()) {
             sampleAb.addItem(sampleItem);
         }
         return sampleAb;
