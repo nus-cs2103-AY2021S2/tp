@@ -3,9 +3,9 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team from NUS School of Computing completing this as a module requirement for CS2103/T.
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us by creating a new issue on our [GitHub issues page](https://github.com/AY2021S2-CS2103T-T12-2/tp/issues).
 
 ## Project team
 
@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kuah Wei Liang
 
-<img src="images/weilianglOl.png" width="200px">
+<img src="images/weilianglol.png" width="200px">
 
 [[github](https://github.com/WeiLiangLOL/)]
 

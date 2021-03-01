@@ -1,3 +1,8 @@
+---
+layout: page
+title: Developer Guide
+---
+
 ### Product Scope
 
 **Target user profile**
@@ -50,7 +55,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  BMITracker displays information for height and weight
 
     Use case ends.
-    
+
 **Use case: Update height and weight**
 
 **MSS**
@@ -61,7 +66,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 4.  BMITracker updates the height, weight and BMI of the user
 
     Use case ends.
-    
+
 **Use case: Add food item as consumption**
 
 **MSS**
@@ -80,7 +85,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  DietSelector displays a list of diet recommendation based on user's BMI
 
     Use case ends.
-    
+
 **Use case: View diet plan**
 
 **MSS**
@@ -89,7 +94,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  DietSelector displays a detailed requirement for that certain diet type
 
     Use case ends.
-    
+
 **Use case: Add food item as an intake**
 
 **MSS**
@@ -98,17 +103,17 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  MacroTracker tracks the food and computes the total kilo calories consumption for the day
 
     Use case ends.
-    
+
 **Extensions**
 *  1a. The food item exists.
 
    * 1a1. MacroTracker updates food item details in the list of food.
-  
+
 *  1b. The food item does not exists.
-   
+
    * 1b1. MacroTracker adds the food item into the list of food.
-  
-   Use case resumes at step 2. 
+
+   Use case resumes at step 2.
 
 **Use case: Display current food intake for the day**
 
@@ -118,19 +123,23 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  MacroTracker displays the summary intake for that day.
 
     Use case ends.
-    
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold diet plans for up to the past two years (730 days) without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should help users as they start the application for the first time with sample data.
+5.  Interface should not hinder the users' usage of the application in order to input the data they need and get the desired response.
+6.  The data files should be easily modifiable by a user with a basic understanding of the JavaScript Object Notation (JSON).
+7.  Errors should display vividly and differently from the rest of the normal input such that users are aware something has gone wrong.
+8.  Should be easily deployable to all systems running any _mainstream OS_ once compiled executable is distributed via a release.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-
 *{More to be added}*
