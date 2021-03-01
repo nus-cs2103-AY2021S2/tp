@@ -17,7 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Quantity quantity;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Quantity quantity, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, quantity, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.quantity = quantity;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Quantity getQuantity() {
+        return quantity;
     }
 
     public Email getEmail() {
@@ -89,7 +89,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getQuantity().equals(getQuantity())
             && otherPerson.getEmail().equals(getEmail())
             && otherPerson.getAddress().equals(getAddress())
             && otherPerson.getTags().equals(getTags());
@@ -98,7 +98,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, quantity, email, address, tags);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Person {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
             .append("; Phone: ")
-            .append(getPhone())
+            .append(getQuantity())
             .append("; Email: ")
             .append(getEmail())
             .append("; Address: ")

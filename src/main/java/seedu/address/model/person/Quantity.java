@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
  */
-public class Phone {
+public class Quantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -16,20 +16,20 @@ public class Phone {
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Quantity}.
      *
-     * @param phone A valid phone number.
+     * @param quantity A valid phone number.
      */
-    public Phone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Quantity(String quantity) {
+        requireNonNull(quantity);
+        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        value = quantity;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidQuantity(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -41,8 +41,8 @@ public class Phone {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Phone // instanceof handles nulls
-            && value.equals(((Phone) other).value)); // state check
+            || (other instanceof Quantity // instanceof handles nulls
+            && value.equals(((Quantity) other).value)); // state check
     }
 
     @Override
