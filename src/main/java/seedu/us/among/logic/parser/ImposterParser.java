@@ -14,8 +14,8 @@ import seedu.us.among.logic.commands.ExitCommand;
 import seedu.us.among.logic.commands.FindCommand;
 import seedu.us.among.logic.commands.HelpCommand;
 import seedu.us.among.logic.commands.ListCommand;
-import seedu.us.among.logic.commands.SendCommand;
 import seedu.us.among.logic.commands.RemoveCommand;
+import seedu.us.among.logic.commands.SendCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 
 /**

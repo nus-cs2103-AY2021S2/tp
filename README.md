@@ -14,14 +14,14 @@
 
 ### Introduction
 
-imPoster does what [postman](https://www.postman.com/) does but in a simple and
+imPoster does what [Postman](https://www.postman.com/) does but in a simple and
 minimalistic style that is easy for anyone to pick up. The latest releases for
 download are available
 [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
 
 ### Features
 
-imPoster runs locally on your computer and simplifies the process of building an
+imPoster runs locally on your computer and simplifies the process of building/testing an
 API. We offer support for the following tasks:
 
 1. Sending and Receiving requests.
@@ -29,7 +29,7 @@ API. We offer support for the following tasks:
 3. Testing requests.
 
 For more details on the features and their usage, please refer to the
-[user guide](https://github.com/AY2021S2-CS2103T-T12-4/tp).
+[user guide](https://ay2021s2-cs2103t-t12-4.github.io/tp/UserGuide.html).
 
 ### Technologies
 
