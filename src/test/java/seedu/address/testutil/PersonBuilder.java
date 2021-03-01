@@ -1,17 +1,15 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.VaccinationStatus;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -23,7 +21,8 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEAFULT_VAC_STATUS = "not vaccinated";
+    public static final String DEFAULT_VAC_STATUS = "not vaccinated";
+    public static final String DEFAULT_MED_DETAILS = "none";
 
     private Name name;
     private MatriculationNumber matriculationNumber;
@@ -31,7 +30,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private VaccinationStatus vaccinationStatus;
-    private Set<Tag> tags;
+    private MedicalDetails medicalDetails;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,8 +41,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        vaccinationStatus = new VaccinationStatus(DEAFULT_VAC_STATUS);
-        tags = new HashSet<>();
+        vaccinationStatus = new VaccinationStatus(DEFAULT_VAC_STATUS);
+        medicalDetails = new MedicalDetails(DEFAULT_MED_DETAILS);
     }
 
     /**
@@ -56,7 +55,6 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         vaccinationStatus = personToCopy.getVaccinationStatus();
-        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -72,14 +70,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withMatric(String matric) {
         this.matriculationNumber = new MatriculationNumber(matric);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -115,8 +105,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     *Sets the {@code MedicalDetails} of the {@code Person} that we are building
+     */
+    public PersonBuilder withMedDetails(String medicalDetails) {
+        this.medicalDetails = new MedicalDetails(medicalDetails);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, tags);
+        return new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, medicalDetails);
     }
 
 }

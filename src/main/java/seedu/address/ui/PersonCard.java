@@ -42,8 +42,6 @@ public class PersonCard extends UiPart<Region> {
     private Label vaccinationStatus;
     @FXML
     private Label email;
-    @FXML
-    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -60,9 +58,6 @@ public class PersonCard extends UiPart<Region> {
         //to be added in the future when the space in the PersonCard is added
         //vaccinationStatus.setText(person.getVaccinationStatus().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

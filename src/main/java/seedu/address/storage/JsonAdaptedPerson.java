@@ -1,11 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,11 +7,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.VaccinationStatus;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -32,7 +26,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String vaccinationStatus;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String medicalDetails;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,16 +37,14 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("vaccinationStatus") String vaccinationStatus,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("medicalDetails") String medicalDetails) {
         this.name = name;
         this.matriculationNumber = matriculationNumber;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.vaccinationStatus = vaccinationStatus;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.medicalDetails = medicalDetails;
     }
 
     /**
@@ -65,9 +57,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         vaccinationStatus = source.getVaccinationStatus().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        medicalDetails = source.getMedicalDetails().value;
     }
 
     /**
@@ -76,11 +66,6 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -134,8 +119,19 @@ class JsonAdaptedPerson {
         final VaccinationStatus modelVacStatus = new VaccinationStatus(vaccinationStatus);
 
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelMatric, modelPhone, modelEmail, modelAddress, modelVacStatus, modelTags);
+        if (medicalDetails == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MedicalDetails.class.getSimpleName()));
+        }
+        if (!MedicalDetails.isValidMedicalDetails(medicalDetails)) {
+            throw new IllegalValueException(MedicalDetails.MESSAGE_CONSTRAINTS);
+        }
+
+        final MedicalDetails modelMedDetails = new MedicalDetails(medicalDetails);
+
+
+        return new Person(modelName, modelMatric, modelPhone, modelEmail, modelAddress, modelVacStatus,
+                modelMedDetails);
     }
 
 }

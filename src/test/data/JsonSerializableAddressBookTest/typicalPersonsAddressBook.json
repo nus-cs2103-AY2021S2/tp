@@ -7,7 +7,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "vaccinationStatus" : "not vaccinated",
-    "tagged" : [ "friends" ]
+    "medicalDetails" : "shellfish allergy"
   }, {
     "name" : "Benson Meier",
     "matriculationNumber" : "A4567890E",
@@ -15,7 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "vaccinationStatus" : "not vaccinated",
-    "tagged" : [ "owesMoney", "friends" ]
+    "medicalDetails" : "none"
   }, {
     "name" : "Carl Kurz",
     "matriculationNumber" : "A5678901F",
@@ -23,7 +23,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "vaccinationStatus" : "vaccinated",
-    "tagged" : [ ]
+    "medicalDetails" : "none"
   }, {
     "name" : "Daniel Meier",
     "matriculationNumber" : "A6789012G",
@@ -31,7 +31,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "vaccinationStatus" : "vaccinated",
-    "tagged" : [ "friends" ]
+    "medicalDetails" : "pollen allergy"
   }, {
     "name" : "Elle Meyer",
     "matriculationNumber" : "A7890123H",
@@ -39,7 +39,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "vaccinationStatus" : "not vaccinated",
-    "tagged" : [ ]
+    "medicalDetails" : "none"
   }, {
     "name" : "Fiona Kunz",
     "matriculationNumber" : "A8901234I",
@@ -47,7 +47,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "vaccinationStatus" : "vaccinated",
-    "tagged" : [ ]
+    "medicalDetails" : "bee sting allergy"
   }, {
     "name" : "George Best",
     "matriculationNumber" : "A9012345J",
@@ -55,6 +55,6 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "vaccinationStatus" : "not vaccinated",
-    "tagged" : [ ]
+    "medicalDetails" : "none"
   } ]
 }

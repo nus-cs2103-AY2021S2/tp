@@ -4,12 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -17,11 +16,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.VaccinationStatus;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -36,10 +35,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_VACCINATION_STATUS, PREFIX_EMAIL)
+                PREFIX_VACCINATION_STATUS, PREFIX_EMAIL, PREFIX_MEDICAL_DETAILS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -52,9 +51,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         VaccinationStatus vaccinationStatus = ParserUtil.parseVacStatus(argMultimap
                 .getValue(PREFIX_VACCINATION_STATUS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        MedicalDetails medicalDetails = ParserUtil.parseMedicalDetails(argMultimap.getValue(PREFIX_MEDICAL_DETAILS)
+                .get());
 
-        Person person = new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, tagList);
+        Person person = new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, medicalDetails);
 
         return new AddCommand(person);
     }
