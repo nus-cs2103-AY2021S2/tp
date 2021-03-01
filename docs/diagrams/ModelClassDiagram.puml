@@ -27,6 +27,10 @@ Class UniquePersonList
 Package Tag {
 Class Tag
 }
+
+Package InsurancePolicy {
+Class InsurancePolicy
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -47,6 +51,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" InsurancePolicy
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
