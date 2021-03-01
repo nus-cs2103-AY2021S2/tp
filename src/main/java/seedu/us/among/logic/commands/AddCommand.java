@@ -3,7 +3,6 @@ package seedu.us.among.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.us.among.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.us.among.logic.commands.exceptions.CommandException;
@@ -20,12 +19,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an API endpoint to the API endpoint list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";

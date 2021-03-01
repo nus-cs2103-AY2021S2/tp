@@ -9,7 +9,6 @@ import seedu.us.among.model.ReadOnlyEndpointList;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
-import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -18,22 +17,22 @@ import seedu.us.among.model.tag.Tag;
 public class SampleDataUtil {
     public static Endpoint[] getSamplePersons() {
         return new Endpoint[] {
-            new Endpoint(new Name("Alex Yeoh"), new Phone("87438807"),
+            new Endpoint(new Name("Alex Yeoh"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Endpoint(new Name("Bernice Yu"), new Phone("99272758"),
+            new Endpoint(new Name("Bernice Yu"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Endpoint(new Name("Charlotte Oliveiro"), new Phone("93210283"),
+            new Endpoint(new Name("Charlotte Oliveiro"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Endpoint(new Name("David Li"), new Phone("91031282"),
+            new Endpoint(new Name("David Li"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Endpoint(new Name("Irfan Ibrahim"), new Phone("92492021"),
+            new Endpoint(new Name("Irfan Ibrahim"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Endpoint(new Name("Roy Balakrishnan"), new Phone("92624417"),
+            new Endpoint(new Name("Roy Balakrishnan"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };

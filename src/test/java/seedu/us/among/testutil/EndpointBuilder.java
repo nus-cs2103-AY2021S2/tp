@@ -6,7 +6,6 @@ import java.util.Set;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
-import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;
 import seedu.us.among.model.util.SampleDataUtil;
 
@@ -16,11 +15,9 @@ import seedu.us.among.model.util.SampleDataUtil;
 public class EndpointBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
     private Address address;
     private Set<Tag> tags;
 
@@ -29,7 +26,6 @@ public class EndpointBuilder {
      */
     public EndpointBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -39,7 +35,6 @@ public class EndpointBuilder {
      */
     public EndpointBuilder(Endpoint endpointToCopy) {
         name = endpointToCopy.getName();
-        phone = endpointToCopy.getPhone();
         address = endpointToCopy.getAddress();
         tags = new HashSet<>(endpointToCopy.getTags());
     }
@@ -68,16 +63,8 @@ public class EndpointBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Phone} of the {@code Endpoint} that we are building.
-     */
-    public EndpointBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
     public Endpoint build() {
-        return new Endpoint(name, phone, address, tags);
+        return new Endpoint(name, address, tags);
     }
 
 }

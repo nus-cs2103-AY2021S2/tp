@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalEndpoints.ALICE;
@@ -31,7 +30,7 @@ public class EndpointTest {
         assertFalse(ALICE.isSameEndpoint(null));
 
         // same name, all other attributes different -> returns true
-        Endpoint editedAlice = new EndpointBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        Endpoint editedAlice = new EndpointBuilder(ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameEndpoint(editedAlice));
 
@@ -69,10 +68,6 @@ public class EndpointTest {
 
         // different name -> returns false
         Endpoint editedAlice = new EndpointBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different phone -> returns false
-        editedAlice = new EndpointBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false

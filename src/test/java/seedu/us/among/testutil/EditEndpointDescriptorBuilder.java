@@ -8,7 +8,6 @@ import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
-import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -32,7 +31,6 @@ public class EditEndpointDescriptorBuilder {
     public EditEndpointDescriptorBuilder(Endpoint endpoint) {
         descriptor = new EditCommand.EditEndpointDescriptor();
         descriptor.setName(endpoint.getName());
-        descriptor.setPhone(endpoint.getPhone());
         descriptor.setAddress(endpoint.getAddress());
         descriptor.setTags(endpoint.getTags());
     }
@@ -42,14 +40,6 @@ public class EditEndpointDescriptorBuilder {
      */
     public EditEndpointDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code EditEndpointDescriptor} that we are building.
-     */
-    public EditEndpointDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
         return this;
     }
 

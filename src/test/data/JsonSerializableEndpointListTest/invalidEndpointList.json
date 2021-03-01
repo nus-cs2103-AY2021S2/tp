@@ -1,7 +1,6 @@
 {
   "endpoints": [ {
-    "name": "Hans Muster",
-    "phone": "abcdef9482424",
+    "name": "Hans Muster@$!<> changed to invalid name as invalid phone and email no longer exist",
     "address": "4th street"
   } ]
 }

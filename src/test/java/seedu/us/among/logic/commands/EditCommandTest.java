@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.us.among.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -54,11 +53,11 @@ public class EditCommandTest {
         Endpoint lastEndpoint = model.getFilteredEndpointList().get(indexLastEndpoint.getZeroBased());
 
         EndpointBuilder endpointInList = new EndpointBuilder(lastEndpoint);
-        Endpoint editedEndpoint = endpointInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Endpoint editedEndpoint = endpointInList.withName(VALID_NAME_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastEndpoint, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);

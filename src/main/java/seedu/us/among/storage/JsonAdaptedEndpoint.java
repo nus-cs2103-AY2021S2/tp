@@ -13,7 +13,6 @@ import seedu.us.among.commons.exceptions.IllegalValueException;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
-import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -24,7 +23,6 @@ class JsonAdaptedEndpoint {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Endpoint's %s field is missing!";
 
     private final String name;
-    private final String phone;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -32,11 +30,10 @@ class JsonAdaptedEndpoint {
      * Constructs a {@code JsonAdaptedEndpoint} with the given endpoint details.
      */
     @JsonCreator
-    public JsonAdaptedEndpoint(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedEndpoint(@JsonProperty("name") String name,
                                @JsonProperty("address") String address,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -48,7 +45,6 @@ class JsonAdaptedEndpoint {
      */
     public JsonAdaptedEndpoint(Endpoint source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -74,14 +70,6 @@ class JsonAdaptedEndpoint {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -91,7 +79,7 @@ class JsonAdaptedEndpoint {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(endpointTags);
-        return new Endpoint(modelName, modelPhone, modelAddress, modelTags);
+        return new Endpoint(modelName, modelAddress, modelTags);
     }
 
 }
