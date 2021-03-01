@@ -101,3 +101,89 @@ Format: `history`
 The above command takes no arguments and shows the user a list of modules that they have completed up until before the current semester.
 
 The output format of history will follow the output format of show p/PLAN_NUMBER.
+
+### List a summary of all plans: `list plans`
+Format: `list plans`
+Tip: A user can view an individual plan to see more details about it. (See show p/PLAN_NUMBER)
+
+This command does not take any arguments and will output a summary of each existing 4-year study plan including details such as:
+- Plan Number
+- Number of Modular Credits (MCs) that the plan contains
+- Number of Semesters the plan spans
+- Validity: Whether the plan history matches the currently completed modules. If the user’s completed module history does not match the plan’s, the plan is considered to be invalid.
+
+Example output:
+[IMG]
+
+### Show details of a plan: `show p/PLAN_NUMBER`
+Format: `show p/PLAN_NUMBER`
+Tip: A user can find a plan’s PLAN_NUMBER by using the list plans command.
+
+This command takes one argument, a PLAN_NUMBER, and outputs meta details about the plan such as those under list plans, and details about each semester in the plan including:
+- Semester Number
+- Whether the semester has been completed
+- Total number of MCs for the Semester
+- Modules in the semester and their MC count: (E.g. CS1010S)
+- Grades for each module in the given semester
+- Prereqs: Whether or not prerequisites have been fulfilled
+- Precluded: Whether some module the user has completed precludes this module
+
+Example output:
+[IMG]
+
+### Create Plan: `add/delete`
+Format: `add/delete p/PLAN_NUMBER`
+
+#### Shows 2 rows
+- Whether plan is added/deleted is successful/unsuccessful
+- Plan number 
+#### Constraints
+- Trying to add a plan that already exist will not be allowed
+- Trying to delete a plan that does not exist will not be allowed
+
+### Clearing all entries : `clear`
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+</div>
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List** | `list`
+**Help** | `help`
