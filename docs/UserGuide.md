@@ -26,23 +26,29 @@ test your APIs more conveniently than traditional GUI applications.
    shown below should appear in a few seconds. Note how the application contains
    some sample data.<br> ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press <kbd>Enter</kbd> to execute it.
-   e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help
-   window.<br> Some example commands you can try:
+1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. Some example commands you can try:
+
+   - **`help`** : Get a help link for the application.
+
+   - **`add -x GET -u https://www.google.com`** : Adds an API endpoint to the
+     API endpoint list.
+
+   - **`edit 1 -x -u https://www.facebook.com`** : Edits the API endpoint with index `1` shown in the
+     API endpoint list.
+
+   - **`remove 3`** : Removes the API endpoint with index `3` shown in the API endpoint list.
+
+   - **`find facebook google`** : Finds all the API endpoints with fields containing `facebook` and `google`.
+
+   - **`send 2`** : Calls the API endpoint with index `2` shown in the API
+     endpoint list.
+
+   - **`run -x GET -u https://www.google.com`** : Calls the API endpoint with information 
+     given in the command box.
 
    - **`list`** : Lists all API endpoints in the API endpoint list.
 
-   - **`add`**`-x GET -u https://www.google.com` : Adds an API endpoint to the
-     API endpoint list.
-
-   * **`add`**`-x GET -u https://www.google.com t/important` : Adds an API endpoint to the API endpoint list, tagging it as important.
-
-   * **`remove`**`3` : Removes the 3rd API endpoint using the index shown in the API endpoint list.
-
-   - **`send`**`3` : Runs the 3rd API endpoint using the index shown in the API
-     endpoint list.
-
-   * **`clear`** : Removes all API endpoints in the API endpoint list.
+   - **`clear`** : Clears all API endpoints in the API endpoint list.
 
    - **`exit`** : Exits the application.
 
@@ -80,30 +86,91 @@ test your APIs more conveniently than traditional GUI applications.
 
 </div>
 
-### Viewing help : `help`
+### General Commands
 
-Gets the link to the user guide to the application in the form of a pop up
-window.
+#### View help : `help`
 
-![help message](images/helpMessage.png)
+Description: Get the link to the user guide to the application in the form of a pop up window.
 
 Format: `help`
 
-### Adding an API route: `add`
+![help message](images/helpMessage.png)
 
-Adds an API route to API list.
+#### Exiting the program : `exit`
 
-Format: `add -x METHOD -u URL [t/TAG]…`
+Description: Exit the application.
 
-**Tip:** A person can have any number of tags (including 0)
+Format: `exit`
+
+### Endpoint Commands
+
+#### Add an API endpoint: `add`
+
+Description: Add an API endpoint to the API endpoint list.
+
+Format: `add -x METHOD -u URL -t TAG`
 
 Examples:
-* `add -x GET -u https://www.google.com`
-* `add -x GET -u https://www.yahoo.com t/important`
+- `add -x GET -u https://www.google.com`
+- `add -x GET -u https://www.yahoo.com -t important`
 
-### Running an API call directly: `run`
+**Tip:** An endpoint can have any number of tags (including 0)
 
-Runs an API on the fly (without saving).
+#### Edit an API endpoint: `edit`
+
+Description: Edit the API endpoint at the specified index shown in the API endpoint list (at least one optional argument must be provided).
+
+Format: `edit INDEX [-x METHOD] [-u URL] [-t TAG]…`
+
+Examples:
+- `edit 1 -u https://facebook.com`
+- `edit 2 -x POST`
+
+#### Remove an API endpoint: `remove`
+
+Description: Remove the API endpoint at the specified index showin in the API endpoint list.
+
+Format: `remove INDEX`
+
+Examples:
+- `remove 1`
+
+#### Find a saved API endpoint: `find`
+
+Description: Find API routes containing the search word in any of its fields.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+
+- `find google`
+- `find facebook yahoo`
+
+#### List all saved API endpoints: `list`
+
+Description: Show a list of all API endpoints in the API endpoint list.
+
+Format: `list`
+
+#### Clear all saved API endpoints : `clear`
+
+Description: Clear all API endpoints in the API endpoint list.
+
+Format: `clear`
+
+#### Call a saved API endpoint: `send`
+
+Description: Call an API endpoint from the API endpoint list.
+
+Format: `send INDEX`
+
+Examples:
+
+- `send 1`
+
+#### Call an API endpoint directly without saving: `run`
+
+Description: Call an API endpoint on the fly (without saving).
 
 Format: `run -x METHOD -u URL`
 
@@ -112,92 +179,14 @@ Examples:
 - `run -x GET -u https://www.google.com`
 - `run -x GET -u https://www.yahoo.com`
 
-### Sending an API call from API list: `send`
+### Miscellaneous Information
 
-Calls an API from from the API list.
-
-Format: `send INDEX`
-
-Examples:
-
-- `send 1` calls the 1st API from the API list.
-- `send 2` calls the 2nd API from the API list.
-
-### Listing all saved API requests: `list`
-
-Shows a list of all API routes in the API list.
-
-Format: `list`
-
-### Editing an API: `edit`
-
-Edits an existing saved API.
-
-Format: `edit INDEX [-x METHOD] [-u URL] [t/TAG]…`
-* Edits the API endpoint at the specified INDEX. The index refers to the index number shown in the displayed API endpoint list. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values. 
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing t/ without specifying any tags after it.
-
-Examples:
-* `edit 1 -u https://facebook.com` Edits the URL of the 1st API route to be `https://facebook.com.`
-* `edit 3 -x POST` Edits the METHOD of the 3rd API route to be POST.
-* `edit 2 -u https://www.taylorswift.com t/` Edits the URL of the 2nd endpoint to be `https://www.taylorswift.com` and clears all existing tags.
-
-### Locating API by name: `find`
-
-Finds API routes containing the search word in any of its fields.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-- The search is case-insensitive. e.g `Google` will match `google`
-- The order of the keywords does not matter. e.g. `maps google` will match
-  `google maps`
-- Only the name is searched.
-- Only full words will be matched e.g. `googl` will not match `google`
-- API endpoints matching at least one keyword will be returned (i.e. `OR`
-  search). e.g. `foo bar` will return `foo cup`, `bar water`
-
-Examples:
-
-- `find google` returns `google.com` and `https://www.google.com/maps`
-- `find facebook maps` returns `https://www.google.com/maps`,
-  `https://facebook.com`
-
-### Remove a saved API request: `remove`
-
-Removes the specified API from the saved list of APIs.
-
-Format: `remove INDEX`
-
-- Removes the saved request at the specified INDEX.
-- The index refers to the index number shown in the displayed request list.
-- The index must be a positive integer 1, 2, 3, …​
-
-Examples:
-
-- `remove 1` removes the 1st API route from the API list.
-- `remove 2` removes the 2nd API route from the API list.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the API list.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
+#### Autosave
 
 imposter data are saved in the hard disk automatically after any command that
 changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Data file
 
 imPoster data are saved as a JSON file `[JAR file location]/data/imposter.json`.
 Advanced users are welcome to update data directly by editing that data file.
@@ -206,7 +195,7 @@ Advanced users are welcome to update data directly by editing that data file.
 If your changes to the data file makes its format invalid, imPoster will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -222,15 +211,23 @@ with the file that contains the data of your previous imPoster home folder.
 
 ## Command summary
 
+### General Commands
+
+| Action     | Format                                | Example                                |
+| ---------- | ------------------------------------- | -------------------------------------- |
+| **Help**   | `help`                                | `help`                                 |
+| **Exit**   | `exit`                                | `exit`                                 |
+
+### Endpoint Commands
+
 | Action     | Format                                | Example                                |
 | ---------- | ------------------------------------- | -------------------------------------- |
 | **Add**    | `add -x METHOD -u URL [t/TAG]…` <br>  | `add -x GET -u https://www.google.com` |
-| **Run**    | `run -x METHOD -u URL` <br>           | `run -x GET -u https://www.yahoo.com`  |
-| **Send**   | `send INDEX` <br>                     | `send 1`                               |
-| **Clear**  | `clear`                               | `clear`                                |
-| **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
 | **Edit**   | `edit INDEX [-x METHOD] [-u URL] [t/TAG]`<br> | `edit 1 -u https://facebook.com` |
+| **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br>  | `find maps`                            |
 | **List**   | `list`                                | `list`                                 |
-| **Help**   | `help`                                | `help`                                 |
+| **Clear**  | `clear`                               | `clear`                                |
+| **Send**   | `send INDEX` <br>                     | `send 1`                               |
+| **Run**    | `run -x METHOD -u URL` <br>           | `run -x GET -u https://www.yahoo.com`  |
 
