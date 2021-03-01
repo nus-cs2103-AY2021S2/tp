@@ -32,7 +32,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 1. Download the latest FlashBack.jar.
 1. Copy the file to the folder you want to use as the home folder for your FlashBack.
 1. Double-click the file to start the app. The GUI should appear in a few seconds.
-![GUI](../images/Ui.png)
+![GUI](./images/Ui.png)
 1. Type the command in the command box and press Enter to execute it:
     * **`help`** : Opens the help window.
     * **`add`**`k/ Einstein’s Equation d/ e=mc^2 t/ Physics`: Adds a new flashcard named `Einstein's Equation` to FlashBack.
