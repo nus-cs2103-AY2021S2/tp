@@ -235,17 +235,21 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+App-Ointment is intended for Receptionists of Medical Clinics who help schedule appointments, and maintain patient records and accounts.
 
-[Coming Soon]
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of scheduled appointments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
+
 **Value proposition**
 
-[Coming Soon]
+- Allows users to track and reschedule appointments for a clinic, reducing no-shows.
+- Allow users to verify the patient on arriving at the clinic for the appointment.
+- No cross clinic support for clinics within a health group.
+- No support for users who want to view their own appointments.
 
 
 ### User stories
@@ -270,6 +274,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Coming Soon]
 
 (For all use cases below, the **System** is the `App-Ointment` and the **Actor** is the `User`, unless specified otherwise)
+
+
 
 *{More to be added}*
 
