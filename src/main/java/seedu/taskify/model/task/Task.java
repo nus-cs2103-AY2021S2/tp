@@ -17,7 +17,7 @@ public class Task {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Description description;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Task(Name name, Description description, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, description, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.description = description;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Task {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Description getDescription() {
+        return description;
     }
 
     public Email getEmail() {
@@ -89,7 +89,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
-                       && otherTask.getPhone().equals(getPhone())
+                       && otherTask.getDescription().equals(getDescription())
                        && otherTask.getEmail().equals(getEmail())
                        && otherTask.getAddress().equals(getAddress())
                        && otherTask.getTags().equals(getTags());
@@ -98,7 +98,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, description, email, address, tags);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")
-                .append(getPhone())
+                .append(getDescription())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
