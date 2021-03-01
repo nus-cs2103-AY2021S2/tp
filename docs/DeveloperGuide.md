@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a deadline to a task**
 
 **MSS**
-1. User _adds a task to the list_.
+1. User _adds a task_ to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to add a deadline to a specified task.
 4. PlanIt shows task with updated deadline and updates list.
@@ -335,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Delete a task**
 
 **MSS**
-1. User _adds a task to the list_.
+1. User _adds a task_ to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to delete a specified task.
 4. PlanIt shows task that was deleted and updates list.
@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Find matching tasks**
 
 **MSS**
-1. User _adds a task to the list_.
+1. User _adds a task_ to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to find tasks with given keywords.
 4. PlanIt shows all tasks containing given keywords.
