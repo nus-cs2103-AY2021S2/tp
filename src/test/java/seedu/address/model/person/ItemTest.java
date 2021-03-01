@@ -24,7 +24,7 @@ public class ItemTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameItem() {
         // same object -> returns true
         assertTrue(ALICE.isSameItem(ALICE));
 
