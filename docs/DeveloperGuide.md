@@ -261,6 +261,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
+(For all use cases below, the **System** is the `FlashBack` and the **Actor** is the `user`, unless specified otherwise) <br /><br />
+**Use case: Remove a flash card** <br /> <br />
+MSS
+1. FlashBack shows a list of flash card
+2. User requests to delete flash card in the list according to the card index
+3. FlashBack deletes the flash card <br />
+Use case ends.
+
+**Extensions**
+* 2a. The list is empty. <br />
+Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. FlashBack shows an error message. <br />
+Use case resumes at step 1.
+
+**Use case: Add a flash card** <br /> <br />
+MSS
+1. User requests to add flash card into the list
+2. FlashBack adds the new flash card <br />
+Use case ends.
+
+**Extensions**
+* 2a. The given field is empty.
+    * 2a1. FlashBack shows an error message. <br />
+Use case ends.
+
 (For all use cases below, the **System** is the `FlashBack` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: View a flash card**
@@ -274,8 +300,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: List all flash cards**
 
-
 **MSS**
+
+1. User requests to list all flash cards
+1. FlashBack shows a list of flash cards
+    
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -284,13 +314,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
-
-
-1. User requests to list all flash cards
-1. FlashBack shows a list of flash cards
-    
-    Use case ends.
-
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flash card**: A card that contains study materials with its topic name
