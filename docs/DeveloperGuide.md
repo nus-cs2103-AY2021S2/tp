@@ -262,30 +262,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+(For all use cases below, the **System** is the `FlashBack` and the **Actor** is the `user`, unless specified otherwise) <br /><br />
+**Use case: Remove a flash card** <br /> <br />
+MSS
+1. FlashBack shows a list of flash card
+2. User requests to delete flash card in the list according to the card index
+3. FlashBack deletes the flash card <br />
+Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
+* 2a. The list is empty. <br />
+Use case ends.
 * 3a. The given index is invalid.
+    * 3a1. FlashBack shows an error message. <br />
+Use case resumes at step 1.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Add a flash card** <br /> <br />
+MSS
+1. User requests to add flash card into the list
+2. FlashBack adds the new flash card <br />
+Use case ends.
 
-      Use case resumes at step 2.
+**Extensions**
+* 2a. The given field is empty.
+    * 2a1. FlashBack shows an error message. <br />
+Use case ends.
 
 *{More to be added}*
 
