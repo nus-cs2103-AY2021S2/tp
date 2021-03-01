@@ -19,16 +19,16 @@ import seedu.address.model.person.Item;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate item(s).";
+    public static final String MESSAGE_DUPLICATE_ITEM = "items list contains duplicate item(s).";
 
-    private final List<JsonAdaptedItem> persons = new ArrayList<>();
+    private final List<JsonAdaptedItem> items = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given items.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedItem> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("items") List<JsonAdaptedItem> items) {
+        this.items.addAll(items);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getItemList().stream().map(JsonAdaptedItem::new).collect(Collectors.toList()));
+        items.addAll(source.getItemList().stream().map(JsonAdaptedItem::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,10 +47,10 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedItem jsonAdaptedItem : persons) {
+        for (JsonAdaptedItem jsonAdaptedItem : items) {
             Item item = jsonAdaptedItem.toModelType();
             if (addressBook.hasItem(item)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
             }
             addressBook.addItem(item);
         }
