@@ -52,7 +52,7 @@ You can reach us at the email `imposter[at]comp.nus.edu.sg`
 
 ### Warren Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nightraven49.png" width="200px">
 
 [[github](http://github.com/nightraven49)]
 [[portfolio](team/nightraven49.md)]
