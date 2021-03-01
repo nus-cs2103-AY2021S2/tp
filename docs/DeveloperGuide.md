@@ -292,10 +292,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  The software should be portable. So moving from one OS to other OS does not create any problem.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The response to any use action should become visible within 2 seconds.
+5.  The source code should be open source.
+6.  An application should be able to have up to 1000 deadlines.
+7.  The user interface should be intuitive enough for users who are not IT-savvy.
+8.  The product is free.
+9.  The system should work on both `32-bit` and `64-bit` environments.
+10. The deadline should not contain tasks deemed offensive (terrorism, bombing, etc).
+11. The application can be used **without** internet.  
 
 ### Glossary
 
