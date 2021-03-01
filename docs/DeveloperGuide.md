@@ -38,14 +38,20 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new plan               |                                                                        |
-| `* * *`  | user                                       | delete a plan                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a plan by name          | locate details of plans without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many plans in the description book | sort plans by name           | locate a plan easily                                                 |
+| Priority | As a …​                                   | I can     …​                    | So that I can…​                                                     |
+| ---------| ---------------------------------------------| -----------------------------------| -----------------------------------------------------------------------|
+| `* * *`  | new user                                     | see usage instructions             | refer to instructions when I forget how to use the App                 |
+| `* * *`  | student user                                 | have multiple study plans          | prepare for different study scenarios in university                    |
+| `* * *`  | student user                                 | add multiple semesters to a plan   | create plans that involve multiple semesters                           |
+| `* * *`  | student user                                 | add multiple modules to a semester | plan for what modules i want to do in a given semester                 |
+| `* * *`  | student user                                 | delete a study plan                | remove plans that i no longer need                                     |
+| `* * *`  | student user                                 | delete a semester from a plan      | remove semesters that i no longer need                                 |
+| `* * *`  | student user                                 | delete a module from a semester    | remove modules that i no longer need                                   |
+| `* * *`  | student user                                 | view summary information of a plan | conveniently understand the plan without having to open it             |
+| `* *`    | student user                                 | check if my plan contains 160MCs   | know whether my plan allows me to graduate                             |
+| `* * *`  | student user                                 | view a module's prerequisites      | know what modules need to be done before hand                          |
+| `* *`    | student user                                 | mark semesters as done             | advance my study plan according to the semesters that i have completed |
+| `*`      | forgetful student                            | add and view grades of past modules| keep track of how well i did for different modules without remembering |
 
 *{More to be added}*
 
