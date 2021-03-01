@@ -5,16 +5,16 @@ title: User Guide
 
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+- Table of Contents
+  {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `XYZ.jar` from [here]().
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -24,19 +24,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   - **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   - **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+   - **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -44,22 +44,22 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
+- Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+- Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+- Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -73,78 +73,118 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a plan: `add`
+### Add/Delete Semester to/from Plan: `add/delete`
+Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`  
+Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`  
 
-Adds a plan to the description book.
+The output will show whether the operation was successful and include the 
+semester number in its output.  
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Constraints:
+* Trying to add a semester that already exist will not be allowed
+* Trying to delete a semester that does not exist will not be allowed
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A plan can have any number of tags (including 0)
-</div>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+### Add/Delete module to/from semester: `add/delete`
+Format: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+Format: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+Tip: A user can view module info to see more details about it. (See `info`)
 
-### Listing all plans : `list`
+This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and 
+`SEM_NUMBER`, and outputs meta details about the module being 
+added/deleted, as well as whether the addition/deletion was successful or not.   
+The details to output are as follows:  
+* Module addition/deletion success status
+* Semester number
+* Module code
 
-Shows a list of all plans in the description book.
+Constraints:  
+* Trying to add a module that already exists will not be allowed
+* Trying to add/delete a nonexistent module code/plan number/semester 
+  number will not be allowed  
+  
+Prompts:  
+* Adding a module without prerequisites fulfilled results in a warning
 
-Format: `list`
+### View module info: `info`
+Format: `info m/MODULE_CODE`
+Tip: A user can also add a module to a plan/semester (See `add/delete`)
+By default, yhis command takes in one optional argument, `MODULE_CODE`, 
+and outputs the module information including:  
+* Brief Description
+* Number of MCs
+* Semesters available
+* Pre-requisites
+* Preclusions  
 
-### Editing a plan : `edit`
+Constraints:  
+* Module has to exist
 
-Edits an existing plan in the description book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### Check graduation : `validate plans`
 
-* Edits the plan at the specified `INDEX`. The index refers to the index number shown in the displayed plan list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the plan will be removed i.e adding of tags is not cumulative.
-* You can remove all the plan’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `validate plans [p/PLAN_NUMBER]`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email description of the 1st plan to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd plan to be `Betsy Crower` and clears all existing tags.
+When no PLAN_NUMBER is specified:
 
-### Locating plans by name: `find`
+- Shows list of plans that are still valid
+  - Each row is a plan
+    - Each plan has 4 column attributes:
+      - Shows plan number
+      - Shows how many MCs the plan has
+      - Shows how many MCs completed
+      - Shows how many semesters remaining in plan
 
-Finds plans whose names contain any of the given keywords.
+With `[p/PLAN_NUMBER]`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+- Shows header
+  - Shows plan number
+  - Shows how many MCs the plan has
+  - Shows how many MCs completed
+  - Shows how many semesters remaining in plan
+- Shows rows of modules placed in respective semesters
+  - Shows X tables of X semesters
+  - Each table has a header of how many MCs the semester will have
+  - Each table shows module details
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+### Show history: `history`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Format: `history`
 
-### Deleting a plan : `delete`
+The above command takes no arguments and shows the user a list of modules that they have completed up until before the current semester.
 
-Deletes the specified plan from the description book.
+The output format of history will follow the output format of show p/PLAN_NUMBER.
 
-Format: `delete INDEX`
+### List a summary of all plans: `list plans`
 
-* Deletes the plan at the specified `INDEX`.
-* The index refers to the index number shown in the displayed plan list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `list plans`
+Tip: A user can view an individual plan to see more details about it. (See show p/PLAN_NUMBER)
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd plan in the description book.
-* `find Betsy` followed by `delete 1` deletes the 1st plan in the results of the `find` command.
+Format: `master p/PLAN_NUMBER`
+
+This command must be done by the user at least once before they can use other commands.
+Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
+
+Example output:
+[IMG]
+
+### Create Plan: `add/delete`
+
+Format: `add/delete p/PLAN_NUMBER`
+
+#### Shows 2 rows
+
+- Whether plan is added/deleted is successful/unsuccessful
+- Plan number
+
+#### Constraints
+
+- Trying to add a plan that already exist will not be allowed
+- Trying to delete a plan that does not exist will not be allowed
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the description book.
+Clears all entries from the address book.
 
 Format: `clear`
 
@@ -156,37 +196,32 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Format: `current semester s/SEMESTER_NUMBER`
 
-### Editing the data file
+Marks the supplied semester as the current semester of the master plan.
+This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
+The user will have to manually update the current semester as time progresses.
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Example output:
+[IMG]
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+### Set plan as the master plan: `master`
 
-### Archiving data files `[coming in v2.0]`
+Format: `master p/PLAN_NUMBER`
 
-_Details coming soon ..._
+This command must be done by the user at least once before they can use other commands.
+Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
 
---------------------------------------------------------------------------------------------------------------------
+Example output:
+[IMG]
 
-## FAQ
+### Create history: `current semester`
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Format: `current semester s/SEMESTER_NUMBER`
 
---------------------------------------------------------------------------------------------------------------------
+Marks the supplied semester as the current semester of the master plan.
+This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
+The user will have to manually update the current semester as time progresses.
 
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+Example output:
+[IMG]
