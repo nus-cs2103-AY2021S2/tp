@@ -14,13 +14,13 @@ public class ExpiryDateTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidEmail = "";
-        assertThrows(IllegalArgumentException.class, () -> new ExpiryDate(invalidEmail));
+    public void constructor_invalidExpiryDate_throwsIllegalArgumentException() {
+        String invalidExpiryDate = "";
+        assertThrows(IllegalArgumentException.class, () -> new ExpiryDate(invalidExpiryDate));
     }
 
     @Test
-    public void isValidEmail() {
+    public void isValidExpiryDate() {
         // null email
         assertThrows(NullPointerException.class, () -> ExpiryDate.isValidExpiryDate(null));
 

@@ -32,16 +32,16 @@ public class ExpiryDate {
     /**
      * Constructs an {@code ExpiryDate}.
      *
-     * @param email A valid email address.
+     * @param expiryDate A valid expiryDate.
      */
-    public ExpiryDate(String email) {
-        requireNonNull(email);
-        checkArgument(isValidExpiryDate(email), MESSAGE_CONSTRAINTS);
-        value = email;
+    public ExpiryDate(String expiryDate) {
+        requireNonNull(expiryDate);
+        checkArgument(isValidExpiryDate(expiryDate), MESSAGE_CONSTRAINTS);
+        value = expiryDate;
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid expiryDate.
      */
     public static boolean isValidExpiryDate(String test) {
         return test.matches(VALIDATION_REGEX);

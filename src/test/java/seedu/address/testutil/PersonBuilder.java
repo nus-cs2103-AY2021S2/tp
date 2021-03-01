@@ -18,7 +18,7 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EXPIRYDATE = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
@@ -33,7 +33,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        expiryDate = new ExpiryDate(DEFAULT_EMAIL);
+        expiryDate = new ExpiryDate(DEFAULT_EXPIRYDATE);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -84,8 +84,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code ExpiryDate} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.expiryDate = new ExpiryDate(email);
+    public PersonBuilder withExpiryDate(String expiryDate) {
+        this.expiryDate = new ExpiryDate(expiryDate);
         return this;
     }
 

@@ -58,8 +58,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code ExpiryDate} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setExpiryDate(new ExpiryDate(email));
+    public EditPersonDescriptorBuilder withExpiryDate(String expiryDate) {
+        descriptor.setExpiryDate(new ExpiryDate(expiryDate));
         return this;
     }
 
