@@ -89,24 +89,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Item item) {
+    public boolean hasItem(Item item) {
         requireNonNull(item);
         return addressBook.hasPerson(item);
     }
 
     @Override
-    public void deletePerson(Item target) {
+    public void deleteItem(Item target) {
         addressBook.removePerson(target);
     }
 
     @Override
-    public void addPerson(Item item) {
-        addressBook.addPerson(item);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addItem(Item item) {
+        addressBook.addItem(item);
+        updateFilteredItemList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Item target, Item editedItem) {
+    public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
 
         addressBook.setPerson(target, editedItem);
@@ -119,12 +119,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Item> getFilteredPersonList() {
+    public ObservableList<Item> getFilteredItemList() {
         return filteredItems;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Item> predicate) {
+    public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
     }

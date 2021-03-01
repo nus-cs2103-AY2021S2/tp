@@ -10,7 +10,7 @@ import seedu.address.model.person.UniqueItemList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -71,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a item to the address book.
      * The item must not already exist in the address book.
      */
-    public void addPerson(Item p) {
+    public void addItem(Item p) {
         persons.add(p);
     }
 

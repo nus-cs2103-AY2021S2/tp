@@ -21,39 +21,39 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Item;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ItemBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Item validItem = new PersonBuilder().build();
+    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
+        Item validItem = new ItemBuilder().build();
 
         CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validItem), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validItem), modelStub.ItemsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Item validItem = new PersonBuilder().build();
+    public void execute_duplicateItem_throwsCommandException() {
+        Item validItem = new ItemBuilder().build();
         AddCommand addCommand = new AddCommand(validItem);
-        ModelStub modelStub = new ModelStubWithPerson(validItem);
+        ModelStub modelStub = new ModelStubWithItem(validItem);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Item alice = new PersonBuilder().withName("Alice").build();
-        Item bob = new PersonBuilder().withName("Bob").build();
+        Item alice = new ItemBuilder().withName("Alice").build();
+        Item bob = new ItemBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Item item) {
+        public void addItem(Item item) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Item item) {
+        public boolean hasItem(Item item) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Item target) {
+        public void deleteItem(Item target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Item target, Item editedItem) {
+        public void setItem(Item target, Item editedItem) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Item> getFilteredPersonList() {
+        public ObservableList<Item> getFilteredItemList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Item> predicate) {
+        public void updateFilteredItemList(Predicate<Item> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -152,37 +152,37 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single item.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithItem extends ModelStub {
         private final Item item;
 
-        ModelStubWithPerson(Item item) {
+        ModelStubWithItem(Item item) {
             requireNonNull(item);
             this.item = item;
         }
 
         @Override
-        public boolean hasPerson(Item item) {
+        public boolean hasItem(Item item) {
             requireNonNull(item);
-            return this.item.isSamePerson(item);
+            return this.item.isSameItem(item);
         }
     }
 
     /**
      * A Model stub that always accept the item being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Item> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingItemAdded extends ModelStub {
+        final ArrayList<Item> ItemsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Item item) {
+        public boolean hasItem(Item item) {
             requireNonNull(item);
-            return personsAdded.stream().anyMatch(item::isSamePerson);
+            return ItemsAdded.stream().anyMatch(item::isSameItem);
         }
 
         @Override
-        public void addPerson(Item item) {
+        public void addItem(Item item) {
             requireNonNull(item);
-            personsAdded.add(item);
+            ItemsAdded.add(item);
         }
 
         @Override

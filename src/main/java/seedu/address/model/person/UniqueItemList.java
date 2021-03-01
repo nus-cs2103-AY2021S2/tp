@@ -13,14 +13,14 @@ import seedu.address.model.person.exceptions.ItemNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A item is considered unique by comparing using {@code Item#isSamePerson(Item)}. As such, adding and updating of
- * persons uses Item#isSamePerson(Item) for equality so as to ensure that the item being added or updated is
+ * A item is considered unique by comparing using {@code Item#isSameItem(Item)}. As such, adding and updating of
+ * persons uses Item#isSameItem(Item) for equality so as to ensure that the item being added or updated is
  * unique in terms of identity in the UniqueItemList. However, the removal of a item uses Item#equals(Object) so
  * as to ensure that the item with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see Item#isSamePerson(Item)
+ * @see Item#isSameItem(Item)
  */
 public class UniqueItemList implements Iterable<Item> {
 
@@ -33,7 +33,7 @@ public class UniqueItemList implements Iterable<Item> {
      */
     public boolean contains(Item toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameItem);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniqueItemList implements Iterable<Item> {
             throw new ItemNotFoundException();
         }
 
-        if (!target.isSamePerson(editedItem) && contains(editedItem)) {
+        if (!target.isSameItem(editedItem) && contains(editedItem)) {
             throw new DuplicateItemException();
         }
 
@@ -127,7 +127,7 @@ public class UniqueItemList implements Iterable<Item> {
     private boolean personsAreUnique(List<Item> items) {
         for (int i = 0; i < items.size() - 1; i++) {
             for (int j = i + 1; j < items.size(); j++) {
-                if (items.get(i).isSamePerson(items.get(j))) {
+                if (items.get(i).isSameItem(items.get(j))) {
                     return false;
                 }
             }

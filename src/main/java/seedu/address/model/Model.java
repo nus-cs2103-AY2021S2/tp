@@ -59,36 +59,36 @@ public interface Model {
     /**
      * Returns true if a item with the same identity as {@code item} exists in the address book.
      */
-    boolean hasPerson(Item item);
+    boolean hasItem(Item item);
 
     /**
      * Deletes the given item.
      * The item must exist in the address book.
      */
-    void deletePerson(Item target);
+    void deleteItem(Item target);
 
     /**
      * Adds the given item.
      * {@code item} must not already exist in the address book.
      */
-    void addPerson(Item item);
+    void addItem(Item item);
 
     /**
      * Replaces the given item {@code target} with {@code editedItem}.
      * {@code target} must exist in the address book.
      * The item identity of {@code editedItem} must not be the same as another existing item in the address book.
      */
-    void setPerson(Item target, Item editedItem);
+    void setItem(Item target, Item editedItem);
 
     /**
      * Returns an unmodifiable view of the filtered item list
      */
-    ObservableList<Item> getFilteredPersonList();
+    ObservableList<Item> getFilteredItemList();
 
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Item> predicate);
+    void updateFilteredItemList(Predicate<Item> predicate);
 }

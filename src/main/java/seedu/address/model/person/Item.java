@@ -64,7 +64,7 @@ public class Item {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Item otherItem) {
+    public boolean isSameItem(Item otherItem) {
         if (otherItem == this) {
             return true;
         }
