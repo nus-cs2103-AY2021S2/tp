@@ -55,8 +55,8 @@ public class Residence {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both residences have the same name.
+     * This defines a weaker notion of equality between two residences.
      */
     public boolean isSameResidence(Residence otherResidence) {
         if (otherResidence == this) {
@@ -68,8 +68,8 @@ public class Residence {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both residence have the same identity and data fields.
+     * This defines a stronger notion of equality between two residence.
      */
     @Override
     public boolean equals(Object other) {
