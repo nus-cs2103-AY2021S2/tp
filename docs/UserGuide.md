@@ -42,7 +42,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -72,6 +72,14 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+
+### Viewing a tutor: `view_tutor`
+Example Usage: <br>
+Format: `view_tutor 1` <br>  Name: John Doe <br> Phone Number: 98765432 <br> 
+Email Address: johnd@example.com <br> 
+Address: John street, block 123, #01-01 <br> 
+Subject Expertise: English, Mathematics (Sec 3, 4) <br> 
+Hourly Rate: SGD60/hr <br> Years of Experience: 6
 
 ### Adding a person: `add`
 
@@ -190,4 +198,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**view_tutor** | `view_tutor 1` <br> e.g., Name: John Doe <br> Phone Number: 98765432 <br> Email Address: johnd@example.com <br> Address: John street, block 123, #01-01 <br> Subject Expertise: English, Mathematics (Sec 3, 4, JC) <br> Hourly Rate: SGD60/hr <br> Years of Experience: 6
+**view_tutor** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
