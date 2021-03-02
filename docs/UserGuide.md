@@ -83,6 +83,12 @@ Format: `add mc/MODULE_CODE mn/MODULE_NAME tn/TASK_NAME d/DATE [t/TIME]`
 Example:  
 * `add mc/CS3243 mn/Introduction to Artificial Intelligence tn/Project 1 d/ Feb 15` will add this deadline to the list
 
+### Clear Application : `clear`
+
+Clears all deadlines from the application
+
+Format: `clear`
+
 ### Delete a deadline: `delete` 
 
 Deletes the specified deadline from the list
@@ -96,6 +102,22 @@ Example:
 * `delete 3` will delete the 3rd deadline on the list
 * Using `list` to show all deadlines, the user wants to delete the 2nd deadline. User use command `delete 2` to delete the 2nd deadline from the list 
 
+### Edit a deadline: `edit`
+
+Edits an existing deadline in the application
+
+Format: `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/DEADLINE DATE]
+[t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]`
+
+* Edits the deadline at the specified index
+* The index must be a positive integer 1,2,3,...
+* The index must be on the list else an error will be thrown
+* At least one of the optional fields must be provided
+* Existing values will be updated to the input values
+
+Examples:
+* `edit 1 mn/Software Engineering mc/CS2103` edits the module name and module code of the deadline at index 1 to be “Software Engineering” and “CS2103” respectively.
+* `edit 2 tn/Finals n/Open Book` edits the name and notes of the deadline at index 2 to be “Finals” and “Open Book” respectively.
 
 ### Locating deadlines by name: `find`
 

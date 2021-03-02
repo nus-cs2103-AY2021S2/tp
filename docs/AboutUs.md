@@ -29,9 +29,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Fan Horng Wei, Gerald
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/geraldfan.png" width="200px">
 
-[[github](http://github.com/geraldfan)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/geraldfan)] 
+[[portfolio](team/johndoe.md)]
 
 * Role: Member
 
