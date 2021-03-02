@@ -261,7 +261,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | --------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `* * *`  | brand new user                                | see usage instructions                                                                        | refer to instructions when I forget how to use the App                                    |
+| `* * *` | Brand new user                                            | See the usage instructions                                                                        | refer to instructions when I forget how to use the App                                    |
 | `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
 | `* * *` | User | List all tutors                                    | See all known tutors                                            |
 | `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
@@ -295,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 2a1. AddressBook shows an error message
 
    Use case resumes at step 1.
-
+<hr/>
 **Use Case UC0002: Add an appointment**
 
 **MSS**
@@ -317,6 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. TutorTracker shows an error message.
 
       Use case ends.
+<hr/>
 
 **Use Case UC0003: List all tutors**
 
@@ -326,7 +327,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. TutorTracker shows a list of tutors.
 
    Use case ends.
-  
+<hr/>
+
 **Use Case UC0004: List tuition appointments**
 
 **MSS**
@@ -334,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to view the list of tuition appointments.
 2. TutorTracker displays the list of tuition appointments to the user.
 
-Use case ends.
+    Use case ends.
   
 *{More to be added}*
 
