@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2021S2-CS2103T-T11-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T11-3/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
@@ -19,7 +19,8 @@
   
 
 * It is named `TutorsPet` because it aims to facilitate a tutor's management of students' information.
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* For the detailed documentation of this project, see the **[TutorsPet Product Website](https://ay2021s2-cs2103t-t11-3.github.io/tp/)**.
 
-This project is based on `AB3` project created by the [SE-EDU initiative](https://se-education.org).
+**Acknowledgements**
+
+* This project is based on `AB3` project created by the [SE-EDU initiative](https://se-education.org).
