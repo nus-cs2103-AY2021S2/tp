@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Pavitra
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pavz02.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/pavz02)]
+[[portfolio](team/pavz02.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code quality
 
 ### James Doe
 
