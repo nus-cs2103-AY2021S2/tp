@@ -58,16 +58,14 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Create passengers: `add`
 
-Adds a person to the address book.
+Creates a new passenger in the GME terminal.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
+Format: `create n/NAME a/ADDRESS t/TIME`
 
 >**Examples**:
->* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
->* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+>* `create n/Ben Dover a/Geylang t/18:00`
 
 ### Listing all persons : `list`
 
