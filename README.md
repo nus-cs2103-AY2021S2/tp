@@ -1,7 +1,12 @@
-[![CI Status](https://github.com/AY2021S2-CS2103T-T12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T12-4/tp/actions)
-[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp/branch/master/graph/badge.svg?token=fkTem6dCbs)](https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp)
+<p align="center">
+  <img src="docs/images/imPoster.png" width="300px" />
+  <h1 align="center">imPoster</h1>
+</p>
 
-![Ui](docs/images/imPoster.png)
+<p align="center">
+  <a href="https://github.com/AY2021S2-CS2103T-T12-4/tp/actions"> <img src="https://github.com/AY2021S2-CS2103T-T12-4/tp/workflows/Java%20CI/badge.svg" /> </a>
+  <a href="https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp"> <img src="https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp/branch/master/graph/badge.svg" /> </a>
+</p>
 
 ## Table of Contents
 
