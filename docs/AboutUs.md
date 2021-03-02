@@ -29,14 +29,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead, Deliverables and Scheduling 
 * Responsibilities: Model
 
+### Soh Xin Wei
+
+<img src="images/xinwei.PNG" width="200px">
+
+[[github](http://github.com/xiinweii98)]
+[[portfolio](team/xinwei.md)]
+
+* Role: Developer, Testing
+* Responsibilities: Logic
+
 ### Lim Rui Xiong
 
 <img src="images/ruixiong.png" width="200px">
 
 [[github](http://github.com/RuiXiong2211)] [[portfolio](team/RuiXiong2211)]
+[[portfolio](team/ruixiong.md)]
 
-* Role: Developer
-* Responsibilities: Documentation
+* Role: Developer, Documentation
+* Responsibilities: Commons
 
 ### Pavitra
 
