@@ -13,7 +13,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Documentation, Testing
 * Responsibilities: Ensures quality of various project documents
 
-### Gu Yi Chen
+### Gu Yichen
 
 <img src="images/chenzaza.png" width="200px">
 
