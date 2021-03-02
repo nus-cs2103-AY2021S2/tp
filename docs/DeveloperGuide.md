@@ -251,11 +251,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-
-
-
-
-
 | `* *`    | dog school manager                         | edit a dog profile when the information is wrong/outdated |                                             |
 | `* *`    | dog school manager                         | create a dog program for the dog students            |                                                  |
 | `* *`    | dog school manager                         | enrol dogs into a specific dog program | dogs who recently joined a program are added to the class list |
