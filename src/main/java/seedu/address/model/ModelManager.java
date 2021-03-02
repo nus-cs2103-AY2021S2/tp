@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -146,6 +148,102 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    //=========== task ==================================================================================
+
+    @Override
+    public Path getTaskListFilePath() {
+        //THIS IS A DUMMY RETURN
+        return null;
+    }
+
+    @Override
+    public void setTaskListFilePath(Path taskListFilePath){
+
+    }
+
+    //@Override
+    //ReadOnlySochedule getTaskList();
+
+    @Override
+    public boolean hasTask(Task task) {
+        //THIS IS A DUMMY METHOD
+        return true;
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+
+    }
+
+    @Override
+    public void addTask(Task task) {
+
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        //THIS IS A DUMMY METHOD
+        return null;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+
+    }
+
+    //=========== event ==================================================================================
+
+    @Override
+    public Path getEventListFilePath() {
+        //THIS IS A DUMMY RETURN
+        return null;
+    }
+
+    @Override
+    public void setEventListFilePath(Path eventListFilePath){
+
+    }
+
+    //@Override
+    //ReadOnlySochedule getEventList();
+
+    @Override
+    public boolean hasEvent(Event event) {
+        //THIS IS A DUMMY METHOD
+        return true;
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+
+    }
+
+    @Override
+    public void addEvent(Event event) {
+
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        //THIS IS A DUMMY METHOD
+        return null;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+
     }
 
 }
