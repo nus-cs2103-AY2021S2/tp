@@ -66,7 +66,7 @@ Cake Collate is a **desktop app for managing cake orders, optimized for use via 
 
 ### Viewing help : `help`
 
-Gives instructions on how to enter orders into the CLI. 
+Gives instructions on how to enter orders into the CLI.
 Displays a message with a list of all available commands and their format.
 
 Format: `help`
@@ -134,7 +134,7 @@ Format: `delete ID...`
 
 * Deletes the orders with the specified ids.
 * The `ID` refers to the order `ID` number shown in the list of orders.
-* One or more ids can be entered.  
+* One or more ids can be entered.
 * The `ID` **must be valid**.
 
 Examples:
