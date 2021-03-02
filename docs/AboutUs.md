@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
+### Priscilla
+
+<img src="images/ppris.png" width="200px">
+
+[[github](http://github.com/ppris)]
+[[portfolio](team/ppris.md)]
+
+* Role: Team Lead, Deliverables and Scheduling 
+* Responsibilities: Model
+
 ### Soh Xin Wei
 
 <img src="images/xinwei.PNG" width="200px">
