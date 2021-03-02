@@ -99,8 +99,8 @@ public interface Model {
      */
     void setTaskListFilePath(Path taskListFilePath);
 
-    ///** Returns the TaskList */
-    //ReadOnlySochedule getTaskList();
+    /** Returns the TaskList */
+    ReadOnlySochedule getTaskList();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the Sochedule.
@@ -147,8 +147,8 @@ public interface Model {
      */
     void setEventListFilePath(Path eventListFilePath);
 
-    ///** Returns the EventList */
-    //ReadOnlySochedule getEventList();
+    /** Returns the EventList */
+    ReadOnlySochedule getEventList();
 
     /**
      * Returns true if an event with the same identity as {@code event} exists in the Sochedule.

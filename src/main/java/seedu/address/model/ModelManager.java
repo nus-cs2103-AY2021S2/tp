@@ -163,8 +163,11 @@ public class ModelManager implements Model {
 
     }
 
-    //@Override
-    //ReadOnlySochedule getTaskList();
+    @Override
+    public ReadOnlySochedule getTaskList() {
+        //THIS IS A DUMMY RETURN
+        return null;
+    }
 
     @Override
     public boolean hasTask(Task task) {
@@ -211,8 +214,11 @@ public class ModelManager implements Model {
 
     }
 
-    //@Override
-    //ReadOnlySochedule getEventList();
+    @Override
+    public ReadOnlySochedule getEventList() {
+        //THIS IS A DUMMY RETURN
+        return null;
+    }
 
     @Override
     public boolean hasEvent(Event event) {
