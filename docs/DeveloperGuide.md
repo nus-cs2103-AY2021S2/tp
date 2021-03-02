@@ -236,11 +236,12 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* is a CS student in NUS
+* has a need to consolidate and manage deadlines for CS-coded module tasks
+* prefer desktop apps over other types of apps
+* prefers to use CLI over a GUI
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* prefers an all-keyboard workflow without needing to use a mouse
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
