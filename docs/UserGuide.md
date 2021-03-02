@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Link.me is a **desktop app aimed at insurance agents for managing clients, optimized for use via a 
+Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, Link.me can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
   {:toc}
@@ -14,7 +16,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -170,6 +172,19 @@ Example:
 
 * `schedule 24601 2020-02-28_14:30` schedules a meeting with client no.24601 at 2020/2/28 2:30 pm.
 
+### [v1.2] Filtering by tag : 'filter'
+Filters the contacts by tag.
+
+Format: `filter TAG`
+
+Lists all contacts that have a matching tag.
+
+Only tags that are exactly the same will be matched.
+
+Examples:
+
+`filter medical` returns every contact with the tag `medical`
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -204,5 +219,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter TAG`
 **List** | `list`
 **Help** | `help`
