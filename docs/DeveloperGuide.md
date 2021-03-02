@@ -97,14 +97,14 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`]
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the Tutor Tracker data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* 
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -117,11 +117,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`]
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the Tutor Hunter details in json format and read it back.
 
 ### Common classes
 
@@ -246,6 +246,7 @@ The demand for tuition in Singapore is escalating, especially among secondary sc
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
@@ -263,13 +264,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
 | `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
 
-
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `TutorTracker` and the **Actor** is the `user`, unless specified otherwise)
 
+
+**Use case: View tuition application**
+
+**MSS**
+
+1.  User requests to view applications
+2.  TutorTracker shows a list of applications
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. TutorTracker shows a message that there are no applications.
+
+      Use case ends.
+    
+**Use case: Delete a tuition application**
+
+**MSS**
+
+1.  User requests to list applications
+2.  TutorTracker shows a list of applications
+3.  User requests to delete a specific application in the list
+4.  TutorTracker deletes that specific application.
 
 **Use case: Add new tutor details**
 
@@ -307,8 +331,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 **Use case: List all tutors**
-
-**MSS**
 
 1. User requests to list tutors.
 2. TutorTracker shows a list of tutors.
