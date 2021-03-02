@@ -35,7 +35,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         Optional<String> nameKeywords = argMultimap.getValue(PREFIX_NAME);
         Optional<String> tagKeywords = argMultimap.getValue(PREFIX_TAG);
 
-        if (nameKeywords.isEmpty() && tagKeywords.isEmpty()) {
+        boolean bothEmpty = nameKeywords.isEmpty() && tagKeywords.isEmpty();
+        boolean emptyNameKeywords = nameKeywords.isPresent() && nameKeywords.get().equals("");
+        boolean emptyTagKeywords = tagKeywords.isPresent() && tagKeywords.get().equals("");
+
+        if (bothEmpty || emptyNameKeywords || emptyTagKeywords) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
