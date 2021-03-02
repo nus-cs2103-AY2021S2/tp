@@ -204,7 +204,7 @@
 }
 
 .tab-pane {
-    -fx-padding: 10px 10px 10px 10px;
+    -fx-padding: 10px 10px 10px 0;
     -border-width: 0;
 }
 
