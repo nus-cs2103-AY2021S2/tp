@@ -8,11 +8,11 @@ public class Priority {
     /**
      * Constructs an {@code Priority}.
      *
-     * @param priority A valid priority.
+     * @param priorityString A valid priority.
      */
-    public Priority(Integer priority) {
+    public Priority(String priorityString) {
         requireNonNull(priority);
-        this.priority = priority;
+        priority = Integer.parseInt(priorityString);
     }
 
     public int getPriority() {

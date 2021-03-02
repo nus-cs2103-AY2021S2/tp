@@ -6,16 +6,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Date {
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
     private LocalDate date;
 
     /**
      * Constructs an {@code Date}.
      *
-     * @param date A valid date.
+     * @param dateString A valid date.
      */
-    public Date(LocalDate date) {
+    public Date(String dateString) {
         requireNonNull(date);
-        this.date = date;
+        date = LocalDate.parse(dateString, dateFormatter);
     }
 
     public LocalDate getDate() {
@@ -26,7 +27,6 @@ public class Date {
      * Returns the date in a string.
      */
     public String toString() {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
         return this.date.format(dateFormatter);
     }
 }
