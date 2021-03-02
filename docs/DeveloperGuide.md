@@ -260,7 +260,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new person                  |                                                                        |
 | `* * *`  | user                                       | delete a person                   | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | filter contacts                   | minimize chance of sending emails to the wrong recipient               |
+| `* * *`  | user                                       | filter contacts by tags           | minimize chance of sending emails to the wrong recipient               |
 | `* * *`  | user                                       | specify preferred mode of contact | maximize chance of recipient seeing the information                    |
 | `* * *`  | user                                       | blacklist a contact               | reduce dissemination of information to people who do not want it       |
 | `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
@@ -296,8 +296,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
     
-**Use case: Filter contacts**
+**Use case: Filter contacts by tags**
 
+**MSS**
+1. User requests to list contacts
+2. SpamEZ shows a list of contacts
+3. User requests to find the contacts using name and/or tags
+4. SpamEZ returns a filtered list of contacts
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. No keywords are given or invalid syntax.
+    * 3a1. SpamEZ shows an error message.
+    
+      Use case resumes at step 2.
 
 **Use case: Specify a preferred mode of contact for a contact**
 
@@ -396,3 +413,25 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Filtering the contacts
+
+1. Filter the list of contacts based on the keywords provided.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    
+    1. Test case: `find n/Alex Bernice` <br>
+       Expected: A list of contacts whose name contains `Alex` **or** `Bernice`. The filter is case-insensitive, so `Alex` will match with `aLeX` too, for instance.
+       
+    1. Test case: `find t/friends NEIGHBOUR` <br>
+       Expected: A list of contacts whose tags contain `friends` **or** `NEIGHBOUR`.
+ 
+    1. Test case: `find n/Alex Bernice t/friends neighbour` <br>
+       Expected: A list of contacts whose name contains `Alex` or `Bernice` **and** tags contains `friends` or `neighbour`.
+       
+    1. Test case: `find` <br>
+       Expected: No filtering is done, and the original list is presented. Error details shown in the status message.
+       
+    1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
+       Expected: Similar to previous.
+       
