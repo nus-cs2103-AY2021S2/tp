@@ -249,16 +249,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a...                        | I want to...                                               | So that I can...                                            |
+| -------- | ------------------------------ | ---------------------------------------------------------- | ----------------------------------------------------------- |
+| `* * *`  | new user                       | see usage instructions                                     | refer to instructions when I forget how to use the App      |
+| `* * *`  | fast typer                     | be able to input by CLI                                    | key in commands faster                                      |
+| `* * *`  | restaurant owner               | add a customer's contact                                   | keep track of each customer's details                       |
+| `* * *`  | restaurant owner               | remove a customer's contact                                | remove customers who no longer patronize the restaurant     |
+| `* * *`  | restaurant owner               | add dishes to the menu                                     | keep track of dishes being offered                          |
+| `* * *`  | restaurant owner               | remove dishes from the menu                                | remove dishes that are not being offered anymore            |
+| `* * *`  | restaurant owner               | add food orders to the order list                          | keep track of the food I need to prepare                    |
+| `* * *`  | restaurant owner               | remove food orders from the order list                     | remove the order if my customers changed their minds        |
+| `* * *`  | restaurant owner               | add the ingredients that I have restocked to the inventory | know which ingredients I have in stock                      |
+| `* * *`  | restaurant owner               | remove ingredients from the food inventory                 | remove an ingredient I have just used                       |
+| `* *`    | restaurant owner               | edit a customer's contact                                  | rectify typos for customer errors                           |
+| `* *`    | user with many contacts        | find a customer's contact                                  | quickly locate the contact details of a particular customer |
+| `* *`    | owner with a large menu        | find a dish on the menu                                    | quickly locate details of a dish on the menu                |
+| `* *`    | owner of a busy restaurant     | find a food order from the order list                      | quickly locate the details of an order I'm working on       |
+| `* *`    | owner with a complex inventory | find the quantity of an ingredient in the food inventory   | quickly check how much of a certain ingredient I have left  |
 
 ### Use cases
 
