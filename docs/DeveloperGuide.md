@@ -300,7 +300,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Contact/Person**: Entry in the address book containing a person's contact information
+* **Index**: Index number shown in the displayed person list
+* **Backup file**: JSON file that stores address book data in the hard disk
+* **Action**: Executed command
+* **List**: Currently displayed list of contacts
 
 --------------------------------------------------------------------------------------------------------------------
 
