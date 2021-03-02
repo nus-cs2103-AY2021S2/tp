@@ -1,22 +1,24 @@
 package seedu.address.model.residence;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.residence.exceptions.DuplicateResidenceException;
 import seedu.address.model.residence.exceptions.ResidenceNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of residences that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Residence#isSameResidence(Residence)}. As such, adding and updating of
- * persons uses Residence#isSameResidence(Residence) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniqueResidenceList. However, the removal of a Residence uses Residence#equals(Object) so
- * as to ensure that the Residence with exactly the same fields will be removed.
+ * A person is considered unique by comparing using {@code Residence#isSameResidence(Residence)}.
+ * As such, adding and updating of residences uses Residence#isSameResidence(Residence) for equality
+ * so as to ensure that the person being added or updated isunique in terms of identity in the UniqueResidenceList.
+ * However, the removal of a Residence uses Residence#equals(Object) so as to ensure that the Residence
+ * with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
