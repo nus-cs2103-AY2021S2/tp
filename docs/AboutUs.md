@@ -59,10 +59,10 @@ You can reach us at the email `zhengyong@u.nus.edu`
 
 ### Zhang Guangzesheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/andrewzhang217.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Andrewzhang217)]
+[[portfolio](team/Andrewzhang217.md)]
 
 * Role: Integration, UI
 * Responsibilities:
