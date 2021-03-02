@@ -12,7 +12,7 @@ import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.Name;
+import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -33,11 +33,11 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_METHOD).get());
+        Method method = ParserUtil.parseMethod(argMultimap.getValue(PREFIX_METHOD).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Endpoint endpoint = new Endpoint(name, address, tagList);
+        Endpoint endpoint = new Endpoint(method, address, tagList);
 
         return new AddCommand(endpoint);
     }

@@ -42,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditEndpointDescriptor editEndpointDescriptor = new EditEndpointDescriptor();
         if (argMultimap.getValue(PREFIX_METHOD).isPresent()) {
-            editEndpointDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_METHOD).get()));
+            editEndpointDescriptor.setMethod(ParserUtil.parseMethod(argMultimap.getValue(PREFIX_METHOD).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editEndpointDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));

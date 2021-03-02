@@ -109,7 +109,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEndpointList().size());
 
         Endpoint endpoint = model.getFilteredEndpointList().get(targetIndex.getZeroBased());
-        final String[] splitName = endpoint.getName().fullName.split("\\s+");
+        final String[] splitName = endpoint.getMethod().methodName.split("\\s+");
         model.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredEndpointList().size());

@@ -28,7 +28,7 @@ public class EndpointUtil {
      */
     public static String getEndpointDetails(Endpoint endpoint) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_METHOD + endpoint.getName().fullName + " ");
+        sb.append(PREFIX_METHOD + endpoint.getMethod().methodName + " ");
         sb.append(PREFIX_ADDRESS + endpoint.getAddress().value + " ");
         endpoint.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
@@ -40,7 +40,7 @@ public class EndpointUtil {
      */
     public static String getEditEndpointDescriptorDetails(EditCommand.EditEndpointDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_METHOD).append(name.fullName).append(" "));
+        descriptor.getMethod().ifPresent(name -> sb.append(PREFIX_METHOD).append(name.methodName).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

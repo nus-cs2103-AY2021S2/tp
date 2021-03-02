@@ -18,7 +18,7 @@ import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.Name;
+import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -32,7 +32,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
             + "identified using it's displayed index from the API endpoint list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_METHOD + "NAME] " + "[" + PREFIX_ADDRESS
+            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_METHOD + "METHOD] " + "[" + PREFIX_ADDRESS
             + "ADDRESS] " + "[" + PREFIX_TAG + "TAG]...\n" + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS
             + "wall street ";
 
@@ -86,11 +86,11 @@ public class EditCommand extends Command {
             EditEndpointDescriptor editEndpointDescriptor) {
         assert endpointToEdit != null;
 
-        Name updatedName = editEndpointDescriptor.getName().orElse(endpointToEdit.getName());
+        Method updatedMethod = editEndpointDescriptor.getMethod().orElse(endpointToEdit.getMethod());
         Address updatedAddress = editEndpointDescriptor.getAddress().orElse(endpointToEdit.getAddress());
         Set<Tag> updatedTags = editEndpointDescriptor.getTags().orElse(endpointToEdit.getTags());
 
-        return new Endpoint(updatedName, updatedAddress, updatedTags);
+        return new Endpoint(updatedMethod, updatedAddress, updatedTags);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class EditCommand extends Command {
      * replace the corresponding field value of the endpoint.
      */
     public static class EditEndpointDescriptor {
-        private Name name;
+        private Method method;
         private Address address;
         private Set<Tag> tags;
 
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
          * Copy constructor. A defensive copy of {@code tags} is used internally.
          */
         public EditEndpointDescriptor(EditEndpointDescriptor toCopy) {
-            setName(toCopy.name);
+            setMethod(toCopy.method);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -135,15 +135,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, address, tags);
+            return CollectionUtil.isAnyNonNull(method, address, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setMethod(Method method) {
+            this.method = method;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Method> getMethod() {
+            return Optional.ofNullable(method);
         }
 
         public void setAddress(Address address) {
@@ -186,7 +186,7 @@ public class EditCommand extends Command {
             // state check
             EditEndpointDescriptor e = (EditEndpointDescriptor) other;
 
-            return getName().equals(e.getName()) && getAddress().equals(e.getAddress())
+            return getMethod().equals(e.getMethod()) && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

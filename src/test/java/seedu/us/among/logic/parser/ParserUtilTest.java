@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Name;
+import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -38,8 +38,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX,
+                () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -53,25 +53,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMethod((String) null));
     }
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMethod(INVALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        Assertions.assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        Method expectedName = new Method(VALID_NAME);
+        Assertions.assertEquals(expectedName, ParserUtil.parseMethod(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        Assertions.assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        Method expectedName = new Method(VALID_NAME);
+        Assertions.assertEquals(expectedName, ParserUtil.parseMethod(nameWithWhitespace));
     }
 
     @Test
