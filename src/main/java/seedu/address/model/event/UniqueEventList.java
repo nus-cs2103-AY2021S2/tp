@@ -28,7 +28,7 @@ public class UniqueEventList implements Iterable<Event> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent test as the given argument.
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
