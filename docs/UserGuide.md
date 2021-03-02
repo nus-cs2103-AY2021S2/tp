@@ -62,7 +62,7 @@ Format: `create n/NAME a/ADDRESS t/TIME`
 >**Examples**:
 >* `create n/Ben Dover a/Geylang t/18:00`
 
-### Listing all persons : `list`
+### Listing all passengers : `list`
 
 Lists the passengers currently stored in the GME terminal.
 
@@ -82,7 +82,7 @@ Format: `search CONSTRAINT`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the GME terminal.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
