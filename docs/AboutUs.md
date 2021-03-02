@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/OhJunMing)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Documentation User Guide
+* Role: Deciding, we will allocate equally, everyone gets a chance
 
 ### Shi Zheng
 
