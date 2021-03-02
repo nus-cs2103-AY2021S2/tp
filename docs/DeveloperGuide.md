@@ -264,6 +264,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a person**
+
+**MSS**
+
+1. User requests to add a tutor or student in the list
+2. AddressBook adds the Person
+
+    Use case ends
+
+**Use case: Add a class**
+
+**MSS**
+
+1. User requests to add a class to the database
+2. AddressBook adds the class
+
+   Use case ends
+
 **Use case: Delete a person**
 
 **MSS**
