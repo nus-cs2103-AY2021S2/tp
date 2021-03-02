@@ -64,7 +64,7 @@ Format: `create n/NAME a/ADDRESS t/TIME`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Lists the passengers currently stored in the GME terminal.
 
 Format: `list`
 
