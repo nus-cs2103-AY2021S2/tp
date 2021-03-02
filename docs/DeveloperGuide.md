@@ -204,9 +204,9 @@ students as they adjust themselves, easing into adulthood.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on without internet connection. 
+2.  Should work without internet connection. 
 3.  The software should be portable. So moving from one OS to other OS does not create any problem.
-4.  Users must specify their monthly budget upon first execution.  
+4.  Users must specify their monthly budget upon first execution.
 5.  Should be able to hold up to 1000 financial records without a noticeable sluggishness in performance for typical usage.
 6.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
