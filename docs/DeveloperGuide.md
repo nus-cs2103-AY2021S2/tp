@@ -12,6 +12,28 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **Target User Profile**
+
+The target user profile are dog school managers that own and manage the daily operations of the dog schools. They handle 
+a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care of the 
+dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school at all 
+times. 
+
+## **Value Proposition**
+
+In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training, 
+grooming and workshops. With many moving parts daily, managing operations  can get overwhelming. 
+PawBook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services 
+and maintain organisation.
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
