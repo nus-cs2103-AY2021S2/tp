@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 public class Priority {
     private int priority;
 
@@ -8,7 +10,8 @@ public class Priority {
      *
      * @param priority A valid priority.
      */
-    public Priority(int priority) {
+    public Priority(Integer priority) {
+        requireNonNull(priority);
         this.priority = priority;
     }
 
