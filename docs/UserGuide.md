@@ -1,17 +1,12 @@
-
-# User Guide
+---
+layout: page
+title: User Guide
+---
 
 GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any IT company quickly arrange carpooling in order to lower their carbon footprint. The platform follows that of a command-line interface (CLI) such that power users that are familiar can efficiently navigate the program.
 
-- Quick start
-- Features
-    - Create passengers: `create`
-    - Read passengers: `list`
-    - Search for passengers: `search`
-    - Delete passengers: `delete`
-    - Select passengers to be driven: `drive`
-- FAQ
-- Command summary
+* Table of Contents
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -133,6 +128,20 @@ Format: `delete INDEX`
 >**Examples**:
 >* `list` followed by `delete 2` deletes the 2nd person in the address book.
 >* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+## Select passengers to be driven: `drive`
+
+Selects passengers from the current view in the GME terminal.
+
+Format: `drive p/INDEX [p/INDEX p/INDEX...]`
+
+- The order of the passengers' index does not matter
+- The maximum number of passengers that can be selected at once is 6
+
+You can select between 1 to 6 people to drive with one command
+
+>**Examples**:
+>* `search female` followed by `drive 2 3 4` selects the the *2nd*, *3rd* and *4th* person in the results of `search female` command
 
 ### Clearing all entries : `clear`
 
