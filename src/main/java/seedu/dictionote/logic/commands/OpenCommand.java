@@ -43,7 +43,7 @@ public class OpenCommand extends Command {
     private final UiActionOption uiActionOption;
 
     /**
-     * Creates an OpenCommand to add the specified {@code Option}
+     * Creates an OpenCommand of a the specified Option {@code UiActionOption}
      */
     public OpenCommand(UiActionOption uiActionOption) {
         requireNonNull(uiActionOption);

@@ -17,7 +17,7 @@ public class CloseCommandTest {
     @Test
     public void execute_close_success() {
         for(UiActionOption uiActionOption : UiActionOption.values()) {
-            CommandResult expectedCommandResult = new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.OPEN, uiActionOption);
+            CommandResult expectedCommandResult = new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.CLOSE, uiActionOption);
             assertCommandSuccess(new CloseCommand(uiActionOption), model, expectedCommandResult, expectedModel);
         }
     }

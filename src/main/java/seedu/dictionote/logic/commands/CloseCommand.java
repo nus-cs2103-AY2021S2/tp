@@ -35,7 +35,7 @@ public class CloseCommand extends Command {
     private final UiActionOption uiActionOption;
 
     /**
-     * Creates an OpenCommand to add the specified {@code Option}
+     * Creates an CloseCommand of a the specified Option {@code UiActionOption}
      */
     public CloseCommand(UiActionOption uiActionOption) {
         requireNonNull(uiActionOption);
@@ -46,7 +46,7 @@ public class CloseCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.OPEN, uiActionOption);
+        return new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.CLOSE, uiActionOption);
 
     }
 }
