@@ -1,12 +1,17 @@
 package seedu.address.model.common;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Date {
-    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+    public static final String MESSAGE_CONSTRAINTS =
+            "Date should be represented in the format of dd/mm/yyyy";
+    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
+
     private LocalDate date;
 
     /**
@@ -15,18 +20,26 @@ public class Date {
      * @param dateString A valid date.
      */
     public Date(String dateString) {
-        requireNonNull(date);
-        date = LocalDate.parse(dateString, dateFormatter);
+        requireNonNull(dateString);
+        checkArgument(isValidDate(dateString), MESSAGE_CONSTRAINTS);
+        date = LocalDate.parse(dateString, DATE_FORMATTER);
     }
 
     public LocalDate getDate() {
-        return date;
+        return this.date;
+    }
+
+    /**
+     * Returns true if a given string is a valid date.
+     */
+    public static boolean isValidDate(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns the date in a string.
      */
     public String toString() {
-        return this.date.format(dateFormatter);
+        return this.date.format(DATE_FORMATTER);
     }
 }
