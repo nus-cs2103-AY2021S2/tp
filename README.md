@@ -14,8 +14,8 @@
 
 
 * The project evolves the `AddressBook-Level3` (`AB3` for short) into a more powerful or more optimized contact management app.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
+  * `AB3` is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
+  * `AB3` comes with a **reasonable level of user and developer documentation**.
   
 
 * It is named `TutorsPet` because it aims to facilitate a tutor's management of students' information.
