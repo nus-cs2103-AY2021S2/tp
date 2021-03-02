@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Soh Xin Wei
 
-<img src="images/xinwei.PNG" width="200px">
+<img src="images/xiinweii98.png" width="200px">
 
 [[github](http://github.com/xiinweii98)]
 [[portfolio](team/xinwei.md)]
