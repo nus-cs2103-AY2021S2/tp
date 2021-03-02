@@ -83,6 +83,15 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 A person can have any number of tags (including 0)
 </div>
 
+* Assigning Priorities:
+  
+  Format:
+  
+  `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS pr/PRIORITY [no/NOTES] d/DATE`
+  
+  PRIORITY can be {1,2,3,4,5}
+
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
@@ -141,6 +150,20 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Sorting of contacts : `sort`
+
+Sorts the contacts displayed according to a specified field.
+
+FormatL `sort FIELDNAME`
+
+* Sorts according to the field specified by `FIELDNAME`
+* `FIELDNAME` is only restricted to the following cases:
+    * Sort by name : `name`
+    * Sort by priority (Coming in v1.3) : `priority`
+    * Sort by last seen date (Coming in v1.3) : `lastSeenDate`
+
+Examples:
 
 ### Clearing all entries : `clear`
 
