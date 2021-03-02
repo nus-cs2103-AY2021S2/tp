@@ -66,12 +66,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Gives instructions on how to enter orders into the CLI. 
+Displays a message with a list of all available commands and their format.
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
