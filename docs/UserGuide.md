@@ -103,32 +103,32 @@ Format: `Add INDEX [d/DATE]…​`
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
 * Existing values will be updated to the input values.
-* When editing dateline, the existing dates of the person will be removed i.e adding of dateline is not cumulative.
-* You can remove all the person’s dateline by typing `d/` without
+* When editing dateline, the existing dates of the task will be removed i.e adding of dateline is not cumulative.
+* You can remove all the task’s dateline by typing `d/` without
   specifying any deadline after it.
 
 Examples:
 *  `Add 1 d/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021.
 *  `Add 2 d/` Clears the existing deadline of 2nd task on the list.
 
-### Editing a person : `edit`
+### Editing a task : `edit`
 
-Edits an existing person in the address book.
+Edits an existing task in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. 
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
+* You can remove all the task’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st task to be 
    `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd task to be `Betsy Crower` and clears all existing tags.
 
 ### Searching a task: `find`
 
