@@ -62,7 +62,7 @@ Bob the Underwriting Insurance Agent is a **desktop app for managing insurance c
 
 ### List out all available commands : `help`
 
-Shows a list of all available commands for use in the app.
+Shows a list of all available commands for use in the app, with format example.
 
 Format: `help`
 
@@ -70,12 +70,9 @@ Example: `help`
 
 Output: 
 
-`1) add n/Name p/phoneNumber a/Age l/Location`
-
-`2) delete Name`
-
-`3) list`
-
+`1) add n/Name p/phoneNumber a/Age l/Location`<br>
+`2) delete Name`<br>
+`3) list`<br>
 `4) help`
 
 ### Adding a client's contact: `add`
@@ -106,16 +103,11 @@ Example: `list`
 
 Output: 
 
-`1) Shrek`
-
-`2) Fiona`
-
-`3) Lord Farquaad`
-
-`4) Donkey`
-
-`5) Onions`
-
+`1) Shrek`<br>
+`2) Fiona`<br>
+`3) Lord Farquaad`<br>
+`4) Donkey`<br>
+`5) Onions`<br>
 `6) Dragon`
 
 ### Editing a client contact[Coming soon] : `edit`
@@ -181,19 +173,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Client contact data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Client contact data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -208,10 +196,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**Add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`
+**Delete** | `delete Name`<br> e.g., `delete Lord Farquaad`
+**List** | `list`
+
