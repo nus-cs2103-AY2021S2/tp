@@ -80,7 +80,10 @@ Adds a financial record to the budget tracker.
 
 Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+<div markdown="span" class="alert alert-primary"></div>
+
+**:bulb: Tips:**
+
 - Adds a financial record with the description FR_DESCRIPTION.
 - The FR_AMOUNT must be a positive double (e.g. 10, 13.50).
 
@@ -95,7 +98,10 @@ Lists a month's financial records.
 
 Format: `list MM-YYYY`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+<div markdown="span" class="alert alert-primary"></div>
+
+**:bulb: Tips:**
+
 - The input month must follow the format of MM-YYYY (e.g. 09-2020)
 - Month number must take up 2 digits and the year number 4 digits
 
@@ -109,7 +115,10 @@ Displays a financial record in the budget tracker.
 
 Format: `view-fr FR_INDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+<div markdown="span" class="alert alert-primary"></div>
+
+**:bulb: Tips:**
+
 - Views the financial record at the specified `FR_INDEX`.
 - The index refers to the index number shown in the displayed financial record list.
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -124,7 +133,10 @@ Deletes a financial record from the budget tracker.
 
 Format: `delete-fr FR_INDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+<div markdown="span" class="alert alert-primary"></div>
+
+**:bulb: Tips:**
+
 - Deletes the financial record at the specified `FR_INDEX`.
 - The index refers to the index number shown in the displayed financial record list.
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -139,7 +151,10 @@ Sets the budget for the following months
 
 Format: `set-bg BG_AMOUNT`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+<div markdown="span" class="alert alert-primary"></div>
+
+**:bulb: Tips:**
+
 - Budget amount must be a positive double (e.g. 100, 1300.50)
 
 Examples:
@@ -159,7 +174,10 @@ Checks the remaining budget for the current month
 
 Format: `check MM-YYYY`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+<div markdown="span" class="alert alert-primary"></div>
+
+**:bulb: Tips:**
+
 - The input month must follow the format of MM-YYYY (e.g. 09-2020)
 - Month number must take up 2 digits and the year number 4 digits
 
@@ -182,8 +200,11 @@ BudgetBaby data are saved in the hard disk automatically after any command that 
 BudgetBaby data are saved as a JSON file `[JAR file location]/data/budgetbaby.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning"></div>
+
+**:exclamation: Caution:**
 If your changes to the data file makes its format invalid, BudgetBaby will discard all data and start with an empty data file at the next run.
+
 </div>
 
 ### Archiving data files `[coming in v2.0]`
