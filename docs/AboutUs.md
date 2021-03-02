@@ -27,7 +27,7 @@ zou.yuting[at]u.nus.edu
 
 ### Koh Vinleon
 
-<img src="images/glatituden.png" width="200px">
+<img src="images/glatiuden.png" width="200px">
 
 [[github](http://github.com/glatituden)]
 [[portfolio](team/glatituden.md)]
