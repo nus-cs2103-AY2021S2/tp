@@ -26,7 +26,7 @@ Cake Collate is a **desktop app for managing cake orders, optimized for use via 
 
    * **`list`** : Lists all orders in the Cake Collate database.
 
-   * **`add`**` n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
 
@@ -73,7 +73,7 @@ Format: `help`
 
 ### Adding an order: `add`
 
-Adds an order to the address book.
+Adds an order to the CakeCollate database.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] d/DELIVERY_DATE o/ORDER_DESCRIPTION`
 
@@ -87,13 +87,13 @@ Examples:
 
 ### List all existing orders : `list`
 
-Shows a list of all orders in the Cake Collate database.
+Shows a list of all orders in the CakeCollate database.
 
 Format: `list`
 
 ### Editing an order : `edit`
 
-Edits an existing order in the address book.
+Edits an existing order in the CakeCollate database.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [d/DELIVERY_DATE] [o/ORDER_DESCRIPTION]​`
 
@@ -143,7 +143,7 @@ Examples:
 
 ### Clear all existing orders: `clear`
 
-Deletes all existing orders in the Cake Collate database.
+Deletes all existing orders in the CakeCollate database.
 
 Warning: this is an undo-able operation.
 
