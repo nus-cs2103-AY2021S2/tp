@@ -14,9 +14,9 @@ import seedu.address.model.residence.exceptions.ResidenceNotFoundException;
 
 /**
  * A list of residences that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Residence#isSameResidence(Residence)}.
+ * A residence is considered unique by comparing using {@code Residence#isSameResidence(Residence)}.
  * As such, adding and updating of residences uses Residence#isSameResidence(Residence) for equality
- * so as to ensure that the person being added or updated isunique in terms of identity in the UniqueResidenceList.
+ * so as to ensure that the person being added or updated is unique in terms of identity in the UniqueResidenceList.
  * However, the removal of a Residence uses Residence#equals(Object) so as to ensure that the Residence
  * with exactly the same fields will be removed.
  *
@@ -31,7 +31,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent residence as the given argument.
      */
     public boolean contains(Residence toCheck) {
         requireNonNull(toCheck);
@@ -52,21 +52,21 @@ public class UniqueResidenceList implements Iterable<Residence> {
     /**
      * Replaces the residence {@code target} in the list with {@code editedResidence}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedResidence} must not be the same as another existing person in the list.
+     * The residence identity of {@code editedResidence} must not be the same as another existing residence in the list.
      */
-    public void setResidence(Residence target, Residence editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setResidence(Residence target, Residence editedResidence) {
+        requireAllNonNull(target, editedResidence);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new ResidenceNotFoundException();
         }
 
-        if (!target.isSameResidence(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameResidence(editedResidence) && contains(editedResidence)) {
             throw new DuplicateResidenceException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedResidence);
     }
 
     /**
@@ -86,8 +86,8 @@ public class UniqueResidenceList implements Iterable<Residence> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code residences}.
+     * {@code residences} must not contain duplicate residences.
      */
     public void setResidences(List<Residence> residences) {
         requireAllNonNull(residences);
@@ -123,7 +123,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code residences} contains only unique residences.
      */
     private boolean residencesAreUnique(List<Residence> residences) {
         for (int i = 0; i < residences.size() - 1; i++) {
