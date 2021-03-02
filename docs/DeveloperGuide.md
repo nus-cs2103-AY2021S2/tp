@@ -230,19 +230,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts, orders, menu items and inventory
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts, orders, menu items and inventory faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -264,14 +266,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+
+**Use case: Request help**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests help
+2.  JJIMY displays a list of commands
+
+    Use case ends.
+
+**Use case: Exit**
+
+**MSS**
+
+1.  User requests to exit
+2.  JJIMY exits
+
+    Use case ends.
+
+**Use case: Add a contact**
+
+**MSS**
+
+1.  User requests to add a contact
+2.  JJIMY adds the contact
+
+**Extensions**
+
+*1a. JIMMY detects duplicate
+ *1a1. JIMMY shows an error message
+	Use case ends
+
+    Use case ends.
+
+**Use case: List all contacts**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  JJIMY shows a list of contacts
+
+    Use case ends.
+
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  JJIMY shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  JJIMY deletes the contact
 
     Use case ends.
 
@@ -283,11 +330,243 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. JJIMY shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+
+**Use case: Find a contact**
+
+1. User requests to list contacts
+2. JJIMY shows a list of contacts
+3. User requests to find contacts based on keywords.
+4. JJIMY returns a list of matching contacts for the keywords.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keywords do not match any contacts.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Add a menu item**
+
+**MSS**
+
+1.  User requests to add a menu item
+2.  JJIMY adds the menu item
+
+**Extensinos**
+
+*1a. JIMMY detects duplicate
+ *1a1. JIMMY shows an error message
+	Use case ends
+
+    Use case ends.
+
+**Use case: List all contacts**
+
+**MSS**
+
+1.  User requests to list menu items
+2.  JJIMY shows a list of menu items
+
+    Use case ends.
+
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to list menu items
+2.  JJIMY shows a list of menu items
+3.  User requests to delete a specific menu item in the list
+4.  JJIMY deletes the menu item
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Find a menu item**
+
+1. User requests to list menu items
+2. JJIMY shows a list of menu items
+3. User requests to find menu items based on keywords.
+4. JJIMY returns a list of matching menu items for the keywords.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keywords do not match any menu item.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Add an order**
+
+**MSS**
+
+1.  User requests to add an order
+2.  JJIMY adds the order
+
+**Extensions**
+
+*1a. JIMMY detects duplicate
+ *1a1. JIMMY shows an error message
+	Use case ends
+
+    Use case ends.
+
+**Use case: List all orders**
+
+**MSS**
+
+1.  User requests to list orders
+2.  JJIMY shows a list of orders
+
+    Use case ends.
+
+
+**Use case: Delete an order**
+
+**MSS**
+
+1.  User requests to list orders
+2.  JJIMY shows a list of orders
+3.  User requests to delete a specific order in the list
+4.  JJIMY deletes the order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Find a order**
+
+1. User requests to list orders
+2. JJIMY shows a list of orders
+3. User requests to find orders based on keywords.
+4. JJIMY returns a list of matching orders for the keywords.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keywords do not match any order.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Add an inventory item**
+
+**MSS**
+
+1.  User requests to add an inventory item
+2.  JJIMY adds the inventory item
+
+**Extensions**
+
+*1a. JIMMY detects duplicate
+ *1a1. JIMMY shows an error message
+	Use case ends
+
+    Use case ends.
+
+**Use case: List all inventory items**
+
+**MSS**
+
+1.  User requests to list all inventory items
+2.  JJIMY shows a list of all inventory items
+
+    Use case ends.
+
+
+**Use case: Delete an order**
+
+**MSS**
+
+1.  User requests to list all inventory items
+2.  JJIMY shows a list of all inventory items
+3.  User requests to delete a specific inventory item in the list
+4.  JJIMY deletes the inventory item
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Find a inventory item**
+
+1. User requests to list all inventory items
+2. JJIMY shows a list of all inventory items
+3. User requests to find inventory items based on keywords.
+4. JJIMY returns a list of matching inventory items for the keywords.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keywords do not match any inventory item.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
@@ -302,55 +581,3 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
