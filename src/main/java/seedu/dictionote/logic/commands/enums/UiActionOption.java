@@ -1,7 +1,7 @@
 package seedu.dictionote.logic.commands.enums;
 
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_ALL_PANEL;
-import static seedu.dictionote.logic.parser.CliSyntax.OPTION_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_CONTACT_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_CONTENT_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_LIST_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_PANEL;
@@ -16,12 +16,12 @@ import static seedu.dictionote.logic.parser.CliSyntax.OPTION_NOTE_PANEL;
 public enum UiActionOption {
     DICTIONARY, DICTIONARY_LIST, DICTIONARY_CONTENT,
     NOTE, NOTE_LIST, NOTE_CONTENT,
-    LIST, CONTENT, ALL, NONE;
+    LIST, CONTACT, ALL, NONE;
 
 
     public static final String MESSAGE_CONSTRAINTS = "Options have to be one of the following: "
         + OPTION_ALL_PANEL + ", "
-        + OPTION_CONTENT_PANEL + ", "
+        + OPTION_CONTACT_PANEL + ", "
         + OPTION_DICTIONARY_CONTENT_PANEL + ", "
         + OPTION_DICTIONARY_LIST_PANEL + ", "
         + OPTION_DICTIONARY_PANEL + ", "
@@ -39,8 +39,8 @@ public enum UiActionOption {
         switch (option) {
         case OPTION_ALL_PANEL:
             return UiActionOption.ALL;
-        case OPTION_CONTENT_PANEL:
-            return UiActionOption.CONTENT;
+        case OPTION_CONTACT_PANEL:
+            return UiActionOption.CONTACT;
         case OPTION_DICTIONARY_CONTENT_PANEL:
             return UiActionOption.DICTIONARY_CONTENT;
         case OPTION_DICTIONARY_LIST_PANEL:
@@ -66,7 +66,7 @@ public enum UiActionOption {
     public static boolean isValidOption(String option) {
         switch (option) {
         case OPTION_ALL_PANEL:
-        case OPTION_CONTENT_PANEL:
+        case OPTION_CONTACT_PANEL:
         case OPTION_DICTIONARY_CONTENT_PANEL:
         case OPTION_DICTIONARY_LIST_PANEL:
         case OPTION_DICTIONARY_PANEL:

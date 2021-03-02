@@ -2,7 +2,7 @@ package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_ALL_PANEL;
-import static seedu.dictionote.logic.parser.CliSyntax.OPTION_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_CONTACT_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_CONTENT_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_LIST_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_PANEL;
@@ -27,7 +27,7 @@ public class OpenCommand extends Command {
         + ": Open UI Panel.\n"
         + "Option Available: "
         + OPTION_ALL_PANEL + ", "
-        + OPTION_CONTENT_PANEL + ", "
+        + OPTION_CONTACT_PANEL + ", "
         + OPTION_DICTIONARY_CONTENT_PANEL + ", "
         + OPTION_DICTIONARY_LIST_PANEL + ", "
         + OPTION_DICTIONARY_PANEL + ", "

@@ -1,7 +1,7 @@
 package seedu.dictionote.testutil;
 
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_ALL_PANEL;
-import static seedu.dictionote.logic.parser.CliSyntax.OPTION_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_CONTACT_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_CONTENT_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_LIST_PANEL;
 import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_PANEL;
@@ -20,8 +20,8 @@ public class TypicalUiActions {
     private static final String VALID_OPTION_1 = OPTION_ALL_PANEL;
     private static final UiActionOption EXCEPTION_OPTION_1 = UiActionOption.ALL;
 
-    private static final String VALID_OPTION_2 = OPTION_CONTENT_PANEL;
-    private static final UiActionOption EXCEPTION_OPTION_2 = UiActionOption.CONTENT;
+    private static final String VALID_OPTION_2 = OPTION_CONTACT_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_2 = UiActionOption.CONTACT;
 
     private static final String VALID_OPTION_3 = OPTION_DICTIONARY_CONTENT_PANEL;
     private static final UiActionOption EXCEPTION_OPTION_3 = UiActionOption.DICTIONARY_CONTENT;
