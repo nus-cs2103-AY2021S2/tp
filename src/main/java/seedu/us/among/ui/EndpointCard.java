@@ -33,11 +33,7 @@ public class EndpointCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label address;
-    @FXML
-    private Label email;
     @FXML
     private FlowPane tags;
 
@@ -49,9 +45,7 @@ public class EndpointCard extends UiPart<Region> {
         this.endpoint = endpoint;
         id.setText(displayedIndex + ". ");
         name.setText(endpoint.getName().fullName);
-        phone.setText(endpoint.getPhone().value);
         address.setText(endpoint.getAddress().value);
-        email.setText(endpoint.getEmail().value);
         endpoint.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

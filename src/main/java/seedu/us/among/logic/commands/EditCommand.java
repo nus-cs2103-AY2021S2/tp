@@ -2,9 +2,7 @@ package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.us.among.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.us.among.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
@@ -19,10 +17,8 @@ import seedu.us.among.commons.util.CollectionUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Email;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
-import seedu.us.among.model.endpoint.Phone;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -37,13 +33,10 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_ADDRESS + "wall street ";
 
     public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,12 +88,10 @@ public class EditCommand extends Command {
         assert endpointToEdit != null;
 
         Name updatedName = editEndpointDescriptor.getName().orElse(endpointToEdit.getName());
-        Phone updatedPhone = editEndpointDescriptor.getPhone().orElse(endpointToEdit.getPhone());
-        Email updatedEmail = editEndpointDescriptor.getEmail().orElse(endpointToEdit.getEmail());
         Address updatedAddress = editEndpointDescriptor.getAddress().orElse(endpointToEdit.getAddress());
         Set<Tag> updatedTags = editEndpointDescriptor.getTags().orElse(endpointToEdit.getTags());
 
-        return new Endpoint(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Endpoint(updatedName, updatedAddress, updatedTags);
     }
 
     @Override
@@ -127,8 +118,6 @@ public class EditCommand extends Command {
      */
     public static class EditEndpointDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
         private Address address;
         private Set<Tag> tags;
 
@@ -140,8 +129,6 @@ public class EditCommand extends Command {
          */
         public EditEndpointDescriptor(EditEndpointDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -150,7 +137,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, address, tags);
         }
 
         public void setName(Name name) {
@@ -159,22 +146,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
@@ -218,8 +189,6 @@ public class EditCommand extends Command {
             EditEndpointDescriptor e = (EditEndpointDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
