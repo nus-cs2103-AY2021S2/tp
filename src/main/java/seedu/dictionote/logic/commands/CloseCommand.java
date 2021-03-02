@@ -29,7 +29,7 @@ public class CloseCommand extends Command {
         + OPTION_NOTE_PANEL + ".\n"
         + "Example: " + COMMAND_WORD + " -c ";
 
-    public static final String SHOWING_OPEN_MESSAGE = "Panel closed.";
+    public static final String SHOWING_CLOSE_MESSAGE = "Panel closed.";
 
 
     private final UiActionOption uiActionOption;
@@ -46,7 +46,7 @@ public class CloseCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_OPEN_MESSAGE, UiAction.OPEN, uiActionOption);
+        return new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.OPEN, uiActionOption);
 
     }
 }
