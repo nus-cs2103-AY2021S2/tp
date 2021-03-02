@@ -21,10 +21,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jaryl Loh
 
-<img src="images/jaryl.png" width="200px">
+<img src="images/jxrrelo.png" width="200px">
 
 [[github](http://github.com/jxrrelo)]
-[[portfolio](team/jaryl.md)]
+[[portfolio](team/jxrrelo.md)]
 
 * Role: Developer
 * Responsibilities: UI
@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ong Siying Natasha
 
-<img src="images/natasha.png" width="200px">
+<img src="images/natosy.png" width="200px">
 
 [[github](http://github.com/natosy)]
 [[portfolio](team/natosy.md)]
