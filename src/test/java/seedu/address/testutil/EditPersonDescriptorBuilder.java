@@ -1,10 +1,12 @@
 package seedu.address.testutil;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -37,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setPolicies(person.getPolicies());
     }
 
     /**
@@ -78,6 +81,16 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code policies} into a {@code List<InsurancePolicy>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withPolicies(String... policyIds) {
+        List<InsurancePolicy> policyList = Stream.of(policyIds).map(InsurancePolicy::new).collect(Collectors.toList());
+        descriptor.setPolicies(policyList);
         return this;
     }
 
