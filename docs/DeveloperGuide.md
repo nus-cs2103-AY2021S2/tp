@@ -243,7 +243,13 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers an all-keyboard workflow without needing to use a mouse
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+- manage upcoming CS assignment deadlines faster than a typical mouse/GUI driven app
+- consolidates all CS-coded module tasks into a single place for a CS student to manage and view easily
+- allows a CS student to prioritise his/her time by seeing which task deadlines are more pressing
+- the app can also remind a CS student about his/her upcoming deadlines so that he/she does not need to remember everything all at once
+- easy CLI operation would entice a CS student to use the app, as he/she probably interacts with CLI on a daily basis while coding/doing CS-coded module tasks
 
 
 ### User stories
