@@ -5,16 +5,15 @@ title: Jared Lim's Project Portfolio Page
 
 ## Project: Tutor Hunter
 
-Tutor Hunter is a desktop tutor finder application that links a user with multiple 
-tutor in the database. The user interacts with it using a CLI, and it 
-has a GUI created with JavaFX. 
+Tutor Hunter is a desktop tutor finder application that links a user with multiple
+tutor in the database. The user interacts with it using a CLI, and it
+has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added an Appointment class to represent the relation between 
-  tutor and tutee.
+* **New Feature**: Added an Appointment class to represent the relation between tutor and tutee.
 
-* **Code contributed**: 
+* **Code contributed**:
 
 * **Project management**:
   * Managed releases `v1.1` (3 releases) on GitHub

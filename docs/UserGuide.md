@@ -119,10 +119,10 @@ Example Output:
 
 ### Viewing a tutor: `view_tutor`
 Example Usage: <br>
-Format: `view_tutor 1` <br>  Name: John Doe <br> Phone Number: 98765432 <br> 
-Email Address: johnd@example.com <br> 
-Address: John street, block 123, #01-01 <br> 
-Subject Expertise: English, Mathematics (Sec 3, 4) <br> 
+Format: `view_tutor 1` <br>  Name: John Doe <br> Phone Number: 98765432 <br>
+Email Address: johnd@example.com <br>
+Address: John street, block 123, #01-01 <br>
+Subject Expertise: English, Mathematics (Sec 3, 4) <br>
 Hourly Rate: SGD60/hr <br> Years of Experience: 6
 
 ### Adding Appointment : `appointment`
@@ -141,7 +141,7 @@ An appointment can only have 0 or 1 location.
 Examples:<br>
 * `appointment n/Andrew Ng s/Mathematics d/2021-3-1 fr/10:00am to/12:00am`
 * `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok`
-  
+
 ### Listing all tuition appointments : `list_appointments`
 
 Shows a list of all upcoming tuition schedules in the personal tuition appointment list.
