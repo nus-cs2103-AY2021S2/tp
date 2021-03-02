@@ -13,16 +13,16 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
 
-    /* Option definitions for UI Command*/
-    public static final Option OPTION_DICTIONARY_PANEL = new Option("d");
-    public static final Option OPTION_DICTIONARY_CONTENT_PANEL = new Option("dc");
-    public static final Option OPTION_DICTIONARY_LIST_PANEL = new Option("dl");
-    public static final Option OPTION_NOTE_PANEL = new Option("-n");
-    public static final Option OPTION_NOTE_CONTENT_PANEL = new Option("-nc");
-    public static final Option OPTION_NOTE_LIST_PANEL = new Option("-nl");
-    public static final Option OPTION_LIST_PANEL = new Option("-l");
-    public static final Option OPTION_CONTENT_PANEL = new Option("-c");
-    public static final Option OPTION_ALL_PANEL = new Option("-a");
+    /* Option Syntax for UI Command*/
+    public static final String OPTION_ALL_PANEL = "-a";
+    public static final String OPTION_CONTENT_PANEL = "-c";
+    public static final String OPTION_DICTIONARY_CONTENT_PANEL = "dc";
+    public static final String OPTION_DICTIONARY_LIST_PANEL = "dl";
+    public static final String OPTION_DICTIONARY_PANEL = "d";
+    public static final String OPTION_LIST_PANEL = "-l";
+    public static final String OPTION_NOTE_CONTENT_PANEL = "-nc";
+    public static final String OPTION_NOTE_LIST_PANEL = "-nl";
+    public static final String OPTION_NOTE_PANEL = "-n";
 
 
 }

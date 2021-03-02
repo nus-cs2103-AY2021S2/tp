@@ -35,7 +35,7 @@ public class OpenCommand extends Command {
         + OPTION_NOTE_CONTENT_PANEL + ", "
         + OPTION_NOTE_LIST_PANEL + ", "
         + OPTION_NOTE_PANEL + ".\n"
-        + "Example: " + COMMAND_WORD + " -c ";
+        + "Example: " + COMMAND_WORD + " -c";
 
     public static final String SHOWING_OPEN_MESSAGE = "Panel opened.";
 
@@ -55,6 +55,12 @@ public class OpenCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_OPEN_MESSAGE, UiAction.OPEN, uiActionOption);
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof OpenCommand // instanceof handles nulls
+            && uiActionOption.equals(((OpenCommand) other).uiActionOption));
     }
 }
