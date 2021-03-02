@@ -1,4 +1,4 @@
-title: "CakeCollate"
+title: "AB-3"
 theme: minima
 
 header_pages:
@@ -8,8 +8,8 @@ header_pages:
 
 markdown: kramdown
 
-repository: "AY2021S2-CS2103T-T11-4/tp"
-github_icon: "images/Zeke_monke.png"
+repository: "se-edu/addressbook-level3"
+github_icon: "images/github-icon.png"
 
 plugins:
   - jemoji
