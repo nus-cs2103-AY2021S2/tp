@@ -7,7 +7,6 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 
 
 * Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -19,7 +18,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 - Exiting the program : exit
 - Saving the data 
 
-1. Refer to the [Feature Details](#features) below for details of each command.
+1. Refer to the [Feature Details](#features details) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
