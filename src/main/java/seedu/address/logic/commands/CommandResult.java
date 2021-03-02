@@ -14,6 +14,9 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Calendar window should be shown to the user. */
+    private final boolean showCalendar;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -23,6 +26,18 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showCalendar = false;
+        this.exit = exit;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showCalendar,
+                         boolean exit) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.showCalendar = showCalendar;
         this.exit = exit;
     }
 
@@ -34,6 +49,7 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -42,6 +58,9 @@ public class CommandResult {
         return showHelp;
     }
 
+    public boolean isShowCalendar() {
+        return showCalendar;
+    }
     public boolean isExit() {
         return exit;
     }

@@ -201,6 +201,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
+            if (commandResult.isShowCalendar()) {
+                handleCalendar();
+            }
+
             if (commandResult.isExit()) {
                 handleExit();
             }
