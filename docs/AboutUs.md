@@ -9,16 +9,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Priscilla
 
 <img src="images/ppris.png" width="200px">
@@ -34,17 +24,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/xiinweii98.png" width="200px">
 
 [[github](http://github.com/xiinweii98)]
-[[portfolio](team/xinwei.md)]
+[[portfolio](team/xiinweii98.md)]
 
 * Role: Developer, Testing
 * Responsibilities: Logic
 
 ### Lim Rui Xiong
 
-<img src="images/ruixiong.png" width="200px">
+<img src="images/ruixiong2211.png" width="200px">
 
 [[github](http://github.com/RuiXiong2211)] [[portfolio](team/RuiXiong2211)]
-[[portfolio](team/ruixiong.md)]
+[[portfolio](team/ruixiong2211.md)]
 
 * Role: Developer, Documentation
 * Responsibilities: Commons
