@@ -7,7 +7,7 @@ public class Priority {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should be represented as an integer from 0 to 9";
-    public static final String VALIDATION_REGEX = "^[0-9]*$";
+    public static final String VALIDATION_REGEX = "^[0-9]$";
 
     private int priority;
 
