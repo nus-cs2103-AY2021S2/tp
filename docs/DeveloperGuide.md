@@ -274,8 +274,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `PocketEsate` and the **Actor** is the `user`, unless specified otherwise)
-<<<<<<< HEAD
-=======
 
 **Use case: UC01 - Add a property**
 
