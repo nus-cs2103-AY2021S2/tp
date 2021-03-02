@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lim Rui Xiong
 
-<img src="images/ruixiong.PNG" width="200px">
+<img src="images/ruixiong.png" width="200px">
 
 [[github](http://github.com/RuiXiong2211)] [[portfolio](team/RuiXiong2211)]
 [[portfolio](team/ruixiong.md)]
