@@ -236,8 +236,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* small-time, home-based cake seller
+* has a lot of orders to keep track of
+* sells cakes on multiple platforms and wants to collect all orders in one place
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
