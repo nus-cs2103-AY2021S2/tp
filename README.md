@@ -1,4 +1,6 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2021S2-CS2103T-W15-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-W15-3/tp/actions/workflows/gradle.yml)
+
+![Ui](docs/images/Ui.png)
 
 ### JJIMY
 JJIMY is a restaurant management app for managing food orders, ingredient inventory, etc via Command Line Interface (CLI). <br/> 
@@ -9,3 +11,8 @@ For the detailed documentation of this project, see the **[JJIMY Product Website
 - Keep track of customers’ orders
 - Keep track of the food inventory
 - Keep track of which ingredients to restock
+
+
+### Acknowledgeemnts
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
