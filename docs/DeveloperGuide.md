@@ -291,13 +291,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Scheduling a meetup with a client**
+
+**MSS**
+
+1.  User requests to list clients
+2.  AddressBook shows a list of clients
+3.  User requests to schedule a meeting a specific client in the list at a specified date and time
+4.  AddressBook adds the specified client, as well as the specified date and time of the meeting, to the schedule list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given date-and-time has an invalid syntax (eg. user input HH:MM_yyyy-mm-dd instead of yyyy-mm-dd_HH:MM
+  (correct version))
+
+    * 3b1. AddressBook shows an error message and reminds the user of the correct format.
+    
+      Use case resumes at step 2.
+    
+* 3c. The given date-and-time is invalid (eg. user input 2020-02-31_14:30)
+
+    * 3c1. AddressBook shows an error message
+    
+      Use case resumes at step 2.
+    
+* 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting client no.24601 at 
+  2020/2/28 2:30 pm but is also meeting client no.24600 at the same time)
+  
+    * 3d1. AddressBook alerts the user that the meeting coincides with another meeting with a specified client 
+      and asks the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
+      
+      If Y, use case continues to step 4. If N, user case resumes at step 2.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
+    be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
