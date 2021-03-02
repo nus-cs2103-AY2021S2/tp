@@ -157,11 +157,11 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+GME data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+GME data are saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
 
 
 ### Archiving data files `[coming in v2.0]`
@@ -174,7 +174,7 @@ _Details coming soon ..._
 
 **Q:** Where can I find the data stored by the address book?
 
-**A:** The json file containing the data stored is named `addressbook.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
+**A:** The json file containing the data stored is named `GreenMileageEfforts.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
 
 --------------------------------------------------------------------------------------------------------------------
 
