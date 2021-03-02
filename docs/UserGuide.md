@@ -93,7 +93,7 @@ A person can have any number of tags (including 0)
 
 Examples:
 * (example with policy)`add n/John Doe p/98765432 e/johnd@example.com a/Ochard i/Policy_12738176 t/basic`
-* (example with no policy)`add n/Betsy Crowe e/betsycrowe@example.com a/Kent Ridge t/premium`
+* (example with no policy)`add n/Betsy Crowe e/betsycrowe@example.com a/Kent Ridge t/nopolicy`
 
 ### Listing all persons : `list`
 
@@ -125,7 +125,7 @@ Format: `find KEYWORD [& MORE_KEYWORDS]`
 * The search is case-insensitive. e.g hans will match Hans.
 * The order of the keywords does not matter.
 * Only the name field is searched.
-* The delimiter `&` between keywords is used to indicate mutiple keywords
+* The delimiter `&` between keywords is used to indicate mutiple keywords.
 * Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans & Bo will return Hans Gruber, Bo Yang.
 
 
@@ -183,7 +183,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/1023 t/premiunplan t/lifeinsurance`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
