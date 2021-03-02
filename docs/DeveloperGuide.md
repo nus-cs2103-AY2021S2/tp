@@ -361,8 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PocketEstate shows an error message with the unrecognized fields.
 
       Use case ends.
-      
-      
+
 **Use case: UC06 - Update status of a property**
 
 **MSS**
@@ -380,7 +379,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC07 - Searching for property**
 
+**MSS**
+1. User requests to search for properties of a certain type.
+2. PocketEstate shows a list of properties that are of that type.
+
+    Use case ends.
+
+**Use case: UC08 - Searching for appointment**
+
+**MSS**
+1. User requests to search for appointments with a certain person.
+2. PocketEstate shows a list of all appointments with that person.
+
+    Use case ends.
 
 **Use case: Delete a person**
 

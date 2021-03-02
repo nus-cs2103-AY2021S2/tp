@@ -49,7 +49,7 @@ PocketEstate enables easy organization of mass clientele property information th
 
 * Items in square brackets are optional.<br>
   e.g `add appointment n/NAME r/REMARKS d/DATE [t/TIME]` can be used as `add appointment n/Meet John r/At M hotel d/17-2-2021` or as `add appointment n/Meet John r/At M hotel d/17-2-2021 t/2040`.
-  
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME r/REMARKS`, `r/REMARKS n/NAME` is also acceptable.
 
@@ -63,7 +63,7 @@ PocketEstate enables easy organization of mass clientele property information th
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -171,30 +171,46 @@ Formats:
 * `delete property INDEX`
 
 Description:
-* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
 * The field INDEX must be provided.
 
 Examples:
 *  `delete appointment 7` Deletes the `appointment` at index `7`.
 *  `delete property 7` Deletes the `property` at index `7`.
 
-### Locating persons by name: `find`
+### Filtering: `find`
+Finds properties or appointments that matches the criterion provided.
 
-Finds persons whose names contain any of the given keywords.
+Formats:
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+`find appointment [keywords] [option...]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+`find property [keywords] [option...]`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty.
+
+Options:
+
+`r/[REMARKS]`
+
+Search for properties or appointments whose remarks field contain patterns specified in `[REMARKS]`
+
+`pm/[PRICE]`
+
+Search for properties with prices more than `[PRICE]`, ignored if used with appointment
+
+`pl/[PRICE]`
+Search for properties with prices less than `[PRICE]`, ignored if used with appointment
+
+Example:
+
+`find property “jurong west”`
+
+`find appointment “fri” r/”come in afternoon”`
+
+`find property pm/500000`
+
+`find property “bishan” “north” “mrt” r/”recently renovated”`
 
 ### Deleting a person : `delete`
 
