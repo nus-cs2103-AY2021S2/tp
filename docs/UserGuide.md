@@ -80,7 +80,7 @@ Adds a student’s contact to TutorsPet.
 Format: `add n/NAME s/SCHOOL p/PHONE_NUMBER a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE_NUMBER [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student’s contact can have any number of tags (including 0)
 </div>
 
 Examples:
