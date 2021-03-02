@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Cake Collate is a **desktop app for managing cake orders, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Cake Collate can get your order management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -16,21 +16,21 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all orders in the Cake Collate database.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd order shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all order in the Cake Collate database.
 
    * **`exit`** : Exits the app.
 
@@ -66,12 +66,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Gives instructions on how to enter orders into the CLI. 
+Displays a message with a list of all available commands and their format.
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
@@ -87,9 +85,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### List all existing orders : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all orders in the Cake Collate database.
 
 Format: `list`
 
@@ -128,23 +126,26 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an order : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified order from the address book.
 
-Format: `delete INDEX`
+Format: `delete ID...`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the orders with the specified ids.
+* The `ID` refers to the order `ID` number shown in the list of orders.
+* One or more ids can be entered.  
+* The `ID` **must be valid**.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the order with `ID` 2 from the CakeCollate database.
+* `delete 2 3` deletes the orders with ids 2 and 3 from the CakeCollate database.
 
-### Clearing all entries : `clear`
+### Clear all existing orders: `clear`
 
-Clears all entries from the address book.
+Deletes all existing orders in the Cake Collate database.
+
+Warning: this is an undo-able operation.
 
 Format: `clear`
 
