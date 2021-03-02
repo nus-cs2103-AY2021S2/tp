@@ -1,7 +1,7 @@
 [![CI Status](https://github.com/AY2021S2-CS2103T-T12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T12-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp/branch/master/graph/badge.svg?token=fkTem6dCbs)](https://codecov.io/gh/AY2021S2-CS2103T-T12-4/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/imPoster.png)
 
 ## Table of Contents
 
@@ -11,31 +11,34 @@
 - [Setup](#setup)
 - [Team](#team)
 - [Contributing](#contributing)
+- [Acknowledgement](#Acknowledgement)
 
-### Introduction
+## Introduction
 
-imPoster contains most of the features of [postman](https://www.postman.com/) and is implemented in a simple and
-minimalistic style that is easy for anyone to pick up. The latest releases for
-download are available
+imPoster contains most of the features of [postman](https://www.postman.com/)
+and is implemented in a simple and minimalistic style that is easy for anyone to
+pick up. The latest releases for download are available
 [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases).
 
-### Features
+## Features
 
-imPoster runs locally on your computer and simplifies the process of building/testing an
-API. We offer support for the following tasks:
+imPoster runs locally on your computer and simplifies the process of
+building/testing an API. We offer support for the following tasks:
 
-1. Sending and Receiving requests.
-2. Saving requests to be used again later.
-3. Testing requests.
+1. Create, send and save API requests
+2. View status code, response size, and response time
+3. View response headers
+4. View response body in pretty or raw view
+5. Save response to a file.
 
 For more details on the features and their usage, please refer to the
 [user guide](https://ay2021s2-cs2103t-t12-4.github.io/tp/UserGuide.html).
 
-### Technologies
+## Technologies
 
 Technologies used by imPoster are:
 
-##### Made with:
+#### Made with:
 
 <p align="center">
   <img height="150" width="150" src="https://i.imgur.com/5zlrxVc.png"/>
@@ -44,19 +47,19 @@ Technologies used by imPoster are:
 Java
 </p>
 
-##### Deployed on:
+#### Deployed on:
 
 <p align="center">
 None (Local Application)
 </p>
 
-##### Project Repository
+#### Project Repository
 
 ```
 https://github.com/AY2021S2-CS2103T-T12-4/tp
 ```
 
-### Setup
+## Setup
 
 Download the JAR file and run it.
 
@@ -64,13 +67,17 @@ Download the JAR file and run it.
 
 <!-- add pic here -->
 
-### About Us
+## About Us
 
 View the details about our team [here](docs/AboutUs.md)
 
-### Contributing
+## Contributing
 
 If you have code to contribute to the project, open a pull request and describe
 clearly the changes and what they are intended to do (enhancement, bug fixes
 etc). Alternatively, you may simply raise bugs or suggestions by opening an
 issue.
+
+## Acknowledgement
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
