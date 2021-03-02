@@ -306,6 +306,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `HippoCampus` application while the **Actor** is the `user`,
 unless specified otherwise)
 
+    Use case: UC1 - Add a contact
+    MSS:
+      1. User enters the details for the contact to be added with the add command.
+      2. HippoCampus displays the list of contacts with the added contact.
+      Use case ends.
+
+    Extensions:
+      1a. HippoCampus detects an error in the entered data.
+        1a1. HippoCampus shows the user an example of correct format.
+        1a2. HippoCampus requests for the correct data.
+        Use case ends.
+
+
+
+    Use case: UC2 - Clear
+    MSS:
+      1. User requests to clear all data with the clear command.
+      2. HippoCampus clears all existing data.
+      Use case ends.
+
+
+
     Use case: UC3 - Delete a contact
     MSS:
       1. User enters the contact to be deleted with the delete command.
