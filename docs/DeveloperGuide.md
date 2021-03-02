@@ -236,14 +236,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* tech-savvy parents
+* need to manage a significant number of their young children's contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven app
+* easily keep track of their children's contacts in one centralised platform
+* organise, categorise and sort their contacts easily
 
 ### User stories
 
@@ -257,21 +260,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | Beginner	                                | Add contacts	                 | add contacts                                                     |
+| `* *`	   | User	                                    | Add incomplete contacts	     | easily save contacts I don't have all the contact information for easily without having to use placeholders
+| `* *`    | Beginner	                                | Add contacts easily 	         | save time
+| `* * *`  | Beginner	                                | Update contacts	             | change the details of my contacts
+| `* * *`  | Beginner	                                | Be able to view a user guide	 | learn to use the app
+| `* * *`  | Parent of multiple children	            | Be able to view a user guide	 | troubleshoot any problems that I encounter
+| `* * *`  | Parent of multiple children	            | Tag my contacts by child	     | easily identify which child the contact is related to
+| `* * *`  | User	                                    | Tag my contacts by other categories	| identify the contacts more easily (i.e. by subject, lesson etc.)
+| `*`      | Beginner	                                | Download the app easily	     | use the app quickly
+| `* *`    | Beginner	                                | Add photos to contacts	     | match the contacts' names to their faces easily
+| `*`      | User	                                    | Colour code my tags	         | easily differentiate my contacts at a glance
+| `* *`    | User	                                    | Search for contacts by tag	 | search for contacts quickly and easily
+| `* * *`  | User	                                    | Search for contacts by name    | search for contacts quickly and easily
+| `*`      | User	                                    | Search for contacts by number  | search for contacts quickly and easily
+| `* *`    | User	                                    | Sort my contacts by tag	     | search for contacts quickly and easily
+| `* *`    | User	                                    | Sort my contacts by name	     | search for contacts quickly and easily
+| `*`      | User	                                    | Sort my contacts by the closest appointment time	| find out my next upcoming appointment quickly.
+| `* *`    | User	                                    | Export my contacts	         | share the contacts with other people/transfer to other devices.
+| `*`      | User	                                    | Sync my contacts with my partner | add or update the contacts for our children once such that both of us are able to see the changes.
+| `* *`    | User	                                    | Remove all contacts saved under a certain tag	| quickly clear contacts that I no longer need because my child has graduated.
+| `* *`    | User	                                    | Remove all selected contacts	 |quickly clear contacts that I no longer need
+| `*`      | User who works under different lighting conditions	| Change the colour scheme of my app | view the contents more clearly and my app looks better visually.
+| `* *`    | Careless user	                            | Receive a notification before deleting my contacts | prevent deleting important contacts by accident
+| `* *`    | Careless user	                            | Undo my actions	             | undo any careless mistakes
+| `*`      | Careless user	                            | Have a bin for deleted contacts | retrieve any contacts deleted by mistake
+| `* *`    | User	                                    | Add an appointment time with a particular contact	| keep track of any meetings I have with my children’s teachers.
+| `* *`    | Parent of multiple children	            | Record appointment dates and times and | keep track of all appointments I need
+| `*`      | Parent of multiple children	            | Be notified of clashes in appointments | ensure that I/my children can attend all of the appointments
+| `*`      | Caring Parent                              | Favourite contacts	         | ensure that the important contacts are at the forefront of my list.
+| `*`      | Frequent user of the app	                | Have shortcuts to quickly add contacts/details | save the contact/details first thing when I receive them
+| `*`      | User who contacts some people more frequently than others	| Have a list of recently contacted contacts | view their details easily.
+| `* * *`  | User	                                    | Have a list of contact         | view all contacts at the same time
+| `* * *`  | User	                                    | Be able to view the number, email address of my contacts	| all or email them quickly
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HeliBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC1: Edit a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  HeliBook shows a list of persons
+3.  User requests to edit a specific person's detail in the list
+4.  HeliBook edits the person's details accordingly
 
     Use case ends.
 
@@ -283,9 +320,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HeliBook shows an error message.
 
       Use case resumes at step 2.
+    
+    
+**UC2: Delete a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  HeliBook shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  HeliBook deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. HeliBook shows an error message.
+
+      Use case resumes at step 2.
+
+**UC3: Add a tag to a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  HeliBook shows a list of persons
+3.  User requests to tag a specific person in the list with a specific tag name
+4.  HeliBook adds the tag to the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. HeliBook shows an error message.
+
+      Use case resumes at step 2.
+    
+* 3b. The given tag name already exists for that person.
+
+  Use case ends.
 
 *{More to be added}*
 
@@ -294,13 +382,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should work on both 32-bit and 64-bit environments.
+5.  A user who is new to the app should be able to familiarise themselves with it within a few uses.
+6.  All commands should be explained in the user guide, including the format of the command and examples of how it is used.
+7.  Should be able to restore address book with up to 1000 persons from backup file within seconds if app crashes and in-app data is lost.
+8.  Should be able to locate local backup file easily.
+9.  App UI should look uniform across different OSes to ensure that usage of application is similar regardless of OS.
+10. Should be able to view all data with or without app window maximised.
+11. Should be able to customise colour scheme of app for comfortable viewing without having to search up hexadecimal codes.
+12. Project is expected to adhere to a schedule that delivers a feature set every two weeks.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Contact/Person**: Entry in the address book containing a person's contact information
+* **Index**: Index number shown in the displayed person list
+* **Backup file**: JSON file that stores address book data in the hard disk
+* **Action**: Executed command
+* **List**: Currently displayed list of contacts
 
 --------------------------------------------------------------------------------------------------------------------
 
