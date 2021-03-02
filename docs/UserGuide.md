@@ -26,9 +26,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`t/3` : Deletes the tutor with the ID `t/3` from the tutor list.
+     
+   * **`assign`** : Assigns student or tutor to a specific class (Coming Soon!).
 
    * **`clear`** : Deletes all contacts.
 
@@ -73,25 +75,67 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a Tutor, Student or Class: `add`
 
-Adds a person to the address book.
+Adds a tutor, student or class to the contact list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: 
+
+For Person: `add tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+For Class: `add d/DAY t/TIMESLOT l/LEVEL s/SUBJECT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add tp/tutor n/Betsy Crowe p/91234567 e/betsyc@example.come a/Betsy street`
+* `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math`
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+### Viewing a tutor : `view`
+
+Views an existing tutor's details.
+
+Format: `view t/ID`
+
+* Views the tutor with the specified tutor ID.
+* Tutor’s name, contact number, existing classes, email and address will be given.
+
+Example:
+* `view t/1` views the details of the tutor with tutor ID 1.
+
+### Viewing a student : `view`
+
+Views an existing student's details.
+
+Format: `view s/ID`
+
+* Views the student with the specified student ID.
+* Student’s name, contact number, email and address will be given.
+
+Example:
+* `view s/1` views the details of the student with student ID 1.
+
+### Viewing a class : `view`
+
+Views an existing class's details.
+
+Format: `view c/ID`
+
+* Views the class with the specified class ID.
+* The class's assigned tutor, assigned students, time slot, subject and class size will be given.
+
+Example:
+* `view c/1` views the details of the class with class ID 1.
+
+
 
 ### Editing a person : `edit`
 
@@ -128,19 +172,27 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Delete
+
+#### Deleting a tutor/student/class
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format:<br>
+`delete t/ID` for tutors<br>
+`delete s/ID` for students<br>
+`delete c/ID` for classes
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the tutor/student/class at the specified ID from the list of tutors/students/classes.
+* The index refers to the ID shown in the displayed tutor/student/class list.
+* The index must be a in the format of:<br>
+`t/ID` for tutors<br>
+`s/ID` for students<br>
+`c/ID` for classes
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete t/1` deletes the tutor with the ID `t/1` from the tutor list.
+* `delete c/25` deletes the class with the ID `c/25` from the class list.
 
 ### Clearing all entries : `clear`
 
@@ -183,9 +235,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | For Person:`add tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | Tutor <br> `delete t/ID`<br> e.g., `delete t/8`<br><br> Student <br> `delete s/ID`<br> e.g., `delete s/22` <br><br> Class<br>`delete c/ID` <br> e.g., `delete c/9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`

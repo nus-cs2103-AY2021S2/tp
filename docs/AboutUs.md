@@ -9,51 +9,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Kuek Yan Ling
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yanlingkuek.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/yanlingkuek)]
+[[portfolio](team/yanlingkuek.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: Deliverables and Deadlines
 
-### Jane Doe
+### Phoe Chuan Yi, Benny
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benny.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Bennyphoe)]
+[[portfolio](team/benny.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Documentation, Scheduling & Tracking
 
-### Johnny Doe
+### Guo Jingxue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jingxue.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jingxueguo)]
 
-* Role: Developer
-* Responsibilities: Data
+[[portfolio](team/jingxue.md)]
 
-### Jean Doe
+- Role: Developer
+- Responsibilities: Code Quality
 
-<img src="images/johndoe.png" width="200px">
+### Chanell Ng
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/chanellng.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/chanellNg)]
+[[portfolio](team/chanellNg.md)]
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+- Role: Team Lead, Git expert
+- Responsibilities: UI
