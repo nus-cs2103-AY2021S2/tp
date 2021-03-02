@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "CakeCollate"
 theme: minima
 
 header_pages:
@@ -9,7 +9,7 @@ header_pages:
 markdown: kramdown
 
 repository: "se-edu/addressbook-level3"
-github_icon: "images/github-icon.png"
+github_icon: "images/Zeke_monke.png"
 
 plugins:
   - jemoji
