@@ -10,7 +10,6 @@ import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
-import seedu.address.model.person.Person;
 
 
 /**
