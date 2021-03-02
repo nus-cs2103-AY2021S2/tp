@@ -73,10 +73,6 @@ Action | Format
 **Add** | 1) `add dog n/DOGNAME b/BREED o/OWNERID t/TAG`</br>2) `add  owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`</br>3)`add  program n/PROGRAMNAME t/TIME`
 **Delete** | 1) `delete dog d/DOGID`</br>2) `delete owner o/OWNERID`</br>3) `delete program p/PROGRAMID`
 **List** |`list n/NAME c/CLASS b/BREED t/TAG`
-**Enrol** | `enrol d/ID p/NAMEOFPROGRAM`
-**Drop** | `drop d/DOGID p/NAMEOFPROGRAM`
-**View Schedule** | `schedule`
-**Create** | `create n/NAME t/TIME`
 **View Pawbook Instructions** | `help`
 **Exit** | `exit`
 
