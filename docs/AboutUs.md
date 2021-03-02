@@ -10,7 +10,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ## Project team
 ### Glendon Chua
 
-<img src="images/BigDoot.png" width="200px">
+<img src="images/bigdoot.png" width="200px">
 
 [[github](https://github.com/BigDoot)]
 [[portfolio](team/BigDoot.md)]
