@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## Team Members
 
 ### Lee Rong Jieh
 
@@ -15,16 +15,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/lrj689)]
 
-* Role: Developer
-* Responsibilities: Documentation
-
 ### Loh Jun Yong Kevin
 
 <img src="images/kevinlohjunyong.png" width="200px">
 
 [[github](https://github.com/kevinlohjunyong)]
-
-* Role: Project Advisor
 
 ### Nicholas Tanvis
 
@@ -32,17 +27,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/nicholastanvis)]
 
-* Role: Developer
-* Responsibilities: Data
-
 ### Shen Yang
 
 <img src="images/goatygoatygoat.png" width="200px">
 
 [[github](http://github.com/goatygoatygoat)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Toh Sihui
 
@@ -50,5 +39,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/tsh22)]
 
-* Role: Developer
-* Responsibilities: UI
+## Responsibilities
+
+Member | Responsibility 1 | Responsibility 2
+-- | -- | --
+Rong Jieh | Deliverables | Task IC
+Kevin Loh | Documentation | Schedule IC
+Nicholas | Testing | Contact IC
+Shen Yang | Code Quality | Scheduling
+Toh Sihui | Tool Expert | Integration
