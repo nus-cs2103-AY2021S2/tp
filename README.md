@@ -2,6 +2,8 @@
 
 ![Ui](docs/images/Ui.png)
 
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * The `Link.me` project is a client managing program for insurance agents, both experienced
 and inexperienced.
 * The overall design is very client-oriented, as personal details and other information will
