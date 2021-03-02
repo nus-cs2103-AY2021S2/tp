@@ -17,7 +17,8 @@ public class Method {
      * The first character of the address must not be a whitespace, otherwise " " (a
      * blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    // public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    // public static final String VALIDATION_REGEX = "(\\bget\\b)|(\\bpost\\b)|(\\bout\\b)|(\\bdelete\\b)|(\\bhead\\b)|(\\boptions\\b)|(\\bpatch\\b)";
 
     public final String methodName;
     // public final MethodType methodType;
@@ -37,13 +38,13 @@ public class Method {
      * Returns true if a given string is a valid method.
      */
     public static boolean isValidMethod(String test) {
-        return test.matches(VALIDATION_REGEX);
-        // try {
-        //     MethodType.valueOf(test.toUpperCase());
-        //     return true;
-        // } catch (IllegalArgumentException ex) {
-        //     return false;
-        // }
+        // return test.matches(VALIDATION_REGEX);
+        for (MethodType e : MethodType.values()) {
+            if (e.name().equalsIgnoreCase(test)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

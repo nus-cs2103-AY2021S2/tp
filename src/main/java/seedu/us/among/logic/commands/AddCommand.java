@@ -17,9 +17,9 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an API endpoint to the API endpoint list. "
-            + "Parameters: " + PREFIX_METHOD + "NAME " + PREFIX_ADDRESS + "ADDRESS " + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_METHOD + "John Doe " + PREFIX_ADDRESS
-            + "311, Clementi Ave 2, #02-25 " + PREFIX_TAG + "friends " + PREFIX_TAG + "owesMoney";
+            + "Parameters: " + PREFIX_METHOD + "METHOD " + PREFIX_ADDRESS + "ADDRESS " + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_METHOD + "get " + PREFIX_ADDRESS
+            + "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2 " + PREFIX_TAG + "cat " + PREFIX_TAG + "fact";
 
     public static final String MESSAGE_SUCCESS = "New API endpoint added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENDPOINT = "This API endpoint already exists in the API endpoint list";
