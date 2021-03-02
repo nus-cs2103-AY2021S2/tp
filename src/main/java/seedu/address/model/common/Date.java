@@ -7,10 +7,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Date {
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-mm-dd");
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be represented in the format of dd/mm/yyyy";
-    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
+            "Date should be represented in the format of yyyy-mm-dd";
+    public static final String VALIDATION_REGEX = "^[0-9]{4}-(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])$";
 
     private LocalDate date;
 
