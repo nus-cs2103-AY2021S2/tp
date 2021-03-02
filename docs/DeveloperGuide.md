@@ -343,6 +343,9 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MSS**: Main success scenario, lists the steps of a typical usage of the application by the user
+* **Feature set**: A list of specifications and functionalities of the application
+
 
 --------------------------------------------------------------------------------------------------------------------
 
