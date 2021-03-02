@@ -56,6 +56,8 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 
 * Parameters in triangle brackets must be supplied together in order as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied in order.
 
+</div>
+
 ### Add new tutor details: `add_tutor`
 
 Add a new tutor and enter their basic details.
