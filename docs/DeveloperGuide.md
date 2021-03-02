@@ -296,10 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. System shows an error message.
   
-        Use case ends.
-    
-  Use case ends.
-
+        Use case ends.  
 
 **Use case: Add a vaccination appointment**
 
@@ -325,7 +322,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 4a1. System shows an error message.
 
       Use case ends.  
-  
   
 **Use case: Delete a student**
 

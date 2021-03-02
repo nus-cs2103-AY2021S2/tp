@@ -153,7 +153,7 @@ _Details coming soon ..._
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
-
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
