@@ -311,6 +311,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **CS:** Computer Science
+* **CS-coded module tasks:** Assignments, Quizzes, Projects, and other tasks related to CS-coded modules provided by NUS School of Computing that have deadlines for submission
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
