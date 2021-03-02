@@ -1,6 +1,6 @@
 package seedu.address.model.residence.exceptions;
 
-/**
+/** p
  * Signals that the operation will result in duplicate Residences (Residences are considered duplicates
  * if they have the same identity).
  */
