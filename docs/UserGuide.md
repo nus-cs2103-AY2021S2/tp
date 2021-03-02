@@ -53,8 +53,43 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Parameters in triangle brackets must be supplied together in order as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied in order.
+
 </div>
 
+### Add new tutor details: `add_tutor`
+
+Add a new tutor and enter their basic details.
+
+Details:
+* Name
+* Phone Number
+* Email
+* Gender
+* Location (multiple allowed)
+* Subjects (multiple allowed)
+    * Subject Name
+    * Hourly Rate
+    * Education Level
+    * Years of Experience
+    * Qualifications
+
+Format:
+`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...`
+
+Example Input:
+`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
+
+### List all tutors: `list_tutors`
+
+View a list of all tutors known.
+
+Example Output:
+```
+1) John Doe
+2) Jane Doe
+3) Peter Ng
+```
 ### Adding Appointment : `appointment`
 
 Adds an appointment with a specific tutor to the schedule.<br>
@@ -74,16 +109,11 @@ Examples:<br>
   
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
+**Add Tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
+**List Tutors** | `list_tutors`
 **Appointment** | `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO [l/LOCATION]` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok`
 
