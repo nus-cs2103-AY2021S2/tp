@@ -13,23 +13,29 @@ all the [features](#features) in the RemindMe app. You can also access the produ
 ## Table of Contents
 
 * **[Introduction](#introduction)**
-* **[Start-up](#Start--up)**
+* **[Start-up](#start-up)**
 * **[Features](#features)**
-    * **[1. Show Help Page : `help`](#Show-Help-Page)**
-    * **[2. Turn On/Off Reminder: `remind`](#Turn-On/Off-Reminder)**
-    * **[3. Add an Assignment/Event/Exam: `event/exam/assignment`](#Add-an-Assignment/Event/Exam)**
-    * **[4. Delete an Assignment/Event/Exam: `delete (INDEX)`](#Deleteing-an-Assignment/Event)**
-    * **[5. List Entries: `list`](#List-Entries)**
-      * [5.1 List Assignments: `list assignments`](#List-Assignments)
-      * [5.2 List Events: `list events`](#List-Events)
-      * [5.3 List Exams: `list exams`](#List-Exams)
-    * **[4. Edit an Entry: `edit`](#Edit-an-Entry)**
-    * **[5. Locate Entries: `find`](#Locate-Entries)**
-    * **[6. Calendar View: `calendar`](#Calendar-View)**
-    * **[7. Clear Entries: `clear`](#Clear-Entries)**
-    * **[8. Save the data](#Save-the-data)**
-    * **[9. Edit the data file](#Edit-the-data-file)**
-    * **[10. Exit the program: `exit`](#EXit-the-program)**
+    * **[1. Show Help Page : `help`](#show-help-page--help)**
+    * **[2. Turn On/Off Reminder: `remind`](#turn-onoff-reminder-remind)**
+    * **[3. Add a Module: `add m/MODULE`](#add-a-module-add)**
+      * [3.1 Add an Assignment](#add-an-assignment)
+      * [3.2 Add an Exam](#add-an-exam)
+    * **[4. Add an Event: `event`](#add-an-event-event)**  
+    * **[5. Add a Person as friend: `add`](#add-a-person-as-friend-add)**  
+    * **[6. Delete a Module: `delete`](#delete-a-module-delete)**
+      * [6.1 Delete an Assignment/Exam/Event](#delete-an-assignmentexamevent)
+    * **[7. List Entries: `list`](#list-entries--list)**
+      * [7.1 List Modules: `list module`](#list-modules-list-modules)
+      * [7.2 List Assignments: `list assignments`](#list-assignments--list-assignments)
+      * [7.3 List Events: `list events`](#list-events--list-events)
+      * [7.4 List Exams: `list exams`](#list-exams--list-exams)
+    * **[8. Edit an Entry: `edit`](#edit-an-entry--edit)**
+    * **[9. Locate Entries: `find`](#locate-entries-find)**
+    * **[10. Calendar View: `calendar`](#calendar-view--calendar)**
+    * **[11. Clear Entries: `clear`](#clear-entries--clear)**
+    * **[12. Save the data](#save-the-data)**
+    * **[13. Edit the data file](#edit-an-entry--edit)**
+    * **[14. Exit the program: `exit`](#exit-the-program--exit)**
    
 * **[Glossary](#glossary)**
 * **[Command summary](#command-summary-(RemindMe))**
@@ -123,38 +129,93 @@ Outcome:
 * `reminder is turned on!`
 * `reminder is turned off!`
 
-### Add an Assignment/Event/Exam: `event/deadline`
+### Add a Module: `add`
 
-Adds an assignment/event/exam with deadlines or/and module to the calendar.
-
-Format: 
-
-* `assignment m/MODULE /by DD/MM/YYYY TIME`
-* `event d/DESCRIPTION /from DD/MM/YYYY TIME /to DD/MM/YYYY TIME`
-* `exam m/MODULE /from DD/MM/YYYY TIME /to DD/MM/YYYY TIME`
-
-
-Examples:
-* `assignment CS2103 /by 03/03/2021 2359`
-* `event Christmas Party /from 25/12/2021 1800 /to 25/12/2021 2300`
-* `exam CS2103 /from 21/01/2021 1400 /to 21/01/2021/1600`
-
-### Delete an Assignment/Event/Exam: `delete`
-
-Deletes an assignment/event/exam from the calendar.
+Adds a module to the calendar.
 
 Format: 
 
-* `delete /on (DD/MM/YYYY) /index (INDEX)`
+* `add m/MODULE`
 
 Examples:
-* `delete /on 25/12/2021 /index 1`
+* `add m/cs2103`
+
+### Add an Assignment
+
+Adds an assignment under a module to a calendar with a date or/and with an optional tag/time.
+
+Format:
+* `add m/MODULE a/assignment d/DATE [t/TAG/TIME] `
+
+Examples:
+* `add m/cs2103 a/tut2 d/2021-01-12 t/23:59`
+
+### Add an Exam
+
+Add an exam under a module to a calendar with a date or/and with an optional tag/time.
+
+Format:
+* `add m/MODULE e/exam d/DATE [t/TAG/TIME]`
+
+Examples:
+* `add m/cs2103 e/final d/2021-01-12 t/23:59`
+
+### Add an Event: `event`
+
+Add an event with content and date specified.
+
+Format:
+* `event c/CONTENT d/DATE [t/TAG]`
+
+Examples:
+* `event c/floor party d/2021-4-30`
+
+### Add a Person as friend: `add`
+
+Add a person as friend with its birthday in RemindMe
+
+Format:
+
+* `add n/Name b/BIRTHDAY`
+
+Example:
+
+* `add n/Marcus b/2000-01-01`
+
+### Delete a Module: `delete`
+
+Deletes a module from RemindMe. Removing the module will remove all the relevant 
+exams and assignments.
+
+Format: 
+* `delete m/MODULE`
+
+
+Examples:
+* `delete m/cs2103T`
+
+### Delete an Assignment/Exam/Event
+
+Deletes an assignment/exam/event from the calendar.
+
+Format:
+* `delete i/index d/date`
+
+Examples:
+* `delete i/1 d/2020-11-22`
 
 ### List Entries : `list`
 
 Shows a list of all assignments/events/exam deadlines sorted by date.
 
 Format: `list`
+
+### List Modules: `list modules`
+
+Show a list of modules currently registered in RemindMe.
+
+Format: `list modules`
+
 
 ### List Assignments : `list assignments`
 
@@ -235,9 +296,9 @@ Format: `exit
 
 ## Glossary
 * Module: Consists of a module ID and name.
-* Assignment: Consists of a deadline, and the module involved.
-* Exam: Consists of a start time, end time, date which it occurs on and the module involved.
-* Event: Consists of a start time, end time and the date which it occurs on.
+* Assignment: Consists of the name of the assignment and deadline with an optional tag.
+* Exam: Consists of the name, date and start-time with an optional tag.
+* Event: Consists of the event content and date with an optional tag.
 
 
 ## Command Summary (RemindMe) 
