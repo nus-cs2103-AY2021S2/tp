@@ -236,27 +236,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* Car salesperson working in a multi-brand dealership 
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* Manage contacts faster than a typical mouse/GUI driven app
+
+* Offers a higher success rate of closing deals as car salesperson can focus on selling cars that fits <br> 
+  the customer needs and requirements
+
+* Notify potential clients on promotions and new car launches based on their profile preferences
+
+* Follow-up with ex-customers upon expiry of their COE(Certificate of Entitlement) for new sales opportunity
+
+
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add a new customer             | add new customers to my existing customer base                         |
+| `* * *`  | user                                       | delete an existing customer     | remove customer entries that I no longer require                       |
+| `* * *`  | user                                       | find a customer by name        | locate details of customers without having to go through the entire list |
+| `* * *`  | user                                       | list my customers              | have an overview of my customer contacts                               |
+| `* * *`  | user with numerous customer contacts       | list customer by car type preference  | locate customers who prefer a specific car type easily          |
+| `* * *`  | user with numerous customer contacts       | list customer by car brand preference | locate customers who prefer a specific car brand easily         |
+| `* *`    | user with numerous ex-customers            | list customers with expiring COE   |  have a list of potential customers who might purchase a new car   |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | user with many customers contacts          | sort customer by name          | locate a person easily                                                 |
+| `*`      | user                                       | send customer holiday greetings| maintain cordial relationship with my customer                         | 
+| `*`      | user                                       | track family status of customers| make appropriate recommendations for car type for family              |
 
 *{More to be added}*
 
