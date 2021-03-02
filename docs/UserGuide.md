@@ -22,7 +22,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 
    * **`list`** : Lists all contacts.
 
-   * **`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/1022`** : Adds a client named `John Doe` to the ClientBook.
+   * **`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/Policy_1022`** : Adds a client named `John Doe` to the ClientBook.
 
    * **`delete 3`** : Deletes the 3rd contact shown in the current list.
 
@@ -55,7 +55,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 
 
 * Items with …​ after them can be used multiple times including zero times.
- e.g. `[t/TAG]…​` can be used as   (i.e. 0 times), `t/basicplan`, `t/basicplan t/lifeinsurance` etc.
+ e.g. `[t/TAG]…​` can be used as   (i.e. 0 times), `t/basic`, `t/basic t/lifeinsurance` etc.
 
 
 * Parameters can be in any order.
@@ -92,7 +92,7 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* (example with policy)`add n/John Doe p/98765432 e/johnd@example.com a/Ochard i/Policy_12738176 t/basic`
+* (example with policy)`add n/John Doe p/98765432 e/johnd@example.com a/Ochard i/Policy_1273 t/basic`
 * (example with no policy)`add n/Betsy Crowe e/betsycrowe@example.com a/Kent Ridge t/nopolicy`
 
 ### Listing all persons : `list`
@@ -183,7 +183,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premiunplan t/lifeinsurance`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James & Jake`
