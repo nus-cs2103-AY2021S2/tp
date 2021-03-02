@@ -77,15 +77,15 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Investment g/M b/1995-01-01 c/2010-01-01 pn/Pro-Achiever p$/$2400 c$/$0`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Life g/F pn/Guaranteed Protect Plus p$/$1500`
 
 ### Listing all persons : `list`
 
