@@ -74,8 +74,8 @@ Search passengers according to the constraints such as looking for female driver
 
 Format: `search CONSTRAINT`
 
-- Only one criteria can be search at a time
-- List of constraints that can be searched includes:
+* Only one criteria can be search at a time
+* List of constraints that can be searched includes:
   *availability*, *gender*
 
 > **Examples**:`search female` or `search available`
@@ -115,19 +115,21 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 >* `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-## Delete passengers: `delete`
+### Delete passengers: `delete`
 
 Deletes the specific passenger from the GME terminal.
 
 Format: `delete INDEX`
 
-> **Examples:
--** `list` followed by `delete 3` deletes the *3rd* person in the address book
-- `search female` followed by `delete 3` deletes the *1st* person in the results of `search female` command
-
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* `search female` followed by `delete 3` deletes the *1st* person in the results of `search female` command
+
+> **Examples:
+-** `list` followed by `delete 3` deletes the *3rd* person in the address book
+
+
 
 ## Select passengers to be driven: `drive`
 
@@ -135,10 +137,9 @@ Selects passengers from the current view in the GME terminal.
 
 Format: `drive INDEX [INDEX INDEX...]`
 
-- The order of the passengers' index does not matter
-- The maximum number of passengers that can be selected at once is 6
-
-You can select between 1 to 6 people to drive with one command
+* The order of the passengers' index does not matter
+* The maximum number of passengers that can be selected at once is 6
+* You can select between 1 to 6 people to drive with one command
 
 >**Examples**:
 >* `search female` followed by `drive 2 3 4` selects the the *2nd*, *3rd* and *4th* person in the results of `search female` command
