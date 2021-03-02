@@ -66,11 +66,18 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows information about available commands and how they can be used.
 
 Format: `help`
+
+* If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
+  !['help message'](images/helpMessage.png)
+* If command is specified, detailed information about the command will be displayed. [coming soon]
+
+Examples:
+* `help` Displays summary of all available commands.
+* `help find` Displays detailed information about the find command.
+
 
 
 ### Adding a person: `add`
@@ -83,9 +90,29 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 A person can have any number of tags (including 0)
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can add a person with only some of the information, you can fill in the rest later on.
+</div>
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/John Doe p/98765432`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Adding/replacing tags to a contact: `tag` [coming soon]
+
+Adds or replaces tags to the specified person by index.
+
+Format: `tag INDEX [OPTIONS]…​ [t/TAG]…​`
+
+* Tags the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+
+Currently available options include:
+* `-rt` Replaces the currently existing tags with the given new set of tags 
+  
+Examples:
+*  `tag 4 t/School t/English` Adds the tags School and English to the 4th person.
+*  `tag 2 -rt t/AStar Tuition t/English` Replaces all existing tags of the 2nd person to the tags AStar Tuition and English.
+
 
 ### Listing all persons : `list`
 
@@ -119,13 +146,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Incomplete words will also be matched e.g. `Han` will match `Hans` [coming soon]
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* If no persons can be found for suggestion, message “No results can be found.” will be returned.
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
@@ -141,6 +169,20 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Sorting all persons : `sort` [coming soon]
+
+Sorts the address book in the order based on the given option.
+
+Format: `sort OPTION` 
+
+Currently available options include:
+* `-name` Sorts by name
+* `-date` Sorts by date added
+  
+Examples:
+* `sort -name` returns the contact list sorted in alphabetical order.
+* `sort -date` returns the contact list sorted in chronological order.
 
 ### Clearing all entries : `clear`
 
@@ -189,4 +231,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Tag** | `tag INDEX [OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
+**Sort** | `sort OPTION` <br> e.g., `sort -name`
 **Help** | `help`
