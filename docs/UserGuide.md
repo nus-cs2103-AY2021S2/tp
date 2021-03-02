@@ -116,6 +116,15 @@ Example Output:
 2) Jane Doe
 3) Peter Ng
 ```
+
+### Viewing a tutor: `view_tutor`
+Example Usage: <br>
+Format: `view_tutor 1` <br>  Name: John Doe <br> Phone Number: 98765432 <br> 
+Email Address: johnd@example.com <br> 
+Address: John street, block 123, #01-01 <br> 
+Subject Expertise: English, Mathematics (Sec 3, 4) <br> 
+Hourly Rate: SGD60/hr <br> Years of Experience: 6
+
 ### Adding Appointment : `appointment`
 
 Adds an appointment with a specific tutor to the schedule.<br>
@@ -161,6 +170,6 @@ Action | Format, Examples
 --------|------------------
 **Add Tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
 **List Tutors** | `list_tutors`
+**View Tutor** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
 **Appointment** | `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO [l/LOCATION]` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok`
 **List tuition appointments** | `list_appointments`
-
