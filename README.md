@@ -6,13 +6,13 @@
 PocketEstate enables easy organisation of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage. 
 
 ## User guide
-For more information on how to use PocketEstate, please refer to our [User Guide](./docs/UserGuide.md). 
+For more information on how to use PocketEstate, please refer to our [User Guide](https://ay2021s2-cs2103t-t13-4.github.io/tp/UserGuide.html).
 
 ## Developer Guide
-For more information on the development of PocketEstate, please refer to our [Developer Guide](./docs/DeveloperGuide.md). 
+For more information on the development of PocketEstate, please refer to our [Developer Guide](https://ay2021s2-cs2103t-t13-4.github.io/tp/DeveloperGuide.html).
 
 ## About Us
-We are a team of 5 from the School of Computing, National University of Singapore. For more information, please refer to [About Us](./docs/AboutUs.md) . 
+We are a team of 5 from the School of Computing, National University of Singapore. For more information, please refer to [About Us](https://ay2021s2-cs2103t-t13-4.github.io/tp/AboutUs.html).
 
 ## Acknowledgement
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
