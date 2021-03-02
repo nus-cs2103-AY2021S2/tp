@@ -142,9 +142,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clear all existing orders: `clear`
 
-Clears all entries from the address book.
+Deletes all existing orders in the Cake Collate database.
+
+Warning: this is an undo-able operation.
 
 Format: `clear`
 
