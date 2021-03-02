@@ -13,11 +13,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/xinyue.png" width="200px">
 
-[[homepage](http://xinyuehe.me)]
 [[github](https://github.com/eksinyue)]
 [[portfolio](team/eksinyue.md)]
 
-* Role: Team Lead
+- Role: Team Lead
+- Responsibilities: To be updated
 
 ### Jaryl Loh
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jxrrelo)]
 [[portfolio](team/jaryl.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
 
 ### Lai Yu Heem
 
@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/yuheem)] [[portfolio](team/yuheem.md)]
 
-* Role: Developer
-* Responsibilities: To be updated
+- Role: Developer
+- Responsibilities: To be updated
 
 ### Ong Siying Natasha
 
@@ -45,8 +45,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/natosy)]
 [[portfolio](team/natosy.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
 ### Tan De Yi
 
@@ -55,5 +55,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/deyixtan)]
 [[portfolio](team/deyixtan.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
