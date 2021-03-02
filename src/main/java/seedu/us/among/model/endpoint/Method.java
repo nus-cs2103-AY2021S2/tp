@@ -37,13 +37,13 @@ public class Method {
      * Returns true if a given string is a valid method.
      */
     public static boolean isValidMethod(String test) {
-        // return test.matches(VALIDATION_REGEX);
-        try {
-            MethodType.valueOf(test.toUpperCase());
-            return true;
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
+        return test.matches(VALIDATION_REGEX);
+        // try {
+        //     MethodType.valueOf(test.toUpperCase());
+        //     return true;
+        // } catch (IllegalArgumentException ex) {
+        //     return false;
+        // }
     }
 
     @Override
