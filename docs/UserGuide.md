@@ -14,9 +14,9 @@ PocketEstate enables easy organization of mass clientele property information th
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `pocketestate.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your PocketEstate.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,11 +26,9 @@ PocketEstate enables easy organization of mass clientele property information th
 
    * **`list`** : Lists all properties and appointments in the app.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add property`**`n/Mayfair t/Condo a/1 Jurong East Street 32 p/ 609477 d/31-12-2021` : Adds a property with the corresponding information to the PocketEstate app.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`delete property`**`2` : Deletes the 2nd property shown in the current list of properties.
 
    * **`exit`** : Exits the app.
 
