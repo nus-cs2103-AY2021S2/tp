@@ -22,9 +22,9 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/1022` : Adds a client named `John Doe` to the ClientBook.
+   * **`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/1022`** : Adds a client named `John Doe` to the ClientBook.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete 3`** : Deletes the 3rd contact shown in the current list.
 
    * **`exit`** : Exits the app.
 
