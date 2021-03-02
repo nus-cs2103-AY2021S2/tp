@@ -236,14 +236,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* tech-savvy parents
+* need to manage a significant number of their young children's contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven app
+* easily keep track of their children's contacts in one centralised platform
+* organise, categorise and sort their contacts easily
 
 ### User stories
 
