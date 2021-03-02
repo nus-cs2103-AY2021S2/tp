@@ -12,4 +12,17 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+
+    /* Option definitions for UI Command*/
+    public static final Option OPTION_DICTIONARY_PANEL = new Option("d");
+    public static final Option OPTION_DICTIONARY_CONTENT_PANEL = new Option("dc");
+    public static final Option OPTION_DICTIONARY_LIST_PANEL = new Option("dl");
+    public static final Option OPTION_NOTE_PANEL = new Option("-n");
+    public static final Option OPTION_NOTE_CONTENT_PANEL = new Option("-nc");
+    public static final Option OPTION_NOTE_LIST_PANEL = new Option("-nl");
+    public static final Option OPTION_LIST_PANEL = new Option("-l");
+    public static final Option OPTION_CONTENT_PANEL = new Option("-c");
+    public static final Option OPTION_ALL_PANEL = new Option("-a");
+
+
 }
