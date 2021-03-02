@@ -16,7 +16,7 @@ import seedu.address.model.residence.exceptions.ResidenceNotFoundException;
  * A list of residences that enforces uniqueness between its elements and does not allow nulls.
  * A residence is considered unique by comparing using {@code Residence#isSameResidence(Residence)}.
  * As such, adding and updating of residences uses Residence#isSameResidence(Residence) for equality
- * so as to ensure that the person being added or updated is unique in terms of identity in the UniqueResidenceList.
+ * so as to ensure that the residence being added or updated is unique in terms of identity in the UniqueResidenceList.
  * However, the removal of a Residence uses Residence#equals(Object) so as to ensure that the Residence
  * with exactly the same fields will be removed.
  *
