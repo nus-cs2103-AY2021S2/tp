@@ -9,13 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### He Xinyue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xinyue.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](http://xinyuehe.me)]
+[[github](https://github.com/eksinyue)]
+[[portfolio](team/eksinyue.md)]
 
 * Role: Team Lead
 
