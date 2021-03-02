@@ -115,25 +115,25 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 >* `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+## Delete passengers: `delete`
 
-Deletes the specified person from the address book.
+Deletes the specific passenger from the GME terminal.
 
 Format: `delete INDEX`
+
+> **Examples:
+-** `list` followed by `delete 3` deletes the *3rd* person in the address book
+- `search female` followed by `delete 3` deletes the *1st* person in the results of `search female` command
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
->**Examples**:
->* `list` followed by `delete 2` deletes the 2nd person in the address book.
->* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
 ## Select passengers to be driven: `drive`
 
 Selects passengers from the current view in the GME terminal.
 
-Format: `drive p/INDEX [p/INDEX p/INDEX...]`
+Format: `drive INDEX [INDEX INDEX...]`
 
 - The order of the passengers' index does not matter
 - The maximum number of passengers that can be selected at once is 6
