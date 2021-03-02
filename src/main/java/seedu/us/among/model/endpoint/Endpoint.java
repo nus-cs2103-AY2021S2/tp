@@ -57,7 +57,7 @@ public class Endpoint {
             return true;
         }
 
-        return otherEndpoint != null && otherEndpoint.getMethod().equals(getMethod());
+        return otherEndpoint != null && this.equals(otherEndpoint);
     }
 
     /**

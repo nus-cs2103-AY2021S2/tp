@@ -11,7 +11,7 @@ import org.apache.commons.lang3.EnumUtils;
  */
 public class Method {
 
-    public static final String MESSAGE_CONSTRAINTS = "Methods should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Methods only consists of GET, POST, PUT, DELETE, HEAD, OPTIONS and PATCH ";
 
     /*
      * The first character of the address must not be a whitespace, otherwise " " (a
@@ -31,7 +31,7 @@ public class Method {
     public Method(String method) {
         requireNonNull(method);
         checkArgument(isValidMethod(method), MESSAGE_CONSTRAINTS);
-        methodName = method;
+        methodName = method.toUpperCase();
     }
 
     /**
