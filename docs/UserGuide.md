@@ -89,6 +89,25 @@ Format: `deletebook INDEX`
 Examples:
 * listbook followed by `deletebook 2` deletes the 2nd book in the book list.
 
+
+### Listing all books: `listbook`
+
+Lists all the current in-store books.
+
+Format: `listbook`
+
+
+### Locating books by name: `findbook`
+
+Finds books whose names contain any of the given keywords.
+
+Format: `findbook KEYWORD [MORE_KEYWORDS]`
+
+Examples: 
+*`findbook fiction` returns books related to fiction
+*`findbook history [American History]` returns books related to history, especially American history.
+
+
 ### Listing all readers : `listreader`
 
 Shows a list of all readers in SmartLib.
