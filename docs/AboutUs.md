@@ -17,12 +17,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Team Lead
 
-### Jane Doe
+### Kieron Koh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kieron560.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kieron560)]
 
 - Role: Team Lead
 - Responsibilities: UI
@@ -36,11 +35,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Data
 
-### Jean Doe
+### Jerard Soh
 
-<img src="images/JerardSoh.png" width="200px">
+<img src="images/jerardsoh.png" width="200px">
 
-[[github](http://github.com/JerardSoh)]
+[[github](http://github.com/jerardsoh)]
 
 - Role: Developer
 - Responsibilities: Storage
