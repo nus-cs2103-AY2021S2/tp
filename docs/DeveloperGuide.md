@@ -257,6 +257,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | Beginner	                                | Add contacts	                 | add contacts                                                     |
+| `* *`	   | User	                                    | Add incomplete contacts	     | easily save contacts I don't have all the contact information for easily without having to use placeholders
+| `* *`    | Beginner	                                | Add contacts easily 	         | save time
+| `* * *`  | Beginner	                                | Update contacts	             | change the details of my contacts
+| `* * *`  | Beginner	                                | Be able to view a user guide	 | learn to use the app
+| `* * *`  | Parent of multiple children	            | Be able to view a user guide	 | troubleshoot any problems that I encounter
+| `* * *`  | Parent of multiple children	            | Tag my contacts by child	     | easily identify which child the contact is related to
+| `* * *`  | User	                                    | Tag my contacts by other categories	| identify the contacts more easily (i.e. by subject, lesson etc.)
+| `*`      | Beginner	                                | Download the app easily	     | use the app quickly
+| `* *`    | Beginner	                                | Add photos to contacts	     | match the contacts' names to their faces easily
+| `*`      | User	                                    | Colour code my tags	         | easily differentiate my contacts at a glance
+| `* *`    | User	                                    | Search for contacts by tag	 | search for contacts quickly and easily
+| `* * *`  | User	                                    | Search for contacts by name    | search for contacts quickly and easily
+| `*`      | User	                                    | Search for contacts by number  | search for contacts quickly and easily
+| `* *`    | User	                                    | Sort my contacts by tag	     | search for contacts quickly and easily
+| `* *`    | User	                                    | Sort my contacts by name	     | search for contacts quickly and easily
+| `*`      | User	                                    | Sort my contacts by the closest appointment time	| find out my next upcoming appointment quickly.
+| `* *`    | User	                                    | Export my contacts	         | share the contacts with other people/transfer to other devices.
+| `*`      | User	                                    | Sync my contacts with my partner | add or update the contacts for our children once such that both of us are able to see the changes.
+| `* *`    | User	                                    | Remove all contacts saved under a certain tag	| quickly clear contacts that I no longer need because my child has graduated.
+| `* *`    | User	                                    | Remove all selected contacts	 |quickly clear contacts that I no longer need
+| `*`      | User who works under different lighting conditions	| Change the colour scheme of my app | view the contents more clearly and my app looks better visually.
+| `* *`    | Careless user	                            | Receive a notification before deleting my contacts | prevent deleting important contacts by accident
+| `* *`    | Careless user	                            | Undo my actions	             | undo any careless mistakes
+| `*`      | Careless user	                            | Have a bin for deleted contacts | retrieve any contacts deleted by mistake
+| `* *`    | User	                                    | Add an appointment time with a particular contact	| keep track of any meetings I have with my children’s teachers.
+| `* *`    | Parent of multiple children	            | Record appointment dates and times and | keep track of all appointments I need
+| `*`      | Parent of multiple children	            | Be notified of clashes in appointments | ensure that I/my children can attend all of the appointments
+| `*`      | Caring Parent                              | Favourite contacts	         | ensure that the important contacts are at the forefront of my list.
+| `*`      | Frequent user of the app	                | Have shortcuts to quickly add contacts/details | save the contact/details first thing when I receive them
+| `*`      | User who contacts some people more frequently than others	| Have a list of recently contacted contacts | view their details easily.
+| `* * *`  | User	                                    | Have a list of contact         | view all contacts at the same time
+| `* * *`  | User	                                    | Be able to view the number, email address of my contacts	| all or email them quickly
+
 
 *{More to be added}*
 
