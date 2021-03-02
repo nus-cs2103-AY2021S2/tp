@@ -301,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HeliBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Edit a person**
+**UC1: Edit a person**
 
 **MSS**
 
@@ -325,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
     
     
-**Use case: Delete a person**
+**UC2: Delete a person**
 
 **MSS**
 
@@ -348,7 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a tag to a person**
+**UC3: Add a tag to a person**
 
 **MSS**
 
