@@ -128,19 +128,20 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting an order : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified order from the address book.
 
-Format: `delete INDEX`
+Format: `delete ID...`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the orders with the specified ids.
+* The `ID` refers to the order `ID` number shown in the list of orders.
+* One or more ids can be entered.  
+* The `ID` **must be valid**.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the order with `ID` 2 from the CakeCollate database.
+* `delete 2 3` deletes the orders with ids 2 and 3 from the CakeCollate database.
 
 ### Clearing all entries : `clear`
 
