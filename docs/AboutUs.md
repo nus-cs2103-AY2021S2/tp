@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Charles Lee Lin Ta
@@ -14,6 +12,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/charleslee01.png" width="200px">
 
 [[github](https://github.com/CharlesLee01)]
+[[portfolio](team/charleslee.md)]
 
 * Role: Developer
 * Responsibilities: Add command
@@ -42,6 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/shaelynl.png" width="200px">
 
 [[github](http://github.com/shaelynl)]
+[[portfolio](team/shaelynlam.md)]
 
 * Role: Developer
 * Responsibilities: Help command
@@ -61,6 +61,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhanganli.png" width="200px">
 
 [[github](http://github.com/ZhangAnli)]
+[[portfolio](team/zhanganli.md)]
 
 * Role: Developer
 * Responsibilities: Delete command
