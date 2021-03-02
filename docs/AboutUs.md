@@ -3,60 +3,58 @@ layout: page
 title: About Us
 ---
 
-HeliBook is a application that stores, manages and allows for quick access to your child's important contacts. 
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-We are the team behind HeliBook. We are based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
+You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### John Doe
 
+<img src="images/johndoe.png" width="200px">
 
-### Liao Xing Peng
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+[[github](https://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-<img src="images/mechastriker3.png" width="200px">
+* Role: Project Advisor
 
-[[github](http://github.com/mechastriker3)]
-[[portfolio](team/mechastriker3.md)]
+### Jane Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: Adding Contacts
+* Responsibilities: UI
 
-### Clarissa Lee
+### Johnny Doe
 
-<img src="images/clarlzx.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/clarlzx)] [[portfolio](team/clarlzx.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Deliverables and deadlines
-* Responsibilities: Search Contacts
+* Role: Developer
+* Responsibilities: Data
 
-### Edeline Tenges
+### Jean Doe
 
-<img src="images/edelinetenges.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/edelinetenges)]
-[[portfolio](team/edelinetenges.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-* Role: Graphics and Design
-* Responsibilities: UI, Sorting Contacts
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
-### Huang Wei Cong
+### James Doe
 
-<img src="images/stratostorm.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/Stratostorm)]
-[[portfolio](team/stratostorm.md)]
-
-* Role: Testing, Code Quality
-* Responsibilities: Tagging Contacts
-
-### Nicole Ang
-
-<img src="images/nicoleang09.png" width="200px">
-
-[[github](http://github.com/nicoleang09)]
-[[portfolio](team/nicoleang09.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Documentation
 * Responsibilities: UI, Help Function
+
