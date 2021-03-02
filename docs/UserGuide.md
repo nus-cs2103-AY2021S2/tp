@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Bob the Underwriting Insurance Agent is a **desktop app for managing insurance clients’ information, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Bob can get your client management tasks done faster than any other insurance clients’ information management app in the market. 
 
 * Table of Contents
 {:toc}
@@ -64,36 +64,65 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### List out all available commands : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a list of all available commands for use in the app.
 
 Format: `help`
 
+Example: `help`
 
-### Adding a person: `add`
+Output: 
 
-Adds a person to the address book.
+`1) add n/Name p/phoneNumber a/Age l/Location`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+`2) delete Name`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+`3) list`
+
+`4) help`
+
+### Adding a client's contact: `add`
+
+Adds a client to the contact book.
+
+Format: `add n/Name p/phoneNumber a/Age l/Location`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add /nShrek p/66666666 a/69 l/Swamp`
 
-### Listing all persons : `list`
+### Deleting a client's contact: `delete`
 
-Shows a list of all persons in the address book.
+Deletes a client from the contact book.
+
+Format: `delete Name`
+
+Examples:
+* `delete Lord Farquaad`
+
+### Listing out all client contacts : `list`
+
+Shows a list of all your saved client contacts.
 
 Format: `list`
 
-### Editing a person : `edit`
+Example: `list`
+
+Output: 
+
+`1) Shrek`
+
+`2) Fiona`
+
+`3) Lord Farquaad`
+
+`4) Donkey`
+
+`5) Onions`
+
+`6) Dragon`
+
+### Editing a client contact[Coming soon] : `edit`
 
 Edits an existing person in the address book.
 
@@ -110,7 +139,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name[Coming soon] : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -128,7 +157,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person[Coming soon] : `delete`
 
 Deletes the specified person from the address book.
 
@@ -142,13 +171,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all entries[Coming soon] : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program[Coming soon] : `exit`
 
 Exits the program.
 
