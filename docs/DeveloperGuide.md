@@ -14,16 +14,16 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 ## **Target User Profile**
 
-The target user profile are dog school managers that own and manage the daily operations of the dog schools. They handle 
-a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care of the 
-dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school at all 
-times. 
+The target user profile are dog school managers that own and manage the daily operations of the dog schools. They handle
+a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care of the
+dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school at all
+times.
 
 ## **Value Proposition**
 
-In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training, 
-grooming and workshops. With many moving parts daily, managing operations  can get overwhelming. 
-PawBook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services 
+In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training,
+grooming and workshops. With many moving parts daily, managing operations  can get overwhelming.
+PawBook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services
 and maintain organisation.
 
 
@@ -264,7 +264,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * manage contacts faster than a typical mouse/GUI driven app
 * saves significant time for the business owner, who beforehand had to manage the details of dogs and owners
 * consolidates information on dogs, owners and programs into one place
@@ -286,7 +286,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Dog school manager   | Enrol dogs into a specific dog program | Dogs who recently joined a program are added to the class list |
 | `* *`    | Dog school manager   | Drop dogs out of a specific dog program | Dogs that have left the class are no longer in the class list  |
 | `* *`    | Advanced user        | Edit in bulk quickly without having to be familiar with the app | Minimize chance of someone else seeing them by accident |
-                                          
+    
 *{More to be added}*
 
 ### Use cases
@@ -310,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User supplies missing details.
 
       Use case resumes at step 2.
-    
+
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
 **Use case: UC02 - Delete a dog/owner profile or program**
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has `Java 11` or above installed.
 2.  Should be able to hold up to 1000 dogs, owners and dog programs without a noticeable sluggishness in performance for typical usage.
-3.  Should be usable by a tech novice who is not familiar with CLI. 
+3.  Should be usable by a tech novice who is not familiar with CLI.
 4.  Should respond within 2 seconds.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 6.  A simple interface that is easy to navigate.

@@ -17,7 +17,7 @@ This document is created by **CS2103T-T10-Group1**.
 * **Quick start**
 * **Features**
   * Add a dog/owner/program to database: `add`
-  * Delete a dog/owner/program profile: `delete` 
+  * Delete a dog/owner/program profile: `delete`
   * Show the list of dogs based on search: `list`
   * Enrol a dog to a program: `enrol` (WIP)
   * Drop a dog from a program: `drop` (WIP)
@@ -45,7 +45,7 @@ NOTE: Please refer to the features below for details of each command.
 ## Features of Pawbook
 
 ### Add Command
-Adds a dog/owner/program to Pawbook. 
+Adds a dog/owner/program to Pawbook.
 
 Format:
 
@@ -66,28 +66,28 @@ Examples:
 
 ### Delete Command
 
-Deletes a dog/owner/program from Pawbook. 
+Deletes a dog/owner/program from Pawbook.
 
-Format: 
+Format:
 ```
 delete dog d/<DOG ID>
 delete owner o/<OWNER ID>
 delete program p/<PROGRAM ID>
 ```
-- Deletes the dog/owner/program with the given ID. 
+- Deletes the dog/owner/program with the given ID.
 - The ID must be a positive integer 1, 2, 3, ...
 
-Examples: 
+Examples:
 1) Deletes the dog with ID 1 in Pawbook. <br/>
 Command: `delete dog d/1`
-   
+
 2) Deletes the owner with ID 2 in Pawbook. <br/>
 Command: `delete owner o/2`
-   
-3) Deletes the program with ID 3 in Pawbook. <br/> 
+
+3) Deletes the program with ID 3 in Pawbook. <br/>
 Command: `delete program p/3`
 
-### List Command 
+### List Command
 
 Shows a list of dogs in the specified category/program. <br/>
 
@@ -98,7 +98,7 @@ list b/golden retriever
 list c/puppy
 list t/brown
 ```
-Examples: 
+Examples:
 1) List all golden retrievers in the school <br/>
    Command: `list b/golden retriever`
 
@@ -108,15 +108,15 @@ Examples:
 3) List all brown dogs <br/>
    Command: `list t/brown`
 
-**NOTE:** If the argument is left blank i.e `list`, all the dog profiles in the school will be displayed. 
+**NOTE:** If the argument is left blank i.e `list`, all the dog profiles in the school will be displayed.
 
 
-### Help Command 
+### Help Command
 
-If you are unsure about how to use Pawbook, execute the `help` command to view a complete list of application 
+If you are unsure about how to use Pawbook, execute the `help` command to view a complete list of application
 instructions.
 
-Format: `help` 
+Format: `help`
 
 ### Exit Command
 
@@ -130,7 +130,7 @@ Q: How do I transfer my data to another Computer?</br>
 A: Install the app in the other computer and overwrite the empty data file it creates with
 the file that contains the data of your previous Pawbook home folder.</br>
 -----
-## Command Summary 
+## Command Summary
 
 Action | Format
 --------|------------------
