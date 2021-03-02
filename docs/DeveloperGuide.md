@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a menu item
 2.  JJIMY adds the menu item
 
-**Extensinos**
+**Extensions**
 
 *1a. JIMMY detects duplicate
  *1a1. JIMMY shows an error message
@@ -378,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: List all contacts**
+**Use case: List all menu items**
 
 **MSS**
 
@@ -388,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use case: Delete a contact**
+**Use case: Delete a menu item from the menu**
 
 **MSS**
 
@@ -484,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Find a order**
+**Use case: Find an order**
 
 1. User requests to list orders
 2. JJIMY shows a list of orders
@@ -510,13 +510,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add an inventory item
-2.  JJIMY adds the inventory item
+2.  If the quantity is 0, JJIMY adds a new ingredient, otherwise it increments the quantity
+
 
 **Extensions**
-
-*1a. JIMMY detects duplicate
- *1a1. JIMMY shows an error message
-	Use case ends
 
     Use case ends.
 
@@ -530,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use case: Delete an order**
+**Use case: Delete an inventory item**
 
 **MSS**
 
@@ -553,6 +550,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Decrease the quantity of an inventory item**
+
+**MSS**
+
+1. User requests to list all inventory items
+2.  JJIMY shows a list of all inventory items
+3.  User requests to decrease the quantity of a specific inventory item in the list
+4.  JJIMY decreases the quantity inventory item
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
 
 
 **Use case: Find a inventory item**
@@ -587,4 +604,3 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
