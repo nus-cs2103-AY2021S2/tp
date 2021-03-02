@@ -74,6 +74,7 @@ Shows a message explaning how to access the help page.
 **Format:** `command`
 
 **Expected output:**
+
 Expected outcome\
 Expected outcome
 
@@ -85,6 +86,7 @@ Adds a person to the address book.
 **Format:** `command`
 
 **Expected output:**
+
 Expected outcome\
 Expected outcome
 
@@ -95,6 +97,7 @@ Shows a list of all persons in the address book.
 **Format:** `command`
 
 **Expected output:**
+
 Expected outcome\
 Expected outcome
 
@@ -107,6 +110,7 @@ Gets a recommended diet plan based on the user's current BMI stored in the syste
 **Format:** `plan recommended bmi`
 
 **Expected output:**
+
 Here is the recommended diet plan for your BMI of 29.4:
 1) Weight Loss Diet (Less-carbs)
 
@@ -117,6 +121,7 @@ Shows the current active diet plan previously selected by the user.
 **Format:** `plan current`
 
 **Expected output:**
+
 You are on the Weight Loss Diet (Less-carbs)\
 Here's the information tailored to your BMI:\
 Daily calories intake: 1,648 kcal\
@@ -133,6 +138,7 @@ Changes the current active diet plan to the newly specified plan.
 **Example:** `start p/1`
 
 **Expected output:**
+
 You are now on the Weight Loss Diet (Less-carbs)!\
 Here's the information tailored to your BMI:\
 Daily calories intake: 1,648 kcal\
@@ -147,6 +153,7 @@ Displays a list of available diet plans.
 **Format:** `plans`
 
 **Expected output:**
+
 Here are the available diet plans:
 1) Weight Loss Diet
 2) Weight Gain Diet
