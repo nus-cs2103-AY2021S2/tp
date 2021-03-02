@@ -1,13 +1,13 @@
 {
-  "persons": [ {
+  "resident": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "room": "#01-23"
+    "room": "01-234"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "room": "#01-23"
+    "room": "01-234"
   } ]
 }

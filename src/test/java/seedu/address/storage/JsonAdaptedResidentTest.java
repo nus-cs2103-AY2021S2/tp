@@ -8,10 +8,10 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Room;
+import seedu.address.model.resident.Email;
+import seedu.address.model.resident.Name;
+import seedu.address.model.resident.Phone;
+import seedu.address.model.resident.Room;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
