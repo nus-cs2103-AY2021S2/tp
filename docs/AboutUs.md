@@ -27,14 +27,14 @@ Damith Chatura Rajapakse
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Huang, Po-Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/georgepwhuang.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/georgepwhuang)] [[portfolio](team/georgepwhuang.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Deliverables and deadlines + IntelliJ 
 
 ### Koh Huai Ze
 
