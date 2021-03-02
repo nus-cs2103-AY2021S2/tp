@@ -236,14 +236,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is an insurance agent
 * has a need to manage a significant number of contacts
+* has a need to maintain close relations with clients over a long time period (usually 10+ years)
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+* manage contacts faster than a typical mouse/GUI driven app
+* maintain notes on their client, their needs, their likes/dislikes, insurance plans, applications for insurance claims, etc.
+* get automated reminders about upcoming meetups/ notifications if they haven’t contacted clients in a long time.
 
 ### User stories
 
@@ -349,13 +353,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Scheduling a meetup with a client**
+
+**MSS**
+
+1.  User requests to list clients
+2.  AddressBook shows a list of clients
+3.  User requests to schedule a meeting a specific client in the list at a specified date and time
+4.  AddressBook adds the specified client, as well as the specified date and time of the meeting, to the schedule list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given date-and-time has an invalid syntax (eg. user input HH:MM_yyyy-mm-dd instead of yyyy-mm-dd_HH:MM
+  (correct version))
+
+    * 3b1. AddressBook shows an error message and reminds the user of the correct format.
+
+      Use case resumes at step 2.
+
+* 3c. The given date-and-time is invalid (eg. user input 2020-02-31_14:30)
+
+    * 3c1. AddressBook shows an error message
+
+      Use case resumes at step 2.
+
+* 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting client no.24601 at
+  2020/2/28 2:30 pm but is also meeting client no.24600 at the same time)
+
+    * 3d1. AddressBook alerts the user that the meeting coincides with another meeting with a specified client
+      and asks the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
+
+      If Y, use case continues to step 4. If N, user case resumes at step 2.
+
 **Use case: Filter according to tag**
 
 **MSS**
 
 1.  User requests to search for persons according to tag.
 2.  AddressBook shows the list of persons
-
+    
     Use case ends.
 
 **Extensions**
@@ -369,8 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. AddressBook shows an error message.
 
       Use case resumes at step 1.
-
-
+    
 **Use case: Filter according to tag**
 
 **MSS**
@@ -395,6 +442,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Non-Functional Requirements
+
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The software should not use any OS-dependent libraries and OS-specific features.
