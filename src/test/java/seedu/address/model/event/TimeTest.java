@@ -20,7 +20,7 @@ public class TimeTest {
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidTime() {
         // null time
         assertThrows(NullPointerException.class, () -> Time.isValidTime(null));
 
