@@ -21,7 +21,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, UiAction uiAction) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.uiAction = uiAction = uiAction;
+        this.uiAction = uiAction;
     }
 
     /**
