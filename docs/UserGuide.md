@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-#User Guide
+# User Guide
 
 `semester.config` is a **desktop app for managing details, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). 
@@ -166,8 +166,7 @@ Example:
 
 `semester.config` data are saved as a JSON file `[JAR file location]/data/semesterconfig.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, semester.config will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-warning"><b>:exclamation: Caution</b> If your changes to the data file makes its format invalid, semester.config will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
