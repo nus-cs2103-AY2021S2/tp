@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Task {
 
     // Identity fields
-    private final Name name;
+    private final Title title;
     private final Phone phone;
     private final Email email;
 
@@ -27,17 +27,17 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Task(Title title, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(title, phone, email, address, tags);
+        this.title = title;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Title getTitle() {
+        return title;
     }
 
     public Phone getPhone() {
@@ -61,7 +61,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if both tasks have the same title.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
@@ -70,7 +70,7 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && otherTask.getTitle().equals(getTitle());
     }
 
     /**
@@ -88,7 +88,7 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getName().equals(getName())
+        return otherTask.getTitle().equals(getTitle())
                 && otherTask.getPhone().equals(getPhone())
                 && otherTask.getEmail().equals(getEmail())
                 && otherTask.getAddress().equals(getAddress())
@@ -98,13 +98,13 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(title, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getTitle())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

@@ -8,9 +8,9 @@ import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.
@@ -32,7 +32,7 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
-        descriptor.setName(task.getName());
+        descriptor.setTitle(task.getTitle());
         descriptor.setPhone(task.getPhone());
         descriptor.setEmail(task.getEmail());
         descriptor.setAddress(task.getAddress());
@@ -40,10 +40,10 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Title} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+    public EditTaskDescriptorBuilder withTitle(String title) {
+        descriptor.setTitle(new Title(title));
         return this;
     }
 

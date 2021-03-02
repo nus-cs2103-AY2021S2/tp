@@ -1,11 +1,11 @@
 {
   "tasks": [ {
-    "name": "Valid Task",
+    "title": "Valid Task",
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street"
   }, {
-    "name": "Task With Invalid Phone Field",
+    "title": "Task With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street"

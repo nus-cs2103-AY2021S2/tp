@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
 import static seedu.address.testutil.TypicalTasks.BOB;
@@ -31,22 +31,22 @@ public class TaskTest {
         // null -> returns false
         assertFalse(ALICE.isSameTask(null));
 
-        // same name, all other attributes different -> returns true
+        // same title, all other attributes different -> returns true
         Task editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different title, all other attributes same -> returns false
+        editedAlice = new TaskBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
-        Task editedBob = new TaskBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        // title differs in case, all other attributes same -> returns false
+        Task editedBob = new TaskBuilder(BOB).withTitle(VALID_TITLE_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameTask(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new TaskBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        // title has trailing spaces, all other attributes same -> returns false
+        String titleWithTrailingSpaces = VALID_TITLE_BOB + " ";
+        editedBob = new TaskBuilder(BOB).withTitle(titleWithTrailingSpaces).build();
         assertFalse(BOB.isSameTask(editedBob));
     }
 
@@ -68,8 +68,8 @@ public class TaskTest {
         // different task -> returns false
         assertFalse(ALICE.equals(BOB));
 
-        // different name -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different title -> returns false
+        Task editedAlice = new TaskBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Name;
+import seedu.address.model.task.Title;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
@@ -16,12 +16,12 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_TITLE = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
+    private Title title;
     private Phone phone;
     private Email email;
     private Address address;
@@ -31,7 +31,7 @@ public class TaskBuilder {
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
-        name = new Name(DEFAULT_NAME);
+        title = new Title(DEFAULT_TITLE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -42,7 +42,7 @@ public class TaskBuilder {
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
     public TaskBuilder(Task taskToCopy) {
-        name = taskToCopy.getName();
+        title = taskToCopy.getTitle();
         phone = taskToCopy.getPhone();
         email = taskToCopy.getEmail();
         address = taskToCopy.getAddress();
@@ -50,10 +50,10 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Task} that we are building.
+     * Sets the {@code Title} of the {@code Task} that we are building.
      */
-    public TaskBuilder withName(String name) {
-        this.name = new Name(name);
+    public TaskBuilder withTitle(String title) {
+        this.title = new Title(title);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name, phone, email, address, tags);
+        return new Task(title, phone, email, address, tags);
     }
 
 }

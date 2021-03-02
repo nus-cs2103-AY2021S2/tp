@@ -222,7 +222,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of task data. We achieve that by working with the `Task` model. Each field in a Task is implemented as a separate class (e.g. a `Name` object represents the task’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a task.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of task data. We achieve that by working with the `Task` model. Each field in a Task is implemented as a separate class (e.g. a `Title` object represents the task’s title). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a task.
 
 ### Add a new `Remark` class
 
@@ -341,7 +341,7 @@ save it with `Model#setTask()`.
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = new Task(taskToEdit.getName(), taskToEdit.getPhone(), taskToEdit.getEmail(),
+        Task editedTask = new Task(taskToEdit.getTitle(), taskToEdit.getPhone(), taskToEdit.getEmail(),
                 taskToEdit.getAddress(), remark, taskToEdit.getTags());
 
         model.setTask(taskToEdit, editedTask);
