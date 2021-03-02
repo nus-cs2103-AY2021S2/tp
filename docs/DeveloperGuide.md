@@ -279,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. HEY MATEz shows an error message
 
   Use case ends.
-  
+
 **Use case: View members**
 
 **MSS**
