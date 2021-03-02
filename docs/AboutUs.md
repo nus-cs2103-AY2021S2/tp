@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI, Deliverables and deadlines
 
-### Prerthan
+### Prerthan Munireternam
 
 <img src="images/prerthan99.png" width="200px">
 
