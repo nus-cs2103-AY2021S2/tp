@@ -112,7 +112,7 @@ Examples:
 *  `sort appointment asc deadline` Sorts `appointment` by `deadline` in ascending order.
 *  `sort property desc price` Sorts `property` by `price` in descending order.
 
-### Editing a property : `edit`
+### Editing a property : `edit property`
 
 Overwrites the information of the property according to the flags provided.
 
@@ -177,58 +177,42 @@ Examples:
 *  `delete property 7` Deletes the `property` at index `7`.
 
 ### Filtering: `find`
+
 Finds properties or appointments that matches the criterion provided.
 
 Formats:
+* `find appointment [keywords] [option...]`
+* `find property [keywords] [option...]`
 
-`find appointment [keywords] [option...]`
-
-`find property [keywords] [option...]`
-
-There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty.
+Description:
+* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty.
 
 Options:
-
-`r/[REMARKS]`
+* `r/[REMARKS]`
 
 Search for properties or appointments whose remarks field contain patterns specified in `[REMARKS]`
 
-`pm/[PRICE]`
+* `pm/[PRICE]`
 
 Search for properties with prices more than `[PRICE]`, ignored if used with appointment
 
-`pl/[PRICE]`
+* `pl/[PRICE]`
+
 Search for properties with prices less than `[PRICE]`, ignored if used with appointment
 
-Example:
-
-`find property “jurong west”`
-
-`find appointment “fri” r/”come in afternoon”`
-
-`find property pm/500000`
-
-`find property “bishan” “north” “mrt” r/”recently renovated”`
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find property "jurong west"`
+* `find appointment "fri" r/"come in afternoon"`
+* `find property pm/500000`
+* `find property "bishan" "north" "mrt" r/"recently renovated"`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all properties or appointments from the app.
 
-Format: `clear`
+Formats:
+* `clear property`
+* `clear appointment`
 
 ### Exiting the program : `exit`
 
@@ -238,14 +222,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PocketEstate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+PocketEstate data are saved as a JSON file `[JAR file location]/data/pocketestate.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -257,7 +241,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PocketEstate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -267,14 +251,13 @@ Action | Format, Examples
 --------|------------------
 **Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]` <br> e.g., `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000`
 **Add appointment** | `add appointment n/NAME r/REMARKS d/DATE [t/TIME]` <br> e.g., `add appointment n/Meet Alex r/at M hotel d/17-2-2021 t/1500`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear** | `clear property` <br> `clear appointment`
 **Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]`<br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
 **Add new status** | `update INDEX new AMOUNT`<br> e.g.,`update 1 new 600000`
-**Update status** | `update INDEX [proceed][cancel]`<br> e.g.,`update 3 proceed`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Update status** | `update INDEX [proceed][cancel]`<br> e.g. `update 3 proceed`
+**Find** | `find appointment [keywords] [option...]` <br> e.g. `find appointment "fri" r/"come in afternoon"` <br><br> `find property [keywords] [option...]` <br> e.g., `find property "jurong west"`
 **List** | `list`
 **Sort** | `sort appointment [asc or desc] <deadline or task type>`<br> e.g., `sort appointment asc deadline`<br><br>`sort property [asc or desc] <price or location or housing type>`<br> e.g., `sort property asc price`
-**Remove an entry** | `delete <appointment or property> INDEX`<br> e.g., `delete appointment 7`
+**Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **Help** | `help`
