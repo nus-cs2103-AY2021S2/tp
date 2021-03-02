@@ -114,7 +114,7 @@ Format: `delete INDEX`
 
 
 
-## Select passengers to be driven: `drive`
+### Select passengers to be driven: `drive`
 
 Selects passengers from the current view in the GME terminal.
 
