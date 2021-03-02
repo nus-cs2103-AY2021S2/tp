@@ -32,12 +32,12 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
-- Viewing help : help
-- Adding a client: add
-- List all clients: list
-- Locating clients by name: find
-- Deleting a client : delete
-- Exiting the program : exit
+- Viewing help : `help`
+- Adding a client: `add`
+- List all clients: `list`
+- Locating clients by name: `find`
+- Deleting a client : `delete`
+- Exiting the program : `exit`
 - Saving the data 
 
 --------------------------------------------------------------------------------------------------------------------
