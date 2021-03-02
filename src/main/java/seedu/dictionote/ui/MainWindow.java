@@ -15,6 +15,7 @@ import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.logic.Logic;
 import seedu.dictionote.logic.commands.CommandResult;
+import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
@@ -191,22 +192,35 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
+            executeUiAction(commandResult.getUiAction());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    /**
+     * Executes the Ui Action desired from the command.
+     *
+     * @see seedu.dictionote.logic.Logic#execute(String)
+     */
+    private void executeUiAction(UiAction action) {
+        switch (action) {
+        case HELP : handleHelp();
+            break;
+        case EXIT: handleExit();
+            break;
+        case NONE: break;
+        default: assert false : action.toString() + " UiAction is not handle";
+            break;
         }
     }
 }

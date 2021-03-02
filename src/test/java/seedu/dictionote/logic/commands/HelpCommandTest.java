@@ -5,6 +5,7 @@ import static seedu.dictionote.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 
@@ -14,7 +15,7 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, UiAction.HELP);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 }
