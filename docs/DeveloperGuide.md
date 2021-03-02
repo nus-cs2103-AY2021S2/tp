@@ -49,7 +49,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a clothing item with specified attributes
-2. NuFash adds the specified clothing item to list of existing clothing
+2. NuFash adds the specified clothing item to list of existing clothing items
 
    Use case ends.
 
