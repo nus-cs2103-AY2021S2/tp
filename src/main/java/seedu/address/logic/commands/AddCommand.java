@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Residence}
      */
     public AddCommand(Person person) {
         requireNonNull(person);
