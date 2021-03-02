@@ -8,7 +8,6 @@ We are a team based in the [School of Computing, National University of Singapor
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
-
 ### Kuek Yan Ling
 
 <img src="images/yanlingkuek.png" width="200px">
@@ -49,3 +48,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Team Lead, Git expert
 - Responsibilities: UI
+
+### Carissa Ying
+
+<img src="images/carissaying.jpg" width="200px">
+
+[[github](https://github.com/car155)]
+[[portfolio](team/carissaying.md)]
+
+* Role: Developer
+* Responsibilities: Integration, Testing
+
