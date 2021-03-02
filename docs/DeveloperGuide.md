@@ -405,9 +405,9 @@ _{More to be added}_
 
 **Extensions**
 
-- 1b. The given year is invalid
+- 1a. The given year is invalid
 
-  - 1b1. Focuris shows an error message
+  - 1a1. Focuris shows an error message
 
     Use case resumes at step 1.
 
