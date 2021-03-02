@@ -48,9 +48,9 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 
    * **`bmi`**`update h/170 w/70 i/80`: Updates the current user BMI to height of 170cm, weight of 70kg and ideal weight of 80kg.
 
-   * **`plan`**`bmi recommended`: Queries the recommended diet plans based on user's BMI.
+   * **`plan`**`recommended`: Queries the recommended diet plan based on user's BMI.
 
-   * **`plan`**`t/Protein`: Queries more information of the Protein diet plan.
+   * **`plan`**`t/1`: Queries more information of the weight loss diet plan.
 
    * **`food`**`d/today n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for today.
 
@@ -107,7 +107,7 @@ Expected outcome
 
 Gets a recommended diet plan based on the user's current BMI stored in the system.
 
-**Format:** `plan recommended bmi`
+**Format:** `plan recommended`
 
 **Expected output:**
 
@@ -122,7 +122,7 @@ Shows the current active diet plan previously selected by the user.
 
 **Expected output:**
 
-You are on the Weight Loss Diet (Less-carbs)\
+You are on the Weight Loss Diet (Less-carbs)!\
 Here's the information tailored to your BMI:\
 Daily calories intake: 1,648 kcal\
 Daily Protein intake: 145 g\
@@ -158,6 +158,21 @@ Here are the available diet plans:
 1) Weight Loss Diet
 2) Weight Gain Diet
 3) Muscle Gain Diet
+
+### 2.5 View information about a particular diet plan
+
+Displays information about a particular diet plan.
+
+**Format:** `plan \tID`
+
+**Expected output:**
+
+Here's more information about the Weight Loss plan:\
+Here's the information tailored to your BMI:\
+Daily calories intake: 1,648 kcal\
+Daily Protein intake: 145 g\
+Daily Carbohydrates intake: 143 g\
+Daily Fat intake: 55 g
 
 ## 3. Macronutrients Tracker
 
