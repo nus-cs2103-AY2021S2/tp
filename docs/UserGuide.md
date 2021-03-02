@@ -198,4 +198,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**view_tutor** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
+**View Tutor** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
