@@ -27,7 +27,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * **`list`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
+     
+   * **`assign`** : Assigns student or tutor to a specific class (Coming Soon!).
+     
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
    * **`clear`** : Deletes all contacts.
@@ -92,6 +94,44 @@ Examples:
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+### Viewing a tutor : `view`
+
+Views an existing tutor's details.
+
+Format: `view t/ID`
+
+* Views the tutor with the specified tutor ID.
+* Tutor’s name, contact number, existing classes, email and address will be given.
+
+Example:
+* `view t/1` views the details of the tutor with tutor ID 1.
+
+### Viewing a student : `view`
+
+Views an existing student's details.
+
+Format: `view s/ID`
+
+* Views the student with the specified student ID.
+* Student’s name, contact number, email and address will be given.
+
+Example:
+* `view s/1` views the details of the student with student ID 1.
+
+### Viewing a class : `view`
+
+Views an existing class's details.
+
+Format: `view c/ID`
+
+* Views the class with the specified class ID.
+* The class's assigned tutor, assigned students, time slot, subject and class size will be given.
+
+Example:
+* `view c/1` views the details of the class with class ID 1.
+
+
 
 ### Editing a person : `edit`
 

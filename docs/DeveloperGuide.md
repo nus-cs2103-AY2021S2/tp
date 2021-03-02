@@ -289,6 +289,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+**Use case: View a tutor**
+
+**MSS**
+
+1.  User requests to list tutors
+2.  AddressBook shows a list of tutors
+3.  User requests to view a specific tutor in the list
+4.  AddressBook shows the specific tutor's details
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+    
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

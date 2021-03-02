@@ -16,4 +16,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/yanlingkuek)]
 [[portfolio](team/yanlingkuek.md)]
 
-* Role: Deliverables and Deadlines
+* Role: Developer
+* Responsibilities: Deliverables and Deadlines
+
+### Phoe Chuan Yi, Benny
+
+<img src="images/benny.png" width="200px">
+
+[[github](http://github.com/Bennyphoe)]
+[[portfolio](team/benny.md)]
+
+* Role: Developer
+* Responsibilities: Documentation, Scheduling & Tracking
+
+### Chanell Ng
+
+<img src="images/chanellng.png" width="200px">
+
+[[github](http://github.com/chanellNg)]
+[[portfolio](team/chanellNg.md)]
+
+* Role: Team Lead, Git expert
+* Responsibilities: UI
