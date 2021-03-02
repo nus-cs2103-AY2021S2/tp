@@ -1,17 +1,12 @@
-
-# User Guide
+---
+layout: page
+title: User Guide
+---
 
 GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any IT company quickly arrange carpooling in order to lower their carbon footprint. The platform follows that of a command-line interface (CLI) such that power users that are familiar can efficiently navigate the program.
 
-- Quick start
-- Features
-    - Create passengers: `create`
-    - Read passengers: `list`
-    - Search for passengers: `search`
-    - Delete passengers: `delete`
-    - Select passengers to be driven: `drive`
-- FAQ
-- Command summary
+* Table of Contents
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
