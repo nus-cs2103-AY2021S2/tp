@@ -236,14 +236,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is an insurance agent
 * has a need to manage a significant number of contacts
+* has a need to maintain close relations with clients over a long time period (usually 10+ years)
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+* manage contacts faster than a typical mouse/GUI driven app
+* maintain notes on their client, their needs, their likes/dislikes, insurance plans, applications for insurance claims, etc.
+* get automated reminders about upcoming meetups/ notifications if they haven’t contacted clients in a long time.
 
 ### User stories
 
