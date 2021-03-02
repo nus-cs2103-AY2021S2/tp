@@ -37,7 +37,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | edit details of clothing logged in                | correct incorrect details pertaining to items          |  
 | `* * *`  | user                                       | find a clothing by name          | locate details of clothing without having to go through the entire list |  
 | `* *`    | user                                       | remove an item of clothing from my wardrobe   | so that I can reflect that an item of clothing has been discarded                |  
-|  `* *`      | user        | easily plan a schedule for what clothes to wear                                                |  so that i don't have to waste time deciding last minute
+|  `* *`      | user        | easily plan a schedule for what clothes to wear                                                |  so that I do not have to waste time deciding at the last minute
 |  `* *`      | user        | be reminded on the clothes I have not worn                                                 |  so that I would not be wearing the same clothes all the time
 |  `*`      | user        | to see whether certain colours and types of clothing match                                                 |  so that I will be able to ascertain if the clothes match without having to try them on physically
 
