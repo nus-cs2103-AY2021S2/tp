@@ -6,7 +6,11 @@ import seedu.address.model.item.Item;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withItem("John", "Doe").build();}
+ * <<<<<<< HEAD
+ * {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ * =======
+ * {@code AddressBook ab = new AddressBookBuilder().withItem("John", "Doe").build();}
+ * >>>>>>> mid-1.2-base-refactor
  */
 public class AddressBookBuilder {
 

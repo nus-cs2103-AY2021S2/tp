@@ -21,18 +21,18 @@ public class Item {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Location location;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Item(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Item(Name name, Phone phone, Email email, Location location, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, location, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.location = location;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Item {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Item {
         return otherItem.getName().equals(getName())
             && otherItem.getPhone().equals(getPhone())
             && otherItem.getEmail().equals(getEmail())
-            && otherItem.getAddress().equals(getAddress())
+            && otherItem.getLocation().equals(getLocation())
             && otherItem.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, location, tags);
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Item {
             .append(getPhone())
             .append("; Email: ")
             .append(getEmail())
-            .append("; Address: ")
-            .append(getAddress());
+            .append("; Location: ")
+            .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

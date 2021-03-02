@@ -35,7 +35,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label locations;
     @FXML
     private Label email;
     @FXML
@@ -50,7 +50,7 @@ public class ItemCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(item.getName().fullName);
         phone.setText(item.getPhone().value);
-        address.setText(item.getAddress().value);
+        locations.setText(item.getLocation().value);
         email.setText(item.getEmail().value);
         item.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))

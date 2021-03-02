@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Item's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents an Item's Location in StoreMando.
+ * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
-public class Address {
+public class Location {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Locations can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -20,20 +20,20 @@ public class Address {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Location}.
      *
-     * @param address A valid address.
+     * @param location A valid location.
      */
-    public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Location(String location) {
+        requireNonNull(location);
+        checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);
+        value = location;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid location.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidLocation(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +45,8 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Address // instanceof handles nulls
-            && value.equals(((Address) other).value)); // state check
+            || (other instanceof Location // instanceof handles nulls
+            && value.equals(((Location) other).value)); // state check
     }
 
     @Override

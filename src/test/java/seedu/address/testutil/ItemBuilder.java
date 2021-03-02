@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.item.Address;
 import seedu.address.model.item.Email;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Location;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Phone;
 import seedu.address.model.tag.Tag;
@@ -19,12 +19,12 @@ public class ItemBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Location location;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +34,7 @@ public class ItemBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        location = new Location(DEFAULT_LOCATION);
         tags = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class ItemBuilder {
         name = itemToCopy.getName();
         phone = itemToCopy.getPhone();
         email = itemToCopy.getEmail();
-        address = itemToCopy.getAddress();
+        location = itemToCopy.getLocation();
         tags = new HashSet<>(itemToCopy.getTags());
     }
 
@@ -60,7 +60,7 @@ public class ItemBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Item} that we are building.
      */
-    public ItemBuilder withTags(String ... tags) {
+    public ItemBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -68,8 +68,8 @@ public class ItemBuilder {
     /**
      * Sets the {@code Address} of the {@code Item} that we are building.
      */
-    public ItemBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public ItemBuilder withLocation(String location) {
+        this.location = new Location(location);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ItemBuilder {
     }
 
     public Item build() {
-        return new Item(name, phone, email, address, tags);
+        return new Item(name, phone, email, location, tags);
     }
 
 }

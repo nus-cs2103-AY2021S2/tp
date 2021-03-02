@@ -48,7 +48,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_ITEM), command);
     }
 
@@ -57,7 +57,7 @@ public class AddressBookParserTest {
         Item item = new ItemBuilder().build();
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder(item).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_ITEM.getOneBased() + " " + ItemUtil.getEditItemDescriptorDetails(descriptor));
+            + INDEX_FIRST_ITEM.getOneBased() + " " + ItemUtil.getEditItemDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_ITEM, descriptor), command);
     }
 
@@ -71,7 +71,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
