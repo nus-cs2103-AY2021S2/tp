@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/ppris)]
 [[portfolio](team/ppris.md)]
 
-* Role: Team Lead
+* Role: Team Lead, Deliverables and Scheduling 
 * Responsibilities: Model
 
 ### Lim Rui Xiong
