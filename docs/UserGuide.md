@@ -165,10 +165,11 @@ Displays information about a particular diet plan.
 
 **Format:** `plan \tID`
 
+**Example:** `plan t\1`
+
 **Expected output:**
 
 Here's more information about the Weight Loss plan:\
-Here's the information tailored to your BMI:\
 Daily calories intake: 1,648 kcal\
 Daily Protein intake: 145 g\
 Daily Carbohydrates intake: 143 g\
