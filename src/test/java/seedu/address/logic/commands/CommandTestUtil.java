@@ -60,6 +60,18 @@ public class CommandTestUtil {
     public static final EditCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCommand.EditCustomerDescriptor DESC_BOB;
 
+    public static final String VALID_CHEESE_TYPE_CAMEMBERT = "Camembert";
+    public static final String VALID_CHEESE_TYPE_FETA = "Feta";
+    public static final String VALID_MANUFACTURE_DATE_1 = "2021-03-04 07:00";
+    public static final String VALID_MANUFACTURE_DATE_2 = "2021-03-06 07:00";
+    public static final String VALID_EXPIRY_DATE_1 = "2022-03-04 06:00";
+    public static final String VALID_EXPIRY_DATE_2 = "2023-04-04 06:00";
+    public static final String VALID_ORDER_DATE_1 = "2021-02-05 07:00";
+    public static final String VALID_ORDER_DATE_2 = "2021-03-06 08:00";
+    public static final String VALID_COMPLETED_DATE_1 = "2022-02-10 13:00";
+    public static final String VALID_COMPLETED_DATE_2 = "2022-03-06 10:00";
+
+
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
