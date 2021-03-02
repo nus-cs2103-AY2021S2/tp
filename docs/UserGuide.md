@@ -99,18 +99,22 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GENDER] [b/BIRTHDAY]
+[c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+    specifying any tags after it.
+* For other optional fields excluding tags, you may type `[FIELD_TYPE]/` to clear the field.
+
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 t/medical pn/Protecc Life p$/` Edits the insurance tag of the 2nd person to be `medical`, edits the plan name to `Protecc Life` and clears the insurance premium field.
 
 ### Locating persons by name: `find`
 
