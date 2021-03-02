@@ -44,11 +44,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ho Wei Jun Sherman
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nighoggdatatype.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[GitHub](https://github.com/nighoggDatatype)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Languages: C, Java, C#, Typescript, Ruby
 
