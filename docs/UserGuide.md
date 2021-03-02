@@ -1,4 +1,4 @@
-##**PAWBOOK USER GUIDE**
+## **PAWBOOK USER GUIDE**
 
 **Pawbook is a desktop application for dog school managers to facilitate their
 bookkeeping of puppies and dogs in the school, optimized for use via a Command Line
@@ -6,15 +6,15 @@ Interface (CLI) while still having the benefits of a Graphical User Interface (G
 Besides maintaining dog profiles for each unique dog, managers can view daily class
 schedules on Pawbook to better plan the day’s activities.**
 
-This document is created by **CS2103T-T10-Group1**.</br>
-* Charles Lee Lin Ta</br>
-* John Alec Mendoza Branzuela</br>
-* Kou Yong Kang</br>
-* Lam Xuan Yi, Shaelyn</br>
-* Wei Yutong</br>
-* Zhang Anli</br>
+This document is created by **CS2103T-T10-Group1**.
+* Charles Lee Lin Ta
+* John Alec Mendoza Branzuela
+* Kou Yong Kang
+* Lam Xuan Yi, Shaelyn
+* Wei Yutong
+* Zhang Anli
 ---
-* **Quick start**</br>
+* **Quick start**
 * **Features**
   * Adding a dog/owner/program to database: add
   * Deleting a dog/owner/program profile: delete
@@ -25,11 +25,10 @@ This document is created by **CS2103T-T10-Group1**.</br>
   * Editing raw file
   * Application instructions: help
   * Exiting the application: exit
-
-* **FAQ**</br>
+* **FAQ**
 * **Command Summary**
 
-###**Quick start**
+### **Quick start**
 1. Ensure you have **Java 11 or above** installed in your Computer.
 2. Download the **latest** pawbook.jar.
 3. Copy the file to the folder you want to use as the home folder for your
@@ -43,10 +42,10 @@ This document is created by **CS2103T-T10-Group1**.</br>
 **NOTE: Please refer to the features below for details of each command.**
 
 ----
-###**Features of Pawbook**</br>
-**Add a dog/owner/program to Pawbook: add**</br>
+### **Features of Pawbook**
+**Add a dog/owner/program to Pawbook: add**
 
-Format:</br>
+Format:
 
 -add dog n/DOGNAME b/BREED o/OWNERID t/TAG</br>
 -add owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS</br>
@@ -64,17 +63,17 @@ Examples:
 
 
 ---
-###**FAQ**
+### **FAQ**
 Q: How do I transfer my data to another Computer?</br>
 A: Install the app in the other computer and overwrite the empty data file it creates with
 the file that contains the data of your previous Pawbook home folder.</br>
 -----
-###**Command Summary**</br>
+### **Command Summary**
 
 Action | Format
 --------|------------------
-**Add** | 1) `add dog n/DOGNAME b/BREED o/OWNERID t/TAG`</br></br>2) `add  owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`</br></br>3)`add  program n/PROGRAMNAME t/TIME`
-**Delete** | 1) `delete dog d/DOGID`</br></br>2) `delete owner o/OWNERID`</br></br>3) `delete program p/PROGRAMID`
+**Add** | 1) `add dog n/DOGNAME b/BREED o/OWNERID t/TAG`</br>2) `add  owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`</br>3)`add  program n/PROGRAMNAME t/TIME`
+**Delete** | 1) `delete dog d/DOGID`</br>2) `delete owner o/OWNERID`</br>3) `delete program p/PROGRAMID`
 **List** |`list n/NAME c/CLASS b/BREED t/TAG`
 **Enrol** | `enrol d/ID p/NAMEOFPROGRAM`
 **Drop** | `drop d/DOGID p/NAMEOFPROGRAM`
