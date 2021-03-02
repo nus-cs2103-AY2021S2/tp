@@ -320,19 +320,19 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 ### Non-Functional Requirements
 
 * Constraints:
-    * Cake Collate should be backward compatible with data produced by earlier releases. 
+    * CakeCollate should be backward compatible with data produced by earlier releases. 
 
 * Technical requirements:
-    * Cake Collate should work on any _mainstream OS_ on both 32-bit and 64-bit environments with Java `11` or above installed.
+    * CakeCollate should work on any _mainstream OS_ on both 32-bit and 64-bit environments with Java `11` or above installed.
     
 * Performance requirements:
-    * Cake Collate should be able to hold up to 1000 orders without a noticeable sluggishness in performance for typical usage.
-    * Cake Collate should response within two seconds for all commands.
+    * CakeCollate should be able to hold up to 1000 orders without a noticeable sluggishness in performance for typical usage.
+    * CakeCollate should response within two seconds for all commands.
     
 * Quality requirements:
     * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-    * A user who does not have much experience with command line interface tools should still be able to use Cake Collate with the help of the _[User guide](UserGuide.md)_ and the `help` command in Cake Collate.
-    * A user who is experienced with command line interface tools should find Cake Collate commands easy to use.
+    * A user who does not have much experience with command line interface tools should still be able to use CakeCollate with the help of the _[User guide](UserGuide.md)_ and the `help` command in CakeCollate.
+    * A user who is experienced with command line interface tools should find CakeCollate commands easy to use.
     
 * Process requirements:
     * The project is expected to adhere to a schedule that delivers a feature set every two weeks.
