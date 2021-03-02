@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+# BudgetBaby :baby: :money_with_wings: User Guide
+
 **BudgetBaby** is a **desktop app for setting monthly budgets and tracking expenses**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and editing financial records and budgets can be done faster by typing in commands while still having the benefits of a Graphical User Interface (GUI).
 
 - Table of Contents
@@ -19,7 +21,8 @@ title: User Guide
 1. Copy the file to the folder you want to use as the _home folder_ for your BudgetBaby.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+
+   <img src="images/Ui.png" width="500px">
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -77,10 +80,9 @@ Adds a financial record to the budget tracker.
 
 Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
 - Adds a financial record with the description FR_DESCRIPTION.
 - The FR_AMOUNT must be a positive double (e.g. 10, 13.50).
-</div>
 
 Examples:
 
@@ -93,10 +95,9 @@ Displays a month's financial records.
 
 Format: `list MM-YYYY`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
 - The input month must follow the format of MM-YYYY (e.g. 09-2020)
 - Month number must take up 2 digits and the year number 4 digits
-</div>
 
 Examples:
 
@@ -108,11 +109,10 @@ Displays a financial record in the budget tracker.
 
 Format: `view-fr FR_INDEX`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
 - Views the financial record at the specified `FR_INDEX`.
 - The index refers to the index number shown in the displayed financial record list.
 - The index **must be a positive integer** 1, 2, 3, …​
-</div>
 
 Examples:
 
@@ -124,6 +124,7 @@ Deletes a financial record from the budget tracker.
 
 Format: `delete-fr FR_INDEX`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
 - Deletes the financial record at the specified `FR_INDEX`.
 - The index refers to the index number shown in the displayed financial record list.
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -138,9 +139,8 @@ Sets the budget for the following months
 
 Format: `set-bg BG_AMOUNT`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
 - Budget amount must be a positive double (e.g. 100, 1300.50)
-</div>
 
 Examples:
 
@@ -159,10 +159,9 @@ Checks the remaining budget for the current month
 
 Format: `check MM-YYYY`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
 - The input month must follow the format of MM-YYYY (e.g. 09-2020)
 - Month number must take up 2 digits and the year number 4 digits
-</div>
 
 Examples:
 
