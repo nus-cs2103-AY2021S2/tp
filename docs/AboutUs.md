@@ -11,7 +11,7 @@ You can reach us at the email `chewterence@u.nus.edu`
 
 ### Yue Yang Lee
 
-<img src="images/yueyanglee.png" width="200px">
+<img src="images/lyueyang.png" width="200px">
 
 [Homepage](https://www.lyueyang.space) | [Github](https://github.com/lyueyang) | [Portfolio](team/lyueyang.md)
 
@@ -22,7 +22,7 @@ You can reach us at the email `chewterence@u.nus.edu`
 
 <img src="images/joelho.png" width="200px">
 
-[Github](http://github.com/joelho) | [Portfolio](team/joelho.md)
+[Homepage](https://www.joels.space) | [Github](http://github.com/joelho) | [Portfolio](team/joelho.md)
 
 * Role: Code Quality
 * Responsibilities: In charge of UI
@@ -38,18 +38,18 @@ You can reach us at the email `chewterence@u.nus.edu`
 
 ### Terence Chew
 
-<img src="images/terencechew.png" width="200px">
+<img src="images/chewterence.png" width="200px">
 
-[Homepage](https://www.chewterence.com) | [Github](http://github.com/chewterence) | [Portfolio](team/terencechew.md)
+[Homepage](https://www.chewterence.com) | [Github](http://github.com/chewterence) | [Portfolio](team/chewterence.md)
 
 * Role: Team Lead
 * Responsibilities: In charge of Model
 
-### Mark Chow
+### Mark Wong
 
-<img src="images/markwong.png" width="200px">
+<img src="images/markmcwong.png" width="200px">
 
-[Github](http://github.com/markmcwong) | [Portfolio](team/markwong.md)
+[Github](http://github.com/markmcwong) | [Portfolio](team/markmcwong.md)
 
 * Role: Documentation
 * Responsibilities: In charge of Logic
