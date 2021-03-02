@@ -29,31 +29,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities:
 
-### Johnny Doe
+### Lim Rui Xiong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ruixiong.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/RuiXiong2211)] [[portfolio](team/RuiXiong2211)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
-### James Doe
+### Pavitra
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pavz02.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/pavz02)]
+[[portfolio](team/pavz02.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality
+
+### Bhadani Simran
+
+<img src="images/simran-bhadani3.png" width="200px">
+
+[[github](http://github.com/simran-bhadani3)]
+[[portfolio](team/simran-bhadani3)]
+
+* Role: Developer
+* Responsibilities: Integration
