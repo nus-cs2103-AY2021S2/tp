@@ -213,8 +213,8 @@ students as they adjust themselves, easing into adulthood.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X 
-* **Cross-platform**: Able to transfer the software and its data from one OS to another without creating any problem.
-* **First execution**: The very first time the software is set up.
+* **Cross-platform**: Able to transfer the software and its data from one OS to another without creating any problem
+* **First execution**: The very first time the software is set up
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
