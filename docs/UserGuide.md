@@ -58,7 +58,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Create passengers: `add`
+### Create passengers: `create`
 
 Creates a new passenger in the GME terminal.
 
