@@ -150,7 +150,7 @@ Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Pawbook automatically saves the existing information of the dogs and will close the program.
 
 Format: `exit`
 

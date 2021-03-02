@@ -256,8 +256,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | dog school manager                         | Add dog profiles and owner profiles             |  add new dogs or owners that join the school         |
 | `* * *`  | dog school manager                         | Get instructions         | get help when I do not know how to use the application |
 | `* * *`  | dog school manager                         | Exit the application   |           |
-| `**`      |  |          |                                                 |
-
+| `* *`    | dog school manager                         | edit a dog profile when the information is wrong/outdated |                                             |
+| `* *`    | dog school manager                         | create a dog program for the dog students            |                                                  |
+| `* *`    | dog school manager                         | enrol dogs into a specific dog program | dogs who recently joined a program are added to the class list |
+| `* *`    | dog school manager                         | drop dogs out of a specific dog program | dogs that have left the class are no longer in the class list  |
+| `* *`    | advanced user                              | edit in bulk quickly without having to be familiar with the app | minimize chance of someone else seeing them by accident |
+                                          
 *{More to be added}*
 
 ### Use cases
