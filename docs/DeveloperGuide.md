@@ -405,15 +405,24 @@ _{More to be added}_
 
 **Extensions**
 
+- 1b. The given year is invalid
+
+  - 1b1. Focuris shows an error message
+
+    Use case resumes at step 1.
+
 - 2a. The list is empty.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+**Use case: Reset list of events to current week**
 
-**Use case: Reset list of events to current date**
+**MSS**
 
-    Use case resumes at step 2.
+1. User requests for events to be reset to current week
+2. Focuris shows all events pertaining to current week and year
+
+**Extensions**
 
 - 2a. The list is empty.
 
@@ -424,7 +433,7 @@ _{More to be added}_
 **MSS**
 
 1.  User requests to list all events in Focuris
-2.  Focuris shows all events
+2.  Focuris shows all current events
 
     Use case ends.
 
