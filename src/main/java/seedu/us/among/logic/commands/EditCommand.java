@@ -2,7 +2,7 @@ package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.us.among.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
@@ -22,7 +22,8 @@ import seedu.us.among.model.endpoint.Name;
 import seedu.us.among.model.tag.Tag;
 
 /**
- * Edits the details of an existing API endpoint identified using it's displayed index from the API endpoint list.
+ * Edits the details of an existing API endpoint identified using it's displayed
+ * index from the API endpoint list.
  */
 public class EditCommand extends Command {
 
@@ -31,12 +32,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
             + "identified using it's displayed index from the API endpoint list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ADDRESS + "wall street ";
+            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_METHOD + "NAME] " + "[" + PREFIX_ADDRESS
+            + "ADDRESS] " + "[" + PREFIX_TAG + "TAG]...\n" + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS
+            + "wall street ";
 
     public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -47,7 +45,8 @@ public class EditCommand extends Command {
     private final EditEndpointDescriptor editEndpointDescriptor;
 
     /**
-     * @param index of the endpoint in the filtered endpoint list to edit
+     * @param index                  of the endpoint in the filtered endpoint list
+     *                               to edit
      * @param editEndpointDescriptor details to edit the endpoint with
      */
     public EditCommand(Index index, EditEndpointDescriptor editEndpointDescriptor) {
@@ -80,11 +79,11 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Endpoint} with the details of {@code endpointToEdit}
-     * edited with {@code editEndpointDescriptor}.
+     * Creates and returns a {@code Endpoint} with the details of
+     * {@code endpointToEdit} edited with {@code editEndpointDescriptor}.
      */
     private static Endpoint createEditedEndpoint(Endpoint endpointToEdit,
-             EditEndpointDescriptor editEndpointDescriptor) {
+            EditEndpointDescriptor editEndpointDescriptor) {
         assert endpointToEdit != null;
 
         Name updatedName = editEndpointDescriptor.getName().orElse(endpointToEdit.getName());
@@ -108,24 +107,23 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editEndpointDescriptor.equals(e.editEndpointDescriptor);
+        return index.equals(e.index) && editEndpointDescriptor.equals(e.editEndpointDescriptor);
     }
 
     /**
-     * Stores the details to edit the endpoint with. Each non-empty field value will replace the
-     * corresponding field value of the endpoint.
+     * Stores the details to edit the endpoint with. Each non-empty field value will
+     * replace the corresponding field value of the endpoint.
      */
     public static class EditEndpointDescriptor {
         private Name name;
         private Address address;
         private Set<Tag> tags;
 
-        public EditEndpointDescriptor() {}
+        public EditEndpointDescriptor() {
+        }
 
         /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * Copy constructor. A defensive copy of {@code tags} is used internally.
          */
         public EditEndpointDescriptor(EditEndpointDescriptor toCopy) {
             setName(toCopy.name);
@@ -157,17 +155,17 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tags} to this object's {@code tags}. A defensive copy of
+         * {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted. Returns
+         * {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
@@ -188,8 +186,7 @@ public class EditCommand extends Command {
             // state check
             EditEndpointDescriptor e = (EditEndpointDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getAddress().equals(e.getAddress())
+            return getName().equals(e.getName()) && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }
