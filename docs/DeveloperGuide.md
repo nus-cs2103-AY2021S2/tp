@@ -236,14 +236,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Tech-savvy secondary school students in Singapore who to need to search for tutors and manage their tuition appointments, and prefer CLI over GUI.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+The demand for tuition in Singapore is escalating, especially among secondary school students. A large amount of time and money has been invested in finding tutors and managing ever growing lists of tuition appointments. Currently, there are limited number of apps and websites that cater to this need, particularly in a streamlined typing oriented CLI. Therefore, this app aims to assist secondary school students in streamlining the process of searching for tutors and managing their tuition appointments. These students can search for an ideal tutor based on their personal preferences (such as subjects, expertise, years of experience, cost, availability etc.), and cut down on the time taken tracking their favoured tutors and tuition appointments.
 
 ### User stories
 
@@ -252,13 +249,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | View my tuition applications   | keep track of the tuitions I that I have applied                 |
-| `* * *`  | user                                       | Delete a tuition application   | reverse the tuition application                                  |
-
+| `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
+| `* * *` | User | List all tutors                                    | See all known tutors                                            |
+| `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
+| `* * *` | User | Get the email address of a tutor                   | Contact tutors directly for queries                             |
+| `* * *` | User | Add tuition appointment                            | Keep track of appointments I have made                          |
+| `* * *` | User | View my tuition appointments                       | Keep track of appointments                                      |
+| `* * *` | User | Delete a tuition appointment                       | Remove canceled appointments                                    |
+| `* * *` | User | Check my own tuition appointments list             | Know the timing of ALL my appointments in order                 |
+| `* * *` | User | Filter tutors by their subject discipline          | Find a tutor that caters to my needs (academic)                 |
+| `* * *` | User | Filter tutor by cost                               | Find a tutor that fits into budget as well                      |
+| `* * *` | User | Filter a tutor by his/her name                     | View tutor's profile                                            |
+| `* * *` | User | Filter tutors by their years of experience         | Find a tutor with experience within the range of my expectation |
+| `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
+| `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `TutorTracker` and the **Actor** is the `user`, unless specified otherwise)
+
 
 **Use case: View tuition application**
 
@@ -286,34 +295,83 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to delete a specific application in the list
 4.  TutorTracker deletes that specific application.
 
-    Use case ends.
+**Use case: Add new tutor details**
+
+**MSS**
+
+1. User inputs tutor details.
+2. TutorTracker confirms that tutor details have been added to list.
 
 **Extensions**
+* 2a. Tutor details already exists in list.
+   * 2a1. AddressBook shows an error message
 
-* 2a. The list is empty.
+   Use case resumes at step 1.
 
-  Use case ends.
+**Use case: Add an appointment**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. TutorTracker shows an error message.
+1.  User requests to add an appointment.
+2.  TutorTracker adds the appointment and displays the new appointment.
 
-      Use case resumes at step 2.
+   Use case ends.
 
+**Extensions**
+* 1a. The tutor name, date of appointment or start and end time is empty.
+  
+    * 1a1. TutorTracker shows an error message.
+    
+      Use case ends.
+
+* 1b. The given date or start and end time is invalid.
+
+    * 1b1. TutorTracker shows an error message.
+
+      Use case ends.
+
+**Use case: List all tutors**
+
+1. User requests to list tutors.
+2. TutorTracker shows a list of tutors.
+
+   Use case ends.
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
+**Technical Requirements**:
+* Application should be able to launch in any operating
+  systems (Linux, Max, Windows) with JDK 11 installed on computer.
+* Should be able to
+  run on both 32-bit and 64-bit systems.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+**Performance Requirements**
+* Response to user command (add, delete, update, retrieve)
+  should be visible within 2 seconds.
+* Should be able to hold at least 10000 persons
+  and appointments without any noticeable decrease in loading time.
 
-*{More to be added}*
+**Quality Requirements**
+* Interface can be used by a user with no programming
+  experience, i.e., user should not be expected to key in complicated commands or
+  logical statements to get a desired output.
+
+**Process Requirements**
+* Project to be updated with one new feature/improvement from
+  each member each week.
+* Updates will be pushed to each teammates' individual branches,
+  where PRS are made to the master branch.
+
+
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Appointment**: An event in user's local schedule with related details, including tutor's name, date of appointment, start and end time and location(optional).
+* **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
+* **Years of Experience**: Years of experience of tutoring a specific subject.
+* **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
 
 --------------------------------------------------------------------------------------------------------------------
 
