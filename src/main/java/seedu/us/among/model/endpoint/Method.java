@@ -3,6 +3,8 @@ package seedu.us.among.model.endpoint;
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;
 
+import org.apache.commons.lang3.EnumUtils;
+
 /**
  * Represents a Endpoint's Method in the address book. Guarantees: immutable; is
  * valid as declared in {@link #isValidMethod(String)}
@@ -21,21 +23,27 @@ public class Method {
     // public final MethodType methodType;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Method}.
      *
-     * @param name A valid method name.
+     * @param method A valid method name.
      */
-    public Method(String name) {
-        requireNonNull(name);
-        checkArgument(isValidMethod(name), MESSAGE_CONSTRAINTS);
-        methodName = name;
+    public Method(String method) {
+        requireNonNull(method);
+        checkArgument(isValidMethod(method), MESSAGE_CONSTRAINTS);
+        methodName = method;
     }
 
     /**
      * Returns true if a given string is a valid method.
      */
     public static boolean isValidMethod(String test) {
-        return test.matches(VALIDATION_REGEX);
+        // return test.matches(VALIDATION_REGEX);
+        try {
+            MethodType.valueOf(test.toUpperCase());
+            return true;
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
     }
 
     @Override

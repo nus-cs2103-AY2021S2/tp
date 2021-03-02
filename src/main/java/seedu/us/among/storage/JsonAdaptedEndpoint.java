@@ -35,7 +35,7 @@ class JsonAdaptedEndpoint {
         this.method = method;
         this.address = address;
         if (tagged != null) {
-            this.tagged.addAll(tagged);
+            this.tagged.addAll(tagged); // to-do
         }
     }
 
