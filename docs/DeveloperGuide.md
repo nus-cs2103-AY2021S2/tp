@@ -17,7 +17,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 It focuses on the Command Line Interface (CLI) while providing users with a simple and clean Graphical User Interface (GUI).
 Thus, the main interaction with **Tutor Tracker** will be done through commands.
 
-Tutor Tracker is an all-in-one tuition management solution for tech-savvy secondary school students. 
+Tutor Tracker is an all-in-one tuition management solution for tech-savvy secondary school students.
 The features of Tutor Tracker includes:
 
 - Viewing of tutors' profile
@@ -47,7 +47,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-The application consists of 6 main components"
+The application consists of 6 main components:
 
 | Component                           | Description                                                            
 | ----------------------------------- | -------------------------------------------------------------------- |  
@@ -296,6 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case resumes at step 1.
 <hr/>
+
 **Use Case UC0002: Add an appointment**
 
 **MSS**
@@ -335,7 +336,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. TutorTracker displays the list of tuition appointments to the user.
 
     Use case ends.
-  
+<hr/>
+
 *{More to be added}*
 
 ### Non-Functional Requirements
