@@ -254,35 +254,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
+### Product Scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of dogs and owners
 * prefer desktop apps over other types
-* can type fast
+* is a fast typist
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven app
+* saves significant time for the business owner, who beforehand had to manage the details of dogs and owners
+* consolidates information on dogs, owners and programs into one place
 
 
-### User stories
+### User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | dog school manager                         | Create a list of dogs and their respective owners in the dog school        | keep track of the dogs we are responsible for     |
-| `* * *`  | busy person                       | Delete dog profiles and owner profiles            | remove dogs or owners that are no longer in the school                                                           |
-| `* * *`  | dog school manager                         | Add dog profiles and owner profiles             |  add new dogs or owners that join the school         |
-| `* * *`  | dog school manager                         | Get instructions         | get help when I do not know how to use the application |
-| `* * *`  | dog school manager                         | Exit the application   |           |
-| `* *`    | dog school manager                         | edit a dog profile when the information is wrong/outdated |                                             |
-| `* *`    | dog school manager                         | create a dog program for the dog students            |                                                  |
-| `* *`    | dog school manager                         | enrol dogs into a specific dog program | dogs who recently joined a program are added to the class list |
-| `* *`    | dog school manager                         | drop dogs out of a specific dog program | dogs that have left the class are no longer in the class list  |
-| `* *`    | advanced user                              | edit in bulk quickly without having to be familiar with the app | minimize chance of someone else seeing them by accident |
+| `* * *`  | Dog school manager   | Create a list of dogs and their respective owners in the dog school        | Keep track of the dogs we are responsible for     |
+| `* * *`  | Busy person          | Delete dog profiles and owner profiles            | Remove dogs or owners that are no longer in the school                                                           |
+| `* * *`  | Dog school manager   | Add dog profiles and owner profiles             |  Add new dogs or owners that join the school         |
+| `* * *`  | Dog school manager   | Get instructions         | Get help when I do not know how to use the application |
+| `* * *`  | Dog school manager   | Exit the application   |           |
+| `* *`    | Dog school manager   | Edit a dog profile when the information is wrong/outdated |                                             |
+| `* *`    | Dog school manager   | Create a dog program for the dog students            |                                                  |
+| `* *`    | Dog school manager   | Enrol dogs into a specific dog program | Dogs who recently joined a program are added to the class list |
+| `* *`    | Dog school manager   | Drop dogs out of a specific dog program | Dogs that have left the class are no longer in the class list  |
+| `* *`    | Advanced user        | Edit in bulk quickly without having to be familiar with the app | Minimize chance of someone else seeing them by accident |
                                           
 *{More to be added}*
 
@@ -406,18 +409,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has `Java 11` or above installed.
 2.  Should be able to hold up to 1000 dogs, owners and dog programs without a noticeable sluggishness in performance for typical usage.
 3.  Should be usable by a tech novice who is not familiar with CLI. 
 4.  Should respond within 2 seconds.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-6.  Simple interface that is easy to navigate.
+6.  A simple interface that is easy to navigate.
 7.  Not required to handle finance-related bookkeeping.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
