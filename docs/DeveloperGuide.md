@@ -491,6 +491,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
 
+**Use case: UC11 - List all books**
+
+**MSS**
+
+1.  User requests to list books in the store.
+2.  SmartLib shows a list of books (if any).
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC12 - Find books whose names contain the given keywords **
+
+**MSS**
+
+1.  User requests to find a book.
+2.  SmartLib shows a list of books whose names contain the keywords.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
