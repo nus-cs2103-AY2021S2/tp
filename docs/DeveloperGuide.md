@@ -253,16 +253,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                             | So that I can…​                                                     |
+| -------- | ------------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | insurance agent                            | add a new client                                            |                                                                        |
+| `* * *`  | insurance agent                            | delete a client                                             | remove clients that I am no longer serving                             |
+| `* * *`  | insurance agent                            | add important dates (e.g. birthdays) related to each client | keep track of them more easily                                         |
+| `* * *`  | insurance agent                            | schedule meets with people or groups of people              | easily check for upcoming meetings                                     |
+| `* * *`  | insurance agent                            | find a client by name                                       | locate details of persons without having to go through the entire list |
+| `*`      | user with many persons in the address book | sort clients by name                                        | locate a client easily                                                 |
+| `* * `   | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                 |
 
-*{More to be added}*
+*{More may be added}*
 
 ### Use cases
 
