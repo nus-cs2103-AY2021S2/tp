@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is TutorsPet**.<br>
+* This is **TutorsPet**.<br>
   Target user: 
   * Tuition teachers
   
