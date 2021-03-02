@@ -1,5 +1,6 @@
 ---
-Jared Lim's Project Portfolio Page
+layout: page
+title: Jared Lim's Project Portfolio Page
 ---
 
 ## Project: Tutor Hunter
