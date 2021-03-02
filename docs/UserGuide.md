@@ -49,7 +49,7 @@ PocketEstate enables easy organization of mass clientele property information th
 
 * Items in square brackets are optional.<br>
   e.g `add appointment n/NAME r/REMARKS d/DATE [t/TIME]` can be used as `add appointment n/Meet John r/At M hotel d/17-2-2021` or as `add appointment n/Meet John r/At M hotel d/17-2-2021 t/2040`.
-  
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME r/REMARKS`, `r/REMARKS n/NAME` is also acceptable.
 
@@ -171,7 +171,7 @@ Formats:
 * `delete property INDEX`
 
 Description:
-* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
 * The field INDEX must be provided.
 
 Examples:
@@ -181,15 +181,15 @@ Examples:
 ### Filtering: `find`
 Finds properties or appointments that matches the criterion provided.
 
-Formats: 
+Formats:
 
 `find appointment [keywords] [option...]`
 
 `find property [keywords] [option...]`
 
-There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. 
+There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty.
 
-Options: 
+Options:
 
 `r/[REMARKS]`
 
@@ -204,7 +204,7 @@ Search for properties with prices less than `[PRICE]`, ignored if used with appo
 
 Example:
 
-`find property “jurong west”` 
+`find property “jurong west”`
 
 `find appointment “fri” r/”come in afternoon”`
 
