@@ -62,9 +62,9 @@ Format: `create n/NAME a/ADDRESS t/TIME`
 >**Examples**:
 >* `create n/Ben Dover a/Geylang t/18:00`
 
-### Listing all persons : `list`
+### Listing all passengers : `list`
 
-Shows a list of all persons in the address book.
+Lists the passengers currently stored in the GME terminal.
 
 Format: `list`
 
@@ -79,23 +79,6 @@ Format: `search CONSTRAINT`
   *availability*, *gender*
 
 > **Examples**:`search female` or `search available`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
->**Examples**:
->*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
->*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
@@ -158,11 +141,11 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+GME data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+GME data are saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
 
 
 ### Archiving data files `[coming in v2.0]`
@@ -175,7 +158,7 @@ _Details coming soon ..._
 
 **Q:** Where can I find the data stored by the address book?
 
-**A:** The json file containing the data stored is named `addressbook.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
+**A:** The json file containing the data stored is named `GreenMileageEfforts.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
 
 --------------------------------------------------------------------------------------------------------------------
 
