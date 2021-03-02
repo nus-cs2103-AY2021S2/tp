@@ -290,16 +290,16 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `CakeCollate` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete an order**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list order
+2.  CakeCollate shows a list of orders
+3.  User requests to delete a specific order in the list
+4.  CakeCollate deletes the order
 
     Use case ends.
 
@@ -311,11 +311,43 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CakeCollate shows an error message.
 
       Use case resumes at step 2.
+      
+**Use case: Add an order**
 
-*{More to be added}*
+**MSS**
+
+1.  User requests to list order
+2.  CakeCollate shows a list of orders
+3.  User requests to add a specific order in the list
+4.  CakeCollate adds the order
+
+    Use case ends.
+
+**Use case: Edit an order**
+
+**MSS**
+
+1.  User requests to list order
+2.  CakeCollate shows a list of orders
+3.  User requests to edit a specific order in the list
+4.  CakeCollate edits the order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CakeCollate shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
