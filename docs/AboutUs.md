@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Priscilla
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ppris.png" width="200px">
 
 [[github](http://github.com/ppris)]
 [[portfolio](team/ppris.md)]
 
 * Role: Team Lead
-* Responsibilities:
+* Responsibilities: Model
 
 ### Lim Rui Xiong
 
