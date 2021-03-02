@@ -120,18 +120,18 @@ Examples:
 
 Finds clients whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [& MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g hans will match Hans.
 * The order of the keywords does not matter.
 * Only the name field is searched.
-* Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans, Bo will return Hans Gruber, Bo Yang.
+* The delimiter `&` between keywords is used to indicate mutiple keywords
+* Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans & Bo will return Hans Gruber, Bo Yang.
 
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex, david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find alex & david` returns `Alex Yeoh`, `David Li`<br>
 
 ### Deleting a person : `delete`
 
