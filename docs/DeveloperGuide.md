@@ -236,34 +236,166 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Property agent who has a need to manage a significant number of properties and appointments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: PocketEstate enables easy organization of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                                    | So that I can…​                                                                |
+| -------- | ------------------------------------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                             | refer to instructions when I forget how to use the App                            |
+| `* * *`  | user                                       | be able to add a property                                          | keep track of my clients' properties                                              |
+| `* * *`  | user                                       | be able to add an appointment                                      | keep track of my upcoming schedule                                                |
+| `* * *`  | user                                       | delete a person                                                    | remove entries that I no longer need                                              |
+| `* * *`  | user                                       | find a person by name                                              | locate details of persons without having to go through the entire list            |
+| `* * *`  | user                                       | list all properties on sale                                        | know the number of properties that I have to sell                                 |
+| `* * *`  | user                                       | list all properties on sale                                        | know which properties I have to sell                                              |
+| `* * *`  | user                                       | view the client asking price of a property                         | keep the price in mind when negotiating with the buyer                            |
+| `* * *`  | user                                       | view the properties in the order of nearest deadline               | prioritize selling properties with a more urgent deadline                         |
+| `* *`    | potential user exploring the app           | see the app populated with sample data                             | easily see how the app looks like when it is in use                               |
+| `* *`    | user                                       | hide private contact details                                       | minimize chance of someone else seeing them by accident                           |
+| `* *`    | careless user                              | be able to categorize housing information based on predefined tags | prevent typos while keying in information and avoid storing the wrong information |
+| `* *`    | user                                       | update the status of property listings(completed, Option, Sale Agreement) | follow up with clients on time                                             |
+| `* *`    | user                                       | edit the deadline of the property listing                          | extend the time period for selling the property                                   |
+| `* *`    | user                                       | edit the name of the property listing                              | change the name of the property when I have made a mistake                        |
+| `* *`    | user                                       | edit the address of the property listing                           | change the address of the property when I have made a mistake                     |
+| `*`      | user with many persons in the address book | sort persons by name                                               | locate a person easily                                                            |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PocketEsate` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: UC01 - Add a property**
+
+**MSS**
+
+1. User request to add a property
+2. PocketEstate shows an updated list of properties
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The property to be added has missing required fields.
+
+    * 1a1. PocketEstate shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC02 - Add an appointment**
+
+**MSS**
+
+1. User request to add an appointment
+2. PocketEstate shows an updated list of appointments
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The appointment to be added has missing required fields.
+
+    * 1a1. PocketEstate shows an error message.
+
+      Use case ends.
+
+**Use case: UC03 - Listing all properties and appointments**
+
+**MSS**
+
+1. User requests to list all properties and appointments.
+2. PocketEstate shows the entire list of properties and appointments.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. List command used has unrecognized fields.
+
+    * 3a1. PocketEstate shows an error message.
+
+      Use case ends.
+
+**Use case: UC04 - Edit a property**
+
+**MSS**
+
+1. User request to edit a property
+2. PocketEstate shows an updated list of properties
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The property to be edited has unrecognized fields.
+
+    * 1a1. PocketEstate shows an error message with the unrecognized fields.
+
+      Use case ends.
+
+
+**Use case: UC05 - Edit an appointment**
+
+**MSS**
+
+1. User request to edit an appointment
+2. PocketEstate shows an updated list of appointments
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The appointment to be edited has unrecognized fields.
+
+    * 1a1. PocketEstate shows an error message with the unrecognized fields.
+
+      Use case ends.
+      
+      
+**Use case: UC06 - Update status of a property**
+
+**MSS**
+
+1. User request to update status of a property
+2. PocketEstate shows an updated list of properties
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The property to be updated has incorrect fields.
+
+    * 1a1. PocketEstate shows an error message.
+
+      Use case ends.
+
+**Use case: UC07 - Searching for property**
+
+**MSS**
+1. User requests to search for properties of a certain type. 
+2. PocketEstate shows a list of properties that are of that type. 
+
+    Use case ends. 
+
+**Use case: UC08 - Searching for appointment**
+
+**MSS**
+1. User requests to search for appointments with a certain person. 
+2. PocketEstate shows a list of all appointments with that person.  
+
+    Use case ends. 
+    
 **Use case: Delete a person**
 
 **MSS**
@@ -286,14 +418,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster by using commands over the mouse.
+3. Should be able to hold up to 500 properties and 500 appointments concurrently without a noticeable sluggishness in performance for typical usage.
+4. The app should respond within two seconds after each user command.
+5. The GUI of the app should clearly differentiate the different property types (HDB ![hdb_icon](images/hdb_16.png), Condo ![condo_icon](images/condo_16.png), Landed ![landed_icon](images/landed_16.png), etc.) of each property in the list.
+6. The app should be able to run without internet connection.
+7. The app should be resizable and can be enlarged to the maximum window width.
+8. There should be sample data in the app when the user opens the app for the first time.
 
 *{More to be added}*
 
@@ -301,6 +437,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code and Deadline,
+    optional attributes: Client name, Client contact, Client email, Client asking price, Remarks
+* **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date,  optional attribute: Time
 
 --------------------------------------------------------------------------------------------------------------------
 
