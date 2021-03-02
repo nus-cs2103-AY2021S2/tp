@@ -6,6 +6,8 @@ import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
+import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.AddCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
+import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.DeleteCommand;
 import seedu.dictionote.logic.commands.EditCommand;
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
@@ -22,6 +25,7 @@ import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommand;
+import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.person.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.person.Person;
@@ -49,7 +53,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -58,7 +62,7 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -72,7 +76,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -87,6 +91,25 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
+
+    @Test
+    public void parseCommand_open() throws Exception {
+        for (int i = 0; i < VALID_UI_OPTIONS.length; i++) {
+            OpenCommand command = (OpenCommand) parser.parseCommand(
+                OpenCommand.COMMAND_WORD + " " + VALID_UI_OPTIONS[i]);
+            assertEquals(new OpenCommand(EXPECTED_UI_OPTION[i]), command);
+        }
+    }
+
+    @Test
+    public void parseCommand_close() throws Exception {
+        for (int i = 0; i < VALID_UI_OPTIONS.length; i++) {
+            CloseCommand command = (CloseCommand) parser.parseCommand(
+                CloseCommand.COMMAND_WORD + " " + VALID_UI_OPTIONS[i]);
+            assertEquals(new CloseCommand(EXPECTED_UI_OPTION[i]), command);
+        }
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

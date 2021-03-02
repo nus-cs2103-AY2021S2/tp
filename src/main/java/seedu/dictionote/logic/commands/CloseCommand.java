@@ -1,7 +1,15 @@
 package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.dictionote.logic.parser.CliSyntax.*;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_ALL_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_LIST_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_LIST_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_NOTE_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_NOTE_LIST_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_NOTE_PANEL;
 
 import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.logic.commands.enums.UiActionOption;
@@ -27,7 +35,7 @@ public class CloseCommand extends Command {
         + OPTION_NOTE_CONTENT_PANEL + ", "
         + OPTION_NOTE_LIST_PANEL + ", "
         + OPTION_NOTE_PANEL + ".\n"
-        + "Example: " + COMMAND_WORD + " -c ";
+        + "Example: " + COMMAND_WORD + " -c";
 
     public static final String SHOWING_CLOSE_MESSAGE = "Panel closed.";
 
@@ -48,5 +56,12 @@ public class CloseCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.CLOSE, uiActionOption);
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof CloseCommand // instanceof handles nulls
+            && uiActionOption.equals(((CloseCommand) other).uiActionOption));
     }
 }

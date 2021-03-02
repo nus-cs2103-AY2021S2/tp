@@ -1,76 +1,59 @@
 package seedu.dictionote.testutil;
 
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_ALL_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_LIST_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_DICTIONARY_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_LIST_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_NOTE_CONTENT_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_NOTE_LIST_PANEL;
+import static seedu.dictionote.logic.parser.CliSyntax.OPTION_NOTE_PANEL;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.dictionote.model.AddressBook;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a arrau of {@code UiActionOption} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalUiActions {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+    private static final String VALID_OPTION_1 = OPTION_ALL_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_1 = UiActionOption.ALL;
 
-    // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+    private static final String VALID_OPTION_2 = OPTION_CONTENT_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_2 = UiActionOption.CONTENT;
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+    private static final String VALID_OPTION_3 = OPTION_DICTIONARY_CONTENT_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_3 = UiActionOption.DICTIONARY_CONTENT;
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    private static final String VALID_OPTION_4 = OPTION_DICTIONARY_LIST_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_4 = UiActionOption.DICTIONARY_LIST;
 
-    private TypicalPersons() {} // prevents instantiation
+    private static final String VALID_OPTION_5 = OPTION_DICTIONARY_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_5 = UiActionOption.DICTIONARY;
 
-    /**
-     * Returns an {@code AddressBook} with all the typical persons.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        return ab;
-    }
+    private static final String VALID_OPTION_6 = OPTION_LIST_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_6 = UiActionOption.LIST;
 
-    public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
-    }
+    private static final String VALID_OPTION_7 = OPTION_NOTE_CONTENT_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_7 = UiActionOption.NOTE_CONTENT;
+
+    private static final String VALID_OPTION_8 = OPTION_NOTE_LIST_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_8 = UiActionOption.NOTE_LIST;
+
+    private static final String VALID_OPTION_9 = OPTION_NOTE_PANEL;
+    private static final UiActionOption EXCEPTION_OPTION_9 = UiActionOption.NOTE;
+
+
+    public static final String[] VALID_UI_OPTIONS = {
+        VALID_OPTION_1, VALID_OPTION_2, VALID_OPTION_3,
+        VALID_OPTION_4, VALID_OPTION_5, VALID_OPTION_6,
+        VALID_OPTION_7, VALID_OPTION_8, VALID_OPTION_9
+    };
+
+    public static final UiActionOption[] EXPECTED_UI_OPTION = {
+        EXCEPTION_OPTION_1, EXCEPTION_OPTION_2, EXCEPTION_OPTION_3,
+        EXCEPTION_OPTION_4, EXCEPTION_OPTION_5, EXCEPTION_OPTION_6,
+        EXCEPTION_OPTION_7, EXCEPTION_OPTION_8, EXCEPTION_OPTION_9
+    };
 }

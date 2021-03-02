@@ -1,7 +1,7 @@
 package seedu.dictionote.logic.commands;
 
-import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CloseCommand.SHOWING_CLOSE_MESSAGE;
+import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +16,9 @@ public class CloseCommandTest {
 
     @Test
     public void execute_close_success() {
-        for(UiActionOption uiActionOption : UiActionOption.values()) {
-            CommandResult expectedCommandResult = new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.CLOSE, uiActionOption);
+        for (UiActionOption uiActionOption : UiActionOption.values()) {
+            CommandResult expectedCommandResult = new CommandResult(SHOWING_CLOSE_MESSAGE,
+                UiAction.CLOSE, uiActionOption);
             assertCommandSuccess(new CloseCommand(uiActionOption), model, expectedCommandResult, expectedModel);
         }
     }

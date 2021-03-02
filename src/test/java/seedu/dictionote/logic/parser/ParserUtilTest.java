@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
+import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_UI_OPTION = "0123";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -193,4 +196,30 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseUiActionOption_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUiActionOption(null));
+    }
+
+    @Test
+    public void parseUiActionOption_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUiActionOption(INVALID_UI_OPTION));
+    }
+
+    @Test
+    public void parseUiActionOption_validValueWithoutWhitespace_returnsTag() throws Exception {
+        for (int i = 0; i < VALID_UI_OPTIONS.length; i++) {
+            assertEquals(EXPECTED_UI_OPTION[i], ParserUtil.parseUiActionOption(VALID_UI_OPTIONS[i]));
+        }
+    }
+
+    @Test
+    public void parseUiActionOption_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        for (int i = 0; i < VALID_UI_OPTIONS.length; i++) {
+            String optionWithWhitespace = WHITESPACE + VALID_UI_OPTIONS[i] + WHITESPACE;
+            assertEquals(EXPECTED_UI_OPTION[i], ParserUtil.parseUiActionOption(optionWithWhitespace));
+        }
+    }
+
 }
