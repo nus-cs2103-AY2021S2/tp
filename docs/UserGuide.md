@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-# BudgetBaby :baby: :money_with_wings: User Guide
+# BudgetBaby User Guide :baby: :money_with_wings:
 
 **BudgetBaby** is a **desktop app for setting monthly budgets and tracking expenses**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and editing financial records and budgets can be done faster by typing in commands while still having the benefits of a Graphical User Interface (GUI).
 
@@ -29,7 +29,7 @@ title: User Guide
 
    - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
 
-   - **`list 01-2021`** : List all financial records in `January 2021`.
+   - **`list`** `01-2021`: List all financial records in `January 2021`.
 
    - **`delete`** `3` : Deletes the 3rd financial record shown in the current list.
 
@@ -47,26 +47,26 @@ title: User Guide
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`, `FR_DESCRIPTION` and `FR_AMOUNT` are
-  a parameters which can be used as `add n/Lunch a/10`.
+  a parameters which can be used as `add-fr n/Lunch a/10`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/TAG]…` can be used as `add-fr n/Lunch a/10 t/food` or as `add-fr n/Lunch a/10`.
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/food`, `t/transportation`, `t/shopping` etc.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `d/FR_DESCRIPTION a/FR_AMOUNT`, `a/FR_AMOUNT d/FR_DESCRIPTION` is also acceptable.
 
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `d/Lunch d/Dinner`, only `d/Dinner` will be taken.
 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `view-bg` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help` [coming in v1.2]
 
 Shows a message explaning how to access the help page.
 
@@ -74,7 +74,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a Financial Record: `add-fr`
+### Adding a Financial Record: `add-fr` [coming in v1.2]
 
 Adds a financial record to the budget tracker.
 
@@ -89,9 +89,9 @@ Examples:
 - `add-fr d/Lunch a/10`
 - `add-fr d/Dinner a/13.50`
 
-### Listing a Month's Financial Records : `list`
+### Listing a Month's Financial Records : `list` [coming in v1.2]
 
-Displays a month's financial records.
+Lists a month's financial records.
 
 Format: `list MM-YYYY`
 
@@ -103,7 +103,7 @@ Examples:
 
 - `list 02-2021`
 
-### Viewing a Financial Record: `view-fr`
+### Viewing a Financial Record: `view-fr` [coming in v1.2]
 
 Displays a financial record in the budget tracker.
 
@@ -118,7 +118,7 @@ Examples:
 
 - `list 02-2021` followed by `view-fr 10` views the 10th financial record of Feb 2021
 
-### Deleting a Financial Record : `delete-fr`
+### Deleting a Financial Record : `delete-fr` [coming in v1.2]
 
 Deletes a financial record from the budget tracker.
 
@@ -133,7 +133,7 @@ Examples:
 
 - `list 02-2021` followed by `delete-fr 10` deletes the 10th financial record of Feb 2021
 
-### Setting monthly budget : `set-bg`
+### Setting monthly budget : `set-bg` [coming in v1.2]
 
 Sets the budget for the following months
 
@@ -147,13 +147,13 @@ Examples:
 - `set-bg 100`
 - `set-bg 1300.50`
 
-### Viewing monthly budget : `view-bg`
+### Viewing monthly budget : `view-bg` [coming in v1.2]
 
 Displays the current monthly budget
 
 Format: `view-bg`
 
-### Checking remaining budget for a month : `check`
+### Checking remaining budget for a month : `check` [coming in v1.2]
 
 Checks the remaining budget for the current month
 
@@ -167,7 +167,7 @@ Examples:
 
 - `check 01-2021`
 
-### Exiting the program : `exit`
+### Exiting the program : `exit` [coming in v1.2]
 
 Exits the program.
 
