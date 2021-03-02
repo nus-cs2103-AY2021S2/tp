@@ -251,13 +251,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| `* * *`  | dog school manager                         | Create a list of dogs and their respective owners in the dog school        | keep track of the dogs we are responsible for     |
+| `* * *`  | busy person                       | Delete dog profiles and owner profiles            | remove dogs or owners that are no longer in the school                                                           |
+| `* * *`  | dog school manager                         | Add dog profiles and owner profiles             |  add new dogs or owners that join the school         |
+| `* * *`  | dog school manager                         | Get instructions         | get help when I do not know how to use the application |
+| `* * *`  | dog school manager                         | Exit the application   |           |
+| `* *`    | dog school manager                         | edit a dog profile when the information is wrong/outdated |                                             |
+| `* *`    | dog school manager                         | create a dog program for the dog students            |                                                  |
+| `* *`    | dog school manager                         | enrol dogs into a specific dog program | dogs who recently joined a program are added to the class list |
+| `* *`    | dog school manager                         | drop dogs out of a specific dog program | dogs that have left the class are no longer in the class list  |
+| `* *`    | advanced user                              | edit in bulk quickly without having to be familiar with the app | minimize chance of someone else seeing them by accident |
+                                          
 *{More to be added}*
 
 ### Use cases

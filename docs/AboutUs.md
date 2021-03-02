@@ -9,31 +9,30 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Charles Lee Lin Ta
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/charleslee01.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/CharlesLee01)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Add command
 
-### Jane Doe
+### John Alec Mendoza Branzuela
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/branzuelajohn.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/branzuelajohn)]
+[[portfolio](team/branzuelajohn.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Kou Yong Kang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kouyk.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/kouyk)] [[portfolio](team/yongkang.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -47,22 +46,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Help command
 
-### James Doe
+### Wei Yutong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wei-yutong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wei-yutong)]
+[[portfolio](team/weiyutong.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Exit Command
 
 ### Zhang Anli
 
-<img src="images/Anli.png" width="200px">
+<img src="images/zhanganli.png" width="200px">
 
 [[github](http://github.com/ZhangAnli)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Delete command

@@ -60,9 +60,7 @@ Examples:
    5pm and on 9 March 2021 1pm to 2pm.**</br>
    Command: `add program p/Program1 t/2.3.2021 1600-1700 9.3.2021 1300-140`
 
-
-
----
+-----
 ### **FAQ**
 Q: How do I transfer my data to another Computer?</br>
 A: Install the app in the other computer and overwrite the empty data file it creates with
