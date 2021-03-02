@@ -19,7 +19,7 @@ Damith Chatura Rajapakse
 
 ### Kenny Chew Pu Yang
 
-<img src="images/kennychew.jpg" width="200px">
+<img src="images/knitidceladon23.png" width="200px">
 
 [[github](http://github.com/KnitidCeladon23)]
 [[portfolio](team/kennychew.md)]
