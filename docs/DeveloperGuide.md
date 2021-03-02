@@ -5,21 +5,7 @@ title: Developer Guide
 
 - Table of Contents {:toc}
 
----
-
-## Note
-
-AB3 DG links here for references:
-
-[AB3 DG markdown](https://github.com/se-edu/addressbook-level3/blob/master/docs/DeveloperGuide.md)
-
-[AB3 DG html](https://se-education.org/addressbook-level3/DeveloperGuide.html)
-
----
-
-## **Appendix: Requirements**
-
-### Product scope
+## **Appendix A: Product Scope**
 
 **Target user profile**:
 
@@ -41,7 +27,7 @@ AB3 DG links here for references:
 - unintrusive
 - great user experience
 
-### User stories
+## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 (unlikely to have) - `*`
@@ -62,17 +48,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 
 _{More to be added}_
 
-### Use cases
+## **Appendix C: Use Cases**
 
 (For all use cases below, the **System** is the `imPoster` and the **Actor** is
 the `user`, unless specified otherwise)
 
-**Use case: Add an API endpoint**
+### <ins>General Use Cases</ins>
+
+**Use case G01 - View Help**
 
 **MSS**
 
-1.  User enters command to save an API endpoint
-2.  imPoster saves the API endpoint
+1.  User requests for help with using the application
+2.  User enters help command into command box
+3.  imPoster returns a help link for the user to click
 
     Use case ends.
 
@@ -80,84 +69,216 @@ the `user`, unless specified otherwise)
 
 - 2a. The given command/format is invalid
 
-  - 2a1. imPoster shows an error message
+  - 2a1. imPoster shows an error message to the user
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
-**Use case: Locate a saved API endpoint by name**
+**Use case G02 - Exit imPoster**
 
 **MSS**
 
-1.  User enters command to locate a saved API endpoint
-2.  imPoster searches the existing records
-3.  imPoster returns a list of matching API endpoints
+1.  User requests to exit the application
+2.  User enters exit command into command box
+3.  imPoster exits
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The given search result is empty
+- 2a. The given command/format is invalid
 
-  - 2a1. imPoster shows a friendly message about mistyped keywords
+  - 2a1. imPoster shows an error message to the user
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
-**Use case: Call a saved API endpoint**
+### <ins>Endpoint Use Cases</ins>
+
+**Use case E01 - Add an API endpoint**
 
 **MSS**
 
-1.  User enters command to call a saved API endpoint
-2.  imPoster makes a call to the desired API endpoint
-3.  API call is successful and response is shown to the user
-4.  imPoster saves the response to a file that the user can view
+1.  User requests to add an API endpoint
+2.  User enters add command into command box
+3.  imPoster saves the API endpoint to the API endpoint list
 
     Use case ends.
 
 **Extensions**
 
-- 2a. imPoster receives a status code indicating an error
+- 2a. The given command/format is invalid
 
-  - 2a1. imPoster forwards and shows the error message (from the server, if any)
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+**Use case E02 - Edit an API endpoint**
+
+**MSS**
+
+1.  User requests to edit an API endpoint
+2.  User enters edit command into command box
+3.  imPoster edits the API endpoint and updates the API endpoint list
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid
+
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+- 2b. The given index is invalid
+
+  - 2b1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+**Use case E03 - Remove an API endpoint**
+
+**MSS**
+
+1.  User requests to remove an API endpoint
+2.  User enters remove command into command box
+3.  imPoster removes the API endpoint and updates the API endpoint list
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid
+
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+- 2b. The given index is invalid
+
+  - 2b1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+**Use case E04 - Find a saved API endpoint**
+
+**MSS**
+
+1.  User requests to find a saved API endpoint
+2.  User enters find command into command box
+3.  imPoster searches the existing records
+4.  imPoster returns a list of matching API endpoints
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid
+
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+- 2b. The given search result is empty
+
+  - 2b1. imPoster shows a friendly message about mistyped keywords to the user
+
+    Use case resumes at step 1.
+
+**Use case E05 - List all saved API endpoints**
+
+**MSS**
+
+1.  User requests to view all saved API endpoints
+2.  User enters list command into command box
+3.  imPoster displays all existing records
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid
+
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+**Use case E06 - Clear all saved API endpoints**
+
+**MSS**
+
+1.  User requests to clear all saved API endpoints
+2.  User enters clear command into command box
+3.  imPoster clears all existing records
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid
+
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+**Use case E07 - Call a saved API endpoint**
+
+**MSS**
+
+1.  User requests to call a saved API endpoint
+2.  User enters send command into command box
+3.  imPoster makes a call to the desired API endpoint
+4.  API call is successful and response is shown to the user
+5.  imPoster saves the response to a file that the user can view
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid
+
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+- 2b. imPoster receives an invalid index
+
+  - 2b1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+- 3a. imPoster receives a status code indicating an error
+
+  - 3a1. imPoster forwards and shows the error message (from the server, if any)
     to the user
 
     Use case resumes at step 1.
 
-**Use case: Call an API endpoint directly without saving**
+**Use case E08 - Call an API endpoint directly without saving**
 
 **MSS**
 
-1.  User enters command to call an API endpoint
-2.  imPoster makes a call to the desired API endpoint
-3.  API call is successful and response is shown to the user
-4.  imPoster saves the response to a file that the user can view
+1.  User requests to call a saved API endpoint
+2.  User enters run command into command box
+3.  imPoster makes a call to the desired API endpoint
+4.  API call is successful and response is shown to the user
+5.  imPoster saves the response to a file that the user can view
 
     Use case ends.
 
 **Extensions**
 
-- 2a. imPoster receives a status code indicating an error
+- 2a. The given command/format is invalid
 
-  - 2a1. imPoster forwards and shows the error message (from the server, if any)
+  - 2a1. imPoster shows an error message to the user
+
+    Use case resumes at step 2.
+
+- 3a. imPoster receives a status code indicating an error
+
+  - 3a1. imPoster forwards and shows the error message (from the server, if any)
     to the user
 
     Use case resumes at step 1.
-
-**MSS**
-
-1.  User enters command to remove an API endpoint
-2.  ImPoster makes a call to remove the corresponding API endpoint from its memory
-3.  API call is successful and response is shown to the user
-4.  ImPoster updates and saves the remaining API endpoints to a file that the user can view
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The API endpoint that the user wants to remove is empty
-
-    * 1a1. ImPoster forwards and shows an error message to the user
-
-      Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -170,13 +291,21 @@ the `user`, unless specified otherwise)
 3.  A user with above average typing speed for regular English text (i.e. not
     code, not system admin commands) should be able to accomplish most of the
     tasks faster using commands than using the mouse.
+4.  Should feel simple and easy to use as compared to existing
+    solutions such as [Postman](https://www.postman.com/).
+5.  Should be able to provide a proper response even if a call to an API
+    endpoint fails due to third-party unavailability.
+6.  Should not crash or throw unexpected errors when internet connection is
+    unavailable.
 
 _{More to be added}_
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **API endpoint**: The point of entry in a communication channel for two
+- **Endpoint/API endpoint**: The point of entry in a communication channel for two
   systems to interact
+- **API Call/Call**: A process where information is transferred, processed and a response is returned
+- **Postman**: An existing API client for developers
 
 _{More to be added}_
