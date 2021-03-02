@@ -11,7 +11,6 @@ We are the team behind HeliBook. We are based in the [School of Computing, Natio
 ## Project team
 
 
-
 ### Liao Xing Peng
 
 <img src="images/mechastriker3.png" width="200px">
