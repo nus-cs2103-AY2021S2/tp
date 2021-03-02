@@ -11,6 +11,7 @@ import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SchoolResidence;
 import seedu.address.model.person.VaccinationStatus;
 
 /**
@@ -27,6 +28,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String vaccinationStatus;
     private final String medicalDetails;
+    private final String schoolResidence;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -37,7 +39,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("vaccinationStatus") String vaccinationStatus,
-                             @JsonProperty("medicalDetails") String medicalDetails) {
+                             @JsonProperty("medicalDetails") String medicalDetails,
+                             @JsonProperty("schoolResidence") String schoolResidence) {
         this.name = name;
         this.matriculationNumber = matriculationNumber;
         this.phone = phone;
@@ -45,6 +48,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.vaccinationStatus = vaccinationStatus;
         this.medicalDetails = medicalDetails;
+        this.schoolResidence = schoolResidence;
     }
 
     /**
@@ -58,6 +62,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         vaccinationStatus = source.getVaccinationStatus().value;
         medicalDetails = source.getMedicalDetails().value;
+        schoolResidence = source.getSchoolResidence().value;
     }
 
     /**
@@ -126,12 +131,16 @@ class JsonAdaptedPerson {
         if (!MedicalDetails.isValidMedicalDetails(medicalDetails)) {
             throw new IllegalValueException(MedicalDetails.MESSAGE_CONSTRAINTS);
         }
-
         final MedicalDetails modelMedDetails = new MedicalDetails(medicalDetails);
 
+        if (!SchoolResidence.isValidResidence(schoolResidence)) {
+            throw new IllegalValueException(SchoolResidence.MESSAGE_CONSTRAINTS);
+        }
+
+        final SchoolResidence modelSchoolRes = new SchoolResidence(schoolResidence);
 
         return new Person(modelName, modelMatric, modelPhone, modelEmail, modelAddress, modelVacStatus,
-                modelMedDetails);
+                modelMedDetails, modelSchoolRes);
     }
 
 }

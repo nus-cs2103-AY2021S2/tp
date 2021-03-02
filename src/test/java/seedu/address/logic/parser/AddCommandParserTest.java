@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MATRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RESIDENCE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MATRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MATRIC_DESC_BOB;
@@ -22,6 +23,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.RESIDENCE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.RESIDENCE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -33,6 +36,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -45,6 +49,7 @@ import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SchoolResidence;
 import seedu.address.model.person.VaccinationStatus;
 import seedu.address.testutil.PersonBuilder;
 
@@ -57,53 +62,59 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple matriculation numbers - last matric number accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + MATRIC_DESC_AMY + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple vaccination statuses - last vaccination status accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + MATRIC_DESC_AMY + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + STATUS_DESC_AMY + DETAILS_DESC_BOB,
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + STATUS_DESC_AMY + DETAILS_DESC_BOB
+                        + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple medical details  - last medical details accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + MATRIC_DESC_AMY + PHONE_DESC_BOB
-                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_AMY + DETAILS_DESC_BOB,
+                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_AMY + DETAILS_DESC_BOB
+                        + RESIDENCE_DESC_BOB,
+                new AddCommand(expectedPerson));
+
+        // multiple school residences  - last school residences accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + MATRIC_DESC_AMY + PHONE_DESC_BOB
+                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB
+                        + RESIDENCE_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
-    //Comment out first will still use later
-//    @Test
-//    public void parse_optionalFieldsMissing_success() {
-//        // zero tags
-//        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-//        assertParseSuccess(parser, NAME_DESC_AMY + MATRIC_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-//                        + ADDRESS_DESC_AMY + STATUS_DESC_AMY, new AddCommand(expectedPerson));
-//    }
+    @Test
+    public void parse_optionalFieldsMissing_success() {
+        Person expectedPerson = new PersonBuilder(AMY).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + MATRIC_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                        + ADDRESS_DESC_AMY + STATUS_DESC_AMY + DETAILS_DESC_AMY, new AddCommand(expectedPerson));
+    }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
@@ -146,37 +157,43 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // invalid matriculation number
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_MATRIC_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 MatriculationNumber.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_ADDRESS_DESC + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                + INVALID_ADDRESS_DESC + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 Address.MESSAGE_CONSTRAINTS);
 
         // invalid vaccination status
         assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + INVALID_STATUS_DESC + DETAILS_DESC_BOB,
+                + ADDRESS_DESC_BOB + INVALID_STATUS_DESC + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 VaccinationStatus.MESSAGE_CONSTRAINTS);
 
         // invalid medical details
         assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + STATUS_DESC_BOB + INVALID_DETAILS_DESC,
+                        + ADDRESS_DESC_BOB + STATUS_DESC_BOB + INVALID_DETAILS_DESC + RESIDENCE_DESC_BOB,
                 MedicalDetails.MESSAGE_CONSTRAINTS);
+
+        // invalid school residence
+        assertParseFailure(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + INVALID_RESIDENCE_DESC,
+                SchoolResidence.MESSAGE_CONSTRAINTS);
+
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + MATRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -184,7 +201,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + MATRIC_DESC_BOB + PHONE_DESC_BOB
-                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB,
+                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + DETAILS_DESC_BOB,
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

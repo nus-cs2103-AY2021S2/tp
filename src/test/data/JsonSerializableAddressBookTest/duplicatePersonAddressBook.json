@@ -6,7 +6,8 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "vaccinationStatus" : "vaccinated",
-    "medicalDetail" : "none"
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   }, {
     "name": "Alice Pauline",
     "matriculationNumber" : "A3456789D",
@@ -14,6 +15,7 @@
     "email": "pauline@example.com",
     "vaccinationStatus" : "vaccinated",
     "address": "4th street",
-    "medicalDetails" : "none"
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   } ]
 }

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 
 import seedu.address.commons.core.index.Index;
@@ -29,7 +30,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS);
+                        PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS, PREFIX_SCHOOL_RESIDENCE);
 
         Index index;
 
@@ -63,6 +64,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_MEDICAL_DETAILS).isPresent()) {
             editPersonDescriptor.setMedicalDetails(ParserUtil.parseMedicalDetails(argMultimap
                     .getValue(PREFIX_MEDICAL_DETAILS).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_SCHOOL_RESIDENCE).isPresent()) {
+            editPersonDescriptor.setSchoolResidence(ParserUtil.parseSchoolRes(argMultimap
+                    .getValue(PREFIX_SCHOOL_RESIDENCE)));
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

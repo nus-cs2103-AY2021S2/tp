@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class MedicalDetails {
 
-    public static final String MESSAGE_CONSTRAINTS = "MedicalDetails can take any values, and it should not be blank." +
-            "If there is nothing worthy of reporting, enter 'none'.";
+    public static final String MESSAGE_CONSTRAINTS = "MedicalDetails can take any values, and it should not be blank."
+            + "If there is nothing worthy of reporting, enter 'none'.";
 
     /*
      * The first character of the address must not be a whitespace,

@@ -6,15 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
-
-import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Person;
-
 /**
  * A utility class for Person.
  */
@@ -39,6 +36,7 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_VACCINATION_STATUS + person.getVaccinationStatus().value + " ");
         sb.append(PREFIX_MEDICAL_DETAILS + person.getMedicalDetails().value + " ");
+        sb.append(PREFIX_SCHOOL_RESIDENCE + person.getSchoolResidence().value + " ");
         return sb.toString();
     }
 
@@ -57,6 +55,8 @@ public class PersonUtil {
                 .append(vaccinationStatus.value).append(" "));
         descriptor.getMedicalDetails().ifPresent(medicalDetails -> sb.append(PREFIX_MEDICAL_DETAILS)
                 .append(medicalDetails.value).append(" "));
+        descriptor.getSchoolResidence().ifPresent(schoolResidence -> sb.append(PREFIX_SCHOOL_RESIDENCE)
+                .append(schoolResidence.value).append(" "));
         return sb.toString();
     }
 }

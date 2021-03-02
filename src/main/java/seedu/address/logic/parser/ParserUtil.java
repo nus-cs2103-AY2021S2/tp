@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -11,6 +13,7 @@ import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SchoolResidence;
 import seedu.address.model.person.VaccinationStatus;
 
 /**
@@ -137,5 +140,24 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String schoolResidence} into an {@code schoolResidence}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code schoolResidence} is invalid.
+     */
+    public static SchoolResidence parseSchoolRes(Optional<String> schoolResidence) throws ParseException {
+        requireNonNull(schoolResidence);
+        if (schoolResidence.isEmpty()) {
+            return new SchoolResidence("Does not live on campus");
+        } else {
+            String trimmedSchoolRes = schoolResidence.get().trim();
+            if (!SchoolResidence.isValidResidence(trimmedSchoolRes)) {
+                throw new ParseException(SchoolResidence.MESSAGE_CONSTRAINTS);
+            }
+            return new SchoolResidence(trimmedSchoolRes);
+        }
     }
 }

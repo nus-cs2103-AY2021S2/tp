@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MatriculationNumber;
@@ -9,6 +7,7 @@ import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SchoolResidence;
 import seedu.address.model.person.VaccinationStatus;
 
 /**
@@ -23,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_VAC_STATUS = "not vaccinated";
     public static final String DEFAULT_MED_DETAILS = "none";
+    public static final String DEFAULT_SCHOOL_RESIDENCE = "RVRC";
 
     private Name name;
     private MatriculationNumber matriculationNumber;
@@ -31,6 +31,7 @@ public class PersonBuilder {
     private Address address;
     private VaccinationStatus vaccinationStatus;
     private MedicalDetails medicalDetails;
+    private SchoolResidence schoolResidence;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,6 +44,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         vaccinationStatus = new VaccinationStatus(DEFAULT_VAC_STATUS);
         medicalDetails = new MedicalDetails(DEFAULT_MED_DETAILS);
+        schoolResidence = new SchoolResidence(DEFAULT_SCHOOL_RESIDENCE);
     }
 
     /**
@@ -55,6 +57,8 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         vaccinationStatus = personToCopy.getVaccinationStatus();
+        medicalDetails = personToCopy.getMedicalDetails();
+        schoolResidence = personToCopy.getSchoolResidence();
     }
 
     /**
@@ -113,8 +117,22 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     *Sets the {@code schoolResidence} of the {@code Person} that we are building
+     */
+    public PersonBuilder withSchoolRes(String schoolResidence) {
+        this.schoolResidence = new SchoolResidence(schoolResidence);
+        return this;
+    }
+
+    /**
+     * Builds a new Person object.
+     *
+     * @return a person object.
+     */
     public Person build() {
-        return new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, medicalDetails);
+        return new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, medicalDetails,
+                schoolResidence);
     }
 
 }

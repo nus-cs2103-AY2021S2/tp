@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 
 import java.util.stream.Stream;
@@ -20,6 +21,7 @@ import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SchoolResidence;
 import seedu.address.model.person.VaccinationStatus;
 
 /**
@@ -35,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS);
+                        PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS, PREFIX_SCHOOL_RESIDENCE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_ADDRESS, PREFIX_PHONE,
                 PREFIX_VACCINATION_STATUS, PREFIX_EMAIL, PREFIX_MEDICAL_DETAILS)
@@ -53,8 +55,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .getValue(PREFIX_VACCINATION_STATUS).get());
         MedicalDetails medicalDetails = ParserUtil.parseMedicalDetails(argMultimap.getValue(PREFIX_MEDICAL_DETAILS)
                 .get());
+        SchoolResidence schoolResidence = ParserUtil.parseSchoolRes(argMultimap.getValue(PREFIX_SCHOOL_RESIDENCE));
 
-        Person person = new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, medicalDetails);
+        Person person = new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, medicalDetails,
+                schoolResidence);
 
         return new AddCommand(person);
     }

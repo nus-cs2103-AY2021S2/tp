@@ -8,6 +8,7 @@ import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SchoolResidence;
 import seedu.address.model.person.VaccinationStatus;
 
 /**
@@ -37,6 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setVaccinationStatus(person.getVaccinationStatus());
         descriptor.setMedicalDetails(person.getMedicalDetails());
+        descriptor.setSchoolResidence(person.getSchoolResidence());
     }
 
     /**
@@ -92,6 +94,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withMedDetails(String medicalDetails) {
         descriptor.setMedicalDetails(new MedicalDetails(medicalDetails));
+        return this;
+    }
+
+    /**
+     * Sets the {@code schoolResidence} of the {@code schoolResidence} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSchoolRes(String schoolResidence) {
+        descriptor.setSchoolResidence(new SchoolResidence(schoolResidence));
         return this;
     }
 

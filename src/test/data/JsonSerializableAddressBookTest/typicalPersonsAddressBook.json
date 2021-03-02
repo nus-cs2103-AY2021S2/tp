@@ -7,7 +7,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "vaccinationStatus" : "not vaccinated",
-    "medicalDetails" : "shellfish allergy"
+    "medicalDetails" : "shellfish allergy",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Benson Meier",
     "matriculationNumber" : "A4567890E",
@@ -15,7 +16,8 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "vaccinationStatus" : "not vaccinated",
-    "medicalDetails" : "none"
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Carl Kurz",
     "matriculationNumber" : "A5678901F",
@@ -23,7 +25,8 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "vaccinationStatus" : "vaccinated",
-    "medicalDetails" : "none"
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Daniel Meier",
     "matriculationNumber" : "A6789012G",
@@ -31,7 +34,8 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "vaccinationStatus" : "vaccinated",
-    "medicalDetails" : "pollen allergy"
+    "medicalDetails" : "pollen allergy",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Elle Meyer",
     "matriculationNumber" : "A7890123H",
@@ -39,7 +43,8 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "vaccinationStatus" : "not vaccinated",
-    "medicalDetails" : "none"
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Fiona Kunz",
     "matriculationNumber" : "A8901234I",
@@ -47,7 +52,8 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "vaccinationStatus" : "vaccinated",
-    "medicalDetails" : "bee sting allergy"
+    "medicalDetails" : "bee sting allergy",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "George Best",
     "matriculationNumber" : "A9012345J",
@@ -55,6 +61,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "vaccinationStatus" : "not vaccinated",
-    "medicalDetails" : "none"
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   } ]
 }

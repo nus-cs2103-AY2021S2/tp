@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -42,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_BOB = "not vaccinated";
     public static final String VALID_DETAILS_AMY = "none";
     public static final String VALID_DETAILS_BOB = "peanut allergy";
+    public static final String VALID_RESIDENCE_AMY = "RC4";
+    public static final String VALID_RESIDENCE_BOB = "CAPT";
 
     public static final String VALID_TAG_HUSBAND = "husband";
 
@@ -59,6 +62,8 @@ public class CommandTestUtil {
     public static final String STATUS_DESC_BOB = " " + PREFIX_VACCINATION_STATUS + VALID_STATUS_BOB;
     public static final String DETAILS_DESC_AMY = " " + PREFIX_MEDICAL_DETAILS + VALID_DETAILS_AMY;
     public static final String DETAILS_DESC_BOB = " " + PREFIX_MEDICAL_DETAILS + VALID_DETAILS_BOB;
+    public static final String RESIDENCE_DESC_AMY = " " + PREFIX_SCHOOL_RESIDENCE + VALID_RESIDENCE_AMY;
+    public static final String RESIDENCE_DESC_BOB = " " + PREFIX_SCHOOL_RESIDENCE + VALID_RESIDENCE_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_MATRIC_DESC = " " + PREFIX_MATRICULATION_NUMBER
@@ -68,7 +73,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_DETAILS_DESC = " " + PREFIX_MEDICAL_DETAILS;
-            // empty string not allowed for addresses
+    public static final String INVALID_RESIDENCE_DESC = " " + PREFIX_SCHOOL_RESIDENCE + "rc5";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -79,10 +84,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withMatric(VALID_MATRIC_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withVacStatus(VALID_STATUS_AMY).withMedDetails(VALID_DETAILS_AMY).build();
+                .withVacStatus(VALID_STATUS_AMY).withMedDetails(VALID_DETAILS_AMY)
+                .withSchoolRes(VALID_RESIDENCE_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withMatric(VALID_MATRIC_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withVacStatus(VALID_STATUS_BOB).withMedDetails(VALID_DETAILS_BOB).build();
+                .withVacStatus(VALID_STATUS_BOB).withMedDetails(VALID_DETAILS_BOB)
+                .withSchoolRes(VALID_RESIDENCE_BOB).build();
     }
 
     /**

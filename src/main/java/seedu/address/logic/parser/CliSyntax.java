@@ -13,4 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_VACCINATION_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_MEDICAL_DETAILS = new Prefix("m/");
+    public static final Prefix PREFIX_SCHOOL_RESIDENCE = new Prefix("r/");
 }

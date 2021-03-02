@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -25,6 +26,7 @@ import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SchoolResidence;
 import seedu.address.model.person.VaccinationStatus;
 
 /**
@@ -44,7 +46,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_VACCINATION_STATUS + "VACCINATION STATUS] "
-            + "[" + PREFIX_MEDICAL_DETAILS + "MEDICAL DETAILS] \n"
+            + "[" + PREFIX_MEDICAL_DETAILS + "MEDICAL DETAILS] "
+            + "[" + PREFIX_SCHOOL_RESIDENCE + "SCHOOL RESIDENCE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -106,9 +109,11 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getVaccinationStatus());
         MedicalDetails updatedMedicalDetails = editPersonDescriptor.getMedicalDetails()
                 .orElse(personToEdit.getMedicalDetails());
+        SchoolResidence updatedSchoolResidence = editPersonDescriptor.getSchoolResidence()
+                .orElse(personToEdit.getSchoolResidence());
 
         return new Person(updatedName, updatedMatriculationNumber, updatedPhone, updatedEmail,
-                updatedAddress, updatedVaccinationStatus, updatedMedicalDetails);
+                updatedAddress, updatedVaccinationStatus, updatedMedicalDetails, updatedSchoolResidence);
     }
 
     @Override
@@ -141,6 +146,7 @@ public class EditCommand extends Command {
         private Address address;
         private VaccinationStatus vaccinationStatus;
         private MedicalDetails medicalDetails;
+        private SchoolResidence schoolResidence;
 
         public EditPersonDescriptor() {}
 
@@ -156,6 +162,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setMedicalDetails(toCopy.medicalDetails);
             setVaccinationStatus(toCopy.vaccinationStatus);
+            setSchoolResidence(toCopy.schoolResidence);
         }
 
         /**
@@ -219,6 +226,14 @@ public class EditCommand extends Command {
 
         public Optional<MedicalDetails> getMedicalDetails() {
             return Optional.ofNullable(medicalDetails);
+        }
+
+        public void setSchoolResidence(SchoolResidence schoolResidence) {
+            this.schoolResidence = schoolResidence;
+        }
+
+        public Optional<SchoolResidence> getSchoolResidence() {
+            return Optional.ofNullable(schoolResidence);
         }
 
         @Override

@@ -21,12 +21,13 @@ public class Person {
     private final Address address;
     private final VaccinationStatus vaccinationStatus;
     private final MedicalDetails medicalDetails;
+    private final SchoolResidence schoolResidence;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, MatriculationNumber matriculationNumber, Phone phone, Email email, Address address,
-                  VaccinationStatus vaccinationStatus, MedicalDetails medicalDetails) {
+                  VaccinationStatus vaccinationStatus, MedicalDetails medicalDetails, SchoolResidence schoolResidence) {
         requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.matriculationNumber = matriculationNumber;
@@ -35,6 +36,7 @@ public class Person {
         this.address = address;
         this.vaccinationStatus = vaccinationStatus;
         this.medicalDetails = medicalDetails;
+        this.schoolResidence = schoolResidence;
     }
 
     public Name getName() {
@@ -63,6 +65,10 @@ public class Person {
 
     public MedicalDetails getMedicalDetails() {
         return medicalDetails;
+    }
+
+    public SchoolResidence getSchoolResidence() {
+        return schoolResidence;
     }
 
     /**
