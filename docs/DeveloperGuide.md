@@ -12,6 +12,28 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **Target User Profile**
+
+The target user profile are dog school managers that own and manage the daily operations of the dog schools. They handle 
+a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care of the 
+dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school at all 
+times. 
+
+## **Value Proposition**
+
+In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training, 
+grooming and workshops. With many moving parts daily, managing operations  can get overwhelming. 
+PawBook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services 
+and maintain organisation.
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
@@ -266,40 +288,131 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Pawbook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a dog/owner profile or program**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User request to add a dog/owner profile or program to the list.
+2.  Pawbook adds the dog/owner.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Missing mandatory dog/owner/program details.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies missing details.
 
       Use case resumes at step 2.
+    
+*Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
+
+**Use case: UC02 - Delete a dog/owner profile or program**
+
+**MSS**
+
+1.  User requests to delete a specific dog/owner/program in the list.
+2.  Pawbook deletes the dog/owner/program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given dog/owner/program ID is invalid or not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies the corrected dog/owner/program ID.
+
+      Use case resumes at step 2.
+
+**Use case: UC03 - List**
+
+**MSS**
+
+1.  User requests to list dogs with a given tag.
+2.  Pawbook lists the related dogs.
+
+    Use case ends.
+
+**Use case: UC04 - Enrol dog to a program**
+
+**MSS**
+
+1.  User requests to enrol a dog to a program.
+2.  Pawbook enrol the dog to the correct program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The program ID is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies correct program ID.
+
+      Use case resumes at step 2.
+
+**Use case: UC05 - Drop a dog from a program**
+
+**MSS**
+
+1.  User requests to drop a dog from a program.
+2.  Pawbook drop a dog from a program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The dog/program ID is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies correct dog/program ID.
+
+      Use case resumes at step 2.
+
+**Use case: UC06 - View schedule**
+
+**MSS**
+
+1.  User requests to view schedule.
+2.  Pawbook shows the schedule.
+
+    Use case ends.
+
+**Use case: UC07 - View instructions**
+
+**MSS**
+
+1.  User requests to view instructions.
+2.  Pawbook shows the list of instructions available.
+
+    Use case ends.
+
+**Use case: UC08 - Exit**
+
+**MSS**
+
+1.  User requests to exit the program.
+2.  Pawbook shows goodbye message.
+3.  Pawbook terminates.
+
+    Use case ends.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+2.  Should be able to hold up to 1000 dogs, owners and dog programs without a noticeable sluggishness in performance for typical usage.
+3.  Should be usable by a tech novice who is not familiar with CLI. 
+4.  Should respond within 2 seconds.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+6.  Simple interface that is easy to navigate.
+7.  Not required to handle finance-related bookkeeping.
 
 ### Glossary
 
