@@ -66,7 +66,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -110,23 +110,39 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Filtering: `find`
+Finds properties or appointments that matches the criterion provided.
 
-Finds persons whose names contain any of the given keywords.
+Formats: 
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+`find appointment [keywords] [option...]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+`find property [keywords] [option...]`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. 
+
+Options: 
+
+`r/[REMARKS]`
+
+Search for properties or appointments whose remarks field contain patterns specified in `[REMARKS]`
+
+`pm/[PRICE]`
+
+Search for properties with prices more than `[PRICE]`, ignored if used with appointment
+
+`pl/[PRICE]`
+Search for properties with prices less than `[PRICE]`, ignored if used with appointment
+
+Example:
+
+`find property “jurong west”` 
+
+`find appointment “fri” r/”come in afternoon”`
+
+`find property pm/500000`
+
+`find property “bishan” “north” “mrt” r/”recently renovated”`
 
 ### Deleting a person : `delete`
 
