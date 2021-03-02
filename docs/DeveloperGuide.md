@@ -289,15 +289,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
         Use case ends.
 
-
 * 3a. User does not give input to all the required fields to add a student entry.
 
     * 3a1. System shows an error message.
   
         Use case ends.
-    
-  Use case ends.
-
 
 **Use case: Add a vaccination appointment**
 
