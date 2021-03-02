@@ -152,8 +152,8 @@ Format: `delete [P/E][INDEX]`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list -p` followed by `delete 2` deletes the 2nd person in Focuris.
-* `find CS2100` followed by `delete 1` deletes the 1st Event in the results of the `find` command.
+* `list -p` followed by `delete P2` deletes the 2nd person in Focuris.
+* `find CS2100` followed by `delete E1` deletes the 1st Event in the results of the `find` command.
 
 ### Changing the week : `week`
 
