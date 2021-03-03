@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Property {
     private final Name name;
     private final Type propertyType;
-    private final String address;
+    private final Address address;
     private final String postalCode;
     private final LocalDate deadline;
     private final String remarks;
@@ -14,7 +14,7 @@ public class Property {
     private final String clientEmail;
     private final int clientAskingPrice;
 
-    public Property(Name name, Type propertyType, String address, String postalCode, LocalDate deadline,
+    public Property(Name name, Type propertyType, Address address, String postalCode, LocalDate deadline,
                     String remarks, String clientName, String clientContact, String clientEmail,
                     int clientAskingPrice) {
         this.name = name;
@@ -37,7 +37,7 @@ public class Property {
         return propertyType;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
