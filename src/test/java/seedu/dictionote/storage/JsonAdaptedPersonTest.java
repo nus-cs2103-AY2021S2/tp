@@ -11,11 +11,18 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD:src/test/java/seedu/dictionote/storage/JsonAdaptedPersonTest.java
 import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Phone;
+=======
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+>>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/test/java/seedu/address/storage/JsonAdaptedPersonTest.java
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

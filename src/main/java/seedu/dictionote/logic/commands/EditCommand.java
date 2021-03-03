@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+<<<<<<< HEAD:src/main/java/seedu/dictionote/logic/commands/EditCommand.java
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.commons.util.CollectionUtil;
@@ -25,6 +26,18 @@ import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
+=======
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
+>>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/main/java/seedu/address/logic/commands/EditCommand.java
 
 /**
  * Edits the details of an existing person in the dictionote book.
@@ -96,10 +109,9 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags);
     }
 
     @Override
@@ -128,7 +140,6 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -141,7 +152,6 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +159,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
         }
 
         public void setName(Name name) {
@@ -176,13 +186,8 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
-        }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
+
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -219,7 +224,6 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

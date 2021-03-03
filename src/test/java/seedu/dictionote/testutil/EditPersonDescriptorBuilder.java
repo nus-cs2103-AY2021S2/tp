@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+<<<<<<< HEAD:src/test/java/seedu/dictionote/testutil/EditPersonDescriptorBuilder.java
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
@@ -11,6 +12,14 @@ import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
+=======
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
+>>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/test/java/seedu/address/testutil/EditPersonDescriptorBuilder.java
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
