@@ -32,9 +32,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
             + "identified using it's displayed index from the API endpoint list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_METHOD + "METHOD] " + "[" + PREFIX_ADDRESS
-            + "ADDRESS] " + "[" + PREFIX_TAG + "TAG]...\n" + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS
-            + "wall street ";
+            + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_METHOD + "METHOD] " + "["
+            + PREFIX_ADDRESS + "ADDRESS] " + "[" + PREFIX_TAG + "TAG]...\n" + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_ADDRESS + "wall street ";
 
     public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

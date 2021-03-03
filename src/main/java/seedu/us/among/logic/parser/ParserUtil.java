@@ -24,7 +24,6 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
      * and trailing whitespaces will be trimmed.
-     * 
      * @throws ParseException if the specified index is invalid (not non-zero
      *                        unsigned integer).
      */
@@ -39,7 +38,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String method} into a {@code Method}. Leading and trailing
      * whitespaces will be trimmed.
-     *
      * @throws ParseException if the given {@code method} is invalid.
      */
     public static Method parseMethod(String method) throws ParseException {
@@ -54,7 +52,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}. Leading and trailing
      * whitespaces will be trimmed.
-     *
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
@@ -69,7 +66,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String tag} into a {@code Tag}. Leading and trailing
      * whitespaces will be trimmed.
-     *
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {

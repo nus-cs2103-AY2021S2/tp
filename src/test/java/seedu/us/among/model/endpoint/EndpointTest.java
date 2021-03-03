@@ -34,21 +34,21 @@ public class EndpointTest {
         assertFalse(GET.isSameEndpoint(null));
 
         // same name and address, all other attributes different -> returns true
-        Endpoint editedGET = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_COOL)
+        Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_COOL)
                 .build();
-        assertTrue(GET.isSameEndpoint(editedGET));
+        assertTrue(GET.isSameEndpoint(editedGet));
 
         // same name, all other attributes different -> returns false
-        editedGET = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
-        assertFalse(GET.isSameEndpoint(editedGET));
+        editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        assertFalse(GET.isSameEndpoint(editedGet));
 
         // different name, all other attributes same -> returns false
-        editedGET = new EndpointBuilder(GET).withMethod(VALID_METHOD_POST).build();
-        assertFalse(GET.isSameEndpoint(editedGET));
+        editedGet = new EndpointBuilder(GET).withMethod(VALID_METHOD_POST).build();
+        assertFalse(GET.isSameEndpoint(editedGet));
 
         // name differs in case, all other attributes same -> returns false
-        Endpoint editedPOST = new EndpointBuilder(POST).withMethod(VALID_METHOD_GET.toLowerCase()).build();
-        assertFalse(POST.isSameEndpoint(editedPOST));
+        Endpoint editedPost = new EndpointBuilder(POST).withMethod(VALID_METHOD_GET.toLowerCase()).build();
+        assertFalse(POST.isSameEndpoint(editedPost));
 
         // to-do add more tests for this
 
@@ -57,8 +57,8 @@ public class EndpointTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Endpoint GETCopy = new EndpointBuilder(GET).build();
-        assertTrue(GET.equals(GETCopy));
+        Endpoint getCopy = new EndpointBuilder(GET).build();
+        assertTrue(GET.equals(getCopy));
 
         // same object -> returns true
         assertTrue(GET.equals(GET));
@@ -73,15 +73,15 @@ public class EndpointTest {
         assertFalse(GET.equals(POST));
 
         // different name -> returns false
-        Endpoint editedGET = new EndpointBuilder(GET1).withMethod(VALID_METHOD_POST).build();
-        assertFalse(GET1.equals(editedGET));
+        Endpoint editedGet = new EndpointBuilder(GET1).withMethod(VALID_METHOD_POST).build();
+        assertFalse(GET1.equals(editedGet));
 
         // different address -> returns false
-        editedGET = new EndpointBuilder(GET1).withAddress(VALID_ADDRESS_FACT).build();
-        assertFalse(GET1.equals(editedGET));
+        editedGet = new EndpointBuilder(GET1).withAddress(VALID_ADDRESS_FACT).build();
+        assertFalse(GET1.equals(editedGet));
 
         // different tags -> returns false
-        editedGET = new EndpointBuilder(GET1).withTags(VALID_TAG_CAT).build();
-        assertFalse(GET1.equals(editedGET));
+        editedGet = new EndpointBuilder(GET1).withTags(VALID_TAG_CAT).build();
+        assertFalse(GET1.equals(editedGet));
     }
 }

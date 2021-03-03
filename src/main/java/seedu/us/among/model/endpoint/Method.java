@@ -9,7 +9,8 @@ import static seedu.us.among.commons.util.AppUtil.checkArgument;
  */
 public class Method {
 
-    public static final String MESSAGE_CONSTRAINTS = "Methods only consists of GET, POST, PUT, DELETE, HEAD, OPTIONS and PATCH ";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Methods only consists of GET, POST, PUT, DELETE, HEAD, OPTIONS and PATCH ";
 
     /*
      * The first character of the address must not be a whitespace, otherwise " " (a
@@ -59,7 +60,7 @@ public class Method {
         }
         return null;
     }
-    
+
     public MethodType getMethodType() {
         return this.methodType;
     }

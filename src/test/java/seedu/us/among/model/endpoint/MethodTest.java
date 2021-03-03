@@ -31,7 +31,7 @@ public class MethodTest {
         assertFalse(Method.isValidMethod("POST*")); // contains non-alphanumeric characters
         assertFalse(Method.isValidMethod("GET GET")); // contains two of the same command
         assertFalse(Method.isValidMethod("aGETb")); // contains other characters
-        
+
         // valid Method
         assertTrue(Method.isValidMethod("GET")); // GET command
         assertTrue(Method.isValidMethod("POST")); // POST command
@@ -42,7 +42,7 @@ public class MethodTest {
         assertTrue(Method.isValidMethod("PATCH")); // PATCH command
 
         assertTrue(Method.isValidMethod("get")); // GET command small
-        assertTrue(Method.isValidMethod("post")); // POST command small 
+        assertTrue(Method.isValidMethod("post")); // POST command small
         assertTrue(Method.isValidMethod("put")); // PUT command small
 
         assertTrue(Method.isValidMethod("pOsT")); // POST command weird

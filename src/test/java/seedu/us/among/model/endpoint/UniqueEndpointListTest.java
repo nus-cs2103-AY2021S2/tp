@@ -9,13 +9,13 @@ import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalEndpoints.GET;
 import static seedu.us.among.testutil.TypicalEndpoints.POST;
 
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
+// import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 import seedu.us.among.testutil.EndpointBuilder;
 
@@ -42,8 +42,9 @@ public class UniqueEndpointListTest {
     // @Test
     // public void contains_methodWithSameIdentityFieldsInList_returnsTrue() {
     //     uniqueEndpointList.add(GET);
-    //     Endpoint editedGET = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
-    //     assertTrue(uniqueEndpointList.contains(editedGET));
+    //     Endpoint editedGet = new EndpointBuilder(GET)
+    //     .withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+    //     assertTrue(uniqueEndpointList.contains(editedGet));
     // } //to-do update this class properly
 
     @Test
@@ -84,10 +85,10 @@ public class UniqueEndpointListTest {
     @Test
     public void setMethod_editedMethodHasSameIdentity_success() {
         uniqueEndpointList.add(GET);
-        Endpoint editedGET = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
-        uniqueEndpointList.setEndpoint(GET, editedGET);
+        Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        uniqueEndpointList.setEndpoint(GET, editedGet);
         UniqueEndpointList expectedUniqueEndpointList = new UniqueEndpointList();
-        expectedUniqueEndpointList.add(editedGET);
+        expectedUniqueEndpointList.add(editedGet);
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
@@ -163,7 +164,7 @@ public class UniqueEndpointListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> uniqueEndpointList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, ()
+            -> uniqueEndpointList.asUnmodifiableObservableList().remove(0));
     }
 }

@@ -56,7 +56,6 @@ public class Endpoint {
         if (otherEndpoint == this) {
             return true;
         }
-        
         return otherEndpoint != null && otherEndpoint.getMethod().equals(getMethod())
                 && otherEndpoint.getAddress().equals(getAddress());
     }

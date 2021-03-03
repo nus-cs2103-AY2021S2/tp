@@ -26,7 +26,8 @@ public class CommandTestUtil {
 
     public static final String VALID_METHOD_GET = "GET";
     public static final String VALID_METHOD_POST = "POST";
-    public static final String VALID_ADDRESS_RANDOM = "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2";
+    public static final String VALID_ADDRESS_RANDOM =
+            "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2";
     public static final String VALID_ADDRESS_FACT = "https://cat-fact.herokuapp.com/facts";
     public static final String VALID_TAG_CAT = "cat";
     public static final String VALID_TAG_COOL = "cool";

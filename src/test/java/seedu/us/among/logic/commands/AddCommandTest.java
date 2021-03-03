@@ -47,32 +47,32 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validEndpoint);
         ModelStub modelStub = new ModelStubWithEndpoint(validEndpoint);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENDPOINT,
-                () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENDPOINT, ()
+            -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Endpoint get = new EndpointBuilder().withMethod("GET").build();
         Endpoint post = new EndpointBuilder().withMethod("POST").build();
-        AddCommand addGETCommand = new AddCommand(get);
-        AddCommand addPOSTCommand = new AddCommand(post);
+        AddCommand addGetCommand = new AddCommand(get);
+        AddCommand addPostCommand = new AddCommand(post);
 
         // same object -> returns true
-        assertTrue(addGETCommand.equals(addGETCommand));
+        assertTrue(addGetCommand.equals(addGetCommand));
 
         // same values -> returns true
-        AddCommand addGETCommandCopy = new AddCommand(get);
-        assertTrue(addGETCommand.equals(addGETCommandCopy));
+        AddCommand addGetCommandCopy = new AddCommand(get);
+        assertTrue(addGetCommand.equals(addGetCommandCopy));
 
         // different types -> returns false
-        assertFalse(addGETCommand.equals(1));
+        assertFalse(addGetCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addGETCommand.equals(null));
+        assertFalse(addGetCommand.equals(null));
 
         // different endpoint -> returns false
-        assertFalse(addGETCommand.equals(addPOSTCommand));
+        assertFalse(addGetCommand.equals(addPostCommand));
     }
 
     /**
