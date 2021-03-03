@@ -3,7 +3,7 @@ package seedu.address.model.property;
 import java.time.LocalDate;
 
 public class Property {
-    private final String name;
+    private final Name name;
     private final String propertyType;
     private final String address;
     private final String postalCode;
@@ -14,7 +14,7 @@ public class Property {
     private final String clientEmail;
     private final int clientAskingPrice;
 
-    public Property(String name, String propertyType, String address, String postalCode, LocalDate deadline,
+    public Property(Name name, String propertyType, String address, String postalCode, LocalDate deadline,
                     String remarks, String clientName, String clientContact, String clientEmail,
                     int clientAskingPrice) {
         this.name = name;
@@ -29,7 +29,7 @@ public class Property {
         this.clientAskingPrice = clientAskingPrice;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
