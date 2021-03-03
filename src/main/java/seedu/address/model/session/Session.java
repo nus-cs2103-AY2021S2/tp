@@ -2,7 +2,6 @@ package seedu.address.model.session;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -39,7 +38,7 @@ public class Session {
         return subject;
     }
 
-    public Person tutor() {
+    public Person getTutor() {
         return tutor;
     }
 
@@ -51,11 +50,11 @@ public class Session {
         return day;
     }
 
-    public LocalDate getStart() {
+    public LocalTime getStart() {
         return start;
     }
 
-    public LocalDate getEnd() {
+    public LocalTime getEnd() {
         return end;
     }
 
@@ -63,7 +62,7 @@ public class Session {
      * Adds a student to the session
      * @param student The student to be added
      */
-    public assignStudent(Person student) {
+    public void assignStudent(Person student) {
         requireAllNonNull(student);
         this.students.add(student);
     }
@@ -77,10 +76,12 @@ public class Session {
                 .append("; Tutor: ")
                 .append(this.getTutor().getName())
                 .append("; Day: ")
-                .append(this.getDay)
+                .append(this.getDay())
                 .append("; Time: ")
                 .append(this.getStart() + "-" + this.getEnd())
                 .append("; Students: ")
                 .append(this.getStudents().toString());
+
+        return builder.toString();
     }
 }
