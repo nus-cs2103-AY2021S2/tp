@@ -236,27 +236,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS Computer Science student
+* In his/her second year of studies
+* Taking tough CS modules (e.g. CS3230, CS2106, CS2103T)
+* Requires organization of tasks pertaining to the modules he/she is taking
+* Prefers to use the keyboard compared to a mouse
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage module related tasks faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                               | So that I can…​                                                                |
+| -------- | ------------------------------------------ | --------------------------------------------- | --------------------------------------------------------------------------------- |
+| `* * *`  | student                                    | add task to list                              | I can keep track of my module-related tasks and stay organized                    |
+| `* * *`  | student                                    | delete a task from the list                   | remove the tasks I have completed or don't want anymore                           |
+| `* *`    | meticulous student                         | mark a task as done                           | keep track of tasks that I have completed                                         |
+| `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
+| `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
+| `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
+| `*`      | user with many persons in the address book | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
 
 *{More to be added}*
 
@@ -264,14 +266,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 01: List all tasks**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to see all tasks.
+
+2.  ModuleBook3.5 presents tasks in list form.
+
+ **Extensions**
+* 2a. The list is empty.
+    Use case ends.
+    
+**Use case 02: Delete a task**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to delete a specific task in the list.
+
+3.  ModuleBook 3.5 deletes the task.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+  
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+      
+
+**Use case 03: Mark task as done**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to mark a task as done.
+
+3.  ModuleBook 3.5 marks the task as done.
 
     Use case ends.
 
@@ -281,13 +321,158 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given index is out of range.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ModuleBook 3.5 shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 3b. The task at given index is already done.
+
+    * 3b1. ModuleBook 3.5 shows an already done message.
+
+      Use case resumes at step 2.
+
+**Use case 04: Mark task as not done**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to mark a task as not done.
+
+3.  ModuleBook 3.5 marks the task as not done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The task at given index is not done yet.
+
+    * 3b1. ModuleBook 3.5 shows a not done message.
+    
+
+**Use case 05: Add a task**
+
+**MSS**
+
+1.  User keys in task details in the input field.
+
+2.  User request to add a task.
+    
+3.  ModuleBook 3.5 adds the task into the user’s list of tasks.
+
+
+**Extensions**
+
+* 2a. The exact task is already present in the list.
+
+    * 2a1. ModuleBook 3.5 displays an error message indicating task is present.
+      
+      Use case resumes at step 2.
+
+* 2b.  Invalid format for the add command
+
+    * 2b1. ModuleBook 3.5 shows an error message with the correct format for add and example.
+
+      Use case resumes at step 2.
+
+
+**Use case 06: Tag a task**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+    
+2.  User requests to add a tag to a task.
+    
+3.  ModuleBook 3.5 adds tag to task.
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. The given index is out of range.
+
+    * 2b1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The task at given index has the tag already.
+
+    * 2c1. ModuleBook 3.5 shows a message saying the task already has a tag.
+
+      Use case resumes at step 2.
+
+**Use case 07: Search a task**
+
+**MSS**
+
+1.  User request to search a tag.
+    
+2.  ModuleBook 3.5 find the tag and display all tasks with the tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Tag not found.
+
+    * 2a1. ModuleBook 3.5 shows an error message. 
+      
+      Use case ends.
+
+**Use case 08: Edit a task**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to edit a task’s details.
+
+3.  ModuleBook3.5 changes task details.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Invalid format for the edit command.
+
+    * 2a1. ModuleBook 3.5 shows an error message with the correct format for edit and example.
+
+      Use case resumes at step 2.
+    
+* 2b. Detail to be edited is the same as original detail.
+
+    * 2b1. ModuleBook 3.5 shows an error message stating that detail need not be changed. 
+      
+      Use case resumes at step 2.
+    
+* 2c. No edit inputs given.
+
+    * 2c1. ModuleBook 3.5 shows an error message stating that there are no changes in the first place. 
+      
+      Use case resumes at step 2.
+    
+* 2d. The given index is out of range.
+
+    * 2d1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -300,6 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Module**: A subject in NUS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
