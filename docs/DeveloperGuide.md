@@ -236,13 +236,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* is a CS student in NUS
+* has a need to consolidate and manage deadlines for CS-coded module tasks
+* prefer desktop apps over other types of apps
+* prefers to use CLI over a GUI
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* prefers an all-keyboard workflow without needing to use a mouse
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+- manage upcoming CS assignment deadlines faster than a typical mouse/GUI driven app
+- consolidates all CS-coded module tasks into a single place for a CS student to manage and view easily
+- allows a CS student to prioritise his/her time by seeing which task deadlines are more pressing
+- the app can also remind a CS student about his/her upcoming deadlines so that he/she does not need to remember everything all at once
+- easy CLI operation would entice a CS student to use the app, as he/she probably interacts with CLI on a daily basis while coding/doing CS-coded module tasks
 
 
 ### User stories
@@ -252,11 +259,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add a new CS-coded module task                               | refer to the task in the App |
+| `* * *`  | user                                       | delete a task                                                | remove entries that I no longer need                         |
+| `* * *`  | user                                       | find a task by its name                                      | locate a particular task in order to view its deadline and relevant details |
+| `* * *`  | user                                       | add priority tags (low, medium, high)                        | categorise my tasks and know which ones I should work on first |
+| `* * *`  | user who has just finished a task | mark a task as done                                          | know which tasks I have completed                            |
+| `* *` | user | add notes to a particular task | jot down quick ideas or notes that I have for a particular task |
+| `* *` | user with many tasks in the App | sort tasks either by deadlines, module codes, or their priority tags | have different views of the App when I require them |
+| `* *` | user | edit task attributes | change the details of a task if the task requirements or details have changed |
+| `*` | user with many upcoming deadlines | be reminded of deadlines that are approaching | remember when my tasks are due and work on them |
+| `*` | user who just finished their semester | clear the application of all tasks | prepare for the next upcoming semester |
 
 *{More to be added}*
 
@@ -376,6 +388,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **CS:** Computer Science
+* **CS-coded module tasks:** Assignments, Quizzes, Projects, and other tasks related to CS-coded modules provided by NUS School of Computing that have deadlines for submission
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
