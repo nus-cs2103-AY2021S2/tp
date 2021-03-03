@@ -266,6 +266,102 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case 01: List all tasks**
+
+**MSS**
+
+1.  User requests to see all tasks.
+
+2.  ModuleBook3.5 presents tasks in list form.
+
+ **Extensions**
+* 2a. The list is empty.
+    Use case ends.
+    
+**Use case 02: Delete a task**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to delete a specific task in the list.
+
+3.  ModuleBook 3.5 deletes the task.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+  
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+      
+
+**Use case 03: Mark task as done**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to mark a task as done.
+
+3.  ModuleBook 3.5 marks the task as done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The task at given index is already done.
+
+    * 3b1. ModuleBook 3.5 shows an already done message.
+
+      Use case resumes at step 2.
+
+**Use case 04: Mark task as not done**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to mark a task as not done.
+
+3.  ModuleBook 3.5 marks the task as not done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is out of range.
+
+    * 3a1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The task at given index is not done yet.
+
+    * 3b1. ModuleBook 3.5 shows a not done message.
+    
+
 **Use case 05: Add a task**
 
 **MSS**
@@ -276,7 +372,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 3.  ModuleBook 3.5 adds the task into the user’s list of tasks.
 
-    Use case ends.
 
 **Extensions**
 
@@ -304,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  ModuleBook 3.5 adds tag to task.
 
     Use case ends.
-
+    
 **Extensions**
 
 * 2a. The list is empty.
@@ -316,11 +411,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. ModuleBook 3.5 shows an error message.
 
       Use case resumes at step 2.
-    
+
 * 2c. The task at given index has the tag already.
 
     * 2c1. ModuleBook 3.5 shows a message saying the task already has a tag.
-      
+
       Use case resumes at step 2.
 
 **Use case 07: Search a task**
