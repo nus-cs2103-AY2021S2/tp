@@ -264,14 +264,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a deadline**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list deadlines
+2.  AddressBook shows a list of deadlines
+3.  User requests to delete a specific deadline in the list
+4.  AddressBook deletes the deadline
 
     Use case ends.
 
@@ -286,6 +286,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Edit a deadline**
+
+1. User requests to list deadlines
+2. AddressBook shows a list of deadlines
+3. User requests to edit a specific deadline in the list
+4. AddressBook updates the specific deadline in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  
+    Use case ends.
+* 3a. The given index is invalid
+    * 3a1. AddressBook shows an error message.
+      
+        Use case resumes at step 2. 
+* 3b. Optional fields are not provided
+    * 3b1. AddressBook shows an error message
+      
+        Use case resumes at step 2.
+
+**Use case: Setting a priority tag**
+
+1. User requests to list deadlines
+2. AddressBook shows a list of deadlines**
+3. User requests to set a priority tag on a specific deadline in the list
+4. AddressBook sets a priority tag to the specific deadline in the list
+
+**Extensions**
+
+* 2a. The list is empty.
+  
+    Use case ends.
+* 3a. The given index is invalid
+    * 3a1. AddressBook shows an error message
+    
+      Use case resumes at step 2
+* 3b. The given priority tag is invalid
+    * 3b1. AddressBook shows an error message
+    
+        Use case resumes at step 2
+    
+**Use case: Adding notes to a deadline**
+
+1. User requests to list deadlines
+2. AddressBook shows a list of deadlines**
+3. User requests to add a note to a specific deadline in the list
+4. AddressBook adds a note to the specific deadline in the list
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends
+* 3a. The given index is invalids
+    * 3a1. AddressBook shows an error message
+    
+        Use case resumes at step 2
+* 3b. The deadline has existing notes
+    * 3b1. AddressBook requests for confirmation to overwrite previous notes
+    * 3b2. User confirms the request to overwrite previous notes
+    * 3b3. AddressBook overwrites the previous notes with a new note
+    
+        Use case ends
+
+  
+  
+  
 
 *{More to be added}*
 
