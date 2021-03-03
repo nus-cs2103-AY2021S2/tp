@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### He Xinyue
 
-<img src="images/xinyue.png" width="200px">
+<img src="images/eksinyue.png" width="200px">
 
 [[github](https://github.com/eksinyue)]
 [[portfolio](team/eksinyue.md)]
