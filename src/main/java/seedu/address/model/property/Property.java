@@ -6,7 +6,7 @@ public class Property {
     private final Name name;
     private final Type propertyType;
     private final Address address;
-    private final String postalCode;
+    private final PostalCode postalCode;
     private final LocalDate deadline;
     private final String remarks;
     private final String clientName;
@@ -14,7 +14,7 @@ public class Property {
     private final String clientEmail;
     private final int clientAskingPrice;
 
-    public Property(Name name, Type propertyType, Address address, String postalCode, LocalDate deadline,
+    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, LocalDate deadline,
                     String remarks, String clientName, String clientContact, String clientEmail,
                     int clientAskingPrice) {
         this.name = name;
@@ -41,7 +41,7 @@ public class Property {
         return address;
     }
 
-    public String getPostalCode() {
+    public PostalCode getPostalCode() {
         return postalCode;
     }
 

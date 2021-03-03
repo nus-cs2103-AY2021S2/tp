@@ -23,7 +23,7 @@ public class Type {
      *
      * @param propertyType A valid type.
      */
-    Type(String propertyType) {
+    public Type(String propertyType) {
         requireNonNull(propertyType);
         checkArgument(isValidType(propertyType), MESSAGE_CONSTRAINTS);
         this.propertyType = propertyType;
