@@ -51,6 +51,7 @@ Damith Chatura Rajapakse
 <img src="images/shuyang0.png" width="200px">
 
 [[github](http://github.com/Shuyang0)]
+[[portfolio](team/shuyang.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Git expert
