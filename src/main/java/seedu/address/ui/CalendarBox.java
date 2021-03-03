@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 
-public class CalendarBox extends UiPart<Region>{
+public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "CalendarBox.fxml";
     private final Logger logger = LogsCenter.getLogger(CalendarBox.class);
     private LocalDate dateTime;

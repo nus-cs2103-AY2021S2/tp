@@ -12,11 +12,11 @@ public class CalendarCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String SHOWING_Calendar = "Opened Calendar window.";
+    public static final String SHOWING_CALENDAR = "Opened Calendar window.";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_Calendar, false,
+        return new CommandResult(SHOWING_CALENDAR, false,
                 true, false);
     }
 }

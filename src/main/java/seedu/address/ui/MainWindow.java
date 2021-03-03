@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Calendar;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -149,7 +148,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleCalendar() {
         if (!calendarWindow.isShowing()) {
             calendarWindow.show();
-        } else  {
+        } else {
             calendarWindow.focus();
         }
     }
