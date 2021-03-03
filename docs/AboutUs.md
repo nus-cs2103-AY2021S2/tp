@@ -38,13 +38,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
@@ -57,3 +50,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Goh Wei Kiat
+
+<img src="images/mrweikiat.png" width="200px">
+
+[[github](http://github.com/mrweikiat)]
+[[portfolio](team/johndoe.md)]
+
+
