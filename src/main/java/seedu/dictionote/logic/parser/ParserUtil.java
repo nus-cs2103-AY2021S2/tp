@@ -121,4 +121,16 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String noteContent} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static String parseNote(String noteContent) throws ParseException {
+        requireNonNull(noteContent);
+        String trimmedName = noteContent.trim();
+        return trimmedName;
+    }
 }
