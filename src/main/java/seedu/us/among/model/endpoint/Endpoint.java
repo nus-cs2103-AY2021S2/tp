@@ -49,20 +49,21 @@ public class Endpoint {
     }
 
     /**
-     * Returns true if both persons have the same method. This defines a weaker
-     * notion of equality between two persons.
+     * Returns true if both methods have the same method and address. This defines a weaker
+     * notion of equality between two methods.
      */
     public boolean isSameEndpoint(Endpoint otherEndpoint) {
         if (otherEndpoint == this) {
             return true;
         }
-
-        return otherEndpoint != null && this.equals(otherEndpoint);
+        
+        return otherEndpoint != null && otherEndpoint.getMethod().equals(getMethod())
+                && otherEndpoint.getAddress().equals(getAddress());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields. This
-     * defines a stronger notion of equality between two persons.
+     * Returns true if both methods have the same identity and data fields. This
+     * defines a stronger notion of equality between two methods.
      */
     @Override
     public boolean equals(Object other) {

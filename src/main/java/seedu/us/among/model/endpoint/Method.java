@@ -34,7 +34,10 @@ public class Method {
      * Returns true if a given string is a valid method.
      */
     public static boolean isValidMethod(String test) {
-        // return test.matches(VALIDATION_REGEX);
+        if (test.equals(null)) {
+            throw new NullPointerException();
+        }
+
         for (MethodType e : MethodType.values()) {
             if (e.name().equalsIgnoreCase(test)) {
                 return true;

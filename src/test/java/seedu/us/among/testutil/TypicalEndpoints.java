@@ -21,7 +21,7 @@ import seedu.us.among.model.endpoint.Endpoint;
 public class TypicalEndpoints {
 
         public static final Endpoint GET = new EndpointBuilder().withMethod("GET")
-                        .withAddress("https://cat-fact.herokuapp.com/facts").withTags("cat").build();
+                        .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2").withTags("cat").build();
         public static final Endpoint POST = new EndpointBuilder().withMethod("POST")
                         .withAddress("https://cat-fact.herokuapp.com/facts").withTags("cat", "fact").build();
         public static final Endpoint PUT = new EndpointBuilder().withMethod("PUT")
@@ -37,7 +37,7 @@ public class TypicalEndpoints {
 
         // Manually added
         public static final Endpoint GET1 = new EndpointBuilder().withMethod("GET")
-                        .withAddress("https://cat-fact.herokuapp.com/facts").build();
+                        .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2").build();
         public static final Endpoint GET2 = new EndpointBuilder().withMethod("GET")
                         .withAddress("https://cat-fact.herokuapp.com/facts").build();
 

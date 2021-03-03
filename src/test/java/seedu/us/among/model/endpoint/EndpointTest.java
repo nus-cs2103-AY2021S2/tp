@@ -3,11 +3,15 @@ package seedu.us.among.model.endpoint;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_GET;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_COOL;
 import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalEndpoints.GET;
-import static seedu.us.among.testutil.TypicalEndpoints.BOB;
+import static seedu.us.among.testutil.TypicalEndpoints.GET1;
+import static seedu.us.among.testutil.TypicalEndpoints.POST;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,36 +26,39 @@ public class EndpointTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameMethod() {
         // same object -> returns true
         assertTrue(GET.isSameEndpoint(GET));
 
         // null -> returns false
         assertFalse(GET.isSameEndpoint(null));
 
-        // same name, all other attributes different -> returns true
-        Endpoint editedAlice = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
-        assertTrue(GET.isSameEndpoint(editedAlice));
+        // same name and address, all other attributes different -> returns true
+        Endpoint editedGET = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_COOL)
+                .build();
+        assertTrue(GET.isSameEndpoint(editedGET));
+
+        // same name, all other attributes different -> returns false
+        editedGET = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        assertFalse(GET.isSameEndpoint(editedGET));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new EndpointBuilder(GET).withMethod(VALID_METHOD_POST).build();
-        assertFalse(GET.isSameEndpoint(editedAlice));
+        editedGET = new EndpointBuilder(GET).withMethod(VALID_METHOD_POST).build();
+        assertFalse(GET.isSameEndpoint(editedGET));
 
         // name differs in case, all other attributes same -> returns false
-        Endpoint editedBob = new EndpointBuilder(BOB).withMethod(VALID_METHOD_POST.toLowerCase()).build();
-        assertFalse(BOB.isSameEndpoint(editedBob));
+        Endpoint editedPOST = new EndpointBuilder(POST).withMethod(VALID_METHOD_GET.toLowerCase()).build();
+        assertFalse(POST.isSameEndpoint(editedPOST));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_METHOD_POST + " ";
-        editedBob = new EndpointBuilder(BOB).withMethod(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameEndpoint(editedBob));
+        // to-do add more tests for this
+
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Endpoint aliceCopy = new EndpointBuilder(GET).build();
-        assertTrue(GET.equals(aliceCopy));
+        Endpoint GETCopy = new EndpointBuilder(GET).build();
+        assertTrue(GET.equals(GETCopy));
 
         // same object -> returns true
         assertTrue(GET.equals(GET));
@@ -63,18 +70,18 @@ public class EndpointTest {
         assertFalse(GET.equals(5));
 
         // different endpoint -> returns false
-        assertFalse(GET.equals(BOB));
+        assertFalse(GET.equals(POST));
 
         // different name -> returns false
-        Endpoint editedAlice = new EndpointBuilder(GET).withMethod(VALID_METHOD_POST).build();
-        assertFalse(GET.equals(editedAlice));
+        Endpoint editedGET = new EndpointBuilder(GET1).withMethod(VALID_METHOD_POST).build();
+        assertFalse(GET1.equals(editedGET));
 
         // different address -> returns false
-        editedAlice = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).build();
-        assertFalse(GET.equals(editedAlice));
+        editedGET = new EndpointBuilder(GET1).withAddress(VALID_ADDRESS_FACT).build();
+        assertFalse(GET1.equals(editedGET));
 
         // different tags -> returns false
-        editedAlice = new EndpointBuilder(GET).withTags(VALID_TAG_CAT).build();
-        assertFalse(GET.equals(editedAlice));
+        editedGET = new EndpointBuilder(GET1).withTags(VALID_TAG_CAT).build();
+        assertFalse(GET1.equals(editedGET));
     }
 }

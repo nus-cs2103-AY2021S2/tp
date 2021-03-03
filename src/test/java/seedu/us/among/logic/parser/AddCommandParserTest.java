@@ -18,8 +18,9 @@ import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_COOL;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.us.among.testutil.TypicalEndpoints.AMY;
-import static seedu.us.among.testutil.TypicalEndpoints.BOB;
+import static seedu.us.among.testutil.TypicalEndpoints.GET;
+import static seedu.us.among.testutil.TypicalEndpoints.GET1;;
+import static seedu.us.among.testutil.TypicalEndpoints.POST;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +36,7 @@ public class AddCommandParserTest {
 
         @Test
         public void parse_allFieldsPresent_success() {
-                Endpoint expectedEndpoint = new EndpointBuilder(BOB).withTags(VALID_TAG_COOL).build();
+                Endpoint expectedEndpoint = new EndpointBuilder(POST).withTags(VALID_TAG_COOL).build();
 
                 // whitespace only preamble
                 assertParseSuccess(parser, PREAMBLE_WHITESPACE + METHOD_DESC_POST + ADDRESS_DESC_FACT + TAG_DESC_CAT,
@@ -58,7 +59,7 @@ public class AddCommandParserTest {
                                 new AddCommand(expectedEndpoint));
 
                 // multiple tags - all accepted
-                Endpoint expectedEndpointMultipleTags = new EndpointBuilder(BOB).withTags(VALID_TAG_COOL, VALID_TAG_CAT)
+                Endpoint expectedEndpointMultipleTags = new EndpointBuilder(POST).withTags(VALID_TAG_COOL, VALID_TAG_CAT)
                                 .build();
                 assertParseSuccess(parser, METHOD_DESC_POST + ADDRESS_DESC_FACT + TAG_DESC_COOL + TAG_DESC_CAT,
                                 new AddCommand(expectedEndpointMultipleTags));
@@ -67,7 +68,7 @@ public class AddCommandParserTest {
         @Test
         public void parse_optionalFieldsMissing_success() {
                 // zero tags
-                Endpoint expectedEndpoint = new EndpointBuilder(AMY).withTags().build();
+                Endpoint expectedEndpoint = new EndpointBuilder(GET1).withTags().build();
                 assertParseSuccess(parser, METHOD_DESC_GET + ADDRESS_DESC_RANDOM, new AddCommand(expectedEndpoint));
         }
 

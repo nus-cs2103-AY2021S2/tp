@@ -14,8 +14,8 @@ import seedu.us.among.model.util.SampleDataUtil;
  */
 public class EndpointBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NAME = "GET";
+    public static final String DEFAULT_ADDRESS = "sample/address";
 
     private Method method;
     private Address address;
