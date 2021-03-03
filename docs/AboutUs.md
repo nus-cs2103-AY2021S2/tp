@@ -11,39 +11,40 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 
 ### Chong Jing Quan
 
-![JingQuan](./Images/jqchong.png)
+![JingQuan](./images/jqchong.png)
 
 [[github]](https://github.com/JQChong)
-[[portfolio]](https://github.com/johndoe)
+[[portfolio]](team/jqchong.md)
 
 * Role: Developer
 * Responsibilities: Integration
 
 ### Pan Jing Bin
-![JingBin](./Images/icebear789.png)
+
+![JingBin](./images/icebear789.png)
 
 [[github]](https://github.com/IceBear789)
-[[portfolio]](https://github.com/johndoe)
+[[portfolio]](team/icebear789.md)
 
 * Role: Developer
 * Responsibilities: Deliverables
 
 ### Pan Wen Zhuo, Ernest
 
-![Ernest](./Images/ampan98.png)
+![Ernest](./images/ampan98.png)
 
 [[github]](https://github.com/ampan98)
-[[portfolio]](https://github.com/johndoe)
+[[portfolio]](team/ampan98.md)
 
 * Role: Developer
 * Responsibilities: UI
 
 ### Ryan Jee
 
-![Ryan](./Images/rjeez.png)
+![Ryan](./images/rjeez.png)
 
 [[github]](https://github.com/rjeez)
-[[portfolio]](https://github.com/johndoe)
+[[portfolio]](team/rjeez.md)
 
 * Role: Developer
 * Responsibilities: Deliverables
