@@ -95,6 +95,3 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 **Glossary:**
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-
-
-
