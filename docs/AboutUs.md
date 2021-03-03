@@ -30,14 +30,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Joel Wong Xue Rong
 
-<img src="images/JWong.png" width="200px">
+<img src="images/yanneko.png" width="200px">
 
 [ [github](http://github.com/Yanneko) ]
 [[portfolio](team/JWong.md)]
 
-* Role: Testing
-* Responsibilities: Ensure the testing of the project 
-  is done properly and on time.
+* Role: Developer
+* Responsibilities: Testing
 
 ### Sun Yucheng
 
