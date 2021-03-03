@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ It's noteworthy to mention that the Tutor Tracker follows an Object-Oriented Pro
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-_Figure 1. Architecture Diagram of TutorTracker_
+_Figure 1. Architecture Diagram of Tutor Tracker_
 
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
@@ -175,8 +175,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | --------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `* * *` | Brand new user                                            | See the usage instructions                                                                        | refer to instructions when I forget how to use the App                                    |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
 | `* * *` | User | List all tutors                                    | See all known tutors                                            |
 | `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
@@ -191,6 +190,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User | Filter tutors by their years of experience         | Find a tutor with experience within the range of my expectation |
 | `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
 | `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
+
+
 *{More to be added}*
 
 ### Use cases
@@ -211,6 +212,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     * 2a1. TutorTracker shows an error message
 
   Use case resumes at step 1.
+
 <hr/>
 
 **Use Case UC0002: List all tutors**
@@ -218,8 +220,9 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **MSS**
 1. User requests to list tutors.
 2. TutorTracker shows a list of tutors.
-
-   Use case ends.
+  
+    Use case ends.
+   
 <hr/>
 
 **Use Case UC0003: Add an appointment**
@@ -227,22 +230,21 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **MSS**
 
 1.  User requests to add an appointment.
-2.  TutorTracker adds the appointment and displays the new appointment.
-
-Use case ends.
+2.  TutorTracker adds the appointment and displays the new appointment. 
+    
+    Use case ends.
 
 **Extensions**
 * 1a. The tutor name, date of appointment or start and end time is empty.
-
-    * 1a1. TutorTracker shows an error message.
-
+    * 1a1. TutorTracker shows an error message. 
+      
       Use case ends.
 
 * 1b. The given date or start and end time is invalid.
-
     * 1b1. TutorTracker shows an error message.
-
-      Use case ends.
+    
+        Use case ends.
+      
 <hr/>
 
 **Use Case UC0004: List all tuition appointments**
@@ -251,36 +253,37 @@ Use case ends.
 
 1. User requests to view the list of tuition appointments.
 2. TutorTracker displays the list of tuition appointments to the user.
+ 
+    Use case ends.
 
-   Use case ends.
 <hr/>
 
-**Use Case UC0005: View tuition application**
+**Use Case UC0005: View tuition appointment**
 
 **MSS**
 
-1.  User requests to view applications
-2.  TutorTracker shows a list of applications
-
+1.  User requests to view appointment
+2.  TutorTracker shows a list of appointments 
+    
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-
-    * 1a1. TutorTracker shows a message that there are no applications.
-
-      Use case ends.
+    * 1a1. TutorTracker shows a message that there are no appointments. 
+      
+    Use case ends.
+      
 <hr/>
 
-**Use Case UC0006: Delete a tuition application**
+**Use Case UC0006: Delete a tuition appointment**
 
 **MSS**
 
-1.  User requests to list applications
-2.  TutorTracker shows a list of applications
-3.  User requests to delete a specific application in the list
-4.  TutorTracker deletes that specific application.
+1.  User requests to list appointments
+2.  TutorTracker shows a list of appointments
+3.  User requests to delete a specific appointment in the list
+4.  TutorTracker deletes that specific appointment.
 
 <hr/>
 
