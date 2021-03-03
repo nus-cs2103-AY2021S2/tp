@@ -69,8 +69,12 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        // Updated since previous code was at risk of throwing NullPointerException
+        if (otherPerson != null) {
+            return otherPerson.getName().equals(getName());
+        }
+
+        return false;
     }
 
     /**
