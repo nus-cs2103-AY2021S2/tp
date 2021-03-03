@@ -1,11 +1,11 @@
 # User Guide
-# nu:fash
+# nufash
 
 ---
 ### Introduction
-nu:fash is for those who prefer to use a desktop application to organise and manage their wardrobe. nu:fash is 
+nufash is for those who prefer to use a desktop application to organise and manage their wardrobe. nufash is 
 optimised for users who prefer typing, but also has the added benefit of a smooth and easy to use Graphical User 
-Interface(GUI). Start using nu:fash and never worry about keeping track of your clothes again!
+Interface(GUI). Start using nufash and never worry about keeping track of your clothes again!
 
 ---
 ### Quickstart
