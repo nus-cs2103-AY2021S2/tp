@@ -33,7 +33,7 @@
 
 
 
-2. Priority tag: *pt/Priority*
+2. ### Priority tag: *pt/Priority*
   * Format: pt/HIGH 3
     1. Will assignment a priority of HIGH to the 3rd task on the list
     2. Priority levels LOW -> MEDIUM -> HIGH
@@ -44,21 +44,21 @@
 
 
 
-3. Module name: *mn/*
+3. ### Module name: *mn/*
   * Format: mn/ {module name}
     1. Sets the module name of a task
     2. Example: mn/Software Engineering. Sets the module name of the task to “Software Engineering”
 
 
 
-4. Module code: *mc/*
+4. ### Module code: *mc/*
   * Format: mc/ {module code}
     1. Sets the module code of a task
     2. Module code must be a CS module code 
 
 
 
-5. Edit Task: *edit*
+5. ### Edit Task: *edit*
   * Format: edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]
     1. Edits the task at the specified index.
     2. The index must be a positive integer
@@ -70,13 +70,13 @@
 
 
 
-6. Clear Application: *clear* 
+6. #### Clear Application: *clear* 
   * Clears all tasks from the application
   * Format: clear
 
 
 
-7. Locating tasks by name: *find*
+7. #### Locating tasks by name: *find*
   * Find tasks whose task name contains any of the given words
   * Format: find KEYWORD[MORE_KEYWORDS]
     1. The search is case-insensitive. e.g Assignment will match assignment
@@ -89,7 +89,7 @@
 
 
 
-8. Sort tasks: *sort*
+8. #### Sort tasks: *sort*
   * Sort tasks according to the specified parameter
   * Format: sort dt/ OR mc/ OR pt/
     1. Task can be sorted according to these three parameters: date & time (/dt), module code (mc/) or priority tag (pt/).
@@ -99,7 +99,7 @@
 
 
 
-9. Add notes to tasks: *notes*
+9. #### Add notes to tasks: *notes*
   * Adds any additional notes or remarks to an exisiting task
   * Format: notes INDEX [n/NOTES]
     1. Adds user input NOTES to the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …
