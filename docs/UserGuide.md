@@ -7,12 +7,8 @@ title: User Guide
 and efficiently add classes for modules and easily view their tasks.
 It is optimised for users who prefer typing.
 
-
-### Table of Contents
-* [Quick start](#start)
-* [Features](#features)
-* [FAQ](#faq)
-* [Command summary](#summary)
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,7 +30,7 @@ It is optimised for users who prefer typing.
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`eat dinner` : Adds a task titled `eat dinner` to the todo list.
+   * **`add`**`n/eat dinner` : Adds a task titled `eat dinner` to the todo list.
 
    * **`delete`**`3` : Deletes the 3rd task shown in the current list.
 
@@ -51,7 +47,7 @@ It is optimised for users who prefer typing.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add TITLE`, `TITLE` is a parameter which can be used as `add eat dinner`.
+  e.g. in `add n/TITLE`, `n/TITLE` is a parameter which can be used as `n/eat dinner`.
 
 * Items in square brackets are optional.<br>
   e.g `n/TITLE [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -83,10 +79,10 @@ Format: `help`
 
 Adds a task to the todo list.
 
-Format: `add TITLE`
+Format: `add n/TITLE`
 
 Examples:
-* `add eat dinner`
+* `add n/eat dinner`
 
 ### Listing all tasks : `list`
 
@@ -198,7 +194,7 @@ that contains the data of your previous AddressBook home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add TITLE` <br> e.g., `add eat dinner`
+**Add** | `add n/TITLE` <br> e.g., `add n/eat dinner`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/TITLE] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
