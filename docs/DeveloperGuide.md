@@ -301,6 +301,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Specify a preferred mode of contact for a contact**
 
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User request to add a specific person with a preferred mode of contact
+4.  AddressBook adds the person
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.    
+
 
 **Use case: Blacklist a contact**
 
