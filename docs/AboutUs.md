@@ -45,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Member
 
-### Goh Wei Kiat
+### Kong Jun Yin
 
 <img src="images/oheyesee.png" width="200px">
 
