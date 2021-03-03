@@ -3,6 +3,10 @@ package seedu.address.model.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Property's postal code.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPostal(String)}.
+ */
 public class PostalCode {
     private static final String MESSAGE_CONSTRAINTS =
             "Postal code should contain only numbers, and it should be at least 3 digits long";
@@ -11,12 +15,23 @@ public class PostalCode {
 
     public final String postal;
 
+    /**
+     * Constructs a {@code PostalCode}.
+     *
+     * @param postal A valid postal.
+     */
     public PostalCode(String postal) {
         requireNonNull(postal);
         checkArgument(isValidPostal(postal), MESSAGE_CONSTRAINTS);
         this.postal = postal;
     }
 
+    /**
+     * Returns true if a given string is a valid property postal code.
+     *
+     * @param test The string to test.
+     * @return True if the given string is a valid property postal code, otherwise false.
+     */
     public static boolean isValidPostal(String test) {
         return test.matches(VALIDATION_REGEX);
     }
