@@ -1,9 +1,9 @@
 ---
-User Guide
+layout: page
+title: User Guide
 ---
-Tutor Tracker is a desktop app designed to help students search for tutors and manage tuition appointments, optimised for use via a Command Line Interface (CLI) for a fast and streamlined experience.
-
-* Table of Contents
+_**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your contact management tasks done faster than traditional GUI apps.
+* Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -22,8 +22,8 @@ Tutor Tracker is a desktop app designed to help students search for tutors and m
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`appointment`**`n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok` : Adds an appointment with a tutor named `Chloe Lim` to the Tutor Tracker.
-   * **`list_appointments`** : Lists all personal tuition appointments.
+    * **`appointment`**`n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok` : Adds an appointment with a tutor named `Chloe Lim` to the Tutor Tracker.
+    * **`list_appointments`** : Lists all personal tuition appointments.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -53,7 +53,7 @@ Tutor Tracker is a desktop app designed to help students search for tutors and m
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Parameters in triangle brackets must be supplied together in order as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied in order.
+* Parameters in angle brackets (`<`, `>`) must be supplied together in order as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied in order.
 
 </div>
 
@@ -92,14 +92,23 @@ Example Output:
 ```
 
 ### Viewing a tutor: `view_tutor`
-Example Usage: <br>
-Format: `view_tutor 1` <br>  Name: John Doe <br> Phone Number: 98765432 <br>
-Email Address: johnd@example.com <br>
-Address: John street, block 123, #01-01 <br>
-Subject Expertise: English, Mathematics (Sec 3, 4) <br>
-Hourly Rate: SGD60/hr <br> Years of Experience: 6
 
-### Adding Appointment : `appointment`
+Views a tutor's personal information.
+
+Format: `view_tutor INDEX`
+
+Example: `view_tutor 1`
+
+Example Output:<br>
+```
+Name: John Doe <br> Phone Number: 98765432
+Email Address: johnd@example.com
+Address: John street, block 123, #01-01
+Subject Expertise: English, Mathematics (Sec 3, 4)
+Hourly Rate: SGD60/hr <br> Years of Experience: 6
+```
+
+### Adding an appointment : `appointment`
 
 Adds an appointment with a specific tutor to the schedule.<br>
 
@@ -123,23 +132,15 @@ Shows a list of all upcoming tuition schedules in the personal tuition appointme
 Format: `list_appointments`
 
 Example outputs:
-* `1) John Doe - 2021-4-20 2:00pm - 4:00pm @ Bedok National Library`
-* `2) Jane Doe - 2021-4-21 2:00pm - 4:00pm @ Bedok National Library`
-* `3) Peter Ng - 2021-4-24 2:00pm - 4:00pm @ Bedok National Library`
-
-Following the list in 5),
-
-Example:
-`delete_1`
-
-Example Output:
-
-`1) Jane Doe - 2021-4-21 2:00pm - 4:00pm @ Bedok National Library`
-`2) Peter Ng - 2021-4-24 2:00pm - 4:00pm @ Bedok National Library`
+```
+1) John Doe - 2021-4-20 2:00pm - 4:00pm @ Bedok National Library
+2) Jane Doe - 2021-4-21 2:00pm - 4:00pm @ Bedok National Library
+3) Peter Ng - 2021-4-24 2:00pm - 4:00pm @ Bedok National Library
+```
 
 ### View tuition appointment details: `view_appointment`
 
-View details of tuition appointment
+View details of a tuition appointment.
 
 Format:
 `view_appointment INDEX`
@@ -148,28 +149,43 @@ Example:
 `view_appointment 1`
 
 Example Output:
-`<Appointment Details>
+```<Appointment Details>
 Tutor Name: Chloe Lim
 Appointment Date: 2021-4-20
 Appointment Time: 2:00pm - 2:00pm
-Location: Bedok National Library`
+Location: Bedok National Library
+```
 
 ### Delete a tuition appointment: `delete_appointment`
 
 Format: `delete_appointment INDEX`
+
 Deletes the specific appointment at the specified INDEX.
 The index refers to the index number shown in the displayed person list.
-The index must be a positive integer 1, 2, 3, …​
+The index must be a positive integer e.g. `1, 2, 3, …​`
 
+Referencing to the example output from `list_appointments`,
+
+Example:
+`delete_appointment 1`
+
+Example Output:
+```
+1) Jane Doe - 2021-4-21 2:00pm - 4:00pm @ Bedok National Library
+2) Peter Ng - 2021-4-24 2:00pm - 4:00pm @ Bedok National Library
+```
+
+--------------------------------------------------------------------------------------------------------------------	
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tutor Tracker home folder.
+--------------------------------------------------------------------------------------------------------------------	
 
 Action | Format, Examples
 --------|------------------
-**Add Tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
-**List Tutors** | `list_tutors`
-**View Tutor** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
-**Appointment** | `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO [l/LOCATION]` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok`
+**Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
+**List tutors** | `list_tutors`
+**View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
+**Add a new appointment** | `appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO [l/LOCATION]` <br> e.g., `appointment n/Chloe Lim s/English d/2021-4-20 fr/2:00pm to/c l/Bedok`
 **List tuition appointments** | `list_appointments`
-**View tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 1`
+**View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 1`
 **Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
