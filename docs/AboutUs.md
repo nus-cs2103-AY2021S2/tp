@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Goh Wei Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mrweikiat.png" width="200px">
 
 [[github](http://github.com/mrweikiat)]
 [[portfolio](team/johndoe.md)]
