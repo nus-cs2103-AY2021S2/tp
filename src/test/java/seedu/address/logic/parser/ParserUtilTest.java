@@ -17,8 +17,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Title;
 import seedu.address.model.task.Phone;
+import seedu.address.model.task.Title;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";

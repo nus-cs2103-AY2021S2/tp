@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Title;
 import seedu.address.model.task.Phone;
+import seedu.address.model.task.Title;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@chel";
