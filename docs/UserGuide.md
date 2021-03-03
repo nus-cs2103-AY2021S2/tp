@@ -141,7 +141,7 @@ Examples:
 * `list` followed by `delete 2` deletes the order with `ID` 2 from the CakeCollate database.
 * `delete 2 3` deletes the orders with ids 2 and 3 from the CakeCollate database.
 
-### Clear all existing orders: `clear`
+### Clearing all existing orders: `clear`
 
 Deletes all existing orders in the CakeCollate database.
 
