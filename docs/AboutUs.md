@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Priscilla
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ppris.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ppris)]
+[[portfolio](team/ppris.md)]
 
-* Role: Project Advisor
+* Role: Team Lead, Deliverables and Scheduling 
+* Responsibilities: Model
 
-### Jane Doe
+### Soh Xin Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xiinweii98.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/xiinweii98)]
+[[portfolio](team/xiinweii98.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer, Testing
+* Responsibilities: Logic
 
-### Johnny Doe
+### Lim Rui Xiong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ruixiong2211.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/RuiXiong2211)] [[portfolio](team/RuiXiong2211)]
+[[portfolio](team/ruixiong2211.md)]
+
+* Role: Developer, Documentation
+* Responsibilities: Commons
+
+### Pavitra
+
+<img src="images/pavz02.png" width="200px">
+
+[[github](http://github.com/pavz02)]
+[[portfolio](team/pavz02.md)]
+
+* Role: Developer, Code quality
+* Responsibilities: Ui and JavaFX
+
+### Bhadani Simran
+
+<img src="images/simran-bhadani3.png" width="200px">
+
+[[github](http://github.com/simran-bhadani3)]
+[[portfolio](team/simran-bhadani3)]
 
 * Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration
