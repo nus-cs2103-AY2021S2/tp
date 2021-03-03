@@ -14,7 +14,7 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `cakecollate.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
 
@@ -26,7 +26,7 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
    * **`list`** : Lists all orders in the CakeCollate database.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to the CakeCollate database.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to the CakeCollate.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
 
