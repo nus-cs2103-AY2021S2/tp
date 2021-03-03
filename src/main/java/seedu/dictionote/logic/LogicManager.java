@@ -10,7 +10,7 @@ import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.logic.commands.Command;
 import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
-import seedu.dictionote.logic.parser.AddressBookParser;
+import seedu.dictionote.logic.parser.DictionoteParser;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final DictionoteParser dictionoteParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        dictionoteParser = new DictionoteParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = dictionoteParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

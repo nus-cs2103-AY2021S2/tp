@@ -33,9 +33,9 @@ import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 import seedu.dictionote.testutil.PersonBuilder;
 import seedu.dictionote.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class DictionoteParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final DictionoteParser parser = new DictionoteParser();
 
     @Test
     public void parseCommand_add() throws Exception {
