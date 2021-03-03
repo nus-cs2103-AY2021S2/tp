@@ -19,7 +19,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Daniel Lau Yew En
 
-<img src="images/daniellau.png" width="200px">
+<img src="images/daniellau88.png" width="200px">
 
 [[github](http://github.com/daniellau88)]
 [[portfolio](team/daniellau.md)]
