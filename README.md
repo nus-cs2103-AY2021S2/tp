@@ -70,13 +70,13 @@
 
 
 
-6. #### Clear Application: *clear* 
+6. ### Clear Application: *clear* 
   * Clears all tasks from the application
   * Format: clear
 
 
 
-7. #### Locating tasks by name: *find*
+7. ### Locating tasks by name: *find*
   * Find tasks whose task name contains any of the given words
   * Format: find KEYWORD[MORE_KEYWORDS]
     1. The search is case-insensitive. e.g Assignment will match assignment
@@ -89,7 +89,7 @@
 
 
 
-8. #### Sort tasks: *sort*
+8. ### Sort tasks: *sort*
   * Sort tasks according to the specified parameter
   * Format: sort dt/ OR mc/ OR pt/
     1. Task can be sorted according to these three parameters: date & time (/dt), module code (mc/) or priority tag (pt/).
@@ -99,7 +99,7 @@
 
 
 
-9. #### Add notes to tasks: *notes*
+9. ### Add notes to tasks: *notes*
   * Adds any additional notes or remarks to an exisiting task
   * Format: notes INDEX [n/NOTES]
     1. Adds user input NOTES to the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …
@@ -107,6 +107,13 @@
     3. Example: list followed by notes 2 n/Hello World! adds the note “Hello World!” to the 2nd task in the task list.
     4. Example: find assignment followed by notes 1 n/fooBar adds the note “fooBar” to the 1st task in the results of the find command.
  
+10. ### Shows alert(s) for incoming deadlines based on the time range (if give)
+  * Format: alert start/START_DATE end/END_DATE
+    1. If no time range is given, alert(s) shown will be deadlines next week.
+    2. If only START_DATE is given, alert(s) shown will be from the START_DATE until the latest deadline. 
+    3. If only END_DATE is given, alert(s) shown will be from today’s date until the END_DATE.
+    4. alert start/10-10-2020 will show deadlines starting from 10 October 2020 onwards.
+
 
 ## Acknowledgements 
 1. This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
