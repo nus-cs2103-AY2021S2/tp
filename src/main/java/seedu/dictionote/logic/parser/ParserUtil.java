@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.commons.util.StringUtil;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
@@ -132,5 +133,19 @@ public class ParserUtil {
         requireNonNull(noteContent);
         String trimmedName = noteContent.trim();
         return trimmedName;
+    }
+
+    /** Parses a {@code String option} into a {@code UiOptionAction}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code option} is invalid.
+     */
+    public static UiActionOption parseUiActionOption(String option) throws ParseException {
+        requireNonNull(option);
+        String trimmedOption = option.trim();
+        if (!UiActionOption.isValidOption(trimmedOption)) {
+            throw new ParseException(UiActionOption.MESSAGE_CONSTRAINTS);
+        }
+        return UiActionOption.getUiActionOption(trimmedOption);
     }
 }

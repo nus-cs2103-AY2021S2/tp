@@ -5,6 +5,7 @@ import static seedu.dictionote.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLED
 
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 
@@ -14,7 +15,7 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, UiAction.EXIT);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }
