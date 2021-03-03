@@ -27,49 +27,6 @@ test {
     finalizedBy jacocoTestReport
 }
 
-test {
-    systemProperty 'testfx.setup.timeout', '60000'
-
-    testLogging {
-        events TestLogEvent.FAILED, TestLogEvent.SKIPPED
-        if (System.env.'CI') {
-            events << TestLogEvent.STARTED
-        }
-    }
-}
-
-task headless {
-    doLast {
-        println 'Setting headless mode properties.'
-        test {
-            systemProperties = [
-                    'testfx.robot': 'glass',
-                    'testfx.headless': 'true',
-                    'prism.order': 'sw',
-                    'prism.text': 't2k',
-            ]
-        }
-    }
-}
-
-// Makes sure that headless properties are set before running tests
-test.mustRunAfter headless
-
-task coverage(type: JacocoReport) {
-    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
-    classDirectories.from files(sourceSets.main.output)
-    executionData.from files(jacocoTestReport.executionData)
-    afterEvaluate {
-        classDirectories.from files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/*.jar'])
-        })
-    }
-    reports {
-        html.enabled = true
-        xml.enabled = true
-    }
-}
-
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
@@ -101,6 +58,56 @@ dependencies {
 
 shadowJar {
     archiveFileName = 'addressbook.jar'
+}
+
+test {
+    systemProperty 'testfx.setup.timeout', '60000'
+
+    testLogging {
+        events TestLogEvent.FAILED, TestLogEvent.SKIPPED
+
+        // Prints the currently running test's name in the CI's build log,
+        // so that we can check if tests are being silently skipped or
+        // stalling the build.
+        if (System.env.'CI') {
+            events << TestLogEvent.STARTED
+        }
+    }
+}
+
+task headless {
+    doLast {
+        println 'Setting headless mode properties.'
+        test {
+            systemProperties = [
+                    'testfx.robot': 'glass',
+                    'testfx.headless': 'true',
+                    'prism.order': 'sw',
+                    'prism.text': 't2k',
+                    'monacle.platform': 'headless',
+                    'java.awt.headless': 'true',
+                    'glass.platform': 'monocle',
+            ]
+        }
+    }
+}
+
+// Makes sure that headless properties are set before running tests
+test.mustRunAfter headless
+
+task coverage(type: JacocoReport) {
+    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
+    classDirectories.from files(sourceSets.main.output)
+    executionData.from files(jacocoTestReport.executionData)
+    afterEvaluate {
+        classDirectories.from files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: ['**/*.jar'])
+        })
+    }
+    reports {
+        html.enabled = true
+        xml.enabled = true
+    }
 }
 
 defaultTasks 'clean', 'headless', 'test'
