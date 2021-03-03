@@ -37,14 +37,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Responsibilities: UI
 >>>>>>> 659fd5e5c4f9b6891484018aaeef779e57f59497
 
-### Johnny Doe
+### Jarveis Lam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jrvslam.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jrvslam)]
 
-- Role: Developer
-- Responsibilities: Data
+* Role: Developer
+* Responsibilities: Logic
 
 ### Jerard Soh
 

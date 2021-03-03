@@ -237,13 +237,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- has a need to manage a significant number of contacts
-- prefer desktop apps over other types
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable using CLI apps
+* NUS Computing Student
+* has a need to manage a significant number of contacts, schedule, and school timetable
+* prefer desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
+* Adding of events to friends in the address book
+* Ability to find a common timeslot where all your friends are available to meet based on their schedules added
+* See events that are taken in conjunction with your friends
+* Prioritize your tasks and events by assigning priorities to each event
 
 ### User stories
 
