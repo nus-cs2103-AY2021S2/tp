@@ -32,9 +32,7 @@ public class JsonEndpointListStorageTest {
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
-        return prefsFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER.resolve(prefsFileInTestDataFolder)
-                : null;
+        return prefsFileInTestDataFolder != null ? TEST_DATA_FOLDER.resolve(prefsFileInTestDataFolder) : null;
     }
 
     @Test
@@ -69,14 +67,14 @@ public class JsonEndpointListStorageTest {
         assertEquals(original, new EndpointList(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addEndpoint(TypicalEndpoints.HOON);
-        original.removeEndpoint(TypicalEndpoints.ALICE);
+        original.addEndpoint(TypicalEndpoints.GET1);
+        original.removeEndpoint(TypicalEndpoints.GET);
         jsonEndpointListStorage.saveEndpointList(original, filePath);
         readBack = jsonEndpointListStorage.readEndpointList(filePath).get();
         assertEquals(original, new EndpointList(readBack));
 
         // Save and read without specifying file path
-        original.addEndpoint(TypicalEndpoints.IDA);
+        original.addEndpoint(TypicalEndpoints.GET2);
         jsonEndpointListStorage.saveEndpointList(original); // file path not specified
         readBack = jsonEndpointListStorage.readEndpointList().get(); // file path not specified
         assertEquals(original, new EndpointList(readBack));
@@ -93,8 +91,8 @@ public class JsonEndpointListStorageTest {
      */
     private void saveEndpointList(ReadOnlyEndpointList endpointList, String filePath) {
         try {
-            new JsonEndpointListStorage(Paths.get(filePath))
-                    .saveEndpointList(endpointList, addToTestDataPathIfNotNull(filePath));
+            new JsonEndpointListStorage(Paths.get(filePath)).saveEndpointList(endpointList,
+                    addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

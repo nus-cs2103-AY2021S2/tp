@@ -3,8 +3,6 @@ package seedu.us.among.model.endpoint;
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;
 
-import org.apache.commons.lang3.EnumUtils;
-
 /**
  * Represents a Endpoint's Method in the address book. Guarantees: immutable; is
  * valid as declared in {@link #isValidMethod(String)}

@@ -3,10 +3,10 @@ package seedu.us.among.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.testutil.Assert.assertThrows;
-import static seedu.us.among.testutil.TypicalEndpoints.ALICE;
+import static seedu.us.among.testutil.TypicalEndpoints.GET;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 
 import java.util.Arrays;
@@ -46,9 +46,8 @@ public class EndpointListTest {
     @Test
     public void resetData_withDuplicateEndpoints_throwsDuplicateEndpointException() {
         // Two endpoints with the same identity fields
-        Endpoint editedAlice = new EndpointBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Endpoint> newEndpoints = Arrays.asList(ALICE, editedAlice);
+        Endpoint editedAlice = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        List<Endpoint> newEndpoints = Arrays.asList(GET, editedAlice);
         EndpointListStub newData = new EndpointListStub(newEndpoints);
 
         assertThrows(DuplicateApiEndpointException.class, () -> endpointList.resetData(newData));
@@ -61,20 +60,19 @@ public class EndpointListTest {
 
     @Test
     public void hasEndpoint_endpointNotInEndpointList_returnsFalse() {
-        assertFalse(endpointList.hasEndpoint(ALICE));
+        assertFalse(endpointList.hasEndpoint(GET));
     }
 
     @Test
     public void hasEndpoint_endpointInEndpointList_returnsTrue() {
-        endpointList.addEndpoint(ALICE);
-        assertTrue(endpointList.hasEndpoint(ALICE));
+        endpointList.addEndpoint(GET);
+        assertTrue(endpointList.hasEndpoint(GET));
     }
 
     @Test
     public void hasEndpoint_endpointWithSameIdentityFieldsInEndpointList_returnsTrue() {
-        endpointList.addEndpoint(ALICE);
-        Endpoint editedAlice = new EndpointBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        endpointList.addEndpoint(GET);
+        Endpoint editedAlice = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
         assertTrue(endpointList.hasEndpoint(editedAlice));
     }
 
@@ -84,7 +82,8 @@ public class EndpointListTest {
     }
 
     /**
-     * A stub ReadOnlyEndpointList whose endpoints list can violate interface constraints.
+     * A stub ReadOnlyEndpointList whose endpoints list can violate interface
+     * constraints.
      */
     private static class EndpointListStub implements ReadOnlyEndpointList {
         private final ObservableList<Endpoint> endpoints = FXCollections.observableArrayList();

@@ -42,34 +42,34 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new EndpointBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new EndpointBuilder().withMethod("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new EndpointBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new EndpointBuilder().withMethod("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new EndpointBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new EndpointBuilder().withMethod("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new EndpointBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new EndpointBuilder().withMethod("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new EndpointBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new EndpointBuilder().withMethod("Alice").build()));
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new EndpointBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new EndpointBuilder().withMethod("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new EndpointBuilder().withName("Alice")
+        assertFalse(predicate.test(new EndpointBuilder().withMethod("Alice")
                 .withAddress("Main Street").build()));
     }
 }

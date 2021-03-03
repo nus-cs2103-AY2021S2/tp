@@ -42,7 +42,7 @@ public class EndpointBuilder {
     /**
      * Sets the {@code Name} of the {@code Endpoint} that we are building.
      */
-    public EndpointBuilder withName(String name) {
+    public EndpointBuilder withMethod(String name) {
         this.method = new Method(name);
         return this;
     }

@@ -28,13 +28,25 @@ public class MethodTest {
         assertFalse(Method.isValidMethod("")); // empty string
         assertFalse(Method.isValidMethod(" ")); // spaces only
         assertFalse(Method.isValidMethod("^")); // only non-alphanumeric characters
-        assertFalse(Method.isValidMethod("peter*")); // contains non-alphanumeric characters
-
+        assertFalse(Method.isValidMethod("POST*")); // contains non-alphanumeric characters
+        assertFalse(Method.isValidMethod("GET GET")); // contains two of the same command
+        assertFalse(Method.isValidMethod("aGETb")); // contains other characters
+        
         // valid Method
-        assertTrue(Method.isValidMethod("GET")); // alphabets only
-        assertTrue(Method.isValidMethod("POST")); // numbers only
-        assertTrue(Method.isValidMethod("PUT")); // alphanumeric characters
-        assertTrue(Method.isValidMethod("DELETE")); // with capital letters
-        assertTrue(Method.isValidMethod("David Roger Jackson Ray Jr 2nd")); // long Methods //to-do
+        assertTrue(Method.isValidMethod("GET")); // GET command
+        assertTrue(Method.isValidMethod("POST")); // POST command
+        assertTrue(Method.isValidMethod("PUT")); // PUT command
+        assertTrue(Method.isValidMethod("DELETE")); // DELETE command
+        assertTrue(Method.isValidMethod("HEAD")); // HEAD command
+        assertTrue(Method.isValidMethod("OPTIONS")); // OPTIONS command
+        assertTrue(Method.isValidMethod("PATCH")); // PATCH command
+
+        assertTrue(Method.isValidMethod("get")); // GET command small
+        assertTrue(Method.isValidMethod("post")); // POST command small 
+        assertTrue(Method.isValidMethod("put")); // PUT command small
+
+        assertTrue(Method.isValidMethod("pOsT")); // POST command weird
+        assertTrue(Method.isValidMethod("pUt")); // PUT command weird
+
     }
 }

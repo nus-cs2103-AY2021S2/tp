@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Endpoint alice = new EndpointBuilder().withName("Alice").build();
-        Endpoint bob = new EndpointBuilder().withName("Bob").build();
+        Endpoint alice = new EndpointBuilder().withMethod("Alice").build();
+        Endpoint bob = new EndpointBuilder().withMethod("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

@@ -2,11 +2,11 @@ package seedu.us.among.model.endpoint;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.testutil.Assert.assertThrows;
-import static seedu.us.among.testutil.TypicalEndpoints.ALICE;
+import static seedu.us.among.testutil.TypicalEndpoints.GET;
 import static seedu.us.among.testutil.TypicalEndpoints.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -24,58 +24,57 @@ public class EndpointTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSameEndpoint(ALICE));
+        assertTrue(GET.isSameEndpoint(GET));
 
         // null -> returns false
-        assertFalse(ALICE.isSameEndpoint(null));
+        assertFalse(GET.isSameEndpoint(null));
 
         // same name, all other attributes different -> returns true
-        Endpoint editedAlice = new EndpointBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameEndpoint(editedAlice));
+        Endpoint editedAlice = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        assertTrue(GET.isSameEndpoint(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new EndpointBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameEndpoint(editedAlice));
+        editedAlice = new EndpointBuilder(GET).withMethod(VALID_METHOD_POST).build();
+        assertFalse(GET.isSameEndpoint(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Endpoint editedBob = new EndpointBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Endpoint editedBob = new EndpointBuilder(BOB).withMethod(VALID_METHOD_POST.toLowerCase()).build();
         assertFalse(BOB.isSameEndpoint(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new EndpointBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        String nameWithTrailingSpaces = VALID_METHOD_POST + " ";
+        editedBob = new EndpointBuilder(BOB).withMethod(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameEndpoint(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Endpoint aliceCopy = new EndpointBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Endpoint aliceCopy = new EndpointBuilder(GET).build();
+        assertTrue(GET.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(GET.equals(GET));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(GET.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(GET.equals(5));
 
         // different endpoint -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(GET.equals(BOB));
 
         // different name -> returns false
-        Endpoint editedAlice = new EndpointBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Endpoint editedAlice = new EndpointBuilder(GET).withMethod(VALID_METHOD_POST).build();
+        assertFalse(GET.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new EndpointBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).build();
+        assertFalse(GET.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new EndpointBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new EndpointBuilder(GET).withTags(VALID_TAG_CAT).build();
+        assertFalse(GET.equals(editedAlice));
     }
 }

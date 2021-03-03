@@ -3,7 +3,7 @@ package seedu.us.among.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.us.among.storage.JsonAdaptedEndpoint.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.us.among.testutil.Assert.assertThrows;
-import static seedu.us.among.testutil.TypicalEndpoints.BENSON;
+import static seedu.us.among.testutil.TypicalEndpoints.POST;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +20,15 @@ public class JsonAdaptedEndpointTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getMethod().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream().map(JsonAdaptedTag::new)
+    private static final String VALID_NAME = POST.getMethod().toString();
+    private static final String VALID_ADDRESS = POST.getAddress().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = POST.getTags().stream().map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validEndpointDetails_returnsEndpoint() throws Exception {
-        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(BENSON);
-        assertEquals(BENSON, endpoint.toModelType());
+        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(POST);
+        assertEquals(POST, endpoint.toModelType());
     }
 
     @Test

@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.commons.core.Messages.MESSAGE_ENDPOINTS_LISTED_OVERVIEW;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.us.among.testutil.TypicalEndpoints.CARL;
-import static seedu.us.among.testutil.TypicalEndpoints.ELLE;
-import static seedu.us.among.testutil.TypicalEndpoints.FIONA;
+import static seedu.us.among.testutil.TypicalEndpoints.PUT;
+import static seedu.us.among.testutil.TypicalEndpoints.HEAD;
+import static seedu.us.among.testutil.TypicalEndpoints.OPTIONS;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 
 import java.util.Arrays;
@@ -21,7 +21,8 @@ import seedu.us.among.model.UserPrefs;
 import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for
+ * {@code FindCommand}.
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalEndpointList(), new UserPrefs());
@@ -29,10 +30,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("first"));
+        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -71,7 +72,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEndpointList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEndpointList());
+        assertEquals(Arrays.asList(PUT, HEAD, OPTIONS), model.getFilteredEndpointList());
     }
 
     /**
