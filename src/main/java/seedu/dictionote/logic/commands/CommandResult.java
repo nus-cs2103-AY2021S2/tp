@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 
 /**
  * Represents the result of a command execution.
@@ -16,12 +17,17 @@ public class CommandResult {
     /** The action UI should take.*/
     private final UiAction uiAction;
 
+
+    /** The option of the action UI.*/
+    private final UiActionOption uiActionOption;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, UiAction uiAction) {
+    public CommandResult(String feedbackToUser, UiAction uiAction, UiActionOption uiActionOption) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.uiAction = uiAction;
+        this.uiActionOption = uiActionOption;
     }
 
     /**
@@ -29,7 +35,16 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, UiAction.NONE);
+        this(feedbackToUser, UiAction.NONE, UiActionOption.NONE);
+    }
+
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}. {@code UiAction},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, UiAction uiAction) {
+        this(feedbackToUser, uiAction, UiActionOption.NONE);
     }
 
     public String getFeedbackToUser() {
@@ -38,6 +53,10 @@ public class CommandResult {
 
     public UiAction getUiAction() {
         return uiAction;
+    }
+
+    public UiActionOption getUiActionOption() {
+        return uiActionOption;
     }
 
     @Override
@@ -53,12 +72,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && uiAction == otherCommandResult.uiAction;
+                && uiAction == otherCommandResult.uiAction
+                && uiActionOption == otherCommandResult.uiActionOption;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, uiAction);
+        return Objects.hash(feedbackToUser, uiAction, uiActionOption);
     }
 
 }
