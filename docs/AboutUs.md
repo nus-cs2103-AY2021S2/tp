@@ -29,8 +29,8 @@ zou.yuting[at]u.nus.edu
 
 <img src="images/glatiuden.png" width="200px">
 
-[[github](http://github.com/glatituden)]
-[[portfolio](team/glatituden.md)]
+[[github](http://github.com/glatiuden)]
+[[portfolio](team/glatiuden.md)]
 
 * Role: Integration
 
