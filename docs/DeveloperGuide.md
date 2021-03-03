@@ -264,14 +264,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 05: Add a task**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User keys in task details in the input field.
+
+2.  User request to add a task.
+    
+3.  ModuleBook 3.5 adds the task into the user’s list of tasks.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The exact task is already present in the list.
+
+    * 2a1. ModuleBook 3.5 displays an error message indicating task is present.
+      
+      Use case resumes at step 2.
+
+* 2b.  Invalid format for the add command
+
+    * 2b1. ModuleBook 3.5 shows an error message with the correct format for add and example.
+
+      Use case resumes at step 2.
+
+
+**Use case 06: Tag a task**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+    
+2.  User requests to add a tag to a task.
+    
+3.  ModuleBook 3.5 adds tag to task.
 
     Use case ends.
 
@@ -281,13 +309,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2b. The given index is out of range.
 
-    * 3a1. AddressBook shows an error message.
+    * 2b1. ModuleBook 3.5 shows an error message.
 
       Use case resumes at step 2.
+    
+* 2c. The task at given index has the tag already.
 
-*{More to be added}*
+    * 2c1. ModuleBook 3.5 shows a message saying the task already has a tag.
+      
+      Use case resumes at step 2.
+
+**Use case 07: Search a task**
+
+**MSS**
+
+1.  User request to search a tag.
+    
+2.  ModuleBook 3.5 find the tag and display all tasks with the tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Tag not found.
+
+    * 2a1. ModuleBook 3.5 shows an error message. 
+      
+      Use case ends.
+
+**Use case 08: Edit a task**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2.  User requests to edit a task’s details.
+
+3.  ModuleBook3.5 changes task details.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Invalid format for the edit command.
+
+    * 2a1. ModuleBook 3.5 shows an error message with the correct format for edit and example.
+
+      Use case resumes at step 2.
+    
+* 2b. Detail to be edited is the same as original detail.
+
+    * 2b1. ModuleBook 3.5 shows an error message stating that detail need not be changed. 
+      
+      Use case resumes at step 2.
+    
+* 2c. No edit inputs given.
+
+    * 2c1. ModuleBook 3.5 shows an error message stating that there are no changes in the first place. 
+      
+      Use case resumes at step 2.
+    
+* 2d. The given index is out of range.
+
+    * 2d1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
