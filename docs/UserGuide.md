@@ -16,9 +16,9 @@ If you can type fast, Link.me can get your contact management tasks done faster 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-3/tp/releases).
+1. Download the latest `linkme.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for `Link.me`.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -28,7 +28,7 @@ If you can type fast, Link.me can get your contact management tasks done faster 
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the app.
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -77,7 +77,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the app.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]​`
 
@@ -91,13 +91,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the app.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the app.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GENDER] [b/BIRTHDAY]
 [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
@@ -136,7 +136,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the app.
 
 Format: `delete INDEX`
 
@@ -145,12 +145,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the app.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the app.
 
 Format: `clear`
 
@@ -162,7 +162,7 @@ Format: `exit`
 
 ### Scheduling a meetup with a client : `schedule`
 
-Schedule a date and time with a specified client in the address book.
+Schedule a date and time with a specified client in the app.
 
 Format: `schedule INDEX DATE_TIME`
 
@@ -176,7 +176,7 @@ Example:
 
 * `schedule 24601 2020-02-28_14:30` schedules a meeting with client no.24601 at 2020/2/28 2:30 pm.
 
-### [v1.2] Filtering by tag : 'filter'
+### Filtering by tag : `filter`
 Filters the contacts by tag.
 
 Format: `filter TAG`
@@ -201,10 +201,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -218,11 +214,12 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`` [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GENDER] [b/BIRTHDAY] [c/CONTRACT_START_DATE] [pn/INSURANCE_PLAN_NAME] [p$/INSURANCE_PREMIUM] [c$/AMOUNT_CLAIMED_TO_DATE]`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`
 **Filter** | `filter TAG`
 **List** | `list`
 **Help** | `help`
+**Schedule** | `schedule INDEX DATE_TIME`
