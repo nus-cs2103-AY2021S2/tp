@@ -48,11 +48,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Goh Wei Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mrweikiat.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/mrweikiat)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
