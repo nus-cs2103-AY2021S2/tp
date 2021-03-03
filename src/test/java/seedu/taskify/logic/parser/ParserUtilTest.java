@@ -17,7 +17,6 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Description;
-import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Name;
 
 public class ParserUtilTest {

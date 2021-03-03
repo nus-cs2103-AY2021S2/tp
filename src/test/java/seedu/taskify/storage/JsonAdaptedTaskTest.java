@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Description;
-import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Name;
 
 public class JsonAdaptedTaskTest {

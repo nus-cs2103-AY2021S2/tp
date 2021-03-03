@@ -21,8 +21,8 @@ import seedu.taskify.model.Model;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Description;
-import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Name;
+import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -33,15 +33,15 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-                                                       + "by the index number used in the displayed task list. "
-                                                       + "Existing values will be overwritten by the input values.\n"
-                                                       + "Parameters: INDEX (must be a positive integer) "
-                                                       + "[" + PREFIX_NAME + "NAME] "
-                                                       + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-                                                       + "[" + PREFIX_ADDRESS + "ADDRESS] "
-                                                       + "[" + PREFIX_TAG + "TAG]...\n"
-                                                       + "Example: " + COMMAND_WORD + " 1 "
-                                                       + PREFIX_DESCRIPTION + "91234567 ";
+            + "by the index number used in the displayed task list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_DESCRIPTION + "91234567 ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -51,7 +51,7 @@ public class EditCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index                of the task in the filtered task list to edit
+     * @param index              of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
     public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
@@ -114,7 +114,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                       && editTaskDescriptor.equals(e.editTaskDescriptor);
+                && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
     /**
@@ -215,10 +215,10 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getName().equals(e.getName())
-                           && getDescription().equals(e.getDescription())
-                           && getStatus().equals(e.getStatus())
-                           && getAddress().equals(e.getAddress())
-                           && getTags().equals(e.getTags());
+                    && getDescription().equals(e.getDescription())
+                    && getStatus().equals(e.getStatus())
+                    && getAddress().equals(e.getAddress())
+                    && getTags().equals(e.getTags());
         }
 
     }

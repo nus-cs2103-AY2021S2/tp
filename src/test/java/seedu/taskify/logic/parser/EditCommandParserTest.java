@@ -34,7 +34,6 @@ import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Description;
-import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.StatusType;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
@@ -98,18 +97,18 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_ADDRESS_AMY
-                        + VALID_DESCRIPTION_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_DESCRIPTION_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND
-                                   + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                    .withDescription(VALID_DESCRIPTION_BOB).withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_AMY)
-                    .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDescription(VALID_DESCRIPTION_BOB).withStatus(StatusType.NOT_DONE)
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -121,7 +120,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_BOB;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB)
-                                                .withStatus(StatusType.NOT_DONE).build();
+                .withStatus(StatusType.NOT_DONE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -159,12 +158,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY
-               + TAG_DESC_FRIEND + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
-               + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
+                + TAG_DESC_FRIEND + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
+                + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB)
-                .withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+                .withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -181,9 +180,9 @@ public class EditCommandParserTest {
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_DESCRIPTION_DESC + ADDRESS_DESC_BOB
-                            + DESCRIPTION_DESC_BOB;
-        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB).withStatus(StatusType.NOT_DONE)
-                             .withAddress(VALID_ADDRESS_BOB).build();
+                + DESCRIPTION_DESC_BOB;
+        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB)
+                .withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

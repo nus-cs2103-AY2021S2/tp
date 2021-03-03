@@ -13,8 +13,8 @@ import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Description;
-import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Name;
+import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Task;
 
 /**

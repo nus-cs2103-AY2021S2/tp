@@ -1,7 +1,6 @@
 package seedu.taskify.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taskify.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's status in the address book.
