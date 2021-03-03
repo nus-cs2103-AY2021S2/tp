@@ -14,7 +14,7 @@
 - [Features](#features)
 - [Technologies](#technologies)
 - [Setup](#setup)
-- [Team](#team)
+- [Team](#about-us)
 - [Contributing](#contributing)
 - [Acknowledgement](#Acknowledgement)
 

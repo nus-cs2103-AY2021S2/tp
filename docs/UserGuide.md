@@ -8,7 +8,8 @@ use via a Command Line Interface** (CLI) while still having the benefits of a
 Graphical User Interface (GUI). If you can type fast, imPoster can enable you to
 test your APIs more conveniently than traditional GUI applications.
 
-- Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 ---
 
