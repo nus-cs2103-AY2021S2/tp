@@ -236,6 +236,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**: Independent Tutors
 
+* independent tuition teacher
 * has a need to manage a significant number of student contacts
 * prefer desktop apps over other types
 * can type fast
@@ -255,13 +256,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                 | I want to …​                                   | So that I can…​                                           |
 | -------- | ------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------ |
-| `* * *`  | tuition teacher                            | create a student's profile                        | keep track of my student's information                       |
-| `* * *`  | tuition teacher                            | see the profile of a particular student           | get their information                                        |
-| `* * *`  | tuition teacher                            | see a list of all my students' profile            |                                                              |
-| `* * *`  | tuition teacher                            | get all the emails of the parent of my students'  | email them reminders for payment                             |
-| `* * *`  | tuition teacher                            | remove a student's profile                        | keep track of only students that I teach                     |
-| `* * *`  | tuition teacher                            | add individual tuition sessions                   | keep track of my tuition sessions                            |
-| `* * *`  | tuition teacher                            | delete an individual tuition session              | update my tuition schedule                                   |
+| `* * *`  | user                                       | create a student's profile                        | keep track of my student's information                       |
+| `* * *`  | user                                       | see the profile of a particular student           | get their information                                        |
+| `* * *`  | user                                       | see a list of all my students' profile            |                                                              |
+| `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
+| `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
+| `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
+| `* * *`  | user                                       | delete an individual tuition session              | update my tuition schedule                                   |
 
 *{More to be added}*
 
@@ -369,14 +370,15 @@ MSS:
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. The user should have enough space on their computer to ensure that data will be stored in the application without errors.
+2.  The user should have enough memory on their computer to ensure that data will be stored in the application without errors.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  Response time from any command should be within 1 second.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* CLI: Command Line Interface where users can interact with their OS system.
+* **CLI**: Command Line Interface where users can interact with their OS system.
+* **MSS**: Main Success Scenario
 
 --------------------------------------------------------------------------------------------------------------------
 
