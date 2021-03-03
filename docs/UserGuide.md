@@ -64,34 +64,29 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Listing out tasks : `list`
 
-Shows a message explaning how to access the help page.
+Shows a list of all tasks you have added.
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
 
 Format: `list`
+
+
+### Adding a task: `add`
+
+Adds a task to ModuleBook3.5.
+
+Format: `add d/DESCRIPTION b/TIME [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Enter the time you wish to complete your task in the format: YYYY-mm-dd HH:mm
+</div>
+
+![add message](images/addImageUI.png)
+
+Examples:
+* `add d/CS2103T b/2021-01-20 20:00 t/tag`
+
 
 ### Editing a person : `edit`
 
