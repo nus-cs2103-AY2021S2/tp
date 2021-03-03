@@ -17,21 +17,19 @@ public class Method {
      * The first character of the address must not be a whitespace, otherwise " " (a
      * blank string) becomes a valid input.
      */
-    // public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    // public static final String VALIDATION_REGEX = "(\\bget\\b)|(\\bpost\\b)|(\\bout\\b)|(\\bdelete\\b)|(\\bhead\\b)|(\\boptions\\b)|(\\bpatch\\b)";
 
     public final String methodName;
-    // public final MethodType methodType;
+    public final MethodType methodType;
 
     /**
      * Constructs a {@code Method}.
-     *
      * @param method A valid method name.
      */
     public Method(String method) {
         requireNonNull(method);
         checkArgument(isValidMethod(method), MESSAGE_CONSTRAINTS);
-        methodName = method.toUpperCase();
+        this.methodName = method.toUpperCase();
+        this.methodType = parseMethodType(methodName);
     }
 
     /**
@@ -45,6 +43,24 @@ public class Method {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns the MethodType if the given string is a valid method. Else returns null.
+     * @param test A valid method
+     * @return a MethodType enum
+     */
+    public MethodType parseMethodType(String test) {
+        for (MethodType e : MethodType.values()) {
+            if (e.name().equalsIgnoreCase(test)) {
+                return e;
+            }
+        }
+        return null;
+    }
+    
+    public MethodType getMethodType() {
+        return this.methodType;
     }
 
     @Override
