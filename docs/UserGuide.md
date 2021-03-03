@@ -154,7 +154,8 @@ Appointment Details
 Tutor Name: Chloe Lim
 Appointment Date: 2021-4-20
 Appointment Time: 2:00pm - 2:00pm
-Location: Bedok National Library`
+Location: Bedok National Library
+```
 
 ### Delete a tuition appointment: `delete_appointment`
 
