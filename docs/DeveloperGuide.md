@@ -254,18 +254,18 @@ and the required means of communication.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | --------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                  |                                                                        |
-| `* * *`  | user                                       | delete a person                   | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | filter contacts                   | minimize chance of sending emails to the wrong recipient               |
-| `* * *`  | user                                       | specify preferred mode of contact | maximize chance of recipient seeing the information                    |
-| `* * *`  | user                                       | blacklist a contact               | reduce dissemination of information to people who do not want it       |
-| `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
-| `* *`    | user with many contacts                    | assign each contact a nickname    | remember contacts more accurately                                      |
-| `* *`    | user with many contacts                    | sort contacts by name             | locate a contact easily                                                |
+| Priority | As a …​                                 | I want to …​                                      | So that I can…​                                                      |
+| -------- | ------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                     |                                                                        |
+| `* * *`  | user                                       | delete a person                                      | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | filter contacts                                      | minimize chance of sending emails to the wrong recipient               |
+| `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                    |
+| `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it       |
+| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                |
+| `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                      |
+| `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                |
 
 *{More to be added}*
 
@@ -325,8 +325,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Assign a nickname to a contact**
+**Use case: Assign an optional remark to a contact**
 
+**MSS**
+
+1. User requests to list contacts.
+2. AddressBook shows a list of contacts.
+3. User requests to add an optional remark to a specific contact in the list.
+4. Addressbook adds the optional remark to the specific contact.
+5. Addressbook shows the updated list of contacts.
+   
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+  * 3a1. Addressbook shows an error message.
+    
+    Use case resumes at step 3.
+
+* 3b. The user enters details in the wrong format.
+
+    * 3b1. Addressbook shows an error message and the corect format.
+
+      Use case resumes at step 3.
+
+**Use case: Sort contacts by name**
+
+**MSS**
+
+1. User requests to sort the contact list by name in alphabetical order.
+2. AddressBook sorts the contact list.
+3. AddressBook displays the updated contact list.
+   
+   Use case ends.
 
 *{More to be added}*
 
