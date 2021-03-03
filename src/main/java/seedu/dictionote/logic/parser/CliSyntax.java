@@ -16,9 +16,9 @@ public class CliSyntax {
     /* Option Syntax for UI Command*/
     public static final String OPTION_ALL_PANEL = "-a";
     public static final String OPTION_CONTACT_PANEL = "-c";
-    public static final String OPTION_DICTIONARY_CONTENT_PANEL = "dc";
-    public static final String OPTION_DICTIONARY_LIST_PANEL = "dl";
-    public static final String OPTION_DICTIONARY_PANEL = "d";
+    public static final String OPTION_DICTIONARY_CONTENT_PANEL = "-dc";
+    public static final String OPTION_DICTIONARY_LIST_PANEL = "-dl";
+    public static final String OPTION_DICTIONARY_PANEL = "-d";
     public static final String OPTION_LIST_PANEL = "-l";
     public static final String OPTION_NOTE_CONTENT_PANEL = "-nc";
     public static final String OPTION_NOTE_LIST_PANEL = "-nl";
