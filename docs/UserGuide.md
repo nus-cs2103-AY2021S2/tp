@@ -203,7 +203,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**list** | `list of all tasks in ModuleBook3.5`
+**list** | `list`
 **add** | `add d/DESCRIPTION b/TIME [t/TAG]…​` <br> e.g., `add d/CS2103T b/2021-01-20 20:00 t/tagname`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
 **done** | `done INDEX`<br> e.g., `done 1`
