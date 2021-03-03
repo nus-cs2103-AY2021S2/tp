@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+A-Bash Book is an enhanced version of Address Book 3 app for managing your contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, A-Bash Book will allow you to quickly complete your contact management tasks.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,15 +24,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -51,7 +51,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -104,7 +104,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -154,6 +154,87 @@ Exits the program.
 
 Format: `exit`
 
+### Tab Auto Completion [coming soon]
+
+<!-- Pressing tab when typing a command will autocomplete it.
+
+Example: You want to execute command `delete`. Typing `de<tab>` will auto complete `de` to `delete` -->
+
+### Live command suggestion [coming soon]
+
+<!-- In addition to tab auto complete feature, A-Bash Book will also attempt to suggest commands available to the user.
+
+![](https://via.placeholder.com/350x150/000000/FFFFFF?text=Hi)
+
+Users will be able to press tab to cycle through the available options. -->
+
+### Find feature: fuzzy search [coming soon]
+
+<!-- Find command has been enhanced to match full words from partial keywords by similarity.
+
+Example: Searching for ‘jon’ will return results that are similar and ranked by similarity, e.g.  jonathan, john, johnny, ... -->
+
+### Alias [coming soon]
+<!-- 
+An alias is a shortcut command that a user can create to reference a default supported command.
+
+Format: `alias [p/] [ALIAS_NAME/COMMAND_NAME]`
+
+Key:
+    `p/`    Print the current values
+
+Examples: 
+
+
+| Example | Description |
+| --------------- | -------- |
+|`alias ls/list`  | associates a new ls command to list, such that the ls command will behave identically to the list command (ie. ls will now generate the list of all contacts).|
+|`alias ls/list n/ p/ e/ t/`| associates a new ls command to list, such that the ls command will behave identically to the list command with the options.|
+|`alias f/find`   | associates a new f command to find, such that the f command will behave identically to the find command (ie. f Alex Yeoh will now return contacts equals or similar to Alex Yeoh).|
+|`alias ls`       |        will print the VALUE associated with the ls alias.|
+|`alias p/`       |        will print all the registered aliases| -->
+
+### Removing Alias [coming soon]
+
+<!-- The unalias command can be used to remove each name from the list of defined aliases.
+
+Format: `unalias ALIAS_NAME`
+
+Examples:
+| Example | Description |
+| --------------- | -------- |
+|`unalias ls`| will remove the alias `ls`|
+|`unalias d`| will remove the alias `d`| -->
+
+### List options [coming soon]
+
+<!-- List options provide the user with the choice to tweak their list return result according to the specified option(s). 
+
+Format: each option should start with OPTION/ and be separated by a whitespace, where OPTION/ refers to the option Key.
+ie. `list [OPTION_1/ OPTION_2/ … OPTION_N/]`
+
+Key:
+| Key | Description |
+| --------------- | -------- |
+|`n`|    Name|
+|`p`|     Phone number|
+|`e`|    Email|
+|`a`|    Address|
+|`t`|    Tag|
+|`b` |   Birthday (new)|
+|`g` |   Gender (new) |
+|`no`|    Notes (new) |
+
+Examples: 
+| Example | Description |
+| --------------- | -------- |
+|`list n/`| returns the list of all contacts with name as the only field.|
+|`list n/ b/ g/`| returns the list of all contacts with name, birthday, gender as the only fields.|
+
+Tip:
+Combine the Alias feature with custom options to have a customized view. E.g. `alias list=”list n/ p/ e/ t/` to only show the name, phone number, email and tags. -->
+
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -165,10 +246,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,3 +267,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Alias** | _[coming soon]_
+**Unalias** | _[coming soon]_
