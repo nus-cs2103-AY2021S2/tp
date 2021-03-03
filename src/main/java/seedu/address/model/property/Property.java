@@ -1,20 +1,18 @@
 package seedu.address.model.property;
 
-import java.time.LocalDate;
-
 public class Property {
     private final Name name;
     private final Type propertyType;
     private final Address address;
     private final PostalCode postalCode;
-    private final LocalDate deadline;
+    private final Deadline deadline;
     private final String remarks;
     private final String clientName;
     private final String clientContact;
     private final String clientEmail;
     private final int clientAskingPrice;
 
-    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, LocalDate deadline,
+    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     String remarks, String clientName, String clientContact, String clientEmail,
                     int clientAskingPrice) {
         this.name = name;
@@ -45,7 +43,7 @@ public class Property {
         return postalCode;
     }
 
-    public LocalDate getDeadline() {
+    public Deadline getDeadline() {
         return deadline;
     }
 
