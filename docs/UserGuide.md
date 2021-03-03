@@ -91,4 +91,4 @@ Action | Format, Examples
 
 ### UI Mock-up 
 
-![Ui Mock-up](images/UiMockUp.png)
+![Ui Mock-up](images/Ui.png)
