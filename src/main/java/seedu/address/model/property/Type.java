@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Property's type.
- * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}.
  */
 public class Type {
     private static final String MESSAGE_CONSTRAINTS =
@@ -18,6 +18,11 @@ public class Type {
 
     private final String propertyType;
 
+    /**
+     * Constructs a {@code Type}.
+     *
+     * @param propertyType A valid type.
+     */
     Type(String propertyType) {
         requireNonNull(propertyType);
         checkArgument(isValidType(propertyType), MESSAGE_CONSTRAINTS);
@@ -26,8 +31,9 @@ public class Type {
 
     /**
      * Returns true if a given string is a valid property type.
+     *
      * @param test The string to test.
-     * @return true If the given string is a valid property type, otherwise false.
+     * @return True If the given string is a valid property type, otherwise false.
      */
     public boolean isValidType(String test) {
         String lowercaseTest = test.toLowerCase();

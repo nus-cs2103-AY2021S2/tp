@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Property's name.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}.
  */
 public class Name {
     private static final String MESSAGE_CONSTRAINTS =
@@ -19,6 +19,11 @@ public class Name {
 
     public final String propertyName;
 
+    /**
+     * Constructs a {@code Name}.
+     *
+     * @param propertyName A valid name.
+     */
     public Name(String propertyName) {
         requireNonNull(propertyName);
         checkArgument(isValidName(propertyName), MESSAGE_CONSTRAINTS);
@@ -27,8 +32,9 @@ public class Name {
 
     /**
      * Returns true if a given string is a valid property name.
+     *
      * @param test The string to test.
-     * @return true If the given string is a valid property name, otherwise false.
+     * @return True If the given string is a valid property name, otherwise false.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
