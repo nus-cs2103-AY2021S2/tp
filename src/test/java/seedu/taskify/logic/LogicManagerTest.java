@@ -5,7 +5,6 @@ import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED
 import static seedu.taskify.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.taskify.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
-import static seedu.taskify.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalTasks.AMY;
@@ -79,7 +78,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + DESCRIPTION_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + DESCRIPTION_DESC_AMY
                                     + ADDRESS_DESC_AMY;
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

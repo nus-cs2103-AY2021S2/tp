@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.taskify.testutil.Assert.assertThrows;
@@ -32,7 +31,7 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).withEmail(VALID_EMAIL_BOB)
+        Task editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).withStatus(StatusType.NOT_DONE)
                                    .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
@@ -76,8 +75,8 @@ public class TaskTest {
         editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new TaskBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        // different status -> returns false
+        editedAlice = new TaskBuilder(ALICE).withStatus(StatusType.COMPLETED).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false

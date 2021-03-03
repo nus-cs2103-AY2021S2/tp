@@ -6,13 +6,13 @@ import static seedu.taskify.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskDescriptorTest {
@@ -43,8 +43,8 @@ public class EditTaskDescriptorTest {
         editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDescription(VALID_DESCRIPTION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        // different status -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withStatus(StatusType.COMPLETED).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false

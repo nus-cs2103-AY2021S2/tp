@@ -13,7 +13,7 @@ import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Description;
-import seedu.taskify.model.task.Email;
+import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Task;
 
@@ -26,7 +26,7 @@ class JsonAdaptedTask {
 
     private final String name;
     private final String description;
-    private final String email;
+    private final String status;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +35,11 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("description") String description,
-                           @JsonProperty("email") String email, @JsonProperty("address") String address,
+                           @JsonProperty("status") String status, @JsonProperty("address") String address,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.description = description;
-        this.email = email;
+        this.status = status;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +52,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         name = source.getName().fullName;
         description = source.getDescription().value;
-        email = source.getEmail().value;
+        status = source.getStatus().toString();
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                               .map(JsonAdaptedTag::new)
@@ -87,13 +87,10 @@ class JsonAdaptedTask {
         }
         final Description modelDescription = new Description(description);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
+        final Status modelStatus = new Status();
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -104,7 +101,7 @@ class JsonAdaptedTask {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelName, modelDescription, modelEmail, modelAddress, modelTags);
+        return new Task(modelName, modelDescription, modelStatus, modelAddress, modelTags);
     }
 
 }
