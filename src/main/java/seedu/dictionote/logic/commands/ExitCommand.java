@@ -1,5 +1,6 @@
 package seedu.dictionote.logic.commands;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.model.Model;
 
 /**
@@ -13,7 +14,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, UiAction.EXIT);
     }
 
 }
