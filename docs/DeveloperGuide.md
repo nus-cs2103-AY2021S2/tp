@@ -253,15 +253,47 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                                             | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | insurance agent                            | add a new client                                            |                                                                        |
-| `* * *`  | insurance agent                            | delete a client                                             | remove clients that I am no longer serving                             |
-| `* * *`  | insurance agent                            | add important dates (e.g. birthdays) related to each client | keep track of them more easily                                         |
-| `* * *`  | insurance agent                            | schedule meets with people or groups of people              | easily check for upcoming meetings                                     |
-| `* * *`  | insurance agent                            | find a client by name                                       | locate details of persons without having to go through the entire list |
-| `*`      | user with many persons in the address book | sort clients by name                                        | locate a client easily                                                 |
-| `* * `   | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                 |
+| Priority | As a …​                                 | I want to …​                                             | So that I can…​                                                           |
+| -------- | ------------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `* * *`  | insurance agent                            | add a new client                                            |                                                                              |
+| `* * *`  | insurance agent                            | view a list of all clients                                  | get an overview of all my clients                                            |
+| `* * *`  | insurance agent                            | view a specific client and all of his/her information       | look up their personal information                                           |
+| `* * *`  | insurance agent                            | delete a client                                             | remove clients that I am no longer serving                                   |
+| `* * *`  | insurance agent                            | edit a client                                               | update clients' information without having to delete and add a new entry     |
+| `* * *`  | insurance agent with many clients          | find a client by name                                       | locate details of client without having to go through the entire list        |
+| `* * *`  | insurance agent with many clients          | filter clients by tag                                       | locate clients with a certain tag, without going through the entire list     |
+| `* * *`  | new user                                   | clear all entries                                           | remove sample data and make it ready for me to use                           |
+| `* * *`  | insurance agent                            | add contact information of each client                      | be able to conveniently check their contact when I need to get in touch      |
+| `* * *`  | insurance agent                            | add important dates (e.g. birthdays) related to each client | keep track of client's personal information more easily                      |
+| `* * *`  | insurance agent                            | check the age of each client                                | know if their insurance plan should be updated/ changed, as they get older   |
+| `* * *`  | insurance agent                            | add the current insurance plan of each client               | be aware of their current insurance requirements and coverage                |
+| `* * *`  | insurance agent                            | schedule meetings with people or groups of people           | keep track of upcoming meetings                                              |
+| `* * `   | user with many persons in the address book | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
+| `* * `   | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                       |
+| `* * `   | first-time user                            | see sample entries already in the app                       | get a good idea of the functionalities of the app before deciding to use it  |
+| `* * `   | forgetful insurance agent                  | reminders when clients' important dates are approaching     | prepare a meaningful greeting/ gift                                          |
+| `* * `   | insurance agent                            | add likes & dislikes of each client                         | be thoughtful to them and prepare appropriate gifts                          |
+| `* * `   | insurance agent                            | take notes about the personality of each client             | deal with them in a more effective way                                       |
+| `* * `   | meticulous insurance agent                 | take notes about the insurance needs of each client         | recommend relevant plans and offerings                                       |
+| `* * `   | insurance agent                            | track the status of claims made on behalf of clients        | update clients of the claims progress                                        |
+| `* * `   | insurance agent                            | archive clients                                             | separate clients who have passed or have switched providers                  |
+| `* * `   | insurance agent                            | pin clients to the top of the app                           | easily access clients that I am currently actively dealing with              |
+| `* * `   | inexperienced insurance agent              | add photographs of each client                              | more easily identify them                                                    |
+| `* * `   | expert user                                | create my own categories for grouping clients               | better organise and group my client contacts                                 |
+| `* `     | first-time user                            | go through an interactive tutorial                          | learn how to use the app                                                     |
+| `* `     | insurance agent                            | suggestions on what to do for clients' important dates      | save time on brainstorming for a gift                                        |
+| `* `     | insurance agent                            | add hobbies of each client                                  | recommend certain plans if they partake in high-risk activities              |
+| `* `     | social media savvy insurance agent         | add social media accounts of each client                    | keep up to date with their lifes and be attentive                            |
+| `* `     | insurance agent                            | track the total claims amount made by each client           | recommend better plans and offerings if needed                               |
+| `* `     | insurance agent                            | add info on the insurance plans of clients' family members  | give insurance advice for client's family                                    |
+| `* `     | insurance agent                            | add info on the previous insurance plans of each client     | have a reference when recommending insurance plans                           |
+| `* `     | insurance agent with few clients           | add potential clients                                       | contact and find new clients                                                 |
+| `* `     | insurance agent                            | track the financial status of each client                   | better recommend plans, such as for investment                               |
+| `* `     | insurance agent                            | add basic medical information of each client                | refuse new contracts in case of terminal illness                             |
+| `* `     | expert user                                | create my own shortcuts for commonly performed actions      | save time on these actions                                                   |
+| `* `     | expert user                                | disable certain UI elements that I do not use               | have a cleaner UI                                                            |
+
+
 
 *{More may be added}*
 
