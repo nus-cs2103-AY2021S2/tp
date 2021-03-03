@@ -9,17 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ng Zhi Cai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nhzaci.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/nhzaci)]
 
-* Role: Project Advisor
+- Role: Team Lead
 
-### Qin Yifan
+### Kieron Koh
 
 <img src="images/toahi.png" width="200px">
 
@@ -28,6 +26,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+=======
+### Kieron Koh
+
+<img src="images/kieron560.png" width="200px">
+
+[[github](http://github.com/kieron560)]
+
+- Role: Team Lead
+- Responsibilities: UI
+>>>>>>> 659fd5e5c4f9b6891484018aaeef779e57f59497
 
 ### Johnny Doe
 
@@ -35,18 +43,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
-### Jean Doe
+### Jerard Soh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jerardsoh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jerardsoh)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Storage
 
 ### James Doe
 
@@ -55,5 +62,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
