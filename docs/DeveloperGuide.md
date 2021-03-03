@@ -253,14 +253,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                   | So that I can…​                                           |
+| -------- | ------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------ |
+| `* * *`  | tuition teacher                            | create a student's profile                        | keep track of my student's information                       |
+| `* * *`  | tuition teacher                            | see the profile of a particular student           | get their information                                        |
+| `* * *`  | tuition teacher                            | see a list of all my students' profile            |                                                              |
+| `* * *`  | tuition teacher                            | get all the emails of the parent of my students'  | email them reminders for payment                             |
+| `* * *`  | tuition teacher                            | remove a student's profile                        | keep track of only students that I teach                     |
+| `* * *`  | tuition teacher                            | add individual tuition sessions                   | keep track of my tuition sessions                            |
+| `* * *`  | tuition teacher                            | delete an individual tuition session              | update my tuition schedule                                   |
 
 *{More to be added}*
 
@@ -278,7 +279,7 @@ MSS:
 
     Use case ends.
 
-**Extensions:**
+Extensions:
 
 * 1a. TutorBuddy detects an error in the entered data.
     * 1a1. TutorBuddy displays an error message.
@@ -296,7 +297,7 @@ MSS:
 
    Use case ends.
 
-**Extensions:**
+Extensions:
 
 * 2a. TutorBuddy detects an error in the entered command.
     * 2a1. TutorBuddy displays error messages to the user.
@@ -322,7 +323,7 @@ MSS:
 
    Use case ends.
 
-**Extensions:**
+Extensions:
 
 * 1a. TutorBuddy detects empty keyword field
     * 1a1. TutorBuddy displays an error message for no keyword specified.
