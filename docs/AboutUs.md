@@ -29,31 +29,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Sunaga Shion
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nowknowing.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nowknowing)] [[portfolio](team/nowknowing.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time.
 
-### Jean Doe
+### Samuel Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samleewy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/samleewy)]
+[[portfolio](team/samleewy.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Code Quality
+* Responsibilities: Ensuring that coding standards are enforced in accordance with checkstyles.
 
-### James Doe
+### Goh Jun Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jonahhgohh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jonahhgohh)]
+[[portfolio](team/jonahhgohh.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Ensure that coding standards are enforced.
