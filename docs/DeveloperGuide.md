@@ -236,13 +236,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* is a CS student in NUS
+* has a need to consolidate and manage deadlines for CS-coded module tasks
+* prefer desktop apps over other types of apps
+* prefers to use CLI over a GUI
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* prefers an all-keyboard workflow without needing to use a mouse
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+- manage upcoming CS assignment deadlines faster than a typical mouse/GUI driven app
+- consolidates all CS-coded module tasks into a single place for a CS student to manage and view easily
+- allows a CS student to prioritise his/her time by seeing which task deadlines are more pressing
+- the app can also remind a CS student about his/her upcoming deadlines so that he/she does not need to remember everything all at once
+- easy CLI operation would entice a CS student to use the app, as he/she probably interacts with CLI on a daily basis while coding/doing CS-coded module tasks
 
 
 ### User stories
@@ -252,11 +259,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add a new CS-coded module task                               | refer to the task in the App |
+| `* * *`  | user                                       | delete a task                                                | remove entries that I no longer need                         |
+| `* * *`  | user                                       | find a task by its name                                      | locate a particular task in order to view its deadline and relevant details |
+| `* * *`  | user                                       | add priority tags (low, medium, high)                        | categorise my tasks and know which ones I should work on first |
+| `* * *`  | user who has just finished a task | mark a task as done                                          | know which tasks I have completed                            |
+| `* *` | user | add notes to a particular task | jot down quick ideas or notes that I have for a particular task |
+| `* *` | user with many tasks in the App | sort tasks either by deadlines, module codes, or their priority tags | have different views of the App when I require them |
+| `* *` | user | edit task attributes | change the details of a task if the task requirements or details have changed |
+| `*` | user with many upcoming deadlines | be reminded of deadlines that are approaching | remember when my tasks are due and work on them |
+| `*` | user who just finished their semester | clear the application of all tasks | prepare for the next upcoming semester |
 
 *{More to be added}*
 
@@ -264,14 +276,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a deadline**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list deadlines
+2.  AddressBook shows a list of deadlines
+3.  User requests to delete a specific deadline in the list
+4.  AddressBook deletes the deadline
 
     Use case ends.
 
@@ -287,18 +299,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Edit a deadline**
+
+1. User requests to list deadlines
+2. AddressBook shows a list of deadlines
+3. User requests to edit a specific deadline in the list
+4. AddressBook updates the specific deadline in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  
+    Use case ends.
+* 3a. The given index is invalid
+    * 3a1. AddressBook shows an error message.
+      
+        Use case resumes at step 2. 
+* 3b. Optional fields are not provided
+    * 3b1. AddressBook shows an error message
+      
+        Use case resumes at step 2.
+
+**Use case: Setting a priority tag**
+
+1. User requests to list deadlines
+2. AddressBook shows a list of deadlines**
+3. User requests to set a priority tag on a specific deadline in the list
+4. AddressBook sets a priority tag to the specific deadline in the list
+
+**Extensions**
+
+* 2a. The list is empty.
+  
+    Use case ends.
+* 3a. The given index is invalid
+    * 3a1. AddressBook shows an error message
+    
+      Use case resumes at step 2
+* 3b. The given priority tag is invalid
+    * 3b1. AddressBook shows an error message
+    
+        Use case resumes at step 2
+    
+**Use case: Adding notes to a deadline**
+
+1. User requests to list deadlines
+2. AddressBook shows a list of deadlines**
+3. User requests to add a note to a specific deadline in the list
+4. AddressBook adds a note to the specific deadline in the list
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends
+* 3a. The given index is invalids
+    * 3a1. AddressBook shows an error message
+    
+        Use case resumes at step 2
+* 3b. The deadline has existing notes
+    * 3b1. AddressBook requests for confirmation to overwrite previous notes
+    * 3b2. User confirms the request to overwrite previous notes
+    * 3b3. AddressBook overwrites the previous notes with a new note
+    
+        Use case ends
+
+  
+  
+  
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  The software should be portable. So moving from one OS to other OS does not create any problem.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The response to any use action should become visible within 2 seconds.
+5.  The source code should be open source.
+6.  An application should be able to have up to 1000 deadlines.
+7.  The user interface should be intuitive enough for users who are not IT-savvy.
+8.  The product is free.
+9.  The system should work on both `32-bit` and `64-bit` environments.
+10. The deadline should not contain tasks deemed offensive (terrorism, bombing, etc).
+11. The application can be used **without** internet.
 
 ### Glossary
 
+* **CS:** Computer Science
+* **CS-coded module tasks:** Assignments, Quizzes, Projects, and other tasks related to CS-coded modules provided by NUS School of Computing that have deadlines for submission
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
