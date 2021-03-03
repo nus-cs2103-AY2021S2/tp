@@ -6,12 +6,21 @@ import java.time.LocalDate;
 
 import seedu.address.model.property.util.DateFormat;
 
+/**
+ * Represents a Property's deadline for selling.
+ * Guarantees: immutable.
+ */
 public class Deadline {
     private static final String MESSAGE_CONSTRAINTS =
             "Deadline dates should be valid dates specified in the format DD-MM-YY.";
 
     public final LocalDate deadline;
 
+    /**
+     * Constructs a {@code Deadline}.
+     *
+     * @param deadline A valid deadline date.
+     */
     public Deadline(LocalDate deadline) {
         requireNonNull(deadline);
         this.deadline = deadline;
