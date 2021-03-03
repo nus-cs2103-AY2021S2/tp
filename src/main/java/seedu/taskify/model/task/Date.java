@@ -5,16 +5,23 @@ import static seedu.taskify.commons.util.AppUtil.checkArgument;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
+/**
+ * Represents a Task's date (and time) in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ */
 public class Date {
-    private final LocalDateTime localDateTime;
     public static final String MESSAGE_CONSTRAINTS = "Date should be of the format \"yyyy-mm-dd hh:mm\"";
     public final String value;
+    private final LocalDateTime localDateTime;
 
+    /**
+     * Constructs a {@code Date}
+     *
+     * @param localDateTime a valid string containing the date and time of the Task
+     */
     public Date(String localDateTime) {
         requireNonNull(localDateTime);
         checkArgument(isValidDate(localDateTime), MESSAGE_CONSTRAINTS);
@@ -26,8 +33,9 @@ public class Date {
      * Returns if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        if (test == null || !test.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}"))
+        if (test == null || !test.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}")) {
             return false;
+        }
         SimpleDateFormat df = new SimpleDateFormat("y-M-d H:m");
         df.setLenient(false);
         try {
@@ -46,8 +54,12 @@ public class Date {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Date date = (Date) o;
         return localDateTime.equals(date.localDateTime);
     }
