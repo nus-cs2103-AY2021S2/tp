@@ -241,22 +241,31 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* is an NUS Computer Science undergraduate
+* works in the NUS Office of Campus Amenities communications team
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: OCA has a wide range of information to disseminate
+to students / staff at NUS. The large number of emails to send, and the large
+student / staff population may introduce errors during dissemination.
+We aim to help them classify this information based on the relevant parties
+and the required means of communication.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| -------- | ------------------------------------------ | --------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                  |                                                                        |
+| `* * *`  | user                                       | delete a person                   | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | filter contacts                   | minimize chance of sending emails to the wrong recipient               |
+| `* * *`  | user                                       | specify preferred mode of contact | maximize chance of recipient seeing the information                    |
+| `* * *`  | user                                       | blacklist a contact               | reduce dissemination of information to people who do not want it       |
+| `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
+| `* *`    | user with many contacts                    | assign each contact a nickname    | remember contacts more accurately                                      |
+| `* *`    | user with many contacts                    | sort contacts by name             | locate a contact easily                                                |
 
 *{More to be added}*
 
@@ -286,6 +295,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case: Filter contacts**
+
+
+**Use case: Specify a preferred mode of contact for a contact**
+
+
+**Use case: Blacklist a contact**
+
+**MSS**
+
+1. User requests to list contacts
+2. AddressBook shows a list of contacts
+3. User requests to blacklist a specific contact in the list
+4. AddressBook blacklists the contact
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Assign a nickname to a contact**
+
 
 *{More to be added}*
 
@@ -294,6 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Every command that is accessible via the graphical user interface should be possible using only command line inputs.
 
 *{More to be added}*
 
