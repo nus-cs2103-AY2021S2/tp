@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103-T14-4/tp)
 
 ![Ui](docs/images/Ui.png)
 
@@ -107,6 +107,9 @@
     3. Example: list followed by notes 2 n/Hello World! adds the note “Hello World!” to the 2nd task in the task list.
     4. Example: find assignment followed by notes 1 n/fooBar adds the note “fooBar” to the 1st task in the results of the find command.
  
+
+## Acknowledgements 
+1. This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
 
 
 
