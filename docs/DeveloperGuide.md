@@ -249,13 +249,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                      |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| __`* * *`__  | user                                       | find my friends via their email address                         | find my friends easily                |
+| __`* * *`__  | user                                       | autocomplete my commands                                        | minimise the amount of typing for a command        |
+| __`* * *`__  | user                                       | set my own commands alias                                       | type and execute commands faster
+| __`* *`__    | user                                       | find my friends without typing their exact full name            | find my friends easily                |
+| __`* *`__    | user                                       | find my friends that have names with similar spelling easily    | find my friends easily                             |
+| __`* *`__    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
@@ -287,6 +292,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use Case: Delete a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  AddressBook deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* *a. At any time, User can press tab to autocomplete the field if possible
+    * *a1. User confirm suggestion by continuing his command
+    * *a2. User rejects suggestion by deleting the suggestion
+      Use case ends.
+      
+**Use case: Setting a command alias**
+
+**MSS**
+
+1. User frequently uses a command
+2. User sets a command alias for frequent command
+3. AddressBook adds alias to existing command list
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The alias name or command name is empty
+  Use case ends.
+
+* 2b. The command name is empty
+  Use case ends.
+  
 *{More to be added}*
 
 ### Non-Functional Requirements
