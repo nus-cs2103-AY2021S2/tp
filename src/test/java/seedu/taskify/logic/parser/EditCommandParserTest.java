@@ -35,7 +35,6 @@ import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.StatusType;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
