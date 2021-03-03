@@ -122,20 +122,6 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -159,6 +145,48 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
+
+### Deleting a task : `delete`
+
+Deletes the specified task from the address book.
+
+Format: `delete INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd task in the ModuleBook 3.5.
+* `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+
+### Mark a task as done : `done`
+
+Mark an existing task as done.
+
+Format: `done INDEX`
+
+* Mark the task as done at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `done 2` marks the 2nd task as done in the ModuleBook 3.5.
+* `find CS2103T` followed by `done 1` marks the 1st person in the results of the `find` command as done.
+
+### Mark a task as not done : `notdone`
+
+Mark an existing task as not done.
+
+Format: `notdone INDEX`
+
+* Mark the task as not done at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook 3.5.
+* `find CS2103T` followed by `notdone 1` marks the 1st person in the results of the `find` command as not done.
 
 ### Archiving data files `[coming in v2.0]`
 
