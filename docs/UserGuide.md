@@ -40,10 +40,11 @@ ModuleBook 3.5 is the go-to tool for busy students/professionals who are confide
   e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS2103T team project for week7` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Commands
 
@@ -63,6 +64,7 @@ ModuleBook 3.5 is the go-to tool for busy students/professionals who are confide
 
    * **`edit`** : Edit task
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Listing out tasks : `list`
 
@@ -81,94 +83,11 @@ Format: `add d/DESCRIPTION b/TIME [t/TAG]…​`
 Enter the time you wish to complete your task in the format: YYYY-mm-dd HH:mm
 </div>
 
+
 ![add message](images/addImageUI.png)
 
 Examples:
-* `add d/CS2103T b/2021-01-20 20:00 t/tag`
-
-
-### Editing a task: `edit`
-
-Edits an existing task in the module book.
-
-Format: `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`
-
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-
-Examples:
-*  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
-*  `edit 2 d/Eat Biscuits b/2021-03-21T10:10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21` and time `10:10:10`.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-# figo2127's edits (starting here):
-
-### Adding a tag: `tag`
-
-Adds a tag to a task.
-
-Format: `tag INDEX [t/TAGNAME]` 
-
-* Attaches a tag to the task associated with INDEX. Tag can be used to identify related tasks.
-
-Examples:
-
-* `tag 1 [t/SoftwareEng]`
-
-### Searching tasks: `find`
-
-Searches for a task with its associated tag.
-
-Format: `find KEYWORD`
-
-Examples:
-
-* `find CS2103T`
-
-# End of figo2127's edits
-
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+* `add d/CS2103T b/2021-01-20 20:00 t/tagname`
 
 ### Deleting a task : `delete`
 
@@ -212,6 +131,61 @@ Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook 3.5.
 * `find CS2103T` followed by `notdone 1` marks the 1st person in the results of the `find` command as not done.
 
+
+### Adding a tag: `tag`
+
+Adds a tag to a task.
+
+Format: `tag INDEX [t/TAGNAME]` 
+
+* Attaches a tag to the task associated with INDEX. Tag can be used to identify related tasks.
+
+Examples:
+
+* `tag 1 [t/SoftwareEng]`
+
+### Searching tasks: `find`
+
+Searches for a task with its associated tag.
+
+Format: `find KEYWORD`
+
+Examples:
+
+* `find CS2103T`
+
+### Editing a task: `edit`
+
+Edits an existing task in the module book.
+
+Format: `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`
+
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
+*  `edit 2 d/Eat Biscuits b/2021-03-21T10:10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21` and time `10:10:10`.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Saving the data
+
+ModuleBook3.5 data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing the data file
+
+ModuleBook3.5 data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, ModuleBook3.5 will discard all data and start with an empty data file at the next run.
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -221,7 +195,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModuleBook3.5 home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -229,10 +203,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g.,`edit 2 d/Do CS2101 Prep b/2021-03-12T:10:10:10`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**list** | `list of all tasks in ModuleBook3.5`
+**add** | `add d/DESCRIPTION b/TIME [t/TAG]…​` <br> e.g., `add d/CS2103T b/2021-01-20 20:00 t/tagname`
+**delete** | `delete INDEX`<br> e.g., `delete 3`
+**done** | `done INDEX`<br> e.g., `done 1`
+**notdone** | `notdone INDEX`<br> e.g., `notdone 1`
+**tag** | `tag INDEX [t/TAG NAME]`<br> e.g., `tag 1 [t/SoftwareEng]`
+**find** | `find KEYWORD`<br> e.g., `find CS3230`
+**edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g., `edit 2 d/Eat Biscuits b/2021-03-21T10:10:10`
