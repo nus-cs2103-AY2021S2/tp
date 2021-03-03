@@ -33,7 +33,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         name = new Name(DEFAULT_NAME);
         description = new Description(DEFAULT_DESCRIPTION);
-        status = new Status(StatusType.NOT_DONE);
+        status = new Status();
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
