@@ -22,11 +22,6 @@ checkstyle {
     toolVersion = '8.29'
 }
 
-test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
-
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
@@ -61,6 +56,8 @@ shadowJar {
 }
 
 test {
+    useJUnitPlatform()
+
     systemProperty 'testfx.setup.timeout', '60000'
 
     testLogging {
@@ -73,6 +70,8 @@ test {
             events << TestLogEvent.STARTED
         }
     }
+
+    finalizedBy jacocoTestReport
 }
 
 task headless {
