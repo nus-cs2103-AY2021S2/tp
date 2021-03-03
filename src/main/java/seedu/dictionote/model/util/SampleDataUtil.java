@@ -4,25 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-<<<<<<< HEAD:src/main/java/seedu/dictionote/model/util/SampleDataUtil.java
 import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
-=======
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
->>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/main/java/seedu/address/model/util/SampleDataUtil.java
-
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */

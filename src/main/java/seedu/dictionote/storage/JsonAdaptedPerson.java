@@ -9,22 +9,12 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-<<<<<<< HEAD:src/main/java/seedu/dictionote/storage/JsonAdaptedPerson.java
 import seedu.dictionote.commons.exceptions.IllegalValueException;
-import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
-=======
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
->>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -43,11 +33,7 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-<<<<<<< HEAD:src/main/java/seedu/dictionote/storage/JsonAdaptedPerson.java
             @JsonProperty("email") String email, @JsonProperty("dictionote") String address,
-=======
-            @JsonProperty("email") String email,
->>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;

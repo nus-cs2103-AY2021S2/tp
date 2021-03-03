@@ -6,25 +6,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-<<<<<<< HEAD:src/main/java/seedu/dictionote/logic/parser/ParserUtil.java
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.commons.util.StringUtil;
 import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
-=======
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
->>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/main/java/seedu/address/logic/parser/ParserUtil.java
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
