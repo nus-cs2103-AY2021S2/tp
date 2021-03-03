@@ -18,7 +18,7 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
   * [Query weight, height and BMI](#12-query-weight-height-and-bmi)
   * [Update weight, height and ideal weight](#13-update-weight-height-and-ideal-weight)
 * [Diet Plan Selector](#2-diet-plan-selector)
-  * [Get diet recommendations based on current BMI](#21-get-diet-recommendations-based-on-current-bmi)
+  * [Get diet recommendations based on current BMI](#21-get-diet-recommendation-based-on-current-bmi)
   * [View active diet plan](#22-view-active-diet-plan)
   * [Select active diet plan](#23-select-active-diet-plan)
 * [Macronutrients Tracker](#3-macronutrients-tracker)
@@ -219,10 +219,13 @@ Total Calories Intake: 510 kcal
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Input weight, height and ideal weight** | `bmi h/height(cm) w/weight(kg) i/ideal_weight(kg)​` <br> e.g., `bmi h/170 w/70 i/80`
+**Query weight, height and BMI** | `bmi query`
+**Update weight, height and ideal weight** | `bmi update h/height(cm) w/weight(kg) i/ideal_weight(kg)`<br> e.g., `bmi update h/170 w/70 i/80`
+**Get diet recommendation based on current BMI** | `plan recommended`
+**View active diet plan** | `plan current`
+**Select active diet plan** | `start p/plan`<br> e.g., `start p/1`
+**List all available diet plans** | `plans`
+**View information about a particular diet plan** | `plan \tID​`<br> e.g.,`plan t\1`
+**Input carbohydrates, fats and protein intake** | `food d/DATE n/NAME p/PROTEINS c/CARBOHYDRATES f/FATS`<br> e.g., `food d/today n/tomatoes p/10 c/10 f/10`
+**List food intake for certain days** | `food query d/DATE`<br> e.g., `food query d/today`
