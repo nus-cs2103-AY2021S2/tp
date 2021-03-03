@@ -148,6 +148,24 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Adding a new remark or replacing an existing remark : `remark`
+
+Adds a new remark to the specified person from the address book. 
+If the person already has a remark, the new remark will replace the
+existing remark.
+
+Format: `remark INDEX r/REMARK`
+
+* Adds/Replaces the remark of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+
+Example:
+
+`remark 3 r/Currently on Stay Home Notice`
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -190,3 +208,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
