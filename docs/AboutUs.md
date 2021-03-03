@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Boon Ji
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanboonji.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/tanboonji)]
+<!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Project Advisor
+* Role: Integration
+* Reponsibilities: Logic
 
-### Jane Doe
+### Justin Gnoh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/justingnohug.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/justgnohUG)]
+<!-- [[portfolio](team/johndoe.md)] -->
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: View
 
-### Johnny Doe
+### Keng Iuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darkdestry-t.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/darkdestry-t)]
+<!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing
+* Responsibilities: Storage
 
-### Jean Doe
+### Yi Ping
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/oeiyiping.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/oeiyiping)]
+<!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Code Quality
+* Responsibilities: Ui
 
-### James Doe
+### Yao Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yaowei-soc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/yaowei-soc)]
+<!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Model
