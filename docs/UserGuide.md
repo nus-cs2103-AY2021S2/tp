@@ -8,7 +8,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Table of Contents
 {:toc}
 
-##Adding a task
+###Adding a task
 Adds a task into the task list.
 
 Format: `add task`
@@ -18,7 +18,7 @@ Prompts: `name`, `date`, `[tags]`
 Example(s):
 * `add task slides 2021-02-15 CS2105T`
 
-##Finding a task
+###Finding a task
 Finds an existing task by name in the task list.
 
 Format: `find task`
@@ -29,7 +29,7 @@ Prompts: `name`
 Example(s):
 * `find task slides`
 
-##Listing tasks by module/day/week
+###Listing tasks by module/day/week
 Lists all the tasks by the specified module/today/this week. 
 
 Format: `list tasks`
@@ -41,7 +41,7 @@ Example(s):
 * `list tasks by day`
 * `list tasks by week`
 
-##Deleting a task
+###Deleting a task
 Deletes an existing task with the specified name in the task list.
 
 Format: `delete task`
