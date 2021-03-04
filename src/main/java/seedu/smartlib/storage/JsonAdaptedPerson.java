@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.smartlib.commons.exceptions.IllegalValueException;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
-import seedu.smartlib.model.reader.Name;
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
