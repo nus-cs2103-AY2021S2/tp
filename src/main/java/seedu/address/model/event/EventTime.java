@@ -1,7 +1,5 @@
 package seedu.address.model.event;
 
-import seedu.address.model.person.Name;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -33,13 +31,13 @@ public class EventTime {
      * mm: 00 to 59
      */
     public static final String VALIDATION_REGEX =
-            "^(([0][1-9]|[12][0-9])|(3[01]))\\/([0-1][012])\\/\\d\\d\\d\\d (([01][0-9])|([2][0-3])):[0-5][0-9]$";
+            "^(([0][1-9]|[1-2][0-9])|(3[01]))\\/([0-1][0-2])\\/\\d\\d\\d\\d (([0-1][0-9])|([2][0-3])):[0-5][0-9]$";
 
     /**
      * DateTimeFormatter for dd/MM/yyyy HHmm input format on date inputs
      */
     private static final DateTimeFormatter INPUT_DATE_FORMAT =
-            DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public final LocalDateTime eventTime;
 
@@ -67,24 +65,7 @@ public class EventTime {
      * Returns true if a given String is a valid eventTime
      */
     public static boolean isValidEventTime(String test) {
-        // check if string matches regex first
-        if (test.matches(VALIDATION_REGEX)) {
-
-            // check edge case of 00 in second '/'
-            String[] testSplitBySlash = test.split("/");
-
-            // check another corner case, somehow try to index at 1, but
-            // doesn't work
-            if (testSplitBySlash.length < 2) {
-                return false;
-            }
-
-            // Lastly, check that 2nd arg, mm != "00"
-            return !testSplitBySlash[1].equals("00");
-        }
-
-        // does not even pass regex test
-        return false;
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

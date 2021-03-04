@@ -15,7 +15,7 @@ public class EventBuilder {
 
     public static final String DEFAULT_NAME = "CS2103T";
     public static final String DEFAULT_TIME_START = "20/12/2022 18:00";
-    public static final String DEFAULT_TIME_END = "01/03/2023 19:00";
+    public static final String DEFAULT_TIME_END = "01/10/2023 19:00";
     public static final EventStatus DEFAULT_STATUS = EventStatus.TODO;
     public static final String DEFAULT_DESCRIPTION = "This is the first software engineering module in NUS";
 
@@ -117,5 +117,4 @@ public class EventBuilder {
                 description, tags, persons);
     }
 
-}
 }

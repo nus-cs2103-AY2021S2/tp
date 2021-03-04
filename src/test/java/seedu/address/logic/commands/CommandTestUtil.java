@@ -26,6 +26,12 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_NAME_CS2030 = "CS2030";
+    public static final String VALID_NAME_CS1010S = "CS1010S";
+    public static final String VALID_DESCRIPTION_CS2030 = "Object-oriented Programming";
+    public static final String VALID_TIME_START_CS2030 = "12/12/2021 12:00";
+    public static final String VALID_TIME_END_CS2030 = "10/01/2020 10:00";
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
