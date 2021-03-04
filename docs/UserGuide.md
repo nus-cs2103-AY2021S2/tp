@@ -13,7 +13,19 @@ Interface(GUI). Start using nufash and never worry about keeping track of your c
 
 ---
 ### Features
-*{more to be added}*
+**1. Add Clothing Item**  
+Adds a clothing item with a name, a specified colour, type and size.
+1. `add` n/NAME c/COLOUR t/TYPE s/SIZE  
+
+
+**2. Remove Clothing Item**  
+Removes a clothing item associated with the index *or* returns an indexed list of clothes associated with a specified parameter, with the option to remove one of these indexed items.
+1. `remove` i/INDEX *or*
+2. `remove` n/NAME *or*
+3. `remove` c/COLOUR *or*
+4. `remove` t/TYPE *or*
+5. `remove` s/SIZE
+
 
 ---
 ### FAQ
