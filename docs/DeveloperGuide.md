@@ -33,3 +33,31 @@ medium | teacher | filter events via tags | categorise and find events easily
 medium | teacher | mark and event as done | keep track of what events are remaining
 medium | teacher | link a contact with my schedule if necessary | easily access the contact details of the person relevant to my schedule
 low | teacher | get notified of upcoming schedules on the same day | be reminded of upcoming events
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Requirements**
+
+### Product Scope
+
+**Target user profile**:
+
+* Are JC/Secondary school teachers
+* Do not have their schedules and students' contacts digitalised
+* Prefer to use typing over mouse/voice commands
+
+**Value proposition**: efficient tool to keep track of schedules and tasks as well as find and add student contact information easily.
+
+### Glossary
+
+**JC**<br>
+Junior College (JC) is the post-secondary education level where students are preparing for university.
+JC is also the high-school equivalent in other countries. Hence, JC teachers may be packed with consultation
+schedules which can leverage our software.
+
+**Mainstream OS**<br>
+Mainstream operating systems are the current operating systems with a significant market share, namely Windows, Linux,
+Unix, and OS-X.
+
+**MSS**<br>
+Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in the case where no errors occurred.
