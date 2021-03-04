@@ -266,112 +266,98 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ResidenceTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a residence**
-
+**Use case (UC01): Add a residence**<br>
 **MSS**
 
 1.  User adds in the details of a residence
 2.  User confirms the addition
 3.  System confirms the addition and residence is added to the list of existing residence
-
-    Use case ends.
+<br>    Use case ends.
 
 **Extensions**
 
-* 2a. Error in submission if user did not provide all relevant fields. 
-    
-    * 2a1. ResidenceTracker shows an error message.
-
+* 2a. Error in submission if user did not provide all relevant fields. <br>
+    * 2a1. ResidenceTracker shows an error message. <br>
       use case restarts from 1.
+      
+<br>
 
-**Use case: Delete a residence**
+**Use case (UC02): Delete a residence**
 
 **MSS**
-
 1.  User deletes a residence with a INDEX
 2.  System confirms the input number
 3.  System deletes the respective entry of the residence
-
-    Use case ends.
+<br>    Use case ends.
 
 **Extensions**
 
 * 2a. System detects an error in the entered INDEX
 
-    * 2a1. System requests for the correct format of deletion.
-    * 2a2. User inputs the correct delete command with INDEX.
+    * 2ai. System requests for the correct format of deletion.
+    * 2aii. User inputs the correct delete command with INDEX.
 
       Use case resumes at step 2.
 
-**Use case: Find an apartment**
-
-**MSS**
-
+<br>
+      
+**Use case(UC03): Find a residence** <br>
+**MSS** <br>
 1.  User keys in the keywords to search residences
 2.  System returns the residence(s) which include the keyword in their name
+<br>    Use case ends.
 
-    Use case ends.
+**Extensions** <br>
+* 1a. no matching residences are found
+    * 1ai. a corresponding message is displayed.
+<br>      Use case ends.
 
-**Extensions**
+<br>
 
-* 1a. no matching residences are found 
-  
-    * 1a1. a corresponding message is displayed.
-
-      Use case ends.
-
-**Use case: View list of all apartments**
-
-**MSS**
-
+**Use case(UC04): View list of all residences**<br>
+**MSS**<br>
 1.  User keys in the list command
 2.  System lists all residences
+<br>    Use case ends.
 
-    Use case ends.
-
-**Extensions**
-
+**Extensions** <br>
 * 1a. no residences are found
-  
-    * 1a1. a corresponding message is displayed.
+    * 1ai. a corresponding message is displayed.
+<br>      Use case ends.
 
-      Use case ends.
+<br>
 
-**Use case: Edit apartment status**
-
-**MSS**
-
+**Use case(UC05): Edit status of a residence** <br>
+**MSS** <br>
 1.  User keys in the index and status of the residence to be edited
 2.  System validates the edition
 3.  System updates the residence status
+<br>    Use case ends.
 
-    Use case ends.
-
-**Extensions**
-
+**Extensions** <br>
 * 2a. System detects an error in the entered INDEX or in entered status
 
-    * 2a1. System requests for the expected format of edit command.
-    * 2a2. User inputs the correct edit command with necessary details.
-      
-      Use case resumes at step 2.
+    * 2ai. System requests for the expected format of edit command.
+    * 2aii. User inputs the correct edit command with necessary details.
+<br>      Use case resumes at step 2.
 
-**Use case: Show all available commands**
+<br>
 
-**MSS**
-
+**Use case (UC06): Show all available commands** <br>
+**MSS**<br>
 1.  User keys in the help command
 2.  System shows a list of all available commands to help master the use of the app and the URL to the User Guide
 
     Use case ends.
 
-**Use case: Exit the application**
+<br>
 
-**MSS**
-
+**Use case (UC07): Exit the application** <br>
+**MSS** <br>
 1.  User keys in the exit command
 2.  System closes
-    Use case ends.
+<br>    Use case ends.
+
 
 *{More to be added}*
 
