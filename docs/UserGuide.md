@@ -71,7 +71,7 @@ Finds students that matches the keyword given
 
 Format: `find student KEYWORD`
 * The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”.
-* As long as the keyword matches the name of the student, it will be regarded as a match. For example, if a person’s name is “John Lee”, searching “John” will be sufficient.
+* As long as the keyword matches the name of the student, it will be regarded as a match. For example, if a student’s name is “John Lee”, searching “John” will be sufficient.
 * Only the student’s name will be searched.
 
 Example:
@@ -105,8 +105,8 @@ Format: `delete student STUDENT_NAME` <br>
 * `STUDENT_NAME` must have an exact match to the name in the student profile
 
 Examples:
-* `list student` followed by `delete 2` deletes the 2nd person in the address book.
-* `find student Betsy` followed by `delete 1` deletes the 1st person in the results of the find student command.
+* `list student` followed by `delete 2` deletes the 2nd student in the address book.
+* `find student Betsy` followed by `delete 1` deletes the 1st student in the results of the find student command.
 
 ### Listing all tuition sessions: `list session`
 
