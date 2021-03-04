@@ -65,6 +65,50 @@ Example(s):
 * `delete contact Danny`
 
 ---
+### Adding a schedule
+Adds a new schedule into the schedule list.
+
+Format: `add schedule`
+
+Prompts: `start date and time`, `end date and time`, `[tags]`
+
+Example(s):
+* `add schedule meeting 2021-02-15,2100 2021-02-15,2300`
+* `add schedule consultation 2021-02-15,2300 2021-02-15,2400 consultation
+  `
+### Finding a schedule
+Finds an existing schedule by name in the schedule list.
+
+Format: `find schedule`
+* `The search is case-insensitive e.g. meeting will match Meeting`
+
+Prompt: `name`
+
+Example(s):
+* `finding schedule meeting`
+
+### Listing schedules today (of the same week)
+List schedules today/this week
+
+Format: `list schedule`
+
+Prompt: `by day/week`
+
+Example(s):
+* `list schedule by day`
+* `list schedule by week`
+
+### Deleting a schedule
+Deletes an existing schedule with the specified name in the schedule list.
+
+Format: `delete a schedule`
+
+Prompt: `name`
+
+Example(s):
+* `delete schedule meeting`
+
+
 
 ### Adding a task
 Adds a task into the task list.
