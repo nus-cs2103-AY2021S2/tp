@@ -13,9 +13,9 @@ import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Date;
+import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Phone;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -26,7 +26,7 @@ class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String description;
     private final String email;
     private final String address;
     private final String date;
@@ -36,11 +36,11 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("description") String description,
                            @JsonProperty("email") String email, @JsonProperty("address") String address,
                            @JsonProperty("date") String date, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
+        this.description = description;
         this.email = email;
         this.address = address;
         this.date = date;
@@ -54,7 +54,7 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        description = source.getDescription().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         date = source.getDate().value;
@@ -82,13 +82,14 @@ class JsonAdaptedTask {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (description == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Description modelDescription = new Description(description);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -115,7 +116,7 @@ class JsonAdaptedTask {
         final Date modelDate = new Date(date);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelName, modelPhone, modelEmail, modelAddress, modelDate, modelTags);
+        return new Task(modelName, modelDescription, modelEmail, modelAddress, modelDate, modelTags);
     }
 
 }

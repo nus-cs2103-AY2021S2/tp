@@ -8,9 +8,9 @@ import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Date;
+import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Phone;
 import seedu.taskify.model.task.Task;
 
 
@@ -35,7 +35,7 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
-        descriptor.setPhone(task.getPhone());
+        descriptor.setDescription(task.getDescription());
         descriptor.setEmail(task.getEmail());
         descriptor.setAddress(task.getAddress());
         descriptor.setDate(task.getDate());
@@ -51,10 +51,10 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Description} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditTaskDescriptorBuilder withDescription(String description) {
+        descriptor.setDescription(new Description(description));
         return this;
     }
 

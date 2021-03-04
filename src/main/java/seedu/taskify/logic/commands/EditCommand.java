@@ -2,9 +2,9 @@ package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -22,9 +22,9 @@ import seedu.taskify.model.Model;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Date;
+import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Phone;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -39,12 +39,12 @@ public class EditCommand extends Command {
                                                        + "Existing values will be overwritten by the input values.\n"
                                                        + "Parameters: INDEX (must be a positive integer) "
                                                        + "[" + PREFIX_NAME + "NAME] "
-                                                       + "[" + PREFIX_PHONE + "PHONE] "
+                                                       + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
                                                        + "[" + PREFIX_EMAIL + "EMAIL] "
                                                        + "[" + PREFIX_ADDRESS + "ADDRESS] "
                                                        + "[" + PREFIX_TAG + "TAG]...\n"
                                                        + "Example: " + COMMAND_WORD + " 1 "
-                                                       + PREFIX_PHONE + "91234567 "
+                                                       + PREFIX_DESCRIPTION + "91234567 "
                                                        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
@@ -95,13 +95,13 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
+        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
         Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
         Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedDate, updatedTags);
+        return new Task(updatedName, updatedDescription, updatedEmail, updatedAddress, updatedDate, updatedTags);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Name name;
-        private Phone phone;
+        private Description description;
         private Email email;
         private Address address;
         private Date date;
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setDescription(toCopy.description);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setDate(toCopy.date);
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, date, tags);
+            return CollectionUtil.isAnyNonNull(name, description, email, address, date, tags);
         }
 
         public void setName(Name name) {
@@ -165,12 +165,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         public void setEmail(Email email) {
@@ -230,11 +230,12 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getName().equals(e.getName())
-                           && getPhone().equals(e.getPhone())
+                           && getDescription().equals(e.getDescription())
                            && getEmail().equals(e.getEmail())
                            && getAddress().equals(e.getAddress())
                            && getDate().equals(e.getDate())
                            && getTags().equals(e.getTags());
         }
+
     }
 }
