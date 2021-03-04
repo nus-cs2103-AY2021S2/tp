@@ -43,6 +43,7 @@ Format: `remove INDEX`
 * Removes the article of clothing at the specified INDEX
 * The index refers to the index number shown in the list command
 * The index must be a positive integer 1, 2, 3, …<br>
+
 Example:<br>
 * `list`<br>
   `remove 2`<br>
@@ -55,6 +56,7 @@ Format: `edit INDEX [n/NAME] [c/COLOUR] [t/TYPE] [s/SIZE]`
 * Edits the article of clothing at the specified INDEX. The index refers to the index number shown in the list command. The index must be a positive integer 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.<br>
+
 Example:
 * `list`<br>
   `edit 1 c/red s/M`<br>
@@ -65,6 +67,7 @@ Example:
 Finds clothing that matches a certain type.<br>
 Format: `find t/type`
 * The search is case insensitive<br>
+
 Examples:
 * `find n/worn out jeans`<br>
   Returns the article of clothing that is named "worn out jeans".
@@ -79,7 +82,8 @@ Format: `exit`
 ---
 ### FAQ
 Q: How do I transfer my data to another Computer?<br>
-A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous nü fash folder.
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous nufash folder.
 
 Q: Who do I contact if I face any issues?<br>
 A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp), or better yet, submit a pull request with a way to solve it!
@@ -97,6 +101,4 @@ Eg. `edit 1 n/polka dotted shirt c/red t/casual s/s`
 6. Find: `find t/TYPE`<br>
 Eg. find `t/Office`
 7. Exit: `exit`
-
-
 ---
