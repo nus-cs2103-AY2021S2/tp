@@ -46,6 +46,7 @@ public class PersonBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
+        tags = new HashSet<>(studentToCopy.getTags());
     }
 
     /**
@@ -89,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, address);
+        return new Student(name, phone, email, address, tags);
     }
 
 }
