@@ -236,13 +236,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* Young aspiring J-Culture enthusiast who wants to learn basic Japanese
+* goes to a Japanese Culture Club so is low on time after school
+* interested in learning the Japanese language
+* prefers using flashcards to learn 
+* prefers desktop apps over other types
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Ability to not only convert between English and Japanese but Chinese and Japanese as well 
+(for relevant flashcards)
 
 
 ### User stories
