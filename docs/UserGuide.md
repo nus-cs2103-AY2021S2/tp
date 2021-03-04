@@ -10,7 +10,52 @@ This is a mockup of our UI.
 
    ![Ui](images/Ui.png)
 
----------------------------------------------------------------------------------------------------
+---
+
+### Adding a task
+Adds a task into the task list.
+
+Format: `add task`
+
+Prompts: `name`, `date`, `[tags]`
+
+Example(s):
+* `add task slides 2021-02-15 CS2105T`
+
+### Finding a task
+Finds an existing task by name in the task list.
+
+Format: `find task`
+* The search is case-insensitive e.g. slides will match Slides
+
+Prompts: `name`
+
+Example(s):
+* `find task slides`
+
+### Listing tasks by module/day/week
+Lists all the tasks by the specified module/today/this week. 
+
+Format: `list tasks`
+
+Prompt: `by module`, `by day`, `by week`
+
+Example(s):
+* `list tasks by CS2103T`
+* `list tasks by day`
+* `list tasks by week`
+
+### Deleting a task
+Deletes an existing task with the specified name in the task list.
+
+Format: `delete task`
+
+Prompt: `name`
+
+Examples:
+* `delete task slides`
+
+---
 
 ## Features
 
@@ -19,16 +64,16 @@ This is a mockup of our UI.
 * Users will be prompted for further inputs upon entering any command with parameters.
 * Items in the square brackets are optional. Users can choose to leave the field empty.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
-###Others
+### Others
 Action | Format
 -------|------------------ 
 **View all commands** | `help`
 
-###Address Book
+### Address Book
 Action | Format
 --------|------------------ 
 **Add** | `add contact`
@@ -36,7 +81,7 @@ Action | Format
 **List** | `list contacts`
 **Delete** | `delete contact`
 
-###Schedule
+### Schedule
 Action | Format
 --------|------------------ 
 **Add** | `add schedule`
@@ -44,10 +89,12 @@ Action | Format
 **List (by day/week)** | `list schedule`
 **Delete** | `delete schedule `
 
-###Tasks
+### Tasks
 Action | Format
 --------|------------------ 
 **Add** | `add task`
 **Find and View (by name)** | `find task`
 **List (by day/week)** | `list tasks`
 **Delete** | `delete task`
+
+---
