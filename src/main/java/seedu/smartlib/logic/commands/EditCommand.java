@@ -16,12 +16,12 @@ import java.util.Set;
 
 import seedu.smartlib.commons.core.Messages;
 import seedu.smartlib.commons.core.index.Index;
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.util.CollectionUtil;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
-import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
