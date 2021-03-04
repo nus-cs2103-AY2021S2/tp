@@ -268,6 +268,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case (UC01): Add a residence**<br>
 **MSS**
+
 1.  User adds in the details of a residence
 2.  User confirms the addition
 3.  System confirms the addition and residence is added to the list of existing residence
@@ -300,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
       
-**Use case(UC03): Find an apartment** <br>
+**Use case(UC03): Find a residence** <br>
 **MSS** <br>
 1.  User keys in the keywords to search residences
 2.  System returns the residence(s) which include the keyword in their name
@@ -313,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case(UC04): View list of all apartments**<br>
+**Use case(UC04): View list of all residences**<br>
 **MSS**<br>
 1.  User keys in the list command
 2.  System lists all residences
@@ -326,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case(UC05): Edit apartment status** <br>
+**Use case(UC05): Edit status of a residence** <br>
 **MSS** <br>
 1.  User keys in the index and status of the residence to be edited
 2.  System validates the edition
