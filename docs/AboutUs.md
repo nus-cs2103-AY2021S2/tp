@@ -40,7 +40,7 @@ You can reach us at the email `jdlian505[at]gmail.com`
 
 ### Ng Han Poh Jacob
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jacob-109.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio]()]
