@@ -18,7 +18,7 @@ public class Task {
     // Identity fields
     private final Name name;
     private final Description description;
-    private final Email email;
+    private final Status status;
 
     // Data fields
     private final Address address;
@@ -28,11 +28,11 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Description description, Email email, Address address, Date date, Set<Tag> tags) {
-        requireAllNonNull(name, description, email, address, date, tags);
+    public Task(Name name, Description description, Status status, Address address, Date date, Set<Tag> tags) {
+        requireAllNonNull(name, description, status, address, date, tags);
         this.name = name;
         this.description = description;
-        this.email = email;
+        this.status = status;
         this.address = address;
         this.date = date;
         this.tags.addAll(tags);
@@ -46,8 +46,8 @@ public class Task {
         return description;
     }
 
-    public Email getEmail() {
-        return email;
+    public Status getStatus() {
+        return status;
     }
 
     public Address getAddress() {
@@ -96,7 +96,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                        && otherTask.getDescription().equals(getDescription())
-                       && otherTask.getEmail().equals(getEmail())
+                       && otherTask.getStatus().equals(getStatus())
                        && otherTask.getAddress().equals(getAddress())
                        && otherTask.getDate().equals(getDate())
                        && otherTask.getTags().equals(getTags());
@@ -105,7 +105,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, email, address, date, tags);
+        return Objects.hash(name, description, status, address, date, tags);
     }
 
     @Override
@@ -114,8 +114,8 @@ public class Task {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getDescription())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Status: ")
+                .append(getStatus())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Date: ")

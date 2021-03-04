@@ -37,7 +37,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label status;
     @FXML
     private Label date;
     @FXML
@@ -53,8 +53,8 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         description.setText(task.getDescription().value);
         address.setText(task.getAddress().value);
+        status.setText(task.getStatus().toString());
         date.setText(task.getDate().value);
-        email.setText(task.getEmail().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

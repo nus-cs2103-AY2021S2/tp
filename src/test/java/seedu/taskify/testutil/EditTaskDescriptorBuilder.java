@@ -9,8 +9,9 @@ import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
-import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
 
@@ -36,7 +37,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
         descriptor.setDescription(task.getDescription());
-        descriptor.setEmail(task.getEmail());
+        //descriptor.setStatus(task.getStatus()); // To be reviewed after adding functionality to change status
         descriptor.setAddress(task.getAddress());
         descriptor.setDate(task.getDate());
         descriptor.setTags(task.getTags());
@@ -59,10 +60,11 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Status} of the {@code EditTaskDescriptor} that we are building.
+     * @param status
      */
-    public EditTaskDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditTaskDescriptorBuilder withStatus(StatusType status) {
+        descriptor.setStatus(new Status(status));
         return this;
     }
 

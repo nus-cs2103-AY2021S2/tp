@@ -3,7 +3,6 @@ package seedu.taskify.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.taskify.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -23,8 +22,8 @@ import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
-import seedu.taskify.model.task.Email;
 import seedu.taskify.model.task.Name;
+import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -35,17 +34,15 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-                                                       + "by the index number used in the displayed task list. "
-                                                       + "Existing values will be overwritten by the input values.\n"
-                                                       + "Parameters: INDEX (must be a positive integer) "
-                                                       + "[" + PREFIX_NAME + "NAME] "
-                                                       + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-                                                       + "[" + PREFIX_EMAIL + "EMAIL] "
-                                                       + "[" + PREFIX_ADDRESS + "ADDRESS] "
-                                                       + "[" + PREFIX_TAG + "TAG]...\n"
-                                                       + "Example: " + COMMAND_WORD + " 1 "
-                                                       + PREFIX_DESCRIPTION + "91234567 "
-                                                       + PREFIX_EMAIL + "johndoe@example.com";
+            + "by the index number used in the displayed task list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_DESCRIPTION + "91234567 ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -96,12 +93,13 @@ public class EditCommand extends Command {
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
+        Status updatedStatus = editTaskDescriptor.getStatus().orElse(taskToEdit.getStatus());
         Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
         Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDescription, updatedEmail, updatedAddress, updatedDate, updatedTags);
+
+        return new Task(updatedName, updatedDescription, updatedStatus, updatedAddress, updatedDate, updatedTags);
     }
 
     @Override
@@ -119,7 +117,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                       && editTaskDescriptor.equals(e.editTaskDescriptor);
+                && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
     /**
@@ -129,7 +127,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Name name;
         private Description description;
-        private Email email;
+        private Status status;
         private Address address;
         private Date date;
         private Set<Tag> tags;
@@ -144,7 +142,7 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setName(toCopy.name);
             setDescription(toCopy.description);
-            setEmail(toCopy.email);
+            setStatus(toCopy.status);
             setAddress(toCopy.address);
             setDate(toCopy.date);
             setTags(toCopy.tags);
@@ -154,7 +152,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, email, address, date, tags);
+            return CollectionUtil.isAnyNonNull(name, description, status, address, date, tags);
         }
 
         public void setName(Name name) {
@@ -173,12 +171,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setStatus(Status status) {
+            this.status = status;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
         }
 
         public void setAddress(Address address) {
@@ -231,11 +229,10 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                            && getDescription().equals(e.getDescription())
-                           && getEmail().equals(e.getEmail())
+                           && getStatus().equals(e.getStatus())
                            && getAddress().equals(e.getAddress())
                            && getDate().equals(e.getDate())
                            && getTags().equals(e.getTags());
         }
-
     }
 }
