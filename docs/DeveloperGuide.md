@@ -286,7 +286,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Dog school manager   | Enrol dogs into a specific dog program | Dogs who recently joined a program are added to the class list |
 | `* *`    | Dog school manager   | Drop dogs out of a specific dog program | Dogs that have left the class are no longer in the class list  |
 | `* *`    | Advanced user        | Edit in bulk quickly without having to be familiar with the app | Minimize chance of someone else seeing them by accident |
-    
+
 *{More to be added}*
 
 ### Use cases
