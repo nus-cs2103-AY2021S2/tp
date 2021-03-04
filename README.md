@@ -18,3 +18,6 @@ users can learn Japanese at a comfortable pace with this application.
 
 #### Product website
 The product website is now live [here](https://ay2021s2-cs2103-t13-1.github.io/tp/).
+
+### Acknowledgements
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
