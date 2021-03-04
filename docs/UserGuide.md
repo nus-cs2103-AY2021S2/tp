@@ -8,7 +8,61 @@ track of their **schedules, contacts and tasks easily.** While it has a GUI, mos
 
 This is a mockup of our UI.
 
-   ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
+
+---
+
+## Features
+
+**:information_source: Notes about the command format:**<br>
+
+* Users will be prompted for further inputs upon entering any command with parameters.
+* Items in the square brackets are optional. Users can choose to leave the field empty.
+
+---
+
+### Viewing help
+Shows a message with all the commands.
+
+Format: `help`
+
+---
+
+### Adding a contact
+Adds a person's information into the address book.
+
+Format: `add contact`
+
+Prompts: `name`, `number`, `[tags]`
+
+Example(s):
+* `add contact Danny 00000000`
+* `add contact Amy 11111111 CS2101`
+
+### Finding a contact
+Finds an existing contact by name in the address book.
+
+Format: `find contact`
+
+Prompts: `name`
+
+Example(s):
+* `find contact Amy`
+
+### Listing contacts
+Lists all the contacts in the address book.
+
+Format: `list contacts`
+
+### Deleting a contact
+Deletes an existing contact with the specified name in the address book.
+
+Format: `delete contact`
+
+Prompts: `name`
+
+Example(s):
+* `delete contact Danny`
 
 ---
 
@@ -57,15 +111,6 @@ Examples:
 
 ---
 
-## Features
-
-**:information_source: Notes about the command format:**<br>
-
-* Users will be prompted for further inputs upon entering any command with parameters.
-* Items in the square brackets are optional. Users can choose to leave the field empty.
-
----
-
 ## Command summary
 
 ### Others
@@ -96,5 +141,3 @@ Action | Format
 **Find and View (by name)** | `find task`
 **List (by day/week)** | `list tasks`
 **Delete** | `delete task`
-
----
