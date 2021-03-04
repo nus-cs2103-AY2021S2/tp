@@ -25,7 +25,7 @@ title: Developer Guide
 Junior College (JC) is the post-secondary education level where students are preparing for university.
 JC is also the high-school equivalent in other countries. Hence, JC teachers may be packed with consultation 
 schedules which can leverage our software.
-  
+
 **Mainstream OS**<br>
 Mainstream operating systems are the current operating systems with a significant market share, namely Windows, Linux,
 Unix, and OS-X.
