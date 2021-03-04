@@ -9,13 +9,13 @@ title: Developer Guide
 * [User Stories](#user-stories)
 * [Use Cases](#use-cases)
   * [Calculate BMI](#use-case-calculate-bmi)
-  * [Query height and weight](#query-height-and-weight)
-  * [Update height and weight](#update-height-and-weight)
-  * [Add food item as consumption](#add-food-item-as-consumption)
-  * [Get diet recommendation](#get-diet-recommendation)
-  * [View diet plan](#view-diet-plan)
-  * [Add food item as an intake](#add-food-item-as-an-intake)
-  * [Display current food intake for the day](#display-current-food-intake-for-the-day)
+  * [Query height and weight](#use-case-query-height-and-weight)
+  * [Update height and weight](#use-case-update-height-and-weight)
+  * [Add food item as consumption](#use-case-add-food-item-as-consumption)
+  * [Get diet recommendation](#use-case-get-diet-recommendation)
+  * [View diet plan](#use-case-view-diet-plan)
+  * [Add food item as an intake](#use-case-add-food-item-as-an-intake)
+  * [Display current food intake for the day](#use-case-display-current-food-intake-for-the-day)
 * [Non-Functional Requirements](#non-functional-requirements)
 * [Glossary](#glossary) 
 <!--te-->
@@ -54,7 +54,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 (For all use cases below, the **Body Mass Index (BMI) Tracker** is the `BMITracker`, **Diet Plan Selector** is the `DietSelector`, **Macronutrients Tracker** is the `MacroTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Calculate BMI**
+#### Use case: Calculate BMI
 
 **MSS**
 
@@ -64,7 +64,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
     Use case ends.
 
-**Use case: Query height and weight**
+#### Use case: Query height and weight
 
 **MSS**
 
@@ -73,7 +73,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
     Use case ends.
 
-**Use case: Update height and weight**
+#### Use case: Update height and weight
 
 **MSS**
 
@@ -84,7 +84,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
     Use case ends.
 
-**Use case: Add food item as consumption**
+#### Use case: Add food item as consumption
 
 **MSS**
 
@@ -94,7 +94,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
     Use case ends.
 
-**Use case: Get diet recommendation**
+#### Use case: Get diet recommendation
 
 **MSS**
 
@@ -103,7 +103,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
     Use case ends.
 
-**Use case: View diet plan**
+#### Use case: View diet plan
 
 **MSS**
 
@@ -112,7 +112,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
     Use case ends.
 
-**Use case: Add food item as an intake**
+#### Use case: Add food item as an intake
 
 **MSS**
 
@@ -132,7 +132,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
    Use case resumes at step 2.
 
-**Use case: Display current food intake for the day**
+#### Use case: Display current food intake for the day
 
 **MSS**
 
