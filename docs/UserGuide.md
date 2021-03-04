@@ -74,8 +74,8 @@ Prompts: `start date and time`, `end date and time`, `[tags]`
 
 Example(s):
 * `add schedule meeting 2021-02-15,2100 2021-02-15,2300`
-* `add schedule consultation 2021-02-15,2300 2021-02-15,2400 consultation
-  `
+* `add schedule consultation 2021-02-15,2300 2021-02-15,2400 consultation`
+
 ### Finding a schedule
 Finds an existing schedule by name in the schedule list.
 
@@ -88,7 +88,7 @@ Example(s):
 * `finding schedule meeting`
 
 ### Listing schedules today (of the same week)
-List schedules today/this week
+List schedules today/this week.
 
 Format: `list schedule`
 
@@ -101,7 +101,7 @@ Example(s):
 ### Deleting a schedule
 Deletes an existing schedule with the specified name in the schedule list.
 
-Format: `delete a schedule`
+Format: `delete schedule`
 
 Prompt: `name`
 
@@ -136,7 +136,7 @@ Lists all the tasks by the specified module/today/this week.
 
 Format: `list tasks`
 
-Prompt: `by module`, `by day`, `by week`
+Prompts: `by module`, `by day`, `by week`
 
 Example(s):
 * `list tasks by CS2103T`
