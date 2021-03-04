@@ -53,10 +53,8 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-=======
 - Items with `…`​ after them can be used multiple times including zero times.<br>
->>>>>>> 659fd5e5c4f9b6891484018aaeef779e57f59497
+
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 - Parameters can be in any order.<br>
@@ -108,12 +106,10 @@ Format: `list`
 
 Edits multiple items in Focuris.
 
-Format for Person: `edit P[INDEX] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-Format for Event: `edit E[INDEX] [n/NAME] [s/STARTTIME] [e/ENDTIME] [d/DATE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the item at the specified `INDEX`. The index refers to the type of item, followed by index number shown in the respective displayed item list. The index **must be a positive integer** 1, 2, 3, …​
-* The format of `INDEX` is `[P/E][NUMBER]`  
+* The format of `INDEX` is `{P | E}[NUMBER]`, where Persons are prefixed with `P` and Events are prefixed with `E`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -123,13 +119,13 @@ Format for Event: `edit E[INDEX] [n/NAME] [s/STARTTIME] [e/ENDTIME] [d/DATE] [t/
 Examples:
 *  `edit P1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit P2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit E1 n/CS2030s` Edits the name of the 1st Event to `CS2030s`.
+*  `edit E1 n/CS2030S` Edits the name of the 1st Event to `CS2030S`.
 
 ### Search using a matching keyword : `find`
 
 Finds a class using a matching keyword in Focuris. Uses flags such as  -e, -p, -l, -t, -lab, -r
 
-Format: `find -e[Event]`
+Format: `find {-e | -p | -l | -t | -lab | -r} KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * -e is the event flag. Attach it to the end of the command to search for an event
@@ -137,12 +133,12 @@ Format: `find -e[Event]`
 Examples:
 
 * `find -e CS2101` returns the CS2101 event
-* `find -p John` returns john's profile
+* `find -p John` returns John's profile
 * `find -l CS2101` returns the CS2101 lecture
 * `find -t CS2101` returns the CS2101 tutorial
 * `find -lab lsm1301` returns the CS2101 lab
 * `find -r CS2030` returns the CS2030 recitation
-=======
+
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - Only the name is searched.
@@ -150,25 +146,18 @@ Examples:
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-
-- `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
->>>>>>> 659fd5e5c4f9b6891484018aaeef779e57f59497
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
-Format: `delete [P/E][INDEX]`
+Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX` of person list (`P`) or event list (`E`).
+* Deletes the person at the specified `INDEX` of person list (prefixed with `P`) or event list (prefixed with `E`).
 * The index refers to the index number shown in the respective displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list -p` followed by `delete P2` deletes the 2nd person in Focuris.
+* `list` followed by `delete P2` deletes the 2nd person in Focuris.
 * `find CS2100` followed by `delete E1` deletes the 1st Event in the results of the `find` command.
 
 ### Changing the week : `week`
@@ -247,23 +236,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find -flag [NAME]`<br> e.g., `find -l cs2103t lecture`
-**List** | `list`
-**Help** | `help`
-=======
 | Action     | Format, Examples                                                                                                                                                                                                                 |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**    | `add {-p n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ \| -e n/NAME s/TIME_START e/TIME_END [d/DESCRIPTION]}`<br> e.g.,`add -p n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                                                                                          |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                      |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                       |
+| **Delete** | `delete INDEX`<br> e.g., `delete E3`                                                                                                                                                                                              |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit P2 n/James Lee e/jameslee@example.com`                                                                                                      |
+| **Find**   | `find {-e \| -p \| -l \| -t \| -lab \| -r} KEYWORD [MORE_KEYWORDS]`<br> e.g., `find -p James Jake`                                                                                                                                                                       |
 | **List**   | `list`                                                                                                                                                                                                                           |
 | **Help**   | `help`                                                                                                                                                                                                                           |
 | **Today**  | `today`                                                                                                                                                                                                                          |
