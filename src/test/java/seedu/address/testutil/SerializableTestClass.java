@@ -21,7 +21,7 @@ public class SerializableTestClass {
             + "  }%n"
             + "}");
 
-    private static final String NAME_TEST_VALUE = "This is a test class";
+    private static final String TITLE_TEST_VALUE = "This is a test class";
 
     private String name;
 
@@ -29,7 +29,7 @@ public class SerializableTestClass {
     private HashMap<Integer, String> mapOfIntegerToString;
 
     public static String getNameTestValue() {
-        return NAME_TEST_VALUE;
+        return TITLE_TEST_VALUE;
     }
 
     public static List<LocalDateTime> getListTestValues() {
