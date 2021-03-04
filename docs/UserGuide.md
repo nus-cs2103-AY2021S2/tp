@@ -108,7 +108,7 @@ Prompt: `name`
 Example(s):
 * `delete schedule meeting`
 
-
+---
 
 ### Adding a task
 Adds a task into the task list.
