@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -24,35 +24,36 @@ import seedu.address.model.item.Item;
 public class TypicalItems {
 
     public static final Item ALICE = new ItemBuilder().withName("Alice Pauline")
-        .withLocation("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+        .withLocation("123, Jurong West Ave 6, #08-111").withExpiryDate("alice@example.com")
         .withPhone("94351253")
         .withTags("friends").build();
     public static final Item BENSON = new ItemBuilder().withName("Benson Meier")
         .withLocation("311, Clementi Ave 2, #02-25")
-        .withEmail("johnd@example.com").withPhone("98765432")
+        .withExpiryDate("johnd@example.com").withPhone("98765432")
         .withTags("owesMoney", "friends").build();
     public static final Item CARL = new ItemBuilder().withName("Carl Kurz").withPhone("95352563")
-        .withEmail("heinz@example.com").withLocation("wall street").build();
+        .withExpiryDate("heinz@example.com").withLocation("wall street").build();
     public static final Item DANIEL = new ItemBuilder().withName("Daniel Meier").withPhone("87652533")
-        .withEmail("cornelia@example.com").withLocation("10th street").withTags("friends").build();
+        .withExpiryDate("cornelia@example.com").withLocation("10th street").withTags("friends").build();
     public static final Item ELLE = new ItemBuilder().withName("Elle Meyer").withPhone("9482224")
-        .withEmail("werner@example.com").withLocation("michegan ave").build();
+        .withExpiryDate("werner@example.com").withLocation("michegan ave").build();
     public static final Item FIONA = new ItemBuilder().withName("Fiona Kunz").withPhone("9482427")
-        .withEmail("lydia@example.com").withLocation("little tokyo").build();
+        .withExpiryDate("lydia@example.com").withLocation("little tokyo").build();
     public static final Item GEORGE = new ItemBuilder().withName("George Best").withPhone("9482442")
-        .withEmail("anna@example.com").withLocation("4th street").build();
+        .withExpiryDate("anna@example.com").withLocation("4th street").build();
 
     // Manually added
     public static final Item HOON = new ItemBuilder().withName("Hoon Meier").withPhone("8482424")
-        .withEmail("stefan@example.com").withLocation("little india").build();
+        .withExpiryDate("stefan@example.com").withLocation("little india").build();
     public static final Item IDA = new ItemBuilder().withName("Ida Mueller").withPhone("8482131")
-        .withEmail("hans@example.com").withLocation("chicago ave").build();
+        .withExpiryDate("hans@example.com").withLocation("chicago ave").build();
 
     // Manually added - Item's details found in {@code CommandTestUtil}
     public static final Item AMY = new ItemBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-        .withEmail(VALID_EMAIL_AMY).withLocation(VALID_LOCATION_AMY).withTags(VALID_TAG_FRIEND).build();
+        .withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Item BOB = new ItemBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-        .withEmail(VALID_EMAIL_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+        .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND,
+            VALID_TAG_FRIEND)
         .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

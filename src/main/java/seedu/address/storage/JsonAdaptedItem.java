@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.item.Email;
+import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Location;
 import seedu.address.model.item.Name;
@@ -26,7 +26,7 @@ class JsonAdaptedItem {
 
     private final String name;
     private final String phone;
-    private final String email;
+    private final String expiryDate;
     private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +35,11 @@ class JsonAdaptedItem {
      */
     @JsonCreator
     public JsonAdaptedItem(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                           @JsonProperty("email") String email, @JsonProperty("location") String location,
+                           @JsonProperty("expiryDate") String expiryDate, @JsonProperty("location") String location,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.expiryDate = expiryDate;
         this.location = location;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +52,7 @@ class JsonAdaptedItem {
     public JsonAdaptedItem(Item source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
+        expiryDate = source.getExpiryDate().value;
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -86,13 +86,14 @@ class JsonAdaptedItem {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (expiryDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ExpiryDate.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!ExpiryDate.isValidExpiryDate(expiryDate)) {
+            throw new IllegalValueException(ExpiryDate.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final ExpiryDate modelExpiryDate = new ExpiryDate(expiryDate);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -104,7 +105,7 @@ class JsonAdaptedItem {
         final Location modelLocation = new Location(location);
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
-        return new Item(modelName, modelPhone, modelEmail, modelLocation, modelTags);
+        return new Item(modelName, modelPhone, modelExpiryDate, modelLocation, modelTags);
     }
 
 }

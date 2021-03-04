@@ -37,7 +37,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label locations;
     @FXML
-    private Label email;
+    private Label expiryDate;
     @FXML
     private FlowPane tags;
 
@@ -51,7 +51,7 @@ public class ItemCard extends UiPart<Region> {
         name.setText(item.getName().fullName);
         phone.setText(item.getPhone().value);
         locations.setText(item.getLocation().value);
-        email.setText(item.getEmail().value);
+        expiryDate.setText(item.getExpiryDate().value);
         item.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -18,7 +18,7 @@ public class Item {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final ExpiryDate expiryDate;
 
     // Data fields
     private final Location location;
@@ -27,11 +27,11 @@ public class Item {
     /**
      * Every field must be present and not null.
      */
-    public Item(Name name, Phone phone, Email email, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, location, tags);
+    public Item(Name name, Phone phone, ExpiryDate expiryDate, Location location, Set<Tag> tags) {
+        requireAllNonNull(name, phone, expiryDate, location, tags);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.expiryDate = expiryDate;
         this.location = location;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Item {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public ExpiryDate getExpiryDate() {
+        return expiryDate;
     }
 
     public Location getLocation() {
@@ -90,7 +90,7 @@ public class Item {
         Item otherItem = (Item) other;
         return otherItem.getName().equals(getName())
             && otherItem.getPhone().equals(getPhone())
-            && otherItem.getEmail().equals(getEmail())
+            && otherItem.getExpiryDate().equals(getExpiryDate())
             && otherItem.getLocation().equals(getLocation())
             && otherItem.getTags().equals(getTags());
     }
@@ -98,7 +98,7 @@ public class Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, location, tags);
+        return Objects.hash(name, phone, expiryDate, location, tags);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Item {
         builder.append(getName())
             .append("; Phone: ")
             .append(getPhone())
-            .append("; Email: ")
-            .append(getEmail())
+            .append("; ExpiryDate: ")
+            .append(getExpiryDate())
             .append("; Location: ")
             .append(getLocation());
 

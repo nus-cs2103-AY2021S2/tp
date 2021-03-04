@@ -74,8 +74,13 @@ private Label location;
 ``` xml
 ...
 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+<<<<<<< HEAD
+<Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+<Label fx:id="expiryDate" styleClass="cell_small_label" text="\$expiryDate" />
+=======
 <Label fx:id="location" styleClass="cell_small_label" text="\$location" />
 <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+>>>>>>> mid-1.2-base-refactor
 ...
 ```
 
@@ -94,7 +99,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
   "items": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
-    "email": "hans@example.com",
+    "expiryDate": "hans@example.com",
     "location": "4th street"
   } ]
 }

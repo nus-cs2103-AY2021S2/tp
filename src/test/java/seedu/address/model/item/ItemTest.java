@@ -2,7 +2,7 @@ package seedu.address.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -32,7 +32,8 @@ public class ItemTest {
         assertFalse(ALICE.isSameItem(null));
 
         // same name, all other attributes different -> returns true
-        Item editedAlice = new ItemBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+
+        Item editedAlice = new ItemBuilder(ALICE).withPhone(VALID_PHONE_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB)
             .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameItem(editedAlice));
 
@@ -77,7 +78,7 @@ public class ItemTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new ItemBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new ItemBuilder(ALICE).withExpiryDate(VALID_EXPIRYDATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false

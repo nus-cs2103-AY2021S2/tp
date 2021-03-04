@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
-import seedu.address.model.item.Email;
+import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Location;
 import seedu.address.model.item.Name;
@@ -35,7 +35,7 @@ public class EditItemDescriptorBuilder {
         descriptor = new EditCommand.EditItemDescriptor();
         descriptor.setName(item.getName());
         descriptor.setPhone(item.getPhone());
-        descriptor.setEmail(item.getEmail());
+        descriptor.setExpiryDate(item.getExpiryDate());
         descriptor.setLocation(item.getLocation());
         descriptor.setTags(item.getTags());
     }
@@ -59,8 +59,8 @@ public class EditItemDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditItemDescriptor} that we are building.
      */
-    public EditItemDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditItemDescriptorBuilder withExpiryDate(String expiryDate) {
+        descriptor.setExpiryDate(new ExpiryDate(expiryDate));
         return this;
     }
 

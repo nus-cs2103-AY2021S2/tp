@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.item.Email;
+import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Location;
 import seedu.address.model.item.Name;
@@ -18,12 +18,12 @@ public class ItemBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EXPIRYDATE = "amy@gmail.com";
     public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
-    private Email email;
+    private ExpiryDate expiryDate;
     private Location location;
     private Set<Tag> tags;
 
@@ -33,7 +33,7 @@ public class ItemBuilder {
     public ItemBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        expiryDate = new ExpiryDate(DEFAULT_EXPIRYDATE);
         location = new Location(DEFAULT_LOCATION);
         tags = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class ItemBuilder {
     public ItemBuilder(Item itemToCopy) {
         name = itemToCopy.getName();
         phone = itemToCopy.getPhone();
-        email = itemToCopy.getEmail();
+        expiryDate = itemToCopy.getExpiryDate();
         location = itemToCopy.getLocation();
         tags = new HashSet<>(itemToCopy.getTags());
     }
@@ -84,13 +84,13 @@ public class ItemBuilder {
     /**
      * Sets the {@code Email} of the {@code Item} that we are building.
      */
-    public ItemBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public ItemBuilder withExpiryDate(String expiryDate) {
+        this.expiryDate = new ExpiryDate(expiryDate);
         return this;
     }
 
     public Item build() {
-        return new Item(name, phone, email, location, tags);
+        return new Item(name, phone, expiryDate, location, tags);
     }
 
 }
