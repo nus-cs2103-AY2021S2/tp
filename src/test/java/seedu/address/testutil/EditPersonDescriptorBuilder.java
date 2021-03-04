@@ -33,7 +33,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
         descriptor.setAddress(student.getAddress());
-        descriptor.setTags(student.getTags());
     }
 
     /**

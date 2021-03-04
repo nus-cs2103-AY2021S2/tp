@@ -18,12 +18,6 @@ import seedu.address.testutil.PersonBuilder;
 public class StudentTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Student student = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
-    }
-
-    @Test
     public void isSamePerson() {
         // same object -> returns true
         assertTrue(ALICE.isSamePerson(ALICE));
@@ -82,10 +76,6 @@ public class StudentTest {
 
         // different address -> returns false
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }
