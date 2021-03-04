@@ -17,7 +17,6 @@ This is a mockup of our UI.
 **:information_source: Notes about the command format:**<br>
 
 * Users will be prompted for further inputs upon entering any command with parameters.
-  
 * Items in the square brackets are optional. Users can choose to leave the field empty.
 
 ---------------------------------------------------------------------------------------------------
