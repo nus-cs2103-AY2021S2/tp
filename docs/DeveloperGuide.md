@@ -236,27 +236,42 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of student contacts
+* has a need to allocate classes and teachers in a tuition center
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts and allocations faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                | I want to …​                    | So that I can…​                                           |
+| -------- | --------------------------------------| ------------------------------ | -------------------------------------------------------- |
+| `* * *`  | manager                               | add a new tutor                |                                                          |
+| `* * *`  | manager                               | add a new student              |                                                          |
+| `* * *`  | manager                               | add a new class slot with a specified subject and time frame | so that I am able to allocate students and tutors correctly     |
+| `* * *`  | manager                               | delete a student               | remove students that are no longer enrolled in the tuition center               |
+| `* * *`  | manager                               | delete a tutor                 | remove tutors that are no longer working for the tuition center               |
+| `* * *`  | manager                               | view the full list of tutors   |                                                          |
+| `* * *`  | manager                               | view the full list of students |                                                          |
+| `* * *`  | manager                               | view the full list of classes  |                                                          |
+| `* * *`  | manager                               | view a specific tutor's details      |                                                    |
+| `* * *`  | manager                               | view a specific student's details    |                                                    |
+| `* * *`  | manager                               | allocate a tutor to a specific class    |                                                 |
+| `* * *`  | manager                               | allocate a student to a specific class  |                                                 |
+| `* * `   | manager                               | delete a class                 | remove classes that are no longer available              |
+| `* * `   | manager                               | edit tutor information         | ensure tutor information are up to date                  |
+| `* * `   | manager                               | edit student information       | ensure student information are up to date                |
+| `* * `   | manager                               | manage of class enrollment size  | be aware of how many more students should be allocated to this class |
+| `* * `   | manager                               | filter out suitable tutors by available timings and subjects    | allocate a suitable tutor to a class |
+| `* `     | manager                               | update and check the status of students’ bills  |                                         |
+| `* `     | manager                               | update and check the status of payments owed to tutors |                                  |
+| `* `     | manager                               | get notified when students’ bills are due |                                               |
 
 *{More to be added}*
 
@@ -264,38 +279,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Add a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a tutor or student in the list
+2. AddressBook adds the Person
+
+    Use case ends
+
+**Use case: Add a class**
+
+**MSS**
+
+1. User requests to add a class to the database
+2. AddressBook adds the class
+
+   Use case ends
+
+**Use case: Delete a student**
+
+
+**MSS**
+
+1.  User requests to delete a specific student in the list of persons
+2.  AddressBook deletes the student
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given ID is invalid.
 
-  Use case ends.
+    * 1a1. AddressBook shows an error message.
+    
+    Use case ends.
+
+
+*{More to be added}*
+
+**Use case: View a tutor**
+
+**MSS**
+
+1.  User requests to list tutors
+2.  AddressBook shows a list of tutors
+3.  User requests to view a specific tutor in the list
+4.  AddressBook shows the specific tutor's details
+
+    Use case ends.
+
+**Extensions**
 
 * 3a. The given index is invalid.
 
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
+    
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Application should be scalable in the sense of adding more entities in the future
+5.  Reliability, application should not crash and handles exception properly 
 
-*{More to be added}*
 
 ### Glossary
 
