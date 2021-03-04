@@ -26,11 +26,11 @@ public class Day {
         this.day = DayValue.valueOf(day.toUpperCase());
     }
 
-    public static boolean isValidDay(String day) {
-        String upperCaseDay = day.toUpperCase();
+    public static boolean isValidDay(String test) {
+        String upperCaseTest = test.toUpperCase();
 
         for (DayValue d : DayValue.values()) {
-            if (d.name().equals(upperCaseDay)) {
+            if (d.name().equals(upperCaseTest)) {
                 return true;
             }
         }
