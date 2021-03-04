@@ -3,6 +3,23 @@ layout: page
 title: Developer Guide
 ---
 
+## Table of Contents
+<!--ts-->
+* [Product Scope](#product-scope)
+* [User Stories](#user-stories)
+* [Use Cases](#use-cases)
+  * [Calculate BMI](#use-case-calculate-bmi)
+  * [Query height and weight](#query-height-and-weight)
+  * [Update height and weight](#update-height-and-weight)
+  * [Add food item as consumption](#add-food-item-as-consumption)
+  * [Get diet recommendation](#get-diet-recommendation)
+  * [View diet plan](#view-diet-plan)
+  * [Add food item as an intake](#add-food-item-as-an-intake)
+  * [Display current food intake for the day](#display-current-food-intake-for-the-day)
+* [Non-Functional Requirements](#non-functional-requirements)
+* [Glossary](#glossary) 
+<!--te-->
+
 ### Product Scope
 
 **Target user profile**
@@ -13,7 +30,7 @@ title: Developer Guide
 
 **Value proposition**: quickly input daily food intake and calculate their macronutrients to check if diet plan is progressing as planned
 
-### User stories
+### User Stories
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
 |Priority|   As a ...   |   I want to ...  |   So that I can​ ...   |
@@ -33,7 +50,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 *{More to be added}*
 
-### Use cases
+### Use Cases
 
 (For all use cases below, the **Body Mass Index (BMI) Tracker** is the `BMITracker`, **Diet Plan Selector** is the `DietSelector`, **Macronutrients Tracker** is the `MacroTracker` and the **Actor** is the `user`, unless specified otherwise)
 
