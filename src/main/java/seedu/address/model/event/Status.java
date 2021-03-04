@@ -1,6 +1,6 @@
 package seedu.address.model.event;
 
-enum EventStatus {
+public enum EventStatus {
     TODO,
     IN_PROGRESS,
     DONE
