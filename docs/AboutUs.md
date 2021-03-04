@@ -22,7 +22,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/toahi.png" width="200px">
 
 [[github](http://github.com/toahi)]
-[[portfolio](team/toahi.md)]
 
 * Role: Developer
 * Responsibilities: UI
@@ -35,7 +34,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 - Role: Team Lead
 - Responsibilities: UI
->>>>>>> 659fd5e5c4f9b6891484018aaeef779e57f59497
 
 ### Jarveis Lam
 

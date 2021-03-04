@@ -53,7 +53,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-<<<<<<< HEAD
 * Items with `…`​ after them can be used multiple times including zero times.<br>
 =======
 - Items with `…`​ after them can be used multiple times including zero times.<br>
@@ -132,7 +131,6 @@ Finds a class using a matching keyword in Focuris. Uses flags such as  -e, -p, -
 
 Format: `find -e[Event]`
 
-<<<<<<< HEAD
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * -e is the event flag. Attach it to the end of the command to search for an event
 
@@ -249,7 +247,6 @@ _Details coming soon ..._
 
 ## Command summary
 
-<<<<<<< HEAD
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
@@ -272,4 +269,3 @@ Action | Format, Examples
 | **Today**  | `today`                                                                                                                                                                                                                          |
 | **Week**   | `week {WEEK_NUMBER \| first \| next \| prev \| last}` <br> e.g., `week 2`                                                                                                                                                        |
 | **Year**   | `year {YEAR_NUMBER \| next \| prev}` <br> e.g., `year 2022`                                                                                                                                                                      |
->>>>>>> 659fd5e5c4f9b6891484018aaeef779e57f59497
