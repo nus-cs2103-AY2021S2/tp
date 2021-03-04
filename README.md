@@ -1,3 +1,7 @@
+[![CI Status](https://github.com/AY2021S2-CS2103T-T13-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T13-1/tp/actions)
+
+![Ui](docs/images/Ui.png)
+
 ### Weeblingo
 Weeblingo is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
@@ -13,4 +17,7 @@ users can learn Japanese at a comfortable pace with this application.
 - help \- displays help, input command for specific help
 
 #### Product website
-The product website is now live [here](https://ay2021s2-cs2103-t13-1.github.io/tp/).
+The product website is now live [here](https://ay2021s2-cs2103t-t13-1.github.io/tp/).
+
+### Acknowledgements
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
