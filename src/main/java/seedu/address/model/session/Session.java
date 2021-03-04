@@ -4,34 +4,50 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 public class Session {
     private static int sessionCount = 0;
 
-    private String classId;
-    private Subject subject;
-    private Person tutor;
-    private ArrayList<Person> students;
+    private final String classId;
     private Day day;
     private LocalTime start;
     private LocalTime end;
+    private final Subject subject;
+    private final Set<Tag> tags = new HashSet<>();
+    private Person tutor = null;
+    private ArrayList<Person> students = new ArrayList<>();
 
-    public Session(Subject subject, Person tutor, Day day, LocalTime start, LocalTime end) {
+    public Session(Day day, LocalTime start, LocalTime end, Subject subject, Set<Tag> tags) {
         sessionCount++;
         requireAllNonNull(subject, tutor, day, start, end);
         this.classId = "c_" + sessionCount;
-        this.subject = subject;
-        this.tutor = tutor;
-        this.students = new ArrayList<>();
         this.day = day;
         this.start = start;
         this.end = end;
+        this.subject = subject;
+        this.tags.addAll(tags);
     }
 
     public String getClassId() {
         return classId;
+    }
+    
+    public Day getDay() {
+        return day;
+    }
+
+    public LocalTime getStart() {
+        return start;
+    }
+
+    public LocalTime getEnd() {
+        return end;
     }
 
     public Subject getSubject() {
@@ -46,16 +62,8 @@ public class Session {
         return students;
     }
 
-    public Day getDay() {
-        return day;
-    }
-
-    public LocalTime getStart() {
-        return start;
-    }
-
-    public LocalTime getEnd() {
-        return end;
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -81,6 +89,12 @@ public class Session {
                 .append(this.getStart() + "-" + this.getEnd())
                 .append("; Students: ")
                 .append(this.getStudents().toString());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         return builder.toString();
     }

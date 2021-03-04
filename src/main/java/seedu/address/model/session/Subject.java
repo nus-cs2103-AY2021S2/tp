@@ -1,6 +1,6 @@
 package seedu.address.model.session;
 
-enum Subject {
+public enum Subject {
     ENGLISH,
     CHINESE,
     MALAY,
