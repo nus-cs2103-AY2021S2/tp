@@ -1,3 +1,7 @@
+[![CI Status](https://github.com/AY2021S2-CS2103T-T13-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T13-1/tp/actions)
+
+![Ui](docs/images/Ui.png)
+
 ### Weeblingo
 Weeblingo is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
