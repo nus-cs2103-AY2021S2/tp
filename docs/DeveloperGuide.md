@@ -1,5 +1,7 @@
 ### Use Cases
 
+<br>
+
 **Use case: Delete a contact**
 
 **MSS**
@@ -23,7 +25,8 @@
     * 3a1. Teaching Assistant shows an error message.
 
         Use case resumes at step 2.
-      
+    
+<br>
 
 **Use case: Add a schedule**
 
@@ -40,7 +43,9 @@
   * 1a1. Teaching Assistant shows an error message.
 
     Use case ends.
-    
+
+<br>
+
 **Use case: Delete a schedule**
 
 **MSS**
@@ -63,6 +68,8 @@
   * 3a1. Teaching Assistant shows an error message.
 
     Use case ends.
+
+<br>
 
 ### Non-Functional Requirements
 
