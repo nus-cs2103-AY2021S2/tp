@@ -9,6 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DAT
 
 import seedu.address.model.cheese.Cheese;
 
+/**
+ * A utility class containing a list of {@code Cheese} objects to be used in tests.
+ */
 public class TypicalCheese {
     public static final Cheese CAMEMBERT = new CheeseBuilder().withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)
         .withManufactureDate(VALID_MANUFACTURE_DATE_1).withExpiryDate(VALID_EXPIRY_DATE_1)

@@ -60,6 +60,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCommand.EditCustomerDescriptor DESC_BOB;
 
+    public static final String VALID_CHEESE_TYPE_BRIE = "Brie";
     public static final String VALID_CHEESE_TYPE_CAMEMBERT = "Camembert";
     public static final String VALID_CHEESE_TYPE_FETA = "Feta";
     public static final String VALID_MANUFACTURE_DATE_1 = "2021-03-04 07:00";

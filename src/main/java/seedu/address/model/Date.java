@@ -30,9 +30,9 @@ public class Date {
     public final LocalDateTime value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Date}.
      *
-     * @param date A valid phone number.
+     * @param date A valid String date.
      */
     public Date(String date) {
         requireNonNull(date);
@@ -42,8 +42,8 @@ public class Date {
     }
 
     /**
-     * @param dateText
-     * @return
+     * @param dateText A String containing date
+     * @return null if date is invalid otherwise a LocalDateTime object of String date
      */
     public static LocalDateTime parseDate(String dateText) {
         try {

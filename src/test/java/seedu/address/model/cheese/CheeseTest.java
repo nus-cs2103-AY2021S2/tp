@@ -2,7 +2,13 @@ package seedu.address.model.cheese;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_FETA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_2;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
 import static seedu.address.testutil.TypicalCheese.FETA;
 
@@ -16,7 +22,7 @@ import seedu.address.testutil.CheeseBuilder;
 public class CheeseTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Cheese cheese = new CheeseBuilder().build();
+        assertThrows(NullPointerException.class, () -> new CheeseBuilder().withCheeseType(null).build());
     }
 
     @Test
@@ -27,7 +33,7 @@ public class CheeseTest {
         // null -> returns false
         assertFalse(CAMEMBERT.isSameCheese(null));
 
-        // same id , all other attributes different -> returns true
+        // same id, all other attributes different -> returns true
         Cheese editedCamembert =
             new CheeseBuilder(CAMEMBERT).withExpiryDate(VALID_EXPIRY_DATE_2)
                 .withCheeseType(VALID_CHEESE_TYPE_FETA)
@@ -35,12 +41,12 @@ public class CheeseTest {
         assertTrue(CAMEMBERT.isSameCheese(editedCamembert));
 
         // different id, all other attributes same -> returns false
-        Cheese editedCamembert2 =
+        Cheese newSimilarCamembert =
             new CheeseBuilder().withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)
                 .withExpiryDate(VALID_EXPIRY_DATE_1)
                 .withManufactureDate(VALID_MANUFACTURE_DATE_1)
                 .build();
-        assertFalse(CAMEMBERT.isSameCheese(editedCamembert2));
+        assertFalse(CAMEMBERT.isSameCheese(newSimilarCamembert));
     }
 
     @Test
@@ -52,7 +58,7 @@ public class CheeseTest {
         // same object -> returns true
         assertTrue(CAMEMBERT.equals(CAMEMBERT));
 
-        // null --> returns false
+        // null -> returns false
         assertFalse(CAMEMBERT.equals(null));
 
         // different type -> returns false

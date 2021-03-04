@@ -5,6 +5,9 @@ import seedu.address.model.order.CompletedDate;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
 
+/**
+ * A utility class to help with building Order objects.
+ */
 public class OrderBuilder {
 
     public static final String DEFAULT_ORDER_DATE = "2021-02-03 12:00";
@@ -17,7 +20,7 @@ public class OrderBuilder {
     private final Order orderToCopy;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code OrderBuilder} with the default details.
      */
     public OrderBuilder() {
         this.orderDate = new OrderDate(DEFAULT_ORDER_DATE);
@@ -27,7 +30,8 @@ public class OrderBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the OrderBuilder with the data of {@code orderToCopy}.
+     * Makes an exact copy (with the same ID) of the {@code orderToCopy}.
      */
     public OrderBuilder(Order orderToCopy) {
         this.orderDate = orderToCopy.getOrderDate();
@@ -37,7 +41,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code OrderDate} of the {@code Order} that we are building.
      */
     public OrderBuilder withOrderDate(String orderDate) {
         this.orderDate = new OrderDate(orderDate);
@@ -45,7 +49,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code CompletedDate} of the {@code Order} that we are building.
      */
     public OrderBuilder withCompletedDate(String completedDate) {
         this.completedDate = new CompletedDate(completedDate);
@@ -53,7 +57,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code CheeseType} of the {@code Order} that we are building.
      */
     public OrderBuilder withCheeseType(String cheeseType) {
         this.cheeseType = CheeseType.getCheeseType(cheeseType);
@@ -61,8 +65,8 @@ public class OrderBuilder {
     }
 
     /**
-     * Build order object
-     * @return
+     * Returns the immutable {@code Order} object representing the data we have.
+     * @return an {@code Order} representation of data
      */
     public Order build() {
         if (orderToCopy == null) {

@@ -9,6 +9,10 @@ import java.util.Set;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseType;
 
+/**
+ * Represents a Order in the Cheese inventory Management System (CHIM).
+ * Guarantees: details are present and not null, field values are validated.
+ */
 public class Order {
     private static int currentId = 0;
 
@@ -67,7 +71,7 @@ public class Order {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable Cheese set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Cheese> getCheeses() {
@@ -75,9 +79,8 @@ public class Order {
     }
 
     /**
-     * Is same order
-     * @param otherOrder
-     * @return
+     * Returns true if both orders have the same name.
+     * This defines a weaker notion of equality between two orders.
      */
     public boolean isSameOrder(Order otherOrder) {
         if (otherOrder == this) {
@@ -87,7 +90,10 @@ public class Order {
         return otherOrder != null && otherOrder.orderId == orderId;
     }
 
-
+    /**
+     * Returns true if both orders have the same identity and data fields.
+     * This defines a stronger notion of equality between two orders.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

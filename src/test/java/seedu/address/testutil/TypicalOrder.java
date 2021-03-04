@@ -9,6 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_2;
 
 import seedu.address.model.order.Order;
 
+/**
+ * A utility class containing a list of {@code Order} objects to be used in tests.
+ */
 public class TypicalOrder {
     public static final Order ORDER_CAMEMBERT = new OrderBuilder().withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)
         .withOrderDate(VALID_ORDER_DATE_1).withCompletedDate(VALID_COMPLETED_DATE_1)

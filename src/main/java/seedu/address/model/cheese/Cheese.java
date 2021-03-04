@@ -3,8 +3,8 @@ package seedu.address.model.cheese;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Cheese in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Cheese in the Cheese inventory Management System (CHIM)
+ * Guarantees: immutable;
  */
 public class Cheese {
     private static int currentId = 0;
@@ -55,8 +55,8 @@ public class Cheese {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both cheeses have the same name.
+     * This defines a weaker notion of equality between two cheeses.
      */
     public boolean isSameCheese(Cheese otherCheese) {
         if (otherCheese == this) {
@@ -68,8 +68,8 @@ public class Cheese {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both cheeses have the same identity and data fields.
+     * This defines a stronger notion of equality between two cheeses.
      */
     @Override
     public boolean equals(Object other) {

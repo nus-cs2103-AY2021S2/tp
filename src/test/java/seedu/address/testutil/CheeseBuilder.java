@@ -5,6 +5,9 @@ import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
 
+/**
+ * A utility class to help with building Cheese objects.
+ */
 public class CheeseBuilder {
 
     public static final String DEFAULT_MANUFACTURE_DATE = "2020-08-05 08:00";
@@ -27,7 +30,8 @@ public class CheeseBuilder {
     }
 
     /**
-     * Creates a {@code CheeseBuilder} with the default details.
+     * Initializes the CheeseBuilder with the data of {@code cheeseToCopy}.
+     * Makes an exact copy (with the same ID) of the {@code cheeseToCopy}.
      */
     public CheeseBuilder(Cheese cheeseToCopy) {
         manufactureDate = cheeseToCopy.getManufactureDate();
@@ -37,7 +41,7 @@ public class CheeseBuilder {
     }
 
     /**
-     * Sets the {@code manufactureDate} of the {@code CheeseBuilder} that we are building.
+     * Sets the {@code ManufactureDate} of the {@code Cheese} that we are building.
      */
     public CheeseBuilder withManufactureDate(String manufactureDate) {
         this.manufactureDate = new ManufactureDate(manufactureDate);
@@ -45,7 +49,7 @@ public class CheeseBuilder {
     }
 
     /**
-     * Sets the {@code expiryDate} of the {@code CheeseBuilder} that we are building.
+     * Sets the {@code ExpiryDate} of the {@code Cheese} that we are building.
      */
     public CheeseBuilder withExpiryDate(String expiryDate) {
         this.expiryDate = new ExpiryDate(expiryDate);
@@ -53,7 +57,7 @@ public class CheeseBuilder {
     }
 
     /**
-     * Sets the {@code cheeseType} of the {@code CheeseBuilder} that we are building.
+     * Sets the {@code CheeseType} of the {@code Cheese} that we are building.
      */
     public CheeseBuilder withCheeseType(String cheeseType) {
         this.cheeseType = CheeseType.getCheeseType(cheeseType);
@@ -61,8 +65,8 @@ public class CheeseBuilder {
     }
 
     /**
-     * Build cheese object
-     * @return
+     * Returns the immutable {@code Cheese} object representing the data we have.
+     * @return an {@code Cheese} representation of data
      */
     public Cheese build() {
         if (cheeseToCopy == null) {

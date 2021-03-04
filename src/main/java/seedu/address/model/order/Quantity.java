@@ -2,15 +2,19 @@ package seedu.address.model.order;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents an Order's quantity in the Cheese inventory Management System (CHIM).
+ * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(int)}
+ */
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS = "Quantity must be a positive number.";
 
     public final int value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Quantity}.
      *
-     * @param quantity A valid email address.
+     * @param quantity A valid quantity.
      */
     public Quantity(int quantity) {
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
@@ -18,7 +22,7 @@ public class Quantity {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given integer is a valid quantity.
      */
     public static boolean isValidQuantity(int quantity) {
         return quantity > 0;

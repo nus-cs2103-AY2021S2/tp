@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Cheese's type in the Cheese inventory Management System (CHIM).
+ * Guarantees: immutable
  */
 public class CheeseType {
     public static final String MESSAGE_CONSTRAINTS = "Cheese type can take any values, and it should not be blank";
@@ -17,9 +17,9 @@ public class CheeseType {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs a {@code CheeseType}.
      *
-     * @param type A valid address.
+     * @param type A valid cheese type.
      */
     private CheeseType(String type) {
         requireNonNull(type);

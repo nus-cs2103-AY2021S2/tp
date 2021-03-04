@@ -6,11 +6,16 @@ import java.time.LocalDateTime;
 
 import seedu.address.model.Date;
 
+/**
+ * Represents an Order's order date in the Cheese inventory Management System (CHIM).
+ * Guarantees: immutable
+ */
 public class OrderDate extends Date {
+
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code OrderDate}.
      *
-     * @param date A valid phone number.
+     * @param date A valid order date.
      */
     public OrderDate(String date) {
         super(date);

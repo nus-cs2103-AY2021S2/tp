@@ -6,11 +6,16 @@ import java.time.LocalDateTime;
 
 import seedu.address.model.Date;
 
+/**
+ * Represents a Cheese's expiry date in the Cheese inventory Management System (CHIM).
+ * Guarantees: immutable
+ */
 public class ExpiryDate extends Date {
+
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code ExpiryDate}.
      *
-     * @param date A valid phone number.
+     * @param date A valid expiry date.
      */
     public ExpiryDate(String date) {
         super(date);

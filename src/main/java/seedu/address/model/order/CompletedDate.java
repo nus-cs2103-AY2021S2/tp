@@ -6,11 +6,15 @@ import java.time.LocalDateTime;
 
 import seedu.address.model.Date;
 
+/**
+ * Represents an Order's completed date in the Cheese inventory Management System (CHIM).
+ * Guarantees: immutable
+ */
 public class CompletedDate extends Date {
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code CompletedDate}.
      *
-     * @param date A valid phone number.
+     * @param date A valid completed date.
      */
     public CompletedDate(String date) {
         super(date);
