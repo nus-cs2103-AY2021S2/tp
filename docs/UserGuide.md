@@ -19,12 +19,8 @@ Adds a clothing item with a name, a specified colour, type and size.
 
 
 **2. Remove Clothing Item**  
-Removes a clothing item associated with the index *or* returns an indexed list of clothes associated with a specified parameter, with the option to remove one of these indexed items.
-1. `remove` i/INDEX *or*
-2. `remove` n/NAME *or*
-3. `remove` c/COLOUR *or*
-4. `remove` t/TYPE *or*
-5. `remove` s/SIZE
+Removes a clothing item associated with the index.
+1. `remove` i/INDEX
 
 
 ---
