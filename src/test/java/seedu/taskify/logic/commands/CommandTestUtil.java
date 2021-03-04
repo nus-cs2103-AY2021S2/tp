@@ -3,6 +3,7 @@ package seedu.taskify.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,6 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_BOB = "22222222";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_DATE_AMY = "2020-12-25 22:30";
+    public static final String VALID_DATE_BOB = "2019-12-25 22:30";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -41,12 +44,15 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
+    public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE; // empty string not allowed for dates
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -57,13 +63,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                           .withDescription(VALID_DESCRIPTION_AMY).withStatus(StatusType.NOT_DONE)
-                           .withAddress(VALID_ADDRESS_AMY)
-                           .withTags(VALID_TAG_FRIEND).build();
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_AMY)
+                .withDate(VALID_DATE_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                           .withDescription(VALID_DESCRIPTION_BOB)
-                           .withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_BOB)
-                           .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDescription(VALID_DESCRIPTION_BOB).withStatus(StatusType.NOT_DONE).withAddress(VALID_ADDRESS_BOB)
+                .withDate(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

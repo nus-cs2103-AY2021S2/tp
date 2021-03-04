@@ -3,9 +3,12 @@ package seedu.taskify.logic.parser;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_AMY;
+import static seedu.taskify.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -14,6 +17,8 @@ import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -33,6 +38,7 @@ import seedu.taskify.logic.commands.EditCommand;
 import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
+import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
@@ -79,6 +85,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
                 Description.MESSAGE_CONSTRAINTS); // invalid description
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
 
@@ -103,11 +110,11 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND
-                + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + ADDRESS_DESC_AMY + DATE_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDescription(VALID_DESCRIPTION_BOB).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                    .withDescription(VALID_DESCRIPTION_BOB).withAddress(VALID_ADDRESS_AMY)
+                    .withDate(VALID_DATE_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -134,7 +141,7 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // description
+        // phone
         userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY;
         descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -143,6 +150,12 @@ public class EditCommandParserTest {
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
         descriptor = new EditTaskDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // date
+        userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
+        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -157,11 +170,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY
-                + TAG_DESC_FRIEND + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
-                + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
+               + TAG_DESC_FRIEND + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
+                + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB + DATE_DESC_AMY + DATE_DESC_BOB
+                + TAG_DESC_HUSBAND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB)
-                .withAddress(VALID_ADDRESS_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withDate(VALID_DATE_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

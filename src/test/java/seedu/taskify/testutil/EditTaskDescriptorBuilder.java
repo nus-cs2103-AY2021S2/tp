@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.taskify.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
+import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Status;
@@ -38,6 +39,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setDescription(task.getDescription());
         //descriptor.setStatus(task.getStatus()); // To be reviewed after adding functionality to change status
         descriptor.setAddress(task.getAddress());
+        descriptor.setDate(task.getDate());
         descriptor.setTags(task.getTags());
     }
 
@@ -71,6 +73,14 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Date} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withDate(String date) {
+        descriptor.setDate(new Date(date));
         return this;
     }
 

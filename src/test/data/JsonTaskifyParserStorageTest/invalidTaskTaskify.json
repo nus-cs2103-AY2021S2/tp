@@ -3,7 +3,8 @@
     {
       "name": "Task with invalid name field: Ha!ns Mu@ster",
       "description": "9482424",
-      "address": "4th street"
+      "address": "4th street",
+      "date": "2020-04-13 22:30"
     }
   ]
 }

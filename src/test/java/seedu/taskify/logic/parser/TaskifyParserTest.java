@@ -29,7 +29,7 @@ import seedu.taskify.testutil.EditTaskDescriptorBuilder;
 import seedu.taskify.testutil.TaskBuilder;
 import seedu.taskify.testutil.TaskUtil;
 
-public class TaskifyParserParserTest {
+public class TaskifyParserTest {
 
     private final TaskifyParser parser = new TaskifyParser();
 

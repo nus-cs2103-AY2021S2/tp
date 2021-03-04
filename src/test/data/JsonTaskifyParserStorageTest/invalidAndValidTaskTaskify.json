@@ -2,13 +2,15 @@
   "tasks": [
     {
       "name": "Valid Task",
-      "description": "",
-      "address": "4th street"
+      "description": "someDesc",
+      "address": "4th street",
+      "date": "2020-04-13 22:30"
     },
     {
-      "name": "Task With Invalid Phone Field",
-      "description": "",
-      "address": "4th street"
+      "name": "Task With Invalid Description Field",
+      "description": " invalidDesc",
+      "address": "4th street",
+      "date": "2020-04-13 22:30"
     }
   ]
 }

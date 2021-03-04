@@ -22,17 +22,19 @@ public class Task {
 
     // Data fields
     private final Address address;
+    private final Date date;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Description description, Status status, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, description, status, address, tags);
+    public Task(Name name, Description description, Status status, Address address, Date date, Set<Tag> tags) {
+        requireAllNonNull(name, description, status, address, date, tags);
         this.name = name;
         this.description = description;
         this.status = status;
         this.address = address;
+        this.date = date;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +52,10 @@ public class Task {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     /**
@@ -92,13 +98,14 @@ public class Task {
                        && otherTask.getDescription().equals(getDescription())
                        && otherTask.getStatus().equals(getStatus())
                        && otherTask.getAddress().equals(getAddress())
+                       && otherTask.getDate().equals(getDate())
                        && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, status, address, tags);
+        return Objects.hash(name, description, status, address, date, tags);
     }
 
     @Override
@@ -110,7 +117,9 @@ public class Task {
                 .append("; Status: ")
                 .append(getStatus())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Date: ")
+                .append(getDate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

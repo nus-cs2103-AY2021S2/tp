@@ -20,6 +20,7 @@ import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Address;
+import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Status;
@@ -51,7 +52,11 @@ public class EditCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
+<<<<<<< HEAD
      * @param index              of the task in the filtered task list to edit
+=======
+     * @param index of the task in the filtered task list to edit
+>>>>>>> 210d96c66b481536aedb12c7587fb1f3656c8f49
      * @param editTaskDescriptor details to edit the task with
      */
     public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
@@ -94,9 +99,11 @@ public class EditCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Status updatedStatus = editTaskDescriptor.getStatus().orElse(taskToEdit.getStatus());
         Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
+        Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDescription, updatedStatus, updatedAddress, updatedTags);
+
+        return new Task(updatedName, updatedDescription, updatedStatus, updatedAddress, updatedDate, updatedTags);
     }
 
     @Override
@@ -126,6 +133,7 @@ public class EditCommand extends Command {
         private Description description;
         private Status status;
         private Address address;
+        private Date date;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {
@@ -140,6 +148,7 @@ public class EditCommand extends Command {
             setDescription(toCopy.description);
             setStatus(toCopy.status);
             setAddress(toCopy.address);
+            setDate(toCopy.date);
             setTags(toCopy.tags);
         }
 
@@ -147,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, status, address, tags);
+            return CollectionUtil.isAnyNonNull(name, description, status, address, date, tags);
         }
 
         public void setName(Name name) {
@@ -180,6 +189,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
         /**
@@ -215,11 +232,11 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getDescription().equals(e.getDescription())
-                    && getStatus().equals(e.getStatus())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                           && getDescription().equals(e.getDescription())
+                           && getStatus().equals(e.getStatus())
+                           && getAddress().equals(e.getAddress())
+                           && getDate().equals(e.getDate())
+                           && getTags().equals(e.getTags());
         }
-
     }
 }
