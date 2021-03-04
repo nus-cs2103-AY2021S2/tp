@@ -17,7 +17,7 @@ public class CheeseBuilder {
     private final Cheese cheeseToCopy;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code CheeseBuilder} with the default details.
      */
     public CheeseBuilder() {
         manufactureDate = new ManufactureDate(DEFAULT_MANUFACTURE_DATE);
@@ -27,7 +27,7 @@ public class CheeseBuilder {
     }
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code CheeseBuilder} with the default details.
      */
     public CheeseBuilder(Cheese cheeseToCopy) {
         manufactureDate = cheeseToCopy.getManufactureDate();
@@ -37,7 +37,7 @@ public class CheeseBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code manufactureDate} of the {@code CheeseBuilder} that we are building.
      */
     public CheeseBuilder withManufactureDate(String manufactureDate) {
         this.manufactureDate = new ManufactureDate(manufactureDate);
@@ -45,7 +45,7 @@ public class CheeseBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code expiryDate} of the {@code CheeseBuilder} that we are building.
      */
     public CheeseBuilder withExpiryDate(String expiryDate) {
         this.expiryDate = new ExpiryDate(expiryDate);
@@ -53,7 +53,7 @@ public class CheeseBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code cheeseType} of the {@code CheeseBuilder} that we are building.
      */
     public CheeseBuilder withCheeseType(String cheeseType) {
         this.cheeseType = CheeseType.getCheeseType(cheeseType);

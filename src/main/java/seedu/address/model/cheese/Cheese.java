@@ -11,12 +11,12 @@ public class Cheese {
 
     // Identity fields
     // Primary key for Cheese
-    public final int cheeseId;
-    public final CheeseType cheeseType;
+    private final int cheeseId;
+    private final CheeseType cheeseType;
 
     // Data fields
-    public final ManufactureDate manufactureDate;
-    public final ExpiryDate expiryDate;
+    private final ManufactureDate manufactureDate;
+    private final ExpiryDate expiryDate;
 
     /**
      * Every field must be present and not null.
