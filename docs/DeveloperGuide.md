@@ -15,7 +15,7 @@
 * Users who are able to type fast and hence prefer typing to mouse interaction
 
 * Users who have a hard time organising their wardrobe
-
+<br><br>
   
 
 **Value Proposition:**
@@ -40,22 +40,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |  `* *`      | user        | easily plan a schedule for what clothes to wear                                                |  so that I do not have to waste time deciding at the last minute
 |  `* *`      | user        | be reminded on the clothes I have not worn                                                 |  so that I would not be wearing the same clothes all the time
 |  `*`      | user        | to see whether certain colours and types of clothing match                                                 |  so that I will be able to ascertain if the clothes match without having to try them on physically
+<br>
 
 ### Use cases
-(For all use cases below, the System is the `NuFash` and the Actor is the `user`, unless specified otherwise)
+(For all use cases below, the System is the `nufash` and the Actor is the `user`, unless specified otherwise)
 
 **Use case: Add a clothing item**
 
 **MSS**
 
 1. User requests to add a clothing item with specified attributes
-2. NuFash adds the specified clothing item to list of existing clothing items
+2. nufash adds the specified clothing item to list of existing clothing items
 
    Use case ends.
 
 **Extensions**
 * 1a. The specified attributes are in an invalid format.
-    * 1a1. NuFash shows an error message with the valid format.
+    * 1a1. nufash shows an error message with the valid format.
 
     * 1a2. User enters new data.
     
@@ -63,14 +64,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
         Use case resumes from step 2.
 
+      
 **Use case: Delete a clothing item**
 
 **MSS**
 
 1. User requests to list all clothing items
-2. NuFash shows a list of clothing items
+2. nufash shows a list of clothing items
 3. User requests to delete a specific clothing item in the list
-4. NuFash deletes the specified clothing item 
+4. nufash deletes the specified clothing item 
    
     Use case ends.
 
@@ -80,10 +82,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. NuFash shows an error message.
+    * 3a1. nufash shows an error message.
       
         Use case resumes at step 2.
+<br><br>
 
+**Non-Functional Requirements:**
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2.  Should be able to hold up to 1000 articles of clothing without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+<br><br>
     
-*{More to be added}*
-
+**Glossary:**
+* **Mainstream OS**: Windows, Linux, Unix, OS-X

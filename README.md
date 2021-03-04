@@ -1,17 +1,17 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2021S2-CS2103T-T12-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T12-1/tp/actions)
 
-# nu:fash
+# nufash
 
 ![Ui](docs/images/Ui.png)
 
 ### Version 1.1
 Are your clothes all over the place, and you can never seem to remember what clothes you do have? Well fret not,
-with nu:fash, organising your clothes becomes a breeze!<br>
+with nufash, organising your clothes becomes a breeze!<br>
 
-With our easy to use GUI, all you have to do is to enter in your clothes once into nu:fash, and you will be able to
+With our easy to use GUI, all you have to do is to enter in your clothes once into nufash, and you will be able to
 look up your clothes as and when you need it!<br>
 
-Head on to our User Guide and Developer Guide to find out more!
+Head on to our [User Guide](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/docs/UserGuide.md) and [Developer Guide](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/docs/DeveloperGuide.md) to find out more!
 
 ### Contributors
 - [Visnu S/O Ravindran](https://github.com/VisnuRavi/)
