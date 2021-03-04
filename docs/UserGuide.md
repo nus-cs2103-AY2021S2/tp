@@ -3,12 +3,16 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+_Teaching Assistant_ is a desktop application that helps **JC/Secondary school teachers** have an efficient tool to keep
+track of their **schedules, contacts and tasks easily.** While it has a GUI, most of the user interactions relies on typing commands as user inputs.
 
-* Table of Contents
-{:toc}
+This is a mockup of our UI.
 
-###Adding a task
+   ![Ui](images/Ui.png)
+
+---
+
+### Adding a task
 Adds a task into the task list.
 
 Format: `add task`
@@ -18,7 +22,7 @@ Prompts: `name`, `date`, `[tags]`
 Example(s):
 * `add task slides 2021-02-15 CS2105T`
 
-###Finding a task
+### Finding a task
 Finds an existing task by name in the task list.
 
 Format: `find task`
@@ -29,7 +33,7 @@ Prompts: `name`
 Example(s):
 * `find task slides`
 
-###Listing tasks by module/day/week
+### Listing tasks by module/day/week
 Lists all the tasks by the specified module/today/this week. 
 
 Format: `list tasks`
@@ -41,7 +45,7 @@ Example(s):
 * `list tasks by day`
 * `list tasks by week`
 
-###Deleting a task
+### Deleting a task
 Deletes an existing task with the specified name in the task list.
 
 Format: `delete task`
@@ -51,3 +55,46 @@ Prompt: `name`
 Examples:
 * `delete task slides`
 
+---
+
+## Features
+
+**:information_source: Notes about the command format:**<br>
+
+* Users will be prompted for further inputs upon entering any command with parameters.
+* Items in the square brackets are optional. Users can choose to leave the field empty.
+
+---
+
+## Command summary
+
+### Others
+Action | Format
+-------|------------------ 
+**View all commands** | `help`
+
+### Address Book
+Action | Format
+--------|------------------ 
+**Add** | `add contact`
+**Find and View (by name)** | `find contact`
+**List** | `list contacts`
+**Delete** | `delete contact`
+
+### Schedule
+Action | Format
+--------|------------------ 
+**Add** | `add schedule`
+**Find and View (by name)** | `find schedule`
+**List (by day/week)** | `list schedule`
+**Delete** | `delete schedule `
+
+### Tasks
+Action | Format
+--------|------------------ 
+**Add** | `add task`
+**Find and View (by name)** | `find task`
+**List (by day/week)** | `list tasks`
+**Delete** | `delete task`
+
+---
