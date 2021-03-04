@@ -3,7 +3,7 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are team T13-1 from [CS2103T](https://github.com/nus-cs2103-ay2021s2).
 
 ## Project team
 
