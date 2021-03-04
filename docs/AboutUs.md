@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Phoe Chuan Yi, Benny
 
-<img src="images/benny.png" width="200px">
+<img src="images/bennyphoe.png" width="200px">
 
 [[github](http://github.com/Bennyphoe)]
 [[portfolio](team/benny.md)]
@@ -30,7 +30,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Guo Jingxue
 
-<img src="images/jingxue.png" width="200px">
+<img src="images/jingxueguo.png" width="200px">
 
 [[github](http://github.com/jingxueguo)]
 
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Carissa Ying
 
-<img src="images/carissaying.jpg" width="200px">
+<img src="images/car155.png" width="200px">
 
 [[github](https://github.com/car155)]
 [[portfolio](team/carissaying.md)]
