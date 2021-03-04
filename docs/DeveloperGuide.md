@@ -40,7 +40,7 @@
 **Extensions**
 * 2a. The given date(s) are invalid.
 
-  * 1a1. Teaching Assistant shows an error message.
+  * 2a1. Teaching Assistant shows an error message.
 
     Use case ends.
 
