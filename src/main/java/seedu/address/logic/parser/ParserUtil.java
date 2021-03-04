@@ -23,6 +23,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_TIME = "Time given must be in HH:MM:SS format."
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -125,6 +126,21 @@ public class ParserUtil {
             throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
         return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses a {@code String time} into an {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(subject);
+        String trimmedTime = time.trim();
+        if (StringUtil.isValidTime(trimmedTime)) {
+            throw new ParseException()
+        }
+        return LocalTime.parse(time);
     }
 
     /**
