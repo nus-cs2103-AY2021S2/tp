@@ -22,6 +22,15 @@ Adds a clothing item with a name, a specified colour, type and size.
 Removes a clothing item associated with the index.
 1. `remove` i/INDEX
 
+**3. Viewing Help**  
+Shows an in-app user guide to various commands.
+1. `help`
+
+
+**4. Listing all clothing**  
+Shows a list of all articles of clothing in the wardrobe
+1. `list`
+
 
 ---
 ### FAQ
