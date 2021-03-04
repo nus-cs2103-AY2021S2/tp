@@ -85,7 +85,7 @@ Format: `find schedule`
 Prompt: `name`
 
 Example(s):
-* `finding schedule meeting`
+* `find schedule meeting`
 
 ### Listing schedules today (of the same week)
 List schedules today/this week.
