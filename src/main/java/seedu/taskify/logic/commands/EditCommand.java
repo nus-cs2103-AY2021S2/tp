@@ -52,11 +52,7 @@ public class EditCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-<<<<<<< HEAD
-     * @param index              of the task in the filtered task list to edit
-=======
      * @param index of the task in the filtered task list to edit
->>>>>>> 210d96c66b481536aedb12c7587fb1f3656c8f49
      * @param editTaskDescriptor details to edit the task with
      */
     public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
