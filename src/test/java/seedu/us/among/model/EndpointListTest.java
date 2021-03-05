@@ -3,6 +3,7 @@ package seedu.us.among.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
 
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
@@ -10,17 +11,17 @@ import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalEndpoints.GET;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 
-// import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-// import java.util.List;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.us.among.model.endpoint.Endpoint;
-// import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
+import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 import seedu.us.among.testutil.EndpointBuilder;
 
 public class EndpointListTest {
@@ -44,16 +45,16 @@ public class EndpointListTest {
         assertEquals(newData, endpointList);
     }
 
-    // @Test
-    // public void resetData_withDuplicateEndpoints_throwsDuplicateEndpointException() {
-    //     // Two endpoints with the same identity fields
-    //     Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT)
-    //     .withTags(VALID_TAG_CAT).build();
-    //     List<Endpoint> newEndpoints = Arrays.asList(GET, editedGet);
-    //     EndpointListStub newData = new EndpointListStub(newEndpoints);
+    @Test
+    public void resetData_withDuplicateEndpoints_throwsDuplicateEndpointException() {
+        // Two endpoints with the same identity fields
+        Endpoint editedGetOne = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        Endpoint editedGetTwo = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        List<Endpoint> newEndpoints = Arrays.asList(editedGetTwo, editedGetOne);
+        EndpointListStub newData = new EndpointListStub(newEndpoints);
 
-    //     assertThrows(DuplicateApiEndpointException.class, () -> endpointList.resetData(newData));
-    // } //to-do fix this
+        assertThrows(DuplicateApiEndpointException.class, () -> endpointList.resetData(newData));
+    } //to-do fix this
 
     @Test
     public void hasEndpoint_nullEndpoint_throwsNullPointerException() {
