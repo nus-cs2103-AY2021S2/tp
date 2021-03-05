@@ -112,8 +112,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB +
-            LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ItemName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB
+            + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ItemName.MESSAGE_CONSTRAINTS);
 
         // invalid quantity
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_QUANTITY_DESC + EXPIRYDATE_DESC_BOB
