@@ -31,10 +31,10 @@ import static seedu.smartlib.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.AddCommand;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
-import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;

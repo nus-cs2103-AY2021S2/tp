@@ -3,9 +3,9 @@ package seedu.smartlib.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
-import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
