@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class UniqueStudentListTest {
 
@@ -41,7 +41,7 @@ public class UniqueStudentListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }
@@ -84,7 +84,7 @@ public class UniqueStudentListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         uniqueStudentList.setStudent(ALICE, editedAlice);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();

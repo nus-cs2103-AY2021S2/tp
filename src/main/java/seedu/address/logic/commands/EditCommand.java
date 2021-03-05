@@ -44,18 +44,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
      * @param index of the student in the filtered student list to edit
-     * @param editPersonDescriptor details to edit the student with
+     * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class EditCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
+        Student editedStudent = createEditedPerson(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -81,15 +81,15 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Student createEditedPerson(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress);
     }
@@ -109,25 +109,25 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
 
     /**
      * Stores the details to edit the student with. Each non-empty field value will replace the
      * corresponding field value of the student.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStudentDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
 
-        public EditPersonDescriptor() {}
+        public EditStudentDescriptor() {}
 
         /**
          * Copy constructor.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -181,12 +181,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
