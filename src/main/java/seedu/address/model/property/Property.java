@@ -6,14 +6,14 @@ public class Property {
     private final Address address;
     private final PostalCode postalCode;
     private final Deadline deadline;
-    private final String remarks;
+    private final Remark remarks;
     private final String clientName;
     private final String clientContact;
     private final String clientEmail;
     private final int clientAskingPrice;
 
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
-                    String remarks, String clientName, String clientContact, String clientEmail,
+                    Remark remarks, String clientName, String clientContact, String clientEmail,
                     int clientAskingPrice) {
         this.name = name;
         this.propertyType = propertyType;
@@ -47,7 +47,7 @@ public class Property {
         return deadline;
     }
 
-    public String getRemarks() {
+    public Remark getRemarks() {
         return remarks;
     }
 
