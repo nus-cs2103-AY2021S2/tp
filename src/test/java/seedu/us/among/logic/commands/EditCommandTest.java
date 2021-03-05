@@ -57,7 +57,7 @@ public class EditCommandTest {
         Endpoint editedEndpoint = endpointInList.withMethod(VALID_METHOD_POST).withTags(VALID_TAG_CAT).build();
 
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST)
-         .withTags(VALID_TAG_CAT).build();
+                .withTags(VALID_TAG_CAT).build();
         EditCommand editCommand = new EditCommand(indexLastEndpoint, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);

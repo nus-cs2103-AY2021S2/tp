@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
-
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalEndpoints.GET;
@@ -48,8 +47,10 @@ public class EndpointListTest {
     @Test
     public void resetData_withDuplicateEndpoints_throwsDuplicateEndpointException() {
         // Two endpoints with the same identity fields
-        Endpoint editedGetOne = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
-        Endpoint editedGetTwo = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        Endpoint editedGetOne = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT)
+                .withTags(VALID_TAG_CAT).build();
+        Endpoint editedGetTwo = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT)
+                .withTags(VALID_TAG_CAT).build();
         List<Endpoint> newEndpoints = Arrays.asList(editedGetTwo, editedGetOne);
         EndpointListStub newData = new EndpointListStub(newEndpoints);
 

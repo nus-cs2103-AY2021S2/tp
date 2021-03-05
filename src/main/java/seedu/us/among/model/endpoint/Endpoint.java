@@ -77,13 +77,13 @@ public class Endpoint {
         }
 
         //expanded this for more clarity
-        if (otherEndpoint == null){
+        if (otherEndpoint == null) {
             return false;
-        }else{
-            if (otherEndpoint.getMethod().equals(getMethod()) && otherEndpoint.getAddress().equals(getAddress()) &&
-                otherEndpoint.getTags().equals(getTags())) {
+        } else {
+            if (otherEndpoint.getMethod().equals(getMethod()) && otherEndpoint.getAddress().equals(getAddress())
+                    && otherEndpoint.getTags().equals(getTags())) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }

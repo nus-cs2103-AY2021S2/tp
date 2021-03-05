@@ -158,8 +158,8 @@ public class UniqueEndpointListTest {
     @Test
     public void setMethods_listWithDuplicateMethods_throwsDuplicateMethodException() {
         List<Endpoint> listWithDuplicateEndpoints = Arrays.asList(GET, GET);
-        assertThrows(DuplicateApiEndpointException.class,
-             () -> uniqueEndpointList.setEndpoints(listWithDuplicateEndpoints));
+        assertThrows(DuplicateApiEndpointException.class, (
+            ) -> uniqueEndpointList.setEndpoints(listWithDuplicateEndpoints));
     }
 
     @Test
