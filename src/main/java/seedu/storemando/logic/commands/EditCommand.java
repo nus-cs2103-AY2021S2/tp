@@ -40,7 +40,7 @@ public class EditCommand extends Command {
         + "[" + PREFIX_NAME + "ITEM NAME] "
         + "[" + PREFIX_QUANTITY + "QUANTITY] "
         + "[" + PREFIX_EXPIRYDATE + "EXPIRYDATE] "
-        + "[" + PREFIX_LOCATION + "ADDRESS] "
+        + "[" + PREFIX_LOCATION + "LOCATION] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_QUANTITY + "91234567 "

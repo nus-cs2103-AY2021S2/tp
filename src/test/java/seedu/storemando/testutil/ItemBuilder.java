@@ -66,7 +66,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Item} that we are building.
+     * Sets the {@code Location} of the {@code Item} that we are building.
      */
     public ItemBuilder withLocation(String location) {
         this.location = new Location(location);

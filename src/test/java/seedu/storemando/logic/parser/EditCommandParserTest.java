@@ -157,7 +157,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // location
         userInput = targetIndex.getOneBased() + LOCATION_DESC_AMY;
         descriptor = new EditItemDescriptorBuilder().withLocation(VALID_LOCATION_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

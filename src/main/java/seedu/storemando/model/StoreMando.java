@@ -9,7 +9,7 @@ import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.UniqueItemList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the storemando level
  * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class StoreMando implements ReadOnlyStoreMando {

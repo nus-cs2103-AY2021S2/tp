@@ -47,7 +47,7 @@ public class EditItemDescriptorTest {
         editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withExpiryDate(VALID_EXPIRYDATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
+        // different location -> returns false
         editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withLocation(VALID_LOCATION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 

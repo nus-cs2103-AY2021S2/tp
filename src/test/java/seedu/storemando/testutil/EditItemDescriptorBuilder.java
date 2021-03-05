@@ -65,7 +65,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditItemDescriptor} that we are building.
+     * Sets the {@code Location} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withLocation(String location) {
         descriptor.setLocation(new Location(location));

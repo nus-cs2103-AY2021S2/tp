@@ -64,7 +64,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_AMY
             + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
 
-        // multiple addresses - last address accepted
+        // multiple addresses - last location accepted
         assertParseSuccess(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB + LOCATION_DESC_AMY
             + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
 
@@ -100,7 +100,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + VALID_EXPIRYDATE_BOB + LOCATION_DESC_BOB,
             expectedMessage);
 
-        // missing address prefix
+        // missing location prefix
         assertParseFailure(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB + VALID_LOCATION_BOB,
             expectedMessage);
 
@@ -123,7 +123,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + INVALID_EXPIRYDATE_DESC
             + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ExpiryDate.MESSAGE_CONSTRAINTS);
 
-        // invalid address
+        // invalid location
         assertParseFailure(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB
             + INVALID_LOCATION_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Location.MESSAGE_CONSTRAINTS);
 
