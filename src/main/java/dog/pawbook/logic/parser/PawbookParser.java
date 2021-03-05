@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 import dog.pawbook.logic.commands.AddCommand;
 import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.commands.DeleteCommand;
-import dog.pawbook.logic.commands.EditCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
@@ -49,9 +48,6 @@ public class PawbookParser {
 
         case AddCommand.COMMAND_WORD:
             return generateAddCommand(entityType, arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return generateDeleteCommand(entityType, arguments);
