@@ -14,7 +14,12 @@ public class ModeOfContact {
 
     public final String value;
 
-    public ModeOfContact(String modeOfContact){
+    /**
+     * Constructs an {@code ModeOfContact}.
+     *
+     * @param modeOfContact A valid mode of contact.
+     */
+    public ModeOfContact(String modeOfContact) {
         requireNonNull(modeOfContact);
         checkArgument(isValidModeOfContact(modeOfContact));
         value = modeOfContact;

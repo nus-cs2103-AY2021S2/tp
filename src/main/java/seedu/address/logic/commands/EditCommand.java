@@ -63,7 +63,6 @@ public class EditCommand extends Command {
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
-
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
@@ -100,7 +99,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        ModeOfContact updatedModeOfContact = editPersonDescriptor.getModeOfContact().orElse(personToEdit.getModeOfContact());
+        ModeOfContact updatedModeOfContact = editPersonDescriptor.getModeOfContact()
+                .orElse(personToEdit.getModeOfContact());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedModeOfContact, updatedTags);
@@ -190,9 +190,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setModeOfContact(ModeOfContact modeOfContact){ this.modeOfContact = modeOfContact; }
+        public void setModeOfContact(ModeOfContact modeOfContact){
+            this.modeOfContact = modeOfContact;
+        }
 
-        public Optional<ModeOfContact> getModeOfContact() { return Optional.ofNullable(modeOfContact); }
+        public Optional<ModeOfContact> getModeOfContact() {
+            return Optional.ofNullable(modeOfContact);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

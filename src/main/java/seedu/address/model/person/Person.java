@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.sun.scenario.effect.Blend;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,ModeOfContact modeOfContact, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, ModeOfContact modeOfContact, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, modeOfContact, tags);
         this.name = name;
         this.phone = phone;
@@ -55,7 +54,9 @@ public class Person {
         return address;
     }
 
-    public ModeOfContact getModeOfContact() { return modeOfContact;}
+    public ModeOfContact getModeOfContact() {
+        return modeOfContact;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

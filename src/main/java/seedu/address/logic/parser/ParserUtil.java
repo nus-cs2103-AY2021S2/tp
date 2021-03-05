@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sun.scenario.effect.Blend;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -96,6 +95,13 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
+
+    /**
+     * Parses a {@code String modeOfContact} into an {@code ModeOfContact}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code modeOfContact} is invalid.
+     */
     public static ModeOfContact parseModeOfContact(String modeOfContact) throws ParseException {
         requireNonNull(modeOfContact);
         String trimmedModeOfContact = modeOfContact.trim();

@@ -37,7 +37,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("modeOfContact") String modeOfContact,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("modeOfContact") String modeOfContact,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -106,10 +107,11 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if(modeOfContact == null){
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModeOfContact.class.getSimpleName()));
+        if (modeOfContact == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModeOfContact.class.getSimpleName()));
         }
-        if(!ModeOfContact.isValidModeOfContact(modeOfContact)) {
+        if (!ModeOfContact.isValidModeOfContact(modeOfContact)) {
             throw new IllegalValueException(ModeOfContact.MESSAGE_CONSTRAINTS);
         }
         final ModeOfContact modelModeOfContact = new ModeOfContact(modeOfContact);
