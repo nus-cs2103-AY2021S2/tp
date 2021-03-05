@@ -14,7 +14,8 @@ import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.testutil.EndpointBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for
+ * {@code AddCommand}.
  */
 public class AddCommandIntegrationTest {
 

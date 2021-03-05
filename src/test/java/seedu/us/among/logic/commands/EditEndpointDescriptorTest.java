@@ -2,11 +2,11 @@ package seedu.us.among.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.us.among.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.us.among.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.DESC_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.DESC_POST;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,31 +18,32 @@ public class EditEndpointDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditEndpointDescriptor descriptorWithSameValues = new EditEndpointDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditEndpointDescriptor descriptorWithSameValues = new EditEndpointDescriptor(DESC_GET);
+        assertTrue(DESC_GET.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_GET.equals(DESC_GET));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_GET.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_GET.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_GET.equals(DESC_POST));
 
         // different name -> returns false
-        EditEndpointDescriptor editedAmy = new EditEndpointDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditEndpointDescriptor editedAmy = new EditEndpointDescriptorBuilder(DESC_GET).withName(VALID_METHOD_POST)
+                .build();
+        assertFalse(DESC_GET.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditEndpointDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditEndpointDescriptorBuilder(DESC_GET).withAddress(VALID_ADDRESS_FACT).build();
+        assertFalse(DESC_GET.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditEndpointDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditEndpointDescriptorBuilder(DESC_GET).withTags(VALID_TAG_CAT).build();
+        assertFalse(DESC_GET.equals(editedAmy));
     }
 }

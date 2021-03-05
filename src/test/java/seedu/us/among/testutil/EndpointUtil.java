@@ -1,7 +1,7 @@
 package seedu.us.among.testutil;
 
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.us.among.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -28,22 +28,20 @@ public class EndpointUtil {
      */
     public static String getEndpointDetails(Endpoint endpoint) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + endpoint.getName().fullName + " ");
+        sb.append(PREFIX_METHOD + endpoint.getMethod().methodName + " ");
         sb.append(PREFIX_ADDRESS + endpoint.getAddress().value + " ");
-        endpoint.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        endpoint.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }
 
     /**
-     * Returns the part of command string for the given {@code EditEndpointDescriptor}'s details.
+     * Returns the part of command string for the given
+     * {@code EditEndpointDescriptor}'s details.
      */
     public static String getEditEndpointDescriptorDetails(EditCommand.EditEndpointDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS)
-                .append(address.value).append(" "));
+        descriptor.getMethod().ifPresent(name -> sb.append(PREFIX_METHOD).append(name.methodName).append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

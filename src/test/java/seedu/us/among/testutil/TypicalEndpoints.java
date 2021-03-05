@@ -1,11 +1,11 @@
 package seedu.us.among.testutil;
 
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_COOL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,43 +15,43 @@ import seedu.us.among.model.EndpointList;
 import seedu.us.among.model.endpoint.Endpoint;
 
 /**
- * A utility class containing a list of {@code Endpoint} objects to be used in tests.
+ * A utility class containing a list of {@code Endpoint} objects to be used in
+ * tests.
  */
 public class TypicalEndpoints {
 
-    public static final Endpoint ALICE = new EndpointBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111")
-            .withTags("friends").build();
-    public static final Endpoint BENSON = new EndpointBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withTags("owesMoney", "friends").build();
-    public static final Endpoint CARL = new EndpointBuilder().withName("Carl Kurz")
-            .withAddress("wall street").build();
-    public static final Endpoint DANIEL = new EndpointBuilder().withName("Daniel Meier")
-            .withAddress("10th street").withTags("friends").build();
-    public static final Endpoint ELLE = new EndpointBuilder().withName("Elle Meyer")
-            .withAddress("michegan ave").build();
-    public static final Endpoint FIONA = new EndpointBuilder().withName("Fiona Kunz")
-            .withAddress("little tokyo").build();
-    public static final Endpoint GEORGE = new EndpointBuilder().withName("George Best")
-            .withAddress("4th street").build();
+    public static final Endpoint GET = new EndpointBuilder().withMethod("GET")
+            .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2").withTags("cat")
+            .build();
+    public static final Endpoint POST = new EndpointBuilder().withMethod("POST")
+            .withAddress("https://cat-fact.herokuapp.com/facts").withTags("cat", "fact").build();
+    public static final Endpoint PUT = new EndpointBuilder().withMethod("PUT")
+            .withAddress("https://cat-fact.herokuapp.com/facts").build();
+    public static final Endpoint DELETE = new EndpointBuilder().withMethod("DELETE")
+            .withAddress("https://cat-fact.herokuapp.com/facts").withTags("Fact").build();
+    public static final Endpoint HEAD = new EndpointBuilder().withMethod("HEAD")
+            .withAddress("https://cat-fact.herokuapp.com/facts").build();
+    public static final Endpoint OPTIONS = new EndpointBuilder().withMethod("OPTIONS")
+            .withAddress("https://cat-fact.herokuapp.com/facts").build();
+    public static final Endpoint PATCH = new EndpointBuilder().withMethod("PATCH")
+            .withAddress("https://cat-fact.herokuapp.com/facts").build();
 
     // Manually added
-    public static final Endpoint HOON = new EndpointBuilder().withName("Hoon Meier")
-            .withAddress("little india").build();
-    public static final Endpoint IDA = new EndpointBuilder().withName("Ida Mueller")
-            .withAddress("chicago ave").build();
+    public static final Endpoint GET1 = new EndpointBuilder().withMethod("GET")
+            .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2").build();
+    public static final Endpoint GET2 = new EndpointBuilder().withMethod("GET")
+            .withAddress("https://cat-fact.herokuapp.com/facts").build();
 
     // Manually added - Endpoint's details found in {@code CommandTestUtil}
-    public static final Endpoint AMY = new EndpointBuilder().withName(VALID_NAME_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Endpoint BOB = new EndpointBuilder().withName(VALID_NAME_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+    public static final Endpoint GET3 = new EndpointBuilder().withMethod(VALID_METHOD_GET)
+            .withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_COOL).build();
+    public static final Endpoint POST1 = new EndpointBuilder().withMethod(VALID_METHOD_POST)
+            .withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_GET = "GET"; // A keyword that matches MEIER
 
-    private TypicalEndpoints() {} // prevents instantiation
+    private TypicalEndpoints() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code EndpointList} with all the typical endpoints.
@@ -65,6 +65,6 @@ public class TypicalEndpoints {
     }
 
     public static List<Endpoint> getTypicalEndpoints() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH));
     }
 }

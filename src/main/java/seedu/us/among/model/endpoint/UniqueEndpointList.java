@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
+// import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 
 /**
@@ -42,9 +42,9 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
      */
     public void add(Endpoint toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateApiEndpointException();
-        }
+        // if (contains(toAdd)) {
+        //     throw new DuplicateApiEndpointException();
+        // }
         internalList.add(toAdd);
     }
 
@@ -61,9 +61,9 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
             throw new EndpointNotFoundException();
         }
 
-        if (!target.isSameEndpoint(editedEndpoint) && contains(editedEndpoint)) {
-            throw new DuplicateApiEndpointException();
-        }
+        // if (!target.isSameEndpoint(editedEndpoint) && contains(editedEndpoint)) {
+        //     throw new DuplicateApiEndpointException();
+        // }
 
         internalList.set(index, editedEndpoint);
     }
@@ -90,9 +90,9 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
      */
     public void setEndpoints(List<Endpoint> endpoints) {
         requireAllNonNull(endpoints);
-        if (!personsAreUnique(endpoints)) {
-            throw new DuplicateApiEndpointException();
-        }
+        // if (!personsAreUnique(endpoints)) {
+        //     throw new DuplicateApiEndpointException();
+        // }
 
         internalList.setAll(endpoints);
     }

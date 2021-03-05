@@ -10,13 +10,13 @@ import java.util.Set;
 import seedu.us.among.model.tag.Tag;
 
 /**
- * Represents a Endpoint in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Endpoint in the address book. Guarantees: details are present
+ * and not null, field values are validated, immutable.
  */
 public class Endpoint {
 
     // Identity fields
-    private final Name name;
+    private final Method method;
 
     // Data fields
     private final Address address;
@@ -25,15 +25,15 @@ public class Endpoint {
     /**
      * Every field must be present and not null.
      */
-    public Endpoint(Name name, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, address, tags);
-        this.name = name;
+    public Endpoint(Method method, Address address, Set<Tag> tags) {
+        requireAllNonNull(method, address, tags);
+        this.method = method;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Method getMethod() {
+        return method;
     }
 
     public Address getAddress() {
@@ -41,29 +41,28 @@ public class Endpoint {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException} if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both methods have the same method and address. This defines a weaker
+     * notion of equality between two methods.
      */
     public boolean isSameEndpoint(Endpoint otherEndpoint) {
         if (otherEndpoint == this) {
             return true;
         }
-
-        return otherEndpoint != null
-                && otherEndpoint.getName().equals(getName());
+        return otherEndpoint != null && otherEndpoint.getMethod().equals(getMethod())
+                && otherEndpoint.getAddress().equals(getAddress());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both methods have the same identity and data fields. This
+     * defines a stronger notion of equality between two methods.
      */
     @Override
     public boolean equals(Object other) {
@@ -76,23 +75,20 @@ public class Endpoint {
         }
 
         Endpoint otherEndpoint = (Endpoint) other;
-        return otherEndpoint.getName().equals(getName())
-                && otherEndpoint.getAddress().equals(getAddress())
+        return otherEndpoint.getMethod().equals(getMethod()) && otherEndpoint.getAddress().equals(getAddress())
                 && otherEndpoint.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(method, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getMethod()).append("; Address: ").append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
