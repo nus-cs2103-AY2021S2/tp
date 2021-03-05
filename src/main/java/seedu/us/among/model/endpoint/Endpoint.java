@@ -23,7 +23,7 @@ public class Endpoint {
     private final Set<Tag> tags = new HashSet<>();
 
     // Response fields
-    private Response response;
+    private final Response response;
 
     /**
      * Every field must be present and not null.
@@ -39,9 +39,9 @@ public class Endpoint {
     /**
      * Every field must be present and not null.
      */
-    public Endpoint(Name name, Address address, Set<Tag> tags, Response response) {
-        requireAllNonNull(name, address, tags, response);
-        this.name = name;
+    public Endpoint(Method method, Address address, Set<Tag> tags, Response response) {
+        requireAllNonNull(method, address, tags, response);
+        this.method = method;
         this.address = address;
         this.tags.addAll(tags);
         this.response = response;

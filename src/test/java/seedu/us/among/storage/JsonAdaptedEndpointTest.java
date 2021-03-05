@@ -59,7 +59,7 @@ public class JsonAdaptedEndpointTest {
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(VALID_NAME, null, VALID_TAGS, 
+        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(VALID_NAME, null, VALID_TAGS,
                 EMPTY_RESPONSE);
         String expectedMessage = String.format(JsonAdaptedEndpoint.MISSING_FIELD_MESSAGE_FORMAT,
                 Address.class.getSimpleName());

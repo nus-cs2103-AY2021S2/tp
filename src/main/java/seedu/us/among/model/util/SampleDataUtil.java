@@ -19,7 +19,7 @@ import seedu.us.among.model.tag.Tag;
 public class SampleDataUtil {
     public static Endpoint[] getSampleEndpoint() {
         return new Endpoint[] {
-            new Endpoint(new Method("GET"), new Address("Blk 30 Geylang Street 29, #06-40"), 
+            new Endpoint(new Method("GET"), new Address("Blk 30 Geylang Street 29, #06-40"),
                     getTagSet("friends"), new Response()),
             new Endpoint(new Method("POST"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     getTagSet("colleagues", "friends"), new Response()),
