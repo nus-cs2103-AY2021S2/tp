@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}.
  */
 public class Remark {
-    private static final String MESSAGE_CONSTRAINTS = "Remarks can take any value, but it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Remarks can take any value, but it should not be blank";
 
     private static final String VALIDATION_REGEX = "[^\\s].*";
 

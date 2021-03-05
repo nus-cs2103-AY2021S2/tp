@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPostal(String)}.
  */
 public class PostalCode {
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Postal code should contain only numbers, and it should be at least 3 digits long";
 
     private static final String VALIDATION_REGEX = "\\d{3,}";

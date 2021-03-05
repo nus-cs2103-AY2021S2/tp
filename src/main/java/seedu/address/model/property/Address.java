@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}.
  */
 public class Address {
-    private static final String MESSAGE_CONSTRAINTS = "Addresses can take any value, but it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any value, but it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

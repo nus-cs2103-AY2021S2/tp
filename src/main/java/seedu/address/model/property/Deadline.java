@@ -11,7 +11,7 @@ import seedu.address.model.property.util.DateFormat;
  * Guarantees: immutable.
  */
 public class Deadline {
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Deadline dates should be valid dates specified in the format DD-MM-YY.";
 
     public final LocalDate deadline;

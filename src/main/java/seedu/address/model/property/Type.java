@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}.
  */
 public class Type {
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Property types should only be either hdb, condo or landed";
 
     /*
@@ -35,7 +35,7 @@ public class Type {
      * @param test The string to test.
      * @return True if the given string is a valid property type, otherwise false.
      */
-    public boolean isValidType(String test) {
+    public static boolean isValidType(String test) {
         String lowercaseTest = test.toLowerCase();
         return lowercaseTest.matches(VALIDATION_REGEX);
     }
