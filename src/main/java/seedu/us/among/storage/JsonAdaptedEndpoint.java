@@ -13,6 +13,7 @@ import seedu.us.among.commons.exceptions.IllegalValueException;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
+import seedu.us.among.model.endpoint.Response;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -25,17 +26,23 @@ class JsonAdaptedEndpoint {
     private final String method;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private JsonAdaptedResponse response;
 
     /**
      * Constructs a {@code JsonAdaptedEndpoint} with the given endpoint details.
      */
     @JsonCreator
-    public JsonAdaptedEndpoint(@JsonProperty("name") String method, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedEndpoint(@JsonProperty("method") String method,
+                               @JsonProperty("address") String address,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("response") JsonAdaptedResponse response) {
         this.method = method;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged); // to-do
+        }
+        if (response != null) {
+            this.response = response;
         }
     }
 
@@ -45,7 +52,15 @@ class JsonAdaptedEndpoint {
     public JsonAdaptedEndpoint(Endpoint source) {
         method = source.getMethod().methodName;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        Response sourceResponse = source.getResponse();
+        response = new JsonAdaptedResponse(sourceResponse.getProtocolVersion(),
+                sourceResponse.getStatusCode(),
+                sourceResponse.getReasonPhrase(),
+                sourceResponse.getStatusLine(),
+                sourceResponse.getResponseEntity());
     }
 
     /**
@@ -77,8 +92,18 @@ class JsonAdaptedEndpoint {
         }
         final Address modelAddress = new Address(address);
 
+        final Response modelResponse;
+        if (response == null) {
+            modelResponse = new Response();
+        } else {
+            Response newModelResponse = response.toModelType();
+            modelResponse = new Response(newModelResponse.getProtocolVersion(),
+                    newModelResponse.getStatusCode(), newModelResponse.getReasonPhrase(),
+                    newModelResponse.getStatusLine(), newModelResponse.getResponseEntity());
+        }
+
         final Set<Tag> modelTags = new HashSet<>(endpointTags);
-        return new Endpoint(modelName, modelAddress, modelTags);
+        return new Endpoint(modelName, modelAddress, modelTags, modelResponse);
     }
 
 }

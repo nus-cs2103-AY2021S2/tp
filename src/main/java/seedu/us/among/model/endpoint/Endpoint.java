@@ -22,6 +22,9 @@ public class Endpoint {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Response fields
+    private final Response response;
+
     /**
      * Every field must be present and not null.
      */
@@ -30,6 +33,18 @@ public class Endpoint {
         this.method = method;
         this.address = address;
         this.tags.addAll(tags);
+        this.response = new Response();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Endpoint(Method method, Address address, Set<Tag> tags, Response response) {
+        requireAllNonNull(method, address, tags, response);
+        this.method = method;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.response = response;
     }
 
     public Method getMethod() {
@@ -38,6 +53,10 @@ public class Endpoint {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Response getResponse() {
+        return response;
     }
 
     /**
@@ -94,6 +113,11 @@ public class Endpoint {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        if (response != null) {
+            builder.append("; Last Response: ")
+                    .append(getResponse());
         }
         return builder.toString();
     }
