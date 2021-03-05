@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `jdlian505[at]gmail.com`
+You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gmail.com`
 
 ## Project team
 
@@ -21,13 +21,13 @@ You can reach us at the email `jdlian505[at]gmail.com`
 
 ###  Md Juhaer Adittya Pasha
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pasha-292.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio]()]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Logic
 
 ### Galen Cheung
 
