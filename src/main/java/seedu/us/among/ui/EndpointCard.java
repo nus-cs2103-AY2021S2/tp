@@ -17,11 +17,12 @@ public class EndpointCard extends UiPart<Region> {
     private static final String FXML = "EndpointListCard.fxml";
 
     /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
+     * Note: Certain keywords such as "location" and "resources" are reserved
+     * keywords in JavaFX. As a consequence, UI elements' variable names cannot be
+     * set to such keywords or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on EndpointList level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The
+     *      issue on EndpointList level 4</a>
      */
 
     public final Endpoint endpoint;
@@ -38,16 +39,16 @@ public class EndpointCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code EndpointCode} with the given {@code Endpoint} and index to display.
+     * Creates a {@code EndpointCode} with the given {@code Endpoint} and index to
+     * display.
      */
     public EndpointCard(Endpoint endpoint, int displayedIndex) {
         super(FXML);
         this.endpoint = endpoint;
         id.setText(displayedIndex + ". ");
-        name.setText(endpoint.getName().fullName);
+        name.setText(endpoint.getMethod().methodName);
         address.setText(endpoint.getAddress().value);
-        endpoint.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
+        endpoint.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
@@ -65,7 +66,6 @@ public class EndpointCard extends UiPart<Region> {
 
         // state check
         EndpointCard card = (EndpointCard) other;
-        return id.getText().equals(card.id.getText())
-                && endpoint.equals(card.endpoint);
+        return id.getText().equals(card.id.getText()) && endpoint.equals(card.endpoint);
     }
 }

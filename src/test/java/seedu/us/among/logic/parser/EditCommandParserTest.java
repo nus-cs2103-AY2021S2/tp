@@ -1,19 +1,19 @@
 package seedu.us.among.logic.parser;
 
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_RANDOM;
 import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_METHOD_DESC;
 import static seedu.us.among.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.us.among.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.us.among.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.us.among.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.METHOD_DESC_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.TAG_DESC_CAT;
+import static seedu.us.among.logic.commands.CommandTestUtil.TAG_DESC_COOL;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_GET;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_COOL;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -27,7 +27,7 @@ import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.commands.EditCommand.EditEndpointDescriptor;
 import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Name;
+import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.tag.Tag;
 import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 
@@ -35,15 +35,15 @@ public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_METHOD_GET, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -55,10 +55,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + METHOD_DESC_GET, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + METHOD_DESC_GET, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -69,30 +69,29 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_METHOD_DESC, Method.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Endpoint} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code
+        // Endpoint} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_CAT + TAG_DESC_COOL + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_CAT + TAG_EMPTY + TAG_DESC_COOL, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_CAT + TAG_DESC_COOL, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_ADDRESS_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_METHOD_DESC + VALID_ADDRESS_RANDOM, Method.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ENDPOINT;
-        String userInput = targetIndex.getOneBased() + TAG_DESC_HUSBAND
-                + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + TAG_DESC_COOL + ADDRESS_DESC_RANDOM + METHOD_DESC_GET
+                + TAG_DESC_CAT;
 
-        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET)
+                .withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -102,20 +101,20 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_ENDPOINT;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        String userInput = targetIndex.getOneBased() + METHOD_DESC_GET;
+        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditEndpointDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        userInput = targetIndex.getOneBased() + ADDRESS_DESC_RANDOM;
+        descriptor = new EditEndpointDescriptorBuilder().withAddress(VALID_ADDRESS_RANDOM).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditEndpointDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_CAT;
+        descriptor = new EditEndpointDescriptorBuilder().withTags(VALID_TAG_COOL).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -123,13 +122,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ENDPOINT;
-        String userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY
-                + TAG_DESC_FRIEND + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + ADDRESS_DESC_RANDOM + TAG_DESC_CAT + ADDRESS_DESC_RANDOM
+                + TAG_DESC_CAT + ADDRESS_DESC_FACT + TAG_DESC_COOL;
 
-        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder()
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withAddress(VALID_ADDRESS_FACT)
+                .withTags(VALID_TAG_COOL, VALID_TAG_CAT).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

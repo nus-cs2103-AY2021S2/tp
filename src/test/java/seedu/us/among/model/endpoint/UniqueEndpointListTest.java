@@ -3,19 +3,19 @@ package seedu.us.among.model.endpoint;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.testutil.Assert.assertThrows;
-import static seedu.us.among.testutil.TypicalEndpoints.ALICE;
-import static seedu.us.among.testutil.TypicalEndpoints.BOB;
+import static seedu.us.among.testutil.TypicalEndpoints.GET;
+import static seedu.us.among.testutil.TypicalEndpoints.POST;
 
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
+// import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 import seedu.us.among.testutil.EndpointBuilder;
 
@@ -24,144 +24,143 @@ public class UniqueEndpointListTest {
     private final UniqueEndpointList uniqueEndpointList = new UniqueEndpointList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
+    public void contains_nullMethod_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEndpointList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniqueEndpointList.contains(ALICE));
+    public void contains_methodNotInList_returnsFalse() {
+        assertFalse(uniqueEndpointList.contains(GET));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniqueEndpointList.add(ALICE);
-        assertTrue(uniqueEndpointList.contains(ALICE));
+    public void contains_methodInList_returnsTrue() {
+        uniqueEndpointList.add(GET);
+        assertTrue(uniqueEndpointList.contains(GET));
     }
 
-    @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueEndpointList.add(ALICE);
-        Endpoint editedAlice = new EndpointBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(uniqueEndpointList.contains(editedAlice));
-    }
+    // @Test
+    // public void contains_methodWithSameIdentityFieldsInList_returnsTrue() {
+    //     uniqueEndpointList.add(GET);
+    //     Endpoint editedGet = new EndpointBuilder(GET)
+    //     .withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+    //     assertTrue(uniqueEndpointList.contains(editedGet));
+    // } //to-do update this class properly
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullMethod_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEndpointList.add(null));
     }
 
+    // @Test
+    // public void add_duplicateMethod_throwsDuplicateMethodException() {
+    //     uniqueEndpointList.add(GET);
+    //     assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.add(GET));
+    // }
+
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniqueEndpointList.add(ALICE);
-        assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.add(ALICE));
+    public void setMethod_nullTargetMethod_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEndpointList.setEndpoint(null, GET));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEndpointList.setEndpoint(null, ALICE));
+    public void setMethod_nullEditedMethod_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueEndpointList.setEndpoint(GET, null));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueEndpointList.setEndpoint(ALICE, null));
+    public void setMethod_targetMethodNotInList_throwsMethodNotFoundException() {
+        assertThrows(EndpointNotFoundException.class, () -> uniqueEndpointList.setEndpoint(GET, GET));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(EndpointNotFoundException.class, () -> uniqueEndpointList.setEndpoint(ALICE, ALICE));
-    }
-
-    @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniqueEndpointList.add(ALICE);
-        uniqueEndpointList.setEndpoint(ALICE, ALICE);
+    public void setMethod_editedMethodIsSameMethod_success() {
+        uniqueEndpointList.add(GET);
+        uniqueEndpointList.setEndpoint(GET, GET);
         UniqueEndpointList expectedUniqueEndpointList = new UniqueEndpointList();
-        expectedUniqueEndpointList.add(ALICE);
+        expectedUniqueEndpointList.add(GET);
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniqueEndpointList.add(ALICE);
-        Endpoint editedAlice = new EndpointBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        uniqueEndpointList.setEndpoint(ALICE, editedAlice);
+    public void setMethod_editedMethodHasSameIdentity_success() {
+        uniqueEndpointList.add(GET);
+        Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
+        uniqueEndpointList.setEndpoint(GET, editedGet);
         UniqueEndpointList expectedUniqueEndpointList = new UniqueEndpointList();
-        expectedUniqueEndpointList.add(editedAlice);
+        expectedUniqueEndpointList.add(editedGet);
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniqueEndpointList.add(ALICE);
-        uniqueEndpointList.setEndpoint(ALICE, BOB);
+    public void setMethod_editedMethodHasDifferentIdentity_success() {
+        uniqueEndpointList.add(GET);
+        uniqueEndpointList.setEndpoint(GET, POST);
         UniqueEndpointList expectedUniqueEndpointList = new UniqueEndpointList();
-        expectedUniqueEndpointList.add(BOB);
+        expectedUniqueEndpointList.add(POST);
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
-    @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniqueEndpointList.add(ALICE);
-        uniqueEndpointList.add(BOB);
-        assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.setEndpoint(ALICE, BOB));
-    }
+    // @Test
+    // public void setMethod_editedMethodHasNonUniqueIdentity_throwsDuplicateMethodException() {
+    //     uniqueEndpointList.add(GET);
+    //     uniqueEndpointList.add(POST);
+    //     assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.setEndpoint(GET, POST));
+    // }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullMethod_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEndpointList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(EndpointNotFoundException.class, () -> uniqueEndpointList.remove(ALICE));
+    public void remove_methodDoesNotExist_throwsMethodNotFoundException() {
+        assertThrows(EndpointNotFoundException.class, () -> uniqueEndpointList.remove(GET));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniqueEndpointList.add(ALICE);
-        uniqueEndpointList.remove(ALICE);
+    public void remove_existingMethod_removesMethod() {
+        uniqueEndpointList.add(GET);
+        uniqueEndpointList.remove(GET);
         UniqueEndpointList expectedUniqueEndpointList = new UniqueEndpointList();
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+    public void setMethods_nullUniqueMethodList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEndpointList.setEndpoints((UniqueEndpointList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniqueEndpointList.add(ALICE);
+    public void setMethods_uniqueMethodList_replacesOwnListWithProvidedUniqueMethodList() {
+        uniqueEndpointList.add(GET);
         UniqueEndpointList expectedUniqueEndpointList = new UniqueEndpointList();
-        expectedUniqueEndpointList.add(BOB);
+        expectedUniqueEndpointList.add(POST);
         uniqueEndpointList.setEndpoints(expectedUniqueEndpointList);
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setMethods_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEndpointList.setEndpoints((List<Endpoint>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniqueEndpointList.add(ALICE);
-        List<Endpoint> endpointList = Collections.singletonList(BOB);
+    public void setMethods_list_replacesOwnListWithProvidedList() {
+        uniqueEndpointList.add(GET);
+        List<Endpoint> endpointList = Collections.singletonList(POST);
         uniqueEndpointList.setEndpoints(endpointList);
         UniqueEndpointList expectedUniqueEndpointList = new UniqueEndpointList();
-        expectedUniqueEndpointList.add(BOB);
+        expectedUniqueEndpointList.add(POST);
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
-    @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Endpoint> listWithDuplicateEndpoints = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateApiEndpointException.class, () ->
-                uniqueEndpointList.setEndpoints(listWithDuplicateEndpoints));
-    }
+    // @Test
+    // public void setMethods_listWithDuplicateMethods_throwsDuplicateMethodException() {
+    //     List<Endpoint> listWithDuplicateEndpoints = Arrays.asList(GET, GET);
+    //     assertThrows(DuplicateApiEndpointException.class,
+    //             () -> uniqueEndpointList.setEndpoints(listWithDuplicateEndpoints));
+    // }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {

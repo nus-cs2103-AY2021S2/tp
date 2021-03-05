@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.model.Model.PREDICATE_SHOW_ALL_ENDPOINTS;
 import static seedu.us.among.testutil.Assert.assertThrows;
-import static seedu.us.among.testutil.TypicalEndpoints.ALICE;
-import static seedu.us.among.testutil.TypicalEndpoints.BENSON;
+import static seedu.us.among.testutil.TypicalEndpoints.GET;
+import static seedu.us.among.testutil.TypicalEndpoints.POST;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,13 +80,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasEndpoint_endpointNotInEndpointList_returnsFalse() {
-        assertFalse(modelManager.hasEndpoint(ALICE));
+        assertFalse(modelManager.hasEndpoint(GET));
     }
 
     @Test
     public void hasEndpoint_endpointInEndpointList_returnsTrue() {
-        modelManager.addEndpoint(ALICE);
-        assertTrue(modelManager.hasEndpoint(ALICE));
+        modelManager.addEndpoint(GET);
+        assertTrue(modelManager.hasEndpoint(GET));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        EndpointList endpointList = new EndpointListBuilder().withEndpoint(ALICE).withEndpoint(BENSON).build();
+        EndpointList endpointList = new EndpointListBuilder().withEndpoint(GET).withEndpoint(POST).build();
         EndpointList differentEndpointList = new EndpointList();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,7 +118,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentEndpointList, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = GET.getMethod().methodName.split("\\s+");
         modelManager.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(endpointList, userPrefs)));
 

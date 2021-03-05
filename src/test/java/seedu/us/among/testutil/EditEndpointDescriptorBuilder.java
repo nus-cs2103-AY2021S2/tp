@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.Name;
+import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -26,25 +26,28 @@ public class EditEndpointDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditEndpointDescriptor} with fields containing {@code endpoint}'s details
+     * Returns an {@code EditEndpointDescriptor} with fields containing
+     * {@code endpoint}'s details
      */
     public EditEndpointDescriptorBuilder(Endpoint endpoint) {
         descriptor = new EditCommand.EditEndpointDescriptor();
-        descriptor.setName(endpoint.getName());
+        descriptor.setMethod(endpoint.getMethod());
         descriptor.setAddress(endpoint.getAddress());
         descriptor.setTags(endpoint.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditEndpointDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditEndpointDescriptor} that we are
+     * building.
      */
     public EditEndpointDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setMethod(new Method(name));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditEndpointDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditEndpointDescriptor} that we are
+     * building.
      */
     public EditEndpointDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -52,8 +55,8 @@ public class EditEndpointDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditEndpointDescriptor}
-     * that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code EditEndpointDescriptor} that we are building.
      */
     public EditEndpointDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
