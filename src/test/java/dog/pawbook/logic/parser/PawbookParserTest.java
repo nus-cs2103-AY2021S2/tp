@@ -28,9 +28,9 @@ import dog.pawbook.testutil.EditPersonDescriptorBuilder;
 import dog.pawbook.testutil.PersonBuilder;
 import dog.pawbook.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class PawbookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final PawbookParser parser = new PawbookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
