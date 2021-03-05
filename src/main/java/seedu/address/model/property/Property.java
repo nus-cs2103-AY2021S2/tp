@@ -10,11 +10,25 @@ public class Property {
     private final String clientName;
     private final String clientContact;
     private final String clientEmail;
-    private final int clientAskingPrice;
+    private final Integer clientAskingPrice;
+
+    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
+                    Remark remarks) {
+        this.name = name;
+        this.propertyType = propertyType;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.deadline = deadline;
+        this.remarks = remarks;
+        this.clientName = null;
+        this.clientContact = null;
+        this.clientEmail = null;
+        this.clientAskingPrice = null;
+    }
 
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, String clientName, String clientContact, String clientEmail,
-                    int clientAskingPrice) {
+                    Integer clientAskingPrice) {
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -63,7 +77,7 @@ public class Property {
         return clientEmail;
     }
 
-    public int getClientAskingPrice() {
+    public Integer getClientAskingPrice() {
         return clientAskingPrice;
     }
 }
