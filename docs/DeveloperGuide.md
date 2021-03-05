@@ -482,9 +482,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  The size of ModuleBook 3.5 will not be larger than 20 MB.
 5.  The project is expected to adhere to a schedule that delivers a feature set every two weeks until the end of April.
 
-
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
