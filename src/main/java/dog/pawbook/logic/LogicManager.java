@@ -9,7 +9,7 @@ import dog.pawbook.commons.core.LogsCenter;
 import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.commands.CommandResult;
 import dog.pawbook.logic.commands.exceptions.CommandException;
-import dog.pawbook.logic.parser.AddressBookParser;
+import dog.pawbook.logic.parser.PawbookParser;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ReadOnlyAddressBook;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final PawbookParser pawbookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        pawbookParser = new PawbookParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = pawbookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
