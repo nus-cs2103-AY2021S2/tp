@@ -260,8 +260,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
 | `*`      | user with many persons in the address book | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `ModuleBook` and the **Actor** is the `user`, unless specified otherwise)
@@ -477,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The size of ModuleBook 3.5 will not be larger than 20 MB.
 5.  The project is expected to adhere to a schedule that delivers a feature set every two weeks until the end of April.
