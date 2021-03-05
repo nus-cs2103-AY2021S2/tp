@@ -64,6 +64,22 @@ public class Sochedule implements ReadOnlySochedule {
         setEvents(newData.getEventList());
     }
 
+    /**
+     * Resets the existing task data of this {@code Sochedule} with {@code newData}.
+     */
+    public void resetTaskData(ReadOnlySochedule newData) {
+        requireNonNull(newData);
+        setTasks(newData.getTaskList());
+    }
+
+    /**
+     * Resets the existing event data of this {@code Sochedule} with {@code newData}.
+     */
+    public void resetEventData(ReadOnlySochedule newData) {
+        requireNonNull(newData);
+        setEvents(newData.getEventList());
+    }
+
     //// task-level operations
 
     /**
