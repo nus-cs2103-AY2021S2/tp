@@ -60,7 +60,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + QUANTITY_DESC_AMY + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB
             + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
 
-        // multiple emails - last email accepted
+        // multiple emails - last expirydate accepted
         assertParseSuccess(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_AMY
             + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
 
@@ -96,7 +96,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + VALID_QUANTITY_BOB + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB,
             expectedMessage);
 
-        // missing email prefix
+        // missing expirydate prefix
         assertParseFailure(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + VALID_EXPIRYDATE_BOB + LOCATION_DESC_BOB,
             expectedMessage);
 
@@ -119,7 +119,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_QUANTITY_DESC + EXPIRYDATE_DESC_BOB
             + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Quantity.MESSAGE_CONSTRAINTS);
 
-        // invalid email
+        // invalid expirydate
         assertParseFailure(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + INVALID_EXPIRYDATE_DESC
             + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ExpiryDate.MESSAGE_CONSTRAINTS);
 

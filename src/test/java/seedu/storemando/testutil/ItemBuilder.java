@@ -82,7 +82,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Item} that we are building.
+     * Sets the {@code ExpiryDate} of the {@code Item} that we are building.
      */
     public ItemBuilder withExpiryDate(String expiryDate) {
         this.expiryDate = new ExpiryDate(expiryDate);

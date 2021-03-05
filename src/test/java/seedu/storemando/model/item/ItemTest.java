@@ -77,7 +77,7 @@ public class ItemTest {
         editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
+        // different expirydate -> returns false
         editedAlice = new ItemBuilder(ALICE).withExpiryDate(VALID_EXPIRYDATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

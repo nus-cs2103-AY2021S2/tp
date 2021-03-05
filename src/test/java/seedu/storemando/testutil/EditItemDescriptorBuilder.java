@@ -57,7 +57,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditItemDescriptor} that we are building.
+     * Sets the {@code ExpiryDate} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withExpiryDate(String expiryDate) {
         descriptor.setExpiryDate(new ExpiryDate(expiryDate));

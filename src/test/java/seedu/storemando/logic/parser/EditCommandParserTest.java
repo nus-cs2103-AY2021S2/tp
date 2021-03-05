@@ -87,7 +87,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_LOCATION_DESC, Location.MESSAGE_CONSTRAINTS); // invalid location
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid quantity followed by valid email
+        // invalid quantity followed by valid expirydate
         assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC + EXPIRYDATE_DESC_AMY,
             Quantity.MESSAGE_CONSTRAINTS);
 
@@ -151,7 +151,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // expirydate
         userInput = targetIndex.getOneBased() + EXPIRYDATE_DESC_AMY;
         descriptor = new EditItemDescriptorBuilder().withExpiryDate(VALID_EXPIRYDATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

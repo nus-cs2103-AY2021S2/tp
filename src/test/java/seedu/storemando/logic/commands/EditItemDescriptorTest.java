@@ -43,7 +43,7 @@ public class EditItemDescriptorTest {
         editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withQuantity(VALID_QUANTITY_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
+        // different expirydate -> returns false
         editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withExpiryDate(VALID_EXPIRYDATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
