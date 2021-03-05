@@ -13,6 +13,7 @@ import seedu.us.among.commons.exceptions.IllegalValueException;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Name;
+import seedu.us.among.model.endpoint.Response;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -25,6 +26,7 @@ class JsonAdaptedEndpoint {
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private JsonAdaptedResponse response;
 
     /**
      * Constructs a {@code JsonAdaptedEndpoint} with the given endpoint details.
@@ -32,11 +34,15 @@ class JsonAdaptedEndpoint {
     @JsonCreator
     public JsonAdaptedEndpoint(@JsonProperty("name") String name,
                                @JsonProperty("address") String address,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("response") JsonAdaptedResponse response) {
         this.name = name;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (response != null) {
+            this.response = response;
         }
     }
 
@@ -49,6 +55,9 @@ class JsonAdaptedEndpoint {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        Response sourceResponse = source.getResponse();
+        response = new JsonAdaptedResponse(sourceResponse.getProtocolVersion(), sourceResponse.getStatusCode(),
+                sourceResponse.getReasonPhrase(), sourceResponse.getStatusLine());
     }
 
     /**
@@ -78,8 +87,18 @@ class JsonAdaptedEndpoint {
         }
         final Address modelAddress = new Address(address);
 
+        final Response modelResponse;
+        if (response == null) {
+            modelResponse = new Response();
+        } else {
+            Response newModelResponse = response.toModelType();
+            modelResponse = new Response(newModelResponse.getProtocolVersion(),
+                    newModelResponse.getStatusCode(), newModelResponse.getReasonPhrase(),
+                    newModelResponse.getStatusLine());
+        }
+
         final Set<Tag> modelTags = new HashSet<>(endpointTags);
-        return new Endpoint(modelName, modelAddress, modelTags);
+        return new Endpoint(modelName, modelAddress, modelTags, modelResponse);
     }
 
 }

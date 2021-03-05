@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.us.among.commons.exceptions.IllegalValueException;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Name;
+import seedu.us.among.model.endpoint.Response;
 
 public class JsonAdaptedEndpointTest {
     private static final String INVALID_NAME = "R@chel";
@@ -25,6 +26,7 @@ public class JsonAdaptedEndpointTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final JsonAdaptedResponse EMPTY_RESPONSE = new JsonAdaptedResponse(new Response());
 
     @Test
     public void toModelType_validEndpointDetails_returnsEndpoint() throws Exception {
@@ -35,14 +37,14 @@ public class JsonAdaptedEndpointTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedEndpoint endpoint =
-                new JsonAdaptedEndpoint(INVALID_NAME, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedEndpoint(INVALID_NAME, VALID_ADDRESS, VALID_TAGS, EMPTY_RESPONSE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, endpoint::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(null, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(null, VALID_ADDRESS, VALID_TAGS, EMPTY_RESPONSE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, endpoint::toModelType);
     }
@@ -50,14 +52,14 @@ public class JsonAdaptedEndpointTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedEndpoint endpoint =
-                new JsonAdaptedEndpoint(VALID_NAME, INVALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedEndpoint(VALID_NAME, INVALID_ADDRESS, VALID_TAGS, EMPTY_RESPONSE);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, endpoint::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(VALID_NAME, null, VALID_TAGS);
+        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(VALID_NAME, null, VALID_TAGS, EMPTY_RESPONSE);
         String expectedMessage = String.format(JsonAdaptedEndpoint.MISSING_FIELD_MESSAGE_FORMAT,
                 Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, endpoint::toModelType);
@@ -68,7 +70,7 @@ public class JsonAdaptedEndpointTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedEndpoint endpoint =
-                new JsonAdaptedEndpoint(VALID_NAME, VALID_ADDRESS, invalidTags);
+                new JsonAdaptedEndpoint(VALID_NAME, VALID_ADDRESS, invalidTags, EMPTY_RESPONSE);
         assertThrows(IllegalValueException.class, endpoint::toModelType);
     }
 

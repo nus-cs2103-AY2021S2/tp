@@ -2,14 +2,20 @@ package seedu.us.among.logic.commands;
 
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
 import seedu.us.among.model.Model;
+import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Endpoint;
+import seedu.us.among.model.endpoint.Name;
+import seedu.us.among.model.endpoint.Response;
+import seedu.us.among.model.tag.Tag;
 
 /**
  * Calls a saved API endpoint using it's displayed index from the API endpoints list.
@@ -43,12 +49,38 @@ public class SendCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
         }
 
-        Endpoint endpointToEdit = lastShownList.get(index.getZeroBased());
-        EndpointCaller epc = new EndpointCaller(endpointToEdit);
-        int responseStatusCode = epc.callEndpoint();
-        //to be implemented
+        Endpoint endpointToSend = lastShownList.get(index.getZeroBased());
+        EndpointCaller epc = new EndpointCaller(endpointToSend);
+        Response response;
 
-        return new CommandResult(String.format(MESSAGE_CALL_ENDPOINT_SUCCESS, endpointToEdit));
+        try {
+            response = epc.callEndpoint();
+        } catch (IOException e) {
+            throw new CommandException("Placeholder exception");
+        }
+
+        System.out.println(response);
+
+        Endpoint endpointWithResponse = createEndpointWithResponse(endpointToSend, response);
+
+        model.setEndpoint(endpointToSend, endpointWithResponse);
+
+        return new CommandResult(String.format(MESSAGE_CALL_ENDPOINT_SUCCESS, endpointWithResponse));
+    }
+
+    /**
+     * Creates and returns a {@code Endpoint} with the details of {@code endpointToEdit}
+     * edited with {@code editEndpointDescriptor}.
+     */
+    private static Endpoint createEndpointWithResponse(Endpoint endpointToSend, Response endpointResponse) {
+        assert endpointToSend != null;
+
+        Name name = endpointToSend.getName();
+        Address address = endpointToSend.getAddress();
+        Set<Tag> tags = endpointToSend.getTags();
+        Response response = endpointResponse;
+
+        return new Endpoint(name, address, tags, response);
     }
 
     @Override
