@@ -34,8 +34,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ItemBuilder;
@@ -49,8 +49,8 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
 
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB
-            + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + QUANTITY_DESC_BOB
+            + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB
@@ -61,8 +61,8 @@ public class AddCommandParserTest {
             + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_AMY + EXPIRYDATE_DESC_BOB
-            + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
+        assertParseSuccess(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_AMY
+            + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedItem));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB + LOCATION_DESC_AMY
@@ -112,8 +112,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB
-            + LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB +
+            LOCATION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ItemName.MESSAGE_CONSTRAINTS);
 
         // invalid quantity
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_QUANTITY_DESC + EXPIRYDATE_DESC_BOB
@@ -133,7 +133,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB
-                + INVALID_LOCATION_DESC, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_LOCATION_DESC, ItemName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB

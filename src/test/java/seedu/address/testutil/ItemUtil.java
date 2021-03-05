@@ -30,7 +30,7 @@ public class ItemUtil {
      */
     public static String getItemDetails(Item item) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + item.getName().fullName + " ");
+        sb.append(PREFIX_NAME + item.getItemName().fullName + " ");
         sb.append(PREFIX_QUANTITY + item.getQuantity().value + " ");
         sb.append(PREFIX_EXPIRYDATE + item.getExpiryDate().value + " ");
         sb.append(PREFIX_LOCATION + item.getLocation().value + " ");
@@ -45,7 +45,7 @@ public class ItemUtil {
      */
     public static String getEditItemDescriptorDetails(EditCommand.EditItemDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getItemName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getQuantity().ifPresent(quantity -> sb.append(PREFIX_QUANTITY).append(quantity.value).append(" "));
         descriptor.getExpiryDate().ifPresent(expiryDate -> sb.append(PREFIX_EXPIRYDATE).append(expiryDate.value)
             .append(" "));

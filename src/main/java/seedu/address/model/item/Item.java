@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Item {
 
     // Identity fields
-    private final Name name;
+    private final ItemName name;
     private final Quantity quantity;
     private final ExpiryDate expiryDate;
 
@@ -27,7 +27,7 @@ public class Item {
     /**
      * Every field must be present and not null.
      */
-    public Item(Name name, Quantity quantity, ExpiryDate expiryDate, Location location, Set<Tag> tags) {
+    public Item(ItemName name, Quantity quantity, ExpiryDate expiryDate, Location location, Set<Tag> tags) {
         requireAllNonNull(name, quantity, expiryDate, location, tags);
         this.name = name;
         this.quantity = quantity;
@@ -36,7 +36,7 @@ public class Item {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public ItemName getItemName() {
         return name;
     }
 
@@ -70,7 +70,7 @@ public class Item {
         }
 
         return otherItem != null
-            && otherItem.getName().equals(getName());
+            && otherItem.getItemName().equals(getItemName());
     }
 
     /**
@@ -88,7 +88,7 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
-        return otherItem.getName().equals(getName())
+        return otherItem.getItemName().equals(getItemName())
             && otherItem.getQuantity().equals(getQuantity())
             && otherItem.getExpiryDate().equals(getExpiryDate())
             && otherItem.getLocation().equals(getLocation())
@@ -104,7 +104,7 @@ public class Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getItemName())
             .append("; Quantity: ")
             .append(getQuantity())
             .append("; ExpiryDate: ")

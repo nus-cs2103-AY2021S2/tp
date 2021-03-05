@@ -21,8 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
@@ -37,7 +37,7 @@ public class EditCommand extends Command {
         + "by the index number used in the displayed item list. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_NAME + "ITEM NAME] "
         + "[" + PREFIX_QUANTITY + "PHONE] "
         + "[" + PREFIX_EXPIRYDATE + "EXPIRYDATE] "
         + "[" + PREFIX_LOCATION + "ADDRESS] "
@@ -92,7 +92,7 @@ public class EditCommand extends Command {
     private static Item createEditedItem(Item itemToEdit, EditItemDescriptor editItemDescriptor) {
         assert itemToEdit != null;
 
-        Name updatedName = editItemDescriptor.getName().orElse(itemToEdit.getName());
+        ItemName updatedName = editItemDescriptor.getItemName().orElse(itemToEdit.getItemName());
         Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         ExpiryDate updatedExpiryDate = editItemDescriptor.getExpiryDate().orElse(itemToEdit.getExpiryDate());
         Location updatedLocation = editItemDescriptor.getLocation().orElse(itemToEdit.getLocation());
@@ -124,7 +124,7 @@ public class EditCommand extends Command {
      * corresponding field value of the item.
      */
     public static class EditItemDescriptor {
-        private Name name;
+        private ItemName name;
         private Quantity quantity;
         private ExpiryDate expiryDate;
         private Location location;
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditItemDescriptor(EditItemDescriptor toCopy) {
-            setName(toCopy.name);
+            setItemName(toCopy.name);
             setQuantity(toCopy.quantity);
             setExpiryDate(toCopy.expiryDate);
             setLocation(toCopy.location);
@@ -152,11 +152,11 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, quantity, expiryDate, location, tags);
         }
 
-        public void setName(Name name) {
+        public void setItemName(ItemName name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<ItemName> getItemName() {
             return Optional.ofNullable(name);
         }
 
@@ -216,7 +216,7 @@ public class EditCommand extends Command {
             // state check
             EditItemDescriptor e = (EditItemDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getItemName().equals(e.getItemName())
                 && getQuantity().equals(e.getQuantity())
                 && getExpiryDate().equals(e.getExpiryDate())
                 && getLocation().equals(e.getLocation())

@@ -37,8 +37,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
 import seedu.address.model.item.ExpiryDate;
+import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditItemDescriptorBuilder;
@@ -81,28 +81,33 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC, Quantity.MESSAGE_CONSTRAINTS); // invalid quantity
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, ItemName.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC, Quantity.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EXPIRYDATE_DESC, ExpiryDate.MESSAGE_CONSTRAINTS); // invalid expirydate
         assertParseFailure(parser, "1" + INVALID_LOCATION_DESC, Location.MESSAGE_CONSTRAINTS); // invalid location
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid quantity followed by valid email
-        assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC + EXPIRYDATE_DESC_AMY, Quantity.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC + EXPIRYDATE_DESC_AMY,
+            Quantity.MESSAGE_CONSTRAINTS);
 
         // valid quantity followed by invalid quantity. The test case for invalid quantity followed by valid quantity
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + QUANTITY_DESC_BOB + INVALID_QUANTITY_DESC, Quantity.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + QUANTITY_DESC_BOB + INVALID_QUANTITY_DESC,
+            Quantity.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Item} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+            Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+            Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+            Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EXPIRYDATE_DESC + VALID_LOCATION_AMY
-                + VALID_QUANTITY_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_QUANTITY_AMY, ItemName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -192,8 +197,8 @@ public class EditCommandParserTest {
         // other valid values specified
         userInput = targetIndex.getOneBased() + EXPIRYDATE_DESC_BOB + INVALID_QUANTITY_DESC + LOCATION_DESC_BOB
             + QUANTITY_DESC_BOB;
-        descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB)
-            .withLocation(VALID_LOCATION_BOB).build();
+        descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BOB)
+            .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

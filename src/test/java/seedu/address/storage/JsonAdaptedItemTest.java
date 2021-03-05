@@ -13,9 +13,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.item.ExpiryDate;
+import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
+<<<<<<< HEAD
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
+=======
+import seedu.address.model.item.Phone;
+>>>>>>> mid-1.2-base-refactor
 
 public class JsonAdaptedItemTest {
     private static final String INVALID_NAME = "R@chel";
@@ -24,8 +29,13 @@ public class JsonAdaptedItemTest {
     private static final String INVALID_LOCATION = " ";
     private static final String INVALID_TAG = "#friend";
 
+<<<<<<< HEAD
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_QUANTITY = BENSON.getQuantity().toString();
+=======
+    private static final String VALID_NAME = BENSON.getItemName().toString();
+    private static final String VALID_PHONE = BENSON.getPhone().toString();
+>>>>>>> mid-1.2-base-refactor
     private static final String VALID_EXPIRYDATE = BENSON.getExpiryDate().toString();
     private static final String VALID_LOCATION = BENSON.getLocation().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
@@ -41,15 +51,25 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedItem item =
+<<<<<<< HEAD
             new JsonAdaptedItem(INVALID_NAME, VALID_QUANTITY, VALID_EXPIRYDATE, VALID_LOCATION, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+=======
+            new JsonAdaptedItem(INVALID_NAME, VALID_PHONE, VALID_EXPIRYDATE, VALID_LOCATION, VALID_TAGS);
+        String expectedMessage = ItemName.MESSAGE_CONSTRAINTS;
+>>>>>>> mid-1.2-base-refactor
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
+<<<<<<< HEAD
         JsonAdaptedItem item = new JsonAdaptedItem(null, VALID_QUANTITY, VALID_EXPIRYDATE, VALID_LOCATION, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+=======
+        JsonAdaptedItem item = new JsonAdaptedItem(null, VALID_PHONE, VALID_EXPIRYDATE, VALID_LOCATION, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemName.class.getSimpleName());
+>>>>>>> mid-1.2-base-refactor
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 

@@ -5,8 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -21,7 +21,7 @@ public class ItemBuilder {
     public static final String DEFAULT_EXPIRYDATE = "amy@gmail.com";
     public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
+    private ItemName name;
     private Quantity quantity;
     private ExpiryDate expiryDate;
     private Location location;
@@ -31,7 +31,7 @@ public class ItemBuilder {
      * Creates a {@code ItemBuilder} with the default details.
      */
     public ItemBuilder() {
-        name = new Name(DEFAULT_NAME);
+        name = new ItemName(DEFAULT_NAME);
         quantity = new Quantity(DEFAULT_QUANTITY);
         expiryDate = new ExpiryDate(DEFAULT_EXPIRYDATE);
         location = new Location(DEFAULT_LOCATION);
@@ -42,7 +42,7 @@ public class ItemBuilder {
      * Initializes the ItemBuilder with the data of {@code itemToCopy}.
      */
     public ItemBuilder(Item itemToCopy) {
-        name = itemToCopy.getName();
+        name = itemToCopy.getItemName();
         quantity = itemToCopy.getQuantity();
         expiryDate = itemToCopy.getExpiryDate();
         location = itemToCopy.getLocation();
@@ -53,7 +53,7 @@ public class ItemBuilder {
      * Sets the {@code Name} of the {@code Item} that we are building.
      */
     public ItemBuilder withName(String name) {
-        this.name = new Name(name);
+        this.name = new ItemName(name);
         return this;
     }
 

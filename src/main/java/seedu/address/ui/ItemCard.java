@@ -48,7 +48,7 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.item = item;
         id.setText(displayedIndex + ". ");
-        name.setText(item.getName().fullName);
+        name.setText(item.getItemName().fullName);
         quantity.setText(item.getQuantity().value);
         locations.setText(item.getLocation().value);
         expiryDate.setText(item.getExpiryDate().value);

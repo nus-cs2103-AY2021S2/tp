@@ -8,8 +8,8 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
@@ -33,7 +33,7 @@ public class EditItemDescriptorBuilder {
      */
     public EditItemDescriptorBuilder(Item item) {
         descriptor = new EditCommand.EditItemDescriptor();
-        descriptor.setName(item.getName());
+        descriptor.setItemName(item.getItemName());
         descriptor.setQuantity(item.getQuantity());
         descriptor.setExpiryDate(item.getExpiryDate());
         descriptor.setLocation(item.getLocation());
@@ -44,7 +44,7 @@ public class EditItemDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setItemName(new ItemName(name));
         return this;
     }
 
