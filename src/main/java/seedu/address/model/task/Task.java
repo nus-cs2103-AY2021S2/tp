@@ -20,18 +20,18 @@ public class Task {
     private final Name name;
     private final Date deadline;
     private final Priority priority;
-    private final Set<Category> category;
+    private final Set<Category> categories;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Name field must be present and not null.
      */
-    public Task(Name name, Date deadline, Priority priority, Set<Category> category, Set<Tag> tags) {
+    public Task(Name name, Date deadline, Priority priority, Set<Category> categories, Set<Tag> tags) {
         requireAllNonNull(name);
         this.name = name;
         this.deadline = deadline;
         this.priority = priority;
-        this.category = category;
+        this.categories = categories;
         this.tags.addAll(tags);
     }
 
@@ -47,8 +47,8 @@ public class Task {
         return this.priority;
     }
 
-    public Set<Category> getCategory() {
-        return this.category;
+    public Set<Category> getCategories() {
+        return this.categories;
     }
 
     public Set<Tag> getTags() {
