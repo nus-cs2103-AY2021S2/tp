@@ -1,6 +1,6 @@
 # A-Bash Book
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/nus-cs2103-AY2021S2/tp/actions)
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T12-3/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
