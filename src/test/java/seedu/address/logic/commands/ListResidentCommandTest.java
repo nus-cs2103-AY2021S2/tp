@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showResidentAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
+import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class ListResidentCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
         assertCommandSuccess(new ListResidentCommand(), model, ListResidentCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

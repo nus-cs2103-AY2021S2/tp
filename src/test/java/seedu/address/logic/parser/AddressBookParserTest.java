@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,17 +17,17 @@ import seedu.address.logic.commands.AddResidentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteResidentCommand;
 import seedu.address.logic.commands.EditResidentCommand;
-import seedu.address.logic.commands.EditResidentCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditResidentCommand.EditResidentDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindResidentCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListResidentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.model.resident.NameContainsKeywordsPredicate;
+import seedu.address.model.resident.Resident;
+import seedu.address.testutil.EditResidentDescriptorBuilder;
+import seedu.address.testutil.ResidentBuilder;
+import seedu.address.testutil.ResidentUtil;
 
 public class AddressBookParserTest {
 
@@ -35,9 +35,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddResidentCommand command = (AddResidentCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddResidentCommand(person), command);
+        Resident resident = new ResidentBuilder().build();
+        AddResidentCommand command = (AddResidentCommand) parser.parseCommand(ResidentUtil.getAddCommand(resident));
+        assertEquals(new AddResidentCommand(resident), command);
     }
 
     @Test
@@ -49,17 +49,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteResidentCommand command = (DeleteResidentCommand) parser.parseCommand(
-                DeleteResidentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteResidentCommand(INDEX_FIRST_PERSON), command);
+                DeleteResidentCommand.COMMAND_WORD + " " + INDEX_FIRST_RESIDENT.getOneBased());
+        assertEquals(new DeleteResidentCommand(INDEX_FIRST_RESIDENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Resident resident = new ResidentBuilder().build();
+        EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(resident).build();
         EditResidentCommand command = (EditResidentCommand) parser.parseCommand(EditResidentCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditResidentCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_RESIDENT.getOneBased() + " " + ResidentUtil.getEditResidentDescriptorDetails(descriptor));
+        assertEquals(new EditResidentCommand(INDEX_FIRST_RESIDENT, descriptor), command);
     }
 
     @Test

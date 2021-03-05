@@ -1,29 +1,31 @@
-package seedu.address.model.person;
+package seedu.address.model.resident;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Resident in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Resident {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Year year;
     private final Room room;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Room room) {
-        requireAllNonNull(name, phone, email, room);
+    public Resident(Name name, Phone phone, Email email, Year year, Room room) {
+        requireAllNonNull(name, phone, email, year, room);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.year = year;
         this.room = room;
     }
 
@@ -39,6 +41,10 @@ public class Person {
         return email;
     }
 
+    public Year getYear() {
+        return year;
+    }
+
     public Room getRoom() {
         return room;
     }
@@ -47,13 +53,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameResident(Resident otherResident) {
+        if (otherResident == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherResident != null
+                && otherResident.getName().equals(getName());
     }
 
     /**
@@ -66,21 +72,22 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Resident)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getRoom().equals(getRoom());
+        Resident otherResident = (Resident) other;
+        return otherResident.getName().equals(getName())
+                && otherResident.getPhone().equals(getPhone())
+                && otherResident.getEmail().equals(getEmail())
+                && otherResident.getYear().equals(getYear())
+                && otherResident.getRoom().equals(getRoom());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, room);
+        return Objects.hash(name, phone, email, year, room);
     }
 
     @Override
@@ -91,6 +98,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Year: ")
+                .append(getYear())
                 .append("; Room: ")
                 .append(getRoom());
 

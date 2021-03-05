@@ -6,10 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditResidentCommand;
-import seedu.address.logic.commands.EditResidentCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditResidentCommand.EditResidentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -25,7 +26,7 @@ public class EditCommandParser implements Parser<EditResidentCommand> {
     public EditResidentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOM);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_ROOM);
 
         Index index;
 
@@ -36,23 +37,26 @@ public class EditCommandParser implements Parser<EditResidentCommand> {
                 EditResidentCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditResidentDescriptor editResidentDescriptor = new EditResidentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editResidentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editResidentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editResidentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_YEAR).isPresent()) {
+            editResidentDescriptor.setYear(ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get()));
         }
         if (argMultimap.getValue(PREFIX_ROOM).isPresent()) {
-            editPersonDescriptor.setRoom(ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get()));
+            editResidentDescriptor.setRoom(ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get()));
         }
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editResidentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditResidentCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditResidentCommand(index, editPersonDescriptor);
+        return new EditResidentCommand(index, editResidentDescriptor);
     }
 }

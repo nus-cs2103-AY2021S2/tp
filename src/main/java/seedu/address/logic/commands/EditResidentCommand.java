@@ -5,7 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,87 +16,91 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Room;
+import seedu.address.model.resident.Email;
+import seedu.address.model.resident.Name;
+import seedu.address.model.resident.Phone;
+import seedu.address.model.resident.Resident;
+import seedu.address.model.resident.Room;
+import seedu.address.model.resident.Year;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing resident in the address book.
  */
 public class EditResidentCommand extends Command {
 
     public static final String COMMAND_WORD = "redit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the resident identified "
+            + "by the index number used in the displayed resident list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_YEAR + "YEAR] "
             + "[" + PREFIX_ROOM + "ROOM] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_ROOM + "#01-23";
+            + PREFIX_EMAIL + "e0123456@u.nus.edu"
+            + PREFIX_ROOM + "01-234";
 
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_RESIDENT_SUCCESS = "Edited Resident: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditResidentDescriptor editResidentDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the resident in the filtered resident list to edit
+     * @param editResidentDescriptor details to edit the resident with
      */
-    public EditResidentCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditResidentCommand(Index index, EditResidentDescriptor editResidentDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editResidentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editResidentDescriptor = new EditResidentDescriptor(editResidentDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Resident> lastShownList = model.getFilteredResidentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Resident residentToEdit = lastShownList.get(index.getZeroBased());
+        Resident editedResident = createEditedResident(residentToEdit, editResidentDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!residentToEdit.isSameResident(editedResident) && model.hasResident(editedResident)) {
+            throw new CommandException(MESSAGE_DUPLICATE_RESIDENT);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setResident(residentToEdit, editedResident);
+        model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Resident} with the details of {@code residentToEdit}
+     * edited with {@code editResidentDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Resident createEditedResident(Resident residentToEdit,
+            EditResidentDescriptor editResidentDescriptor) {
+        assert residentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Room updatedRoom = editPersonDescriptor.getRoom().orElse(personToEdit.getRoom());
+        Name updatedName = editResidentDescriptor.getName().orElse(residentToEdit.getName());
+        Phone updatedPhone = editResidentDescriptor.getPhone().orElse(residentToEdit.getPhone());
+        Email updatedEmail = editResidentDescriptor.getEmail().orElse(residentToEdit.getEmail());
+        Year updatedYear = editResidentDescriptor.getYear().orElse(residentToEdit.getYear());
+        Room updatedRoom = editResidentDescriptor.getRoom().orElse(residentToEdit.getRoom());
 
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedRoom);
+        return new Resident(updatedName, updatedPhone, updatedEmail, updatedYear, updatedRoom);
     }
 
     @Override
@@ -113,28 +118,30 @@ public class EditResidentCommand extends Command {
         // state check
         EditResidentCommand e = (EditResidentCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editResidentDescriptor.equals(e.editResidentDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the resident with. Each non-empty field value will replace the
+     * corresponding field value of the resident.
      */
-    public static class EditPersonDescriptor {
+    public static class EditResidentDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
+        private Year year;
         private Room room;
 
-        public EditPersonDescriptor() {}
+        public EditResidentDescriptor() {}
 
         /**
          * Copy constructor.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditResidentDescriptor(EditResidentDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setYear(toCopy.year);
             setRoom(toCopy.room);
         }
 
@@ -169,6 +176,14 @@ public class EditResidentCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setYear(Year year) {
+            this.year = year;
+        }
+
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
+        }
+
         public void setRoom(Room room) {
             this.room = room;
         }
@@ -185,16 +200,17 @@ public class EditResidentCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditResidentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditResidentDescriptor e = (EditResidentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getYear().equals(e.getYear())
                     && getRoom().equals(e.getRoom());
         }
     }

@@ -5,51 +5,55 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.resident.Resident;
 
 /**
- * Adds a person to the address book.
+ * Adds a resident to the address book.
  */
 public class AddResidentCommand extends Command {
 
     public static final String COMMAND_WORD = "radd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a resident to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_YEAR + "YEAR "
+            + PREFIX_ROOM + "ROOM "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ROOM + "#01-23";
+            + PREFIX_YEAR + "1"
+            + PREFIX_ROOM + "01-234";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New resident added: %1$s";
+    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book";
 
-    private final Person toAdd;
+    private final Resident toAdd;
 
     /**
-     * Creates an AddResidentCommand to add the specified {@code Person}
+     * Creates an AddResidentCommand to add the specified {@code Resident}
      */
-    public AddResidentCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddResidentCommand(Resident resident) {
+        requireNonNull(resident);
+        toAdd = resident;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasResident(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_RESIDENT);
         }
 
-        model.addPerson(toAdd);
+        model.addResident(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

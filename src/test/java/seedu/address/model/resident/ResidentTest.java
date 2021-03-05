@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ResidentBuilder;
 
-public class PersonTest {
+public class ResidentTest {
 
     /*
     @Test
@@ -23,7 +23,7 @@ public class PersonTest {
     */
 
     @Test
-    public void isSamePerson() {
+    public void isSameResident() {
         // same object -> returns true
         assertTrue(ALICE.isSameResident(ALICE));
 

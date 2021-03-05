@@ -11,28 +11,28 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.resident.Resident;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of residents.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class ResidentListPanel extends UiPart<Region> {
+    private static final String FXML = "ResidentListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ResidentListPanel.class);
 
     @FXML
-    private ListView<Resident> personListView;
+    private ListView<Resident> residentListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ResidentListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Resident> residentList) {
+    public ResidentListPanel(ObservableList<Resident> residentList) {
         super(FXML);
-        personListView.setItems(residentList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        residentListView.setItems(residentList);
+        residentListView.setCellFactory(listView -> new ResidentListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Resident} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Resident} using a {@code ResidentCard}.
      */
-    class PersonListViewCell extends ListCell<Resident> {
+    class ResidentListViewCell extends ListCell<Resident> {
         @Override
         protected void updateItem(Resident resident, boolean empty) {
             super.updateItem(resident, empty);
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(resident, getIndex() + 1).getRoot());
+                setGraphic(new ResidentCard(resident, getIndex() + 1).getRoot());
             }
         }
     }

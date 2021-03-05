@@ -20,41 +20,42 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.resident.Resident;
+import seedu.address.testutil.ResidentBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullResident_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddResidentCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_residentAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingResidentAdded modelStub = new ModelStubAcceptingResidentAdded();
+        Resident validResident = new ResidentBuilder().build();
 
-        CommandResult commandResult = new AddResidentCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddResidentCommand(validResident).execute(modelStub);
 
-        assertEquals(String.format(AddResidentCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddResidentCommand.MESSAGE_SUCCESS, validResident),
+            commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validResident), modelStub.residentsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddResidentCommand addCommand = new AddResidentCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateResident_throwsCommandException() {
+        Resident validResident = new ResidentBuilder().build();
+        AddResidentCommand addCommand = new AddResidentCommand(validResident);
+        ModelStub modelStub = new ModelStubWithResident(validResident);
 
-        assertThrows(CommandException.class, AddResidentCommand.MESSAGE_DUPLICATE_PERSON, () ->
+        assertThrows(CommandException.class, AddResidentCommand.MESSAGE_DUPLICATE_RESIDENT, () ->
                 addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Resident alice = new ResidentBuilder().withName("Alice").build();
+        Resident bob = new ResidentBuilder().withName("Bob").build();
         AddResidentCommand addAliceCommand = new AddResidentCommand(alice);
         AddResidentCommand addBobCommand = new AddResidentCommand(bob);
 
@@ -71,7 +72,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different resident -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -110,7 +111,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addResident(Resident resident) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,65 +126,65 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasResident(Resident resident) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteResident(Resident target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setResident(Resident target, Resident editedResident) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Resident> getFilteredResidentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredResidentList(Predicate<Resident> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single resident.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithResident extends ModelStub {
+        private final Resident resident;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithResident(Resident resident) {
+            requireNonNull(resident);
+            this.resident = resident;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasResident(Resident resident) {
+            requireNonNull(resident);
+            return this.resident.isSameResident(resident);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the resident being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingResidentAdded extends ModelStub {
+        final ArrayList<Resident> residentsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasResident(Resident resident) {
+            requireNonNull(resident);
+            return residentsAdded.stream().anyMatch(resident::isSameResident);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addResident(Resident resident) {
+            requireNonNull(resident);
+            residentsAdded.add(resident);
         }
 
         @Override

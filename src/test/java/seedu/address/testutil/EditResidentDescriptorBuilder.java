@@ -1,71 +1,83 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditResidentCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditResidentCommand;
+import seedu.address.logic.commands.EditResidentCommand.EditResidentDescriptor;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
-import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.Phone;
+import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.Room;
+import seedu.address.model.resident.Year;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditResidentDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditResidentDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditResidentDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+    public EditResidentDescriptorBuilder() {
+        descriptor = new EditResidentCommand.EditResidentDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditResidentDescriptorBuilder(EditResidentCommand.EditResidentDescriptor descriptor) {
+        this.descriptor = new EditResidentCommand.EditResidentDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code resident}'s details
+     * Returns an {@code EditResidentDescriptor} with fields containing {@code resident}'s details
      */
-    public EditPersonDescriptorBuilder(Resident resident) {
-        descriptor = new EditPersonDescriptor();
+    public EditResidentDescriptorBuilder(Resident resident) {
+        descriptor = new EditResidentCommand.EditResidentDescriptor();
         descriptor.setName(resident.getName());
         descriptor.setPhone(resident.getPhone());
         descriptor.setEmail(resident.getEmail());
+        descriptor.setYear(resident.getYear());
+        descriptor.setRoom(resident.getRoom());
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditResidentDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditResidentDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditResidentDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditResidentDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditResidentDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
+    public EditResidentDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }
 
     /**
-     * Sets the {@code Room} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Year} of the {@code EditResidentDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withRoom(String room) {
+    public EditResidentDescriptorBuilder withYear(String year) {
+        descriptor.setYear(new Year(year));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Room} of the {@code EditResidentDescriptor} that we are building.
+     */
+    public EditResidentDescriptorBuilder withRoom(String room) {
         descriptor.setRoom(new Room(room));
         return this;
     }
 
 
-    public EditPersonDescriptor build() {
+    public EditResidentCommand.EditResidentDescriptor build() {
         return descriptor;
     }
 }

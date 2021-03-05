@@ -1,25 +1,25 @@
-package seedu.address.model.person;
+package seedu.address.model.resident;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 
 /**
- * Represents a Person's room assigned.
+ * Represents a Resident's room assigned.
  * Guarantees: immutable; is valid as declared in {@link #isValidRoom(String)}
  */
 public class Room {
     public static final String MESSAGE_CONSTRAINTS =
-            "Room should be of the format #floor-unit"
+            "Room should be of the format floor-unit "
             + "and adhere to the following constraints:\n"
-            + "1. The floor should only contain 2 to 3 numeric characters\n"
+            + "1. The floor should contain 2 numeric characters\n"
             + "2. This is followed by a '-' and then a unit. "
-            + "The unit must:\n"
-            + "    - contain 2 to 3 numeric characters\n";
+            + "The unit must: "
+            + "contain 3 numeric characters\n";
     public static final String UNALLOCATED_REGEX = "Room unallocated";
-    public static final String FLOOR_REGEX = "\\d{2,3}";
-    public static final String UNIT_REGEX = "\\d{2,3}";
-    public static final String VALIDATION_REGEX = "#" + FLOOR_REGEX + "-" + UNIT_REGEX;
+    public static final String FLOOR_REGEX = "\\d{2}";
+    public static final String UNIT_REGEX = "\\d{3}";
+    public static final String VALIDATION_REGEX = FLOOR_REGEX + "-" + UNIT_REGEX;
 
     public final String value;
 
@@ -49,8 +49,8 @@ public class Room {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Room // instanceof handles nulls
-                && value.equals(((seedu.address.model.person.Room) other).value)); // state check
+                || (other instanceof seedu.address.model.resident.Room // instanceof handles nulls
+                && value.equals(((seedu.address.model.resident.Room) other).value)); // state check
     }
 
     @Override

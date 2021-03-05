@@ -6,41 +6,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
-import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.Phone;
+import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.Room;
+import seedu.address.model.resident.Year;
 
 /**
  * Jackson-friendly version of {@link Resident}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedResident {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Resident's %s field is missing!";
 
     private final String name;
     private final String phone;
     private final String email;
+    private final String year;
     private final String room;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given resident details.
+     * Constructs a {@code JsonAdaptedResident} with the given resident details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("room") String room) {
+    public JsonAdaptedResident(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email, @JsonProperty("year") String year,
+            @JsonProperty("room") String room) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.year = year;
         this.room = room;
     }
 
     /**
      * Converts a given {@code Resident} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Resident source) {
+    public JsonAdaptedResident(Resident source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        year = source.getYear().value;
         room = source.getRoom().value;
     }
 
@@ -74,12 +79,20 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (year == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Year.class.getSimpleName()));
+        }
+        if (!Year.isValidYear(year)) {
+            throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
+        }
+        final Year modelYear = new Year(year);
+
         if (!Room.isValidRoom(room)) {
             throw new IllegalValueException(Room.MESSAGE_CONSTRAINTS);
         }
         final Room modelRoom = new Room(room);
 
-        return new Resident(modelName, modelPhone, modelEmail, modelRoom);
+        return new Resident(modelName, modelPhone, modelEmail, modelYear, modelRoom);
     }
 
 }
