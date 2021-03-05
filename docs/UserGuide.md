@@ -121,12 +121,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd item in the address book.
+* `list` followed by `delete 2` deletes the 2nd item in the location book.
 * `find Chocolate` followed by `delete 1` deletes the 1st item in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the location book.
 
 Format: `clear`
 
