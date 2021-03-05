@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Note> filteredNote;
     private final NoteBook noteBook;
 
     /**
@@ -40,6 +41,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.noteBook = new NoteBook(noteBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredNote = new FilteredList<>(this.noteBook.getNoteList());
+
     }
 
     public ModelManager() {
@@ -79,6 +82,16 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+    @Override
+    public Path getNoteBookFilePath() {
+        return userPrefs.getNoteBookFilePath();
+    }
+
+    @Override
+    public void setNoteBookFilePath(Path noteBookFilePath) {
+        requireNonNull(noteBookFilePath);
+        userPrefs.setAddressBookFilePath(noteBookFilePath);
     }
 
     //=========== NoteBook ===================================================================================
@@ -145,6 +158,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Note> getFilteredNoteList() {
+        return filteredNote;
     }
 
     @Override
