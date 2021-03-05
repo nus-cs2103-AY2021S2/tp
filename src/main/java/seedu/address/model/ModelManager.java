@@ -89,7 +89,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Student student) {
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
         return addressBook.hasPerson(student);
     }
@@ -100,7 +100,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Student student) {
+    public void addStudent(Student student) {
         addressBook.addPerson(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }

@@ -47,7 +47,7 @@ public class AddStudentCommandTest {
         AddStudentCommand addStudentCommand = new AddStudentCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
-        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_PERSON, () -> addStudentCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void addPerson(Student student) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +124,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,7 +161,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             requireNonNull(student);
             return this.student.isSameStudent(student);
         }
@@ -174,13 +174,13 @@ public class AddStudentCommandTest {
         final ArrayList<Student> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             requireNonNull(student);
             return personsAdded.stream().anyMatch(student::isSameStudent);
         }
 
         @Override
-        public void addPerson(Student student) {
+        public void addStudent(Student student) {
             requireNonNull(student);
             personsAdded.add(student);
         }

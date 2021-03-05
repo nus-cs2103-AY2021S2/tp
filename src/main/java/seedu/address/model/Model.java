@@ -55,7 +55,7 @@ public interface Model {
     /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
-    boolean hasPerson(Student student);
+    boolean hasStudent(Student student);
 
     /**
      * Deletes the given student.
@@ -67,7 +67,7 @@ public interface Model {
      * Adds the given student.
      * {@code student} must not already exist in the address book.
      */
-    void addPerson(Student student);
+    void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.

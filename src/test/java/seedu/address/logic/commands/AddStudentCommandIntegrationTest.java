@@ -30,7 +30,7 @@ public class AddStudentCommandIntegrationTest {
         Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validStudent);
+        expectedModel.addStudent(validStudent);
 
         assertCommandSuccess(new AddStudentCommand(validStudent), model,
                 String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
@@ -39,7 +39,7 @@ public class AddStudentCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Student studentInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
 }
