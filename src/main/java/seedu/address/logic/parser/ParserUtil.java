@@ -6,11 +6,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.scenario.effect.Blend;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.ModeOfContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -94,6 +96,14 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
+    public static ModeOfContact parseModeOfContact(String modeOfContact) throws ParseException {
+        requireNonNull(modeOfContact);
+        String trimmedModeOfContact = modeOfContact.trim();
+        if (!ModeOfContact.isValidModeOfContact(trimmedModeOfContact)) {
+            throw new ParseException(ModeOfContact.MESSAGE_CONSTRAINTS);
+        }
+        return new ModeOfContact(trimmedModeOfContact);
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -121,4 +131,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }
