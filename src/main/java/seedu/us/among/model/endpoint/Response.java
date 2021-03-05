@@ -90,7 +90,9 @@ public class Response {
                 + "; Status Code: "
                 + getStatusCode()
                 + "; Reason Phrase: "
-                + getReasonPhrase();
+                + getReasonPhrase()
+                + ": Response Body: "
+                + getResponseEntity();
     }
 
     @Override
