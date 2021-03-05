@@ -35,8 +35,8 @@ public class NoteCard extends UiPart<Region> {
      */
     public NoteCard(Note note, int displayedIndex) {
         super(FXML);
-        this.note =  note;
-        id.setText(displayedIndex+". ");
+        this.note = note;
+        id.setText(displayedIndex + ". ");
         notecontent.setText(note.getNote());
     }
 

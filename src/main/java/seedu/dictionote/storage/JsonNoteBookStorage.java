@@ -12,7 +12,6 @@ import seedu.dictionote.commons.exceptions.DataConversionException;
 import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.commons.util.FileUtil;
 import seedu.dictionote.commons.util.JsonUtil;
-import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 
 /**

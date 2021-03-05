@@ -50,7 +50,7 @@ public class LogicManager implements Logic {
             if (command instanceof AddNoteCommand) {
                 storage.saveNoteBook(model.getNoteBook());
             }
-            else{
+            else {
                 storage.saveAddressBook(model.getAddressBook());
             }
         } catch (IOException ioe) {

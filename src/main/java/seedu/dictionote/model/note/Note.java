@@ -1,12 +1,9 @@
 package seedu.dictionote.model.note;
 
-import seedu.dictionote.model.person.Person;
-import seedu.dictionote.model.tag.Tag;
+import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.Set;
 
-import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Note in the dictionote book.

@@ -12,10 +12,10 @@ import java.util.stream.Stream;
 
 import seedu.dictionote.logic.commands.AddCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
+import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Person;
-import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
 /**

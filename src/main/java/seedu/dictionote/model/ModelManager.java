@@ -33,9 +33,9 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs, noteBook);
 
-        logger.fine("Initializing with dictionote book: " + addressBook +
-                " and user prefs " + userPrefs +
-                "and note book" + noteBook);
+        logger.fine("Initializing with dictionote book: " + addressBook
+                + " and user prefs " + userPrefs
+                + "and note book" + noteBook);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);

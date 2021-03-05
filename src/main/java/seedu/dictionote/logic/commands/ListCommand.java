@@ -3,9 +3,7 @@ package seedu.dictionote.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.note.Note;
 
 /**
  * Lists all persons in the dictionote book to the user.

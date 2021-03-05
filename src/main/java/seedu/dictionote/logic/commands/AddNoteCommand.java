@@ -1,16 +1,13 @@
 package seedu.dictionote.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
+
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
+
 
 public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "addnote";
@@ -26,11 +23,23 @@ public class AddNoteCommand extends Command {
 
     private final Note toAdd;
 
+    /** Add a note
+     *
+     * @param note
+     */
+
     public AddNoteCommand(Note note) {
         requireNonNull(note);
         toAdd = note;
     }
 
+
+    /** Executes the command
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException if the command has wrong format
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

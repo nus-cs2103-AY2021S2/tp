@@ -1,22 +1,11 @@
 package seedu.dictionote.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.person.Address;
-import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Person;
-import seedu.dictionote.model.person.Phone;
-import seedu.dictionote.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Note}.
