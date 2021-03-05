@@ -1,0 +1,3 @@
+/src/test/java/seedu/us/among/model/endpoint/NameContainsKeywordsPredicateTest.java
+/src/test/java/seedu/us/among/model/endpoint/UniqueEndpointListTest.java
+src/test/java/seedu/us/among/storage/JsonSerializableEndpointListTest.java

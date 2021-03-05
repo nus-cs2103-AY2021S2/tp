@@ -54,7 +54,7 @@ public class EndpointListTest {
         EndpointListStub newData = new EndpointListStub(newEndpoints);
 
         assertThrows(DuplicateApiEndpointException.class, () -> endpointList.resetData(newData));
-    } //to-do fix this
+    }
 
     @Test
     public void hasEndpoint_nullEndpoint_throwsNullPointerException() {
