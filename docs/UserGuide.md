@@ -175,7 +175,7 @@ Users will be able to press tab to cycle through the available options. -->
 Example: Searching for ‘jon’ will return results that are similar and ranked by similarity, e.g.  jonathan, john, johnny, ... -->
 
 ### Alias [coming soon]
-<!-- 
+<!--
 An alias is a shortcut command that a user can create to reference a default supported command.
 
 Format: `alias [p/] [ALIAS_NAME/COMMAND_NAME]`
@@ -183,7 +183,7 @@ Format: `alias [p/] [ALIAS_NAME/COMMAND_NAME]`
 Key:
     `p/`    Print the current values
 
-Examples: 
+Examples:
 
 
 | Example | Description |
@@ -208,7 +208,7 @@ Examples:
 
 ### List options [coming soon]
 
-<!-- List options provide the user with the choice to tweak their list return result according to the specified option(s). 
+<!-- List options provide the user with the choice to tweak their list return result according to the specified option(s).
 
 Format: each option should start with OPTION/ and be separated by a whitespace, where OPTION/ refers to the option Key.
 ie. `list [OPTION_1/ OPTION_2/ … OPTION_N/]`
@@ -225,7 +225,7 @@ Key:
 |`g` |   Gender (new) |
 |`no`|    Notes (new) |
 
-Examples: 
+Examples:
 | Example | Description |
 | --------------- | -------- |
 |`list n/`| returns the list of all contacts with name as the only field.|

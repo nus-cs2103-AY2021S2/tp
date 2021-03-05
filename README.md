@@ -6,9 +6,7 @@
 
 ## Description
 
-This is **a project for bash-savvy users who are familiar with Command-Line-Interface.**
-We hope that with Bash-like commands, users who enjoy the high speed workflow of executing bash commands can be as 
-seamless and easy to use in our project.
+This is **a project for bash-savvy users who are familiar with Command-Line-Interface.** We hope that with Bash-like commands, users who enjoy the high speed workflow of executing bash commands can be as seamless and easy to use in our project.
 
 ## Usages
 * as a CLI integrated address book.
@@ -19,8 +17,6 @@ seamless and easy to use in our project.
 
 ## Features 
 [coming soon]
-
-
 
 ## Acknowledgement
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
