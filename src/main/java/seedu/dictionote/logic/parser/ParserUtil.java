@@ -10,7 +10,6 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.commons.util.StringUtil;
 import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Phone;
@@ -72,14 +71,6 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dictionote} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
 
     /**
      * Parses a {@code String email} into an {@code Email}.

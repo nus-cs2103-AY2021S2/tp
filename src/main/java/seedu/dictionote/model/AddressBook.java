@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.dictionote.model.note.Note;
+import seedu.dictionote.model.note.UniqueNoteList;
 import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.dictionote.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueNoteList note;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        note = new UniqueNoteList();
+
     }
 
     public AddressBook() {}
@@ -46,6 +51,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
+    /**
+     * Replaces the contents of the note list with {@code note }.
+     * {@code note} must not contain duplicate persons.
+     */
+    public void setNote(List<Note> note) {
+        this.note.setNotes(note);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -54,6 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+
     }
 
     //// person-level operations
@@ -72,6 +85,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+    /**
+     * Adds a person to the dictionote book.
+     * The person must not already exist in the dictionote book.
+     */
+    public void addNote(Note n) {
+        note.add(n);
     }
 
     /**
@@ -107,6 +127,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Note> getNoteList() {
+        return note.asUnmodifiableObservableList();
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

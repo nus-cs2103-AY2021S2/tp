@@ -1,6 +1,7 @@
 package seedu.dictionote.model;
 
 import javafx.collections.ObservableList;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.person.Person;
 
 /**
@@ -13,5 +14,6 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+    ObservableList<Note> getNoteList();
 
 }

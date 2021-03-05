@@ -12,13 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.dictionote.logic.commands.AddCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
-
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -41,10 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, tagList);
 
         return new AddCommand(person);
     }

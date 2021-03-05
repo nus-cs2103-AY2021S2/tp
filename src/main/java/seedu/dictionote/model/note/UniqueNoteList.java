@@ -68,21 +68,6 @@ public class UniqueNoteList implements Iterable<Note> {
 //        internalList.set(index, editedPerson);
 //    }
 
-    /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
-     */
-//    public void remove(Person toRemove) {
-//        requireNonNull(toRemove);
-//        if (!internalList.remove(toRemove)) {
-//            throw new PersonNotFoundException();
-//        }
-//    }
-//
-//    public void setPersons(UniquePersonList replacement) {
-//        requireNonNull(replacement);
-//        internalList.setAll(replacement.internalList);
-//    }
 
     /**
      * Replaces the contents of this list with {@code notes}.
