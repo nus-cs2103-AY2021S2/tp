@@ -33,8 +33,8 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs, noteBook);
 
-        logger.fine("Initializing with dictionote book: " + addressBook + 
-                " and user prefs " + userPrefs + 
+        logger.fine("Initializing with dictionote book: " + addressBook +
+                " and user prefs " + userPrefs +
                 "and note book" + noteBook);
 
         this.addressBook = new AddressBook(addressBook);
@@ -111,8 +111,8 @@ public class ModelManager implements Model {
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
     }
-    
-    
+
+
     //=========== AddressBook ================================================================================
 
     @Override

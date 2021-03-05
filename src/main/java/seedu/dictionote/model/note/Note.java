@@ -22,7 +22,7 @@ public class Note {
         requireAllNonNull(note);
         this.note = note;
     }
-    
+
     public String getNote() {
         return note;
     }
@@ -67,7 +67,6 @@ public class Note {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getNote());
-        
         return builder.toString();
     }
 }

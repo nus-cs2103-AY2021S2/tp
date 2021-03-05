@@ -25,7 +25,7 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, 
+    public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
                           NoteBookStorage noteBookStorage) {
         super();
@@ -50,7 +50,7 @@ public class StorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-    
+
     // ================ NoteBook methods ==============================
 
     @Override
@@ -108,5 +108,4 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
-    
 }

@@ -49,7 +49,7 @@ public class DictionoteParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-            
+
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser().parse(arguments);
 

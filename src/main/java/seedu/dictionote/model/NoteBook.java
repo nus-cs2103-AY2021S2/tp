@@ -11,13 +11,13 @@ import static java.util.Objects.requireNonNull;
 
 public class NoteBook implements ReadOnlyNoteBook{
     private final UniqueNoteList notes;
-    
+
     {
         notes = new UniqueNoteList();
     }
-    
+
     public NoteBook() {}
-    
+
     public NoteBook(ReadOnlyNoteBook toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -84,5 +84,5 @@ public class NoteBook implements ReadOnlyNoteBook{
     public int hashCode() {
         return notes.hashCode();
     }
-    
+
 }

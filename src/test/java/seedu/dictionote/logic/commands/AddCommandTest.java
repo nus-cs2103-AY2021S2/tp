@@ -124,7 +124,7 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
@@ -159,7 +159,7 @@ public class AddCommandTest {
         public boolean hasNote(Note note) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void addNote(Note note) {
             throw new AssertionError("This method should not be called.");

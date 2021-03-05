@@ -84,7 +84,7 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialDataAddress;
         Optional<ReadOnlyNoteBook> noteBookOptional;
         ReadOnlyNoteBook initialDataNote;
-        
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
