@@ -21,21 +21,21 @@ public class Event {
     private final Time startTime;
     private final Date endDate;
     private final Time endTime;
-    private final Set<Category> category;
+    private final Set<Category> categories;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Name field must be present and not null.
      */
     public Event(Name name, Date startDate, Time startTime,
-                Date endDate, Time endTime, Set<Category> category, Set<Tag> tags) {
+                Date endDate, Time endTime, Set<Category> categories, Set<Tag> tags) {
         requireAllNonNull(name, startDate, endDate);
         this.name = name;
         this.startDate = startDate;
         this.startTime = startTime;
         this.endDate = endDate;
         this.endTime = endTime;
-        this.category = category;
+        this.categories = categories;
         this.tags.addAll(tags);
     }
 
@@ -59,8 +59,8 @@ public class Event {
         return this.endTime;
     }
 
-    public Set<Category> getCategory() {
-        return this.category;
+    public Set<Category> getCategories() {
+        return this.categories;
     }
 
     public Set<Tag> getTags() {
@@ -100,7 +100,7 @@ public class Event {
                 && otherEvent.getStartTime().equals(getStartTime())
                 && otherEvent.getEndDate().equals(getEndDate())
                 && otherEvent.getEndTime().equals(getEndTime())
-                && otherEvent.getCategory().equals(getCategory())
+                && otherEvent.getCategories().equals(getCategories())
                 && otherEvent.getTags().equals(getTags());
     }
 
@@ -117,7 +117,7 @@ public class Event {
                 .append("; End Time: ")
                 .append(getEndTime())
                 .append("; Category: ")
-                .append(getCategory());
+                .append(getCategories());
 
         Set<seedu.address.model.common.Tag> tags = getTags();
         if (!tags.isEmpty()) {
