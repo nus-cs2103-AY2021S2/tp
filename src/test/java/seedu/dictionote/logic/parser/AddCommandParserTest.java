@@ -31,7 +31,6 @@ import static seedu.dictionote.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-<<<<<<< HEAD:src/test/java/seedu/dictionote/logic/parser/AddCommandParserTest.java
 import seedu.dictionote.logic.commands.AddCommand;
 import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
@@ -40,15 +39,6 @@ import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.testutil.PersonBuilder;
-=======
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
->>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/test/java/seedu/address/logic/parser/AddCommandParserTest.java
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();

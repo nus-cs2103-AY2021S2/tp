@@ -15,20 +15,12 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-<<<<<<< HEAD:src/test/java/seedu/dictionote/logic/parser/ParserUtilTest.java
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
-=======
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
->>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/test/java/seedu/address/logic/parser/ParserUtilTest.java
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

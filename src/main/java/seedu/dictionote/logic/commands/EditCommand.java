@@ -97,8 +97,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,updatedTags);
     }
 
     @Override
@@ -128,6 +129,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
+        private Address address;
 
         public EditPersonDescriptor() {}
 
@@ -138,6 +140,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
+            setAddress(toCopy.address);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
         }
@@ -146,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address,tags);
         }
 
         public void setName(Name name) {
@@ -173,6 +176,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setAddress(Address address) {
+            this.address = address;
+        }
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
 
 
 
@@ -211,6 +220,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

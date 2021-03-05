@@ -15,6 +15,7 @@ import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
 /**
@@ -40,8 +41,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
-        Person person = new Person(name, phone, email, tagList);
+        Person person = new Person(name, phone, email, address, tagList);
 
         return new AddCommand(person);
     }

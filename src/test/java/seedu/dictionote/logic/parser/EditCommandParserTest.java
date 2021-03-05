@@ -33,7 +33,6 @@ import static seedu.dictionote.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-<<<<<<< HEAD:src/test/java/seedu/dictionote/logic/parser/EditCommandParserTest.java
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.EditCommand;
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
@@ -43,16 +42,6 @@ import seedu.dictionote.model.person.Name;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
-=======
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
->>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/test/java/seedu/address/logic/parser/EditCommandParserTest.java
 
 public class EditCommandParserTest {
 

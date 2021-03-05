@@ -3,7 +3,6 @@ package seedu.dictionote.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-<<<<<<< HEAD:src/test/java/seedu/dictionote/testutil/PersonBuilder.java
 import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
@@ -11,14 +10,6 @@ import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.model.util.SampleDataUtil;
-=======
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
->>>>>>> 87c03873ab180f8183fbb9717d0ecf36cbe628f7:src/test/java/seedu/address/testutil/PersonBuilder.java
 
 /**
  * A utility class to help with building Person objects.
