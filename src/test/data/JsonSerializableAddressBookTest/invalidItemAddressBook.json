@@ -2,7 +2,7 @@
   "items": [
     {
       "name": "Hans Muster",
-      "phone": "9482424",
+      "quantity": "9482424",
       "expiryDate": "invalid@email!3e",
       "location": "4th street"
     }

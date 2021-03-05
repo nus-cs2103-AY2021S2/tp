@@ -2,13 +2,13 @@
   "items": [
     {
       "name": "Valid Item",
-      "phone": "9482424",
+      "quantity": "9482424",
       "expiryDate": "hans@example.com",
       "location": "4th street"
     },
     {
       "name": "Item With Invalid Phone Field",
-      "phone": "948asdf2424",
+      "quantity": "948asdf2424",
       "expiryDate": "hans@example.com",
       "location": "4th street"
     }
