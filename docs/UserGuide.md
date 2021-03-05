@@ -32,7 +32,7 @@ title: User Guide
 
     * **`rlist`** : Lists all residents.
 
-    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, and as a 2nd year student.
+    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student, allocated to room `01-234`.
 
     * **`rdel`**`3` : Deletes the 3rd resident shown in the current resident list.
 
@@ -76,11 +76,11 @@ Format: `help`
 
 Adds a resident to the housing management system.
 
-Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
+Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR [r/ROOM]`
 
 Examples:
-* `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2` Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, and as a 2nd year student.
-* `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student.
+* `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234` Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, and as a 2nd year student, allocated to room `01-234`.
+* `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
 
 
 ### List all residents : `rlist`
@@ -110,13 +110,13 @@ Examples:
 
 Edits the existing resident record at a specified index.
 
-Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
+Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer: 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Example:
-* `redit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st resident to be `91234567` and `johndoe@example.com` respectively.
+* `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to be `91234567` and `e0123456@u.nus.edu` respectively.
 
 
 ### Delete a resident : `rdel`
@@ -287,10 +287,10 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 Action | Format, Examples
 --------|------------------
 **Show help** | `help`
-**Add a resident** | `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR` <br> e.g. `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2`
+**Add a resident** | `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR` <br> e.g. `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234`
 **List all residents** | `rlist`
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
-**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g. `redit 1 p/91234567 e/johndoe@example.com`
+**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
 **Add a room** |  `oadd n/ROOM_NO t/TYPE o/OCCUPY_STATUS [g/TAG]` <br> e.g. `oadd n/17-101 t/single_no_ac o/Occupied g/SHN`
 **List all rooms** |  `olist`
