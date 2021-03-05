@@ -15,41 +15,33 @@ import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
-/**
- * Represents the in-memory model of the address book data.
- */
-public class ModelManager implements Model {
+public class SocModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-
+    private final Sochedule sochedule;
+    private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Event> filteredEvents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a SocModelManager with the given sochedule and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public SocModelManager(ReadOnlySochedule sochedule, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(sochedule, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with SOChedule: " + sochedule + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.sochedule = new Sochedule(sochedule);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.sochedule.getTaskList());
+        filteredEvents = new FilteredList<>(this.sochedule.getEventList());
     }
 
 
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+    public SocModelManager() {
+        this(new Sochedule(), new UserPrefs());
     }
-
-
-    /**
-     * Initializes a ModelManager with the given sochedule and userPrefs.
-     */
-
 
     //=========== UserPrefs ==================================================================================
 
@@ -86,57 +78,109 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+
     //=========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return null;
     }
 
     @Override
     public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return false;
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+        return null;
     }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+
+    }
+
+    //=========== task ==================================================================================
+
+    @Override
+    public Path getTaskListFilePath() {
+        return userPrefs.getTaskListFilePath();
+    }
+
+    @Override
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireAllNonNull(taskListFilePath);
+        userPrefs.setTaskListFilePath(taskListFilePath);
+    }
+
+    @Override
+    public void setTaskList(ReadOnlySochedule sochedule) {
+        this.sochedule.resetTaskData(sochedule);
+    }
+
+    @Override
+    public ReadOnlySochedule getTaskList() {
+        return sochedule;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireAllNonNull(task);
+        return sochedule.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        sochedule.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        sochedule.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        sochedule.setTask(target, editedTask);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireAllNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -147,82 +191,26 @@ public class ModelManager implements Model {
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
+        if (!(obj instanceof SocModelManager)) {
             return false;
         }
 
         // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        SocModelManager other = (SocModelManager) obj;
+        return sochedule.equals(other.sochedule)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
-    }
-
-    //=========== task ==================================================================================
-
-    @Override
-    public Path getTaskListFilePath() {
-        //THIS IS A DUMMY RETURN
-        return null;
-    }
-
-
-    @Override
-    public void setTaskListFilePath(Path taskListFilePath){
-    }
-
-    @Override
-    public void setTaskList(ReadOnlySochedule sochedule) {
-
-    }
-
-    @Override
-    public ReadOnlySochedule getTaskList() {
-        return null;
-    }
-
-    @Override
-    public boolean hasTask(Task task) {
-        //THIS IS A DUMMY METHOD
-        return true;
-    }
-
-    @Override
-    public void deleteTask(Task target) {
-
-    }
-
-    @Override
-    public void addTask(Task task) {
-
-    }
-
-    @Override
-    public void setTask(Task target, Task editedTask) {
-
-    }
-
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        //THIS IS A DUMMY METHOD
-        return null;
-    }
-
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-
+                && filteredTasks.equals(other.filteredTasks);
     }
 
     //=========== event ==================================================================================
 
     @Override
     public Path getEventListFilePath() {
-        //THIS IS A DUMMY RETURN
         return null;
     }
 
     @Override
-    public void setEventListFilePath(Path eventListFilePath){
+    public void setEventListFilePath(Path eventListFilePath) {
 
     }
 
@@ -233,14 +221,12 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlySochedule getEventList() {
-        //THIS IS A DUMMY RETURN
         return null;
     }
 
     @Override
     public boolean hasEvent(Event event) {
-        //THIS IS A DUMMY METHOD
-        return true;
+        return false;
     }
 
     @Override
@@ -260,7 +246,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        //THIS IS A DUMMY METHOD
         return null;
     }
 
