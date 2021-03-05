@@ -20,18 +20,18 @@ public class Task {
     private final Name name;
     private final Date deadline;
     private final Priority priority;
-    private final Category category;
+    private final Set<Category> categories;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Name field must be present and not null.
      */
-    public Task(Name name, Date deadline, Priority priority, Category category, Set<Tag> tags) {
+    public Task(Name name, Date deadline, Priority priority, Set<Category> categories, Set<Tag> tags) {
         requireAllNonNull(name);
         this.name = name;
         this.deadline = deadline;
         this.priority = priority;
-        this.category = category;
+        this.categories = categories;
         this.tags.addAll(tags);
     }
 
@@ -47,8 +47,8 @@ public class Task {
         return this.priority;
     }
 
-    public Category getCategory() {
-        return this.category;
+    public Set<Category> getCategories() {
+        return this.categories;
     }
 
     public Set<Tag> getTags() {
@@ -86,7 +86,7 @@ public class Task {
         return otherTask.getName().equals(getName())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getPriority().equals(getPriority())
-                && otherTask.getCategory().equals(getCategory())
+                && otherTask.getCategories().equals(getCategories())
                 && otherTask.getTags().equals(getTags());
     }
 
@@ -99,7 +99,7 @@ public class Task {
                 .append("; Priority: ")
                 .append(getPriority())
                 .append("; Category: ")
-                .append(getCategory());
+                .append(getCategories());
 
         Set<seedu.address.model.common.Tag> tags = getTags();
         if (!tags.isEmpty()) {
