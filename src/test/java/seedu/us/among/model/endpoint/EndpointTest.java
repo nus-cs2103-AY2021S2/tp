@@ -33,10 +33,10 @@ public class EndpointTest {
         // null -> returns false
         assertFalse(GET.isSameEndpoint(null));
 
-        // same name and address, all other attributes different -> returns true
+        // same method and address, all other attributes different -> returns false
         Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_COOL)
                 .build();
-        assertTrue(GET.isSameEndpoint(editedGet));
+        assertFalse(GET.isSameEndpoint(editedGet));
 
         // same name, all other attributes different -> returns false
         editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();

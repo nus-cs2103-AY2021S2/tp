@@ -78,7 +78,7 @@ public class Endpoint {
 
         //expanded this for more clarity
         if (otherEndpoint == null){
-            return true;
+            return false;
         }else{
             if (otherEndpoint.getMethod().equals(getMethod()) && otherEndpoint.getAddress().equals(getAddress()) &&
                 otherEndpoint.getTags().equals(getTags())) {
