@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-// import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
+import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 
 /**
@@ -90,9 +90,9 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
      */
     public void setEndpoints(List<Endpoint> endpoints) {
         requireAllNonNull(endpoints);
-        // if (!personsAreUnique(endpoints)) {
-        //     throw new DuplicateApiEndpointException();
-        // }
+        if (!endpointsAreUnique(endpoints)) {
+            throw new DuplicateApiEndpointException();
+        }
 
         internalList.setAll(endpoints);
     }
@@ -124,7 +124,7 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
     /**
      * Returns true if {@code endpoints} contains only unique endpoints.
      */
-    private boolean personsAreUnique(List<Endpoint> endpoints) {
+    private boolean endpointsAreUnique(List<Endpoint> endpoints) {
         for (int i = 0; i < endpoints.size() - 1; i++) {
             for (int j = i + 1; j < endpoints.size(); j++) {
                 if (endpoints.get(i).isSameEndpoint(endpoints.get(j))) {
