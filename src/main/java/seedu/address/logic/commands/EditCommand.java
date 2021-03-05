@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRYDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
@@ -23,7 +23,7 @@ import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Phone;
+import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,12 +38,12 @@ public class EditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "ITEM NAME] "
-        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_QUANTITY + "QUANTITY] "
         + "[" + PREFIX_EXPIRYDATE + "EXPIRYDATE] "
         + "[" + PREFIX_LOCATION + "ADDRESS] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_PHONE + "91234567 "
+        + PREFIX_QUANTITY + "91234567 "
         + PREFIX_EXPIRYDATE + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
@@ -93,12 +93,12 @@ public class EditCommand extends Command {
         assert itemToEdit != null;
 
         ItemName updatedName = editItemDescriptor.getItemName().orElse(itemToEdit.getItemName());
-        Phone updatedPhone = editItemDescriptor.getPhone().orElse(itemToEdit.getPhone());
+        Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         ExpiryDate updatedExpiryDate = editItemDescriptor.getExpiryDate().orElse(itemToEdit.getExpiryDate());
         Location updatedLocation = editItemDescriptor.getLocation().orElse(itemToEdit.getLocation());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
 
-        return new Item(updatedName, updatedPhone, updatedExpiryDate, updatedLocation, updatedTags);
+        return new Item(updatedName, updatedQuantity, updatedExpiryDate, updatedLocation, updatedTags);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class EditCommand extends Command {
      */
     public static class EditItemDescriptor {
         private ItemName name;
-        private Phone phone;
+        private Quantity quantity;
         private ExpiryDate expiryDate;
         private Location location;
         private Set<Tag> tags;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          */
         public EditItemDescriptor(EditItemDescriptor toCopy) {
             setItemName(toCopy.name);
-            setPhone(toCopy.phone);
+            setQuantity(toCopy.quantity);
             setExpiryDate(toCopy.expiryDate);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, expiryDate, location, tags);
+            return CollectionUtil.isAnyNonNull(name, quantity, expiryDate, location, tags);
         }
 
         public void setItemName(ItemName name) {
@@ -160,12 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setQuantity(Quantity quantity) {
+            this.quantity = quantity;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Quantity> getQuantity() {
+            return Optional.ofNullable(quantity);
         }
 
         public void setExpiryDate(ExpiryDate expiryDate) {
@@ -217,7 +217,7 @@ public class EditCommand extends Command {
             EditItemDescriptor e = (EditItemDescriptor) other;
 
             return getItemName().equals(e.getItemName())
-                && getPhone().equals(e.getPhone())
+                && getQuantity().equals(e.getQuantity())
                 && getExpiryDate().equals(e.getExpiryDate())
                 && getLocation().equals(e.getLocation())
                 && getTags().equals(e.getTags());

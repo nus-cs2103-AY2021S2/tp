@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRYDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -31,7 +31,7 @@ public class ItemUtil {
     public static String getItemDetails(Item item) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + item.getItemName().fullName + " ");
-        sb.append(PREFIX_PHONE + item.getPhone().value + " ");
+        sb.append(PREFIX_QUANTITY + item.getQuantity().value + " ");
         sb.append(PREFIX_EXPIRYDATE + item.getExpiryDate().value + " ");
         sb.append(PREFIX_LOCATION + item.getLocation().value + " ");
         item.getTags().stream().forEach(
@@ -46,7 +46,7 @@ public class ItemUtil {
     public static String getEditItemDescriptorDetails(EditCommand.EditItemDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getItemName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getQuantity().ifPresent(quantity -> sb.append(PREFIX_QUANTITY).append(quantity.value).append(" "));
         descriptor.getExpiryDate().ifPresent(expiryDate -> sb.append(PREFIX_EXPIRYDATE).append(expiryDate.value)
             .append(" "));
         descriptor.getLocation().ifPresent(address -> sb.append(PREFIX_LOCATION).append(address.value).append(" "));

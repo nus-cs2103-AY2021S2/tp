@@ -7,7 +7,7 @@ import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Phone;
+import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class ItemBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_QUANTITY = "85355255";
     public static final String DEFAULT_EXPIRYDATE = "amy@gmail.com";
     public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
 
     private ItemName name;
-    private Phone phone;
+    private Quantity quantity;
     private ExpiryDate expiryDate;
     private Location location;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class ItemBuilder {
      */
     public ItemBuilder() {
         name = new ItemName(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        quantity = new Quantity(DEFAULT_QUANTITY);
         expiryDate = new ExpiryDate(DEFAULT_EXPIRYDATE);
         location = new Location(DEFAULT_LOCATION);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class ItemBuilder {
      */
     public ItemBuilder(Item itemToCopy) {
         name = itemToCopy.getItemName();
-        phone = itemToCopy.getPhone();
+        quantity = itemToCopy.getQuantity();
         expiryDate = itemToCopy.getExpiryDate();
         location = itemToCopy.getLocation();
         tags = new HashSet<>(itemToCopy.getTags());
@@ -74,10 +74,10 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Item} that we are building.
+     * Sets the {@code Quantity} of the {@code Item} that we are building.
      */
-    public ItemBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public ItemBuilder withQuantity(String quantity) {
+        this.quantity = new Quantity(quantity);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ItemBuilder {
     }
 
     public Item build() {
-        return new Item(name, phone, expiryDate, location, tags);
+        return new Item(name, quantity, expiryDate, location, tags);
     }
 
 }

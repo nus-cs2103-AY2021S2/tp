@@ -33,7 +33,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label quantity;
     @FXML
     private Label locations;
     @FXML
@@ -49,7 +49,7 @@ public class ItemCard extends UiPart<Region> {
         this.item = item;
         id.setText(displayedIndex + ". ");
         name.setText(item.getItemName().fullName);
-        phone.setText(item.getPhone().value);
+        quantity.setText(item.getQuantity().value);
         locations.setText(item.getLocation().value);
         expiryDate.setText(item.getExpiryDate().value);
         item.getTags().stream()

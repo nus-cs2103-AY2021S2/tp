@@ -14,7 +14,7 @@ import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Phone;
+import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +25,7 @@ class JsonAdaptedItem {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String quantity;
     private final String expiryDate;
     private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -34,11 +34,11 @@ class JsonAdaptedItem {
      * Constructs a {@code JsonAdaptedItem} with the given item details.
      */
     @JsonCreator
-    public JsonAdaptedItem(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedItem(@JsonProperty("name") String name, @JsonProperty("quantity") String quantity,
                            @JsonProperty("expiryDate") String expiryDate, @JsonProperty("location") String location,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
+        this.quantity = quantity;
         this.expiryDate = expiryDate;
         this.location = location;
         if (tagged != null) {
@@ -51,7 +51,7 @@ class JsonAdaptedItem {
      */
     public JsonAdaptedItem(Item source) {
         name = source.getItemName().fullName;
-        phone = source.getPhone().value;
+        quantity = source.getQuantity().value;
         expiryDate = source.getExpiryDate().value;
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
@@ -79,13 +79,14 @@ class JsonAdaptedItem {
         }
         final ItemName modelName = new ItemName(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (quantity == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Quantity.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Quantity.isValidQuantity(quantity)) {
+            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Quantity modelQuantity = new Quantity(quantity);
 
         if (expiryDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -106,7 +107,7 @@ class JsonAdaptedItem {
         final Location modelLocation = new Location(location);
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
-        return new Item(modelName, modelPhone, modelExpiryDate, modelLocation, modelTags);
+        return new Item(modelName, modelQuantity, modelExpiryDate, modelLocation, modelTags);
     }
 
 }

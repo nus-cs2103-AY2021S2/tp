@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.ALICE;
@@ -33,7 +33,7 @@ public class ItemTest {
 
         // same name, all other attributes different -> returns true
 
-        Item editedAlice = new ItemBuilder(ALICE).withPhone(VALID_PHONE_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB)
+        Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB)
             .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameItem(editedAlice));
 
@@ -73,8 +73,8 @@ public class ItemTest {
         Item editedAlice = new ItemBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new ItemBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different quantity -> returns false
+        editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false

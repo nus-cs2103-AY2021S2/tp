@@ -10,7 +10,7 @@ import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Phone;
+import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +34,7 @@ public class EditItemDescriptorBuilder {
     public EditItemDescriptorBuilder(Item item) {
         descriptor = new EditCommand.EditItemDescriptor();
         descriptor.setItemName(item.getItemName());
-        descriptor.setPhone(item.getPhone());
+        descriptor.setQuantity(item.getQuantity());
         descriptor.setExpiryDate(item.getExpiryDate());
         descriptor.setLocation(item.getLocation());
         descriptor.setTags(item.getTags());
@@ -49,10 +49,10 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditItemDescriptor} that we are building.
+     * Sets the {@code Quantity} of the {@code EditItemDescriptor} that we are building.
      */
-    public EditItemDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditItemDescriptorBuilder withQuantity(String quantity) {
+        descriptor.setQuantity(new Quantity(quantity));
         return this;
     }
 

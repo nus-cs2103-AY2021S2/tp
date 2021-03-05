@@ -17,7 +17,7 @@ public class Item {
 
     // Identity fields
     private final ItemName name;
-    private final Phone phone;
+    private final Quantity quantity;
     private final ExpiryDate expiryDate;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Item {
     /**
      * Every field must be present and not null.
      */
-    public Item(ItemName name, Phone phone, ExpiryDate expiryDate, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, phone, expiryDate, location, tags);
+    public Item(ItemName name, Quantity quantity, ExpiryDate expiryDate, Location location, Set<Tag> tags) {
+        requireAllNonNull(name, quantity, expiryDate, location, tags);
         this.name = name;
-        this.phone = phone;
+        this.quantity = quantity;
         this.expiryDate = expiryDate;
         this.location = location;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Item {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Quantity getQuantity() {
+        return quantity;
     }
 
     public ExpiryDate getExpiryDate() {
@@ -89,7 +89,7 @@ public class Item {
 
         Item otherItem = (Item) other;
         return otherItem.getItemName().equals(getItemName())
-            && otherItem.getPhone().equals(getPhone())
+            && otherItem.getQuantity().equals(getQuantity())
             && otherItem.getExpiryDate().equals(getExpiryDate())
             && otherItem.getLocation().equals(getLocation())
             && otherItem.getTags().equals(getTags());
@@ -98,15 +98,15 @@ public class Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, expiryDate, location, tags);
+        return Objects.hash(name, quantity, expiryDate, location, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getItemName())
-            .append("; Phone: ")
-            .append(getPhone())
+            .append("; Quantity: ")
+            .append(getQuantity())
             .append("; ExpiryDate: ")
             .append(getExpiryDate())
             .append("; Location: ")
