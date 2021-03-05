@@ -29,6 +29,8 @@ public class SendCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_CALL_ENDPOINT_SUCCESS = "Called endpoint: %1$s";
+    public static final String MESSAGE_CALL_ENDPOINT_FAILED = "Endpoint call failed: Check your endpoint"
+            + " fields and try again.";
 
     private final Index index;
 
@@ -56,7 +58,7 @@ public class SendCommand extends Command {
         try {
             response = epc.callEndpoint();
         } catch (IOException e) {
-            throw new CommandException("Placeholder exception");
+            throw new CommandException(MESSAGE_CALL_ENDPOINT_FAILED);
         }
 
         System.out.println(response);
