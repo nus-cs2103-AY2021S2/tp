@@ -6,7 +6,7 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'dog.pawbook.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -66,7 +66,9 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveBaseName.set('pawbook')
+    archiveClassifier.set('')
+    archiveVersion.set('v1.1')
 }
 
 defaultTasks 'clean', 'test'
