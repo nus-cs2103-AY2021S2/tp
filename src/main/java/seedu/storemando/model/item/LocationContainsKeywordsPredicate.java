@@ -11,8 +11,6 @@ import seedu.storemando.commons.util.StringUtil;
 public class LocationContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
 
-    private boolean alwaysMatch = true;
-
     public LocationContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
