@@ -7,7 +7,7 @@ import seedu.storemando.model.item.Item;
  * A utility class to help with building StoreMando objects.
  * Example usage: <br>
  * <<<<<<< HEAD
- * {@code StoreMando ab = new StoreMandoBuilder().withPerson("John", "Doe").build();}
+ * {@code StoreMando ab = new StoreMandoBuilder().withItem("John", "Doe").build();}
  * =======
  * {@code StoreMando ab = new StoreMandoBuilder().withItem("John", "Doe").build();}
  * >>>>>>> mid-1.2-base-refactor

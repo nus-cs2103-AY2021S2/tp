@@ -42,7 +42,7 @@ public class ItemCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Item} and index to display.
+     * Creates a {@code ItemCode} with the given {@code Item} and index to display.
      */
     public ItemCard(Item item, int displayedIndex) {
         super(FXML);
