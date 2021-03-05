@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemName;
 import seedu.address.model.item.Location;
-import seedu.address.model.item.Name;
 import seedu.address.model.item.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -50,7 +50,7 @@ class JsonAdaptedItem {
      * Converts a given {@code Item} into this class for Jackson use.
      */
     public JsonAdaptedItem(Item source) {
-        name = source.getName().fullName;
+        name = source.getItemName().fullName;
         phone = source.getPhone().value;
         expiryDate = source.getExpiryDate().value;
         location = source.getLocation().value;
@@ -71,12 +71,13 @@ class JsonAdaptedItem {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ItemName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!ItemName.isValidName(name)) {
+            throw new IllegalValueException(ItemName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final ItemName modelName = new ItemName(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
