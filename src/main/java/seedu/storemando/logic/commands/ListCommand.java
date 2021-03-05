@@ -1,10 +1,12 @@
 package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
-import java.util.ArrayList;
+import java.util.function.Predicate;
 
 import seedu.storemando.model.Model;
+import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
 
 /**
@@ -16,14 +18,14 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all items";
 
-    private final LocationContainsKeywordsPredicate predicate;
+    private final Predicate<Item> predicate;
 
     public ListCommand(LocationContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     public ListCommand() {
-        this.predicate = new LocationContainsKeywordsPredicate(new ArrayList<>());
+        this.predicate = PREDICATE_SHOW_ALL_ITEMS;
     }
 
     @Override

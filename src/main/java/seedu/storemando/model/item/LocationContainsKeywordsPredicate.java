@@ -11,7 +11,7 @@ import seedu.storemando.commons.util.StringUtil;
 public class LocationContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
 
-    private boolean SHOW_ALL_ITEMS = true;
+    private boolean alwaysMatch = true;
 
     public LocationContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
@@ -19,9 +19,7 @@ public class LocationContainsKeywordsPredicate implements Predicate<Item> {
 
     @Override
     public boolean test(Item item) {
-        if (keywords.isEmpty()) {
-            return SHOW_ALL_ITEMS;
-        }
+        assert keywords.isEmpty() : "Keywords shouldn't be empty.";
         return keywords.stream()
             .allMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getLocation().value, keyword));
     }
