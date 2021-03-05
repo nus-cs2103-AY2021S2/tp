@@ -39,7 +39,7 @@ public class EditItemDescriptorTest {
         EditItemDescriptor editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different phone -> returns false
+        // different quantity -> returns false
         editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withQuantity(VALID_QUANTITY_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 

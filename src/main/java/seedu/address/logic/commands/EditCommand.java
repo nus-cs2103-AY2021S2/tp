@@ -38,7 +38,7 @@ public class EditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "ITEM NAME] "
-        + "[" + PREFIX_QUANTITY + "PHONE] "
+        + "[" + PREFIX_QUANTITY + "QUANTITY] "
         + "[" + PREFIX_EXPIRYDATE + "EXPIRYDATE] "
         + "[" + PREFIX_LOCATION + "ADDRESS] "
         + "[" + PREFIX_TAG + "TAG]...\n"
