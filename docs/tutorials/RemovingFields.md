@@ -20,7 +20,7 @@ Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify 
 
 ### Assisted refactoring
 
-The `location` field in `Person` is actually an instance of the `seedu.address.model.item.Location` class. Since removing the `Location` class will break the application, we start by identifying `Location`'s usages. This allows us to see code that depends on `Location` to function properly and edit them on a case-by-case basis. Right-click the `Location` class and select `Refactor` \> `Safe Delete` through the menu.
+The `location` field in `Person` is actually an instance of the `seedu.storemando.model.item.Location` class. Since removing the `Location` class will break the application, we start by identifying `Location`'s usages. This allows us to see code that depends on `Location` to function properly and edit them on a case-by-case basis. Right-click the `Location` class and select `Refactor` \> `Safe Delete` through the menu.
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
 
