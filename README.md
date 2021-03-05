@@ -12,10 +12,10 @@ This is **a project for bash-savvy users who are familiar with Command-Line-Inte
 * as a CLI integrated address book.
 * contact tracker to better manage your contacts and relationships.
 
-## Setup 
+## Setup
 [coming soon]
 
-## Features 
+## Features
 [coming soon]
 
 ## Acknowledgement
