@@ -1,4 +1,7 @@
-# User Guide
+---
+layout: page
+title: User Guide
+---
 
 TimeForWheels is an app for delivery drivers to manage their orders efficiently. It is optimized for use via a Command
 Line Interface while still having the benefits of a Graphical User Interface(GUI). Overall, TimeForWheels aims to
