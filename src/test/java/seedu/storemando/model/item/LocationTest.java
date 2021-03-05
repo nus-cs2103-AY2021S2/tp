@@ -21,7 +21,7 @@ public class LocationTest {
 
     @Test
     public void isValidLocation() {
-        // null address
+        // null location
         assertThrows(NullPointerException.class, () -> Location.isValidLocation(null));
 
         // invalid addresses
@@ -31,6 +31,6 @@ public class LocationTest {
         // valid addresses
         assertTrue(Location.isValidLocation("Blk 456, Den Road, #01-355"));
         assertTrue(Location.isValidLocation("-")); // one character
-        assertTrue(Location.isValidLocation("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Location.isValidLocation("Leng Inc; 1 Mark St; San Francis CA 2349879; US")); // long location
     }
 }

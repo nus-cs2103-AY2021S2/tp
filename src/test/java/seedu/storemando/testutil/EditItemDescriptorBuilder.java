@@ -57,7 +57,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditItemDescriptor} that we are building.
+     * Sets the {@code ExpiryDate} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withExpiryDate(String expiryDate) {
         descriptor.setExpiryDate(new ExpiryDate(expiryDate));
@@ -65,7 +65,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditItemDescriptor} that we are building.
+     * Sets the {@code Location} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withLocation(String location) {
         descriptor.setLocation(new Location(location));

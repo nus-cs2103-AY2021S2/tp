@@ -21,10 +21,10 @@ public class ExpiryDateTest {
 
     @Test
     public void isValidExpiryDate() {
-        // null email
+        // null expirydate
         assertThrows(NullPointerException.class, () -> ExpiryDate.isValidExpiryDate(null));
 
-        // blank email
+        // blank expirydate
         assertFalse(ExpiryDate.isValidExpiryDate("")); // empty string
         assertFalse(ExpiryDate.isValidExpiryDate(" ")); // spaces only
 
@@ -48,7 +48,7 @@ public class ExpiryDateTest {
         assertFalse(ExpiryDate.isValidExpiryDate("peterjack@-example.com")); // domain name starts with a hyphen
         assertFalse(ExpiryDate.isValidExpiryDate("peterjack@example.com-")); // domain name ends with a hyphen
 
-        // valid email
+        // valid expirydate
         assertTrue(ExpiryDate.isValidExpiryDate("PeterJack_1190@example.com"));
         assertTrue(ExpiryDate.isValidExpiryDate("a@bc")); // minimal
         assertTrue(ExpiryDate.isValidExpiryDate("test@localhost")); // alphabets only

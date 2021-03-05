@@ -3,7 +3,7 @@
     {
       "name": "Hans Muster",
       "quantity": "9482424",
-      "expiryDate": "invalid@email!3e",
+      "expirydate": "invalid@email!3e",
       "location": "4th street"
     }
   ]
