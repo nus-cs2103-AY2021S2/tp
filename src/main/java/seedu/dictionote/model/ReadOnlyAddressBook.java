@@ -1,7 +1,6 @@
 package seedu.dictionote.model;
 
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.person.Person;
 
 /**
