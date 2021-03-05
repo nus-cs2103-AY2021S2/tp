@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Justin Gnoh
 
-<img src="images/justingnohug.png" width="200px">
+<img src="images/justgnohug.png" width="200px">
 
 [[github](http://github.com/justgnohUG)]
 <!-- [[portfolio](team/johndoe.md)] -->
