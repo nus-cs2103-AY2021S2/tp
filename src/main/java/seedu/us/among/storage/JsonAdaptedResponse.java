@@ -15,6 +15,7 @@ class JsonAdaptedResponse {
     private final String statusCode;
     private final String reasonPhrase;
     private final String statusLine;
+    private final String responseEntity;
 
     /**
      * Constructs a {@code JsonAdaptedResponse} with the given {@code protocolVersion, @code statusCode,
@@ -24,11 +25,13 @@ class JsonAdaptedResponse {
     public JsonAdaptedResponse(@JsonProperty("protocolVersion") String protocolVersion,
                                @JsonProperty("statusCode") String statusCode,
                                @JsonProperty("reasonPhrase") String reasonPhrase,
-                               @JsonProperty("statusLine") String statusLine) {
+                               @JsonProperty("statusLine") String statusLine,
+                               @JsonProperty("responseEntity") String responseEntity) {
         this.protocolVersion = protocolVersion;
         this.statusCode = statusCode;
         this.reasonPhrase = reasonPhrase;
         this.statusLine = statusLine;
+        this.responseEntity = responseEntity;
     }
 
     /**
@@ -39,6 +42,7 @@ class JsonAdaptedResponse {
         this.statusCode = source.getStatusCode();
         this.reasonPhrase = source.getReasonPhrase();
         this.statusLine = source.getStatusLine();
+        this.responseEntity = source.getResponseEntity();
     }
 
     /**
@@ -50,7 +54,7 @@ class JsonAdaptedResponse {
         if (!Response.isValidResponse(protocolVersion, statusCode, reasonPhrase, statusLine)) {
             throw new IllegalValueException(Response.MESSAGE_CONSTRAINTS);
         }
-        return new Response(protocolVersion, statusCode, reasonPhrase, statusLine);
+        return new Response(protocolVersion, statusCode, reasonPhrase, statusLine, responseEntity);
     }
 
 }

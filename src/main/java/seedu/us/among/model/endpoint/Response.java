@@ -21,6 +21,7 @@ public class Response {
     public final String statusCode;
     public final String reasonPhrase;
     public final String statusLine;
+    public final String responseEntity;
 
     /**
      * Constructs an empty {@code Response}.
@@ -30,6 +31,7 @@ public class Response {
         this.statusCode = "";
         this.reasonPhrase = "";
         this.statusLine = "";
+        this.responseEntity = "";
     }
 
     /**
@@ -40,13 +42,15 @@ public class Response {
      * @param reasonPhrase A valid reason phrase corresponding to status code.
      * @param statusLine Contains protocolVersion, statusCode and reasonPhrase.
      */
-    public Response(String protocolVersion, String statusCode, String reasonPhrase, String statusLine) {
+    public Response(String protocolVersion, String statusCode, String reasonPhrase, String statusLine,
+                String responseEntity) {
         requireAllNonNull(protocolVersion, statusCode, reasonPhrase, statusLine);
         checkArgument(isValidResponse(protocolVersion, statusCode, reasonPhrase, statusLine), MESSAGE_CONSTRAINTS);
         this.protocolVersion = protocolVersion;
         this.statusCode = statusCode;
         this.reasonPhrase = reasonPhrase;
         this.statusLine = statusLine;
+        this.responseEntity = responseEntity;
     }
 
     /**
@@ -74,6 +78,10 @@ public class Response {
 
     public String getStatusLine() {
         return this.statusLine;
+    }
+
+    public String getResponseEntity() {
+        return this.responseEntity;
     }
 
     @Override

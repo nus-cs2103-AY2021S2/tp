@@ -31,6 +31,7 @@ public class EndpointCaller {
         //solution adapted from https://mkyong.com/java/apache-httpclient-examples/
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response;
+        String responseEntity = "";
 
         try {
 
@@ -53,8 +54,7 @@ public class EndpointCaller {
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
                     // return it as a String
-                    String result = EntityUtils.toString(entity);
-                    System.out.println(result);
+                    responseEntity = EntityUtils.toString(entity);
                 }
 
             } finally {
@@ -66,6 +66,6 @@ public class EndpointCaller {
         return new Response(response.getProtocolVersion().toString(),
                 String.valueOf(response.getStatusLine().getStatusCode()),
                 response.getStatusLine().getReasonPhrase(),
-                response.getStatusLine().toString());
+                response.getStatusLine().toString(), responseEntity);
     }
 }
