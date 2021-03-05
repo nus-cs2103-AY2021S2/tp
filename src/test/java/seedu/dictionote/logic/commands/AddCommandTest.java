@@ -126,6 +126,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getNoteBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -137,6 +142,11 @@ public class AddCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNoteBookFilePath(Path path) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -165,6 +175,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Note> getFilteredNoteList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
