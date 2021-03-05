@@ -190,7 +190,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setModeOfContact(ModeOfContact modeOfContact){
+        public void setModeOfContact(ModeOfContact modeOfContact) {
             this.modeOfContact = modeOfContact;
         }
 
