@@ -86,7 +86,7 @@ public class Task {
         return otherTask.getName().equals(getName())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getPriority().equals(getPriority())
-                && otherTask.getCategory().equals(getCategory())
+                && otherTask.getCategories().equals(getCategories())
                 && otherTask.getTags().equals(getTags());
     }
 
@@ -99,7 +99,7 @@ public class Task {
                 .append("; Priority: ")
                 .append(getPriority())
                 .append("; Category: ")
-                .append(getCategory());
+                .append(getCategories());
 
         Set<seedu.address.model.common.Tag> tags = getTags();
         if (!tags.isEmpty()) {
