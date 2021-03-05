@@ -14,7 +14,13 @@ import seedu.address.model.task.Task;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,6 +95,7 @@ public interface Model {
 
     //=========== task ==================================================================================
 
+
     /**
      * Returns the user prefs' TaskList file path.
      */
@@ -98,6 +105,11 @@ public interface Model {
      * Sets the user prefs' TaskList file path.
      */
     void setTaskListFilePath(Path taskListFilePath);
+
+    /**
+     * Replaces task list data with the data in {@code sochedule}.
+     */
+    void setTaskList(ReadOnlySochedule sochedule);
 
     /** Returns the TaskList */
     ReadOnlySochedule getTaskList();
@@ -146,6 +158,11 @@ public interface Model {
      * Sets the user prefs' EventList file path.
      */
     void setEventListFilePath(Path eventListFilePath);
+
+    /**
+     * Replaces event list data with the data in {@code sochedule}.
+     */
+    void setEventList(ReadOnlySochedule sochedule);
 
     /** Returns the EventList */
     ReadOnlySochedule getEventList();
