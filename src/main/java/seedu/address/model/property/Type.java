@@ -33,7 +33,7 @@ public class Type {
      * Returns true if a given string is a valid property type.
      *
      * @param test The string to test.
-     * @return True If the given string is a valid property type, otherwise false.
+     * @return True if the given string is a valid property type, otherwise false.
      */
     public boolean isValidType(String test) {
         String lowercaseTest = test.toLowerCase();

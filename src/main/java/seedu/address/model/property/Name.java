@@ -34,7 +34,7 @@ public class Name {
      * Returns true if a given string is a valid property name.
      *
      * @param test The string to test.
-     * @return True If the given string is a valid property name, otherwise false.
+     * @return True if the given string is a valid property name, otherwise false.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);

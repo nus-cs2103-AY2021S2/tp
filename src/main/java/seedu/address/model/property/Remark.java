@@ -3,6 +3,10 @@ package seedu.address.model.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Property's remark.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}.
+ */
 public class Remark {
     private static final String MESSAGE_CONSTRAINTS = "Remarks can take any value, but it should not be blank";
 
@@ -10,13 +14,24 @@ public class Remark {
 
     public final String remark;
 
+    /**
+     * Constructs a {@code Remark}.
+     *
+     * @param remark A valid remark.
+     */
     public Remark(String remark) {
         requireNonNull(remark);
-        checkArgument(isValidName(remark), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
         this.remark = remark;
     }
 
-    public static boolean isValidName(String test) {
+    /**
+     * Returns true if a given string is a valid remark.
+     *
+     * @param test The string to test.
+     * @return True if the given string is a valid property remark, otherwise false.
+     */
+    public static boolean isValidRemark(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
