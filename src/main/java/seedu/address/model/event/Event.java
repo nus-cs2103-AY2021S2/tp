@@ -21,14 +21,14 @@ public class Event {
     private final Time startTime;
     private final Date endDate;
     private final Time endTime;
-    private final Category category;
+    private final Set<Category> category;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Name field must be present and not null.
      */
     public Event(Name name, Date startDate, Time startTime,
-                Date endDate, Time endTime, Category category, Set<Tag> tags) {
+                Date endDate, Time endTime, Set<Category> category, Set<Tag> tags) {
         requireAllNonNull(name, startDate, endDate);
         this.name = name;
         this.startDate = startDate;
@@ -59,7 +59,7 @@ public class Event {
         return this.endTime;
     }
 
-    public Category getCategory() {
+    public Set<Category> getCategory() {
         return this.category;
     }
 
