@@ -69,13 +69,15 @@ Open selected UI Panel.
 Format: `open Option`
 
 * The following `Option` are supported
+    * `-a`: All panel
     * `-c`: Contact panel
-    * `-d`: Dictionary content panel
+    * `-d`: Dictionary panel
+    * `-dc`: Dictionary content panel
     * `-dl`: Dictionary list panel
-    * `-n`: Note content panel
+    * `-n`: Note panel
+    * `-nc`: Note content panel
     * `-nl`: Note list panel
     * `-l`: Both dictionary list and note list panel
-    * `-a` : All panel
 
 Examples:
 * `open -c`
@@ -90,13 +92,15 @@ Close selected UI Panel.
 Format: `close Option`
 
 * The following `Option` are supported
+    * `-a`: All panel
     * `-c`: Contact panel
-    * `-d`: Dictionary content panel
+    * `-d`: Dictionary panel
+    * `-dc`: Dictionary content panel
     * `-dl`: Dictionary list panel
-    * `-n`: Note content panel
+    * `-n`: Note panel
+    * `-nc`: Note content panel
     * `-nl`: Note list panel
     * `-l`: Both dictionary list and note list panel
-    * `-a` : All panel
 
 Examples:
 * `close -c`
