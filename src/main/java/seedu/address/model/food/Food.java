@@ -10,7 +10,7 @@ public class Food {
     private double carbos;
     private double proteins;
     private double kiloCalories;
-    private boolean isUpdated;
+    private boolean isUpdated; //Sets to True once any update function is called for this food item.
 
     /**
      * Initialises the food class.
@@ -45,12 +45,25 @@ public class Food {
         return this.kiloCalories;
     }
 
+    /**
+     * Updates the amount of fats for this food.
+     *
+     * @param fats new amount of fats
+     * @return updated food item
+     */
     public Food updateFats(double fats) {
         this.fats = fats;
         updateKiloCalories();
         setUpdateTrue();
         return this;
     }
+
+    /**
+     * Updates the amount of carbos for this food.
+     *
+     * @param carbos new carbo value
+     * @return updated food item
+     */
 
     public Food updateCarbos(double carbos) {
         this.carbos = carbos;
@@ -59,6 +72,12 @@ public class Food {
         return this;
     }
 
+    /**
+     * Updates the amount of proteins for this food.
+     *
+     * @param proteins new protein value
+     * @return updated food item
+     */
     public Food updateProteins(double proteins) {
         this.proteins = proteins;
         updateKiloCalories();
@@ -83,7 +102,7 @@ public class Food {
     /**
      * Calculates total kilocalories based on input fats, carbos and proteins.
      *
-     * @return totalKiloCalories total converted energy
+     * @return total converted energy in kilocalories
      */
     public double calculateKiloCalories() {
         double convertedFats = this.fats * FAT_MULTIPLIER;
