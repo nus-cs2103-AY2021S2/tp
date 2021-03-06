@@ -71,3 +71,12 @@ format:
 
 Reviews may be done by any members of the team except for the PR author. An
 approval will be given only when the PR is deemed fully ready to be merged.
+### Unfinished Work
+
+If there is any unfinished work/ work that needs to be improved upon, add the keyword `//to-do` behind it followed by a comment on the actions that need to be pursued afterwards. An example is as follows:
+
+```//to-do work on adding more Tests```
+
+Optionally, the author may write their name behind to signal that they will be continuing work on this `//to-do` so that other members do not write unnecessary code. An example would be as follows:
+
+```//to-do Jun Xiong work on adding more Tests```
