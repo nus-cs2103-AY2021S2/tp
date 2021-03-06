@@ -3,6 +3,10 @@ package seedu.address.model.session;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Session's day in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDay(String)}
+ */
 public class Day {
     public static final String MESSAGE_CONSTRAINTS = "Days can only be of one of the following values:\n"
             + "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday\n"
@@ -20,12 +24,20 @@ public class Day {
 
     private DayValue day;
 
+    /**
+     * Constructs an {@code Day}.
+     *
+     * @param day A valid day.
+     */
     public Day(String day) {
         requireNonNull(day);
         checkArgument(isValidDay(day), MESSAGE_CONSTRAINTS);
         this.day = DayValue.valueOf(day.toUpperCase());
     }
 
+    /**
+     * Returns if a given string is a valid day.
+     */
     public static boolean isValidDay(String test) {
         String upperCaseTest = test.toUpperCase();
 
@@ -34,7 +46,7 @@ public class Day {
                 return true;
             }
         }
-    
+
         return false;
     }
 

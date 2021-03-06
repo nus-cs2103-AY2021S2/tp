@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
@@ -13,9 +12,8 @@ import seedu.address.model.session.Session;
 /**
  * Adds a session to the address book.
  */
-public class AddSessionCommand extends AddCommand {
-
-    public static final String COMMAND_WORD = "add";
+public class AddSessionCommand extends Command {
+    public static final String COMMAND_WORD = "add_session";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tuition session to the manager. "
             + "Parameters: "
@@ -28,7 +26,6 @@ public class AddSessionCommand extends AddCommand {
             + PREFIX_TIMESLOT + "12:30 to 14:30 "
             + PREFIX_SUBJECT + "Piano "
             + PREFIX_TAG + "music";
-
     public static final String MESSAGE_SUCCESS = "New session added: %1$s";
 
     private final Session toAdd;
@@ -42,7 +39,7 @@ public class AddSessionCommand extends AddCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
 
         model.addSession(toAdd);

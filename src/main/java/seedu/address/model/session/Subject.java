@@ -17,14 +17,14 @@ public class Subject {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+([ -][a-zA-Z0-9]+)*?$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+([ -][a-zA-Z0-9]+)*$";
 
     public final String subject;
 
     /**
      * Constructs a {@code Subject}.
      *
-     * @param Subject A valid Subject.
+     * @param subject A valid Subject.
      */
     public Subject(String subject) {
         requireNonNull(subject);
