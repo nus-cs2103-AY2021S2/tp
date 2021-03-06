@@ -12,6 +12,9 @@ public class Property {
     private final String clientEmail;
     private final Integer clientAskingPrice;
 
+    /**
+     * Constructs a {@code Property} without client's information.
+     */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks) {
         this.name = name;
@@ -26,6 +29,10 @@ public class Property {
         this.clientAskingPrice = null;
     }
 
+    /**
+     * Constructs a {@code Property} with all information.
+     * Every field must be present and not null.
+     */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, String clientName, String clientContact, String clientEmail,
                     Integer clientAskingPrice) {

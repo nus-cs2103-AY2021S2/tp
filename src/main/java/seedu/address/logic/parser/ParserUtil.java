@@ -46,7 +46,9 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @param name The property name string to be parsed.
+     * @return A {@code Name}.
+     * @throws ParseException If the given {@code name} is invalid.
      */
     public static Name parsePropertyName(String name) throws ParseException {
         requireNonNull(name);
@@ -57,6 +59,14 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String type} into a {@code Type}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param type The property type string to be parsed.
+     * @return A {@code Type}.
+     * @throws ParseException If the given {@code type} is invalid.
+     */
     public static Type parsePropertyType(String type) throws ParseException {
         requireNonNull(type);
         String trimmedType = type.trim();
@@ -67,10 +77,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses an {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @param address The property address string to be parsed.
+     * @return An {@code Address}.
+     * @throws ParseException If the given {@code address} is invalid.
      */
     public static Address parsePropertyAddress(String address) throws ParseException {
         requireNonNull(address);
@@ -81,6 +93,14 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+    /**
+     * Parses a {@code String postal} into a {@code Postal}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param postal The property postal string to be parsed.
+     * @return A {@code Postal}.
+     * @throws ParseException If the given {@code postal} is invalid.
+     */
     public static PostalCode parsePropertyPostal(String postal) throws ParseException {
         requireNonNull(postal);
         String trimmedPostal = postal.trim();
@@ -90,6 +110,14 @@ public class ParserUtil {
         return new PostalCode(trimmedPostal);
     }
 
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param deadline The property deadline string to be parsed.
+     * @return A {@code Deadline}.
+     * @throws ParseException If the given {@code deadline} is invalid.
+     */
     public static Deadline parsePropertyDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
@@ -100,7 +128,15 @@ public class ParserUtil {
         }
     }
 
-    public static Remark parseRemark(String remark) throws ParseException {
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param remark The property remark string to be parsed.
+     * @return A {@code Remark}.
+     * @throws ParseException If the given {@code remark} is invalid.
+     */
+    public static Remark parsePropertyRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
         if (!Remark.isValidRemark(trimmedRemark)) {
@@ -112,6 +148,12 @@ public class ParserUtil {
     // ======================================================================================================
     // Placeholders for Person object below to handle errors
 
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static seedu.address.model.person.Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
@@ -121,6 +163,12 @@ public class ParserUtil {
         return new seedu.address.model.person.Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
     public static seedu.address.model.person.Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
