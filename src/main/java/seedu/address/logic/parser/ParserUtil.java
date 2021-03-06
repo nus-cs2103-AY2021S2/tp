@@ -157,8 +157,8 @@ public class ParserUtil {
     public static seedu.address.model.person.Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.person.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.person.Name(trimmedName);
     }
@@ -172,8 +172,8 @@ public class ParserUtil {
     public static seedu.address.model.person.Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.person.Address.isValidAddress(trimmedAddress)) {
+            throw new ParseException(seedu.address.model.person.Address.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.person.Address(trimmedAddress);
     }
