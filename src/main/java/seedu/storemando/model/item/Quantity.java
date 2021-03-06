@@ -12,8 +12,8 @@ public class Quantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Quantity numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+        "Quantity numbers should only contain numbers, and it should be at least 1 digit long";
+    public static final String VALIDATION_REGEX = "\\d{1,}";
     public final String value;
 
     /**
@@ -31,7 +31,13 @@ public class Quantity {
      * Returns true if a given string is a valid quantity number.
      */
     public static boolean isValidQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            long value = Long.parseLong(test);
+            if (value > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

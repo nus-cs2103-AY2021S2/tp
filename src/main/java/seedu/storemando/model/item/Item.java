@@ -28,7 +28,7 @@ public class Item {
      * Every field must be present and not null.
      */
     public Item(ItemName name, Quantity quantity, ExpiryDate expiryDate, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, quantity, expiryDate, location, tags);
+        requireAllNonNull(name, quantity, location, tags);
         this.name = name;
         this.quantity = quantity;
         this.expiryDate = expiryDate;
@@ -70,7 +70,8 @@ public class Item {
         }
 
         return otherItem != null
-            && otherItem.getItemName().equals(getItemName());
+            && otherItem.getItemName().equals(getItemName())
+            && otherItem.getLocation().equals(getLocation());
     }
 
     /**
