@@ -107,10 +107,12 @@ public class Item {
         final StringBuilder builder = new StringBuilder();
         builder.append(getItemName())
             .append("; Quantity: ")
-            .append(getQuantity())
-            .append("; ExpiryDate: ")
-            .append(getExpiryDate())
-            .append("; Location: ")
+            .append(getQuantity());
+        if (getExpiryDate().getDate() != null) {
+            builder.append("; ExpiryDate: ")
+                .append(getExpiryDate());
+        }
+        builder.append("; Location: ")
             .append(getLocation());
 
         Set<Tag> tags = getTags();

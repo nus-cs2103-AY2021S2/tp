@@ -56,6 +56,10 @@ public class ExpiryDate {
         value = expiryDate;
     }
 
+    public LocalDate getDate() {
+        return this.date;
+    }
+
     /**
      * Returns if a given string is a valid expiryDate.
      */
