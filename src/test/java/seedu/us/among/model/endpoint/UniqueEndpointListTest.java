@@ -9,13 +9,13 @@ import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalEndpoints.GET;
 import static seedu.us.among.testutil.TypicalEndpoints.POST;
 
-// import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-// import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
+import seedu.us.among.model.endpoint.exceptions.DuplicateApiEndpointException;
 import seedu.us.among.model.endpoint.exceptions.EndpointNotFoundException;
 import seedu.us.among.testutil.EndpointBuilder;
 
@@ -155,12 +155,12 @@ public class UniqueEndpointListTest {
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
-    // @Test
-    // public void setMethods_listWithDuplicateMethods_throwsDuplicateMethodException() {
-    //     List<Endpoint> listWithDuplicateEndpoints = Arrays.asList(GET, GET);
-    //     assertThrows(DuplicateApiEndpointException.class,
-    //             () -> uniqueEndpointList.setEndpoints(listWithDuplicateEndpoints));
-    // }
+    @Test
+    public void setMethods_listWithDuplicateMethods_throwsDuplicateMethodException() {
+        List<Endpoint> listWithDuplicateEndpoints = Arrays.asList(GET, GET);
+        assertThrows(DuplicateApiEndpointException.class, (
+            ) -> uniqueEndpointList.setEndpoints(listWithDuplicateEndpoints));
+    }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
