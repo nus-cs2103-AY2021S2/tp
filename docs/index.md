@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: A-Bash Book
 ---
 
 [![CI Status](https://github.com/AY2021S2-CS2103T-T12-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-T12-3/tp/actions/workflows/gradle.yml)
