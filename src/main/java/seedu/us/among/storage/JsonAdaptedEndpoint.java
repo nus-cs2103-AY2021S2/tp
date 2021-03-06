@@ -60,7 +60,8 @@ class JsonAdaptedEndpoint {
                 sourceResponse.getStatusCode(),
                 sourceResponse.getReasonPhrase(),
                 sourceResponse.getStatusLine(),
-                sourceResponse.getResponseEntity());
+                sourceResponse.getResponseEntity(),
+                sourceResponse.getResponseTime());
     }
 
     /**
@@ -99,7 +100,8 @@ class JsonAdaptedEndpoint {
             Response newModelResponse = response.toModelType();
             modelResponse = new Response(newModelResponse.getProtocolVersion(),
                     newModelResponse.getStatusCode(), newModelResponse.getReasonPhrase(),
-                    newModelResponse.getStatusLine(), newModelResponse.getResponseEntity());
+                    newModelResponse.getStatusLine(), newModelResponse.getResponseEntity(),
+                    newModelResponse.getResponseTime());
         }
 
         final Set<Tag> modelTags = new HashSet<>(endpointTags);
