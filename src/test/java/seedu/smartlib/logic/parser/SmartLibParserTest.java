@@ -13,8 +13,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.logic.commands.*;
-import seedu.smartlib.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.smartlib.logic.commands.AddCommand;
+import seedu.smartlib.logic.commands.BorrowCommand;
+import seedu.smartlib.logic.commands.ClearCommand;
+import seedu.smartlib.logic.commands.DeleteCommand;
+import seedu.smartlib.logic.commands.EditCommand;
+import seedu.smartlib.logic.commands.ExitCommand;
+import seedu.smartlib.logic.commands.FindCommand;
+import seedu.smartlib.logic.commands.HelpCommand;
+import seedu.smartlib.logic.commands.ListCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
@@ -49,7 +56,7 @@ public class SmartLibParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Reader reader = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(reader).build();
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(reader).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
