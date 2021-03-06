@@ -42,11 +42,11 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Date startDate = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_STARTDATE).get());
-        Time startTime = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_STARTTIME).get());
-        Date endDate = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_ENDDATE).get());
-        Time endTime = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_ENDTIME).get());
-        Set<Category> categoryList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY));
+        Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
+        Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_STARTTIME).get());
+        Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDDATE).get());
+        Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_ENDTIME).get());
+        Set<Category> categoryList = ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Event event = new Event(name, startDate, startTime, endDate, endTime, categoryList, tagList);
