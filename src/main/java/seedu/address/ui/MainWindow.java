@@ -193,4 +193,11 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+    /**
+     * Display greetings message in status bar.
+     */
+    public void displayGreetings() {
+        resultDisplay.greetUser();
+    }
 }
