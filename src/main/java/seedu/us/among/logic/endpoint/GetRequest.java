@@ -32,7 +32,7 @@ public class GetRequest extends Request {
      * @return returns the response from the API call
      */
     @Override
-    public Response execute() throws IOException {
+    public Response send() throws IOException {
         //solution adapted from https://mkyong.com/java/apache-httpclient-examples/
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response;

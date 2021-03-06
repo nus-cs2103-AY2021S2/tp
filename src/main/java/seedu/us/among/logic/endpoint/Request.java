@@ -36,5 +36,5 @@ public abstract class Request {
      *
      * @return returns the response from the API call
      */
-    public abstract Response execute() throws IOException;
+    public abstract Response send() throws IOException;
 }

@@ -33,7 +33,7 @@ public class EndpointCaller {
 
         switch (requestMethod) {
         case GET:
-            response = new GetRequest(endpointToSend).execute();
+            response = new GetRequest(endpointToSend).send();
             break;
         case POST:
             //to-do
