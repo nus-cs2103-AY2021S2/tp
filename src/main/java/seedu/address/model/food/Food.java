@@ -45,21 +45,21 @@ public class Food {
         return this.kiloCalories;
     }
 
-    public Food setFats(double fats) {
+    public Food updateFats(double fats) {
         this.fats = fats;
         updateKiloCalories();
         setUpdateTrue();
         return this;
     }
 
-    public Food setCarbos(double carbos) {
+    public Food updateCarbos(double carbos) {
         this.carbos = carbos;
         updateKiloCalories();
         setUpdateTrue();
         return this;
     }
 
-    public Food setProteins(double proteins) {
+    public Food updateProteins(double proteins) {
         this.proteins = proteins;
         updateKiloCalories();
         setUpdateTrue();
