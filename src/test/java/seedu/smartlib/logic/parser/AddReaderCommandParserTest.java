@@ -31,10 +31,14 @@ import static seedu.smartlib.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD:src/test/java/seedu/smartlib/logic/parser/AddReaderCommandParserTest.java
 import seedu.smartlib.logic.commands.AddReaderCommand;
+=======
+import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.logic.commands.AddCommand;
+>>>>>>> 1019332b8e2e69ebf2a923ce18c3d4cc1612e0ef:src/test/java/seedu/smartlib/logic/parser/AddCommandParserTest.java
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
-import seedu.smartlib.model.reader.Name;
 import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;

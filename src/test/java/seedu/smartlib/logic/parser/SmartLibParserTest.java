@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -90,9 +92,10 @@ public class SmartLibParserTest {
 
     @Test
     public void parseCommand_borrow() throws Exception {
-        assertTrue(parser.parseCommand(BorrowCommand.COMMAND_WORD) instanceof BorrowCommand);
+        BorrowCommand command = (BorrowCommand) parser.parseCommand(BorrowCommand.COMMAND_WORD + " "
+                + PREFIX_BOOK + 2 + " " + PREFIX_READER + 2);
+        assertEquals(new BorrowCommand(2, 2), command);
     }
-
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
