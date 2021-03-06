@@ -1,10 +1,10 @@
 {
   "items": [
     {
-      "name": "Hans Muster",
-      "quantity": "9482424",
-      "expirydate": "invalid@email!3e",
-      "location": "4th street"
+      "name": "Mustard",
+      "quantity": "9",
+      "expirydate": "20010-1-1",
+      "location": "Refrigerator"
     }
   ]
 }

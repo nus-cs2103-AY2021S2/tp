@@ -18,7 +18,7 @@ public class ItemBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_QUANTITY = "85355255";
-    public static final String DEFAULT_EXPIRYDATE = "amy@gmail.com";
+    public static final String DEFAULT_EXPIRYDATE = "2018-10-10";
     public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
 
     private ItemName name;

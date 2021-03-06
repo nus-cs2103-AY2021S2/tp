@@ -29,9 +29,9 @@ public class ExpiryDateTest {
         assertFalse(ExpiryDate.isValidExpiryDate(" ")); // spaces only
 
         // missing parts
-        assertFalse(ExpiryDate.isValidExpiryDate("@example.com")); // missing local part
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjackexample.com")); // missing '@' symbol
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@")); // missing domain name
+        assertFalse(ExpiryDate.isValidExpiryDate("2020-10")); // missing DD
+        assertFalse(ExpiryDate.isValidExpiryDate("20201010")); // missing '-' symbol
+        assertFalse(ExpiryDate.isValidExpiryDate("10-10")); // missing YYYY
 
         // invalid parts
         assertFalse(ExpiryDate.isValidExpiryDate("peterjack@-")); // invalid domain name
@@ -49,13 +49,9 @@ public class ExpiryDateTest {
         assertFalse(ExpiryDate.isValidExpiryDate("peterjack@example.com-")); // domain name ends with a hyphen
 
         // valid expirydate
-        assertTrue(ExpiryDate.isValidExpiryDate("PeterJack_1190@example.com"));
-        assertTrue(ExpiryDate.isValidExpiryDate("a@bc")); // minimal
-        assertTrue(ExpiryDate.isValidExpiryDate("test@localhost")); // alphabets only
-        assertTrue(ExpiryDate.isValidExpiryDate("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters local part
-        assertTrue(ExpiryDate.isValidExpiryDate("123@145")); // numeric local part and domain name
-        assertTrue(ExpiryDate.isValidExpiryDate("a1+b!@e.com")); // mixture of alphanumeric and special characters
-        assertTrue(ExpiryDate.isValidExpiryDate("peter_jack@very-very-very-long-example.com")); // long domain name
-        assertTrue(ExpiryDate.isValidExpiryDate("if.you.dream.it_you.can.do.it@example.com")); // long local part
+        assertTrue(ExpiryDate.isValidExpiryDate("2020-10-10"));
+        assertTrue(ExpiryDate.isValidExpiryDate("2020-01-01"));
+        assertTrue(ExpiryDate.isValidExpiryDate("0001-10-10"));
+
     }
 }

@@ -70,6 +70,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match quantity, expirydate and location, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").withQuantity("12345")
-            .withExpiryDate("alice@email.com").withLocation("Main Street").build()));
+            .withExpiryDate("2010-10-10").withLocation("Main Street").build()));
     }
 }

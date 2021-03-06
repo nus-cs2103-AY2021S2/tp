@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 /**
- * Represents an Item's expiry in the inventory manager.
+ * Represents an Item's expiry date in the inventory manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidExpiryDate(String)}
  */
 public class ExpiryDate {
