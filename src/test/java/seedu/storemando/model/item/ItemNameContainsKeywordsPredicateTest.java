@@ -19,16 +19,16 @@ public class ItemNameContainsKeywordsPredicateTest {
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
         ItemNameContainsKeywordsPredicate firstPredicate =
-            new ItemNameContainsKeywordsPredicate(firstPredicateKeywordList);
+            new ItemNameContainsKeywordsPredicate(firstPredicateKeywordList,false);
         ItemNameContainsKeywordsPredicate secondPredicate =
-            new ItemNameContainsKeywordsPredicate(secondPredicateKeywordList);
+            new ItemNameContainsKeywordsPredicate(secondPredicateKeywordList,false);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
         ItemNameContainsKeywordsPredicate firstPredicateCopy =
-            new ItemNameContainsKeywordsPredicate(firstPredicateKeywordList);
+            new ItemNameContainsKeywordsPredicate(firstPredicateKeywordList,false);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -45,34 +45,35 @@ public class ItemNameContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         ItemNameContainsKeywordsPredicate predicate =
-            new ItemNameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+            new ItemNameContainsKeywordsPredicate(Collections.singletonList("Alice"),false);
         assertTrue(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"),false);
         assertTrue(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"),false);
         assertTrue(predicate.test(new ItemBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"),false);
         assertTrue(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Collections.emptyList());
+        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Collections.emptyList(),false);
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Carol"),false);
         assertFalse(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
 
         // Keywords match quantity, expirydate and location, but does not match name
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street")
+            ,false);
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").withQuantity("12345")
             .withExpiryDate("alice@email.com").withLocation("Main Street").build()));
     }

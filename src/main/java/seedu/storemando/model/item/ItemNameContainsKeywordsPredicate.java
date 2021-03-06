@@ -10,15 +10,23 @@ import seedu.storemando.commons.util.StringUtil;
  */
 public class ItemNameContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
+    private boolean isGenericFind;
 
-    public ItemNameContainsKeywordsPredicate(List<String> keywords) {
+    public ItemNameContainsKeywordsPredicate(List<String> keywords, boolean isGenericFind) {
         this.keywords = keywords;
+        this.isGenericFind = isGenericFind;
     }
 
     @Override
     public boolean test(Item item) {
-        return keywords.stream()
-            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getItemName().fullName, keyword));
+        if (isGenericFind) {
+            return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(item.getItemName().fullName, keyword));
+        } else {
+            return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getItemName().fullName, keyword));
+        }
+
     }
 
     @Override
