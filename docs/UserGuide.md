@@ -182,6 +182,12 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Sort entries by name : `sort`
+
+Sort the entries in the address book by name in ascending alphabetical order.
+
+Format: `sort`
+
 ### Exiting the program : `exit`
 
 Exits the program.
