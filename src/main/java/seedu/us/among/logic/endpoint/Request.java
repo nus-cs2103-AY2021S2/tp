@@ -8,17 +8,17 @@ import seedu.us.among.model.endpoint.Response;
 /**
  * Parent class of request sending classes. Contains the two compulsory fields method and address.
  */
-public abstract class SendRequest {
+public abstract class Request {
     private final MethodType method;
     private final String address;
 
     /**
-     * Constructor for SendRequest.
+     * Constructor for Request.
      *
      * @param method request method
      * @param address request address
      */
-    public SendRequest(MethodType method, String address) {
+    public Request(MethodType method, String address) {
         this.method = method;
         this.address = address;
     }

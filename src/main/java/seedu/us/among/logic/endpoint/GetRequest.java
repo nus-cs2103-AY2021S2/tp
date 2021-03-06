@@ -15,14 +15,14 @@ import seedu.us.among.model.endpoint.Response;
 /**
  * Contains the logic for sending get requests.
  */
-public class SendGetRequest extends SendRequest {
+public class GetRequest extends Request {
 
     /**
-     * Constructor for SendGetRequest.
+     * Constructor for GetRequest.
      *
      * @param endpoint endpoint to make API call on
      */
-    public SendGetRequest(Endpoint endpoint) {
+    public GetRequest(Endpoint endpoint) {
         super(endpoint.getMethod().getMethodType(), endpoint.getAddress().value);
     }
 
