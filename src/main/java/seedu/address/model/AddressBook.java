@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.Flashcard;
+import seedu.address.model.person.UniqueFlashcardList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameFlashcard comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueFlashcardList flashcards;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        flashcards = new UniqueFlashcardList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the flashcards in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the flashcard list with {@code flashcards}.
+     * {@code flashcards} must not contain duplicate flashcards.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setflashcards(List<Flashcard> flashcards) {
+        this.flashcards.setFlashcards(flashcards);
     }
 
     /**
@@ -53,68 +53,69 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setflashcards(newData.getFlashcardList());
     }
 
-    //// person-level operations
+    //// flashcard-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a flashcard with the same identity as {@code flashcard} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasFlashcard(Flashcard flashcard) {
+        requireNonNull(flashcard);
+        return flashcards.contains(flashcard);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a flashcard to the address book.
+     * The flashcard must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addFlashcard(Flashcard p) {
+        flashcards.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given flashcard {@code target} in the list with {@code editedFlashcard}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The flashcard identity of {@code editedFlashcard} must not be the same
+     * as another existing flashcard in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+        requireNonNull(editedFlashcard);
 
-        persons.setPerson(target, editedPerson);
+        flashcards.setFlashcard(target, editedFlashcard);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeFlashcard(Flashcard key) {
+        flashcards.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return flashcards.asUnmodifiableObservableList().size() + " flashcards";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Flashcard> getFlashcardList() {
+        return flashcards.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && flashcards.equals(((AddressBook) other).flashcards));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return flashcards.hashCode();
     }
 }
