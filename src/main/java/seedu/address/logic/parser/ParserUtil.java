@@ -107,7 +107,7 @@ public class ParserUtil {
         requireNonNull(cleanStatus);
         String trimmedTag = cleanStatus.trim();
         if (!CleanStatusTag.isValidCleanStatusTag(trimmedTag)) {
-            throw new ParseException(CleanStatusTag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(CleanStatusTag.getMessageConstraints());
         }
         return new CleanStatusTag(trimmedTag);
     }

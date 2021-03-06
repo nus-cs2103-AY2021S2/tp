@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class CleanStatusTag {
 
-    public static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status ";
+    private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status ";
 
     public final String cleanStatus;
 
@@ -51,4 +51,7 @@ public class CleanStatusTag {
         return '[' + cleanStatus + ']';
     }
 
+    public static String getMessageConstraints() {
+        return MESSAGE_CONSTRAINTS;
+    }
 }

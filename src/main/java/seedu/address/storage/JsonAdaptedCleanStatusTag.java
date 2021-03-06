@@ -41,7 +41,7 @@ class JsonAdaptedCleanStatusTag {
      */
     public CleanStatusTag toModelType() throws IllegalValueException {
         if (!CleanStatusTag.isValidCleanStatusTag(cleanStatus)) {
-            throw new IllegalValueException(CleanStatusTag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(CleanStatusTag.getMessageConstraints());
         }
         return new CleanStatusTag(cleanStatus);
     }
