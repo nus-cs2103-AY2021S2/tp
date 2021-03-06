@@ -5,18 +5,16 @@ import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
-import seedu.smartlib.commons.core.index.Index;
-import seedu.smartlib.commons.exceptions.IllegalValueException;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new {@code RemarkCommand} object
+ * Parses input arguments and creates a new {@code BorrowCommand} object
  */
 public class BorrowCommandParser implements Parser<BorrowCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
-     * and returns a {@code RemarkCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code BorrowCommand}
+     * and returns a {@code BorrowCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public BorrowCommand parse(String args) throws ParseException {
