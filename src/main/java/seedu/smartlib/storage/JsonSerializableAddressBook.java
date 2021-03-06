@@ -49,10 +49,10 @@ class JsonSerializableAddressBook {
         SmartLib smartLib = new SmartLib();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Reader reader = jsonAdaptedPerson.toModelType();
-            if (smartLib.hasPerson(reader)) {
+            if (smartLib.hasReader(reader)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            smartLib.addPerson(reader);
+            smartLib.addReader(reader);
         }
         return smartLib;
     }

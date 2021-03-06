@@ -12,13 +12,13 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.reader.Reader;
 
 /**
- * Adds a person to the address book.
+ * Adds a reader to the registered reader base.
  */
-public class AddCommand extends Command {
+public class AddReaderCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addreader";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reader to the registered reader base. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -30,18 +30,18 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "1-year-membership "
+            + PREFIX_TAG + "vip";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New reader added: %1$s";
+    public static final String MESSAGE_DUPLICATE_READER = "This reader already exists in the registered reader base";
 
     private final Reader toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Reader reader) {
+    public AddReaderCommand(Reader reader) {
         requireNonNull(reader);
         toAdd = reader;
     }
@@ -50,18 +50,18 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasReader(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_READER);
         }
 
-        model.addPerson(toAdd);
+        model.addReader(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddReaderCommand // instanceof handles nulls
+                && toAdd.equals(((AddReaderCommand) other).toAdd));
     }
 }

@@ -53,24 +53,24 @@ public interface Model {
     ReadOnlySmartLib getSmartLib();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
      */
-    boolean hasPerson(Reader reader);
+    boolean hasReader(Reader reader);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given reader.
+     * The reader must exist in the registered reader base.
      */
     void deletePerson(Reader target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given reader.
+     * {@code reader} must not already exist in the registered reader base.
      */
-    void addPerson(Reader reader);
+    void addReader(Reader reader);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given reader {@code target} with {@code editedReader}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */

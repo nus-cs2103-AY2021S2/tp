@@ -65,7 +65,7 @@ public class TypicalPersons {
     public static SmartLib getTypicalAddressBook() {
         SmartLib ab = new SmartLib();
         for (Reader reader : getTypicalPersons()) {
-            ab.addPerson(reader);
+            ab.addReader(reader);
         }
         return ab;
     }

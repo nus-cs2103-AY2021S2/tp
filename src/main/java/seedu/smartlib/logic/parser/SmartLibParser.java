@@ -6,7 +6,7 @@ import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.smartlib.logic.commands.AddCommand;
+import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.Command;
@@ -45,8 +45,8 @@ public class SmartLibParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddReaderCommand.COMMAND_WORD:
+            return new AddReaderCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

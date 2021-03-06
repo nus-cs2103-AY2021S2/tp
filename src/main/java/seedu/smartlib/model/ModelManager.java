@@ -89,9 +89,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Reader reader) {
+    public boolean hasReader(Reader reader) {
         requireNonNull(reader);
-        return smartLib.hasPerson(reader);
+        return smartLib.hasReader(reader);
     }
 
     @Override
@@ -100,8 +100,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Reader reader) {
-        smartLib.addPerson(reader);
+    public void addReader(Reader reader) {
+        smartLib.addReader(reader);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
