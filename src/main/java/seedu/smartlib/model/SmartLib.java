@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.model.reader.UniqueReaderList;
+import seedu.smartlib.model.reader.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import seedu.smartlib.model.reader.UniqueReaderList;
  */
 public class SmartLib implements ReadOnlySmartLib {
 
-    private final UniqueReaderList readers;
+    private final UniquePersonList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class SmartLib implements ReadOnlySmartLib {
      *   among constructors.
      */
     {
-        readers = new UniqueReaderList();
+        persons = new UniquePersonList();
     }
 
     public SmartLib() {}
@@ -44,7 +44,7 @@ public class SmartLib implements ReadOnlySmartLib {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Reader> readers) {
-        this.readers.setPersons(readers);
+        this.persons.setPersons(readers);
     }
 
     /**
@@ -59,19 +59,19 @@ public class SmartLib implements ReadOnlySmartLib {
     //// person-level operations
 
     /**
-     * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasReader(Reader reader) {
+    public boolean hasPerson(Reader reader) {
         requireNonNull(reader);
-        return readers.contains(reader);
+        return persons.contains(reader);
     }
 
     /**
-     * Adds a reader to the registered reader base.
-     * The reader must not already exist in the registered reader base.
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
      */
-    public void addReader(Reader p) {
-        readers.addReader(p);
+    public void addPerson(Reader p) {
+        persons.add(p);
     }
 
     /**
@@ -82,7 +82,7 @@ public class SmartLib implements ReadOnlySmartLib {
     public void setPerson(Reader target, Reader editedReader) {
         requireNonNull(editedReader);
 
-        readers.setPerson(target, editedReader);
+        persons.setPerson(target, editedReader);
     }
 
     /**
@@ -90,31 +90,31 @@ public class SmartLib implements ReadOnlySmartLib {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Reader key) {
-        readers.remove(key);
+        persons.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return readers.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Reader> getPersonList() {
-        return readers.asUnmodifiableObservableList();
+        return persons.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SmartLib // instanceof handles nulls
-                && readers.equals(((SmartLib) other).readers));
+                && persons.equals(((SmartLib) other).persons));
     }
 
     @Override
     public int hashCode() {
-        return readers.hashCode();
+        return persons.hashCode();
     }
 }

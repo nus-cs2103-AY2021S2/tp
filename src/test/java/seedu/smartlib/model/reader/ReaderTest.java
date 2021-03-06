@@ -26,28 +26,28 @@ public class ReaderTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSameReader(ALICE));
+        assertTrue(ALICE.isSamePerson(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameReader(null));
+        assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
         Reader editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameReader(editedAlice));
+        assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameReader(editedAlice));
+        assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Reader editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameReader(editedBob));
+        assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameReader(editedBob));
+        assertFalse(BOB.isSamePerson(editedBob));
     }
 
     @Test

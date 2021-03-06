@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.logic.commands.AddReaderCommand;
+import seedu.smartlib.logic.commands.AddCommand;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.DeleteCommand;
@@ -36,8 +36,8 @@ public class SmartLibParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Reader reader = new PersonBuilder().build();
-        AddReaderCommand command = (AddReaderCommand) parser.parseCommand(PersonUtil.getAddCommand(reader));
-        assertEquals(new AddReaderCommand(reader), command);
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(reader));
+        assertEquals(new AddCommand(reader), command);
     }
 
     @Test

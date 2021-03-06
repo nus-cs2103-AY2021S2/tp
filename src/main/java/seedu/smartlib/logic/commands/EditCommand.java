@@ -77,7 +77,7 @@ public class EditCommand extends Command {
         Reader readerToEdit = lastShownList.get(index.getZeroBased());
         Reader editedReader = createEditedPerson(readerToEdit, editPersonDescriptor);
 
-        if (!readerToEdit.isSameReader(editedReader) && model.hasReader(editedReader)) {
+        if (!readerToEdit.isSamePerson(editedReader) && model.hasPerson(editedReader)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

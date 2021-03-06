@@ -74,18 +74,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasReader(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasReader(ALICE));
+        assertFalse(modelManager.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addReader(ALICE);
-        assertTrue(modelManager.hasReader(ALICE));
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
     }
 
     @Test

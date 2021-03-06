@@ -27,7 +27,7 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddReaderCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
@@ -35,33 +35,33 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Reader validReader = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddReaderCommand(validReader).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validReader).execute(modelStub);
 
-        assertEquals(String.format(AddReaderCommand.MESSAGE_SUCCESS, validReader), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validReader), modelStub.readersAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validReader), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validReader), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Reader validReader = new PersonBuilder().build();
-        AddReaderCommand addCommand = new AddReaderCommand(validReader);
+        AddCommand addCommand = new AddCommand(validReader);
         ModelStub modelStub = new ModelStubWithPerson(validReader);
 
-        assertThrows(CommandException.class, AddReaderCommand.MESSAGE_DUPLICATE_READER, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Reader alice = new PersonBuilder().withName("Alice").build();
         Reader bob = new PersonBuilder().withName("Bob").build();
-        AddReaderCommand addAliceCommand = new AddReaderCommand(alice);
-        AddReaderCommand addBobCommand = new AddReaderCommand(bob);
+        AddCommand addAliceCommand = new AddCommand(alice);
+        AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddReaderCommand addAliceCommandCopy = new AddReaderCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addReader(Reader reader) {
+        public void addPerson(Reader reader) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasReader(Reader reader) {
+        public boolean hasPerson(Reader reader) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,9 +161,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasReader(Reader reader) {
+        public boolean hasPerson(Reader reader) {
             requireNonNull(reader);
-            return this.reader.isSameReader(reader);
+            return this.reader.isSamePerson(reader);
         }
     }
 
@@ -171,18 +171,18 @@ public class AddCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Reader> readersAdded = new ArrayList<>();
+        final ArrayList<Reader> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasReader(Reader reader) {
+        public boolean hasPerson(Reader reader) {
             requireNonNull(reader);
-            return readersAdded.stream().anyMatch(reader::isSameReader);
+            return personsAdded.stream().anyMatch(reader::isSamePerson);
         }
 
         @Override
-        public void addReader(Reader reader) {
+        public void addPerson(Reader reader) {
             requireNonNull(reader);
-            readersAdded.add(reader);
+            personsAdded.add(reader);
         }
 
         @Override

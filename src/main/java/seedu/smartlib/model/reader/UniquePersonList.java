@@ -12,17 +12,17 @@ import seedu.smartlib.model.reader.exceptions.DuplicatePersonException;
 import seedu.smartlib.model.reader.exceptions.PersonNotFoundException;
 
 /**
- * A list of readers that enforces uniqueness between its elements and does not allow nulls.
- * A reader is considered unique by comparing using {@code Reader#isSameReader(Reader)}. As such, adding and updating of
- * readers uses Reader#isSamePerson(Person) for equality so as to ensure that the reader being added or updated is
- * unique in terms of identity in the UniqueReaderList. However, the removal of a person uses Reader#equals(Object) so
- * as to ensure that the reader with exactly the same fields will be removed.
+ * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Reader#isSameReader(Reader)
+ * @see Reader#isSamePerson(Reader)
  */
-public class UniqueReaderList implements Iterable<Reader> {
+public class UniquePersonList implements Iterable<Reader> {
 
     private final ObservableList<Reader> internalList = FXCollections.observableArrayList();
     private final ObservableList<Reader> internalUnmodifiableList =
@@ -33,14 +33,14 @@ public class UniqueReaderList implements Iterable<Reader> {
      */
     public boolean contains(Reader toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameReader);
+        return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
     /**
-     * Adds a reader to the list.
-     * The reader must not already exist in the list.
+     * Adds a person to the list.
+     * The person must not already exist in the list.
      */
-    public void addReader(Reader toAdd) {
+    public void add(Reader toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
@@ -61,7 +61,7 @@ public class UniqueReaderList implements Iterable<Reader> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSameReader(editedReader) && contains(editedReader)) {
+        if (!target.isSamePerson(editedReader) && contains(editedReader)) {
             throw new DuplicatePersonException();
         }
 
@@ -79,7 +79,7 @@ public class UniqueReaderList implements Iterable<Reader> {
         }
     }
 
-    public void setPersons(UniqueReaderList replacement) {
+    public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -112,8 +112,8 @@ public class UniqueReaderList implements Iterable<Reader> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueReaderList // instanceof handles nulls
-                        && internalList.equals(((UniqueReaderList) other).internalList));
+                || (other instanceof UniquePersonList // instanceof handles nulls
+                        && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override
@@ -127,7 +127,7 @@ public class UniqueReaderList implements Iterable<Reader> {
     private boolean personsAreUnique(List<Reader> readers) {
         for (int i = 0; i < readers.size() - 1; i++) {
             for (int j = i + 1; j < readers.size(); j++) {
-                if (readers.get(i).isSameReader(readers.get(j))) {
+                if (readers.get(i).isSamePerson(readers.get(j))) {
                     return false;
                 }
             }

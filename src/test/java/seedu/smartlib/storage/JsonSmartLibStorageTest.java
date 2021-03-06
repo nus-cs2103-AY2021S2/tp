@@ -72,14 +72,14 @@ public class JsonSmartLibStorageTest {
         assertEquals(original, new SmartLib(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addReader(HOON);
+        original.addPerson(HOON);
         original.removePerson(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new SmartLib(readBack));
 
         // Save and read without specifying file path
-        original.addReader(IDA);
+        original.addPerson(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new SmartLib(readBack));
