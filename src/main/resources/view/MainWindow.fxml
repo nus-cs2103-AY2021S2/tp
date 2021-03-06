@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root minHeight="800.0" minWidth="800.0" onCloseRequest="#handleExit" title="Dictionote" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maximized="true" minHeight="300.0" minWidth="500.0" onCloseRequest="#handleExit" title="Dictionote" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -82,7 +82,7 @@
                                 </items>
                               </SplitPane>
 
-                                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="130.0" minHeight="130.0" prefHeight="130.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
                             <padding>
                               <Insets bottom="5" left="10" right="10" top="5" />
                             </padding>
