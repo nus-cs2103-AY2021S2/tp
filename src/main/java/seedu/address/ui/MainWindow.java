@@ -110,8 +110,15 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
+        // display the panel for learn mode, which shows the flashcards
+        // (currently in addressbook context its the list of contacts)
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        // can have a separate Panel here for the quiz mode, structure similar to learn mode
+        // problem is fillInnerParts() is called in UiManager start method when the app starts,
+        // need to find a way to alternate between the two panels
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
