@@ -1,11 +1,14 @@
 package seedu.smartlib.logic.commands;
 
-import seedu.smartlib.logic.commands.exceptions.CommandException;
-import seedu.smartlib.model.Model;
-
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 
+import seedu.smartlib.logic.commands.exceptions.CommandException;
+import seedu.smartlib.model.Model;
+
+/**
+ * Adds a record indicating that a reader borrowing a book
+ */
 public class BorrowCommand extends Command {
 
     public static final String COMMAND_WORD = "borrow";
@@ -21,6 +24,11 @@ public class BorrowCommand extends Command {
     private final int bid;
     private final int rid;
 
+    /**
+     * Creates a BorrowCommand to add a record
+     * @param bid book id
+     * @param rid reader id
+     */
     public BorrowCommand(int bid, int rid) {
         requireAllNonNull(bid, rid);
         this.bid = bid;
