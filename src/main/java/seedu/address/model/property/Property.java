@@ -1,11 +1,16 @@
 package seedu.address.model.property;
 
+import java.util.Objects;
+
 public class Property {
+    // Mandatory fields
     private final Name name;
     private final Type propertyType;
     private final Address address;
     private final PostalCode postalCode;
     private final Deadline deadline;
+
+    // Optional fields
     private final Remark remarks;
     private final String clientName;
     private final String clientContact;
@@ -102,5 +107,78 @@ public class Property {
 
     public Integer getClientAskingPrice() {
         return clientAskingPrice;
+    }
+
+    /**
+     * Returns true if both properties have the same postal code and same address.
+     * This defines a weaker notion of equality between two properties.
+     */
+    public boolean isSameProperty(Property otherProperty) {
+        if (otherProperty == this) {
+            return true;
+        }
+
+        return otherProperty != null
+                && otherProperty.getPostalCode().equals(getPostalCode())
+                && otherProperty.getAddress().equals(getAddress());
+    }
+
+    /**
+     * Returns true if both properties have the same identity and data fields.
+     * This defines a stronger notion of equality between two properties.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Property)) {
+            return false;
+        }
+
+        Property otherProperty = (Property) other;
+        return otherProperty.getName().equals(getName())
+                && otherProperty.getPropertyType().equals(getPropertyType())
+                && otherProperty.getAddress().equals(getAddress())
+                && otherProperty.getPostalCode().equals(getPostalCode())
+                && otherProperty.getDeadline().equals(getDeadline());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, propertyType, address, postalCode, deadline);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append("; Type: ")
+                .append(getPropertyType())
+                .append("; Address: ")
+                .append(getAddress())
+                .append("; Postal Code: ")
+                .append(getPostalCode())
+                .append("; Deadline: ")
+                .append(getDeadline());
+                
+        if (remarks != null) {
+            builder.append("; Remarks: ").append(getRemarks());
+        }
+        if (clientName != null) {
+            builder.append("; Client Name: ").append(getClientName());
+        }
+        if (clientContact != null) {
+            builder.append("; Client Contact: ").append(getClientContact());
+        }
+        if (clientEmail != null) {
+            builder.append("; Client Email: ").append(getClientEmail());
+        }
+        if (clientAskingPrice != null) {
+            builder.append("; Client Asking Price: ").append(getClientAskingPrice());
+        }
+        return builder.toString();
     }
 }
