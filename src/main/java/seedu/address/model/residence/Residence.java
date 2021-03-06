@@ -28,7 +28,8 @@ public class Residence {
     /**
      * Every field must be present and not null.
      */
-    public Residence(Name name, Address address, BookingDetails bookingDetails, Set<CleanStatusTag> cleanStatusTag, Set<Tag> tags) {
+    public Residence(Name name, Address address, BookingDetails bookingDetails,
+                     Set<CleanStatusTag> cleanStatusTag, Set<Tag> tags) {
         this.bookingDetails = bookingDetails;
         requireAllNonNull(name, address, cleanStatusTag, tags);
         this.name = name;

@@ -1,12 +1,11 @@
 package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class CleanStatusTag {
 
-    public static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status ";
+    private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status ";
 
     public final String cleanStatus;
 
