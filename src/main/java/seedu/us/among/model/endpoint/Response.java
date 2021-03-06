@@ -22,6 +22,7 @@ public class Response {
     public final String reasonPhrase;
     public final String statusLine;
     public final String responseEntity;
+    public final String responseTime;
 
     /**
      * Constructs an empty {@code Response}.
@@ -32,6 +33,7 @@ public class Response {
         this.reasonPhrase = "";
         this.statusLine = "";
         this.responseEntity = "";
+        this.responseTime = "";
     }
 
     /**
@@ -43,7 +45,7 @@ public class Response {
      * @param statusLine Contains protocolVersion, statusCode and reasonPhrase.
      */
     public Response(String protocolVersion, String statusCode, String reasonPhrase, String statusLine,
-                String responseEntity) {
+                String responseEntity, String responseTime) {
         requireAllNonNull(protocolVersion, statusCode, reasonPhrase, statusLine);
         checkArgument(isValidResponse(protocolVersion, statusCode, reasonPhrase, statusLine), MESSAGE_CONSTRAINTS);
         this.protocolVersion = protocolVersion;
@@ -51,6 +53,7 @@ public class Response {
         this.reasonPhrase = reasonPhrase;
         this.statusLine = statusLine;
         this.responseEntity = responseEntity;
+        this.responseTime = responseTime;
     }
 
     /**
@@ -84,9 +87,16 @@ public class Response {
         return this.responseEntity;
     }
 
+    public String getResponseTime() {
+        return this.responseTime;
+    }
+
     @Override
     public String toString() {
-        return getProtocolVersion()
+        return "Time Taken: "
+                + getResponseTime()
+                + " seconds; "
+                + getProtocolVersion()
                 + "; Status Code: "
                 + getStatusCode()
                 + "; Reason Phrase: "

@@ -37,10 +37,16 @@ public class GetRequest extends Request {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response;
         String responseEntity = "";
-
+        double responseTimeInSecond = 0;
         try {
             HttpGet request = new HttpGet(this.getAddress());
+            //to-do
+            //abstract timing into a function
+            long start = System.nanoTime();
             response = httpClient.execute(request);
+            long end = System.nanoTime();
+            long duration = end - start;
+            responseTimeInSecond = (double) duration / 1_000_000_000;
 
             try {
                 HttpEntity entity = response.getEntity();
@@ -59,6 +65,8 @@ public class GetRequest extends Request {
         return new Response(response.getProtocolVersion().toString(),
                 String.valueOf(response.getStatusLine().getStatusCode()),
                 response.getStatusLine().getReasonPhrase(),
-                response.getStatusLine().toString(), responseEntity);
+                response.getStatusLine().toString(),
+                responseEntity,
+                responseTimeInSecond + "");
     }
 }
