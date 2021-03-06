@@ -16,8 +16,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_CATEGORY = new Prefix("c/");
 
     // Prefix for Tasks
-     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
-     public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
 
     // Prefix for Events
     public static final Prefix PREFIX_STARTDATE = new Prefix("s/");
