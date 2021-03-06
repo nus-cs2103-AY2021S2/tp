@@ -14,7 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://github.com/AY2021S2-CS2103-T16-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -29,8 +29,16 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   
+   * **`tag`**`tag n/John Doe t/small` : Adds tag to contact John Doe in Address Book.
 
    * **`clear`** : Deletes all contacts.
+   
+   * **`blacklist`** `3` : Blacklists the 3rd contact shown in the current list.
+   
+   * **`name`** `3 [n/John]` : Adds an optional nickname to the 3rd contact.
+   
+   * **`filter`** `[Computing, Student]` : Filters shown contact based on given keywords.
 
    * **`exit`** : Exits the app.
 
@@ -110,23 +118,25 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name and/or tag: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names and/or tags contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
 
+* At least one of `[n/NAME_KEYWORDS]` or `[t/TAG_KEYWORDS]` must be included as the parameters.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Only the name and tags are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Persons matching at least one keyword of each provided attribute will be returned.
+  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`, `Bo Hans`, while `n/Hans Bo t/friends` will only return `Hans Gruber` and `Bo Yang` if only `Hans Gruber` and `Bo Yang` are tagged with `friends`. 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/alex david t/family` returns `David Li`
 
 ### Deleting a person : `delete`
 
@@ -141,6 +151,32 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Adding tags to contacts : `tag`
+
+Labels a user based on his or her attributes.
+
+Format: tag n/NAME t/TAG
+
+### Assign additional nicknames to contacts : `name`
+
+Adds an optional nickname to the user.
+
+Format: name INDEX [n/NAME]
+
+### Blacklist contacts : `blist`
+
+Blocks certain users. While blocked, they do not receive any emails.
+
+Format: blist INDEX
+
+### Filter contacts: `filter`
+
+Filters shown contacts based on the given keyword(s).
+
+Format: filter [keyword1, keyword2, …]
+
+
 
 ### Clearing all entries : `clear`
 
@@ -165,6 +201,12 @@ Example:
 
 `remark 3 r/Currently on Stay Home Notice`
 
+=======
+### Sort entries by name : `sort`
+
+Sort the entries in the address book by name in ascending alphabetical order.
+
+Format: `sort`
 
 ### Exiting the program : `exit`
 
@@ -205,7 +247,11 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates`
+**Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
+**Name** | `name INDEX [n/NAME]`<br> e.g., `name 3 [n/Jo]`
+**Blist** | `blist INDEX`<br> e.g., `blist 3`
+**Filter** | `filter [keyword1,keyword2,...]`<br> e.g., `filter[Computing, Student]` 
 **List** | `list`
 **Help** | `help`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
