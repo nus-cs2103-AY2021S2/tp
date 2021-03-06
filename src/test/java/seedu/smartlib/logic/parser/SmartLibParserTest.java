@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.logic.commands.AddCommand;
+import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.DeleteCommand;
 import seedu.smartlib.logic.commands.EditCommand;
-import seedu.smartlib.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.smartlib.logic.commands.ExitCommand;
 import seedu.smartlib.logic.commands.FindCommand;
 import seedu.smartlib.logic.commands.HelpCommand;
@@ -56,7 +56,7 @@ public class SmartLibParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Reader reader = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(reader).build();
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(reader).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
@@ -87,6 +87,12 @@ public class SmartLibParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
+
+    @Test
+    public void parseCommand_borrow() throws Exception {
+        assertTrue(parser.parseCommand(BorrowCommand.COMMAND_WORD) instanceof BorrowCommand);
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

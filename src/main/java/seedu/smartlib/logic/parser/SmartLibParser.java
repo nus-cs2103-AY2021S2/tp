@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.smartlib.logic.commands.AddCommand;
+import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.Command;
 import seedu.smartlib.logic.commands.DeleteCommand;
@@ -61,6 +62,9 @@ public class SmartLibParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case BorrowCommand.COMMAND_WORD:
+            return new BorrowCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
