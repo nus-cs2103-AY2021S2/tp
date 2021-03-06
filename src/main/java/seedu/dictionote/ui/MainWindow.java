@@ -68,9 +68,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane dictionaryContentPlaceholder;
 
     @FXML
-    private StackPane noteListPanelPlaceholder;
-
-    @FXML
     private StackPane noteListPlaceholder;
 
     @FXML
@@ -174,7 +171,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
-        dictionaryListPlaceholder.getChildren().add(noteListPanel.getRoot());
+        noteListPlaceholder.getChildren().add(noteListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

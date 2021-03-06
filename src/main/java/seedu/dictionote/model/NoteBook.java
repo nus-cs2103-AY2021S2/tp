@@ -8,6 +8,10 @@ import javafx.collections.ObservableList;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.note.UniqueNoteList;
 
+/**
+ * Wraps all data at the notebook level
+ * Duplicates are not allowed (by .isSamePerson comparison)
+ */
 public class NoteBook implements ReadOnlyNoteBook {
     private final UniqueNoteList notes;
 

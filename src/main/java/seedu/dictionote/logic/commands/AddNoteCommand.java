@@ -7,8 +7,9 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
-
-
+/**
+ * Adds a note to the dictionote book.
+ */
 public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "addnote";
 
@@ -23,23 +24,15 @@ public class AddNoteCommand extends Command {
 
     private final Note toAdd;
 
-    /** Add a note
+    /** Initializes a command to add the given note
      *
      * @param note
      */
-
     public AddNoteCommand(Note note) {
         requireNonNull(note);
         toAdd = note;
     }
 
-
-    /** Executes the command
-     *
-     * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException if the command has wrong format
-     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

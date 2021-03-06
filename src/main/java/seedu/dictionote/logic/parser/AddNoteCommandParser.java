@@ -9,7 +9,9 @@ import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.note.Note;
 
-
+/**
+ * Parses input arguments and creates a new AddNoteCommand object
+ */
 public class AddNoteCommandParser implements Parser<AddNoteCommand> {
 
     /**
