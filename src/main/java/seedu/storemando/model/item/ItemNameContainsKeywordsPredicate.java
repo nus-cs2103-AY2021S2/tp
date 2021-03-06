@@ -10,8 +10,12 @@ import seedu.storemando.commons.util.StringUtil;
  */
 public class ItemNameContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
-    private boolean isGenericFind;
+    private final boolean isGenericFind;
 
+    /**
+     * @param keywords      a list of words to check
+     * @param isGenericFind a boolean to identify if it is a generic find
+     */
     public ItemNameContainsKeywordsPredicate(List<String> keywords, boolean isGenericFind) {
         this.keywords = keywords;
         this.isGenericFind = isGenericFind;
