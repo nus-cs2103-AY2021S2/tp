@@ -13,6 +13,22 @@ public class Property {
     private final Integer clientAskingPrice;
 
     /**
+     * Constructs a {@code Property} without any optional fields.
+     */
+    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline) {
+        this.name = name;
+        this.propertyType = propertyType;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.deadline = deadline;
+        this.remarks = null;
+        this.clientName = null;
+        this.clientContact = null;
+        this.clientEmail = null;
+        this.clientAskingPrice = null;
+    }
+
+    /**
      * Constructs a {@code Property} without client's information.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
