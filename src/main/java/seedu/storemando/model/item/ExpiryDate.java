@@ -5,6 +5,7 @@ import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 /**
  * Represents an Item's expiry in the inventory manager.
@@ -30,7 +31,7 @@ public class ExpiryDate {
 
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
-    public final String value;
+    public final LocalDate value;
 
     /**
      * Constructs an {@code ExpiryDate}.
@@ -40,7 +41,7 @@ public class ExpiryDate {
     public ExpiryDate(String expiryDate) {
         requireNonNull(expiryDate);
         checkArgument(isValidExpiryDate(expiryDate), MESSAGE_CONSTRAINTS);
-        value = expiryDate;
+        value = LocalDate.parse(expiryDate);
     }
 
     /**
@@ -62,7 +63,7 @@ public class ExpiryDate {
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override
