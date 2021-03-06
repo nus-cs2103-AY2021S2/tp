@@ -28,9 +28,9 @@ public class Residence {
     /**
      * Every field must be present and not null.
      */
-    public Residence(Name name, Address address, BookingDetails bookingDetails, Set<CleanStatusTag> cleanStatusTag,Set<Tag> tags) {
+    public Residence(Name name, Address address, BookingDetails bookingDetails, Set<CleanStatusTag> cleanStatusTag, Set<Tag> tags) {
         this.bookingDetails = bookingDetails;
-        requireAllNonNull(name, address, cleanStatusTag,tags);
+        requireAllNonNull(name, address, cleanStatusTag, tags);
         this.name = name;
         this.address = address;
         this.cleanStatusTag.addAll(cleanStatusTag);
@@ -104,7 +104,7 @@ public class Residence {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, bookingDetails,cleanStatusTag, tags);
+        return Objects.hash(name, address, bookingDetails, cleanStatusTag, tags);
     }
 
     @Override
