@@ -1,6 +1,7 @@
 package seedu.address.model.cheese;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Map;
  */
 public class CheeseType {
     public static final String MESSAGE_CONSTRAINTS = "Cheese type can take any values, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[\\w]+[\\s&\\w+]*";
     private static final Map<String, CheeseType> typeToCheeseMap = new HashMap<>();
 
     public final String value;
@@ -23,7 +25,15 @@ public class CheeseType {
      */
     private CheeseType(String type) {
         requireNonNull(type);
+        checkArgument(isValidType(type), MESSAGE_CONSTRAINTS);
         value = type;
+    }
+
+    /**
+     * Returns true if a given string is a valid name.
+     */
+    public static boolean isValidType(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     public static CheeseType getCheeseType(String type) {

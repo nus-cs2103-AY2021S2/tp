@@ -15,7 +15,7 @@ public class Date {
         "Dates should be given in the following formats (dd/MM/yyyy or yyyy-MM-dd or MMM d yyyy)";
 
     public static final DateTimeFormatter INPUT_DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
-        .appendPattern("[d/M/yyyy HHmm]")
+        .appendPattern("[d/M/yyyy HH:mm]")
         .appendPattern("[d/M/yyyy]")
         .appendPattern("[yyyy-M-d HH:mm]")
         .appendPattern("[yyyy-M-d]")

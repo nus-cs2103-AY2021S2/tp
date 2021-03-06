@@ -1,8 +1,10 @@
 package seedu.address.model.cheese;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_BRIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_FETA;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -12,6 +14,12 @@ public class CheeseTypeTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> CheeseType.getCheeseType(null));
+    }
+
+    @Test
+    public void constructor_emptyString_throwsIllegalArgumentException() {
+        String invalidName = "";
+        assertThrows(IllegalArgumentException.class, () -> CheeseType.getCheeseType(invalidName));
     }
 
     @Test
@@ -29,5 +37,30 @@ public class CheeseTypeTest {
         String newFetaString = new String(VALID_CHEESE_TYPE_FETA);
         CheeseType newFetaCheeseType = CheeseType.getCheeseType(newFetaString);
         assertTrue(fetaCheeseType == newFetaCheeseType);
+    }
+
+    @Test
+    public void isValidName() {
+        // Null name
+        assertThrows(NullPointerException.class, () -> CheeseType.getCheeseType(null));
+
+        // Invalid name
+        assertFalse(CheeseType.isValidType("")); // empty string
+        assertFalse(CheeseType.isValidType(" ")); // spaces only
+        assertFalse(CheeseType.isValidType("      ")); // multiple spaces only
+
+        // Valid name
+        assertTrue(CheeseType.isValidType(VALID_CHEESE_TYPE_FETA));
+        assertTrue(CheeseType.isValidType(VALID_CHEESE_TYPE_CAMEMBERT));
+        assertTrue(CheeseType.isValidType(VALID_CHEESE_TYPE_BRIE));
+
+        // Numbers only
+        assertTrue(CheeseType.isValidType("10241982"));
+
+        // Alphanumeric characters
+        assertTrue(CheeseType.isValidType("Cheese Type 1"));
+
+        // Long names
+        assertTrue(CheeseType.isValidType("Aged Cashew &     Blue Green Algae Cheese"));
     }
 }

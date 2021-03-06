@@ -14,8 +14,13 @@ public class QuantityTest {
 
     @Test
     public void isValidQuantity() {
+        // Negative Quantity
         assertFalse(Quantity.isValidQuantity(-1));
+
+        // Zero Quantity
         assertFalse(Quantity.isValidQuantity(0));
+
+        // Positive Quantity
         assertTrue(Quantity.isValidQuantity(138));
     }
 }

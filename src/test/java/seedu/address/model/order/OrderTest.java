@@ -24,13 +24,13 @@ public class OrderTest {
 
     @Test
     public void isSameOrder() {
-        // same object -> return true
+        // Same object -> return true
         assertTrue(ORDER_CAMEMBERT.isSameOrder(ORDER_CAMEMBERT));
 
-        // null -> returns false
+        // Null -> returns false
         assertFalse(ORDER_CAMEMBERT.isSameOrder(null));
 
-        // same id, all other attributes different -> returns true
+        // Same id, all other attributes different -> returns true
         Order editedOrder =
             new OrderBuilder(ORDER_CAMEMBERT).withCheeseType(VALID_CHEESE_TYPE_BRIE)
                 .withOrderDate(VALID_ORDER_DATE_2)
@@ -38,7 +38,7 @@ public class OrderTest {
                 .build();
         assertTrue(ORDER_CAMEMBERT.isSameOrder(editedOrder));
 
-        // different id, all other attributes same -> returns false
+        // Different id, all other attributes same -> returns false
         Order newSimilarOrder =
             new OrderBuilder().withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)
                 .withOrderDate(VALID_ORDER_DATE_1)
@@ -49,23 +49,23 @@ public class OrderTest {
 
     @Test
     public void equals() {
-        // same values -> returns true
+        // Same values -> returns true
         Order camembertOrderCopy = new OrderBuilder(ORDER_CAMEMBERT).build();
         assertTrue(ORDER_CAMEMBERT.equals(camembertOrderCopy));
 
-        // same object -> returns true
+        // Same object -> returns true
         assertTrue(ORDER_CAMEMBERT.equals(ORDER_CAMEMBERT));
 
-        // null -> returns false
+        // Null -> returns false
         assertFalse(ORDER_CAMEMBERT.equals(null));
 
-        // different type -> returns false
+        // Different type -> returns false
         assertFalse(ORDER_CAMEMBERT.equals(5));
 
-        // different cheese -> returns false
+        // Different cheese -> returns false
         assertFalse(ORDER_CAMEMBERT.equals(ORDER_FETA));
 
-        // different order date -> returns false
+        // Different order date -> returns false
         Order editedCamembertOrder =
             new OrderBuilder(ORDER_CAMEMBERT)
                 .withOrderDate(VALID_ORDER_DATE_2)

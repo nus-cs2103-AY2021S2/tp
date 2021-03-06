@@ -27,20 +27,20 @@ public class CheeseTest {
 
     @Test
     public void isSameCheese() {
-        // same object -> return true
+        // Same object -> return true
         assertTrue(CAMEMBERT.isSameCheese(CAMEMBERT));
 
-        // null -> returns false
+        // Null -> returns false
         assertFalse(CAMEMBERT.isSameCheese(null));
 
-        // same id, all other attributes different -> returns true
+        // Same id, all other attributes different -> returns true
         Cheese editedCamembert =
             new CheeseBuilder(CAMEMBERT).withExpiryDate(VALID_EXPIRY_DATE_2)
                 .withCheeseType(VALID_CHEESE_TYPE_FETA)
                 .withManufactureDate(VALID_MANUFACTURE_DATE_2).build();
         assertTrue(CAMEMBERT.isSameCheese(editedCamembert));
 
-        // different id, all other attributes same -> returns false
+        // Different id, all other attributes same -> returns false
         Cheese newSimilarCamembert =
             new CheeseBuilder().withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)
                 .withExpiryDate(VALID_EXPIRY_DATE_1)
@@ -51,40 +51,40 @@ public class CheeseTest {
 
     @Test
     public void equals() {
-        // same values -> returns true
+        // Same values -> returns true
         Cheese camembertCopy = new CheeseBuilder(CAMEMBERT).build();
         assertTrue(CAMEMBERT.equals(camembertCopy));
 
-        // same object -> returns true
+        // Same object -> returns true
         assertTrue(CAMEMBERT.equals(CAMEMBERT));
 
-        // null -> returns false
+        // Null -> returns false
         assertFalse(CAMEMBERT.equals(null));
 
-        // different type -> returns false
+        // Different type -> returns false
         assertFalse(CAMEMBERT.equals(5));
 
-        // different cheese -> returns false
+        // Different cheese -> returns false
         assertFalse(CAMEMBERT.equals(FETA));
 
-        // different expire date -> returns false
+        // Different expire date -> returns false
         Cheese editedCamembert =
             new CheeseBuilder(CAMEMBERT).withExpiryDate(VALID_EXPIRY_DATE_2).build();
         assertFalse(CAMEMBERT.equals(editedCamembert));
 
-        // different cheese type -> returns false
+        // Different cheese type -> returns false
         editedCamembert = new CheeseBuilder(CAMEMBERT)
                 .withCheeseType(VALID_CHEESE_TYPE_FETA).build();
         assertFalse(CAMEMBERT.equals(editedCamembert));
 
-        // different id --> return false
+        // Different id --> return false
         editedCamembert = new CheeseBuilder()
                 .withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)
                 .withManufactureDate(VALID_MANUFACTURE_DATE_1)
                 .withExpiryDate(VALID_EXPIRY_DATE_1).build();
         assertFalse(CAMEMBERT.equals(editedCamembert));
 
-        // different manufacturing date -> return false
+        // Different manufacturing date -> return false
         editedCamembert = new CheeseBuilder(CAMEMBERT)
                 .withManufactureDate(VALID_MANUFACTURE_DATE_2).build();
         assertFalse(CAMEMBERT.equals(editedCamembert));
