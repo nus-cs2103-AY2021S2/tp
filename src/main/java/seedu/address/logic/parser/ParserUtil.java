@@ -137,7 +137,9 @@ public class ParserUtil {
      * @throws ParseException If the given {@code remark} is invalid.
      */
     public static Remark parsePropertyRemark(String remark) throws ParseException {
-        requireNonNull(remark);
+        if (remark == null) {
+            return null;
+        }
         String trimmedRemark = remark.trim();
         if (!Remark.isValidRemark(trimmedRemark)) {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);

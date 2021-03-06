@@ -25,7 +25,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<commandWord>\\S+(\\s(appointment|property))?)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -42,6 +43,18 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+        // To satisfy the condition of "extraneous parameters will be ignored" in command format description
+        if (commandWord.startsWith(HelpCommand.COMMAND_WORD)) {
+            return new HelpCommand();
+        } else if (commandWord.startsWith(ClearCommand.COMMAND_WORD)) {
+            return new ClearCommand();
+        } else if (commandWord.startsWith(ListCommand.COMMAND_WORD)) {
+            return new ListCommand();
+        } else if (commandWord.startsWith(ExitCommand.COMMAND_WORD)) {
+            return new ExitCommand();
+        }
+
         switch (commandWord) {
 
         case AddPropertyCommand.COMMAND_WORD:
@@ -53,20 +66,8 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
