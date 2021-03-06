@@ -237,13 +237,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- has a need to manage a significant number of contacts
-- prefer desktop apps over other types
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable using CLI apps
+* NUS Computing Student
+* has a need to manage a significant number of contacts, schedule, and school timetable
+* prefer desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
+* Adding of events to friends in the address book
+* Ability to find a common timeslot where all your friends are available to meet based on their schedules added
+* See events that are taken in conjunction with your friends
+* Prioritize your tasks and events by assigning priorities to each event
 
 ### User stories
 
@@ -577,7 +583,7 @@ _{More to be added}_
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 persons/events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 _{More to be added}_
