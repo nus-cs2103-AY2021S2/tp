@@ -319,7 +319,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * *a1. User confirm suggestion by continuing his command
     * *a2. User rejects suggestion by deleting the suggestion
       Use case ends.
-      
+
 **Use case: Setting a command alias**
 
 **MSS**
@@ -337,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. The command name is empty
   Use case ends.
-  
+
 *{More to be added}*
 
 ### Non-Functional Requirements
