@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.ModeOfContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -112,6 +113,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String modeOfContact} into an {@code ModeOfContact}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code modeOfContact} is invalid.
+     */
+    public static ModeOfContact parseModeOfContact(String modeOfContact) throws ParseException {
+        requireNonNull(modeOfContact);
+        String trimmedModeOfContact = modeOfContact.trim();
+        if (!ModeOfContact.isValidModeOfContact(trimmedModeOfContact)) {
+            throw new ParseException(ModeOfContact.MESSAGE_CONSTRAINTS);
+        }
+        return new ModeOfContact(trimmedModeOfContact);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -137,4 +153,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }
