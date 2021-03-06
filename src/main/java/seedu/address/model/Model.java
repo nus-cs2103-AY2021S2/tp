@@ -86,7 +86,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    // ======================================================================================================
     // API for PropertyBook
+
     boolean hasProperty(Property property);
 
     void addProperty(Property property);

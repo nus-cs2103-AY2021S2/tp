@@ -9,7 +9,7 @@ import seedu.address.model.property.Property;
 
 public class PropertyBook {
     private final List<Property> properties;
-    
+
     public PropertyBook() {
         properties = new ArrayList<>();
     }
@@ -18,7 +18,7 @@ public class PropertyBook {
         requireNonNull(property);
         return properties.contains(property);
     }
-    
+
     public void addProperty(Property property) {
         properties.add(property);
     }
