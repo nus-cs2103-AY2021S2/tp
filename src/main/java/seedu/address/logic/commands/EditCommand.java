@@ -214,7 +214,8 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code cleanStatusTag} is null.
          */
         public Optional<Set<CleanStatusTag>> getCleanStatusTag() {
-            return (cleanStatusTag != null) ? Optional.of(Collections.unmodifiableSet(cleanStatusTag)) : Optional.empty();
+            return (cleanStatusTag != null) ? Optional.of(
+                    Collections.unmodifiableSet(cleanStatusTag)) : Optional.empty();
         }
 
         /**

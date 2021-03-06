@@ -84,8 +84,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (cleanStatusTag.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> cleanStatusTagSet = cleanStatusTag.size() == 1 && cleanStatusTag.contains("") ?
-                Collections.emptySet() : cleanStatusTag;
+        Collection<String> cleanStatusTagSet = cleanStatusTag.size() == 1 && cleanStatusTag.contains("")
+                ? Collections.emptySet() : cleanStatusTag;
         return Optional.of(ParserUtil.parseCleanStatusTags(cleanStatusTagSet));
     }
 
