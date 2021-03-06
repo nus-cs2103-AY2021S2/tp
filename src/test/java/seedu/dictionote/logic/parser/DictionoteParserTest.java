@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.AddCommand;
+import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.DeleteCommand;
@@ -27,9 +28,11 @@ import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.person.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.person.Person;
 import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
+import seedu.dictionote.testutil.NoteUtil;
 import seedu.dictionote.testutil.PersonBuilder;
 import seedu.dictionote.testutil.PersonUtil;
 
@@ -42,6 +45,13 @@ public class DictionoteParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addNote() throws Exception {
+        Note note = new Note("this is a sample CS2103 note haha");
+        AddNoteCommand command = (AddNoteCommand) parser.parseCommand(NoteUtil.getAddNoteCommand(note));
+        assertEquals(new AddNoteCommand(note), command);
     }
 
     @Test
