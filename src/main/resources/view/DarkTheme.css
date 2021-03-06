@@ -136,7 +136,7 @@
 }
 
 .stack-pane {
-    -fx-background-color: -COLOR_PRIMARY;
+    -fx-background-color: -COLOR_PRIMARY_LIGHT;
 }
 
 .pane-with-border {
