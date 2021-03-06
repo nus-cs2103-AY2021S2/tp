@@ -13,11 +13,11 @@ public class CliSyntax {
     // Prefix shared by Events and Tasks
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-    // public static final Prefix PREFIX_CATEGORY = new Prefix("c/");
+    public static final Prefix PREFIX_CATEGORY = new Prefix("c/");
 
     // Prefix for Tasks
-    // public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
-    // public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
+     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
+     public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
 
     // Prefix for Events
     public static final Prefix PREFIX_STARTDATE = new Prefix("s/");
