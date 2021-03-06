@@ -163,7 +163,7 @@ public class Property {
                 .append(getPostalCode())
                 .append("; Deadline: ")
                 .append(getDeadline());
-                
+
         if (remarks != null) {
             builder.append("; Remarks: ").append(getRemarks());
         }
