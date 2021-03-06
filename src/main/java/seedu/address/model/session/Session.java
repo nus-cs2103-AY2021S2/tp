@@ -16,20 +16,18 @@ public class Session {
 
     private final String classId;
     private Day day;
-    private LocalTime start;
-    private LocalTime end;
+    private Timeslot timeslot;
     private final Subject subject;
     private final Set<Tag> tags = new HashSet<>();
     private Person tutor = null;
     private ArrayList<Person> students = new ArrayList<>();
 
-    public Session(Day day, LocalTime start, LocalTime end, Subject subject, Set<Tag> tags) {
+    public Session(Day day, Timeslot timeslot, Subject subject, Set<Tag> tags) {
         sessionCount++;
-        requireAllNonNull(subject, tutor, day, start, end);
+        requireAllNonNull(subject, tutor, timeslot, end);
         this.classId = "c_" + sessionCount;
         this.day = day;
-        this.start = start;
-        this.end = end;
+        this.timeslot;
         this.subject = subject;
         this.tags.addAll(tags);
     }
@@ -42,12 +40,8 @@ public class Session {
         return day;
     }
 
-    public LocalTime getStart() {
-        return start;
-    }
-
-    public LocalTime getEnd() {
-        return end;
+    public Timeslot getTimeslot() {
+        return timeslot;
     }
 
     public Subject getSubject() {
@@ -86,7 +80,7 @@ public class Session {
                 .append("; Day: ")
                 .append(this.getDay())
                 .append("; Time: ")
-                .append(this.getStart() + "-" + this.getEnd())
+                .append(this.getTimeslot().toString())
                 .append("; Students: ")
                 .append(this.getStudents().toString());
 

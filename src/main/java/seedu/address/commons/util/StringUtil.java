@@ -65,15 +65,4 @@ public class StringUtil {
             return false;
         }
     }
-
-    public static boolean isValidTime(String s) {
-        requireAllNonNull(s);
-
-        try {
-            LocalTime.parse(s);
-            return true;
-        } catch (DateTimeParseException dtpe) {
-            return false;
-        }
-    }
 }

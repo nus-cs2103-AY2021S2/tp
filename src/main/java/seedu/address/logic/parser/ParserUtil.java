@@ -15,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.session.Day;
 import seedu.address.model.session.Subject;
+import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,7 +24,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_TIME = "Time given must be in HH:MM:SS format."
+    public static final String MESSAGE_INVALID_TIME = "Time given must be in HH:MM format."
+    public static final String MESSAGE_INVALID_TIMESLOT = "Timeslot given must be in HH:MM:SS (start time) to HH:MM:SS (end time)."
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -134,13 +136,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code time} is invalid.
      */
-    public static LocalTime parseTime(String time) throws ParseException {
-        requireNonNull(subject);
-        String trimmedTime = time.trim();
-        if (StringUtil.isValidTime(trimmedTime)) {
-            throw new ParseException()
+    public static Timeslot parseTimeslot(String timeslot) throws ParseException {
+        requireNonNull(timeslot);
+        String trimmedTimeslot = timeslot.trim();
+        if (!StringUtil.isValidTime(trimmedTimeslot)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        return LocalTime.parse(time);
+        return LocalTime.parse(timeslot);
     }
 
     /**

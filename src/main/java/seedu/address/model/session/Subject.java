@@ -29,7 +29,7 @@ public class Subject {
     public Subject(String subject) {
         requireNonNull(subject);
         checkArgument(isValidSubject(subject), MESSAGE_CONSTRAINTS);
-        this.subject = subject;
+        this.subject = subject.toUpperCase();
     }
 
     /**
