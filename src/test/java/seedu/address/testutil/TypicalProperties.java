@@ -8,6 +8,9 @@ import java.util.List;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.property.Property;
 
+/**
+ * A utility class containing a list of {@code Property} objects to be used in tests.
+ */
 public class TypicalProperties {
 
     public static final Property WOODLANDS_CRESCENT = new PropertyBuilder().withName("Woodlands Crescent")
