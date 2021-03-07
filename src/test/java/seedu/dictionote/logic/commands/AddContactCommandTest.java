@@ -21,7 +21,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.testutil.PersonBuilder;
+import seedu.dictionote.testutil.ContactBuilder;
 
 public class AddContactCommandTest {
 
@@ -33,7 +33,7 @@ public class AddContactCommandTest {
     @Test
     public void execute_contactAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingContactAdded modelStub = new ModelStubAcceptingContactAdded();
-        Contact validContact = new PersonBuilder().build();
+        Contact validContact = new ContactBuilder().build();
 
         CommandResult commandResult = new AddContactCommand(validContact).execute(modelStub);
 
@@ -42,18 +42,18 @@ public class AddContactCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Contact validContact = new PersonBuilder().build();
+    public void execute_duplicateContact_throwsCommandException() {
+        Contact validContact = new ContactBuilder().build();
         AddContactCommand addContactCommand = new AddContactCommand(validContact);
-        ModelStub modelStub = new ModelStubWithPerson(validContact);
+        ModelStub modelStub = new ModelStubWithContact(validContact);
 
-        assertThrows(CommandException.class, AddContactCommand.MESSAGE_DUPLICATE_PERSON, () -> addContactCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddContactCommand.MESSAGE_DUPLICATE_CONTACT, () -> addContactCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Contact alice = new PersonBuilder().withName("Alice").build();
-        Contact bob = new PersonBuilder().withName("Bob").build();
+        Contact alice = new ContactBuilder().withName("Alice").build();
+        Contact bob = new ContactBuilder().withName("Bob").build();
         AddContactCommand addAliceCommand = new AddContactCommand(alice);
         AddContactCommand addBobCommand = new AddContactCommand(bob);
 
@@ -70,7 +70,7 @@ public class AddContactCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -150,12 +150,12 @@ public class AddContactCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single contact.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithContact extends ModelStub {
         private final Contact contact;
 
-        ModelStubWithPerson(Contact contact) {
+        ModelStubWithContact(Contact contact) {
             requireNonNull(contact);
             this.contact = contact;
         }
@@ -163,12 +163,12 @@ public class AddContactCommandTest {
         @Override
         public boolean hasContact(Contact contact) {
             requireNonNull(contact);
-            return this.contact.isSamePerson(contact);
+            return this.contact.isSameContact(contact);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the contact being added.
      */
     private class ModelStubAcceptingContactAdded extends ModelStub {
         final ArrayList<Contact> contactsAdded = new ArrayList<>();
@@ -176,7 +176,7 @@ public class AddContactCommandTest {
         @Override
         public boolean hasContact(Contact contact) {
             requireNonNull(contact);
-            return contactsAdded.stream().anyMatch(contact::isSamePerson);
+            return contactsAdded.stream().anyMatch(contact::isSameContact);
         }
 
         @Override

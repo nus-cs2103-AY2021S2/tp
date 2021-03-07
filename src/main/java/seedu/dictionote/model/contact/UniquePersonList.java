@@ -20,7 +20,7 @@ import seedu.dictionote.model.contact.exceptions.ContactNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Contact#isSamePerson(Contact)
+ * @see Contact#isSameContact(Contact)
  */
 public class UniquePersonList implements Iterable<Contact> {
 
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Contact> {
      */
     public boolean contains(Contact toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameContact);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Contact> {
             throw new ContactNotFoundException();
         }
 
-        if (!target.isSamePerson(editedContact) && contains(editedContact)) {
+        if (!target.isSameContact(editedContact) && contains(editedContact)) {
             throw new DuplicateContactException();
         }
 
@@ -127,7 +127,7 @@ public class UniquePersonList implements Iterable<Contact> {
     private boolean personsAreUnique(List<Contact> contacts) {
         for (int i = 0; i < contacts.size() - 1; i++) {
             for (int j = i + 1; j < contacts.size(); j++) {
-                if (contacts.get(i).isSamePerson(contacts.get(j))) {
+                if (contacts.get(i).isSameContact(contacts.get(j))) {
                     return false;
                 }
             }

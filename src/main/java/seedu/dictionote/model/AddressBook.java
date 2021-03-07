@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPersons(newData.getContactList());
     }
 
     //// person-level operations
@@ -103,7 +103,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Contact> getPersonList() {
+    public ObservableList<Contact> getContactList() {
         return persons.asUnmodifiableObservableList();
     }
 

@@ -47,7 +47,7 @@ public class DictionoteParser {
         switch (commandWord) {
 
         case AddContactCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddContactCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

@@ -11,7 +11,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.testutil.PersonBuilder;
+import seedu.dictionote.testutil.ContactBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,8 +26,8 @@ public class AddContactCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Contact validContact = new PersonBuilder().build();
+    public void execute_newContact_success() {
+        Contact validContact = new ContactBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addContact(validContact);
@@ -37,9 +37,9 @@ public class AddContactCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Contact contactInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddContactCommand(contactInList), model, AddContactCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicateContact_throwsCommandException() {
+        Contact contactInList = model.getAddressBook().getContactList().get(0);
+        assertCommandFailure(new AddContactCommand(contactInList), model, AddContactCommand.MESSAGE_DUPLICATE_CONTACT);
     }
 
 }
