@@ -27,6 +27,6 @@ public interface Storage extends ModuleBookStorage, UserPrefsStorage {
     Optional<ReadOnlyModuleBook> readModuleBook() throws DataConversionException, IOException;
 
     @Override
-    void saveModuleBook(ReadOnlyModuleBook addressBook) throws IOException;
+    void saveModuleBook(ReadOnlyModuleBook moduleBook) throws IOException;
 
 }

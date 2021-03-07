@@ -1,46 +1,16 @@
 {
   "_comment": "ModuleBook save file which contains the same Task values as in TypicalTasks#getTypicalModuleBook()",
   "tasks" : [ {
-    "name" : "Alice Pauline",
-    "deadline" : "94351253",
-    "module" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "name" : "Team Project",
+    "deadline" : "2021-03-15 14:00",
+    "module" : "CS2103T",
+    "address" : "Wrap up version 1.2",
+    "tagged" : [ "high workload" ]
   }, {
-    "name" : "Benson Meier",
-    "deadline" : "98765432",
-    "module" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Carl Kurz",
-    "deadline" : "95352563",
-    "module" : "heinz@example.com",
-    "address" : "wall street",
-    "tagged" : [ ]
-  }, {
-    "name" : "Daniel Meier",
-    "deadline" : "87652533",
-    "module" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "deadline" : "9482224",
-    "module" : "werner@example.com",
-    "address" : "michegan ave",
-    "tagged" : [ ]
-  }, {
-    "name" : "Fiona Kunz",
-    "deadline" : "9482427",
-    "module" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tagged" : [ ]
-  }, {
-    "name" : "George Best",
-    "deadline" : "9482442",
-    "module" : "anna@example.com",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "name" : "Midterm Quiz",
+    "deadline" : "2021-03-06 8:30",
+    "module" : "CS3243",
+    "address" : "Not include CSP",
+    "tagged" : [ "hard", "high priority" ]
   } ]
 }

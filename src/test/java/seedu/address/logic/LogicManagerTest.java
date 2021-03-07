@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonModuleBookStorage addressBookStorage =
-                new JsonModuleBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonModuleBookStorage moduleBookStorage =
+                new JsonModuleBookStorage(temporaryFolder.resolve("moduleBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(moduleBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,11 +71,11 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonModuleBookIoExceptionThrowingStub
-        JsonModuleBookStorage addressBookStorage =
+        JsonModuleBookStorage moduleBookStorage =
                 new JsonModuleBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionModuleBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(moduleBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveModuleBook(ReadOnlyModuleBook addressBook, Path filePath) throws IOException {
+        public void saveModuleBook(ReadOnlyModuleBook moduleBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
 /**
  * An Immutable ModuleBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "modulebook")
 class JsonSerializableModuleBook {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
@@ -46,15 +46,15 @@ class JsonSerializableModuleBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public ModuleBook toModelType() throws IllegalValueException {
-        ModuleBook addressBook = new ModuleBook();
+        ModuleBook moduleBook = new ModuleBook();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
-            if (addressBook.hasTask(task)) {
+            if (moduleBook.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
-            addressBook.addTask(task);
+            moduleBook.addTask(task);
         }
-        return addressBook;
+        return moduleBook;
     }
 
 }

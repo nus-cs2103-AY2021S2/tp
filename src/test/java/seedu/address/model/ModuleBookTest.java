@@ -24,23 +24,23 @@ import seedu.address.testutil.TaskBuilder;
 
 public class ModuleBookTest {
 
-    private final ModuleBook addressBook = new ModuleBook();
+    private final ModuleBook moduleBook = new ModuleBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getTaskList());
+        assertEquals(Collections.emptyList(), moduleBook.getTaskList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> moduleBook.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyModuleBook_replacesData() {
         ModuleBook newData = getTypicalModuleBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        moduleBook.resetData(newData);
+        assertEquals(newData, moduleBook);
     }
 
     @Test
@@ -51,36 +51,36 @@ public class ModuleBookTest {
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
         ModuleBookStub newData = new ModuleBookStub(newTasks);
 
-        assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTaskException.class, () -> moduleBook.resetData(newData));
     }
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTask(null));
+        assertThrows(NullPointerException.class, () -> moduleBook.hasTask(null));
     }
 
     @Test
     public void hasTask_taskNotInModuleBook_returnsFalse() {
-        assertFalse(addressBook.hasTask(ALICE));
+        assertFalse(moduleBook.hasTask(ALICE));
     }
 
     @Test
     public void hasTask_taskInModuleBook_returnsTrue() {
-        addressBook.addTask(ALICE);
-        assertTrue(addressBook.hasTask(ALICE));
+        moduleBook.addTask(ALICE);
+        assertTrue(moduleBook.hasTask(ALICE));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInModuleBook_returnsTrue() {
-        addressBook.addTask(ALICE);
+        moduleBook.addTask(ALICE);
         Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasTask(editedAlice));
+        assertTrue(moduleBook.hasTask(editedAlice));
     }
 
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTaskList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> moduleBook.getTaskList().remove(0));
     }
 
     /**

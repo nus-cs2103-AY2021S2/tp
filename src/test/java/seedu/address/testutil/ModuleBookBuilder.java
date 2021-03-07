@@ -4,31 +4,31 @@ import seedu.address.model.ModuleBook;
 import seedu.address.model.task.Task;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Modulebook objects.
  * Example usage: <br>
  *     {@code ModuleBook ab = new ModuleBookBuilder().withTask("John", "Doe").build();}
  */
 public class ModuleBookBuilder {
 
-    private ModuleBook addressBook;
+    private ModuleBook moduleBook;
 
     public ModuleBookBuilder() {
-        addressBook = new ModuleBook();
+        moduleBook = new ModuleBook();
     }
 
-    public ModuleBookBuilder(ModuleBook addressBook) {
-        this.addressBook = addressBook;
+    public ModuleBookBuilder(ModuleBook moduleBook) {
+        this.moduleBook = moduleBook;
     }
 
     /**
      * Adds a new {@code Task} to the {@code ModuleBook} that we are building.
      */
     public ModuleBookBuilder withTask(Task task) {
-        addressBook.addTask(task);
+        moduleBook.addTask(task);
         return this;
     }
 
     public ModuleBook build() {
-        return addressBook;
+        return moduleBook;
     }
 }

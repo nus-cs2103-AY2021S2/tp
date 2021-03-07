@@ -19,22 +19,22 @@ import seedu.address.model.task.Task;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ModuleBook addressBook;
+    private final ModuleBook moduleBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given moduleBook and userPrefs.
      */
-    public ModelManager(ReadOnlyModuleBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModuleBook moduleBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(moduleBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + moduleBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new ModuleBook(addressBook);
+        this.moduleBook = new ModuleBook(moduleBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        filteredTasks = new FilteredList<>(this.moduleBook.getTaskList());
     }
 
     public ModelManager() {
@@ -71,37 +71,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModuleBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setModuleBookFilePath(addressBookFilePath);
+    public void setModuleBookFilePath(Path moduleBookFilePath) {
+        requireNonNull(moduleBookFilePath);
+        userPrefs.setModuleBookFilePath(moduleBookFilePath);
     }
 
     //=========== ModuleBook ================================================================================
 
     @Override
-    public void setModuleBook(ReadOnlyModuleBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setModuleBook(ReadOnlyModuleBook moduleBook) {
+        this.moduleBook.resetData(moduleBook);
     }
 
     @Override
     public ReadOnlyModuleBook getModuleBook() {
-        return addressBook;
+        return moduleBook;
     }
 
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        return addressBook.hasTask(task);
+        return moduleBook.hasTask(task);
     }
 
     @Override
     public void deleteTask(Task target) {
-        addressBook.removeTask(target);
+        moduleBook.removeTask(target);
     }
 
     @Override
     public void addTask(Task task) {
-        addressBook.addTask(task);
+        moduleBook.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
-        addressBook.setTask(target, editedTask);
+        moduleBook.setTask(target, editedTask);
     }
 
     //=========== Filtered Task List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return moduleBook.equals(other.moduleBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks);
     }

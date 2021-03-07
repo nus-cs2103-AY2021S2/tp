@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        ModuleBookStorage addressBookStorage = new JsonModuleBookStorage(userPrefs.getModuleBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ModuleBookStorage moduleBookStorage = new JsonModuleBookStorage(userPrefs.getModuleBookFilePath());
+        storage = new StorageManager(moduleBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyModuleBook> addressBookOptional;
+        Optional<ReadOnlyModuleBook> moduleBookOptional;
         ReadOnlyModuleBook initialData;
         try {
-            addressBookOptional = storage.readModuleBook();
-            if (!addressBookOptional.isPresent()) {
+            moduleBookOptional = storage.readModuleBook();
+            if (!moduleBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModuleBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleModuleBook);
+            initialData = moduleBookOptional.orElseGet(SampleDataUtil::getSampleModuleBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ModuleBook");
             initialData = new ModuleBook();

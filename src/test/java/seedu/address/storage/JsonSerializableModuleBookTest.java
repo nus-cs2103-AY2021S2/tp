@@ -24,9 +24,9 @@ public class JsonSerializableModuleBookTest {
     public void toModelType_typicalTasksFile_success() throws Exception {
         JsonSerializableModuleBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableModuleBook.class).get();
-        ModuleBook addressBookFromFile = dataFromFile.toModelType();
+        ModuleBook moduleBookFromFile = dataFromFile.toModelType();
         ModuleBook typicalTasksModuleBook = TypicalTasks.getTypicalModuleBook();
-        assertEquals(addressBookFromFile, typicalTasksModuleBook);
+        assertEquals(moduleBookFromFile, typicalTasksModuleBook);
     }
 
     @Test

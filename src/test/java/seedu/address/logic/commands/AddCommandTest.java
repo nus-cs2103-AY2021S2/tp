@@ -104,7 +104,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setModuleBookFilePath(Path addressBookFilePath) {
+        public void setModuleBookFilePath(Path moduleBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

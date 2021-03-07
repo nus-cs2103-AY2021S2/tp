@@ -92,12 +92,12 @@ public class JsonModuleBookStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code moduleBook} at the specified {@code filePath}.
      */
-    private void saveModuleBook(ReadOnlyModuleBook addressBook, String filePath) {
+    private void saveModuleBook(ReadOnlyModuleBook moduleBook, String filePath) {
         try {
             new JsonModuleBookStorage(Paths.get(filePath))
-                    .saveModuleBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveModuleBook(moduleBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

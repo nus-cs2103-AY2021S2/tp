@@ -42,12 +42,12 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setModuleBookFilePath(Path addressBookFilePath);
+    void setModuleBookFilePath(Path moduleBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code moduleBook}.
      */
-    void setModuleBook(ReadOnlyModuleBook addressBook);
+    void setModuleBook(ReadOnlyModuleBook moduleBook);
 
     /** Returns the ModuleBook */
     ReadOnlyModuleBook getModuleBook();
