@@ -2,11 +2,11 @@ package seedu.storemando.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.ALICE;
 import static seedu.storemando.testutil.TypicalItems.BOB;
@@ -33,8 +33,7 @@ public class ItemTest {
 
         // same name, all other attributes different -> returns true
         Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BANANA)
-            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA)
-            .withTags(VALID_TAG_ESSENTIAL).build();
+            .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameItem(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -78,15 +77,15 @@ public class ItemTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different expirydate -> returns false
-        editedAlice = new ItemBuilder(ALICE).withExpiryDate(VALID_EXPIRYDATE_BANANA).build();
+        editedAlice = new ItemBuilder(ALICE).withExpiryDate(VALID_EXPIRYDATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different location -> returns false
-        editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BANANA).build();
+        editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ItemBuilder(ALICE).withTags(VALID_TAG_ESSENTIAL).build();
+        editedAlice = new ItemBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

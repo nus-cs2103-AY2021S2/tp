@@ -6,7 +6,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.logic.commands.CommandTestUtil.showItemAtIndex;
@@ -54,10 +54,10 @@ public class EditCommandTest {
         Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
         ItemBuilder itemInList = new ItemBuilder(lastItem);
         Item editedItem = itemInList.withName(VALID_NAME_BANANA).withQuantity(VALID_QUANTITY_BANANA)
-            .withTags(VALID_TAG_ESSENTIAL).build();
+            .withTags(VALID_TAG_HUSBAND).build();
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA)
-            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
+            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);

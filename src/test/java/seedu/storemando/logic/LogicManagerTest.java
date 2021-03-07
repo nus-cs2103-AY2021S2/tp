@@ -3,10 +3,10 @@ package seedu.storemando.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX;
 import static seedu.storemando.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_STRAWBERRY_MILK;
-import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_STRAWBERRY_MILK;
-import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_STRAWBERRY_MILK;
-import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_AMY;
+import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_AMY;
+import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_AMY;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.AMY;
 
@@ -79,8 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_STRAWBERRY_MILK + QUANTITY_DESC_STRAWBERRY_MILK
-            + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + QUANTITY_DESC_AMY + EXPIRYDATE_DESC_AMY
+            + LOCATION_DESC_AMY;
         Item expectedItem = new ItemBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);

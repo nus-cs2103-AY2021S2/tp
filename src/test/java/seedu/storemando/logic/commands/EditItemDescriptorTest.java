@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,15 +44,15 @@ public class EditItemDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different expirydate -> returns false
-        editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withExpiryDate(VALID_EXPIRYDATE_BANANA).build();
+        editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withExpiryDate(VALID_EXPIRYDATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different location -> returns false
-        editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withLocation(VALID_LOCATION_BANANA).build();
+        editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withLocation(VALID_LOCATION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_ESSENTIAL).build();
+        editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

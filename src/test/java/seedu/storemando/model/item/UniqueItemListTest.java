@@ -3,8 +3,8 @@ package seedu.storemando.model.item;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.ALICE;
 import static seedu.storemando.testutil.TypicalItems.BOB;
@@ -42,7 +42,7 @@ public class UniqueItemListTest {
     @Test
     public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
         uniqueItemList.add(ALICE);
-        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
+        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         assertTrue(uniqueItemList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueItemListTest {
     @Test
     public void setItem_editedItemHasSameIdentity_success() {
         uniqueItemList.add(ALICE);
-        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
+        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         uniqueItemList.setItem(ALICE, editedAlice);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
