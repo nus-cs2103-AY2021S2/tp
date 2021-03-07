@@ -1,22 +1,20 @@
 package seedu.address.model.appointment;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Objects;
 
 public class Appointment {
     // Mandatory fields
     private final Name name;
     private final Remark remarks;
-    private final LocalDate date;
+    private final Date date;
 
     // Optional fields
-    private final LocalTime time;
+    private final Time time;
 
     /**
      * Constructs an {@code Appointment} without any optional fields.
      */
-    public Appointment(Name name, Remark remarks, LocalDate date) {
+    public Appointment(Name name, Remark remarks, Date date) {
         this.name = name;
         this.remarks = remarks;
         this.date = date;
@@ -27,7 +25,7 @@ public class Appointment {
      * Constructs an {@code Appointment} with all information.
      * Every field must be present and not null.
      */
-    public Appointment(Name name, Remark remarks, LocalDate date, LocalTime time) {
+    public Appointment(Name name, Remark remarks, Date date, Time time) {
         this.name = name;
         this.remarks = remarks;
         this.date = date;
@@ -42,11 +40,11 @@ public class Appointment {
         return remarks;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public LocalTime getTime() {
+    public Time getTime() {
         return time;
     }
 

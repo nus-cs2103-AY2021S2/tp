@@ -39,8 +39,8 @@ public class Date {
         if (!(other instanceof Date)) {
             return false;
         }
-        Date otherDeadline = (Date) other;
-        return date.equals(otherDeadline.date);
+        Date otherDate = (Date) other;
+        return date.equals(otherDate.date);
     }
 
     @Override
