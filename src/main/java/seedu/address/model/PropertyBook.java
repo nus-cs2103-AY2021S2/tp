@@ -27,7 +27,7 @@ public class PropertyBook {
 
     /**
      * Adds a property to the app.
-     * The property must not already exist in the address book.
+     * The property must not already exist in the property book.
      *
      * @param property The property to be added.
      */

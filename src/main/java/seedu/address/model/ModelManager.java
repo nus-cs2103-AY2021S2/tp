@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 
@@ -25,6 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     private final PropertyBook propertyBook;
+    private final AppointmentBook appointmentBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +42,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
         propertyBook = new PropertyBook();
+        appointmentBook = new AppointmentBook();
     }
 
     public ModelManager() {
@@ -92,6 +95,19 @@ public class ModelManager implements Model {
     @Override
     public void addProperty(Property property) {
         propertyBook.addProperty(property);
+    }
+
+    //=========== AppointmentBook =============================================================================
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointmentBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        appointmentBook.addAppointment(appointment);
     }
 
     //=========== AddressBook ================================================================================

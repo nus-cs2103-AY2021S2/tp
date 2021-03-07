@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 
@@ -92,4 +93,11 @@ public interface Model {
     boolean hasProperty(Property property);
 
     void addProperty(Property property);
+
+    // ======================================================================================================
+    // API for AppointmentBook
+
+    boolean hasAppointment(Appointment appointment);
+
+    void addAppointment(Appointment appointment);
 }

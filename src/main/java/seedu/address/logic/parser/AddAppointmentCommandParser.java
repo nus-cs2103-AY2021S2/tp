@@ -32,7 +32,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REMARK, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAppointmentCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
