@@ -19,7 +19,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_A
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -55,7 +55,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_STRAWBERRY_MILK, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -116,7 +116,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BOB + TAG_DESC_HUSBAND
             + EXPIRYDATE_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
             .withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -141,7 +141,7 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_ITEM;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

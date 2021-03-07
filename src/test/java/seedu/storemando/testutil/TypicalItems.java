@@ -4,7 +4,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_A
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
@@ -50,7 +50,7 @@ public class TypicalItems {
 
 
     // Manually added - Item's details found in {@code CommandTestUtil}
-    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_AMY).withQuantity(VALID_QUANTITY_AMY)
+    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_STRAWBERRY_MILK).withQuantity(VALID_QUANTITY_AMY)
         .withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Item BOB = new ItemBuilder().withName(VALID_NAME_BOB).withQuantity(VALID_QUANTITY_BOB)
         .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND,

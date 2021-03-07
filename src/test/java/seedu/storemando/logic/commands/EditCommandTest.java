@@ -69,16 +69,10 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditCommand.EditItemDescriptor());
-        Item editedItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-
-        //String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
         String expectedMessage = String.format(EditCommand.MESSAGE_NO_CHANGE);
-
-        Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test

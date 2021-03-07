@@ -32,21 +32,23 @@ public class ExpiryDateTest {
         assertFalse(ExpiryDate.isValidExpiryDate("2020-10")); // missing DD
         assertFalse(ExpiryDate.isValidExpiryDate("20201010")); // missing '-' symbol
         assertFalse(ExpiryDate.isValidExpiryDate("10-10")); // missing YYYY
+        assertFalse(ExpiryDate.isValidExpiryDate("2020-1-10")); // missing digit for MM
+        assertFalse(ExpiryDate.isValidExpiryDate("20-11-01")); // missing digit for YYYY
+        assertFalse(ExpiryDate.isValidExpiryDate("2020-11-1")); // missing digit for DD
 
         // invalid parts
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@-")); // invalid domain name
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@exam_ple.com")); // underscore in domain name
-        assertFalse(ExpiryDate.isValidExpiryDate("peter jack@example.com")); // spaces in local part
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@exam ple.com")); // spaces in domain name
-        assertFalse(ExpiryDate.isValidExpiryDate(" peterjack@example.com")); // leading space
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@example.com ")); // trailing space
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@@example.com")); // double '@' symbol
-        assertFalse(ExpiryDate.isValidExpiryDate("peter@jack@example.com")); // '@' symbol in local part
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@example@com")); // '@' symbol in domain name
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@.example.com")); // domain name starts with a period
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@example.com.")); // domain name ends with a period
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@-example.com")); // domain name starts with a hyphen
-        assertFalse(ExpiryDate.isValidExpiryDate("peterjack@example.com-")); // domain name ends with a hyphen
+        assertFalse(ExpiryDate.isValidExpiryDate("0000-10-10")); // invalid YYYY
+        assertFalse(ExpiryDate.isValidExpiryDate("2010-10-40")); // invalid DD
+        assertFalse(ExpiryDate.isValidExpiryDate("2010-20-01")); // invalid MM
+        assertFalse(ExpiryDate.isValidExpiryDate("2020-1 0-11")); // spaces in DD
+        assertFalse(ExpiryDate.isValidExpiryDate("20 20-10-11")); // spaces in YYYY
+        assertFalse(ExpiryDate.isValidExpiryDate(" 2020-10-10")); // leading space
+        assertFalse(ExpiryDate.isValidExpiryDate("2021-10-10 ")); // trailing space
+        assertFalse(ExpiryDate.isValidExpiryDate("20a1-10-10")); // alphabets in YYYY
+        assertFalse(ExpiryDate.isValidExpiryDate("2020-02-30")); // Invalid date for february
+        assertFalse(ExpiryDate.isValidExpiryDate("20-20-10-10")); // '-' symbol in YYYY
+        assertFalse(ExpiryDate.isValidExpiryDate("10-02-2019")); // expiry date in DD-MM-YYYY format
+        assertFalse(ExpiryDate.isValidExpiryDate("@2010-07-10")); // date starts with symbol
 
         // valid expirydate
         assertTrue(ExpiryDate.isValidExpiryDate("2020-10-10"));
