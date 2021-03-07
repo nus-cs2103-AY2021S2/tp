@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.dictionote.commons.core.LogsCenter;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * Panel containing the list of persons.

@@ -19,11 +19,11 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.commons.util.CollectionUtil;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.person.Address;
-import seedu.dictionote.model.person.Email;
-import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Contact;
-import seedu.dictionote.model.person.Phone;
+import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.Name;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -77,7 +77,7 @@ public class EditCommand extends Command {
         Contact contactToEdit = lastShownList.get(index.getZeroBased());
         Contact editedContact = createEditedPerson(contactToEdit, editPersonDescriptor);
 
-        if (!contactToEdit.isSamePerson(editedContact) && model.hasPerson(editedContact)) {
+        if (!contactToEdit.isSamePerson(editedContact) && model.hasContact(editedContact)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

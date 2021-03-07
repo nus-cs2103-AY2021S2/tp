@@ -1,7 +1,7 @@
 package seedu.dictionote.testutil;
 
 import seedu.dictionote.model.AddressBook;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * A utility class to help with building Addressbook objects.

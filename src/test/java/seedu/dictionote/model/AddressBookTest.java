@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.person.Contact;
-import seedu.dictionote.model.person.exceptions.DuplicatePersonException;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.exceptions.DuplicatePersonException;
 import seedu.dictionote.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -56,18 +56,18 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasContact(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasContact(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        assertTrue(addressBook.hasContact(ALICE));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class AddressBookTest {
         addressBook.addPerson(ALICE);
         Contact editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasContact(editedAlice));
     }
 
     @Test

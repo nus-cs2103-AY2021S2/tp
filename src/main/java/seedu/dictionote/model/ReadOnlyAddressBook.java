@@ -1,7 +1,7 @@
 package seedu.dictionote.model;
 
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * Unmodifiable view of an dictionote book

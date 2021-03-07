@@ -1,4 +1,4 @@
-package seedu.dictionote.model.person;
+package seedu.dictionote.model.contact;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.person.exceptions.DuplicatePersonException;
-import seedu.dictionote.model.person.exceptions.PersonNotFoundException;
+import seedu.dictionote.model.contact.exceptions.DuplicatePersonException;
+import seedu.dictionote.model.contact.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

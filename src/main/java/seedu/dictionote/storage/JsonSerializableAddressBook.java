@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -49,7 +49,7 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Contact contact = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(contact)) {
+            if (addressBook.hasContact(contact)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(contact);

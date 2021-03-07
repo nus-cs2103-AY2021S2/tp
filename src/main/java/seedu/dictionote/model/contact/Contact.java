@@ -1,4 +1,4 @@
-package seedu.dictionote.model.person;
+package seedu.dictionote.model.contact;
 
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 

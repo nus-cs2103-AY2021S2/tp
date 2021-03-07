@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.dictionote.logic.commands.FindCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-import seedu.dictionote.model.person.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

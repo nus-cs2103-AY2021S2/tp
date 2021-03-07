@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.GuiSettings;
-import seedu.dictionote.model.person.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -74,18 +74,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasContact(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+        assertFalse(modelManager.hasContact(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+        modelManager.addContact(ALICE);
+        assertTrue(modelManager.hasContact(ALICE));
     }
 
     @Test

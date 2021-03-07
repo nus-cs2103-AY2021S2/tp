@@ -1,4 +1,4 @@
-package seedu.dictionote.model.person;
+package seedu.dictionote.model.contact;
 
 import java.util.List;
 import java.util.function.Predicate;

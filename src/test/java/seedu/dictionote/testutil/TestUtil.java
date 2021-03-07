@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * A utility class for test cases.

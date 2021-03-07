@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * Represents the in-memory model of the dictionote book data.
@@ -89,9 +89,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Contact contact) {
+    public boolean hasContact(Contact contact) {
         requireNonNull(contact);
-        return addressBook.hasPerson(contact);
+        return addressBook.hasContact(contact);
     }
 
     @Override
@@ -100,8 +100,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Contact contact) {
-        addressBook.addPerson(contact);
+    public void addContact(Contact contact) {
+        addressBook.addContact(contact);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddContactCommandIntegrationTest {
 
     private Model model;
 
@@ -30,16 +30,16 @@ public class AddCommandIntegrationTest {
         Contact validContact = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validContact);
+        expectedModel.addContact(validContact);
 
-        assertCommandSuccess(new AddCommand(validContact), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validContact), expectedModel);
+        assertCommandSuccess(new AddContactCommand(validContact), model,
+                String.format(AddContactCommand.MESSAGE_SUCCESS, validContact), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Contact contactInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(contactInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddContactCommand(contactInList), model, AddContactCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * The API of the Model component.
@@ -55,7 +55,7 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the dictionote book.
      */
-    boolean hasPerson(Contact contact);
+    boolean hasContact(Contact contact);
 
     /**
      * Deletes the given person.
@@ -67,7 +67,7 @@ public interface Model {
      * Adds the given person.
      * {@code person} must not already exist in the dictionote book.
      */
-    void addPerson(Contact contact);
+    void addContact(Contact contact);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

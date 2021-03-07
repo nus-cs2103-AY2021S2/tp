@@ -16,7 +16,7 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

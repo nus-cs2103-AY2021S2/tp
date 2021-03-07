@@ -1,4 +1,4 @@
-package seedu.dictionote.model.person;
+package seedu.dictionote.model.contact;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dictionote.model.person.exceptions.DuplicatePersonException;
-import seedu.dictionote.model.person.exceptions.PersonNotFoundException;
+import seedu.dictionote.model.contact.exceptions.DuplicatePersonException;
+import seedu.dictionote.model.contact.exceptions.PersonNotFoundException;
 import seedu.dictionote.testutil.PersonBuilder;
 
 public class UniqueContactListTest {
