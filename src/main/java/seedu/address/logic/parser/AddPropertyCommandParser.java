@@ -40,12 +40,12 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parsePropertyName(argMultimap.getValue(PREFIX_NAME).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Type type = ParserUtil.parsePropertyType(argMultimap.getValue(PREFIX_TYPE).get());
         Address address = ParserUtil.parsePropertyAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         PostalCode postal = ParserUtil.parsePropertyPostal(argMultimap.getValue(PREFIX_POSTAL).get());
         Deadline deadline = ParserUtil.parsePropertyDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Remark remark = ParserUtil.parsePropertyRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
 
         Property property = new Property(name, type, address, postal, deadline, remark);
 

@@ -76,25 +76,25 @@ public class ParserUtilTest {
 
     @Test
     public void parsePropertyName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePropertyName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
 
     @Test
     public void parsePropertyName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePropertyName(INVALID_PROPERTY_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_PROPERTY_NAME));
     }
 
     @Test
     public void parsePropertyName_validValueWithoutWhitespace_returnsName() throws Exception {
         Name expectedName = new Name(VALID_PROPERTY_NAME);
-        assertEquals(expectedName, ParserUtil.parsePropertyName(VALID_PROPERTY_NAME));
+        assertEquals(expectedName, ParserUtil.parseName(VALID_PROPERTY_NAME));
     }
 
     @Test
     public void parsePropertyName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_PROPERTY_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_PROPERTY_NAME);
-        assertEquals(expectedName, ParserUtil.parsePropertyName(nameWithWhitespace));
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
@@ -201,14 +201,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        seedu.address.model.person.Name expectedName = new seedu.address.model.person.Name(VALID_NAME);
+        Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        seedu.address.model.person.Name expectedName = new seedu.address.model.person.Name(VALID_NAME);
+        Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
