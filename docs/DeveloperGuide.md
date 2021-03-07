@@ -236,20 +236,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* need to manage many delivery entries and their respective details
-* prefer desktop apps over mobile apps or other types
-* can type fast
-* prefers typing to mouse interactions
-* has at least some experience using CLI apps
+* Companies that have delivery operations and freelance delivery drivers
+* Need to manage many delivery entries and their respective details
+* Prefers typing to mouse interactions
+* Can type fast
+* Is reasonably comfortable using CLI apps
+* Looking for a desktop app over other types to better manage their workflow
 
-**Value proposition**: manage contacts and delivery details faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage delivery workflows and details faster than a typical mouse/GUI driven app for greater efficiency
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                                                                             | So that I can…​                                        |
+| Priority | As a …​                   | I want to …​                                                                                | So that I can…​                                           |
 | -------- | --------------------------| ------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | `* * *`  | delivery driver           | add a delivery entry to the list (product, pickup/drop off time and address, route)         | make the delivery immediately/later                       |
 | `* * *`  | delivery driver           | mark a delivery entry in the list as done                                                   | know which deliveries I've done                           |
@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Delivery App informs the User that the list is empty.
 
   Use case ends.
-
+  
 * 3a. The number of the delivery entry is invalid.
     * 3a1. Delivery App requests for a valid entry number.
     * 3a2. User enters new entry number.
@@ -897,7 +897,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Delivery App shows samples of delivery entries.
 
     Use case ends.
-
+      
 *{More to be added}*
 
 ### Non-Functional Requirements
