@@ -20,8 +20,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_B
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_STRAWBERRY_MILK;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
@@ -107,7 +107,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EXPIRYDATE_DESC + VALID_LOCATION_AMY
-            + VALID_QUANTITY_AMY, ItemName.MESSAGE_CONSTRAINTS);
+            + VALID_QUANTITY_STRAWBERRY_MILK, ItemName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -117,7 +117,7 @@ public class EditCommandParserTest {
             + EXPIRYDATE_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
-            .withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
+            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -129,7 +129,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_AMY;
 
-        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BOB)
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA)
             .withExpiryDate(VALID_EXPIRYDATE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -147,7 +147,7 @@ public class EditCommandParserTest {
 
         // quantity
         userInput = targetIndex.getOneBased() + QUANTITY_DESC_AMY;
-        descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_AMY).build();
+        descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -177,7 +177,7 @@ public class EditCommandParserTest {
             + TAG_DESC_FRIEND + QUANTITY_DESC_AMY + LOCATION_DESC_AMY + EXPIRYDATE_DESC_AMY + TAG_DESC_FRIEND
             + QUANTITY_DESC_BOB + LOCATION_DESC_BOB + EXPIRYDATE_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BOB)
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA)
             .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_FRIEND,
                 VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -190,14 +190,14 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased() + INVALID_QUANTITY_DESC + QUANTITY_DESC_BOB;
-        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BOB).build();
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EXPIRYDATE_DESC_BOB + INVALID_QUANTITY_DESC + LOCATION_DESC_BOB
             + QUANTITY_DESC_BOB;
-        descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BOB)
+        descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA)
             .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

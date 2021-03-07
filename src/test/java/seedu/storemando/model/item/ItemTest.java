@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.ALICE;
@@ -33,20 +33,20 @@ public class ItemTest {
 
         // same name, all other attributes different -> returns true
 
-        Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB)
+        Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BOB)
             .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameItem(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new ItemBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new ItemBuilder(ALICE).withName(VALID_NAME_BANANA).build();
         assertFalse(ALICE.isSameItem(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Item editedBob = new ItemBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Item editedBob = new ItemBuilder(BOB).withName(VALID_NAME_BANANA.toLowerCase()).build();
         assertFalse(BOB.isSameItem(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        String nameWithTrailingSpaces = VALID_NAME_BANANA + " ";
         editedBob = new ItemBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameItem(editedBob));
     }
@@ -70,11 +70,11 @@ public class ItemTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Item editedAlice = new ItemBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Item editedAlice = new ItemBuilder(ALICE).withName(VALID_NAME_BANANA).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different quantity -> returns false
-        editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).build();
+        editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BANANA).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different expirydate -> returns false

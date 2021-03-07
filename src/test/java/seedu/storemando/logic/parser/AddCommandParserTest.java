@@ -20,8 +20,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -89,11 +89,11 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB,
+        assertParseFailure(parser, VALID_NAME_BANANA + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB,
             expectedMessage);
 
         // missing quantity prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_QUANTITY_BOB + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_QUANTITY_BANANA + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB,
             expectedMessage);
 
         // missing expirydate prefix
@@ -105,7 +105,7 @@ public class AddCommandParserTest {
             expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_QUANTITY_BOB + VALID_EXPIRYDATE_BOB
+        assertParseFailure(parser, VALID_NAME_BANANA + VALID_QUANTITY_BANANA + VALID_EXPIRYDATE_BOB
             + VALID_LOCATION_BOB, expectedMessage);
     }
 

@@ -6,6 +6,7 @@ import static seedu.storemando.commons.util.AppUtil.checkArgument;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Item's expiry date in the inventory manager.
@@ -52,12 +53,10 @@ public class ExpiryDate {
         if (test == null || !test.matches(VALIDATION_REGEX)) {
             return false;
         }
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        df.setLenient(false);
         try {
-            df.parse(test);
+            LocalDate.parse(test);
             return true;
-        } catch (ParseException ex) {
+        } catch (DateTimeParseException ex) {
             return false;
         }
     }
