@@ -17,8 +17,8 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 
 /**

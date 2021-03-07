@@ -6,9 +6,9 @@ import java.util.stream.Stream;
 
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
-import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 

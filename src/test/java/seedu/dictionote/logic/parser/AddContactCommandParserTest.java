@@ -33,9 +33,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
-import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.testutil.ContactBuilder;

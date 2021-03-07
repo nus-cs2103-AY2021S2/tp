@@ -20,9 +20,9 @@ import seedu.dictionote.commons.util.CollectionUtil;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
-import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 

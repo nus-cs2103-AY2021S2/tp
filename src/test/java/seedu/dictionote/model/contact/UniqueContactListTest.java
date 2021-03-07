@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
 import seedu.dictionote.model.contact.exceptions.ContactNotFoundException;
+import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
 import seedu.dictionote.testutil.ContactBuilder;
 
 public class UniqueContactListTest {

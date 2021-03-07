@@ -10,9 +10,9 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +24,9 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 import seedu.dictionote.testutil.ContactBuilder;
+import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.

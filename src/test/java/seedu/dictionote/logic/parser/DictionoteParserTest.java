@@ -27,10 +27,10 @@ import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
+import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.testutil.ContactBuilder;
+import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 import seedu.dictionote.testutil.PersonUtil;
 
 public class DictionoteParserTest {

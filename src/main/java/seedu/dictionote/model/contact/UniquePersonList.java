@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
 import seedu.dictionote.model.contact.exceptions.ContactNotFoundException;
+import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
