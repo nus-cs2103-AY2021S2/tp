@@ -11,7 +11,6 @@ import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.ALICE;
 import static seedu.storemando.testutil.TypicalItems.BOB;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.testutil.ItemBuilder;
@@ -33,8 +32,9 @@ public class ItemTest {
         assertFalse(ALICE.isSameItem(null));
 
         // same name, all other attributes different -> returns true
-        Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
-            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
+        Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BANANA)
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA)
+            .withTags(VALID_TAG_ESSENTIAL).build();
         assertTrue(ALICE.isSameItem(editedAlice));
 
         // different name, all other attributes same -> returns false

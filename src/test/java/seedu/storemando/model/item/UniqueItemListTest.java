@@ -9,7 +9,6 @@ import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.ALICE;
 import static seedu.storemando.testutil.TypicalItems.BOB;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
