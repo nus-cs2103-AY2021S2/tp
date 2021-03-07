@@ -47,7 +47,8 @@ public class AddStudentCommandTest {
         AddStudentCommand addStudentCommand = new AddStudentCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
-        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () ->
+            addStudentCommand.execute(modelStub));
     }
 
     @Test
