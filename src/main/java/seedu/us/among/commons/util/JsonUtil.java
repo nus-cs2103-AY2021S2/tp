@@ -111,6 +111,17 @@ public class JsonUtil {
     }
 
     /**
+     * Converts a given string representation of a HTTP entity into its pretty formatted
+     * JSON data string representation
+     * @param httpEntityString The String representation of a HTTP entity to be converted into the JSON string
+     * @return JSON data representation of the given HTTP entity, in string
+     */
+    public static String toPrettyPrintJsonString(String httpEntityString) throws IOException {
+        Object jsonObject = fromJsonString(httpEntityString, Object.class);
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
+    }
+
+    /**
      * Contains methods that retrieve logging level from serialized string.
      */
     private static class LevelDeserializer extends FromStringDeserializer<Level> {
