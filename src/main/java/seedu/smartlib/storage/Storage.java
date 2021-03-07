@@ -21,12 +21,12 @@ public interface Storage extends SmartLibStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getSmartLibFilePath();
 
     @Override
-    Optional<ReadOnlySmartLib> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySmartLib> readSmartLib() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlySmartLib addressBook) throws IOException;
+    void saveSmartLib(ReadOnlySmartLib smartLib) throws IOException;
 
 }

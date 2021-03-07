@@ -7,7 +7,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalReaders.ALICE;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,8 +37,8 @@ public class SmartLibTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        SmartLib newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlySmartLib_replacesData() {
+        SmartLib newData = getTypicalSmartLib();
         smartLib.resetData(newData);
         assertEquals(newData, smartLib);
     }
@@ -60,18 +60,18 @@ public class SmartLibTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInSmartLib_returnsFalse() {
         assertFalse(smartLib.hasReader(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInSmartLib_returnsTrue() {
         smartLib.addReader(ALICE);
         assertTrue(smartLib.hasReader(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInSmartLib_returnsTrue() {
         smartLib.addReader(ALICE);
         Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();

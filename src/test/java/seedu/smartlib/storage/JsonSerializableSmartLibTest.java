@@ -25,7 +25,7 @@ public class JsonSerializableSmartLibTest {
         JsonSerializableSmartLib dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableSmartLib.class).get();
         SmartLib smartLibFromFile = dataFromFile.toModelType();
-        SmartLib typicalPersonsSmartLib = TypicalReaders.getTypicalAddressBook();
+        SmartLib typicalPersonsSmartLib = TypicalReaders.getTypicalSmartLib();
         assertEquals(smartLibFromFile, typicalPersonsSmartLib);
     }
 

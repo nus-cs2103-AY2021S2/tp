@@ -2,7 +2,7 @@ package seedu.smartlib.logic.commands;
 
 import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalSmartLib(), new UserPrefs());
     }
 
     @Test

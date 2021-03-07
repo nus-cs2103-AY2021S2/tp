@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlySmartLib addressBook, Path filePath) throws IOException {
+        public void saveSmartLib(ReadOnlySmartLib addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -12,7 +12,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.smartlib.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ import seedu.smartlib.testutil.ReaderBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSmartLib(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +43,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
 
         Model expectedModel = new ModelManager(new SmartLib(model.getSmartLib()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredReaderList().get(0), editedReader);
+        expectedModel.setReader(model.getFilteredReaderList().get(0), editedReader);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -64,7 +64,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
 
         Model expectedModel = new ModelManager(new SmartLib(model.getSmartLib()), new UserPrefs());
-        expectedModel.setPerson(lastReader, editedReader);
+        expectedModel.setReader(lastReader, editedReader);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -93,7 +93,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
 
         Model expectedModel = new ModelManager(new SmartLib(model.getSmartLib()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredReaderList().get(0), editedReader);
+        expectedModel.setReader(model.getFilteredReaderList().get(0), editedReader);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

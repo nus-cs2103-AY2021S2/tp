@@ -7,7 +7,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.smartlib.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.smartlib.model.reader.Reader;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSmartLib(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -102,7 +102,7 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+        model.updateFilteredReaderList(p -> false);
 
         assertTrue(model.getFilteredReaderList().isEmpty());
     }

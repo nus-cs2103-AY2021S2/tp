@@ -6,7 +6,7 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_READERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -81,8 +81,8 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_READER);
         }
 
-        model.setPerson(readerToEdit, editedReader);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setReader(readerToEdit, editedReader);
+        model.updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         return new CommandResult(String.format(MESSAGE_EDIT_READER_SUCCESS, editedReader));
     }
 

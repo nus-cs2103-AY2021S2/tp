@@ -62,7 +62,7 @@ public class TypicalReaders {
     /**
      * Returns an {@code SmartLib} with all the typical readers.
      */
-    public static SmartLib getTypicalAddressBook() {
+    public static SmartLib getTypicalSmartLib() {
         SmartLib ab = new SmartLib();
         for (Reader reader : getTypicalReaders()) {
             ab.addReader(reader);

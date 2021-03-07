@@ -12,7 +12,7 @@ import seedu.smartlib.model.ReadOnlyUserPrefs;
 import seedu.smartlib.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of SmartLib data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code SmartLibStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(SmartLibStorage smartLibStorage, UserPrefsStorage userPrefsStorage) {
         super();
@@ -50,30 +50,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return smartLibStorage.getAddressBookFilePath();
+    public Path getSmartLibFilePath() {
+        return smartLibStorage.getSmartLibFilePath();
     }
 
     @Override
-    public Optional<ReadOnlySmartLib> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(smartLibStorage.getAddressBookFilePath());
+    public Optional<ReadOnlySmartLib> readSmartLib() throws DataConversionException, IOException {
+        return readSmartLib(smartLibStorage.getSmartLibFilePath());
     }
 
     @Override
-    public Optional<ReadOnlySmartLib> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlySmartLib> readSmartLib(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return smartLibStorage.readAddressBook(filePath);
+        return smartLibStorage.readSmartLib(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlySmartLib addressBook) throws IOException {
-        saveAddressBook(addressBook, smartLibStorage.getAddressBookFilePath());
+    public void saveSmartLib(ReadOnlySmartLib smartLib) throws IOException {
+        saveSmartLib(smartLib, smartLibStorage.getSmartLibFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlySmartLib addressBook, Path filePath) throws IOException {
+    public void saveSmartLib(ReadOnlySmartLib smartLib, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        smartLibStorage.saveAddressBook(addressBook, filePath);
+        smartLibStorage.saveSmartLib(smartLib, filePath);
     }
 
 }

@@ -2,7 +2,7 @@ package seedu.smartlib.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.smartlib.testutil.TypicalReaders.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
 
 import java.nio.file.Path;
 
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void smartLibReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonSmartLibStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonSmartLibStorageTest} class.
          */
-        SmartLib original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlySmartLib retrieved = storageManager.readAddressBook().get();
+        SmartLib original = getTypicalSmartLib();
+        storageManager.saveSmartLib(original);
+        ReadOnlySmartLib retrieved = storageManager.readSmartLib().get();
         assertEquals(original, new SmartLib(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getSmartLibFilePath() {
+        assertNotNull(storageManager.getSmartLibFilePath());
     }
 
 }

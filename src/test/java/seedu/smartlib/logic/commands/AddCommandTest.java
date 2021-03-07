@@ -100,12 +100,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getSmartLibFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setSmartLibFilePath(Path smartLibFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,7 +135,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Reader target, Reader editedReader) {
+        public void setReader(Reader target, Reader editedReader) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,7 +145,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Reader> predicate) {
+        public void updateFilteredReaderList(Predicate<Reader> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

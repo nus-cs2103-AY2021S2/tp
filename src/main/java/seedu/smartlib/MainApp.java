@@ -77,11 +77,11 @@ public class MainApp extends Application {
         Optional<ReadOnlySmartLib> addressBookOptional;
         ReadOnlySmartLib initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readSmartLib();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleSmartLib);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new SmartLib();
