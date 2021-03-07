@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Meeting {
     private final LocalDate date;
@@ -35,6 +36,27 @@ public class Meeting {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Meeting)) {
+            return false;
+        }
+
+        Meeting otherMeeting = (Meeting) other;
+        return otherMeeting.getDate().equals(getDate())
+                && otherMeeting.getTime().equals(getTime())
+                && otherMeeting.getDescription().equals(getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, time, description);
     }
 
     @Override
