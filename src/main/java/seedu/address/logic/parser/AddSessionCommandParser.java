@@ -18,13 +18,13 @@ import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddSessionCommand object
  */
 public class AddSessionCommandParser implements Parser<AddSessionCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddSessionCommand
+     * and returns an AddSessionCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddSessionCommand parse(String args) throws ParseException {
