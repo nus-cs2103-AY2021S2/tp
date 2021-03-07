@@ -236,71 +236,99 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Companies that have delivery operations and freelance delivery drivers 
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
+* Looking for a desktop app to better manage their workflow
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: The ability to manage your delivery workflow for efficiency gains
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​                                    | I want to …​                       | So that I can…​                                                         |
+| -------- | ------------------------------------------ | -------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | Driver                                     | Add delivery location            | keep track of my delivery workflow                                     |
+| `* * *`  | Driver                                     | Mark delivery as done            | know what delivery tasks i did                                         |                             |
+| `* * *`  | Driver                                     | Edit delivery entries            | remove entries that I no longer need                                   |
+| `* * *`  | Driver                                     | Delete delivery entries          | remove entries that I no longer need                                   |
+| `**`     | Driver                                     | Find delivery entries by keyword | locate a delivery task easily                                          |
+| `**`     | Driver                                     | List all my delivery entries     | have an overview of my delivery workflow                               |
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TimeforWheels` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a delivery entry**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a delivery entry
+2.  System adds the delivery entry
+3.  System displays the updated list
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given entry is invalid.
 
-  Use case ends.
+    * 1a1. System shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
+      
+**Use case: Delete a delivery entry**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  User requests to delete a specific delivery entry.
+2.  System deletes the delivery entry
+3.  System displays the updated list
 
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. System shows an error message.
+
+      Use case ends.
+      
 *{More to be added}*
 
-### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+
+### Non-Functional Requirements
+1. **Usability**: 
+   - Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+     
+2. **Reliability**: 
+   - Should be able to hold up to 1000 delivery entries and display all data if requested by the user in less than 5 seconds
+   - Should be able to detect and inform users of duplicate delivery entries and confirm with user if they wish to proceed in adding them to the list
+
+3. **Security:** 
+    - Users that request for any delivery entry data to be deleted will have the data permanently erased from memory
+   
+4. **Integrity**
+    - For any time-related data presented to the user, the date formats will be `DD-MM-YYYY`
+    - Delivery entries made by the user will be stored in a _JSON_ file inside the hard disks
+
+5. **Flexibility**
+    - TimeforWheels should be able to handle as many date format inputs as possible by the user and convert the date format to `DD-MM-YYYY`
+
+
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **JSON:** JavaScript Object Notation
 
 --------------------------------------------------------------------------------------------------------------------
 
