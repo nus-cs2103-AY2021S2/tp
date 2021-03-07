@@ -65,4 +65,13 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns a number to 3 decimal place, in string
+     */
+    public static String get3DecimalPlace(Double value) {
+        requireNonNull(value);
+        return String.format("%.03f", value);
+    }
+
 }

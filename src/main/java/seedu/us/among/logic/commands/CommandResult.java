@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.us.among.model.endpoint.Endpoint;
+
 /**
  * Represents the result of a command execution.
  */
@@ -17,6 +19,13 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** API response should be shown to the user. */
+    private final boolean isApiResponse;
+
+    /** API response should be shown to the user. */
+    private final Endpoint endpoint;
+
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +33,20 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.isApiResponse = false;
+        this.endpoint = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields, including the newly added isApiResponse.
+     */
+    public CommandResult(String feedbackToUser, Endpoint endpoint, boolean showHelp, boolean exit,
+                         boolean isApiResponse) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.isApiResponse = isApiResponse;
+        this.endpoint = endpoint;
     }
 
     /**
@@ -38,12 +61,20 @@ public class CommandResult {
         return feedbackToUser;
     }
 
+    public Endpoint getEndpoint() {
+        return endpoint;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
     }
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isApiResponse() {
+        return isApiResponse;
     }
 
     @Override
@@ -60,7 +91,9 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && isApiResponse == otherCommandResult.isApiResponse
+                && endpoint == otherCommandResult.endpoint;
     }
 
     @Override
