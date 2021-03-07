@@ -17,7 +17,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.QuestionContainsKeywordsPredicate;
-import seedu.address.testutil.EditFlashcardDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

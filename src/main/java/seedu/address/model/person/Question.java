@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.commons.util.RegexUtil;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,15 +11,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Question {
 
-    public static final String MESSAGE_CONSTRAINTS = "";
-    public static final String VALIDATION_REGEX = generatePublicFields();
+    public static final String MESSAGE_CONSTRAINTS = "A question can only be a japanese word for now.";
+    public static final String VALIDATION_REGEX = RegexUtil.REGEX_JAP_WORD;
 
-    // alphanumeric and special characters
-    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
-    private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
-    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
-    private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
 
     public final String value;
 
@@ -37,16 +33,6 @@ public class Question {
      */
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns a string regex for emails.
-     *
-     * @return String representing regex for emails.
-     */
-    public static String generatePublicFields() {
-        return LOCAL_PART_REGEX + "@" + DOMAIN_FIRST_CHARACTER_REGEX
-                + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
     }
 
     @Override

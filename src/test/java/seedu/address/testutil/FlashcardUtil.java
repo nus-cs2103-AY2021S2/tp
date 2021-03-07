@@ -27,21 +27,4 @@ public class FlashcardUtil {
         return sb.toString();
     }
 
-    /**
-     * Returns the part of command string for the given {@code EditFlashcardDescriptor}'s details.
-     */
-    public static String getEditFlashcardDescriptorDetails(EditFlashcardDescriptor descriptor) {
-        StringBuilder sb = new StringBuilder();
-        descriptor.getQuestion().ifPresent(email -> sb.append(PREFIX_QUESTION).append(email.value).append(" "));
-        descriptor.getAnswer().ifPresent(answer -> sb.append(PREFIX_ANSWER).append(answer.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
-        return sb.toString();
-    }
 }

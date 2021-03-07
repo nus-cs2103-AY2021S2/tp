@@ -3,20 +3,21 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.util.RegexUtil;
+
 /**
  * Represents a Flashcard's answer in the answer book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAnswer(String)}
  */
 public class Answer {
 
-    public static final String MESSAGE_CONSTRAINTS = "answeres can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "An answer can only be an English word for now.";
 
     /*
      * The first character of the answer must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
+    public static final String VALIDATION_REGEX = RegexUtil.REGEX_ENG_WORD;
     public final String value;
 
     /**
