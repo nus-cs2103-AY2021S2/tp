@@ -133,7 +133,8 @@ public class StringUtilTest {
 
     @Test
     public void containsPartialWordIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsPartialWordIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, () ->
+            StringUtil.containsPartialWordIgnoreCase("typical sentence", null));
     }
 
     @Test

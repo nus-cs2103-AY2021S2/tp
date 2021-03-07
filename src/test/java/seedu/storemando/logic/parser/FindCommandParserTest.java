@@ -21,7 +21,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_nonGenericFind_returnsFindCommand() {
+    public void parse_validArgs_nonGenericFindReturnsFindCommand() {
         FindCommand expectedFindCommand =
             new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList("Chocolate", "Tofu"),
                 false));
@@ -34,7 +34,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_genericFind_returnsFindCommand() {
+    public void parse_validArgs_genericFindReturnsFindCommand() {
         FindCommand expectedFindCommand =
             new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList("Chocolate", "Tofu"),
                 true));
