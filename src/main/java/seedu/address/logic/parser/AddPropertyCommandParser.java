@@ -12,13 +12,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
-import seedu.address.model.property.Name;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
-import seedu.address.model.property.Remark;
 import seedu.address.model.property.Type;
+import seedu.address.model.remark.Remark;
 
 /**
  * Parses input arguments and creates a new AddPropertyCommand object.
@@ -40,12 +40,12 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parsePropertyName(argMultimap.getValue(PREFIX_NAME).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Type type = ParserUtil.parsePropertyType(argMultimap.getValue(PREFIX_TYPE).get());
         Address address = ParserUtil.parsePropertyAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         PostalCode postal = ParserUtil.parsePropertyPostal(argMultimap.getValue(PREFIX_POSTAL).get());
         Deadline deadline = ParserUtil.parsePropertyDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Remark remark = ParserUtil.parsePropertyRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
 
         Property property = new Property(name, type, address, postal, deadline, remark);
 

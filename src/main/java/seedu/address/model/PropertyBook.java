@@ -7,6 +7,10 @@ import java.util.List;
 
 import seedu.address.model.property.Property;
 
+/**
+ * Wraps all data at the property-book level.
+ * Duplicates are not allowed (by .isSameProperty comparison).
+ */
 public class PropertyBook {
     private final List<Property> properties;
 
@@ -27,7 +31,7 @@ public class PropertyBook {
 
     /**
      * Adds a property to the app.
-     * The property must not already exist in the address book.
+     * The property must not already exist in the property book.
      *
      * @param property The property to be added.
      */

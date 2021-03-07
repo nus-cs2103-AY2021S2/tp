@@ -41,7 +41,7 @@ public class AddPropertyCommand extends Command {
     private final Property toAdd;
 
     /**
-     * Creates an AddPropertyCommand to add the specified {@code Property}
+     * Creates an AddPropertyCommand to add the specified {@code Property}.
      */
     public AddPropertyCommand(Property property) {
         requireNonNull(property);

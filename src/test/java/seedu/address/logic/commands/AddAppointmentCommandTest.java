@@ -22,59 +22,59 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
-import seedu.address.testutil.PropertyBuilder;
+import seedu.address.testutil.AppointmentBuilder;
 
-public class AddPropertyCommandTest {
+public class AddAppointmentCommandTest {
 
     @Test
-    public void constructor_nullProperty_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPropertyCommand(null));
+    public void constructor_nullAppointment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddAppointmentCommand(null));
     }
 
     @Test
-    public void execute_propertyAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPropertyAdded modelStub = new ModelStubAcceptingPropertyAdded();
-        Property validProperty = new PropertyBuilder().build();
+    public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingAppointmentAdded modelStub = new ModelStubAcceptingAppointmentAdded();
+        Appointment validAppointment = new AppointmentBuilder().build();
 
-        CommandResult commandResult = new AddPropertyCommand(validProperty).execute(modelStub);
+        CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
 
-        assertEquals(String.format(AddPropertyCommand.MESSAGE_SUCCESS, validProperty),
+        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validProperty), modelStub.propertiesAdded);
+        assertEquals(Arrays.asList(validAppointment), modelStub.appointmentsAdded);
     }
 
     @Test
-    public void execute_duplicateProperty_throwsCommandException() {
-        Property validProperty = new PropertyBuilder().build();
-        AddPropertyCommand addPropertyCommand = new AddPropertyCommand(validProperty);
-        ModelStub modelStub = new ModelStubWithProperty(validProperty);
+    public void execute_duplicateAppointment_throwsCommandException() {
+        Appointment validAppointment = new AppointmentBuilder().build();
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
+        ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
 
         assertThrows(CommandException.class,
-                AddPropertyCommand.MESSAGE_DUPLICATE_PROPERTY, () -> addPropertyCommand.execute(modelStub));
+                AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppointmentCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Property mayfair = new PropertyBuilder().withName("Mayfair").build();
-        Property burghleyDrive = new PropertyBuilder().withName("Burghley Drive").build();
-        AddPropertyCommand addMayfairCommand = new AddPropertyCommand(mayfair);
-        AddPropertyCommand addBurghleyDriveCommand = new AddPropertyCommand(burghleyDrive);
+        Appointment meetAlex = new AppointmentBuilder().withName("Meet Alex").build();
+        Appointment meetBob = new AppointmentBuilder().withName("Meet Bob").build();
+        AddAppointmentCommand addMeetAlexCommand = new AddAppointmentCommand(meetAlex);
+        AddAppointmentCommand addMeetBobCommand = new AddAppointmentCommand(meetBob);
 
         // same object -> returns true
-        assertTrue(addMayfairCommand.equals(addMayfairCommand));
+        assertTrue(addMeetAlexCommand.equals(addMeetAlexCommand));
 
         // same values -> returns true
-        AddPropertyCommand addMayfairCommandCopy = new AddPropertyCommand(mayfair);
-        assertTrue(addMayfairCommand.equals(addMayfairCommandCopy));
+        AddAppointmentCommand addMeetAlexCommandCopy = new AddAppointmentCommand(meetAlex);
+        assertTrue(addMeetAlexCommand.equals(addMeetAlexCommandCopy));
 
         // different types -> returns false
-        assertFalse(addMayfairCommand.equals(1));
+        assertFalse(addMeetAlexCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addMayfairCommand.equals(null));
+        assertFalse(addMeetAlexCommand.equals(null));
 
-        // different property -> returns false
-        assertFalse(addMayfairCommand.equals(addBurghleyDriveCommand));
+        // different appointments -> returns false
+        assertFalse(addMeetAlexCommand.equals(addMeetBobCommand));
     }
 
     /**
@@ -173,39 +173,39 @@ public class AddPropertyCommandTest {
     }
 
     /**
-     * A Model stub that contains a single property.
+     * A Model stub that contains a single appointment.
      */
-    private class ModelStubWithProperty extends ModelStub {
-        private final Property property;
+    private class ModelStubWithAppointment extends ModelStub {
+        private final Appointment appointment;
 
-        ModelStubWithProperty(Property property) {
-            requireNonNull(property);
-            this.property = property;
+        ModelStubWithAppointment(Appointment appointment) {
+            requireNonNull(appointment);
+            this.appointment = appointment;
         }
 
         @Override
-        public boolean hasProperty(Property property) {
-            requireNonNull(property);
-            return this.property.isSameProperty(property);
+        public boolean hasAppointment(Appointment appointment) {
+            requireNonNull(appointment);
+            return this.appointment.isSameAppointment(appointment);
         }
     }
 
     /**
-     * A Model stub that always accept the property being added.
+     * A Model stub that always accept the appointment being added.
      */
-    private class ModelStubAcceptingPropertyAdded extends ModelStub {
-        final ArrayList<Property> propertiesAdded = new ArrayList<>();
+    private class ModelStubAcceptingAppointmentAdded extends ModelStub {
+        final ArrayList<Appointment> appointmentsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasProperty(Property property) {
-            requireNonNull(property);
-            return propertiesAdded.stream().anyMatch(property::isSameProperty);
+        public boolean hasAppointment(Appointment appointment) {
+            requireNonNull(appointment);
+            return appointmentsAdded.stream().anyMatch(appointment::isSameAppointment);
         }
 
         @Override
-        public void addProperty(Property property) {
-            requireNonNull(property);
-            propertiesAdded.add(property);
+        public void addAppointment(Appointment appointment) {
+            requireNonNull(appointment);
+            appointmentsAdded.add(appointment);
         }
     }
 }

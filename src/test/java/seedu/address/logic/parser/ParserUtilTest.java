@@ -1,12 +1,14 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
@@ -17,11 +19,14 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Date;
+import seedu.address.model.appointment.Time;
+import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
-import seedu.address.model.property.Name;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Type;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -30,14 +35,30 @@ public class ParserUtilTest {
     public static final String INVALID_PROPERTY_ADDRESS = ""; // empty string not allowed for addresses
     public static final String INVALID_PROPERTY_POSTAL = "12a"; // 'a' not allowed in postal codes
     public static final String INVALID_PROPERTY_DEADLINE = "31-04-2021"; // 31st April not valid
+    public static final String INVALID_PROPERTY_REMARK = ""; // empty string not allowed for remarks
 
     public static final String VALID_PROPERTY_NAME = "Mayfair";
     public static final String VALID_PROPERTY_TYPE = "Condo";
     public static final String VALID_PROPERTY_ADDRESS = "1 Jurong East Street 32, #08-111";
     public static final String VALID_PROPERTY_POSTAL = "609477";
     public static final String VALID_PROPERTY_DEADLINE = "31-12-2021";
-    public static final LocalDate VALID_PROPERTY_DEADLINE_DATE = LocalDate.parse(VALID_PROPERTY_DEADLINE,
+    public static final LocalDate VALID_PROPERTY_DEADLINE_LOCALDATE = LocalDate.parse(VALID_PROPERTY_DEADLINE,
             DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
+    public static final String VALID_PROPERTY_REMARK = "Urgent to sell!";
+
+    public static final String INVALID_APPOINTMENT_NAME = "Meet Alex&"; // '&' not allowed in names
+    public static final String INVALID_APPOINTMENT_REMARK = ""; // empty string not allowed for remarks
+    public static final String INVALID_APPOINTMENT_DATE = "31-04-2021"; // 31st April not valid
+    public static final String INVALID_APPOINTMENT_TIME = "1860"; // 1260 not valid
+
+    public static final String VALID_APPOINTMENT_NAME = "Meet Alex";
+    public static final String VALID_APPOINTMENT_REMARK = "At M Hotel";
+    public static final String VALID_APPOINTMENT_DATE = "25-12-2021";
+    public static final LocalDate VALID_APPOINTMENT_DATE_LOCALDATE = LocalDate.parse(VALID_APPOINTMENT_DATE,
+            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
+    public static final String VALID_APPOINTMENT_TIME = "1900";
+    public static final LocalTime VALID_APPOINTMENT_TIME_LOCALTIME = LocalTime.parse(VALID_APPOINTMENT_TIME,
+            DateTimeFormatter.ofPattern("HHmm"));
 
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
@@ -75,26 +96,65 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePropertyName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePropertyName((String) null));
+    public void parseName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
 
     @Test
-    public void parsePropertyName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePropertyName(INVALID_PROPERTY_NAME));
+    public void parseName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_PROPERTY_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_APPOINTMENT_NAME));
     }
 
     @Test
-    public void parsePropertyName_validValueWithoutWhitespace_returnsName() throws Exception {
+    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         Name expectedName = new Name(VALID_PROPERTY_NAME);
-        assertEquals(expectedName, ParserUtil.parsePropertyName(VALID_PROPERTY_NAME));
+        assertEquals(expectedName, ParserUtil.parseName(VALID_PROPERTY_NAME));
+
+        expectedName = new Name(VALID_APPOINTMENT_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_APPOINTMENT_NAME));
     }
 
     @Test
-    public void parsePropertyName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_PROPERTY_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_PROPERTY_NAME);
-        assertEquals(expectedName, ParserUtil.parsePropertyName(nameWithWhitespace));
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+
+        nameWithWhitespace = WHITESPACE + VALID_APPOINTMENT_NAME + WHITESPACE;
+        expectedName = new Name(VALID_APPOINTMENT_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseRemark_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseRemark((String) null));
+    }
+
+    @Test
+    public void parseRemark_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(INVALID_PROPERTY_REMARK));
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(INVALID_APPOINTMENT_REMARK));
+    }
+
+    @Test
+    public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
+        Remark expectedRemark = new Remark(VALID_PROPERTY_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_PROPERTY_REMARK));
+
+        expectedRemark = new Remark(VALID_APPOINTMENT_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_APPOINTMENT_REMARK));
+    }
+
+    @Test
+    public void parseRemark_validValueWithWhitespace_returnsTrimmedRemark() throws Exception {
+        String remarkWithWhitespace = WHITESPACE + VALID_PROPERTY_REMARK + WHITESPACE;
+        Remark expectedRemark = new Remark(VALID_PROPERTY_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
+
+        remarkWithWhitespace = WHITESPACE + VALID_APPOINTMENT_REMARK + WHITESPACE;
+        expectedRemark = new Remark(VALID_APPOINTMENT_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
     }
 
     @Test
@@ -178,40 +238,65 @@ public class ParserUtilTest {
 
     @Test
     public void parsePropertyDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_PROPERTY_DEADLINE_DATE);
+        Deadline expectedDeadline = new Deadline(VALID_PROPERTY_DEADLINE_LOCALDATE);
         assertEquals(expectedDeadline, ParserUtil.parsePropertyDeadline(VALID_PROPERTY_DEADLINE));
     }
 
     @Test
     public void parsePropertyDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
         String deadlineWithWhitespace = WHITESPACE + VALID_PROPERTY_DEADLINE + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_PROPERTY_DEADLINE_DATE);
+        Deadline expectedDeadline = new Deadline(VALID_PROPERTY_DEADLINE_LOCALDATE);
         assertEquals(expectedDeadline, ParserUtil.parsePropertyDeadline(deadlineWithWhitespace));
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+    public void parseAppointmentDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAppointmentDate((String) null));
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    public void parseAppointmentDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentDate(INVALID_APPOINTMENT_DATE));
     }
 
     @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        seedu.address.model.person.Name expectedName = new seedu.address.model.person.Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+    public void parseAppointmentDate_validValueWithoutWhitespace_returnsDate() throws Exception {
+        Date expectedDate = new Date(VALID_APPOINTMENT_DATE_LOCALDATE);
+        assertEquals(expectedDate, ParserUtil.parseAppointmentDate(VALID_APPOINTMENT_DATE));
     }
 
     @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        seedu.address.model.person.Name expectedName = new seedu.address.model.person.Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    public void parseAppointmentDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_APPOINTMENT_DATE + WHITESPACE;
+        Date expectedDate = new Date(VALID_APPOINTMENT_DATE_LOCALDATE);
+        assertEquals(expectedDate, ParserUtil.parseAppointmentDate(dateWithWhitespace));
     }
 
+    @Test
+    public void parseAppointmentTime_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseAppointmentTime((String) null));
+    }
+
+    @Test
+    public void parseAppointmentTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentTime(INVALID_APPOINTMENT_TIME));
+    }
+
+    @Test
+    public void parseAppointmentTime_validValueWithoutWhitespace_returnsTime() throws Exception {
+        Time expectedTime = new Time(VALID_APPOINTMENT_TIME_LOCALTIME);
+        assertEquals(expectedTime, ParserUtil.parseAppointmentTime(VALID_APPOINTMENT_TIME));
+    }
+
+    @Test
+    public void parseAppointmentTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
+        String timeWithWhitespace = WHITESPACE + VALID_APPOINTMENT_TIME + WHITESPACE;
+        Time expectedTime = new Time(VALID_APPOINTMENT_TIME_LOCALTIME);
+        assertEquals(expectedTime, ParserUtil.parseAppointmentTime(timeWithWhitespace));
+    }
+
+
+    // Placeholder test cases for Person attributes
     @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
