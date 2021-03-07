@@ -20,17 +20,17 @@ import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.SmartLib;
 
 public class JsonSmartLibStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSmartLibStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
     public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+        assertThrows(NullPointerException.class, () -> readSmartLib(null));
     }
 
-    private java.util.Optional<ReadOnlySmartLib> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlySmartLib> readSmartLib(String filePath) throws Exception {
         return new JsonSmartLibStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,22 +42,22 @@ public class JsonSmartLibStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readSmartLib("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatSmartLib.json"));
+        assertThrows(DataConversionException.class, () -> readSmartLib("notJsonFormatSmartLib.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidReaderSmartLib.json"));
+        assertThrows(DataConversionException.class, () -> readSmartLib("invalidReaderSmartLib.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidReaderSmartLib.json"));
+        assertThrows(DataConversionException.class, () -> readSmartLib("invalidAndValidReaderSmartLib.json"));
     }
 
     @Test
