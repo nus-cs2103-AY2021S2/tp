@@ -3,14 +3,14 @@
     {
       "name": "Valid Item",
       "quantity": "9482424",
-      "expiryDate": "hans@example.com",
-      "location": "4th street"
+      "expiryDate": "2024-10-10",
+      "location": "drawer"
     },
     {
       "name": "Item With Invalid Quantity Field",
       "quantity": "948asdf2424",
-      "expiryDate": "hans@example.com",
-      "location": "4th street"
+      "expiryDate": "2019-10-10",
+      "location": "4th floor"
     }
   ]
 }

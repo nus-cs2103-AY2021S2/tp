@@ -26,8 +26,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIA
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.storemando.testutil.TypicalItems.AMY;
-import static seedu.storemando.testutil.TypicalItems.BOB;
+import static seedu.storemando.testutil.TypicalItems.BANANA;
+import static seedu.storemando.testutil.TypicalItems.STRAWBERRY_MILK;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +45,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Item expectedItem = new ItemBuilder(BOB).withTags(VALID_TAG_FAVOURITE).build();
+        Item expectedItem = new ItemBuilder(BANANA).withTags(VALID_TAG_FAVOURITE).build();
 
         // whitespace only preamble
 
@@ -69,7 +69,7 @@ public class AddCommandParserTest {
             + LOCATION_DESC_STRAWBERRY_MILK + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
 
         // multiple tags - all accepted
-        Item expectedItemMultipleTags = new ItemBuilder(BOB).withTags(VALID_TAG_FAVOURITE, VALID_TAG_ESSENTIAL)
+        Item expectedItemMultipleTags = new ItemBuilder(BANANA).withTags(VALID_TAG_FAVOURITE, VALID_TAG_ESSENTIAL)
             .build();
         assertParseSuccess(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
             + LOCATION_DESC_BANANA + TAG_DESC_FAVOURITE + TAG_DESC_ESSENTIAL, new AddCommand(expectedItemMultipleTags));
@@ -79,7 +79,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Item expectedItem = new ItemBuilder(AMY).withTags().build();
+        Item expectedItem = new ItemBuilder(STRAWBERRY_MILK).withTags().build();
         assertParseSuccess(parser, NAME_DESC_STRAWBERRY_MILK + QUANTITY_DESC_STRAWBERRY_MILK
             + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK, new AddCommand(expectedItem));
     }

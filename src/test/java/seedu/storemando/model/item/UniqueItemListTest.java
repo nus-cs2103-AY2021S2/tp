@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.BOB;
+import static seedu.storemando.testutil.TypicalItems.BANANA;
 import static seedu.storemando.testutil.TypicalItems.MILK;
 
 import java.util.Arrays;
@@ -96,17 +96,17 @@ public class UniqueItemListTest {
     @Test
     public void setItem_editedItemHasDifferentIdentity_success() {
         uniqueItemList.add(MILK);
-        uniqueItemList.setItem(MILK, BOB);
+        uniqueItemList.setItem(MILK, BANANA);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(BOB);
+        expectedUniqueItemList.add(BANANA);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
     public void setItem_editedItemHasNonUniqueIdentity_throwsDuplicateItemException() {
         uniqueItemList.add(MILK);
-        uniqueItemList.add(BOB);
-        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(MILK, BOB));
+        uniqueItemList.add(BANANA);
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(MILK, BANANA));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class UniqueItemListTest {
     public void setItems_uniqueItemList_replacesOwnListWithProvidedUniqueItemList() {
         uniqueItemList.add(MILK);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(BOB);
+        expectedUniqueItemList.add(BANANA);
         uniqueItemList.setItems(expectedUniqueItemList);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
@@ -149,10 +149,10 @@ public class UniqueItemListTest {
     @Test
     public void setItems_list_replacesOwnListWithProvidedList() {
         uniqueItemList.add(MILK);
-        List<Item> itemList = Collections.singletonList(BOB);
+        List<Item> itemList = Collections.singletonList(BANANA);
         uniqueItemList.setItems(itemList);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(BOB);
+        expectedUniqueItemList.add(BANANA);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 

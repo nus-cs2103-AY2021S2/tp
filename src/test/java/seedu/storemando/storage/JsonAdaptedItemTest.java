@@ -18,11 +18,11 @@ import seedu.storemando.model.item.Location;
 import seedu.storemando.model.item.Quantity;
 
 public class JsonAdaptedItemTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_QUANTITY = "+651234";
-    private static final String INVALID_EXPIRYDATE = "example.com";
+    private static final String INVALID_NAME = "Bre@d";
+    private static final String INVALID_QUANTITY = "0";
+    private static final String INVALID_EXPIRYDATE = "2020-00-00";
     private static final String INVALID_LOCATION = " ";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = "#favourite";
     private static final String VALID_NAME = BREAD.getItemName().toString();
     private static final String VALID_QUANTITY = BREAD.getQuantity().toString();
     private static final String VALID_EXPIRYDATE = BREAD.getExpiryDate().toString();

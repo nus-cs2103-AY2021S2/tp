@@ -3,8 +3,8 @@
     {
       "itemName": "Item with invalid name field: Ha!ns Mu@ster",
       "quantity": "9482424",
-      "expirydate": "hans@example.com",
-      "location": "4th street"
+      "expirydate": "2017-11-10",
+      "location": "4th floor"
     }
   ]
 }

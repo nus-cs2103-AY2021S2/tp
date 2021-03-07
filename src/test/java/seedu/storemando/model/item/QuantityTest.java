@@ -27,6 +27,7 @@ public class QuantityTest {
         // invalid quantity numbers
         assertFalse(Quantity.isValidQuantity("")); // empty string
         assertFalse(Quantity.isValidQuantity(" ")); // spaces only
+        assertFalse(Quantity.isValidQuantity("0")); // zero quantity
         assertFalse(Quantity.isValidQuantity("quantity")); // non-numeric
         assertFalse(Quantity.isValidQuantity("9011p041")); // alphabets within digits
         assertFalse(Quantity.isValidQuantity("9312 1534")); // spaces within digits

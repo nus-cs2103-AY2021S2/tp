@@ -50,10 +50,10 @@ public class TypicalItems {
 
 
     // Manually added - Item's details found in {@code CommandTestUtil}
-    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
+    public static final Item STRAWBERRY_MILK = new ItemBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
         .withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK)
         .withLocation(VALID_LOCATION_STRAWBERRY_MILK).withTags(VALID_TAG_FAVOURITE).build();
-    public static final Item BOB = new ItemBuilder().withName(VALID_NAME_BANANA).withQuantity(VALID_QUANTITY_BANANA)
+    public static final Item BANANA = new ItemBuilder().withName(VALID_NAME_BANANA).withQuantity(VALID_QUANTITY_BANANA)
         .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL,
             VALID_TAG_FAVOURITE)
         .build();
