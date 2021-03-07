@@ -8,6 +8,12 @@ src/main/resources/docs/
 /out/
 /*.iml
 
+# Eclipse files
+.classpath
+.project
+.settings/
+bin/
+
 # Storage/log files
 /data/
 /config.json
