@@ -1,9 +1,18 @@
 package seedu.address.model.food;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 public class Food {
 
     public static final double PROTEIN_AND_CARBOS_MULTIPLIER = 4; //Conversion to KCAL
     public static final double FAT_MULTIPLIER = 9; //Conversion to KCAL
+    public static final String VALIDATION_WHITESPACE_REGEX = "[^\\s].*";
+    public static final String VALIDATION_CHAR_REGEX = "[a-zA-Z ]*";
+    public static final String VALIDATION_POSITIVE_DOUBLE_REGEX = "(\\d*\\.?\\d+)";
+    public static final String MESSAGE_CONSTRAINTS = "Food name can take any alphabets charcter and it should not be"
+            + "blank.";
+    public static final String DIGIT_CONSTRAINTS = "Double value input can only be positive and more than 0.";
 
     public final String name;
     private double fats;
@@ -21,6 +30,9 @@ public class Food {
      * @param proteins amount of proteins
      */
     public Food(String name, double fats, double carbos, double proteins) {
+        requireNonNull(name);
+        checkArgument(isValidFoodName(name), MESSAGE_CONSTRAINTS); //Checks for all whitespaces and valid character
+        checkArgument(isValidNumber(fats, carbos, proteins), DIGIT_CONSTRAINTS); //Checks for positive doubles inc 0.
         this.name = name.toLowerCase();
         this.fats = fats;
         this.carbos = carbos;
@@ -43,6 +55,33 @@ public class Food {
 
     public double getKiloCalories() {
         return this.kiloCalories;
+    }
+
+    /**
+     * Returns true if a given string is a valid email.
+     */
+    public static boolean isValidFoodName(String test) {
+        if (test.matches(VALIDATION_CHAR_REGEX) && test.matches(VALIDATION_WHITESPACE_REGEX)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given number is valid and more than 0.
+     */
+    public static boolean isValidNumber(double fats, double carbos, double proteins) {
+        String fatsString = Double.toString(fats);
+        String carbosString = Double.toString(carbos);
+        String proteinsString = Double.toString(proteins);
+        if (fatsString.matches(VALIDATION_POSITIVE_DOUBLE_REGEX)
+                && carbosString.matches(VALIDATION_POSITIVE_DOUBLE_REGEX)
+                && proteinsString.matches(VALIDATION_POSITIVE_DOUBLE_REGEX)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
