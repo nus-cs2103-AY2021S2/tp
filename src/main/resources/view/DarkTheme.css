@@ -389,11 +389,11 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #personListPanel, #projectList #personWebpage {
     -fx-effect: innershadow(gaussian, -COLOR_PRIMARY, 10, 0, 0, 0);
 }
 
-#personListView {
+#personListView, #projectListView {
     -fx-background-color: -COLOR_PRIMARY_LIGHT;
 }
 
