@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gmail.com`
+You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gmail.com`, `galencheung97@gmail.com`
 
 ## Project team
 
