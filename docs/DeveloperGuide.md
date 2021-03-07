@@ -83,7 +83,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 1a. The given cheese quantity is invalid.
   * 1a1. CHIM shows an error message.
-    
+
     Use case resumes at step 1.
 
 1b. The customer with the given phone number cannot be found.
@@ -102,7 +102,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User adds a cheese to the inventory by specifying its type and quantity.
 2. CHIM shows a confirmation message that the cheese has been added.
-   
+
    Use case ends.
 
 **Extensions**
@@ -152,17 +152,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User enters the index of cheese to be removed.
 2. CHIM removes the cheese from the list of cheese.
-   
+
    Use case ends.
 
 **Extensions**
 * 1a. The list is empty.
-    * 1a1. CHIM responds that there are no existing customers. 
-      
+    * 1a1. CHIM responds that there are no existing customers.
+
         Use case ends.
 * 1b. No such cheese with the specified cheese number.
     * 1b1. CHIM shows an error message.
-    
+
         Use case resumes at step 1.
 
 #### Use case: Remove a customer
@@ -177,7 +177,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The list is empty.
     * 1a1. CHIM responds that there are no existing customers.
-      
+
         Use case ends.
 * 1b. The given index is invalid.
     * 1b1. CHIM shows an error message.

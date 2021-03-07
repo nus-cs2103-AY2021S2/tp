@@ -4,13 +4,13 @@ title: User Guide
 ---
 
 Chesse Inventory Management (CHIM) is a desktop app for managing the contacts, inventory, and orders of a home-based
-cheese making business. 
+cheese making business.
 
 The app is optimized for use via a Command Line Interface (CLI) while still having the
 benefits of a Graphical User Interface (GUI). If you can type fast, CHIM can get your management tasks done
 faster than traditional GUI apps.
 
-* Table of Content 
+* Table of Content
   - [Quick start](#quick-start)
   - [Features](#features)
   - [FAQ](#faq)
