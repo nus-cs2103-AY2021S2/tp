@@ -6,8 +6,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
@@ -36,11 +36,11 @@ public class EditItemDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditItemDescriptor editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BANANA).build();
+        EditItemDescriptor editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different quantity -> returns false
-        editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withQuantity(VALID_QUANTITY_BANANA).build();
+        editedAmy = new EditItemDescriptorBuilder(DESC_AMY).withQuantity(VALID_QUANTITY_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different expirydate -> returns false

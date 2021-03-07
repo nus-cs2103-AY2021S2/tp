@@ -27,9 +27,9 @@ import seedu.storemando.testutil.EditItemDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_STRAWBERRY_MILK = "Strawberry Milk";
-    public static final String VALID_NAME_BANANA = "Banana";
-    public static final String VALID_QUANTITY_STRAWBERRY_MILK = "1";
-    public static final String VALID_QUANTITY_BANANA = "2";
+    public static final String VALID_NAME_BOB = "Banana";
+    public static final String VALID_QUANTITY_AMY = "1";
+    public static final String VALID_QUANTITY_BOB = "2";
     public static final String VALID_EXPIRYDATE_AMY = "2020-10-11";
     public static final String VALID_EXPIRYDATE_BOB = "2019-08-10";
     public static final String VALID_LOCATION_AMY = "Refrigerator";
@@ -38,9 +38,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "Favourite";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_STRAWBERRY_MILK;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BANANA;
-    public static final String QUANTITY_DESC_AMY = " " + PREFIX_QUANTITY + VALID_QUANTITY_STRAWBERRY_MILK;
-    public static final String QUANTITY_DESC_BOB = " " + PREFIX_QUANTITY + VALID_QUANTITY_BANANA;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String QUANTITY_DESC_AMY = " " + PREFIX_QUANTITY + VALID_QUANTITY_AMY;
+    public static final String QUANTITY_DESC_BOB = " " + PREFIX_QUANTITY + VALID_QUANTITY_BOB;
     public static final String EXPIRYDATE_DESC_AMY = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_AMY;
     public static final String EXPIRYDATE_DESC_BOB = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_BOB;
     public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
@@ -63,10 +63,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
-            .withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).withExpiryDate(VALID_EXPIRYDATE_AMY)
-            .withLocation(VALID_LOCATION_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA)
-            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB)
+            .withQuantity(VALID_QUANTITY_AMY).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB = new EditItemDescriptorBuilder().withName(VALID_NAME_BOB)
+            .withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
