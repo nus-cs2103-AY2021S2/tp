@@ -45,8 +45,8 @@ public class JsonSmartLibStorage implements SmartLibStorage {
     public Optional<ReadOnlySmartLib> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableSmartLib> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableSmartLib.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonSmartLibStorage implements SmartLibStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableSmartLib(addressBook), filePath);
     }
 
 }

@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the SmartLib.
      *
      * @see seedu.smartlib.model.Model#getSmartLib()
      */
-    ReadOnlySmartLib getAddressBook();
+    ReadOnlySmartLib getSmartLib();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Reader> getFilteredReaderList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' smartlib file path.
      */
-    Path getAddressBookFilePath();
+    Path getSmartLibFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

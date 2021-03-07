@@ -23,7 +23,7 @@ import seedu.smartlib.logic.commands.EditCommand;
 import seedu.smartlib.logic.commands.ExitCommand;
 import seedu.smartlib.logic.commands.FindCommand;
 import seedu.smartlib.logic.commands.HelpCommand;
-import seedu.smartlib.logic.commands.ListCommand;
+import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
@@ -86,8 +86,8 @@ public class SmartLibParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListReaderCommand.COMMAND_WORD) instanceof ListReaderCommand);
+        assertTrue(parser.parseCommand(ListReaderCommand.COMMAND_WORD + " 3") instanceof ListReaderCommand);
     }
 
     @Test

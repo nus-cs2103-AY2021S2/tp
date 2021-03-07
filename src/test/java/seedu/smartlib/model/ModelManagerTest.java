@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
-import seedu.smartlib.testutil.AddressBookBuilder;
+import seedu.smartlib.testutil.SmartLibBuilder;
 
 public class ModelManagerTest {
 
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setSmartLibFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setSmartLibFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        SmartLib smartLib = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        SmartLib smartLib = new SmartLibBuilder().withReader(ALICE).withReader(BENSON).build();
         SmartLib differentSmartLib = new SmartLib();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -126,7 +126,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setSmartLibFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(smartLib, differentUserPrefs)));
     }
 }

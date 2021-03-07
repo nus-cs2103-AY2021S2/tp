@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlySmartLib getAddressBook() {
+    public ReadOnlySmartLib getSmartLib() {
         return model.getSmartLib();
     }
 
@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getSmartLibFilePath() {
         return model.getAddressBookFilePath();
     }
 

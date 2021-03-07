@@ -14,43 +14,43 @@ import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.reader.Reader;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable SmartLib that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "smartlib")
+class JsonSerializableSmartLib {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_READER = "Readers list contains duplicate reader(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPerson> readers = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableSmartLib} with the given readers.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableSmartLib(@JsonProperty("readers") List<JsonAdaptedPerson> readers) {
+        this.readers.addAll(readers);
     }
 
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableSmartLib}.
      */
-    public JsonSerializableAddressBook(ReadOnlySmartLib source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonSerializableSmartLib(ReadOnlySmartLib source) {
+        readers.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this smartlib into the model's {@code SmartLib} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public SmartLib toModelType() throws IllegalValueException {
         SmartLib smartLib = new SmartLib();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+        for (JsonAdaptedPerson jsonAdaptedPerson : readers) {
             Reader reader = jsonAdaptedPerson.toModelType();
             if (smartLib.hasReader(reader)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_READER);
             }
             smartLib.addReader(reader);
         }
