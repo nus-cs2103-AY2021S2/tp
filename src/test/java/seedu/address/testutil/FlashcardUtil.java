@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditFlashcardDescriptor;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.tag.Tag;
 
@@ -15,13 +13,6 @@ import seedu.address.model.tag.Tag;
  * A utility class for Flashcard.
  */
 public class FlashcardUtil {
-
-    /**
-     * Returns an add command string for adding the {@code flashcard}.
-     */
-    public static String getAddCommand(Flashcard flashcard) {
-        return AddCommand.COMMAND_WORD + " " + getFlashcardDetails(flashcard);
-    }
 
     /**
      * Returns the part of command string for the given {@code flashcard}'s details.

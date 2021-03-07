@@ -45,17 +45,6 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditFlashcardDescriptor DESC_AMY;
-    public static final EditCommand.EditFlashcardDescriptor DESC_BOB;
-
-    static {
-        DESC_AMY = new EditFlashcardDescriptorBuilder()
-                .withQuestion(VALID_QUESTION_A).withAnswer(VALID_ANSWER_A)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditFlashcardDescriptorBuilder()
-                .withQuestion(VALID_QUESTION_B).withAnswer(VALID_ANSWER_B)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
