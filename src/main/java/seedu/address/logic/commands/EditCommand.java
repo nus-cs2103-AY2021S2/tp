@@ -1,12 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -38,6 +33,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_STUDY_LEVEL + "STUDY LEVEL] "
             + "[" + PREFIX_GUARDIAN_PHONE + "GUARDIAN PHONE] "
             + "[" + PREFIX_RELATIONSHIP + "RELATIONSHIP] "
             + "Example: " + COMMAND_WORD + " 1 "
@@ -95,10 +91,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        String updatedStudyLevel = editStudentDescriptor.getStudyLevel().orElse(studentToEdit.getStudyLevel());
         Phone updatedGuardianPhone = editStudentDescriptor.getGuardianPhone().orElse(studentToEdit.getGuardianPhone());
         String updatedRelationship = editStudentDescriptor.getRelationship().orElse(studentToEdit.getRelationship());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStudyLevel,
             updatedGuardianPhone, updatedRelationship);
     }
 
@@ -129,6 +126,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private String studyLevel;
         private Phone guardianPhone;
         private String relationship;
 
@@ -142,6 +140,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setStudyLevel(toCopy.studyLevel);
             setGuardianPhone(toCopy.guardianPhone);
             setRelationship(toCopy.relationship);
         }
@@ -185,6 +184,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setStudyLevel(String studyLevel) {
+            this.studyLevel = studyLevel;
+        }
+
+        public Optional<String> getStudyLevel() {
+            return Optional.ofNullable(studyLevel);
+        }
+
         public void setGuardianPhone(Phone guardianPhone) {
             this.guardianPhone = guardianPhone;
         }
@@ -219,7 +226,10 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress());
+                    && getAddress().equals(e.getAddress())
+                    && getStudyLevel().equals(e.getStudyLevel())
+                    && getGuardianPhone().equals(e.getGuardianPhone())
+                    && getRelationship().equals(e.getRelationship());
         }
     }
 }

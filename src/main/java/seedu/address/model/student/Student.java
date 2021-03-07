@@ -17,18 +17,20 @@ public class Student {
 
     // Data fields
     private final Address address;
+    private final String studyLevel;
     private final Phone guardianPhone;
     private final String relationship;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Phone guardianPhone, String relationship) {
+    public Student(Name name, Phone phone, Email email, Address address, String studyLevel, Phone guardianPhone, String relationship) {
         requireAllNonNull(name, phone, email, address, guardianPhone, relationship);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.studyLevel = studyLevel;
         this.guardianPhone = guardianPhone;
         this.relationship = relationship;
     }
@@ -47,6 +49,10 @@ public class Student {
 
     public Address getAddress() {
         return address;
+    }
+
+    public String getStudyLevel() {
+        return studyLevel;
     }
 
     public Phone getGuardianPhone() {
@@ -88,13 +94,16 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress());
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getStudyLevel().equals(getStudyLevel())
+                && otherStudent.getGuardianPhone().equals(getGuardianPhone())
+                && otherStudent.getRelationship().equals(getRelationship());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address);
+        return Objects.hash(name, phone, email, address, studyLevel, guardianPhone, relationship);
     }
 
     @Override
@@ -107,6 +116,8 @@ public class Student {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Study Level: ")
+                .append(getStudyLevel())
                 .append("; Guardian Phone: ")
                 .append(getGuardianPhone())
                 .append("; Relationship: ")

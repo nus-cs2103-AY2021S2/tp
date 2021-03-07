@@ -32,6 +32,9 @@ public class EditStudentDescriptorBuilder {
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
         descriptor.setAddress(student.getAddress());
+        descriptor.setStudyLevel(student.getStudyLevel());
+        descriptor.setGuardianPhone(student.getGuardianPhone());
+        descriptor.setRelationship(student.getRelationship());
     }
 
     /**
@@ -63,6 +66,30 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Study Level} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withStudyLevel(String studyLevel) {
+        descriptor.setStudyLevel(studyLevel);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Guardian Phone} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withGuardianPhone(String guardianPhone) {
+        descriptor.setGuardianPhone(new Phone(guardianPhone));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Relationship} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withRelationship(String relationship) {
+        descriptor.setStudyLevel(relationship);
         return this;
     }
 

@@ -91,6 +91,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String studyLevel} into an {@code studyLevel}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static String parseStudyLevel(String studyLevel) throws ParseException {
+        requireNonNull(studyLevel);
+        String trimmedStudyLevel = studyLevel.trim();
+        if (trimmedStudyLevel.equals("")) {
+            throw new ParseException("Study level parse error");
+        }
+        return trimmedStudyLevel;
+    }
+
+    /**
      * Parses a {@code String guardianPhone} into a {@code guardianPhone}.
      * Leading and trailing whitespaces will be trimmed.
      *

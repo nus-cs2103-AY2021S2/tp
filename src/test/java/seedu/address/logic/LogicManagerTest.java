@@ -3,12 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.GUARDIAN_PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.RELATIONSHIP_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.AMY;
 
@@ -82,7 +77,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + GUARDIAN_PHONE_DESC_AMY + RELATIONSHIP_DESC_AMY;
+                + ADDRESS_DESC_AMY + STUDY_LEVEL_DESC_AMY + GUARDIAN_PHONE_DESC_AMY + RELATIONSHIP_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);

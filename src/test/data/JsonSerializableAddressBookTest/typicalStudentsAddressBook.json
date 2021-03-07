@@ -5,6 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "studyLevel" : "Sec 2",
     "guardianPhone" : "82813844",
     "relationship" : "Mother"
   }, {
@@ -12,6 +13,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "studyLevel" : "P2",
     "guardianPhone" : "81902144",
     "relationship" : "Father"
   }, {
@@ -19,6 +21,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "studyLevel" : "Uni CS1101S",
     "guardianPhone" : "98621032",
     "relationship" : "Mother"
   }, {
@@ -26,6 +29,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "studyLevel" : "JC 2",
     "guardianPhone" : "97213021",
     "relationship" : "Father"
   }, {
@@ -33,6 +37,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "studyLevel" : "Primary 2",
     "guardianPhone" : "92134012",
     "relationship" : "Mother"
   }, {
@@ -40,6 +45,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "studyLevel" : "Sec 2",
     "guardianPhone" : "99021234",
     "relationship" : "Mother"
   }, {
@@ -47,6 +53,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "studyLevel" : "Sec 3",
     "guardianPhone" : "87620000",
     "relationship" : "Father"
   } ]

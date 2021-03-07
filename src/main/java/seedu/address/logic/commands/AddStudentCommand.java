@@ -1,12 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -25,6 +20,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_STUDY_LEVEL + "STUDY LEVEL "
             + PREFIX_GUARDIAN_PHONE + "GUARDIAN PHONE "
             + PREFIX_RELATIONSHIP + "RELATIONSHIP "
             + "Example: " + COMMAND_WORD + " "
@@ -32,6 +28,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_STUDY_LEVEL + "Sec 2"
             + PREFIX_GUARDIAN_PHONE + "99999999 "
             + PREFIX_RELATIONSHIP + "Mother";
 

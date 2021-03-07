@@ -21,6 +21,7 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
+    private final String studyLevel;
     private final String guardianPhone;
     private final String relationship;
 
@@ -30,11 +31,14 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("guardianPhone") String guardianPhone, @JsonProperty("relationship") String relationship) {
+                              @JsonProperty("studyLevel") String studyLevel,
+                              @JsonProperty("guardianPhone") String guardianPhone,
+                              @JsonProperty("relationship") String relationship) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.studyLevel = studyLevel;
         this.guardianPhone = guardianPhone;
         this.relationship = relationship;
     }
@@ -47,6 +51,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        studyLevel = source.getStudyLevel();
         guardianPhone = source.getGuardianPhone().value;
         relationship = source.getRelationship();
     }
@@ -90,6 +95,11 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
+        if (studyLevel == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Study Level"));
+        }
+        final String modelStudyLevel = studyLevel;
+
         if (guardianPhone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -101,10 +111,10 @@ class JsonAdaptedStudent {
         if (relationship == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "relationship"));
         }
-
         final String modelRelationship = relationship;
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelGuardianPhone, modelRelationship);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelStudyLevel, modelGuardianPhone,
+            modelRelationship);
     }
 
 }
