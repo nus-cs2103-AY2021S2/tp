@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Appointment {
     // Mandatory fields
     private final Name name;
-    private final String remarks;
+    private final Remark remarks;
     private final LocalDate date;
 
     // Optional fields
@@ -16,7 +16,7 @@ public class Appointment {
     /**
      * Constructs an {@code Appointment} without any optional fields.
      */
-    public Appointment(Name name, String remarks, LocalDate date) {
+    public Appointment(Name name, Remark remarks, LocalDate date) {
         this.name = name;
         this.remarks = remarks;
         this.date = date;
@@ -27,7 +27,7 @@ public class Appointment {
      * Constructs an {@code Appointment} with all information.
      * Every field must be present and not null.
      */
-    public Appointment(Name name, String remarks, LocalDate date, LocalTime time) {
+    public Appointment(Name name, Remark remarks, LocalDate date, LocalTime time) {
         this.name = name;
         this.remarks = remarks;
         this.date = date;
@@ -38,7 +38,7 @@ public class Appointment {
         return name;
     }
 
-    public String getRemarks() {
+    public Remark getRemarks() {
         return remarks;
     }
 
