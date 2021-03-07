@@ -8,7 +8,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_STRA
 import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.STRAWBERRY_MILK;
+import static seedu.storemando.testutil.TypicalItems.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_STRAWBERRY_MILK + QUANTITY_DESC_STRAWBERRY_MILK
             + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK;
-        Item expectedItem = new ItemBuilder(STRAWBERRY_MILK).withTags().build();
+        Item expectedItem = new ItemBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

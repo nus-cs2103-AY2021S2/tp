@@ -8,7 +8,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.BANANA;
+import static seedu.storemando.testutil.TypicalItems.BOB;
 import static seedu.storemando.testutil.TypicalItems.MILK;
 
 import org.junit.jupiter.api.Test;
@@ -43,13 +43,13 @@ public class ItemTest {
         assertFalse(MILK.isSameItem(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Item editedBob = new ItemBuilder(BANANA).withName(VALID_NAME_BANANA.toLowerCase()).build();
-        assertFalse(BANANA.isSameItem(editedBob));
+        Item editedBob = new ItemBuilder(BOB).withName(VALID_NAME_BANANA.toLowerCase()).build();
+        assertFalse(BOB.isSameItem(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BANANA + " ";
-        editedBob = new ItemBuilder(BANANA).withName(nameWithTrailingSpaces).build();
-        assertFalse(BANANA.isSameItem(editedBob));
+        editedBob = new ItemBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        assertFalse(BOB.isSameItem(editedBob));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class ItemTest {
         assertFalse(MILK.equals(5));
 
         // different item -> returns false
-        assertFalse(MILK.equals(BANANA));
+        assertFalse(MILK.equals(BOB));
 
         // different name -> returns false
         Item editedAlice = new ItemBuilder(MILK).withName(VALID_NAME_BANANA).build();
