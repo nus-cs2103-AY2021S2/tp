@@ -28,7 +28,7 @@ import seedu.dictionote.logic.commands.ListCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.person.NameContainsKeywordsPredicate;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.person.Contact;
 import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 import seedu.dictionote.testutil.PersonBuilder;
 import seedu.dictionote.testutil.PersonUtil;
@@ -39,9 +39,9 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Contact contact = new PersonBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
+        assertEquals(new AddCommand(contact), command);
     }
 
     @Test
@@ -59,8 +59,8 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Contact contact = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(contact).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
             + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 
-public class EditPersonDescriptorTest {
+public class EditContactDescriptorTest {
 
     @Test
     public void equals() {

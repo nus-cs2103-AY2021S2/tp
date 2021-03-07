@@ -9,7 +9,7 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.person.Contact;
 
 /**
  * Adds a person to the dictionote book.
@@ -36,14 +36,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the dictionote book";
 
-    private final Person toAdd;
+    private final Contact toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Contact contact) {
+        requireNonNull(contact);
+        toAdd = contact;
     }
 
     @Override

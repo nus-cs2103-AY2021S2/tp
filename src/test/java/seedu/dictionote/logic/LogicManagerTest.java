@@ -26,7 +26,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.person.Contact;
 import seedu.dictionote.storage.JsonAddressBookStorage;
 import seedu.dictionote.storage.JsonUserPrefsStorage;
 import seedu.dictionote.storage.StorageManager;
@@ -81,9 +81,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Contact expectedContact = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPerson(expectedContact);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

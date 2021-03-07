@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.dictionote.model.person.Address;
 import seedu.dictionote.model.person.Email;
 import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.person.Contact;
 import seedu.dictionote.model.person.Phone;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.model.util.SampleDataUtil;
@@ -41,12 +41,12 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Contact contactToCopy) {
+        name = contactToCopy.getName();
+        phone = contactToCopy.getPhone();
+        email = contactToCopy.getEmail();
+        address = contactToCopy.getAddress();
+        tags = new HashSet<>(contactToCopy.getTags());
     }
 
     /**
@@ -89,8 +89,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    public Contact build() {
+        return new Contact(name, phone, email, address, tags);
     }
 
 }
