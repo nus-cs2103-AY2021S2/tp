@@ -4,10 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
-
 import seedu.address.model.person.Flashcard;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Flashcard.

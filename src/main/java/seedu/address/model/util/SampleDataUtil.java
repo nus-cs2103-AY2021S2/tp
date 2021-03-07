@@ -17,24 +17,9 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Flashcard[] getSampleFlashcards() {
         return new Flashcard[] {
-            new Flashcard(new Question("alexyeoh@example.com"),
-                new Answer("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Flashcard(new Question("berniceyu@example.com"),
-                new Answer("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Flashcard(new Question("charlotte@example.com"),
-                new Answer("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Flashcard(new Question("lidavid@example.com"),
-                new Answer("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Flashcard(new Question("irfan@example.com"),
-                new Answer("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Flashcard(new Question("royb@example.com"),
-                new Answer("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Flashcard(new Question("ソフトウェア"),
+                new Answer("Software"),
+                getTagSet("demo"))
         };
     }
 
@@ -54,5 +39,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
