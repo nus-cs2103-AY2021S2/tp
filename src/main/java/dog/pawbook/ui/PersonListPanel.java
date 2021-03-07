@@ -3,7 +3,7 @@ package dog.pawbook.ui;
 import java.util.logging.Logger;
 
 import dog.pawbook.commons.core.LogsCenter;
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -11,37 +11,37 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of owners.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class OwnerListPanel extends UiPart<Region> {
+    private static final String FXML = "OwnerListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(OwnerListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Owner> ownerListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code OwnerListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public OwnerListPanel(ObservableList<Owner> ownerList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        ownerListView.setItems(ownerList);
+        ownerListView.setCellFactory(listView -> new OwnerListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Owner} using a {@code OwnerCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class OwnerListViewCell extends ListCell<Owner> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Owner owner, boolean empty) {
+            super.updateItem(owner, empty);
 
-            if (empty || person == null) {
+            if (empty || owner == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new OwnerCard(owner, getIndex() + 1).getRoot());
             }
         }
     }

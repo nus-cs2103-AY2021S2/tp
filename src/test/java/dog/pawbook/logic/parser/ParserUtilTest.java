@@ -2,7 +2,7 @@ package dog.pawbook.logic.parser;
 
 import static dog.pawbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.logic.parser.exceptions.ParseException;
-import dog.pawbook.model.person.Address;
-import dog.pawbook.model.person.Email;
-import dog.pawbook.model.person.Name;
-import dog.pawbook.model.person.Phone;
+import dog.pawbook.model.owner.Address;
+import dog.pawbook.model.owner.Email;
+import dog.pawbook.model.owner.Name;
+import dog.pawbook.model.owner.Phone;
 import dog.pawbook.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_OWNER, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_OWNER, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

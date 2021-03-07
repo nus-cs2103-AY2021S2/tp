@@ -1,9 +1,9 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static dog.pawbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static dog.pawbook.logic.commands.CommandTestUtil.showOwnerAtIndex;
+import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showOwnerAtIndex(model, INDEX_FIRST_OWNER);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

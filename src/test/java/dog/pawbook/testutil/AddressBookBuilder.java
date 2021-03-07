@@ -1,12 +1,12 @@
 package dog.pawbook.testutil;
 
 import dog.pawbook.model.AddressBook;
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code AddressBook ab = new AddressBookBuilder().withOwner("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
@@ -21,10 +21,10 @@ public class AddressBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Owner} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public AddressBookBuilder withOwner(Owner owner) {
+        addressBook.addOwner(owner);
         return this;
     }
 

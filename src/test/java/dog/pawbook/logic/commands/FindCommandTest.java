@@ -1,11 +1,11 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static dog.pawbook.commons.core.Messages.MESSAGE_OWNERS_LISTED_OVERVIEW;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.testutil.TypicalPersons.CARL;
-import static dog.pawbook.testutil.TypicalPersons.ELLE;
-import static dog.pawbook.testutil.TypicalPersons.FIONA;
-import static dog.pawbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static dog.pawbook.testutil.TypicalOwners.CARL;
+import static dog.pawbook.testutil.TypicalOwners.ELLE;
+import static dog.pawbook.testutil.TypicalOwners.FIONA;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
-import dog.pawbook.model.person.NameContainsKeywordsPredicate;
+import dog.pawbook.model.owner.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -50,28 +50,28 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different owner -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noOwnerFound() {
+        String expectedMessage = String.format(MESSAGE_OWNERS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredOwnerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredOwnerList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleOwnersFound() {
+        String expectedMessage = String.format(MESSAGE_OWNERS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredOwnerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredOwnerList());
     }
 
     /**

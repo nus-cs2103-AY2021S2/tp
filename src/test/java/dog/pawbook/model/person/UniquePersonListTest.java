@@ -1,10 +1,10 @@
-package dog.pawbook.model.person;
+package dog.pawbook.model.owner;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalPersons.ALICE;
-import static dog.pawbook.testutil.TypicalPersons.BOB;
+import static dog.pawbook.testutil.TypicalOwners.ALICE;
+import static dog.pawbook.testutil.TypicalOwners.BOB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,156 +15,156 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import dog.pawbook.model.person.exceptions.DuplicatePersonException;
-import dog.pawbook.model.person.exceptions.PersonNotFoundException;
-import dog.pawbook.testutil.PersonBuilder;
+import dog.pawbook.model.owner.exceptions.DuplicateOwnerException;
+import dog.pawbook.model.owner.exceptions.OwnerNotFoundException;
+import dog.pawbook.testutil.OwnerBuilder;
 
-public class UniquePersonListTest {
+public class UniqueOwnerListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueOwnerList uniqueOwnerList = new UniqueOwnerList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+    public void contains_nullOwner_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueOwnerList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(ALICE));
+    public void contains_ownerNotInList_returnsFalse() {
+        assertFalse(uniqueOwnerList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+    public void contains_ownerInList_returnsTrue() {
+        uniqueOwnerList.add(ALICE);
+        assertTrue(uniqueOwnerList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void contains_ownerWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueOwnerList.add(ALICE);
+        Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertTrue(uniqueOwnerList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullOwner_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueOwnerList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    public void add_duplicateOwner_throwsDuplicateOwnerException() {
+        uniqueOwnerList.add(ALICE);
+        assertThrows(DuplicateOwnerException.class, () -> uniqueOwnerList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+    public void setOwner_nullTargetOwner_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueOwnerList.setOwner(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+    public void setOwner_nullEditedOwner_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueOwnerList.setOwner(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    public void setOwner_targetOwnerNotInList_throwsOwnerNotFoundException() {
+        assertThrows(OwnerNotFoundException.class, () -> uniqueOwnerList.setOwner(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setOwner_editedOwnerIsSameOwner_success() {
+        uniqueOwnerList.add(ALICE);
+        uniqueOwnerList.setOwner(ALICE, ALICE);
+        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        expectedUniqueOwnerList.add(ALICE);
+        assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void setOwner_editedOwnerHasSameIdentity_success() {
+        uniqueOwnerList.add(ALICE);
+        Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueOwnerList.setOwner(ALICE, editedAlice);
+        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        expectedUniqueOwnerList.add(editedAlice);
+        assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setOwner_editedOwnerHasDifferentIdentity_success() {
+        uniqueOwnerList.add(ALICE);
+        uniqueOwnerList.setOwner(ALICE, BOB);
+        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        expectedUniqueOwnerList.add(BOB);
+        assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    public void setOwner_editedOwnerHasNonUniqueIdentity_throwsDuplicateOwnerException() {
+        uniqueOwnerList.add(ALICE);
+        uniqueOwnerList.add(BOB);
+        assertThrows(DuplicateOwnerException.class, () -> uniqueOwnerList.setOwner(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullOwner_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueOwnerList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+    public void remove_ownerDoesNotExist_throwsOwnerNotFoundException() {
+        assertThrows(OwnerNotFoundException.class, () -> uniqueOwnerList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingOwner_removesOwner() {
+        uniqueOwnerList.add(ALICE);
+        uniqueOwnerList.remove(ALICE);
+        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setOwners_nullUniqueOwnerList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueOwnerList.setOwners((UniqueOwnerList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setOwners_uniqueOwnerList_replacesOwnListWithProvidedUniqueOwnerList() {
+        uniqueOwnerList.add(ALICE);
+        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        expectedUniqueOwnerList.add(BOB);
+        uniqueOwnerList.setOwners(expectedUniqueOwnerList);
+        assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Person>) null));
+    public void setOwners_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueOwnerList.setOwners((List<Owner>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(personList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setOwners_list_replacesOwnListWithProvidedList() {
+        uniqueOwnerList.add(ALICE);
+        List<Owner> ownerList = Collections.singletonList(BOB);
+        uniqueOwnerList.setOwners(ownerList);
+        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        expectedUniqueOwnerList.add(BOB);
+        assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    public void setOwners_listWithDuplicateOwners_throwsDuplicateOwnerException() {
+        List<Owner> listWithDuplicateOwners = Arrays.asList(ALICE, ALICE);
+        assertThrows(DuplicateOwnerException.class, () -> uniqueOwnerList.setOwners(listWithDuplicateOwners));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+            -> uniqueOwnerList.asUnmodifiableObservableList().remove(0));
     }
 }

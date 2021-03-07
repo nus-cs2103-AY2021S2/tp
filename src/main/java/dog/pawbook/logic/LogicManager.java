@@ -13,7 +13,7 @@ import dog.pawbook.logic.parser.PawbookParser;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ReadOnlyAddressBook;
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 import dog.pawbook.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Owner> getFilteredOwnerList() {
+        return model.getFilteredOwnerList();
     }
 
     @Override

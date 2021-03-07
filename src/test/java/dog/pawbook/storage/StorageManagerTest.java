@@ -1,6 +1,6 @@
 package dog.pawbook.storage;
 
-import static dog.pawbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

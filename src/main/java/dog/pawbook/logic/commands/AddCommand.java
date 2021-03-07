@@ -9,16 +9,16 @@ import static java.util.Objects.requireNonNull;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 
 /**
- * Adds a person to the address book.
+ * Adds a owner to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -33,28 +33,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New owner added: %1$s";
+    public static final String MESSAGE_DUPLICATE_OWNER = "This owner already exists in the address book";
 
-    private final Person toAdd;
+    private final Owner toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Owner}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Owner owner) {
+        requireNonNull(owner);
+        toAdd = owner;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasOwner(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_OWNER);
         }
 
-        model.addPerson(toAdd);
+        model.addOwner(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

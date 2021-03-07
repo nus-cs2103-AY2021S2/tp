@@ -2,10 +2,10 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static dog.pawbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static dog.pawbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static dog.pawbook.logic.commands.CommandTestUtil.showOwnerAtIndex;
+import static dog.pawbook.testutil.TypicalIndexes.INDEX_FIRST_OWNER;
+import static dog.pawbook.testutil.TypicalIndexes.INDEX_SECOND_OWNER;
+import static dog.pawbook.testutil.TypicalOwners.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,7 +16,7 @@ import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,64 +28,64 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Owner ownerToDelete = model.getFilteredOwnerList().get(INDEX_FIRST_OWNER.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_OWNER);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_OWNER_SUCCESS, ownerToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deleteOwner(ownerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOwnerList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showOwnerAtIndex(model, INDEX_FIRST_OWNER);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Owner ownerToDelete = model.getFilteredOwnerList().get(INDEX_FIRST_OWNER.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_OWNER);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_OWNER_SUCCESS, ownerToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
+        expectedModel.deleteOwner(ownerToDelete);
+        showNoOwner(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showOwnerAtIndex(model, INDEX_FIRST_OWNER);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_OWNER;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOwnerList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_OWNER);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_OWNER);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_OWNER);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -94,16 +94,16 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different owner -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+    private void showNoOwner(Model model) {
+        model.updateFilteredOwnerList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredOwnerList().isEmpty());
     }
 }

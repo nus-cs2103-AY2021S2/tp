@@ -1,10 +1,10 @@
-package dog.pawbook.model.person;
+package dog.pawbook.model.owner;
 
 import static dog.pawbook.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Owner's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {

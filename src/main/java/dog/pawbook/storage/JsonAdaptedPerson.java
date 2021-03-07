@@ -10,19 +10,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import dog.pawbook.commons.exceptions.IllegalValueException;
-import dog.pawbook.model.person.Address;
-import dog.pawbook.model.person.Email;
-import dog.pawbook.model.person.Name;
-import dog.pawbook.model.person.Person;
-import dog.pawbook.model.person.Phone;
+import dog.pawbook.model.owner.Address;
+import dog.pawbook.model.owner.Email;
+import dog.pawbook.model.owner.Name;
+import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.owner.Phone;
 import dog.pawbook.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Owner}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedOwner {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Owner's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -31,10 +31,10 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedOwner} with the given owner details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedOwner(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -47,9 +47,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Owner} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedOwner(Owner source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -60,14 +60,14 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted owner object into the model's {@code Owner} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted owner.
      */
-    public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+    public Owner toModelType() throws IllegalValueException {
+        final List<Tag> ownerTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            ownerTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +102,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Tag> modelTags = new HashSet<>(ownerTags);
+        return new Owner(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

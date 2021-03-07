@@ -2,7 +2,7 @@ package dog.pawbook.ui;
 
 import java.util.Comparator;
 
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -10,11 +10,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Owner}.
  */
-public class PersonCard extends UiPart<Region> {
+public class OwnerCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "OwnerListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Owner owner;
 
     @FXML
     private HBox cardPane;
@@ -42,17 +42,17 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code OwnerCode} with the given {@code Owner} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public OwnerCard(Owner owner, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.owner = owner;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(owner.getName().fullName);
+        phone.setText(owner.getPhone().value);
+        address.setText(owner.getAddress().value);
+        email.setText(owner.getEmail().value);
+        owner.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -65,13 +65,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof OwnerCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        OwnerCard card = (OwnerCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && owner.equals(card.owner);
     }
 }

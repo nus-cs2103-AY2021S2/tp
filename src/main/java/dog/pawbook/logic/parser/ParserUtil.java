@@ -9,10 +9,10 @@ import java.util.Set;
 import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.commons.util.StringUtil;
 import dog.pawbook.logic.parser.exceptions.ParseException;
-import dog.pawbook.model.person.Address;
-import dog.pawbook.model.person.Email;
-import dog.pawbook.model.person.Name;
-import dog.pawbook.model.person.Phone;
+import dog.pawbook.model.owner.Address;
+import dog.pawbook.model.owner.Email;
+import dog.pawbook.model.owner.Name;
+import dog.pawbook.model.owner.Phone;
 import dog.pawbook.model.tag.Tag;
 
 /**

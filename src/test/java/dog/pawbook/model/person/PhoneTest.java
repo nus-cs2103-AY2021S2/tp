@@ -1,4 +1,4 @@
-package dog.pawbook.model.person;
+package dog.pawbook.model.owner;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;

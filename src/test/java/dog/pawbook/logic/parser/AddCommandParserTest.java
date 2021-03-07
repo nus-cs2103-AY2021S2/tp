@@ -26,60 +26,60 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static dog.pawbook.testutil.TypicalPersons.AMY;
-import static dog.pawbook.testutil.TypicalPersons.BOB;
+import static dog.pawbook.testutil.TypicalOwners.AMY;
+import static dog.pawbook.testutil.TypicalOwners.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.logic.commands.AddCommand;
-import dog.pawbook.model.person.Address;
-import dog.pawbook.model.person.Email;
-import dog.pawbook.model.person.Name;
-import dog.pawbook.model.person.Person;
-import dog.pawbook.model.person.Phone;
+import dog.pawbook.model.owner.Address;
+import dog.pawbook.model.owner.Email;
+import dog.pawbook.model.owner.Name;
+import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.owner.Phone;
 import dog.pawbook.model.tag.Tag;
-import dog.pawbook.testutil.PersonBuilder;
+import dog.pawbook.testutil.OwnerBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Owner expectedOwner = new OwnerBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Owner expectedOwnerMultipleTags = new OwnerBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedOwnerMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Owner expectedOwner = new OwnerBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedOwner));
     }
 
     @Test
