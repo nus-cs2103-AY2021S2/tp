@@ -35,6 +35,10 @@ public class StudentCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label parentPhone;
+    @FXML
+    private Label relationship;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Student} and index to display.
@@ -47,6 +51,8 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
+        parentPhone.setText(student.getParentPhone().value);
+        relationship.setText(student.getRelationship());
     }
 
     @Override
