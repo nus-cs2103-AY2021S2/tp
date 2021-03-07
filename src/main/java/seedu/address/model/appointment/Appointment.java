@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import java.util.Objects;
 
 import seedu.address.model.name.Name;
+import seedu.address.model.remark.Remark;
 
 public class Appointment {
     // Mandatory fields

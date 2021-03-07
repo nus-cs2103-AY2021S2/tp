@@ -17,8 +17,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
-import seedu.address.model.property.Remark;
 import seedu.address.model.property.Type;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.DateTimeFormat;
 

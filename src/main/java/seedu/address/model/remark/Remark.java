@@ -1,10 +1,10 @@
-package seedu.address.model.appointment;
+package seedu.address.model.remark;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Appointment's remark.
+ * Represents a remark.
  * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}.
  */
 public class Remark {
@@ -29,7 +29,7 @@ public class Remark {
      * Returns true if a given string is a valid remark.
      *
      * @param test The string to test.
-     * @return True if the given string is a valid property remark, otherwise false.
+     * @return True if the given string is a valid remark, otherwise false.
      */
     public static boolean isValidRemark(String test) {
         return test.matches(VALIDATION_REGEX);
