@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dictionote.logic.commands.AddCommand;
+import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.DeleteCommand;
@@ -27,8 +27,8 @@ import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-import seedu.dictionote.model.person.NameContainsKeywordsPredicate;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 import seedu.dictionote.testutil.PersonBuilder;
 import seedu.dictionote.testutil.PersonUtil;
@@ -40,8 +40,8 @@ public class DictionoteParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Contact contact = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
-        assertEquals(new AddCommand(contact), command);
+        AddContactCommand command = (AddContactCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
+        assertEquals(new AddContactCommand(contact), command);
     }
 
     @Test

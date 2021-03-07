@@ -20,14 +20,14 @@ import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddContactCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddContactCommand(null));
     }
 
     @Test
@@ -35,33 +35,33 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Contact validContact = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validContact).execute(modelStub);
+        CommandResult commandResult = new AddContactCommand(validContact).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validContact), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validContact), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validContact), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Contact validContact = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validContact);
+        AddContactCommand addContactCommand = new AddContactCommand(validContact);
         ModelStub modelStub = new ModelStubWithPerson(validContact);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddContactCommand.MESSAGE_DUPLICATE_PERSON, () -> addContactCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Contact alice = new PersonBuilder().withName("Alice").build();
         Contact bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddContactCommand addAliceCommand = new AddContactCommand(alice);
+        AddContactCommand addBobCommand = new AddContactCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Contact contact) {
+        public void addContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Contact contact) {
+        public boolean hasContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,7 +161,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Contact contact) {
+        public boolean hasContact(Contact contact) {
             requireNonNull(contact);
             return this.contact.isSamePerson(contact);
         }
@@ -174,13 +174,13 @@ public class AddCommandTest {
         final ArrayList<Contact> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Contact contact) {
+        public boolean hasContact(Contact contact) {
             requireNonNull(contact);
             return personsAdded.stream().anyMatch(contact::isSamePerson);
         }
 
         @Override
-        public void addPerson(Contact contact) {
+        public void addContact(Contact contact) {
             requireNonNull(contact);
             personsAdded.add(contact);
         }

@@ -17,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.dictionote.logic.commands.AddCommand;
+import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.ListCommand;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
@@ -26,7 +26,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.storage.JsonAddressBookStorage;
 import seedu.dictionote.storage.JsonUserPrefsStorage;
 import seedu.dictionote.storage.StorageManager;
@@ -79,11 +79,11 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddContactCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Contact expectedContact = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedContact);
+        expectedModel.addContact(expectedContact);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

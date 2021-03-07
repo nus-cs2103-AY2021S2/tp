@@ -8,9 +8,9 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.dictionote.logic.commands.AddCommand;
+import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.dictionote.model.person.Contact;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -22,7 +22,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Contact contact) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(contact);
+        return AddContactCommand.COMMAND_WORD + " " + getPersonDetails(contact);
     }
 
     /**
