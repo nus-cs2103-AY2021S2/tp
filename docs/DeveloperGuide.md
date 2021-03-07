@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/Main.java) and [`MainApp`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,7 +78,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/logic/Logic.java)
 
 1. `Logic` uses the `ModuleBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -97,12 +97,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the module book data.
 * exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -117,11 +117,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the module book data in json format and read it back.
 
 ### Common classes
 
@@ -139,31 +139,31 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedModuleBook`. It extends `ModuleBook` with an undo/redo history, stored internally as an `moduleBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedModuleBook#commit()` — Saves the current address book state in its history.
-* `VersionedModuleBook#undo()` — Restores the previous address book state from its history.
-* `VersionedModuleBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedModuleBook#commit()` — Saves the current module book state in its history.
+* `VersionedModuleBook#undo()` — Restores the previous module book state from its history.
+* `VersionedModuleBook#redo()` — Restores a previously undone module book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitModuleBook()`, `Model#undoModuleBook()` and `Model#redoModuleBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedModuleBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedModuleBook` will be initialized with the initial module book state, and the `currentStatePointer` pointing to that single module book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th task in the address book. The `delete` command calls `Model#commitModuleBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `moduleBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th task in the module book. The `delete` command calls `Model#commitModuleBook()`, causing the modified state of the module book after the `delete 5` command executes to be saved in the `moduleBookStateList`, and the `currentStatePointer` is shifted to the newly inserted module book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new task. The `add` command also calls `Model#commitModuleBook()`, causing another modified address book state to be saved into the `moduleBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new task. The `add` command also calls `Model#commitModuleBook()`, causing another modified module book state to be saved into the `moduleBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitModuleBook()`, so the address book state will not be saved into the `moduleBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitModuleBook()`, so the module book state will not be saved into the `moduleBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoModuleBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoModuleBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous module book state, and restores the module book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -180,17 +180,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoModuleBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoModuleBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the module book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `moduleBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone ModuleBook states to restore. The `redo` command uses `Model#canRedoModuleBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `moduleBookStateList.size() - 1`, pointing to the latest module book state, then there are no undone ModuleBook states to restore. The `redo` command uses `Model#canRedoModuleBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitModuleBook()`, `Model#undoModuleBook()` or `Model#redoModuleBook()`. Thus, the `moduleBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the module book, such as `list`, will usually not call `Model#commitModuleBook()`, `Model#undoModuleBook()` or `Model#redoModuleBook()`. Thus, the `moduleBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitModuleBook()`. Since the `currentStatePointer` is not pointing at the end of the `moduleBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitModuleBook()`. Since the `currentStatePointer` is not pointing at the end of the `moduleBookStateList`, all module book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -202,7 +202,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire module book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -258,7 +258,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
-| `*`      | user with many tasks in the address book | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
+| `*`      | user with many tasks in the module book | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
 
 ### Use cases
 

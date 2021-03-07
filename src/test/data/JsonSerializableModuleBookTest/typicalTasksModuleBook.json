@@ -4,13 +4,13 @@
     "name" : "Team Project",
     "deadline" : "2021-03-15 14:00",
     "module" : "CS2103T",
-    "address" : "Wrap up version 1.2",
+    "description" : "Wrap up version 1.2",
     "tagged" : [ "high workload" ]
   }, {
     "name" : "Midterm Quiz",
     "deadline" : "2021-03-06 8:30",
     "module" : "CS3243",
-    "address" : "Not include CSP",
+    "description" : "Not include CSP",
     "tagged" : [ "hard", "high priority" ]
   } ]
 }

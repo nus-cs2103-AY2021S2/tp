@@ -91,7 +91,7 @@ Examples:
 
 ### Deleting a task : `delete`
 
-Deletes the specified task from the address book.
+Deletes the specified task from the module book.
 
 Format: `delete INDEX`
 
