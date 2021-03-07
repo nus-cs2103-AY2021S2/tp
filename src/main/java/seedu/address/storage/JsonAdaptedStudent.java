@@ -18,17 +18,22 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
+    private final String parentPhone;
+    private final String relationship;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("address") String address) {
+        @JsonProperty("email") String email, @JsonProperty("address") String address,
+        @JsonProperty("parentPhone") String parentPhone, @JsonProperty("relationship") String relationship) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.parentPhone = parentPhone;
+        this.relationship = relationship;
     }
 
     /**
@@ -39,6 +44,8 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        parentPhone = source.getParentPhone().value;
+        relationship = source.getRelationship();
     }
 
     /**
@@ -80,7 +87,21 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress);
+        if (parentPhone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(parentPhone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelParentPhone = new Phone(parentPhone);
+
+        if (relationship == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "relationship"));
+        }
+
+        final String modelRelationship = relationship;
+
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelRelationship);
     }
 
 }

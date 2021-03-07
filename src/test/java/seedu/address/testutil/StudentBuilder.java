@@ -15,11 +15,15 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PARENT_PHONE = "91203123";
+    public static final String DEFAULT_RELATIONSHIP = "Mother";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Phone parentPhone;
+    private String relationship;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -29,6 +33,8 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        parentPhone = new Phone(DEFAULT_PARENT_PHONE);
+        relationship = DEFAULT_RELATIONSHIP;
     }
 
     /**
@@ -39,6 +45,8 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
+        parentPhone = studentToCopy.getParentPhone();
+        relationship = studentToCopy.getRelationship();
     }
 
     /**
@@ -74,7 +82,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, address);
+        return new Student(name, phone, email, address, parentPhone, relationship);
     }
 
 }

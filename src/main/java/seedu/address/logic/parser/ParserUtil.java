@@ -90,4 +90,34 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String parentPhone} into a {@code parentPhone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Phone parseParentPhone(String parentPhone) throws ParseException {
+        requireNonNull(parentPhone);
+        String trimmedPhone = parentPhone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String relationship} into an {@code relationship}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static String parseRelationship(String relationship) throws ParseException {
+        requireNonNull(relationship);
+        String trimmedRelationship = relationship.trim();
+        if (trimmedRelationship.equals("")) {
+            throw new ParseException("Relationship parse error");
+        }
+        return trimmedRelationship;
+    }
+
 }

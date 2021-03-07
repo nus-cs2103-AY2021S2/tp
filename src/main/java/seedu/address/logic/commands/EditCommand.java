@@ -90,8 +90,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Phone updatedParentPhone = editStudentDescriptor.getParentPhone().orElse(studentToEdit.getParentPhone());
+        String updatedRelationship = editStudentDescriptor.getRelationship().orElse(studentToEdit.getRelationship());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedParentPhone, updatedRelationship);
     }
 
     @Override
@@ -121,6 +123,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Phone parentPhone;
+        private String relationship;
 
         public EditStudentDescriptor() {}
 
@@ -132,6 +136,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setParentPhone(toCopy.parentPhone);
+            setRelationship(toCopy.relationship);
         }
 
         /**
@@ -171,6 +177,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setParentPhone(Phone parentPhone) {
+            this.parentPhone = parentPhone;
+        }
+
+        public Optional<Phone> getParentPhone() {
+            return Optional.ofNullable(parentPhone);
+        }
+
+        public void setRelationship(String relationship) {
+            this.relationship = relationship;
+        }
+
+        public Optional<String> getRelationship() {
+            return Optional.ofNullable(relationship);
         }
 
         @Override
