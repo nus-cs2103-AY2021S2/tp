@@ -73,7 +73,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditCommand.EditItemDescriptor());
         Item editedItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+        //String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+        String expectedMessage = String.format(EditCommand.MESSAGE_NO_CHANGE);
 
         Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
 
