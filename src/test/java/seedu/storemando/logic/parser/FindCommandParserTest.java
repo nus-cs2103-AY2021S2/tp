@@ -21,14 +21,29 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
+    public void parse_validArgs_nonGenericFind_returnsFindCommand() {
         FindCommand expectedFindCommand =
-            new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"), false));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+            new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList("Chocolate", "Tofu"),
+                false));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, "Chocolate Tofu", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n Chocolate \n \t Tofu  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_genericFind_returnsFindCommand() {
+        FindCommand expectedFindCommand =
+            new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList("Chocolate", "Tofu"),
+                true));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, "Chocolate Tofu", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n Chocolate \n \t Tofu  \t", expectedFindCommand);
     }
 
 }
