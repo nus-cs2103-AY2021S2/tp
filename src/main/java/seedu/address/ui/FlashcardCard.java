@@ -44,8 +44,8 @@ public class FlashcardCard extends UiPart<Region> {
         super(FXML);
         this.flashcard = flashcard;
         id.setText(displayedIndex + ". ");
-        answer.setText(flashcard.getAnswer().value);
         question.setText(flashcard.getQuestion().value);
+        answer.setText(flashcard.getAnswer().value);
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
