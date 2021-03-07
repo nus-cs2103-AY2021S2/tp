@@ -51,12 +51,12 @@ public class JsonSmartLibStorageTest {
     }
 
     @Test
-    public void readSmartLib_invalidPersonSmartLib_throwDataConversionException() {
+    public void readSmartLib_invalidReaderSmartLib_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readSmartLib("invalidReaderSmartLib.json"));
     }
 
     @Test
-    public void readSmartLib_invalidAndValidPersonSmartLib_throwDataConversionException() {
+    public void readSmartLib_invalidAndValidReaderSmartLib_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readSmartLib("invalidAndValidReaderSmartLib.json"));
     }
 

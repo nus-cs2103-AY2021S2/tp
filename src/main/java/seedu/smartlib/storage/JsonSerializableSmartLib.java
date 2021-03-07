@@ -37,7 +37,7 @@ class JsonSerializableSmartLib {
      * @param source future changes to this will not affect the created {@code JsonSerializableSmartLib}.
      */
     public JsonSerializableSmartLib(ReadOnlySmartLib source) {
-        readers.addAll(source.getPersonList().stream().map(JsonAdaptedReader::new).collect(Collectors.toList()));
+        readers.addAll(source.getReaderList().stream().map(JsonAdaptedReader::new).collect(Collectors.toList()));
     }
 
     /**

@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.smartLib = new SmartLib(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredReaders = new FilteredList<>(this.smartLib.getPersonList());
+        filteredReaders = new FilteredList<>(this.smartLib.getReaderList());
     }
 
     public ModelManager() {
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setReader(Reader target, Reader editedReader) {
         requireAllNonNull(target, editedReader);
 
-        smartLib.setPerson(target, editedReader);
+        smartLib.setReader(target, editedReader);
     }
 
     //=========== Filtered Person List Accessors =============================================================

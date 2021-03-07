@@ -26,13 +26,13 @@ import seedu.smartlib.testutil.ReaderBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullReader_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddReaderCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_readerAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingReaderAdded modelStub = new ModelStubAcceptingReaderAdded();
         Reader validReader = new ReaderBuilder().build();
 
         CommandResult commandResult = new AddReaderCommand(validReader).execute(modelStub);
@@ -42,10 +42,10 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateReader_throwsCommandException() {
         Reader validReader = new ReaderBuilder().build();
         AddReaderCommand addCommand = new AddReaderCommand(validReader);
-        ModelStub modelStub = new ModelStubWithPerson(validReader);
+        ModelStub modelStub = new ModelStubWithReader(validReader);
 
         assertThrows(CommandException.class, AddReaderCommand.MESSAGE_DUPLICATE_READER, () ->
             addCommand.execute(modelStub));
@@ -151,12 +151,12 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single reader.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithReader extends ModelStub {
         private final Reader reader;
 
-        ModelStubWithPerson(Reader reader) {
+        ModelStubWithReader(Reader reader) {
             requireNonNull(reader);
             this.reader = reader;
         }
@@ -169,9 +169,9 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the reader being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingReaderAdded extends ModelStub {
         final ArrayList<Reader> readersAdded = new ArrayList<>();
 
         @Override

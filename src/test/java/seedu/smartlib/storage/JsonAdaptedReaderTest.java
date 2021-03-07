@@ -33,7 +33,7 @@ public class JsonAdaptedReaderTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_validReaderDetails_returnsReader() throws Exception {
         JsonAdaptedReader person = new JsonAdaptedReader(BENSON);
         assertEquals(BENSON, person.toModelType());
     }

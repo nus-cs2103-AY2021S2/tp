@@ -53,7 +53,7 @@ public class UniqueReaderList implements Iterable<Reader> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Reader target, Reader editedReader) {
+    public void setReader(Reader target, Reader editedReader) {
         requireAllNonNull(target, editedReader);
 
         int index = internalList.indexOf(target);
@@ -79,7 +79,7 @@ public class UniqueReaderList implements Iterable<Reader> {
         }
     }
 
-    public void setPersons(UniqueReaderList replacement) {
+    public void setReaders(UniqueReaderList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,7 +88,7 @@ public class UniqueReaderList implements Iterable<Reader> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Reader> readers) {
+    public void setReaders(List<Reader> readers) {
         requireAllNonNull(readers);
         if (!readersAreUnique(readers)) {
             throw new DuplicateReaderException();

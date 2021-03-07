@@ -7,7 +7,7 @@ import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_READER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,8 +51,8 @@ public class SmartLibParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteReaderCommand command = (DeleteReaderCommand) parser.parseCommand(
-                DeleteReaderCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteReaderCommand(INDEX_FIRST_PERSON), command);
+                DeleteReaderCommand.COMMAND_WORD + " " + INDEX_FIRST_READER.getOneBased());
+        assertEquals(new DeleteReaderCommand(INDEX_FIRST_READER), command);
     }
 
     @Test
@@ -60,8 +60,8 @@ public class SmartLibParserTest {
         Reader reader = new ReaderBuilder().build();
         EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder(reader).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + ReaderUtil.getEditReaderDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_READER.getOneBased() + " " + ReaderUtil.getEditReaderDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_READER, descriptor), command);
     }
 
     @Test

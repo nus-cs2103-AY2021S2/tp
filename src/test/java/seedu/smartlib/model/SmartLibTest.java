@@ -28,7 +28,7 @@ public class SmartLibTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), smartLib.getPersonList());
+        assertEquals(Collections.emptyList(), smartLib.getReaderList());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class SmartLibTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateReaders_throwsDuplicateReaderException() {
         // Two persons with the same identity fields
         Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -55,23 +55,23 @@ public class SmartLibTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasReader_nullReader_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> smartLib.hasReader(null));
     }
 
     @Test
-    public void hasPerson_personNotInSmartLib_returnsFalse() {
+    public void hasReader_readerNotInSmartLib_returnsFalse() {
         assertFalse(smartLib.hasReader(ALICE));
     }
 
     @Test
-    public void hasPerson_personInSmartLib_returnsTrue() {
+    public void hasReader_readerInSmartLib_returnsTrue() {
         smartLib.addReader(ALICE);
         assertTrue(smartLib.hasReader(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInSmartLib_returnsTrue() {
+    public void hasReader_readerWithSameIdentityFieldsInSmartLib_returnsTrue() {
         smartLib.addReader(ALICE);
         Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -79,8 +79,8 @@ public class SmartLibTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> smartLib.getPersonList().remove(0));
+    public void getReaderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> smartLib.getReaderList().remove(0));
     }
 
     /**
@@ -94,7 +94,7 @@ public class SmartLibTest {
         }
 
         @Override
-        public ObservableList<Reader> getPersonList() {
+        public ObservableList<Reader> getReaderList() {
             return readers;
         }
     }

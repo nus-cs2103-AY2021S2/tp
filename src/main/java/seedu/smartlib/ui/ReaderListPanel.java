@@ -26,13 +26,13 @@ public class ReaderListPanel extends UiPart<Region> {
     public ReaderListPanel(ObservableList<Reader> readerList) {
         super(FXML);
         personListView.setItems(readerList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new ReaderListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Reader> {
+    class ReaderListViewCell extends ListCell<Reader> {
         @Override
         protected void updateItem(Reader reader, boolean empty) {
             super.updateItem(reader, empty);

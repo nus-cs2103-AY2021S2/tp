@@ -37,8 +37,8 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Reader readerInList = model.getSmartLib().getPersonList().get(0);
+    public void execute_duplicateReader_throwsCommandException() {
+        Reader readerInList = model.getSmartLib().getReaderList().get(0);
         assertCommandFailure(new AddReaderCommand(readerInList), model, AddReaderCommand.MESSAGE_DUPLICATE_READER);
     }
 

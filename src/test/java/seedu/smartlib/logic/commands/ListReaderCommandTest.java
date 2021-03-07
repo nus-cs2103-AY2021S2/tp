@@ -1,8 +1,8 @@
 package seedu.smartlib.logic.commands;
 
 import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.smartlib.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.smartlib.logic.commands.CommandTestUtil.showReaderAtIndex;
+import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_READER;
 import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +33,7 @@ public class ListReaderCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showReaderAtIndex(model, INDEX_FIRST_READER);
         assertCommandSuccess(new ListReaderCommand(), model, ListReaderCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

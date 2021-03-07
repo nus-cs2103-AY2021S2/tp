@@ -73,23 +73,23 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasReader_nullReader_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasReader(null));
     }
 
     @Test
-    public void hasPerson_personNotInSmartLib_returnsFalse() {
+    public void hasReader_readerNotInSmartLib_returnsFalse() {
         assertFalse(modelManager.hasReader(ALICE));
     }
 
     @Test
-    public void hasPerson_personInSmartLib_returnsTrue() {
+    public void hasReader_readerInSmartLib_returnsTrue() {
         modelManager.addReader(ALICE);
         assertTrue(modelManager.hasReader(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredReaderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredReaderList().remove(0));
     }
 

@@ -24,7 +24,7 @@ public class ReaderTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameReader() {
         // same object -> returns true
         assertTrue(ALICE.isSameReader(ALICE));
 
