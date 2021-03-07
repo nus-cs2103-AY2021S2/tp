@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FlashcardListPanel flashcardListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane flashcardListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,15 +111,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        // display the panel for learn mode, which shows the flashcards
-        // (currently in addressbook context its the list of contacts)
-
         // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         // can have a separate Panel here for the quiz mode, structure similar to learn mode
         // problem is fillInnerParts() is called in UiManager start method when the app starts,
         // need to find a way to alternate between the two panels
+
+        // display the panel for learn mode, which shows the flashcards
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -171,8 +172,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public FlashcardListPanel getFlashcardListPanel() {
+        return flashcardListPanel;
     }
 
     /**
