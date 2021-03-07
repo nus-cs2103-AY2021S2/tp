@@ -1,5 +1,5 @@
 ---
-layout: TimeforWheels
+layout: page
 title: TimeforWheels
 ---
 
