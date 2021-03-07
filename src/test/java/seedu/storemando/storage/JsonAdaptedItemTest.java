@@ -3,7 +3,7 @@ package seedu.storemando.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.storemando.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.BREAD;
+import static seedu.storemando.testutil.TypicalItems.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,18 +23,18 @@ public class JsonAdaptedItemTest {
     private static final String INVALID_EXPIRYDATE = "example.com";
     private static final String INVALID_LOCATION = " ";
     private static final String INVALID_TAG = "#friend";
-    private static final String VALID_NAME = BREAD.getItemName().toString();
-    private static final String VALID_QUANTITY = BREAD.getQuantity().toString();
-    private static final String VALID_EXPIRYDATE = BREAD.getExpiryDate().toString();
-    private static final String VALID_LOCATION = BREAD.getLocation().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BREAD.getTags().stream()
+    private static final String VALID_NAME = BENSON.getItemName().toString();
+    private static final String VALID_QUANTITY = BENSON.getQuantity().toString();
+    private static final String VALID_EXPIRYDATE = BENSON.getExpiryDate().toString();
+    private static final String VALID_LOCATION = BENSON.getLocation().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
         .map(JsonAdaptedTag::new)
         .collect(Collectors.toList());
 
     @Test
     public void toModelType_validItemDetails_returnsItem() throws Exception {
-        JsonAdaptedItem item = new JsonAdaptedItem(BREAD);
-        assertEquals(BREAD, item.toModelType());
+        JsonAdaptedItem item = new JsonAdaptedItem(BENSON);
+        assertEquals(BENSON, item.toModelType());
     }
 
     @Test

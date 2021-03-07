@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.MILK;
+import static seedu.storemando.testutil.TypicalItems.ALICE;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class StoreMandoTest {
     @Test
     public void resetData_withDuplicateItems_throwsDuplicateItemException() {
         // Two items with the same identity fields
-        Item editedAlice = new ItemBuilder(MILK).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
+        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
-        List<Item> newItems = Arrays.asList(MILK, editedAlice);
+        List<Item> newItems = Arrays.asList(ALICE, editedAlice);
         StoreMandoStub newData = new StoreMandoStub(newItems);
 
         assertThrows(DuplicateItemException.class, () -> storeMando.resetData(newData));
@@ -61,19 +61,19 @@ public class StoreMandoTest {
 
     @Test
     public void hasItem_itemNotInStoreMando_returnsFalse() {
-        assertFalse(storeMando.hasItem(MILK));
+        assertFalse(storeMando.hasItem(ALICE));
     }
 
     @Test
     public void hasItem_itemInStoreMando_returnsTrue() {
-        storeMando.addItem(MILK);
-        assertTrue(storeMando.hasItem(MILK));
+        storeMando.addItem(ALICE);
+        assertTrue(storeMando.hasItem(ALICE));
     }
 
     @Test
     public void hasItem_itemWithSameIdentityFieldsInStoreMando_returnsTrue() {
-        storeMando.addItem(MILK);
-        Item editedAlice = new ItemBuilder(MILK).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
+        storeMando.addItem(ALICE);
+        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
         assertTrue(storeMando.hasItem(editedAlice));
     }

@@ -3,9 +3,9 @@ package seedu.storemando.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.storemando.testutil.Assert.assertThrows;
+import static seedu.storemando.testutil.TypicalItems.ALICE;
 import static seedu.storemando.testutil.TypicalItems.HOON;
 import static seedu.storemando.testutil.TypicalItems.IDA;
-import static seedu.storemando.testutil.TypicalItems.MILK;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.io.IOException;
@@ -73,7 +73,7 @@ public class JsonStoreMandoStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addItem(HOON);
-        original.removeItem(MILK);
+        original.removeItem(ALICE);
         jsonStoreMandoStorage.saveStoreMando(original, filePath);
         readBack = jsonStoreMandoStorage.readStoreMando(filePath).get();
         assertEquals(original, new StoreMando(readBack));
