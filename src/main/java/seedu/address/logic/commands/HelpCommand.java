@@ -1,12 +1,6 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
 /**
  * Format full help instructions for every command for display.
