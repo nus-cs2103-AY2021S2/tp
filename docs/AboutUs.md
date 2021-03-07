@@ -31,7 +31,7 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 
 ### Galen Cheung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cheunggalen.png" width="200px">
 
 [[github](http://github.com/cheunggalen)] [[portfolio]()]
 
