@@ -9,6 +9,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import seedu.us.among.commons.util.JsonUtil;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Response;
 
@@ -37,7 +38,7 @@ public class GetRequest extends Request {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response;
         String responseEntity = "";
-        double responseTimeInSecond = 0;
+        double responseTimeInSecond;
         try {
             HttpGet request = new HttpGet(this.getAddress());
             //to-do
@@ -53,6 +54,7 @@ public class GetRequest extends Request {
                 if (entity != null) {
                     //return data as string
                     responseEntity = EntityUtils.toString(entity);
+                    responseEntity = JsonUtil.toPrettyPrintJsonString(responseEntity);
                 }
 
             } finally {
