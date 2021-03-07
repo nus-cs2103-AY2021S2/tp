@@ -34,7 +34,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/laurenlhy)]
 [[portfolio](team/laurenlhy.md)]
 
-* Role:
+* Role: Developer
 * Responsibilities:
 
 ### Lim Li Quan
