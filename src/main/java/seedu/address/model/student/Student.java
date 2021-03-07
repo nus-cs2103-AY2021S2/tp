@@ -24,7 +24,8 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, String studyLevel, Phone guardianPhone, String relationship) {
+    public Student(Name name, Phone phone, Email email, Address address, String studyLevel, Phone guardianPhone,
+            String relationship) {
         requireAllNonNull(name, phone, email, address, guardianPhone, relationship);
         this.name = name;
         this.phone = phone;

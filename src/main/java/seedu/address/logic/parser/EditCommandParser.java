@@ -2,7 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDY_LEVEL;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -22,7 +28,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STUDY_LEVEL, PREFIX_GUARDIAN_PHONE, PREFIX_RELATIONSHIP);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                    PREFIX_ADDRESS, PREFIX_STUDY_LEVEL, PREFIX_GUARDIAN_PHONE, PREFIX_RELATIONSHIP);
 
         Index index;
 
@@ -46,13 +53,16 @@ public class EditCommandParser implements Parser<EditCommand> {
             editStudentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_STUDY_LEVEL).isPresent()) {
-            editStudentDescriptor.setStudyLevel(ParserUtil.parseStudyLevel(argMultimap.getValue(PREFIX_STUDY_LEVEL).get()));
+            editStudentDescriptor.setStudyLevel(ParserUtil.parseStudyLevel(argMultimap
+                .getValue(PREFIX_STUDY_LEVEL).get()));
         }
         if (argMultimap.getValue(PREFIX_GUARDIAN_PHONE).isPresent()) {
-            editStudentDescriptor.setGuardianPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_GUARDIAN_PHONE).get()));
+            editStudentDescriptor.setGuardianPhone(ParserUtil.parsePhone(argMultimap
+                .getValue(PREFIX_GUARDIAN_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_RELATIONSHIP).isPresent()) {
-            editStudentDescriptor.setRelationship(ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get()));
+            editStudentDescriptor.setRelationship(ParserUtil.parseRelationship(argMultimap
+                .getValue(PREFIX_RELATIONSHIP).get()));
         }
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
