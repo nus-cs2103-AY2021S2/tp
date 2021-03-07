@@ -81,7 +81,7 @@ Examples:
 
 Edits an existing person in the HippoCamus' Contact List.
 
-Format: `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG…​ [-b BIRTHDAY]`
+Format: `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list (not sorted). The index must be a positive integer that is a valid number in the list.
 * Existing values will be updated to the input values.
@@ -132,7 +132,7 @@ Examples:
 * `tags` lists out all tags available.
 * `tags -f cs2103` lists out all tags that contain `cs2103`.
 
-### Show help : `help`
+### Showing help : `help`
 
 Shows a message explaining a list of available commands.
 
