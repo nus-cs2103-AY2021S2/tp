@@ -26,8 +26,8 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.dictionote.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.dictionote.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.dictionote.testutil.TypicalPersons.AMY;
-import static seedu.dictionote.testutil.TypicalPersons.BOB;
+import static seedu.dictionote.testutil.TypicalContacts.AMY;
+import static seedu.dictionote.testutil.TypicalContacts.BOB;
 
 import org.junit.jupiter.api.Test;
 

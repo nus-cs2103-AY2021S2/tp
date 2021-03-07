@@ -8,7 +8,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.dictionote.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.dictionote.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalPersons.AMY;
+import static seedu.dictionote.testutil.TypicalContacts.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;

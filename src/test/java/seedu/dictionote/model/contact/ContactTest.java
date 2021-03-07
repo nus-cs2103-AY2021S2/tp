@@ -8,8 +8,8 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalPersons.ALICE;
-import static seedu.dictionote.testutil.TypicalPersons.BOB;
+import static seedu.dictionote.testutil.TypicalContacts.ALICE;
+import static seedu.dictionote.testutil.TypicalContacts.BOB;
 
 import org.junit.jupiter.api.Test;
 

@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.contact.exceptions.DuplicatePersonException;
-import seedu.dictionote.model.contact.exceptions.PersonNotFoundException;
+import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
+import seedu.dictionote.model.contact.exceptions.ContactNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +43,7 @@ public class UniquePersonList implements Iterable<Contact> {
     public void add(Contact toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateContactException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniquePersonList implements Iterable<Contact> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ContactNotFoundException();
         }
 
         if (!target.isSamePerson(editedContact) && contains(editedContact)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateContactException();
         }
 
         internalList.set(index, editedContact);
@@ -75,7 +75,7 @@ public class UniquePersonList implements Iterable<Contact> {
     public void remove(Contact toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ContactNotFoundException();
         }
     }
 
@@ -91,7 +91,7 @@ public class UniquePersonList implements Iterable<Contact> {
     public void setPersons(List<Contact> contacts) {
         requireAllNonNull(contacts);
         if (!personsAreUnique(contacts)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateContactException();
         }
 
         internalList.setAll(contacts);

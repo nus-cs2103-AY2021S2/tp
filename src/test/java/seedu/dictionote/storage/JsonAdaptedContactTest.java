@@ -3,7 +3,7 @@ package seedu.dictionote.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.dictionote.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalPersons.BENSON;
+import static seedu.dictionote.testutil.TypicalContacts.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
