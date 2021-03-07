@@ -3,14 +3,16 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.util.RegexUtil;
+
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in weeblingo.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = RegexUtil.REGEX_AB3_TAG;
 
     public final String tagName;
 
