@@ -38,7 +38,7 @@ public class AddAppointmentCommandTest {
 
         CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
 
-        assertEquals(String.format(AddPropertyCommand.MESSAGE_SUCCESS, validAppointment),
+        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAppointment), modelStub.appointmentsAdded);
     }

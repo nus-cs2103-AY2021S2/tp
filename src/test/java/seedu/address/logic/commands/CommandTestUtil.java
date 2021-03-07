@@ -84,7 +84,7 @@ public class CommandTestUtil {
             " " + PREFIX_NAME + "Meet Alex&"; // '&' not allowed in names
     public static final String INVALID_APPOINTMENT_REMARK_DESC =
             " " + PREFIX_REMARK; // empty string not allowed for remark
-    public static final String INVALID_PROPERTY_DATE_DESC =
+    public static final String INVALID_APPOINTMENT_DATE_DESC =
             " " + PREFIX_DATE + "31-04-2021"; // 31st April not valid
 
     // For testing of persons (to be removed)
