@@ -239,12 +239,12 @@ _{Explain here how the data archiving feature will be implemented}_
 * Young aspiring J-Culture enthusiast who wants to learn basic Japanese
 * goes to a Japanese Culture Club so is low on time after school
 * interested in learning the Japanese language
-* prefers using flashcards to learn 
+* prefers using flashcards to learn
 * prefers desktop apps over other types
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Ability to not only convert between English and Japanese but Chinese and Japanese as well 
+**Value proposition**: Ability to not only convert between English and Japanese but Chinese and Japanese as well
 (for relevant flashcards)
 
 
@@ -292,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5.  WeebLingo displays correct answer if user's answer is wrong
 6.  WeebLingo removes this question from the list of questions for this session
 7.  Go to step 2 again
-    
+
 **Extensions**
 
 * 2a. All questions have been shown.
@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Question**: A Japanese character/word 
+* **Question**: A Japanese character/word
 * **Answer**: The reading/definition of the Japanese given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
 --------------------------------------------------------------------------------------------------------------------
