@@ -38,7 +38,7 @@ public class PropertyBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PropertyBuilder with the data of {@code propertyToCopy}.
      */
     public PropertyBuilder(Property propertyToCopy) {
         name = propertyToCopy.getName();
