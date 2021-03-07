@@ -47,8 +47,8 @@ public class AddCommandTest {
         AddReaderCommand addCommand = new AddReaderCommand(validReader);
         ModelStub modelStub = new ModelStubWithPerson(validReader);
 
-        assertThrows(CommandException.class, AddReaderCommand.MESSAGE_DUPLICATE_READER,
-                () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddReaderCommand.MESSAGE_DUPLICATE_READER, () ->
+            addCommand.execute(modelStub));
     }
 
     @Test
