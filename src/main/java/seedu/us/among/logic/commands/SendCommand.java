@@ -67,7 +67,11 @@ public class SendCommand extends Command {
 
         model.setEndpoint(endpointToSend, endpointWithResponse);
 
-        return new CommandResult(String.format(MESSAGE_CALL_ENDPOINT_SUCCESS, endpointWithResponse));
+        return new CommandResult(endpointWithResponse.getResponse().getResponseEntity(),
+                endpointWithResponse,
+                false,
+                false,
+                true);
     }
 
     /**

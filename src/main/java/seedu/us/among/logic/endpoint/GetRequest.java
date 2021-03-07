@@ -10,6 +10,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import seedu.us.among.commons.util.JsonUtil;
+import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Response;
 
@@ -69,6 +70,6 @@ public class GetRequest extends Request {
                 response.getStatusLine().getReasonPhrase(),
                 response.getStatusLine().toString(),
                 responseEntity,
-                responseTimeInSecond + "");
+                StringUtil.get3DecimalPlace(responseTimeInSecond));
     }
 }
