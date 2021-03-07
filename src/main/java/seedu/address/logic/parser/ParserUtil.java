@@ -183,7 +183,9 @@ public class ParserUtil {
      * @throws ParseException If the given {@code time} is invalid.
      */
     public static Time parseAppointmentTime(String time) throws ParseException {
-        requireNonNull(time);
+        if (time == null) {
+            return null;
+        }
         String trimmedTime = time.trim();
         try {
             return new Time(LocalTime.parse(trimmedTime, DateTimeFormat.INPUT_TIME_FORMAT));
