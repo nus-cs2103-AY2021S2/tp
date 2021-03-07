@@ -19,8 +19,8 @@ public class MeetingCommand extends Command {
             + "desc/DESCRIPTION"
             + "Example: " + COMMAND_WORD + " 1 "
             + "d/12-12-2021"
-            + "t/12:40"
-            + "desc/We enjoyed the sunset together!";
+            + "t/1240"
+            + "desc/We went to the beach!";
 
     private final Index index;
     private final Meeting meeting;
