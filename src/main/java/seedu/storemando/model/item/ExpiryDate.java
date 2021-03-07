@@ -13,6 +13,7 @@ import java.time.LocalDate;
  */
 public class ExpiryDate {
 
+    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
     private static final String SPECIAL_CHARACTERS = "-";
     public static final String MESSAGE_CONSTRAINTS = "Expiry dates should be of the format YYYY-MM-DD "
         + "and adhere to the following constraints:\n"
@@ -29,7 +30,6 @@ public class ExpiryDate {
         + "    - be exactly 2 digits long\n"
         + "    - be a valid date\n";
 
-    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
     public final LocalDate value;
 

@@ -35,7 +35,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
         + "by the index number used in the displayed item list. "
-        + "Existing values will be overwritten by the input values as long as input values are not the same as existing values.\n"
+        + "Existing values will be overwritten by the input values as long as input values are "
+        + "not all the same as existing values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "ITEM NAME] "
         + "[" + PREFIX_QUANTITY + "QUANTITY] "
@@ -49,8 +50,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in storemando.";
-    public static final String MESSAGE_NO_CHANGE = "Item not edited! Specified change in item details same as " +
-        "original.";
+    public static final String MESSAGE_NO_CHANGE = "Item not edited! Specified change in item details same as "
+        + "original.";
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
 
