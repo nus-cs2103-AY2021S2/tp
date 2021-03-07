@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalModuleBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,9 +22,9 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.testutil.TaskBuilder;
 
-public class AddressBookTest {
+public class ModuleBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ModuleBook addressBook = new ModuleBook();
 
     @Test
     public void constructor() {
@@ -37,8 +37,8 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyModuleBook_replacesData() {
+        ModuleBook newData = getTypicalModuleBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -49,7 +49,7 @@ public class AddressBookTest {
         Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newTasks);
+        ModuleBookStub newData = new ModuleBookStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
     }
@@ -60,18 +60,18 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasTask_taskNotInAddressBook_returnsFalse() {
+    public void hasTask_taskNotInModuleBook_returnsFalse() {
         assertFalse(addressBook.hasTask(ALICE));
     }
 
     @Test
-    public void hasTask_taskInAddressBook_returnsTrue() {
+    public void hasTask_taskInModuleBook_returnsTrue() {
         addressBook.addTask(ALICE);
         assertTrue(addressBook.hasTask(ALICE));
     }
 
     @Test
-    public void hasTask_taskWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasTask_taskWithSameIdentityFieldsInModuleBook_returnsTrue() {
         addressBook.addTask(ALICE);
         Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -84,12 +84,12 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose tasks list can violate interface constraints.
+     * A stub ReadOnlyModuleBook whose tasks list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ModuleBookStub implements ReadOnlyModuleBook {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Task> tasks) {
+        ModuleBookStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
         }
 

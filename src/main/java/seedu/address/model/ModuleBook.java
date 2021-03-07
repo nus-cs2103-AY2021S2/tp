@@ -12,7 +12,7 @@ import seedu.address.model.task.UniqueTaskList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameTask comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ModuleBook implements ReadOnlyModuleBook {
 
     private final UniqueTaskList tasks;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks = new UniqueTaskList();
     }
 
-    public AddressBook() {}
+    public ModuleBook() {}
 
     /**
-     * Creates an AddressBook using the Tasks in the {@code toBeCopied}
+     * Creates an ModuleBook using the Tasks in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ModuleBook(ReadOnlyModuleBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ModuleBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyModuleBook newData) {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
@@ -86,7 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ModuleBook}.
      * {@code key} must exist in the address book.
      */
     public void removeTask(Task key) {
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && tasks.equals(((AddressBook) other).tasks));
+                || (other instanceof ModuleBook // instanceof handles nulls
+                && tasks.equals(((ModuleBook) other).tasks));
     }
 
     @Override

@@ -29,9 +29,9 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskUtil;
 
-public class AddressBookParserTest {
+public class ModuleBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ModuleBookParser parser = new ModuleBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {

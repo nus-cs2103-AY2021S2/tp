@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Task values as in TypicalTasks#getTypicalAddressBook()",
+  "_comment": "ModuleBook save file which contains the same Task values as in TypicalTasks#getTypicalModuleBook()",
   "tasks" : [ {
     "name" : "Alice Pauline",
     "deadline" : "94351253",
