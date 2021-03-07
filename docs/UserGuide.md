@@ -10,9 +10,9 @@ It allows for faster and more effective student management.
 **Table of Contents**
 * [Quick start](#quick-start)
 * [Features](#features)
-    * [Listing all students: `list student`](#listing-all-students-list-student)
-    * [Locating student profile by name: `find student`](#locating-student-profile-by-name-find-student)
-    * [Adding a student: `add student`](#adding-a-student-add-student)
+    * [Listing all students: `list_student`](#listing-all-students-list-student)
+    * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find-student)
+    * [Adding a student: `add_student`](#adding-a-student-add-student)
     * [Listing all tuition sessions: `list session`](#listing-all-tuition-sessions-list-session)
     * [Locating tuition session by student name / date: `find session`](#locating-tuition-session-by-student-name-/-date-find-session)
     * [Adding a tuition session: `add session`](#adding-a-tuition-session-add-session)
@@ -39,10 +39,10 @@ It allows for faster and more effective student management.
    Some example commands you can try:
    
    **Students**
-   * `list student`: List all students
-   * `find student James`: Finds and lists all students that have the name **James**
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 a/99999999 r/Mother`: Adds a student John Doe to the Tutor Buddy application
-   * `delete student 3`: Deletes the 3rd student in the student list
+   * `list_student`: List all students
+   * `find_student James`: Finds and lists all students that have the name **James**
+   * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`: Adds a student John Doe to the Tutor Buddy application
+   * `delete_student 3`: Deletes the 3rd student in the student list
    
    **Tuition Session**
    * `list session`: List all tuition sessions
@@ -59,17 +59,17 @@ It allows for faster and more effective student management.
 
 ## Features
 
-### Listing all students: `list student`
+### Listing all students: `list_student`
 
 Shows a list of all students in the TutorBuddy
 
-Format: `list student` <br>
+Format: `list_student` <br>
 
-### Locating student profile by name: `find student`
+### Locating student profile by name: `find_student`
 
 Finds students that matches the keyword given
 
-Format: `find student KEYWORD`
+Format: `find_student KEYWORD`
 * The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”.
 * As long as the keyword matches the name of the student, it will be regarded as a match. For example, if a student’s name is “John Lee”, searching “John” will be sufficient.
 * Only the student’s name will be searched.
@@ -83,42 +83,42 @@ Example:
 3 | Jon Koh
 4 | Samuel Lee
 
-* `find student John` returns John Lee
-* `find student Sam` returns nothing
-* `find student Lee` returns "John Lee" and "Samuel Lee"
+* `find_student John` returns John Lee
+* `find_student Sam` returns nothing
+* `find_student Lee` returns "John Lee" and "Samuel Lee"
 
-### Adding a student: `add student`
+### Adding a student: `add_student`
 
 Adds a student to the TutorBuddy
 
-Format: `add student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS m/PARENT_PHONE_NUMBER r/RELATIONSHIP_WITH_PARENT` <br>
+Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 a/99999999 r/Mother`
+* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 
-### Deleting a student: `delete student`
+### Deleting a student: `delete_student`
 
 Deletes the specified student from TutorBuddy
 
-Format: `delete student STUDENT_NAME` <br>
+Format: `delete_student STUDENT_NAME` <br>
 * Deletes the student with the specified name
 * `STUDENT_NAME` must have an exact match to the name in the student profile
 
 Examples:
-* `list student` followed by `delete 2` deletes the 2nd student in the address book.
-* `find student Betsy` followed by `delete 1` deletes the 1st student in the results of the find student command.
+* `list_student` followed by `delete_student 2` deletes the 2nd student in the address book.
+* `find_student Betsy` followed by `delete_student 1` deletes the 1st student in the results of the find student command.
 
-### Listing all tuition sessions: `list session`
+### Listing all tuition sessions: `list_session`
 
 Shows a list of all tuition sessions in TutorBuddy
 
-Format: `list session`
+Format: `list_session`
 
-### Locating tuition session by student name / date: `find session`
+### Locating tuition session by student name / date: `find_session`
 
 Find tuition sessions that match the keyword given
 
-Format: `find session KEYWORD`
+Format: `find_session KEYWORD`
 * The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”
 * For student names:
     * Any word that a student’s name contains will be matched. For example, if a session student’s name is “moon”, searching “moo” will match it
@@ -126,7 +126,7 @@ Format: `find session KEYWORD`
     * Only the exact date in the format (DD-MM-YYYY) will be matched.
 
 Example:<br>
-The command `list session` will show the following:
+The command `list_session` will show the following:
 
 \# | Sessions
 ---- |---------
@@ -190,16 +190,16 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**List** | `list student`
-**Find** | `find student KEYWORD`<br><br>e.g. `find student John`
-**Add** | `add student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS m/PARENT_PHONE_NUMBER r/RELATIONSHIP_WITH_PARENT`<br><br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 a/99999999 r/Mother `
-**Delete** | `delete student INDEX`<br><br>e.g. `delete student 3`
+**List** | `list_student`
+**Find** | `find_student KEYWORD`<br><br>e.g. `find student John`
+**Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+**Delete** | `delete_student INDEX`<br><br>e.g. `delete student 3`
 
 **Tuition Session**
 
 Action | Format, Examples
 --------|------------------
 **List** | `list session`
-**Find** | `find student KEYWORD`<br><br>e.g. `find session John`
+**Find** | `find_student KEYWORD`<br><br>e.g. `find session John`
 **Add** | `add session n/STUDENT_NAME d/DATE t/TIME l/LENGTH_OF_SESSION s/SUBJECT f/FEE`<br><br> e.g., `add session n/John Doe d/14-02-2021 t/1800 l/2 s/Biology f/40`
 **Delete** | `delete session INDEX`<br><br>e.g. `delete session 3`
