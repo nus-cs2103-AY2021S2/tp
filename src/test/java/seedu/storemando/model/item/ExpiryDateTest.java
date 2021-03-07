@@ -37,7 +37,6 @@ public class ExpiryDateTest {
         assertFalse(ExpiryDate.isValidExpiryDate("2020-11-1")); // missing digit for DD
 
         // invalid parts
-        assertFalse(ExpiryDate.isValidExpiryDate("0000-10-10")); // invalid YYYY
         assertFalse(ExpiryDate.isValidExpiryDate("2010-10-40")); // invalid DD
         assertFalse(ExpiryDate.isValidExpiryDate("2010-20-01")); // invalid MM
         assertFalse(ExpiryDate.isValidExpiryDate("2020-1 0-11")); // spaces in DD
@@ -54,6 +53,7 @@ public class ExpiryDateTest {
         assertTrue(ExpiryDate.isValidExpiryDate("2020-10-10"));
         assertTrue(ExpiryDate.isValidExpiryDate("2020-01-01"));
         assertTrue(ExpiryDate.isValidExpiryDate("0001-10-10"));
+        assertTrue(ExpiryDate.isValidExpiryDate("0000-10-10"));
 
     }
 }
