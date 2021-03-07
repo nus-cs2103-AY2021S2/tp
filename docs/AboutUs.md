@@ -33,10 +33,10 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio]()]
+[[github](http://github.com/cheunggalen)] [[portfolio]()]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI, Logic
 
 ### Ng Han Poh Jacob
 
