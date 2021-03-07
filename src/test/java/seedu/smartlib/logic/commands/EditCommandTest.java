@@ -12,20 +12,20 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.smartlib.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.smartlib.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.commons.core.Messages;
 import seedu.smartlib.commons.core.index.Index;
-import seedu.smartlib.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.smartlib.logic.commands.EditCommand.EditReaderDescriptor;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.UserPrefs;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.testutil.EditPersonDescriptorBuilder;
-import seedu.smartlib.testutil.PersonBuilder;
+import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
+import seedu.smartlib.testutil.ReaderBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -36,11 +36,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Reader editedReader = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedReader).build();
+        Reader editedReader = new ReaderBuilder().build();
+        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder(editedReader).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedReader);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
 
         Model expectedModel = new ModelManager(new SmartLib(model.getSmartLib()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredReaderList().get(0), editedReader);
@@ -53,15 +53,15 @@ public class EditCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredReaderList().size());
         Reader lastReader = model.getFilteredReaderList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastReader);
+        ReaderBuilder personInList = new ReaderBuilder(lastReader);
         Reader editedReader = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedReader);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
 
         Model expectedModel = new ModelManager(new SmartLib(model.getSmartLib()), new UserPrefs());
         expectedModel.setPerson(lastReader, editedReader);
@@ -71,10 +71,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.EditReaderDescriptor());
         Reader editedReader = model.getFilteredReaderList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedReader);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
 
         Model expectedModel = new ModelManager(new SmartLib(model.getSmartLib()), new UserPrefs());
 
@@ -86,11 +86,11 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Reader readerInFilteredList = model.getFilteredReaderList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Reader editedReader = new PersonBuilder(readerInFilteredList).withName(VALID_NAME_BOB).build();
+        Reader editedReader = new ReaderBuilder(readerInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedReader);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
 
         Model expectedModel = new ModelManager(new SmartLib(model.getSmartLib()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredReaderList().get(0), editedReader);
@@ -101,10 +101,10 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Reader firstReader = model.getFilteredReaderList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstReader).build();
+        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder(firstReader).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_READER);
     }
 
     @Test
@@ -114,15 +114,15 @@ public class EditCommandTest {
         // edit person in filtered list into a duplicate in address book
         Reader readerInList = model.getSmartLib().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(readerInList).build());
+                new EditReaderDescriptorBuilder(readerInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_READER);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReaderList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX);
@@ -140,7 +140,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getSmartLib().getPersonList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX);
     }
@@ -150,7 +150,7 @@ public class EditCommandTest {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditCommand.EditReaderDescriptor copyDescriptor = new EditReaderDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

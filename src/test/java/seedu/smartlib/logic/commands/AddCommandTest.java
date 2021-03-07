@@ -21,7 +21,7 @@ import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.ReadOnlyUserPrefs;
 import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.testutil.PersonBuilder;
+import seedu.smartlib.testutil.ReaderBuilder;
 
 public class AddCommandTest {
 
@@ -33,7 +33,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Reader validReader = new PersonBuilder().build();
+        Reader validReader = new ReaderBuilder().build();
 
         CommandResult commandResult = new AddReaderCommand(validReader).execute(modelStub);
 
@@ -43,7 +43,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Reader validReader = new PersonBuilder().build();
+        Reader validReader = new ReaderBuilder().build();
         AddReaderCommand addCommand = new AddReaderCommand(validReader);
         ModelStub modelStub = new ModelStubWithPerson(validReader);
 
@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Reader alice = new PersonBuilder().withName("Alice").build();
-        Reader bob = new PersonBuilder().withName("Bob").build();
+        Reader alice = new ReaderBuilder().withName("Alice").build();
+        Reader bob = new ReaderBuilder().withName("Bob").build();
         AddReaderCommand addAliceCommand = new AddReaderCommand(alice);
         AddReaderCommand addBobCommand = new AddReaderCommand(bob);
 

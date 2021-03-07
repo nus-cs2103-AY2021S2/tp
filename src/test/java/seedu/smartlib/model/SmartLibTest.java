@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalPersons.ALICE;
-import static seedu.smartlib.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.ALICE;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.model.reader.exceptions.DuplicatePersonException;
-import seedu.smartlib.testutil.PersonBuilder;
+import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
+import seedu.smartlib.testutil.ReaderBuilder;
 
 public class SmartLibTest {
 
@@ -46,12 +46,12 @@ public class SmartLibTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
         SmartLibStub newData = new SmartLibStub(newReaders);
 
-        assertThrows(DuplicatePersonException.class, () -> smartLib.resetData(newData));
+        assertThrows(DuplicateReaderException.class, () -> smartLib.resetData(newData));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class SmartLibTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         smartLib.addReader(ALICE);
-        Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(smartLib.hasReader(editedAlice));
     }

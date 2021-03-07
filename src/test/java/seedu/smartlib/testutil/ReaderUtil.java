@@ -9,26 +9,26 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.smartlib.logic.commands.AddReaderCommand;
-import seedu.smartlib.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.smartlib.logic.commands.EditCommand.EditReaderDescriptor;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Reader.
  */
-public class PersonUtil {
+public class ReaderUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code reader}.
      */
     public static String getAddCommand(Reader reader) {
-        return AddReaderCommand.COMMAND_WORD + " " + getPersonDetails(reader);
+        return AddReaderCommand.COMMAND_WORD + " " + getReaderDetails(reader);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code reader}'s details.
      */
-    public static String getPersonDetails(Reader reader) {
+    public static String getReaderDetails(Reader reader) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + reader.getName().fullName + " ");
         sb.append(PREFIX_PHONE + reader.getPhone().value + " ");
@@ -41,9 +41,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditReaderDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditReaderDescriptorDetails(EditReaderDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

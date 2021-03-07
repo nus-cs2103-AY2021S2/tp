@@ -27,9 +27,9 @@ import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.testutil.EditPersonDescriptorBuilder;
-import seedu.smartlib.testutil.PersonBuilder;
-import seedu.smartlib.testutil.PersonUtil;
+import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
+import seedu.smartlib.testutil.ReaderBuilder;
+import seedu.smartlib.testutil.ReaderUtil;
 
 public class SmartLibParserTest {
 
@@ -37,8 +37,8 @@ public class SmartLibParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Reader reader = new PersonBuilder().build();
-        AddReaderCommand command = (AddReaderCommand) parser.parseCommand(PersonUtil.getAddCommand(reader));
+        Reader reader = new ReaderBuilder().build();
+        AddReaderCommand command = (AddReaderCommand) parser.parseCommand(ReaderUtil.getAddCommand(reader));
         assertEquals(new AddReaderCommand(reader), command);
     }
 
@@ -57,10 +57,10 @@ public class SmartLibParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Reader reader = new PersonBuilder().build();
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(reader).build();
+        Reader reader = new ReaderBuilder().build();
+        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder(reader).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + ReaderUtil.getEditReaderDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

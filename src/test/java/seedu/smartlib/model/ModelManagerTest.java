@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalPersons.ALICE;
-import static seedu.smartlib.testutil.TypicalPersons.BENSON;
+import static seedu.smartlib.testutil.TypicalReaders.ALICE;
+import static seedu.smartlib.testutil.TypicalReaders.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.commons.exceptions.IllegalValueException;
 import seedu.smartlib.commons.util.JsonUtil;
 import seedu.smartlib.model.SmartLib;
-import seedu.smartlib.testutil.TypicalPersons;
+import seedu.smartlib.testutil.TypicalReaders;
 
 public class JsonSerializableSmartLibTest {
 
@@ -25,7 +25,7 @@ public class JsonSerializableSmartLibTest {
         JsonSerializableSmartLib dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableSmartLib.class).get();
         SmartLib smartLibFromFile = dataFromFile.toModelType();
-        SmartLib typicalPersonsSmartLib = TypicalPersons.getTypicalAddressBook();
+        SmartLib typicalPersonsSmartLib = TypicalReaders.getTypicalAddressBook();
         assertEquals(smartLibFromFile, typicalPersonsSmartLib);
     }
 

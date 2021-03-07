@@ -7,7 +7,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.smartlib.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.smartlib.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 

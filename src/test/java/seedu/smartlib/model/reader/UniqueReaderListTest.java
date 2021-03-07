@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalPersons.ALICE;
-import static seedu.smartlib.testutil.TypicalPersons.BOB;
+import static seedu.smartlib.testutil.TypicalReaders.ALICE;
+import static seedu.smartlib.testutil.TypicalReaders.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,9 +15,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.model.reader.exceptions.DuplicatePersonException;
-import seedu.smartlib.model.reader.exceptions.PersonNotFoundException;
-import seedu.smartlib.testutil.PersonBuilder;
+import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
+import seedu.smartlib.model.reader.exceptions.ReaderNotFoundException;
+import seedu.smartlib.testutil.ReaderBuilder;
 
 public class UniqueReaderListTest {
 
@@ -42,7 +42,7 @@ public class UniqueReaderListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueReaderList.addReader(ALICE);
-        Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueReaderList.contains(editedAlice));
     }
@@ -55,7 +55,7 @@ public class UniqueReaderListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniqueReaderList.addReader(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueReaderList.addReader(ALICE));
+        assertThrows(DuplicateReaderException.class, () -> uniqueReaderList.addReader(ALICE));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class UniqueReaderListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueReaderList.setPerson(ALICE, ALICE));
+        assertThrows(ReaderNotFoundException.class, () -> uniqueReaderList.setPerson(ALICE, ALICE));
     }
 
     @Test
@@ -85,7 +85,7 @@ public class UniqueReaderListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueReaderList.addReader(ALICE);
-        Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueReaderList.setPerson(ALICE, editedAlice);
         UniqueReaderList expectedUniqueReaderList = new UniqueReaderList();
@@ -106,7 +106,7 @@ public class UniqueReaderListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueReaderList.addReader(ALICE);
         uniqueReaderList.addReader(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueReaderList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateReaderException.class, () -> uniqueReaderList.setPerson(ALICE, BOB));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class UniqueReaderListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueReaderList.remove(ALICE));
+        assertThrows(ReaderNotFoundException.class, () -> uniqueReaderList.remove(ALICE));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class UniqueReaderListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Reader> listWithDuplicateReaders = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueReaderList.setPersons(listWithDuplicateReaders));
+        assertThrows(DuplicateReaderException.class, () -> uniqueReaderList.setPersons(listWithDuplicateReaders));
     }
 
     @Test

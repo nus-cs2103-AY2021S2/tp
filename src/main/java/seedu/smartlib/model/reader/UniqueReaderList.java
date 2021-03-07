@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.smartlib.model.reader.exceptions.DuplicatePersonException;
-import seedu.smartlib.model.reader.exceptions.PersonNotFoundException;
+import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
+import seedu.smartlib.model.reader.exceptions.ReaderNotFoundException;
 
 /**
  * A list of readers that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +43,7 @@ public class UniqueReaderList implements Iterable<Reader> {
     public void addReader(Reader toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateReaderException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniqueReaderList implements Iterable<Reader> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ReaderNotFoundException();
         }
 
         if (!target.isSameReader(editedReader) && contains(editedReader)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateReaderException();
         }
 
         internalList.set(index, editedReader);
@@ -75,7 +75,7 @@ public class UniqueReaderList implements Iterable<Reader> {
     public void remove(Reader toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ReaderNotFoundException();
         }
     }
 
@@ -91,7 +91,7 @@ public class UniqueReaderList implements Iterable<Reader> {
     public void setPersons(List<Reader> readers) {
         requireAllNonNull(readers);
         if (!readersAreUnique(readers)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateReaderException();
         }
 
         internalList.setAll(readers);

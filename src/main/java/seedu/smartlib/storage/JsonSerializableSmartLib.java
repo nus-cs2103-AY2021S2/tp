@@ -21,13 +21,13 @@ class JsonSerializableSmartLib {
 
     public static final String MESSAGE_DUPLICATE_READER = "Readers list contains duplicate reader(s).";
 
-    private final List<JsonAdaptedPerson> readers = new ArrayList<>();
+    private final List<JsonAdaptedReader> readers = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableSmartLib} with the given readers.
      */
     @JsonCreator
-    public JsonSerializableSmartLib(@JsonProperty("readers") List<JsonAdaptedPerson> readers) {
+    public JsonSerializableSmartLib(@JsonProperty("readers") List<JsonAdaptedReader> readers) {
         this.readers.addAll(readers);
     }
 
@@ -37,7 +37,7 @@ class JsonSerializableSmartLib {
      * @param source future changes to this will not affect the created {@code JsonSerializableSmartLib}.
      */
     public JsonSerializableSmartLib(ReadOnlySmartLib source) {
-        readers.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        readers.addAll(source.getPersonList().stream().map(JsonAdaptedReader::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,8 +47,8 @@ class JsonSerializableSmartLib {
      */
     public SmartLib toModelType() throws IllegalValueException {
         SmartLib smartLib = new SmartLib();
-        for (JsonAdaptedPerson jsonAdaptedPerson : readers) {
-            Reader reader = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedReader jsonAdaptedReader : readers) {
+            Reader reader = jsonAdaptedReader.toModelType();
             if (smartLib.hasReader(reader)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_READER);
             }
