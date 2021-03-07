@@ -86,10 +86,10 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code SmartLib}.
+     * {@code key} must exist in the SmartLib registered reader base.
      */
-    public void removePerson(Reader key) {
+    public void removeReader(Reader key) {
         readers.remove(key);
     }
 

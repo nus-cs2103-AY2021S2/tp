@@ -90,7 +90,7 @@ public class UniqueReaderList implements Iterable<Reader> {
      */
     public void setPersons(List<Reader> readers) {
         requireAllNonNull(readers);
-        if (!personsAreUnique(readers)) {
+        if (!readersAreUnique(readers)) {
             throw new DuplicatePersonException();
         }
 
@@ -122,9 +122,9 @@ public class UniqueReaderList implements Iterable<Reader> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code persons} contains only unique readers.
      */
-    private boolean personsAreUnique(List<Reader> readers) {
+    private boolean readersAreUnique(List<Reader> readers) {
         for (int i = 0; i < readers.size() - 1; i++) {
             for (int j = i + 1; j < readers.size(); j++) {
                 if (readers.get(i).isSameReader(readers.get(j))) {

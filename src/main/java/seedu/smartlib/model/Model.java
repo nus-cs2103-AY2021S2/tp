@@ -61,7 +61,7 @@ public interface Model {
      * Deletes the given reader.
      * The reader must exist in the registered reader base.
      */
-    void deletePerson(Reader target);
+    void deleteReader(Reader target);
 
     /**
      * Adds the given reader.
@@ -77,7 +77,7 @@ public interface Model {
     void setPerson(Reader target, Reader editedReader);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Reader> getFilteredPersonList();
+    ObservableList<Reader> getFilteredReaderList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

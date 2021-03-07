@@ -95,8 +95,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Reader target) {
-        smartLib.removePerson(target);
+    public void deleteReader(Reader target) {
+        smartLib.removeReader(target);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Reader> getFilteredPersonList() {
+    public ObservableList<Reader> getFilteredReaderList() {
         return filteredReaders;
     }
 
