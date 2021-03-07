@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.logic.commands.FindCommand;
-import seedu.storemando.model.item.NameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -21,14 +21,29 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
+    public void parse_validArgs_nonGenericFindReturnsFindCommand() {
         FindCommand expectedFindCommand =
-            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+            new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList("Chocolate", "Tofu"),
+                false));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, "Chocolate Tofu", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n Chocolate \n \t Tofu  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_genericFindReturnsFindCommand() {
+        FindCommand expectedFindCommand =
+            new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList("Chocolate", "Tofu"),
+                true));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, "Chocolate Tofu", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n Chocolate \n \t Tofu  \t", expectedFindCommand);
     }
 
 }

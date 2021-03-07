@@ -18,7 +18,7 @@ import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.StoreMando;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.NameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
 import seedu.storemando.testutil.EditItemDescriptorBuilder;
 
 /**
@@ -122,7 +122,7 @@ public class CommandTestUtil {
 
         Item item = model.getFilteredItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getItemName().fullName.split("\\s+");
-        model.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0]), false));
 
         assertEquals(1, model.getFilteredItemList().size());
     }
