@@ -19,7 +19,7 @@ import seedu.address.model.property.Name;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Remark;
 import seedu.address.model.property.Type;
-import seedu.address.model.util.DateFormat;
+import seedu.address.model.util.DateTimeFormat;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -122,7 +122,7 @@ public class ParserUtil {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         try {
-            return new Deadline(LocalDate.parse(trimmedDeadline, DateFormat.INPUT_DATE_FORMAT));
+            return new Deadline(LocalDate.parse(trimmedDeadline, DateTimeFormat.INPUT_DATE_FORMAT));
         } catch (DateTimeParseException ex) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }

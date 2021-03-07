@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import seedu.address.model.util.DateFormat;
+import seedu.address.model.util.DateTimeFormat;
 
 /**
  * Represents an Appointment's meeting date.
@@ -28,7 +28,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return date.format(DateFormat.OUTPUT_DATE_FORMAT);
+        return date.format(DateTimeFormat.OUTPUT_DATE_FORMAT);
     }
 
     @Override

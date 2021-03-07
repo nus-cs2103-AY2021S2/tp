@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import seedu.address.model.util.DateFormat;
+import seedu.address.model.util.DateTimeFormat;
 
 /**
  * Represents a Property's deadline for selling.
@@ -28,7 +28,7 @@ public class Deadline {
 
     @Override
     public String toString() {
-        return deadline.format(DateFormat.OUTPUT_DATE_FORMAT);
+        return deadline.format(DateTimeFormat.OUTPUT_DATE_FORMAT);
     }
 
     @Override
