@@ -19,24 +19,24 @@ import seedu.storemando.model.tag.Tag;
 public class SampleDataUtil {
     public static Item[] getSampleItems() {
         return new Item[]{
-            new Item(new ItemName("Alex Yeoh"), new Quantity("87438807"), new ExpiryDate("alexyeoh@example.com"),
-                new Location("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Item(new ItemName("Bernice Yu"), new Quantity("99272758"), new ExpiryDate("berniceyu@example.com"),
-                new Location("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Item(new ItemName("Charlotte Oliveiro"), new Quantity("93210283"),
-                new ExpiryDate("charlotte@example.com"), new Location("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Item(new ItemName("David Li"), new Quantity("91031282"), new ExpiryDate("lidavid@example.com"),
-                new Location("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Item(new ItemName("Irfan Ibrahim"), new Quantity("92492021"), new ExpiryDate("irfan@example.com"),
-                new Location("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Item(new ItemName("Roy Balakrishnan"), new Quantity("92624417"), new ExpiryDate("royb@example.com"),
-                new Location("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Item(new ItemName("Koko Krunch"), new Quantity("1"), new ExpiryDate("2021-03-30"),
+                new Location("Kitchen Cabinet"),
+                getTagSet("Favourite")),
+            new Item(new ItemName("Milk"), new Quantity("1"), new ExpiryDate("2021-03-15"),
+                new Location("Refrigerator"),
+                getTagSet("Cold")),
+            new Item(new ItemName("Tomatoes"), new Quantity("10"),
+                new ExpiryDate("2021-03-10"), new Location("Refrigerator"),
+                getTagSet("Expiring")),
+            new Item(new ItemName("Biscuit"), new Quantity("10"), new ExpiryDate("2021-10-10"),
+                new Location("Kitchen Table"),
+                getTagSet("Everyone's")),
+            new Item(new ItemName("Kinder Bueno"), new Quantity("2"), new ExpiryDate("2021-03-30"),
+                new Location("Freezer"),
+                getTagSet("Favourite")),
+            new Item(new ItemName("Oil"), new Quantity("1"), new ExpiryDate("2021-12-12"),
+                new Location("Kitchen"),
+                getTagSet("Cooking"))
         };
     }
 
