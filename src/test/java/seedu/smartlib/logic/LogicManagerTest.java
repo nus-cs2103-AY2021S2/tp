@@ -1,7 +1,7 @@
 package seedu.smartlib.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.smartlib.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -17,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.smartlib.logic.commands.AddCommand;
+import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.CommandResult;
 import seedu.smartlib.logic.commands.ListCommand;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
@@ -58,8 +58,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteCommand = "deletereader 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_READER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -79,18 +79,18 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddReaderCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Reader expectedReader = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedReader);
+        expectedModel.addReader(expectedReader);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredReaderList().remove(0));
     }
 
     /**

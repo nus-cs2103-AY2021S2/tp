@@ -11,43 +11,43 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.reader.Reader;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a reader identified using it's displayed index from the SmarLib registered reader base.
  */
-public class DeleteCommand extends Command {
+public class DeleteReaderCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deletereader";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the reader identified by the index number used in the displayed reader list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_READER_SUCCESS = "Deleted Reader: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteReaderCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Reader> lastShownList = model.getFilteredPersonList();
+        List<Reader> lastShownList = model.getFilteredReaderList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX);
         }
 
         Reader readerToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(readerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, readerToDelete));
+        model.deleteReader(readerToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_READER_SUCCESS, readerToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteReaderCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteReaderCommand) other).targetIndex)); // state check
     }
 }

@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.smartlib.commons.core.name.Name;
-import seedu.smartlib.logic.commands.AddCommand;
+import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
@@ -22,20 +22,20 @@ import seedu.smartlib.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddReaderCommandParser implements Parser<AddReaderCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddReaderCommand
+     * and returns an AddReaderCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddReaderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReaderCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -46,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Reader reader = new Reader(name, phone, email, address, tagList);
 
-        return new AddCommand(reader);
+        return new AddReaderCommand(reader);
     }
 
     /**

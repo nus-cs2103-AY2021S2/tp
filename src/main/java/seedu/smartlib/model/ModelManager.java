@@ -89,19 +89,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Reader reader) {
+    public boolean hasReader(Reader reader) {
         requireNonNull(reader);
-        return smartLib.hasPerson(reader);
+        return smartLib.hasReader(reader);
     }
 
     @Override
-    public void deletePerson(Reader target) {
-        smartLib.removePerson(target);
+    public void deleteReader(Reader target) {
+        smartLib.removeReader(target);
     }
 
     @Override
-    public void addPerson(Reader reader) {
-        smartLib.addPerson(reader);
+    public void addReader(Reader reader) {
+        smartLib.addReader(reader);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -119,7 +119,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Reader> getFilteredPersonList() {
+    public ObservableList<Reader> getFilteredReaderList() {
         return filteredReaders;
     }
 

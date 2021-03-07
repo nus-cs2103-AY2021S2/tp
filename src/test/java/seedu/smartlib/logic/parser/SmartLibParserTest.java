@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.logic.commands.AddCommand;
+import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.commands.ClearCommand;
-import seedu.smartlib.logic.commands.DeleteCommand;
+import seedu.smartlib.logic.commands.DeleteReaderCommand;
 import seedu.smartlib.logic.commands.EditCommand;
 import seedu.smartlib.logic.commands.ExitCommand;
 import seedu.smartlib.logic.commands.FindCommand;
@@ -38,8 +38,8 @@ public class SmartLibParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Reader reader = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(reader));
-        assertEquals(new AddCommand(reader), command);
+        AddReaderCommand command = (AddReaderCommand) parser.parseCommand(PersonUtil.getAddCommand(reader));
+        assertEquals(new AddReaderCommand(reader), command);
     }
 
     @Test
@@ -50,9 +50,9 @@ public class SmartLibParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeleteReaderCommand command = (DeleteReaderCommand) parser.parseCommand(
+                DeleteReaderCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteReaderCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

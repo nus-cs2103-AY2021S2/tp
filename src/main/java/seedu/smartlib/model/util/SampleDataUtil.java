@@ -43,7 +43,7 @@ public class SampleDataUtil {
     public static ReadOnlySmartLib getSampleAddressBook() {
         SmartLib sampleAb = new SmartLib();
         for (Reader sampleReader : getSamplePersons()) {
-            sampleAb.addPerson(sampleReader);
+            sampleAb.addReader(sampleReader);
         }
         return sampleAb;
     }

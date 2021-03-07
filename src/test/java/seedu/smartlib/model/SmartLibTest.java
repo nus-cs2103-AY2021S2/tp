@@ -56,26 +56,26 @@ public class SmartLibTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> smartLib.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> smartLib.hasReader(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(smartLib.hasPerson(ALICE));
+        assertFalse(smartLib.hasReader(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        smartLib.addPerson(ALICE);
-        assertTrue(smartLib.hasPerson(ALICE));
+        smartLib.addReader(ALICE);
+        assertTrue(smartLib.hasReader(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        smartLib.addPerson(ALICE);
+        smartLib.addReader(ALICE);
         Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(smartLib.hasPerson(editedAlice));
+        assertTrue(smartLib.hasReader(editedAlice));
     }
 
     @Test

@@ -26,20 +26,20 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newReader_success() {
         Reader validReader = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getSmartLib(), new UserPrefs());
-        expectedModel.addPerson(validReader);
+        expectedModel.addReader(validReader);
 
-        assertCommandSuccess(new AddCommand(validReader), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validReader), expectedModel);
+        assertCommandSuccess(new AddReaderCommand(validReader), model,
+                String.format(AddReaderCommand.MESSAGE_SUCCESS, validReader), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Reader readerInList = model.getSmartLib().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(readerInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddReaderCommand(readerInList), model, AddReaderCommand.MESSAGE_DUPLICATE_READER);
     }
 
 }

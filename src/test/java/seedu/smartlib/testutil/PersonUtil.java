@@ -8,7 +8,7 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.smartlib.logic.commands.AddCommand;
+import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
@@ -22,7 +22,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Reader reader) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(reader);
+        return AddReaderCommand.COMMAND_WORD + " " + getPersonDetails(reader);
     }
 
     /**

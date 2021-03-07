@@ -68,16 +68,16 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Reader> lastShownList = model.getFilteredPersonList();
+        List<Reader> lastShownList = model.getFilteredReaderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX);
         }
 
         Reader readerToEdit = lastShownList.get(index.getZeroBased());
         Reader editedReader = createEditedPerson(readerToEdit, editPersonDescriptor);
 
-        if (!readerToEdit.isSamePerson(editedReader) && model.hasPerson(editedReader)) {
+        if (!readerToEdit.isSameReader(editedReader) && model.hasReader(editedReader)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
