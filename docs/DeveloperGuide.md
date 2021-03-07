@@ -235,22 +235,39 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+App-Ointment is intended for Receptionists of Medical Clinics who help schedule appointments, and maintain patient records and accounts.
 
-[Coming Soon]
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of scheduled appointments
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
+
 **Value proposition**
 
-[Coming Soon]
+- Allows users to track and reschedule appointments for a clinic, reducing no-shows.
+- Allow users to verify the patient on arriving at the clinic for the appointment.
+- No cross clinic support for clinics within a health group.
+- No support for users who want to view their own appointments.
 
 
 ### User stories
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-[Coming Soon]
+| Priority | As a …​                                      | I want to …​                              | So that I can…​                                                     |
+| -------- | ------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------- |
+| `* * *`  | new user                                    | see usage instructions                   | refer to instructions when I forget how to use the App              |
+| `* * *`  | user                                        | add a new appointment                    |                                                                     |
+| `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
+| `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
+| `* *`    | user                                        | lookup previous records of a patient     | fill in missing information where ommitted by the patient           |
+| `* *`    | user with many appointments in the schedule | be reminded of overdue appointments      | take the appropriate action to resolve the issues                   |
+| `* *`    | user with many appointments in the schedule | tag appointments with urgency categories | more urgent appointments can take priority                          |
+| `*`      | user with many appointments in the schedule | sort appointments by specific fields     | locate a category of appointments easily                            |
+| `*`      | user with many appointments in the schedule | automatically recommended available timings and doctors for new appointments | create appointments without manually checking availability in the schedule |
+
+*{More to be added}*
 
 ### Use cases
 
@@ -258,24 +275,127 @@ _{Explain here how the data archiving feature will be implemented}_
 
 (For all use cases below, the **System** is the `App-Ointment` and the **Actor** is the `User`, unless specified otherwise)
 
+### UC01: Enters a command:
+**MSS**
+1. User enters a command.
+2. App-Ointment performs the corresponding action.
+
+**Extensions**
+* **1a.** App-Ointment detects an invalid command from the user.
+    * **1a1.** App-Ointment prompts user that the command is not recognised.<br>
+    * **1a2.** App-Ointment executes the `help` command.<br>
+    Steps 1a1 to 1a2 are repeated until command entered is recognised.
+    Use case ends.
+
+
+### UC02: Add an appointment
+**MSS**
+1. User <u>enters the `add` command and corresponding subcommands (UC01)</u>
+2. App-Ointment adds a new appointment to the appointment schedule.
+
+**Extensions**    
+* **1a.** App-Ointment detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+    Use case resumes from step 2.
+    
+* **2a.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
+    * **2a1.** App-Ointment warns user about the conflicting appointment.<br>
+    * **2a2.** App-Ointment suggest user to either change existing appointment details through an `edit` command, before adding the new appointment again, or change the new appointment details.<br>
+    Use case ends.<br>
+
+### UC03: List all appointments
+**MSS**
+1. User <u>enters the `list` command (UC01)</u>
+2. App-Ointment displays all appointments.
+
+**Extensions**
+* **2a.** There are no appointments to display.
+    * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
+    Use case ends.
+
+### UC04: Edit an appointment
+**MSS**
+1. User <u>enters the `edit` command and corresponding subcommands (UC01)</u>
+2. App-Ointment changes the details of the appointment.
+
+**Extensions**
+* **1a.** App-Ointment detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+    Use case resumes from step 2.
+
+* **1b.** The currently displayed list of appointments is empty.
+    * **1b1.** App-Ointment prompts user that there are no appointments in the current display.<br>
+    Use case ends.
+
+* **2a.** The index out of the bounds of the displayed list of appointments.
+    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of appointments.<br>
+    Steps 2a1 is repeated until the index entered is correct/free from errors.
+    Use case resumes from step 2.
+
+* **2b.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
+    * **2b1.** App-Ointment warns user about the conflicting appointment.<br>
+    * **2b2.** App-Ointment suggest user to either change the other existing appointment details through a separate `edit` command, before editing the current appointment again, or change the edit details of the current appointment.<br>
+    Use case ends.
+
+### UC05: Find appointments by search fields
+**MSS**
+1. User <u>enters the `find` command and corresponding subcommands (UC01)</u>
+2. App-Ointment changes the displayed list of appointments to fit.
+    
+**Extensions**
+* **1a.** System detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+    Use case resumes from step 2.
+
+* **2a.** There are no appointments to display.
+    * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
+    Use case ends.
+
+### UC06: Delete an appointment
+**MSS**
+1. User <u>enters the `delete` command and corresponding subcommands (UC01)</u>
+2. App-Ointment removes the appointment from the appointment schedule
+
+**Extensions**
+* **1a.** The currently displayed list of appointments is empty.
+    * **1a1.** App-Ointment prompts user that there are no appointments in the current display.<br>
+    Use case ends.
+
+* **2a.** The index out of the bounds of the displayed list of appointments.
+    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of appointments.<br>
+    * **2a2.** User enters a valid index<br>
+    Use case resumes from step 2.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
+_Non-functional requirements specify the constraints under which App-Ointment is developed and operated._
 
-[Coming Soon]
+#### Constraints:
+* The system should be backward compatible with data produced by earlier versions of the system.
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### Technical requirements:
+* Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
+#### Performance requirements:
+* Should be able to hold up to 1000 appointments without a noticeable sluggishness in performance for typical usage.
+
+#### Quality requirements:
+* A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+#### Notes about project scope:
+* The App-Ointment data file is private and local to the user.
 *{More to be added}*
 
 ### Glossary
 
-[Coming Soon]
-
+* **System**: The App-Ointment App
+* **User**: The Receptionist, not the patient or doctor
+* **Appointment Schedule**: The list of appointments maintained in the App-Ointment, arranged by appointment datetime.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 *{More to be added}*
 
