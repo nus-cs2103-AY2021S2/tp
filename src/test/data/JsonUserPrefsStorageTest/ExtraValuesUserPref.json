@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "smartlib.json"
+  "smartLibFilePath" : "smartlib.json"
 }
