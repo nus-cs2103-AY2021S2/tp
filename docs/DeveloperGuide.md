@@ -236,14 +236,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts across multiple modules/organisations
+* has a need to keep track of many assignment deadlines
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+* manage contacts faster than a typical mouse/GUI driven app
+* group and access contacts by organization/module
+* track assignment deadlines
 
 ### User stories
 
@@ -308,8 +311,8 @@ unless specified otherwise)
 
     Use case: UC1 - Add a contact
     MSS:
-      1. User enters the details for the contact to be added with the add command.
-      2. HippoCampus displays the list of contacts with the added contact.
+      1. User enters the details for a contact to be added.
+      2. HippoCampus displays the new list of contacts with the added contact.
       Use case ends.
 
     Extensions:
@@ -322,7 +325,7 @@ unless specified otherwise)
 
     Use case: UC2 - Clear
     MSS:
-      1. User requests to clear all data with the clear command.
+      1. User requests to clear all data.
       2. HippoCampus clears all existing data.
       Use case ends.
 
@@ -330,15 +333,15 @@ unless specified otherwise)
 
     Use case: UC3 - Delete a contact
     MSS:
-      1. User enters the contact to be deleted with the delete command.
+      1. User request for a contact to be deleted.
       2. HippoCampus displays the list of contacts without the deleted contact.
       Use case ends.
 
     Extensions:
-      1a.  The list is empty or index is invalid.
+      1a. The contact is invalid.
         1a1. HippoCampus shows an error message.
         Use case ends.
-      1b. No parameters / non-integer parameters are supplied.
+      1b. HippoCampus detects invalid format.
         1b1. HippoCampus shows the user an example of the correct format.
         1b2. HippoCampus requests for the correct data.
         Use case ends.
@@ -347,24 +350,53 @@ unless specified otherwise)
 
     Use case: UC4 - Edit a contact
     MSS:
-      1. User enters the details and index of the person whose contact should be edited.
+      1. User request for a contact to be edited.
       2. HippoCampus displays the updated details.
       Use case ends.
     
     Extensions:
-      1a. No index is supplied/ non integer parameters.
+      1a. HippoCampus detects invalid format.
         1a1. HippoCampus shows the user an example of the correct format.
         1a2. HippoCampus requests for the correct data.
         Use case ends.
-      1b. Index exceeds valid range/ no edit parameters supplied.
+      1b. The contact is invalid.
         1b1. HippoCampus requests for the correct data.
+        Use case ends.
+
+
+
+    Use case: UC5 - Find a contact
+    MSS:
+      1. User enters the details to search for contacts.
+      2. HippoCampus displays a list of contacts that match the input.
+      Use case ends.
+
+    Extensions:
+      1a. HippoCampus detects invalid format.
+        1a1. HippoCampus shows the user an example of correct format
+        1a2. HippoCampus requests for the correct data.
+        Use case ends.
+
+
+
+    Use case: UC6 - List contacts
+    MSS:
+      1. User chooses to list all contacts 
+      2. HippoCampus displays a list of all contacts.
+      Use case ends.
+    Extensions:
+      1a. User chooses a sort order from a list of possible sort orders.
+        1a1. HippoCampus displays the list of all contacts in the given sort order.
+        Use case ends.
+      1b. User enters an invalid sort order or no sort order after a -f input.
+        1b1. HippoCampus displays an error.
         Use case ends.
 
 
 
     Use case: UC7 - Find tags
     MSS:
-      1. User enters details to search for tags with the tags command.
+      1. User enters details to search for tags.
       2. HippoCampus displays all tags.
       Use case ends.
 
@@ -381,7 +413,7 @@ unless specified otherwise)
 
     Use case: UC8 - Get Help
     MSS:
-      1. User requests for help with the help command.
+      1. User requests for help.
       2. HippoCampus displays all available commands.
       Use case ends.
     
@@ -403,7 +435,7 @@ unless specified otherwise)
 
     Use case: UC9 - Exit HippoCampus
     MSS:
-      1. User enters exit command.
+      1. User request to exit.
       2. HippoCampus exits and closes the window.
       Use case ends.
 
