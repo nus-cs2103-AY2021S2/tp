@@ -52,6 +52,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
+     * Returns default empty phone if phone is not specified.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
@@ -59,7 +60,9 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
+        if (phone == Phone.EMPTY_PHONE_STRING) {
+            return Phone.EMPTY_PHONE;
+        } else if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);

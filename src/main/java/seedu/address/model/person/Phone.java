@@ -9,11 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
+    public static final String EMPTY_PHONE_STRING = "Empty Phone!";
+    public static final Phone EMPTY_PHONE = new Phone();
 
     /**
      * Constructs a {@code Phone}.
@@ -27,10 +28,24 @@ public class Phone {
     }
 
     /**
+     * Constructs an empty Phone.
+     */
+    private Phone() {
+        value = EMPTY_PHONE_STRING;
+    }
+
+    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given phone is an empty phone.
+     */
+    public static boolean isEmptyPhone(Phone phone) {
+        return phone.equals(EMPTY_PHONE);
     }
 
     @Override

@@ -105,12 +105,15 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+               .append("; Email: ")
+               .append(getEmail())
+               .append("; Address: ")
+               .append(getAddress());
+
+        if (!Phone.isEmptyPhone(getPhone())) {
+            builder.append("; Phone: ")
+                   .append(getPhone());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
