@@ -9,7 +9,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Module {
 
-    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Modules should be of the format {MAJOR_NAME}{MODULE_CODE}{IS_PLUS}"
             + "and adhere to the following constraints:\n"
             + "1. The {MAJOR_NAME} should only contain 2 or 3 capital letter.\n"
@@ -18,7 +17,7 @@ public class Module {
             + "{IS_PLUS} must be one character S, or nothing.";
     private static final String MAJOR_REGEX = "[A-Z]{2,3}"; // only 2 or 3 uppercase characters
     private static final String MODULE_CODE_REGEX = "\\d{4}"; // alphanumeric, period and hyphen
-    private static final String LAST_CHARACTER_REGEX = "S?";
+    private static final String LAST_CHARACTER_REGEX = "\\w?";
     public static final String VALIDATION_REGEX = MAJOR_REGEX + MODULE_CODE_REGEX + LAST_CHARACTER_REGEX;
 
 
@@ -33,6 +32,7 @@ public class Module {
         requireNonNull(module);
         checkArgument(isValidModule(module), MESSAGE_CONSTRAINTS);
         value = module;
+
     }
 
     /**
