@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Reader getPerson(Model model, Index index) {
+    public static Reader getReader(Model model, Index index) {
         return model.getFilteredReaderList().get(index.getZeroBased());
     }
 }

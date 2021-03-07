@@ -14,25 +14,25 @@ import seedu.smartlib.model.reader.Reader;
  * Panel containing the list of persons.
  */
 public class ReaderListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "ReaderListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ReaderListPanel.class);
 
     @FXML
-    private ListView<Reader> personListView;
+    private ListView<Reader> readerListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public ReaderListPanel(ObservableList<Reader> readerList) {
         super(FXML);
-        personListView.setItems(readerList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        readerListView.setItems(readerList);
+        readerListView.setCellFactory(listView -> new ReaderListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Reader> {
+    class ReaderListViewCell extends ListCell<Reader> {
         @Override
         protected void updateItem(Reader reader, boolean empty) {
             super.updateItem(reader, empty);

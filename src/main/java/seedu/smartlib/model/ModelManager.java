@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.smartLib = new SmartLib(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredReaders = new FilteredList<>(this.smartLib.getPersonList());
+        filteredReaders = new FilteredList<>(this.smartLib.getReaderList());
     }
 
     public ModelManager() {
@@ -66,14 +66,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getSmartLibFilePath() {
+        return userPrefs.getSmartLibFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setSmartLibFilePath(Path smartLibFilePath) {
+        requireNonNull(smartLibFilePath);
+        userPrefs.setSmartLibFilePath(smartLibFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -102,14 +102,14 @@ public class ModelManager implements Model {
     @Override
     public void addReader(Reader reader) {
         smartLib.addReader(reader);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
     }
 
     @Override
-    public void setPerson(Reader target, Reader editedReader) {
+    public void setReader(Reader target, Reader editedReader) {
         requireAllNonNull(target, editedReader);
 
-        smartLib.setPerson(target, editedReader);
+        smartLib.setReader(target, editedReader);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -124,7 +124,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Reader> predicate) {
+    public void updateFilteredReaderList(Predicate<Reader> predicate) {
         requireNonNull(predicate);
         filteredReaders.setPredicate(predicate);
     }

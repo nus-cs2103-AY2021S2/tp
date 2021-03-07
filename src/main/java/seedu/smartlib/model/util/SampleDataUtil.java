@@ -17,7 +17,7 @@ import seedu.smartlib.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Reader[] getSamplePersons() {
+    public static Reader[] getSampleReaders() {
         return new Reader[] {
             new Reader(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -40,9 +40,9 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlySmartLib getSampleAddressBook() {
+    public static ReadOnlySmartLib getSampleSmartLib() {
         SmartLib sampleAb = new SmartLib();
-        for (Reader sampleReader : getSamplePersons()) {
+        for (Reader sampleReader : getSampleReaders()) {
             sampleAb.addReader(sampleReader);
         }
         return sampleAb;

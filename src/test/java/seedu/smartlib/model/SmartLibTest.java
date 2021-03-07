@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalPersons.ALICE;
-import static seedu.smartlib.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.smartlib.testutil.TypicalReaders.ALICE;
+import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.model.reader.exceptions.DuplicatePersonException;
-import seedu.smartlib.testutil.PersonBuilder;
+import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
+import seedu.smartlib.testutil.ReaderBuilder;
 
 public class SmartLibTest {
 
@@ -28,7 +28,7 @@ public class SmartLibTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), smartLib.getPersonList());
+        assertEquals(Collections.emptyList(), smartLib.getReaderList());
     }
 
     @Test
@@ -37,50 +37,50 @@ public class SmartLibTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        SmartLib newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlySmartLib_replacesData() {
+        SmartLib newData = getTypicalSmartLib();
         smartLib.resetData(newData);
         assertEquals(newData, smartLib);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateReaders_throwsDuplicateReaderException() {
         // Two persons with the same identity fields
-        Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
         SmartLibStub newData = new SmartLibStub(newReaders);
 
-        assertThrows(DuplicatePersonException.class, () -> smartLib.resetData(newData));
+        assertThrows(DuplicateReaderException.class, () -> smartLib.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasReader_nullReader_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> smartLib.hasReader(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasReader_readerNotInSmartLib_returnsFalse() {
         assertFalse(smartLib.hasReader(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasReader_readerInSmartLib_returnsTrue() {
         smartLib.addReader(ALICE);
         assertTrue(smartLib.hasReader(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasReader_readerWithSameIdentityFieldsInSmartLib_returnsTrue() {
         smartLib.addReader(ALICE);
-        Reader editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(smartLib.hasReader(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> smartLib.getPersonList().remove(0));
+    public void getReaderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> smartLib.getReaderList().remove(0));
     }
 
     /**
@@ -94,7 +94,7 @@ public class SmartLibTest {
         }
 
         @Override
-        public ObservableList<Reader> getPersonList() {
+        public ObservableList<Reader> getReaderList() {
             return readers;
         }
     }

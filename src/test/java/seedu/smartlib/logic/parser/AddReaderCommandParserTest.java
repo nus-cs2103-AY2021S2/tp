@@ -26,8 +26,8 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.smartlib.testutil.TypicalPersons.AMY;
-import static seedu.smartlib.testutil.TypicalPersons.BOB;
+import static seedu.smartlib.testutil.TypicalReaders.AMY;
+import static seedu.smartlib.testutil.TypicalReaders.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +38,14 @@ import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
-import seedu.smartlib.testutil.PersonBuilder;
+import seedu.smartlib.testutil.ReaderBuilder;
 
 public class AddReaderCommandParserTest {
     private AddReaderCommandParser parser = new AddReaderCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Reader expectedReader = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Reader expectedReader = new ReaderBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -68,7 +68,7 @@ public class AddReaderCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddReaderCommand(expectedReader));
 
         // multiple tags - all accepted
-        Reader expectedReaderMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Reader expectedReaderMultipleTags = new ReaderBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddReaderCommand(expectedReaderMultipleTags));
@@ -77,7 +77,7 @@ public class AddReaderCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Reader expectedReader = new PersonBuilder(AMY).withTags().build();
+        Reader expectedReader = new ReaderBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddReaderCommand(expectedReader));
     }

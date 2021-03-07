@@ -6,7 +6,7 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_READERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -27,14 +27,14 @@ import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing reader in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the reader identified "
+            + "by the index number used in the displayed reader list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -46,23 +46,23 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_READER_SUCCESS = "Edited Reader: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_READER = "This reader already exists in SmartLib.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditReaderDescriptor editReaderDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the reader in the filtered reader list to edit
+     * @param editReaderDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditReaderDescriptor editReaderDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editReaderDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editReaderDescriptor = new EditReaderDescriptor(editReaderDescriptor);
     }
 
     @Override
@@ -75,29 +75,29 @@ public class EditCommand extends Command {
         }
 
         Reader readerToEdit = lastShownList.get(index.getZeroBased());
-        Reader editedReader = createEditedPerson(readerToEdit, editPersonDescriptor);
+        Reader editedReader = createEditedReader(readerToEdit, editReaderDescriptor);
 
         if (!readerToEdit.isSameReader(editedReader) && model.hasReader(editedReader)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_READER);
         }
 
-        model.setPerson(readerToEdit, editedReader);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedReader));
+        model.setReader(readerToEdit, editedReader);
+        model.updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_READER_SUCCESS, editedReader));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Reader} with the details of {@code readerToEdit}
+     * edited with {@code editReaderDescriptor}.
      */
-    private static Reader createEditedPerson(Reader readerToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Reader createEditedReader(Reader readerToEdit, EditReaderDescriptor editReaderDescriptor) {
         assert readerToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(readerToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(readerToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(readerToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(readerToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(readerToEdit.getTags());
+        Name updatedName = editReaderDescriptor.getName().orElse(readerToEdit.getName());
+        Phone updatedPhone = editReaderDescriptor.getPhone().orElse(readerToEdit.getPhone());
+        Email updatedEmail = editReaderDescriptor.getEmail().orElse(readerToEdit.getEmail());
+        Address updatedAddress = editReaderDescriptor.getAddress().orElse(readerToEdit.getAddress());
+        Set<Tag> updatedTags = editReaderDescriptor.getTags().orElse(readerToEdit.getTags());
 
         return new Reader(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -117,27 +117,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editReaderDescriptor.equals(e.editReaderDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditReaderDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditReaderDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditReaderDescriptor(EditReaderDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -209,12 +209,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditReaderDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditReaderDescriptor e = (EditReaderDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

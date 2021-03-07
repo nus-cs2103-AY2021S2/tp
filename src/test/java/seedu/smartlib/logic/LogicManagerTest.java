@@ -8,7 +8,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalPersons.AMY;
+import static seedu.smartlib.testutil.TypicalReaders.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,7 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.CommandResult;
-import seedu.smartlib.logic.commands.ListCommand;
+import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.Model;
@@ -30,7 +30,7 @@ import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.storage.JsonSmartLibStorage;
 import seedu.smartlib.storage.JsonUserPrefsStorage;
 import seedu.smartlib.storage.StorageManager;
-import seedu.smartlib.testutil.PersonBuilder;
+import seedu.smartlib.testutil.ReaderBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -64,8 +64,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListReaderCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListReaderCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddReaderCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Reader expectedReader = new PersonBuilder(AMY).withTags().build();
+        Reader expectedReader = new ReaderBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addReader(expectedReader);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -89,7 +89,7 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredReaderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredReaderList().remove(0));
     }
 
@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlySmartLib addressBook, Path filePath) throws IOException {
+        public void saveSmartLib(ReadOnlySmartLib addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

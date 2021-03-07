@@ -12,7 +12,7 @@ import seedu.smartlib.model.reader.Reader;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Reader> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Reader> PREDICATE_SHOW_ALL_READERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,21 +35,21 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' smartlib file path.
      */
-    Path getAddressBookFilePath();
+    Path getSmartLibFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' smartlib file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setSmartLibFilePath(Path smartLibFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces smartlib's data with the data in {@code smartlib}.
      */
     void setSmartLib(ReadOnlySmartLib smartLib);
 
-    /** Returns the AddressBook */
+    /** Returns the SmartLib */
     ReadOnlySmartLib getSmartLib();
 
     /**
@@ -71,17 +71,17 @@ public interface Model {
 
     /**
      * Replaces the given reader {@code target} with {@code editedReader}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in smartlib.
+     * The reader identity of {@code editedReader} must not be the same as another existing reader in smartlib.
      */
-    void setPerson(Reader target, Reader editedReader);
+    void setReader(Reader target, Reader editedReader);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered reader list */
     ObservableList<Reader> getFilteredReaderList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered reader list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Reader> predicate);
+    void updateFilteredReaderList(Predicate<Reader> predicate);
 }

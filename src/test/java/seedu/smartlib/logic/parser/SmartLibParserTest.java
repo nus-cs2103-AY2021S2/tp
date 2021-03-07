@@ -7,7 +7,7 @@ import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_READER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,13 +23,13 @@ import seedu.smartlib.logic.commands.EditCommand;
 import seedu.smartlib.logic.commands.ExitCommand;
 import seedu.smartlib.logic.commands.FindCommand;
 import seedu.smartlib.logic.commands.HelpCommand;
-import seedu.smartlib.logic.commands.ListCommand;
+import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.testutil.EditPersonDescriptorBuilder;
-import seedu.smartlib.testutil.PersonBuilder;
-import seedu.smartlib.testutil.PersonUtil;
+import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
+import seedu.smartlib.testutil.ReaderBuilder;
+import seedu.smartlib.testutil.ReaderUtil;
 
 public class SmartLibParserTest {
 
@@ -37,8 +37,8 @@ public class SmartLibParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Reader reader = new PersonBuilder().build();
-        AddReaderCommand command = (AddReaderCommand) parser.parseCommand(PersonUtil.getAddCommand(reader));
+        Reader reader = new ReaderBuilder().build();
+        AddReaderCommand command = (AddReaderCommand) parser.parseCommand(ReaderUtil.getAddCommand(reader));
         assertEquals(new AddReaderCommand(reader), command);
     }
 
@@ -51,17 +51,17 @@ public class SmartLibParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteReaderCommand command = (DeleteReaderCommand) parser.parseCommand(
-                DeleteReaderCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteReaderCommand(INDEX_FIRST_PERSON), command);
+                DeleteReaderCommand.COMMAND_WORD + " " + INDEX_FIRST_READER.getOneBased());
+        assertEquals(new DeleteReaderCommand(INDEX_FIRST_READER), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Reader reader = new PersonBuilder().build();
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(reader).build();
+        Reader reader = new ReaderBuilder().build();
+        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder(reader).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_READER.getOneBased() + " " + ReaderUtil.getEditReaderDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_READER, descriptor), command);
     }
 
     @Test
@@ -86,8 +86,8 @@ public class SmartLibParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListReaderCommand.COMMAND_WORD) instanceof ListReaderCommand);
+        assertTrue(parser.parseCommand(ListReaderCommand.COMMAND_WORD + " 3") instanceof ListReaderCommand);
     }
 
     @Test

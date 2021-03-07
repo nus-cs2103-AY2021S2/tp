@@ -43,8 +43,8 @@ public class SmartLib implements ReadOnlySmartLib {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Reader> readers) {
-        this.readers.setPersons(readers);
+    public void setReaders(List<Reader> readers) {
+        this.readers.setReaders(readers);
     }
 
     /**
@@ -53,7 +53,7 @@ public class SmartLib implements ReadOnlySmartLib {
     public void resetData(ReadOnlySmartLib newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setReaders(newData.getReaderList());
     }
 
     //// person-level operations
@@ -79,10 +79,10 @@ public class SmartLib implements ReadOnlySmartLib {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Reader target, Reader editedReader) {
+    public void setReader(Reader target, Reader editedReader) {
         requireNonNull(editedReader);
 
-        readers.setPerson(target, editedReader);
+        readers.setReader(target, editedReader);
     }
 
     /**
@@ -102,7 +102,7 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     @Override
-    public ObservableList<Reader> getPersonList() {
+    public ObservableList<Reader> getReaderList() {
         return readers.asUnmodifiableObservableList();
     }
 

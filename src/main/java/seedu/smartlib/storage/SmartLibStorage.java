@@ -16,7 +16,7 @@ public interface SmartLibStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getSmartLibFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlySmartLib}.
@@ -24,23 +24,23 @@ public interface SmartLibStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlySmartLib> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySmartLib> readSmartLib() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getSmartLibFilePath()
      */
-    Optional<ReadOnlySmartLib> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlySmartLib> readSmartLib(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlySmartLib} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlySmartLib addressBook) throws IOException;
+    void saveSmartLib(ReadOnlySmartLib addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlySmartLib)
+     * @see #saveSmartLib(ReadOnlySmartLib)
      */
-    void saveAddressBook(ReadOnlySmartLib addressBook, Path filePath) throws IOException;
+    void saveSmartLib(ReadOnlySmartLib addressBook, Path filePath) throws IOException;
 
 }

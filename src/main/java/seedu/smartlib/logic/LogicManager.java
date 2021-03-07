@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getSmartLib());
+            storage.saveSmartLib(model.getSmartLib());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlySmartLib getAddressBook() {
+    public ReadOnlySmartLib getSmartLib() {
         return model.getSmartLib();
     }
 
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getSmartLibFilePath() {
+        return model.getSmartLibFilePath();
     }
 
     @Override
