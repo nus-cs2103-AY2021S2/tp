@@ -9,7 +9,7 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
-import seedu.smartlib.logic.commands.AddReaderCommand;
+
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
