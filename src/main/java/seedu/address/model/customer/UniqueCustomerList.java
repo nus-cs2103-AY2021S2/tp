@@ -8,15 +8,15 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.customer.exceptions.DuplicateCustomerException;
 import seedu.address.model.customer.exceptions.CustomerNotFoundException;
+import seedu.address.model.customer.exceptions.DuplicateCustomerException;
 
 /**
  * A list of customers that enforces uniqueness between its elements and does not allow nulls.
- * A customer is considered unique by comparing using {@code Customer#isSameCustomer(Customer)}. As such, adding and updating of
- * customer uses Customer#isSameCustomer(Customer) for equality so as to ensure that the customer being added or updated is
- * unique in terms of identity in the UniqueCustomerList. However, the removal of a customer uses Customer#equals(Object) so
- * as to ensure that the customer with exactly the same fields will be removed.
+ * A customer is considered unique by comparing using {@code Customer#isSameCustomer(Customer)}. As such, adding and
+ * updating of customer uses Customer#isSameCustomer(Customer) for equality so as to ensure that the customer being
+ * added or updated is unique in terms of identity in the UniqueCustomerList. However, the removal of a customer uses
+ * Customer#equals(Object) so as to ensure that the customer with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

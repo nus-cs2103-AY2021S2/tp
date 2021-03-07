@@ -159,7 +159,8 @@ public class UniqueCustomerListTest {
     @Test
     public void setCustomers_listWithDuplicateCustomers_throwsDuplicateCustomerException() {
         List<Customer> listWithDuplicateCustomers = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateCustomerException.class, () -> uniqueCustomerList.setCustomers(listWithDuplicateCustomers));
+        assertThrows(DuplicateCustomerException.class, () -> uniqueCustomerList
+                .setCustomers(listWithDuplicateCustomers));
     }
 
     @Test
