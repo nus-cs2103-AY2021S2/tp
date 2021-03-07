@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Meeting;
 
-public class MeetingCommand extends Command {
+public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "meeting";
 
@@ -25,7 +25,7 @@ public class MeetingCommand extends Command {
     private final Index index;
     private final Meeting meeting;
 
-    public MeetingCommand(Index index, Meeting meeting) {
+    public AddMeetingCommand(Index index, Meeting meeting) {
         requireAllNonNull(index, meeting);
 
         this.index = index;
@@ -43,11 +43,11 @@ public class MeetingCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof MeetingCommand)) {
+        if (!(other instanceof AddMeetingCommand)) {
             return false;
         }
 
-        MeetingCommand e = (MeetingCommand) other;
+        AddMeetingCommand e = (AddMeetingCommand) other;
         return index.equals(e.index) && meeting.equals(e.meeting);
     }
 }
