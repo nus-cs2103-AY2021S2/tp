@@ -3,8 +3,6 @@ package seedu.storemando.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 

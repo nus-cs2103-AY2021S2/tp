@@ -1,29 +1,29 @@
 package seedu.storemando.logic.parser;
 
 import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_EXPIRYDATE_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.storemando.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_ESSENTIAL;
 import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_FAVOURITE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.storemando.testutil.TypicalItems.AMY;
@@ -53,26 +53,26 @@ public class AddCommandParserTest {
             + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_STRAWBERRY_MILK + NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
-            + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
+        assertParseSuccess(parser, NAME_DESC_STRAWBERRY_MILK + NAME_DESC_BANANA + QUANTITY_DESC_BANANA
+            + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
 
         // multiple quantities - last quantity accepted
-        assertParseSuccess(parser, NAME_DESC_BANANA + QUANTITY_DESC_STRAWBERRY_MILK + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
-            + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
+        assertParseSuccess(parser, NAME_DESC_BANANA + QUANTITY_DESC_STRAWBERRY_MILK + QUANTITY_DESC_BANANA
+            + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
 
         // multiple emails - last expirydate accepted
         assertParseSuccess(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_STRAWBERRY_MILK
             + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
 
         // multiple addresses - last location accepted
-        assertParseSuccess(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_STRAWBERRY_MILK
-            + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
+        assertParseSuccess(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
+            + LOCATION_DESC_STRAWBERRY_MILK + LOCATION_DESC_BANANA + TAG_DESC_ESSENTIAL, new AddCommand(expectedItem));
 
         // multiple tags - all accepted
         Item expectedItemMultipleTags = new ItemBuilder(BOB).withTags(VALID_TAG_FAVOURITE, VALID_TAG_ESSENTIAL)
             .build();
-        assertParseSuccess(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA
-            + TAG_DESC_FAVOURITE + TAG_DESC_ESSENTIAL, new AddCommand(expectedItemMultipleTags));
+        assertParseSuccess(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
+            + LOCATION_DESC_BANANA + TAG_DESC_FAVOURITE + TAG_DESC_ESSENTIAL, new AddCommand(expectedItemMultipleTags));
 
     }
 
@@ -80,8 +80,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Item expectedItem = new ItemBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_STRAWBERRY_MILK + QUANTITY_DESC_STRAWBERRY_MILK + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK,
-            new AddCommand(expectedItem));
+        assertParseSuccess(parser, NAME_DESC_STRAWBERRY_MILK + QUANTITY_DESC_STRAWBERRY_MILK
+            + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK, new AddCommand(expectedItem));
     }
 
     @Test
@@ -89,20 +89,20 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA,
-            expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
+            + LOCATION_DESC_BANANA, expectedMessage);
 
         // missing quantity prefix
-        assertParseFailure(parser, NAME_DESC_BANANA + VALID_QUANTITY_BANANA + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA,
-            expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BANANA + VALID_QUANTITY_BANANA + EXPIRYDATE_DESC_BANANA
+            + LOCATION_DESC_BANANA, expectedMessage);
 
         // missing expirydate prefix
-        assertParseFailure(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + VALID_EXPIRYDATE_BANANA + LOCATION_DESC_BANANA,
-            expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + VALID_EXPIRYDATE_BANANA
+            + LOCATION_DESC_BANANA, expectedMessage);
 
         // missing location prefix
-        assertParseFailure(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA + VALID_LOCATION_BANANA,
-            expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
+            + VALID_LOCATION_BANANA, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BANANA + VALID_QUANTITY_BANANA + VALID_EXPIRYDATE_BANANA
@@ -128,16 +128,16 @@ public class AddCommandParserTest {
             + INVALID_LOCATION_DESC + TAG_DESC_FAVOURITE + TAG_DESC_ESSENTIAL, Location.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA
-            + INVALID_TAG_DESC + VALID_TAG_FAVOURITE, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
+            + LOCATION_DESC_BANANA + INVALID_TAG_DESC + VALID_TAG_FAVOURITE, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
             + INVALID_LOCATION_DESC, ItemName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BANANA + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_BANANA
-                + LOCATION_DESC_BANANA + TAG_DESC_FAVOURITE + TAG_DESC_ESSENTIAL,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BANANA + QUANTITY_DESC_BANANA
+                + EXPIRYDATE_DESC_BANANA + LOCATION_DESC_BANANA + TAG_DESC_FAVOURITE + TAG_DESC_ESSENTIAL,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -8,8 +8,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.MILK;
 import static seedu.storemando.testutil.TypicalItems.BOB;
+import static seedu.storemando.testutil.TypicalItems.MILK;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,8 +33,9 @@ public class ItemTest {
 
         // same name, all other attributes different -> returns true
 
-        Item editedAlice = new ItemBuilder(MILK).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
-            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
+        Item editedAlice = new ItemBuilder(MILK).withQuantity(VALID_QUANTITY_BANANA)
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA)
+            .withTags(VALID_TAG_ESSENTIAL).build();
         assertTrue(MILK.isSameItem(editedAlice));
 
         // different name, all other attributes same -> returns false

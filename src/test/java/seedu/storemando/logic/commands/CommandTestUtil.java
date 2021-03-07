@@ -41,7 +41,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
     public static final String QUANTITY_DESC_STRAWBERRY_MILK = " " + PREFIX_QUANTITY + VALID_QUANTITY_STRAWBERRY_MILK;
     public static final String QUANTITY_DESC_BANANA = " " + PREFIX_QUANTITY + VALID_QUANTITY_BANANA;
-    public static final String EXPIRYDATE_DESC_STRAWBERRY_MILK = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_STRAWBERRY_MILK;
+    public static final String EXPIRYDATE_DESC_STRAWBERRY_MILK = " " + PREFIX_EXPIRYDATE
+        + VALID_EXPIRYDATE_STRAWBERRY_MILK;
     public static final String EXPIRYDATE_DESC_BANANA = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_BANANA;
     public static final String LOCATION_DESC_STRAWBERRY_MILK = " " + PREFIX_LOCATION + VALID_LOCATION_STRAWBERRY_MILK;
     public static final String LOCATION_DESC_BANANA = " " + PREFIX_LOCATION + VALID_LOCATION_BANANA;
@@ -63,11 +64,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
-            .withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK).withLocation(VALID_LOCATION_STRAWBERRY_MILK)
-            .withTags(VALID_TAG_FAVOURITE).build();
+            .withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK)
+            .withLocation(VALID_LOCATION_STRAWBERRY_MILK).withTags(VALID_TAG_FAVOURITE).build();
         DESC_BOB = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA)
-            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA)
-            .withTags(VALID_TAG_ESSENTIAL, VALID_TAG_FAVOURITE).build();
+            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
+            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL, VALID_TAG_FAVOURITE).build();
     }
 
     /**

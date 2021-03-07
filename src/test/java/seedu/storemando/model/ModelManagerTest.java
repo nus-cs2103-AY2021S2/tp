@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.MILK;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
+import static seedu.storemando.testutil.TypicalItems.MILK;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -79,8 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_STRAWBERRY_MILK + QUANTITY_DESC_STRAWBERRY_MILK + EXPIRYDATE_DESC_STRAWBERRY_MILK
-            + LOCATION_DESC_STRAWBERRY_MILK;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_STRAWBERRY_MILK + QUANTITY_DESC_STRAWBERRY_MILK
+            + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK;
         Item expectedItem = new ItemBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);

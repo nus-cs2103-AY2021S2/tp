@@ -1,15 +1,15 @@
 package seedu.storemando.testutil;
 
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,8 +50,9 @@ public class TypicalItems {
 
 
     // Manually added - Item's details found in {@code CommandTestUtil}
-    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_STRAWBERRY_MILK).withQuantity(VALID_QUANTITY_STRAWBERRY_MILK)
-        .withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK).withLocation(VALID_LOCATION_STRAWBERRY_MILK).withTags(VALID_TAG_FAVOURITE).build();
+    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
+        .withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK)
+        .withLocation(VALID_LOCATION_STRAWBERRY_MILK).withTags(VALID_TAG_FAVOURITE).build();
     public static final Item BOB = new ItemBuilder().withName(VALID_NAME_BANANA).withQuantity(VALID_QUANTITY_BANANA)
         .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL,
             VALID_TAG_FAVOURITE)

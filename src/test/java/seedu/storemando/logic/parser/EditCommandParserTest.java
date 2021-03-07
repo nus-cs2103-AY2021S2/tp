@@ -1,29 +1,29 @@
 package seedu.storemando.logic.parser;
 
 import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_EXPIRYDATE_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_STRAWBERRY_MILK;
-import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_ESSENTIAL;
 import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_FAVOURITE;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_STRAWBERRY_MILK;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -106,19 +106,20 @@ public class EditCommandParserTest {
             Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EXPIRYDATE_DESC + VALID_LOCATION_STRAWBERRY_MILK
-            + VALID_QUANTITY_STRAWBERRY_MILK, ItemName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EXPIRYDATE_DESC
+            + VALID_LOCATION_STRAWBERRY_MILK + VALID_QUANTITY_STRAWBERRY_MILK, ItemName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITEM;
         String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BANANA + TAG_DESC_FAVOURITE
-            + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK + NAME_DESC_STRAWBERRY_MILK + TAG_DESC_ESSENTIAL;
+            + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK + NAME_DESC_STRAWBERRY_MILK
+            + TAG_DESC_ESSENTIAL;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
-            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK).withLocation(VALID_LOCATION_STRAWBERRY_MILK)
-            .withTags(VALID_TAG_ESSENTIAL, VALID_TAG_FAVOURITE).build();
+            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK)
+            .withLocation(VALID_LOCATION_STRAWBERRY_MILK).withTags(VALID_TAG_ESSENTIAL, VALID_TAG_FAVOURITE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -173,8 +174,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ITEM;
-        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK + EXPIRYDATE_DESC_STRAWBERRY_MILK
-            + TAG_DESC_ESSENTIAL + QUANTITY_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK + EXPIRYDATE_DESC_STRAWBERRY_MILK + TAG_DESC_ESSENTIAL
+        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK
+            + EXPIRYDATE_DESC_STRAWBERRY_MILK + TAG_DESC_ESSENTIAL + QUANTITY_DESC_STRAWBERRY_MILK
+            + LOCATION_DESC_STRAWBERRY_MILK + EXPIRYDATE_DESC_STRAWBERRY_MILK + TAG_DESC_ESSENTIAL
             + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + EXPIRYDATE_DESC_BANANA + TAG_DESC_FAVOURITE;
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA)

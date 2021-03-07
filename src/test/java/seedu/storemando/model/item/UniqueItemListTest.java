@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.MILK;
 import static seedu.storemando.testutil.TypicalItems.BOB;
+import static seedu.storemando.testutil.TypicalItems.MILK;
 
 import java.util.Arrays;
 import java.util.Collections;

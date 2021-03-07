@@ -3,9 +3,9 @@ package seedu.storemando.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.MILK;
 import static seedu.storemando.testutil.TypicalItems.HOON;
 import static seedu.storemando.testutil.TypicalItems.IDA;
+import static seedu.storemando.testutil.TypicalItems.MILK;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.io.IOException;

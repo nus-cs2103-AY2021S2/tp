@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.storemando.testutil.TypicalItems.OIL;
-import static seedu.storemando.testutil.TypicalItems.NESCAFE;
 import static seedu.storemando.testutil.TypicalItems.LIPTON;
+import static seedu.storemando.testutil.TypicalItems.NESCAFE;
+import static seedu.storemando.testutil.TypicalItems.OIL;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
