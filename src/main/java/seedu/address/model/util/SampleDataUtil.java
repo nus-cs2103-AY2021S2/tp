@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ModuleBook;
+import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.task.*;
 import seedu.address.model.task.Module;
 import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ModuleBook} with sample data.
  */
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
@@ -38,8 +38,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyModuleBook getSampleModuleBook() {
+        ModuleBook sampleAb = new ModuleBook();
         for (Task sampleTask : getSampleTasks()) {
             sampleAb.addTask(sampleTask);
         }

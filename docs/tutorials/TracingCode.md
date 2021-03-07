@@ -90,7 +90,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
         try {
             //We can deduce that the previous line of code modifies model in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveModuleBook(model.getModuleBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -105,7 +105,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. `Step into` the line where user input in parsed from a String to a Command.
 
-    **`AddressBookParser\#parseCommand()`**
+    **`ModuleBookParser\#parseCommand()`**
 
    ``` java
    public Command parseCommand(String userInput) throws ParseException {
@@ -120,7 +120,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
-1. Stepping into the `switch`, we obviously stop at **`AddressBookParser\#parseCommand()`.**
+1. Stepping into the `switch`, we obviously stop at **`ModuleBookParser\#parseCommand()`.**
 
     ``` java
     ...
@@ -166,20 +166,20 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. As suspected, `command#execute()` does indeed make changes to `model`.
 
 1. We can a closer look at how storage works by repeatedly stepping into the code until we arrive at
-    `JsonAddressBook#saveAddressBook()`.
+    `JsonModuleBook#saveModuleBook()`.
 
-1. Again, it appears that the heavy lifting is delegated. Let’s take a look at `JsonSerializableAddressBook`'s constructor.
+1. Again, it appears that the heavy lifting is delegated. Let’s take a look at `JsonSerializableModuleBook`'s constructor.
 
-    **`JsonSerializableAddressBook\#JsonSerializableAddressBook()`:**
+    **`JsonSerializableModuleBook\#JsonSerializableModuleBook()`:**
 
    ``` java
    /**
-    * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+    * Converts a given {@code ReadOnlyModuleBook} into this class for Jackson use.
     *
     * @param source future changes to this will not affect the created
-    * {@code JsonSerializableAddressBook}.
+    * {@code JsonSerializableModuleBook}.
     */
-   public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+   public JsonSerializableModuleBook(ReadOnlyModuleBook source) {
        tasks.addAll(
            source.getTaskList()
                  .stream()
@@ -188,7 +188,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    }
    ```
 
-1. It appears that a `JsonAdaptedTask` is created for each `Task` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedTask` is created for each `Task` and then added to the `JsonSerializableModuleBook`.
 
 1. We can continue to step through until we return to `MainWindow#executeCommand()`.
 
@@ -210,7 +210,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 In this tutorial, we traced a valid edit command from raw user input to
 the result being displayed to the user. From this tutorial, you learned
-more about the inner workings of AddressBook and how the various
+more about the inner workings of ModuleBook and how the various
 components mesh together to form one cohesive product.
 
 Here are some quick questions you can try to answer based on your

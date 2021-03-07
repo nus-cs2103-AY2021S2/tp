@@ -43,7 +43,7 @@ You can reach us at the module `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Develop AddressBook3.5
+* Responsibilities: Develop ModuleBook3.5
 
 ### He Qiyuan
 
