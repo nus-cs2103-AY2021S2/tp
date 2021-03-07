@@ -1,59 +1,60 @@
----
-layout: page
-title: About Us
----
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email at our individual emails below!
 
 ## Project team
 
-### John Doe
+### Kelvin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zoeykobe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[GitHub](https://github.com/zoeykobe) | [Portfolio](team/kelvin.md) | [Email](zhou_yi_kelvin@u.nus.edu)
 
-* Role: Project Advisor
+* Role: Team Leader
 
-### Jane Doe
+### Friscilia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/frisciliasultan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[GitHub](https://github.com/frisciliasultan) | [Portfolio](team/friscilia.md) | [Email](frisciliasultan@u.nus.edu)
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing
 
-### Jean Doe
+### Isaiah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zaiah0505.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[GitHub](https://github.com/Zaiah0505) | [Portfolio](team/isaiah.md) | [Email](isaiah.koh@u.nus.edu)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Scheduling and Tracking, UI
+
+### Jody
+
+<img src="images/jodylorah.png" width="200px">
+
+[GitHub](https://github.com/JodyLorah) | [Portfolio](team/jodylorah.md) | [Email](jodylorah@u.nus.edu)
+
+* Role: Developer
+* Responsibilities: Code Quality
+
+### Qin Liang
+
+<img src="images/tomashiwa.png" width="200px">
+
+[GitHub](http://github.com/Tomashiwa) | [Portfolio](team/qinliang.md) | [Email](e0407322@u.nus.edu)
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Shaun
+
+<img src="images/juzzanoob.png" width="200px">
+
+[GitHub](http://github.com/Juzzanoob) | [Portfolio](team/shaun.md) | [Email](e0418165@u.nus.edu)
+
+* Role: Developer
+* Responsibilities: Documentation

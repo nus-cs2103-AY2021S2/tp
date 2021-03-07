@@ -236,71 +236,268 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is an insurance agent
+* has a need to manage a significant number of clients
+* has significant number of client meetings
+* has a need to track clients' insurance policy expiration date
+* has a lot of details to remember for each client
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+* save time by generating a consolidation of meetings and deadlines with the clients
+* target clients better by receiving reminders and tips before a client meeting (client's favourite food, profile)
+* increase customer retention by receiving reminders of when the client's insurance is expiring
+* improve convenience by providing a one page solution to an insurance agent's fast pace life
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                 | I can …​                                             | So that I can…​                                                     |
+| -------- | ------------------------------------------ | ------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                                  | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                        |                                                                        |
+| `* * *`  | user                                       | delete a person                                         | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                   | locate details of persons without having to go through the entire list |
+| `* * *`  | popular insurance agent                    | view all my appointments without browsing the whole app | get a quick reminder of my appointments                                |
+| `* * *`  | busy insurance agent                       | schedule my meetings with my contacts                   | know when I am meeting my clients                                      |
+| `* * *`  | insurance agent                            | track my clients’ insurance expiry                      | remind my clients to renew their contract                              |
+| `* *`    | user                                       | hide private contact details                            | minimize chance of someone else seeing them by accident                |
+| `* *`    | time-constrained insurance agent           | view my tasks and appointments in a chronological list  | know what work to prioritize                                           |
+| `* *`    | opportunistic insurance agent              | filter my clients by their existing insurance plans     | upsell a new, similar plan to them                                     |
+| `*`      | user with many persons in the address book | sort persons by name                                    | locate a person easily                                                 |
+| `*`      | insurance agent with many contacts         | save my client’s likes/dislikes                         | interact with them more personally                                     |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `iScam` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a client**
 
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a client with parameters like name, contact details, age etc.
+2. iScam shows the client to be added.
+3. User confirm the addition.
+4. iScam adds the client.
 
     Use case ends.
 
 **Extensions**
+* 1a. iScam detects an error in the given client.
+    * 1a1. iScam requests for correction.
+    * 1a2. User corrected the client info.
+    * Steps 1a1-1a2 are repeated until the data entered are correct. 
+      
+      Use case resumes from step 2.
 
-* 2a. The list is empty.
 
-  Use case ends.
+* 3a. User chooses to cancel the addition.
+    * 3a1. iScam requests to confirm the cancellation.
+    * 3a2. User confirms the cancellation.
+      
+      Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: List clients**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+1. User requests to list clients.
+2. iScam shows a list of clients.
 
-      Use case resumes at step 2.
+   Use case ends.
 
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. iScam shows a message to indicate that there is no client.
+      
+      Use case ends.
+
+**Use case: Update a client**
+
+**MSS**
+1. User requests to update a client with new parameters.
+2. iScam shows a preview of the updated client.
+3. User confirm the update.
+4. iScam updates the client.
+
+    Use case ends.
+
+**Extensions**
+* 1a. iScam detects an error in the new parameters.
+    * 1a1. iScam requests for correction.
+    * 1a2. User corrected the update info.
+    * Steps 1a1-1a2 are repeated until the data entered are correct. 
+      
+      Use case resumes from step 2.
+    
+
+* 3a. User chooses to cancel the update.
+    * 3a1. iScam requests to confirm the cancellation.
+    * 3a2. User confirms the cancellation.
+      
+      Use case ends.
+    
+**Use case: Search clients**
+
+**MSS**
+1. User requests to find clients that matches a search term.
+2. iScam shows a list of qualified clients.
+
+    Use case ends.
+
+**Extensions**
+* 1a. There is no client in AddressBook.
+    * 1a1. iScam shows a message to indicate that there is no client.
+
+        Use case ends.
+    
+
+* 1b. The search term is empty.
+    * 1b1. iScam shows a message to indicate that a search term is required.
+    
+        Use case ends
+
+**Use case: Delete a client**
+
+**MSS**
+1. User requests to delete a client.
+2. iScam requests to confirm the deletion.
+3. User confirms the deletion.
+4. iScam delete the client.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The client does not exist.
+    * 1a1. iScam requests for correction.
+    * 1a2. User corrected which client to delete.
+    * Steps 1a1-1a2 are repeated until the client entered is valid.
+        
+        Use case resumes from step 2.
+
+
+* 2a. User chooses to cancel the deletion.
+    * 2a1. iScam requests to confirm the cancellation.
+    * 2a2. User confirms the cancellation.
+    
+        Use case ends.
+
+**Use case: Add a meeting**
+
+**MSS**
+1. User requests to add a meeting with a client.
+2. iScam adds the meeting.
+    
+    Use case ends.
+
+**Extensions**
+* 1a. The client does not exist.
+    * 1a1. iScam shows a message to indicate that the client specified does not exist.
+    
+        Use case ends.
+    
+
+* 1b. iScam detects an error in the parameters.
+    * 1b1. iScam requests for correction.
+    * 1b2. User corrected the parameters.
+    * Steps 1b1-1b2 are repeated until the parameters entered are correct.
+    
+        Use case resume from step 2.
+    
+
+* 1c. A meeting with that date and time already exists.
+    * 1c1. iScam shows a message that a meeting with that date and time already exists.
+        
+        Use case ends.
+
+**Use case: List meetings**
+
+**MSS**
+1. User requests to list meetings.
+2. iScam shows a list of meetings.
+    
+    Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. iScam shows a message to indicate that there is no client.
+      
+        Use case ends.
+
+**Use case: Update a meeting**
+
+**MSS**
+1. User requests to update a meeting with new parameters.
+2. iScam shows a preview of the updated meeting.
+3. User confirms the update.
+4. iScam updates the meeting.
+    
+    Use case ends.
+
+**Extensions**
+* 1a. iScam detects an error with the new parameters.
+    * 1a1. iScam requests for correction.
+    * 1a2. User corrected the parameters.
+    * Steps 1a1-1a2 are repeated until the parameters entered are correct. 
+      
+        Use case resume from step 2.
+    
+
+* 1b. The new parameters' date or time is in conflict with other existing meetings.
+    * 1b1. iScam shows a message that a meeting with that date and time already exists.
+
+        Use case ends.
+
+
+* 2a. User chooses to cancel the update.
+    * 2a1. iScam requests to confirm the cancellation.
+    * 2a2. User confirms the cancellation.
+      
+        Use case ends.
+
+
+**Use case: Delete a meeting**
+
+**MSS**
+1. User requests to delete a meeting.
+2. iScam requests to confirm the deletion.
+3. User confirms the deletion.
+4. iScam delete the meeting.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The meeting does not exist.
+    * 1a1. iScam requests for correction.
+    * 1a2. User corrected which meeting to delete.
+    * Steps 1a1-1a2 are repeated until the meeting entered is valid.
+        
+        Use case resumes from step 2.
+
+
+* 2a. User chooses to cancel the deletion.
+    * 2a1. iScam requests to confirm the cancellation.
+    * 2a2. User confirms the cancellation.
+    
+        Use case ends.
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 clients and meetings without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A user should be able to quickly identify the purpose of different interface elements through larger buttons, recognizable color scheme etc. 
+5.  An average user should be able to get a grasp on the user interface within a few iteration of usage
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
