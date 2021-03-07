@@ -48,6 +48,7 @@ public class ExpiryDate {
      * Returns if a given string is a valid expiryDate.
      */
     public static boolean isValidExpiryDate(String test) {
+        requireNonNull(test);
         if (test == null || !test.matches(VALIDATION_REGEX)) {
             return false;
         }

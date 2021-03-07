@@ -49,6 +49,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the storemando.";
+    public static final String MESSAGE_NO_CHANGE = "Specified change in item details same as original item. No change in item detected.";
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
 
@@ -79,7 +80,9 @@ public class EditCommand extends Command {
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
-
+        if (itemToEdit.equals(editedItem)) { //if edited item has the same fields as original item
+            throw new CommandException(MESSAGE_NO_CHANGE);
+        }
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));

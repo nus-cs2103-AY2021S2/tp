@@ -7,7 +7,7 @@
       "expiryDate": "2021-08-03",
       "location": "Freezer",
       "tagged": [
-        "friends"
+        "Expiring"
       ]
     },
     {
@@ -55,9 +55,7 @@
       "quantity": "20",
       "expiryDate": "2021-10-08",
       "location": "Freezer",
-      "tagged": [
-        "Favourite"
-      ]
+      "tagged": []
     }
   ]
 }
