@@ -22,7 +22,7 @@ public class CommandResult {
     /** API response should be shown to the user. */
     private final boolean isApiResponse;
 
-    /** API response should be shown to the user. */
+    /** API endpoint to be consumed by the UI for displaying response. */
     private final Endpoint endpoint;
 
 
