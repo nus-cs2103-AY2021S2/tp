@@ -14,19 +14,19 @@ import seedu.smartlib.model.reader.Reader;
  * Panel containing the list of persons.
  */
 public class ReaderListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "ReaderListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ReaderListPanel.class);
 
     @FXML
-    private ListView<Reader> personListView;
+    private ListView<Reader> readerListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public ReaderListPanel(ObservableList<Reader> readerList) {
         super(FXML);
-        personListView.setItems(readerList);
-        personListView.setCellFactory(listView -> new ReaderListViewCell());
+        readerListView.setItems(readerList);
+        readerListView.setCellFactory(listView -> new ReaderListViewCell());
     }
 
     /**
