@@ -33,16 +33,16 @@ public class Question {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid question.
      */
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Returns a String containing needed Public Fields.
+     * Returns a string regex for emails.
      *
-     * @return String containing needed Public Fields.
+     * @return String representing regex for emails.
      */
     public static String generatePublicFields() {
         return LOCAL_PART_REGEX + "@" + DOMAIN_FIRST_CHARACTER_REGEX

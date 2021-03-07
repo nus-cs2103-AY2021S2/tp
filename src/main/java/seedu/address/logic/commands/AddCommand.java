@@ -18,17 +18,16 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard to the address book. "
             + "Parameters: "
-            + PREFIX_QUESTION + "EMAIL "
-            + PREFIX_ANSWER + "ADDRESS "
+            + PREFIX_QUESTION + "QUESTION "
+            + PREFIX_ANSWER + "ANSWER "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_QUESTION + "johnd@example.com "
-            + PREFIX_ANSWER + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_QUESTION + "あ"
+            + PREFIX_ANSWER + "a"
+            + PREFIX_TAG + "Characters";
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in weeblingo";
 
     private final Flashcard toAdd;
 
