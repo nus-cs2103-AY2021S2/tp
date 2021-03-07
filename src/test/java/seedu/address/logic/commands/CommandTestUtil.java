@@ -3,10 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -25,6 +28,38 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    public static final String VALID_NAME_MAYFAIR = "Mayfair";
+    public static final String VALID_NAME_BURGHLEY_DRIVE = "Burghley Drive";
+    public static final String VALID_TYPE_MAYFAIR = "Condo";
+    public static final String VALID_TYPE_BURGHLEY_DRIVE = "Landed";
+    public static final String VALID_ADDRESS_MAYFAIR = "1 Jurong East Street 32, #08-111";
+    public static final String VALID_ADDRESS_BURGHLEY_DRIVE = "12 Burghley Drive";
+    public static final String VALID_POSTAL_MAYFAIR = "609477";
+    public static final String VALID_POSTAL_BURGHLEY_DRIVE = "123456";
+    public static final String VALID_DEADLINE_MAYFAIR = "31-12-2021";
+    public static final String VALID_DEADLINE_BURGHLEY_DRIVE = "31-07-2021";
+
+    public static final String NAME_DESC_MAYFAIR = " " + PREFIX_NAME + VALID_NAME_MAYFAIR;
+    public static final String NAME_DESC_BURGHLEY_DRIVE = " " + PREFIX_NAME + VALID_NAME_BURGHLEY_DRIVE;
+    public static final String TYPE_DESC_MAYFAIR = " " + PREFIX_TYPE + VALID_TYPE_MAYFAIR;
+    public static final String TYPE_DESC_BURGHLEY_DRIVE = " " + PREFIX_TYPE + VALID_TYPE_BURGHLEY_DRIVE;
+    public static final String ADDRESS_DESC_MAYFAIR = " " + PREFIX_ADDRESS + VALID_ADDRESS_MAYFAIR;
+    public static final String ADDRESS_DESC_BURGHLEY_DRIVE = " " + PREFIX_ADDRESS + VALID_ADDRESS_BURGHLEY_DRIVE;
+    public static final String POSTAL_DESC_MAYFAIR = " " + PREFIX_POSTAL + VALID_POSTAL_MAYFAIR;
+    public static final String POSTAL_DESC_BURGHLEY_DRIVE = " " + PREFIX_POSTAL + VALID_POSTAL_BURGHLEY_DRIVE;
+    public static final String DEADLINE_DESC_MAYFAIR = " " + PREFIX_DEADLINE + VALID_DEADLINE_MAYFAIR;
+    public static final String DEADLINE_DESC_BURGHLEY_DRIVE = " " + PREFIX_DEADLINE + VALID_DEADLINE_BURGHLEY_DRIVE;
+
+    public static final String INVALID_PROPERTY_NAME_DESC =
+            " " + PREFIX_NAME + "Mayfair&"; // '&' not allowed in names
+    public static final String INVALID_PROPERTY_TYPE_DESC =
+            " " + PREFIX_TYPE + "apartment"; // 'apartment' is not a valid type
+    public static final String INVALID_PROPERTY_ADDRESS_DESC =
+            " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_PROPERTY_POSTAL_DESC =
+            " " + PREFIX_POSTAL + "12a"; // 'a' not allowed in postal codes
+    public static final String INVALID_PROPERTY_DEADLINE_DESC =
+            " " + PREFIX_DEADLINE + "31-04-2021"; // 31st April not valid
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";

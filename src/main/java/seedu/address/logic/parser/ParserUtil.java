@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +11,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.property.Address;
+import seedu.address.model.property.Deadline;
+import seedu.address.model.property.Name;
+import seedu.address.model.property.PostalCode;
+import seedu.address.model.property.Remark;
+import seedu.address.model.property.Type;
+import seedu.address.model.property.util.DateFormat;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,15 +46,138 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @param name The property name string to be parsed.
+     * @return A {@code Name}.
+     * @throws ParseException If the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static Name parsePropertyName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String type} into a {@code Type}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param type The property type string to be parsed.
+     * @return A {@code Type}.
+     * @throws ParseException If the given {@code type} is invalid.
+     */
+    public static Type parsePropertyType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        if (!Type.isValidType(trimmedType)) {
+            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+        }
+        return new Type(trimmedType);
+    }
+
+    /**
+     * Parses an {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param address The property address string to be parsed.
+     * @return An {@code Address}.
+     * @throws ParseException If the given {@code address} is invalid.
+     */
+    public static Address parsePropertyAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (!Address.isValidAddress(trimmedAddress)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String postal} into a {@code Postal}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param postal The property postal string to be parsed.
+     * @return A {@code Postal}.
+     * @throws ParseException If the given {@code postal} is invalid.
+     */
+    public static PostalCode parsePropertyPostal(String postal) throws ParseException {
+        requireNonNull(postal);
+        String trimmedPostal = postal.trim();
+        if (!PostalCode.isValidPostal(trimmedPostal)) {
+            throw new ParseException(PostalCode.MESSAGE_CONSTRAINTS);
+        }
+        return new PostalCode(trimmedPostal);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param deadline The property deadline string to be parsed.
+     * @return A {@code Deadline}.
+     * @throws ParseException If the given {@code deadline} is invalid.
+     */
+    public static Deadline parsePropertyDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        try {
+            return new Deadline(LocalDate.parse(trimmedDeadline, DateFormat.INPUT_DATE_FORMAT));
+        } catch (DateTimeParseException ex) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param remark The property remark string to be parsed.
+     * @return A {@code Remark}.
+     * @throws ParseException If the given {@code remark} is invalid.
+     */
+    public static Remark parsePropertyRemark(String remark) throws ParseException {
+        if (remark == null) {
+            return null;
+        }
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(trimmedRemark);
+    }
+
+    // ======================================================================================================
+    // Placeholders for Person object below to handle errors
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static seedu.address.model.person.Name parseName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!seedu.address.model.person.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
+        }
+        return new seedu.address.model.person.Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static seedu.address.model.person.Address parseAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (!seedu.address.model.person.Address.isValidAddress(trimmedAddress)) {
+            throw new ParseException(seedu.address.model.person.Address.MESSAGE_CONSTRAINTS);
+        }
+        return new seedu.address.model.person.Address(trimmedAddress);
     }
 
     /**
@@ -63,21 +193,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**
