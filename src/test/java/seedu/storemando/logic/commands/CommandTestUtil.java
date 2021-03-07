@@ -30,30 +30,30 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BANANA = "Banana";
     public static final String VALID_QUANTITY_STRAWBERRY_MILK = "1";
     public static final String VALID_QUANTITY_BANANA = "2";
-    public static final String VALID_EXPIRYDATE_AMY = "2020-10-11";
-    public static final String VALID_EXPIRYDATE_BOB = "2019-08-10";
-    public static final String VALID_LOCATION_AMY = "Refrigerator";
-    public static final String VALID_LOCATION_BOB = "Kitchen";
-    public static final String VALID_TAG_HUSBAND = "Essential";
-    public static final String VALID_TAG_FRIEND = "Favourite";
+    public static final String VALID_EXPIRYDATE_STRAWBERRY_MILK = "2020-10-11";
+    public static final String VALID_EXPIRYDATE_BANANA = "2019-08-10";
+    public static final String VALID_LOCATION_STRAWBERRY_MILK = "Refrigerator";
+    public static final String VALID_LOCATION_BANANA = "Kitchen";
+    public static final String VALID_TAG_ESSENTIAL = "Essential";
+    public static final String VALID_TAG_FAVOURITE = "Favourite";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_STRAWBERRY_MILK;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BANANA;
-    public static final String QUANTITY_DESC_AMY = " " + PREFIX_QUANTITY + VALID_QUANTITY_STRAWBERRY_MILK;
-    public static final String QUANTITY_DESC_BOB = " " + PREFIX_QUANTITY + VALID_QUANTITY_BANANA;
-    public static final String EXPIRYDATE_DESC_AMY = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_AMY;
-    public static final String EXPIRYDATE_DESC_BOB = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_BOB;
-    public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
-    public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_LOCATION_BOB;
+    public static final String NAME_DESC_STRAWBERRY_MILK = " " + PREFIX_NAME + VALID_NAME_STRAWBERRY_MILK;
+    public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
+    public static final String QUANTITY_DESC_STRAWBERRY_MILK = " " + PREFIX_QUANTITY + VALID_QUANTITY_STRAWBERRY_MILK;
+    public static final String QUANTITY_DESC_BANANA = " " + PREFIX_QUANTITY + VALID_QUANTITY_BANANA;
+    public static final String EXPIRYDATE_DESC_STRAWBERRY_MILK = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_STRAWBERRY_MILK;
+    public static final String EXPIRYDATE_DESC_BANANA = " " + PREFIX_EXPIRYDATE + VALID_EXPIRYDATE_BANANA;
+    public static final String LOCATION_DESC_STRAWBERRY_MILK = " " + PREFIX_LOCATION + VALID_LOCATION_STRAWBERRY_MILK;
+    public static final String LOCATION_DESC_BANANA = " " + PREFIX_LOCATION + VALID_LOCATION_BANANA;
 
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_ESSENTIAL = " " + PREFIX_TAG + VALID_TAG_FAVOURITE;
+    public static final String TAG_DESC_FAVOURITE = " " + PREFIX_TAG + VALID_TAG_ESSENTIAL;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Coco&"; // '&' not allowed in names
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in quantities
-    public static final String INVALID_EXPIRYDATE_DESC = " " + PREFIX_EXPIRYDATE + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_EXPIRYDATE_DESC = " " + PREFIX_EXPIRYDATE + "20201010"; // missing '-' symbol
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for locations
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "need*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -63,11 +63,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
-            .withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK).withLocation(VALID_LOCATION_STRAWBERRY_MILK)
+            .withTags(VALID_TAG_FAVOURITE).build();
         DESC_BOB = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA)
-            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA)
+            .withTags(VALID_TAG_ESSENTIAL, VALID_TAG_FAVOURITE).build();
     }
 
     /**

@@ -1,29 +1,29 @@
 package seedu.storemando.logic.parser;
 
 import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_AMY;
-import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.EXPIRYDATE_DESC_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_EXPIRYDATE_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.storemando.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_AMY;
-import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_AMY;
-import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_AMY;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.LOCATION_DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.NAME_DESC_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.TAG_DESC_FAVOURITE;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_STRAWBERRY_MILK;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_STRAWBERRY_MILK;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -67,10 +67,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_STRAWBERRY_MILK, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_STRAWBERRY_MILK, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -88,37 +88,37 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid quantity followed by valid expirydate
-        assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC + EXPIRYDATE_DESC_AMY,
+        assertParseFailure(parser, "1" + INVALID_QUANTITY_DESC + EXPIRYDATE_DESC_STRAWBERRY_MILK,
             Quantity.MESSAGE_CONSTRAINTS);
 
         // valid quantity followed by invalid quantity. The test case for invalid quantity followed by valid quantity
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + QUANTITY_DESC_BOB + INVALID_QUANTITY_DESC,
+        assertParseFailure(parser, "1" + QUANTITY_DESC_BANANA + INVALID_QUANTITY_DESC,
             Quantity.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Item} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+        assertParseFailure(parser, "1" + TAG_DESC_ESSENTIAL + TAG_DESC_FAVOURITE + TAG_EMPTY,
             Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + TAG_DESC_ESSENTIAL + TAG_EMPTY + TAG_DESC_FAVOURITE,
             Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_ESSENTIAL + TAG_DESC_FAVOURITE,
             Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EXPIRYDATE_DESC + VALID_LOCATION_AMY
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EXPIRYDATE_DESC + VALID_LOCATION_STRAWBERRY_MILK
             + VALID_QUANTITY_STRAWBERRY_MILK, ItemName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITEM;
-        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BOB + TAG_DESC_HUSBAND
-            + EXPIRYDATE_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BANANA + TAG_DESC_FAVOURITE
+            + EXPIRYDATE_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK + NAME_DESC_STRAWBERRY_MILK + TAG_DESC_ESSENTIAL;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
-            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK).withLocation(VALID_LOCATION_STRAWBERRY_MILK)
+            .withTags(VALID_TAG_ESSENTIAL, VALID_TAG_FAVOURITE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -127,10 +127,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_ITEM;
-        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BANANA + EXPIRYDATE_DESC_STRAWBERRY_MILK;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA)
-            .withExpiryDate(VALID_EXPIRYDATE_AMY).build();
+            .withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -140,32 +140,32 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_ITEM;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_STRAWBERRY_MILK;
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // quantity
-        userInput = targetIndex.getOneBased() + QUANTITY_DESC_AMY;
+        userInput = targetIndex.getOneBased() + QUANTITY_DESC_STRAWBERRY_MILK;
         descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_STRAWBERRY_MILK).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // expirydate
-        userInput = targetIndex.getOneBased() + EXPIRYDATE_DESC_AMY;
-        descriptor = new EditItemDescriptorBuilder().withExpiryDate(VALID_EXPIRYDATE_AMY).build();
+        userInput = targetIndex.getOneBased() + EXPIRYDATE_DESC_STRAWBERRY_MILK;
+        descriptor = new EditItemDescriptorBuilder().withExpiryDate(VALID_EXPIRYDATE_STRAWBERRY_MILK).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // location
-        userInput = targetIndex.getOneBased() + LOCATION_DESC_AMY;
-        descriptor = new EditItemDescriptorBuilder().withLocation(VALID_LOCATION_AMY).build();
+        userInput = targetIndex.getOneBased() + LOCATION_DESC_STRAWBERRY_MILK;
+        descriptor = new EditItemDescriptorBuilder().withLocation(VALID_LOCATION_STRAWBERRY_MILK).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditItemDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_ESSENTIAL;
+        descriptor = new EditItemDescriptorBuilder().withTags(VALID_TAG_FAVOURITE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -173,13 +173,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ITEM;
-        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_AMY + LOCATION_DESC_AMY + EXPIRYDATE_DESC_AMY
-            + TAG_DESC_FRIEND + QUANTITY_DESC_AMY + LOCATION_DESC_AMY + EXPIRYDATE_DESC_AMY + TAG_DESC_FRIEND
-            + QUANTITY_DESC_BOB + LOCATION_DESC_BOB + EXPIRYDATE_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK + EXPIRYDATE_DESC_STRAWBERRY_MILK
+            + TAG_DESC_ESSENTIAL + QUANTITY_DESC_STRAWBERRY_MILK + LOCATION_DESC_STRAWBERRY_MILK + EXPIRYDATE_DESC_STRAWBERRY_MILK + TAG_DESC_ESSENTIAL
+            + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + EXPIRYDATE_DESC_BANANA + TAG_DESC_FAVOURITE;
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA)
-            .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_FRIEND,
-                VALID_TAG_HUSBAND).build();
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_FAVOURITE,
+                VALID_TAG_ESSENTIAL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -189,16 +189,16 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_ITEM;
-        String userInput = targetIndex.getOneBased() + INVALID_QUANTITY_DESC + QUANTITY_DESC_BOB;
+        String userInput = targetIndex.getOneBased() + INVALID_QUANTITY_DESC + QUANTITY_DESC_BANANA;
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EXPIRYDATE_DESC_BOB + INVALID_QUANTITY_DESC + LOCATION_DESC_BOB
-            + QUANTITY_DESC_BOB;
+        userInput = targetIndex.getOneBased() + EXPIRYDATE_DESC_BANANA + INVALID_QUANTITY_DESC + LOCATION_DESC_BANANA
+            + QUANTITY_DESC_BANANA;
         descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_BANANA)
-            .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).build();
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
