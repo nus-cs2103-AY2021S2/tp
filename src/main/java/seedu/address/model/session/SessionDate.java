@@ -11,9 +11,9 @@ import seedu.address.model.session.exceptions.SessionException;
  */
 public class SessionDate {
 
-    private LocalDate date;
-
     private static final String INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE = "Format of date or time is incorrect: ";
+
+    private LocalDate date;
 
     /**
      * Constructs a {@code SessionDate}.
