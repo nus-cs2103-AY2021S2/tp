@@ -15,6 +15,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path taskListFilePath = Paths.get("data", "taskList.json");
+    private Path eventListFilePath = Paths.get("data", "eventList.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +38,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setTaskListFilePath(newUserPrefs.getTaskListFilePath());
+        setEventListFilePath(newUserPrefs.getEventListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +60,24 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public Path getTaskListFilePath() {
+        return taskListFilePath;
+    }
+
+    public Path getEventListFilePath() {
+        return eventListFilePath;
+    }
+
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireNonNull(taskListFilePath);
+        this.taskListFilePath = taskListFilePath;
+    }
+
+    public void setEventListFilePath(Path eventListFilePath) {
+        requireNonNull(eventListFilePath);
+        this.eventListFilePath = eventListFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,19 +90,22 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath)
+                && taskListFilePath.equals(o.taskListFilePath)
+                && eventListFilePath.equals(o.eventListFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, taskListFilePath, eventListFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal Task List file location : " + taskListFilePath);
+        sb.append("\nLocal Event List file location : " + eventListFilePath);
         return sb.toString();
     }
 
