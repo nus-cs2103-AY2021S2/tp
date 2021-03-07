@@ -139,6 +139,8 @@ Shows a message explaining a list of available commands.
 Format: `help [COMMAND]`
 * List all available commands.
 * `[COMMAND]` a single parameter requesting help for a specific command's syntax.
+* Any additional parameters will be ignored.
+* If command is not understood then all available commands will be listed.
 
 Examples:
 * `help` lists all available commands.

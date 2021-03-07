@@ -1,6 +1,12 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 /**
  * Format full help instructions for every command for display.
@@ -30,8 +36,55 @@ public class HelpCommand extends Command {
             + "Showing help: "
             + "help [COMMAND]\n";
 
+    private final String commandWord;
+
+    /**
+     * Creates a HelpCommand to give syntax details for all possible commands
+     */
+    public HelpCommand() {
+        this.commandWord = "";
+    }
+
+    /**
+     * Creates a HelpCommand to give syntax details for a specified {@code commandWord}
+     */
+    public HelpCommand(String commandWord) {
+        this.commandWord = commandWord;
+    }
+
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, false);
+
+        switch (commandWord) {
+
+        case AddCommand.COMMAND_WORD:
+            return new CommandResult(AddCommand.MESSAGE_USAGE, false);
+
+        case EditCommand.COMMAND_WORD:
+            return new CommandResult(EditCommand.MESSAGE_USAGE, false);
+
+        case DeleteCommand.COMMAND_WORD:
+            return new CommandResult(DeleteCommand.MESSAGE_USAGE, false);
+
+        case ClearCommand.COMMAND_WORD:
+            return new CommandResult(ClearCommand.MESSAGE_USAGE, false);
+
+        case FindCommand.COMMAND_WORD:
+            return new CommandResult(FindCommand.MESSAGE_USAGE, false);
+
+        case ListCommand.COMMAND_WORD:
+            return new CommandResult(ListCommand.MESSAGE_USAGE, false);
+
+        case ExitCommand.COMMAND_WORD:
+            return new CommandResult(ExitCommand.MESSAGE_USAGE, false);
+
+        case HelpCommand.COMMAND_WORD:
+            return new CommandResult(HelpCommand.MESSAGE_USAGE, false);
+
+        default:
+            return new CommandResult(SHOWING_HELP_MESSAGE, false);
+        }
     }
+
+
 }
