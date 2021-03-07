@@ -61,7 +61,7 @@ public interface Model {
      * Deletes the given student.
      * The student must exist in the address book.
      */
-    void deletePerson(Student target);
+    void deleteStudent(Student target);
 
     /**
      * Adds the given student.
@@ -75,14 +75,14 @@ public interface Model {
      * The student identity of {@code editedStudent} must not be the same as another
      * existing student in the address book.
      */
-    void setPerson(Student target, Student editedStudent);
+    void setStudent(Student target, Student editedStudent);
 
     /** Returns an unmodifiable view of the filtered student list */
-    ObservableList<Student> getFilteredPersonList();
+    ObservableList<Student> getFilteredStudentList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Student> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 }

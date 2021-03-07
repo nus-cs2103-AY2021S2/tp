@@ -26,23 +26,23 @@ import seedu.address.testutil.StudentBuilder;
 public class AddStudentCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddStudentCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
         Student validStudent = new StudentBuilder().build();
 
         CommandResult commandResult = new AddStudentCommand(validStudent).execute(modelStub);
 
         assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateStudent_throwsCommandException() {
         Student validStudent = new StudentBuilder().build();
         AddStudentCommand addStudentCommand = new AddStudentCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
@@ -129,22 +129,22 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void deletePerson(Student target) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Student target, Student editedStudent) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Student> getFilteredPersonList() {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Student> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -171,18 +171,18 @@ public class AddStudentCommandTest {
      * A Model stub that always accept the student being added.
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> personsAdded = new ArrayList<>();
+        final ArrayList<Student> studentsAdded = new ArrayList<>();
 
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return personsAdded.stream().anyMatch(student::isSameStudent);
+            return studentsAdded.stream().anyMatch(student::isSameStudent);
         }
 
         @Override
         public void addStudent(Student student) {
             requireNonNull(student);
-            personsAdded.add(student);
+            studentsAdded.add(student);
         }
 
         @Override
