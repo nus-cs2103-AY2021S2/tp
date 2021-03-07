@@ -26,7 +26,7 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
    * **`list_venues`** : Lists all venues.
 
-   * **`add_venue`**`n/Chua Thian Poh Hall max/40` : Adds a venue named `Chua Thian Poh Hall` to the BookCoinToTheMoon.
+   * **`create_venue`**`n/Chua Thian Poh Hall max/40` : Adds a venue named `Chua Thian Poh Hall` to the BookCoinToTheMoon.
 
    * **`bye`** : Exits the app.
 
@@ -44,7 +44,7 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
   e.g. in `find_venue v/VENUE_ID`, `VENUE_ID` is a parameter which can be used as `find_venue v/1`.
 
 * Items in square brackets are optional.<br>
-  e.g. `add_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `n/Chua Thian Poh Hall max/40` or as `n/Chua Thian Poh Hall`.
+  e.g. `create_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `n/Chua Thian Poh Hall max/40` or as `n/Chua Thian Poh Hall`.
  
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -54,23 +54,23 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 </div>
 
-### Adding a venue : `add_venue`
+### Adding a venue : `create_venue`
 
 Adds a new venue for the booking app.
 
-Format: `add_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]`
+Format: `create_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]`
 
 Examples:
-* `add_venue n/Chua Thian Poh Hall max/40`
+* `create_venue n/Chua Thian Poh Hall max/40`
 
-### Adding a booking : `add_booking`
+### Adding a booking : `create_booking`
 
 Adds a new booking into the booking app. The default booking is set to one hour for the first iteration.
 
-Format: `add_booking d/DATE t/TIMING n/VENUE_NAME`
+Format: `create_booking d/DATE t/TIMING n/VENUE_NAME`
 
 Examples:
-* `add_booking d/2020-12-12 t/2359 n/Chua Thian Poh Hall`
+* `create_booking d/2020-12-12 t/2359 n/Chua Thian Poh Hall`
 
 ### Listing all venues : `list_venues`
 
