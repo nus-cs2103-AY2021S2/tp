@@ -236,84 +236,683 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Companies that have delivery operations and freelance delivery drivers 
+* Companies that have delivery operations and freelance delivery drivers
+* Need to manage many delivery entries and their respective details
 * Prefers typing to mouse interactions
+* Can type fast
 * Is reasonably comfortable using CLI apps
-* Looking for a desktop app to better manage their workflow
+* Looking for a desktop app over other types to better manage their workflow
 
-**Value proposition**: The ability to manage your delivery workflow for efficiency gains
-
+**Value proposition**: manage delivery workflows and details faster than a typical mouse/GUI driven app for greater efficiency
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                       | So that I can…​                                                         |
-| -------- | ------------------------------------------ | -------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | Driver                                     | Add delivery location            | keep track of my delivery workflow                                     |
-| `* * *`  | Driver                                     | Mark delivery as done            | know what delivery tasks i did                                         |                             |
-| `* * *`  | Driver                                     | Edit delivery entries            | remove entries that I no longer need                                   |
-| `* * *`  | Driver                                     | Delete delivery entries          | remove entries that I no longer need                                   |
-| `**`     | Driver                                     | Find delivery entries by keyword | locate a delivery task easily                                          |
-| `**`     | Driver                                     | List all my delivery entries     | have an overview of my delivery workflow                               |
+| Priority | As a …​                   | I want to …​                                                                                | So that I can…​                                           |
+| -------- | --------------------------| ------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `* * *`  | delivery driver           | add a delivery entry to the list (product, pickup/drop off time and address, route)         | make the delivery immediately/later                       |
+| `* * *`  | delivery driver           | mark a delivery entry in the list as done                                                   | know which deliveries I've done                           |
+| `* * *`  | delivery driver           | delete a delivery entry from the list                                                       | remove the delivery entry from the list                   |
+| `* * *`  | delivery driver           | delete all delivery entries from the list                                                   | remove all delivery entries from the list                 |
+| `* * *`  | delivery driver           | edit a delivery entry in the list                                                           | make necessary changes to the delivery details            |
+| `* * *`  | delivery driver           | get the list of delivery entries                                                            | see all the deliveries I have to make                     |
+| `* * *`  | delivery driver           | get the list of completed delivery entries                                                  | see all the deliveries I have done                        |
+| `* * *`  | delivery driver           | get the list of delivery entries ranked by urgency/timing                                   | see which are the more urgent deliveries to be made first |
+| `* * *`  | delivery driver           | find all delivery entries associated with a time (pickup/drop off time)                     | see the deliveries with the pickup/drop off times         |
+| `* * *`  | delivery driver           | find all delivery entries associated with a location (pickup/drop off address)              | see the deliveries with the pickup/drop off addresses     |
+| `* * *`  | delivery driver           | find all delivery entries associated with a keyword or phrase                               | see the deliveries with the specific keyword/phrase       |
+| `* * *`  | delivery driver           | exit the app                                                                                | exit the app                                              |
+| `* *`    | delivery driver           | be notified of a duplicate delivery entry                                                   | avoid adding a duplicate delivery entry to the list       |
+| `* *`    | delivery driver           | to set reminders for each delivery                                                          | be notified prior to each delivery                        |
+| `* *`    | delivery driver           | get a pre-planned route for the delivery                                                    | make the delivery faster and more efficiently             |
+| `* *`    | delivery driver           | get details of the delivery good (fragile, etc.)                                            | take necessary preparations/precautions for various goods |
+| `*`      | delivery driver           | get basic customer details of the delivery (contact details, delivery frequency, business)  | understand my customers better                            |
+| `*`      | delivery driver           | to have an estimated delivery duration for a delivery entry                                 | plan my time better                                       |
+| `*`      | new delivery driver       | see samples of deliveries entries                                                           | familiar myself with the app and process                  |
+| `*`      | new delivery driver       | receive easier deliveries (shorter distance)                                                | transition into using the app more easily                 |
+| `*`      | part-time delivery driver | choose specific delivery timings and receive delivery notifications during specific timings | make deliveries during my free time                       |
+
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TimeforWheels` and the **Actor** is the `user`, unless specified otherwise)
+**Software System: Delivery App**
 
-**Use case: Add a delivery entry**
+**Use case: UC01 - add a delivery entry to the list**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* A new delivery entry will be added to the list of deliveries.
 
 **MSS**
 
-1.  User requests to add a delivery entry
-2.  System adds the delivery entry
-3.  System displays the updated list
+1.  User indicates that they will be adding a delivery entry.
+2.  Delivery App requests for details of the delivery entry.    
+3.  User enters the delivery entry to be added to the list.
+4.  Delivery App adds the delivery entry to the list and informs the User.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given entry is invalid.
-
-    * 1a1. System shows an error message.
-
-      Use case ends.
+* 3a. The delivery entry to be added has an invalid format.   
+    * 3a1. Delivery App requests for a valid delivery entry.
+    * 3a2. User enters new delivery entry details.
       
-**Use case: Delete a delivery entry**
+    Steps 3a1-3a2 are repeated until the valid details are entered.
+
+    Use case resumes from step 4.
+
+* 3b. The delivery entry to be added already exists in the list.
+    * 3b1. Delivery App informs the User of the duplicate.
+      
+    Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC02 - mark a delivery entry in the list as done**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* A delivery entry in the list will be marked as done.
 
 **MSS**
 
-1.  User requests to delete a specific delivery entry.
-2.  System deletes the delivery entry
-3.  System displays the updated list
+1.  User requests to see the list of delivery entries.
+2.  Delivery App shows the list.
+3.  User indicates which delivery entry to mark as done by entering the entry number.
+4.  Delivery App marks that delivery entry as done and informs the User.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+      
+    Use case ends.
 
-    * 1a1. System shows an error message.
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+    
+    Steps 3a1-3a2 are repeated until the valid entry number is entered.
+    
+    Use case resumes from step 4.
 
-      Use case ends.
+**Software System: Delivery App**
+
+**Use case: UC03 - delete a delivery entry from the list**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* An existing delivery entry will be deleted from the list of deliveries.
+
+**MSS**
+
+1.  User requests to see the list of delivery entries.
+2.  Delivery App shows the list.
+3.  User indicates which delivery entry to be deleted by entering the entry number.
+4.  Delivery App removes that delivery entry from the list and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+  
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC04 - delete all delivery entries from the list**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* All existing delivery entries will be deleted from the list of deliveries.
+
+**MSS**
+
+1.  User indicates to delete all delivery entries from the list.
+2.  Delivery App removes all delivery entries from the list and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that there are no delivery entries to delete.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC05 - edit a delivery entry in the list**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* An existing delivery entry will be updated in the list of deliveries.
+
+**MSS**
+
+1.  User requests to see the list of delivery entries.
+2.  Delivery App shows the list.
+3.  User indicates which delivery entry to edit by entering the entry number.
+4.  Delivery App requests for updated details of the delivery entry.
+5.  User enters the updated details.
+6.  Delivery App replaces the old delivery entry with the updated one and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+* 5a. The updated details have an invalid format.
+    * 5a1. Delivery App requests for a valid format.
+    * 5a2. User enters new details.
+
+  Steps 3a1-3a2 are repeated until the valid details are entered.
+
+  Use case resumes from step 6.
+
+* 5b. The edited entry already exists in the list.
+    * 5b1. Delivery App informs the User of the duplicate.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC06 - get the list of delivery entries**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* a list of all existing delivery entries.
+
+**MSS**
+
+1.  User requests to see all delivery entries from the list.
+2.  Delivery App lists out all existing delivery entries.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC07 - get the list of completed delivery entries**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* a list of all completed delivery entries.
+
+**MSS**
+
+1.  User requests to see all completed delivery entries from the list.
+2.  Delivery App lists out all delivery entries that were marked as done.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The completed list is empty.
+    * 1a1. Delivery App informs the User that the completed list is empty.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC08 - get the list of delivery entries ranked by urgency**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* a list of existing delivery entries ranked by urgency.
+
+**MSS**
+
+1.  User requests to see all delivery entries from the list ranked by urgency.
+2.  Delivery App lists out all existing delivery entries ranked by urgency, starting from most to least urgent.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+    
+  Use case ends.
+    
+* 1b. There are more than 1 delivery entry with the same urgency.
+    * 1b1. Delivery App ranks them based on timing then alphabetical order.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC09 - get the list of delivery entries ranked by timing**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* a list of existing delivery entries ranked by timing.
+
+**MSS**
+
+1.  User requests to see all delivery entries from the list ranked by timing.
+2.  Delivery App lists out all existing delivery entries ranked by timing, starting from oldest to latest.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 1b. There are more than 1 delivery entry with the same timing.
+    * 1b1. Delivery App ranks them based on urgency then alphabetical order.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC10 - find all delivery entries associated with a time (pickup/drop off time)**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* a list of existing delivery entries associated with a time.
+
+**MSS**
+
+1.  User requests to see all delivery entries from the list associated with a pickup/drop off time.
+2.  Delivery App lists out all existing delivery entries associated with the pickup/drop off time.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 1b. There are no delivery entries associated with the time.
+    * 1b1. Delivery App informs the User that there are no delivery entries associated with that time.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC11 - find all delivery entries associated with a location (pickup/drop off address)**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* a list of existing delivery entries associated with an address.
+
+**MSS**
+
+1.  User requests to see all delivery entries from the list associated with a pickup/drop off address.
+2.  Delivery App lists out all existing delivery entries associated with the pickup/drop off address.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 1b. There are no delivery entries associated with the address.
+    * 1b1. Delivery App informs the User that there are no delivery entries associated with that address.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC12 - find all delivery entries associated with a keyword or phrase**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* a list of existing delivery entries with details containing the keyword/phrase.
+
+**MSS**
+
+1.  User requests to see all delivery entries with matching keywords/phrases.
+2.  Delivery App lists out all existing delivery entries with details containing the keyword/phrase.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 1b. There are no delivery entries with matching keywords/phrases.
+    * 1b1. Delivery App informs the User that there are no delivery entries with details containing the keyword/phrase.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC13 - exit the app**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* the app exits.
+
+**MSS**
+
+1.  User indicates to quit the app.
+2.  Delivery App exits.
+
+    Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC14 - to set reminders for each delivery**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* be notified prior to each delivery.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User indicates which delivery entry to set a reminder for by entering the entry number.
+4.  Delivery App requests for reminder date/time.
+5.  User enters the date/time.
+6.  Delivery App sets the reminder for that delivery entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+* 5a. The reminder date/time have an invalid format.
+    * 5a1. Delivery App requests for a valid format.
+    * 5a2. User enters new date/time.
+
+  Steps 3a1-3a2 are repeated until the valid date/time are entered.
+
+  Use case resumes from step 6.
+
+* 5b. The delivery entry already has the same reminder.
+    * 5b1. Delivery App informs the User of the duplicate reminder.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC15 - get a pre-planned route for the delivery**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* to get a delivery route for the delivery.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User requests to see the delivery route of an entry by entering the entry number.
+4.  Delivery App shows the delivery route for the chosen entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC16 - get details of the delivery good**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* to get details of the delivery good.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User requests to see the details of a delivery entry by entering the entry number.
+4.  Delivery App shows the details of the chosen delivery entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC17 - get basic customer details of the delivery**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* to get basic details of the customer of the delivery.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User requests to see the customer details of a delivery entry by entering the entry number.
+4.  Delivery App shows the customer details of the chosen delivery entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC18 - get basic customer details of the delivery**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* to get basic details of the customer of the delivery.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User requests to see the customer details of a delivery entry by entering the entry number.
+4.  Delivery App shows the customer details of the chosen delivery entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC19 - to have an estimated delivery duration for a delivery entry**
+
+**Actor: User (delivery person)**
+
+**Guarantees:**
+
+* to get an estimated delivery duration of a delivery.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User requests to get the estimated delivery duration of a delivery entry by entering the entry number.
+4.  Delivery App provides the estimated delivery duration of the chosen delivery entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC20 - see samples of deliveries made**
+
+**Actor: New User (new delivery person)**
+
+**Guarantees:**
+
+* to get samples of delivery entries.
+
+**MSS**
+
+1.  User requests to see samples of delivery entries.
+2.  Delivery App shows samples of delivery entries.
+
+    Use case ends.
       
 *{More to be added}*
 
-
-
-
 ### Non-Functional Requirements
-1. **Usability**: 
-   - Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-     
-2. **Reliability**: 
-   - Should be able to hold up to 1000 delivery entries and display all data if requested by the user in less than 5 seconds
-   - Should be able to detect and inform users of duplicate delivery entries and confirm with user if they wish to proceed in adding them to the list
 
-3. **Security:** 
+1. **Usability**:
+    - Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+    - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+2. **Reliability**:
+    - Should be able to hold up to 1000 delivery entries and display all data if requested by the user in less than 5 seconds
+    - Should be able to detect and inform users of duplicate delivery entries and confirm with user if they wish to proceed in adding them to the list
+
+3. **Security:**
     - Users that request for any delivery entry data to be deleted will have the data permanently erased from memory
-   
+
 4. **Integrity**
     - For any time-related data presented to the user, the date formats will be `DD-MM-YYYY`
     - Delivery entries made by the user will be stored in a _JSON_ file inside the hard disks
@@ -321,13 +920,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. **Flexibility**
     - TimeforWheels should be able to handle as many date format inputs as possible by the user and convert the date format to `DD-MM-YYYY`
 
-
-
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **JSON:** JavaScript Object Notation
 
 --------------------------------------------------------------------------------------------------------------------
