@@ -73,7 +73,7 @@ public class JsonSmartLibStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addReader(HOON);
-        original.removePerson(ALICE);
+        original.removeReader(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new SmartLib(readBack));

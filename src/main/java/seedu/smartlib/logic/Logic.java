@@ -31,7 +31,7 @@ public interface Logic {
     ReadOnlySmartLib getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Reader> getFilteredPersonList();
+    ObservableList<Reader> getFilteredReaderList();
 
     /**
      * Returns the user prefs' address book file path.

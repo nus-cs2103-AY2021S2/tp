@@ -129,7 +129,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePerson(Reader target) {
+        public void deleteReader(Reader target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -139,7 +139,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Reader> getFilteredPersonList() {
+        public ObservableList<Reader> getFilteredReaderList() {
             throw new AssertionError("This method should not be called.");
         }
 

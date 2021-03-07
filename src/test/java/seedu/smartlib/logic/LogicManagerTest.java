@@ -1,7 +1,7 @@
 package seedu.smartlib.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.smartlib.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -58,8 +58,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteCommand = "deletereader 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_READER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredReaderList().remove(0));
     }
 
     /**

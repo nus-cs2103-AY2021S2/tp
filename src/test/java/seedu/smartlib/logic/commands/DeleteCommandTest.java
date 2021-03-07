@@ -28,36 +28,36 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Reader readerToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Reader readerToDelete = model.getFilteredReaderList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteReaderCommand deleteCommand = new DeleteReaderCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, readerToDelete);
+        String expectedMessage = String.format(DeleteReaderCommand.MESSAGE_DELETE_READER_SUCCESS, readerToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSmartLib(), new UserPrefs());
-        expectedModel.deletePerson(readerToDelete);
+        expectedModel.deleteReader(readerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReaderList().size() + 1);
+        DeleteReaderCommand deleteCommand = new DeleteReaderCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Reader readerToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Reader readerToDelete = model.getFilteredReaderList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteReaderCommand deleteCommand = new DeleteReaderCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, readerToDelete);
+        String expectedMessage = String.format(DeleteReaderCommand.MESSAGE_DELETE_READER_SUCCESS, readerToDelete);
 
         Model expectedModel = new ModelManager(model.getSmartLib(), new UserPrefs());
-        expectedModel.deletePerson(readerToDelete);
+        expectedModel.deleteReader(readerToDelete);
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -71,21 +71,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getSmartLib().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteReaderCommand deleteCommand = new DeleteReaderCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteReaderCommand deleteFirstCommand = new DeleteReaderCommand(INDEX_FIRST_PERSON);
+        DeleteReaderCommand deleteSecondCommand = new DeleteReaderCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteReaderCommand deleteFirstCommandCopy = new DeleteReaderCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -104,6 +104,6 @@ public class DeleteCommandTest {
     private void showNoPerson(Model model) {
         model.updateFilteredPersonList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredReaderList().isEmpty());
     }
 }
