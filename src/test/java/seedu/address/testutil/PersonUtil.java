@@ -2,14 +2,18 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE_OF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -26,6 +30,14 @@ public class PersonUtil {
     }
 
     /**
+     * Returns a remark command string for adding a remark to the {@code person}.
+     */
+    public static String getRemarkCommand(Person person) {
+        return RemarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PREFIX_REMARK + person.getRemark();
+    }
+
+    /**
      * Returns the part of command string for the given {@code person}'s details.
      */
     public static String getPersonDetails(Person person) {
@@ -34,6 +46,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_MODE_OF_CONTACT + person.getModeOfContact().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -49,6 +62,8 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getModeOfContact().ifPresent(modeOfContact -> sb.append(PREFIX_MODE_OF_CONTACT)
+                .append(modeOfContact.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -93,6 +93,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Sorts the list by name in increasing alphabetical order.
+     */
+    public void sortByAscendingAlphabeticalOrder() {
+        persons.sortByAscendingAlphabeticalOrder();
+    }
+
     //// util methods
 
     @Override

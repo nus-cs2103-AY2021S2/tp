@@ -37,4 +37,11 @@ public class NameTest {
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
+
+    @Test
+    public void compareTo() {
+        Name firstName = new Name("Emma");
+        Name secondName = new Name("Zahir");
+        assertTrue(secondName.compareTo(firstName) > 0);
+    }
 }

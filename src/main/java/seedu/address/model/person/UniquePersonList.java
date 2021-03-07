@@ -3,11 +3,13 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.comparator.NameComparator;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -95,6 +97,14 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Sorts the list by name in ascending alphabetical order
+     */
+    public void sortByAscendingAlphabeticalOrder() {
+        NameComparator nameComparator = new NameComparator();
+        Collections.sort(internalList, nameComparator);
     }
 
     /**

@@ -163,6 +163,14 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void sortByAscendingAlphabeticalOrder() {
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(ALICE);
+        uniquePersonList.sortByAscendingAlphabeticalOrder();
+        assertEquals(ALICE, uniquePersonList.asUnmodifiableObservableList().get(0));
+    }
+
+    @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));

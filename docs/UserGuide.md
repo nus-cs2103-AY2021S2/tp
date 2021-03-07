@@ -118,23 +118,25 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name and/or tag: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names and/or tags contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
 
+* At least one of `[n/NAME_KEYWORDS]` or `[t/TAG_KEYWORDS]` must be included as the parameters.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Only the name and tags are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Persons matching at least one keyword of each provided attribute will be returned.
+  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`, `Bo Hans`, while `n/Hans Bo t/friends` will only return `Hans Gruber` and `Bo Yang` if only `Hans Gruber` and `Bo Yang` are tagged with `friends`. 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/alex david t/family` returns `David Li`
 
 ### Deleting a person : `delete`
 
@@ -182,6 +184,29 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Adding a new remark or replacing an existing remark : `remark`
+
+Adds a new remark to the specified person from the address book. 
+If the person already has a remark, the new remark will replace the
+existing remark.
+
+Format: `remark INDEX r/REMARK`
+
+* Adds/Replaces the remark of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+
+Example:
+
+`remark 3 r/Currently on Stay Home Notice`
+
+### Sort entries by name : `sort`
+
+Sort the entries in the address book by name in ascending alphabetical order.
+
+Format: `sort`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -221,10 +246,11 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
 **Name** | `name INDEX [n/NAME]`<br> e.g., `name 3 [n/Jo]`
 **Blist** | `blist INDEX`<br> e.g., `blist 3`
 **Filter** | `filter [keyword1,keyword2,...]`<br> e.g., `filter[Computing, Student]` 
 **List** | `list`
 **Help** | `help`
+**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`

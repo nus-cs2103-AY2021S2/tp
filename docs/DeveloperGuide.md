@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,13 +203,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -254,18 +254,18 @@ and the required means of communication.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | --------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                  |                                                                        |
-| `* * *`  | user                                       | delete a person                   | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | filter contacts                   | minimize chance of sending emails to the wrong recipient               |
-| `* * *`  | user                                       | specify preferred mode of contact | maximize chance of recipient seeing the information                    |
-| `* * *`  | user                                       | blacklist a contact               | reduce dissemination of information to people who do not want it       |
-| `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
-| `* *`    | user with many contacts                    | assign each contact a nickname    | remember contacts more accurately                                      |
-| `* *`    | user with many contacts                    | sort contacts by name             | locate a contact easily                                                |
+| Priority | As a …​                                 | I want to …​                                      | So that I can…​                                                      |
+| -------- | ------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                     |                                                                        |
+| `* * *`  | user                                       | delete a person                                      | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | filter contacts by tag                               | minimize chance of sending emails to the wrong recipient               |
+| `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                    |
+| `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it       |
+| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                |
+| `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                      |
+| `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                |
 
 *{More to be added}*
 
@@ -295,11 +295,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-    
-**Use case: Filter contacts**
 
+**Use case: Filter contacts by tags**
+
+**MSS**
+1. User requests to list contacts
+2. SpamEZ shows a list of contacts
+3. User requests to find the contacts using name and/or tags
+4. SpamEZ returns a filtered list of contacts
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. No keywords are given or invalid syntax.
+    * 3a1. SpamEZ shows an error message.
+
+      Use case resumes at step 2.
 
 **Use case: Specify a preferred mode of contact for a contact**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User request to add a specific person with a preferred mode of contact
+4.  AddressBook adds the person
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.    
 
 
 **Use case: Blacklist a contact**
@@ -325,8 +357,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Assign a nickname to a contact**
+**Use case: Assign an optional remark to a contact**
 
+**MSS**
+
+1. User requests to list contacts.
+2. AddressBook shows a list of contacts.
+3. User requests to add an optional remark to a specific contact in the list.
+4. Addressbook adds the optional remark to the specific contact.
+5. Addressbook shows the updated list of contacts.
+   
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+  * 3a1. Addressbook shows an error message.
+    
+    Use case resumes at step 3.
+
+* 3b. The user enters details in the wrong format.
+
+    * 3b1. Addressbook shows an error message and the corect format.
+
+      Use case resumes at step 3.
+
+**Use case: Sort contacts by name**
+
+**MSS**
+
+1. User requests to sort the contact list by name in alphabetical order.
+2. AddressBook sorts the contact list.
+3. AddressBook displays the updated contact list.
+   
+   Use case ends.
 
 *{More to be added}*
 
@@ -359,15 +424,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -376,16 +441,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -393,6 +458,28 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Filtering the contacts
+
+1. Filter the list of contacts based on the keywords provided.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test case: `find n/Alex Bernice` <br>
+       Expected: A list of contacts whose name contains `Alex` **or** `Bernice`. The filter is case-insensitive, so `Alex` will match with `aLeX` too, for instance.
+
+    1. Test case: `find t/friends NEIGHBOUR` <br>
+       Expected: A list of contacts whose tags contain `friends` **or** `NEIGHBOUR`.
+
+    1. Test case: `find n/Alex Bernice t/friends neighbour` <br>
+       Expected: A list of contacts whose name contains `Alex` or `Bernice` **and** tags contains `friends` or `neighbour`.
+
+    1. Test case: `find` <br>
+       Expected: No filtering is done, and the original list is presented. Error details shown in the status message.
+
+    1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
+       Expected: Similar to previous.
+       

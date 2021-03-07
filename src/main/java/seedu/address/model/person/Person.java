@@ -19,22 +19,43 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Remark remark;
 
     // Data fields
     private final Address address;
+    private final ModeOfContact modeOfContact;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, ModeOfContact modeOfContact, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, modeOfContact, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.remark = new Remark("No remark");
+        this.modeOfContact = modeOfContact;
         this.tags.addAll(tags);
     }
+
+    /**
+     * Overloaded constructor that takes in one additional argument to add a remark to a person.
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark,
+                  ModeOfContact modeOfContact, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, remark, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.remark = remark;
+        this.modeOfContact = modeOfContact;
+        this.tags.addAll(tags);
+    }
+
 
     public Name getName() {
         return name;
@@ -50,6 +71,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Remark getRemark() {
+        return remark;
+    }
+
+    public ModeOfContact getModeOfContact() {
+        return modeOfContact;
     }
 
     /**
@@ -92,13 +121,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getRemark().equals(getRemark())
+                && otherPerson.getModeOfContact().equals(getModeOfContact())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, remark, modeOfContact, tags);
     }
 
     @Override
@@ -110,7 +141,11 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Remark: ")
+                .append(getRemark())
+                .append("; Mode Of Contact: ")
+                .append(getModeOfContact());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
