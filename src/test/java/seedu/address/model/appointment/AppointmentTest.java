@@ -2,6 +2,9 @@ package seedu.address.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MEET_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MEET_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_MEET_BOB;
 import static seedu.address.testutil.TypicalAppointments.MEET_ALEX;
 import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
 
@@ -22,19 +25,19 @@ public class AppointmentTest {
         assertFalse(MEET_ALEX.isSameAppointment(null));
 
         // same name and date, all other attributes different -> returns true
-        Appointment editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withRemark("A different remark").build();
+        Appointment editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withRemark(VALID_REMARK_MEET_BOB).build();
         assertTrue(MEET_ALEX.isSameAppointment(editedMeetAlex));
 
         // different name, all other attributes same -> returns false
-        editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withName("Meet Alex on another day").build();
+        editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withName(VALID_NAME_MEET_BOB).build();
         assertFalse(MEET_ALEX.isSameAppointment(editedMeetAlex));
 
         // different date, all other attributes same -> returns false
-        editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withDate(LocalDate.parse("2021-12-31")).build();
+        editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withDate(LocalDate.parse("2021-02-25")).build();
         assertFalse(MEET_ALEX.isSameAppointment(editedMeetAlex));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = "Meet Alex" + " ";
+        String nameWithTrailingSpaces = VALID_NAME_MEET_ALEX + " ";
         editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withName(nameWithTrailingSpaces).build();
         assertFalse(MEET_ALEX.isSameAppointment(editedMeetAlex));
     }
@@ -58,11 +61,11 @@ public class AppointmentTest {
         assertFalse(MEET_ALEX.equals(MEET_BOB));
 
         // different name -> returns false
-        Appointment editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withName("Meet Alex on another day").build();
+        Appointment editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withName(VALID_NAME_MEET_BOB).build();
         assertFalse(MEET_ALEX.equals(editedMeetAlex));
 
         // different remark -> returns false
-        editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withRemark("A different remark").build();
+        editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withRemark(VALID_REMARK_MEET_BOB).build();
         assertFalse(MEET_ALEX.equals(editedMeetAlex));
 
         // different date -> returns false

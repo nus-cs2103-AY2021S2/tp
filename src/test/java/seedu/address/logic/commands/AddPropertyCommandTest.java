@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 import seedu.address.testutil.PropertyBuilder;
@@ -157,6 +158,16 @@ public class AddPropertyCommandTest {
 
         @Override
         public void addProperty(Property property) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -2,6 +2,11 @@ package seedu.address.model.property;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BURGHLEY_DRIVE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGHLEY_DRIVE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MAYFAIR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_BURGHLEY_DRIVE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_DRIVE;
 import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 
@@ -22,20 +27,21 @@ public class PropertyTest {
         assertFalse(MAYFAIR.isSameProperty(null));
 
         // same address and postal code, all other attributes different -> returns true
-        Property editedMayfair = new PropertyBuilder(MAYFAIR).withName("Mayfair 2").withType("Landed")
-                .withDeadline(LocalDate.parse("2021-01-01")).build();
+        Property editedMayfair = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE)
+                .withType(VALID_TYPE_BURGHLEY_DRIVE).withDeadline(LocalDate.parse("2021-07-31"))
+                .build();
         assertTrue(MAYFAIR.isSameProperty(editedMayfair));
 
         // different address, all other attributes same -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withAddress("100 Jurong East Street 32, #01-01").build();
+        editedMayfair = new PropertyBuilder(MAYFAIR).withAddress(VALID_ADDRESS_BURGHLEY_DRIVE).build();
         assertFalse(MAYFAIR.isSameProperty(editedMayfair));
 
         // different postal, all other attributes same -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withPostal("731784").build();
+        editedMayfair = new PropertyBuilder(MAYFAIR).withPostal(VALID_POSTAL_BURGHLEY_DRIVE).build();
         assertFalse(MAYFAIR.isSameProperty(editedMayfair));
 
         // address has trailing spaces, all other attributes same -> returns false
-        String addressWithTrailingSpaces = "1 Jurong East Street 32, #08-111" + " ";
+        String addressWithTrailingSpaces = VALID_NAME_MAYFAIR + " ";
         editedMayfair = new PropertyBuilder(MAYFAIR).withAddress(addressWithTrailingSpaces).build();
         assertFalse(MAYFAIR.isSameProperty(editedMayfair));
     }
@@ -59,23 +65,24 @@ public class PropertyTest {
         assertFalse(MAYFAIR.equals(BURGHLEY_DRIVE));
 
         // different name -> returns false
-        Property editedMayfair = new PropertyBuilder(MAYFAIR).withName("Burghley Drive").build();
+        Property editedMayfair = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE).build();
         assertFalse(MAYFAIR.equals(editedMayfair));
 
         // different type -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withType("Hdb").build();
+        editedMayfair = new PropertyBuilder(MAYFAIR).withType(VALID_TYPE_BURGHLEY_DRIVE).build();
         assertFalse(MAYFAIR.equals(editedMayfair));
 
         // different address -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withAddress("12 Burghley Drive").build();
+        editedMayfair = new PropertyBuilder(MAYFAIR).withAddress(VALID_ADDRESS_BURGHLEY_DRIVE).build();
         assertFalse(MAYFAIR.equals(editedMayfair));
 
         // different postal -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withPostal("123456").build();
+        editedMayfair = new PropertyBuilder(MAYFAIR).withPostal(VALID_POSTAL_BURGHLEY_DRIVE).build();
         assertFalse(MAYFAIR.equals(editedMayfair));
 
         // different deadline -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withDeadline(LocalDate.parse("2021-07-31")).build();
+        editedMayfair = new PropertyBuilder(MAYFAIR).withDeadline(LocalDate.parse("2021-07-31"))
+                .build();
         assertFalse(MAYFAIR.equals(editedMayfair));
     }
 }
