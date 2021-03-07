@@ -7,7 +7,7 @@ import seedu.address.model.person.Answer;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.Question;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.LocalDatabasePopulator;
 
 /**
  * A utility class to help with building Flashcard objects.
@@ -43,7 +43,7 @@ public class FlashcardBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Flashcard} that we are building.
      */
     public FlashcardBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = LocalDatabasePopulator.getTagSet(tags);
         return this;
     }
 
