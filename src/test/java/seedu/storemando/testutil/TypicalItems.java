@@ -23,23 +23,23 @@ import seedu.storemando.model.item.Item;
  */
 public class TypicalItems {
 
-    public static final Item ALICE = new ItemBuilder().withName("Chocolate Milk")
+    public static final Item MILK = new ItemBuilder().withName("Chocolate Milk")
         .withLocation("Freezer").withExpiryDate("2021-08-03")
         .withQuantity("10")
         .withTags("Expiring").build();
-    public static final Item BENSON = new ItemBuilder().withName("Bread")
+    public static final Item BREAD = new ItemBuilder().withName("Bread")
         .withLocation("Dining Table")
         .withExpiryDate("2020-08-08").withQuantity("1")
         .withTags("Expiring", "Favourite").build();
-    public static final Item CARL = new ItemBuilder().withName("Oil").withQuantity("1")
+    public static final Item OIL = new ItemBuilder().withName("Oil").withQuantity("1")
         .withExpiryDate("2023-10-10").withLocation("Kitchen drawer").build();
-    public static final Item DANIEL = new ItemBuilder().withName("Cadbury").withQuantity("2")
+    public static final Item CADBURY = new ItemBuilder().withName("Cadbury").withQuantity("2")
         .withExpiryDate("2020-10-10").withLocation("Bedroom").withTags("Melt").build();
-    public static final Item ELLE = new ItemBuilder().withName("Nescafe Powder").withQuantity("1")
+    public static final Item NESCAFE = new ItemBuilder().withName("Nescafe Powder").withQuantity("1")
         .withExpiryDate("2020-10-10").withLocation("Kitchen drawer").build();
-    public static final Item FIONA = new ItemBuilder().withName("Lipton Tea Sachets").withQuantity("30")
+    public static final Item LIPTON = new ItemBuilder().withName("Lipton Tea Sachets").withQuantity("30")
         .withExpiryDate("2020-10-10").withLocation("Kitchen Cabinet").build();
-    public static final Item GEORGE = new ItemBuilder().withName("Instant Prata").withQuantity("20")
+    public static final Item PRATA = new ItemBuilder().withName("Instant Prata").withQuantity("20")
         .withExpiryDate("2021-10-08").withLocation("Freezer").build();
 
     // Manually added
@@ -74,6 +74,6 @@ public class TypicalItems {
     }
 
     public static List<Item> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(MILK, BREAD, OIL, CADBURY, NESCAFE, LIPTON, PRATA));
     }
 }

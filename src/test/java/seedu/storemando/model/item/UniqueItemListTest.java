@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.ALICE;
+import static seedu.storemando.testutil.TypicalItems.MILK;
 import static seedu.storemando.testutil.TypicalItems.BOB;
 
 import java.util.Arrays;
@@ -30,19 +30,19 @@ public class UniqueItemListTest {
 
     @Test
     public void contains_itemNotInList_returnsFalse() {
-        assertFalse(uniqueItemList.contains(ALICE));
+        assertFalse(uniqueItemList.contains(MILK));
     }
 
     @Test
     public void contains_itemInList_returnsTrue() {
-        uniqueItemList.add(ALICE);
-        assertTrue(uniqueItemList.contains(ALICE));
+        uniqueItemList.add(MILK);
+        assertTrue(uniqueItemList.contains(MILK));
     }
 
     @Test
     public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueItemList.add(ALICE);
-        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
+        uniqueItemList.add(MILK);
+        Item editedAlice = new ItemBuilder(MILK).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
         assertTrue(uniqueItemList.contains(editedAlice));
     }
@@ -54,40 +54,40 @@ public class UniqueItemListTest {
 
     @Test
     public void add_duplicateItem_throwsDuplicateItemException() {
-        uniqueItemList.add(ALICE);
-        assertThrows(DuplicateItemException.class, () -> uniqueItemList.add(ALICE));
+        uniqueItemList.add(MILK);
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.add(MILK));
     }
 
     @Test
     public void setItem_nullTargetItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(null, MILK));
     }
 
     @Test
     public void setItem_nullEditedItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(MILK, null));
     }
 
     @Test
     public void setItem_targetItemNotInList_throwsItemNotFoundException() {
-        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.setItem(ALICE, ALICE));
+        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.setItem(MILK, MILK));
     }
 
     @Test
     public void setItem_editedItemIsSameItem_success() {
-        uniqueItemList.add(ALICE);
-        uniqueItemList.setItem(ALICE, ALICE);
+        uniqueItemList.add(MILK);
+        uniqueItemList.setItem(MILK, MILK);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(ALICE);
+        expectedUniqueItemList.add(MILK);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
     public void setItem_editedItemHasSameIdentity_success() {
-        uniqueItemList.add(ALICE);
-        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
+        uniqueItemList.add(MILK);
+        Item editedAlice = new ItemBuilder(MILK).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
-        uniqueItemList.setItem(ALICE, editedAlice);
+        uniqueItemList.setItem(MILK, editedAlice);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
         expectedUniqueItemList.add(editedAlice);
         assertEquals(expectedUniqueItemList, uniqueItemList);
@@ -95,8 +95,8 @@ public class UniqueItemListTest {
 
     @Test
     public void setItem_editedItemHasDifferentIdentity_success() {
-        uniqueItemList.add(ALICE);
-        uniqueItemList.setItem(ALICE, BOB);
+        uniqueItemList.add(MILK);
+        uniqueItemList.setItem(MILK, BOB);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
         expectedUniqueItemList.add(BOB);
         assertEquals(expectedUniqueItemList, uniqueItemList);
@@ -104,9 +104,9 @@ public class UniqueItemListTest {
 
     @Test
     public void setItem_editedItemHasNonUniqueIdentity_throwsDuplicateItemException() {
-        uniqueItemList.add(ALICE);
+        uniqueItemList.add(MILK);
         uniqueItemList.add(BOB);
-        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(ALICE, BOB));
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(MILK, BOB));
     }
 
     @Test
@@ -116,13 +116,13 @@ public class UniqueItemListTest {
 
     @Test
     public void remove_itemDoesNotExist_throwsItemNotFoundException() {
-        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.remove(ALICE));
+        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.remove(MILK));
     }
 
     @Test
     public void remove_existingItem_removesItem() {
-        uniqueItemList.add(ALICE);
-        uniqueItemList.remove(ALICE);
+        uniqueItemList.add(MILK);
+        uniqueItemList.remove(MILK);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
@@ -134,7 +134,7 @@ public class UniqueItemListTest {
 
     @Test
     public void setItems_uniqueItemList_replacesOwnListWithProvidedUniqueItemList() {
-        uniqueItemList.add(ALICE);
+        uniqueItemList.add(MILK);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
         expectedUniqueItemList.add(BOB);
         uniqueItemList.setItems(expectedUniqueItemList);
@@ -148,7 +148,7 @@ public class UniqueItemListTest {
 
     @Test
     public void setItems_list_replacesOwnListWithProvidedList() {
-        uniqueItemList.add(ALICE);
+        uniqueItemList.add(MILK);
         List<Item> itemList = Collections.singletonList(BOB);
         uniqueItemList.setItems(itemList);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
@@ -158,7 +158,7 @@ public class UniqueItemListTest {
 
     @Test
     public void setItems_listWithDuplicateItems_throwsDuplicateItemException() {
-        List<Item> listWithDuplicateItems = Arrays.asList(ALICE, ALICE);
+        List<Item> listWithDuplicateItems = Arrays.asList(MILK, MILK);
         assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItems(listWithDuplicateItems));
     }
 
