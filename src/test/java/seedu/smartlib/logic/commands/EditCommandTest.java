@@ -122,7 +122,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReaderList().size() + 1);
-        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder()
+                .withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX);
