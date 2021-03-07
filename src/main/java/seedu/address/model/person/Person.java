@@ -17,26 +17,20 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
 
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Set<Tag> tags) {
-        requireAllNonNull(name, phone, tags);
+    public Person(Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
         this.name = name;
-        this.phone = phone;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
-    }
-
-    public Phone getPhone() {
-        return phone;
     }
 
     /**
@@ -76,22 +70,19 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, tags);
+        return Objects.hash(name, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone());
+        builder.append(getName());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
