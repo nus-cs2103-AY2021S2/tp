@@ -1,4 +1,4 @@
-package seedu.address.model.property.util;
+package seedu.address.model.util;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;

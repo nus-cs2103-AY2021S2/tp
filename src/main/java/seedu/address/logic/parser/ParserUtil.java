@@ -19,7 +19,7 @@ import seedu.address.model.property.Name;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Remark;
 import seedu.address.model.property.Type;
-import seedu.address.model.property.util.DateFormat;
+import seedu.address.model.util.DateFormat;
 import seedu.address.model.tag.Tag;
 
 /**

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import seedu.address.model.property.util.DateFormat;
+import seedu.address.model.util.DateFormat;
 
 /**
  * Represents a Property's deadline for selling.
