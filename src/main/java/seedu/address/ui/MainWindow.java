@@ -110,6 +110,15 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
+        // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        // can have a separate Panel here for the quiz mode, structure similar to learn mode
+        // problem is fillInnerParts() is called in UiManager start method when the app starts,
+        // need to find a way to alternate between the two panels
+
+        // display the panel for learn mode, which shows the flashcards
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
@@ -192,5 +201,12 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Displays greetings message in status bar.
+     */
+    public void displayGreetings() {
+        resultDisplay.greetUser();
     }
 }
