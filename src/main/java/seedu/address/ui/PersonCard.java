@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -33,13 +30,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label matriculationNumber;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label vaccinationStatus;
     @FXML
-    private FlowPane tags;
+    private Label email;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,12 +48,13 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        //to be added in the future when the space in the PersonCard is added
+        //matriculationNumber.setText(person.getMatriculationNumber().value);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
+        //to be added in the future when the space in the PersonCard is added
+        //vaccinationStatus.setText(person.getVaccinationStatus().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

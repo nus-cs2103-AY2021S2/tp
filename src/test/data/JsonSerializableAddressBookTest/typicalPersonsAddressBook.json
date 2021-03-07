@@ -2,45 +2,66 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
+    "matriculationNumber" : "A3456789D",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "vaccinationStatus" : "not vaccinated",
+    "medicalDetails" : "shellfish allergy",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Benson Meier",
+    "matriculationNumber" : "A4567890E",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "vaccinationStatus" : "not vaccinated",
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Carl Kurz",
+    "matriculationNumber" : "A5678901F",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "vaccinationStatus" : "vaccinated",
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Daniel Meier",
+    "matriculationNumber" : "A6789012G",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "vaccinationStatus" : "vaccinated",
+    "medicalDetails" : "pollen allergy",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Elle Meyer",
+    "matriculationNumber" : "A7890123H",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "vaccinationStatus" : "not vaccinated",
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "Fiona Kunz",
+    "matriculationNumber" : "A8901234I",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "vaccinationStatus" : "vaccinated",
+    "medicalDetails" : "bee sting allergy",
+    "schoolResidence" : "RVRC"
   }, {
     "name" : "George Best",
+    "matriculationNumber" : "A9012345J",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
+    "vaccinationStatus" : "not vaccinated",
+    "medicalDetails" : "none",
+    "schoolResidence" : "RVRC"
   } ]
 }
