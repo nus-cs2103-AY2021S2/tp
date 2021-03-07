@@ -1,13 +1,13 @@
 package dog.pawbook.logic;
 
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_OWNER_DISPLAYED_INDEX;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static dog.pawbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalPersons.AMY;
+import static dog.pawbook.testutil.TypicalOwners.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -26,11 +26,11 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.UserPrefs;
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 import dog.pawbook.storage.JsonAddressBookStorage;
 import dog.pawbook.storage.JsonUserPrefsStorage;
 import dog.pawbook.storage.StorageManager;
-import dog.pawbook.testutil.PersonBuilder;
+import dog.pawbook.testutil.OwnerBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -59,7 +59,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_OWNER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -81,16 +81,16 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Owner expectedOwner = new OwnerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addOwner(expectedOwner);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredOwnerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOwnerList().remove(0));
     }
 
     /**

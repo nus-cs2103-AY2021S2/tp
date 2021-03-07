@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import dog.pawbook.logic.commands.AddCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
-import dog.pawbook.model.person.Address;
-import dog.pawbook.model.person.Email;
-import dog.pawbook.model.person.Name;
-import dog.pawbook.model.person.Person;
-import dog.pawbook.model.person.Phone;
+import dog.pawbook.model.owner.Address;
+import dog.pawbook.model.owner.Email;
+import dog.pawbook.model.owner.Name;
+import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.owner.Phone;
 import dog.pawbook.model.tag.Tag;
 
 /**
@@ -44,9 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Owner owner = new Owner(name, phone, email, address, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(owner);
     }
 
     /**

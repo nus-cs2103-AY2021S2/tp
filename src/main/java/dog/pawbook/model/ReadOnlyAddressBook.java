@@ -1,6 +1,6 @@
 package dog.pawbook.model;
 
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 import javafx.collections.ObservableList;
 
 /**
@@ -9,9 +9,9 @@ import javafx.collections.ObservableList;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the owners list.
+     * This list will not contain any duplicate owners.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Owner> getOwnerList();
 
 }

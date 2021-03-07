@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.ReadOnlyAddressBook;
-import dog.pawbook.model.person.Person;
+import dog.pawbook.model.owner.Owner;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +19,16 @@ import dog.pawbook.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_OWNER = "Owners list contains duplicate owner(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedOwner> owners = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given owners.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("owners") List<JsonAdaptedOwner> owners) {
+        this.owners.addAll(owners);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        owners.addAll(source.getOwnerList().stream().map(JsonAdaptedOwner::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedOwner jsonAdaptedOwner : owners) {
+            Owner owner = jsonAdaptedOwner.toModelType();
+            if (addressBook.hasOwner(owner)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_OWNER);
             }
-            addressBook.addPerson(person);
+            addressBook.addOwner(owner);
         }
         return addressBook;
     }
