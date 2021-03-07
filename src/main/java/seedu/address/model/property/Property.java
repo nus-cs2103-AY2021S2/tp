@@ -5,6 +5,10 @@ import java.util.Objects;
 import seedu.address.model.name.Name;
 import seedu.address.model.remark.Remark;
 
+/**
+ * Represents a Property in the property book.
+ * Guarantees: field values are validated, immutable.
+ */
 public class Property {
     // Mandatory fields
     private final Name name;

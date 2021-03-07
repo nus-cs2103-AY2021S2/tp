@@ -5,6 +5,10 @@ import java.util.Objects;
 import seedu.address.model.name.Name;
 import seedu.address.model.remark.Remark;
 
+/**
+ * Represents an Appointment in the appointment book.
+ * Guarantees: field values are validated, immutable.
+ */
 public class Appointment {
     // Mandatory fields
     private final Name name;

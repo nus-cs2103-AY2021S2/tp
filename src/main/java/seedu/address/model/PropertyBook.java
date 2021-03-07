@@ -7,6 +7,10 @@ import java.util.List;
 
 import seedu.address.model.property.Property;
 
+/**
+ * Wraps all data at the property-book level.
+ * Duplicates are not allowed (by .isSameProperty comparison).
+ */
 public class PropertyBook {
     private final List<Property> properties;
 

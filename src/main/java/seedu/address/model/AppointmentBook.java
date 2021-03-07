@@ -7,6 +7,10 @@ import java.util.List;
 
 import seedu.address.model.appointment.Appointment;
 
+/**
+ * Wraps all data at the appointment-book level.
+ * Duplicates are not allowed (by .isSameAppointment comparison).
+ */
 public class AppointmentBook {
     private final List<Appointment> appointments;
 
