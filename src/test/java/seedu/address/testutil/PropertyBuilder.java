@@ -2,9 +2,9 @@ package seedu.address.testutil;
 
 import java.time.LocalDate;
 
+import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
-import seedu.address.model.property.Name;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;

@@ -2,6 +2,8 @@ package seedu.address.model.appointment;
 
 import java.util.Objects;
 
+import seedu.address.model.name.Name;
+
 public class Appointment {
     // Mandatory fields
     private final Name name;

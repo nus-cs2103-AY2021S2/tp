@@ -1,40 +1,40 @@
-package seedu.address.model.appointment;
+package seedu.address.model.name;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Appointment's name.
+ * Represents a name.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}.
  */
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
-            "Appointment names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the appointment name must not be a whitespace,
+     * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String appointmentName;
+    public final String name;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param appointmentName A valid name.
+     * @param name A valid name.
      */
-    public Name(String appointmentName) {
-        requireNonNull(appointmentName);
-        checkArgument(isValidName(appointmentName), MESSAGE_CONSTRAINTS);
-        this.appointmentName = appointmentName;
+    public Name(String name) {
+        requireNonNull(name);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        this.name = name;
     }
 
     /**
-     * Returns true if a given string is a valid appointment name.
+     * Returns true if a given string is a valid name.
      *
      * @param test The string to test.
-     * @return True if the given string is a valid appointment name, otherwise false.
+     * @return True if the given string is a valid name, otherwise false.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -42,7 +42,7 @@ public class Name {
 
     @Override
     public String toString() {
-        return appointmentName;
+        return name;
     }
 
     @Override
@@ -54,11 +54,11 @@ public class Name {
             return false;
         }
         Name otherName = (Name) other;
-        return appointmentName.equals(otherName.appointmentName);
+        return name.equals(otherName.name);
     }
 
     @Override
     public int hashCode() {
-        return appointmentName.hashCode();
+        return name.hashCode();
     }
 }

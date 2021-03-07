@@ -2,6 +2,8 @@ package seedu.address.model.property;
 
 import java.util.Objects;
 
+import seedu.address.model.name.Name;
+
 public class Property {
     // Mandatory fields
     private final Name name;
