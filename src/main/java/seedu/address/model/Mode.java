@@ -1,4 +1,4 @@
-package seedu.address.commons.core;
+package seedu.address.model;
 
 /**
  * Container for the current mode of WeebLingo.
