@@ -21,7 +21,7 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
-    private final String parentPhone;
+    private final String guardianPhone;
     private final String relationship;
 
     /**
@@ -29,13 +29,13 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-        @JsonProperty("email") String email, @JsonProperty("address") String address,
-        @JsonProperty("parentPhone") String parentPhone, @JsonProperty("relationship") String relationship) {
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("guardianPhone") String guardianPhone, @JsonProperty("relationship") String relationship) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.parentPhone = parentPhone;
+        this.guardianPhone = guardianPhone;
         this.relationship = relationship;
     }
 
@@ -47,7 +47,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        parentPhone = source.getParentPhone().value;
+        guardianPhone = source.getGuardianPhone().value;
         relationship = source.getRelationship();
     }
 
@@ -90,13 +90,13 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
-        if (parentPhone == null) {
+        if (guardianPhone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(parentPhone)) {
+        if (!Phone.isValidPhone(guardianPhone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelParentPhone = new Phone(parentPhone);
+        final Phone modelGuardianPhone = new Phone(guardianPhone);
 
         if (relationship == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "relationship"));
@@ -104,7 +104,7 @@ class JsonAdaptedStudent {
 
         final String modelRelationship = relationship;
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelRelationship);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelGuardianPhone, modelRelationship);
     }
 
 }

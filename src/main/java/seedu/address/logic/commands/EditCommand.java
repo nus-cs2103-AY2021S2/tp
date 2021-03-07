@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -38,7 +38,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_PARENT_PHONE + "PARENT PHONE] "
+            + "[" + PREFIX_GUARDIAN_PHONE + "GUARDIAN PHONE] "
             + "[" + PREFIX_RELATIONSHIP + "RELATIONSHIP] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -95,11 +95,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Phone updatedParentPhone = editStudentDescriptor.getParentPhone().orElse(studentToEdit.getParentPhone());
+        Phone updatedGuardianPhone = editStudentDescriptor.getGuardianPhone().orElse(studentToEdit.getGuardianPhone());
         String updatedRelationship = editStudentDescriptor.getRelationship().orElse(studentToEdit.getRelationship());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress,
-            updatedParentPhone, updatedRelationship);
+            updatedGuardianPhone, updatedRelationship);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Phone parentPhone;
+        private Phone guardianPhone;
         private String relationship;
 
         public EditStudentDescriptor() {}
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setParentPhone(toCopy.parentPhone);
+            setGuardianPhone(toCopy.guardianPhone);
             setRelationship(toCopy.relationship);
         }
 
@@ -185,12 +185,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setParentPhone(Phone parentPhone) {
-            this.parentPhone = parentPhone;
+        public void setGuardianPhone(Phone guardianPhone) {
+            this.guardianPhone = guardianPhone;
         }
 
-        public Optional<Phone> getParentPhone() {
-            return Optional.ofNullable(parentPhone);
+        public Optional<Phone> getGuardianPhone() {
+            return Optional.ofNullable(guardianPhone);
         }
 
         public void setRelationship(String relationship) {

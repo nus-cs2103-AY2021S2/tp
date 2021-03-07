@@ -91,14 +91,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String parentPhone} into a {@code parentPhone}.
+     * Parses a {@code String guardianPhone} into a {@code guardianPhone}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parseParentPhone(String parentPhone) throws ParseException {
-        requireNonNull(parentPhone);
-        String trimmedPhone = parentPhone.trim();
+    public static Phone parseGuardianPhone(String guardianPhone) throws ParseException {
+        requireNonNull(guardianPhone);
+        String trimmedPhone = guardianPhone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }

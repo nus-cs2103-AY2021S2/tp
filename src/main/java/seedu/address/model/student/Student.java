@@ -17,19 +17,19 @@ public class Student {
 
     // Data fields
     private final Address address;
-    private final Phone parentPhone;
+    private final Phone guardianPhone;
     private final String relationship;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Phone parentPhone, String relationship) {
-        requireAllNonNull(name, phone, email, address, parentPhone, relationship);
+    public Student(Name name, Phone phone, Email email, Address address, Phone guardianPhone, String relationship) {
+        requireAllNonNull(name, phone, email, address, guardianPhone, relationship);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.parentPhone = parentPhone;
+        this.guardianPhone = guardianPhone;
         this.relationship = relationship;
     }
 
@@ -49,8 +49,8 @@ public class Student {
         return address;
     }
 
-    public Phone getParentPhone() {
-        return parentPhone;
+    public Phone getGuardianPhone() {
+        return guardianPhone;
     }
 
     public String getRelationship() {
@@ -107,8 +107,8 @@ public class Student {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Parent Phone: ")
-                .append(getParentPhone())
+                .append("; Guardian Phone: ")
+                .append(getGuardianPhone())
                 .append("; Relationship: ")
                 .append(getRelationship());
 
