@@ -44,6 +44,32 @@ public class Module {
         return grade;
     }
 
+    public boolean isSameModule(Module otherModule) {
+        if (this == otherModule) {
+            return true;
+        }
+        return otherModule != null
+                && otherModule.getModuleCode().equals(getModuleCode())
+                && otherModule.getModuleTitle().equals(getModuleTitle());
+    }
+
+    @Override
+    public boolean equals (Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Module)) {
+            return false
+        }
+
+        Module otherModule = (Module) other;
+        return otherModule.getModuleTitle().equals(getModuleTitle())
+                && otherModule.getModuleCode().equals(getModuleCode())
+                && otherModule.getMCs() == getMCs()
+                && otherModule.getDescriptions().equals(getDescriptions());
+    }
+
     /**
      * mark module as done and give it a grade
      */
