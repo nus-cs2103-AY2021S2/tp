@@ -31,14 +31,18 @@ public class ItemTest {
         // null -> returns false
         assertFalse(ALICE.isSameItem(null));
 
-        // same name, all other attributes different -> returns true
+        // same name and location, all other attributes different -> returns true
 
         Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB)
-            .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
+            .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameItem(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new ItemBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.isSameItem(editedAlice));
+
+        // different location, all other attributes same -> returns false
+        editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BOB).build();
         assertFalse(ALICE.isSameItem(editedAlice));
 
         // name differs in case, all other attributes same -> returns false

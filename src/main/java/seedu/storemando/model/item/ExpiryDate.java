@@ -77,6 +77,10 @@ public class ExpiryDate {
 
     @Override
     public String toString() {
+        return value;
+    }
+
+    public String toFormattedString() {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 

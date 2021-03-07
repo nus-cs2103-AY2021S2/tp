@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.ALICE;
@@ -42,7 +43,7 @@ public class UniqueItemListTest {
     @Test
     public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
         uniqueItemList.add(ALICE);
-        Item editedAlice = new ItemBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
+        Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         assertTrue(uniqueItemList.contains(editedAlice));
     }

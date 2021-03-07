@@ -52,7 +52,7 @@ public class ItemCard extends UiPart<Region> {
         quantity.setText(item.getQuantity().value);
         locations.setText(item.getLocation().value);
         if (item.getExpiryDate().getDate() != null) {
-            expiryDate.setText(item.getExpiryDate().toString());
+            expiryDate.setText(item.getExpiryDate().toFormattedString());
         }
         item.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))

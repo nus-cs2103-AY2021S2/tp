@@ -70,8 +70,8 @@ public class Item {
         }
 
         return otherItem != null
-            && otherItem.getItemName().equals(getItemName())
-            && otherItem.getLocation().equals(getLocation());
+            && otherItem.getItemName().equals(this.getItemName())
+            && otherItem.getLocation().equals(this.getLocation());
     }
 
     /**
