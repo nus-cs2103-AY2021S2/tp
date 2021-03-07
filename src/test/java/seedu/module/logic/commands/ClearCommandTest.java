@@ -5,9 +5,9 @@ import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.module.model.ModuleBook;
 import seedu.module.model.Model;
 import seedu.module.model.ModelManager;
+import seedu.module.model.ModuleBook;
 import seedu.module.model.UserPrefs;
 
 public class ClearCommandTest {

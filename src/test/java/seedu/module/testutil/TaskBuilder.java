@@ -3,9 +3,12 @@ package seedu.module.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.module.model.task.*;
-import seedu.module.model.task.Task;
 import seedu.module.model.tag.Tag;
+import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Description;
+import seedu.module.model.task.Module;
+import seedu.module.model.task.Name;
+import seedu.module.model.task.Task;
 import seedu.module.model.util.SampleDataUtil;
 
 /**

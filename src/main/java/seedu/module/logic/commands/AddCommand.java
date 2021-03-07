@@ -1,10 +1,10 @@
 package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.module.logic.commands.exceptions.CommandException;

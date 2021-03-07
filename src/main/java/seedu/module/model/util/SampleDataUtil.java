@@ -6,10 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.module.model.ModuleBook;
 import seedu.module.model.ReadOnlyModuleBook;
-import seedu.module.model.task.*;
-import seedu.module.model.task.Module;
-import seedu.module.model.task.Task;
 import seedu.module.model.tag.Tag;
+import seedu.module.model.task.Deadline;
+import seedu.module.model.task.Description;
+import seedu.module.model.task.Module;
+import seedu.module.model.task.Name;
+import seedu.module.model.task.Task;
 
 /**
  * Contains utility methods for populating {@code ModuleBook} with sample data.

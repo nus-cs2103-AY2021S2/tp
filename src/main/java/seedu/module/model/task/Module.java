@@ -9,7 +9,7 @@ import static seedu.module.commons.util.AppUtil.checkArgument;
  */
 public class Module {
 
-    public static final String MESSAGE_CONSTRAINTS = "Modules should be of the format {MAJOR_NAME}{MODULE_CODE}{IS_PLUS}"
+    public static final String MESSAGE_CONSTRAINTS = "Modules should be formatted as {MAJOR_NAME}{MODULE_CODE}{IS_PLUS}"
             + "and adhere to the following constraints:\n"
             + "1. The {MAJOR_NAME} should only contain 2 or 3 capital letter.\n"
             + "2. This is followed by {MODULE_CODE}. "

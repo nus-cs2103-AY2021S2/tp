@@ -2,8 +2,8 @@ package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.module.model.ModuleBook;
 import seedu.module.model.Model;
+import seedu.module.model.ModuleBook;
 
 /**
  * Clears the module book.

@@ -3,25 +3,25 @@ package seedu.module.logic.parser;
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.module.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.module.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
+import static seedu.module.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
+import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
+import static seedu.module.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
@@ -36,11 +36,11 @@ import org.junit.jupiter.api.Test;
 import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.module.model.tag.Tag;
+import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
-import seedu.module.model.task.Deadline;
-import seedu.module.model.tag.Tag;
 import seedu.module.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -101,8 +101,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_MODULE_DESC + VALID_ADDRESS_AMY + VALID_DEADLINE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_MODULE_DESC
+                + VALID_ADDRESS_AMY + VALID_DEADLINE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -173,7 +173,8 @@ public class EditCommandParserTest {
                 + DEADLINE_DESC_BOB + ADDRESS_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
-                .withModule(VALID_MODULE_BOB).withDescription(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withModule(VALID_MODULE_BOB).withDescription(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
