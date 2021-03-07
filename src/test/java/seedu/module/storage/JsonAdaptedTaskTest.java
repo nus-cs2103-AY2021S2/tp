@@ -3,7 +3,7 @@ package seedu.module.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.module.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.module.testutil.Assert.assertThrows;
-import static seedu.module.testutil.TypicalTasks.BENSON;
+import static seedu.module.testutil.TypicalTasks.MIDTERM;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,18 +24,18 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_MODULE = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
-    private static final String VALID_MODULE = BENSON.getModule().toString();
-    private static final String VALID_ADDRESS = BENSON.getDescription().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_NAME = MIDTERM.getName().toString();
+    private static final String VALID_DEADLINE = MIDTERM.getDeadline().toString();
+    private static final String VALID_MODULE = MIDTERM.getModule().toString();
+    private static final String VALID_ADDRESS = MIDTERM.getDescription().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = MIDTERM.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
-        JsonAdaptedTask task = new JsonAdaptedTask(BENSON);
-        assertEquals(BENSON, task.toModelType());
+        JsonAdaptedTask task = new JsonAdaptedTask(MIDTERM);
+        assertEquals(MIDTERM, task.toModelType());
     }
 
     @Test

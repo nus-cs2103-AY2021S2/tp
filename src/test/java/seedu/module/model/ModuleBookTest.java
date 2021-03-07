@@ -3,10 +3,10 @@ package seedu.module.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.module.testutil.Assert.assertThrows;
-import static seedu.module.testutil.TypicalTasks.ALICE;
+import static seedu.module.testutil.TypicalTasks.QUIZ;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class ModuleBookTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withDescription(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
+        List<Task> newTasks = Arrays.asList(QUIZ, editedAlice);
         ModuleBookStub newData = new ModuleBookStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> moduleBook.resetData(newData));
@@ -61,19 +61,19 @@ public class ModuleBookTest {
 
     @Test
     public void hasTask_taskNotInModuleBook_returnsFalse() {
-        assertFalse(moduleBook.hasTask(ALICE));
+        assertFalse(moduleBook.hasTask(QUIZ));
     }
 
     @Test
     public void hasTask_taskInModuleBook_returnsTrue() {
-        moduleBook.addTask(ALICE);
-        assertTrue(moduleBook.hasTask(ALICE));
+        moduleBook.addTask(QUIZ);
+        assertTrue(moduleBook.hasTask(QUIZ));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInModuleBook_returnsTrue() {
-        moduleBook.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withDescription(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        moduleBook.addTask(QUIZ);
+        Task editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(moduleBook.hasTask(editedAlice));
     }

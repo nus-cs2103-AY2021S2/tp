@@ -1,9 +1,9 @@
 package seedu.module.testutil;
 
-import static seedu.module.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -23,36 +23,43 @@ import seedu.module.model.task.Task;
  */
 public class TypicalTasks {
 
-    public static final Task ALICE = new TaskBuilder().withName("Alice Pauline")
-            .withDescription("123, Jurong West Ave 6, #08-111").withModule("alice@example.com")
-            .withDeadline("94351253")
-            .withTags("friends").build();
-    public static final Task BENSON = new TaskBuilder().withName("Benson Meier")
-            .withDescription("311, Clementi Ave 2, #02-25")
-            .withModule("johnd@example.com").withDeadline("98765432")
-            .withTags("owesMoney", "friends").build();
-    public static final Task CARL = new TaskBuilder().withName("Carl Kurz").withDeadline("95352563")
-            .withModule("heinz@example.com").withDescription("wall street").build();
-    public static final Task DANIEL = new TaskBuilder().withName("Daniel Meier").withDeadline("87652533")
-            .withModule("cornelia@example.com").withDescription("10th street").withTags("friends").build();
-    public static final Task ELLE = new TaskBuilder().withName("Elle Meyer").withDeadline("9482224")
-            .withModule("werner@example.com").withDescription("michegan ave").build();
-    public static final Task FIONA = new TaskBuilder().withName("Fiona Kunz").withDeadline("9482427")
-            .withModule("lydia@example.com").withDescription("little tokyo").build();
-    public static final Task GEORGE = new TaskBuilder().withName("George Best").withDeadline("9482442")
-            .withModule("anna@example.com").withDescription("4th street").build();
+    public static final Task QUIZ = new TaskBuilder().withName("Quiz")
+            .withDescription("About Artificial Intelligence.").withModule("CS3243")
+            .withDeadline("2021-02-01 12:00")
+            .withTags("medianPriority").build();
+    public static final Task MIDTERM = new TaskBuilder().withName("Midterm")
+            .withDescription("Not include CSP.")
+            .withModule("CS3243").withDeadline("2021-03-06 08:30")
+            .withTags("highPriority").build();
+    public static final Task TP = new TaskBuilder().withName("TP")
+            .withDeadline("2021-03-14 14:00")
+            .withModule("CS2103T").withDescription("Wrap up v1.2.").build();
+    public static final Task TUTORIAL = new TaskBuilder().withName("Tutorial")
+            .withDeadline("2021-03-02 23:59")
+            .withModule("ST2131").withDescription("Try to get full mark.").withTags("easy").build();
+    public static final Task PROJECT = new TaskBuilder().withName("Project")
+            .withDeadline("2021-02-28 23:59")
+            .withModule("CS3243").withDescription("This is really challenging.").build();
+    public static final Task PAQ = new TaskBuilder().withName("PAQ")
+            .withDeadline("2021-03-05 23:59")
+            .withModule("IS1103").withDescription("Strange questions.").build();
+    public static final Task OP = new TaskBuilder().withName("OP 2")
+            .withDeadline("2021-04-02 23:59")
+            .withModule("CS2101").withDescription("Need to divide ourselves into two groups.").build();
 
     // Manually added
-    public static final Task HOON = new TaskBuilder().withName("Hoon Meier").withDeadline("8482424")
-            .withModule("stefan@example.com").withDescription("little india").build();
-    public static final Task IDA = new TaskBuilder().withName("Ida Mueller").withDeadline("8482131")
-            .withModule("hans@example.com").withDescription("chicago ave").build();
+    public static final Task MISSION = new TaskBuilder().withName("Mission")
+            .withDeadline("2021-03-05 23:59")
+            .withModule("IS1103").withDescription("Strange questions.").build();
+    public static final Task FINAL = new TaskBuilder().withName("Final")
+            .withDeadline("2021-04-29 23:59")
+            .withModule("ST2131").withDescription("Let's go!").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withName(VALID_NAME_AMY).withDeadline(VALID_DEADLINE_AMY)
-            .withModule(VALID_MODULE_AMY).withDescription(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Task BOB = new TaskBuilder().withName(VALID_NAME_BOB).withDeadline(VALID_DEADLINE_BOB)
-            .withModule(VALID_MODULE_BOB).withDescription(VALID_ADDRESS_BOB)
+            .withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
@@ -72,6 +79,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(QUIZ, MIDTERM, TP, TUTORIAL, PROJECT, PAQ, OP));
     }
 }

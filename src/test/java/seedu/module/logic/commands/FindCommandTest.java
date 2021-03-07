@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.module.testutil.TypicalTasks.CARL;
-import static seedu.module.testutil.TypicalTasks.ELLE;
-import static seedu.module.testutil.TypicalTasks.FIONA;
+import static seedu.module.testutil.TypicalTasks.PAQ;
+import static seedu.module.testutil.TypicalTasks.PROJECT;
+import static seedu.module.testutil.TypicalTasks.TP;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 import java.util.Arrays;
@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("TP Project PAQ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(TP, PROJECT, PAQ), model.getFilteredTaskList());
     }
 
     /**

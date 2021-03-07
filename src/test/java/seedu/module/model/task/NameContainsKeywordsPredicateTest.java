@@ -61,15 +61,15 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new TaskBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new TaskBuilder().withName("Midterm").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new TaskBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Midterm"));
+        assertFalse(predicate.test(new TaskBuilder().withName("Final").build()));
 
         // Keywords match deadline, module and description, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@module.com", "Main", "Street"));
-        assertFalse(predicate.test(new TaskBuilder().withName("Alice").withDeadline("12345")
-                .withModule("alice@module.com").withDescription("Main Street").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("2021-01-12", "20:00", "CS2106", "No", "comment"));
+        assertFalse(predicate.test(new TaskBuilder().withName("Lab").withDeadline("2021-01-12 20:00")
+                .withModule("CS2106").withDescription("No comment").build()));
     }
 }

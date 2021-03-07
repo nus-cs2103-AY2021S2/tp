@@ -29,33 +29,17 @@ public class ModuleTest {
         assertFalse(Module.isValidModule(" ")); // spaces only
 
         // missing parts
-        assertFalse(Module.isValidModule("@example.com")); // missing local part
-        assertFalse(Module.isValidModule("peterjackexample.com")); // missing '@' symbol
-        assertFalse(Module.isValidModule("peterjack@")); // missing domain name
+        assertFalse(Module.isValidModule("1101")); // Only Module Code
+        assertFalse(Module.isValidModule("CS")); // Only Major Name
 
         // invalid parts
-        assertFalse(Module.isValidModule("peterjack@-")); // invalid domain name
-        assertFalse(Module.isValidModule("peterjack@exam_ple.com")); // underscore in domain name
-        assertFalse(Module.isValidModule("peter jack@example.com")); // spaces in local part
-        assertFalse(Module.isValidModule("peterjack@exam ple.com")); // spaces in domain name
-        assertFalse(Module.isValidModule(" peterjack@example.com")); // leading space
-        assertFalse(Module.isValidModule("peterjack@example.com ")); // trailing space
-        assertFalse(Module.isValidModule("peterjack@@example.com")); // double '@' symbol
-        assertFalse(Module.isValidModule("peter@jack@example.com")); // '@' symbol in local part
-        assertFalse(Module.isValidModule("peterjack@example@com")); // '@' symbol in domain name
-        assertFalse(Module.isValidModule("peterjack@.example.com")); // domain name starts with a period
-        assertFalse(Module.isValidModule("peterjack@example.com.")); // domain name ends with a period
-        assertFalse(Module.isValidModule("peterjack@-example.com")); // domain name starts with a hyphen
-        assertFalse(Module.isValidModule("peterjack@example.com-")); // domain name ends with a hyphen
+        assertFalse(Module.isValidModule("CS110")); // shorter length of code
+        assertFalse(Module.isValidModule("CS11111")); // longer length of code
+        assertFalse(Module.isValidModule("Computer Science 1101")); // Invalid Major Name
 
         // valid module
-        assertTrue(Module.isValidModule("PeterJack_1190@example.com"));
-        assertTrue(Module.isValidModule("a@bc")); // minimal
-        assertTrue(Module.isValidModule("test@localhost")); // alphabets only
-        assertTrue(Module.isValidModule("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters local part
-        assertTrue(Module.isValidModule("123@145")); // numeric local part and domain name
-        assertTrue(Module.isValidModule("a1+be!@example1.com")); // mixture of alphanumeric and special characters
-        assertTrue(Module.isValidModule("peter_jack@very-very-very-long-example.com")); // long domain name
-        assertTrue(Module.isValidModule("if.you.dream.it_you.can.do.it@example.com")); // long local part
+        assertTrue(Module.isValidModule("CS1101S"));
+        assertTrue(Module.isValidModule("CS3243")); // minimal
+        assertTrue(Module.isValidModule("DSA1101")); // alphabets only
     }
 }

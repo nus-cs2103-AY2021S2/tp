@@ -17,7 +17,7 @@ public class Module {
             + "{IS_PLUS} must be one character S, or nothing.";
     private static final String MAJOR_REGEX = "[A-Z]{2,3}"; // only 2 or 3 uppercase characters
     private static final String MODULE_CODE_REGEX = "\\d{4}"; // alphanumeric, period and hyphen
-    private static final String LAST_CHARACTER_REGEX = "\\w?";
+    private static final String LAST_CHARACTER_REGEX = "[A-Z]?";
     public static final String VALIDATION_REGEX = MAJOR_REGEX + MODULE_CODE_REGEX + LAST_CHARACTER_REGEX;
 
 

@@ -24,16 +24,16 @@ import seedu.module.model.task.Name;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_DEADLINE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_MODULE = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_DEADLINE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_MODULE = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_NAME = "Midterm";
+    private static final String VALID_DEADLINE = "2021-03-06 12:00";
+    private static final String VALID_DESCRIPTION = "It may be not easy.";
+    private static final String VALID_MODULE = "CS3230";
+    private static final String VALID_TAG_1 = "priorityHigh";
+    private static final String VALID_TAG_2 = "workloadMedian";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -110,19 +110,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Description expectedDescription = new Description(VALID_ADDRESS);
-        assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_ADDRESS));
+        Description expectedDescription = new Description(VALID_DESCRIPTION);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String descriptionWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Description expectedDescription = new Description(VALID_ADDRESS);
+        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
     }
 

@@ -26,16 +26,16 @@ import seedu.module.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_DEADLINE_AMY = "11111111";
-    public static final String VALID_DEADLINE_BOB = "22222222";
-    public static final String VALID_MODULE_AMY = "amy@example.com";
-    public static final String VALID_MODULE_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NAME_AMY = "Lab";
+    public static final String VALID_NAME_BOB = "Preview";
+    public static final String VALID_DEADLINE_AMY = "2021-01-30 12:00";
+    public static final String VALID_DEADLINE_BOB = "2021-02-02 23:59";
+    public static final String VALID_MODULE_AMY = "CS2106";
+    public static final String VALID_MODULE_BOB = "CS3244";
+    public static final String VALID_DESCRIPTION_AMY = "Finish this ASAP.";
+    public static final String VALID_DESCRIPTION_BOB = "Need to figure out the concept.";
+    public static final String VALID_TAG_HUSBAND = "priorityHigh";
+    public static final String VALID_TAG_FRIEND = "priorityLow";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -43,15 +43,15 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
     public static final String MODULE_DESC_AMY = " " + PREFIX_MODULE + VALID_MODULE_AMY;
     public static final String MODULE_DESC_BOB = " " + PREFIX_MODULE + VALID_MODULE_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_ADDRESS_BOB;
+    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
+    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -62,10 +62,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withModule(VALID_MODULE_AMY).withDescription(VALID_ADDRESS_AMY)
+                .withDeadline(VALID_DEADLINE_AMY).withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_BOB).withDescription(VALID_ADDRESS_BOB)
+                .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

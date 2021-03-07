@@ -3,9 +3,9 @@ package seedu.module.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.module.testutil.Assert.assertThrows;
-import static seedu.module.testutil.TypicalTasks.ALICE;
-import static seedu.module.testutil.TypicalTasks.HOON;
-import static seedu.module.testutil.TypicalTasks.IDA;
+import static seedu.module.testutil.TypicalTasks.FINAL;
+import static seedu.module.testutil.TypicalTasks.MISSION;
+import static seedu.module.testutil.TypicalTasks.QUIZ;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonModuleBookStorageTest {
         assertEquals(original, new ModuleBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTask(HOON);
-        original.removeTask(ALICE);
+        original.addTask(MISSION);
+        original.removeTask(QUIZ);
         jsonModuleBookStorage.saveModuleBook(original, filePath);
         readBack = jsonModuleBookStorage.readModuleBook(filePath).get();
         assertEquals(original, new ModuleBook(readBack));
 
         // Save and read without specifying file path
-        original.addTask(IDA);
+        original.addTask(FINAL);
         jsonModuleBookStorage.saveModuleBook(original); // file path not specified
         readBack = jsonModuleBookStorage.readModuleBook().get(); // file path not specified
         assertEquals(original, new ModuleBook(readBack));

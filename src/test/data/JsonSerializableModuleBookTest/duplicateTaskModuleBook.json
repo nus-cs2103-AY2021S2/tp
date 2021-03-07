@@ -1,14 +1,14 @@
 {
   "tasks": [ {
-    "name": "Alice Pauline",
-    "deadline": "94351253",
-    "module": "alice@example.com",
-    "description": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "name": "Quiz",
+    "deadline": "2021-02-01 12:00",
+    "module": "CS3243",
+    "description": "hmmm",
+    "tagged": [ "median" ]
   }, {
-    "name": "Alice Pauline",
-    "deadline": "94351253",
-    "module": "pauline@example.com",
-    "description": "4th street"
+    "name": "Quiz",
+    "deadline": "2021-01-12 13:00",
+    "module": "ST2131",
+    "description": "Is it easy?"
   } ]
 }

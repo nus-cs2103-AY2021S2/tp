@@ -16,10 +16,10 @@ import seedu.module.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_DEADLINE = "85355255";
-    public static final String DEFAULT_MODULE = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NAME = "Assignment 6";
+    public static final String DEFAULT_DEADLINE = "2021-03-07 14:00";
+    public static final String DEFAULT_MODULE = "CS3243";
+    public static final String DEFAULT_ADDRESS = "Not very hard.";
 
     private Name name;
     private Deadline deadline;

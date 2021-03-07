@@ -27,14 +27,14 @@ public class DeadlineTest {
         // invalid deadline numbers
         assertFalse(Deadline.isValidDeadline("")); // empty string
         assertFalse(Deadline.isValidDeadline(" ")); // spaces only
-        assertFalse(Deadline.isValidDeadline("91")); // less than 3 numbers
-        assertFalse(Deadline.isValidDeadline("deadline")); // non-numeric
-        assertFalse(Deadline.isValidDeadline("9011p041")); // alphabets within digits
-        assertFalse(Deadline.isValidDeadline("9312 1534")); // spaces within digits
+        assertFalse(Deadline.isValidDeadline("2001-13-01 12:00")); // Date is out of range
+        assertFalse(Deadline.isValidDeadline("2001-01-02 34:00")); // Time is out of range
+        assertFalse(Deadline.isValidDeadline("23:59")); // only HH:mm
+        assertFalse(Deadline.isValidDeadline("2001-01-02")); // only dates
 
         // valid deadline numbers
-        assertTrue(Deadline.isValidDeadline("911")); // exactly 3 numbers
-        assertTrue(Deadline.isValidDeadline("93121534"));
-        assertTrue(Deadline.isValidDeadline("124293842033123")); // long deadline numbers
+        assertTrue(Deadline.isValidDeadline("2001-01-02 12:00"));
+        assertTrue(Deadline.isValidDeadline("2015-01-02 23:00"));
+        assertTrue(Deadline.isValidDeadline("2021-02-02 23:59"));
     }
 }

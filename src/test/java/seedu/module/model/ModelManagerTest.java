@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.module.testutil.Assert.assertThrows;
-import static seedu.module.testutil.TypicalTasks.ALICE;
-import static seedu.module.testutil.TypicalTasks.BENSON;
+import static seedu.module.testutil.TypicalTasks.MIDTERM;
+import static seedu.module.testutil.TypicalTasks.QUIZ;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_taskNotInModuleBook_returnsFalse() {
-        assertFalse(modelManager.hasTask(ALICE));
+        assertFalse(modelManager.hasTask(QUIZ));
     }
 
     @Test
     public void hasTask_taskInModuleBook_returnsTrue() {
-        modelManager.addTask(ALICE);
-        assertTrue(modelManager.hasTask(ALICE));
+        modelManager.addTask(QUIZ);
+        assertTrue(modelManager.hasTask(QUIZ));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ModuleBook moduleBook = new ModuleBookBuilder().withTask(ALICE).withTask(BENSON).build();
+        ModuleBook moduleBook = new ModuleBookBuilder().withTask(QUIZ).withTask(MIDTERM).build();
         ModuleBook differentModuleBook = new ModuleBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentModuleBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = QUIZ.getName().fullName.split("\\s+");
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(moduleBook, userPrefs)));
 

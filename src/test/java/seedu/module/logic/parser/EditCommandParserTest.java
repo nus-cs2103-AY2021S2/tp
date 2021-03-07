@@ -1,12 +1,12 @@
 package seedu.module.logic.parser;
 
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.module.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
+import static seedu.module.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -15,10 +15,10 @@ import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -84,7 +84,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
         assertParseFailure(parser, "1" + INVALID_MODULE_DESC, Module.MESSAGE_CONSTRAINTS); // invalid module
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Description.MESSAGE_CONSTRAINTS); // invalid description
+        // invalid description
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid deadline followed by valid module
@@ -102,17 +103,17 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_MODULE_DESC
-                + VALID_ADDRESS_AMY + VALID_DEADLINE_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_DESCRIPTION_AMY + VALID_DEADLINE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + TAG_DESC_HUSBAND
-                + MODULE_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + MODULE_DESC_AMY + DESCRIPTION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_AMY).withDescription(VALID_ADDRESS_AMY)
+                .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -153,8 +154,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // description
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_ADDRESS_AMY).build();
+        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY;
+        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -168,12 +169,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY + ADDRESS_DESC_AMY + MODULE_DESC_AMY
-                + TAG_DESC_FRIEND + DEADLINE_DESC_AMY + ADDRESS_DESC_AMY + MODULE_DESC_AMY + TAG_DESC_FRIEND
-                + DEADLINE_DESC_BOB + ADDRESS_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY + MODULE_DESC_AMY
+                + TAG_DESC_FRIEND + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY + MODULE_DESC_AMY + TAG_DESC_FRIEND
+                + DEADLINE_DESC_BOB + DESCRIPTION_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
-                .withModule(VALID_MODULE_BOB).withDescription(VALID_ADDRESS_BOB)
+                .withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -191,10 +192,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + MODULE_DESC_BOB + INVALID_DEADLINE_DESC + ADDRESS_DESC_BOB
+        userInput = targetIndex.getOneBased() + MODULE_DESC_BOB + INVALID_DEADLINE_DESC + DESCRIPTION_DESC_BOB
                 + DEADLINE_DESC_BOB;
         descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_BOB)
-                .withDescription(VALID_ADDRESS_BOB).build();
+                .withDescription(VALID_DESCRIPTION_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
