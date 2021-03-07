@@ -45,20 +45,36 @@ public class ItemNameContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         ItemNameContainsKeywordsPredicate predicate =
-            new ItemNameContainsKeywordsPredicate(Collections.singletonList("Alice"), false);
-        assertTrue(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
+            new ItemNameContainsKeywordsPredicate(Collections.singletonList("Apple"), false);
+        assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
 
         // Multiple keywords
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"), false);
-        assertTrue(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Apple", "Banana"), false);
+        assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
 
         // Only one matching keyword
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"), false);
-        assertTrue(predicate.test(new ItemBuilder().withName("Alice Carol").build()));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Bob", "Cherry"), false);
+        assertTrue(predicate.test(new ItemBuilder().withName("Apple Cherry").build()));
 
         // Mixed-case keywords
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"), false);
-        assertTrue(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("aPPle", "bANANA"), false);
+        assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
+
+        // One keyword
+        predicate = new ItemNameContainsKeywordsPredicate(Collections.singletonList("Apple"), true);
+        assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
+
+        // Multiple keywords
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Alice", "Banana"), true);
+        assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
+
+        // Only one matching keyword
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Bob", "Cherry"), true);
+        assertTrue(predicate.test(new ItemBuilder().withName("Apple Cherry").build()));
+
+        // Mixed-case keywords
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("aPPle", "bANANA"), true);
+        assertTrue(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
     }
 
     @Test

@@ -104,7 +104,7 @@ Format 1: `find KEYWORD [MORE_KEYWORDS]`
 * Only the item name is searched.
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Chocolate Milk` will return `Cadbury Chocolate`, `Almond Milk`
-  
+
 Format 2: `find *KEYWORD [MORE_KEYWORDS]`
 
 * Partial words will be matched e.g. `Choco` will match `Chocolates`
@@ -118,7 +118,7 @@ Examples:
 * `find Chocolate` returns `chocolate` and `Chocolate Milk`
 * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
 * `find *Burger` returns `CheeseBurger` and `fishburger`
-* `find *cheese egg` returns `MacAndCheese` and `eggs` 
+* `find *cheese egg` returns `MacAndCheese` and `eggs`
 
 
 ### Deleting an item : `delete`
