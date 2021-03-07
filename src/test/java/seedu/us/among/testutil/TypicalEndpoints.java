@@ -21,32 +21,39 @@ import seedu.us.among.model.endpoint.Endpoint;
 public class TypicalEndpoints {
 
     public static final Endpoint GET = new EndpointBuilder().withMethod("GET")
-            .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2").withTags("cat")
+            .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
+            .withData("{testingdata}")
+            .withTags("cat")
             .build();
     public static final Endpoint POST = new EndpointBuilder().withMethod("POST")
-            .withAddress("https://cat-fact.herokuapp.com/facts").withTags("cat", "fact").build();
+            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withData("{testingdata}").withTags("cat", "fact").build();
     public static final Endpoint PUT = new EndpointBuilder().withMethod("PUT")
-            .withAddress("https://cat-fact.herokuapp.com/facts").build();
+            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withData("{testingdata}").build();
     public static final Endpoint DELETE = new EndpointBuilder().withMethod("DELETE")
-            .withAddress("https://cat-fact.herokuapp.com/facts").withTags("Fact").build();
+            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withData("{testingdata}").withTags("Fact").build();
     public static final Endpoint HEAD = new EndpointBuilder().withMethod("HEAD")
-            .withAddress("https://cat-fact.herokuapp.com/facts").build();
+            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withData("{testingdata}").build();
     public static final Endpoint OPTIONS = new EndpointBuilder().withMethod("OPTIONS")
-            .withAddress("https://cat-fact.herokuapp.com/facts").build();
+            .withAddress("https://cat-fact.herokuapp.com/facts").withData("{testingdata}").build();
     public static final Endpoint PATCH = new EndpointBuilder().withMethod("PATCH")
-            .withAddress("https://cat-fact.herokuapp.com/facts").build();
+            .withAddress("https://cat-fact.herokuapp.com/facts").withData("{testingdata}").build();
 
     // Manually added
     public static final Endpoint GET1 = new EndpointBuilder().withMethod("GET")
-            .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2").build();
+            .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
+            .withData("{testingdata}").build();
     public static final Endpoint GET2 = new EndpointBuilder().withMethod("GET")
-            .withAddress("https://cat-fact.herokuapp.com/facts").build();
+            .withAddress("https://cat-fact.herokuapp.com/facts").withData("{testingdata}").build();
 
     // Manually added - Endpoint's details found in {@code CommandTestUtil}
     public static final Endpoint GET3 = new EndpointBuilder().withMethod(VALID_METHOD_GET)
-            .withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_COOL).build();
+            .withAddress(VALID_ADDRESS_RANDOM).withData("{testingdata}").withTags(VALID_TAG_COOL).build();
     public static final Endpoint POST1 = new EndpointBuilder().withMethod(VALID_METHOD_POST)
-            .withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
+            .withAddress(VALID_ADDRESS_FACT).withData("{testingdata}").withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
 
     public static final String KEYWORD_MATCHING_GET = "GET"; // A keyword that matches MEIER
 

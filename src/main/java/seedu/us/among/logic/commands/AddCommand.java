@@ -2,6 +2,8 @@ package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -20,10 +22,13 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_METHOD + "METHOD "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_DATA + "DATA "
+            + "[" + PREFIX_HEADER + "HEADER]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_METHOD + "get "
             + PREFIX_ADDRESS + "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2 "
+            + PREFIX_DATA + "{somedata}"
             + PREFIX_TAG + "cat "
             + PREFIX_TAG + "fact";
 

@@ -4,8 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.us.among.model.endpoint.Address;
+import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 import seedu.us.among.model.util.SampleDataUtil;
 
@@ -16,9 +18,12 @@ public class EndpointBuilder {
 
     public static final String DEFAULT_NAME = "GET";
     public static final String DEFAULT_ADDRESS = "sample/address";
+    public static final String DEFAULT_DATA = "{defaultdata}";
 
     private Method method;
     private Address address;
+    private Data data;
+    private Set<Header> headers;
     private Set<Tag> tags;
 
     /**
@@ -27,6 +32,8 @@ public class EndpointBuilder {
     public EndpointBuilder() {
         method = new Method(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
+        data = new Data(DEFAULT_DATA);
+        headers = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -36,6 +43,8 @@ public class EndpointBuilder {
     public EndpointBuilder(Endpoint endpointToCopy) {
         method = endpointToCopy.getMethod();
         address = endpointToCopy.getAddress();
+        data = endpointToCopy.getData();
+        headers = new HashSet<>(endpointToCopy.getHeaders());
         tags = new HashSet<>(endpointToCopy.getTags());
     }
 
@@ -57,6 +66,15 @@ public class EndpointBuilder {
     }
 
     /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Endpoint} that we are building.
+     */
+    public EndpointBuilder withHeaders(String... headers) {
+        this.headers = SampleDataUtil.getHeaderSet(headers);
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Endpoint} that we are building.
      */
     public EndpointBuilder withAddress(String address) {
@@ -64,8 +82,16 @@ public class EndpointBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Data} of the {@code Endpoint} that we are building.
+     */
+    public EndpointBuilder withData(String data) {
+        this.data = new Data(data);
+        return this;
+    }
+
     public Endpoint build() {
-        return new Endpoint(method, address, tags);
+        return new Endpoint(method, address, data, headers, tags);
     }
 
 }

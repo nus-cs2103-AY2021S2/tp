@@ -12,9 +12,11 @@ import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Address;
+import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.endpoint.Response;
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -83,9 +85,11 @@ public class SendCommand extends Command {
 
         Method method = endpointToSend.getMethod();
         Address address = endpointToSend.getAddress();
+        Data data = endpointToSend.getData();
+        Set<Header> headers = endpointToSend.getHeaders();
         Set<Tag> tags = endpointToSend.getTags();
 
-        return new Endpoint(method, address, tags, endpointResponse);
+        return new Endpoint(method, address, data, headers, tags, endpointResponse);
     }
 
     @Override
