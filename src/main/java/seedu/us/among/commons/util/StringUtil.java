@@ -74,4 +74,12 @@ public class StringUtil {
         return String.format("%.03f", value);
     }
 
+    /**
+     * Returns a number with seconds following it, in string
+     */
+    public static String getResponseTimeInString(Double value) {
+        requireNonNull(value);
+        return String.format("%s seconds", get3DecimalPlace(value));
+    }
+
 }

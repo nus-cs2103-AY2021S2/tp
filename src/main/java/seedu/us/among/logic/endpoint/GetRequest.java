@@ -70,6 +70,6 @@ public class GetRequest extends Request {
                 response.getStatusLine().getReasonPhrase(),
                 response.getStatusLine().toString(),
                 responseEntity,
-                StringUtil.get3DecimalPlace(responseTimeInSecond));
+                StringUtil.getResponseTimeInString(responseTimeInSecond));
     }
 }
