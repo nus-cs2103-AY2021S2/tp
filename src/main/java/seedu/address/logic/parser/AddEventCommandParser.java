@@ -41,13 +41,13 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
-        Time startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_STARTTIME).get());
-        Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDDATE).get());
-        Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_ENDTIME).get());
-        Set<Category> categoryList = ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Name name = SocheduleParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Date startDate = SocheduleParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
+        Time startTime = SocheduleParserUtil.parseTime(argMultimap.getValue(PREFIX_STARTTIME).get());
+        Date endDate = SocheduleParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDDATE).get());
+        Time endTime = SocheduleParserUtil.parseTime(argMultimap.getValue(PREFIX_ENDTIME).get());
+        Set<Category> categoryList = SocheduleParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
+        Set<Tag> tagList = SocheduleParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Event event = new Event(name, startDate, startTime, endDate, endTime, categoryList, tagList);
 

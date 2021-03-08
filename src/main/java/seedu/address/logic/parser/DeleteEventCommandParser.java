@@ -18,7 +18,7 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
      */
     public DeleteEventCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = SocheduleParserUtil.parseIndex(args);
             return new DeleteEventCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
