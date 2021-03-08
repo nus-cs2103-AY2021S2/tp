@@ -164,8 +164,10 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
+        Platform.runLater(() -> {
+            helpWindow.hide();
+            primaryStage.hide();
+        });
     }
 
     public EndpointListPanel getEndpointListPanel() {
@@ -203,12 +205,12 @@ public class MainWindow extends UiPart<Stage> {
             public void run() {
                 Runnable updater = () -> updateProgress();
                 while (MainWindow.getProgress()) {
+                    Platform.runLater(updater);
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                         //try-catch to allow thread to sleep
                     }
-                    Platform.runLater(updater);
                 }
             }
         });
