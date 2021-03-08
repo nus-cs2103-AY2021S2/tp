@@ -40,7 +40,8 @@ public class DoneTaskCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTask(taskToMark);
+        // This need to be update!
+        // model.deleteTask(taskToMark);
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToMark));
     }
 
