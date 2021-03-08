@@ -27,10 +27,10 @@ public class Email {
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
-    public final String value;
-    private boolean isEmpty = false;
     public static final String EMPTY_EMAIL_STRING = "";
     public static final Email EMPTY_EMAIL = new Email();
+    public final String value;
+    private boolean isEmpty = false;
 
     /**
      * Constructs an {@code Email}.

@@ -17,10 +17,10 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
-    private boolean isEmpty = false;
     public static final String EMPTY_ADDRESS_STRING = "";
     public static final Address EMPTY_ADDRESS = new Address();
+    public final String value;
+    private boolean isEmpty = false;
 
     /**
      * Constructs an {@code Address}.
