@@ -23,7 +23,7 @@ import seedu.storemando.logic.commands.HelpCommand;
 import seedu.storemando.logic.commands.ListCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.NameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
 import seedu.storemando.testutil.EditItemDescriptorBuilder;
 import seedu.storemando.testutil.ItemBuilder;
 import seedu.storemando.testutil.ItemUtil;
@@ -72,7 +72,7 @@ public class StoreMandoParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
             FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new ItemNameContainsKeywordsPredicate(keywords, false)), command);
     }
 
     @Test
