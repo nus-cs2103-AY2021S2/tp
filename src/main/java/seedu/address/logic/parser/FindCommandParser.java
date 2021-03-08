@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -46,7 +45,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         argMap.getValue(PREFIX_NAME)
             .map(words -> new NameContainsKeywordsPredicate(words))
             .ifPresent(predicates::add);
-        
+
         argMap.getValue(PREFIX_TAG)
             .map(tag -> new TagsContainsTagPredicate(tag))
             .ifPresent(predicates::add);
