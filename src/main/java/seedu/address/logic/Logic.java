@@ -7,8 +7,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlySochedule;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -47,4 +51,28 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the Sochedule taskList.
+     *
+     * @see Model#getSochedule()
+     */
+    ReadOnlySochedule getSochedule();
+
+    /** Returns an unmodifiable view of the filtered list of tasks */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Returns the user prefs' task list file path.
+     */
+    Path getTaskListFilePath();
+
+
+    /** Returns an unmodifiable view of the filtered list of events */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Returns the user prefs' event list file path.
+     */
+    Path getEventListFilePath();
 }
