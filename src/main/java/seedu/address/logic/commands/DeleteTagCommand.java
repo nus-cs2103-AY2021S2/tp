@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,16 +13,23 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * Deletes all target tags from the addressbook.
+ * Deletes all persons, that is tagged with the target tags, from the addressbook.
+ * Provided that they do not have other tags.
  */
 public class DeleteTagCommand extends DeleteCommand {
 
-    public static final String MESSAGE_DELETE_TAGS_SUCCESS = "Deleted Tags: %1$s";
+    public static final String MESSAGE_DELETE_TAGS_SUCCESS = "Deleted tags : %1$s";
 
     private final Set<Tag> targetTags;
 
+    private final List<Person> deletedPersons;
+
+    /**
+     * Creates an DeleteTagCommand to delete the {@code Person} with specified {@code Tag}
+     */
     public DeleteTagCommand(Set<Tag> targetTags) {
         this.targetTags = targetTags;
+        deletedPersons = new ArrayList<>();
     }
 
     @Override
@@ -31,36 +39,49 @@ public class DeleteTagCommand extends DeleteCommand {
         List<Person> personList = model.getPersonListCopy();
 
         for (Person person : personList) {
-            removeTargetTags(model, person);
+            removePersonWithTags(model, person);
         }
 
-        System.out.println(targetTags.toString());
-        System.out.println(displayTags());
-        return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, displayTags()));
+        return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, displayTags())
+                + (deletedPersons.isEmpty()
+                ? ""
+                : String.format("\n" + MESSAGE_DELETE_PERSON_SUCCESS, displayPersons())));
     }
 
-    private void removeTargetTags(Model model, Person person) {
-
+    private void removePersonWithTags(Model model, Person person) {
         Set<Tag> tags = new HashSet<>(person.getTags());
 
         boolean isUpdated = false;
         for (Tag t : targetTags) {
-            isUpdated = tags.remove(t);
+            if (tags.remove(t)) {
+                isUpdated = true;
+            }
         }
 
+        // Dont delete people who not updated
         if (!isUpdated) {
             return;
         }
 
-        Person editedPerson = new Person(person.getName(),
-                person.getPhone(),
-                person.getEmail(),
-                person.getAddress(),
-                tags);
+        if (tags.isEmpty()) {
+            deletedPersons.add(person);
+            model.deletePerson(person);
+        } else {
 
-        model.setPerson(person, editedPerson);
+            Person editedPerson = new Person(person.getName(),
+                    person.getPhone(),
+                    person.getEmail(),
+                    person.getAddress(),
+                    tags);
+
+            model.setPerson(person, editedPerson);
+        }
+
     }
 
+    /**
+     * Returns tags in the form "a, b, c,..."
+     */
     private String displayTags() {
         assert targetTags.size() > 0;
         return targetTags.stream()
@@ -68,6 +89,16 @@ public class DeleteTagCommand extends DeleteCommand {
                 .map(s -> s.substring(1, s.length() - 1))
                 .reduce((a, b) -> a + ", " + b)
                 .get();
+    }
+
+    /**
+     * Returns list of persons in the form "a, b, c,..."
+     */
+    private String displayPersons() {
+        return deletedPersons.stream()
+                .map(p -> p.getName().toString())
+                .reduce((a, b) -> a + ", " + b)
+                .orElse("");
     }
 
     @Override
