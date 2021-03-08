@@ -16,23 +16,27 @@ public class TypicalBookings {
 
     public static final Booking BOOKING1 = new Booking("Booker1", VENUE1, "description",
             LocalDateTime.of(2021, 03, 01, 12, 30, 00),
-            LocalDateTime.of(2021, 03, 01, 13, 30, 00)
+            LocalDateTime.of(2021, 03, 01, 13, 30, 00),
+            0
     );
 
     public static final Booking BOOKING2 = new Booking("Booker2", VENUE1, "description",
             LocalDateTime.of(2021, 03, 01, 13, 00, 00),
-            LocalDateTime.of(2021, 03, 01, 14, 00, 00)
+            LocalDateTime.of(2021, 03, 01, 14, 00, 00),
+            1
     );
 
     public static final Booking BOOKING3 = new Booking("Booker2", VENUE2, "description",
             LocalDateTime.of(2021, 03, 01, 12, 30, 00),
-            LocalDateTime.of(2021, 03, 01, 13, 30, 00)
+            LocalDateTime.of(2021, 03, 01, 13, 30, 00),
+            2
     );
 
 
     public static final Booking BOOKING4 = new Booking("Booker2", VENUE2, "description",
             LocalDateTime.of(2021, 03, 01, 14, 30, 00),
-            LocalDateTime.of(2021, 03, 01, 15, 30, 00)
+            LocalDateTime.of(2021, 03, 01, 15, 30, 00),
+            3
     );
 
     private TypicalBookings() {} // prevents instantiation

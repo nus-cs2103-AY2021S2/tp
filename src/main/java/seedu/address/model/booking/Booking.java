@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * Represents a booking in the booking list.
@@ -17,18 +18,22 @@ public class Booking {
     private final String description;
     private final LocalDateTime bookingStart;
     private final LocalDateTime bookingEnd;
+    private final int id;
+
+    private static Random BOOKING_RANDOM = new Random();
 
     /**
      * Every field must be present and not null.
      */
     public Booking(String booker, Venue venue, String description,
-                   LocalDateTime bookingStart, LocalDateTime bookingEnd) {
+                   LocalDateTime bookingStart, LocalDateTime bookingEnd, int id) {
         requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
         this.booker = booker;
         this.venue = venue;
         this.description = description;
         this.bookingStart = bookingStart;
         this.bookingEnd = bookingEnd;
+        this.id = id;
     }
 
     public String getBooker() {
@@ -51,6 +56,13 @@ public class Booking {
         return bookingEnd;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    static int getNewBookingId() {
+        return Math.abs(BOOKING_RANDOM.nextInt());
+    }
     /**
      * Returns true if both bookings overlap.
      * This can be used to test for booking conflicts.
@@ -67,6 +79,13 @@ public class Booking {
         }
         return !this.bookingStart.isBefore(otherBooking.bookingEnd)
                 && !this.bookingEnd.isAfter(otherBooking.bookingStart);
+    }
+
+    /**
+     * Returns true if it is the same id.
+     */
+    public boolean isId(int id) {
+        return this.id == id;
     }
 
     /**
