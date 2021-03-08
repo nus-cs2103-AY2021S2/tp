@@ -2,8 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalTime;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
@@ -14,6 +14,9 @@ public class Meeting {
     private final LocalTime time;
     private final String description;
 
+    /**
+     * The constructor for a Meeting.
+     */
     public Meeting(LocalDate date, LocalTime time, String description) {
         requireAllNonNull(date, time, description);
         this.date = date;

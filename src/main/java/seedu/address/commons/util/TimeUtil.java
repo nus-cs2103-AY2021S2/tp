@@ -24,6 +24,12 @@ public class TimeUtil {
         TIME_PARSER = builder.toFormatter();
     }
 
+    /**
+     * Takes a string and parses it into a LocalTime
+     *
+     * @param string the string to convert
+     * @return a LocalTime that was created from the string
+     */
     public static LocalTime fromTimeInput(String string) throws ParseException {
         LocalTime time;
 

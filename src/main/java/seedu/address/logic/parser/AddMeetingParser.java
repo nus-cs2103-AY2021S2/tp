@@ -19,6 +19,11 @@ import seedu.address.model.person.Meeting;
 
 public class AddMeetingParser implements Parser<AddMeetingCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
+     * and returns an AddMeetingCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -29,7 +34,8 @@ public class AddMeetingParser implements Parser<AddMeetingCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddMeetingCommand.MESSAGE_USAGE), pe);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIME, PREFIX_DESCRIPTION)) {

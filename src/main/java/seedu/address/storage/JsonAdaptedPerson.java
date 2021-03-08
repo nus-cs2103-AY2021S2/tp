@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,9 +37,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -115,7 +114,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final List<Meeting> modelMeetings = new ArrayList<>();
-        for (JsonAdaptedMeeting meeting: meetings) {
+        for (JsonAdaptedMeeting meeting : meetings) {
             modelMeetings.add(meeting.toModelType());
         }
 

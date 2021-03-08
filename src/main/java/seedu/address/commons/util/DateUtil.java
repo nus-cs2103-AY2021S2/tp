@@ -24,6 +24,12 @@ public class DateUtil {
         DATE_PARSER = builder.toFormatter();
     }
 
+    /**
+     * Takes a string and parses it into a LocalDate
+     *
+     * @param string the string to convert
+     * @return a LocalDate that was created from the string
+     */
     public static LocalDate fromDateInput(String string) throws ParseException {
         LocalDate date;
 

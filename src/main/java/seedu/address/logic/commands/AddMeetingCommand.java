@@ -37,6 +37,10 @@ public class AddMeetingCommand extends Command {
     private final Index index;
     private final Meeting meeting;
 
+    /**
+     * @param index of the person in the filtered person list to add the meeting to
+     * @param meeting the meeting to add
+     */
     public AddMeetingCommand(Index index, Meeting meeting) {
         requireAllNonNull(index, meeting);
 
