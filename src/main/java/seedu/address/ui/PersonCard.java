@@ -58,8 +58,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        // TODO: add sorting
-        // UI not confirmed. This is just to test meetings are okay
+        // Temporary UI to test meetings
         person.getMeetings().forEach(meeting -> meetings.getChildren().add(new Label(meeting.toUi())));
     }
 
