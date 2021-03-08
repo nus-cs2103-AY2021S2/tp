@@ -39,8 +39,10 @@ public class EndpointListPanel extends UiPart<Region> {
             super.updateItem(endpoint, empty);
 
             if (empty || endpoint == null) {
-                setGraphic(null);
-                setText(null);
+                Platform.runLater(() -> {
+                    setGraphic(null);
+                    setText(null);
+                });
             } else {
                 Platform.runLater(() -> setGraphic(new EndpointCard(endpoint, getIndex() + 1).getRoot()));
             }
