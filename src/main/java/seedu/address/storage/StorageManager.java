@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlySochedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -19,6 +20,7 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private SocheduleStorage socheduleStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -27,6 +29,7 @@ public class StorageManager implements Storage {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.socheduleStorage = null;
     }
 
     // ================ UserPrefs methods ==============================
@@ -74,6 +77,31 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ AddressBook methods ==============================
+
+    @Override
+    public Path getSocheduleFilePath() {
+        return null;
+    }
+
+    @Override
+    public Optional<ReadOnlySochedule> readSochedule() throws DataConversionException, IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<ReadOnlySochedule> readSochedule(Path filePath) throws DataConversionException, IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public void saveSochedule(ReadOnlySochedule sochedule) throws IOException {
+    }
+
+    @Override
+    public void saveSochedule(ReadOnlySochedule sochedule, Path filePath) throws IOException {
     }
 
 }
