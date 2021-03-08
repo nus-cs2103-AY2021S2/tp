@@ -40,11 +40,11 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Date deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-        Set<Category> categoryList = ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Name name = SocheduleParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Date deadline = SocheduleParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE).get());
+        Priority priority = SocheduleParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        Set<Category> categoryList = SocheduleParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
+        Set<Tag> tagList = SocheduleParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Task task = new Task(name, deadline, priority, categoryList, tagList);
 
