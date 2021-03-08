@@ -13,7 +13,7 @@ public class HelpCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Here is a list of commands available, "
-            + " for more information refer to https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html\n"
+            + "for more information refer to https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html\n"
             + "Adding contacts: "
             + "add NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…\u200B [-b BIRTHDAY]\u200B\n"
             + "Clearing all data: clear\n"
@@ -28,7 +28,9 @@ public class HelpCommand extends Command {
             + "Finding tags: "
             + "tags [-f KEYWORD]\n"
             + "Showing help: "
-            + "help [COMMAND]\n";
+            + "help [COMMAND]\n"
+            + "Leaving app: "
+            + "exit";
 
     private final String commandWord;
 
