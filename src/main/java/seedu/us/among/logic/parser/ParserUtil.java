@@ -10,7 +10,9 @@ import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.endpoint.Address;
+import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Method;
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -62,6 +64,48 @@ public class ParserUtil {
         }
         return new Address(trimmedAddress);
     }
+
+    /**
+     * Parses a {@code String Data} into an {@code Data}. Leading and trailing
+     * whitespaces will be trimmed.
+     * @throws ParseException if the given {@code Data} is invalid.
+     */
+    public static Data parseData(String data) throws ParseException {
+        requireNonNull(data);
+        String trimmedData = data.trim();
+        if (!Data.isValidData(trimmedData)) {
+            // give an empty data
+            return new Data();
+            //throw new ParseException(Data.MESSAGE_CONSTRAINTS);
+        }
+        return new Data(trimmedData);
+    }
+    /**
+     * Parses a {@code String header} into a {@code header}. Leading and trailing
+     * whitespaces will be trimmed.
+     * @throws ParseException if the given {@code header} is invalid.
+     */
+    public static Header parseHeader(String header) throws ParseException {
+        requireNonNull(header);
+        String trimmedHeader = header.trim();
+        if (!Header.isValidHeaderName(trimmedHeader)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Header(trimmedHeader);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Header> parseHeaders(Collection<String> headers) throws ParseException {
+        requireNonNull(headers);
+        final Set<Header> headersSet = new HashSet<>();
+        for (String headerName : headers) {
+            headersSet.add(parseHeader(headerName));
+        }
+        return headersSet;
+    }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}. Leading and trailing

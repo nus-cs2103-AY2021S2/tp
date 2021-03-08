@@ -2,6 +2,8 @@ package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -17,8 +19,10 @@ import seedu.us.among.commons.util.CollectionUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Address;
+import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -35,6 +39,8 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_METHOD + "METHOD] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DATA + "DATA] "
+            + "[" + PREFIX_HEADER + "HEADER]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ADDRESS + "wall street ";
@@ -90,9 +96,11 @@ public class EditCommand extends Command {
 
         Method updatedMethod = editEndpointDescriptor.getMethod().orElse(endpointToEdit.getMethod());
         Address updatedAddress = editEndpointDescriptor.getAddress().orElse(endpointToEdit.getAddress());
+        Data updatedData = editEndpointDescriptor.getData().orElse(endpointToEdit.getData());
+        Set<Header> updatedHeader = editEndpointDescriptor.getHeaders().orElse(endpointToEdit.getHeaders());
         Set<Tag> updatedTags = editEndpointDescriptor.getTags().orElse(endpointToEdit.getTags());
 
-        return new Endpoint(updatedMethod, updatedAddress, updatedTags);
+        return new Endpoint(updatedMethod, updatedAddress, updatedData, updatedHeader, updatedTags);
     }
 
     @Override
@@ -119,6 +127,8 @@ public class EditCommand extends Command {
     public static class EditEndpointDescriptor {
         private Method method;
         private Address address;
+        private Data data;
+        private Set<Header> headers;
         private Set<Tag> tags;
 
         public EditEndpointDescriptor() {
@@ -130,6 +140,8 @@ public class EditCommand extends Command {
         public EditEndpointDescriptor(EditEndpointDescriptor toCopy) {
             setMethod(toCopy.method);
             setAddress(toCopy.address);
+            setData(toCopy.data);
+            setHeaders(toCopy.headers);
             setTags(toCopy.tags);
         }
 
@@ -137,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(method, address, tags);
+            return CollectionUtil.isAnyNonNull(method, address, data, headers, tags);
         }
 
         public void setMethod(Method method) {
@@ -154,6 +166,31 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setData(Data data) {
+            this.data = data;
+        }
+
+        public Optional<Data> getData() {
+            return Optional.ofNullable(data);
+        }
+
+        /**
+         * Sets {@code headers} to this object's {@code headers}. A defensive copy of
+         * {@code headers} is used internally.
+         */
+        public void setHeaders(Set<Header> headers) {
+            this.headers = (headers != null) ? new HashSet<>(headers) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted. Returns
+         * {@code Optional#empty()} if {@code headers} is null.
+         */
+        public Optional<Set<Header>> getHeaders() {
+            return (headers != null) ? Optional.of(Collections.unmodifiableSet(headers)) : Optional.empty();
         }
 
         /**
@@ -188,7 +225,10 @@ public class EditCommand extends Command {
             // state check
             EditEndpointDescriptor e = (EditEndpointDescriptor) other;
 
-            return getMethod().equals(e.getMethod()) && getAddress().equals(e.getAddress())
+            return getMethod().equals(e.getMethod())
+                    && getAddress().equals(e.getAddress())
+                    && getData().equals(e.getData())
+                    && getHeaders().equals(e.getHeaders())
                     && getTags().equals(e.getTags());
         }
     }

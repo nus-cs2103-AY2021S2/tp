@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -20,6 +21,8 @@ public class Endpoint {
 
     // Data fields
     private final Address address;
+    private final Data data;
+    private final Set<Header> headers = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     // Response fields
@@ -28,10 +31,12 @@ public class Endpoint {
     /**
      * Every field must be present and not null.
      */
-    public Endpoint(Method method, Address address, Set<Tag> tags) {
-        requireAllNonNull(method, address, tags);
+    public Endpoint(Method method, Address address, Data data, Set<Header> headers, Set<Tag> tags) {
+        requireAllNonNull(method, address, data, headers, tags);
         this.method = method;
         this.address = address;
+        this.data = data;
+        this.headers.addAll(headers);
         this.tags.addAll(tags);
         this.response = new Response();
     }
@@ -39,10 +44,12 @@ public class Endpoint {
     /**
      * Every field must be present and not null.
      */
-    public Endpoint(Method method, Address address, Set<Tag> tags, Response response) {
-        requireAllNonNull(method, address, tags, response);
+    public Endpoint(Method method, Address address, Data data, Set<Header> headers, Set<Tag> tags, Response response) {
+        requireAllNonNull(method, address, data, headers, tags, response);
         this.method = method;
         this.address = address;
+        this.data = data;
+        this.headers.addAll(headers);
         this.tags.addAll(tags);
         this.response = response;
     }
@@ -55,8 +62,20 @@ public class Endpoint {
         return address;
     }
 
+    public Data getData() {
+        return data;
+    }
+
     public Response getResponse() {
         return response;
+    }
+
+    /**
+     * Returns an immutable header set, which throws
+     * {@code UnsupportedOperationException} if modification is attempted.
+     */
+    public Set<Header> getHeaders() {
+        return Collections.unmodifiableSet(headers);
     }
 
     /**
@@ -80,7 +99,10 @@ public class Endpoint {
         if (otherEndpoint == null) {
             return false;
         } else {
-            if (otherEndpoint.getMethod().equals(getMethod()) && otherEndpoint.getAddress().equals(getAddress())
+            if (otherEndpoint.getMethod().equals(getMethod())
+                    && otherEndpoint.getAddress().equals(getAddress())
+                    && otherEndpoint.getData().equals(getData())
+                    && otherEndpoint.getHeaders().equals(getHeaders())
                     && otherEndpoint.getTags().equals(getTags())) {
                 return true;
             } else {
@@ -104,20 +126,36 @@ public class Endpoint {
         }
 
         Endpoint otherEndpoint = (Endpoint) other;
-        return otherEndpoint.getMethod().equals(getMethod()) && otherEndpoint.getAddress().equals(getAddress())
+        return otherEndpoint.getMethod().equals(getMethod())
+                && otherEndpoint.getAddress().equals(getAddress())
+                && otherEndpoint.getData().equals(getData())
+                && otherEndpoint.getHeaders().equals(getHeaders())
                 && otherEndpoint.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(method, address, tags);
+        return Objects.hash(method, address, data, headers, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getMethod()).append("; Address: ").append(getAddress());
+        builder.append(getMethod())
+                .append("; Address: ")
+                .append(getAddress());
+
+        if (!data.isEmpty()) {
+            builder.append("; Data: ")
+                    .append(getData());
+        }
+
+        Set<Header> headers = getHeaders();
+        if (!headers.isEmpty()) {
+            builder.append("; Headers: ");
+            headers.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -11,9 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.us.among.commons.exceptions.IllegalValueException;
 import seedu.us.among.model.endpoint.Address;
+import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.endpoint.Response;
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -25,6 +27,8 @@ class JsonAdaptedEndpoint {
 
     private final String method;
     private final String address;
+    private final String data;
+    private final List<JsonAdaptedHeader> headers = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private JsonAdaptedResponse response;
 
@@ -34,10 +38,17 @@ class JsonAdaptedEndpoint {
     @JsonCreator
     public JsonAdaptedEndpoint(@JsonProperty("method") String method,
                                @JsonProperty("address") String address,
+                               @JsonProperty("data") String data,
+                               @JsonProperty("headers") List<JsonAdaptedHeader> headers,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("response") JsonAdaptedResponse response) {
         this.method = method;
         this.address = address;
+        this.data = data;
+
+        if (headers != null) {
+            this.headers.addAll(headers);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged); // to-do
         }
@@ -52,6 +63,10 @@ class JsonAdaptedEndpoint {
     public JsonAdaptedEndpoint(Endpoint source) {
         method = source.getMethod().methodName;
         address = source.getAddress().value;
+        data = source.getData().value;
+        headers.addAll(source.getHeaders().stream()
+                .map(JsonAdaptedHeader::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -73,6 +88,11 @@ class JsonAdaptedEndpoint {
      */
     public Endpoint toModelType() throws IllegalValueException {
         final List<Tag> endpointTags = new ArrayList<>();
+        final List<Header> endpointHeaders = new ArrayList<>();
+        for (JsonAdaptedHeader header: headers) {
+            endpointHeaders.add(header.toModelType());
+        }
+
         for (JsonAdaptedTag tag : tagged) {
             endpointTags.add(tag.toModelType());
         }
@@ -93,6 +113,15 @@ class JsonAdaptedEndpoint {
         }
         final Address modelAddress = new Address(address);
 
+        if (data == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Method.class.getSimpleName()));
+        }
+        if (!Data.isValidData(data)) {
+            throw new IllegalValueException(Data.MESSAGE_CONSTRAINTS);
+        }
+        final Data modelData = new Data(data);
+
+
         final Response modelResponse;
         if (response == null) {
             modelResponse = new Response();
@@ -104,8 +133,9 @@ class JsonAdaptedEndpoint {
                     newModelResponse.getResponseTime());
         }
 
+        final Set<Header> modelHeaders = new HashSet<>(endpointHeaders);
         final Set<Tag> modelTags = new HashSet<>(endpointTags);
-        return new Endpoint(modelName, modelAddress, modelTags, modelResponse);
+        return new Endpoint(modelName, modelAddress, modelData, modelHeaders, modelTags, modelResponse);
     }
 
 }
