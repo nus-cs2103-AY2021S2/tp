@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -33,17 +35,34 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        if (tagIsPresent) {
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            return new DeleteTagCommand(tagList);
-        }
-
         try {
-            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new DeleteContactCommand(index);
+
+            if (tagIsPresent) {
+                return createDeleteTagCommand(argMultimap.getAllValues(PREFIX_TAG));
+            }
+
+            return createDeleteContactCommand(argMultimap.getPreamble());
+
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
+    }
+
+    private DeleteTagCommand createDeleteTagCommand(List<String> tags) throws ParseException {
+        Set<Tag> tagList = ParserUtil.parseTags(tags);
+        return new DeleteTagCommand(tagList);
+    }
+
+    private DeleteContactCommand createDeleteContactCommand(String args) throws ParseException {
+        String[] strIndexes = args.split("\\s+");
+        List<Index> indexes = new ArrayList<>();
+
+        for (String s : strIndexes) {
+            Index index = ParserUtil.parseIndex(s);
+            indexes.add(index);
+        }
+
+        return new DeleteContactCommand(indexes);
     }
 }
