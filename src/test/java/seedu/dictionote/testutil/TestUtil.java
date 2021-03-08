@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
+    public static Contact getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
 }

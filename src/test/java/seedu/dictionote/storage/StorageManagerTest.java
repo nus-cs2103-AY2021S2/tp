@@ -2,7 +2,7 @@ package seedu.dictionote.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.dictionote.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 
 import java.nio.file.Path;
 

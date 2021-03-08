@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.dictionote.testutil.TypicalPersons.CARL;
-import static seedu.dictionote.testutil.TypicalPersons.ELLE;
-import static seedu.dictionote.testutil.TypicalPersons.FIONA;
-import static seedu.dictionote.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.CARL;
+import static seedu.dictionote.testutil.TypicalContacts.ELLE;
+import static seedu.dictionote.testutil.TypicalContacts.FIONA;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.person.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

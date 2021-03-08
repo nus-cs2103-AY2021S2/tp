@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.person.Person;
-import seedu.dictionote.model.person.UniquePersonList;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.UniquePersonList;
 
 /**
  * Wraps all data at the dictionote-book level
@@ -43,8 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setPersons(List<Contact> contacts) {
+        this.persons.setPersons(contacts);
     }
 
     /**
@@ -53,24 +53,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPersons(newData.getContactList());
     }
 
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the dictionote book.
+     * Returns true if a contact with the same identity as {@code contact} exists in the contacts list.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return persons.contains(contact);
     }
 
     /**
      * Adds a person to the dictionote book.
      * The person must not already exist in the dictionote book.
      */
-    public void addPerson(Person p) {
+    public void addContact(Contact p) {
         persons.add(p);
     }
 
@@ -80,17 +80,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person identity of {@code editedPerson} must not be the same as
      * another existing person in the dictionote book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setPerson(Contact target, Contact editedContact) {
+        requireNonNull(editedContact);
 
-        persons.setPerson(target, editedPerson);
+        persons.setPerson(target, editedContact);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the dictionote book.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Contact key) {
         persons.remove(key);
     }
 
@@ -103,7 +103,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Contact> getContactList() {
         return persons.asUnmodifiableObservableList();
     }
 

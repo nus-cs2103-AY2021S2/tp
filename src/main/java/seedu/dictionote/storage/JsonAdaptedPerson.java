@@ -10,15 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.dictionote.commons.exceptions.IllegalValueException;
-import seedu.dictionote.model.person.Address;
-import seedu.dictionote.model.person.Email;
-import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Person;
-import seedu.dictionote.model.person.Phone;
+import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.Name;
+import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Contact}.
  */
 class JsonAdaptedPerson {
 
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Contact source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Contact toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -103,7 +103,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.EditCommand;
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.dictionote.model.person.Address;
-import seedu.dictionote.model.person.Email;
-import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Phone;
+import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.Name;
+import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 
