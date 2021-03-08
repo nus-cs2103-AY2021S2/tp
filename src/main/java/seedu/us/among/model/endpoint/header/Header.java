@@ -14,7 +14,7 @@ public class Header {
      */
 
     public static final String MESSAGE_CONSTRAINTS = "Header names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = ".*";
 
     public final String headerName;
 
