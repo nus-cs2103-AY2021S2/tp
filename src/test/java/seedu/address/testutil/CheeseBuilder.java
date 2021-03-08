@@ -1,32 +1,37 @@
 package seedu.address.testutil;
 
 import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
+import seedu.address.model.cheese.MaturityDate;
 
 /**
  * A utility class to help with building Cheese objects.
  */
 public class CheeseBuilder {
 
-    public static final String DEFAULT_MANUFACTURE_DATE = "2020-08-05 08:00";
-    public static final String DEFAULT_EXPIRY_DATE = "2021-08-05 00:00";
     public static final String DEFAULT_CHEESE_TYPE = "Brie";
+    public static final String DEFAULT_MANUFACTURE_DATE = "2020-08-05 08:00";
+    public static final String DEFAULT_MATURITY_DATE = "2021-08-05 08:00";
+    public static final String DEFAULT_EXPIRY_DATE = "2023-08-05 00:00";
 
-    private ManufactureDate manufactureDate;
-    private ExpiryDate expiryDate;
     private CheeseType cheeseType;
-    private final Cheese cheeseToCopy;
+    private ManufactureDate manufactureDate;
+    private MaturityDate maturityDate;
+    private ExpiryDate expiryDate;
+    private CheeseId cheeseId;
 
     /**
      * Creates a {@code CheeseBuilder} with the default details.
      */
     public CheeseBuilder() {
-        manufactureDate = new ManufactureDate(DEFAULT_MANUFACTURE_DATE);
-        expiryDate = new ExpiryDate(DEFAULT_EXPIRY_DATE);
         cheeseType = CheeseType.getCheeseType(DEFAULT_CHEESE_TYPE);
-        cheeseToCopy = null;
+        manufactureDate = new ManufactureDate(DEFAULT_MANUFACTURE_DATE);
+        maturityDate = new MaturityDate(DEFAULT_MATURITY_DATE);
+        expiryDate = new ExpiryDate(DEFAULT_EXPIRY_DATE);
+        cheeseId = null;
     }
 
     /**
@@ -34,10 +39,19 @@ public class CheeseBuilder {
      * Makes an exact copy (with the same ID) of the {@code cheeseToCopy}.
      */
     public CheeseBuilder(Cheese cheeseToCopy) {
-        manufactureDate = cheeseToCopy.getManufactureDate();
-        expiryDate = cheeseToCopy.getExpiryDate();
         cheeseType = cheeseToCopy.getCheeseType();
-        this.cheeseToCopy = cheeseToCopy;
+        manufactureDate = cheeseToCopy.getManufactureDate();
+        maturityDate = cheeseToCopy.getMaturityDate();
+        expiryDate = cheeseToCopy.getExpiryDate();
+        cheeseId = cheeseToCopy.getCheeseId();
+    }
+
+    /**
+     * Sets the {@code CheeseType} of the {@code Cheese} that we are building.
+     */
+    public CheeseBuilder withCheeseType(String cheeseType) {
+        this.cheeseType = CheeseType.getCheeseType(cheeseType);
+        return this;
     }
 
     /**
@@ -45,6 +59,14 @@ public class CheeseBuilder {
      */
     public CheeseBuilder withManufactureDate(String manufactureDate) {
         this.manufactureDate = new ManufactureDate(manufactureDate);
+        return this;
+    }
+
+    /**
+     * Sets the {@code MaturityDate} of the {@code Cheese} that we are building.
+     */
+    public CheeseBuilder withMaturityDate(String maturityDate) {
+        this.maturityDate = new MaturityDate(maturityDate);
         return this;
     }
 
@@ -57,10 +79,10 @@ public class CheeseBuilder {
     }
 
     /**
-     * Sets the {@code CheeseType} of the {@code Cheese} that we are building.
+     * Sets the {@code CheeseId} of the {@code Cheese} that we are building.
      */
-    public CheeseBuilder withCheeseType(String cheeseType) {
-        this.cheeseType = CheeseType.getCheeseType(cheeseType);
+    public CheeseBuilder withCheeseId(int id) {
+        this.cheeseId = new CheeseId(id);
         return this;
     }
 
@@ -69,10 +91,10 @@ public class CheeseBuilder {
      * @return an {@code Cheese} representation of data
      */
     public Cheese build() {
-        if (cheeseToCopy == null) {
-            return new Cheese(manufactureDate, expiryDate, cheeseType);
+        if (cheeseId == null) {
+            return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate);
         } else {
-            return new Cheese(manufactureDate, expiryDate, cheeseType, cheeseToCopy);
+            return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId);
         }
     }
 

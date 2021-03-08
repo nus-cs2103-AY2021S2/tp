@@ -4,13 +4,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 
-import seedu.address.model.Date;
+import seedu.address.model.AbstractDate;
 
 /**
- * Represents an Order's order date in the Cheese inventory Management System (CHIM).
+ * Represents an Order's order date in the Cheese Inventory Management System (CHIM).
  * Guarantees: immutable
  */
-public class OrderDate extends Date {
+public class OrderDate extends AbstractDate {
 
     /**
      * Constructs a {@code OrderDate}.

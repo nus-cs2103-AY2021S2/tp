@@ -3,54 +3,56 @@ package seedu.address.model.cheese;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Cheese in the Cheese inventory Management System (CHIM)
+ * Represents a Cheese in the Cheese Inventory Management System (CHIM)
  * Guarantees: immutable;
  */
 public class Cheese {
-    private static int currentId = 0;
 
     // Identity fields
     // Primary key for Cheese
-    private final int cheeseId;
+    private final CheeseId cheeseId;
     private final CheeseType cheeseType;
 
     // Data fields
     private final ManufactureDate manufactureDate;
+    private final MaturityDate maturityDate;
     private final ExpiryDate expiryDate;
+
+    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
+                  ExpiryDate expiryDate) {
+        this(cheeseType, manufactureDate, maturityDate, expiryDate, CheeseId.getNextId());
+    }
 
     /**
      * Every field must be present and not null.
      */
-    public Cheese(ManufactureDate manufactureDate, ExpiryDate expiryDate, CheeseType cheeseType) {
-        this(manufactureDate, expiryDate, cheeseType, currentId++);
-    }
-
-    public Cheese(ManufactureDate manufactureDate, ExpiryDate expiryDate, CheeseType cheeseType,
-                  Cheese previousCheese) {
-        this(manufactureDate, expiryDate, cheeseType, previousCheese.cheeseId);
-    }
-
-    private Cheese(ManufactureDate manufactureDate, ExpiryDate expiryDate, CheeseType cheeseType, int cheeseId) {
-        requireAllNonNull(manufactureDate, expiryDate, cheeseType);
-        this.manufactureDate = manufactureDate;
-        this.expiryDate = expiryDate;
+    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
+                  ExpiryDate expiryDate, CheeseId cheeseId) {
+        requireAllNonNull(cheeseType, manufactureDate, maturityDate, expiryDate);
         this.cheeseType = cheeseType;
+        this.manufactureDate = manufactureDate;
+        this.maturityDate = maturityDate;
+        this.expiryDate = expiryDate;
         this.cheeseId = cheeseId;
-    }
-
-    public ManufactureDate getManufactureDate() {
-        return manufactureDate;
-    }
-
-    public ExpiryDate getExpiryDate() {
-        return expiryDate;
     }
 
     public CheeseType getCheeseType() {
         return cheeseType;
     }
 
-    public int getCheeseId() {
+    public ManufactureDate getManufactureDate() {
+        return manufactureDate;
+    }
+
+    public MaturityDate getMaturityDate() {
+        return maturityDate;
+    }
+
+    public ExpiryDate getExpiryDate() {
+        return expiryDate;
+    }
+
+    public CheeseId getCheeseId() {
         return cheeseId;
     }
 
@@ -64,7 +66,7 @@ public class Cheese {
         }
 
         return otherCheese != null
-            && otherCheese.cheeseId == cheeseId;
+            && otherCheese.cheeseId.equals(cheeseId);
     }
 
     /**
@@ -82,9 +84,10 @@ public class Cheese {
         }
 
         Cheese otherCheese = (Cheese) other;
-        return otherCheese.getCheeseId() == getCheeseId()
+        return otherCheese.getCheeseId().equals(getCheeseId())
             && otherCheese.getCheeseType().equals(getCheeseType())
             && otherCheese.getManufactureDate().equals(getManufactureDate())
+            && otherCheese.getMaturityDate().equals(getMaturityDate())
             && otherCheese.getExpiryDate().equals(getExpiryDate());
     }
 

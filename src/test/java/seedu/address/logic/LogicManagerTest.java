@@ -22,6 +22,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.CustomerIdStub;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -81,7 +82,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
+        Customer expectedCustomer = new CustomerBuilder(AMY).withId(CustomerIdStub.getNextId()).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addCustomer(expectedCustomer);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

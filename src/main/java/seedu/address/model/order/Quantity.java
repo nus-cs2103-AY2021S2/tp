@@ -3,7 +3,7 @@ package seedu.address.model.order;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Order's quantity in the Cheese inventory Management System (CHIM).
+ * Represents an Order's quantity in the Cheese Inventory Management System (CHIM).
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(int)}
  */
 public class Quantity {

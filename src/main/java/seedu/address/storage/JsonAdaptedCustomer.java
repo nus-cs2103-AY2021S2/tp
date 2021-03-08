@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -28,6 +29,7 @@ class JsonAdaptedCustomer {
     private final String phone;
     private final String email;
     private final String address;
+    private final Integer customerId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +38,13 @@ class JsonAdaptedCustomer {
     @JsonCreator
     public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                @JsonProperty("email") String email, @JsonProperty("address") String address,
+                               @JsonProperty("customerId") Integer customerId,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.customerId = customerId;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +58,7 @@ class JsonAdaptedCustomer {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        customerId = source.getId().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +107,18 @@ class JsonAdaptedCustomer {
         }
         final Address modelAddress = new Address(address);
 
+        if (customerId == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, CustomerId.class.getSimpleName()));
+        }
+
+        if (!CustomerId.isValidId(customerId)) {
+            throw new IllegalValueException(CustomerId.MESSAGE_CONSTRAINTS);
+        }
+        final CustomerId modelId = CustomerId.getNextId(customerId);
+
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelId);
     }
 
 }

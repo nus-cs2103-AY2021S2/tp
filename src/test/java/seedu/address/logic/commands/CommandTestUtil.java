@@ -60,11 +60,15 @@ public class CommandTestUtil {
     public static final EditCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCommand.EditCustomerDescriptor DESC_BOB;
 
+    public static final int VALID_QUANTITY_1 = 1;
+    public static final int VALID_QUANTITY_5 = 5;
     public static final String VALID_CHEESE_TYPE_BRIE = "Brie";
     public static final String VALID_CHEESE_TYPE_CAMEMBERT = "Camembert";
     public static final String VALID_CHEESE_TYPE_FETA = "Feta";
     public static final String VALID_MANUFACTURE_DATE_1 = "2021-03-04 07:00";
     public static final String VALID_MANUFACTURE_DATE_2 = "2021-03-06 07:00";
+    public static final String VALID_MATURITY_DATE_1 = "2021-04-04 07:00";
+    public static final String VALID_MATURITY_DATE_2 = "2021-04-06 07:00";
     public static final String VALID_EXPIRY_DATE_1 = "2022-03-04 06:00";
     public static final String VALID_EXPIRY_DATE_2 = "2023-04-04 06:00";
     public static final String VALID_ORDER_DATE_1 = "2021-02-05 07:00";

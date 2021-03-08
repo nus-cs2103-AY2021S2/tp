@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a Cheese's type in the Cheese inventory Management System (CHIM).
+ * Represents a Cheese's type in the Cheese Inventory Management System (CHIM).
  * Guarantees: immutable
  */
 public class CheeseType {

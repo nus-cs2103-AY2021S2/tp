@@ -17,11 +17,13 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommandStub;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.CustomerIdStub;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.testutil.CustomerBuilder;
@@ -34,7 +36,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Customer customer = new CustomerBuilder().build();
+        Customer customer = new CustomerBuilder().withId(CustomerIdStub.getNextId()).build();
         AddCommand command = (AddCommand) parser.parseCommand(CustomerUtil.getAddCommand(customer));
         assertEquals(new AddCommand(customer), command);
     }
@@ -54,10 +56,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Customer customer = new CustomerBuilder().build();
+        Customer customer = new CustomerBuilder().withId(CustomerIdStub.getNextId()).build();
         EditCommand.EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
+        command = new EditCommandStub(command, descriptor);
         assertEquals(new EditCommand(INDEX_FIRST_CUSTOMER, descriptor), command);
     }
 

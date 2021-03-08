@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MATURITY_DATE_2;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
 import static seedu.address.testutil.TypicalCheese.FETA;
@@ -23,6 +24,14 @@ public class CheeseTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CheeseBuilder().withCheeseType(null).build());
+    }
+
+    @Test
+    public void idAutoIncrement() {
+        final int cheeseId = 10;
+        Cheese cheese = new CheeseBuilder().withCheeseId(cheeseId).build();
+        Cheese cheese2 = new CheeseBuilder().build();
+        assertTrue(cheese.getCheeseId().compareTo(cheese2.getCheeseId()) < 0);
     }
 
     @Test
@@ -46,6 +55,7 @@ public class CheeseTest {
                 .withExpiryDate(VALID_EXPIRY_DATE_1)
                 .withManufactureDate(VALID_MANUFACTURE_DATE_1)
                 .build();
+
         assertFalse(CAMEMBERT.isSameCheese(newSimilarCamembert));
     }
 
@@ -67,9 +77,11 @@ public class CheeseTest {
         // Different cheese -> returns false
         assertFalse(CAMEMBERT.equals(FETA));
 
-        // Different expire date -> returns false
-        Cheese editedCamembert =
-            new CheeseBuilder(CAMEMBERT).withExpiryDate(VALID_EXPIRY_DATE_2).build();
+        // Different id --> return false
+        Cheese editedCamembert = new CheeseBuilder()
+                .withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)
+                .withManufactureDate(VALID_MANUFACTURE_DATE_1)
+                .withExpiryDate(VALID_EXPIRY_DATE_1).build();
         assertFalse(CAMEMBERT.equals(editedCamembert));
 
         // Different cheese type -> returns false
@@ -77,16 +89,19 @@ public class CheeseTest {
                 .withCheeseType(VALID_CHEESE_TYPE_FETA).build();
         assertFalse(CAMEMBERT.equals(editedCamembert));
 
-        // Different id --> return false
-        editedCamembert = new CheeseBuilder()
-                .withCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)
-                .withManufactureDate(VALID_MANUFACTURE_DATE_1)
-                .withExpiryDate(VALID_EXPIRY_DATE_1).build();
-        assertFalse(CAMEMBERT.equals(editedCamembert));
-
         // Different manufacturing date -> return false
         editedCamembert = new CheeseBuilder(CAMEMBERT)
                 .withManufactureDate(VALID_MANUFACTURE_DATE_2).build();
+        assertFalse(CAMEMBERT.equals(editedCamembert));
+
+        // Different maturity date --> return false
+        editedCamembert = new CheeseBuilder(CAMEMBERT)
+                .withMaturityDate(VALID_MATURITY_DATE_2).build();
+        assertFalse(CAMEMBERT.equals(editedCamembert));
+
+        // Different expire date -> returns false
+        editedCamembert =
+            new CheeseBuilder(CAMEMBERT).withExpiryDate(VALID_EXPIRY_DATE_2).build();
         assertFalse(CAMEMBERT.equals(editedCamembert));
     }
 }

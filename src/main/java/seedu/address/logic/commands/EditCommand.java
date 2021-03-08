@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -50,8 +51,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the address book.";
 
-    private final Index index;
-    private final EditCustomerDescriptor editCustomerDescriptor;
+    protected final Index index;
+    protected final EditCustomerDescriptor editCustomerDescriptor;
 
     /**
      * @param index of the customer in the filtered customer list to edit
@@ -99,8 +100,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editCustomerDescriptor.getEmail().orElse(customerToEdit.getEmail());
         Address updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
+        CustomerId updatedId = editCustomerDescriptor.getId().orElse(customerToEdit.getId());
 
-        return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedId);
     }
 
     @Override
@@ -131,6 +133,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private CustomerId customerId;
 
         public EditCustomerDescriptor() {}
 
@@ -144,6 +147,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setId(toCopy.customerId);
         }
 
         /**
@@ -185,6 +189,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setId(CustomerId customerId) {
+            this.customerId = customerId;
+        }
+
+        public Optional<CustomerId> getId() {
+            return Optional.ofNullable(customerId);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -217,7 +229,8 @@ public class EditCommand extends Command {
             // state check
             EditCustomerDescriptor e = (EditCustomerDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getId().equals(e.getId())
+                    && getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())

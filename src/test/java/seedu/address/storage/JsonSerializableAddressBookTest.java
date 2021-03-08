@@ -16,9 +16,9 @@ import seedu.address.testutil.TypicalCustomers;
 public class JsonSerializableAddressBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_CUSTOMERS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_CUSTOMER_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
-    private static final Path DUPLICATE_CUSTOMER_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path TYPICAL_CUSTOMERS_FILE = TEST_DATA_FOLDER.resolve("typicalCustomersAddressBook.json");
+    private static final Path INVALID_CUSTOMER_FILE = TEST_DATA_FOLDER.resolve("invalidCustomerAddressBook.json");
+    private static final Path DUPLICATE_CUSTOMER_FILE = TEST_DATA_FOLDER.resolve("duplicateCustomerAddressBook.json");
 
     @Test
     public void toModelType_typicalCustomersFile_success() throws Exception {

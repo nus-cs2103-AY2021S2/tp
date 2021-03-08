@@ -32,6 +32,7 @@ import static seedu.address.testutil.TypicalCustomers.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.CustomerIdStub;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -45,31 +46,44 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Customer expectedCustomer = new CustomerBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Customer expectedCustomer = new CustomerBuilder(BOB).withId(CustomerIdStub.getNextId())
+                .withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
 
+        expectedCustomer = new CustomerBuilder(BOB).withId(CustomerIdStub.getNextId())
+                .withTags(VALID_TAG_FRIEND).build();
+
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
+
+        expectedCustomer = new CustomerBuilder(BOB).withId(CustomerIdStub.getNextId())
+                .withTags(VALID_TAG_FRIEND).build();
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
 
+        expectedCustomer = new CustomerBuilder(BOB).withId(CustomerIdStub.getNextId())
+                .withTags(VALID_TAG_FRIEND).build();
+
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
+
+        expectedCustomer = new CustomerBuilder(BOB).withId(CustomerIdStub.getNextId())
+                .withTags(VALID_TAG_FRIEND).build();
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCustomer));
 
         // multiple tags - all accepted
-        Customer expectedCustomerMultipleTags = new CustomerBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Customer expectedCustomerMultipleTags = new CustomerBuilder(BOB).withId(CustomerIdStub.getNextId())
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedCustomerMultipleTags));
     }
@@ -77,7 +91,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
+        Customer expectedCustomer = new CustomerBuilder(AMY).withId(CustomerIdStub.getNextId()).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedCustomer));
     }

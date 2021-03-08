@@ -6,52 +6,65 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
+import seedu.address.model.customer.CustomerId;
 
 /**
- * Represents a Order in the Cheese inventory Management System (CHIM).
+ * Represents a Order in the Cheese Inventory Management System (CHIM).
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Order {
-    private static int currentId = 0;
-
     // Identity fields
     // Primary key for Order
-    private final int orderId;
+    private final OrderId orderId;
     private final CheeseType orderCheeseType;
+    private final Quantity quantity;
+    private final CustomerId customerId;
 
     // Data fields
     private final OrderDate orderDate;
     private final CompletedDate completedDate;
 
     // Set of cheese IDs for this order
-    private final Set<Integer> cheeses = new HashSet<>();
+    private final Set<CheeseId> cheeses = new HashSet<>();
 
-    public Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType) {
-        this(orderDate, completedDate, cheeseType, new HashSet<>());
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate,
+                 CompletedDate completedDate, CustomerId customerId) {
+        this(cheeseType, quantity, orderDate, completedDate, new HashSet<>(), customerId);
     }
 
-    public Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType, Set<Integer> cheeses) {
-        this(orderDate, completedDate, cheeseType, cheeses, currentId++);
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
+                 Set<CheeseId> cheeses, CustomerId customerId) {
+        this(cheeseType, quantity, orderDate, completedDate, cheeses, OrderId.getNextId(), customerId);
     }
 
-    public Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType, Order previousOrder) {
-        this(orderDate, completedDate, cheeseType, new HashSet<>(), previousOrder.orderId);
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
+                 OrderId orderId, CustomerId customerId) {
+        this(cheeseType, quantity, orderDate, completedDate, new HashSet<>(), orderId, customerId);
     }
 
-    public Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType,
-                 Set<Integer> cheeses, Order previousOrder) {
-        this(orderDate, completedDate, cheeseType, cheeses, previousOrder.orderId);
-    }
-
-    private Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType,
-                  Set<Integer> cheeses, int orderId) {
-        requireAllNonNull(orderDate, cheeseType, cheeses);
+    /**
+     * Every field must be present and not null.
+     */
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
+                 Set<CheeseId> cheeses, OrderId orderId, CustomerId customerId) {
+        requireAllNonNull(orderDate, cheeseType, cheeses, customerId);
+        this.orderCheeseType = cheeseType;
+        this.quantity = quantity;
         this.orderDate = orderDate;
         this.completedDate = completedDate;
-        this.orderCheeseType = cheeseType;
         this.orderId = orderId;
+        this.customerId = customerId;
         this.cheeses.addAll(cheeses);
+    }
+
+    public CheeseType getCheeseType() {
+        return orderCheeseType;
+    }
+
+    public Quantity getQuantity() {
+        return quantity;
     }
 
     public OrderDate getOrderDate() {
@@ -62,19 +75,19 @@ public class Order {
         return completedDate;
     }
 
-    public CheeseType getCheeseType() {
-        return orderCheeseType;
+    public OrderId getOrderId() {
+        return orderId;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public CustomerId getCustomerId() {
+        return customerId;
     }
 
     /**
      * Returns an immutable Cheese Ids set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Integer> getCheeses() {
+    public Set<CheeseId> getCheeses() {
         return Collections.unmodifiableSet(cheeses);
     }
 
@@ -87,7 +100,9 @@ public class Order {
             return true;
         }
 
-        return otherOrder != null && otherOrder.orderId == orderId;
+        return otherOrder != null
+                && otherOrder.orderId.equals(orderId)
+                && otherOrder.customerId.equals(customerId);
     }
 
     /**
@@ -105,8 +120,10 @@ public class Order {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getOrderId() == getOrderId()
+        return otherOrder.getOrderId().equals(getOrderId())
+                && otherOrder.getCustomerId().equals(getCustomerId())
                 && otherOrder.getCheeseType().equals(getCheeseType())
+                && otherOrder.getQuantity().equals(getQuantity())
                 && otherOrder.getOrderDate().equals(getOrderDate())
                 && otherOrder.getCompletedDate().equals(getCompletedDate())
                 && otherOrder.getCheeses().equals(getCheeses());

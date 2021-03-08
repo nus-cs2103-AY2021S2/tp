@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 import java.util.Locale;
 
-public class Date {
+public abstract class AbstractDate {
     public static final String MESSAGE_CONSTRAINTS =
         "Dates should be given in the following formats (dd/MM/yyyy or yyyy-MM-dd or MMM d yyyy)";
 
@@ -34,7 +34,7 @@ public class Date {
      *
      * @param date A valid String date.
      */
-    public Date(String date) {
+    public AbstractDate(String date) {
         requireNonNull(date);
         LocalDateTime dateTime = parseDate(date);
         checkArgument(dateTime != null, MESSAGE_CONSTRAINTS);
@@ -61,8 +61,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Date // instanceof handles nulls
-            && value.equals(((Date) other).value)); // state check
+            || (other instanceof AbstractDate // instanceof handles nulls
+            && value.equals(((AbstractDate) other).value)); // state check
     }
 
     @Override
