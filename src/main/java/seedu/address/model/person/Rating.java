@@ -4,21 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Person's rating in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRating(String)}
  */
 public class Rating {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Ratings should only contain numbers, and it should be between 0 to 5";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Ratings should only contain a number, and it should be a single digit";
+    public static final String VALIDATION_REGEX = "\\d{1,}";
     public final String value;
 
     /**
      * Constructs a {@code Rating}.
      *
-     * @param rating A valid phone number.
+     * @param rating A valid rating.
      */
     public Rating(String rating) {
         requireNonNull(rating);
@@ -27,7 +27,7 @@ public class Rating {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid rating.
      */
     public static boolean isValidRating(String test) {
         return test.matches(VALIDATION_REGEX);
