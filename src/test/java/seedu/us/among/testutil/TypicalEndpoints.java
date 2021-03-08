@@ -24,30 +24,56 @@ public class TypicalEndpoints {
             .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
             .withData("{testingdata}")
             .withTags("cat")
+            .withHeaders("headers")
             .build();
     public static final Endpoint POST = new EndpointBuilder().withMethod("POST")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{testingdata}").withTags("cat", "fact").build();
+            .withData("{testingdata}").withTags("cat", "fact")
+            .withHeaders("headers")
+            .build();
     public static final Endpoint PUT = new EndpointBuilder().withMethod("PUT")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{testingdata}").build();
+            .withData("{testingdata}")
+            .withHeaders("headers")
+            .build();
     public static final Endpoint DELETE = new EndpointBuilder().withMethod("DELETE")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{testingdata}").withTags("Fact").build();
-    public static final Endpoint HEAD = new EndpointBuilder().withMethod("HEAD")
+            .withData("{testingdata}")
+            .withTags("Fact")
+            .withHeaders("headers")
+            .build();
+    public static final Endpoint HEAD = new EndpointBuilder()
+            .withMethod("HEAD")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{testingdata}").build();
-    public static final Endpoint OPTIONS = new EndpointBuilder().withMethod("OPTIONS")
-            .withAddress("https://cat-fact.herokuapp.com/facts").withData("{testingdata}").build();
-    public static final Endpoint PATCH = new EndpointBuilder().withMethod("PATCH")
-            .withAddress("https://cat-fact.herokuapp.com/facts").withData("{testingdata}").build();
+            .withData("{testingdata}")
+            .withHeaders("headers")
+            .build();
+    public static final Endpoint OPTIONS = new EndpointBuilder()
+            .withMethod("OPTIONS")
+            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withData("{testingdata}")
+            .withHeaders("headers")
+            .build();
+    public static final Endpoint PATCH = new EndpointBuilder()
+            .withMethod("PATCH")
+            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withData("{testingdata}")
+            .withHeaders("headers")
+            .build();
 
-    // Manually added
-    public static final Endpoint GET1 = new EndpointBuilder().withMethod("GET")
+    // Manually added //to-do Fixe these test cases
+    public static final Endpoint GET1 = new EndpointBuilder()
+            .withMethod("GET")
             .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
-            .withData("{testingdata}").build();
-    public static final Endpoint GET2 = new EndpointBuilder().withMethod("GET")
-            .withAddress("https://cat-fact.herokuapp.com/facts").withData("{testingdata}").build();
+            .withData("{testingdata}")
+            .withHeaders("headers")
+            .build();
+    public static final Endpoint GET2 = new EndpointBuilder()
+            .withMethod("GET")
+            .withAddress("https://cat-fact.herokuapp.com/facts")
+            .withData("{testingdata}")
+            .withHeaders("headers")
+            .build();
 
     // Manually added - Endpoint's details found in {@code CommandTestUtil}
     public static final Endpoint GET3 = new EndpointBuilder().withMethod(VALID_METHOD_GET)
