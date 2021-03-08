@@ -21,10 +21,9 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
 
         String trimmedArgs = args.trim();
-        String prefix = String.valueOf(trimmedArgs.charAt(0));
 
-        if(trimmedArgs.length() == 9 && prefix.equalsIgnoreCase("A")){
-            check_valid_matriculation_number(args);
+        if(trimmedArgs.length() == 9 && String.valueOf(trimmedArgs.charAt(0)).equalsIgnoreCase("A")){
+            check_valid_matriculation_number(trimmedArgs);
         }
         else{
             throw new ParseException(
@@ -44,13 +43,13 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public void check_valid_matriculation_number(String matriculationNumber ) throws ParseException {
 
-        if(!isLetter(matriculationNumber.substring(9))){
+        if(!isLetter(matriculationNumber.substring(8))){
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         try{
-            Integer.parseInt(matriculationNumber.substring(2,9));
+            Integer.parseInt(matriculationNumber.substring(2,8));
         } catch(NumberFormatException | IndexOutOfBoundsException outOfBounds) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
