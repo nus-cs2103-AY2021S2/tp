@@ -16,5 +16,7 @@
   <children>
     <ImageView fx:id="loadingSpinnerPlaceholder" visible="false" fitWidth="320" fitHeight="320" preserveRatio="true" pickOnBounds="true">
     </ImageView>
+    <ImageView fx:id="errorPlaceholder" visible="false" fitWidth="320" fitHeight="320" preserveRatio="true" pickOnBounds="true">
+    </ImageView>
   </children>
 </StackPane>
