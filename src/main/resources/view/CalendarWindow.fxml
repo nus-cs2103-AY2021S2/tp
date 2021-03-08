@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
@@ -16,9 +17,15 @@
 <?import javafx.stage.Stage?>
 
 
-<Stage xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Stage xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" title="Calendar">
+    <icons>
+        <Image url="@/images/logo.png" />
+    </icons>
    <scene>
       <Scene>
+          <stylesheets>
+              <URL value="@CalendarWindow.css" />
+          </stylesheets>
          <root>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" style="-fx-background-color: grey;">
                <children>
@@ -106,12 +113,12 @@
                                     <Font name="Abyssinica SIL" size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Sat" GridPane.columnIndex="5">
+                              <Label layoutX="55.0" layoutY="22.0" text="Sat" style="-fx-text-fill: red;" GridPane.columnIndex="5">
                                  <font>
                                     <Font name="Abyssinica SIL" size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Sun" GridPane.columnIndex="6">
+                              <Label layoutX="55.0" layoutY="22.0" text="Sun" style="-fx-text-fill: red;" GridPane.columnIndex="6">
                                  <font>
                                     <Font name="Abyssinica SIL" size="16.0" />
                                  </font>
