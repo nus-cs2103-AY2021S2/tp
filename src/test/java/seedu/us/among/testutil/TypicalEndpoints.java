@@ -61,14 +61,13 @@ public class TypicalEndpoints {
             .withHeaders("headers")
             .build();
 
-    // Manually added //to-do Fixe these test cases 
+    // Manually added //to-do Fixe these test cases
     public static final Endpoint GET1 = new EndpointBuilder()
             .withMethod("GET")
             .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
             .withData("{testingdata}")
             .withHeaders("headers")
             .build();
-
     public static final Endpoint GET2 = new EndpointBuilder()
             .withMethod("GET")
             .withAddress("https://cat-fact.herokuapp.com/facts")
