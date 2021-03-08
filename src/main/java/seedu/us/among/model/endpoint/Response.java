@@ -88,7 +88,7 @@ public class Response {
     }
 
     public String getResponseTime() {
-        return String.format("%s seconds", this.responseTime);
+        return this.responseTime;
     }
 
     @Override
