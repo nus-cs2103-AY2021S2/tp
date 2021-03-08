@@ -25,7 +25,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Tag> tags;
     private final List<Meeting> meetings;
 
     /**
@@ -37,8 +37,24 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+
+        this.tags = new HashSet<>();
         this.tags.addAll(tags);
+
         this.meetings = new ArrayList<>();
+    }
+
+    /**
+     * Used for copying Person
+     */
+    private Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Meeting> meetings) {
+        requireAllNonNull(name, phone, email, address, tags, meetings);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags = tags;
+        this.meetings = meetings;
     }
 
     public Name getName() {
@@ -67,6 +83,13 @@ public class Person {
 
     public List<Meeting> getMeetings() {
         return Collections.unmodifiableList(meetings);
+    }
+
+    public Person copy() {
+        Set<Tag> tags = new HashSet<>(this.tags);
+        List<Meeting> meetings = new ArrayList<>(this.meetings);
+
+        return new Person(name, phone, email, address, tags, meetings);
     }
 
     /**
