@@ -93,8 +93,17 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    //=========== task ==================================================================================
+    //=========== SOChedule ==================================================================================
 
+    /**
+     * Replaces sochedule data with the data in {@code sochedule}.
+     */
+    void setSochedule(ReadOnlySochedule sochedule);
+
+    /** Returns the Sochedule */
+    ReadOnlySochedule getSochedule();
+
+    //=========== task ==================================================================================
 
     /**
      * Returns the user prefs' TaskList file path.
@@ -106,13 +115,6 @@ public interface Model {
      */
     void setTaskListFilePath(Path taskListFilePath);
 
-    /**
-     * Replaces task list data with the data in {@code sochedule}.
-     */
-    void setTaskList(ReadOnlySochedule sochedule);
-
-    /** Returns the Sochedule */
-    ReadOnlySochedule getSochedule();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the Sochedule.
@@ -159,10 +161,6 @@ public interface Model {
      */
     void setEventListFilePath(Path eventListFilePath);
 
-    /**
-     * Replaces event list data with the data in {@code sochedule}.
-     */
-    void setEventList(ReadOnlySochedule sochedule);
 
     /**
      * Returns true if an event with the same identity as {@code event} exists in the Sochedule.
