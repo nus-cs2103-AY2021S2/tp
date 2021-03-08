@@ -31,6 +31,7 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        System.out.println(trimmedIndex);
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -73,7 +74,12 @@ public class ParserUtil {
     public static Data parseData(String data) throws ParseException {
         requireNonNull(data);
         String trimmedData = data.trim();
-        if (!Data.isValidData(trimmedData)) {
+
+        System.out.println(trimmedData);
+
+        if (Data.isEmptyData(trimmedData)) {
+            return new Data();
+        } else if (!Data.isValidData(trimmedData)) {
             throw new ParseException(Data.MESSAGE_CONSTRAINTS);
         }
         return new Data(trimmedData);
