@@ -12,12 +12,12 @@ public class Meeting {
     private final LocalTime time;
     private final String description;
 
-    public Meeting(LocalDate date, String description) {
-        requireAllNonNull(date, description);
-        this.date = date;
-        this.time = null;
-        this.description = description;
-    }
+//    public Meeting(LocalDate date, String description) {
+//        requireAllNonNull(date, description);
+//        this.date = date;
+//        this.time = null;
+//        this.description = description;
+//    }
 
     public Meeting(LocalDate date, LocalTime time, String description) {
         requireAllNonNull(date, time, description);

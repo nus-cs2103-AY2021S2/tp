@@ -70,7 +70,7 @@ public class InputParser {
             return new HelpCommand();
 
         case AddMeetingCommand.COMMAND_WORD:
-            return new
+            return new AddMeetingParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
