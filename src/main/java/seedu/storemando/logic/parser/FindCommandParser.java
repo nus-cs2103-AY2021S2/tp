@@ -12,6 +12,7 @@ import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    private boolean isGenericFind = false;
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -27,14 +28,15 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (trimmedArgs.charAt(0) == '*') {
-            trimmedArgs = trimmedArgs.substring(1);
-            String[] nameKeywords = trimmedArgs.split("\\s+");
-            return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords), true));
-        } else {
-            String[] nameKeywords = trimmedArgs.split("\\s+");
-            return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords), false));
+            isGenericFind = true;
         }
 
+        if (isGenericFind) {
+            trimmedArgs = trimmedArgs.substring(1);
+        }
+
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+        return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords), isGenericFind));
     }
 
 }
