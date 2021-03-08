@@ -25,8 +25,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_ENDDATE = new Prefix("e/");
     public static final Prefix PREFIX_ENDTIME = new Prefix("et/");
 
-    public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
-    public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
-    public static final Prefix PREFIX_CATEGORY = new Prefix("c/");
-
 }
