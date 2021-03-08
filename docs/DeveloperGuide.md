@@ -222,4 +222,4 @@ The glossary serves to ensure that all stakeholders, including users, have a com
 
 ### UI Mockup
 
-![Ui Mock-up](images/UiMockUp.png)
+![Ui Mock-up](images/Ui.png)
