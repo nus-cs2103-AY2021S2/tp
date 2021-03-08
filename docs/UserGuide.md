@@ -73,8 +73,8 @@ Format: `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`
   * All indexes refers to the index number shown in the displayed person list (without sorting).
   * All indexes must be a positive integer valid in the list.
 * If provided with tags
-  * Delete every person that has only 1 tag which is the given tag.
-  * If the person is tagged by another tag, only the given tag is removed from the person. The contact will not be deleted.
+  * Delete every person who is tagged with the specified tag.
+  * If the person is tagged with another tag, only the specified tag will be removed. The contact will not be deleted.
 
 Examples:
 * `delete 3` deletes contact at 3rd index.
@@ -183,7 +183,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague`
 **Clear** | `clear`
-**Delete** | `delete {INDEX [INDEX]...| -t TAG [-t TAG]...}`<br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
+**Delete** | `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`<br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
 **Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit 2 -n Betsy Crower -t colleague`
 **Find** | `find [-n NAME] [-t TAG]`<br> e.g., `find -n Bob -t cs2103`
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
