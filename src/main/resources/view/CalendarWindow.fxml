@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
@@ -22,6 +23,9 @@
     </icons>
    <scene>
       <Scene>
+          <stylesheets>
+              <URL value="@CalendarWindow.css" />
+          </stylesheets>
          <root>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" style="-fx-background-color: grey;">
                <children>
