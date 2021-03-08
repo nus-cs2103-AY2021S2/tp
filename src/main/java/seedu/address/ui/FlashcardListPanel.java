@@ -29,6 +29,8 @@ public class FlashcardListPanel extends UiPart<Region> {
         flashcardListView.setCellFactory(listView -> new FlashcardListViewCell());
     }
 
+
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Flashcard} using a {@code FlashcardCard}.
      */

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Flashcard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -118,11 +120,10 @@ public class MainWindow extends UiPart<Stage> {
         // problem is fillInnerParts() is called in UiManager start method when the app starts,
         // need to find a way to alternate between the two panels
 
-        // display the panel for learn mode, which shows the flashcards
-        // not showing panel
+        // display menu mode at the launch of app
 
-        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        // flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        // flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -133,6 +134,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
+
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -185,6 +188,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+
+            if (commandText.equals("list")) {
+                flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+                flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+            }
+
+
+            // if (commandText.equals("quiz")) {
+            // ...
+
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
