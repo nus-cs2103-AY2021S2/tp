@@ -4,8 +4,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_A
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;

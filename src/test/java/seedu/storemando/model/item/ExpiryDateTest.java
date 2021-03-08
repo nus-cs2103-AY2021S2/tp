@@ -22,7 +22,7 @@ public class ExpiryDateTest {
     @Test
     public void isValidExpiryDate() {
         // null expirydate
-        assertThrows(NullPointerException.class, () -> ExpiryDate.isValidExpiryDate(null));
+        assertFalse(ExpiryDate.isValidExpiryDate(null));
 
         // blank expirydate
         assertFalse(ExpiryDate.isValidExpiryDate("")); // empty string
