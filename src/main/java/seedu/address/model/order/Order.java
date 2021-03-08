@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseType;
 
 /**
@@ -19,19 +18,20 @@ public class Order {
     // Identity fields
     // Primary key for Order
     private final int orderId;
-    private final CheeseType cheeseType;
+    private final CheeseType orderCheeseType;
 
     // Data fields
     private final OrderDate orderDate;
     private final CompletedDate completedDate;
 
-    private final Set<Cheese> cheeses = new HashSet<>();
+    // Set of cheese IDs for this order
+    private final Set<Integer> cheeses = new HashSet<>();
 
     public Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType) {
         this(orderDate, completedDate, cheeseType, new HashSet<>());
     }
 
-    public Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType, Set<Cheese> cheeses) {
+    public Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType, Set<Integer> cheeses) {
         this(orderDate, completedDate, cheeseType, cheeses, currentId++);
     }
 
@@ -40,16 +40,16 @@ public class Order {
     }
 
     public Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType,
-                 Set<Cheese> cheeses, Order previousOrder) {
+                 Set<Integer> cheeses, Order previousOrder) {
         this(orderDate, completedDate, cheeseType, cheeses, previousOrder.orderId);
     }
 
     private Order(OrderDate orderDate, CompletedDate completedDate, CheeseType cheeseType,
-                  Set<Cheese> cheeses, int orderId) {
+                  Set<Integer> cheeses, int orderId) {
         requireAllNonNull(orderDate, cheeseType, cheeses);
         this.orderDate = orderDate;
         this.completedDate = completedDate;
-        this.cheeseType = cheeseType;
+        this.orderCheeseType = cheeseType;
         this.orderId = orderId;
         this.cheeses.addAll(cheeses);
     }
@@ -63,7 +63,7 @@ public class Order {
     }
 
     public CheeseType getCheeseType() {
-        return cheeseType;
+        return orderCheeseType;
     }
 
     public int getOrderId() {
@@ -71,10 +71,10 @@ public class Order {
     }
 
     /**
-     * Returns an immutable Cheese set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable Cheese Ids set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Cheese> getCheeses() {
+    public Set<Integer> getCheeses() {
         return Collections.unmodifiableSet(cheeses);
     }
 
