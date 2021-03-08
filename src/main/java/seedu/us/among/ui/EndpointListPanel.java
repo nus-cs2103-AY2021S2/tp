@@ -2,6 +2,7 @@ package seedu.us.among.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -41,7 +42,7 @@ public class EndpointListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EndpointCard(endpoint, getIndex() + 1).getRoot());
+                Platform.runLater(() -> setGraphic(new EndpointCard(endpoint, getIndex() + 1).getRoot()));
             }
         }
     }

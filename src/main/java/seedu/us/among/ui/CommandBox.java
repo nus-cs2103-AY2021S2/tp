@@ -1,6 +1,7 @@
 package seedu.us.among.ui;
 
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -32,10 +33,9 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Handles the Enter button pressed event.
+     * Handles the command received in new thread
      */
-    @FXML
-    private void handleCommandEntered() {
+    private void handleCommandInNewThread() {
         String commandText = commandTextField.getText();
         if (commandText.equals("")) {
             return;
@@ -47,6 +47,21 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    /**
+     * Handles the Enter button pressed event.
+     */
+    @FXML
+    private void handleCommandEntered() {
+        //handle all command input in new thread
+        Task<Void> task = new Task<>() {
+            @Override public Void call() {
+                handleCommandInNewThread();
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
     /**
