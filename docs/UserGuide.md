@@ -91,7 +91,7 @@ Examples:
 
 ### Deleting a task : `delete`
 
-Deletes the specified task from the address book.
+Deletes the specified task from the module book.
 
 Format: `delete INDEX`
 
@@ -115,7 +115,7 @@ Format: `done INDEX`
 
 Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook 3.5.
-* `find CS2103T` followed by `done 1` marks the 1st person in the results of the `find` command as done.
+* `find CS2103T` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
 ### Mark a task as not done : `notdone`
 
@@ -129,7 +129,7 @@ Format: `notdone INDEX`
 
 Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook 3.5.
-* `find CS2103T` followed by `notdone 1` marks the 1st person in the results of the `find` command as not done.
+* `find CS2103T` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
 ### Adding a tag: `tag`
@@ -160,7 +160,7 @@ Edits an existing task in the module book.
 
 Format: `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`
 
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -178,7 +178,7 @@ ModuleBook3.5 data is saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-ModuleBook3.5 data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ModuleBook3.5 data is saved as a JSON file `[JAR file location]/data/modulebook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ModuleBook3.5 will discard all data and start with an empty data file at the next run.

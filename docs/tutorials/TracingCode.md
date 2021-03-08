@@ -32,7 +32,7 @@ Before we proceed, ensure that you have done the following:
 
 ## Setting a break point
 
-As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution. For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement of the `main` method. In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various *event-driven mechanisms* used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component through a method named `execute`. Searching through the code base for `execute()` yields a promising candidate in `seedu.address.ui.CommandBox.CommandExecutor`.
+As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution. For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement of the `main` method. In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various *event-driven mechanisms* used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component through a method named `execute`. Searching through the code base for `execute()` yields a promising candidate in `seedu.module.ui.CommandBox.CommandExecutor`.
 
 ![Using the `Search for target by name` feature. `Navigate` \> `Symbol`.](../images/tracing/Execute.png)
 
@@ -47,7 +47,7 @@ Now let’s set the breakpoint. First, double-click the item to reach the corres
 
 ## Tracing the execution path
 
-Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
+Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/DEADLINE] [e/MODULE] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -83,14 +83,14 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
         CommandResult commandResult;
         //Parse user input from String to a Command
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = moduleBookParser.parseCommand(commandText);
         //Executes the Command and stores the result
         commandResult = command.execute(model);
 
         try {
             //We can deduce that the previous line of code modifies model in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveModuleBook(model.getModuleBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -105,7 +105,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. `Step into` the line where user input in parsed from a String to a Command.
 
-    **`AddressBookParser\#parseCommand()`**
+    **`ModuleBookParser\#parseCommand()`**
 
    ``` java
    public Command parseCommand(String userInput) throws ParseException {
@@ -120,7 +120,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
-1. Stepping into the `switch`, we obviously stop at **`AddressBookParser\#parseCommand()`.**
+1. Stepping into the `switch`, we obviously stop at **`ModuleBookParser\#parseCommand()`.**
 
     ``` java
     ...
@@ -136,7 +136,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:** Sometimes you might end up stepping into functions that are not of interest. Simply `step out` of them\!
    </div>
 
-1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of `editPersonDesciptor` through the `Variable` tool window.<br>
+1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditTaskDescriptor`. Recall that we can verify the contents of `editTaskDesciptor` through the `Variable` tool window.<br>
    ![EditCommand](../images/tracing/EditCommand.png)
 
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
@@ -152,43 +152,43 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Person personToEdit = lastShownList.get(index.getZeroBased());
-       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+       Task taskToEdit = lastShownList.get(index.getZeroBased());
+       Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+       if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+           throw new CommandException(MESSAGE_DUPLICATE_TASK);
        }
-       model.setPerson(personToEdit, editedPerson);
-       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+       model.setTask(taskToEdit, editedTask);
+       model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+       return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
    }
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to `model`.
 
 1. We can a closer look at how storage works by repeatedly stepping into the code until we arrive at
-    `JsonAddressBook#saveAddressBook()`.
+    `JsonModuleBook#saveModuleBook()`.
 
-1. Again, it appears that the heavy lifting is delegated. Let’s take a look at `JsonSerializableAddressBook`'s constructor.
+1. Again, it appears that the heavy lifting is delegated. Let’s take a look at `JsonSerializableModuleBook`'s constructor.
 
-    **`JsonSerializableAddressBook\#JsonSerializableAddressBook()`:**
+    **`JsonSerializableModuleBook\#JsonSerializableModuleBook()`:**
 
    ``` java
    /**
-    * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+    * Converts a given {@code ReadOnlyModuleBook} into this class for Jackson use.
     *
     * @param source future changes to this will not affect the created
-    * {@code JsonSerializableAddressBook}.
+    * {@code JsonSerializableModuleBook}.
     */
-   public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-       persons.addAll(
-           source.getPersonList()
+   public JsonSerializableModuleBook(ReadOnlyModuleBook source) {
+       tasks.addAll(
+           source.getTaskList()
                  .stream()
-                 .map(JsonAdaptedPerson::new)
+                 .map(JsonAdaptedTask::new)
                  .collect(Collectors.toList()));
    }
    ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedTask` is created for each `Task` and then added to the `JsonSerializableModuleBook`.
 
 1. We can continue to step through until we return to `MainWindow#executeCommand()`.
 
@@ -210,7 +210,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 In this tutorial, we traced a valid edit command from raw user input to
 the result being displayed to the user. From this tutorial, you learned
-more about the inner workings of AddressBook and how the various
+more about the inner workings of ModuleBook and how the various
 components mesh together to form one cohesive product.
 
 Here are some quick questions you can try to answer based on your
@@ -241,10 +241,10 @@ the given commands to find exactly what happens.
 
     2.  Allow `delete` to remove more than one index at a time
 
-    3.  Save the address book in the CSV format instead
+    3.  Save the module book in the CSV format instead
 
     4.  Add a new command
 
-    5.  Add a new field to `Person`
+    5.  Add a new field to `Task`
 
-    6.  Add a new entity to the address book
+    6.  Add a new entity to the module book
