@@ -190,6 +190,17 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== SOChedule ==================================================================================
+    @Override
+    public void setSochedule(ReadOnlySochedule sochedule) {
+        this.sochedule.resetTaskData(sochedule);
+    }
+
+    @Override
+    public ReadOnlySochedule getSochedule() {
+        return sochedule;
+    }
+
     //=========== task ==================================================================================
 
     @Override
@@ -201,16 +212,6 @@ public class ModelManager implements Model {
     public void setTaskListFilePath(Path taskListFilePath) {
         requireAllNonNull(taskListFilePath);
         userPrefs.setTaskListFilePath(taskListFilePath);
-    }
-
-    @Override
-    public void setTaskList(ReadOnlySochedule sochedule) {
-        this.sochedule.resetTaskData(sochedule);
-    }
-
-    @Override
-    public ReadOnlySochedule getTaskList() {
-        return sochedule;
     }
 
     @Override
@@ -261,16 +262,6 @@ public class ModelManager implements Model {
     public void setEventListFilePath(Path eventListFilePath) {
         requireAllNonNull(eventListFilePath);
         userPrefs.setEventListFilePath(eventListFilePath);
-    }
-
-    @Override
-    public void setEventList(ReadOnlySochedule sochedule) {
-        this.sochedule.resetEventData(sochedule);
-    }
-
-    @Override
-    public ReadOnlySochedule getEventList() {
-        return sochedule;
     }
 
     @Override
