@@ -209,7 +209,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlySochedule getTaskList() {
+    public ReadOnlySochedule getSochedule() {
         return sochedule;
     }
 
@@ -266,11 +266,6 @@ public class ModelManager implements Model {
     @Override
     public void setEventList(ReadOnlySochedule sochedule) {
         this.sochedule.resetEventData(sochedule);
-    }
-
-    @Override
-    public ReadOnlySochedule getEventList() {
-        return sochedule;
     }
 
     @Override

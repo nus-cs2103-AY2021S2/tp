@@ -111,8 +111,8 @@ public interface Model {
      */
     void setTaskList(ReadOnlySochedule sochedule);
 
-    /** Returns the TaskList */
-    ReadOnlySochedule getTaskList();
+    /** Returns the Sochedule */
+    ReadOnlySochedule getSochedule();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the Sochedule.
@@ -163,9 +163,6 @@ public interface Model {
      * Replaces event list data with the data in {@code sochedule}.
      */
     void setEventList(ReadOnlySochedule sochedule);
-
-    /** Returns the EventList */
-    ReadOnlySochedule getEventList();
 
     /**
      * Returns true if an event with the same identity as {@code event} exists in the Sochedule.
