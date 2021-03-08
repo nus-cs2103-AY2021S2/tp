@@ -73,6 +73,8 @@ public class CommandBox extends UiPart<Region> {
             new Thread(task).start();
         } else if (!commandText.equals("")) {
             handleCommand(commandText);
+        } else {
+            commandTextField.setDisable(false);
         }
     }
 
