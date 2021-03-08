@@ -29,6 +29,7 @@ public class Email {
 
     public static final String EMPTY_EMAIL_STRING = "";
     public static final Email EMPTY_EMAIL = new Email();
+
     public final String value;
     private boolean isEmpty = false;
 
