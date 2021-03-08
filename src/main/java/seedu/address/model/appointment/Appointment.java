@@ -14,18 +14,19 @@ import seedu.address.model.tag.Tag;
 /**
  * Represents an appointment in the appointment schedule
  * Guarantees: field values are validated, immutable.
+ * TODO: convert doctor into Person field.
  */
 public class Appointment implements Comparable<Appointment> {
     // Data fields
     private final Person patient;
-    private final Person doctor;
+    private final String doctor;
     private final LocalDateTime dateTime;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Person patient, Person doctor, LocalDateTime dateTime, Set<Tag> tags) {
+    public Appointment(Person patient, String doctor, LocalDateTime dateTime, Set<Tag> tags) {
         requireAllNonNull(patient, doctor, dateTime, tags);
         this.patient = patient;
         this.doctor = doctor;
@@ -37,7 +38,7 @@ public class Appointment implements Comparable<Appointment> {
         return patient;
     }
 
-    public Person getDoctor() {
+    public String getDoctor() {
         return doctor;
     }
 
