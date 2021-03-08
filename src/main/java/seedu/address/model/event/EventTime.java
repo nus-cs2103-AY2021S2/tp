@@ -31,7 +31,7 @@ public class EventTime {
      * mm: 00 to 59
      */
     public static final String VALIDATION_REGEX =
-            "^(([0][1-9]|[1-2][0-9])|(3[01]))\\/([0-1][0-2])\\/\\d\\d\\d\\d (([0-1][0-9])|([2][0-3])):[0-5][0-9]$";
+            "^(([0][1-9]|[1-2][0-9])|(3[01]))\\/(([0][1-9])|([1][0-2]))\\/\\d\\d\\d\\d (([0-1][0-9])|([2][0-3])):[0-5][0-9]$";
 
     /**
      * DateTimeFormatter for dd/MM/yyyy HHmm input format on date inputs
@@ -65,6 +65,8 @@ public class EventTime {
      * Returns true if a given String is a valid eventTime
      */
     public static boolean isValidEventTime(String test) {
+        // System.out.println(test);
+        // System.out.println(test.matches(VALIDATION_REGEX) ? "PASS" : "FAIL");
         return test.matches(VALIDATION_REGEX);
     }
 

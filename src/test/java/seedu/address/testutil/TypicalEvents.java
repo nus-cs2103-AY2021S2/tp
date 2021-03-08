@@ -13,7 +13,7 @@ import java.util.List;
 public class TypicalEvents {
 
     public static final Event CS2030 = new EventBuilder().withName("CS2030")
-            .withDescription("Object-oriented Programming module")
+            .withDescription("Object oriented Programming module")
             .withStatus(EventStatus.DONE)
             .withTimeStart("10/01/2020 10:00")
             .withTimeEnd("12/12/2021 12:00")
