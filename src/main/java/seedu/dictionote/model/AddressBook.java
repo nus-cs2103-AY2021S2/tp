@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.note.UniqueNoteList;
 import seedu.dictionote.model.person.Person;
 import seedu.dictionote.model.person.UniquePersonList;
 
