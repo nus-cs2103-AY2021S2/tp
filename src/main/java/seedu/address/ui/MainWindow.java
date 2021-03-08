@@ -119,6 +119,8 @@ public class MainWindow extends UiPart<Stage> {
         // need to find a way to alternate between the two panels
 
         // display the panel for learn mode, which shows the flashcards
+        // not showing panel
+
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
