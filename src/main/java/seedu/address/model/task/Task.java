@@ -20,6 +20,7 @@ public class Task {
     private final Name name;
     private final Date deadline;
     private final Priority priority;
+    private final CompletionStatus completionStatus = new CompletionStatus();
     private final Set<Category> categories;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -53,6 +54,14 @@ public class Task {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public boolean isComplete() {
+        return completionStatus.isComplete();
+    }
+
+    public void markTaskAsDone() {
+        completionStatus.flipCompletionStatus();
     }
 
     /**
@@ -99,7 +108,9 @@ public class Task {
                 .append("; Priority: ")
                 .append(getPriority())
                 .append("; Category: ")
-                .append(getCategories());
+                .append(getCategories())
+                .append("; Completion Status: ")
+                .append(completionStatus.toString());
 
         Set<seedu.address.model.common.Tag> tags = getTags();
         if (!tags.isEmpty()) {
