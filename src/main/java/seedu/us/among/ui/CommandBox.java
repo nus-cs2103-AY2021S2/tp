@@ -44,6 +44,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            commandTextField.setDisable(false);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
@@ -54,6 +55,8 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
+        commandTextField.setDisable(true);
+
         //handle all command input in new thread
         Task<Void> task = new Task<>() {
             @Override public Void call() {
