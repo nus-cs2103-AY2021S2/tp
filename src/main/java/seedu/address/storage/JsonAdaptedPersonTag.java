@@ -44,5 +44,4 @@ class JsonAdaptedPersonTag {
         }
         return new Tag(tagName);
     }
-
 }

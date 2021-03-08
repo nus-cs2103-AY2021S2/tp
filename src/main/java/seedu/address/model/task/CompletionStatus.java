@@ -19,6 +19,11 @@ public class CompletionStatus {
         completionStatus = Status.INCOMPLETE;
     }
 
+    /**
+     * Constructs an {@code CompletionStatus}.
+     *
+     * @param cs A valid completion status ("COMPLETE" or "INCOMPLETE").
+     */
     public CompletionStatus(String cs) {
         switch (cs) {
         case "COMPLETE":
@@ -27,6 +32,10 @@ public class CompletionStatus {
 
         case "INCOMPLETE":
             completionStatus = Status.INCOMPLETE;
+            break;
+
+        default:
+            // should not reach here since validation is pre-done.
             break;
         }
     }

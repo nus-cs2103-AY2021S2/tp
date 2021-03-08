@@ -37,7 +37,8 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-                             @JsonProperty("priority") String priority, @JsonProperty("completionStatus") String completionStatus,
+                             @JsonProperty("priority") String priority,
+                             @JsonProperty("completionStatus") String completionStatus,
                              @JsonProperty("category") List<JsonAdaptedCategory> category,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -59,7 +60,7 @@ class JsonAdaptedTask {
         name = source.getName().toString();
         deadline = source.getDeadline().toString();
         priority = source.getPriority().toString();
-        completionStatus = source.isComplete() ? "COMPLETE": "INCOMPLETE";
+        completionStatus = source.isComplete() ? "COMPLETE" : "INCOMPLETE";
         category.addAll(source.getCategories().stream()
                 .map(JsonAdaptedCategory::new)
                 .collect(Collectors.toList()));
@@ -102,7 +103,8 @@ class JsonAdaptedTask {
         final Date modelDeadline = new Date(deadline);
 
         if (priority == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
         }
         if (!Priority.isValidPriority(priority)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
@@ -110,7 +112,8 @@ class JsonAdaptedTask {
         final Priority modelPriority = new Priority(priority);
 
         if (completionStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CompletionStatus.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CompletionStatus.class.getSimpleName()));
         }
         if (!CompletionStatus.isValidStatus(completionStatus)) {
             throw new IllegalValueException(CompletionStatus.MESSAGE_CONSTRAINTS);
