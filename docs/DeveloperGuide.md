@@ -381,7 +381,7 @@ MSS:
 * Process requirements:
     * TutorBuddy should be completed before AY20/21 Week 13
 * Any other noteworthy points:
-    * A user with above average typing speed (80 _WPM_ and above) for regular English text (i.e. not code, not system admin commands) should be able to use most of the functionality in TutorBuddy faster using commands rather than using the mouse.
+    * A user with above average typing speed (80 _WPM_ and above) for regular English text (i.e. not code, not system admin commands) should be able to use most of the functionalities in TutorBuddy faster using commands rather than using the mouse.
 
 ### Glossary
 
