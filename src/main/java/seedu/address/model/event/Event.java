@@ -21,7 +21,7 @@ public class Event {
     private final Time startTime;
     private final Date endDate;
     private final Time endTime;
-    private final Set<Category> categories;
+    private final Set<Category> categories = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -35,7 +35,7 @@ public class Event {
         this.startTime = startTime;
         this.endDate = endDate;
         this.endTime = endTime;
-        this.categories = categories;
+        this.categories.addAll(categories);
         this.tags.addAll(tags);
     }
 
