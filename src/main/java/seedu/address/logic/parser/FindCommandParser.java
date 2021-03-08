@@ -1,12 +1,19 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.TagsContainsTagPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -19,15 +26,32 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        ArgumentMultimap argMap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
+
+        boolean noName = !argMap.getValue(PREFIX_NAME).isPresent();
+        boolean noTag = !argMap.getValue(PREFIX_TAG).isPresent();
+        boolean noNameOrTag = noName && noTag;
+
+        boolean moreThanOneName = argMap.getAllValues(PREFIX_NAME).size() > 1;
+        boolean moreThanOneTag = argMap.getAllValues(PREFIX_TAG).size() > 1;
+        boolean invalidNumberOfNamesOrTag = moreThanOneName || moreThanOneTag;
+
+        if (noNameOrTag || invalidNumberOfNamesOrTag) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        List<Predicate<Person>> predicates = new ArrayList<>();
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        argMap.getValue(PREFIX_NAME)
+            .map(words -> new NameContainsKeywordsPredicate(words))
+            .ifPresent(predicates::add);
+        
+        argMap.getValue(PREFIX_TAG)
+            .map(tag -> new TagsContainsTagPredicate(tag))
+            .ifPresent(predicates::add);
+
+        return new FindCommand(predicates);
     }
 
 }
