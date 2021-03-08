@@ -49,7 +49,7 @@ public class Address {
     }
 
     /**
-     * Returns true if a given phone is an empty address.
+     * Returns true if a given address is an empty address.
      */
     public static boolean isEmptyAddress(Address address) {
         return address.isEmpty;
