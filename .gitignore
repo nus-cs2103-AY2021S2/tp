@@ -23,6 +23,7 @@ docs/_site/
 
 # VSCode files
 bin/
+.vscode/
 .classpath
 .project
 .settings
