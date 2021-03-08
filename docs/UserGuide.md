@@ -65,7 +65,7 @@ An item can have any number of tags (including 0)
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
-An item can also not have any expiry date.
+Expiry date of an item is optional.
 
 </div>
 

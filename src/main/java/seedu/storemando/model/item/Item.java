@@ -28,7 +28,7 @@ public class Item {
      * Every field must be present and not null.
      */
     public Item(ItemName name, Quantity quantity, ExpiryDate expiryDate, Location location, Set<Tag> tags) {
-        requireAllNonNull(name, quantity, location, tags);
+        requireAllNonNull(name, quantity, expiryDate, location, tags);
         this.name = name;
         this.quantity = quantity;
         this.expiryDate = expiryDate;
@@ -108,7 +108,7 @@ public class Item {
         builder.append(getItemName())
             .append("; Quantity: ")
             .append(getQuantity());
-        if (getExpiryDate().getDate() != null) {
+        if (getExpiryDate().getExpiryDate() != null) {
             builder.append("; ExpiryDate: ")
                 .append(getExpiryDate());
         }

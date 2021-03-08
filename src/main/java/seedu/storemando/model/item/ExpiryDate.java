@@ -28,17 +28,10 @@ public class ExpiryDate {
         + "    - be within the range [01, 12]\n"
         + "4. DD must:\n"
         + "    - be exactly 2 digits long\n"
-        + "    - be a valid date\n";
-    /*private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
-    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
-    private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
-        + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
-     */
+        + "    - be a valid expiryDate\n";
 
     public final String value;
-    public final LocalDate date;
+    public final LocalDate expiryDate;
 
     /**
      * Constructs an {@code ExpiryDate}.
@@ -49,15 +42,15 @@ public class ExpiryDate {
         requireNonNull(expiryDate);
         checkArgument(isValidExpiryDate(expiryDate), MESSAGE_CONSTRAINTS);
         if (expiryDate.equals(NO_EXPIRY_DATE)) {
-            date = null;
+            this.expiryDate = null;
         } else {
-            date = LocalDate.parse(expiryDate);
+            this.expiryDate = LocalDate.parse(expiryDate);
         }
         value = expiryDate;
     }
 
-    public LocalDate getDate() {
-        return this.date;
+    public LocalDate getExpiryDate() {
+        return this.expiryDate;
     }
 
     /**
@@ -81,7 +74,7 @@ public class ExpiryDate {
     }
 
     public String toFormattedString() {
-        return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return expiryDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     @Override
