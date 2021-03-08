@@ -48,7 +48,7 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add_person n/NAME`, `NAME` is a parameter which can be used as `add_person n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -82,17 +82,17 @@ Adds a tutor, student or class to the contact list.
 
 Format: 
 
-For Person: `add tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-For Class: `add d/DAY t/TIMESLOT l/LEVEL s/SUBJECT [t/TAG]…​`
+For Person: `add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+For Class: `add_session d/DAY t/TIMESLOT l/LEVEL s/SUBJECT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add tp/tutor n/Betsy Crowe p/91234567 e/betsyc@example.come a/Betsy street`
-* `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math`
+* `add_person tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add_person tp/tutor n/Betsy Crowe p/91234567 e/betsyc@example.come a/Betsy street`
+* `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math`
 
 ### Listing all persons : `list`
 
@@ -234,7 +234,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | For Person:`add tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
+**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
 **Clear** | `clear`
 **Delete** | Tutor <br> `delete t/ID`<br> e.g., `delete t/8`<br><br> Student <br> `delete s/ID`<br> e.g., `delete s/22` <br><br> Class<br>`delete c/ID` <br> e.g., `delete c/9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`

@@ -14,6 +14,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
+import seedu.address.model.session.Day;
+import seedu.address.model.session.Subject;
+import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +25,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_TIME = "Time given must be in HH:MM format.";
+    public static final String MESSAGE_INVALID_TIMESLOT = "Timeslot given must be in "
+            + "HH:MM:SS (start time) to HH:MM:SS (end time).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -94,6 +100,51 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String day} into an {@code Day}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    public static Day parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!Day.isValidDay(trimmedDay)) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+        return new Day(trimmedDay);
+    }
+
+    /**
+     * Parses a {@code String subject} into an {@code Subject}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subject} is invalid.
+     */
+    public static Subject parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubject(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses a {@code String time} into an {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static Timeslot parseTimeslot(String timeslot) throws ParseException {
+        requireNonNull(timeslot);
+        String trimmedTimeslot = timeslot.trim();
+        if (!Timeslot.isValidTimeslot(trimmedTimeslot)) {
+            throw new ParseException(Timeslot.MESSAGE_CONSTRAINTS);
+        }
+        return new Timeslot(timeslot);
     }
 
     /**
