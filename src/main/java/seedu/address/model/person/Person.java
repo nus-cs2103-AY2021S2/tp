@@ -104,17 +104,20 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-               .append("; Email: ")
-               .append(getEmail())
-               .append("; Address: ")
-               .append(getAddress());
+        builder.append(getName());
 
         if (!Phone.isEmptyPhone(getPhone())) {
             builder.append("; Phone: ")
                    .append(getPhone());
         }
-
+        if (!Email.isEmptyEmail(getEmail())) {
+            builder.append("; Email: ")
+                    .append(getEmail());
+        }
+        if (!Address.isEmptyAddress(getAddress())) {
+            builder.append("; Address: ")
+                    .append(getAddress());
+        }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");

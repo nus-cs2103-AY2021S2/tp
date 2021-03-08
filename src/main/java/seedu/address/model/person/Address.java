@@ -18,6 +18,9 @@ public class Address {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
+    private boolean isEmpty = false;
+    public static final String EMPTY_ADDRESS_STRING = "";
+    public static final Address EMPTY_ADDRESS = new Address();
 
     /**
      * Constructs an {@code Address}.
@@ -31,10 +34,25 @@ public class Address {
     }
 
     /**
+     * Constructs an empty Address.
+     */
+    private Address() {
+        value = EMPTY_ADDRESS_STRING;
+        isEmpty = true;
+    }
+
+    /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given phone is an empty address.
+     */
+    public static boolean isEmptyAddress(Address address) {
+        return address.isEmpty;
     }
 
     @Override
@@ -46,7 +64,8 @@ public class Address {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                && value.equals(((Address) other).value)) // state check
+                && isEmpty == ((Address) other).isEmpty; // state check
     }
 
     @Override

@@ -13,7 +13,8 @@ public class Phone {
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
-    public static final String EMPTY_PHONE_STRING = "Empty Phone!";
+    private boolean isEmpty = false;
+    public static final String EMPTY_PHONE_STRING = "";
     public static final Phone EMPTY_PHONE = new Phone();
 
     /**
@@ -32,6 +33,7 @@ public class Phone {
      */
     private Phone() {
         value = EMPTY_PHONE_STRING;
+        isEmpty = true;
     }
 
     /**
@@ -45,7 +47,7 @@ public class Phone {
      * Returns true if a given phone is an empty phone.
      */
     public static boolean isEmptyPhone(Phone phone) {
-        return phone.equals(EMPTY_PHONE);
+        return phone.isEmpty;
     }
 
     @Override
@@ -57,7 +59,8 @@ public class Phone {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+                && value.equals(((Phone) other).value)) // state check
+                && isEmpty == ((Phone) other).isEmpty; // state check
     }
 
     @Override
