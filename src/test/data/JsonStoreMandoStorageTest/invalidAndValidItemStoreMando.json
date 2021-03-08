@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "name": "Valid Item",
+      "quantity": "9482424",
+      "expiryDate": "hans@example.com",
+      "location": "4th street"
+    },
+    {
+      "name": "Item With Invalid Quantity Field",
+      "quantity": "948asdf2424",
+      "expiryDate": "hans@example.com",
+      "location": "4th street"
+    }
+  ]
+}

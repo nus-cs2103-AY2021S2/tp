@@ -1,0 +1,61 @@
+{
+  "_comment": "StoreMando save file which contains the same item values as in TypicalItems#getTypicalStoreMando()",
+  "items": [
+    {
+      "name": "Alice Pauline",
+      "quantity": "94351253",
+      "expiryDate": "alice@example.com",
+      "location": "123, Jurong West Ave 6, #08-111",
+      "tagged": [
+        "friends"
+      ]
+    },
+    {
+      "name": "Benson Meier",
+      "quantity": "98765432",
+      "expiryDate": "johnd@example.com",
+      "location": "311, Clementi Ave 2, #02-25",
+      "tagged": [
+        "owesMoney",
+        "friends"
+      ]
+    },
+    {
+      "name": "Carl Kurz",
+      "quantity": "95352563",
+      "expiryDate": "heinz@example.com",
+      "location": "wall street",
+      "tagged": []
+    },
+    {
+      "name": "Daniel Meier",
+      "quantity": "87652533",
+      "expiryDate": "cornelia@example.com",
+      "location": "10th street",
+      "tagged": [
+        "friends"
+      ]
+    },
+    {
+      "name": "Elle Meyer",
+      "quantity": "9482224",
+      "expiryDate": "werner@example.com",
+      "location": "michegan ave",
+      "tagged": []
+    },
+    {
+      "name": "Fiona Kunz",
+      "quantity": "9482427",
+      "expiryDate": "lydia@example.com",
+      "location": "little tokyo",
+      "tagged": []
+    },
+    {
+      "name": "George Best",
+      "quantity": "9482442",
+      "expiryDate": "anna@example.com",
+      "location": "4th street",
+      "tagged": []
+    }
+  ]
+}
