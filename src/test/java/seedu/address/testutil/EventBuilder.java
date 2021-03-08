@@ -1,12 +1,16 @@
 package seedu.address.testutil;
 
-import seedu.address.model.event.*;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.address.model.event.Description;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventStatus;
+import seedu.address.model.event.EventTime;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Event objects
@@ -112,6 +116,10 @@ public class EventBuilder {
         return this;
     }
 
+    /**
+     * Builds the event with existing EventBuilder attributes
+     * @return Event built with EventBuilder attributes
+     */
     public Event build() {
         return new Event(eventName, timeStart, timeEnd, status,
                 description, tags, persons);

@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventStatus;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventStatus;
 
 /**
  * A utility class containing a list of {@code Event} objects to be used in tests.
