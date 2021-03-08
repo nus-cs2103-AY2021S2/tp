@@ -1,6 +1,6 @@
 package seedu.address.model.food;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,14 +8,14 @@ import java.util.List;
  * Represents a list of FoodIntakes starting from the specified date.
  */
 public class FoodIntakeList {
-    private LocalDateTime startDate;
+    private LocalDate startDate;
     private List<FoodIntake> foodIntakeList = new ArrayList<>();
 
     /**
      * Constructs a FoodIntakeList.
      * @param startDate the date that the FoodIntakeList begins collecting from
      */
-    public FoodIntakeList(LocalDateTime startDate) {
+    public FoodIntakeList(LocalDate startDate) {
         this.startDate = startDate;
     }
 
