@@ -109,12 +109,12 @@
                                     <Font name="Abyssinica SIL" size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Sat" GridPane.columnIndex="5">
+                              <Label layoutX="55.0" layoutY="22.0" text="Sat" style="-fx-text-fill: red;" GridPane.columnIndex="5">
                                  <font>
                                     <Font name="Abyssinica SIL" size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Sun" GridPane.columnIndex="6">
+                              <Label layoutX="55.0" layoutY="22.0" text="Sun" style="-fx-text-fill: red;" GridPane.columnIndex="6">
                                  <font>
                                     <Font name="Abyssinica SIL" size="16.0" />
                                  </font>
