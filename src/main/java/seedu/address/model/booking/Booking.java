@@ -57,7 +57,7 @@ public class Booking {
      */
     public boolean isOverlapping(seedu.address.model.booking.Booking otherBooking) {
         if (otherBooking == this) {
-            return false;
+            return true;
         }
         if (otherBooking == null) {
             return false;
