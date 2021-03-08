@@ -26,7 +26,7 @@ import seedu.storemando.testutil.EditItemDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_STRAWBERRY_MILK = "Strawberry Milk";
+    public static final String VALID_NAME_AMY = "Strawberry Milk";
     public static final String VALID_NAME_BOB = "Banana";
     public static final String VALID_QUANTITY_AMY = "1";
     public static final String VALID_QUANTITY_BOB = "2";
@@ -37,7 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "Essential";
     public static final String VALID_TAG_FRIEND = "Favourite";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_STRAWBERRY_MILK;
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String QUANTITY_DESC_AMY = " " + PREFIX_QUANTITY + VALID_QUANTITY_AMY;
     public static final String QUANTITY_DESC_BOB = " " + PREFIX_QUANTITY + VALID_QUANTITY_BOB;
@@ -62,7 +62,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditItemDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditItemDescriptorBuilder().withName(VALID_NAME_STRAWBERRY_MILK)
+        DESC_AMY = new EditItemDescriptorBuilder().withName(VALID_NAME_AMY)
             .withQuantity(VALID_QUANTITY_AMY).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
             .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditItemDescriptorBuilder().withName(VALID_NAME_BOB)
