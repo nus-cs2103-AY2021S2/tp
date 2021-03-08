@@ -35,7 +35,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.orderDescriptions.addAll(orderDescriptions);
+        // this.orderDescriptions.addAll(orderDescriptions);
     }
 
     public Name getName() {

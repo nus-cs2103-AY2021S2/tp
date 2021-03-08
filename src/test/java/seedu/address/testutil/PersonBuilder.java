@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -26,6 +27,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<OrderDescription> orderDescriptions;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +38,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        orderDescriptions = new HashSet<>();
     }
 
     /**
@@ -47,6 +50,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        orderDescriptions = new HashSet<>(personToCopy.getOrderDescriptions());
     }
 
     /**
@@ -89,8 +93,14 @@ public class PersonBuilder {
         return this;
     }
 
+    // todo trace what this function is supposed to be used for - only tests i think
+    public PersonBuilder withOrderDescriptions(String ... orderDescriptions) {
+        this.orderDescriptions = SampleDataUtil.getOrderDescriptionSet(orderDescriptions);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, orderDescriptions);
     }
 
 }
