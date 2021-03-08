@@ -16,7 +16,10 @@
 <?import javafx.stage.Stage?>
 
 
-<Stage xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Stage xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" title="Calendar">
+    <icons>
+        <Image url="@/images/logo.png" />
+    </icons>
    <scene>
       <Scene>
          <root>
