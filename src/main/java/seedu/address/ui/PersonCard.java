@@ -60,7 +60,7 @@ public class PersonCard extends UiPart<Region> {
 
         // TODO: add sorting
         // UI not confirmed. This is just to test meetings are okay
-        person.getMeetings().forEach(meeting -> meetings.getChildren().add(new Label(meeting.toString())));
+        person.getMeetings().forEach(meeting -> meetings.getChildren().add(new Label(meeting.toUi())));
     }
 
     @Override

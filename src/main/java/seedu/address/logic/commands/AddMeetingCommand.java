@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import javax.naming.CompositeName;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -53,13 +53,21 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person person  = lastShownList.get(index.getZeroBased());
-        Person toEditPerson = person.copy();
-        toEditPerson.getMeetings().add(meeting);
+        Person person = lastShownList.get(index.getZeroBased());
+        Person editedPerson = createEditedPerson(person, meeting);
 
-        model.setPerson(person, toEditPerson);
+        model.setPerson(person, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_MEETING_SUCCESS, toEditPerson.getName()));
+        return new CommandResult(String.format(MESSAGE_ADD_MEETING_SUCCESS, editedPerson.getName()));
+    }
+
+    private static Person createEditedPerson(Person personToEdit, Meeting meeting) {
+        assert personToEdit != null;
+        List<Meeting> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
+        meetingsToEdit.add(meeting);
+
+        return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), meetingsToEdit);
     }
 
     @Override

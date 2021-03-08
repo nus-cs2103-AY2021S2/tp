@@ -38,6 +38,10 @@ public class Meeting {
         return description;
     }
 
+    public String toUi() {
+        return toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
