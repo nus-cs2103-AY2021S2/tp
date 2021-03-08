@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: StoreMando
 ---
 
 [![CI Status](https://github.com/AY2021S2-CS2103T-W10-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-W10-2/tp/actions)
