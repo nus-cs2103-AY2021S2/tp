@@ -20,20 +20,21 @@ public class Appointment implements Comparable<Appointment> {
     // Data fields
     private final Person patient;
     private final String doctor;
-    private final LocalDateTime dateTime;
+    private final Timeslot timeslot;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Person patient, String doctor, LocalDateTime dateTime, Set<Tag> tags) {
-        requireAllNonNull(patient, doctor, dateTime, tags);
+    public Appointment(Person patient, String doctor, Timeslot timeslot, Set<Tag> tags) {
+        requireAllNonNull(patient, doctor, timeslot, tags);
         this.patient = patient;
         this.doctor = doctor;
-        this.dateTime = dateTime;
+        this.timeslot = timeslot;
         this.tags.addAll(tags);
     }
 
+    //// Accessors
     public Person getPatient() {
         return patient;
     }
@@ -42,8 +43,16 @@ public class Appointment implements Comparable<Appointment> {
         return doctor;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public Timeslot getTimeslot() {
+        return timeslot;
+    }
+
+    public LocalDateTime getAppointmentStart() {
+        return timeslot.getStart();
+    }
+
+    public LocalDateTime getAppointmentEnd() {
+        return timeslot.getEnd();
     }
 
     /**
@@ -54,17 +63,13 @@ public class Appointment implements Comparable<Appointment> {
         return Collections.unmodifiableSet(tags);
     }
 
+    //// Boolean checks
     /**
      * Defines the default sorting criterion by Appointment datetime.
      */
+    @Override
     public int compareTo(Appointment otherAppointment) {
-        if (getDateTime().equals(otherAppointment.getDateTime())) {
-            return 0;
-        } else if (getDateTime().isBefore(otherAppointment.getDateTime())) {
-            return -1;
-        } else {
-            return 1;
-        }
+        return getTimeslot().compareTo(otherAppointment.getTimeslot());
     }
 
     /**
@@ -73,11 +78,15 @@ public class Appointment implements Comparable<Appointment> {
     public boolean hasConflict(Appointment toCheck) {
         return (patient.equals(toCheck.getPatient())
                 || doctor.equals(toCheck.getDoctor()))
-                && dateTime.equals(toCheck.getDateTime());
+                && getTimeslot().hasOverlap(toCheck.getTimeslot());
     }
 
-    public boolean hasPassed() {
-        return getDateTime().isBefore(LocalDateTime.now());
+    public boolean isDue() {
+        return getAppointmentStart().isBefore(LocalDateTime.now());
+    }
+
+    public boolean hasExpired() {
+        return getAppointmentEnd().isBefore(LocalDateTime.now());
     }
 
     /**
@@ -96,13 +105,13 @@ public class Appointment implements Comparable<Appointment> {
         Appointment otherAppointment = (Appointment) other;
         return otherAppointment.getPatient().equals(getPatient())
                 && otherAppointment.getDoctor().equals(getDoctor())
-                && otherAppointment.getDateTime().equals(getDateTime())
+                && otherAppointment.getTimeslot().equals(getTimeslot())
                 && otherAppointment.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(patient, doctor, dateTime, tags);
+        return Objects.hash(patient, doctor, timeslot, tags);
     }
 
     @Override
@@ -112,8 +121,8 @@ public class Appointment implements Comparable<Appointment> {
                 .append(getPatient().toString())
                 .append("; Doctor: ")
                 .append(getDoctor().toString())
-                .append("; DateTime: ")
-                .append(getDateTime().toString());
+                .append("; Timeslot: ")
+                .append(getTimeslot().toString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
