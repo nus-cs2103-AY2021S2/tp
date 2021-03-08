@@ -52,6 +52,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
+     * Returns default empty phone if phone is not specified.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
@@ -59,7 +60,9 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
+        if (phone == Phone.EMPTY_PHONE_STRING) {
+            return Phone.EMPTY_PHONE;
+        } else if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
@@ -67,6 +70,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String address} into an {@code Address}.
+     * Returns default empty address if address is not specified.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
@@ -74,7 +78,9 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
+        if (address == Address.EMPTY_ADDRESS_STRING) {
+            return Address.EMPTY_ADDRESS;
+        } else if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
@@ -82,6 +88,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String email} into an {@code Email}.
+     * Returns default empty email if email is not specified.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
@@ -89,7 +96,9 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
+        if (email == Email.EMPTY_EMAIL_STRING) {
+            return Email.EMPTY_EMAIL;
+        } else if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
