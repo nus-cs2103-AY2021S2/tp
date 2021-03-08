@@ -17,7 +17,6 @@ public class LocationContainsKeywordsPredicate implements Predicate<Item> {
 
     @Override
     public boolean test(Item item) {
-        assert keywords.isEmpty() : "Keywords shouldn't be empty.";
         return keywords.stream()
             .allMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getLocation().value, keyword));
     }
