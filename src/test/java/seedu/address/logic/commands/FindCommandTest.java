@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCustomers.CARL;
 import static seedu.address.testutil.TypicalCustomers.ELLE;
 import static seedu.address.testutil.TypicalCustomers.FIONA;
-import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;

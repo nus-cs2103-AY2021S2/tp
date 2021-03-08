@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.UniqueCheeseList;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.UniqueCustomerList;
 import seedu.address.model.order.Order;
@@ -18,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueCustomerList customers;
     private final UniqueOrderList orders;
+    private final UniqueCheeseList cheeses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,12 +32,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         customers = new UniqueCustomerList();
         orders = new UniqueOrderList();
+        cheeses = new UniqueCheeseList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Customers, Orders and Cheeses in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -60,6 +64,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the cheese list with {@code cheeses}.
+     * {@code cheeses} must not contain duplicate cheeses.
+     */
+    public void setCheeses(List<Cheese> cheeses) {
+        this.cheeses.setCheeses(cheeses);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -67,6 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setCustomers(newData.getCustomerList());
         setOrders(newData.getOrderList());
+        setCheeses(newData.getCheeseList());
     }
 
     //// order-level operations
@@ -90,7 +103,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given order {@code target} in the list with {@code editedOrder}.
      * {@code target} must exist in the address book.
-     * The order identity of {@code editedOrder} must not be the same as another existing customer
+     * The order identity of {@code editedOrder} must not be the same as another existing order
      * in the address book.
      */
     public void setOrder(Order target, Order editedOrder) {
@@ -145,12 +158,50 @@ public class AddressBook implements ReadOnlyAddressBook {
         customers.remove(key);
     }
 
+    //// cheese-level operations
+
+    /**
+     * Returns true if a cheese with the same identity as {@code cheese} exists in the address book.
+     */
+    public boolean hasCheese(Cheese cheese) {
+        requireNonNull(cheese);
+        return cheeses.contains(cheese);
+    }
+
+    /**
+     * Adds a cheese to the address book.
+     * The cheese must not already exist in the address book.
+     */
+    public void addCheese(Cheese c) {
+        cheeses.add(c);
+    }
+
+    /**
+     * Replaces the given cheese {@code target} in the list with {@code editedCheese}.
+     * {@code target} must exist in the address book.
+     * The cheese identity of {@code editedCheese} must not be the same as another existing cheese
+     * in the address book.
+     */
+    public void setCheese(Cheese target, Cheese editedCheese) {
+        requireNonNull(editedCheese);
+
+        cheeses.setCheese(target, editedCheese);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return customers.asUnmodifiableObservableList().size() + " customers";
-        // TODO: refine later
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(customers.asUnmodifiableObservableList().size())
+            .append(" customers, ")
+            .append(cheeses.asUnmodifiableObservableList().size())
+            .append(" cheeses, ")
+            .append(orders.asUnmodifiableObservableList().size())
+            .append(" orders");
+
+        return sb.toString();
     }
 
     @Override
@@ -164,14 +215,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Cheese> getCheeseList() {
+        return cheeses.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && customers.equals(((AddressBook) other).customers));
+                && customers.equals(((AddressBook) other).customers))
+                && cheeses.equals(((AddressBook) other).cheeses)
+                && orders.equals(((AddressBook) other).orders);
     }
 
     @Override
     public int hashCode() {
         return customers.hashCode();
     }
+
 }

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.CustomerIdStub;
 import seedu.address.model.customer.Customer;
 
@@ -69,17 +68,6 @@ public class TypicalCustomers {
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalCustomers() {} // prevents instantiation
-
-    /**
-     * Returns an {@code AddressBook} with all the typical customers.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Customer customer : getTypicalCustomers()) {
-            ab.addCustomer(customer);
-        }
-        return ab;
-    }
 
     public static List<Customer> getTypicalCustomers() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

@@ -14,7 +14,7 @@ import seedu.address.model.order.exceptions.OrderNotFoundException;
 /**
  * A list of Order that enforces uniqueness between its elements and does not allow nulls.
  * A Order is considered unique by comparing using {@code Order#isSameOrder(Order)}. As such, adding and updating of
- * persons uses Order#isSameOrder(Order) for equality so as to ensure that the Order being added or updated is
+ * orders uses Order#isSameOrder(Order) for equality so as to ensure that the Order being added or updated is
  * unique in terms of identity in the UniqueOrderList. However, the removal of a Order uses Order#equals(Object) so
  * as to ensure that the Order with exactly the same fields will be removed.
  *
@@ -28,7 +28,7 @@ public class UniqueOrderList implements Iterable<Order> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent order as the given argument.
      */
     public boolean contains(Order toCheck) {
         requireNonNull(toCheck);
@@ -37,7 +37,7 @@ public class UniqueOrderList implements Iterable<Order> {
 
     /**
      * Adds a Order to the list.
-     * The person must not already exist in the list.
+     * The order must not already exist in the list.
      */
     public void add(Order toAdd) {
         requireNonNull(toAdd);
@@ -48,7 +48,7 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Replaces the Order {@code target} in the list with {@code editedPerson}.
+     * Replaces the Order {@code target} in the list with {@code editedOrder}.
      * {@code target} must exist in the list.
      * The Order identity of {@code editedOrder} must not be the same as another existing Order in the list.
      */
@@ -68,8 +68,8 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent order from the list.
+     * The order must exist in the list.
      */
     public void remove(Order toRemove) {
         requireNonNull(toRemove);
@@ -116,7 +116,7 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code orders} contains only unique orders.
      */
     private boolean ordersAreUnique(List<Order> orders) {
         for (int i = 0; i < orders.size() - 1; i++) {
