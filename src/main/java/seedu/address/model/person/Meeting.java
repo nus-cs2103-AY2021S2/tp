@@ -6,6 +6,9 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.TimeUtil;
+
 public class Meeting {
     private final LocalDate date;
     private final LocalTime time;
@@ -31,7 +34,7 @@ public class Meeting {
     }
 
     public String toUi() {
-        return toString();
+        return String.format("%s %s %s\n", DateUtil.toUi(date), TimeUtil.toUi(time), description);
     }
 
     @Override

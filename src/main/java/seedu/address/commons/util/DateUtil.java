@@ -14,10 +14,12 @@ public class DateUtil {
 
     private static final DateTimeFormatter DATE_PARSER;
 
+    private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
+
     static {
         String[] patterns = new String[]{"dd-MM-yyyy"};
-
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
+
         Arrays.stream(patterns).map(DateTimeFormatter::ofPattern).forEach(builder::appendOptional);
         DATE_PARSER = builder.toFormatter();
     }
@@ -33,5 +35,9 @@ public class DateUtil {
         }
 
         return date;
+    }
+
+    public static String toUi(LocalDate localDate) {
+        return DEFAULT_FORMATTER.format(localDate);
     }
 }

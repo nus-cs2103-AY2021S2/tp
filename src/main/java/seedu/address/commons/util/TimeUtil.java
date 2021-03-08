@@ -14,6 +14,8 @@ public class TimeUtil {
 
     private static final DateTimeFormatter TIME_PARSER;
 
+    private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
+
     static {
         String[] patterns = new String[]{"HHmm"};
 
@@ -32,5 +34,9 @@ public class TimeUtil {
         }
 
         return time;
+    }
+
+    public static String toUi(LocalTime localTime) {
+        return DEFAULT_FORMATTER.format(localTime);
     }
 }
