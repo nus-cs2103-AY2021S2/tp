@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_METHOD + "METHOD] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_DATA + "DATA] "
-            + "[" + PREFIX_HEADER + "HEADER]..."
+            + "[" + PREFIX_HEADER + "HEADER]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ADDRESS + "wall street ";

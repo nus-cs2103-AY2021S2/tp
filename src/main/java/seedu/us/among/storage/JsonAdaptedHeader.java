@@ -8,14 +8,14 @@ import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Header}.
  */
 class JsonAdaptedHeader {
 
     private final String headerName;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedHeader} with the given {@code headerName}.
      */
     @JsonCreator
     public JsonAdaptedHeader(String headerName) {
@@ -23,7 +23,7 @@ class JsonAdaptedHeader {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Header} into this class for Jackson use.
      */
     public JsonAdaptedHeader(Header source) {
         headerName = source.headerName;
@@ -35,7 +35,7 @@ class JsonAdaptedHeader {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted Header object into the model's {@code Header} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
