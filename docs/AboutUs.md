@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/simran-bhadani3.png" width="200px">
 
 [[github](http://github.com/simran-bhadani3)]
-[[portfolio](team/simran-bhadani3)]
+[[portfolio](team/simran-bhadani3.md)]
 
-* Role: Developer
-* Responsibilities: Integration
+* Role: Developer, Integration
+* Responsibilities: Storage
