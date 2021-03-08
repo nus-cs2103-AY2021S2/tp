@@ -39,6 +39,13 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
     }
 
     /**
+     * Returns true if the list contains a booking with the id.
+     */
+    public boolean containsId(int toCheck) {
+        return internalList.stream().anyMatch(x -> x.isId(toCheck));
+    }
+
+    /**
      * Returns true if the list contains an overlapping booking as the given argument.
      */
     public boolean overlaps(Booking toCheck) {

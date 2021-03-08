@@ -11,6 +11,8 @@ import java.util.Random;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Booking {
+    // Random object used to generate booking id.
+    private static final Random BOOKING_RANDOM = new Random();
 
     // Data fields
     private final String booker;
@@ -19,8 +21,6 @@ public class Booking {
     private final LocalDateTime bookingStart;
     private final LocalDateTime bookingEnd;
     private final int id;
-
-    private static Random BOOKING_RANDOM = new Random();
 
     /**
      * Every field must be present and not null.
