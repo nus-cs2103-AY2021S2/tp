@@ -6,6 +6,10 @@ enum Status {
 }
 
 public class CompletionStatus {
+    public static final String VALIDATION_REGEX = "COMPLETE|INCOMPLETE";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Completion Statuses should only either by \"COMPLETE\" or \"INCOMPLETE\"";
+
     private Status completionStatus;
 
     /**
@@ -13,6 +17,18 @@ public class CompletionStatus {
      */
     public CompletionStatus() {
         completionStatus = Status.INCOMPLETE;
+    }
+
+    public CompletionStatus(String cs) {
+        switch (cs) {
+        case "COMPLETE":
+            completionStatus = Status.COMPLETE;
+            break;
+
+        case "INCOMPLETE":
+            completionStatus = Status.INCOMPLETE;
+            break;
+        }
     }
 
     public boolean isComplete() {
@@ -28,6 +44,13 @@ public class CompletionStatus {
         } else {
             completionStatus = Status.COMPLETE;
         }
+    }
+
+    /**
+     * Returns true if a given string is a valid completion status.
+     */
+    public static boolean isValidStatus(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
