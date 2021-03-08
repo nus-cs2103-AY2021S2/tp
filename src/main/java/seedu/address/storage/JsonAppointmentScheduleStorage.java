@@ -69,7 +69,9 @@ public class JsonAppointmentScheduleStorage implements AppointmentScheduleStorag
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAppointmentSchedule(ReadOnlyAppointmentSchedule appointmentSchedule, Path filePath) throws IOException {
+    public void saveAppointmentSchedule(ReadOnlyAppointmentSchedule appointmentSchedule, Path filePath) throws
+            IOException {
+
         requireNonNull(appointmentSchedule);
         requireNonNull(filePath);
 

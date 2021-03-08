@@ -12,7 +12,8 @@ import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationExceptio
  * Represents the timeslot allocated to an appointment.
  */
 public class Timeslot implements Comparable<Timeslot> {
-    public static final String MESSAGE_CONSTRAINTS = "Timeslot end date and time must be strictly after the start date and time";
+    public static final String MESSAGE_CONSTRAINTS = "Timeslot end date and time must be strictly "
+            + "after the start date and time";
 
     public final LocalDateTime start;
     public final LocalDateTime end;

@@ -7,5 +7,6 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "PatientAddressBook.json"
+  "addressBookFilePath" : "PatientAddressBook.json",
+  "appointmentScheduleFilePath" : "AppointmentSchedule.json"
 }

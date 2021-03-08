@@ -27,7 +27,8 @@ public interface AppointmentScheduleStorage {
     /**
      * @see #getAppointmentScheduleFilePath()
      */
-    Optional<ReadOnlyAppointmentSchedule> readAppointmentSchedule(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyAppointmentSchedule> readAppointmentSchedule(Path filePath) throws DataConversionException,
+            IOException;
 
     /**
      * Saves the given {@link ReadOnlyAppointmentSchedule} to the storage.

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
@@ -79,7 +80,8 @@ public class JsonAdaptedAppointment {
         final String modelDoctor = doctor;
 
         if (timeslot == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Timeslot.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Timeslot.class.getSimpleName()));
         }
 
         final Timeslot modelTimeslot = timeslot.toModelType();

@@ -1,14 +1,18 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationException;
 import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationException;
 
+/**
+ * Jackson-friendly version of {@link Timeslot}.
+ */
 public class JsonAdaptedTimeslot {
     private final String start;
     private final String end;

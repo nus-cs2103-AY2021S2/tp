@@ -26,7 +26,9 @@ public class JsonSerializableAppointmentSchedule {
      * Constructs a {@code JsonSerializableAppointmentSchedule} with the given appointments.
      */
     @JsonCreator
-    public JsonSerializableAppointmentSchedule(@JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
+    public JsonSerializableAppointmentSchedule(
+            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
+
         this.appointments.addAll(appointments);
     }
 
@@ -36,7 +38,8 @@ public class JsonSerializableAppointmentSchedule {
      * @param source future changes to this will not affect the created {@code JsonSerializableAppointmentSchedule}.
      */
     public JsonSerializableAppointmentSchedule(ReadOnlyAppointmentSchedule source) {
-        appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new).collect(Collectors.toList()));
+        appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new)
+                .collect(Collectors.toList()));
     }
 
     /**

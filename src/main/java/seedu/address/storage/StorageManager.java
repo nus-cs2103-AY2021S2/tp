@@ -94,7 +94,9 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAppointmentSchedule> readAppointmentSchedule(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAppointmentSchedule> readAppointmentSchedule(Path filePath)
+            throws DataConversionException, IOException {
+
         logger.fine("Attempting to read data from file: " + filePath);
         return appointmentScheduleStorage.readAppointmentSchedule(filePath);
     }
@@ -105,7 +107,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAppointmentSchedule(ReadOnlyAppointmentSchedule appointmentSchedule, Path filePath) throws IOException {
+    public void saveAppointmentSchedule(ReadOnlyAppointmentSchedule appointmentSchedule, Path filePath)
+            throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         appointmentScheduleStorage.saveAppointmentSchedule(appointmentSchedule, filePath);
     }
