@@ -36,7 +36,7 @@ public class EndpointCaller {
             response = new GetRequest(endpointToSend).send();
             break;
         case POST:
-            //to-do
+            response = new PostRequest(endpointToSend).send();
             break;
         case PUT:
             //to-do

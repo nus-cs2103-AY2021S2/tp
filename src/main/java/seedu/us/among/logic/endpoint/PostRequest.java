@@ -2,23 +2,26 @@ package seedu.us.among.logic.endpoint;
 
 import java.io.IOException;
 
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Response;
 
 /**
- * Contains the logic for sending get requests.
+ * Contains the logic for sending post requests.
  */
-public class GetRequest extends Request {
+public class PostRequest extends Request {
+
+    private final Endpoint endpoint;
 
     /**
-     * Constructor for GetRequest.
+     * Constructor for PostRequest.
      *
      * @param endpoint endpoint to make API call on
      */
-    public GetRequest(Endpoint endpoint) {
+    public PostRequest(Endpoint endpoint) {
         super(endpoint.getMethod().getMethodType(), endpoint.getAddress().value);
+        this.endpoint = endpoint;
     }
 
     /**
@@ -28,7 +31,11 @@ public class GetRequest extends Request {
      */
     @Override
     public Response send() throws IOException {
-        HttpGet request = new HttpGet(this.getAddress());
+        HttpPost request = new HttpPost(this.getAddress());
+
+        request = (HttpPost) super.setHeaders(request, this.endpoint.getHeaders());
+        request = (HttpPost) super.setData(request, this.endpoint.getData());
+
         return super.execute(request);
     }
 }
