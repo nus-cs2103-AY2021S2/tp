@@ -35,12 +35,7 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Handles the command received in new thread
      */
-    private void handleCommandInNewThread() {
-        String commandText = commandTextField.getText();
-        if (commandText.equals("")) {
-            return;
-        }
-
+    private void handleCommand(String commandText) {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
@@ -57,15 +52,20 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         commandTextField.setDisable(true);
+        String commandText = commandTextField.getText();
 
-        //handle all command input in new thread
-        Task<Void> task = new Task<>() {
-            @Override public Void call() {
-                handleCommandInNewThread();
-                return null;
-            }
-        };
-        new Thread(task).start();
+        if (commandText.startsWith("send ") || commandText.startsWith("run ")) {
+            //handle API commands input in new thread
+            Task<Void> task = new Task<>() {
+                @Override public Void call() {
+                    handleCommand(commandText);
+                    return null;
+                }
+            };
+            new Thread(task).start();
+        } else if (!commandText.equals("")) {
+            handleCommand(commandText);
+        }
     }
 
     /**
