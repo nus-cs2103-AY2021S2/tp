@@ -147,6 +147,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void handleLearn() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -187,15 +192,6 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
 
-            if (commandText.equals("list")) {
-                flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
-                flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-            }
-
-
-            // if (commandText.equals("quiz")) {
-            // ...
-
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -206,6 +202,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isLearn()) {
+                handleLearn();
             }
 
             return commandResult;

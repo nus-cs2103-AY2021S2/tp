@@ -20,6 +20,7 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
+
 }
