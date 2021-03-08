@@ -74,9 +74,7 @@ public class ParserUtil {
         requireNonNull(data);
         String trimmedData = data.trim();
         if (!Data.isValidData(trimmedData)) {
-            // give an empty data
-            return new Data();
-            //throw new ParseException(Data.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Data.MESSAGE_CONSTRAINTS);
         }
         return new Data(trimmedData);
     }

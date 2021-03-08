@@ -32,7 +32,8 @@ public class EndpointBuilder {
     public EndpointBuilder() {
         method = new Method(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
-        data = new Data(DEFAULT_DATA);
+        data = new Data();
+        //data = new Data(DEFAULT_DATA);
         headers = new HashSet<>();
         tags = new HashSet<>();
     }

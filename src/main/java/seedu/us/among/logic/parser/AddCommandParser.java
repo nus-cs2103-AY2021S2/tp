@@ -36,18 +36,24 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_HEADER,
                 PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA)
+        if (!arePrefixesPresent(argMultimap, PREFIX_METHOD, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Method method = ParserUtil.parseMethod(argMultimap.getValue(PREFIX_METHOD).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Data data = ParserUtil.parseData(argMultimap.getValue(PREFIX_DATA).get());
         Set<Header> headerList = ParserUtil.parseHeaders(argMultimap.getAllValues(PREFIX_HEADER));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Endpoint endpoint = new Endpoint(method, address, data, headerList, tagList);
+        Endpoint endpoint;
+
+        if (argMultimap.getValue(PREFIX_DATA).isEmpty()){
+            endpoint = new Endpoint(method, address, headerList, tagList);
+        }else{
+            Data data = ParserUtil.parseData(argMultimap.getValue(PREFIX_DATA).orElse(""));
+            endpoint = new Endpoint(method, address, data, headerList, tagList);
+        }
 
         return new AddCommand(endpoint);
     }

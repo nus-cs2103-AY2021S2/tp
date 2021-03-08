@@ -54,6 +54,26 @@ public class Endpoint {
         this.response = response;
     }
 
+    public Endpoint(Method method, Address address, Set<Header> headers, Set<Tag> tags) {
+        requireAllNonNull(method, address, headers, tags);
+        this.method = method;
+        this.address = address;
+        this.data = new Data();
+        this.headers.addAll(headers);
+        this.tags.addAll(tags);
+        this.response = new Response();
+    }
+
+    public Endpoint(Method method, Address address, Set<Header> headers, Set<Tag> tags, Response response) {
+        requireAllNonNull(method, address, headers, tags, response);
+        this.method = method;
+        this.address = address;
+        this.data = new Data();
+        this.headers.addAll(headers);
+        this.tags.addAll(tags);
+        this.response = response;
+    }
+
     public Method getMethod() {
         return method;
     }
