@@ -234,19 +234,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Independent Tutors
+**Target user profile**: An independent tutor
 
-* independent tuition teacher
-* has a need to manage a significant number of student contacts
-* prefer desktop apps over other types
-* can type fast
+* has a need to manage a significant number of student contacts (100 - 200)
+* prefers desktop apps over other types
+* can type fast (80 _WPM_ and above)
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
 
 **Value proposition**: 
 * Cut down admin overhead for independent tutors
-* All in one platform to manage their student’s information
+* All in one platform to manage their students' information
 
 
 
@@ -367,18 +366,29 @@ MSS:
 
 *{More to be added}*
 
-### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The user should have enough memory on their computer to ensure that data will be stored in the application without errors.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Response time from any command should be within 1 second.
+### Non-Functional Requirements  
+* Technical requirements:  
+    * TutorBuddy should work on both 32-bit and 64-bit environments.
+    * TutorBuddy should work on any _mainstream OS_ with Java `11` or above installed.
+    * The user should have enough memory on their computer to ensure that data will be stored in the application without errors.
+* Performance requirements:
+    * TutorBuddy should be able to hold up to _500 students_ or _500 sessions_ without a noticeable dip in performance for typical usage.
+    * Response time from any command should be within 1 second.
+* Constraints:
+    * TutorBuddy should be backward compatible with data produced by earlier versions of the system.
+* Quality requirements:
+    * The user should take no longer than 1 hour to learn the different functionalities of TutorBuddy from the user guide.
+* Process requirements:
+    * TutorBuddy should be completed before AY20/21 Week 13
+* Any other noteworthy points:
+    * A user with above average typing speed (80 _WPM_ and above) for regular English text (i.e. not code, not system admin commands) should be able to use most of the functionalities in TutorBuddy faster using commands rather than using the mouse.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface where users can interact with their OS system.
 * **MSS**: Main Success Scenario
+* **WPM**: Words Per Minute
 
 --------------------------------------------------------------------------------------------------------------------
 
