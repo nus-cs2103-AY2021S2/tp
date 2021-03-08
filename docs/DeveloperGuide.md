@@ -59,6 +59,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a plan**
+
+**MSS**
+
+1.  User requests to add a plan
+2.  AddressBook shows result
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given plan number already exists.
+    * 2a1. AddressBook shows an error message.
+
+  Use case ends.
+
+* 3a. The given plan number is invalid.
+    * 3a1. AddressBook shows an error message.
+
+  Use case ends.
+      
 **Use case: Delete a plan**
 
 **MSS**
@@ -81,8 +102,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case: Add a module to semester**
 
-*{More to be added}*
+**MSS**
+
+1.  User requests to add a module
+2.  AddressBook shows result
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given module number is already added.
+    * 2a1. AddressBook shows an error message.
+
+  Use case ends.
+
+* 3a. The given plan/semester number does not exist.
+    * 3a1. AddressBook shows an error message.
+
+  Use case ends.
+
+* 4a. The given module number does not exist.
+    * 4a1. AddressBook shows an error message.
+
+  Use case ends.
+
+* 5a. The given module number does not have its prerequisites met.
+    * 3a1. AddressBook shows a warning prompt.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
