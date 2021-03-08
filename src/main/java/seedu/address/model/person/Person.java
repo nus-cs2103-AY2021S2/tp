@@ -23,6 +23,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<OrderDescription> orderDescriptions = new HashSet<>(); // todo name is going to be confusing once Person is refactored to orders
 
     /**
      * Every field must be present and not null.
@@ -60,6 +61,14 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+
+    /**
+     * Returns an immutable order description set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<OrderDescription> getOrderDescriptions() {
+        return Collections.unmodifiableSet(orderDescriptions);
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -92,7 +101,8 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getOrderDescriptions().equals(getOrderDescriptions());
     }
 
     @Override
@@ -117,6 +127,13 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Set<OrderDescription> orderDescriptions = getOrderDescriptions();
+        if (!orderDescriptions.isEmpty()) {
+            builder.append("; Order Descriptions: ");
+            orderDescriptions.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
