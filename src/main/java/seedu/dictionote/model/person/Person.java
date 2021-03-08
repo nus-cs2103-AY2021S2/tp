@@ -110,7 +110,7 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
-        ;
+
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

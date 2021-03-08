@@ -12,6 +12,7 @@ public class NoteUtil {
 
     /**
      * Returns an addNote command string for adding the {@code note}.
+     * @param note Note to be added.
      */
     public static String getAddNoteCommand(Note note) {
         return AddNoteCommand.COMMAND_WORD + " " + getNoteDetails(note);

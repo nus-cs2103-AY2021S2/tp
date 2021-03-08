@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path noteBookFilePath = Paths.get("data" , "notebook.json");
+    private final String localPath = "\nLocal data file location : ";
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -92,8 +93,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
-        sb.append("\nLocal data file location : " + noteBookFilePath);
+        sb.append(localPath + addressBookFilePath);
+        sb.append(localPath + noteBookFilePath);
         return sb.toString();
     }
 
