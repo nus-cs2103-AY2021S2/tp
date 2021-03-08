@@ -73,8 +73,8 @@ Format: `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`
   * All indexes refers to the index number shown in the displayed person list (without sorting).
   * All indexes must be a positive integer valid in the list.
 * If provided with tags
-  * Delete every person with the given tag.
-  * If the person is tagged by another tag, only person's tag is removed.
+  * Delete every person that has only 1 tag which is the given tag.
+  * If the person is tagged by another tag, only the given tag is removed from the person. The contact will not be deleted.
 
 Examples:
 * `delete 3` deletes contact at 3rd index.
