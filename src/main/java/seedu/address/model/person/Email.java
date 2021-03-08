@@ -9,6 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
+    public static final String EMPTY_EMAIL_STRING = "";
+    public static final Email EMPTY_EMAIL = new Email();
+
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -28,6 +31,7 @@ public class Email {
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
     public final String value;
+    private boolean isEmpty = false;
 
     /**
      * Constructs an {@code Email}.
@@ -41,10 +45,25 @@ public class Email {
     }
 
     /**
+     * Constructs an empty Email.
+     */
+    private Email() {
+        value = EMPTY_EMAIL_STRING;
+        isEmpty = true;
+    }
+
+    /**
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given email is an empty email.
+     */
+    public static boolean isEmptyEmail(Email email) {
+        return email.isEmpty;
     }
 
     @Override
@@ -56,7 +75,8 @@ public class Email {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                && value.equals(((Email) other).value)) // state check
+                && isEmpty == ((Email) other).isEmpty; // state check
     }
 
     @Override
