@@ -18,14 +18,17 @@ public class LocationContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        LocationContainsKeywordsPredicate firstPredicate = new LocationContainsKeywordsPredicate(firstPredicateKeywordList);
-        LocationContainsKeywordsPredicate secondPredicate = new LocationContainsKeywordsPredicate(secondPredicateKeywordList);
+        LocationContainsKeywordsPredicate firstPredicate =
+            new LocationContainsKeywordsPredicate(firstPredicateKeywordList);
+        LocationContainsKeywordsPredicate secondPredicate =
+            new LocationContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        LocationContainsKeywordsPredicate firstPredicateCopy = new LocationContainsKeywordsPredicate(firstPredicateKeywordList);
+        LocationContainsKeywordsPredicate firstPredicateCopy =
+            new LocationContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class LocationContainsKeywordsPredicateTest {
     @Test
     public void test_locationContainsKeywords_returnsTrue() {
         // One keyword
-        LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate(Collections.singletonList("Apple"));
+        LocationContainsKeywordsPredicate predicate =
+            new LocationContainsKeywordsPredicate(Collections.singletonList("Apple"));
         assertTrue(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
 
         // Multiple keywords
@@ -68,8 +72,8 @@ public class LocationContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
 
         // Keywords match quantity, expirydate and name, but does not match location
-        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Alice", "alice@email.com", "Master", "Bedroom"));
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Alice", "alice@email.com", "Living", "Room"));
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").withQuantity("12345")
-            .withExpiryDate("alice@email.com").withLocation("Master Bedroom").build()));
+            .withExpiryDate("alice@email.com").withLocation("Living room").build()));
     }
 }
