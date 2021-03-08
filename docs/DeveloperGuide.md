@@ -238,7 +238,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * has a need to manage a significant number of student contacts (100 - 200)
 * prefers desktop apps over other types
-* can type fast (80 WPM and above)
+* can type fast (80 _WPM_ and above)
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
@@ -377,11 +377,11 @@ MSS:
 * Constraints:
     * TutorBuddy should be backward compatible with data produced by earlier versions of the system.
 * Quality requirements:
-    * The user should take less than 1 hours to learn the different functionality that TutorBuddy has from the user guides.
+    * The user should take no longer than 1 hour to learn the different functionalities of TutorBuddy from the user guide.
 * Process requirements:
     * TutorBuddy should be completed before AY20/21 Week 13
 * Any other noteworthy points:
-    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+    * A user with above average typing speed (80 _WPM_ and above) for regular English text (i.e. not code, not system admin commands) should be able to use most of the functionality in TutorBuddy faster using commands rather than using the mouse.
 
 ### Glossary
 
