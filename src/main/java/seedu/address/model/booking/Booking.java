@@ -61,6 +61,9 @@ public class Booking {
         if (otherBooking == null) {
             return false;
         }
+        if (!otherBooking.venue.equals(venue)){
+            return false;
+        }
         return !this.bookingStart.isBefore(otherBooking.bookingEnd) && !this.bookingEnd.isAfter(otherBooking.bookingStart);
     }
 
