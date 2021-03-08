@@ -61,11 +61,11 @@ public class LocationContainsKeywordsPredicateTest {
     public void test_locationDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate(Collections.emptyList());
-        assertTrue(predicate.test(new ItemBuilder().withName("Apple").build()));
+        assertTrue(predicate.test(new ItemBuilder().withLocation("Apple").build()));
 
         // Non-matching keyword
         predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Cherry"));
-        assertFalse(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
+        assertFalse(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
 
         // Keywords match quantity, expirydate and name, but does not match location
         predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Alice", "alice@email.com", "Master", "Bedroom"));
