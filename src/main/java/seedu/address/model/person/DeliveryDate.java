@@ -1,11 +1,13 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+
 
 /**
  * Represents an Order's delivery datre in the CakeCollate.
@@ -15,8 +17,10 @@ public class DeliveryDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Deliver date should be of the format dd/mm/yyyy, dd-mm-yyyy, "
             + "dd.mm.yyyy or dd MMM yyyy and adhere to the following constraints:\n"
-            + "1. The delivery date should have a valid day, month and year."
-            + "2. The delivery date should be at least 3 days after the order date.";
+            + "1. The delivery date should have a valid day, month and year.\n"
+            + "2. The delivery date should be at least 3 days after the order date.\n"
+            + "For example:\n"
+            + "01/01/2022, 01-01-2022, 01.01.2022, 01 Jan 2022";
     private static final DateTimeFormatter ACCEPTABLE_FORMATS =
             DateTimeFormatter.ofPattern("[dd/MM/yyyy][dd-MM-yyyy][dd.MM.yyyy][dd MMM yyyy]");
     private static final long DELIVERY_DATE_BUFFER = 3L;

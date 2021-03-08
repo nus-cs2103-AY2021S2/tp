@@ -59,6 +59,8 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
+* `d/DELIVERY_DATE` should specify a date at least 3 days after the date the command is executed.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
