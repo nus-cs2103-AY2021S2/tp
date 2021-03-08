@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.food.Food;
+import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,6 +18,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
+    private final UniqueFoodList foodList;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        foodList = new UniqueFoodList();
     }
 
     public AddressBook() {}
@@ -65,6 +70,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasFoodItem(Food food) {
+        requireNonNull(food);
+        return foodList.hasFoodItem(food);
+    }
+
+    /**
+     * Adds a food item into the food list.
+     * The food item must not exist in the food list.
+     * @param food food item
+     */
+    public void addFoodItem(Food food) {
+        foodList.addFoodItem(food);
+    }
+
 
     /**
      * Adds a person to the address book.

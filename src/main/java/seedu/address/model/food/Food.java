@@ -41,6 +41,15 @@ public class Food {
         this.isUpdated = false;
     }
 
+    /**
+     * Gets food name.
+     *
+     * @return food name
+     */
+    public String getName() {
+        return this.name;
+    }
+
     public double getFats() {
         return this.fats;
     }
@@ -160,7 +169,7 @@ public class Food {
             statusString = "saved";
         }
         String result = this.name + " (Protein: " + this.proteins + "g, Carbohydrates: " + this.carbos + "g, Fats: "
-                + this.fats + ") has been " + statusString + ".";
+                + this.fats + "g) has been " + statusString + ".";
         return result;
     }
 }

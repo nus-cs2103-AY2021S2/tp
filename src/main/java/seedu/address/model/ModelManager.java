@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.food.Food;
 import seedu.address.model.person.Person;
 
 /**
@@ -146,6 +147,17 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public boolean hasFoodItem(Food food) {
+        requireNonNull(food);
+        return addressBook.hasFoodItem(food);
+    }
+
+    @Override
+    public void addFoodItem(Food food) {
+        addressBook.addFoodItem(food);
     }
 
 }
