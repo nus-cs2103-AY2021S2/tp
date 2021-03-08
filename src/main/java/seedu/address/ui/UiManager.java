@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
@@ -41,6 +44,20 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
+            //start a thread to run background music
+            Runnable runnable = () -> {
+                Media media = null;
+                try {
+                    media = new Media(getClass().getResource("/audio/MSLogin.mp3").toURI().toString());
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.setAutoPlay(true);
+            };
+            Thread thread = new Thread(runnable);
+            thread.start();
+
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
