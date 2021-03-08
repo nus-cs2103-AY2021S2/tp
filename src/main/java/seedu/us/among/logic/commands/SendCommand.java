@@ -61,8 +61,6 @@ public class SendCommand extends Command {
             throw new CommandException(MESSAGE_CALL_ENDPOINT_FAILED);
         }
 
-        System.out.println(response);
-
         Endpoint endpointWithResponse = createEndpointWithResponse(endpointToSend, response);
 
         model.setEndpoint(endpointToSend, endpointWithResponse);

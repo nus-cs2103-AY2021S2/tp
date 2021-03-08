@@ -2,6 +2,7 @@ package seedu.us.among.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -24,6 +25,10 @@ import seedu.us.among.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+
+    // Tracks and shows progress of user commands
+    private static boolean isInProgress = false;
+    private String progressMessage = "Processing Command";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -168,19 +173,74 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the progress message.
+     */
+    private void updateProgress() {
+        if (progressMessage.length() < 21) {
+            progressMessage += ".";
+        } else {
+            progressMessage = "Processing Command";
+        }
+        resultDisplay.setFeedbackToUser(progressMessage);
+    }
+
+    /**
+     * Gets the status for command execution.
+     * @return true or false to indicate if command execution is still in progress
+     */
+    public static boolean getProgress() {
+        return isInProgress;
+    }
+
+    /**
+     * Continuously update the UI to show progress to user.
+     * @return thread that is updating the UI
+     */
+    public Thread showProgress() {
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Runnable updater = () -> updateProgress();
+                while (MainWindow.getProgress()) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        //try-catch to allow thread to sleep
+                    }
+                    Platform.runLater(updater);
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+        return thread;
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        isInProgress = true;
+        Thread thread = showProgress();
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            if (commandResult.isApiResponse()) {
-                resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
-            } else {
-                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            isInProgress = false;
+            try {
+                thread.join();
+            } catch (InterruptedException interruptedException) {
+                throw new CommandException("Placeholder");
             }
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            Platform.runLater(() -> {
+                if (commandResult.isApiResponse()) {
+                    resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
+                } else {
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                }
+            });
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -192,8 +252,14 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
+            isInProgress = false;
+            try {
+                thread.join();
+            } catch (InterruptedException interruptedException) {
+                throw new CommandException("Placeholder");
+            }
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            Platform.runLater(() -> resultDisplay.setFeedbackToUser(e.getMessage()));
             throw e;
         }
     }
