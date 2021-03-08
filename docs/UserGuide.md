@@ -100,20 +100,31 @@ Examples:
 
 ### Locating items by name: `find`
 
-Finds items whose names contain any of the given keywords.
+Finds items whose names contain any of the given keywords, either in full or partially.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format 1: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `milk` will match `Milk`
-* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
-* Only the name is searched.
 * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`
+* The search is case-insensitive. e.g. `milk` will match `Milk`
+* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
+* Only the item name is searched.
+* Items matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Chocolate Milk` will return `Cadbury Chocolate`, `Almond Milk`
+
+Format 2: `find *KEYWORD [MORE_KEYWORDS]`
+
+* Partial words will be matched e.g. `Choco` will match `Chocolates`
+* The search is case-insensitive. e.g. `milk` will match `Milk`
+* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
+* Only the item name is searched.
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Chocolate Milk` will return `Cadbury Chocolate`, `Almond Milk`
 
 Examples:
 * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-* `find potato chip` returns `Potato Biscuit`, `chocolate chip`<br>
+* `find potato chip` returns `Potato Biscuit` and `chocolate chip`
+* `find *Burger` returns `CheeseBurger` and `fishburger`
+* `find *cheese egg` returns `MacAndCheese` and `eggs`
 
 
 ### Deleting an item : `delete`

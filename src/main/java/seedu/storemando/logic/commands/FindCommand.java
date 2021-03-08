@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
-import seedu.storemando.model.item.NameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all items in storemando whose name contains any of the argument keywords.
+ * Finds and lists all items in storemando whose item name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -19,9 +19,9 @@ public class FindCommand extends Command {
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
         + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final ItemNameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(ItemNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -29,8 +29,14 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(predicate);
-        return new CommandResult(
-            String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredItemList().size()));
+        int numberOfItems = model.getFilteredItemList().size();
+        if (numberOfItems > 1) {
+            return new CommandResult(
+                String.format(Messages.MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW, numberOfItems));
+        } else {
+            return new CommandResult(
+                String.format(Messages.MESSAGE_LESS_THAN_TWO_ITEMS_LISTED_OVERVIEW, numberOfItems));
+        }
     }
 
     @Override
