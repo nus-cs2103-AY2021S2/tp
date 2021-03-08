@@ -13,4 +13,9 @@ public interface ReadOnlyUserPrefs {
 
     Path getAddressBookFilePath();
 
+    Path getTaskListFilePath();
+
+    Path getEventListFilePath();
+
+
 }

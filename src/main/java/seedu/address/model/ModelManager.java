@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +23,11 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final Sochedule sochedule;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Event> filteredEvents;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,10 +41,64 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        // initialised to null to maintain original functionality temporarily
+        this.sochedule = null;
+        filteredTasks = null;
+        filteredEvents = null;
     }
 
+    /**
+     * Initializes a ModelManager with the given sochedule and userPrefs.
+     */
+    public ModelManager(ReadOnlySochedule sochedule, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(sochedule, userPrefs);
+
+        logger.fine("Initializing with SOChedule: " + sochedule + " and user prefs " + userPrefs);
+
+        this.sochedule = new Sochedule(sochedule);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredTasks = new FilteredList<>(this.sochedule.getTaskList());
+        filteredEvents = new FilteredList<>(this.sochedule.getEventList());
+
+        // initialised to null to maintain original functionality temporarily
+        this.addressBook = null;
+        filteredPersons = null;
+    }
+
+    // original function to be replaced once Sochedule support is complete
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
+    }
+
+    /*
+    public ModelManager() {
+        this(new Sochedule(), new UserPrefs());
+    }
+    */
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        // null check is temporary during transition to new data
+        ModelManager other = (ModelManager) obj;
+        return (addressBook == null || addressBook.equals(other.addressBook)) //to be removed
+                && userPrefs.equals(other.userPrefs)
+                && (filteredPersons == null || filteredPersons.equals(other.filteredPersons)) //to be removed
+                && (sochedule == null || sochedule.equals(other.sochedule))
+                && (filteredTasks == null || filteredTasks.equals(other.filteredTasks))
+                && (filteredEvents == null || filteredEvents.equals(other.filteredEvents));
     }
 
     //=========== UserPrefs ==================================================================================
@@ -77,6 +137,7 @@ public class ModelManager implements Model {
     }
 
     //=========== AddressBook ================================================================================
+    // Functions of the original AB3 - will be deleted once transition over to new data structure
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -113,7 +174,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Person List Accessors =============================================================
-
+    // Functions of the original AB3 - will be deleted once transition over to new data structure
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
@@ -129,23 +190,123 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== task ==================================================================================
+
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+    public Path getTaskListFilePath() {
+        return userPrefs.getTaskListFilePath();
     }
 
+    @Override
+    public void setTaskListFilePath(Path taskListFilePath) {
+        requireAllNonNull(taskListFilePath);
+        userPrefs.setTaskListFilePath(taskListFilePath);
+    }
+
+    @Override
+    public void setTaskList(ReadOnlySochedule sochedule) {
+        this.sochedule.resetTaskData(sochedule);
+    }
+
+    @Override
+    public ReadOnlySochedule getTaskList() {
+        return sochedule;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireAllNonNull(task);
+        return sochedule.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        sochedule.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        sochedule.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        sochedule.setTask(target, editedTask);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireAllNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    //=========== event ==================================================================================
+
+    @Override
+    public Path getEventListFilePath() {
+        return userPrefs.getTaskListFilePath();
+    }
+
+    @Override
+    public void setEventListFilePath(Path eventListFilePath) {
+        requireAllNonNull(eventListFilePath);
+        userPrefs.setEventListFilePath(eventListFilePath);
+    }
+
+    @Override
+    public void setEventList(ReadOnlySochedule sochedule) {
+        this.sochedule.resetEventData(sochedule);
+    }
+
+    @Override
+    public ReadOnlySochedule getEventList() {
+        return sochedule;
+    }
+
+    @Override
+    public boolean hasEvent(Event event) {
+        requireAllNonNull(event);
+        return sochedule.hasEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        sochedule.removeEvent(target);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        sochedule.addEvent(event);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        sochedule.setEvent(target, editedEvent);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Event}
+     */
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireAllNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
 }
