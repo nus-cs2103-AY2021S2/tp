@@ -51,7 +51,7 @@ public class Data {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public static boolean isEmptyData(String test){
+    public static boolean isEmptyData(String test) {
         return test.equals("");
     }
     @Override

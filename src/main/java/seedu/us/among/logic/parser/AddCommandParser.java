@@ -48,9 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Endpoint endpoint;
 
-        if (argMultimap.getValue(PREFIX_DATA).isEmpty()){
+        if (argMultimap.getValue(PREFIX_DATA).isEmpty()) {
             endpoint = new Endpoint(method, address, headerList, tagList);
-        }else{
+        } else {
             Data data = ParserUtil.parseData(argMultimap.getValue(PREFIX_DATA).orElse(""));
             endpoint = new Endpoint(method, address, data, headerList, tagList);
         }

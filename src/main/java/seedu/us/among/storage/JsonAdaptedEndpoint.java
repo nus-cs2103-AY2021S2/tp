@@ -117,11 +117,11 @@ class JsonAdaptedEndpoint {
         if (data == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Method.class.getSimpleName()));
         }
-        if (data.equals("")){
+        if (data.equals("")) {
             modelData = new Data();
         } else if (!Data.isValidData(data)) {
             throw new IllegalValueException(Data.MESSAGE_CONSTRAINTS);
-        }else{
+        } else {
             modelData = new Data(data);
         }
 
