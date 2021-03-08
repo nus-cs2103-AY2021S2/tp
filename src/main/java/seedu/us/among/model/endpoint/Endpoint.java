@@ -29,7 +29,7 @@ public class Endpoint {
     private final Response response;
 
     /**
-     * Every field must be present and not null.
+     * Constructor for endpoint, with empty response
      */
     public Endpoint(Method method, Address address, Data data, Set<Header> headers, Set<Tag> tags) {
         requireAllNonNull(method, address, data, headers, tags);
@@ -42,13 +42,40 @@ public class Endpoint {
     }
 
     /**
-     * Every field must be present and not null.
+     * Constructor for endpoint, with specific response and data
      */
     public Endpoint(Method method, Address address, Data data, Set<Header> headers, Set<Tag> tags, Response response) {
         requireAllNonNull(method, address, data, headers, tags, response);
         this.method = method;
         this.address = address;
         this.data = data;
+        this.headers.addAll(headers);
+        this.tags.addAll(tags);
+        this.response = response;
+    }
+
+    /**
+     * Constructor for endpoint, with empty response and data
+     */
+    public Endpoint(Method method, Address address, Set<Header> headers, Set<Tag> tags) {
+        requireAllNonNull(method, address, headers, tags);
+        this.method = method;
+        this.address = address;
+        this.data = new Data();
+        this.headers.addAll(headers);
+        this.tags.addAll(tags);
+        this.response = new Response();
+    }
+
+
+    /**
+     * Constructor for endpoint, with data
+     */
+    public Endpoint(Method method, Address address, Set<Header> headers, Set<Tag> tags, Response response) {
+        requireAllNonNull(method, address, headers, tags, response);
+        this.method = method;
+        this.address = address;
+        this.data = new Data();
         this.headers.addAll(headers);
         this.tags.addAll(tags);
         this.response = response;

@@ -113,14 +113,17 @@ class JsonAdaptedEndpoint {
         }
         final Address modelAddress = new Address(address);
 
+        final Data modelData;
         if (data == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Method.class.getSimpleName()));
         }
-        if (!Data.isValidData(data)) {
+        if (data.equals("")) {
+            modelData = new Data();
+        } else if (!Data.isValidData(data)) {
             throw new IllegalValueException(Data.MESSAGE_CONSTRAINTS);
+        } else {
+            modelData = new Data(data);
         }
-        final Data modelData = new Data(data);
-
 
         final Response modelResponse;
         if (response == null) {

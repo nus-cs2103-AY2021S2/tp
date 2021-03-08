@@ -73,10 +73,13 @@ public class ParserUtil {
     public static Data parseData(String data) throws ParseException {
         requireNonNull(data);
         String trimmedData = data.trim();
-        if (!Data.isValidData(trimmedData)) {
-            // give an empty data
+
+        System.out.println(trimmedData);
+
+        if (Data.isEmptyData(trimmedData)) {
             return new Data();
-            //throw new ParseException(Data.MESSAGE_CONSTRAINTS);
+        } else if (!Data.isValidData(trimmedData)) {
+            throw new ParseException(Data.MESSAGE_CONSTRAINTS);
         }
         return new Data(trimmedData);
     }
