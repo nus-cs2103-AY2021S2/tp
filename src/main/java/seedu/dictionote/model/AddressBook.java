@@ -17,7 +17,6 @@ import seedu.dictionote.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueNoteList note;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,8 +27,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        note = new UniqueNoteList();
-
     }
 
     public AddressBook() {}
@@ -50,13 +47,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
-    }
-    /**
-     * Replaces the contents of the note list with {@code note }.
-     * {@code note} must not contain duplicate persons.
-     */
-    public void setNote(List<Note> note) {
-        this.note.setNotes(note);
     }
 
     /**
@@ -90,16 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a person to the dictionote book.
      * The person must not already exist in the dictionote book.
      */
-    public void addNote(Note n) {
-        note.add(n);
-    }
 
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the dictionote book.
-     * The person identity of {@code editedPerson} must not be the same as
-     * another existing person in the dictionote book.
-     */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
