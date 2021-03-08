@@ -1,8 +1,8 @@
 package seedu.address.model.booking;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents a venue in the booking list.

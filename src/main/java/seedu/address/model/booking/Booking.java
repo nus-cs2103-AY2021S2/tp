@@ -1,9 +1,9 @@
 package seedu.address.model.booking;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a booking in the booking list.
@@ -21,7 +21,8 @@ public class Booking {
     /**
      * Every field must be present and not null.
      */
-    public Booking(String booker, Venue venue, String description, LocalDateTime bookingStart, LocalDateTime bookingEnd) {
+    public Booking(String booker, Venue venue, String description,
+                   LocalDateTime bookingStart, LocalDateTime bookingEnd) {
         requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
         this.booker = booker;
         this.venue = venue;
@@ -61,10 +62,11 @@ public class Booking {
         if (otherBooking == null) {
             return false;
         }
-        if (!otherBooking.venue.equals(venue)){
+        if (!otherBooking.venue.equals(venue)) {
             return false;
         }
-        return !this.bookingStart.isBefore(otherBooking.bookingEnd) && !this.bookingEnd.isAfter(otherBooking.bookingStart);
+        return !this.bookingStart.isBefore(otherBooking.bookingEnd)
+                && !this.bookingEnd.isAfter(otherBooking.bookingStart);
     }
 
     /**

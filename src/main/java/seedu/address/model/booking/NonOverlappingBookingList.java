@@ -14,10 +14,11 @@ import seedu.address.model.booking.exceptions.OverlappingBookingException;
 
 /**
  * A list of bookings that enforces that is it non overlapping between its elements and does not allow nulls.
- * A booking is considered non overlapping by comparing using {@code Booking#isOverlapping(Booking)}. As such, adding and updating of
- * booking uses Booking#isOverlapping(Booking) for checking so as to ensure that the booking being added or updated is
- * non overlapping in terms of booking timing in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A booking is considered non overlapping by comparing using {@code Booking#isOverlapping(Booking)}.
+ * As such, adding and updating of booking uses Booking#isOverlapping(Booking) for checking
+ * so as to ensure that the booking being added or updated is non overlapping in terms of booking timing
+ * in the NonOverlappingBookingList. However, the removal of a venue uses Venue#equals(Object) so
+ * as to ensure that the venue with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -138,7 +139,7 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code bookings} contains only unique bookings.
      */
     private boolean bookingsAreNonOverlapping(List<Booking> bookings) {
         for (int i = 0; i < bookings.size() - 1; i++) {
