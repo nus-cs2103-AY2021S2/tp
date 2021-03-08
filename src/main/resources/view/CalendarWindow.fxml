@@ -29,14 +29,14 @@
          <root>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1050.0" style="-fx-background-color: grey;">
                <children>
-                  <VBox prefHeight="650.0" prefWidth="269.0" style="-fx-background-color: grey;">
+                  <VBox prefHeight="650.0" prefWidth="269.0" style="-fx-background-color: #7FFFD4;">
                      <children>
                         <ImageView fitHeight="181.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="40.0">
                            <image>
                               <Image url="@../images/logo.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome" textAlignment="CENTER" textFill="WHITE" translateX="65.0" translateY="50.0">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome" textAlignment="CENTER" translateX="65.0" translateY="50.0">
                            <font>
                               <Font name="Chandas" size="30.0" />
                            </font>
@@ -45,7 +45,7 @@
                   </VBox>
                   <AnchorPane prefHeight="650.0" prefWidth="783.0" style="-fx-background-color: white;">
                      <children>
-                        <Label fx:id="CurrentMonth" layoutX="26.0" layoutY="14.0" text="">
+                        <Label fx:id="CurrentMonth" layoutX="26.0" layoutY="14.0" text="MARCH">
                            <font>
                               <Font name="Abyssinica SIL" size="26.0" />
                            </font>
@@ -88,41 +88,13 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <children>
-                              <Label text="Mon">
-                                 <font>
-                                    <Font name="Abyssinica SIL" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Tue" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font name="Abyssinica SIL" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Wed" GridPane.columnIndex="2">
-                                 <font>
-                                    <Font name="Abyssinica SIL" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Thu" GridPane.columnIndex="3">
-                                 <font>
-                                    <Font name="Abyssinica SIL" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Fri" GridPane.columnIndex="4">
-                                 <font>
-                                    <Font name="Abyssinica SIL" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Sat" style="-fx-text-fill: red;" GridPane.columnIndex="5">
-                                 <font>
-                                    <Font name="Abyssinica SIL" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Sun" style="-fx-text-fill: red;" GridPane.columnIndex="6">
-                                 <font>
-                                    <Font name="Abyssinica SIL" size="16.0" />
-                                 </font>
-                              </Label>
+                              <Label text="Mon" styleClass="weekday"> </Label>
+                              <Label layoutX="55.0" layoutY="22.0" text="Tue" styleClass="weekday" GridPane.columnIndex="1"> </Label>
+                              <Label layoutX="55.0" layoutY="22.0" text="Wed" styleClass="weekday" GridPane.columnIndex="2"> </Label>
+                              <Label layoutX="55.0" layoutY="22.0" text="Thu" styleClass="weekday" GridPane.columnIndex="3"> </Label>
+                              <Label layoutX="55.0" layoutY="22.0" text="Fri" styleClass="weekday" GridPane.columnIndex="4"> </Label>
+                              <Label layoutX="55.0" layoutY="22.0" text="Sat" styleClass="weekend" GridPane.columnIndex="5"> </Label>
+                              <Label layoutX="55.0" layoutY="22.0" text="Sun" styleClass="weekend" GridPane.columnIndex="6"> </Label>
                            </children>
                         </GridPane>
                      </children>
