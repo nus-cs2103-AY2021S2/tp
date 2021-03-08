@@ -15,13 +15,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Meeting;
 
 public class AddMeetingParser implements Parser<AddMeetingCommand> {
 
-    private static final DateTimeFormatter DATE_PARSER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//    private static final DateTimeFormatter DATE_PARSER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter TIME_PARSER = DateTimeFormatter.ofPattern("HHmm");
 
     public AddMeetingCommand parse(String args) throws ParseException {
@@ -44,12 +45,7 @@ public class AddMeetingParser implements Parser<AddMeetingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
-        try {
-            date = DATE_PARSER.parse(argMultimap.getValue(PREFIX_DATE).get(), LocalDate::from);
-        } catch (DateTimeParseException dte) {
-            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT,
-                    "Only accept dd-MM-yyyy, e.g. 12-12-2020"));
-        }
+        date = DateUtil.fromDateInput(argMultimap.getValue(PREFIX_DATE).get());
 
         try {
             time = TIME_PARSER.parse(argMultimap.getValue(PREFIX_TIME).get(), LocalTime::from);
