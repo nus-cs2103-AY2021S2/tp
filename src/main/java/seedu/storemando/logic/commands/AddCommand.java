@@ -18,7 +18,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a item to the storemando. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to the storemando. "
         + "Parameters: "
         + PREFIX_NAME + "NAME "
         + PREFIX_LOCATION + "LOCATION "
@@ -35,6 +35,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the storemando";
+    public static final String MESSAGE_ITEM_EXPIRED_WARNING = "Warning: Item has already expired!";
 
     private final Item toAdd;
 
