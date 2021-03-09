@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -123,6 +125,59 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
+    /**
+     * Parses a {@code String booker} into a {@code String trimmedBooker}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static String parseBooker(String booker) {
+        requireNonNull(booker);
+        String trimmedBooker = booker.trim();
+        return trimmedBooker;
+    }
+
+
+    /**
+     * Parses a {@code String description} into a {@code String description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static String parseDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return trimmedDescription;
+    }
+
+
+    /**
+     * Parses a {@code String bookingStart} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static LocalDateTime parseBookingStart(String bookingStart) {
+        requireNonNull(bookingStart);
+        String trimmedBookingStart = bookingStart.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingStart, formatter);
+        return dateTime;
+    }
+
+
+    /**
+     * Parses a {@code String bookingStart} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static LocalDateTime parseBookingEnd(String bookingEnd) {
+        requireNonNull(bookingEnd);
+        String trimmedBookingEnd = bookingEnd.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingEnd, formatter);
+        return dateTime;
+    }
+
 
     /**
      * Parses a {@code String venue} into a {@code Venue}.
