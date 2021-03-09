@@ -4,7 +4,7 @@
     "size": "53",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "descriptions": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "size": "53",

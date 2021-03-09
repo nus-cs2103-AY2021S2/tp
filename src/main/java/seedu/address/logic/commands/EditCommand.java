@@ -2,10 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -19,9 +20,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.description.Description;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Size;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -38,7 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SIZE + "SIZE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SIZE + "36 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -94,9 +98,10 @@ public class EditCommand extends Command {
         Size updatedSize = editPersonDescriptor.getSize().orElse(personToEdit.getSize());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Description> updatedDescriptions = editPersonDescriptor.getDescriptions()
+                .orElse(personToEdit.getDescriptions());
 
-        return new Person(updatedName, updatedSize, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedSize, updatedEmail, updatedAddress, updatedDescriptions);
     }
 
     @Override
@@ -118,7 +123,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the person with.
+     * Each non-empty field value will replace the
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
@@ -126,27 +132,27 @@ public class EditCommand extends Command {
         private Size size;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Set<Description> descriptions;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code descriptions} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setSize(toCopy.size);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setDescriptions(toCopy.descriptions);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, size, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, size, email, address, descriptions);
         }
 
         public void setName(Name name) {
@@ -182,20 +188,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code descriptions} to this object's {@code descriptions}.
+         * A defensive copy of {@code descriptions} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setDescriptions(Set<Description> descriptions) {
+            this.descriptions = (descriptions != null) ? new HashSet<>(descriptions) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable description set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code descriptions} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Description>> getDescriptions() {
+            return (descriptions != null) ? Optional.of(Collections.unmodifiableSet(descriptions)) : Optional.empty();
         }
 
         @Override
@@ -217,7 +223,7 @@ public class EditCommand extends Command {
                     && getSize().equals(e.getSize())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getDescriptions().equals(e.getDescriptions());
         }
     }
 }

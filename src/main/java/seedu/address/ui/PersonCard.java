@@ -39,7 +39,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane descriptions;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,9 +52,10 @@ public class PersonCard extends UiPart<Region> {
         size.setText(person.getSize().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getDescriptions().stream()
+                .sorted(Comparator.comparing(description -> description.descriptionName))
+                .forEach(description -> descriptions.getChildren()
+                        .add(new Label("<" + description.descriptionName + ">")));
     }
 
     @Override

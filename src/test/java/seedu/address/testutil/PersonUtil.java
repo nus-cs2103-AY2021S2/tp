@@ -1,17 +1,16 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.description.Description;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Person.
@@ -34,8 +33,8 @@ public class PersonUtil {
         sb.append(PREFIX_SIZE + person.getSize().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        person.getDescriptions().stream().forEach(
+            s -> sb.append(PREFIX_DESCRIPTION + s.descriptionName + " ")
         );
         return sb.toString();
     }
@@ -49,12 +48,12 @@ public class PersonUtil {
         descriptor.getSize().ifPresent(phone -> sb.append(PREFIX_SIZE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+        if (descriptor.getDescriptions().isPresent()) {
+            Set<Description> descriptions = descriptor.getDescriptions().get();
+            if (descriptions.isEmpty()) {
+                sb.append(PREFIX_DESCRIPTION);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                descriptions.forEach(s -> sb.append(PREFIX_DESCRIPTION).append(s.descriptionName).append(" "));
             }
         }
         return sb.toString();
