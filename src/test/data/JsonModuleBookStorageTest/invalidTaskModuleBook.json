@@ -1,0 +1,8 @@
+{
+  "tasks": [ {
+    "name": "Task with invalid name field: Ha!ns Mu@ster",
+    "deadline": "9482424",
+    "module": "hans@example.com",
+    "description": "4th street"
+  } ]
+}
