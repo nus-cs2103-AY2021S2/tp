@@ -16,6 +16,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.panels.CheeseListPanel;
+import seedu.address.ui.panels.CustomerListPanel;
+import seedu.address.ui.panels.OrderListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +34,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private CustomerListPanel customerListPanel;
+    private CheeseListPanel cheeseListPanel;
+    private OrderListPanel orderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -78,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,8 +116,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredCustomerList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList());
+        cheeseListPanel = new CheeseListPanel(logic.getFilteredCheeseList());
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getFilteredCustomerList());
+
+        // TODO: Create a way to toggle between the three views w.r.t. input commands
+        listPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +173,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public CustomerListPanel getCustomerListPanel() {
+        return customerListPanel;
+    }
+
+    public CheeseListPanel getCheeseListPanel() {
+        return cheeseListPanel;
+    }
+
+    public OrderListPanel getOrderListPanel() {
+        return orderListPanel;
     }
 
     /**
