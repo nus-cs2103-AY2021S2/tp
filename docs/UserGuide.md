@@ -141,17 +141,15 @@ Example output:
 [IMG]
 
 
-
-
 ## Semester commands
 
-### Show the number of MCs the user is currently taking
-Format `Show MCs`
+### Show the number of MCs the user is currently taking: `show MCs`
+Format: `Show MCs`
 
 Example output: `The current MCs you are taking is xxx`
 
-### Calculate and show the current CAP (Cumulative academic points) of the student
-Format `Show CAP`
+### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
+Format: `Show CAP`
 
 This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP 
 using this formula
@@ -203,9 +201,10 @@ Example output:
 ## Module commands
 
 ### Add/Delete module to/from semester: `add/delete`
-Format: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
-Format: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
-Tip: A user can view module info to see more details about it. (See `info`)
+Format for adding: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
+Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`  
+
+> Tip: A user can view module info to see more details about it. (See `info`)
 
 This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and 
 `SEM_NUMBER`, and outputs meta details about the module being 
@@ -224,9 +223,10 @@ Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
 
 ### View module info: `info`
-Format: `info m/MODULE_CODE`
-Tip: A user can also add a module to a plan/semester (See `add/delete`)
-By default, yhis command takes in one optional argument, `MODULE_CODE`, 
+Format: `info m/MODULE_CODE`    
+> Tip: A user can also add a module to a plan/semester (See `add/delete`)  
+
+By default, this command takes in one optional argument, `MODULE_CODE`, 
 and outputs the module information including:  
 * Brief Description
 * Number of MCs
@@ -236,7 +236,6 @@ and outputs the module information including:
 
 Constraints:  
 * Module has to exist
-
 
 
 ### Clearing all entries : `clear`
