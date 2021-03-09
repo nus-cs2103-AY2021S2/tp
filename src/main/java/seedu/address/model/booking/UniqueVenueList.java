@@ -88,6 +88,13 @@ public class UniqueVenueList implements Iterable<Venue> {
         }
     }
 
+    /**
+     * Returns true if the list contains a venue with an equivalent name as the given venue.
+     *
+     * @param list of venues in the system.
+     * @param venue to be checked against the list.
+     * @return true if the name of the given venue is found in the list.
+     */
     public boolean containsName(ObservableList<Venue> list, Venue venue) {
         return list.stream().anyMatch(x -> x.getName().equals(venue.getName()));
     }
