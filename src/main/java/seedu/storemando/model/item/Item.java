@@ -99,7 +99,7 @@ public class Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, expiryDate, location, tags);
+        return Objects.hash(name, quantity, location, expiryDate, tags);
     }
 
     @Override

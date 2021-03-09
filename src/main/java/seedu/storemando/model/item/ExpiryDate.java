@@ -29,7 +29,7 @@ public class ExpiryDate {
         + "    - be within the range [01, 12]\n"
         + "4. DD must:\n"
         + "    - be exactly 2 digits long\n"
-        + "    - be a valid expiryDate\n";
+        + "    - be a valid expiry date\n";
 
     public final String value;
     public final LocalDate expiryDate;
@@ -65,7 +65,7 @@ public class ExpiryDate {
             }
             LocalDate.parse(test);
             return true;
-        } catch (DateTimeParseException | NullPointerException e) {
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
