@@ -35,7 +35,6 @@ public class ExpiryDate {
     public final LocalDate expiryDate;
 
 
-
     /**
      * Constructs an {@code ExpiryDate}.
      *
@@ -60,13 +59,13 @@ public class ExpiryDate {
      * Returns if a given string is a valid expiryDate.
      */
     public static boolean isValidExpiryDate(String test) {
-        if (test.equals(NO_EXPIRY_DATE)) {
-            return true;
-        }
         try {
+            if (test.equals(NO_EXPIRY_DATE)) {
+                return true;
+            }
             LocalDate.parse(test);
             return true;
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | NullPointerException e) {
             return false;
         }
     }

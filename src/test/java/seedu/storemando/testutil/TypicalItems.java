@@ -49,7 +49,6 @@ public class TypicalItems {
         .withExpiryDate("2019-10-08").withLocation("chicago ave").build();
 
 
-
     // Manually added - Item's details found in {@code CommandTestUtil}
     public static final Item AMY = new ItemBuilder().withName(VALID_NAME_AMY)
         .withQuantity(VALID_QUANTITY_AMY).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)

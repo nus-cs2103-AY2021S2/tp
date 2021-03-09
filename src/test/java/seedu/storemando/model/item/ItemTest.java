@@ -39,7 +39,7 @@ public class ItemTest {
         // same name, all other attributes different -> returns false
         editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB)
             .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameItem(editedAlice));
+        assertFalse(ALICE.isSameItem(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new ItemBuilder(ALICE).withName(VALID_NAME_BOB).build();
