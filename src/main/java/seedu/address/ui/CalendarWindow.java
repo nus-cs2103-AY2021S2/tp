@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.logging.Logger;
@@ -23,8 +22,8 @@ public class CalendarWindow extends UiPart<Stage> {
     private static final int CALENDAR_SIZE = 35;
     private static final int[] DAYS_IN_MONTH = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private static final String[] MONTHS = {"January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"};
-    private static final String[] DAYS =  {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        "July", "August", "September", "October", "November", "December"};
+    private static final String[] DAYS = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
     private int day;
     private int month;
@@ -99,14 +98,14 @@ public class CalendarWindow extends UiPart<Stage> {
      * load the day names into Calendar
      */
     private void loadDayNames() {
-        for(int col = 0; col < CALENDER_SIDE_SIZE; col++) {
-            Label DayName = new Label(DAYS[col]);
-            VBox DayNameBox = new VBox();
-            DayNameBox.getChildren().add(DayName);
-            DayNameBox.setPrefHeight(20);
-            DayNameBox.setPrefWidth(20);
-            DayNameBox.setAlignment(Pos.CENTER);
-            calendar.add(DayNameBox, col, FIRST_ROW);
+        for (int col = 0; col < CALENDER_SIDE_SIZE; col++) {
+            Label dayName = new Label(DAYS[col]);
+            VBox dayNameBox = new VBox();
+            dayNameBox.getChildren().add(dayName);
+            dayNameBox.setPrefHeight(20);
+            dayNameBox.setPrefWidth(20);
+            dayNameBox.setAlignment(Pos.CENTER);
+            calendar.add(dayNameBox, col, FIRST_ROW);
         }
     }
 
