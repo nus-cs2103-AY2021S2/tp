@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -42,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label birthday;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -60,6 +63,9 @@ public class PersonCard extends UiPart<Region> {
         }
         if (!Email.isEmptyEmail(person.getEmail())) {
             email.setText(person.getEmail().value);
+        }
+        if (!Birthday.isEmptyBirthday(person.getBirthday())) {
+            birthday.setText(person.getBirthday().value);
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
