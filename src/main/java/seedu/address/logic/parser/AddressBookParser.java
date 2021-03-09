@@ -52,7 +52,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case DateCommand.COMMAND_WORD:
-            return new DateCommand();
+            return new DateCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
