@@ -1,5 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -10,15 +23,9 @@ import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Edits the details of an existing Meeting in the address book.
+ */
 public class EditMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "editmeet";
@@ -42,6 +49,9 @@ public class EditMeetingCommand extends Command {
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;
 
+    /**
+     * Edit a Meeting specified by an index and their edited fields
+     */
     public EditMeetingCommand(Index index, EditMeetingDescriptor editMeetingDescriptor) {
         requireNonNull(index);
         requireNonNull(editMeetingDescriptor);
@@ -67,6 +77,10 @@ public class EditMeetingCommand extends Command {
         return new CommandResult("PLACEHOLDER EDIT SUCCESS");
     }
 
+    /**
+     * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
+     * edited with {@code editMeetingDescriptor}.
+     */
     private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
 
@@ -79,6 +93,10 @@ public class EditMeetingCommand extends Command {
         return new Meeting(updatedClient, updatedDateTime, updatedAddress, updatedDescription, updatedTags);
     }
 
+    /**
+     * Stores the details to edit the meeting with. Each non-empty field value will replace the corresponding field
+     * value of the meeting.
+     */
     public static class EditMeetingDescriptor {
         private Client client;
         private LocalDateTime dateTime;
@@ -88,6 +106,9 @@ public class EditMeetingCommand extends Command {
 
         public EditMeetingDescriptor() {}
 
+        /**
+         * Copy constructor to copy field values from previous version of the descriptor.
+         */
         public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
             setClient(toCopy.client);
             setDateTime(toCopy.dateTime);
@@ -96,6 +117,9 @@ public class EditMeetingCommand extends Command {
             setTags(toCopy.tags);
         }
 
+        /**
+         * Returns true if at least one field is edited.
+         */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(client, dateTime, address, description, tags);
         }
