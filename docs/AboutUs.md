@@ -35,15 +35,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Responsibilities: Code Quality and Integration
 
-### Jean Doe
+### Chua Jun Jie Benedict
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benedictbcjj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/benedictbcjj)]
+[[portfolio](team/benedictbcjj.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
 ### James Doe
 
