@@ -20,6 +20,11 @@ public class BlacklistCommand extends Command {
     public static final String COMMAND_WORD = "blist";
     public static final String MESSAGE_BLACKLIST_SUCCESS = "Blacklisted Person: %1$s";
     public static final String MESSAGE_UNBLACKLIST_SUCCESS = "Removed Person from blacklist: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Blacklists/Un-blacklists the person identified "
+            + "by the index number used in the last person listing. "
+            + "Current blacklist status will be changed.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     private final Index index;
     private Blacklist blacklist;
@@ -33,12 +38,6 @@ public class BlacklistCommand extends Command {
         this.index = index;
         this.blacklist = new Blacklist();
     }
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Blacklists/Un-blacklists the person identified "
-            + "by the index number used in the last person listing. "
-            + "Current blacklist status will be changed.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "Example: " + COMMAND_WORD + " 1 ";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

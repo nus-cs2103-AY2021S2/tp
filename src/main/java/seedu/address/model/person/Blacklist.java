@@ -9,11 +9,19 @@ import static java.util.Objects.requireNonNull;
 public class Blacklist {
     public final Boolean isBlacklisted;
 
+    /**
+     * Constructs an {@code Blacklist}.
+     *
+     * @param isBlacklisted A valid boolean.
+     */
     public Blacklist(Boolean isBlacklisted) {
         requireNonNull(isBlacklisted);
         this.isBlacklisted = isBlacklisted;
     }
 
+    /**
+     * Constructs an {@code Blacklist} with default input of false.
+     */
     public Blacklist() {
         this.isBlacklisted = false;
     }

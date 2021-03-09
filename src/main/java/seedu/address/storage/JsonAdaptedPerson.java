@@ -133,7 +133,8 @@ class JsonAdaptedPerson {
         final ModeOfContact modelModeOfContact = new ModeOfContact(modeOfContact);
 
         if (isBlacklisted == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Blacklist.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Blacklist.class.getSimpleName()));
         }
         final Blacklist modelBlacklist = new Blacklist(isBlacklisted);
 
