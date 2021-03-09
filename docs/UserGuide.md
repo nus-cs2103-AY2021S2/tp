@@ -109,7 +109,7 @@ Examples:
 
 ### Editing a task : `edit`
 
-Edits an existing task in the address book.
+Edits an existing task in the planner.
 
 Format: `edit INDEX [n/TITLE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -155,7 +155,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the planner.
 
 Format: `clear`
 
@@ -167,16 +167,16 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. 
+PlanIt data are saved in the hard disk automatically after any command that changes the data. 
 There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. 
+PlanIt data are saved as a JSON file `[JAR file location]/data/planner.json`. 
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and 
+If your changes to the data file makes its format invalid, PlanIt will discard all data and 
 start with an empty data file at the next run.
 </div>
 
@@ -186,7 +186,7 @@ start with an empty data file at the next run.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
-that contains the data of your previous AddressBook home folder.
+that contains the data of your previous PlanIt home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

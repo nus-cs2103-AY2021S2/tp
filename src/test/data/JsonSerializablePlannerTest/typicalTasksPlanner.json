@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Task values as in TypicalTasks#getTypicalAddressBook()",
+  "_comment": "PlanIt save file which contains the same Task values as in TypicalTasks#getTypicalPlanner()",
   "tasks" : [ {
     "title" : "Alice Pauline",
     "phone" : "94351253",
