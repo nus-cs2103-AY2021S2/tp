@@ -1,11 +1,19 @@
 package seedu.module.logic.commands;
 
+import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
+import seedu.module.model.task.Task;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 public class TagCommand extends Command {
 
@@ -18,9 +26,9 @@ public class TagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "t/Midterm";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Tag command not implemented yet";
-
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
+    public static final String MESSAGE_TAG_TASK_SUCCESS = "Tagged Task: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to tag must be provided.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This tag already exists.";
 
     private final Index index;
     private final Tag tag;
@@ -29,16 +37,52 @@ public class TagCommand extends Command {
      * @param index of the person in the filtered person list to edit the remark
      * @param tag of the person to be added
      */
-    public TagCommand(Index index, String tag) {
+    public TagCommand(Index index, Tag tag) {
         requireAllNonNull(index, tag);
 
         this.index = index;
-        this.tag = new Tag(tag);
+        this.tag = tag;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
+        requireNonNull(model);
+        List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        Task taskToTag = lastShownList.get(index.getZeroBased());
+        Set<Tag> oldTags = taskToTag.getTags();
+        Set<Tag> newTags = addTags(oldTags, this.tag);
+        Task editedTask = new Task(taskToTag.getName(), taskToTag.getDeadline(),
+                taskToTag.getModule(), taskToTag.getDescription(), newTags);
+
+        if (!taskToTag.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        model.setTask(taskToTag, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        return new CommandResult(String.format(MESSAGE_TAG_TASK_SUCCESS, editedTask));
+    }
+
+    private Set<Tag> addTags(Set<Tag> oldTags, Tag newTag) {
+        Set<Tag> newTags = new HashSet<>(oldTags);
+        boolean isEqual = false;
+        for (Tag item : oldTags) {
+            if (item.equals(newTag)) {
+                isEqual = true;
+                break;
+            }
+        }
+        if (isEqual) {
+            return newTags;
+        } else {
+            newTags.add(newTag);
+            return newTags;
+        }
     }
 
     @Override
