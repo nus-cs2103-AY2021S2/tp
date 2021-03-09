@@ -5,10 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 /**
@@ -24,7 +22,7 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-    public String HELP_MESSAGE = "Commands available";
+    public String helpMessage = "Commands available";
 
     @Override
     public CommandResult execute(Model model) {
@@ -43,13 +41,13 @@ public class HelpCommand extends Command {
             while (currLine != null) {
                 logger.info("currLine: " + currLine);
 
-                HELP_MESSAGE += commandSummaryParser(currLine);
+                helpMessage += commandSummaryParser(currLine);
 //                logger.info("help message now: " + HELP_MESSAGE);
 
                 currLine = reader.readLine();
             }
 
-            logger.info("help message now: \n" + HELP_MESSAGE);
+            logger.info("help message now: \n" + helpMessage);
 
 
             reader.close();
@@ -59,7 +57,7 @@ public class HelpCommand extends Command {
         }
 
 //        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
-        return new CommandResult(HELP_MESSAGE, true, false);
+        return new CommandResult(helpMessage, true, false);
     }
 
     private String commandSummaryParser(String info) {

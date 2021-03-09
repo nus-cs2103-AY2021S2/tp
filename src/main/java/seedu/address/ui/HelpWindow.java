@@ -9,6 +9,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.CommandResult;
 
 /**
  * Controller for a help page
@@ -17,6 +18,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public String helpMsg = "";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -34,7 +36,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+//        helpMessage.setText(HELP_MESSAGE);
+        helpMessage.setText(helpMsg);
     }
 
     /**
@@ -98,5 +101,9 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    public void setHelpMessage(String helpMsg) {
+        this.helpMsg = helpMsg;
     }
 }
