@@ -26,10 +26,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
-    // Tracks and shows progress of user commands
-    private static boolean isInProgress = false;
-    private String progressMessage = "Processing Command";
-
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -124,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEndpointListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -146,13 +142,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            Platform.runLater(() -> {
-                helpWindow.show();
-            });
+            helpWindow.show();
         } else {
-            Platform.runLater(() -> {
-                helpWindow.focus();
-            });
+            helpWindow.focus();
         }
     }
 
@@ -168,59 +160,16 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        Platform.runLater(() -> {
-            helpWindow.hide();
+        helpWindow.hide();
+        if (!Platform.isFxApplicationThread()) {
+            Platform.runLater(() -> primaryStage.hide());
+        } else {
             primaryStage.hide();
-        });
+        }
     }
 
     public EndpointListPanel getEndpointListPanel() {
         return endpointListPanel;
-    }
-
-    /**
-     * Updates the progress message.
-     */
-    private void updateProgress() {
-        if (progressMessage.length() < 21) {
-            progressMessage += ".";
-        } else {
-            progressMessage = "Processing Command";
-        }
-        resultDisplay.setFeedbackToUser(progressMessage);
-    }
-
-    /**
-     * Gets the status for command execution.
-     * @return true or false to indicate if command execution is still in progress
-     */
-    public static boolean getProgress() {
-        return isInProgress;
-    }
-
-    /**
-     * Continuously update the UI to show progress to user.
-     * @return thread that is updating the UI
-     */
-    public Thread showProgress() {
-        Thread thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                Runnable updater = () -> updateProgress();
-                while (MainWindow.getProgress()) {
-                    Platform.runLater(updater);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                        //try-catch to allow thread to sleep
-                    }
-                }
-            }
-        });
-        thread.setDaemon(true);
-        thread.start();
-        return thread;
     }
 
     /**
@@ -229,24 +178,17 @@ public class MainWindow extends UiPart<Stage> {
      * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        isInProgress = true;
-        Thread thread = showProgress();
+        resultDisplay.setFeedbackToUser("");
+        resultDisplay.getLoadingSpinnerPlaceholder().setVisible(true);
         try {
             CommandResult commandResult = logic.execute(commandText);
-            isInProgress = false;
-            try {
-                thread.join();
-            } catch (InterruptedException interruptedException) {
-                throw new CommandException("Placeholder");
-            }
+            resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            Platform.runLater(() -> {
-                if (commandResult.isApiResponse()) {
-                    resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
-                } else {
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                }
-            });
+            if (commandResult.isApiResponse()) {
+                resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
+            } else {
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -258,14 +200,14 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
-            isInProgress = false;
-            try {
-                thread.join();
-            } catch (InterruptedException interruptedException) {
-                throw new CommandException("Placeholder");
-            }
+            //stop loading spinner (if any)
+            resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
+
+            //play error message
+            resultDisplay.getErrorGifTimeline().play();
+
             logger.info("Invalid command: " + commandText);
-            Platform.runLater(() -> resultDisplay.setFeedbackToUser(e.getMessage()));
+            resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }
