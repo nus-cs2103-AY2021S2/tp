@@ -9,51 +9,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## AY2021S2-CS2103-T14-4
 
-### John Doe
+### Austen Jeremy Sugiarto
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/austenjs.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/austenjs)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Member
 
-### Jane Doe
+### Daniel Ong Ee Shaeon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/danielonges.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/danielonges)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Member
 
-### Johnny Doe
+### Fan Horng Wei, Gerald
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/geraldfan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/geraldfan)] 
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Member
 
-### James Doe
+### Goh Wei Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mrweikiat.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/mrweikiat)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Member
+
+### Kong Jun Yin
+
+<img src="images/oheyesee.png" width="200px">
+
+[[github](http://github.com/oheyesee)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Member
