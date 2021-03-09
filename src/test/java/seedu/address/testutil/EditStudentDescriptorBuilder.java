@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.logic.commands.EditStudentCommand;
+import seedu.address.logic.commands.EditStudentCommand.EditStudentDescriptor;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -16,11 +16,11 @@ public class EditStudentDescriptorBuilder {
     private EditStudentDescriptor descriptor;
 
     public EditStudentDescriptorBuilder() {
-        descriptor = new EditCommand.EditStudentDescriptor();
+        descriptor = new EditStudentCommand.EditStudentDescriptor();
     }
 
     public EditStudentDescriptorBuilder(EditStudentDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditStudentDescriptor(descriptor);
+        this.descriptor = new EditStudentCommand.EditStudentDescriptor(descriptor);
     }
 
     /**
