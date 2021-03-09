@@ -402,7 +402,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2b1. ModuleBook 3.5 shows an error message.
+
+      Use case resumes at step 2.
 
 * 2b. The given index is out of range.
 
@@ -412,9 +414,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2c. The task at given index has the tag already.
 
-    * 2c1. ModuleBook 3.5 shows a message saying the task already has a tag.
-
-      Use case resumes at step 2.
+   Use case resumes at step 2.
 
 **Use case 07: Search a task**
 
