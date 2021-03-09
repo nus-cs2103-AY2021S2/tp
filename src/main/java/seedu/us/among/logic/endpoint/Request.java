@@ -8,6 +8,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -119,8 +120,10 @@ public abstract class Request {
      * @return request with data set
      */
     public HttpUriRequest setData(HttpUriRequest request, Data data) throws IOException {
-        StringEntity json = new StringEntity(data.value); (
-                (HttpPost) request).setEntity(json);
+        StringEntity entity = new StringEntity(data.value);
+        //strange checkstyle requirement for separator wrap due to casting
+        entity.setContentType(ContentType.APPLICATION_JSON.getMimeType()); ((HttpPost) request)
+                .setEntity(entity);
         return request;
     }
 }
