@@ -254,12 +254,13 @@ Example:
 
 ### View Command History : `history`
 
-Displays the user's command history.
+Displays the user's valid command history, sorted from most to least recent.
 
 Format: `history [COUNT]`
 * `COUNT` refers to the number of most recent command entries to display. `COUNT` **must be a positive integer 1,2,3, ...**.
 
-Example:
+Examples:
+* `history` Displays all command entries.
 * `history 5` Displays the 5 most recent command entries.
 
 ### Exit the program : `exit`
