@@ -58,7 +58,7 @@
 
 
           <VBox minWidth="500" prefWidth="511.0" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-            <StackPane fx:id="personcardViewCardPlaceholder" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="personViewCardPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
         </GridPane>
 
