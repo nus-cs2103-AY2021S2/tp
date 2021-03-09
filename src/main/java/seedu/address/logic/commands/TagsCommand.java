@@ -16,7 +16,10 @@ public class TagsCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tags";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tags in the Hippocampus. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tags in the Hippocampus. "
+            + "If keyword is given, list all tags containing given keyword.\n"
+            + "Parameters: [-f TAG]\n"
+            + "Example: find -f class";
 
     private final Predicate<Tag> predicate;
 
