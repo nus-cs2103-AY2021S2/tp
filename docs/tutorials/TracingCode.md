@@ -79,7 +79,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
            throws CommandException, ParseException {
 
         //Logging, safe to ignore
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        LOGGER.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
         //Parse user input from String to a Command
