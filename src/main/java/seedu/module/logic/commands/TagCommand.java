@@ -1,19 +1,19 @@
 package seedu.module.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Task;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 /**
  * Add a tag to an existing task in the module book.
@@ -23,7 +23,8 @@ public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a tag to task identified "
-            + "by the index number used in the last person listing.\n"
+            + "by the index number used in the last person listing. "
+            + "If multiple tags are found, only the last one will be added.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "t/[TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "

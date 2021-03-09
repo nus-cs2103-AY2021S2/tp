@@ -45,8 +45,8 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_BOB = " " + PREFIX_MODULE + VALID_MODULE_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_LOW;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HIGH;
+    public static final String TAG_DESC_LOW = " " + PREFIX_TAG + VALID_TAG_LOW;
+    public static final String TAG_DESC_HIGH = " " + PREFIX_TAG + VALID_TAG_HIGH;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines

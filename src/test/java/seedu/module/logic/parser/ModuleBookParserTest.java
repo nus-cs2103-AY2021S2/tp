@@ -22,7 +22,9 @@ import seedu.module.logic.commands.ExitCommand;
 import seedu.module.logic.commands.FindCommand;
 import seedu.module.logic.commands.HelpCommand;
 import seedu.module.logic.commands.ListCommand;
+import seedu.module.logic.commands.TagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
+import seedu.module.model.tag.Tag;
 import seedu.module.model.task.NameContainsKeywordsPredicate;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.EditTaskDescriptorBuilder;
@@ -86,6 +88,14 @@ public class ModuleBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_tag() throws Exception {
+        Tag stubTag = new Tag("Stub");
+        TagCommand command = (TagCommand) parser.parseCommand(TagCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getTagDetails(stubTag));
+        assertEquals(new TagCommand(INDEX_FIRST_TASK, stubTag), command);
     }
 
     @Test

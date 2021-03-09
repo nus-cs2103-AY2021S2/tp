@@ -8,8 +8,8 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
 
 import java.util.ArrayList;
 import java.util.Arrays;

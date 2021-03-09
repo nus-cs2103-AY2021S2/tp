@@ -1,6 +1,19 @@
 package seedu.module.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
 import seedu.module.model.Model;
@@ -11,19 +24,7 @@ import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.TaskBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
-import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 class TagCommandTest {
 

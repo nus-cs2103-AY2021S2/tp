@@ -13,8 +13,8 @@ import static seedu.module.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
@@ -22,8 +22,8 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -97,9 +97,9 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_LOW + TAG_DESC_HIGH + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_LOW + TAG_EMPTY + TAG_DESC_HIGH, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_LOW + TAG_DESC_HIGH, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_MODULE_DESC
@@ -109,8 +109,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + TAG_DESC_HUSBAND
-                + MODULE_DESC_AMY + DESCRIPTION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + TAG_DESC_HIGH
+                + MODULE_DESC_AMY + DESCRIPTION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_LOW;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY)
@@ -160,7 +160,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
+        userInput = targetIndex.getOneBased() + TAG_DESC_LOW;
         descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_LOW).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -170,8 +170,8 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY + MODULE_DESC_AMY
-                + TAG_DESC_FRIEND + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY + MODULE_DESC_AMY + TAG_DESC_FRIEND
-                + DEADLINE_DESC_BOB + DESCRIPTION_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HUSBAND;
+                + TAG_DESC_LOW + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY + MODULE_DESC_AMY + TAG_DESC_LOW
+                + DEADLINE_DESC_BOB + DESCRIPTION_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HIGH;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
                 .withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
