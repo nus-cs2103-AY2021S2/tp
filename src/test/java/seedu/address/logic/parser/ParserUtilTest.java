@@ -96,8 +96,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+    public void parseName_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseName((String) null));
     }
 
     @Test
