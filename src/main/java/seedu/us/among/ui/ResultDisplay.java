@@ -75,6 +75,23 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     /**
+     * Returns color code for responseMeta labels based on status code.
+     *
+     * @param statusCode status code to determine color from
+     */
+    public String getColorCode(String statusCode) {
+        char firstChar = statusCode.charAt(0);
+        switch (firstChar) {
+        case '2':
+            return "-fx-background-color: #228B22";
+        case '3':
+            return "-fx-background-color: #999900";
+        default:
+            return "-fx-background-color: #B22222";
+        }
+    }
+
+    /**
      * Helper function for setting feedback to user.
      *
      * @param feedbackToUser feedback to give user
@@ -105,10 +122,15 @@ public class ResultDisplay extends UiPart<Region> {
      * @param endpoint endpoint to give feedback for
      */
     public void apiFeedbackHelper(String textFeedback, Endpoint endpoint) {
+        Label method = new Label(String.format("Method: %s", endpoint.getMethod().toString()));
+        Label statusCode = new Label(String.format("Status: %s", endpoint.getResponse().getStatusCode()));
+        Label responseTime = new Label(String.format("Time: %s", endpoint.getResponse().getResponseTime()));
+        String colorCode = getColorCode(endpoint.getResponse().getStatusCode());
+        method.setStyle(colorCode);
+        statusCode.setStyle(colorCode);
+        responseTime.setStyle(colorCode);
         responseMeta.getChildren().clear();
-        responseMeta.getChildren().addAll(new Label(String.format("Method: %s", endpoint.getMethod().toString())),
-                new Label(String.format("Status: %s", endpoint.getResponse().getStatusCode())),
-                new Label(String.format("Time: %s", endpoint.getResponse().getResponseTime())));
+        responseMeta.getChildren().addAll(method, statusCode, responseTime);
         resultDisplay.setText(textFeedback);
     }
 
