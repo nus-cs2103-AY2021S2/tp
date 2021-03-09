@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commandhistory.CommandHistoryEntry;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +86,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns an unmodifiable view of the command history.
+     *
+     * @return An unmodifiable view of the command history.
+     */
+    ReadOnlyCommandHistory getCommandHistory();
+
+    /**
+     * Appends a command history entry to the command history list.
+     *
+     * @param commandText The command text entry to append.
+     */
+    void appendCommandHistoryEntry(String commandText);
 }

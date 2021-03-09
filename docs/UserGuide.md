@@ -312,4 +312,5 @@ Action | Format, Examples
 **Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iedit 1 r/20-109 s/Closed`
 **Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
+**View command history** | `history [COUNT]` <br> e.g. `history 5`
 **Exit the app** | `exit`
