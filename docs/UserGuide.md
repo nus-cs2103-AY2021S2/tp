@@ -14,9 +14,9 @@ A-Bash Book is an enhanced version of Address Book 3 app for managing your conta
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `a-bash-book.jar` from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your A-Bash Book data.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -175,7 +175,7 @@ Users will be able to press tab to cycle through the available options. -->
 Example: Searching for ‘jon’ will return results that are similar and ranked by similarity, e.g.  jonathan, john, johnny, ... -->
 
 ### Alias [coming soon]
-<!-- 
+<!--
 An alias is a shortcut command that a user can create to reference a default supported command.
 
 Format: `alias [p/] [ALIAS_NAME/COMMAND_NAME]`
@@ -183,7 +183,7 @@ Format: `alias [p/] [ALIAS_NAME/COMMAND_NAME]`
 Key:
     `p/`    Print the current values
 
-Examples: 
+Examples:
 
 
 | Example | Description |
@@ -208,7 +208,7 @@ Examples:
 
 ### List options [coming soon]
 
-<!-- List options provide the user with the choice to tweak their list return result according to the specified option(s). 
+<!-- List options provide the user with the choice to tweak their list return result according to the specified option(s).
 
 Format: each option should start with OPTION/ and be separated by a whitespace, where OPTION/ refers to the option Key.
 ie. `list [OPTION_1/ OPTION_2/ … OPTION_N/]`
@@ -225,7 +225,7 @@ Key:
 |`g` |   Gender (new) |
 |`no`|    Notes (new) |
 
-Examples: 
+Examples:
 | Example | Description |
 | --------------- | -------- |
 |`list n/`| returns the list of all contacts with name as the only field.|
@@ -237,14 +237,14 @@ Combine the Alias feature with custom options to have a customized view. E.g. `a
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+A-Bash Book data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+A-Bash Book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, A-Bash Book will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -252,7 +252,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous A-Bash Book home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
