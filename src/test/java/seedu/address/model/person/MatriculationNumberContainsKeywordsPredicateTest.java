@@ -27,7 +27,8 @@ public class MatriculationNumberContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        MatriculationNumberContainsKeywordsPredicate firstPredicateCopy = new MatriculationNumberContainsKeywordsPredicate(firstPredicateKeywordList);
+        MatriculationNumberContainsKeywordsPredicate firstPredicateCopy =
+                new MatriculationNumberContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -53,7 +54,8 @@ public class MatriculationNumberContainsKeywordsPredicateTest {
     public void test_nameDoesNotContainKeywords_returnsFalse() {
 
         // Zero keywords
-        MatriculationNumberContainsKeywordsPredicate predicate = new MatriculationNumberContainsKeywordsPredicate(Collections.emptyList());
+        MatriculationNumberContainsKeywordsPredicate predicate =
+                new MatriculationNumberContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withMatric("A0984245T").build()));
 
         // Non-matching keyword
@@ -61,7 +63,8 @@ public class MatriculationNumberContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withMatric("A0394852T").build()));
 
         // Keywords match phone, email and address, but does not match matriculation number
-        predicate = new MatriculationNumberContainsKeywordsPredicate(Arrays.asList("A3458911D", "12345", "alice@email.com", "Main", "Street"));
+        predicate = new MatriculationNumberContainsKeywordsPredicate(Arrays.asList("A3458911D", "12345",
+                "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withMatric("A3456789D").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }

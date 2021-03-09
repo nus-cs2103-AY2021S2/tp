@@ -36,49 +36,49 @@ public class FindCommandParserTest {
     public void parse_invalidArgs_failure() {
 
         // invalid matriculation number with all numbers
-        assertParseFailure(parser,"0234567891",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "0234567891", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
         // invalid matriculation number not starting with alphabet A
-        assertParseFailure(parser,"E0491242F",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "E0491242F" , String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
         // invalid matriculation number with only starting alphabet of A
-        assertParseFailure(parser,"A",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "A" , String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
         // invalid matriculation number with starting alphabet as A but no ending alphabet
-        assertParseFailure(parser,"A02942125",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "A02942125", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
         // invalid matriculation number with starting alphabet as A, an ending alphabet but
         // more than 9 alphanumeric characters
 
-        assertParseFailure(parser,"A023490931T",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "A023490931T", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
         // invalid matriculation number with starting alphabet as A, an ending alphabet but
         // less than 9 alphanumeric characters
 
-        assertParseFailure(parser,"A0234T",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "A0234T", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
         // invalid matriculation number with starting alphabet as A, an ending alphabet
         // and 9 alphanumeric characters but the second to eight-th position are alphanumeric characters
 
-        assertParseFailure(parser,"A027E34D",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "A027E34D", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
         // invalid matriculation number with starting alphabet as A, no ending alphabet
         // and 9 alphanumeric characters but the second to eight-th position are alphanumeric characters
 
-        assertParseFailure(parser,"A027E341",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "A027E341", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
         // invalid matriculation number with no starting alphabet as A, an ending alphabet
         // and 9 alphanumeric characters but the second to eight-th position are alphanumeric characters
 
-        assertParseFailure(parser,"Q0123683R",String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "Q0123683R", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
     }
 }
