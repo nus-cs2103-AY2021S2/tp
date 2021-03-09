@@ -13,12 +13,12 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.abmodel.person.Address;
 import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Phone;
 import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

@@ -1,8 +1,8 @@
 package seedu.budgetbaby.ablogic.parser;
 
-import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.budgetbaby.ablogic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.budgetbaby.ablogic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.budgetbaby.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;

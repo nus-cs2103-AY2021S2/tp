@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ModelManager;
-import seedu.budgetbaby.model.UserPrefs;
 import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.model.UserPrefs;
 import seedu.budgetbaby.testutil.PersonBuilder;
 
 /**
@@ -33,7 +33,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+            String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test

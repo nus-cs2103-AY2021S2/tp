@@ -14,13 +14,13 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.commons.core.GuiSettings;
-import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.abmodel.AddressBook;
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
-import seedu.budgetbaby.model.ReadOnlyUserPrefs;
 import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.commons.core.GuiSettings;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
+import seedu.budgetbaby.model.ReadOnlyUserPrefs;
 import seedu.budgetbaby.testutil.PersonBuilder;
 
 public class AddCommandTest {

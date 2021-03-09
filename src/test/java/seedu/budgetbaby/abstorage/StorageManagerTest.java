@@ -10,9 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.abmodel.AddressBook;
 import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
+import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.model.UserPrefs;
 import seedu.budgetbaby.storage.JsonUserPrefsStorage;
 

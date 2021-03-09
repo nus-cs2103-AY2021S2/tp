@@ -3,8 +3,8 @@ package seedu.budgetbaby.ablogic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.budgetbaby.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.budgetbaby.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.budgetbaby.testutil.TypicalPersons.CARL;
 import static seedu.budgetbaby.testutil.TypicalPersons.ELLE;
 import static seedu.budgetbaby.testutil.TypicalPersons.FIONA;
@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ModelManager;
-import seedu.budgetbaby.model.UserPrefs;
 import seedu.budgetbaby.abmodel.person.NameContainsKeywordsPredicate;
+import seedu.budgetbaby.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -30,9 +30,9 @@ public class FindCommandTest {
     @Test
     public void equals() {
         NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+            new NameContainsKeywordsPredicate(Collections.singletonList("first"));
         NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+            new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);

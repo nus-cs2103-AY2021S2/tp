@@ -14,8 +14,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.abmodel.person.NameContainsKeywordsPredicate;
+import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.model.UserPrefs;
 import seedu.budgetbaby.testutil.AddressBookBuilder;
 

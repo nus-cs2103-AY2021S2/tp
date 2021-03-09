@@ -3,6 +3,7 @@ package seedu.budgetbaby.abmodel;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.budgetbaby.model.UserPrefs;
 
 public class UserPrefsTest {

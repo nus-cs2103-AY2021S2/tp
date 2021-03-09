@@ -11,12 +11,12 @@ import static seedu.budgetbaby.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.budgetbaby.commons.core.Messages;
-import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ModelManager;
-import seedu.budgetbaby.model.UserPrefs;
 import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.commons.core.Messages;
+import seedu.budgetbaby.commons.core.index.Index;
+import seedu.budgetbaby.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
