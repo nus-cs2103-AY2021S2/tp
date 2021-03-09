@@ -1,13 +1,20 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.Person;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DateCommand extends Command {
 
@@ -22,6 +29,8 @@ public class DateCommand extends Command {
             + PREFIX_DATE + "12-12-2021 "
             + PREFIX_DESCRIPTION + "Wedding Anniversary";
 
+    public static final String MESSAGE_ADD_DATE_SUCCESS = "Added date for %1$s";
+
     private final Index index;
     private final Event event;
 
@@ -34,6 +43,38 @@ public class DateCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult("date command");
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        List<Event> dates = new ArrayList<>(personToEdit.getDates());
+        dates.add(event);
+
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), dates);
+
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_ADD_DATE_SUCCESS, editedPerson.getName()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DateCommand)) {
+            return false;
+        }
+
+        DateCommand e = (DateCommand) other;
+        return index.equals(e.index) && event.equals(e.event);
+    }
+
 }
