@@ -56,13 +56,6 @@ public class EndpointCaller {
             break;
         }
 
-        //mimics delay in API call, comment out if necessary //to-do Tan Jin remove after testing
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            //try-catch to allow thread to sleep
-        }
-
         return response;
     }
 }
