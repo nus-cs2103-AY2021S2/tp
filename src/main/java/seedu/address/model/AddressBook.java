@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.NonOverlappingBookingList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final NonOverlappingBookingList bookings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        bookings = new NonOverlappingBookingList();
     }
 
     public AddressBook() {}
@@ -91,6 +95,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// booking-level operations
+    /**
+     * Removes {@code bookingId} from this {@code AddressBook}.
+     * {@code bookingId} must exist in the address book.
+     */
+    public void removeBooking(int bookingId) {
+        bookings.removeById(bookingId);
     }
 
     //// util methods

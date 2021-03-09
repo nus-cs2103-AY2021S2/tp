@@ -5,12 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
 
 /**
@@ -110,6 +112,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //=========== Bookings ================================================================================
+    @Override
+    public void deleteBooking(int bookingId) {
+        addressBook.removeBooking(bookingId);
     }
 
     //=========== Filtered Person List Accessors =============================================================

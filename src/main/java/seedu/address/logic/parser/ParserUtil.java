@@ -35,6 +35,14 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    public static int parseBookingId(String bookingId) throws ParseException {
+        String trimmedIndex = bookingId.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedIndex);
+    }
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
