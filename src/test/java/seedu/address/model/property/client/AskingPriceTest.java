@@ -39,22 +39,21 @@ public class AskingPriceTest {
         assertFalse(AskingPrice.isValidAskingPrice("$100000.")); // ends with a decimal point
         assertFalse(AskingPrice.isValidAskingPrice(" $1000000")); // leading space
         assertFalse(AskingPrice.isValidAskingPrice("$1000000 ")); // trailing space
-        
 
         // valid asking price without dollar sign
-        assertTrue(AskingPrice.isValidAskingPrice("1000000"));       // without any commas
-        assertTrue(AskingPrice.isValidAskingPrice("1000000.00"));    // with cents
-        assertTrue(AskingPrice.isValidAskingPrice("1,000,000"));     // consistent commas
-        assertTrue(AskingPrice.isValidAskingPrice("1,000,000.00"));  // consistent commas with cents
-        assertTrue(AskingPrice.isValidAskingPrice("0"));             // zero dollars
-        assertTrue(AskingPrice.isValidAskingPrice("99999999999"));   // large number
+        assertTrue(AskingPrice.isValidAskingPrice("1000000")); // without any commas
+        assertTrue(AskingPrice.isValidAskingPrice("1000000.00")); // with cents
+        assertTrue(AskingPrice.isValidAskingPrice("1,000,000")); // consistent commas
+        assertTrue(AskingPrice.isValidAskingPrice("1,000,000.00")); // consistent commas with cents
+        assertTrue(AskingPrice.isValidAskingPrice("0")); // zero dollars
+        assertTrue(AskingPrice.isValidAskingPrice("99999999999")); // large number
 
         // valid asking price with dollar sign
-        assertTrue(AskingPrice.isValidAskingPrice("$1000000"));         // without any commas
-        assertTrue(AskingPrice.isValidAskingPrice("$1000000.00"));      // with cents
-        assertTrue(AskingPrice.isValidAskingPrice("$1,000,000"));       // consistent commas
-        assertTrue(AskingPrice.isValidAskingPrice("$1,000,000.00"));    // consistent commas with cents
-        assertTrue(AskingPrice.isValidAskingPrice("$0"));               // zero dollars
-        assertTrue(AskingPrice.isValidAskingPrice("$99,999,999,999"));  // large number
+        assertTrue(AskingPrice.isValidAskingPrice("$1000000")); // without any commas
+        assertTrue(AskingPrice.isValidAskingPrice("$1000000.00")); // with cents
+        assertTrue(AskingPrice.isValidAskingPrice("$1,000,000")); // consistent commas
+        assertTrue(AskingPrice.isValidAskingPrice("$1,000,000.00")); // consistent commas with cents
+        assertTrue(AskingPrice.isValidAskingPrice("$0")); // zero dollars
+        assertTrue(AskingPrice.isValidAskingPrice("$99,999,999,999")); // large number
     }
 }
