@@ -34,7 +34,7 @@ class JsonAdaptedEvent {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given event details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("startDate") String startDate,
@@ -73,7 +73,7 @@ class JsonAdaptedEvent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Event} object.
+     * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
