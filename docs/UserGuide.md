@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+NUS Module Planner is a **desktop app for NUS students to manage and plan the modules to enrol in upcoming semesters, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUS Module Planner can get your module planning done faster than traditional GUI apps.
 
 - Table of Contents
   {:toc}
