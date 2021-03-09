@@ -34,8 +34,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             try {
                 Pattern pattern = Pattern.compile(nameString, Pattern.CASE_INSENSITIVE);
                 return new FindCommand(new NameContainsPatternPredicate(pattern));
-            }
-            catch (PatternSyntaxException pe) {
+            } catch (PatternSyntaxException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_ARGUMENT_FORMAT, MESSAGE_INVALID_REGEX));
             }
