@@ -8,7 +8,7 @@ import static seedu.budgetbaby.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
-import seedu.budgetbaby.logic.commands.HelpCommand;
+import seedu.budgetbaby.ablogic.commands.HelpCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 /**

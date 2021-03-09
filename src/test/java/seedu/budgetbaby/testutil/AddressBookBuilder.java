@@ -1,7 +1,7 @@
 package seedu.budgetbaby.testutil;
 
-import seedu.budgetbaby.model.AddressBook;
-import seedu.budgetbaby.model.person.Person;
+import seedu.budgetbaby.abmodel.AddressBook;
+import seedu.budgetbaby.abmodel.person.Person;
 
 /**
  * A utility class to help with building Addressbook objects.

@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.budgetbaby.commons.exceptions.DataConversionException;
-import seedu.budgetbaby.model.ReadOnlyAddressBook;
+import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 
 /**
- * Represents a storage for {@link seedu.budgetbaby.model.BudgetTracker}.
+ * Represents a storage for {@link BudgetTracker}.
  */
 public interface BudgetTrackerStorage {
 

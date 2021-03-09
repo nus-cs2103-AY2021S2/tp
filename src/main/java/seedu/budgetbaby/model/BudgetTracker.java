@@ -1,7 +1,6 @@
 package seedu.budgetbaby.model;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.model.person.Person;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.model.record.FinancialRecordList;
 

@@ -11,7 +11,6 @@ import seedu.budgetbaby.MainApp;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.commons.util.StringUtil;
 import seedu.budgetbaby.logic.BudgetBabyLogic;
-import seedu.budgetbaby.logic.Logic;
 
 /**
  * The manager of the UI component.

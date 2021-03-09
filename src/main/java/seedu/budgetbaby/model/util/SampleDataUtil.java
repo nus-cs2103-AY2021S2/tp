@@ -4,19 +4,19 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.budgetbaby.model.AddressBook;
+import seedu.budgetbaby.abmodel.AddressBook;
 import seedu.budgetbaby.model.BudgetTracker;
-import seedu.budgetbaby.model.ReadOnlyAddressBook;
+import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
-import seedu.budgetbaby.model.person.Address;
-import seedu.budgetbaby.model.person.Email;
-import seedu.budgetbaby.model.person.Name;
-import seedu.budgetbaby.model.person.Person;
-import seedu.budgetbaby.model.person.Phone;
+import seedu.budgetbaby.abmodel.person.Address;
+import seedu.budgetbaby.abmodel.person.Email;
+import seedu.budgetbaby.abmodel.person.Name;
+import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.abmodel.person.Phone;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
-import seedu.budgetbaby.model.tag.Tag;
+import seedu.budgetbaby.abmodel.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

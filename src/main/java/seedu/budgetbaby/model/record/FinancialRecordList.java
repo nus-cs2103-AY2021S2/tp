@@ -2,9 +2,8 @@ package seedu.budgetbaby.model.record;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.model.person.Person;
-import seedu.budgetbaby.model.person.exceptions.FinancialRecordNotFoundException;
-import seedu.budgetbaby.model.person.exceptions.PersonNotFoundException;
+import seedu.budgetbaby.abmodel.person.exceptions.FinancialRecordNotFoundException;
+import seedu.budgetbaby.abmodel.person.exceptions.PersonNotFoundException;
 
 import java.util.Iterator;
 import java.util.List;

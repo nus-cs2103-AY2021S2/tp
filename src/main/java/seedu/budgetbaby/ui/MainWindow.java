@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.logic.BudgetBabyLogic;
-import seedu.budgetbaby.logic.Logic;
-import seedu.budgetbaby.logic.commands.CommandResult;
+import seedu.budgetbaby.ablogic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.util.SampleDataUtil;
@@ -175,7 +174,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.budgetbaby.logic.Logic#execute(String)
+     * @see seedu.budgetbaby.ablogic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {

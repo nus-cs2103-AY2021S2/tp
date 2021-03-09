@@ -2,6 +2,7 @@ package seedu.budgetbaby.model;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.budgetbaby.abmodel.ModelManager;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.record.FinancialRecord;

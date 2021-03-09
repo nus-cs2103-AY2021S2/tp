@@ -1,21 +1,14 @@
 package seedu.budgetbaby.storage;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
-import seedu.budgetbaby.model.person.Address;
-import seedu.budgetbaby.model.person.Email;
-import seedu.budgetbaby.model.person.Name;
-import seedu.budgetbaby.model.person.Person;
-import seedu.budgetbaby.model.person.Phone;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
-import seedu.budgetbaby.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link FinancialRecord}.

@@ -1,14 +1,13 @@
 package seedu.budgetbaby.logic.commands;
 
+import seedu.budgetbaby.ablogic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetBabyModel;
-import seedu.budgetbaby.model.Model;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Adds a financial record to the budget tracker.

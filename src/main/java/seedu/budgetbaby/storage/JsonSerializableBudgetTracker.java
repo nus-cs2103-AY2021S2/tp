@@ -9,11 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
-import seedu.budgetbaby.model.AddressBook;
 import seedu.budgetbaby.model.BudgetTracker;
-import seedu.budgetbaby.model.ReadOnlyAddressBook;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
-import seedu.budgetbaby.model.person.Person;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**

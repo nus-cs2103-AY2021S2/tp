@@ -1,8 +1,8 @@
 package seedu.budgetbaby.logic.commands;
 
+import seedu.budgetbaby.ablogic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetBabyModel;
-import seedu.budgetbaby.model.Model;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.

@@ -1,5 +1,7 @@
 package seedu.budgetbaby.logic.parser;
 
+import seedu.budgetbaby.ablogic.parser.Prefix;
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */

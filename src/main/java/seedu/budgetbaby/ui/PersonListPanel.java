@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.budgetbaby.commons.core.LogsCenter;
-import seedu.budgetbaby.model.person.Person;
+import seedu.budgetbaby.abmodel.person.Person;
 
 /**
  * Panel containing the list of persons.
