@@ -34,4 +34,13 @@ public class ListCommand extends Command {
         model.updateFilteredItemList(predicate);
         return new CommandResult(MESSAGE_SUCCESS); // might need change
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof ListCommand // instanceof handles nulls
+            && predicate.equals(((ListCommand) other).predicate)); // state check
+
+    }
+
 }
