@@ -51,6 +51,7 @@ public class AssignmentList {
         return assignments.size();
     }
 
+    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < size(); i++) {
