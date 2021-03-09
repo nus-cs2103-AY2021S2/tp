@@ -3,6 +3,7 @@ package seedu.address.model.property;
 import java.util.Objects;
 
 import seedu.address.model.name.Name;
+import seedu.address.model.property.client.Client;
 import seedu.address.model.remark.Remark;
 
 /**
@@ -19,10 +20,7 @@ public class Property {
 
     // Optional fields
     private final Remark remarks;
-    private final String clientName;
-    private final String clientContact;
-    private final String clientEmail;
-    private final Integer clientAskingPrice;
+    private final Client client;
 
     /**
      * Constructs a {@code Property} without any optional fields.
@@ -34,14 +32,11 @@ public class Property {
         this.postalCode = postalCode;
         this.deadline = deadline;
         this.remarks = null;
-        this.clientName = null;
-        this.clientContact = null;
-        this.clientEmail = null;
-        this.clientAskingPrice = null;
+        this.client = null;
     }
 
     /**
-     * Constructs a {@code Property} without client's information.
+     * Constructs a {@code Property} with remarks but without client's information.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks) {
@@ -51,10 +46,21 @@ public class Property {
         this.postalCode = postalCode;
         this.deadline = deadline;
         this.remarks = remarks;
-        this.clientName = null;
-        this.clientContact = null;
-        this.clientEmail = null;
-        this.clientAskingPrice = null;
+        this.client = null;
+    }
+
+    /**
+     * Constructs a {@code Property} with client's information but without remarks.
+     */
+    public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
+                    Client client) {
+        this.name = name;
+        this.propertyType = propertyType;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.deadline = deadline;
+        this.remarks = null;
+        this.client = client;
     }
 
     /**
@@ -62,18 +68,14 @@ public class Property {
      * Every field must be present and not null.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
-                    Remark remarks, String clientName, String clientContact, String clientEmail,
-                    Integer clientAskingPrice) {
+                    Remark remarks, Client client) {
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
         this.postalCode = postalCode;
         this.deadline = deadline;
         this.remarks = remarks;
-        this.clientName = clientName;
-        this.clientContact = clientContact;
-        this.clientEmail = clientEmail;
-        this.clientAskingPrice = clientAskingPrice;
+        this.client = client;
     }
 
     public Name getName() {
@@ -100,20 +102,8 @@ public class Property {
         return remarks;
     }
 
-    public String getClientName() {
-        return clientName;
-    }
-
-    public String getClientContact() {
-        return clientContact;
-    }
-
-    public String getClientEmail() {
-        return clientEmail;
-    }
-
-    public Integer getClientAskingPrice() {
-        return clientAskingPrice;
+    public Client getClient() {
+        return client;
     }
 
     /**
@@ -161,30 +151,21 @@ public class Property {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(name.toString())
                 .append("; Type: ")
-                .append(getPropertyType())
+                .append(propertyType.toString())
                 .append("; Address: ")
-                .append(getAddress())
+                .append(address.toString())
                 .append("; Postal Code: ")
-                .append(getPostalCode())
+                .append(postalCode.toString())
                 .append("; Deadline: ")
-                .append(getDeadline());
+                .append(deadline.toString());
 
         if (remarks != null) {
-            builder.append("; Remarks: ").append(getRemarks());
+            builder.append("; Remarks: ").append(remarks.toString());
         }
-        if (clientName != null) {
-            builder.append("; Client Name: ").append(getClientName());
-        }
-        if (clientContact != null) {
-            builder.append("; Client Contact: ").append(getClientContact());
-        }
-        if (clientEmail != null) {
-            builder.append("; Client Email: ").append(getClientEmail());
-        }
-        if (clientAskingPrice != null) {
-            builder.append("; Client Asking Price: ").append(getClientAskingPrice());
+        if (client != null) {
+            builder.append("; ").append(client.toString());
         }
         return builder.toString();
     }

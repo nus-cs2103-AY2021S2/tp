@@ -15,7 +15,7 @@ public class Client {
     private final AskingPrice clientAskingPrice;
 
     /**
-     * Constructs a {@code Client} with all information.
+     * Constructs a {@code Client}.
      */
     public Client(Name clientName, Contact clientContact, Email clientEmail, AskingPrice clientAskingPrice) {
         this.clientName = clientName;
@@ -70,7 +70,7 @@ public class Client {
         Client otherClient = (Client) other;
         return otherClient.getClientName().equals(getClientName())
                 && otherClient.getClientContact().equals(getClientContact())
-                && otherClient.getClientEmail().equals(getClientContact())
+                && otherClient.getClientEmail().equals(getClientEmail())
                 && otherClient.getClientAskingPrice().equals(getClientAskingPrice());
     }
 
@@ -85,16 +85,25 @@ public class Client {
         final StringBuilder builder = new StringBuilder();
 
         if (clientName != null) {
-            builder.append("; Client Name: ").append(getClientName());
+            builder.append("Client Name: ").append(getClientName());
         }
         if (clientContact != null) {
-            builder.append("; Client Contact: ").append(getClientContact());
+            if (builder.length() != 0) {
+                builder.append("; ");
+            }
+            builder.append("Client Contact: ").append(getClientContact());
         }
         if (clientEmail != null) {
-            builder.append("; Client Email: ").append(getClientEmail());
+            if (builder.length() != 0) {
+                builder.append("; ");
+            }
+            builder.append("Client Email: ").append(getClientEmail());
         }
         if (clientAskingPrice != null) {
-            builder.append("; Client Asking Price: ").append(getClientAskingPrice());
+            if (builder.length() != 0) {
+                builder.append("; ");
+            }
+            builder.append("Client Asking Price: ").append(getClientAskingPrice());
         }
 
         return builder.toString();
