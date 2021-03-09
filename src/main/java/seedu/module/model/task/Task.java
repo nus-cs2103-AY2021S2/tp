@@ -22,17 +22,20 @@ public class Task {
 
     // Data fields
     private final Description description;
+    private final DoneStatus doneStatus;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Deadline deadline, Module module, Description description, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, module, description, tags);
+    public Task(Name name, Deadline deadline, Module module, Description description,
+                DoneStatus doneStatus, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, module, description, doneStatus, tags);
         this.name = name;
         this.deadline = deadline;
         this.module = module;
         this.description = description;
+        this.doneStatus = doneStatus;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +53,10 @@ public class Task {
 
     public Description getDescription() {
         return description;
+    }
+
+    public DoneStatus getDoneStatus() {
+        return doneStatus;
     }
 
     /**
@@ -92,13 +99,14 @@ public class Task {
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getModule().equals(getModule())
                 && otherTask.getDescription().equals(getDescription())
+                && otherTask.getDoneStatus().equals(getDoneStatus())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, module, description, tags);
+        return Objects.hash(name, deadline, module, description, doneStatus, tags);
     }
 
     @Override
@@ -110,7 +118,9 @@ public class Task {
                 .append("; Module: ")
                 .append(getModule())
                 .append("; Description: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Completion Status: ")
+                .append(getDoneStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
