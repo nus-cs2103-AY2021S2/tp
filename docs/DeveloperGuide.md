@@ -95,6 +95,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **NUS**: National University of Singapore
+* **MCs**: Module credits, usually 4 for each sem-long module
+* **Module**: Classes for students in university. It has both a title and a module code
+* **Module prerequisite**: Students must fulfill by passing the prerequisite modules before taking this module
 
 --------------------------------------------------------------------------------------------------------------------

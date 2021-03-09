@@ -60,7 +60,7 @@ public class Module {
         }
 
         if (!(other instanceof Module)) {
-            return false
+            return false;
         }
 
         Module otherModule = (Module) other;
