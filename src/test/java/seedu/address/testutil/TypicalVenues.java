@@ -7,10 +7,10 @@ import seedu.address.model.booking.Venue;
  */
 public class TypicalVenues {
 
-    public static final Venue VENUE1 = new Venue("Venue1", "Remarks1", 10);
-    public static final Venue VENUE2 = new Venue("Venue1", "Remarks2", 10);
-    public static final Venue VENUE3 = new Venue("Venue3", "Remarks1", 10);
-    public static final Venue VENUE4 = new Venue("Venue4", "Remarks4", 10);
+    public static final Venue VENUE1 = new Venue("Venue1", 10);
+    public static final Venue VENUE2 = new Venue("Venue1", 10);
+    public static final Venue VENUE3 = new Venue("Venue3", 10);
+    public static final Venue VENUE4 = new Venue("Venue4", 10);
 
     private TypicalVenues() {} // prevents instantiation
 }
