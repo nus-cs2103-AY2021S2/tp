@@ -52,7 +52,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'CoLAB.jar'
 }
 
 test {
