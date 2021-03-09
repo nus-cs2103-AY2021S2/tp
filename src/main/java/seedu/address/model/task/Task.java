@@ -21,7 +21,7 @@ public class Task {
     private final Date deadline;
     private final Priority priority;
     private final CompletionStatus completionStatus = new CompletionStatus();
-    private final Set<Category> categories;
+    private final Set<Category> categories = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -32,7 +32,7 @@ public class Task {
         this.name = name;
         this.deadline = deadline;
         this.priority = priority;
-        this.categories = categories;
+        this.categories.addAll(categories);
         this.tags.addAll(tags);
     }
 
