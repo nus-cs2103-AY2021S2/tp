@@ -13,7 +13,7 @@ public class NameContainsPatternPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return pattern.matcher(person.getName().toString()).matches();
+        return pattern.matcher(person.getName().toString()).find();
     }
 
     @Override
