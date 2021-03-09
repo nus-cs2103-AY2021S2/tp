@@ -15,12 +15,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.School;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.School;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_SCHOOL= "R@chel School";
+    private static final String INVALID_SCHOOL = "R@chel School";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -117,7 +117,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_SCHOOL, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                        VALID_GUARDIAN_NAME, VALID_GUARDIAN_PHONE,VALID_TAGS);
+                        VALID_GUARDIAN_NAME, VALID_GUARDIAN_PHONE, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
