@@ -14,9 +14,9 @@ public class SizeTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new Size(invalidPhone));
+    public void constructor_invalidSize_throwsIllegalArgumentException() {
+        String invalidSize = "";
+        assertThrows(IllegalArgumentException.class, () -> new Size(invalidSize ));
     }
 
     @Test

@@ -51,7 +51,7 @@ public class EditCommandTest {
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_SIZE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withSize(VALID_SIZE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

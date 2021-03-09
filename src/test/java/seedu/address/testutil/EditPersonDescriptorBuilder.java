@@ -48,9 +48,9 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Size} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String size) {
+    public EditPersonDescriptorBuilder withSize(String size) {
         descriptor.setSize(new Size(size));
         return this;
     }

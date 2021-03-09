@@ -96,10 +96,10 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseSize_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_SIZE + WHITESPACE;
-        Size expectedPhone = new Size(VALID_SIZE);
-        assertEquals(expectedPhone, ParserUtil.parseSize(phoneWithWhitespace));
+    public void parseSize_validValueWithWhitespace_returnsTrimmedSize() throws Exception {
+        String sizeWithWhitespace = WHITESPACE + VALID_SIZE + WHITESPACE;
+        Size expectedSize = new Size(VALID_SIZE);
+        assertEquals(expectedSize, ParserUtil.parseSize(sizeWithWhitespace));
     }
 
     @Test
