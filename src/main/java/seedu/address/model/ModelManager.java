@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Exam;
 import seedu.address.model.person.Person;
 
 /**
@@ -159,5 +160,19 @@ public class ModelManager implements Model {
     @Override
     public void addAssignment(Assignment assignment) {
 
+    }
+
+    @Override
+    //todo
+    public boolean hasExam(Exam exam) {
+        requireNonNull(exam);
+        //Module.hasExam()
+        return false;
+    }
+
+    @Override
+    //todo
+    public void addExam(Exam exam) {
+        //Module.add(exam);
     }
 }
