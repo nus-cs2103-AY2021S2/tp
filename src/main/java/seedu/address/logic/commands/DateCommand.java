@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,9 +16,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Adds a special date to an existing person in the FriendDex.
+ */
 public class DateCommand extends Command {
 
     public static final String COMMAND_WORD = "date";
@@ -34,6 +37,10 @@ public class DateCommand extends Command {
     private final Index index;
     private final Event event;
 
+    /**
+     * @param index of the person in the filtered person list to add date to
+     * @param event details of the date to add
+     */
     public DateCommand(Index index, Event event) {
         requireAllNonNull(index, event);
 
@@ -76,5 +83,4 @@ public class DateCommand extends Command {
         DateCommand e = (DateCommand) other;
         return index.equals(e.index) && event.equals(e.event);
     }
-
 }

@@ -4,12 +4,18 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+/**
+ * Represents a Date event for a Person in the FriendDex.
+ */
 public class Event {
     private final String date;
     private final String description;
 
     /**
-     * The constructor for a Meeting.
+     * Constructs a {@code Event}
+     *
+     * @param date A valid date.
+     * @param description A description of the event.
      */
     public Event(String date, String description) {
         requireAllNonNull(date, description);
