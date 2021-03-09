@@ -5,7 +5,7 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Financial record's description in the budget tracker.
- * Guarantees: is valid as declared in {@link #isValidName(String)}
+ * Guarantees: is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
 
@@ -21,14 +21,14 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
-        checkArgument(isValidName(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
     }
 
     /**
      * Returns true if a given string is a valid description (not blank).
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidDescription(String test) {
         return !test.isBlank();
     }
 

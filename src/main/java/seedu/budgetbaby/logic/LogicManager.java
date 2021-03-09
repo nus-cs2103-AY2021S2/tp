@@ -11,6 +11,7 @@ import seedu.budgetbaby.logic.commands.Command;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.AddressBookParser;
+import seedu.budgetbaby.logic.parser.BudgetBabyParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.Model;
 import seedu.budgetbaby.model.ReadOnlyAddressBook;
@@ -27,6 +28,8 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final BudgetBabyParser budgetBabyParser;
+
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +38,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        budgetBabyParser = new BudgetBabyParser();
     }
 
     @Override
@@ -42,14 +46,15 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+//        Command command = addressBookParser.parseCommand(commandText);
+        Command command = budgetBabyParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
-        try {
-            storage.saveAddressBook(model.getAddressBook());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
+//        try {
+//            storage.saveAddressBook(model.getAddressBook());
+//        } catch (IOException ioe) {
+//            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+//        }
 
         return commandResult;
     }

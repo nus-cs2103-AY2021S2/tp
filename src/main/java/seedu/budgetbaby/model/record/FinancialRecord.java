@@ -12,7 +12,7 @@ public class FinancialRecord {
 
     // Data fields
     private final Description description;
-    private final Double amount;
+    private final Amount amount;
     private final Date timestamp;
 //    private final Set<Tag> tags = new HashSet<>();
 
@@ -22,7 +22,7 @@ public class FinancialRecord {
      * @param description A valid description.
      * @param amount      A valid amount.
      */
-    public FinancialRecord(Description description, Double amount) {
+    public FinancialRecord(Description description, Amount amount) {
 //        requireNonNull(tagName);
 //        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
@@ -35,7 +35,7 @@ public class FinancialRecord {
         return description;
     }
 
-    public Double getAmount() {
+    public Amount getAmount() {
         return amount;
     }
 
