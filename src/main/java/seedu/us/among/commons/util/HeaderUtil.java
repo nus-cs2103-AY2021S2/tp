@@ -20,9 +20,12 @@ public class HeaderUtil {
         HashMap<String, String> headerMap = new HashMap<>();
         for (Header header : headerSet) {
             String headerString = header.toString();
+            //to-do update trimming once handling of headers is updated on add
+            //trim leading and trailing brackets and quotations
+            headerString = headerString.substring(2, headerString.length() - 2);
             String[] headerPair = headerString.split(":", 2);
             assert headerPair.length == 2;
-            headerMap.put(headerPair[0], headerPair[1]);
+            headerMap.put(headerPair[0].trim(), headerPair[1].trim());
         }
         return headerMap;
     }
