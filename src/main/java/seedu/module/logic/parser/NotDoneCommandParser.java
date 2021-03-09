@@ -1,23 +1,23 @@
 package seedu.module.logic.parser;
 
 import seedu.module.commons.core.index.Index;
-import seedu.module.logic.commands.DoneCommand;
+import seedu.module.logic.commands.NotDoneCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
- * Parses input arguments and creates a new DoneCommand object
+ * Parses input arguments and creates a new NotDoneCommand object
  */
-public class DoneCommandParser implements Parser<DoneCommand> {
+public class NotDoneCommandParser implements Parser<NotDoneCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DoneCommand
-     * and returns an DoneCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the NotDoneCommand
+     * and returns an NotDoneCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DoneCommand parse(String args) throws ParseException {
+    public NotDoneCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args);
@@ -27,9 +27,9 @@ public class DoneCommandParser implements Parser<DoneCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotDoneCommand.MESSAGE_USAGE), pe);
         }
 
-        return new DoneCommand(index);
+        return new NotDoneCommand(index);
     }
 }
