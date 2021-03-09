@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -127,6 +129,10 @@ public class ModelManager implements Model {
     public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
+    }
+
+    public void sortFilteredItemList(Comparator<Item> cmp) {
+        Collections.sort(getFilteredItemList(), cmp);
     }
 
     @Override

@@ -1,11 +1,13 @@
 package seedu.storemando.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.QuantityComparator;
 
 /**
  * The API of the Model component.
@@ -91,4 +93,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredItemList(Predicate<Item> predicate);
+
+    void sortFilteredItemList(Comparator<Item> comparator);
 }

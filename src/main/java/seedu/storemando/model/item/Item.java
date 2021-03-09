@@ -2,6 +2,7 @@ package seedu.storemando.model.item;
 
 import static seedu.storemando.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -121,6 +122,22 @@ public class Item {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    public int compareByItemName(Item anotherItem) {
+        return this.getItemName().compare(anotherItem.getItemName());
+    }
+
+    public int compareByLocation(Item anotherItem) {
+        return this.getLocation().compare(anotherItem.getLocation());
+    }
+
+    public int compareByQuantity(Item anotherItem) {
+        return  this.getQuantity().compare(anotherItem.getQuantity());
+    }
+
+    public int compareByExpiryDate(Item anotherItem) {
+        return this.getExpiryDate().compare(anotherItem.getExpiryDate());
     }
 
 }

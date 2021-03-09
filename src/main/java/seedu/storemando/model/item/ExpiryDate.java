@@ -91,4 +91,15 @@ public class ExpiryDate {
         return value.hashCode();
     }
 
+    public int compare(ExpiryDate anotherExpiryDate) {
+        if (this.expiryDate == null && anotherExpiryDate.expiryDate == null) {
+            return 0;
+        } else if (this.expiryDate == null) {
+            return 1;
+        } else if (anotherExpiryDate.expiryDate == null) {
+            return -1;
+        } else {
+            return this.expiryDate.compareTo(anotherExpiryDate.expiryDate);
+        }
+    }
 }
