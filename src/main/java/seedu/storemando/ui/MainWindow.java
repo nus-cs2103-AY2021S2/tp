@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.commons.core.LogsCenter;
+import seedu.storemando.commons.util.BrowserUtil;
 import seedu.storemando.logic.Logic;
 import seedu.storemando.logic.commands.CommandResult;
 import seedu.storemando.logic.commands.exceptions.CommandException;
@@ -146,13 +147,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        try {
-            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                Desktop.getDesktop().browse(new URI(HelpWindow.USERGUIDE_URL));
-            } else {
-                helpWindow.displayUrl();
-            }
-        } catch (URISyntaxException | IOException ie) {
+        if (BrowserUtil.isBrowserAccessible()) {
+            BrowserUtil.displayWebsite(HelpWindow.USERGUIDE_URL);
+        } else {
             helpWindow.displayUrl();
         }
     }
