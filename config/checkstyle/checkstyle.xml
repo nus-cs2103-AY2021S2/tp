@@ -8,40 +8,40 @@
     https://oss-generic.github.io/process/codingstandards/coding-standards-java.html
 -->
 
-<module moduleName="Checker">
+<module name="Checker">
 
-  <module moduleName="FileTabCharacter">
+  <module name="FileTabCharacter">
     <!-- Checks that there are no tab characters in the file. -->
   </module>
 
-  <module moduleName="NewlineAtEndOfFile">
+  <module name="NewlineAtEndOfFile">
     <!-- Accept LF, CR or CRLF to accomodate devs who prefer different line endings -->
-    <property moduleName="lineSeparator" value="lf_cr_crlf"/>
+    <property name="lineSeparator" value="lf_cr_crlf"/>
   </module>
 
-  <module moduleName="RegexpSingleline">
+  <module name="RegexpSingleline">
     <!-- Checks that FIXME is not used in comments.  TODO is preferred. -->
-    <property moduleName="format" value="((//.*)|(\*.*))FIXME" />
-    <property moduleName="message" value='TODO is preferred to FIXME."' />
+    <property name="format" value="((//.*)|(\*.*))FIXME" />
+    <property name="message" value='TODO is preferred to FIXME."' />
   </module>
 
-  <module moduleName="SuppressionFilter">
-    <property moduleName="file" value="${config_loc}/suppressions.xml"/>
+  <module name="SuppressionFilter">
+    <property name="file" value="${config_loc}/suppressions.xml"/>
   </module>
 
-  <module moduleName="LineLength">
+  <module name="LineLength">
     <!-- Checks if a line is too long. -->
-    <property moduleName="max" value="120"/>
+    <property name="max" value="120"/>
   </module>
 
   <!-- All Java AST specific tests live under TreeWalker module. -->
-  <module moduleName="TreeWalker">
+  <module name="TreeWalker">
 
     <!-- Required to allow exceptions in code style -->
-    <module moduleName="SuppressionCommentFilter">
-      <property moduleName="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
-      <property moduleName="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
-      <property moduleName="checkFormat" value="$1"/>
+    <module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
+      <property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
+      <property name="checkFormat" value="$1"/>
     </module>
 
     <!--
@@ -55,12 +55,12 @@
       3. SPECIAL_IMPORTS: defined as org imports
       4. THIRD_PARTY_PACKAGE: defined as com imports
     -->
-    <module moduleName="CustomImportOrder">
-        <property moduleName="customImportOrderRules"
+    <module name="CustomImportOrder">
+        <property name="customImportOrderRules"
             value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE"/>
-        <property moduleName="specialImportsRegExp" value="^org\."/>
-        <property moduleName="thirdPartyPackageRegExp" value="^com\."/>
-        <property moduleName="sortImportsInGroupAlphabetically" value="true"/>
+        <property name="specialImportsRegExp" value="^org\."/>
+        <property name="thirdPartyPackageRegExp" value="^com\."/>
+        <property name="sortImportsInGroupAlphabetically" value="true"/>
     </module>
 
     <!-- Checks for redundant import statements.
@@ -69,80 +69,80 @@
       * The class non-statically imported is from the java.lang package, e.g. importing java.lang.String.
       * The class non-statically imported is from the same package as the current package.
     -->
-    <module moduleName="RedundantImport"/>
+    <module name="RedundantImport"/>
 
     <!-- Checks for unused import statements.
     An import statement is unused if:
       It's not referenced in the file.
     -->
-    <module moduleName="UnusedImports"/>
+    <module name="UnusedImports"/>
 
-    <module moduleName="AvoidStarImport"/>
+    <module name="AvoidStarImport"/>
 
     <!--
     NAMING CHECKS
     -->
 
     <!-- Validate abbreviations (consecutive capital letters) length in identifier moduleName -->
-    <module moduleName="AbbreviationAsWordInName">
-      <property moduleName="ignoreFinal" value="false"/>
-      <property moduleName="allowedAbbreviationLength" value="1"/>
+    <module name="AbbreviationAsWordInName">
+      <property name="ignoreFinal" value="false"/>
+      <property name="allowedAbbreviationLength" value="1"/>
     </module>
 
-    <module moduleName="PackageName">
+    <module name="PackageName">
       <!-- Validates identifiers for package names against the supplied expression. -->
-      <property moduleName="format" value="^[a-z]+(\.[a-z][a-z0-9]{1,})*$"/>
-      <property moduleName="severity" value="warning"/>
+      <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]{1,})*$"/>
+      <property name="severity" value="warning"/>
     </module>
 
-    <module moduleName="TypeName">
+    <module name="TypeName">
       <!-- Validates static, final fields against the expression "^[A-Z][a-zA-Z0-9]*$". -->
-      <metadata moduleName="altname" value="TypeName"/>
-      <property moduleName="severity" value="warning"/>
+      <metadata name="altname" value="TypeName"/>
+      <property name="severity" value="warning"/>
     </module>
 
-    <module moduleName="ConstantName">
+    <module name="ConstantName">
       <!-- Validates non-private, static, final fields against the expression "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$". -->
-      <metadata moduleName="altname" value="ConstantName"/>
-      <property moduleName="applyToPrivate" value="false"/>
+      <metadata name="altname" value="ConstantName"/>
+      <property name="applyToPrivate" value="false"/>
       <message key="moduleName.invalidPattern"
                value="Variable ''{0}'' should be in ALL_CAPS (if it is a constant) or be private (otherwise)."/>
-      <property moduleName="severity" value="warning"/>
+      <property name="severity" value="warning"/>
     </module>
 
-    <module moduleName="StaticVariableName">
+    <module name="StaticVariableName">
       <!-- Validates static, non-final fields against the supplied expression. -->
-      <metadata moduleName="altname" value="StaticVariableName"/>
-      <property moduleName="format" value="^[a-z][a-zA-Z0-9]*_?$"/>
-      <property moduleName="severity" value="warning"/>
+      <metadata name="altname" value="StaticVariableName"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]*_?$"/>
+      <property name="severity" value="warning"/>
     </module>
 
-    <module moduleName="MemberName">
+    <module name="MemberName">
       <!-- Validates non-static members against the supplied expression. -->
-      <metadata moduleName="altname" value="MemberName"/>
-      <property moduleName="format" value="^[a-z][a-zA-Z0-9]*$"/>
-      <property moduleName="severity" value="warning"/>
+      <metadata name="altname" value="MemberName"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+      <property name="severity" value="warning"/>
     </module>
 
-    <module moduleName="MethodName">
+    <module name="MethodName">
       <!-- Validates identifiers for method names against the supplied expression. -->
-      <metadata moduleName="altname" value="MethodName"/>
-      <property moduleName="format" value="^[a-z][a-zA-Z0-9]*(_[a-z][a-zA-Z0-9]+){0,2}$"/>
+      <metadata name="altname" value="MethodName"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]*(_[a-z][a-zA-Z0-9]+){0,2}$"/>
     </module>
 
-    <module moduleName="ParameterName">
+    <module name="ParameterName">
       <!-- Validates identifiers for method parameters against the expression "^[a-z][a-zA-Z0-9]*$". -->
-      <property moduleName="severity" value="warning"/>
+      <property name="severity" value="warning"/>
     </module>
 
-    <module moduleName="LocalFinalVariableName">
+    <module name="LocalFinalVariableName">
       <!-- Validates identifiers for local final variables against the expression "^[a-z][a-zA-Z0-9]*$". -->
-      <property moduleName="severity" value="warning"/>
+      <property name="severity" value="warning"/>
     </module>
 
-    <module moduleName="LocalVariableName">
+    <module name="LocalVariableName">
       <!-- Validates identifiers for local variables against the expression "^[a-z][a-zA-Z0-9]*$". -->
-      <property moduleName="severity" value="warning"/>
+      <property name="severity" value="warning"/>
     </module>
 
 
@@ -154,17 +154,17 @@
       Java style: public static void main(String[] args) // Allowed
       C style:    public static void main(String args[]) // Not allowed
     -->
-    <module moduleName="ArrayTypeStyle"/>
+    <module name="ArrayTypeStyle"/>
 
     <!-- Checks if a catch block is empty and does not contain any comments. -->
-    <module moduleName="EmptyCatchBlock"/>
+    <module name="EmptyCatchBlock"/>
 
-    <module moduleName="LeftCurly">
+    <module name="LeftCurly">
       <!-- Checks for placement of the left curly brace ('{'). -->
-      <property moduleName="severity" value="warning"/>
+      <property name="severity" value="warning"/>
     </module>
 
-    <module moduleName="RightCurly">
+    <module name="RightCurly">
       <!-- Checks right curlies on CATCH, ELSE, and TRY blocks are on
       the same line. e.g., the following example is fine:
       <pre>
@@ -181,11 +181,11 @@
         else
       </pre>
       -->
-      <property moduleName="severity" value="warning"/>
+      <property name="severity" value="warning"/>
     </module>
 
     <!-- Checks for braces around loop blocks -->
-    <module moduleName="NeedBraces">
+    <module name="NeedBraces">
       <!--
       if (true) return 1; // Not allowed
 
@@ -198,13 +198,13 @@
       if (true)
         return 1; // Not allowed
       -->
-      <property moduleName="allowEmptyLoopBody" value="true"/>
+      <property name="allowEmptyLoopBody" value="true"/>
     </module>
 
     <!-- Checks that each variable declaration is in its own statement and on its own line. -->
-    <module moduleName="MultipleVariableDeclarations"/>
+    <module name="MultipleVariableDeclarations"/>
 
-    <module moduleName="OneStatementPerLine"/>
+    <module name="OneStatementPerLine"/>
 
     <!-- Checks that long constants are defined with an upper ell.-->
     <module moduleName="UpperEll" />
