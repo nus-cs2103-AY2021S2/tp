@@ -71,10 +71,10 @@ public class ExpiryDate {
     }
 
     /**
-     * Checks if the current expiryDate is past current date.
+     * Checks if the current expiryDate is past current date
      */
     public boolean isPastCurrentDate() {
-        return expiryDate.isBefore(LocalDate.now());
+        return expiryDate != null && expiryDate.isBefore(LocalDate.now());
     }
 
     @Override
