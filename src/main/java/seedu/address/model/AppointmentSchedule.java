@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.OrderedAppointmentList;
+import seedu.address.model.appointment.NonConflictingAppointmentList;
 
 /**
  * Wraps all data at the appointment-schedule level
@@ -14,7 +14,7 @@ import seedu.address.model.appointment.OrderedAppointmentList;
  * @see Appointment#hasConflict(Appointment)
  */
 public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
-    private final OrderedAppointmentList appointments;
+    private final NonConflictingAppointmentList appointments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
      *   among constructors.
      */
     {
-        appointments = new OrderedAppointmentList();
+        appointments = new NonConflictingAppointmentList();
     }
 
     public AppointmentSchedule() {}

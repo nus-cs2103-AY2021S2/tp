@@ -16,7 +16,7 @@ import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
  * elements by their sorting criterion using {@code Appointment#compareTo(Appointment)}.
  * Appointments are considered non-conflicting by comparing using {@code Appointment#hasConflict(Appointment)}. '
  * As such, adding and updating of appointments uses Appointment#hasConflict(Appointment) so as to ensure that the
- * appointment being added or updated does not conflict with any existing appointments in the OrderedAppointmentList.
+ * appointment being added or updated does not conflict with any existing appointments in the NonConflictingAppointmentList.
  * Removal of an appointment uses Appointment#equals(Object) so as to ensure that the appointment with exactly the
  * same fields will be removed.
  *
@@ -24,7 +24,7 @@ import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
  *
  * @see Appointment#hasConflict(Appointment)
  */
-public class OrderedAppointmentList implements Iterable<Appointment> {
+public class NonConflictingAppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -49,7 +49,7 @@ public class OrderedAppointmentList implements Iterable<Appointment> {
     /**
      * Returns true if {@code persons} contains non-conflicting appointments.
      */
-    private boolean appointmentsDoNotConflict(List<Appointment> appointments) {
+    private boolean appointmentsAreNotInConflict(List<Appointment> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {
             for (int j = i + 1; j < appointments.size(); j++) {
                 if (appointments.get(i).hasConflict(appointments.get(j))) {
@@ -118,7 +118,7 @@ public class OrderedAppointmentList implements Iterable<Appointment> {
         FXCollections.sort(internalList);
     }
 
-    public void setAppointments(OrderedAppointmentList replacement) {
+    public void setAppointments(NonConflictingAppointmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         FXCollections.sort(internalList);
@@ -130,7 +130,7 @@ public class OrderedAppointmentList implements Iterable<Appointment> {
      */
     public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
-        if (!appointmentsDoNotConflict(appointments)) {
+        if (!appointmentsAreNotInConflict(appointments)) {
             throw new AppointmentConflictException();
         }
 
@@ -142,8 +142,8 @@ public class OrderedAppointmentList implements Iterable<Appointment> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof OrderedAppointmentList // instanceof handles nulls
-                && internalList.equals(((OrderedAppointmentList) other).internalList));
+                || (other instanceof NonConflictingAppointmentList // instanceof handles nulls
+                && internalList.equals(((NonConflictingAppointmentList) other).internalList));
     }
 
     @Override
