@@ -117,4 +117,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    @Override
+    public ObservableList<Person> getModifiablePersonList() {
+        return persons.asModifiableObservableList();
+    }
 }

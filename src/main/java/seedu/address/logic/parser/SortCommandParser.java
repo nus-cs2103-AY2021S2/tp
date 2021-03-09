@@ -17,7 +17,6 @@ public class SortCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
-        System.out.println(args);
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -25,7 +24,6 @@ public class SortCommandParser {
         }
 
         String direction = trimmedArgs.split("\\s+")[0];
-        System.out.println(direction);
         if (!direction.equals("/a") && !direction.equals("/d")) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));

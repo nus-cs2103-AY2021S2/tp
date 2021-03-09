@@ -35,7 +35,15 @@ public class SortCommand extends Command {
             comparator = comparator.reversed();
         }
         model.updateSortedPersonList(comparator);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS + getDirection(direction));
+    }
+
+    private String getDirection(String direction) {
+        if (direction.equals("/a")) {
+            return " in ascending order.";
+        } else {
+            return " in descending order.";
+        }
     }
 
     /**
