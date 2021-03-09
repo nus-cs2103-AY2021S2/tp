@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -12,28 +12,26 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class NameContainsPatternPredicateTest {
 
-    final Pattern subStringPattern = Pattern.compile("et");
-    final Pattern matchAllPattern = Pattern.compile(".*");
-    final Pattern startsWithAPattern = Pattern.compile("^a");
-    final Pattern endsWithAPattern = Pattern.compile("a$");
-    final Pattern startsAndEndWithAPattern = Pattern.compile("^a.*a$");
+    public final Pattern subStringPattern = Pattern.compile("et");
+    public final Pattern matchAllPattern = Pattern.compile(".*");
+    public final Pattern startsWithAPattern = Pattern.compile("^a");
+    public final Pattern endsWithAPattern = Pattern.compile("a$");
+    public final Pattern startsAndEndWithAPattern = Pattern.compile("^a.*a$");
 
-    String[] nameArray = new String[] {
-            "alpha beta charlie",
-            "beta charlie",
-            "delta charlie alpha",
-            "beta beta beta",
-            "alpha alpha charlie delta",
-            "alpha  alpha    charlie delta"
+    private String[] nameArray = new String[] {
+        "alpha beta charlie",
+        "beta charlie",
+        "delta charlie alpha",
+        "beta beta beta",
+        "alpha alpha charlie delta",
+        "alpha  alpha    charlie delta"
     };
 
-    List<String> nameList = Arrays.stream(nameArray).collect(Collectors.toList());
+    private List<String> nameList = Arrays.stream(nameArray).collect(Collectors.toList());
 
-    List<String> filterList(List<String> nameList, Pattern pattern) {
+    public List<String> filterList(List<String> nameList, Pattern pattern) {
         return nameList.stream()
                 .map(name -> new PersonBuilder().withName(name).build())
                 .filter(new NameContainsPatternPredicate(pattern))

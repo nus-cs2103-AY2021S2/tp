@@ -18,8 +18,12 @@ public class NameContainsPatternPredicate implements Predicate<Person> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         NameContainsPatternPredicate that = (NameContainsPatternPredicate) o;
         return Objects.equals(pattern, that.pattern);
     }
