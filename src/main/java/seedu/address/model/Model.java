@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    boolean hasAssignment(Assignment assignment);
+
+    void addAssignment(Assignment assignment);
 }
