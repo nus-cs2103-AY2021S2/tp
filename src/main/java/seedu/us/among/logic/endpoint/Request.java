@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.Set;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import seedu.us.among.commons.util.HeaderUtil;
@@ -56,6 +57,20 @@ public abstract class Request {
     public abstract Response send() throws IOException;
 
     /**
+     * Creates a http client with timeout set to 60 seconds.
+     *
+     * @return http client to execute request
+     */
+    private CloseableHttpClient createHttpClient() {
+        int timeout = 60;
+        RequestConfig config = RequestConfig.custom()
+                .setConnectTimeout(timeout * 1000)
+                .setConnectionRequestTimeout(timeout * 1000)
+                .setSocketTimeout(timeout * 1000).build();
+        return HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+    }
+
+    /**
      * Executes API call.
      *
      * @param request request to execute
@@ -63,7 +78,7 @@ public abstract class Request {
      */
     public Response execute(HttpUriRequest request) throws IOException {
         //solution adapted from https://mkyong.com/java/apache-httpclient-examples/
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpClient httpClient = createHttpClient();
         CloseableHttpResponse response;
         String responseEntity = "";
         double responseTimeInSecond;

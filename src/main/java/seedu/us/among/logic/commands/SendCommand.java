@@ -3,13 +3,20 @@ package seedu.us.among.logic.commands;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.http.client.ClientProtocolException;
+
+import com.fasterxml.jackson.core.JsonParseException;
 
 import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
+import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Data;
@@ -30,9 +37,10 @@ public class SendCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_CALL_ENDPOINT_SUCCESS = "Called endpoint: %1$s";
-    public static final String MESSAGE_CALL_ENDPOINT_FAILED = "Endpoint call failed: Check your endpoint"
-            + " fields and try again.";
+    public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
+            + " that your data is added in the correct JSON format.";
+    public static final String MESSAGE_CONNECTION_ERROR = "The request was not performed successfully."
+            + " Check your internet connection and endpoint URL.";
 
     private final Index index;
 
@@ -46,7 +54,7 @@ public class SendCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, RequestException {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -59,8 +67,12 @@ public class SendCommand extends Command {
 
         try {
             response = epc.callEndpoint();
+        } catch (UnknownHostException | ClientProtocolException | SocketTimeoutException e) {
+            throw new RequestException(MESSAGE_CONNECTION_ERROR);
+        } catch (JsonParseException e) {
+            throw new RequestException(MESSAGE_INVALID_JSON);
         } catch (IOException e) {
-            throw new CommandException(MESSAGE_CALL_ENDPOINT_FAILED);
+            throw new RequestException("An error e.getMessage()");
         }
 
         Endpoint endpointWithResponse = createEndpointWithResponse(endpointToSend, response);
