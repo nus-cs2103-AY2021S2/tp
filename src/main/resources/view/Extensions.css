@@ -1,11 +1,10 @@
-
 .error {
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
 }
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: transparent;
 }
 
 .tag-selector {
@@ -17,4 +16,11 @@
 
 .tooltip-text {
     -fx-text-fill: white;
+}
+
+.info-display {
+    -fx-background-image: url("../images/logo_no_background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
 }
