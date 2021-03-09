@@ -12,12 +12,12 @@ public class Client {
     private final Name clientName;
     private final Contact clientContact;
     private final Email clientEmail;
-    private final Integer clientAskingPrice;
+    private final AskingPrice clientAskingPrice;
 
     /**
      * Constructs a {@code Client} with all information.
      */
-    public Client(Name clientName, Contact clientContact, Email clientEmail, Integer clientAskingPrice) {
+    public Client(Name clientName, Contact clientContact, Email clientEmail, AskingPrice clientAskingPrice) {
         this.clientName = clientName;
         this.clientContact = clientContact;
         this.clientEmail = clientEmail;
@@ -36,7 +36,7 @@ public class Client {
         return clientEmail;
     }
 
-    public Integer getClientAskingPrice() {
+    public AskingPrice getClientAskingPrice() {
         return clientAskingPrice;
     }
 
