@@ -18,7 +18,7 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddFrCommandParser implements Parser<AddFrCommand> {
+public class AddFrCommandParser implements BudgetBabyCommandParser<AddFrCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

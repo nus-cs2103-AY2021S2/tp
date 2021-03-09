@@ -31,6 +31,15 @@ public class FinancialRecord {
 //        this.tags.addAll(tags);
     }
 
+    public FinancialRecord(Description description, Amount amount, Date timestamp) {
+//        requireNonNull(tagName);
+//        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        this.description = description;
+        this.amount = amount;
+        this.timestamp = timestamp;
+//        this.tags.addAll(tags);
+    }
+
     public Description getDescription() {
         return description;
     }
