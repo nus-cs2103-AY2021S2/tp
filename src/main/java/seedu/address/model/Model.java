@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if an assignment that has the same description and deadline
+     * as {@code assignment} exists in the same module.
+     */
+    boolean hasAssignment(Assignment assignment);
+
+    /**
+     * Adds the given assignment.
+     * {@code assignment} must not already exist in the module it is to be added to.
+     */
+    void addAssignment(Assignment assignment);
 }

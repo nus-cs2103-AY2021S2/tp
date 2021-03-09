@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -148,4 +149,15 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== Module List =============================================================
+
+    @Override
+    public boolean hasAssignment(Assignment assignment) {
+        return false;
+    }
+
+    @Override
+    public void addAssignment(Assignment assignment) {
+
+    }
 }
