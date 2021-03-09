@@ -3,31 +3,34 @@ package seedu.storemando.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 /**
- * Represents an Item's expiry in the inventory manager.
+ * Represents an Item's expiry date in the inventory manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidExpiryDate(String)}
  */
 public class ExpiryDate {
 
-    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
-    public static final String MESSAGE_CONSTRAINTS = "Expiry dates should be of the format local-part@domain "
+    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
+    private static final String SPECIAL_CHARACTERS = "-";
+    public static final String MESSAGE_CONSTRAINTS = "Expiry dates should be of the format YYYY-MM-DD "
         + "and adhere to the following constraints:\n"
-        + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-        + "the parentheses, (" + SPECIAL_CHARACTERS + ") .\n"
-        + "2. This is followed by a '@' and then a domain name. "
-        + "The domain name must:\n"
-        + "    - be at least 2 characters long\n"
-        + "    - start and end with alphanumeric characters\n"
-        + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.";
-    // alphanumeric and special characters
-    private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
-    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
-    private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
-        + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
+        + "1. YYYY, MM and DD should only contain numeric characters and must be separated by a "
+        + SPECIAL_CHARACTERS
+        + " character.\n"
+        + "2. YYYY must:\n"
+        + "    - be exactly 4 digits long\n"
+        + "    - be a valid year\n"
+        + "3. MM must:\n"
+        + "    - be exactly 2 digits long\n"
+        + "    - be within the range [01, 12]\n"
+        + "4. DD must:\n"
+        + "    - be exactly 2 digits long\n"
+        + "    - be a valid date\n";
 
-    public final String value;
+
+    public final LocalDate value;
 
     /**
      * Constructs an {@code ExpiryDate}.
@@ -37,19 +40,27 @@ public class ExpiryDate {
     public ExpiryDate(String expiryDate) {
         requireNonNull(expiryDate);
         checkArgument(isValidExpiryDate(expiryDate), MESSAGE_CONSTRAINTS);
-        value = expiryDate;
+        value = LocalDate.parse(expiryDate);
     }
 
     /**
      * Returns if a given string is a valid expiryDate.
      */
     public static boolean isValidExpiryDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            if (!test.matches(VALIDATION_REGEX)) {
+                return false;
+            }
+            LocalDate.parse(test);
+            return true;
+        } catch (DateTimeParseException | NullPointerException ex) {
+            return false;
+        }
     }
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

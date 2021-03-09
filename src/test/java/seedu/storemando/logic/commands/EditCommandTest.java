@@ -69,15 +69,10 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditCommand.EditItemDescriptor());
-        Item editedItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
-
-        Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        String expectedMessage = String.format(EditCommand.MESSAGE_NO_CHANGE);
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test
@@ -102,7 +97,6 @@ public class EditCommandTest {
         Item firstItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITEM, descriptor);
-
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ITEM);
     }
 
@@ -116,6 +110,53 @@ public class EditCommandTest {
             new EditItemDescriptorBuilder(itemInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ITEM);
+    }
+
+    @Test
+    public void execute_allSameFieldsSpecifiedUnfilteredList_failure() {
+        Item firstItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGE);
+    }
+
+    @Test
+    public void execute_someSameFieldsSpecifiedUnfilteredList_failure() {
+        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
+        Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
+
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+            .withName(lastItem.getItemName().toString()).build();
+        EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_NO_CHANGE);
+
+        assertCommandFailure(editCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_allSameFieldsSpecifiedFilteredList_failure() {
+        showItemAtIndex(model, INDEX_FIRST_ITEM);
+
+        // edit item in filtered list into a duplicate in storemando
+        Item itemInList = model.getStoreMando().getItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
+            new EditItemDescriptorBuilder(itemInList).build());
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGE);
+    }
+
+
+    @Test
+    public void execute_someSameFieldsSpecifiedFilteredList_failure() {
+        showItemAtIndex(model, INDEX_FIRST_ITEM);
+
+        // edit item in filtered list into a duplicate in storemando
+        Item itemInList = model.getStoreMando().getItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
+            new EditItemDescriptorBuilder().withQuantity(itemInList.getQuantity().toString()).build());
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGE);
     }
 
     @Test

@@ -52,7 +52,7 @@ class JsonAdaptedItem {
     public JsonAdaptedItem(Item source) {
         name = source.getItemName().fullName;
         quantity = source.getQuantity().value;
-        expiryDate = source.getExpiryDate().value;
+        expiryDate = source.getExpiryDate().toString();
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
