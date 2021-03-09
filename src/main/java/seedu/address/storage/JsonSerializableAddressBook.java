@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.FlashBack;
+import seedu.address.model.ReadOnlyFlashBack;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -36,7 +36,7 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyFlashBack source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -45,16 +45,16 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public FlashBack toModelType() throws IllegalValueException {
+        FlashBack flashBack = new FlashBack();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            Flashcard flashcard = jsonAdaptedPerson.toModelType();
+            if (flashBack.hasPerson(flashcard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            flashBack.addPerson(flashcard);
         }
-        return addressBook;
+        return flashBack;
     }
 
 }
