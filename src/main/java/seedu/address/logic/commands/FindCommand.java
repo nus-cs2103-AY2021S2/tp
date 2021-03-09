@@ -31,7 +31,12 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        this.predicates.forEach(model::updateFilteredPersonList);
+        Predicate<Person> overallPredicate = x -> true;
+        for (Predicate<Person> predicate: predicates) {
+            overallPredicate = overallPredicate.and(predicate);
+        }
+        model.updateFilteredPersonList(overallPredicate);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
