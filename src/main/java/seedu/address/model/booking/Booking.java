@@ -142,7 +142,9 @@ public class Booking {
                 .append("; Start of booking: ")
                 .append(getBookingStart())
                 .append("; End of booking: ")
-                .append(getBookingEnd());
+                .append(getBookingEnd())
+                .append("; ID: ")
+                .append(getId());
 
         return builder.toString();
     }
