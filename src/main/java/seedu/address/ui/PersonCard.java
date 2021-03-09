@@ -1,12 +1,21 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
 
 /**
@@ -44,7 +53,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, Predicate<Prefix> displayFilter) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -55,6 +64,16 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        // Update control visibility
+        phone.setVisible(displayFilter.test(PREFIX_PHONE));
+        phone.setManaged(displayFilter.test(PREFIX_PHONE));
+        address.setVisible(displayFilter.test(PREFIX_ADDRESS));
+        address.setManaged(displayFilter.test(PREFIX_ADDRESS));
+        email.setVisible(displayFilter.test(PREFIX_EMAIL));
+        email.setManaged(displayFilter.test(PREFIX_EMAIL));
+        tags.setVisible(displayFilter.test(PREFIX_TAG));
+        tags.setManaged(displayFilter.test(PREFIX_TAG));
     }
 
     @Override
