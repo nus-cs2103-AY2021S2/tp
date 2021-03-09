@@ -4,8 +4,8 @@
 
 * ## **Instructions**
   1. Ensure that you have Java 11 or above installed in your computer
-  2. Download the latest [App name] from [hyperlink]
-  3. Copy the file download location to the folder that you want to use as the home folder for your [App name]
+  2. Download the latest [App moduleName] from [hyperlink]
+  3. Copy the file download location to the folder that you want to use as the home folder for your [App moduleName]
   4. Double click on the file to start the app
   5. Once the app is started, you can begin by typing certain commands in the command box to execute certain actions. E.g: typing help and pressing enter will open the help windows for guidance on some command executions.
       * add module : mc/CS2103 mc/Software Engineering tn/iP Level 10 d/ Feb 15 t/ 1800 will add this module to the list
@@ -44,10 +44,10 @@
 
 
 
-3. ### Module name: *mn/*
-  * Format: mn/ {module name}
-    1. Sets the module name of a task
-    2. Example: mn/Software Engineering. Sets the module name of the task to “Software Engineering”
+3. ### Module moduleName: *mn/*
+  * Format: mn/ {module moduleName}
+    1. Sets the module moduleName of a task
+    2. Example: mn/Software Engineering. Sets the module moduleName of the task to “Software Engineering”
 
 
 
@@ -65,8 +65,8 @@
     3. The index must be on the list else an error will be thrown
     4. At least one of the optional fields must be provided
     5. Existing values will be updated to the input values
-    6. Example: edit 1 mn/Software Engineering mc/CS2103. Edits the module name and module code of the task at index 1 to be “Software Engineering” and “CS2103” respectively.
-    7. Example: edit 2 tn/Finals n/Open Book. Edits the task name and notes of the task at index 2 to be “Finals” and “Open Book” respectively.
+    6. Example: edit 1 mn/Software Engineering mc/CS2103. Edits the module moduleName and module code of the task at index 1 to be “Software Engineering” and “CS2103” respectively.
+    7. Example: edit 2 tn/Finals n/Open Book. Edits the task moduleName and notes of the task at index 2 to be “Finals” and “Open Book” respectively.
 
 
 
@@ -76,12 +76,12 @@
 
 
 
-7. ### Locating tasks by name: *find*
-  * Find tasks whose task name contains any of the given words
+7. ### Locating tasks by moduleName: *find*
+  * Find tasks whose task moduleName contains any of the given words
   * Format: find KEYWORD[MORE_KEYWORDS]
     1. The search is case-insensitive. e.g Assignment will match assignment
     2. The order of the keywords does not matter. e.g. programming modular will match modular programming
-    3. Only the task name is searched.
+    3. Only the task moduleName is searched.
     4. Only full words will be matched e.g. Java will not match Javascript
     5. Persons matching at least one keyword will be returned (i.e. OR search). e.g. SQL Python will return SQL Quiz, Python Assignment
     6. Example: find C++ will return C++ project and C++ graded quiz
