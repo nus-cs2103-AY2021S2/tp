@@ -52,13 +52,17 @@ public class DoneStatus {
     }
 
 
-    @Override
-    public String toString() {
+    public String displayUi() {
         if (isDone) {
             return "Done!\n";
         } else {
             return "Not Done!\n";
         }
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 
     @Override

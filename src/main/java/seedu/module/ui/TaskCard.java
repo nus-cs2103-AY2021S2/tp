@@ -54,7 +54,7 @@ public class TaskCard extends UiPart<Region> {
         deadline.setText(task.getDeadline().value);
         description.setText(task.getDescription().value);
         module.setText(task.getModule().value);
-        doneStatus.setText(task.getDoneStatus().toString());
+        doneStatus.setText(task.getDoneStatus().displayUi());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

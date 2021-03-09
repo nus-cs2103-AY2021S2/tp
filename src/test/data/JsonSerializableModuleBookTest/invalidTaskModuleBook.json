@@ -3,6 +3,7 @@
     "name": "Hans Muster",
     "deadline": "9482424",
     "module": "invalid@module!3e",
-    "description": "4th street"
+    "description": "4th street",
+    "doneStatus": "false"
   } ]
 }

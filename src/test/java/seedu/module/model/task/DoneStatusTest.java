@@ -13,8 +13,8 @@ public class DoneStatusTest {
     }
 
     @Test
-    public void testToString() {
-        assertEquals(new DoneStatus(true), "Done!\n");
-        assertEquals(new DoneStatus(false), "Not Done!\n");
+    public void testDisplayUi() {
+        assertEquals(new DoneStatus(true).displayUi(), "Done!\n");
+        assertEquals(new DoneStatus(false).displayUi(), "Not Done!\n");
     }
 }

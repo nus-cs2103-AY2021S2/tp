@@ -5,39 +5,46 @@
     "deadline" : "2021-02-01 12:00",
     "module" : "CS3243",
     "description" : "About Artificial Intelligence.",
+    "doneStatus": "false",
     "tagged" : [ "medianPriority" ]
   }, {
     "name" : "Midterm",
     "deadline" : "2021-03-06 08:30",
     "module" : "CS3243",
     "description" : "Not include CSP.",
+    "doneStatus": "false",
     "tagged" : [ "highPriority" ]
   }, {
     "name" : "TP",
     "deadline" : "2021-03-14 14:00",
     "module" : "CS2103T",
-    "description" : "Wrap up v1.2."
+    "description" : "Wrap up v1.2.",
+    "doneStatus": "false"
   }, {
     "name" : "Tutorial",
     "deadline" : "2021-03-02 23:59",
     "module" : "ST2131",
     "description" : "Try to get full mark.",
+    "doneStatus": "false",
     "tagged" : [ "easy" ]
   }, {
     "name" : "Project",
     "deadline" : "2021-02-28 23:59",
     "module" : "CS3243",
-    "description" : "This is really challenging."
+    "description" : "This is really challenging.",
+    "doneStatus": "false"
   }, {
     "name" : "PAQ",
     "deadline" : "2021-03-05 23:59",
     "module" : "IS1103",
-    "description" : "Strange questions."
+    "description" : "Strange questions.",
+    "doneStatus": "false"
   }, {
     "name" : "OP 2",
     "deadline" : "2021-04-02 23:59",
     "module" : "CS2101",
-    "description" : "Need to divide ourselves into two groups."
+    "description" : "Need to divide ourselves into two groups.",
+    "doneStatus": "false"
   }
   ]
 }

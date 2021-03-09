@@ -22,37 +22,39 @@ import seedu.module.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
+    private static final String NOT_DONE_STRING = String.valueOf(Boolean.FALSE);
 
     public static final Task QUIZ = new TaskBuilder().withName("Quiz")
             .withDescription("About Artificial Intelligence.").withModule("CS3243")
-            .withDeadline("2021-02-01 12:00")
+            .withDeadline("2021-02-01 12:00").withDoneStatus(NOT_DONE_STRING)
             .withTags("medianPriority").build();
     public static final Task MIDTERM = new TaskBuilder().withName("Midterm")
             .withDescription("Not include CSP.")
-            .withModule("CS3243").withDeadline("2021-03-06 08:30")
+            .withModule("CS3243").withDeadline("2021-03-06 08:30").withDoneStatus(NOT_DONE_STRING)
             .withTags("highPriority").build();
     public static final Task TP = new TaskBuilder().withName("TP")
             .withDeadline("2021-03-14 14:00")
-            .withModule("CS2103T").withDescription("Wrap up v1.2.").build();
+            .withModule("CS2103T").withDescription("Wrap up v1.2.").withDoneStatus(NOT_DONE_STRING).build();
     public static final Task TUTORIAL = new TaskBuilder().withName("Tutorial")
             .withDeadline("2021-03-02 23:59")
-            .withModule("ST2131").withDescription("Try to get full mark.").withTags("easy").build();
+            .withModule("ST2131").withDoneStatus(NOT_DONE_STRING).withDescription("Try to get full mark.")
+            .withTags("easy").build();
     public static final Task PROJECT = new TaskBuilder().withName("Project")
-            .withDeadline("2021-02-28 23:59")
+            .withDeadline("2021-02-28 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("CS3243").withDescription("This is really challenging.").build();
     public static final Task PAQ = new TaskBuilder().withName("PAQ")
-            .withDeadline("2021-03-05 23:59")
+            .withDeadline("2021-03-05 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("IS1103").withDescription("Strange questions.").build();
     public static final Task OP = new TaskBuilder().withName("OP 2")
-            .withDeadline("2021-04-02 23:59")
+            .withDeadline("2021-04-02 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("CS2101").withDescription("Need to divide ourselves into two groups.").build();
 
     // Manually added
     public static final Task MISSION = new TaskBuilder().withName("Mission")
-            .withDeadline("2021-03-05 23:59")
+            .withDeadline("2021-03-05 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("IS1103").withDescription("Strange questions.").build();
     public static final Task FINAL = new TaskBuilder().withName("Final")
-            .withDeadline("2021-04-29 23:59")
+            .withDeadline("2021-04-29 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("ST2131").withDescription("Let's go!").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
