@@ -276,6 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | careless user | redo previous commands | easily fix an erroneous undo |
 | `* * *` | user | allocate a resident to a room | |
 | `* * *` | user | deallocate a resident from a room | |
+| `* *` | power user | access my command history | efficiently repeat similar commands |
 
 ## Use cases
 
@@ -555,6 +556,24 @@ Use case ends.
     * 3a1. SunRez shows an error message.
       Use case resumes at step 2.
 
+
+### UC-021 Access Command History
+
+**MSS**
+
+1. User requests to view command history.
+2. SunRez displays command history, in reverse order of entry.
+3. User selects a previously entered command.
+4. SunRez fills the command field with the selected command.
+5. User modifies and/or executes the command.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. There is no command history.
+
+    Use case ends.
 
 ## Non-Functional Requirements
 
