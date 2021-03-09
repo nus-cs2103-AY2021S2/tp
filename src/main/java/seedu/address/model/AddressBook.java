@@ -11,8 +11,7 @@ import seedu.address.model.booking.UniqueVenueList;
 import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.NonOverlappingBookingList;
+
 
 /**
  * Wraps all data at the address-book level

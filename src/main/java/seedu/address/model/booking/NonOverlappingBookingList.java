@@ -103,6 +103,10 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
         }
     }
 
+    /**
+     * Removes the equivalent booking from the list by bookingId.
+     * The booking must exist in the list.
+     */
     public void removeById(int bookingId) {
         requireNonNull(bookingId);
         internalList.stream().filter(x -> x.isId(bookingId)).forEach(x -> remove(x));

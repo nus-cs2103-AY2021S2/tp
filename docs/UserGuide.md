@@ -45,7 +45,6 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 * Items in square brackets are optional.<br>
   e.g. `create_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `n/Chua Thian Poh Hall max/40` or as `n/Chua Thian Poh Hall`.
- 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -126,7 +125,7 @@ Exits the program.
 
 Format: `bye`
 
-### Saving the data 
+### Saving the data
 
 BookCoinToTheMoon data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
