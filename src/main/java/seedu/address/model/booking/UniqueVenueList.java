@@ -84,11 +84,12 @@ public class UniqueVenueList implements Iterable<Venue> {
                 continue;
             }
             internalList.remove(i);
+            break;
         }
     }
 
     public boolean containsName(ObservableList<Venue> list, Venue venue) {
-        return list.stream().anyMatch(o -> o.getName().equals(venue.getName()));
+        return list.stream().anyMatch(x -> x.getName().equals(venue.getName()));
     }
 
     public void setVenues(UniqueVenueList replacement) {

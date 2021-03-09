@@ -159,10 +159,19 @@ public class ModelManager implements Model {
 
     //=========== Filtered Venue List Accessors =============================================================
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Venues} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
     public ObservableList<Venue> getFilteredVenueList() {
         return filteredVenues;
     }
 
+    @Override
+    public void updateFilteredVenueList(Predicate<Venue> predicate) {
+        requireNonNull(predicate);
+        filteredVenues.setPredicate(predicate);
+    }
 
 }
