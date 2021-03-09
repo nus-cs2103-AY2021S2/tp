@@ -72,7 +72,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code food} exists in the food list.
      */
     public boolean hasFoodItem(Food food) {
         requireNonNull(food);
@@ -88,6 +88,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         foodList.addFoodItem(food);
     }
 
+    /**
+     * Updates a food item in the food list
+     * The food item must exist in the food list.
+     * @param food updated food item
+     */
+    public void updateFoodItem(Food food) {
+        foodList.updateFoodItem(food);
+    }
+
+    @Override
+    /**
+     * Gets the unique food list.
+     *
+     * @return a unique food list
+     */
+    public UniqueFoodList getFoodList() {
+        return foodList;
+    }
 
     /**
      * Adds a person to the address book.

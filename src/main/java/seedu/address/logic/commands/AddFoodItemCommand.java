@@ -14,9 +14,8 @@ public class AddFoodItemCommand extends Command {
     public static final String COMMAND_WORD = "food";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens up the macronutrients tracker."
-            + "\nThis tracker has 2 functions:"
-            + "\n1. Input food item with its carbo, fats and protein value for the day."
-            + "\n2. Query food item intake for that particular day.";
+            + "\nThis tracker has 2 function:"
+            + "\n1. Input food item with its carbo, fats and protein value for the day.";
 
     public static final String MESSAGE_SUCCESS = "Success adding food item (";
 

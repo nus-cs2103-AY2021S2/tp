@@ -25,11 +25,11 @@ public class Food {
      * Initialises the food class.
      *
      * @param name     food name
-     * @param fats     amount of fats
      * @param carbos   amount of carbos
+     * @param fats     amount of fats
      * @param proteins amount of proteins
      */
-    public Food(String name, double fats, double carbos, double proteins) {
+    public Food(String name, double carbos, double fats, double proteins) {
         requireNonNull(name);
         checkArgument(isValidFoodName(name), MESSAGE_CONSTRAINTS); //Checks for all whitespaces and valid character
         checkArgument(isValidNumber(fats, carbos, proteins), DIGIT_CONSTRAINTS); //Checks for positive doubles inc 0.

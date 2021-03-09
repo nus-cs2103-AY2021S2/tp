@@ -160,4 +160,9 @@ public class ModelManager implements Model {
         addressBook.addFoodItem(food);
     }
 
+    @Override
+    public void updateFoodItem(Food food) {
+        addressBook.updateFoodItem(food);
+    }
+
 }

@@ -38,14 +38,14 @@ public class UniqueFoodList {
      * @param foodItem updated food item
      * @return success message
      */
-    public String updateFoodItem(Food foodItem) {
+    public void updateFoodItem(Food foodItem) {
         for (Food food : this.foodList) {
             if (food.getName().equals(foodItem.getName())) {
                 food.updateCarbos(foodItem.getCarbos());
                 food.updateFats(foodItem.getFats());
                 food.updateProteins(foodItem.getProteins());
-                String result = "Success updating " + food.getName() + " to food list.";
-                return result;
+//                String result = "Success updating " + food.getName() + " to food list.";
+//                return result;
             }
         }
         throw new FoodItemNotFoundException();

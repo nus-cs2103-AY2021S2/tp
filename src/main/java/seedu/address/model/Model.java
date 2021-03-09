@@ -70,6 +70,12 @@ public interface Model {
     void addFoodItem(Food food);
 
     /**
+     * Updates food in food item list.
+     * @param food updated food item
+     */
+    void updateFoodItem(Food food);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
