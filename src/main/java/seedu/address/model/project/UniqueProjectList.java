@@ -113,7 +113,7 @@ public class UniqueProjectList implements Iterable<Project> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueProjectList // instanceof handles nulls
-                        && internalList.equals(((UniqueProjectList) other).internalList));
+                && internalList.equals(((UniqueProjectList) other).internalList));
     }
 
     @Override
