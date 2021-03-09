@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.flashcard;
 
 import static java.util.Objects.requireNonNull;
 

@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
+import seedu.address.model.flashcard.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -15,13 +15,13 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ADDRESS = "High";
     public static final String DEFAULT_REMARK = "";
 
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private Question question;
+    private Answer answer;
+    private Category category;
+    private Priority priority;
     private Remark remark;
     private Set<Tag> tags;
 
@@ -29,10 +29,10 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        question = new Question(DEFAULT_NAME);
+        answer = new Answer(DEFAULT_PHONE);
+        category = new Category(DEFAULT_EMAIL);
+        priority = new Priority(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
@@ -40,20 +40,20 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        remark = personToCopy.getRemark();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Flashcard flashcardToCopy) {
+        question = flashcardToCopy.getName();
+        answer = flashcardToCopy.getPhone();
+        category = flashcardToCopy.getEmail();
+        priority = flashcardToCopy.getAddress();
+        remark = flashcardToCopy.getRemark();
+        tags = new HashSet<>(flashcardToCopy.getTags());
     }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+        this.question = new Question(name);
         return this;
     }
 
@@ -69,7 +69,7 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.priority = new Priority(address);
         return this;
     }
 
@@ -77,7 +77,7 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.answer = new Answer(phone);
         return this;
     }
 
@@ -85,7 +85,7 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.category = new Category(email);
         return this;
     }
 
@@ -97,8 +97,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, remark, tags);
+    public Flashcard build() {
+        return new Flashcard(question, answer, category, priority, remark, tags);
     }
 
 }
