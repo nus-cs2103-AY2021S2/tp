@@ -86,6 +86,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
     boolean hasAssignment(Assignment assignment);
 
     void addAssignment(Assignment assignment);
