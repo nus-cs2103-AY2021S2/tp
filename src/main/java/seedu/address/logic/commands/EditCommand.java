@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -21,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Faculty;
 import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
@@ -42,6 +44,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER]"
+            + "[" + PREFIX_FACULTY + "FACULTY] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -102,6 +105,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         MatriculationNumber updatedMatriculationNumber = editPersonDescriptor.getMatriculationNumber()
                 .orElse(personToEdit.getMatriculationNumber());
+        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -112,7 +116,7 @@ public class EditCommand extends Command {
         SchoolResidence updatedSchoolResidence = editPersonDescriptor.getSchoolResidence()
                 .orElse(personToEdit.getSchoolResidence());
 
-        return new Person(updatedName, updatedMatriculationNumber, updatedPhone, updatedEmail,
+        return new Person(updatedName, updatedMatriculationNumber, updatedFaculty, updatedPhone, updatedEmail,
                 updatedAddress, updatedVaccinationStatus, updatedMedicalDetails, updatedSchoolResidence);
     }
 
@@ -141,6 +145,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private MatriculationNumber matriculationNumber;
+        private Faculty faculty;
         private Phone phone;
         private Email email;
         private Address address;
@@ -157,6 +162,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setMatriculationNumber(toCopy.matriculationNumber);
+            setFaculty(toCopy.faculty);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -169,7 +175,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, matriculationNumber, vaccinationStatus,
+                    medicalDetails, schoolResidence, faculty);
         }
 
         public void setName(Name name) {
@@ -186,6 +193,14 @@ public class EditCommand extends Command {
 
         public Optional<MatriculationNumber> getMatriculationNumber() {
             return Optional.ofNullable(matriculationNumber);
+        }
+
+        public void setFaculty(Faculty faculty) {
+            this.faculty = faculty;
+        }
+
+        public Optional<Faculty> getFaculty() {
+            return Optional.ofNullable(faculty);
         }
 
         public void setVaccinationStatus(VaccinationStatus vaccinationStatus) {

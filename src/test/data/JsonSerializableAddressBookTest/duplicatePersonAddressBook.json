@@ -2,6 +2,7 @@
   "persons": [ {
     "name": "Alice Pauline",
     "matriculationNumber" : "A3456789D",
+    "faculty" : "COM",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
@@ -11,6 +12,7 @@
   }, {
     "name": "Alice Pauline",
     "matriculationNumber" : "A3456789D",
+    "faculty" : "COM",
     "phone": "94351253",
     "email": "pauline@example.com",
     "vaccinationStatus" : "vaccinated",
