@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import com.sun.javafx.fxml.expression.Expression;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final TaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        tasks = new TaskList();
     }
 
     public AddressBook() {}
@@ -110,11 +115,35 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && tasks.equals(((AddressBook) other).tasks));
     }
 
     @Override
     public int hashCode() {
         return persons.hashCode();
     }
+
+    /**
+     * Adds a task to HEY MATEz.
+     */
+    public void addTask(Task t) {
+        tasks.add(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in HEY MATEz.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
 }

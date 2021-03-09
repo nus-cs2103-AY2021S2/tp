@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,25 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Adds the given task.
+     */
+    void addTask(Task newTask);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in HEY MATEz.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
 }
