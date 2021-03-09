@@ -1,6 +1,8 @@
 package seedu.address.model.task;
 
 import seedu.address.commons.util.DateUtil;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -42,6 +44,23 @@ public class Deadline extends Task {
     public LocalDate getBy() {
         assert this.by != null : "by should not be null!";
         return this.by;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Deadline)) {
+            return false;
+        }
+
+        Deadline otherDeadline = (Deadline) other;
+        return otherDeadline.getDescription().equals(getDescription())
+                && otherDeadline.getIsDone().equals(getIsDone())
+                && otherDeadline.getBy().equals(getBy())
+                && otherDeadline.getTaskType().equals(getTaskType());
     }
 
     @Override

@@ -27,6 +27,22 @@ public class Completable extends Task {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Completable)) {
+            return false;
+        }
+
+        Completable otherCompletable = (Completable) other;
+        return otherCompletable.getDescription().equals(getDescription())
+                && otherCompletable.getIsDone().equals(getIsDone())
+                && otherCompletable.getTaskType().equals(getTaskType());
+    }
+
+    @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(taskType, description, isDone);

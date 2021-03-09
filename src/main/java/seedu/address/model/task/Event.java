@@ -44,6 +44,22 @@ public class Event extends Task {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Event)) {
+            return false;
+        }
+
+        Event otherEvent = (Event) other;
+        return otherEvent.getDescription().equals(getDescription())
+                && otherEvent.getIsDone().equals(getIsDone())
+                && otherEvent.getTaskType().equals(getTaskType());
+    }
+
+    @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(taskType, description, isDone, at);
