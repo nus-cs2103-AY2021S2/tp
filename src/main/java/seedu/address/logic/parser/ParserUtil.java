@@ -127,7 +127,6 @@ public class ParserUtil {
         return tagSet;
     }
 
-<<<<<<< HEAD
 
     /**
      * Parses a {@code String booker} into a {@code String trimmedBooker}.
@@ -140,17 +139,6 @@ public class ParserUtil {
         return trimmedBooker;
     }
 
-
-    /**
-     * Parses a {@code String venue} into a {@code Venue}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     */
-    public static Venue parseVenue(String venue) {
-        requireNonNull(venue);
-        String trimmedVenue = venue.trim();
-        return new Venue(trimmedVenue, "", -999);
-    }
 
     /**
      * Parses a {@code String description} into a {@code String description}.
@@ -192,8 +180,6 @@ public class ParserUtil {
     }
 
 
-
-=======
     /**
      * Parses a {@code String venue} into a {@code Venue}.
      * Leading and trailing whitespaces will be trimmed.
@@ -229,5 +215,4 @@ public class ParserUtil {
         String trimmedName = name.trim();
         return trimmedName;
     }
->>>>>>> master
 }

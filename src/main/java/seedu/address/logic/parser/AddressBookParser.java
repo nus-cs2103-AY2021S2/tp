@@ -75,15 +75,11 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-<<<<<<< HEAD
         case AddBookingCommand.COMMAND_WORD:
             return new AddBookingCommandParser().parse(arguments);
 
-
-=======
         case AddVenueCommand.COMMAND_WORD:
             return new AddVenueParser().parse(arguments);
->>>>>>> master
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
