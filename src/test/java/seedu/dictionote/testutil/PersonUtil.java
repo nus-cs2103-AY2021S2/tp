@@ -8,9 +8,9 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.dictionote.logic.commands.AddCommand;
+import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -21,20 +21,20 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Contact contact) {
+        return AddContactCommand.COMMAND_WORD + " " + getPersonDetails(contact);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Contact contact) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + contact.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + contact.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + contact.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + contact.getAddress().value + " ");
+        contact.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

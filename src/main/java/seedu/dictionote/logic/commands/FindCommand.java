@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.person.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in dictionote book whose name contains any of the argument keywords.

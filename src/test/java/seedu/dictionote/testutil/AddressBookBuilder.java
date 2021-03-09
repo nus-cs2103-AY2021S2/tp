@@ -1,7 +1,7 @@
 package seedu.dictionote.testutil;
 
 import seedu.dictionote.model.AddressBook;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Contact;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -23,8 +23,8 @@ public class AddressBookBuilder {
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+    public AddressBookBuilder withPerson(Contact contact) {
+        addressBook.addContact(contact);
         return this;
     }
 

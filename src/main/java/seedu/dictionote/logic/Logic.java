@@ -8,7 +8,9 @@ import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.note.Note;
+
 
 /**
  * API of the Logic component
@@ -31,7 +33,11 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Contact> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of notes */
+    ObservableList<Note> getFilteredNoteList();
+
 
     /**
      * Returns the user prefs' dictionote book file path.

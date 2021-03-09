@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
+import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.Command;
 import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
@@ -14,7 +15,8 @@ import seedu.dictionote.logic.parser.DictionoteParser;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.storage.Storage;
 
 /**
@@ -44,9 +46,12 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = dictionoteParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            if (command instanceof AddNoteCommand) {
+                storage.saveNoteBook(model.getNoteBook());
+            } else {
+                storage.saveAddressBook(model.getAddressBook());
+            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -60,8 +65,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Contact> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Note> getFilteredNoteList() {
+        return model.getFilteredNoteList();
     }
 
     @Override

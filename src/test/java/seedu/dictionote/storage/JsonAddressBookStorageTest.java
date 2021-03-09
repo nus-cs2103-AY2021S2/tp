@@ -3,10 +3,10 @@ package seedu.dictionote.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalPersons.ALICE;
-import static seedu.dictionote.testutil.TypicalPersons.HOON;
-import static seedu.dictionote.testutil.TypicalPersons.IDA;
-import static seedu.dictionote.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.ALICE;
+import static seedu.dictionote.testutil.TypicalContacts.HOON;
+import static seedu.dictionote.testutil.TypicalContacts.IDA;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -72,14 +72,14 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
+        original.addContact(HOON);
         original.removePerson(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addContact(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
