@@ -6,7 +6,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyTaskTracker;
 import seedu.address.model.TaskTracker;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.ModuleName;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Task;
 import seedu.address.model.tag.Tag;
 
