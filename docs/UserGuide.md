@@ -74,7 +74,6 @@ Shows a list of all items in the inventory.
 Format: `list [LOCATION]`
 
 * You can view all items in the inventory by typing 'list' without specifying location.
-<<<<<<< HEAD
 * The search is case-insensitive. e.g 'room' will match 'Room'.
 * The order of keywords does not matter. e.g. 'Room Living' will match 'Living Room'.
 * Only location will be searched.
@@ -84,7 +83,6 @@ Format: `list [LOCATION]`
 =======
 
 ### Editing an item's details : `edit`
->>>>>>> master
 
 Editing an existing item in the inventory.
 
