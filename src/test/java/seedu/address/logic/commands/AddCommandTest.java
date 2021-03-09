@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TaskTracker;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTaskTrackerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTaskTrackerFilePath(Path taskTrackerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,14 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyTaskTracker newData) {
+        public void setTaskTracker(ReadOnlyTaskTracker newData) {
+
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyTaskTracker getAddressBook() {
+        public ReadOnlyTaskTracker getTaskTracker() {
+
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,8 +188,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyTaskTracker getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTaskTracker getTaskTracker() {
+            return new TaskTracker();
+
         }
     }
 

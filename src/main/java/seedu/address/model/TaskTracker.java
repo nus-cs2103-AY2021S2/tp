@@ -12,7 +12,9 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyTaskTracker {
+
+public class TaskTracker implements ReadOnlyTaskTracker {
+
 
     private final UniquePersonList persons;
 
@@ -27,12 +29,15 @@ public class AddressBook implements ReadOnlyTaskTracker {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public TaskTracker() {
+    }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an TaskTracker using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyTaskTracker toBeCopied) {
+
+
+    public TaskTracker(ReadOnlyTaskTracker toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,7 +53,7 @@ public class AddressBook implements ReadOnlyTaskTracker {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TaskTracker} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskTracker newData) {
         requireNonNull(newData);
@@ -86,7 +91,7 @@ public class AddressBook implements ReadOnlyTaskTracker {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code TaskTracker}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
@@ -109,8 +114,8 @@ public class AddressBook implements ReadOnlyTaskTracker {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof TaskTracker // instanceof handles nulls
+                && persons.equals(((TaskTracker) other).persons));
     }
 
     @Override
