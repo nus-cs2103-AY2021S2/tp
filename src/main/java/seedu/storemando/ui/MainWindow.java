@@ -1,5 +1,9 @@
 package seedu.storemando.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -141,10 +145,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
+        try {
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(new URI(HelpWindow.USERGUIDE_URL));
+            }
+        } catch (URISyntaxException | IOException ie) {
+            if (!helpWindow.isShowing()) {
+                helpWindow.show();
+            } else {
+                helpWindow.focus();
+            }
         }
     }
 
