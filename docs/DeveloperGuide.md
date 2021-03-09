@@ -81,8 +81,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to handle 500 modules without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should be backward compatible with data produced by earlier versions of the system.
+5.  The system should work on both 32-bit and 64-bit environments
+6.  The system should respond within two seconds.
+7.  The system should be usable by a novice who has never attended a single semester in NUS.
+8.  The product should not be required to share data between users.
+9.  The product should not be able to detect if the registered module is valid or available in NUS.
+10.  The product will not support any other modules other than for NUS.
 
 *{More to be added}*
 
