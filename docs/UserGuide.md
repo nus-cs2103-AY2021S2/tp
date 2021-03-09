@@ -34,7 +34,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`clear`** : Deletes all contacts.
    
-   * **`blacklist`** `3` : Blacklists the 3rd contact shown in the current list.
+   * **`blist`** `2` : Blacklists the 2nd contact shown in the current list.
    
    * **`name`** `3 [n/John]` : Adds an optional nickname to the 3rd contact.
    
@@ -154,19 +154,20 @@ Examples:
 
 ### Adding tags to contacts : `tag`
 
-Labels a user based on his or her attributes.
+Labels a contact based on his or her attributes.
 
 Format: tag n/NAME t/TAG
 
 ### Assign additional nicknames to contacts : `name`
 
-Adds an optional nickname to the user.
+Adds an optional nickname to the contact.
 
 Format: name INDEX [n/NAME]
 
 ### Blacklist contacts : `blist`
 
-Blocks certain users. While blocked, they do not receive any emails.
+Blocks specific contacts, to specify that they do not want to be contacted.
+If the contact is already blacklisted, they will be un-blacklisted. 
 
 Format: blist INDEX
 
@@ -249,7 +250,7 @@ Action | Format, Examples
 **Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
 **Name** | `name INDEX [n/NAME]`<br> e.g., `name 3 [n/Jo]`
-**Blist** | `blist INDEX`<br> e.g., `blist 3`
+**Blacklist** | `blist INDEX`<br> e.g., `blist 2`
 **Filter** | `filter [keyword1,keyword2,...]`<br> e.g., `filter[Computing, Student]` 
 **List** | `list`
 **Help** | `help`
