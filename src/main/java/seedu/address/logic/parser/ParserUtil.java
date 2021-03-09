@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -21,6 +24,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final int DEFAULT_CAPACITY = 0;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -128,5 +132,94 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+
+    /**
+     * Parses a {@code String booker} into a {@code String trimmedBooker}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static String parseBooker(String booker) {
+        requireNonNull(booker);
+        String trimmedBooker = booker.trim();
+        return trimmedBooker;
+    }
+
+
+    /**
+     * Parses a {@code String description} into a {@code String description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static String parseDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return trimmedDescription;
+    }
+
+
+    /**
+     * Parses a {@code String bookingStart} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static LocalDateTime parseBookingStart(String bookingStart) {
+        requireNonNull(bookingStart);
+        String trimmedBookingStart = bookingStart.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingStart, formatter);
+        return dateTime;
+    }
+
+
+    /**
+     * Parses a {@code String bookingStart} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static LocalDateTime parseBookingEnd(String bookingEnd) {
+        requireNonNull(bookingEnd);
+        String trimmedBookingEnd = bookingEnd.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingEnd, formatter);
+        return dateTime;
+    }
+
+
+    /**
+     * Parses a {@code String venue} into a {@code Venue}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Venue parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        return new Venue(trimmedVenue, DEFAULT_CAPACITY);
+    }
+
+    /**
+     * Parses a {@code String capacity} into an integer.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws NumberFormatException if the given {@code capacity} is invalid.
+     */
+    public static int parseCapacity(String capacity) {
+        requireNonNull(capacity);
+        String trimmedCapacity = capacity.trim();
+        try {
+            return Integer.parseInt(trimmedCapacity);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException();
+        }
+    }
+
+    /**
+     * Parses a {@code String name}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseVenueName(String name) {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        return trimmedName;
     }
 }

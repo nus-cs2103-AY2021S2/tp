@@ -76,9 +76,26 @@ public class UniqueVenueList implements Iterable<Venue> {
      */
     public void remove(Venue toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!containsName(internalList, toRemove)) {
             throw new VenueNotFoundException();
         }
+        for (int i = 0; i < internalList.size(); i++) {
+            if (!(internalList.get(i).getName().equals(toRemove.getName()))) {
+                continue;
+            }
+            internalList.remove(i);
+        }
+    }
+
+    /**
+     * Returns true if the list contains a venue with an equivalent name as the given venue.
+     *
+     * @param list of venues in the system.
+     * @param venue to be checked against the list.
+     * @return true if the name of the given venue is found in the list.
+     */
+    public boolean containsName(ObservableList<Venue> list, Venue venue) {
+        return list.stream().anyMatch(x -> x.getName().equals(venue.getName()));
     }
 
     public void setVenues(UniqueVenueList replacement) {
