@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Title {
 
-    // todo change message constraints
+    // todo change message constraints\
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Modules must contain alphanumeric letters followed by numbers, and it should not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -25,14 +25,14 @@ public class Title {
      */
     public Title(String modTitle) {
         requireNonNull(modTitle);
-        checkArgument(isValidName(modTitle), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTitle(modTitle), MESSAGE_CONSTRAINTS);
         this.modTitle = modTitle;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid module title.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidTitle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,7 +45,7 @@ public class Title {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Module // instanceof handles nulls
+                || (other instanceof Title // instanceof handles nulls
                 && modTitle.equals(((Title) other).modTitle)); // state check
     }
 
