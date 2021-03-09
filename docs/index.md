@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: NUS Module Planner
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
