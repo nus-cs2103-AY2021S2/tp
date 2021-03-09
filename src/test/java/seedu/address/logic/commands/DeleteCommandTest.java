@@ -66,13 +66,13 @@ public class DeleteCommandTest {
     public void execute_invalidNameFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person person2ToDelete = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person person2ToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(model.getAddressBook().getPersonList().contains(person2ToDelete));
 
-        DeleteCommand deleteCommand = new DeleteCommand(person2ToDelete.getName().toString());
+        DeleteCommand deleteCommand = new DeleteCommand("WHATever it is");
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_NAME_IN_BOOK);
     }
 
     @Test
