@@ -2,16 +2,27 @@ package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents a Meeting's description in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
+ */
 public class Description {
     public final String value;
 
+    /**
+     * Constructs an {@code Description}
+     * @param desc A valid description
+     */
     public Description(String desc) {
         requireNonNull(desc);
         //checkArguments
         value = desc;
     }
 
-    public static boolean isValidDescription() {
+    /**
+     * Returns if a given string is a valid description
+     */
+    public static boolean isValidDescription(String desc) {
         return true;
     }
 

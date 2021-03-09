@@ -1,35 +1,43 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Client;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
+import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a Meeting in the address book.
+ * Guarantees: identity fields are present and not null, data fields are validated, immutable.
+ */
 public class Meeting {
+    // Identity fields
     private Client client;
     private LocalDateTime dateTime;
-    private Address address;
 
+    // Data fields
+    private Address address;
     private Description description;
     private Set<Tag> tags = new HashSet<>();
-
     private boolean isDone;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Meeting(Client client, LocalDateTime dateTime, Address address, Description description, Set<Tag> tags) {
         requireAllNonNull(client, dateTime, address, description, tags);
         this.client = client;
         this.dateTime = dateTime;
-        this.address = address;
 
+        this.address = address;
         this.description = description;
         this.tags = tags;
-
         this.isDone = false;
     }
 
@@ -49,23 +57,41 @@ public class Meeting {
         return description;
     }
 
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
     public Set<Tag> getTags() {
-        return tags;
+        return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Update the address where the meeting takes place.
+     * @param newAddress A validated new address.
+     */
     public void relocate(Address newAddress) {
         this.address = newAddress;
     }
 
+    /**
+     * Update the date and time when the meeting takes place.
+     * @param newDateTime A validated date and time
+     */
     public void reschedule(LocalDateTime newDateTime) {
         this.dateTime = newDateTime;
     }
 
+    /**
+     * Mark the meeting as done.
+     */
     public void complete() {
         this.isDone = true;
     }
 
-    public boolean isSameMeeting(Meeting otherMeeting) {
+    /**
+     * Returns true if both meetings have the same date and time.
+     */
+    public boolean isInConflict(Meeting otherMeeting) {
         if (otherMeeting == this) {
             return true;
         }
@@ -74,13 +100,17 @@ public class Meeting {
                 && otherMeeting.getDateTime().isEqual(this.dateTime);
     }
 
+    /**
+     * Returns true if both meetings have the same identity and date fields.
+     * This defines a notion of equality between two meetings.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        if(!(other instanceof Meeting)) {
+        if (!(other instanceof Meeting)) {
             return false;
         }
 
@@ -94,6 +124,7 @@ public class Meeting {
 
     @Override
     public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(client, dateTime, address, description, tags, isDone);
     }
 
@@ -108,7 +139,7 @@ public class Meeting {
                 .append("; Description: ")
                 .append(description.toString());
 
-        if(!tags.isEmpty()) {
+        if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
