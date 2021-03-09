@@ -24,12 +24,14 @@ public class Person {
     // Data fields
     private final Address address;
     private final ModeOfContact modeOfContact;
+    private final Blacklist blacklist;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, ModeOfContact modeOfContact, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  ModeOfContact modeOfContact, Blacklist blacklist, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, modeOfContact, tags);
         this.name = name;
         this.phone = phone;
@@ -37,6 +39,7 @@ public class Person {
         this.address = address;
         this.remark = new Remark("No remark");
         this.modeOfContact = modeOfContact;
+        this.blacklist = blacklist;
         this.tags.addAll(tags);
     }
 
@@ -45,7 +48,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
-                  ModeOfContact modeOfContact, Set<Tag> tags) {
+                  ModeOfContact modeOfContact, Blacklist blacklist, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, remark, tags);
         this.name = name;
         this.phone = phone;
@@ -53,6 +56,7 @@ public class Person {
         this.address = address;
         this.remark = remark;
         this.modeOfContact = modeOfContact;
+        this.blacklist = blacklist;
         this.tags.addAll(tags);
     }
 
@@ -79,6 +83,10 @@ public class Person {
 
     public ModeOfContact getModeOfContact() {
         return modeOfContact;
+    }
+
+    public Blacklist getBlacklist() {
+        return this.blacklist;
     }
 
     /**
@@ -123,6 +131,7 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getRemark().equals(getRemark())
                 && otherPerson.getModeOfContact().equals(getModeOfContact())
+                && otherPerson.getBlacklist().equals(getBlacklist())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -145,7 +154,9 @@ public class Person {
                 .append("; Remark: ")
                 .append(getRemark())
                 .append("; Mode Of Contact: ")
-                .append(getModeOfContact());
+                .append(getModeOfContact())
+                .append("; Blacklist: ")
+                .append(getBlacklist());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

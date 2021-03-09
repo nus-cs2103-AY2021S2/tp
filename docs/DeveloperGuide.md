@@ -339,9 +339,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list contacts
-2. AddressBook shows a list of contacts
-3. User requests to blacklist a specific contact in the list
-4. AddressBook blacklists the contact
+2. SpamEZ shows a list of contacts
+3. User requests to change the blacklist status of a specific contact 
+   in the list
+4. SpamEZ changes the blacklist status of the contact
 
    Use case ends.
 
@@ -353,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SpamEZ shows an error message.
 
       Use case resumes at step 2.
 
