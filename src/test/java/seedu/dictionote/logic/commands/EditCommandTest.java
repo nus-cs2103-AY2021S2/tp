@@ -44,7 +44,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), 
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), model.getNoteBook());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedContact);
 
@@ -66,7 +66,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), 
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), model.getNoteBook());
         expectedModel.setPerson(lastContact, editedContact);
 
@@ -97,7 +97,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), 
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), model.getNoteBook());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedContact);
 
