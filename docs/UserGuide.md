@@ -81,22 +81,24 @@ Format: `list [l/LOCATION]`
 
 * You can view all items in the inventory by typing 'list' without specifying location.
 
-### Updating an item's details : `update`
+### Editing an item's details : `edit`
 
-Updating an existing item in the inventory.
+Editing an existing item in the inventory.
 
-Format: `update INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
+Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
 
-* Updates the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* Existing values will be updated to the input values **only if input values differ from the existing values**.
 * When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative.
 * You can remove all the items’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 q/10 e/2020-10-11` Edits the quantity and quantity of the 1st item to be `10` and `2020-10-11` respectively.
-*  `edit 2 n/Chocolate Bread t/` Edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags.
+*  `edit 1 q/10 e/2020-10-11` Edits the quantity of the 1st item to be `10` and expiry date of the 1st item to be `2020-10-11` 
+   if the existing quantity and expiry date of the 1st item are both not `10` and `2020-10-11` respectively.
+*  `edit 2 n/Chocolate Bread t/` Edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if 
+   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
 
 ### Locating items by name: `find`
 
@@ -201,8 +203,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/amanda's favourite`
+**Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
-**Update** | `update INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
+**Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
 **List** | `list [l/LOCATION]`<br> e.g., `list l/fridge`
 **Find** | `find KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch`

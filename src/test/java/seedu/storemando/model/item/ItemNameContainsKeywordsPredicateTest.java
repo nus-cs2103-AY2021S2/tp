@@ -88,10 +88,10 @@ public class ItemNameContainsKeywordsPredicateTest {
         predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Carol"), false);
         assertFalse(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
 
-        // Keywords match quantity, expirydate and location, but does not match name
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("12345", "2021-03-18", "Main", "Street"),
+        // Keywords match quantity, expiryDate and location, but does not match name
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("12345", "2020-10-10", "Main", "Street"),
             false);
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").withQuantity("12345")
-            .withExpiryDate("2021-03-18").withLocation("Main Street").build()));
+            .withExpiryDate("2020-10-10").withLocation("Main Street").build()));
     }
 }

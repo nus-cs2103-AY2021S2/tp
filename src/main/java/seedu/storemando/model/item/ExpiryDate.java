@@ -8,12 +8,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents an Item's expiry in the inventory manager.
+ * Represents an Item's expiry date in the inventory manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidExpiryDate(String)}
  */
 public class ExpiryDate {
 
     public static final String NO_EXPIRY_DATE = "No Expiry Date";
+    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
     private static final String SPECIAL_CHARACTERS = "-";
     public static final String MESSAGE_CONSTRAINTS = "Expiry dates should be of the format YYYY-MM-DD "
         + "and adhere to the following constraints:\n"
@@ -32,6 +33,8 @@ public class ExpiryDate {
 
     public final String value;
     public final LocalDate expiryDate;
+
+
 
     /**
      * Constructs an {@code ExpiryDate}.

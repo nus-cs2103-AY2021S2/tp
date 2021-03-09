@@ -23,13 +23,13 @@ import seedu.storemando.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_QUANTITY = "+651234";
-    private static final String INVALID_EXPIRYDATE = "20993-212-01";
+    private static final String INVALID_EXPIRYDATE = "12-12-11";
     private static final String INVALID_LOCATION = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_QUANTITY = "123456";
-    private static final String VALID_EXPIRYDATE = "2021-03-12";
+    private static final String VALID_EXPIRYDATE = "2020-10-10";
     private static final String VALID_LOCATION = "123 Main Street #0505";
 
     private static final String VALID_TAG_1 = "friend";

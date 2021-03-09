@@ -44,13 +44,16 @@ public class TypicalItems {
 
     // Manually added
     public static final Item HOON = new ItemBuilder().withName("Hoon Meier").withQuantity("8482424")
-        .withExpiryDate("2021-05-05").withLocation("little india").build();
+        .withExpiryDate("2010-10-10").withLocation("little india").build();
     public static final Item IDA = new ItemBuilder().withName("Ida Mueller").withQuantity("8482131")
-        .withExpiryDate("2021-05-05").withLocation("chicago ave").build();
+        .withExpiryDate("2019-10-08").withLocation("chicago ave").build();
+
+
 
     // Manually added - Item's details found in {@code CommandTestUtil}
-    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_AMY).withQuantity(VALID_QUANTITY_AMY)
-        .withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_AMY)
+        .withQuantity(VALID_QUANTITY_AMY).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
+        .withTags(VALID_TAG_FRIEND).build();
     public static final Item BOB = new ItemBuilder().withName(VALID_NAME_BOB).withQuantity(VALID_QUANTITY_BOB)
         .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND,
             VALID_TAG_FRIEND)

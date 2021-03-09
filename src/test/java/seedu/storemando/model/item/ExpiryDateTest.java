@@ -22,7 +22,7 @@ public class ExpiryDateTest {
     @Test
     public void isValidExpiryDate() {
         // null expirydate
-        assertThrows(NullPointerException.class, () -> ExpiryDate.isValidExpiryDate(null));
+        assertFalse(ExpiryDate.isValidExpiryDate(null));
 
         // blank expirydate
         assertFalse(ExpiryDate.isValidExpiryDate("")); // empty string
@@ -46,12 +46,15 @@ public class ExpiryDateTest {
         assertFalse(ExpiryDate.isValidExpiryDate("20a1-10-10")); // alphabets in YYYY
         assertFalse(ExpiryDate.isValidExpiryDate("2020-02-30")); // Invalid expiryDate for february
         assertFalse(ExpiryDate.isValidExpiryDate("20-20-10-10")); // '-' symbol in YYYY
-        assertFalse(ExpiryDate.isValidExpiryDate("10-02-2019")); // expiry expiryDate in DD-MM-YYYY format
+        assertFalse(ExpiryDate.isValidExpiryDate("10-02-2019")); // expiryDate not in YYYY-MM-DD format
         assertFalse(ExpiryDate.isValidExpiryDate("@2010-07-10")); // expiryDate starts with symbol
 
-        // valid expirydate
+
+        // valid expiryDate
         assertTrue(ExpiryDate.isValidExpiryDate("2020-10-10"));
         assertTrue(ExpiryDate.isValidExpiryDate("2020-01-01"));
         assertTrue(ExpiryDate.isValidExpiryDate("0001-10-10"));
+        assertTrue(ExpiryDate.isValidExpiryDate("0000-10-10"));
+
     }
 }

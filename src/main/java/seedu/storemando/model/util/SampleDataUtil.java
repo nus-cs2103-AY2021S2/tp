@@ -19,24 +19,24 @@ import seedu.storemando.model.tag.Tag;
 public class SampleDataUtil {
     public static Item[] getSampleItems() {
         return new Item[]{
-            new Item(new ItemName("Koko Krunch"), new Quantity("1"), new ExpiryDate("2021-03-30"),
-                new Location("Kitchen Cabinet"),
-                getTagSet("Favourite")),
-            new Item(new ItemName("Milk"), new Quantity("1"), new ExpiryDate("2021-03-15"),
-                new Location("Refrigerator"),
-                getTagSet("Cold")),
-            new Item(new ItemName("Tomatoes"), new Quantity("10"),
-                new ExpiryDate("2021-03-10"), new Location("Refrigerator"),
-                getTagSet("Expiring")),
-            new Item(new ItemName("Biscuit"), new Quantity("10"), new ExpiryDate("2021-10-10"),
-                new Location("Kitchen Table"),
-                getTagSet("Everyone's")),
-            new Item(new ItemName("Kinder Bueno"), new Quantity("2"), new ExpiryDate("2021-03-30"),
-                new Location("Freezer"),
-                getTagSet("Favourite")),
-            new Item(new ItemName("Oil"), new Quantity("1"), new ExpiryDate("2021-12-12"),
-                new Location("Kitchen"),
-                getTagSet("Cooking"))
+            new Item(new ItemName("Cooking Oil"), new Quantity("10"), new ExpiryDate("2020-10-10"),
+                new Location("Blk 30 Geylang Street 29, #06-40"),
+                getTagSet("friends")),
+            new Item(new ItemName("Milo"), new Quantity("9"), new ExpiryDate("2020-10-10"),
+                new Location("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                getTagSet("colleagues", "friends")),
+            new Item(new ItemName("Horlicks"), new Quantity("1"),
+                new ExpiryDate("2020-09-10"), new Location("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                getTagSet("neighbours")),
+            new Item(new ItemName("Chilli Sauce"), new Quantity("2"), new ExpiryDate("2023-10-10"),
+                new Location("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                getTagSet("favourite")),
+            new Item(new ItemName("French Fries"), new Quantity("1"), new ExpiryDate("2020-10-10"),
+                new Location("Blk 47 Tampines Street 20, #17-35"),
+                getTagSet("favourite")),
+            new Item(new ItemName("Olive Oil"), new Quantity("3"), new ExpiryDate("2021-10-10"),
+                new Location("Room"),
+                getTagSet("Need"))
         };
     }
 

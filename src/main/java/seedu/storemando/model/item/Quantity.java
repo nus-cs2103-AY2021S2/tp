@@ -12,8 +12,9 @@ public class Quantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Quantity numbers should only contain numbers, and it should be at least 1";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+        "Quantity numbers should only contain numbers, and it should be a positive integer greater than 0";
+    public static final String VALIDATION_REGEX = "\\d+";
+
     public final String value;
 
     /**
@@ -31,10 +32,7 @@ public class Quantity {
      * Returns true if a given string is a valid quantity number.
      */
     public static boolean isValidQuantity(String test) {
-        if (test.matches(VALIDATION_REGEX) && Long.parseLong(test) > 0) {
-            return true;
-        }
-        return false;
+        return test.matches(VALIDATION_REGEX) && Long.valueOf(test) > 0;
     }
 
     @Override

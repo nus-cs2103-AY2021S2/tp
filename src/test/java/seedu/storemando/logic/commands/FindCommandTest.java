@@ -68,8 +68,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleItemsFound() {
         String expectedMessage = String.format(MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW, 3);
-        ItemNameContainsKeywordsPredicate predicate = preparePredicate("Powder Oil Tea");
-
+        ItemNameContainsKeywordsPredicate predicate = preparePredicate("Oil Powder Tea");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
