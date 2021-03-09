@@ -11,13 +11,13 @@ import seedu.address.model.name.Name;
 public class Client {
     private final Name clientName;
     private final Contact clientContact;
-    private final String clientEmail;
+    private final Email clientEmail;
     private final Integer clientAskingPrice;
 
     /**
      * Constructs a {@code Client} with all information.
      */
-    public Client(Name clientName, Contact clientContact, String clientEmail, Integer clientAskingPrice) {
+    public Client(Name clientName, Contact clientContact, Email clientEmail, Integer clientAskingPrice) {
         this.clientName = clientName;
         this.clientContact = clientContact;
         this.clientEmail = clientEmail;
@@ -32,7 +32,7 @@ public class Client {
         return clientContact;
     }
 
-    public String getClientEmail() {
+    public Email getClientEmail() {
         return clientEmail;
     }
 
