@@ -11,7 +11,6 @@ import seedu.budgetbaby.logic.commands.Command;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.AddressBookParser;
-import seedu.budgetbaby.logic.parser.BudgetBabyParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.Model;
 import seedu.budgetbaby.model.ReadOnlyAddressBook;
@@ -69,7 +68,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getBudgetBabyFilePath();
+        return model.getAddressBookFilePath();
     }
 
     @Override

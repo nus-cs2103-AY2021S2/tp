@@ -38,14 +38,14 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' budget tracker file path.
+     * Returns the user prefs' address book file path.
      */
-    Path getBudgetBabyFilePath();
+    Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' budget tracker file path.
+     * Sets the user prefs' address book file path.
      */
-    void setBudgetBabyFilePath(Path budgetBabyFilePath);
+    void setAddressBookFilePath(Path addressBookFilePath);
 
 
     //=========== AddressBook ================================================================================

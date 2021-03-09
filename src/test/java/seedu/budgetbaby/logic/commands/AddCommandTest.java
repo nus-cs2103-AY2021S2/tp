@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getBudgetBabyFilePath() {
+        public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setBudgetBabyFilePath(Path budgetBabyFilePath) {
+        public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
