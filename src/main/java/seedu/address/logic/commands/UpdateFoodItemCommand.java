@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -14,7 +15,17 @@ public class UpdateFoodItemCommand extends Command {
 
     public static final String COMMAND_WORD = "foodedit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the certain food provided.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the certain food provided.\n"
+            + "Existing values will be overwritten by the input values and at least 1 value has to be different from" +
+            " default.\n"
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "FOODNAME] "
+            + "[" + PREFIX_CARBOS + "CARBO_IN_DOUBLE_FORMAT] "
+            + "[" + PREFIX_FATS + "FAT_IN_DOUBLE_FORMAT] "
+            + "[" + PREFIX_PROTEINS + "PROTEIN_IN_DOUBLE_FORMAT] \n"
+            + "Example: " + COMMAND_WORD
+            + PREFIX_NAME + "tomato "
+            + PREFIX_FATS + "10.5";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Successfully updated food item";
     public static final String MESSAGE_NOT_EDITED = "At least one field such as its carbos, fats or proteins " +

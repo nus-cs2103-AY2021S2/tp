@@ -89,6 +89,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Deletes a food item in the food list by its name.
+     *
+     * @param index food index
+     */
+    public void deleteFoodItem(int index) {
+        foodList.deleteFoodItem(index);
+    }
+
+    /**
      * Updates a food item in the food list
      * The food item must exist in the food list.
      * @param food updated food item
@@ -158,4 +167,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+
 }

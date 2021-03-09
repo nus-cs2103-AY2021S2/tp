@@ -76,6 +76,12 @@ public interface Model {
     void updateFoodItem(Food food);
 
     /**
+     * Deletes food in food item list.
+     * @param index food index to be deleted
+     */
+    void deleteFoodItem(int index);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

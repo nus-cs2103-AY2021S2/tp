@@ -44,8 +44,6 @@ public class UniqueFoodList {
                 food.updateCarbos(foodItem.getCarbos());
                 food.updateFats(foodItem.getFats());
                 food.updateProteins(foodItem.getProteins());
-//                String result = "Success updating " + food.getName() + " to food list.";
-//                return result;
                 return;
             }
         }
@@ -64,5 +62,14 @@ public class UniqueFoodList {
             }
         }
         return false;
+    }
+
+    /**
+     * Deletes a food item from the food list based on the food name.
+     *
+     * @param index food item index
+     */
+    public void deleteFoodItem(int index) {
+        this.foodList.remove(index);
     }
 }

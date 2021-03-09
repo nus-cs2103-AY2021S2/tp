@@ -165,4 +165,8 @@ public class ModelManager implements Model {
         addressBook.updateFoodItem(food);
     }
 
+    @Override
+    public void deleteFoodItem(int index) {
+        addressBook.deleteFoodItem(index);
+    }
 }
