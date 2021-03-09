@@ -14,7 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "App-Ointment.json");
+    private Path addressBookFilePath = Paths.get("data" , "PatientAddressBook.json");
+    private Path appointmentScheduleFilePath = Paths.get("data", "AppointmentSchedule.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -49,6 +50,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
+    }
+
+    public Path getAppointmentScheduleFilePath() {
+        return appointmentScheduleFilePath;
     }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
