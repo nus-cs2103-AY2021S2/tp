@@ -2,6 +2,7 @@ package seedu.us.among.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -64,8 +65,15 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing help page about the application.");
-        getRoot().show();
-        getRoot().centerOnScreen();
+        if (!Platform.isFxApplicationThread()) {
+            Platform.runLater(() -> {
+                getRoot().show();
+                getRoot().centerOnScreen();
+            });
+        } else {
+            getRoot().show();
+            getRoot().centerOnScreen();
+        }
     }
 
     /**
@@ -79,14 +87,22 @@ public class HelpWindow extends UiPart<Stage> {
      * Hides the help window.
      */
     public void hide() {
-        getRoot().hide();
+        if (!Platform.isFxApplicationThread()) {
+            Platform.runLater(() -> getRoot().hide());
+        } else {
+            getRoot().hide();
+        }
     }
 
     /**
      * Focuses on the help window.
      */
     public void focus() {
-        getRoot().requestFocus();
+        if (!Platform.isFxApplicationThread()) {
+            Platform.runLater(() -> getRoot().requestFocus());
+        } else {
+            getRoot().requestFocus();
+        }
     }
 
     /**
