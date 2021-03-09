@@ -1,12 +1,16 @@
 package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Meeting's description in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
+    public static final String MESSAGE_CONSTRAINTS = "Description should be under 1000 characters.\n";
+    private static final int CHAR_LIMIT = 1000;
+
     public final String value;
 
     /**
@@ -15,7 +19,7 @@ public class Description {
      */
     public Description(String desc) {
         requireNonNull(desc);
-        //checkArguments
+        checkArgument(isValidDescription(desc), MESSAGE_CONSTRAINTS);
         value = desc;
     }
 
@@ -23,7 +27,7 @@ public class Description {
      * Returns if a given string is a valid description
      */
     public static boolean isValidDescription(String desc) {
-        return true;
+        return desc.length() <= CHAR_LIMIT;
     }
 
     @Override
