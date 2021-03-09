@@ -70,7 +70,8 @@ public class Item {
         }
 
         return otherItem != null
-            && otherItem.getItemName().equals(getItemName());
+            && otherItem.getItemName().equals(this.getItemName())
+            && otherItem.getLocation().equals(this.getLocation());
     }
 
     /**
@@ -98,7 +99,7 @@ public class Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, expiryDate, location, tags);
+        return Objects.hash(name, quantity, location, expiryDate, tags);
     }
 
     @Override
@@ -107,10 +108,12 @@ public class Item {
         builder.append(getItemName())
             .append("; Quantity: ")
             .append(getQuantity())
-            .append("; ExpiryDate: ")
-            .append(getExpiryDate())
             .append("; Location: ")
             .append(getLocation());
+        if (getExpiryDate().getExpiryDate() != null) {
+            builder.append("; ExpiryDate: ")
+                .append(getExpiryDate().toFormattedString());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

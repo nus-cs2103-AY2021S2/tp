@@ -6,6 +6,7 @@ import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.storemando.model.item.ExpiryDate.NO_EXPIRY_DATE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -35,14 +36,15 @@ public class AddCommandParser implements Parser<AddCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY, PREFIX_EXPIRYDATE, PREFIX_LOCATION,
                 PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_EXPIRYDATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_QUANTITY)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         ItemName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
-        ExpiryDate expiryDate = ParserUtil.parseExpiryDate(argMultimap.getValue(PREFIX_EXPIRYDATE).get());
+        ExpiryDate expiryDate = ParserUtil.parseExpiryDate(argMultimap.getValue(PREFIX_EXPIRYDATE)
+            .orElse(NO_EXPIRY_DATE));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

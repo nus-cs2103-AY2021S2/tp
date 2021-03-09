@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -12,6 +13,7 @@ import java.time.format.DateTimeParseException;
  */
 public class ExpiryDate {
 
+    public static final String NO_EXPIRY_DATE = "No Expiry Date";
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
     private static final String SPECIAL_CHARACTERS = "-";
     public static final String MESSAGE_CONSTRAINTS = "Expiry dates should be of the format YYYY-MM-DD "
@@ -27,10 +29,11 @@ public class ExpiryDate {
         + "    - be within the range [01, 12]\n"
         + "4. DD must:\n"
         + "    - be exactly 2 digits long\n"
-        + "    - be a valid date\n";
+        + "    - be a valid expiry date\n";
 
+    public final String value;
+    public final LocalDate expiryDate;
 
-    public final LocalDate value;
 
     /**
      * Constructs an {@code ExpiryDate}.
@@ -40,7 +43,16 @@ public class ExpiryDate {
     public ExpiryDate(String expiryDate) {
         requireNonNull(expiryDate);
         checkArgument(isValidExpiryDate(expiryDate), MESSAGE_CONSTRAINTS);
-        value = LocalDate.parse(expiryDate);
+        if (expiryDate.equals(NO_EXPIRY_DATE)) {
+            this.expiryDate = null;
+        } else {
+            this.expiryDate = LocalDate.parse(expiryDate);
+        }
+        value = expiryDate;
+    }
+
+    public LocalDate getExpiryDate() {
+        return this.expiryDate;
     }
 
     /**
@@ -48,19 +60,23 @@ public class ExpiryDate {
      */
     public static boolean isValidExpiryDate(String test) {
         try {
-            if (!test.matches(VALIDATION_REGEX)) {
-                return false;
+            if (test.equals(NO_EXPIRY_DATE)) {
+                return true;
             }
             LocalDate.parse(test);
             return true;
-        } catch (DateTimeParseException | NullPointerException ex) {
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
 
     @Override
     public String toString() {
-        return value.toString();
+        return value;
+    }
+
+    public String toFormattedString() {
+        return expiryDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     @Override

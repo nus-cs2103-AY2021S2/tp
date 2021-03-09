@@ -59,8 +59,14 @@ Adds an item to the inventory.
 
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
 An item can have any number of tags (including 0)
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+Expiry date of an item is optional.
+
 </div>
 
 Examples:

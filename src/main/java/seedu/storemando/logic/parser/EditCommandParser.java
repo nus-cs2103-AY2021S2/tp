@@ -7,6 +7,7 @@ import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.storemando.model.item.ExpiryDate.NO_EXPIRY_DATE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -51,7 +52,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_EXPIRYDATE).isPresent()) {
             editItemDescriptor.setExpiryDate(ParserUtil.parseExpiryDate(
-                argMultimap.getValue(PREFIX_EXPIRYDATE).get()));
+                argMultimap.getValue(PREFIX_EXPIRYDATE).orElse(NO_EXPIRY_DATE)));
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editItemDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
