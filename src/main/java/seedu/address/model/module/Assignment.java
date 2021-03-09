@@ -1,16 +1,16 @@
 package seedu.address.model.module;
 
-import java.time.LocalDateTime;
-import java.util.Objects;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Assignment {
     // todo change message constraints
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */

@@ -9,19 +9,41 @@ public class AssignmentList {
         this.assignments = new ArrayList<>();
     }
 
+    /**
+     * Get the assignment at the index from the list.
+     *
+     * @param index Index of the assignment.
+     * @return Assignment at index.
+     */
     public Assignment get(int index) {
         return assignments.get(index);
     }
 
+    /**
+     * Adds an assignment to the list.
+     *
+     * @param assignment Assignment to be added.
+     */
     public void add(Assignment assignment) {
         assignments.add(assignment);
     }
 
+    /**
+     * Removes the assignment at the index from the list.
+     *
+     * @param index Index of assignment to be removed.
+     * @return Removed assignment.
+     */
     public Assignment delete(int index) {
         Assignment deleted = assignments.remove(index);
         return deleted;
     }
 
+    /**
+     * Gets the size of the list.
+     *
+     * @return List size.
+     */
     public int size() {
         return assignments.size();
     }
