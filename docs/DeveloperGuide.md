@@ -235,13 +235,16 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-* have a hard time to remember the concepts from different fields of study.
-* prefer desktop apps over other types
+* student revising for examinations
+* has a hard time remembering concepts from different fields of study.
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage flashcards faster than a typical mouse/GUI driven app
+**Value proposition**: Offers productive study sessions to students 
+via improved accessibility and organisation of flashcards, as well as 
+faster management of flashcards compared to a typical mouse/GUI driven app
 
 
 ### User stories
@@ -251,9 +254,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                     |I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | student                                    | add a new card                 |                                                                     |
-| `* * *`  | long-time user                             | delete an old card             | remove some notes that I am no longer needed                                 |
-| `* * *`  | student                                    | view all my notes   | easily refer back to study               |                                                |
+| `* * *`  | student                                    | add a new card                 | take down important concepts for future reference                                                                    |
+| `* * *`  | long-time user                             | delete an old card             | remove some notes that I no longer need                               |
+| `* * *`  | student                                    | view all my notes   | easily refer to all my study materials               |                                                |
 | `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly
 
 *{More to be added}*
@@ -262,41 +265,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `FlashBack` and the **Actor** is the `user`, unless specified otherwise) <br /><br />
-**Use case: Remove a flash card** <br /> <br />
-MSS
-1. FlashBack shows a list of flash card
-2. User requests to delete flash card in the list according to the card index
-3. FlashBack deletes the flash card <br />
-Use case ends.
+**Use case: Add a flash card**
+
+**MSS**
+
+1. User requests to add a new flash card into the list
+2. FlashBack adds the new flash card
+   
+   Use case ends.
 
 **Extensions**
-* 2a. The list is empty. <br />
-Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. FlashBack shows an error message. <br />
-Use case resumes at step 1.
+* 1a. The given fields are empty.
+    * 1a1. FlashBack shows an error message.
+      
+      Use case ends.
 
-**Use case: Add a flash card** <br /> <br />
-MSS
-1. User requests to add flash card into the list
-2. FlashBack adds the new flash card <br />
-Use case ends.
+**Use case: Remove a flash card**
+
+**MSS**
+
+1. FlashBack shows a list of flash cards
+2. User requests to delete a specific flash card from the list
+3. FlashBack deletes the specified flash card
+
+    Use case ends.
 
 **Extensions**
-* 2a. The given field is empty.
-    * 2a1. FlashBack shows an error message. <br />
-Use case ends.
+* 1a. The list is empty.
 
-(For all use cases below, the **System** is the `FlashBack` and the **Actor** is the `user`, unless specified otherwise)
-
+    Use case ends.
+  
+* 2a. The given index is invalid.
+    * 2a1. FlashBack shows an error message.
+    
+        Use case resumes at step 1.
+      
 **Use case: View a flash card**
 
 **MSS**
 
-1. User requests to view a card
+1. FlashBack shows the list of flash cards
+1. User requests to view a specific flash card on the list
 1. FlashBack shows the requested card
-
+   
     Use case ends.
+
+**Extensions**
+* 1a. The list is empty
+  
+  Use case ends
+  
+* 2a. The given index is invalid
+    * 2a1. FlashBack shows an error message
+      
+      Use case resumes at step 1
 
 **Use case: List all flash cards**
 
@@ -304,7 +326,7 @@ Use case ends.
 
 1. User requests to list all flash cards
 1. FlashBack shows a list of flash cards
-    
+   
     Use case ends.
 
 ### Non-Functional Requirements
@@ -315,7 +337,7 @@ Use case ends.
 
 *{More to be added}*
 
+### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flash card**: A card that contains study materials with its topic name
-
 --------------------------------------------------------------------------------------------------------------------
