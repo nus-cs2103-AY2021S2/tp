@@ -1,9 +1,7 @@
-package seedu.address.model.person;
+package seedu.address.model.meeting;
 
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import seedu.address.model.meeting.Meeting;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
