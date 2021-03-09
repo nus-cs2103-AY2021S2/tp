@@ -25,6 +25,7 @@ public class DeleteVenueCommandParser implements Parser<DeleteVenueCommand> {
         Venue venue;
         try {
             venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
+            System.out.println(venue);
             return new DeleteVenueCommand(venue);
         } catch (ParseException pe) {
             throw new ParseException(

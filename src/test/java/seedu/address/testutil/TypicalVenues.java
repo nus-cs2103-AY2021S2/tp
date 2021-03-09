@@ -8,7 +8,7 @@ import seedu.address.model.booking.Venue;
 public class TypicalVenues {
 
     public static final Venue VENUE1 = new Venue("Venue1", 10);
-    public static final Venue VENUE2 = new Venue("Venue1", 11);
+    public static final Venue VENUE2 = new Venue("Venue1", 20);
     public static final Venue VENUE3 = new Venue("Venue3", 10);
     public static final Venue VENUE4 = new Venue("Venue4", 10);
 

@@ -115,6 +115,18 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasVenue(Venue venue) {
+        requireNonNull(venue);
+        return addressBook.hasVenue(venue);
+    }
+
+    @Override
+    public void addVenue(Venue venue) {
+        addressBook.addVenue(venue);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

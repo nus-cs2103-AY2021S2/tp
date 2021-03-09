@@ -136,4 +136,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
+    /**
+     * Returns true if a venue with the same identity as {@code venue} exists in the system.
+     */
+    public boolean hasVenue(Venue venue) {
+        requireNonNull(venue);
+        return venues.contains(venue);
+    }
+
+    /**
+     * Adds a venue to the system.
+     * The venue must not already exist in the system.
+     */
+    public void addVenue(Venue v) {
+        venues.add(v);
+    }
 }

@@ -133,4 +133,30 @@ public class ParserUtil {
         String trimmedVenue = venue.trim();
         return new Venue(trimmedVenue, DEFAULT_CAPACITY);
     }
+
+    /**
+     * Parses a {@code String capacity} into an integer.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws NumberFormatException if the given {@code capacity} is invalid.
+     */
+    public static int parseCapacity(String capacity) {
+        requireNonNull(capacity);
+        String trimmedCapacity = capacity.trim();
+        try {
+            return Integer.parseInt(trimmedCapacity);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException();
+        }
+    }
+
+    /**
+     * Parses a {@code String name}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseVenueName(String name) {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        return trimmedName;
+    }
 }

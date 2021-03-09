@@ -100,4 +100,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredVenueList(Predicate<Venue> predicate);
+
+    /**
+     * Returns true if a venue with the same name as {@code venue} exists in the system.
+     */
+    boolean hasVenue(Venue venue);
+
+    /**
+     * Adds the given venue.
+     * {@code venue} must not already exist in the system.
+     */
+    void addVenue(Venue venue);
 }
