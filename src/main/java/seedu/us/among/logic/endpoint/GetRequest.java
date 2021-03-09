@@ -11,6 +11,7 @@ import seedu.us.among.model.endpoint.Response;
  * Contains the logic for sending get requests.
  */
 public class GetRequest extends Request {
+    private final Endpoint endpoint;
 
     /**
      * Constructor for GetRequest.
@@ -19,6 +20,7 @@ public class GetRequest extends Request {
      */
     public GetRequest(Endpoint endpoint) {
         super(endpoint.getMethod().getMethodType(), endpoint.getAddress().value);
+        this.endpoint = endpoint;
     }
 
     /**
@@ -29,6 +31,7 @@ public class GetRequest extends Request {
     @Override
     public Response send() throws IOException {
         HttpGet request = new HttpGet(this.getAddress());
+        request = (HttpGet) super.setHeaders(request, this.endpoint.getHeaders());
         return super.execute(request);
     }
 }
