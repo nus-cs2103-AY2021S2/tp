@@ -71,9 +71,16 @@ Examples:
 
 Shows a list of all items in the inventory.
 
-Format: `list [l/LOCATION]`
+Format: `list [LOCATION]`
 
 * You can view all items in the inventory by typing 'list' without specifying location.
+* The search is case-insensitive. e.g 'room' will match 'Room'.
+* The order of keywords does not matter. e.g. 'Room Living' will match 'Living Room'.
+* Only location will be searched.
+* Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
+* Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'
+### Updating an item's details : `update`
+=======
 
 ### Editing an item's details : `edit`
 
@@ -200,5 +207,5 @@ Action | Format, Examples
 **Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
-**List** | `list [l/LOCATION]`<br> e.g., `list l/fridge`
+**List** | `list [LOCATION]`<br> e.g., `list fridge`
 **Find** | `find KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch`
