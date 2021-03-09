@@ -147,7 +147,7 @@ public class Person {
 
         List<InsurancePolicy> policies = getPolicies();
         if (!policies.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Policies: ");
             policies.forEach(builder::append);
         }
         return builder.toString();

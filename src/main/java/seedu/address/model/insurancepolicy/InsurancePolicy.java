@@ -1,8 +1,8 @@
 package seedu.address.model.insurancepolicy;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents an InsurancePolicy in the address book.
@@ -10,8 +10,13 @@ import static java.util.Objects.requireNonNull;
  */
 public class InsurancePolicy {
 
-    public String policyUrl;
+    public static final String CHECK_POLICY_ID_REGEX = "Policy_[0-9]{4}";
+    public static final String CHECK_POLICY_INPUT_REGEX = "Policy_[0-9]{4}(>.*)?";
+    public static final String MESSAGE_CONSTRAINTS = "PolicyIDs should be of the form 'Policy_****'. URLs should be "
+            + "preceded by '>' after the PolicyID.";
+
     public final String policyId;
+    private String policyUrl;
 
     /**
      * Constructs an {@code InsurancePolicy} without URL.
@@ -68,15 +73,10 @@ public class InsurancePolicy {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + policyId + ']';
-    }
-
-    public String getPolicyWithUrl() {
         if (policyUrl == null) {
-            return policyId + ": No URL associated with this policy!";
+            return policyId + ": No URL!";
         }
-
-        return policyId + ": " + policyUrl;
+        return "(" + policyId + ": " + policyUrl + ")";
     }
 
     /**
@@ -86,5 +86,13 @@ public class InsurancePolicy {
      */
     public void setPolicyUrl(String url) {
         policyUrl = url;
+    }
+
+    public static boolean isPolicyId(String test) {
+        return test.matches(CHECK_POLICY_ID_REGEX);
+    }
+
+    public static boolean isValidPolicyInput(String test) {
+        return test.matches(CHECK_POLICY_INPUT_REGEX);
     }
 }

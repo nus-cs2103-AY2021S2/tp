@@ -126,17 +126,40 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String policy} into a {@code InsurancePolicy}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code policy} is invalid.
+     */
+    public static InsurancePolicy parsePolicy(String policy) throws ParseException {
+        requireNonNull(policy);
+        String trimmedPolicy = policy.trim();
+
+        if (!InsurancePolicy.isValidPolicyInput(trimmedPolicy)) {
+            throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+        }
+
+        if (InsurancePolicy.isPolicyId(trimmedPolicy)) {
+            return new InsurancePolicy(trimmedPolicy);
+        }
+
+        // Else contains URL too
+        String[] idAndUrl = trimmedPolicy.split(">", 2);
+        String policyId = idAndUrl[0];
+        String policyUrl = idAndUrl[1];
+        return new InsurancePolicy(policyId, policyUrl);
+    }
+
+    /**
      * Parses {@code Collection<String> policies} into a {@code List<InsurancePolicy>}.
      */
     public static List<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
         requireNonNull(policies);
         final List<InsurancePolicy> policyList = new ArrayList<>();
-        for (String policyId : policies) {
-            requireNonNull(policyId);
-            policyList.add(new InsurancePolicy(policyId));
+        for (String policy : policies) {
+            requireNonNull(policy);
+            policyList.add(parsePolicy(policy));
         }
         return policyList;
     }
-
-
 }
