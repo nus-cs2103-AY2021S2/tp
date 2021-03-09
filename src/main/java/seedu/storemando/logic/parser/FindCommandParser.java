@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
-import seedu.storemando.model.item.NameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -26,9 +26,15 @@ public class FindCommandParser implements Parser<FindCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        if (trimmedArgs.charAt(0) == '*') {
+            trimmedArgs = trimmedArgs.substring(1);
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+            return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords), true));
+        } else {
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+            return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords), false));
+        }
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

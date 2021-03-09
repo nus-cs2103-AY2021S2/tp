@@ -74,44 +74,62 @@ Shows a list of all items in the inventory.
 Format: `list [LOCATION]`
 
 * You can view all items in the inventory by typing 'list' without specifying location.
+<<<<<<< HEAD
 * The search is case-insensitive. e.g 'room' will match 'Room'.
 * The order of keywords does not matter. e.g. 'Room Living' will match 'Living Room'.
 * Only location will be searched.
 * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
 * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'
 ### Updating an item's details : `update`
+=======
 
-Updating an existing item in the inventory.
+### Editing an item's details : `edit`
+>>>>>>> master
 
-Format: `update INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
+Editing an existing item in the inventory.
 
-* Updates the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
+Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
+
+* Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* Existing values will be updated to the input values **only if input values differ from the existing values**.
 * When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative.
 * You can remove all the items’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 q/10 e/2020-10-11` Edits the quantity and quantity of the 1st item to be `10` and `2020-10-11` respectively.
-*  `edit 2 n/Chocolate Bread t/` Edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags.
+*  `edit 1 q/10 e/2020-10-11` Edits the quantity of the 1st item to be `10` and expiry date of the 1st item to be `2020-10-11` 
+   if the existing quantity and expiry date of the 1st item are both not `10` and `2020-10-11` respectively.
+*  `edit 2 n/Chocolate Bread t/` Edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if 
+   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
 
 ### Locating items by name: `find`
 
-Finds items whose names contain any of the given keywords.
+Finds items whose names contain any of the given keywords, either in full or partially.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format 1: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `milk` will match `Milk`
-* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
-* Only the name is searched.
 * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`
+* The search is case-insensitive. e.g. `milk` will match `Milk`
+* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
+* Only the item name is searched.
+* Items matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Chocolate Milk` will return `Cadbury Chocolate`, `Almond Milk`
+
+Format 2: `find *KEYWORD [MORE_KEYWORDS]`
+
+* Partial words will be matched e.g. `Choco` will match `Chocolates`
+* The search is case-insensitive. e.g. `milk` will match `Milk`
+* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
+* Only the item name is searched.
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Chocolate Milk` will return `Cadbury Chocolate`, `Almond Milk`
 
 Examples:
 * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-* `find potato chip` returns `Potato Biscuit`, `chocolate chip`<br>
+* `find potato chip` returns `Potato Biscuit` and `chocolate chip`
+* `find *Burger` returns `CheeseBurger` and `fishburger`
+* `find *cheese egg` returns `MacAndCheese` and `eggs`
 
 
 ### Deleting an item : `delete`
@@ -188,8 +206,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/amanda's favourite`
+**Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
-**Update** | `update INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
+**Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
 **List** | `list [LOCATION]`<br> e.g., `list fridge`
 **Find** | `find KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch`

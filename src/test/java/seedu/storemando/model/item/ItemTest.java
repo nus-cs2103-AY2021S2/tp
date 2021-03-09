@@ -32,7 +32,6 @@ public class ItemTest {
         assertFalse(ALICE.isSameItem(null));
 
         // same name, all other attributes different -> returns true
-
         Item editedAlice = new ItemBuilder(ALICE).withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRYDATE_BOB)
             .withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameItem(editedAlice));

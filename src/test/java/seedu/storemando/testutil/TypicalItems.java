@@ -23,34 +23,36 @@ import seedu.storemando.model.item.Item;
  */
 public class TypicalItems {
 
-    public static final Item ALICE = new ItemBuilder().withName("Alice Pauline")
-        .withLocation("123, Jurong West Ave 6, #08-111").withExpiryDate("alice@example.com")
-        .withQuantity("94351253")
-        .withTags("friends").build();
-    public static final Item BENSON = new ItemBuilder().withName("Benson Meier")
-        .withLocation("311, Clementi Ave 2, #02-25")
-        .withExpiryDate("johnd@example.com").withQuantity("98765432")
-        .withTags("owesMoney", "friends").build();
-    public static final Item CARL = new ItemBuilder().withName("Carl Kurz").withQuantity("95352563")
-        .withExpiryDate("heinz@example.com").withLocation("wall street").build();
-    public static final Item DANIEL = new ItemBuilder().withName("Daniel Meier").withQuantity("87652533")
-        .withExpiryDate("cornelia@example.com").withLocation("10th street").withTags("friends").build();
-    public static final Item ELLE = new ItemBuilder().withName("Elle Meyer").withQuantity("9482224")
-        .withExpiryDate("werner@example.com").withLocation("michegan ave").build();
-    public static final Item FIONA = new ItemBuilder().withName("Fiona Kunz").withQuantity("9482427")
-        .withExpiryDate("lydia@example.com").withLocation("little tokyo").build();
-    public static final Item GEORGE = new ItemBuilder().withName("George Best").withQuantity("9482442")
-        .withExpiryDate("anna@example.com").withLocation("4th street").build();
+    public static final Item ALICE = new ItemBuilder().withName("Chocolate Milk")
+        .withLocation("Freezer").withExpiryDate("2021-08-03")
+        .withQuantity("10")
+        .withTags("Expiring").build();
+    public static final Item BENSON = new ItemBuilder().withName("Bread")
+        .withLocation("Dining Table")
+        .withExpiryDate("2020-08-08").withQuantity("1")
+        .withTags("Expiring", "Favourite").build();
+    public static final Item CARL = new ItemBuilder().withName("Oil").withQuantity("1")
+        .withExpiryDate("2023-10-10").withLocation("Kitchen drawer").build();
+    public static final Item DANIEL = new ItemBuilder().withName("Cadbury").withQuantity("2")
+        .withExpiryDate("2020-10-10").withLocation("Bedroom").withTags("Melt").build();
+    public static final Item ELLE = new ItemBuilder().withName("Nescafe Powder").withQuantity("1")
+        .withExpiryDate("2020-10-10").withLocation("Kitchen drawer").build();
+    public static final Item FIONA = new ItemBuilder().withName("Lipton Tea Sachets").withQuantity("30")
+        .withExpiryDate("2020-10-10").withLocation("Kitchen Cabinet").build();
+    public static final Item GEORGE = new ItemBuilder().withName("Instant Prata").withQuantity("20")
+        .withExpiryDate("2021-10-08").withLocation("Freezer").build();
 
     // Manually added
     public static final Item HOON = new ItemBuilder().withName("Hoon Meier").withQuantity("8482424")
-        .withExpiryDate("stefan@example.com").withLocation("little india").build();
+        .withExpiryDate("2010-10-10").withLocation("little india").build();
     public static final Item IDA = new ItemBuilder().withName("Ida Mueller").withQuantity("8482131")
-        .withExpiryDate("hans@example.com").withLocation("chicago ave").build();
+        .withExpiryDate("2019-10-08").withLocation("chicago ave").build();
+
 
     // Manually added - Item's details found in {@code CommandTestUtil}
-    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_AMY).withQuantity(VALID_QUANTITY_AMY)
-        .withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Item AMY = new ItemBuilder().withName(VALID_NAME_AMY)
+        .withQuantity(VALID_QUANTITY_AMY).withExpiryDate(VALID_EXPIRYDATE_AMY).withLocation(VALID_LOCATION_AMY)
+        .withTags(VALID_TAG_FRIEND).build();
     public static final Item BOB = new ItemBuilder().withName(VALID_NAME_BOB).withQuantity(VALID_QUANTITY_BOB)
         .withExpiryDate(VALID_EXPIRYDATE_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND,
             VALID_TAG_FRIEND)
