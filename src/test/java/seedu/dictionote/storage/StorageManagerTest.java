@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
-
 import java.nio.file.Path;
 
 import org.junit.jupiter.api.BeforeEach;

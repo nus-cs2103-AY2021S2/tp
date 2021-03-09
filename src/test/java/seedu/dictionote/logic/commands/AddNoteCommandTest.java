@@ -99,10 +99,10 @@ public class AddNoteCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-//        @Override
-//        public void addPerson(Person person) {
-//            throw new AssertionError("This method should not be called.");
-//        }
+        @Override
+        public void addContact(Contact contact) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
@@ -124,15 +124,15 @@ public class AddNoteCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-//        @Override
-//        public void deleteContact(Contact target) {
-//            throw new AssertionError("This method should not be called.");
-//        }
+        @Override
+        public void deletePerson(Contact target) {
+            throw new AssertionError("This method should not be called.");
+        }
 
-//        @Override
-//        public void setContact(Contact target, Contact editedContact) {
-//            throw new AssertionError("This method should not be called.");
-//        }
+        @Override
+        public void setPerson(Contact target, Contact editedContact) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setNoteBookFilePath(Path path) {
@@ -144,10 +144,10 @@ public class AddNoteCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-//        @Override
-//        public void updateFilteredContactList(Predicate<Contact> predicate) {
-//            throw new AssertionError("This method should not be called.");
-//        }
+        @Override
+        public void updateFilteredPersonList(Predicate<Contact> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ReadOnlyNoteBook getNoteBook() {
