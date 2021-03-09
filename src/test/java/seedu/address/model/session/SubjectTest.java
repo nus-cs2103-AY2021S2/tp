@@ -11,5 +11,9 @@ public class SubjectTest {
         assertThrows(NullPointerException.class, () -> new Subject(null));
     }
 
-
+    @Test
+    public void constructor_invalidSubject_throwsIllegalArgumentException() {
+        String invalidSubject = "";
+        assertThrows(IllegalArgumentException.class, () -> new Subject(invalidSubject));
+    }
 }
