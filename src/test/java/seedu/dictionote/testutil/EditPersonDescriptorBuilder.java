@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.dictionote.model.person.Address;
-import seedu.dictionote.model.person.Email;
-import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Person;
-import seedu.dictionote.model.person.Phone;
+import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.Name;
+import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -30,13 +30,13 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Contact contact) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(contact.getName());
+        descriptor.setPhone(contact.getPhone());
+        descriptor.setEmail(contact.getEmail());
+        descriptor.setAddress(contact.getAddress());
+        descriptor.setTags(contact.getTags());
     }
 
     /**

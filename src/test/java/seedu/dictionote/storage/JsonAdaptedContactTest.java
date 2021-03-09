@@ -3,7 +3,7 @@ package seedu.dictionote.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.dictionote.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalPersons.BENSON;
+import static seedu.dictionote.testutil.TypicalContacts.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.exceptions.IllegalValueException;
-import seedu.dictionote.model.person.Address;
-import seedu.dictionote.model.person.Email;
-import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Phone;
+import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.Name;
+import seedu.dictionote.model.contact.Phone;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedContactTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
