@@ -1,11 +1,9 @@
 package seedu.address.model.module;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Exam {
+public class Exam implements Comparable<Exam> {
     // todo change message constraints
     public static final String MESSAGE_CONSTRAINTS = "Exam names should be numerical and not "
             + "empty. It should follow a YYYY-MM-DD-HH-MM";
@@ -18,7 +16,7 @@ public class Exam {
      * Constructs an {@code Exam} with {@code examDate} as input representing the date of the Exam.
      */
     public Exam(LocalDateTime examDate) {
-        checkArgument(isValidExam(examDate.toString()), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidExam(examDate.toString()), MESSAGE_CONSTRAINTS);
         this.examDate = examDate;
     }
 
@@ -29,6 +27,10 @@ public class Exam {
     // wrong dates and time format.
     public static boolean isValidExam(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public boolean isAt(LocalDateTime localDateTime) {
+        return examDate == localDateTime;
     }
 
     /**
@@ -56,5 +58,10 @@ public class Exam {
     @Override
     public int hashCode() {
         return examDate.hashCode();
+    }
+
+    @Override
+    public int compareTo(Exam otherExam) {
+        return examDate.compareTo(otherExam.examDate);
     }
 }
