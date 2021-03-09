@@ -10,7 +10,7 @@ public class BlacklistTest {
     @Test
     public void equals() {
         // default blacklist status is false
-       Blacklist blacklist = new Blacklist();
+        Blacklist blacklist = new Blacklist();
 
         // same object -> returns true
         assertTrue(blacklist.equals(blacklist));
