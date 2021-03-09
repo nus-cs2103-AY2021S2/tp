@@ -18,8 +18,8 @@ public class AddFrCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a financial record. "
         + "Parameters: "
-        + PREFIX_DESCRIPTION + "DESCRIPTION "
-        + PREFIX_AMOUNT + "AMOUNT "
+        + PREFIX_DESCRIPTION + "FR_DESCRIPTION "
+        + PREFIX_AMOUNT + "FR_AMOUNT "
 //        + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_DESCRIPTION + "Lunch "
