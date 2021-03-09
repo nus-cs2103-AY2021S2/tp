@@ -252,6 +252,15 @@ Format: `idel INDEX`
 Example:
 * `idel 1` Deletes the 1st issue.
 
+### View Command History : `history`
+
+Displays the user's command history.
+
+Format: `history [COUNT]`
+* `COUNT` refers to the number of most recent command entries to display. `COUNT` **must be a positive integer 1,2,3, ...**.
+
+Example:
+* `history 5` Displays the 5 most recent command entries.
 
 ### Exit the program : `exit`
 
