@@ -58,7 +58,7 @@ public class AddCommand extends Command {
         model.addItem(toAdd);
 
         String feedback = String.format(MESSAGE_SUCCESS, toAdd);
-        if(toAdd.isExpired()) {
+        if (toAdd.isExpired()) {
             feedback += MESSAGE_ITEM_EXPIRED_WARNING;
         }
         return new CommandResult(feedback);
