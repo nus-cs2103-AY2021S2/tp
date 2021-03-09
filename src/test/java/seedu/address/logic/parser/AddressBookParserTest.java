@@ -52,7 +52,7 @@ public class AddressBookParserTest {
 
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + NAME_FIRST_PERSON);
-        assertEquals(new DeleteCommand("abc"), command);
+        assertEquals(new DeleteCommand(NAME_FIRST_PERSON), command);
     }
 
     @Test
