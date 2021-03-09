@@ -5,17 +5,18 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.commons.core.GuiSettings;
-import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.ablogic.commands.Command;
 import seedu.budgetbaby.ablogic.commands.CommandResult;
-import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.ablogic.parser.AddressBookParser;
-import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.abstorage.Storage;
+import seedu.budgetbaby.commons.core.GuiSettings;
+import seedu.budgetbaby.commons.core.LogsCenter;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
+import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+
 
 /**
  * The main LogicManager of the app.

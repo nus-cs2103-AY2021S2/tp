@@ -4,8 +4,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.model.ReadOnlyUserPrefs;
 
 /**

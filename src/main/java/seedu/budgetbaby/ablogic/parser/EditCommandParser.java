@@ -13,11 +13,11 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.ablogic.commands.EditCommand;
 import seedu.budgetbaby.ablogic.commands.EditCommand.EditPersonDescriptor;
-import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.commons.core.index.Index;
+import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -27,12 +27,13 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 

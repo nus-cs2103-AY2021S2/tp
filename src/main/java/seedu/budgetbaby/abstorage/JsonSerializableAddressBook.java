@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 import seedu.budgetbaby.abmodel.AddressBook;
 import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
 import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

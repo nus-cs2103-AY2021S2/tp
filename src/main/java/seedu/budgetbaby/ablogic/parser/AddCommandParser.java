@@ -11,13 +11,13 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.budgetbaby.ablogic.commands.AddCommand;
-import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.abmodel.person.Address;
 import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.abmodel.person.Phone;
 import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -27,14 +27,15 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 

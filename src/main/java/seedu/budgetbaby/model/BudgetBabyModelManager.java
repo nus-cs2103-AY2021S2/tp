@@ -1,18 +1,18 @@
 package seedu.budgetbaby.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.budgetbaby.abmodel.ModelManager;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.record.FinancialRecord;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the in-memory model of the address book data.

@@ -6,16 +6,16 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.budgetbaby.commons.core.index.Index;
-import seedu.budgetbaby.commons.util.StringUtil;
-import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.abmodel.person.Address;
 import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Phone;
+import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.commons.core.index.Index;
+import seedu.budgetbaby.commons.util.StringUtil;
+import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Description;
-import seedu.budgetbaby.abmodel.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

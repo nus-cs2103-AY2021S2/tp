@@ -1,15 +1,15 @@
 package seedu.budgetbaby.model.record;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.budgetbaby.abmodel.person.exceptions.FinancialRecordNotFoundException;
-import seedu.budgetbaby.abmodel.person.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.budgetbaby.abmodel.person.exceptions.FinancialRecordNotFoundException;
+import seedu.budgetbaby.abmodel.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of financial records.

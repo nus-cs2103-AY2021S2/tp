@@ -1,6 +1,6 @@
 package seedu.budgetbaby.storage;
 
-import java.util.*;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +9,7 @@ import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
+
 
 /**
  * Jackson-friendly version of {@link FinancialRecord}.
@@ -20,7 +21,7 @@ class JsonAdaptedFinancialRecord {
     private final String description;
     private final String amount;
     private final Date timestamp;
-//    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    //    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedFinancialRecord} with the given financial record details.
@@ -29,13 +30,13 @@ class JsonAdaptedFinancialRecord {
     public JsonAdaptedFinancialRecord(@JsonProperty("description") String description,
                                       @JsonProperty("amount") String amount,
                                       @JsonProperty("timestamp") Date timestamp) {
-//                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        //                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.description = description;
         this.amount = amount;
         this.timestamp = timestamp;
-//        if (tagged != null) {
-//            this.tagged.addAll(tagged);
-//        }
+        //        if (tagged != null) {
+        //            this.tagged.addAll(tagged);
+        //        }
     }
 
     /**
@@ -45,9 +46,9 @@ class JsonAdaptedFinancialRecord {
         description = source.getDescription().description;
         amount = source.getAmount().value.toString();
         timestamp = source.getTimestamp();
-//        tagged.addAll(source.getTags().stream()
-//            .map(JsonAdaptedTag::new)
-//            .collect(Collectors.toList()));
+        //        tagged.addAll(source.getTags().stream()
+        //            .map(JsonAdaptedTag::new)
+        //            .collect(Collectors.toList()));
     }
 
     /**
@@ -56,13 +57,14 @@ class JsonAdaptedFinancialRecord {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public FinancialRecord toModelType() throws IllegalValueException {
-//        final List<Tag> personTags = new ArrayList<>();
-//        for (JsonAdaptedTag tag : tagged) {
-//            personTags.add(tag.toModelType());
-//        }
+        //        final List<Tag> personTags = new ArrayList<>();
+        //        for (JsonAdaptedTag tag : tagged) {
+        //            personTags.add(tag.toModelType());
+        //        }
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -77,7 +79,7 @@ class JsonAdaptedFinancialRecord {
         }
         final Amount modelAmount = new Amount(amount);
 
-//        final Set<Tag> modelTags = new HashSet<>(personTags);
+        //        final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new FinancialRecord(modelDescription, modelAmount, timestamp);
     }

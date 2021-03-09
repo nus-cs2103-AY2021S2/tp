@@ -1,12 +1,12 @@
 package seedu.budgetbaby.model;
 
-import javafx.collections.ObservableList;
-import seedu.budgetbaby.model.record.FinancialRecord;
-import seedu.budgetbaby.model.record.FinancialRecordList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.budgetbaby.model.record.FinancialRecord;
+import seedu.budgetbaby.model.record.FinancialRecordList;
 
 /**
  * Wraps all data at the budget-tracker level
@@ -15,13 +15,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
 
     private final FinancialRecordList records;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */ {
+    {
         records = new FinancialRecordList();
     }
 
@@ -56,7 +50,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     }
 
     //// financial-record-level operations
-    
+
     /**
      * Adds a financial record to the budget tracker.
      */

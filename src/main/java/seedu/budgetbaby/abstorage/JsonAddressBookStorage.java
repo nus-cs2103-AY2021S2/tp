@@ -7,12 +7,12 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.commons.exceptions.DataConversionException;
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 import seedu.budgetbaby.commons.util.FileUtil;
 import seedu.budgetbaby.commons.util.JsonUtil;
-import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -46,7 +46,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+            filePath, JsonSerializableAddressBook.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
