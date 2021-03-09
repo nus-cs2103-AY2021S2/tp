@@ -12,6 +12,7 @@ import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
+
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
@@ -19,7 +20,6 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-
     private final NonOverlappingBookingList bookings;
 
     private final UniqueVenueList venues;
@@ -123,6 +123,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         venues.remove(key);
     }
 
+
+    //// booking-level operations
+    /**
+     * Removes {@code bookingId} from this {@code AddressBook}.
+     * {@code bookingId} must exist in the address book.
+     */
+    public void removeBooking(int bookingId) {
+        bookings.removeById(bookingId);
+    }
 
     //// util methods
 

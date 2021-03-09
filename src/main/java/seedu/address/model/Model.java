@@ -13,7 +13,9 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
@@ -103,7 +105,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered venue list */
     ObservableList<Venue> getFilteredVenueList();
-
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -132,4 +133,8 @@ public interface Model {
      * {@code venue} must not already exist in the system.
      */
     void addVenue(Venue venue);
+
+    /// logic related to bookings
+
+    void deleteBooking(int bookingId);
 }

@@ -181,6 +181,12 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteBooking(int bookingId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
         public void updateFilteredBookingList(Predicate<Booking> predicate) {
 
         }

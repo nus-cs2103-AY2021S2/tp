@@ -143,6 +143,12 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    //=========== Bookings ================================================================================
+    @Override
+    public void deleteBooking(int bookingId) {
+        addressBook.removeBooking(bookingId);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
