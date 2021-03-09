@@ -146,6 +146,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **COE**: Certificate of Entitlement for Singapore Cars
+* **GUI**: Graphical user interface for the Car@leads app
+
 
 --------------------------------------------------------------------------------------------------------------------
 
