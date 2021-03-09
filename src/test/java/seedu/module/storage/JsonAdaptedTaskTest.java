@@ -22,6 +22,7 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_DEADLINE = "+651234";
     private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_DONE_STATUS = "not boolean string";
     private static final String INVALID_MODULE = "example.com";
     private static final String INVALID_TAG = "#friend";
 
@@ -105,6 +106,14 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_MODULE,
                 null, VALID_DONE_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDoneStatus_throwsIllegalValueException() {
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_MODULE,
+                VALID_ADDRESS, INVALID_DONE_STATUS, VALID_TAGS);
+        String expectedMessage = DoneStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 

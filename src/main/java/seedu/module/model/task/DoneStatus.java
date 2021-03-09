@@ -33,6 +33,13 @@ public class DoneStatus {
         this.value = isDoneString;
     }
 
+    /**
+     * Returns true if a given boolean is a valid boolean.
+     */
+    public static boolean isValidDoneStatus(String test) {
+        return test.equals(String.valueOf(Boolean.TRUE)) || test.equals(String.valueOf(Boolean.FALSE));
+    }
+
     private static Boolean parseBooleanString(String isDoneString) {
         if (isDoneString.equals(String.valueOf(Boolean.TRUE))) {
             return Boolean.TRUE;

@@ -13,6 +13,12 @@ public class DoneStatusTest {
     }
 
     @Test
+    public void constructor_invalidDoneStatus_throwsIllegalArgumentException() {
+        String invalidDoneStatus = "invalid boolean string";
+        assertThrows(IllegalArgumentException.class, () -> new DoneStatus(invalidDoneStatus));
+    }
+
+    @Test
     public void testDisplayUi() {
         assertEquals(new DoneStatus(true).displayUi(), "Done!\n");
         assertEquals(new DoneStatus(false).displayUi(), "Not Done!\n");

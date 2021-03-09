@@ -114,6 +114,9 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DoneStatus.class.getSimpleName()));
         }
+        if (!DoneStatus.isValidDoneStatus(doneStatus)) {
+            throw new IllegalValueException(DoneStatus.MESSAGE_CONSTRAINTS);
+        }
 
         final DoneStatus modelDoneStatus = new DoneStatus(doneStatus);
 
