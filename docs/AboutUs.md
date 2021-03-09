@@ -44,12 +44,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Responsibilities: Testing
 
-### James Doe
+### Wang Yihe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yihe-harry.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yihe-harry)]
+[[portfolio](team/yihe.md)]
 
 * Role: Developer
 * Responsibilities: UI
