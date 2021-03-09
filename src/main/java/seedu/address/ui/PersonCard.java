@@ -1,9 +1,14 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.person.Person;
 
 /**
@@ -12,6 +17,10 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final Background vaccinatedBg = new Background(new BackgroundFill(Color.web("#0277BD"),
+            new CornerRadii(5.0), new Insets(-5.0)));
+    private static final Background notVaccinatedBg = new Background(new BackgroundFill(Color.web("#DD2C00"),
+            new CornerRadii(5.0), new Insets(-5.0)));
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -28,6 +37,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label vaccinationStatus;
+    @FXML
     private Label id;
     @FXML
     private Label matriculationNumber;
@@ -35,8 +46,6 @@ public class PersonCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
-    @FXML
-    private Label vaccinationStatus;
     @FXML
     private Label email;
 
@@ -48,13 +57,13 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        //to be added in the future when the space in the PersonCard is added
-        //matriculationNumber.setText(person.getMatriculationNumber().value);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        //to be added in the future when the space in the PersonCard is added
-        //vaccinationStatus.setText(person.getVaccinationStatus().value);
-        email.setText(person.getEmail().value);
+        matriculationNumber.setText(person.getMatriculationNumber().value);
+        phone.setText("Mobile Number: " + person.getPhone().value);
+        address.setText("Address: " + person.getAddress().value);
+        vaccinationStatus.setText(person.getVaccinationStatus().value);
+        vaccinationStatus.setBackground(person.getVaccinationStatus().value.equals("vaccinated") ? vaccinatedBg
+                : notVaccinatedBg);
+        email.setText("Email: " + person.getEmail().value);
     }
 
     @Override
