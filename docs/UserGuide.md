@@ -145,7 +145,7 @@ Format: `list`
 Marks deadline(s) in the application to be done.
 
 Format: `done INDEX…` 
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed task list.
 * The index must be a positive integer 1, 2, 3, …​
 * Index must be available on the list else an error will be thrown
 
