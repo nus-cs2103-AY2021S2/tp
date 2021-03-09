@@ -2,59 +2,59 @@
   "_comment": "StoreMando save file which contains the same item values as in TypicalItems#getTypicalStoreMando()",
   "items": [
     {
-      "name": "Alice Pauline",
-      "quantity": "94351253",
-      "expiryDate": "alice@example.com",
-      "location": "123, Jurong West Ave 6, #08-111",
+      "name": "Chocolate Milk",
+      "quantity": "10",
+      "expiryDate": "2021-08-03",
+      "location": "Freezer",
       "tagged": [
-        "friends"
+        "Expiring"
       ]
     },
     {
-      "name": "Benson Meier",
-      "quantity": "98765432",
-      "expiryDate": "johnd@example.com",
-      "location": "311, Clementi Ave 2, #02-25",
+      "name": "Bread",
+      "quantity": "1",
+      "expiryDate": "2020-08-08",
+      "location": "Dining Table",
       "tagged": [
-        "owesMoney",
-        "friends"
+        "Expiring",
+        "Favourite"
       ]
     },
     {
-      "name": "Carl Kurz",
-      "quantity": "95352563",
-      "expiryDate": "heinz@example.com",
-      "location": "wall street",
+      "name": "Oil",
+      "quantity": "1",
+      "expiryDate": "2023-10-10",
+      "location": "Kitchen drawer",
       "tagged": []
     },
     {
-      "name": "Daniel Meier",
-      "quantity": "87652533",
-      "expiryDate": "cornelia@example.com",
-      "location": "10th street",
+      "name": "Cadbury",
+      "quantity": "2",
+      "expiryDate": "2020-10-10",
+      "location": "Bedroom",
       "tagged": [
-        "friends"
+        "Melt"
       ]
     },
     {
-      "name": "Elle Meyer",
-      "quantity": "9482224",
-      "expiryDate": "werner@example.com",
-      "location": "michegan ave",
+      "name": "Nescafe Powder",
+      "quantity": "1",
+      "expiryDate": "2020-10-10",
+      "location": "Kitchen drawer",
       "tagged": []
     },
     {
-      "name": "Fiona Kunz",
-      "quantity": "9482427",
-      "expiryDate": "lydia@example.com",
-      "location": "little tokyo",
+      "name": "Lipton Tea Sachets",
+      "quantity": "30",
+      "expiryDate": "2020-10-10",
+      "location": "Kitchen Cabinet",
       "tagged": []
     },
     {
-      "name": "George Best",
-      "quantity": "9482442",
-      "expiryDate": "anna@example.com",
-      "location": "4th street",
+      "name": "Instant Prata",
+      "quantity": "20",
+      "expiryDate": "2021-10-08",
+      "location": "Freezer",
       "tagged": []
     }
   ]

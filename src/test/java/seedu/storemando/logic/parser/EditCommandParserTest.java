@@ -113,6 +113,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITEM;
+
         String userInput = targetIndex.getOneBased() + QUANTITY_DESC_BOB + TAG_DESC_HUSBAND
             + EXPIRYDATE_DESC_AMY + LOCATION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
@@ -173,6 +174,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ITEM;
+
         String userInput = targetIndex.getOneBased() + QUANTITY_DESC_AMY + LOCATION_DESC_AMY + EXPIRYDATE_DESC_AMY
             + TAG_DESC_FRIEND + QUANTITY_DESC_AMY + LOCATION_DESC_AMY + EXPIRYDATE_DESC_AMY + TAG_DESC_FRIEND
             + QUANTITY_DESC_BOB + LOCATION_DESC_BOB + EXPIRYDATE_DESC_BOB + TAG_DESC_HUSBAND;
