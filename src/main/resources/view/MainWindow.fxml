@@ -35,7 +35,7 @@
         </MenuBar>
 
         <HBox styleClass="pane-with-border" prefHeight="2160">
-          <VBox fx:id="endpointList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <VBox fx:id="endpointList" styleClass="pane-with-border" minWidth="320" prefWidth="320" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
