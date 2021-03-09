@@ -1,6 +1,7 @@
 package seedu.budgetbaby.logic.commands;
 
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
+import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.Model;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
@@ -12,7 +13,7 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
 /**
  * Adds a financial record to the budget tracker.
  */
-public class AddFrCommand extends Command {
+public class AddFrCommand extends BudgetBabyCommand {
 
     public static final String COMMAND_WORD = "add-fr";
 
@@ -41,14 +42,10 @@ public class AddFrCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(BudgetBabyModel model) throws CommandException {
         requireNonNull(model);
 
-//        if (model.hasPerson(toAdd)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-//        }
-//
-//        model.addPerson(toAdd);
+        model.addFinancialRecord(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
