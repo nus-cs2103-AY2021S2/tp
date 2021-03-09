@@ -105,10 +105,6 @@ class JsonAdaptedEvent {
         }
         final Date modelStartDate = new Date(startDate);
 
-        if (startTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Time.class.getSimpleName()));
-        }
         if (!Time.isValidTime(startTime)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
@@ -122,10 +118,6 @@ class JsonAdaptedEvent {
         }
         final Date modelEndDate = new Date(endDate);
 
-        if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Time.class.getSimpleName()));
-        }
         if (!Time.isValidTime(endTime)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
