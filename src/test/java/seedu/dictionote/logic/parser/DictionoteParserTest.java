@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
 import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
@@ -19,7 +19,7 @@ import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
-import seedu.dictionote.logic.commands.DeleteCommand;
+import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.EditCommand;
 import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dictionote.logic.commands.ExitCommand;
@@ -64,9 +64,9 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeleteContactCommand command = (DeleteContactCommand) parser.parseCommand(
+            DeleteContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
+        assertEquals(new DeleteContactCommand(INDEX_FIRST_CONTACT), command);
     }
 
     @Test
@@ -74,8 +74,8 @@ public class DictionoteParserTest {
         Contact contact = new ContactBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(contact).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+            + INDEX_FIRST_CONTACT.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_CONTACT, descriptor), command);
     }
 
     @Test

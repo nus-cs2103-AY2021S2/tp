@@ -1,7 +1,7 @@
 package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
 import seedu.dictionote.model.Model;
 
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

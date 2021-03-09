@@ -1,9 +1,9 @@
 package seedu.dictionote.logic.commands;
 
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.dictionote.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +34,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showContactAtIndex(model, INDEX_FIRST_CONTACT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
