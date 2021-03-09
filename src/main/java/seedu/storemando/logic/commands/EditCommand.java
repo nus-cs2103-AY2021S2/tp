@@ -35,7 +35,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
         + "by the index number used in the displayed item list. "
-        + "Existing values will be overwritten by the input values.\n"
+        + "Existing values will be overwritten by the input values as long as input values are "
+        + "not all the same as existing values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "ITEM NAME] "
         + "[" + PREFIX_QUANTITY + "QUANTITY] "
@@ -43,12 +44,14 @@ public class EditCommand extends Command {
         + "[" + PREFIX_LOCATION + "LOCATION] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_QUANTITY + "91234567 "
-        + PREFIX_EXPIRYDATE + "johndoe@example.com";
+        + PREFIX_QUANTITY + "5 "
+        + PREFIX_EXPIRYDATE + "2018-10-10";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the storemando.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in storemando.";
+    public static final String MESSAGE_NO_CHANGE = "Item not edited! Specified change in item details same as "
+        + "original.";
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
 
@@ -79,7 +82,9 @@ public class EditCommand extends Command {
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
-
+        if (itemToEdit.equals(editedItem)) { //if edited item has the same fields as original item
+            throw new CommandException(MESSAGE_NO_CHANGE);
+        }
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));

@@ -1,19 +1,19 @@
 {
   "items": [
     {
-      "name": "Alice Pauline",
-      "quantity": "94351253",
-      "expiryDate": "alice@example.com",
-      "location": "123, Jurong West Ave 6, #08-111",
+      "name": "Oil",
+      "quantity": "10",
+      "expiryDate": "2020-10-10",
+      "location": "Kitchen",
       "tagged": [
-        "friends"
+        "favourite"
       ]
     },
     {
-      "name": "Alice Pauline",
-      "quantity": "94351253",
-      "expiryDate": "pauline@example.com",
-      "location": "4th street"
+      "name": "Oil",
+      "quantity": "10",
+      "expiryDate": "2020-10-10",
+      "location": "Kitchen"
     }
   ]
 }
