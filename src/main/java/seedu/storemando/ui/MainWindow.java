@@ -141,20 +141,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens storemando's user guide on user's browser if user's desktop supports it.
+     * Otherwise, opens the help window or focuses on it if it's already opened.
      */
     @FXML
     public void handleHelp() {
         try {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                 Desktop.getDesktop().browse(new URI(HelpWindow.USERGUIDE_URL));
+            } else {
+                helpWindow.displayUrl();
             }
         } catch (URISyntaxException | IOException ie) {
-            if (!helpWindow.isShowing()) {
-                helpWindow.show();
-            } else {
-                helpWindow.focus();
-            }
+            helpWindow.displayUrl();
         }
     }
 
