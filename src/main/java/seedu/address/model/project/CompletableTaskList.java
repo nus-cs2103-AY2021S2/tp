@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CompletableTaskList {
 
-    private final List<Completable> completableTasks = new new ArrayList<>();
+    private final List<Completable> completableTasks = new ArrayList<>();
 
     /**
      * Constructs a {@code CompletableTaskList}.
