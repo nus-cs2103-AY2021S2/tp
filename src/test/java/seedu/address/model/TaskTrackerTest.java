@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -46,10 +46,10 @@ public class TaskTrackerTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        TaskTrackerStub newData = new TaskTrackerStub(newPersons);
+        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
+        TaskTrackerStub newData = new TaskTrackerStub(newTasks);
 
         assertThrows(DuplicatePersonException.class, () -> taskTracker.resetData(newData));
     }
@@ -73,7 +73,7 @@ public class TaskTrackerTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInTaskTracker_returnsTrue() {
         taskTracker.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(taskTracker.hasPerson(editedAlice));
     }
@@ -87,15 +87,15 @@ public class TaskTrackerTest {
      * A stub ReadOnlyTaskTracker whose persons list can violate interface constraints.
      */
     private static class TaskTrackerStub implements ReadOnlyTaskTracker {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        TaskTrackerStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        TaskTrackerStub(Collection<Task> tasks) {
+            this.tasks.setAll(tasks);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Task> getPersonList() {
+            return tasks;
         }
     }
 

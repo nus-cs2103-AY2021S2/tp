@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -48,8 +48,8 @@ public class TaskTracker implements ReadOnlyTaskTracker {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setPersons(List<Task> tasks) {
+        this.persons.setPersons(tasks);
     }
 
     /**
@@ -66,16 +66,16 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasPerson(Task task) {
+        requireNonNull(task);
+        return persons.contains(task);
     }
 
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
+    public void addPerson(Task p) {
         persons.add(p);
     }
 
@@ -84,17 +84,17 @@ public class TaskTracker implements ReadOnlyTaskTracker {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setPerson(Task target, Task editedTask) {
+        requireNonNull(editedTask);
 
-        persons.setPerson(target, editedPerson);
+        persons.setPerson(target, editedTask);
     }
 
     /**
      * Removes {@code key} from this {@code TaskTracker}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Task key) {
         persons.remove(key);
     }
 
@@ -107,7 +107,7 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Task> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
 

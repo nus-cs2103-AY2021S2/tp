@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Task {
 
     // Identity fields
     private final ModuleName moduleName;
@@ -27,7 +27,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(ModuleName moduleName, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Task(ModuleName moduleName, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(moduleName, phone, email, address, tags);
         this.moduleName = moduleName;
         this.phone = phone;
@@ -64,13 +64,13 @@ public class Person {
      * Returns true if both persons have the same moduleName.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Task otherTask) {
+        if (otherTask == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getModuleName().equals(getModuleName());
+        return otherTask != null
+                && otherTask.getModuleName().equals(getModuleName());
     }
 
     /**
@@ -83,16 +83,16 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Task)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getModuleName().equals(getModuleName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Task otherTask = (Task) other;
+        return otherTask.getModuleName().equals(getModuleName())
+                && otherTask.getPhone().equals(getPhone())
+                && otherTask.getEmail().equals(getEmail())
+                && otherTask.getAddress().equals(getAddress())
+                && otherTask.getTags().equals(getTags());
     }
 
     @Override
