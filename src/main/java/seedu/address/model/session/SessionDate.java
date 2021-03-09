@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-import seedu.address.model.session.exceptions.IllegalArgumentException;
+import seedu.address.model.session.exceptions.SessionException;
 
 /**
  * Represents the date and time of the session
@@ -23,7 +23,7 @@ public class SessionDate {
      * @param dateValue string of date in YYYY-MM-DD format
      * @param timeValue string of time in HH:MM format
      */
-    public SessionDate(String dateValue, String timeValue) throws IllegalArgumentException {
+    public SessionDate(String dateValue, String timeValue) throws SessionException {
         try {
             LocalDate localDate = LocalDate.parse(dateValue);
             LocalTime localTime = LocalTime.parse(timeValue);
@@ -31,7 +31,7 @@ public class SessionDate {
             LocalDateTime localDateTime = localDate.atTime(localTime);
             this.dateTime = localDateTime;
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException(INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE + e, e);
+            throw new SessionException(INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE + e, e);
         }
     }
 }
