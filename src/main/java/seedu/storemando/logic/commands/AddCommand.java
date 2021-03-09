@@ -26,16 +26,16 @@ public class AddCommand extends Command {
         + "[" + PREFIX_EXPIRYDATE + "EXPIRYDATE] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_NAME + "John Doe "
-        + PREFIX_QUANTITY + "98765432 "
-        + PREFIX_EXPIRYDATE + "johnd@example.com "
-        + PREFIX_LOCATION + "311, Clementi Ave 2, #02-25 "
-        + PREFIX_TAG + "friends "
-        + PREFIX_TAG + "owesMoney";
+        + PREFIX_NAME + "Banana "
+        + PREFIX_QUANTITY + "2 "
+        + PREFIX_EXPIRYDATE + "2023-10-10 "
+        + PREFIX_LOCATION + "Kitchen "
+        + PREFIX_TAG + "favourite "
+        + PREFIX_TAG + "expiring";
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the storemando";
-    public static final String MESSAGE_ITEM_EXPIRED_WARNING = "Warning: Item has already expired!";
+    public static final String MESSAGE_ITEM_EXPIRED_WARNING = "\nWarning: Item has already expired!";
 
     private final Item toAdd;
 
