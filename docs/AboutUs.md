@@ -14,10 +14,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yhtminceraft1010x.png" width="200px">
 
 [[github](https://github.com/yhtMinceraft1010X)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibility: Developer for ModuleBook 3.5
+* Role: Developer, Documentation IC
+* Responsibility: Logic Component
 
 ### Umer Siddiqui
 
