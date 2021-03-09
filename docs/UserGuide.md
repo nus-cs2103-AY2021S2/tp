@@ -147,8 +147,9 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd item in the location book.
-* `find Chocolate` followed by `delete 1` deletes the 1st item in the results of the `find` command.
+* `list` followed by `delete 2` deletes the second item in the entire inventory.
+* `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
+* `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
 
 ### Clearing all entries : `clear`
 

@@ -444,11 +444,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting an item while all items are being shown
 
-    1. Prerequisites: List all items using the `list` command. Multiple items in the list.
+   1. Prerequisites: List all household items using the `list` command. Multiple items in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+   1. Test case: `delete 1`<br>
+      Expected: First item is deleted from the list. Details of the deleted item shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
        Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
