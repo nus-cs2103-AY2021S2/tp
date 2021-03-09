@@ -1,6 +1,7 @@
 package seedu.address.model.booking;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalVenues.VENUE1;
 import static seedu.address.testutil.TypicalVenues.VENUE2;
 import static seedu.address.testutil.TypicalVenues.VENUE3;
@@ -40,6 +41,6 @@ class VenueTest {
         assertFalse(VENUE1.equals(5));
 
         // different venue -> returns false
-        assertNotEquals(VENUE2, VENUE1);
+        assertFalse(VENUE2.equals(VENUE1));
     }
 }
