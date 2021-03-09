@@ -30,7 +30,7 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
-    final String NAME_FIRST_PERSON = "abc";
+    public static final String NAME_FIRST_PERSON = "abc";
 
     private final AddressBookParser parser = new AddressBookParser();
 
