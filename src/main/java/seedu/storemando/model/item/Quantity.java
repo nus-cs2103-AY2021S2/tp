@@ -31,11 +31,8 @@ public class Quantity {
      * Returns true if a given string is a valid quantity number.
      */
     public static boolean isValidQuantity(String test) {
-        if (test.matches(VALIDATION_REGEX)) {
-            long value = Long.parseLong(test);
-            if (value > 0) {
-                return true;
-            }
+        if (test.matches(VALIDATION_REGEX) && Long.parseLong(test) > 0) {
+            return true;
         }
         return false;
     }
