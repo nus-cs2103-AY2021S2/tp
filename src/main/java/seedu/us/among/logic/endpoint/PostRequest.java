@@ -25,7 +25,7 @@ public class PostRequest extends Request {
     }
 
     /**
-     * Executes the API call with a get request.
+     * Executes the API call with a post request.
      *
      * @return returns the response from the API call
      */
