@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.model.item.ExpiryDate.NO_EXPIRY_DATE;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -49,6 +50,18 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ITEM, () -> addCommand.execute(modelStub));
     }
+
+    @Test
+    public void execute_itemWithoutExpiryDate_success() throws CommandException {
+        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
+        Item validItem = new ItemBuilder().withExpiryDate(NO_EXPIRY_DATE).build();
+
+        CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
+    }
+
 
     @Test
     public void equals() {

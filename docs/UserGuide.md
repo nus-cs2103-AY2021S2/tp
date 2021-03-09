@@ -59,8 +59,14 @@ Adds an item to the inventory.
 
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
 An item can have any number of tags (including 0)
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+Expiry date of an item is optional.
+
 </div>
 
 Examples:
@@ -71,9 +77,16 @@ Examples:
 
 Shows a list of all items in the inventory.
 
-Format: `list [l/LOCATION]`
+Format: `list [LOCATION]`
 
 * You can view all items in the inventory by typing 'list' without specifying location.
+* The search is case-insensitive. e.g 'room' will match 'Room'.
+* The order of keywords does not matter. e.g. 'Room Living' will match 'Living Room'.
+* Only location will be searched.
+* Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
+* Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'
+### Updating an item's details : `update`
+=======
 
 ### Editing an item's details : `edit`
 
@@ -134,8 +147,9 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd item in the location book.
-* `find Chocolate` followed by `delete 1` deletes the 1st item in the results of the `find` command.
+* `list` followed by `delete 2` deletes the second item in the entire inventory.
+* `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
+* `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
 
 ### Clearing all entries : `clear`
 
@@ -200,5 +214,5 @@ Action | Format, Examples
 **Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
-**List** | `list [l/LOCATION]`<br> e.g., `list l/fridge`
+**List** | `list [LOCATION]`<br> e.g., `list fridge`
 **Find** | `find KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch`

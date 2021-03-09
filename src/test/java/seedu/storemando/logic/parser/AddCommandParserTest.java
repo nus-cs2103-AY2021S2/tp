@@ -96,10 +96,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + VALID_QUANTITY_BOB + EXPIRYDATE_DESC_BOB + LOCATION_DESC_BOB,
             expectedMessage);
 
-        // missing expirydate prefix
-        assertParseFailure(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + VALID_EXPIRYDATE_BOB + LOCATION_DESC_BOB,
-            expectedMessage);
-
         // missing location prefix
         assertParseFailure(parser, NAME_DESC_BOB + QUANTITY_DESC_BOB + EXPIRYDATE_DESC_BOB + VALID_LOCATION_BOB,
             expectedMessage);
