@@ -110,7 +110,6 @@ public class ResultDisplay extends UiPart<Region> {
                 new Label(String.format("Status: %s", endpoint.getResponse().getStatusCode())),
                 new Label(String.format("Time: %s", endpoint.getResponse().getResponseTime())));
         resultDisplay.setText(textFeedback);
-        resultDisplay.setWrapText(true);
     }
 
     /**
