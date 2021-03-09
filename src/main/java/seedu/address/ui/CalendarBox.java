@@ -34,10 +34,14 @@ public class CalendarBox extends UiPart<Region> {
         initializeCalenderBoxInfo(dateTime);
     }
 
+    public static CalendarBox create(LocalDate dateTime) {
+        return new CalendarBox(dateTime);
+    }
+
     private void initializeCalenderBoxInfo(LocalDate dateTime) {
         date.setText(dateTime.getMonth().toString().substring(0, 3) + " " + dateTime.getDayOfMonth());
-        assignment.setText("0  assignment");
-        exam.setText("0 Events");
-        event.setText("0 event");
+        assignment.setText("0 Assignment(s)");
+        exam.setText("0 Exam(s)");
+        event.setText("0 Event(s)");
     }
 }
