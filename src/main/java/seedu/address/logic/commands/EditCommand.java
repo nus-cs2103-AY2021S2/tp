@@ -101,7 +101,8 @@ public class EditCommand extends Command {
         Remark updatedRemark = flashcardToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(flashcardToEdit.getTags());
 
-        return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory, updatedPriority, updatedRemark, updatedTags);
+        return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory,
+                updatedPriority, updatedRemark, updatedTags);
     }
 
     @Override

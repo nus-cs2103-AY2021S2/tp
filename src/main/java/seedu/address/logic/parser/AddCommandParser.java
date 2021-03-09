@@ -31,8 +31,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_CATEGORY, PREFIX_PRIORITY, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUESTION,
+                PREFIX_ANSWER, PREFIX_CATEGORY, PREFIX_PRIORITY, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_PRIORITY, PREFIX_ANSWER, PREFIX_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {

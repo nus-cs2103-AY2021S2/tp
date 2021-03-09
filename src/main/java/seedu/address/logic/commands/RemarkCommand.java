@@ -51,9 +51,9 @@ public class RemarkCommand extends Command {
         }
 
         Flashcard flashcardToEdit = lastShownList.get(index.getZeroBased());
-        Flashcard editedFlashcard = new Flashcard(flashcardToEdit.getName(), flashcardToEdit.getPhone(), flashcardToEdit.getEmail(),
+        Flashcard editedFlashcard = new Flashcard(flashcardToEdit.getName(),
+                flashcardToEdit.getPhone(), flashcardToEdit.getEmail(),
                 flashcardToEdit.getAddress(), remark, flashcardToEdit.getTags());
-
         model.setFlashcard(flashcardToEdit, editedFlashcard);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
 

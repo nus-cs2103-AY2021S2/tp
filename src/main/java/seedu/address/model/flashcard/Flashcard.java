@@ -28,7 +28,8 @@ public class Flashcard {
     /**
      * Every field must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category, Priority priority, Remark remark, Set<Tag> tags) {
+    public Flashcard(Question question, Answer answer, Category category, Priority priority,
+                     Remark remark, Set<Tag> tags) {
         requireAllNonNull(question, answer, category, priority, tags);
         this.question = question;
         this.answer = answer;
@@ -111,14 +112,13 @@ public class Flashcard {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
+        builder.append("Question: ")
+                .append(getName())
+                .append("; Answer: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("; Category: ")
                 .append(getEmail())
-                .append("; Remark: ")
-                .append(getRemark())
-                .append("; Address: ")
+                .append("; Priority: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();

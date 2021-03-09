@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,14 +32,13 @@ public class AddCommand extends Command {
             + PREFIX_PRIORITY + "Mid "
             + PREFIX_TAG + "boring "
             + PREFIX_TAG + "easy";
-
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This person already exists in FlashBack.";
 
     private final Flashcard toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Flashcard}
      */
     public AddCommand(Flashcard flashcard) {
         requireNonNull(flashcard);
