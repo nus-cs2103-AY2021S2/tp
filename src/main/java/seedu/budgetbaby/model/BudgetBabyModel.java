@@ -11,11 +11,11 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface BudgetBabyModel {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<FinancialRecord> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -47,52 +47,44 @@ public interface Model {
      */
     void setBudgetBabyFilePath(Path budgetBabyFilePath);
 
-
-    //=========== AddressBook ================================================================================
+    //=========== BudgetTracker ================================================================================
 
     /**
      * Replaces budget tracker data with the data in {@code budgetTracker}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setBudgetTracker(ReadOnlyBudgetTracker budgetTracker);
 
     /**
      * Returns the BudgetTracker
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
+    ReadOnlyBudgetTracker getBudgetTracker();
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteFinancialRecord(FinancialRecord target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given financial record.
      */
-    void addPerson(Person person);
+    void addFinancialRecord(FinancialRecord record);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given financial record {@code target} with {@code editedRecord}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered financial record list
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<FinancialRecord> getFilteredFinancialRecordList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered financial record list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
 }
