@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * Test class for Exam.
  */
-public class ExamTest {
+public class TestExam {
     /**
      * Checks that {@code Exam} instance can be initialised.
      */
