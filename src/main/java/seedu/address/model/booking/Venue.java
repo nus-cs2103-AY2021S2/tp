@@ -12,7 +12,6 @@ public class Venue {
 
     // Data fields
     private final String name;
-    // private final String remarks;
     private final int capacity;
 
     /**
@@ -27,12 +26,6 @@ public class Venue {
     public String getName() {
         return name;
     }
-
-    /*
-    public String getRemarks() {
-        return remarks;
-    }
-     */
 
     public int getCapacity() {
         return capacity;
@@ -66,7 +59,6 @@ public class Venue {
 
         Venue otherBooking = (Venue) other;
         return otherBooking.getName().equals(getName())
-                // && otherBooking.getRemarks().equals(getRemarks())
                 && otherBooking.getCapacity() == getCapacity();
     }
 

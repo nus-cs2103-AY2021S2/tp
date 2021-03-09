@@ -97,6 +97,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeVenue(Venue key) {
+        venues.remove(key);
+    }
+
+
     //// util methods
 
     @Override
@@ -108,6 +117,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Venue> getVenueList() {
+        return venues.asUnmodifiableObservableList();
     }
 
     @Override
