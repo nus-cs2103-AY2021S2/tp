@@ -87,9 +87,14 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an assignment that has the same description and deadline
+     * as {@code assignment} exists in the same module.
      */
     boolean hasAssignment(Assignment assignment);
 
+    /**
+     * Adds the given assignment.
+     * {@code assignment} must not already exist in the module it is to be added to.
+     */
     void addAssignment(Assignment assignment);
 }
