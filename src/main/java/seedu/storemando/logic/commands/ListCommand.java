@@ -32,7 +32,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(predicate);
-        return new CommandResult(MESSAGE_SUCCESS); // might need change
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
