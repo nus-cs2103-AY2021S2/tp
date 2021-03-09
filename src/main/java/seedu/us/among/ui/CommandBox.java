@@ -1,5 +1,6 @@
 package seedu.us.among.ui;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -35,7 +36,9 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Handles the command received in new thread
+     * Handles the command received
+     *
+     * @param commandText command received from user
      */
     private void handleCommand(String commandText) {
         try {
@@ -46,6 +49,27 @@ public class CommandBox extends UiPart<Region> {
         } finally {
             commandTextField.setDisable(false);
         }
+    }
+
+    /**
+     * Creates thread to handle the command received
+     *
+     * @param commandText command received from user
+     */
+    private void handleCommandInNewThread(String commandText) {
+        //handle API commands input in new thread
+        Task<Void> task = new Task<>() {
+            @Override public Void call() {
+                handleCommand(commandText);
+                //to select command box again after command execution in thread ends
+                Platform.runLater(() -> {
+                    commandTextField.requestFocus();
+                    commandTextField.selectEnd();
+                });
+                return null;
+            }
+        };
+        new Thread(task).start();
     }
 
     /**
@@ -63,14 +87,7 @@ public class CommandBox extends UiPart<Region> {
         String commandText = commandTextField.getText();
 
         if (commandText.startsWith("send ") || commandText.startsWith("run ")) {
-            //handle API commands input in new thread
-            Task<Void> task = new Task<>() {
-                @Override public Void call() {
-                    handleCommand(commandText);
-                    return null;
-                }
-            };
-            new Thread(task).start();
+            handleCommandInNewThread(commandText);
         } else if (!commandText.equals("")) {
             handleCommand(commandText);
         } else {
