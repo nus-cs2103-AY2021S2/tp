@@ -7,12 +7,8 @@ title: User Guide
 and efficiently add classes for modules and easily view their tasks.
 It is optimised for users who prefer typing.
 
-
-### Table of Contents
-* [Quick start](#start)
-* [Features](#features)
-* [FAQ](#faq)
-* [Command summary](#summary)
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,7 +30,7 @@ It is optimised for users who prefer typing.
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`eat dinner` : Adds a task titled `eat dinner` to the todo list.
+   * **`add`**`n/eat dinner` : Adds a task titled `eat dinner` to the todo list.
 
    * **`delete`**`3` : Deletes the 3rd task shown in the current list.
 
@@ -51,16 +47,16 @@ It is optimised for users who prefer typing.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add NAME`, `NAME` is a parameter which can be used as `add eat dinner`.
+  e.g. in `add n/TITLE`, `n/TITLE` is a parameter which can be used as `n/eat dinner`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/TITLE [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/TITLE p/PHONE_NUMBER`, `p/PHONE_NUMBER n/TITLE` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last 
   occurrence of the parameter will be taken.<br>
@@ -83,10 +79,10 @@ Format: `help`
 
 Adds a task to the todo list.
 
-Format: `add TITLE`
+Format: `add n/TITLE`
 
 Examples:
-* `add eat dinner`
+* `add n/eat dinner`
 
 ### Listing all tasks : `list`
 
@@ -103,32 +99,32 @@ Format: `Add INDEX [d/DATE]…​`
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
 * Existing values will be updated to the input values.
-* When editing dateline, the existing dates of the person will be removed i.e adding of dateline is not cumulative.
-* You can remove all the person’s dateline by typing `d/` without
+* When editing dateline, the existing dates of the task will be removed i.e adding of dateline is not cumulative.
+* You can remove all the task’s dateline by typing `d/` without
   specifying any deadline after it.
 
 Examples:
 *  `Add 1 d/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021.
 *  `Add 2 d/` Clears the existing deadline of 2nd task on the list.
 
-### Editing a person : `edit`
+### Editing a task : `edit`
 
-Edits an existing person in the address book.
+Edits an existing task in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/TITLE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. 
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
+* You can remove all the task’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st task to be 
    `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/` Edits the title of the 2nd task to be `Betsy Crower` and clears all existing tags.
 
 ### Searching a task: `find`
 
@@ -198,10 +194,10 @@ that contains the data of your previous AddressBook home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add TITLE` <br> e.g., `add eat dinner`
+**Add** | `add n/TITLE` <br> e.g., `add n/eat dinner`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/TITLE] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103 team project`
 **List** | `list`
 **Help** | `help`
