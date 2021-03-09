@@ -10,6 +10,7 @@ import seedu.address.commons.util.DateUtil;
  */
 public class Event extends Task {
     protected LocalDate at;
+    protected Integer recurrance;
 
     /**
      * Constructor for Deadline.
@@ -19,7 +20,7 @@ public class Event extends Task {
     public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
-        this.taskType = "Event";
+        this.taskType = "E";
     }
 
     /**
@@ -31,7 +32,7 @@ public class Event extends Task {
     public Event(String description, Boolean isDone, LocalDate at) {
         super(description, isDone);
         this.at = at;
-        this.taskType = "Event";
+        this.taskType = "E";
     }
 
     /**
@@ -43,6 +44,11 @@ public class Event extends Task {
         return this.at;
     }
 
+    /**
+     * Checks if an instance of a Event is equal to another Object.
+     * @param other Object to be compared with.
+     * @return True if both objects are equal. Else return false.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -71,6 +77,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + DateUtil.decodeDate(at) + ")";
+        return "[E]" + this.getStatusIcon() + " " + this.description + " (at: " + DateUtil.decodeDate(at) + ")";
     }
 }

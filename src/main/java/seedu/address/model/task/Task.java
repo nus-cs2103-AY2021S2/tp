@@ -17,7 +17,7 @@ public abstract class Task {
     }
 
     /**
-     * Constructor for Task
+     * Constructor for Task.
      * @param description Description of the Task.
      * @param isDone Marks whether the Task is Done.
      */
@@ -70,6 +70,11 @@ public abstract class Task {
         this.isDone = true;
     }
 
+    /**
+     * Checks if an instance of a Task is equal to another Object.
+     * @param other Object to be compared with.
+     * @return True if both objects are equal. Else return false.
+     */
     @Override
     public abstract boolean equals(Object other);
 
@@ -81,7 +86,5 @@ public abstract class Task {
      * @return A String representation of the Task.
      */
     @Override
-    public String toString() {
-        return this.getStatusIcon() + " " + this.description;
-    }
+    public abstract String toString();
 }

@@ -32,7 +32,7 @@ public class Deadline extends Task {
     public Deadline(String description, Boolean isDone, LocalDate by) {
         super(description, isDone);
         this.by = by;
-        this.taskType = "Deadline";
+        this.taskType = "D";
     }
 
     /**
@@ -44,6 +44,11 @@ public class Deadline extends Task {
         return this.by;
     }
 
+    /**
+     * Checks if an instance of a Deadline is equal to another Object.
+     * @param other Object to be compared with.
+     * @return True if both objects are equal. Else return false.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -73,6 +78,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DateUtil.decodeDate(by) + ")";
+        return "[D]" + this.getStatusIcon() + " " + this.description + " (by: " + DateUtil.decodeDate(by) + ")";
     }
 }
