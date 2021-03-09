@@ -41,6 +41,6 @@ class VenueTest {
         assertFalse(VENUE1.equals(5));
 
         // different venue -> returns false
-        assertFalse(VENUE1.equals(VENUE2));
+        assertFalse(VENUE2.equals(VENUE1));
     }
 }
