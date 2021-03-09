@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Boon Ji
+### Keng Iuan
 
-<img src="images/tanboonji.png" width="200px">
+<img src="images/darkdestry-t.png" width="200px">
 
-[[github](https://github.com/tanboonji)]
+[[github](http://github.com/darkdestry-t)]
 <!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Integration
-* Reponsibilities: Logic
+* Role: Team Leader
+* Responsibilities: Storage
 
 ### Justin Gnoh
 
@@ -26,18 +26,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/justgnohUG)]
 <!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Team Lead
-* Responsibilities: View
+* Role: Production
+* Responsibilities: UI
 
-### Keng Iuan
+### Boon Ji
 
-<img src="images/darkdestry-t.png" width="200px">
+<img src="images/tanboonji.png" width="200px">
 
-[[github](http://github.com/darkdestry-t)]
+[[github](https://github.com/tanboonji)]
 <!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Testing
-* Responsibilities: Storage
+* Role: Documentation
+* Reponsibilities: Logic (excluding Commands)
 
 ### Yi Ping
 
@@ -46,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/oeiyiping)]
 <!-- [[portfolio](team/johndoe.md)] -->
 
-* Role: Code Quality
-* Responsibilities: Ui
+* Role: Documentation
+* Responsibilities: Model, Commands
 
 ### Yao Wei
 
@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <!-- [[portfolio](team/johndoe.md)] -->
 
 * Role: Documentation
-* Responsibilities: Model
+* Responsibilities: Test
