@@ -72,8 +72,8 @@ public class LocationContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
 
         // Keywords match quantity, expirydate and name, but does not match location
-        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Alice", "alice@email.com", "Living", "Room"));
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Alice", "2020-01-11", "Living", "Room"));
         assertFalse(predicate.test(new ItemBuilder().withName("Alice").withQuantity("12345")
-            .withExpiryDate("alice@email.com").withLocation("Living room").build()));
+            .withExpiryDate("2020-02-11").withLocation("Living room").build()));
     }
 }
