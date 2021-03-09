@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.flashcard.Priority;
-import seedu.address.model.flashcard.Category;
-import seedu.address.model.flashcard.Question;
 import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Priority;
+import seedu.address.model.flashcard.Question;
 
 public class JsonAdaptedFlashcardTest {
     private static final String INVALID_NAME = "";
