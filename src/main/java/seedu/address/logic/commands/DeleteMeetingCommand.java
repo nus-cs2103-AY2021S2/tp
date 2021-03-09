@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 public class DeleteMeetingCommand extends Command {
     public static final String COMMAND_WORD = "deletemeet";
@@ -37,6 +37,8 @@ public class DeleteMeetingCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this || (other instanceof DeleteMeetingCommand && targetIndex.equals(((DeleteMeetingCommand) other).targetIndex));
+        return other == this
+                || (other instanceof DeleteMeetingCommand
+                && targetIndex.equals(((DeleteMeetingCommand) other).targetIndex));
     }
 }

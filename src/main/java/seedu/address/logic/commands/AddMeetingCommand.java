@@ -1,11 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 public class AddMeetingCommand extends Command {
 
@@ -27,11 +31,14 @@ public class AddMeetingCommand extends Command {
             + PREFIX_TAG + "Premium";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
-    public static final String MESSAGE_MEETING_CONFLICT = "A meeting with this date and time already exists in the " +
-            "address book ";
+    public static final String MESSAGE_MEETING_CONFLICT = "A meeting with this date and time already exists in the "
+            + "address book ";
 
     private final Meeting toAdd;
 
+    /**
+     * Creates an AddMeetingCommand to add the specified {@code Meeting}
+     */
     public AddMeetingCommand(Meeting meeting) {
         requireNonNull(meeting);
         toAdd = meeting;
