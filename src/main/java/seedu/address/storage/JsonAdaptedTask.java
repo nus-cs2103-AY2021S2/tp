@@ -102,10 +102,6 @@ class JsonAdaptedTask {
         }
         final Date modelDeadline = new Date(deadline);
 
-        if (priority == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Priority.class.getSimpleName()));
-        }
         if (!Priority.isValidPriority(priority)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
@@ -123,7 +119,11 @@ class JsonAdaptedTask {
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         final Set<Category> modelCategories = new HashSet<>(taskCategories);
 
-        return new Task(modelName, modelDeadline, modelPriority, modelCategories, modelTags);
+        Task task = new Task(modelName, modelDeadline, modelPriority, modelCategories, modelTags);
+        if (modelCompletionStatus.isComplete()) {
+            task.markTaskAsDone();
+        }
+        return task;
     }
 
 }
