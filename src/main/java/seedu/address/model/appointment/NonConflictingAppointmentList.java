@@ -16,7 +16,7 @@ import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
  * elements by their sorting criterion using {@code Appointment#compareTo(Appointment)}.
  * Appointments are considered non-conflicting by comparing using {@code Appointment#hasConflict(Appointment)}. '
  * As such, adding and updating of appointments uses Appointment#hasConflict(Appointment) so as to ensure that the
- * appointment being added or updated does not conflict with any existing appointments in the  
+ * appointment being added or updated does not conflict with any existing appointments in the
  * NonConflictingAppointmentList.
  * Removal of an appointment uses Appointment#equals(Object) so as to ensure that the appointment with exactly the
  * same fields will be removed.
