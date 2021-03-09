@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final TaskTracker taskTracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given taskTracker and userPrefs.
@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         this.taskTracker = new TaskTracker(taskTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.taskTracker.getPersonList());
+        filteredTasks = new FilteredList<>(this.taskTracker.getPersonList());
     }
 
     public ModelManager() {
@@ -91,27 +91,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return taskTracker.hasPerson(person);
+    public boolean hasPerson(Task task) {
+        requireNonNull(task);
+        return taskTracker.hasPerson(task);
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Task target) {
         taskTracker.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        taskTracker.addPerson(person);
+    public void addPerson(Task task) {
+        taskTracker.addPerson(task);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
 
-        taskTracker.setPerson(target, editedPerson);
+        taskTracker.setPerson(target, editedTask);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -121,14 +121,14 @@ public class ModelManager implements Model {
      * {@code versionedTaskTracker}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Task> getFilteredPersonList() {
+        return filteredTasks;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -147,7 +147,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskTracker.equals(other.taskTracker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredTasks.equals(other.filteredTasks);
     }
 
 }

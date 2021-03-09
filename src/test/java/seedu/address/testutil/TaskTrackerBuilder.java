@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.TaskTracker;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 
 /**
  * A utility class to help with building TaskTracker objects.
@@ -23,8 +23,8 @@ public class TaskTrackerBuilder {
     /**
      * Adds a new {@code Person} to the {@code TaskTracker} that we are building.
      */
-    public TaskTrackerBuilder withPerson(Person person) {
-        taskTracker.addPerson(person);
+    public TaskTrackerBuilder withPerson(Task task) {
+        taskTracker.addPerson(task);
         return this;
     }
 

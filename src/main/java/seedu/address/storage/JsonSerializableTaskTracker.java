@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskTracker;
 import seedu.address.model.TaskTracker;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
 
 /**
  * An Immutable TaskTracker that is serializable to JSON format.
@@ -49,11 +49,11 @@ class JsonSerializableTaskTracker {
     public TaskTracker toModelType() throws IllegalValueException {
         TaskTracker taskTracker = new TaskTracker();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (taskTracker.hasPerson(person)) {
+            Task task = jsonAdaptedPerson.toModelType();
+            if (taskTracker.hasPerson(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            taskTracker.addPerson(person);
+            taskTracker.addPerson(task);
         }
         return taskTracker;
     }
