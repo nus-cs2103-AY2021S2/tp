@@ -1,0 +1,100 @@
+package seedu.address.model.property.client;
+
+import java.util.Objects;
+
+/**
+ * Represents the seller of a Property.
+ * Guarantees: field values are validated, immutable.
+ */
+public class Client {
+    private final String clientName;
+    private final String clientContact;
+    private final String clientEmail;
+    private final Integer clientAskingPrice;
+
+    /**
+     * Constructs a {@code Client} with all information.
+     */
+    public Client(String clientName, String clientContact, String clientEmail, Integer clientAskingPrice) {
+        this.clientName = clientName;
+        this.clientContact = clientContact;
+        this.clientEmail = clientEmail;
+        this.clientAskingPrice = clientAskingPrice;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public String getClientContact() {
+        return clientContact;
+    }
+
+    public String getClientEmail() {
+        return clientEmail;
+    }
+
+    public Integer getClientAskingPrice() {
+        return clientAskingPrice;
+    }
+
+    /**
+     * Returns true if both client have the same name.
+     * This defines a weaker notion of equality between two clients.
+     */
+    public boolean isSameClient(Client otherClient) {
+        if (otherClient == this) {
+            return true;
+        }
+
+        return otherClient != null
+                && otherClient.getClientName().equals(getClientName());
+    }
+
+    /**
+     * Returns true if both clients have the same identity and data fields.
+     * This defines a stronger notion of equality between two clients.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Client)) {
+            return false;
+        }
+
+        Client otherClient = (Client) other;
+        return otherClient.getClientName().equals(getClientName())
+                && otherClient.getClientContact().equals(getClientContact())
+                && otherClient.getClientEmail().equals(getClientContact())
+                && otherClient.getClientAskingPrice().equals(getClientAskingPrice());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(clientName, clientContact, clientEmail, clientAskingPrice);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        if (clientName != null) {
+            builder.append("; Client Name: ").append(getClientName());
+        }
+        if (clientContact != null) {
+            builder.append("; Client Contact: ").append(getClientContact());
+        }
+        if (clientEmail != null) {
+            builder.append("; Client Email: ").append(getClientEmail());
+        }
+        if (clientAskingPrice != null) {
+            builder.append("; Client Asking Price: ").append(getClientAskingPrice());
+        }
+
+        return builder.toString();
+    }
+}
