@@ -1,38 +1,72 @@
 package seedu.address.model.module;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Module {
     private Title title;
     private AssignmentList assignments;
     private Exam exam;
+
+    /**
+     * Constructs a {@code Module} with {@code Title} as the input representing the module title.
+     */
     public Module(Title title) {
         this.title = title;
         this.assignments = new AssignmentList();
         this.exam = null;
     }
 
+    /**
+     * Gets the title of the module.
+     *
+     * @return Module title.
+     */
     public Title getTitle() {
         return title;
     }
 
+    /**
+     * Gets the assignment list in the module.
+     *
+     * @return List of module assignments.
+     */
     public AssignmentList getAssignments() {
         return assignments;
     }
 
+    /**
+     * Gets the assignment at the specified index.
+     *
+     * @param index Index of assignment.
+     * @return Assignment at index.
+     */
     public Assignment getAssignment(int index) {
         return assignments.get(index);
     }
 
+    /**
+     * Gets the exam of the module.
+     *
+     * @return Exam.
+     */
     public Exam getExam() {
         return exam;
     }
 
+    /**
+     * Sets the exam of the module to the given exam.
+     *
+     * @param exam Exam to be set.
+     */
     public void setExam(Exam exam) {
         this.exam = exam;
     }
 
+    /**
+     * Adds an assignment to the assignment list of the module.
+     *
+     * @param assignment Assignment to be added.
+     */
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
     }

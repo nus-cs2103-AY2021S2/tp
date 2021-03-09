@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class AssignmentList {
     private ArrayList<Assignment> assignments;
 
+    /**
+     * Constructs an {@code AssignmentList} to store {@code Assignments}
+     */
     public AssignmentList() {
         this.assignments = new ArrayList<>();
     }
