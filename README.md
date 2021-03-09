@@ -2,7 +2,7 @@
 
 [![CI Status](https://github.com/AY2021S2-CS2103-W17-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103-W17-1/tp/actions)
 
-(UI to be provided at a later date.)
+![mockup_img](https://ay2021s2-cs2103-w17-1.github.io/tp/images/Ui.png)
 
 * This is **Module Planning App project for NUS students**.<br>
   Example usages:
