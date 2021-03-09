@@ -1,11 +1,9 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.util.DateUtil;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-
 import java.time.LocalDate;
 import java.util.Objects;
+
+import seedu.address.commons.util.DateUtil;
 
 /**
  * Represents a Task with a Deadline.

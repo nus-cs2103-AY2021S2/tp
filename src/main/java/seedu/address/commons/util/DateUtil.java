@@ -1,10 +1,10 @@
 package seedu.address.commons.util;
 
-import seedu.address.commons.exceptions.DateConversionException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import seedu.address.commons.exceptions.DateConversionException;
 
 /**
  * A class for encoding and decoding of Dates.

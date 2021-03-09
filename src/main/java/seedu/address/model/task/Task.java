@@ -1,7 +1,5 @@
 package seedu.address.model.task;
 
-import java.util.Objects;
-
 public abstract class Task {
 
     protected String description;

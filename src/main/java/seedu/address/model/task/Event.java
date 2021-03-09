@@ -1,9 +1,9 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.util.DateUtil;
-
 import java.time.LocalDate;
 import java.util.Objects;
+
+import seedu.address.commons.util.DateUtil;
 
 /**
  * Represents a Task as an Event.
