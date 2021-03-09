@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
-import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.note.Note;
 
 /**
  * Represents the in-memory model of the dictionote book data.

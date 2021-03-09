@@ -21,14 +21,9 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
-<<<<<<< HEAD:src/test/java/seedu/dictionote/logic/commands/AddCommandTest.java
-import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.person.Person;
-import seedu.dictionote.testutil.PersonBuilder;
-=======
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218:src/test/java/seedu/dictionote/logic/commands/AddContactCommandTest.java
 
 public class AddContactCommandTest {
 
@@ -132,16 +127,12 @@ public class AddContactCommandTest {
         }
 
         @Override
-<<<<<<< HEAD:src/test/java/seedu/dictionote/logic/commands/AddCommandTest.java
         public Path getNoteBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-=======
         public boolean hasContact(Contact contact) {
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218:src/test/java/seedu/dictionote/logic/commands/AddContactCommandTest.java
             throw new AssertionError("This method should not be called.");
         }
 
@@ -156,16 +147,12 @@ public class AddContactCommandTest {
         }
 
         @Override
-<<<<<<< HEAD:src/test/java/seedu/dictionote/logic/commands/AddCommandTest.java
         public void setNoteBookFilePath(Path path) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-=======
         public ObservableList<Contact> getFilteredPersonList() {
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218:src/test/java/seedu/dictionote/logic/commands/AddContactCommandTest.java
             throw new AssertionError("This method should not be called.");
         }
 

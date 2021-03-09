@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
-import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.note.Note;
 
 /**
  * The API of the Model component.

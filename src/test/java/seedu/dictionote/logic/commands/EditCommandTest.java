@@ -13,11 +13,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-<<<<<<< HEAD
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
-import static seedu.dictionote.testutil.TypicalPersons.getTypicalAddressBook;
-=======
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218
 
 import org.junit.jupiter.api.Test;
 
@@ -46,19 +42,11 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedContact).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-<<<<<<< HEAD
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
-                editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new UserPrefs(), getTypicalNoteBook());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-=======
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), 
+                new UserPrefs(), model.getNoteBook());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedContact);
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -78,14 +66,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedContact);
 
-<<<<<<< HEAD
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new UserPrefs(), getTypicalNoteBook());
-        expectedModel.setPerson(lastPerson, editedPerson);
-=======
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), 
+                new UserPrefs(), model.getNoteBook());
         expectedModel.setPerson(lastContact, editedContact);
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -107,27 +90,16 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-<<<<<<< HEAD
-        Person personInFilteredList = model.getFilteredPersonList()
-                .get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-=======
         Contact contactInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Contact editedContact = new ContactBuilder(contactInFilteredList).withName(VALID_NAME_BOB).build();
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedContact);
 
-<<<<<<< HEAD
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new UserPrefs(), getTypicalNoteBook());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-=======
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), 
+                new UserPrefs(), model.getNoteBook());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedContact);
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

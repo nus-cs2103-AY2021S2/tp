@@ -8,8 +8,9 @@ import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.note.Note;
+
 
 /**
  * API of the Logic component

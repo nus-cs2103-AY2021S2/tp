@@ -8,11 +8,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-<<<<<<< HEAD
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
-import static seedu.dictionote.testutil.TypicalPersons.getTypicalAddressBook;
-=======
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218
 
 import org.junit.jupiter.api.Test;
 
@@ -38,13 +34,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, contactToDelete);
 
-<<<<<<< HEAD
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
-        expectedModel.deletePerson(personToDelete);
-=======
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(contactToDelete);
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -66,13 +57,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, contactToDelete);
 
-<<<<<<< HEAD
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
-        expectedModel.deletePerson(personToDelete);
-=======
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(contactToDelete);
->>>>>>> aa56a9f5d6f489f0ec7f45011daa26f5e5fec218
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

@@ -20,8 +20,8 @@ import seedu.dictionote.model.NoteBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.person.Person;
 import seedu.dictionote.testutil.NoteBuilder;
 
 public class AddNoteCommandTest {
@@ -99,10 +99,10 @@ public class AddNoteCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
+//        @Override
+//        public void addPerson(Person person) {
+//            throw new AssertionError("This method should not be called.");
+//        }
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
@@ -120,19 +120,19 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
+//        @Override
+//        public void deleteContact(Contact target) {
+//            throw new AssertionError("This method should not be called.");
+//        }
 
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
+//        @Override
+//        public void setContact(Contact target, Contact editedContact) {
+//            throw new AssertionError("This method should not be called.");
+//        }
 
         @Override
         public void setNoteBookFilePath(Path path) {
@@ -140,14 +140,14 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Contact> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
+//        @Override
+//        public void updateFilteredContactList(Predicate<Contact> predicate) {
+//            throw new AssertionError("This method should not be called.");
+//        }
 
         @Override
         public ReadOnlyNoteBook getNoteBook() {
