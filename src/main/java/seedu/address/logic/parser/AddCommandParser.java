@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
@@ -26,11 +27,24 @@ public class AddCommandParser {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNMENT, PREFIX_NAME);
 
-        if (arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
-                && argMultimap.getPreamble().isEmpty()) {
+        // todo similar for this maybe only prefix for module? then in add module parser, we
+        //  check for exam and assignment.
+        boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
+        boolean isAssignmentPrefixPresent = arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT);
+        boolean isExamPrefixPrefixPresent = arePrefixesPresent(argMultimap, PREFIX_EXAM);
+        boolean isNamePrefixPresent = arePrefixesPresent(argMultimap, PREFIX_NAME);
+
+        /*if (isArgMultiMapEmpty || !isAssignmentPrefixPresent
+                || !isExamPrefixPrefixPresent || !isNamePrefixPresent) {
+            //todo Maybe only have the Assignment and Exam to meesage usage show in adding module.
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddPersonCommand.MESSAGE_USAGE) + "\n" + AddAssignmentCommand.MESSAGE_USAGE + "\n"
+                    + AddExamCommand.MESSAGE_USAGE);
+        }*/
+
+        if (isAssignmentPrefixPresent && isPreambleEmpty) {
             command = new AddAssignmentCommandParser().parse(args);
-        } else if (arePrefixesPresent(argMultimap, PREFIX_NAME)
-                && argMultimap.getPreamble().isEmpty()) {
+        } else if (isNamePrefixPresent && isPreambleEmpty) {
             command = new AddPersonCommandParser().parse(args);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE)

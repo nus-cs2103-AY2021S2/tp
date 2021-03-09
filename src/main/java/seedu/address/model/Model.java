@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Exam;
 import seedu.address.model.person.Person;
 
 /**
@@ -97,4 +98,8 @@ public interface Model {
      * {@code assignment} must not already exist in the module it is to be added to.
      */
     void addAssignment(Assignment assignment);
+
+    boolean hasExam(Exam toAdd);
+
+    void addExam(Exam toAdd);
 }
