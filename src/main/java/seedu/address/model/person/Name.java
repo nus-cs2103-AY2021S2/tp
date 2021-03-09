@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.model.tag.Taggable;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -7,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name extends Taggable {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -56,4 +58,8 @@ public class Name {
         return fullName.hashCode();
     }
 
+    @Override
+    public boolean filter(String s) {
+        return fullName.contains(s);
+    }
 }
