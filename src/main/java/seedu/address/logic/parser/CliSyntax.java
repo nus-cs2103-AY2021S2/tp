@@ -1,9 +1,5 @@
 package seedu.address.logic.parser;
 
-import java.time.LocalDateTime;
-
-import seedu.address.model.booking.Venue;
-
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */

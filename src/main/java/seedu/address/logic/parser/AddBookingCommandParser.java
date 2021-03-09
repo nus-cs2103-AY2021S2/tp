@@ -1,17 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKINGSTART;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKINGEND;
-
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
@@ -34,11 +28,14 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
      */
     public AddBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_BOOKER, PREFIX_VENUE, PREFIX_DESCRIPTION, PREFIX_BOOKINGSTART, PREFIX_BOOKINGEND);
+                ArgumentTokenizer.tokenize(args, PREFIX_BOOKER, PREFIX_VENUE,
+                        PREFIX_DESCRIPTION, PREFIX_BOOKINGSTART, PREFIX_BOOKINGEND);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKER, PREFIX_VENUE, PREFIX_DESCRIPTION, PREFIX_BOOKINGSTART, PREFIX_BOOKINGEND)
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKER, PREFIX_VENUE,
+                PREFIX_DESCRIPTION, PREFIX_BOOKINGSTART, PREFIX_BOOKINGEND)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookingCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddBookingCommand.MESSAGE_USAGE));
         }
 
 

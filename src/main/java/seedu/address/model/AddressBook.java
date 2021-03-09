@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.NonOverlappingBookingList;
 import seedu.address.model.booking.UniqueVenueList;
