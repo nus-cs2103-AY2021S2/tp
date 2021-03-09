@@ -1,0 +1,7 @@
+Current Test Exceptions
+seedu.address.logic.parser.exceptions.ParseException at LogicManagerTest.java:145
+Caused by: seedu.address.logic.parser.exceptions.ParseException at AddCommandParserTest.java:75
+Caused by: seedu.address.logic.parser.exceptions.ParseException at AddCommandParserTest.java:45
+javafx.fxml.LoadException at UiPartTest.java:50
+Caused by: java.lang.ClassNotFoundException at UiPartTest.java:50
+Caused by: javafx.fxml.LoadException at UiPartTest.java:57

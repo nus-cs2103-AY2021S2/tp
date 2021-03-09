@@ -9,44 +9,40 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wang Haochen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ssagit.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ssagit)]
+[[portfolio](team/ssagit.md)]
 
-* Role: Project Advisor
+* Responsibilities: Scheduling & Tracking
 
-### Jane Doe
+### Sean Iau Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seaniy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/seaniy)]
+[[portfolio](team/seaniy.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Deliverables and deadlines
 
-### Johnny Doe
+### Douglas Wei Jing Allwood
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/douglaswja.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/douglaswja)] [[portfolio](team/douglaswja.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code Quality and Integration
 
-### Jean Doe
+### Chua Jun Jie Benedict
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benedictbcjj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/benedictbcjj)]
+[[portfolio](team/benedictbcjj.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
 ### James Doe
 
