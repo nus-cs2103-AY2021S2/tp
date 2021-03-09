@@ -72,9 +72,9 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + MATRIC_DESC_BOB+ FACULTY_DESC_BOB
-                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB +
-                        RESIDENCE_DESC_BOB,
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
+                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
+                        + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple matriculation numbers - last matric number accepted
@@ -91,7 +91,8 @@ public class AddCommandParserTest {
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + PHONE_DESC_AMY
-                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
+                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
+                        + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted

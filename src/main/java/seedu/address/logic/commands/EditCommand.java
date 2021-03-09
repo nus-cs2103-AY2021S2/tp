@@ -116,7 +116,7 @@ public class EditCommand extends Command {
         SchoolResidence updatedSchoolResidence = editPersonDescriptor.getSchoolResidence()
                 .orElse(personToEdit.getSchoolResidence());
 
-        return new Person(updatedName, updatedMatriculationNumber, updatedFaculty,updatedPhone, updatedEmail,
+        return new Person(updatedName, updatedMatriculationNumber, updatedFaculty, updatedPhone, updatedEmail,
                 updatedAddress, updatedVaccinationStatus, updatedMedicalDetails, updatedSchoolResidence);
     }
 

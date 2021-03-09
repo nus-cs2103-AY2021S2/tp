@@ -155,7 +155,7 @@ class JsonAdaptedPerson {
 
         final SchoolResidence modelSchoolRes = new SchoolResidence(schoolResidence);
 
-        return new Person(modelName, modelMatric, modelFaculty,modelPhone, modelEmail, modelAddress, modelVacStatus,
+        return new Person(modelName, modelMatric, modelFaculty, modelPhone, modelEmail, modelAddress, modelVacStatus,
                 modelMedDetails, modelSchoolRes);
     }
 

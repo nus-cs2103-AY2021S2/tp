@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Faculty;
 import seedu.address.model.person.Person;
 /**
  * A utility class for Person.
