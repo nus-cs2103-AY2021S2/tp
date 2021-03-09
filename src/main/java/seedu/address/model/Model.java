@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
 
 /**
@@ -64,6 +65,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the given venue.
+     * The venue must exist in the system.
+     */
+    void deleteVenue(Venue target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
@@ -78,6 +85,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered venue list */
+    ObservableList<Venue> getFilteredVenueList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
