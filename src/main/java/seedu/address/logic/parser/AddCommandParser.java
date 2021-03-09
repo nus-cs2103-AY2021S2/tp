@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -16,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Faculty;
 import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.MedicalDetails;
 import seedu.address.model.person.Name;
@@ -36,11 +38,12 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS, PREFIX_SCHOOL_RESIDENCE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_FACULTY,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS,
+                        PREFIX_SCHOOL_RESIDENCE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_VACCINATION_STATUS, PREFIX_EMAIL, PREFIX_MEDICAL_DETAILS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_FACULTY, PREFIX_ADDRESS,
+                PREFIX_PHONE, PREFIX_VACCINATION_STATUS, PREFIX_EMAIL, PREFIX_MEDICAL_DETAILS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -48,6 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         MatriculationNumber matriculationNumber = ParserUtil.parseMatric(argMultimap
                 .getValue(PREFIX_MATRICULATION_NUMBER).get());
+        Faculty faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
@@ -57,8 +61,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .get());
         SchoolResidence schoolResidence = ParserUtil.parseSchoolRes(argMultimap.getValue(PREFIX_SCHOOL_RESIDENCE));
 
-        Person person = new Person(name, matriculationNumber, phone, email, address, vaccinationStatus, medicalDetails,
-                schoolResidence);
+        Person person = new Person(name, matriculationNumber, faculty, phone, email, address, vaccinationStatus,
+                medicalDetails, schoolResidence);
 
         return new AddCommand(person);
     }
