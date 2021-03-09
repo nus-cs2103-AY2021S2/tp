@@ -84,7 +84,6 @@ public class UniqueVenueList implements Iterable<Venue> {
                 continue;
             }
             internalList.remove(i);
-            break;
         }
     }
 

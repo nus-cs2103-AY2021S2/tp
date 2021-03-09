@@ -173,5 +173,4 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredVenues.setPredicate(predicate);
     }
-
 }
