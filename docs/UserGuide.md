@@ -71,15 +71,33 @@ Format: `help`
 Adds a person to the records.
 
 Format: `add n/NAME i/MATRICULATION_NUMBER p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS 
-r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS`
+m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
 >**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
 
 Examples:
-* `add n/John Doe i/A1234567X p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated 
-  r/RVRC m/peanut allergy`
+* `add n/John Doe i/A1234567X p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC `
 * `add n/Betsy Crowe i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/not vaccinated 
   m/nose lift surgery in 2012`
+
+### Editing a student entry: `edit`
+
+Edits a student in the records.
+
+Format: `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
+
+>**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
+> 
+* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+
+* `edit 1 p/91234567 f/MED` Edits the phone number and faculty of the 1st person to be 91234567 and MED respectively.
+
+* `edit 2 r/KRH`  Edits the school residence of the 2nd person to be KRH
+
 
 ### Listing all students in the records : `list`
 
