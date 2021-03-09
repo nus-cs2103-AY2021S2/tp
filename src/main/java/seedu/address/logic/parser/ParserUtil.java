@@ -14,6 +14,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
+import seedu.address.model.module.Exam;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -109,6 +110,24 @@ public class ParserUtil {
             return assignmentDeadline;
         } catch (DateTimeParseException e) {
             throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String examDateInput} into {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the {@code examDateIput} is of an invalid format.
+     */
+    public static LocalDateTime parseExamDate(String examDateInput) throws ParseException {
+        String trimmedExamDateInput = examDateInput.trim();
+        try {
+            LocalDateTime examDate = LocalDateTime.parse(trimmedExamDateInput,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+
+            return examDate;
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
     }
 }

@@ -33,6 +33,13 @@ public class AddExamCommand extends Command {
         toAdd = exam;
     }
 
+    /**
+     * Executes the AddExamComamnd get add an {@code Exam} into RemindMe.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return The CommandResult for the success of the command.
+     * @throws CommandException when the exam to add is already in RemindMe.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -45,6 +52,12 @@ public class AddExamCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
+    /**
+     * Checks whether {@code other} is of the same Command and Exam.
+     *
+     * @param other other Object to compare with this.
+     * @return true if they are similar, else false.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this
