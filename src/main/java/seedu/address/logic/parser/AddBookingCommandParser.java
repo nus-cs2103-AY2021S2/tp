@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKINGSTART;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKINGEND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKINGSTART;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
