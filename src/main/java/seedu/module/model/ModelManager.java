@@ -100,11 +100,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void doneTask(Task task) {
-        moduleBook.doneTask(task);
-    }
-
-    @Override
     public void addTask(Task task) {
         moduleBook.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

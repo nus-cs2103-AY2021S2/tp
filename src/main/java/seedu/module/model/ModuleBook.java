@@ -93,10 +93,6 @@ public class ModuleBook implements ReadOnlyModuleBook {
         tasks.remove(key);
     }
 
-    public void doneTask(Task task) {
-
-    }
-
     //// util methods
 
     @Override

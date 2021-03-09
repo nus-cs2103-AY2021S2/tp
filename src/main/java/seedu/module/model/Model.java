@@ -64,12 +64,6 @@ public interface Model {
     void deleteTask(Task target);
 
     /**
-     * Marks the given task as done.
-     * The task must exist in the module book.
-     */
-    void doneTask(Task task);
-
-    /**
      * Adds the given task.
      * {@code task} must not already exist in the module book.
      */
