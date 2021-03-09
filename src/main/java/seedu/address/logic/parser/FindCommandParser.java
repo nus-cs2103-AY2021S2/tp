@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ARGUMENT_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_INVALID_REGEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATTERN;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,8 +31,14 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_PATTERN);
         String nameString = argMultiMap.getPreamble();
         if (argMultiMap.getValue(PREFIX_PATTERN).isPresent()) {
-            Pattern pattern = Pattern.compile(nameString, Pattern.CASE_INSENSITIVE);
-            return new FindCommand(new NameContainsPatternPredicate(pattern));
+            try {
+                Pattern pattern = Pattern.compile(nameString, Pattern.CASE_INSENSITIVE);
+                return new FindCommand(new NameContainsPatternPredicate(pattern));
+            }
+            catch (PatternSyntaxException pe) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_ARGUMENT_FORMAT, MESSAGE_INVALID_REGEX));
+            }
         } else {
             if (nameString.isEmpty()) {
                 throw new ParseException(
