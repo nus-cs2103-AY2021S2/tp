@@ -28,7 +28,7 @@ package seedu.location.logic.commands;
 import seedu.location.model.Model;
 
 /**
- * Changes the remark of an existing item in the address book.
+ * Changes the remark of an existing item in the storemando.
  */
 public class RemarkCommand extends Command {
 
