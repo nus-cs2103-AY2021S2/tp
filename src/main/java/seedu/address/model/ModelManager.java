@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given taskTracker and userPrefs.
      */
+
     public ModelManager(ReadOnlyTaskTracker taskTracker, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(taskTracker, userPrefs);
@@ -86,6 +87,7 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTaskTracker getTaskTracker() {
         return taskTracker;
+
     }
 
     @Override

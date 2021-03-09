@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same moduleName as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -261,7 +261,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new CS-coded module task                               | refer to the task in the App |
 | `* * *`  | user                                       | delete a task                                                | remove entries that I no longer need                         |
-| `* * *`  | user                                       | find a task by its name                                      | locate a particular task in order to view its deadline and relevant details |
+| `* * *`  | user                                       | find a task by its moduleName                                      | locate a particular task in order to view its deadline and relevant details |
 | `* * *`  | user                                       | add priority tags (low, medium, high)                        | categorise my tasks and know which ones I should work on first |
 | `* * *`  | user who has just finished a task | mark a task as done                                          | know which tasks I have completed                            |
 | `* *` | user | add notes to a particular task | jot down quick ideas or notes that I have for a particular task |

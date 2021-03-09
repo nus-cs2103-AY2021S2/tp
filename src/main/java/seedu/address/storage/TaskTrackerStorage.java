@@ -8,6 +8,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTaskTracker;
 import seedu.address.model.TaskTracker;
 
+
 /**
  * Represents a storage for {@link TaskTracker}.
  */
@@ -20,11 +21,13 @@ public interface TaskTrackerStorage {
 
     /**
      * Returns TaskTracker data as a {@link ReadOnlyTaskTracker}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyTaskTracker> readTaskTracker() throws DataConversionException, IOException;
+
 
     /**
      * @see #getTaskTrackerFilePath()
@@ -33,6 +36,7 @@ public interface TaskTrackerStorage {
 
     /**
      * Saves the given {@link ReadOnlyTaskTracker} to the storage.
+     *
      * @param taskTracker cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
@@ -42,5 +46,6 @@ public interface TaskTrackerStorage {
      * @see #saveTaskTracker(ReadOnlyTaskTracker)
      */
     void saveTaskTracker(ReadOnlyTaskTracker taskTracker, Path filePath) throws IOException;
+
 
 }

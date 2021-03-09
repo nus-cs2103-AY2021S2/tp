@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ReadOnlyTaskTracker;
-import seedu.address.model.TaskTracker;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyTaskTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TaskTracker;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -115,11 +115,13 @@ public class AddCommandTest {
 
         @Override
         public void setTaskTracker(ReadOnlyTaskTracker newData) {
+
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyTaskTracker getTaskTracker() {
+
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,6 +190,7 @@ public class AddCommandTest {
         @Override
         public ReadOnlyTaskTracker getTaskTracker() {
             return new TaskTracker();
+
         }
     }
 

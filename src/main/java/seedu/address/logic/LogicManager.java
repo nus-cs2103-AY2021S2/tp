@@ -57,6 +57,7 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyTaskTracker getTaskTracker() {
         return model.getTaskTracker();
+
     }
 
     @Override

@@ -12,7 +12,9 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
+
 public class TaskTracker implements ReadOnlyTaskTracker {
+
 
     private final UniquePersonList persons;
 
@@ -22,16 +24,18 @@ public class TaskTracker implements ReadOnlyTaskTracker {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         persons = new UniquePersonList();
     }
 
-    public TaskTracker() {}
+    public TaskTracker() {
+    }
 
     /**
      * Creates an TaskTracker using the Persons in the {@code toBeCopied}
      */
+
+
     public TaskTracker(ReadOnlyTaskTracker toBeCopied) {
         this();
         resetData(toBeCopied);

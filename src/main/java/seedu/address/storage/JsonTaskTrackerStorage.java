@@ -34,6 +34,7 @@ public class JsonTaskTrackerStorage implements TaskTrackerStorage {
     @Override
     public Optional<ReadOnlyTaskTracker> readTaskTracker() throws DataConversionException {
         return readTaskTracker(filePath);
+
     }
 
     /**
@@ -43,6 +44,7 @@ public class JsonTaskTrackerStorage implements TaskTrackerStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyTaskTracker> readTaskTracker(Path filePath) throws DataConversionException {
+
         requireNonNull(filePath);
 
         Optional<JsonSerializableTaskTracker> jsonTaskTracker = JsonUtil.readJsonFile(
@@ -71,6 +73,7 @@ public class JsonTaskTrackerStorage implements TaskTrackerStorage {
      */
     public void saveTaskTracker(ReadOnlyTaskTracker taskTracker, Path filePath) throws IOException {
         requireNonNull(taskTracker);
+
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);

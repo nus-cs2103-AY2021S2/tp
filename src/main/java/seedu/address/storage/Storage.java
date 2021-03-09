@@ -29,4 +29,5 @@ public interface Storage extends TaskTrackerStorage, UserPrefsStorage {
     @Override
     void saveTaskTracker(ReadOnlyTaskTracker taskTracker) throws IOException;
 
+
 }

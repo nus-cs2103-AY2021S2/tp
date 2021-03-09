@@ -116,17 +116,17 @@ Format: `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/DEADLINE
 * Existing values will be updated to the input values
 
 Examples:
-* `edit 1 mn/Software Engineering mc/CS2103` edits the module name and module code of the deadline at index 1 to be “Software Engineering” and “CS2103” respectively.
-* `edit 2 tn/Finals n/Open Book` edits the name and notes of the deadline at index 2 to be “Finals” and “Open Book” respectively.
+* `edit 1 mn/Software Engineering mc/CS2103` edits the module moduleName and module code of the deadline at index 1 to be “Software Engineering” and “CS2103” respectively.
+* `edit 2 tn/Finals n/Open Book` edits the moduleName and notes of the deadline at index 2 to be “Finals” and “Open Book” respectively.
 
-### Locating deadlines by name: `find`
+### Locating deadlines by moduleName: `find`
 
-Find deadlines whose name contains any of the given keywords.
+Find deadlines whose moduleName contains any of the given keywords.
 
 Format: `find KEYWORD...`
 * The search is case-insensitive. e.g “Assignment” will match “assignment”
 * The order of the keywords does not matter. e.g. “programming modular” will “match modular programming”
-* Only the deadline name is searched.
+* Only the deadline moduleName is searched.
 * Only full words will be matched e.g. “Java” will not match “Javascript”
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. “SQL Python” will return “SQL Quiz, Python Assignment”
 

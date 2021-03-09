@@ -37,6 +37,7 @@ class JsonSerializableTaskTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableTaskTracker}.
      */
     public JsonSerializableTaskTracker(ReadOnlyTaskTracker source) {
+
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 

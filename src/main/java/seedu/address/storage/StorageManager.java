@@ -61,6 +61,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyTaskTracker> readTaskTracker(Path filePath) throws DataConversionException, IOException {
+
         logger.fine("Attempting to read data from file: " + filePath);
         return taskTrackerStorage.readTaskTracker(filePath);
     }
@@ -72,6 +73,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveTaskTracker(ReadOnlyTaskTracker taskTracker, Path filePath) throws IOException {
+
         logger.fine("Attempting to write to data file: " + filePath);
         taskTrackerStorage.saveTaskTracker(taskTracker, filePath);
     }

@@ -58,6 +58,7 @@ public class StorageManagerTest {
         storageManager.saveTaskTracker(original);
         ReadOnlyTaskTracker retrieved = storageManager.readTaskTracker().get();
         assertEquals(original, new TaskTracker(retrieved));
+
     }
 
     @Test
