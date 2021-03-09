@@ -1,26 +1,27 @@
-package seedu.address.logic.commands.exceptions;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Assignment;
-
 
 public class AddAssignmentCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the module's assignment list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the module. "
             + "Parameters: "
-            + "m/ " + "MODULE TITLE"
-            + "a/ " + "ASSIGNMENT"
-            + "by/ " + "DEADLINE"
-            + "Example: " + COMMAND_WORD + " "
-            + "m/ " + "CS2103T"
-            + "a/ " + "TP v1.2"
-            + "by/ " + "28/3/2021 2359";
+            + PREFIX_MODULE + "TITLE "
+            + PREFIX_ASSIGNMENT + "DESCRIPTION "
+            + PREFIX_DEADLINE + "DEADLINE"
+            + "\nExample: " + COMMAND_WORD + " "
+            + PREFIX_MODULE + "CS2103T "
+            + PREFIX_ASSIGNMENT + "TP v1.2 "
+            + PREFIX_DEADLINE + "28/3/2021 2359";
 
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the module";
