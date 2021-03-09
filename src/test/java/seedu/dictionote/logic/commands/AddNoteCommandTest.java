@@ -15,66 +15,54 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
-import seedu.dictionote.logic.commands.exceptions.CommandException;
-import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
+import seedu.dictionote.model.NoteBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.note.Note;
-import seedu.dictionote.testutil.ContactBuilder;
+import seedu.dictionote.testutil.NoteBuilder;
 
-public class AddContactCommandTest {
+public class AddNoteCommandTest {
 
     @Test
-    public void constructor_nullContact_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddContactCommand(null));
+    public void constructor_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddNoteCommand(null));
     }
 
     @Test
-    public void execute_contactAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingContactAdded modelStub = new ModelStubAcceptingContactAdded();
-        Contact validContact = new ContactBuilder().build();
+    public void execute_noteAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingNoteAdded modelStub = new ModelStubAcceptingNoteAdded();
+        Note validNote = new NoteBuilder().build();
 
-        CommandResult commandResult = new AddContactCommand(validContact).execute(modelStub);
+        CommandResult commandResult = new AddNoteCommand(validNote).execute(modelStub);
 
-        assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validContact), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validContact), modelStub.contactsAdded);
-    }
-
-    @Test
-    public void execute_duplicateContact_throwsCommandException() {
-        Contact validContact = new ContactBuilder().build();
-        AddContactCommand addContactCommand = new AddContactCommand(validContact);
-        ModelStub modelStub = new ModelStubWithContact(validContact);
-
-        assertThrows(CommandException.class,
-                AddContactCommand.MESSAGE_DUPLICATE_CONTACT, () -> addContactCommand.execute(modelStub));
+        assertEquals(Arrays.asList(validNote), modelStub.noteAdded);
     }
 
     @Test
     public void equals() {
-        Contact alice = new ContactBuilder().withName("Alice").build();
-        Contact bob = new ContactBuilder().withName("Bob").build();
-        AddContactCommand addAliceCommand = new AddContactCommand(alice);
-        AddContactCommand addBobCommand = new AddContactCommand(bob);
+        Note note = new NoteBuilder(new Note("2103")).build();
+        Note otherNote = new NoteBuilder(new Note("cs2103T")).build();
+        AddNoteCommand addNoteCommand = new AddNoteCommand(note);
+        AddNoteCommand addOtherNoteCommand = new AddNoteCommand(otherNote);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addNoteCommand.equals(addNoteCommand));
 
         // same values -> returns true
-        AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddNoteCommand addNoteCommandCopy = new AddNoteCommand(note);
+        assertTrue(addNoteCommand.equals(addNoteCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addNoteCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addNoteCommand.equals(null));
 
-        // different contact -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different person -> returns false
+        assertFalse(addNoteCommand.equals(addOtherNoteCommand));
     }
 
     /**
@@ -183,44 +171,44 @@ public class AddContactCommandTest {
     }
 
     /**
-     * A Model stub that contains a single contact.
+     * A Model stub that contains a single person.
      */
-    private class ModelStubWithContact extends ModelStub {
-        private final Contact contact;
+    private class ModelStubWithNote extends ModelStub {
+        private final Note note;
 
-        ModelStubWithContact(Contact contact) {
-            requireNonNull(contact);
-            this.contact = contact;
+        ModelStubWithNote(Note note) {
+            requireNonNull(note);
+            this.note = note;
         }
 
         @Override
-        public boolean hasContact(Contact contact) {
-            requireNonNull(contact);
-            return this.contact.isSameContact(contact);
+        public boolean hasNote(Note note) {
+            requireNonNull(note);
+            return this.note.isSameNote(note);
         }
     }
 
     /**
-     * A Model stub that always accept the contact being added.
+     * A Model stub that always accept the note being added.
      */
-    private class ModelStubAcceptingContactAdded extends ModelStub {
-        final ArrayList<Contact> contactsAdded = new ArrayList<>();
+    private class ModelStubAcceptingNoteAdded extends ModelStub {
+        final ArrayList<Note> noteAdded = new ArrayList<>();
 
         @Override
-        public boolean hasContact(Contact contact) {
-            requireNonNull(contact);
-            return contactsAdded.stream().anyMatch(contact::isSameContact);
+        public boolean hasNote(Note note) {
+            requireNonNull(note);
+            return noteAdded.stream().anyMatch(note::isSameNote);
         }
 
         @Override
-        public void addContact(Contact contact) {
-            requireNonNull(contact);
-            contactsAdded.add(contact);
+        public void addNote(Note note) {
+            requireNonNull(note);
+            noteAdded.add(note);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyNoteBook getNoteBook() {
+            return new NoteBook();
         }
     }
 

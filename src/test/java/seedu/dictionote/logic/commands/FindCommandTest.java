@@ -9,6 +9,7 @@ import static seedu.dictionote.testutil.TypicalContacts.CARL;
 import static seedu.dictionote.testutil.TypicalContacts.ELLE;
 import static seedu.dictionote.testutil.TypicalContacts.FIONA;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +25,8 @@ import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
 
     @Test
     public void equals() {

@@ -97,6 +97,7 @@ public class AddressBookTest {
         public ObservableList<Contact> getContactList() {
             return contacts;
         }
+
     }
 
 }

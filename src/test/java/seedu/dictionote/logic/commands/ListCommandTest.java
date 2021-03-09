@@ -4,6 +4,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.dictionote.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
     }
 
     @Test

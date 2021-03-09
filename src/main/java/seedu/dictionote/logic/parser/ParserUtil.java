@@ -72,6 +72,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dictionote} is invalid.
      */
+
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
@@ -124,7 +125,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String option} into a {@code UiOptionAction}.
+     * Parses a {@code String noteContent} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static String parseNote(String noteContent) throws ParseException {
+        requireNonNull(noteContent);
+        String trimmedName = noteContent.trim();
+        return trimmedName;
+    }
+
+    /** Parses a {@code String option} into a {@code UiOptionAction}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code option} is invalid.

@@ -52,7 +52,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getContactList());
     }
 
@@ -73,16 +72,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addContact(Contact p) {
         persons.add(p);
     }
-
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the dictionote book.
-     * The person identity of {@code editedPerson} must not be the same as
-     * another existing person in the dictionote book.
+     * Adds a person to the dictionote book.
+     * The person must not already exist in the dictionote book.
      */
     public void setPerson(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
-
         persons.setPerson(target, editedContact);
     }
 

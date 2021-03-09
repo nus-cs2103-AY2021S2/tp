@@ -5,12 +5,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.NoteBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -57,4 +60,19 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Note[] getSampleNotes() {
+        return new Note[] {
+            new Note("CS2103T exam is coming."),
+            new Note("My friend is an idiot."),
+            new Note("My Teacher Best Teacher")
+        };
+    }
+
+    public static ReadOnlyNoteBook getSampleNoteBook() {
+        NoteBook sampleNb = new NoteBook();
+        for (Note sampleNote : getSampleNotes()) {
+            sampleNb.addNote(sampleNote);
+        }
+        return sampleNb;
+    }
 }

@@ -19,9 +19,8 @@ public class Contact {
     private final Name name;
     private final Phone phone;
     private final Email email;
-
-    // Data fields
     private final Address address;
+    // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -31,8 +30,8 @@ public class Contact {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
-        this.email = email;
         this.address = address;
+        this.email = email;
         this.tags.addAll(tags);
     }
 
@@ -111,6 +110,7 @@ public class Contact {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

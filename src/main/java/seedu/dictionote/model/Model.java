@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.note.Note;
 
 /**
  * The API of the Model component.
@@ -34,15 +35,35 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /** Returns the NoteBook */
+    ReadOnlyNoteBook getNoteBook();
+
+    /**
+     * Returns true if a note with the same content as {@code note} exists in the dictionote book.
+     */
+    boolean hasNote(Note note);
+
+
+    /**
+     * Adds the given note.
+     * {@code note} must not already exist in the dictpersonionote book.
+     */
+    void addNote(Note note);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Note> getFilteredNoteList();
+
     /**
      * Returns the user prefs' dictionote book file path.
      */
     Path getAddressBookFilePath();
+    Path getNoteBookFilePath();
 
     /**
      * Sets the user prefs' dictionote book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+    void setNoteBookFilePath(Path noteBookFilePath);
 
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.

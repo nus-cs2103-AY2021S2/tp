@@ -18,7 +18,6 @@ import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
-
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -41,8 +40,8 @@ public class AddContactCommandParser implements Parser<AddContactCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
         Contact contact = new Contact(name, phone, email, address, tagList);
 

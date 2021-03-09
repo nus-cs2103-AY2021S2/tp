@@ -128,8 +128,8 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
         private Set<Tag> tags;
+        private Address address;
 
         public EditPersonDescriptor() {}
 
@@ -140,8 +140,8 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setEmail(toCopy.email);
             setTags(toCopy.tags);
         }
 
@@ -179,10 +179,11 @@ public class EditCommand extends Command {
         public void setAddress(Address address) {
             this.address = address;
         }
-
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+
+
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
