@@ -75,7 +75,7 @@ class JsonAdaptedEvent {
     /**
      * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Event toModelType() throws IllegalValueException {
         final List<Category> eventCategories = new ArrayList<>();

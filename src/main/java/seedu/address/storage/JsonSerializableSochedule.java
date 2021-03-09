@@ -27,7 +27,7 @@ class JsonSerializableSochedule {
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableSochedule} with the given persons.
      */
     @JsonCreator
     public JsonSerializableSochedule(@JsonProperty("tasks") List<JsonAdaptedTask> tasks,
@@ -47,7 +47,7 @@ class JsonSerializableSochedule {
     }
 
     /**
-     * Converts this address book into the model's {@code Sochedule} object.
+     * Converts this sochedule into the model's {@code Sochedule} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

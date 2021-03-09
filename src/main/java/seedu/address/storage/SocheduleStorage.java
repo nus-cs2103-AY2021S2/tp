@@ -40,6 +40,6 @@ public interface SocheduleStorage {
     /**
      * @see #saveSochedule(ReadOnlySochedule)
      */
-    void saveSochedule(ReadOnlySochedule addressBook, Path filePath) throws IOException;
+    void saveSochedule(ReadOnlySochedule sochedule, Path filePath) throws IOException;
 
 }
