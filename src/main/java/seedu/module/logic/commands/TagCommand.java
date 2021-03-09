@@ -15,6 +15,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+/**
+ * Add a tag to an existing task in the module book.
+ */
 public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
@@ -68,6 +71,13 @@ public class TagCommand extends Command {
         return new CommandResult(String.format(MESSAGE_TAG_TASK_SUCCESS, editedTask));
     }
 
+    /**
+     * Add tag to set of old tags, duplicated tag will not be added
+     *
+     * @param oldTags set of old tags
+     * @param newTag new Tag to be added
+     * @return set of new tags
+     */
     private Set<Tag> addTags(Set<Tag> oldTags, Tag newTag) {
         Set<Tag> newTags = new HashSet<>(oldTags);
         boolean isEqual = false;

@@ -6,7 +6,7 @@ import static seedu.module.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
         Task editedTask = taskInList.withName(VALID_NAME_BOB).withDeadline(VALID_DEADLINE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HIGH).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withDeadline(VALID_DEADLINE_BOB).withTags(VALID_TAG_HIGH).build();
         EditCommand editCommand = new EditCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);

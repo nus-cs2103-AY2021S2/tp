@@ -22,8 +22,8 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -114,7 +114,7 @@ public class EditCommandParserTest {
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HIGH, VALID_TAG_LOW).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -161,7 +161,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_LOW).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -175,7 +175,7 @@ public class EditCommandParserTest {
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
                 .withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withTags(VALID_TAG_LOW, VALID_TAG_HIGH)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

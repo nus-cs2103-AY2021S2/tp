@@ -22,8 +22,8 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.module.testutil.TypicalTasks.AMY;
@@ -45,7 +45,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_LOW).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
@@ -68,7 +68,7 @@ public class AddCommandParserTest {
                 + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
-        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_LOW, VALID_TAG_HIGH)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedTaskMultipleTags));
@@ -127,7 +127,7 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_LOW, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + MODULE_DESC_BOB + INVALID_DESCRIPTION_DESC,
