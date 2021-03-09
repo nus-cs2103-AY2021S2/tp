@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Vax@NUS is a **one stop management app to efficiently track and and schedule COVID-19 vaccinations for NUS students.** It is a desktop app **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vax@NUS can get your appointment management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -153,7 +153,7 @@ _Details coming soon ..._
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
-
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary

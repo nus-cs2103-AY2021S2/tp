@@ -296,10 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. System shows an error message.
   
-        Use case ends.
-    
-  Use case ends.
-
+        Use case ends.  
 
 **Use case: Add a vaccination appointment**
 
@@ -325,7 +322,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * 4a1. System shows an error message.
 
       Use case ends.  
-  
   
 **Use case: Delete a student**
 
@@ -366,7 +362,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Vaccine type**: Singapore has two approved COVID-19 vaccines, one developed by Pfizer-BioNTech, 
+* **Vaccine**: Singapore has two approved COVID-19 vaccines, one developed by Pfizer-BioNTech, 
   the other by Moderna. Both require two doses, 21 days apart for Pfizer-BioNTech, 28 days apart for Moderna.
   Two appointments must therefore be created per student. 
 
