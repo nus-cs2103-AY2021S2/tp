@@ -25,6 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final int DEFAULT_CAPACITY = 0;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -126,6 +127,7 @@ public class ParserUtil {
         return tagSet;
     }
 
+<<<<<<< HEAD
 
     /**
      * Parses a {@code String booker} into a {@code String trimmedBooker}.
@@ -191,4 +193,41 @@ public class ParserUtil {
 
 
 
+=======
+    /**
+     * Parses a {@code String venue} into a {@code Venue}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Venue parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        return new Venue(trimmedVenue, DEFAULT_CAPACITY);
+    }
+
+    /**
+     * Parses a {@code String capacity} into an integer.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws NumberFormatException if the given {@code capacity} is invalid.
+     */
+    public static int parseCapacity(String capacity) {
+        requireNonNull(capacity);
+        String trimmedCapacity = capacity.trim();
+        try {
+            return Integer.parseInt(trimmedCapacity);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException();
+        }
+    }
+
+    /**
+     * Parses a {@code String name}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseVenueName(String name) {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        return trimmedName;
+    }
+>>>>>>> master
 }

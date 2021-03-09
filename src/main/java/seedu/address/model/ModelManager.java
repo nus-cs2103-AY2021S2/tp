@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Booking> filteredBookings;
+    private final FilteredList<Venue> filteredVenues;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,8 +38,10 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredPersons = new FilteredList<Person>(this.addressBook.getPersonList());
         filteredBookings = new FilteredList<Booking>(this.addressBook.getBookingList());
+        filteredVenues = new FilteredList<>(this.addressBook.getVenueList());
     }
 
     public ModelManager() {
@@ -127,6 +131,18 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasVenue(Venue venue) {
+        requireNonNull(venue);
+        return addressBook.hasVenue(venue);
+    }
+
+    @Override
+    public void addVenue(Venue venue) {
+        addressBook.addVenue(venue);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -168,5 +184,27 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredBookings.equals(other.filteredBookings);
     }
+    //=========== Venue List =============================================================
 
+    @Override
+    public void deleteVenue(Venue target) {
+        addressBook.removeVenue(target);
+    }
+
+    //=========== Filtered Venue List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Venues} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Venue> getFilteredVenueList() {
+        return filteredVenues;
+    }
+
+    @Override
+    public void updateFilteredVenueList(Predicate<Venue> predicate) {
+        requireNonNull(predicate);
+        filteredVenues.setPredicate(predicate);
+    }
 }

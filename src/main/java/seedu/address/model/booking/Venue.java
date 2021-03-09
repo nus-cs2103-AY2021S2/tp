@@ -12,25 +12,19 @@ public class Venue {
 
     // Data fields
     private final String name;
-    private final String remarks;
     private final int capacity;
 
     /**
      * Every field must be present and not null.
      */
-    public Venue(String name, String remarks, int capacity) {
-        requireAllNonNull(name, remarks);
+    public Venue(String name, int capacity) {
+        requireAllNonNull(name);
         this.name = name;
-        this.remarks = remarks;
         this.capacity = capacity;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getRemarks() {
-        return remarks;
     }
 
     public int getCapacity() {
@@ -65,23 +59,20 @@ public class Venue {
 
         Venue otherBooking = (Venue) other;
         return otherBooking.getName().equals(getName())
-                && otherBooking.getRemarks().equals(getRemarks())
                 && otherBooking.getCapacity() == getCapacity();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, remarks, capacity);
+        return Objects.hash(name, capacity);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Name: ")
+        builder.append("Name: ")
                 .append(getName())
-                .append("; Remarks: ")
-                .append(getRemarks())
                 .append("; Capacity: ")
                 .append(getCapacity());
 

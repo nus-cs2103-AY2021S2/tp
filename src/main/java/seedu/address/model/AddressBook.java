@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.NonOverlappingBookingList;
+import seedu.address.model.booking.UniqueVenueList;
+import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -17,7 +20,11 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+
     private final NonOverlappingBookingList bookings;
+
+    private final UniqueVenueList venues;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,7 +35,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+
         bookings = new NonOverlappingBookingList();
+
+        venues = new UniqueVenueList();
+
     }
 
     public AddressBook() {}
@@ -105,6 +116,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeVenue(Venue key) {
+        venues.remove(key);
+    }
+
+
     //// util methods
 
     @Override
@@ -119,6 +139,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Venue> getVenueList() {
+        return venues.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
@@ -129,6 +154,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 
     @Override
     public ObservableList<Booking> getBookingList() {
@@ -142,5 +168,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
         return bookings.contains(booking);
+    }
+
+    /**
+     * Returns true if a venue with the same identity as {@code venue} exists in the system.
+     */
+    public boolean hasVenue(Venue venue) {
+        requireNonNull(venue);
+        return venues.contains(venue);
+    }
+
+    /**
+     * Adds a venue to the system.
+     * The venue must not already exist in the system.
+     */
+    public void addVenue(Venue v) {
+        venues.add(v);
     }
 }
