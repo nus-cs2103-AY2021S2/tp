@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "remark" : "No remark",
     "modeOfContact" : "email",
+    "isBlacklisted" : false,
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "No remark",
     "modeOfContact" : "address",
+    "isBlacklisted" : false,
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "address" : "wall street",
     "remark" : "No remark",
     "modeOfContact" : "phone",
+    "isBlacklisted" : true,
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "address" : "10th street",
     "remark" : "No remark",
     "modeOfContact" : "phone",
+    "isBlacklisted" : false,
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "address" : "michegan ave",
     "remark" : "No remark",
     "modeOfContact" : "email",
+    "isBlacklisted" : false,
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "address" : "little tokyo",
     "remark" : "No remark",
     "modeOfContact" : "address",
+    "isBlacklisted" : true,
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "address" : "4th street",
     "remark" : "No remark",
     "modeOfContact" : "phone",
+    "isBlacklisted" : false,
     "tagged" : [ ]
   }, {
     "name" : "Jane Vermilion",
@@ -63,6 +70,7 @@
     "address" : "7th street",
     "remark" : "On leave of absence",
     "modeOfContact" : "phone",
+    "isBlacklisted" : true,
     "tagged" : [ ]
   } ]
 }

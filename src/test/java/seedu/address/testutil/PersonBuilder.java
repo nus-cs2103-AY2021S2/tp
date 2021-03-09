@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Blacklist;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.ModeOfContact;
 import seedu.address.model.person.Name;
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "No remark";
     public static final String DEFAULT_MODE_OF_CONTACT = "email";
+    public static final Boolean DEFAULT_BLACKLIST_STATUS = false;
 
     private Name name;
     private Phone phone;
@@ -31,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Remark remark;
     private ModeOfContact modeOfContact;
+    private Blacklist blacklist;
     private Set<Tag> tags;
 
     /**
@@ -43,6 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         modeOfContact = new ModeOfContact(DEFAULT_MODE_OF_CONTACT);
+        blacklist = new Blacklist(DEFAULT_BLACKLIST_STATUS);
         tags = new HashSet<>();
     }
 
@@ -56,6 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
         modeOfContact = personToCopy.getModeOfContact();
+        blacklist = personToCopy.getBlacklist();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -114,8 +119,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Blacklist} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withBlacklist(Boolean isBlacklisted) {
+        this.blacklist = new Blacklist(isBlacklisted);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, remark, modeOfContact, tags);
+        return new Person(name, phone, email, address, remark, modeOfContact, blacklist, tags);
     }
 
 }
