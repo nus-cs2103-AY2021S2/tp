@@ -1,5 +1,9 @@
 package seedu.address.logic.parser;
 
+import java.time.LocalDateTime;
+
+import seedu.address.model.booking.Venue;
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -11,5 +15,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+
+    public static final Prefix PREFIX_BOOKER = new Prefix("b/");
+    public static final Prefix PREFIX_VENUE = new Prefix("n/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
+    public static final Prefix PREFIX_BOOKINGSTART = new Prefix("bs/");
+    public static final Prefix PREFIX_BOOKINGEND = new Prefix("be/");
 
 }
