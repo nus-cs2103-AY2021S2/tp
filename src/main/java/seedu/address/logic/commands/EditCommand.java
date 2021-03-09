@@ -23,6 +23,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.School;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -94,12 +95,16 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        School updatedSchool = editPersonDescriptor.getSchool().orElse(personToEdit.getSchool());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Name updatedGuardianName = editPersonDescriptor.getGuardianName().orElse(personToEdit.getGuardianName());
+        Phone updatedGuardianPhone = editPersonDescriptor.getGuardianPhone().orElse(personToEdit.getGuardianPhone());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedSchool, updatedPhone, updatedEmail, updatedAddress,
+                updatedGuardianName, updatedGuardianPhone, updatedTags);
     }
 
     @Override
@@ -126,9 +131,12 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private School school;
         private Phone phone;
         private Email email;
         private Address address;
+        private Name guardianName;
+        private Phone guardianPhone;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -139,9 +147,12 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setSchool(toCopy.school);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setGuardianName(toCopy.guardianName);
+            setGuardianPhone(toCopy.guardianPhone);
             setTags(toCopy.tags);
         }
 
@@ -158,6 +169,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setSchool(School school) {
+            this.school = school;
+        }
+
+        public Optional<School> getSchool() {
+            return Optional.ofNullable(school);
         }
 
         public void setPhone(Phone phone) {
@@ -182,6 +201,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setGuardianName(Name guardianName) {
+            this.guardianName = guardianName;
+        }
+
+        public Optional<Name> getGuardianName() {
+            return Optional.ofNullable(guardianName);
+        }
+
+        public void setGuardianPhone(Phone guardianPhone) {
+            this.guardianPhone = guardianPhone;
+        }
+
+        public Optional<Phone> getGuardianPhone() {
+            return Optional.ofNullable(guardianPhone);
         }
 
         /**
@@ -217,9 +252,12 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getSchool().equals(e.getSchool())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getGuardianName().equals(e.getGuardianName())
+                    && getGuardianPhone().equals(e.getGuardianPhone())
                     && getTags().equals(e.getTags());
         }
     }
