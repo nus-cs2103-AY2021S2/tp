@@ -42,7 +42,7 @@ public class LocationContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_locationContainsKeywords_returnsTrue() {
+    public void test_locationContainsKeywords() {
         // One keyword
         LocationContainsKeywordsPredicate predicate =
             new LocationContainsKeywordsPredicate(Collections.singletonList("Apple"));
@@ -59,10 +59,14 @@ public class LocationContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new LocationContainsKeywordsPredicate(Arrays.asList("aPPle", "bANaNa"));
         assertTrue(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
+
+        // Not all matching keywords
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Apple", "Cherry"));
+        assertFalse(predicate.test(new ItemBuilder().withLocation("Apple").build()));
     }
 
     @Test
-    public void test_locationDoesNotContainKeywords_returnsFalse() {
+    public void test_locationDoesNotContainKeywords() {
         // Zero keywords
         LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate(Collections.emptyList());
         assertTrue(predicate.test(new ItemBuilder().withLocation("Apple").build()));
