@@ -15,6 +15,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_POSTAL = new Prefix("p/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
 
+    // Prefix definitions for client attributes
+    public static final Prefix PREFIX_CLIENT_NAME = new Prefix("cn/");
+    public static final Prefix PREFIX_CLIENT_CONTACT = new Prefix("cc/");
+    public static final Prefix PREFIX_CLIENT_EMAIL = new Prefix("ce/");
+    public static final Prefix PREFIX_CLIENT_ASKING_PRICE = new Prefix("ca/");
+
     // Prefix definitions for appointment attributes
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_TIME = new Prefix("t/");
