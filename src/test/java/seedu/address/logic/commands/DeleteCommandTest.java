@@ -23,12 +23,15 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
+    public static final String NAME_NON_EXISTENT = "Weird@Name";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName().toString());
+        String nameOfPerson = personToDelete.getName().toString();
+
+        DeleteCommand deleteCommand = new DeleteCommand(nameOfPerson);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -40,8 +43,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
-        String invalidName = "ALSKFGEBFPGDWFPKQWEPGJDS;LK;SD";
-        DeleteCommand deleteCommand = new DeleteCommand(invalidName);
+        DeleteCommand deleteCommand = new DeleteCommand(NAME_NON_EXISTENT);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_NAME_IN_BOOK);
     }
@@ -66,11 +68,10 @@ public class DeleteCommandTest {
     public void execute_invalidNameFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person person2ToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(model.getAddressBook().getPersonList().contains(person2ToDelete));
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        assertTrue(model.getAddressBook().getPersonList().contains(personToDelete));
 
-        DeleteCommand deleteCommand = new DeleteCommand("WHATever it is");
+        DeleteCommand deleteCommand = new DeleteCommand(NAME_NON_EXISTENT);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_NAME_IN_BOOK);
     }
@@ -79,8 +80,11 @@ public class DeleteCommandTest {
     public void equals() {
         Person person1ToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person person2ToDelete = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        DeleteCommand deleteFirstCommand = new DeleteCommand(person1ToDelete.getName().toString());
-        DeleteCommand deleteSecondCommand = new DeleteCommand(person2ToDelete.getName().toString());
+        String nameOfPerson1 = person1ToDelete.getName().toString();
+        String nameOfPerson2 = person2ToDelete.getName().toString();
+
+        DeleteCommand deleteFirstCommand = new DeleteCommand(nameOfPerson1);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(nameOfPerson2);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
