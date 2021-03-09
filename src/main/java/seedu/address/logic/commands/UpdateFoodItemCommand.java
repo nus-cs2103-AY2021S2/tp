@@ -4,28 +4,21 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
-import seedu.address.model.food.UniqueFoodList;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 public class UpdateFoodItemCommand extends Command {
 
-    public static final String COMMAND_WORD = "food edit";
+    public static final String COMMAND_WORD = "foodedit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the certain food provided.";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Successfully updated food item";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field such as its carbos, fats or proteins " +
+            "value must be edited and different from original. (Current Food being edited: ";
     public static final String MESSAGE_NOT_FOUND = "The food item is not found.";
 
     private final EditFoodDescriptor editedFood;
@@ -46,7 +39,7 @@ public class UpdateFoodItemCommand extends Command {
         ArrayList<Food> foodList = model.getAddressBook().getFoodList().getFoodList();
 
         for(Food food : foodList) {
-            if(food.getName().equals(editedFood.getName())) {
+            if(food.getName().equals(editedFood.getName().get())) {
                 Food updatedFood = createEditedFood(food, editedFood);
                 model.updateFoodItem(updatedFood);
                 return new CommandResult(MESSAGE_EDIT_FOOD_SUCCESS);
@@ -56,18 +49,24 @@ public class UpdateFoodItemCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Food} with the details of {@code foodToEdit}
+     * edited with {@code editFoodDescriptor}.
      */
-    private static Food createEditedFood(Food foodToEdit, EditFoodDescriptor editFoodDescriptor) {
+    private static Food createEditedFood(Food foodToEdit, EditFoodDescriptor editFoodDescriptor) throws
+            CommandException {
         assert foodToEdit != null;
 
-        String updatedName = editFoodDescriptor.getName().orElse(foodToEdit.getName());
+        String foodName = editFoodDescriptor.getName().orElse(foodToEdit.getName());
         Double updatedCarbos = editFoodDescriptor.getCarbos().orElse(foodToEdit.getCarbos());
         Double updatedFats = editFoodDescriptor.getFats().orElse(foodToEdit.getFats());
         Double updatedProteins = editFoodDescriptor.getProteins().orElse(foodToEdit.getProteins());
 
-        return new Food(updatedName, updatedCarbos, updatedFats, updatedProteins);
+        if(updatedCarbos == foodToEdit.getCarbos() && updatedFats == foodToEdit.getFats()
+                && updatedProteins == foodToEdit.getProteins()) {
+            throw new CommandException(MESSAGE_NOT_EDITED + foodName + ")");
+        }
+
+        return new Food(foodName, updatedCarbos, updatedFats, updatedProteins);
     }
 
     public static class EditFoodDescriptor {
@@ -96,7 +95,7 @@ public class UpdateFoodItemCommand extends Command {
         }
 
         public void setName(String name) {
-            this.name = name;
+            this.name = name.toLowerCase();
         }
 
         public Optional<String> getName() {

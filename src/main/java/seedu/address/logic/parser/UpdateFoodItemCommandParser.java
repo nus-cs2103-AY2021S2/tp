@@ -27,14 +27,6 @@ public class UpdateFoodItemCommandParser implements Parser<UpdateFoodItemCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PROTEINS, PREFIX_CARBOS, PREFIX_FATS);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
-
         EditFoodDescriptor editFoodDescriptor = new EditFoodDescriptor();
         if(argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editFoodDescriptor.setName(ParserUtil.parseFoodName(argMultimap.getValue(PREFIX_NAME).get()));

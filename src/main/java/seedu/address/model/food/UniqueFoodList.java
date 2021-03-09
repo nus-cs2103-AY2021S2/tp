@@ -46,6 +46,7 @@ public class UniqueFoodList {
                 food.updateProteins(foodItem.getProteins());
 //                String result = "Success updating " + food.getName() + " to food list.";
 //                return result;
+                return;
             }
         }
         throw new FoodItemNotFoundException();
