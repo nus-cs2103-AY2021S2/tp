@@ -2,31 +2,33 @@ package seedu.address.model.property.client;
 
 import java.util.Objects;
 
+import seedu.address.model.name.Name;
+
 /**
  * Represents the seller of a Property.
  * Guarantees: field values are validated, immutable.
  */
 public class Client {
-    private final String clientName;
-    private final String clientContact;
+    private final Name clientName;
+    private final Contact clientContact;
     private final String clientEmail;
     private final Integer clientAskingPrice;
 
     /**
      * Constructs a {@code Client} with all information.
      */
-    public Client(String clientName, String clientContact, String clientEmail, Integer clientAskingPrice) {
+    public Client(Name clientName, Contact clientContact, String clientEmail, Integer clientAskingPrice) {
         this.clientName = clientName;
         this.clientContact = clientContact;
         this.clientEmail = clientEmail;
         this.clientAskingPrice = clientAskingPrice;
     }
 
-    public String getClientName() {
+    public Name getClientName() {
         return clientName;
     }
 
-    public String getClientContact() {
+    public Contact getClientContact() {
         return clientContact;
     }
 
