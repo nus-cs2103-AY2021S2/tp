@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
@@ -19,11 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.flashcard.Priority;
-import seedu.address.model.flashcard.Category;
-import seedu.address.model.flashcard.Question;
-import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Priority;
+import seedu.address.model.flashcard.Question;
 import seedu.address.model.flashcard.Remark;
 import seedu.address.model.tag.Tag;
 
