@@ -29,22 +29,22 @@ test your APIs more conveniently than traditional GUI applications.
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. Some example commands you can try:
 
-   - **`help`** : Get a help link for the application.
+   - **`help`** : Opens a help window that shows a link for the application's user guide.
 
-   - **`add -x GET -u https://www.google.com`** : Adds an API endpoint to the
+   - **`add -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Adds an API endpoint to the
      API endpoint list.
 
-   - **`edit 1 -x -u https://www.facebook.com`** : Edits the API endpoint with index `1` shown in the
+   - **`edit 1 -x -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the
      API endpoint list.
 
    - **`remove 3`** : Removes the API endpoint with index `3` shown in the API endpoint list.
 
-   - **`find facebook google`** : Finds all the API endpoints with fields containing `facebook` and `google`.
+   - **`find pm25`** : Finds all the API endpoints with fields containing `pm25`.
 
    - **`send 2`** : Calls the API endpoint with index `2` shown in the API
      endpoint list.
 
-   - **`run -x GET -u https://www.google.com`** : Calls the API endpoint with information 
+   - **`run -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Calls the API endpoint with information 
      given in the command box.
 
    - **`list`** : Lists all API endpoints in the API endpoint list.
@@ -68,7 +68,7 @@ test your APIs more conveniently than traditional GUI applications.
 
 - Items in square brackets are optional.<br> e.g.
   `edit INDEX [-x METHOD] [-u URL]` can be used as `edit 1 -x GET` or
-  `edit 1 -u https://www.google.com`.
+  `edit 1 -u https://api.data.gov.sg/v1/environment/pm25`.
 
 - Items with `…`​ after them can be used multiple times including zero
   times.<br> e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as
@@ -112,8 +112,8 @@ Description: Add an API endpoint to the API endpoint list.
 Format: `add -x METHOD -u URL -t TAG`
 
 Examples:
-- `add -x GET -u https://www.google.com`
-- `add -x GET -u https://www.yahoo.com -t important`
+- `add -x GET -u https://api.data.gov.sg/v1/environment/pm25`
+- `add -x GET -u https://api.data.gov.sg/v1/environment/pm25 -t important`
 
 **Tip:** An endpoint can have any number of tags (including 0)
 
@@ -124,7 +124,7 @@ Description: Edit the API endpoint at the specified index shown in the API endpo
 Format: `edit INDEX [-x METHOD] [-u URL] [-t TAG]…`
 
 Examples:
-- `edit 1 -u https://facebook.com`
+- `edit 1 -u https://api.data.gov.sg/v1/environment/pm25`
 - `edit 2 -x POST`
 
 #### Remove an API endpoint: `remove`
@@ -144,8 +144,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-- `find google`
-- `find facebook yahoo`
+- `find pm25`
+- `find singapore pm25`
 
 #### List all saved API endpoints: `list`
 
@@ -177,8 +177,8 @@ Format: `run -x METHOD -u URL`
 
 Examples:
 
-- `run -x GET -u https://www.google.com`
-- `run -x GET -u https://www.yahoo.com`
+- `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`
+- `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index`
 
 ### Miscellaneous Information
 
@@ -223,12 +223,12 @@ with the file that contains the data of your previous imPoster home folder.
 
 | Action     | Format                                | Example                                |
 | ---------- | ------------------------------------- | -------------------------------------- |
-| **Add**    | `add -x METHOD -u URL [t/TAG]…` <br>  | `add -x GET -u https://www.google.com` |
-| **Edit**   | `edit INDEX [-x METHOD] [-u URL] [t/TAG]`<br> | `edit 1 -u https://facebook.com` |
+| **Add**    | `add -x METHOD -u URL [t/TAG]…` <br>  | `add -x GET -u https://api.data.gov.sg/v1/environment/pm25` |
+| **Edit**   | `edit INDEX [-x METHOD] [-u URL] [t/TAG]`<br> | `edit 1 -u https://api.data.gov.sg/v1/environment/pm25` |
 | **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br>  | `find maps`                            |
 | **List**   | `list`                                | `list`                                 |
 | **Clear**  | `clear`                               | `clear`                                |
 | **Send**   | `send INDEX` <br>                     | `send 1`                               |
-| **Run**    | `run -x METHOD -u URL` <br>           | `run -x GET -u https://www.yahoo.com`  |
+| **Run**    | `run -x METHOD -u URL` <br>           | `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`  |
 
