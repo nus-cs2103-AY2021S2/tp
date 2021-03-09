@@ -90,7 +90,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseSize_validValueWithoutWhitespace_returnsPhone() throws Exception {
+    public void parseSize_validValueWithoutWhitespace_returnsSize() throws Exception {
         Size expectedSize = new Size(VALID_SIZE);
         assertEquals(expectedSize, ParserUtil.parseSize(VALID_SIZE));
     }

@@ -20,18 +20,18 @@ public class SizeTest {
     }
 
     @Test
-    public void isValidPhone() {
-        // null phone number
+    public void isValidSize() {
+        // null size
         assertThrows(NullPointerException.class, () -> Size.isValidSize(null));
 
-        // invalid phone numbers
+        // invalid sizes
         assertFalse(Size.isValidSize("")); // empty string
         assertFalse(Size.isValidSize(" ")); // spaces only
         assertFalse(Size.isValidSize("phone")); // non-numeric
         assertFalse(Size.isValidSize("9011p041")); // alphabets within digits
         assertFalse(Size.isValidSize("9 1")); // spaces within digits
 
-        // valid phone numbers
+        // valid sizes
         assertTrue(Size.isValidSize("23")); // exactly 3 numbers
         assertTrue(Size.isValidSize("11"));
     }
