@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.hippocampus.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in HippoCampus.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {

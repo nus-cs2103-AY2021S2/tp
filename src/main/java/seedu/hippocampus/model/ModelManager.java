@@ -14,7 +14,7 @@ import seedu.hippocampus.commons.core.LogsCenter;
 import seedu.hippocampus.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of HippoCampus data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

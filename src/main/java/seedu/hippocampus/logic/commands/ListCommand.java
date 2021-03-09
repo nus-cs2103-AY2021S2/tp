@@ -6,7 +6,7 @@ import static seedu.hippocampus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.hippocampus.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in HippoCampus to the user.
  */
 public class ListCommand extends Command {
 
@@ -14,7 +14,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons in the address book. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons in HippoCampus. ";
 
     @Override
     public CommandResult execute(Model model) {

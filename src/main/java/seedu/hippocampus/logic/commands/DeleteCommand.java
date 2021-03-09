@@ -11,7 +11,7 @@ import seedu.hippocampus.model.Model;
 import seedu.hippocampus.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from HippoCampus.
  */
 public class DeleteCommand extends Command {
 
