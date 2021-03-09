@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import java.util.Objects;
+
 /**
  * Represents a Task as a Completable.
  */
@@ -22,6 +24,12 @@ public class Completable extends Task {
     public Completable(String description, Boolean isDone) {
         super(description, isDone);
         this.taskType = "Completable";
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(taskType, description, isDone);
     }
 
     /**

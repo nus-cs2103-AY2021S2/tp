@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import java.util.Objects;
+
 public abstract class Task {
 
     protected String description;
@@ -69,6 +71,9 @@ public abstract class Task {
     public void markAsDone() {
         this.isDone = true;
     }
+
+    @Override
+    public abstract int hashCode();
 
     /**
      * Returns a String representation of the Task.

@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import seedu.address.commons.util.DateUtil;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Represents a Task as an Event.
@@ -40,6 +41,12 @@ public class Event extends Task {
     public LocalDate getAt() {
         assert this.at != null : "at should not be null!";
         return this.at;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(taskType, description, isDone, at);
     }
 
     /**

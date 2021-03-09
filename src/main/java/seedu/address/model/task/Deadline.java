@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import seedu.address.commons.util.DateUtil;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Represents a Task with a Deadline.
@@ -41,6 +42,12 @@ public class Deadline extends Task {
     public LocalDate getBy() {
         assert this.by != null : "by should not be null!";
         return this.by;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(taskType, description, isDone, by);
     }
 
     /**
