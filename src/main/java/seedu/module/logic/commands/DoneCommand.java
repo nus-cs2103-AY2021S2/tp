@@ -1,5 +1,11 @@
 package seedu.module.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
+import java.util.List;
+import java.util.Set;
+
 import seedu.module.commons.core.Messages;
 import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
@@ -11,12 +17,6 @@ import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
-
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";

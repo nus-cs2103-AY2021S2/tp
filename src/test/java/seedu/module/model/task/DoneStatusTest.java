@@ -1,9 +1,9 @@
 package seedu.module.model.task;
 
-import org.junit.jupiter.api.Test;
-
-import static seedu.module.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.module.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class DoneStatusTest {
     @Test

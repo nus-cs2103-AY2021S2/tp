@@ -22,7 +22,7 @@ import seedu.module.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-    private static final String NOT_DONE_STRING = String.valueOf(Boolean.FALSE);
+    public static final String NOT_DONE_STRING = String.valueOf(Boolean.FALSE);
 
     public static final Task QUIZ = new TaskBuilder().withName("Quiz")
             .withDescription("About Artificial Intelligence.").withModule("CS3243")

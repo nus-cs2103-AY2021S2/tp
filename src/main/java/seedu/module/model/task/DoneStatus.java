@@ -44,14 +44,18 @@ public class DoneStatus {
     private static Boolean isValidBooleanString(String booleanString) {
         if (booleanString.equals(String.valueOf(Boolean.TRUE))) {
             return Boolean.TRUE;
-        } else if (booleanString.equals(String.valueOf(Boolean.FALSE))){
+        } else if (booleanString.equals(String.valueOf(Boolean.FALSE))) {
             return Boolean.TRUE;
         } else {
             return Boolean.FALSE;
         }
     }
 
-
+    /**
+     * Converts boolean into a string for Ui display purposes.
+     *
+     * @return String showing whether task is done.
+     */
     public String displayUi() {
         if (isDone) {
             return "Done!\n";

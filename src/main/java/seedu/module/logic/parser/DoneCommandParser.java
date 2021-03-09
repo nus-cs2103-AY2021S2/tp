@@ -1,11 +1,11 @@
 package seedu.module.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.DoneCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new DoneCommand object
