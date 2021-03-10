@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +24,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
+    private final PropertyBook propertyBook;
+    private final AppointmentBook appointmentBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +40,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        propertyBook = new PropertyBook();
+        appointmentBook = new AppointmentBook();
     }
 
     public ModelManager() {
@@ -74,6 +82,32 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    //=========== PropertyBook ================================================================================
+
+    @Override
+    public boolean hasProperty(Property property) {
+        requireNonNull(property);
+        return propertyBook.hasProperty(property);
+    }
+
+    @Override
+    public void addProperty(Property property) {
+        propertyBook.addProperty(property);
+    }
+
+    //=========== AppointmentBook =============================================================================
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointmentBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        appointmentBook.addAppointment(appointment);
     }
 
     //=========== AddressBook ================================================================================

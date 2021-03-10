@@ -9,16 +9,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Wang Yuchen
 
 <img src="images/w-yuchen.png" width="200px">
@@ -26,7 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/w-yuchen)]
 [[portfolio](team/w-yuchen.md)]
 
-* Role: Documentation, Testing
+* Role: Developer
+* Responsibilities: Documentation, Testing
 
 ### Yeoh Hsin Ying Candice
 
