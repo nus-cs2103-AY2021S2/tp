@@ -16,8 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-
-<Stage xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" title="Calendar">
+<Stage title="Calendar" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/logo.png" />
     </icons>
@@ -45,22 +44,22 @@
                   </VBox>
                   <AnchorPane prefHeight="650.0" prefWidth="783.0" style="-fx-background-color: white;">
                      <children>
-                        <Label fx:id="CurrentMonth" layoutX="26.0" layoutY="14.0" text="MARCH">
+                        <Label fx:id="monthYearLabel" layoutX="26.0" layoutY="14.0" text="Text">
                            <font>
                               <Font name="Abyssinica SIL" size="26.0" />
                            </font>
                         </Label>
-                        <Button layoutX="573.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-color: white;" text="&gt;">
+                        <Button onAction="#handleToNext" ellipsisString="" layoutX="600.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="29.0" style="-fx-background-color: white;" text="&gt;" textOverrun="CLIP">
                            <font>
                               <Font name="DejaVu Serif Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Label layoutX="537.0" layoutY="28.0" text="Today">
-                           <font>
-                              <Font name="Abyssinica SIL" size="13.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="508.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="29.0" style="-fx-background-color: white;" text="&lt;">
+                         <Button onAction="#viewToday" ellipsisString="" layoutX="540.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: white;" text="Today" textOverrun="CLIP">
+                             <font>
+                                 <Font name="DejaVu Serif Bold" size="13.0" />
+                             </font>
+                         </Button>
+                        <Button onAction="#handleToPrev" layoutX="500.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="29.0" style="-fx-background-color: white;" text="&lt;">
                            <font>
                               <Font name="DejaVu Serif Bold" size="13.0" />
                            </font>
@@ -87,15 +86,6 @@
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
-                           <children>
-                              <Label text="Mon" styleClass="weekday"> </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Tue" styleClass="weekday" GridPane.columnIndex="1"> </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Wed" styleClass="weekday" GridPane.columnIndex="2"> </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Thu" styleClass="weekday" GridPane.columnIndex="3"> </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Fri" styleClass="weekday" GridPane.columnIndex="4"> </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Sat" styleClass="weekend" GridPane.columnIndex="5"> </Label>
-                              <Label layoutX="55.0" layoutY="22.0" text="Sun" styleClass="weekend" GridPane.columnIndex="6"> </Label>
-                           </children>
                         </GridPane>
                      </children>
                   </AnchorPane>
