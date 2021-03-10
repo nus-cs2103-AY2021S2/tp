@@ -41,6 +41,8 @@ public class SendCommand extends Command {
             + " that your data is added in the correct JSON format.";
     public static final String MESSAGE_CONNECTION_ERROR = "The request was not performed successfully."
             + " Check your internet connection and endpoint URL.";
+    public static final String MESSAGE_GENERAL_ERROR = "The request was not performed successfully."
+            + " Check that your endpoint fields are correct.";
 
     private final Index index;
 
@@ -72,7 +74,7 @@ public class SendCommand extends Command {
         } catch (JsonParseException e) {
             throw new RequestException(MESSAGE_INVALID_JSON);
         } catch (IOException e) {
-            throw new RequestException("An error e.getMessage()");
+            throw new RequestException(MESSAGE_GENERAL_ERROR);
         }
 
         Endpoint endpointWithResponse = createEndpointWithResponse(endpointToSend, response);
