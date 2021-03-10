@@ -6,7 +6,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public abstract class Completable {
 
-    public static final String MESSAGE_CONSTRAINTS_DESCRIPTION = "Description can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_DESCRIPTION = "Description can take any values, and it should "
+            + "not be blank";
 
     /*
      * The first character of the description must not be a whitespace,

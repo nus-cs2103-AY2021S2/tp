@@ -1,8 +1,8 @@
 package seedu.address.model.task.completable;
 
-import seedu.address.model.task.Completable;
-
 import java.util.Objects;
+
+import seedu.address.model.task.Completable;
 
 /**
  * Represents a Completable as a Todo.

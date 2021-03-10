@@ -1,13 +1,12 @@
 package seedu.address.model.task.completable;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.task.Completable;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Completable with a Deadline.

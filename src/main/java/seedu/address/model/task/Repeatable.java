@@ -1,13 +1,14 @@
 package seedu.address.model.task;
 
-import java.time.LocalDate;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+
 public abstract class Repeatable {
 
-    public static final String MESSAGE_CONSTRAINTS_DESCRIPTION = "Description can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_DESCRIPTION = "Description can take any values, and it should "
+            + "not be blank";
 
     /*
      * The first character of the description must not be a whitespace,
@@ -24,7 +25,7 @@ public abstract class Repeatable {
      * Constructor for Repeatable.
      * @param description Description of the Repeatable.
      */
-    public Repeatable(String description, Interval interval,  LocalDate at) {
+    public Repeatable(String description, Interval interval, LocalDate at) {
         requireAllNonNull(description, interval, at);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
@@ -100,7 +101,7 @@ public abstract class Repeatable {
      * Sets the Repeatable's interval to specified level.
      * @param interval Level of Interval.
      */
-    public abstract void  setRecurrence(Interval interval);
+    public abstract void setRecurrence(Interval interval);
 
     /**
      * Returns true if a given string is a valid description.

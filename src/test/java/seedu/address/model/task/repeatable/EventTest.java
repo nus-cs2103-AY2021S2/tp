@@ -1,15 +1,15 @@
 package seedu.address.model.task.repeatable;
 
-import seedu.address.model.task.Interval;
-import seedu.address.model.task.completable.Deadline;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.model.task.Interval;
+import seedu.address.model.task.completable.Deadline;
 
 public class EventTest {
 
@@ -21,7 +21,8 @@ public class EventTest {
         assertThrows(NullPointerException.class, () -> new Event("test", null, validDate));
         assertThrows(NullPointerException.class, () -> new Event("test", interval, null));
         assertThrows(NullPointerException.class, () -> new Event(null, interval, false, validDate));
-        assertThrows(NullPointerException.class, () -> new Event("test", null, false, validDate));
+        assertThrows(NullPointerException.class, () -> new Event("test", null,
+                false, validDate));
         assertThrows(NullPointerException.class, () -> new Event("test", interval, null, validDate));
         assertThrows(NullPointerException.class, () -> new Event("test", interval, false, null));
     }
@@ -32,10 +33,12 @@ public class EventTest {
         Interval validInterval = Interval.DAILY;
         String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval, false, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval,
+                false, validDate));
         String invalidDescription2 = " ";
         assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval, false, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval,
+                false, validDate));
     }
 
     @Test
@@ -50,6 +53,6 @@ public class EventTest {
         // valid description
         assertTrue(Deadline.isValidDescription("Blk 456, Den Road, #01-355"));
         assertTrue(Deadline.isValidDescription("-")); // one character
-        assertTrue(Deadline.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long description
+        assertTrue(Deadline.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
     }
 }

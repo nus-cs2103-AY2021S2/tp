@@ -1,5 +1,7 @@
 package seedu.address.commons.util;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -18,6 +20,7 @@ public class DateUtil {
      * @throws DateConversionException Occurs when a date had been passed in with the wrong format.
      */
     public static LocalDate encodeDate(String date) throws DateConversionException {
+        requireNonNull(date);
         try {
             return LocalDate.parse(date);
         } catch (DateTimeParseException e) {
@@ -32,6 +35,7 @@ public class DateUtil {
      * @return A date String in the dd MMM yyyy format.
      */
     public static String decodeDate(LocalDate date) {
+        requireNonNull(date);
         assert date != null : "date should not be null!";
         return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
@@ -42,6 +46,7 @@ public class DateUtil {
      * @return A date String in the yyyy-MM-dd format.
      */
     public static String decodeDateForStorage(LocalDate date) {
+        requireNonNull(date);
         assert date != null : "date should not be null!";
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }

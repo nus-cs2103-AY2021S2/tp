@@ -1,12 +1,12 @@
 package seedu.address.model.task.completable;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import java.time.LocalDate;
-import java.util.Date;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class DeadlineTest {
 
@@ -43,6 +43,6 @@ public class DeadlineTest {
         // valid description
         assertTrue(Deadline.isValidDescription("Blk 456, Den Road, #01-355"));
         assertTrue(Deadline.isValidDescription("-")); // one character
-        assertTrue(Deadline.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long description
+        assertTrue(Deadline.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
     }
 }
