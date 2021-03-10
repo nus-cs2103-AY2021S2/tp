@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code TaskTracker} with sample data.
  */
 public class SampleDataUtil {
-    public static Task[] getSamplePersons() {
+    public static Task[] getSampleTasks() {
         return new Task[]{
             new Task(new ModuleName("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 getTagSet("friends")),
@@ -37,8 +37,8 @@ public class SampleDataUtil {
     public static ReadOnlyTaskTracker getSampleTaskTracker() {
         TaskTracker sampleAb = new TaskTracker();
 
-        for (Task sampleTask : getSamplePersons()) {
-            sampleAb.addPerson(sampleTask);
+        for (Task sampleTask : getSampleTasks()) {
+            sampleAb.addTask(sampleTask);
         }
         return sampleAb;
     }
