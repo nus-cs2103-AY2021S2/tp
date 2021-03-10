@@ -16,6 +16,10 @@ public class DeadlineTest {
         assertThrows(NullPointerException.class, () -> new Deadline(null, date));
         assertThrows(NullPointerException.class, () -> new Deadline("test", null));
         assertThrows(NullPointerException.class, () -> new Deadline(null, null));
+        assertThrows(NullPointerException.class, () -> new Deadline(null, false, date));
+        assertThrows(NullPointerException.class, () -> new Deadline("test", false, null));
+        assertThrows(NullPointerException.class, () -> new Deadline(null, null, null));
+        assertThrows(NullPointerException.class, () -> new Deadline("test", null, date));
     }
 
     @Test
@@ -23,10 +27,10 @@ public class DeadlineTest {
         LocalDate date = LocalDate.of(2020, 1, 1);
         String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, date));
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, date));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, false, date));
         String invalidDescription2 = " ";
         assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, date));
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, date));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, false, date));
     }
 
     @Test
