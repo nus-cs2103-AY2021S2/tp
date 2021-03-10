@@ -116,8 +116,9 @@ public class Module implements Comparable<Module> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; Assignments: ")
+                .append(";\nAssignments: ")
                 .append(getAssignments())
+                .append("\n")
                 //.append("; Exam Date: ")
                 .append(getExams());
 

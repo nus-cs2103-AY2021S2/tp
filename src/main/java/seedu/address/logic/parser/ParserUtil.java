@@ -132,8 +132,19 @@ public class ParserUtil {
         }
     }
 
-    public static Title parseTitle(String titleInput) {
+    /**
+     * Parses a {@code String titleInput} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Title parseTitle(String titleInput) throws ParseException {
+        requireNonNull(titleInput);
         String trimmedTitle = titleInput.trim();
+
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
 
         return new Title(trimmedTitle);
     }

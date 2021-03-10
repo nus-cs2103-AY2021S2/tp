@@ -1,13 +1,13 @@
 package seedu.address.logic.commands.addcommand;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 public class AddModuleCommand extends Command {
 
@@ -24,6 +24,9 @@ public class AddModuleCommand extends Command {
 
     private final Module toAdd;
 
+    /**
+     * Creates an AddModuleCommand to add the specified {@code Module}.
+     */
     public AddModuleCommand(Module module) {
         requireNonNull(module);
         toAdd = module;
