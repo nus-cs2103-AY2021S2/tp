@@ -1,15 +1,21 @@
 package seedu.address.model.human.driver;
 
+import java.util.Objects;
+
 import seedu.address.model.human.Human;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.person.Person;
 import seedu.address.model.human.person.Phone;
 
-
-import java.util.Objects;
-
+/**
+ * Represents a Driver to be attached to a Person.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Driver extends Human {
 
+    /**
+     * Every field must be present and not null. Guaranteed by parent constructor.
+     */
     public Driver(Name name, Phone phone) {
         super(name, phone);
     }
