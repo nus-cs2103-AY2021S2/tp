@@ -48,17 +48,24 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    //=========== AddressBook ================================================================================
     public Path getAddressBookFilePath() {
         return addressBookFilePath;
-    }
-
-    public Path getAppointmentScheduleFilePath() {
-        return appointmentScheduleFilePath;
     }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    //=========== AppointmentSchedule ========================================================================
+    public Path getAppointmentScheduleFilePath() {
+        return appointmentScheduleFilePath;
+    }
+
+    public void setAppointmentScheduleFilePath(Path appointmentScheduleFilePath) {
+        requireNonNull(appointmentScheduleFilePath);
+        this.appointmentScheduleFilePath = appointmentScheduleFilePath;
     }
 
     @Override
