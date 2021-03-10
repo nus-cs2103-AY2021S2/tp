@@ -31,7 +31,7 @@ public class MatriculationNumberTest {
         assertFalse(MatriculationNumber.isValidMatric("E0406245Z"));
         assertFalse(MatriculationNumber.isValidMatric("A0199S644")); //Alphabet in the numbers part
         assertFalse(MatriculationNumber.isValidMatric("A0%%$991F")); //Special char in the numbers part
-        assertFalse(MatriculationNumber.isValidMatric("A1234H"));  //Not long enough
+        assertFalse(MatriculationNumber.isValidMatric("A1234H")); //Not long enough
         assertFalse(MatriculationNumber.isValidMatric("A123456L"));
         assertFalse(MatriculationNumber.isValidMatric("A019%264N"));
 
