@@ -1,6 +1,18 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 public abstract class Completable {
+
+    public static final String MESSAGE_CONSTRAINTS = "Description can take any values, and it should not be blank";
+
+    /*
+     * The first character of the description must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     protected String description;
     protected Boolean isDone;
@@ -10,6 +22,8 @@ public abstract class Completable {
      * @param description Description of the Completable.
      */
     public Completable(String description) {
+        requireNonNull(description);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.isDone = false;
     }
@@ -20,6 +34,8 @@ public abstract class Completable {
      * @param isDone Marks whether the Completable is Done.
      */
     public Completable(String description, Boolean isDone) {
+        requireAllNonNull(description, isDone);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.isDone = isDone;
     }
@@ -56,6 +72,13 @@ public abstract class Completable {
      */
     public void markAsDone() {
         this.isDone = true;
+    }
+
+    /**
+     * Returns true if a given string is a valid email.
+     */
+    public static boolean isValidDescription(String test) {
+        return test.matches(DESCRIPTION_VALIDATION_REGEX);
     }
 
     /**

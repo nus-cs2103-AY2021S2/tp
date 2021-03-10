@@ -2,7 +2,18 @@ package seedu.address.model.task;
 
 import java.time.LocalDate;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 public abstract class Repeatable {
+
+    public static final String MESSAGE_CONSTRAINTS = "Description can take any values, and it should not be blank";
+
+    /*
+     * The first character of the description must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     protected String description;
     protected Boolean isDone;
@@ -14,6 +25,8 @@ public abstract class Repeatable {
      * @param description Description of the Repeatable.
      */
     public Repeatable(String description, Interval interval,  LocalDate at) {
+        requireAllNonNull(description, interval, at);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.interval = interval;
         this.at = at;
@@ -26,6 +39,8 @@ public abstract class Repeatable {
      * @param isDone Marks whether the Repeatable is Done.
      */
     public Repeatable(String description, Interval interval, LocalDate at, Boolean isDone) {
+        requireAllNonNull(description, interval, at, isDone);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.interval = interval;
         this.at = at;
@@ -86,6 +101,13 @@ public abstract class Repeatable {
      * @param interval Level of Interval.
      */
     public abstract void  setRecurrence(Interval interval);
+
+    /**
+     * Returns true if a given string is a valid description.
+     */
+    public static boolean isValidDescription(String test) {
+        return test.matches(DESCRIPTION_VALIDATION_REGEX);
+    }
 
     /**
      * Checks if an instance of a Repeatable is equal to another Object.
