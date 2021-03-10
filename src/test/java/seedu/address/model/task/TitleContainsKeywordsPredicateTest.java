@@ -11,22 +11,22 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
 
-public class DescriptionContainsKeywordsPredicateTest {
+public class TitleContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        DescriptionContainsKeywordsPredicate firstPredicate = new DescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
-        DescriptionContainsKeywordsPredicate secondPredicate = new DescriptionContainsKeywordsPredicate(secondPredicateKeywordList);
+        TitleContainsKeywordsPredicate firstPredicate = new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
+        TitleContainsKeywordsPredicate secondPredicate = new TitleContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        DescriptionContainsKeywordsPredicate firstPredicateCopy =
-                new DescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
+        TitleContainsKeywordsPredicate firstPredicateCopy =
+                new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,35 +42,35 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.singletonList(
+        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.singletonList(
                 "Alice"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
     }
 
     @Test
     public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.emptyList());
+        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").build()));
 
         // Non-matching keyword
-        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match title
-        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }

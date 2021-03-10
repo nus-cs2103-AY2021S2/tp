@@ -8,8 +8,9 @@ import java.util.Set;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.TagContainsKeywordsPredicate;
+import seedu.address.model.task.TitleContainsKeywordsPredicate;
+
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -38,7 +39,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             return new FindCommand(new TagContainsKeywordsPredicate(tagWords));
         } else {
-            return new FindCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
     }
 }

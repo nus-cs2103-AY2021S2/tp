@@ -18,7 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.task.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
@@ -120,7 +120,7 @@ public class CommandTestUtil {
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String[] splitTitle = task.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredTaskList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
     }
