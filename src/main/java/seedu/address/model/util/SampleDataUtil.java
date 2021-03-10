@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,10 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
+    }
+
+    public static Set<Person> getSamplePersonSet() {
+        return new HashSet<>(Arrays.asList(getSamplePersons()));
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
