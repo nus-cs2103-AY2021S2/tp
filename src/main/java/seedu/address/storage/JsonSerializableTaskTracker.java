@@ -21,13 +21,13 @@ class JsonSerializableTaskTracker {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTask> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTaskTracker} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableTaskTracker(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableTaskTracker(@JsonProperty("persons") List<JsonAdaptedTask> persons) {
         this.persons.addAll(persons);
     }
 
@@ -38,7 +38,7 @@ class JsonSerializableTaskTracker {
      */
     public JsonSerializableTaskTracker(ReadOnlyTaskTracker source) {
 
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,8 +48,8 @@ class JsonSerializableTaskTracker {
      */
     public TaskTracker toModelType() throws IllegalValueException {
         TaskTracker taskTracker = new TaskTracker();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Task task = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedTask jsonAdaptedTask : persons) {
+            Task task = jsonAdaptedTask.toModelType();
             if (taskTracker.hasPerson(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
