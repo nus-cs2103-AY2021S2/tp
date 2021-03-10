@@ -37,7 +37,12 @@ public class DeleteCommand extends Command {
         predicate = new MatriculationNumberContainsKeywordsPredicate(matricNum);
     }
 
-    private static Person getPerson(List<Person> personList, MatriculationNumber matricNum) {
+    /**
+     * @param personList List of persons currently shown in the GUI.
+     * @param matricNum Matriculation Number of the student you want to delete.
+     * @return Person you want to delete, null if the matriculation number does not exist in System.
+     */
+    public static Person getPerson(List<Person> personList, MatriculationNumber matricNum) {
         for (Person p : personList) {
             if (p.getMatriculationNumber().equals(matricNum)) {
                 return p;

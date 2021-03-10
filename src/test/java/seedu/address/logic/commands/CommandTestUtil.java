@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.MatriculationNumberContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -148,6 +150,28 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        final String[] splitName = person.getMatriculationNumber().toString().split("\\s+");
+        model.updateFilteredPersonList(new MatriculationNumberContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person with the given {@code matriculationNumber} in the
+     * {@code model}'s address book.
+     */
+    public static void showPersonWithMatricNum(Model model, MatriculationNumber matriculationNumber) {
+        assertTrue(MatriculationNumber.isValidMatric(matriculationNumber.toString()));
+
+        List<Person> personListTest = model.getFilteredPersonList();
+        Person person = null;
+        for (Person p : personListTest) {
+            if (p.getMatriculationNumber().equals(matriculationNumber)) {
+                person = p;
+            }
+        }
+
+        assertTrue(person != null);
         final String[] splitName = person.getMatriculationNumber().toString().split("\\s+");
         model.updateFilteredPersonList(new MatriculationNumberContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
