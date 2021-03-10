@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.human.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -7,17 +7,18 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.human.Email;
+import seedu.address.model.human.Human;
+import seedu.address.model.human.Name;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person extends Human {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
     private final Email email;
 
     // Data fields
@@ -28,20 +29,19 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(name, phone);
         requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
-        return name;
+        return super.name;
     }
 
     public Phone getPhone() {
-        return phone;
+        return super.phone;
     }
 
     public Email getEmail() {
