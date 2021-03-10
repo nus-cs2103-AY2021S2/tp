@@ -2,11 +2,14 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,17 +25,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final List<TutorSubject> tutorSubjects = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+            List<TutorSubject> tutorSubjects, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.tutorSubjects.addAll(tutorSubjects);
         this.tags.addAll(tags);
     }
 
@@ -50,6 +56,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    /**
+     * Returns an immutable list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<TutorSubject> getTutorSubjects() {
+        return Collections.unmodifiableList(tutorSubjects);
     }
 
     /**
@@ -92,13 +106,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTutorSubjects().equals(getTutorSubjects())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tutorSubjects, tags);
     }
 
     @Override
@@ -111,6 +126,12 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+
+        List<TutorSubject> tutorSubjects = getTutorSubjects();
+        if (!tutorSubjects.isEmpty()) {
+            builder.append("; Subjects: ");
+            tutorSubjects.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
