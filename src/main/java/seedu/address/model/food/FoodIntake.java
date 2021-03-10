@@ -1,14 +1,14 @@
 package seedu.address.model.food;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a FoodIntake record.
  */
 public class FoodIntake {
-    private static final String DATETIME_FORMAT = "d MMM yyyy h:mma";
-    private LocalDateTime date;
+    private static final String DATE_FORMAT = "d MMM yyyy";
+    private LocalDate date;
     private Food food;
 
     /**
@@ -17,7 +17,7 @@ public class FoodIntake {
      * @param date LocalDateTime of when the food was eaten
      * @param food The related Food object that was consumed
      */
-    public FoodIntake(LocalDateTime date, Food food) {
+    public FoodIntake(LocalDate date, Food food) {
         this.date = date;
         this.food = food;
     }
@@ -26,13 +26,13 @@ public class FoodIntake {
         return this.food;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 
     @Override
     public String toString() {
-        return this.date.format(DateTimeFormatter.ofPattern(DATETIME_FORMAT)) + ": "
+        return this.date.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + ": "
                 + this.food.toString();
     }
 }
