@@ -2,13 +2,16 @@ package seedu.address.model.food;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.food.exceptions.FoodItemNotFoundException;
 
 public class UniqueFoodList {
-    private ArrayList<Food> foodList;
+
+    private ObservableList<Food> foodList;
 
     public UniqueFoodList() {
-        foodList = new ArrayList<>();
+        foodList = FXCollections.observableArrayList();
     }
 
     /**
@@ -16,7 +19,7 @@ public class UniqueFoodList {
      *
      * @return food list
      */
-    public ArrayList getFoodList() {
+    public ObservableList<Food> getFoodList() {
         return this.foodList;
     }
 

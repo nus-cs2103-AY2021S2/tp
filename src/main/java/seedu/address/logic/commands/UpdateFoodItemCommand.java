@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FATS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROTEINS;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
@@ -51,7 +51,7 @@ public class UpdateFoodItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ArrayList<Food> foodList = model.getAddressBook().getFoodList().getFoodList();
+        List<Food> foodList = model.getAddressBook().getFoodList().getFoodList();
 
         for (Food food : foodList) {
             if (food.getName().equals(editedFood.getName().get())) {
