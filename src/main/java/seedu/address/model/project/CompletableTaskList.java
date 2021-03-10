@@ -10,6 +10,11 @@ public class CompletableTaskList {
     private final List<Completable> completableTasks = new ArrayList<>();
 
     /**
+     * Constructs a empty {@code CompletableTaskList}.
+     */
+    public CompletableTaskList() {}
+
+    /**
      * Constructs a {@code CompletableTaskList}.
      *
      * @param completableTasks A list of {@code Person}.

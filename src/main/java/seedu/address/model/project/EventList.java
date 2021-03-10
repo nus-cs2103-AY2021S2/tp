@@ -10,6 +10,11 @@ public class EventList {
     private final List<Events> events = new ArrayList<>();
 
     /**
+     * Constructs an empty {@code EventList}.
+     */
+    public EventList () {}
+
+    /**
      * Constructs an {@code EventList}.
      *
      * @param events A list of {@code Events}.

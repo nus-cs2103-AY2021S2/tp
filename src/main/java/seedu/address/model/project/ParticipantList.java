@@ -12,6 +12,11 @@ public class ParticipantList {
     private final List<Person> participants = new ArrayList<>();
 
     /**
+     * Constructs an empty {@code ParticipantList}.
+     */
+    public ParticipantList() {}
+
+    /**
      * Constructs a {@code ParticipantList}.
      *
      * @param participants A list of {@code Person}.

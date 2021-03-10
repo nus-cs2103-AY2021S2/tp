@@ -24,6 +24,19 @@ public class Project {
     private final ParticipantList participants;
 
     /**
+     * Constructs an empty {@code Project}.
+     * Every field must be present and not null.
+     */
+    public Project(ProjectName projectName) {
+        requireAllNonNull(projectName);
+        this.projectName = projectName;
+        this.events = new EventList();
+        this.completableTasks = new CompletableTaskList();
+        this.participants = new ParticipantList();
+    }
+
+    /**
+     * Constructs a {@code Project}
      * Every field must be present and not null.
      */
     public Project(ProjectName projectName, EventList events, CompletableTaskList completableTasks,
