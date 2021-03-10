@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARBOS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FATS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROTEINS;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -16,8 +19,8 @@ public class UpdateFoodItemCommand extends Command {
     public static final String COMMAND_WORD = "foodedit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the certain food provided.\n"
-            + "Existing values will be overwritten by the input values and at least 1 value has to be different from" +
-            " default.\n"
+            + "Existing values will be overwritten by the input values and at least 1 value has to be different from"
+            + " default.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "FOODNAME] "
             + "[" + PREFIX_CARBOS + "CARBO_IN_DOUBLE_FORMAT] "
@@ -28,14 +31,15 @@ public class UpdateFoodItemCommand extends Command {
             + PREFIX_FATS + "10.5";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Successfully updated food item";
-    public static final String MESSAGE_NOT_EDITED = "At least one field such as its carbos, fats or proteins " +
-            "value must be edited and different from original. (Current Food being edited: ";
+    public static final String MESSAGE_NOT_EDITED = "At least one field such as its carbos, fats or proteins "
+            + "value must be edited and different from original. (Current Food being edited: ";
     public static final String MESSAGE_NOT_FOUND = "The food item is not found.";
 
     private final EditFoodDescriptor editedFood;
 
     /**
      * Creates an Update Food Item command to run the Macronutrients Tracker.
+     *
      * @param editedFood updated food data
      */
     public UpdateFoodItemCommand(EditFoodDescriptor editedFood) {
@@ -49,8 +53,8 @@ public class UpdateFoodItemCommand extends Command {
         requireNonNull(model);
         ArrayList<Food> foodList = model.getAddressBook().getFoodList().getFoodList();
 
-        for(Food food : foodList) {
-            if(food.getName().equals(editedFood.getName().get())) {
+        for (Food food : foodList) {
+            if (food.getName().equals(editedFood.getName().get())) {
                 Food updatedFood = createEditedFood(food, editedFood);
                 model.updateFoodItem(updatedFood);
                 return new CommandResult(MESSAGE_EDIT_FOOD_SUCCESS);
@@ -72,7 +76,7 @@ public class UpdateFoodItemCommand extends Command {
         Double updatedFats = editFoodDescriptor.getFats().orElse(foodToEdit.getFats());
         Double updatedProteins = editFoodDescriptor.getProteins().orElse(foodToEdit.getProteins());
 
-        if(updatedCarbos == foodToEdit.getCarbos() && updatedFats == foodToEdit.getFats()
+        if (updatedCarbos == foodToEdit.getCarbos() && updatedFats == foodToEdit.getFats()
                 && updatedProteins == foodToEdit.getProteins()) {
             throw new CommandException(MESSAGE_NOT_EDITED + foodName + ")");
         }
@@ -86,7 +90,8 @@ public class UpdateFoodItemCommand extends Command {
         private Double fats;
         private Double proteins;
 
-        public EditFoodDescriptor() {}
+        public EditFoodDescriptor() {
+        }
 
         /**
          * Copy constructor.

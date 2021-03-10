@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.food.Food;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.food.Food;
 
 /**
  * Deletes a food item identified using it's displayed index from the UniqueFoodList.

@@ -19,20 +19,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
 
     private final UniqueFoodList foodList;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
+    //Used to have an old comment here, removed due to checkstyle error. Refer to old template for more.
     {
         persons = new UniquePersonList();
         foodList = new UniqueFoodList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -82,6 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds a food item into the food list.
      * The food item must not exist in the food list.
+     *
      * @param food food item
      */
     public void addFoodItem(Food food) {
@@ -100,13 +95,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Updates a food item in the food list
      * The food item must exist in the food list.
+     *
      * @param food updated food item
      */
     public void updateFoodItem(Food food) {
         foodList.updateFoodItem(food);
     }
 
-    @Override
     /**
      * Gets the unique food list.
      *

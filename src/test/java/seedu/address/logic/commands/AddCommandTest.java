@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.food.Food;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -125,6 +126,31 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasFoodItem(Food food) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addFoodItem(Food food) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFoodItem(Food food) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteFoodItem(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String listFoodItem() {
             throw new AssertionError("This method should not be called.");
         }
 

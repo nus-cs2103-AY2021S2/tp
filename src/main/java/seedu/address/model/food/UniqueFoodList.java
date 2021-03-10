@@ -36,7 +36,6 @@ public class UniqueFoodList {
      * Updates the relevant info of the food into the food list.
      *
      * @param foodItem updated food item
-     * @return success message
      */
     public void updateFoodItem(Food foodItem) {
         for (Food food : this.foodList) {
@@ -81,7 +80,7 @@ public class UniqueFoodList {
     public String listAllFoodItem() {
         StringBuilder stringBuilder = new StringBuilder();
         int counter = 1; //Used for for-loop counter indicator.
-        for(Food food : this.foodList) {
+        for (Food food : this.foodList) {
             stringBuilder.append(counter + ". " + food.toString() + "\n");
             counter++;
         }

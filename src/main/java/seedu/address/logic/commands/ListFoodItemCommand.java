@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.Model;
 
 public class ListFoodItemCommand extends Command {
     public static final String COMMAND_WORD = "foodlist";
@@ -14,7 +14,7 @@ public class ListFoodItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if(model.getAddressBook().getFoodList().getFoodList().size() == 0 ){
+        if (model.getAddressBook().getFoodList().getFoodList().size() == 0) {
             return new CommandResult(MESSAGE_NO_FOOD_ITEM);
         }
         String result = model.listFoodItem();
