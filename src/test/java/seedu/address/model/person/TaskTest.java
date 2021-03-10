@@ -23,7 +23,7 @@ public class TaskTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameTask() {
         // same object -> returns true
         assertTrue(ALICE.isSameTask(ALICE));
 
@@ -64,7 +64,7 @@ public class TaskTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

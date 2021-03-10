@@ -17,7 +17,7 @@ import seedu.address.model.TaskTracker;
 import seedu.address.model.person.Task;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
 
@@ -44,7 +44,7 @@ public class TypicalTasks {
     public static final Task IDA = new TaskBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Task BOB = new TaskBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -56,17 +56,17 @@ public class TypicalTasks {
     private TypicalTasks() {} // prevents instantiation
 
     /**
-     * Returns an {@code TaskTracker} with all the typical persons.
+     * Returns an {@code TaskTracker} with all the typical tasks.
      */
     public static TaskTracker getTypicalTaskTracker() {
         TaskTracker ab = new TaskTracker();
-        for (Task task : getTypicalPersons()) {
-            ab.addPerson(task);
+        for (Task task : getTypicalTasks()) {
+            ab.addTask(task);
         }
         return ab;
     }
 
-    public static List<Task> getTypicalPersons() {
+    public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

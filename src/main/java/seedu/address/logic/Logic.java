@@ -34,9 +34,9 @@ public interface Logic {
 
 
     /**
-     * Returns an unmodifiable view of the filtered list of persons
+     * Returns an unmodifiable view of the filtered list of tasks
      */
-    ObservableList<Task> getFilteredPersonList();
+    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Returns the user prefs' address book file path.

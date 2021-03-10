@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         this.taskTracker = new TaskTracker(taskTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<>(this.taskTracker.getPersonList());
+        filteredTasks = new FilteredList<>(this.taskTracker.getTaskList());
     }
 
     public ModelManager() {
@@ -91,42 +91,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Task task) {
+    public boolean hasTask(Task task) {
         requireNonNull(task);
-        return taskTracker.hasPerson(task);
+        return taskTracker.hasTask(task);
     }
 
     @Override
-    public void deletePerson(Task target) {
-        taskTracker.removePerson(target);
+    public void deleteTask(Task target) {
+        taskTracker.removeTask(target);
     }
 
     @Override
-    public void addPerson(Task task) {
-        taskTracker.addPerson(task);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTask(Task task) {
+        taskTracker.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override
-    public void setPerson(Task target, Task editedTask) {
+    public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
-        taskTracker.setPerson(target, editedTask);
+        taskTracker.setTask(target, editedTask);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Task List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedTaskTracker}
      */
     @Override
-    public ObservableList<Task> getFilteredPersonList() {
+    public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Task> predicate) {
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
