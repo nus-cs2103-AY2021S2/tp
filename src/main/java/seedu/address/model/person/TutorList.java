@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Person;
 
 import java.util.Iterator;
 import java.util.List;
@@ -13,45 +14,42 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 
-// To implement:
-// Class: Tutor, DuplicateTagException, TagNotFoundException
-// Method: isSameTutor
-public class TutorList implements Iterable<Tutor> {
+public class TutorList implements Iterable<Person> {
 
-    private final ObservableList<Tutor> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Tutor> internalUnmodifiableList =
+    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent tutor as the given argument.
      */
-    public boolean contains(Tutor toCheck) {
+    public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTutor);
+        return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
     /**
      * Adds tutor to the list.
      * The tutor must not already exist in the list.
      */
-    public void add(Tutor toAdd) {
+    public void add(Person toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateTutorException();
+            throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
     }
 
-    public void setTutor(Tutor target, Tutor editedTutor) {
+    public void setTutor(Person target, Person editedTutor) {
         requireAllNonNull(target, editedTutor);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new TutorNotFoundException();
+            throw new PersonNotFoundException();
         }
 
-        if (!target.isSameTutor(editedTutor) && contains(editedTutor)) {
-            throw new DuplicateTutorException();
+        if (!target.isSamePerson(editedTutor) && contains(editedTutor)) {
+            throw new DuplicatePersonException();
         }
 
         internalList.set(index, editedTutor);
@@ -61,10 +59,10 @@ public class TutorList implements Iterable<Tutor> {
      * Removes the equivalent tutor from the list.
      * The tutor must exist in the list.
      */
-    public void remove(Tutor toRemove) {
+    public void remove(Person toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new TutorNotFoundException();
+            throw new PersonNotFoundException();
         }
     }
 
@@ -77,10 +75,10 @@ public class TutorList implements Iterable<Tutor> {
      * Replaces the contents of this list with {@code tutors}.
      * {@code tutors} must not contain duplicate tutors.
      */
-    public void setTutors(List<Tutor> tutors) {
+    public void setTutors(List<Person> tutors) {
         requireAllNonNull(tutors);
         if (!tutorsAreUnique(tutors)) {
-            throw new DuplicateTutorException();
+            throw new DuplicatePersonException();
         }
 
         internalList.setAll(tutors);
@@ -89,12 +87,12 @@ public class TutorList implements Iterable<Tutor> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Tutor> asUnmodifiableObservableList() {
+    public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Tutor> iterator() {
+    public Iterator<Person> iterator() {
         return internalList.iterator();
     }
 
@@ -113,10 +111,10 @@ public class TutorList implements Iterable<Tutor> {
     /**
      * Returns true if {@code tutors} contains only unique tutors.
      */
-    private boolean tutorsAreUnique(List<Tutor> tutors) {
+    private boolean tutorsAreUnique(List<Person> tutors) {
         for (int i = 0; i < tutors.size() - 1; i++) {
             for (int j = i + 1; j < tutors.size(); j++) {
-                if (tutors.get(i).isSameTutor(tutors.get(j))) {
+                if (tutors.get(i).isSamePerson(tutors.get(j))) {
                     return false;
                 }
             }
