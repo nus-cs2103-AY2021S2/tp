@@ -1,6 +1,6 @@
 package seedu.budgetbaby.logic.parser;
 
-import seedu.budgetbaby.logic.commands.Command;
+import seedu.budgetbaby.ablogic.commands.Command;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 /**

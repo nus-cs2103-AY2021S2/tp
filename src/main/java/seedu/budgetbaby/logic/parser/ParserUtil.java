@@ -6,14 +6,16 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.budgetbaby.abmodel.person.Address;
+import seedu.budgetbaby.abmodel.person.Email;
+import seedu.budgetbaby.abmodel.person.Name;
+import seedu.budgetbaby.abmodel.person.Phone;
+import seedu.budgetbaby.abmodel.tag.Tag;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.commons.util.StringUtil;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
-import seedu.budgetbaby.model.person.Address;
-import seedu.budgetbaby.model.person.Email;
-import seedu.budgetbaby.model.person.Name;
-import seedu.budgetbaby.model.person.Phone;
-import seedu.budgetbaby.model.tag.Tag;
+import seedu.budgetbaby.model.record.Amount;
+import seedu.budgetbaby.model.record.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -25,6 +27,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -33,6 +36,36 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(description)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String amount} into a {@code Amount}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code amount} is invalid.
+     */
+    public static Amount parseAmount(String amount) throws ParseException {
+        requireNonNull(amount);
+        String trimmedAmount = amount.trim();
+        if (!Amount.isValidAmount(amount)) {
+            throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
+        }
+        return new Amount(trimmedAmount);
     }
 
     /**

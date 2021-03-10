@@ -4,13 +4,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.budgetbaby.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.budgetbaby.model.person.Address;
-import seedu.budgetbaby.model.person.Email;
-import seedu.budgetbaby.model.person.Name;
-import seedu.budgetbaby.model.person.Person;
-import seedu.budgetbaby.model.person.Phone;
-import seedu.budgetbaby.model.tag.Tag;
+import seedu.budgetbaby.ablogic.commands.EditCommand.EditPersonDescriptor;
+import seedu.budgetbaby.abmodel.person.Address;
+import seedu.budgetbaby.abmodel.person.Email;
+import seedu.budgetbaby.abmodel.person.Name;
+import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.abmodel.person.Phone;
+import seedu.budgetbaby.abmodel.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

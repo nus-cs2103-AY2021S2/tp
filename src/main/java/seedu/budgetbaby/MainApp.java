@@ -13,20 +13,20 @@ import seedu.budgetbaby.commons.core.Version;
 import seedu.budgetbaby.commons.exceptions.DataConversionException;
 import seedu.budgetbaby.commons.util.ConfigUtil;
 import seedu.budgetbaby.commons.util.StringUtil;
-import seedu.budgetbaby.logic.Logic;
-import seedu.budgetbaby.logic.LogicManager;
-import seedu.budgetbaby.model.AddressBook;
-import seedu.budgetbaby.model.Model;
-import seedu.budgetbaby.model.ModelManager;
-import seedu.budgetbaby.model.ReadOnlyAddressBook;
+import seedu.budgetbaby.logic.BudgetBabyLogic;
+import seedu.budgetbaby.logic.BudgetBabyLogicManager;
+import seedu.budgetbaby.model.BudgetBabyModel;
+import seedu.budgetbaby.model.BudgetBabyModelManager;
+import seedu.budgetbaby.model.BudgetTracker;
+import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 import seedu.budgetbaby.model.ReadOnlyUserPrefs;
 import seedu.budgetbaby.model.UserPrefs;
 import seedu.budgetbaby.model.util.SampleDataUtil;
-import seedu.budgetbaby.storage.AddressBookStorage;
-import seedu.budgetbaby.storage.JsonAddressBookStorage;
+import seedu.budgetbaby.storage.BudgetBabyStorage;
+import seedu.budgetbaby.storage.BudgetBabyStorageManager;
+import seedu.budgetbaby.storage.BudgetTrackerStorage;
+import seedu.budgetbaby.storage.JsonBudgetTrackerStorage;
 import seedu.budgetbaby.storage.JsonUserPrefsStorage;
-import seedu.budgetbaby.storage.Storage;
-import seedu.budgetbaby.storage.StorageManager;
 import seedu.budgetbaby.storage.UserPrefsStorage;
 import seedu.budgetbaby.ui.Ui;
 import seedu.budgetbaby.ui.UiManager;
@@ -36,19 +36,19 @@ import seedu.budgetbaby.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(0, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
-    protected Logic logic;
-    protected Storage storage;
-    protected Model model;
+    protected BudgetBabyLogic logic;
+    protected BudgetBabyStorage storage;
+    protected BudgetBabyModel model;
     protected Config config;
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing BudgetBaby ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,14 +56,14 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        BudgetTrackerStorage budgetTrackerStorage = new JsonBudgetTrackerStorage(userPrefs.getBudgetBabyFilePath());
+        storage = new BudgetBabyStorageManager(budgetTrackerStorage, userPrefsStorage);
 
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new BudgetBabyLogicManager(model, storage);
 
         ui = new UiManager(logic);
     }
@@ -73,24 +73,24 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+    private BudgetBabyModel initModelManager(BudgetBabyStorage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyBudgetTracker> budgetTrackerOptional;
+        ReadOnlyBudgetTracker initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            budgetTrackerOptional = storage.readBudgetTracker();
+            if (!budgetTrackerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample BudgetTracker");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = budgetTrackerOptional.orElseGet(SampleDataUtil::getSampleBudgetTracker);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty BudgetTracker");
+            initialData = new BudgetTracker();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty BudgetTracker");
+            initialData = new BudgetTracker();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new BudgetBabyModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -120,7 +120,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -148,7 +148,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting BudgetBaby " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

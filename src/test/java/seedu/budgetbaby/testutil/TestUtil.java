@@ -5,9 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import seedu.budgetbaby.abmodel.Model;
+import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.commons.core.index.Index;
-import seedu.budgetbaby.model.Model;
-import seedu.budgetbaby.model.person.Person;
 
 /**
  * A utility class for test cases.

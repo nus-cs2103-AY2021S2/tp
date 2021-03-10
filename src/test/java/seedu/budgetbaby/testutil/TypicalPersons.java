@@ -1,22 +1,22 @@
 package seedu.budgetbaby.testutil;
 
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.budgetbaby.model.AddressBook;
-import seedu.budgetbaby.model.person.Person;
+import seedu.budgetbaby.abmodel.AddressBook;
+import seedu.budgetbaby.abmodel.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

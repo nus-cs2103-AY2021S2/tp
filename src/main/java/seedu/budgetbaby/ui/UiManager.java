@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import seedu.budgetbaby.MainApp;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.commons.util.StringUtil;
-import seedu.budgetbaby.logic.Logic;
+import seedu.budgetbaby.logic.BudgetBabyLogic;
 
 /**
  * The manager of the UI component.
@@ -22,13 +22,14 @@ public class UiManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
-    private Logic logic;
+    //    private Logic logic;
+    private BudgetBabyLogic logic;
     private MainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(BudgetBabyLogic logic) {
         super();
         this.logic = logic;
     }
