@@ -20,14 +20,6 @@ public class Driver extends Human {
         super(name, phone);
     }
 
-    public Name getName() {
-        return super.name;
-    }
-
-    public Phone getPhone() {
-        return super.phone;
-    }
-
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
