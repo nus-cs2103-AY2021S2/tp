@@ -49,7 +49,7 @@ public class NameContainsPatternPredicateTest {
         assertEquals(correctList, filterList(nameList, subStringPattern));
         correctList.clear();
 
-        assertEquals(filterList(nameList, matchAllPattern), nameList);
+        assertEquals(nameList, filterList(nameList, matchAllPattern));
 
         correctList.add("alpha beta charlie");
         correctList.add("alpha alpha charlie delta");

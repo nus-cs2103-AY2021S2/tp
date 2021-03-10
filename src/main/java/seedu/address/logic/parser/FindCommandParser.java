@@ -28,24 +28,23 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_PATTERN);
-        String nameString = argMultiMap.getPreamble();
+        String searchString = argMultiMap.getPreamble();
         if (argMultiMap.getValue(PREFIX_PATTERN).isPresent()) {
             try {
-                Pattern pattern = Pattern.compile(nameString, Pattern.CASE_INSENSITIVE);
+                Pattern pattern = Pattern.compile(searchString, Pattern.CASE_INSENSITIVE);
                 return new FindCommand(new NameContainsPatternPredicate(pattern));
             } catch (PatternSyntaxException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_ARGUMENT_FORMAT, MESSAGE_INVALID_REGEX));
             }
-        } else {
-            if (nameString.isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
-            String[] nameKeywords = nameString.split("\\s+");
-
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
+        if (searchString.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        String[] nameKeywords = searchString.split("\\s+");
+
+        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

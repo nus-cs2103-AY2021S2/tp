@@ -27,8 +27,8 @@ public class NameContainsPatternPredicate implements Predicate<Person> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        NameContainsPatternPredicate that = (NameContainsPatternPredicate) o;
-        return pattern.toString().equals(that.pattern.toString());
+        NameContainsPatternPredicate other = (NameContainsPatternPredicate) o;
+        return pattern.toString().equals(other.pattern.toString());
     }
 
     @Override
