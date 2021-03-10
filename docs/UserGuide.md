@@ -123,7 +123,7 @@ Deletes the specified person from the address book.
 
 Format: `delete /MATRICULATION NUMBER`
 
-* If the matriculation number does not exist in the records, a popup message will be displayed to inform users that 
+* If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
   the matriculation number is not found
 
 >**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
