@@ -53,7 +53,7 @@ public class Meeting {
 
     @Override
     public String toString() {
-        return value + "@" + dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
+        return value + " @ " + dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mm a"));
     }
 
     @Override
