@@ -29,7 +29,8 @@ import static seedu.address.testutil.TypicalResidents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddResidentCommand;
+import seedu.address.logic.commands.resident.AddResidentCommand;
+import seedu.address.logic.parser.resident.AddResidentCommandParser;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
@@ -38,8 +39,8 @@ import seedu.address.model.resident.Room;
 import seedu.address.model.resident.Year;
 import seedu.address.testutil.ResidentBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddResidentCommandParserTest {
+    private AddResidentCommandParser parser = new AddResidentCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

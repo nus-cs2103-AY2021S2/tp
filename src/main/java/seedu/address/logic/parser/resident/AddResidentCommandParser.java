@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.resident;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -9,7 +9,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddResidentCommand;
+import seedu.address.logic.commands.resident.AddResidentCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
@@ -22,7 +27,7 @@ import seedu.address.model.resident.Year;
 /**
  * Parses input arguments and creates a new AddResidentCommand object
  */
-public class AddCommandParser implements Parser<AddResidentCommand> {
+public class AddResidentCommandParser implements Parser<AddResidentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddResidentCommand

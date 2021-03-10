@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import seedu.address.logic.commands.AddResidentCommand;
-import seedu.address.logic.commands.EditResidentCommand;
+import seedu.address.logic.commands.resident.AddResidentCommand;
+import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.model.resident.Resident;
 
 /**

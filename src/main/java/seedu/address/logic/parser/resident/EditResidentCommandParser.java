@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.resident;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -9,14 +9,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditResidentCommand;
-import seedu.address.logic.commands.EditResidentCommand.EditResidentDescriptor;
+import seedu.address.logic.commands.resident.EditResidentCommand;
+import seedu.address.logic.commands.resident.EditResidentCommand.EditResidentDescriptor;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditResidentCommand object
  */
-public class EditCommandParser implements Parser<EditResidentCommand> {
+public class EditResidentCommandParser implements Parser<EditResidentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditResidentCommand

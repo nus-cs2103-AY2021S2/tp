@@ -1,17 +1,18 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.resident;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.FindResidentCommand;
+import seedu.address.logic.commands.resident.FindResidentCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindResidentCommand object
  */
-public class FindCommandParser implements Parser<FindResidentCommand> {
+public class FindResidentCommandParser implements Parser<FindResidentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindResidentCommand

@@ -23,8 +23,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_RESIDENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditResidentCommand;
-import seedu.address.logic.commands.EditResidentCommand.EditResidentDescriptor;
+import seedu.address.logic.commands.resident.EditResidentCommand;
+import seedu.address.logic.commands.resident.EditResidentCommand.EditResidentDescriptor;
+import seedu.address.logic.parser.resident.EditResidentCommandParser;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
@@ -34,7 +35,7 @@ public class EditResidentCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditResidentCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private EditResidentCommandParser parser = new EditResidentCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

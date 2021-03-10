@@ -7,7 +7,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteResidentCommand;
+import seedu.address.logic.commands.resident.DeleteResidentCommand;
+import seedu.address.logic.parser.resident.DeleteResidentCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -18,7 +19,7 @@ import seedu.address.logic.commands.DeleteResidentCommand;
  */
 public class DeleteResidentCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private DeleteResidentCommandParser parser = new DeleteResidentCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
