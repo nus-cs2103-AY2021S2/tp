@@ -87,7 +87,7 @@ Action | Format, Examples
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
 
-## <center> **Appendix** </center> 
+## <center> Appendix </center> 
 
 ### UI Mock-up 
 
