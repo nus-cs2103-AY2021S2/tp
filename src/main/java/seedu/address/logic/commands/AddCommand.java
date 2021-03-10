@@ -9,16 +9,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Garment;
 
 /**
- * Adds a person to the address book.
+ * Adds a garment to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a garment to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SIZE + "SIZE "
@@ -33,28 +33,28 @@ public class AddCommand extends Command {
             + PREFIX_DESCRIPTION + "friends "
             + PREFIX_DESCRIPTION + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New garment added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This garment already exists in the address book";
 
-    private final Person toAdd;
+    private final Garment toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Garment}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Garment garment) {
+        requireNonNull(garment);
+        toAdd = garment;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasGarment(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        model.addGarment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -6,15 +6,15 @@ import java.util.Set;
 import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Garment;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Size;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class GarmentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_SIZE = "25";
@@ -30,7 +30,7 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public GarmentBuilder() {
         name = new Name(DEFAULT_NAME);
         size = new Size(DEFAULT_SIZE);
         email = new Email(DEFAULT_EMAIL);
@@ -39,20 +39,20 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the GarmentBuilder with the data of {@code garmentToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        size = personToCopy.getSize();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        descriptions = new HashSet<>(personToCopy.getDescriptions());
+    public GarmentBuilder(Garment garmentToCopy) {
+        name = garmentToCopy.getName();
+        size = garmentToCopy.getSize();
+        email = garmentToCopy.getEmail();
+        address = garmentToCopy.getAddress();
+        descriptions = new HashSet<>(garmentToCopy.getDescriptions());
     }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public GarmentBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -61,7 +61,7 @@ public class PersonBuilder {
      * Parses the {@code descriptions} into a {@code Set<Description>}
      * and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withDescriptions(String ... descriptions) {
+    public GarmentBuilder withDescriptions(String ... descriptions) {
         this.descriptions = SampleDataUtil.getDescriptionSet(descriptions);
         return this;
     }
@@ -69,7 +69,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public GarmentBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -77,7 +77,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Size} of the {@code Person} that we are building.
      */
-    public PersonBuilder withSize(String size) {
+    public GarmentBuilder withSize(String size) {
         this.size = new Size(size);
         return this;
     }
@@ -85,13 +85,13 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public GarmentBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, size, email, address, descriptions);
+    public Garment build() {
+        return new Garment(name, size, email, address, descriptions);
     }
 
 }

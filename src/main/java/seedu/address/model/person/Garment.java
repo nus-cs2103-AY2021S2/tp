@@ -13,7 +13,7 @@ import seedu.address.model.description.Description;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Garment {
 
     // Identity fields
     private final Name name;
@@ -27,7 +27,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Size size, Email email, Address address, Set<Description> descriptions) {
+    public Garment(Name name, Size size, Email email, Address address, Set<Description> descriptions) {
         requireAllNonNull(name, size, email, address, descriptions);
         this.name = name;
         this.size = size;
@@ -64,13 +64,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameGarment(Garment otherGarment) {
+        if (otherGarment == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherGarment != null
+                && otherGarment.getName().equals(getName());
     }
 
     /**
@@ -83,16 +83,16 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Garment)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getSize().equals(getSize())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getDescriptions().equals(getDescriptions());
+        Garment otherGarment = (Garment) other;
+        return otherGarment.getName().equals(getName())
+                && otherGarment.getSize().equals(getSize())
+                && otherGarment.getEmail().equals(getEmail())
+                && otherGarment.getAddress().equals(getAddress())
+                && otherGarment.getDescriptions().equals(getDescriptions());
     }
 
     @Override
