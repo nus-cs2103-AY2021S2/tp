@@ -16,21 +16,21 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Colour;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Size;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_SIZE = "+65";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_COLOUR = " ";
     private static final String INVALID_DESCRIPTION = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_SIZE = "12";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_COLOUR = "rachel@example.com";
     private static final String VALID_DESCRIPTION_1 = "friend";
     private static final String VALID_DESCRIPTION_2 = "neighbour";
 
@@ -80,26 +80,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseSize_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSize((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseSize_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSize(INVALID_SIZE));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseSize_validValueWithoutWhitespace_returnsSize() throws Exception {
+        Size expectedSize = new Size(VALID_SIZE);
+        assertEquals(expectedSize, ParserUtil.parseSize(VALID_SIZE));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseSize_validValueWithWhitespace_returnsTrimmedSize() throws Exception {
+        String sizeWithWhitespace = WHITESPACE + VALID_SIZE + WHITESPACE;
+        Size expectedSize = new Size(VALID_SIZE);
+        assertEquals(expectedSize, ParserUtil.parseSize(sizeWithWhitespace));
     }
 
     @Test
@@ -126,26 +126,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseColour_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseColour((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseColour_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseColour(INVALID_COLOUR));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseColour_validValueWithoutWhitespace_returnsColour() throws Exception {
+        Colour expectedColour = new Colour(VALID_COLOUR);
+        assertEquals(expectedColour, ParserUtil.parseColour(VALID_COLOUR));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseColour_validValueWithWhitespace_returnsTrimmedColour() throws Exception {
+        String colourWithWhitespace = WHITESPACE + VALID_COLOUR + WHITESPACE;
+        Colour expectedColour = new Colour(VALID_COLOUR);
+        assertEquals(expectedColour, ParserUtil.parseColour(colourWithWhitespace));
     }
 
     @Test
