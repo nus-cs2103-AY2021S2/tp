@@ -1,10 +1,10 @@
 package seedu.address.model.module;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class DescriptionTest {
     @Test
@@ -33,6 +33,7 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("CS2103T")); // alphanumeric characters
         assertTrue(Description.isValidDescription("Software Engineering")); // with capital letters
         assertTrue(Description.isValidDescription("tp v1.2")); // non-alphanumeric characters
-        assertTrue(Description.isValidDescription("CS2103T Software Engineering submission tp v1.2!!!")); // long description
+        assertTrue(Description.isValidDescription(
+                "CS2103T Software Engineering submission tp v1.2!!!")); // long description
     }
 }

@@ -1,13 +1,13 @@
 package seedu.address.model.module;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
 
 public class AssignmentTest {
     private Description description1 = new Description("test 1");
@@ -16,7 +16,6 @@ public class AssignmentTest {
                                                 DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     private LocalDateTime date2 = LocalDateTime.parse("12/12/2021 1900",
                                                 DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -68,6 +67,5 @@ public class AssignmentTest {
 
         // different assignment -> returns false
         assertFalse(assignment1.equals(assignment2));
-
     }
 }
