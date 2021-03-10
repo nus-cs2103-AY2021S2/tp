@@ -33,14 +33,14 @@ public class DoneCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredPersonList(); //Change to list of task later
+        List<Task> lastShownList = model.getFilteredTaskList(); //Change to list of task later
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToFinish = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(taskToFinish); // change to finishTask later
+        model.deleteTask(taskToFinish); // change to finishTask later
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToFinish));
     }
 

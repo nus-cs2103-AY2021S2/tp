@@ -19,16 +19,16 @@ import seedu.address.model.person.Task;
 @JsonRootName(value = "tasktracker")
 class JsonSerializableTaskTracker {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
 
-    private final List<JsonAdaptedTask> persons = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableTaskTracker} with the given persons.
+     * Constructs a {@code JsonSerializableTaskTracker} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializableTaskTracker(@JsonProperty("persons") List<JsonAdaptedTask> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableTaskTracker(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+        this.tasks.addAll(tasks);
     }
 
     /**
@@ -38,7 +38,7 @@ class JsonSerializableTaskTracker {
      */
     public JsonSerializableTaskTracker(ReadOnlyTaskTracker source) {
 
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,12 +48,12 @@ class JsonSerializableTaskTracker {
      */
     public TaskTracker toModelType() throws IllegalValueException {
         TaskTracker taskTracker = new TaskTracker();
-        for (JsonAdaptedTask jsonAdaptedTask : persons) {
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
-            if (taskTracker.hasPerson(task)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (taskTracker.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
-            taskTracker.addPerson(task);
+            taskTracker.addTask(task);
         }
         return taskTracker;
     }

@@ -6,7 +6,7 @@ import seedu.address.model.person.Task;
 /**
  * A utility class to help with building TaskTracker objects.
  * Example usage: <br>
- *     {@code TaskTracker ab = new TaskTrackerBuilder().withPerson("John", "Doe").build();}
+ *     {@code TaskTracker ab = new TaskTrackerBuilder().withTask("John", "Doe").build();}
  */
 public class TaskTrackerBuilder {
 
@@ -21,10 +21,10 @@ public class TaskTrackerBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code TaskTracker} that we are building.
+     * Adds a new {@code Task} to the {@code TaskTracker} that we are building.
      */
-    public TaskTrackerBuilder withPerson(Task task) {
-        taskTracker.addPerson(task);
+    public TaskTrackerBuilder withTask(Task task) {
+        taskTracker.addTask(task);
         return this;
     }
 
