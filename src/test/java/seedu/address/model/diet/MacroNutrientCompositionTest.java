@@ -10,10 +10,10 @@ public class MacroNutrientCompositionTest {
 
     @Test
     public void constructor_invalidValues_throwsIllegalArgumentException() {
-        assertThrows(NullPointerException.class, () -> new MacroNutrientComposition(0, 0, 0));
-        assertThrows(NullPointerException.class, () -> new MacroNutrientComposition(10, 20, 30));
-        assertThrows(NullPointerException.class, () -> new MacroNutrientComposition(100, 20, 30));
-        assertThrows(NullPointerException.class, () -> new MacroNutrientComposition(110, 0, -10));
+        assertThrows(IllegalArgumentException.class, () -> new MacroNutrientComposition(0, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> new MacroNutrientComposition(10, 20, 30));
+        assertThrows(IllegalArgumentException.class, () -> new MacroNutrientComposition(100, 20, 30));
+        assertThrows(IllegalArgumentException.class, () -> new MacroNutrientComposition(110, 0, -10));
     }
 
     @Test
