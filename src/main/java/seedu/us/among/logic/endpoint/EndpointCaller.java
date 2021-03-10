@@ -2,6 +2,7 @@ package seedu.us.among.logic.endpoint;
 
 import java.io.IOException;
 
+import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.MethodType;
 import seedu.us.among.model.endpoint.Response;
@@ -26,7 +27,7 @@ public class EndpointCaller {
      *
      * @return response of API call
      */
-    public Response callEndpoint() throws IOException {
+    public Response callEndpoint() throws IOException, RequestException {
 
         Response response = new Response();
         MethodType requestMethod = this.endpointToSend.getMethod().getMethodType();

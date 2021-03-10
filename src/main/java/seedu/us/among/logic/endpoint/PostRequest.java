@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.http.client.methods.HttpPost;
 
+import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Response;
 
@@ -30,7 +31,7 @@ public class PostRequest extends Request {
      * @return returns the response from the API call
      */
     @Override
-    public Response send() throws IOException {
+    public Response send() throws IOException, RequestException {
         HttpPost request = new HttpPost(this.getAddress());
 
         request = (HttpPost) super.setHeaders(request, this.endpoint.getHeaders());
