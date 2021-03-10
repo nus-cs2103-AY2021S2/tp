@@ -2,12 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.MatriculationNumber;
+import seedu.address.model.person.MatriculationNumberContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,16 +20,30 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the person identified by their unique matriculation number assigned by NUS.\n"
+            + "Parameters: Matriculation Number \n"
+            + "Example: " + COMMAND_WORD + " A1234567X";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s"; // add name + matric number
 
-    private final Index targetIndex;
+    private final MatriculationNumber matriculationNumber;
+    private final MatriculationNumberContainsKeywordsPredicate predicate;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+
+    public DeleteCommand(MatriculationNumber matriculationNumber) {
+        this.matriculationNumber = matriculationNumber;
+
+        List<String> matricNum = Arrays.asList(new String[]{matriculationNumber.toString()});
+        predicate = new MatriculationNumberContainsKeywordsPredicate(matricNum);
+    }
+
+    private static Person getPerson(List<Person> personList, MatriculationNumber matricNum) {
+        for (Person p : personList) {
+            if (p.getMatriculationNumber().equals(matricNum)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -35,11 +51,10 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Person personToDelete = getPerson(lastShownList, matriculationNumber);
+        if (personToDelete == null) {
+            throw new CommandException(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
         }
-
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
@@ -48,6 +63,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && matriculationNumber.equals(((DeleteCommand) other).matriculationNumber)); // state check
     }
 }
