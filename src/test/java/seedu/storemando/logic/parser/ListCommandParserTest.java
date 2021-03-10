@@ -20,7 +20,7 @@ public class ListCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_nonGenericListReturnsListCommand() {
+    public void parse_validArgs_locationListReturnsListCommand() {
         ListCommand expectedListCommand =
             new ListCommand(new LocationContainsKeywordsPredicate(Arrays.asList("Living", "Room")));
 
@@ -28,7 +28,7 @@ public class ListCommandParserTest {
         assertParseSuccess(parser, "Living Room", expectedListCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Living \n \t Room  \t", expectedListCommand);
+        assertParseSuccess(parser, "l/ \n Living \n \t Room  \t", expectedListCommand);
     }
 
     @Test

@@ -5,14 +5,10 @@ import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Set;
 
 import seedu.storemando.logic.commands.ListCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
-import seedu.storemando.model.item.Location;
 import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
-import seedu.storemando.model.tag.Tag;
 import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
 
 /**

@@ -1,10 +1,7 @@
 package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.storemando.logic.parser.CliSyntax.PREFIX_EXPIRYDATE;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.storemando.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.storemando.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
