@@ -200,6 +200,6 @@ Action | Format, Examples
 Action | Format, Examples
 --------|------------------
 **List** | `list_session`
-**Find** | `find_student KEYWORD`<br><br>e.g. `find_session John`
+**Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
 **Add** | `add_session n/STUDENT_NAME d/DATE t/TIME l/LENGTH_OF_SESSION s/SUBJECT f/FEE`<br><br> e.g., `add_session n/John Doe d/14-02-2021 t/1800 l/2 s/Biology f/40`
 **Delete** | `delete_session INDEX`<br><br>e.g. `delete_session 3`
