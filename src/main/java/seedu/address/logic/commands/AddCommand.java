@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds an order to the CakeCollate.
+ * Adds an order to CakeCollate.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to the CakeCollate. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to CakeCollate. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_DATE + "01/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This order already exists in the CakeCollate";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This order already exists in CakeCollate";
 
     private final Person toAdd;
 

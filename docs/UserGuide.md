@@ -26,7 +26,7 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
    * **`list`** : Lists all orders in the CakeCollate database.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to the CakeCollate.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to CakeCollate.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
 
