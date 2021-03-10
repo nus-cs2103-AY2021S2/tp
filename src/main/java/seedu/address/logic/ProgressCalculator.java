@@ -1,10 +1,10 @@
 package seedu.address.logic;
 
+import seedu.address.model.diet.DietPlan;
+import seedu.address.model.diet.MacroNutrientComposition;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
-import seedu.address.model.diet.DietPlan;
-import seedu.address.model.diet.MacroNutrientComposition;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
