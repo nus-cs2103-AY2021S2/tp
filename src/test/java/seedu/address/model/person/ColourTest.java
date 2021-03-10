@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -22,6 +20,6 @@ public class ColourTest {
 
     @Test
     public void isValidColour() {
-        assertEquals(1,1);
+        assertEquals(1, 1);
     }
 }
