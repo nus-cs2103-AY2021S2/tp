@@ -42,7 +42,7 @@ public class PawbookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_OWNER.getOneBased());
+                DeleteCommand.COMMAND_WORD + " " + DeleteCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_OWNER), command);
     }
 

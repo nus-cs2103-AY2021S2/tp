@@ -55,7 +55,7 @@ public class PawbookParser {
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return generateDeleteCommand(entityType, arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -84,6 +84,20 @@ public class PawbookParser {
         switch (entityType) {
         case AddCommand.ENTITY_WORD:
             return new AddCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSGAE_UNKNOWN_ENTITY);
+        }
+    }
+
+    private DeleteCommand generateDeleteCommand(String entityType, String arguments) throws ParseException {
+        if (entityType.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
+        switch (entityType) {
+        case DeleteCommand.ENTITY_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSGAE_UNKNOWN_ENTITY);
