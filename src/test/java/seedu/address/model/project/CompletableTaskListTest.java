@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -30,5 +31,14 @@ public class CompletableTaskListTest {
         ArrayList<Completable> completables = new ArrayList<>();
         completables.add(completable);
         assertDoesNotThrow(() -> new CompletableTaskList(completables));
+    }
+
+    @Test
+    public void getCompletableTasks_validCompletableTaskList_equalsOriginalList() {
+        Completable completable = new Todo("Test Description");
+        ArrayList<Completable> completables = new ArrayList<>();
+        completables.add(completable);
+        CompletableTaskList completableTaskList = new CompletableTaskList(completables);
+        assertEquals(completables, completableTaskList.getCompletableTasks());
     }
 }

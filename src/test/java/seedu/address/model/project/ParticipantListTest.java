@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -25,10 +26,18 @@ public class ParticipantListTest {
     }
 
     @Test
-    public void constructor_singleParticipant_valid() {
+    public void constructor_singleParticipant_success() {
         ArrayList<Person> participants = new ArrayList<>();
         participants.add(ALICE);
         assertDoesNotThrow(() -> new ParticipantList(participants));
+    }
+
+    @Test
+    public void getPaticipants_validParticipantsList_equalsOriginalList() {
+        ArrayList<Person> participants = new ArrayList<>();
+        participants.add(ALICE);
+        ParticipantList participantList = new ParticipantList(participants);
+        assertEquals(participants, participantList.getParticipants());
     }
 
 }

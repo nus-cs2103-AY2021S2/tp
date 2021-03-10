@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -26,10 +27,19 @@ public class EventListTest {
     }
 
     @Test
-    public void constructor_singleEvent_valid() {
+    public void constructor_singleEvent_success() {
         Event event = new Event("Test Event", Interval.NONE, LocalDate.of(2020, 1, 1));
         ArrayList<Event> events = new ArrayList<>();
         events.add(event);
         assertDoesNotThrow(() -> new EventList(events));
+    }
+
+    @Test
+    public void getEvent_validEvent_equalsOriginalList() {
+        Event event = new Event("Test Event", Interval.NONE, LocalDate.of(2020, 1, 1));
+        ArrayList<Event> events = new ArrayList<>();
+        events.add(event);
+        EventList eventList = new EventList(events);
+        assertEquals(events, eventList.getEvents());
     }
 }
