@@ -1,20 +1,18 @@
 package seedu.budgetbaby.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code FinancialRecord}.
  */
-public class PersonCard extends UiPart<Region> {
+public class FinancialRecordCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "FinancialRecordListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,37 +22,31 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final FinancialRecord financialRecord;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label description;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label amount;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code FinancialRecordCard} with the given {@code FinancialRecord} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public FinancialRecordCard(FinancialRecord financialRecord, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.financialRecord = financialRecord;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        description.setText(financialRecord.getDescription().toString());
+        amount.setText("$" + financialRecord.getAmount().toString());
+        // person.getTags().stream()
+        //     .sorted(Comparator.comparing(tag -> tag.tagName))
+        //     .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -65,13 +57,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof FinancialRecordCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        FinancialRecordCard card = (FinancialRecordCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && financialRecord.equals(card.financialRecord);
     }
 }
