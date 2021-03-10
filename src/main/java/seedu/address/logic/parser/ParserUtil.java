@@ -13,7 +13,7 @@ import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Size;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -51,18 +51,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String size} into a {@code Size}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code size} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Size parseSize(String size) throws ParseException {
+        requireNonNull(size);
+        String trimmedPhone = size.trim();
+        if (!Size.isValidSize(trimmedPhone)) {
+            throw new ParseException(Size.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Size(trimmedPhone);
     }
 
     /**

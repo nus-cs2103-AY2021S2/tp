@@ -8,7 +8,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Size;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_SIZE = "25";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Size size;
     private Email email;
     private Address address;
     private Set<Description> descriptions;
@@ -32,7 +32,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        size = new Size(DEFAULT_SIZE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         descriptions = new HashSet<>();
@@ -43,7 +43,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+        size = personToCopy.getSize();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         descriptions = new HashSet<>(personToCopy.getDescriptions());
@@ -77,8 +77,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withSize(String size) {
+        this.size = new Size(size);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, descriptions);
+        return new Person(name, size, email, address, descriptions);
     }
 
 }
