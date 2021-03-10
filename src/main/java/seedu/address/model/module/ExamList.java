@@ -31,6 +31,9 @@ public class ExamList {
         this.exams = exams;
     }
 
+    /**
+     * Returns if {@code exam} exists inside the exam list.
+     */
     public boolean contains(Exam exam) {
         boolean hasExam = false;
         for (int i = 0; i < exams.size() && !hasExam; i++) {

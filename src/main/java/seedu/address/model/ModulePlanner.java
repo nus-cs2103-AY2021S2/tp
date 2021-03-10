@@ -1,15 +1,15 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class ModulePlanner implements ReadOnlyModulePlanner {
 
@@ -63,7 +63,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public boolean hasAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
-        return module.hasAssignment(assignment);
+        Module mod = modules.getModule(module);
+        return mod.hasAssignment(assignment);
     }
 
     /**
@@ -71,7 +72,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      */
     public boolean hasExam(Module module, Exam exam) {
         requireAllNonNull(module, exam);
-        return module.hasExam(exam);
+        Module mod = modules.getModule(module);
+        return mod.hasExam(exam);
     }
 
     /**
@@ -88,7 +90,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * The assignment must not already exist in the module.
      */
     public void addAssignment(Module mod, Assignment assignment) {
-        Module editedMod = mod;
+        Module editedMod = modules.getModule(mod);
         editedMod.addAssignment(assignment);
         modules.setModule(mod, editedMod);
     }
@@ -99,7 +101,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * The exam must not already exist in the module.
      */
     public void addExam(Module mod, Exam exam) {
-        Module editedMod = mod;
+        Module editedMod = modules.getModule(mod);
         editedMod.addExam(exam);
         modules.setModule(mod, editedMod);
     }
@@ -129,7 +131,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * {@code key} must exist in {@code module}.
      */
     public void removeAssignment(Module module, Assignment key) {
-        Module editedModule = module;
+        Module editedModule = modules.getModule(module);
         editedModule.deleteAssignment(key);
         setModule(module, editedModule);
     }
@@ -140,7 +142,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * {@code key} must exist in {@code module}.
      */
     public void removeExam(Module module, Exam key) {
-        Module editedModule = module;
+        Module editedModule = modules.getModule(module);
         editedModule.deleteExam(key);
         setModule(module, editedModule);
     }

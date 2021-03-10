@@ -10,6 +10,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Assignment;
+import seedu.address.model.module.Module;
 
 public class AddAssignmentCommand extends Command {
 
@@ -28,13 +29,15 @@ public class AddAssignmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the module";
 
+    private final Module target;
     private final Assignment toAdd;
 
     /**
      * Creates an AddPersonCommand to add the specified {@code Person}
      */
-    public AddAssignmentCommand(Assignment assignment) {
+    public AddAssignmentCommand(Module module, Assignment assignment) {
         requireNonNull(assignment);
+        target = module;
         toAdd = assignment;
     }
 
@@ -42,11 +45,11 @@ public class AddAssignmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasAssignment(toAdd)) {
+        if (model.hasAssignment(target, toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 
-        model.addAssignment(toAdd);
+        model.addAssignment(target, toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
