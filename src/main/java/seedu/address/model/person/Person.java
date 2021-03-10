@@ -109,7 +109,12 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress());
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getMatriculationNumber().equals(getMatriculationNumber())
+                && otherPerson.getFaculty().equals(getFaculty())
+                && otherPerson.getMedicalDetails().equals(getMedicalDetails())
+                && otherPerson.getVaccinationStatus().equals(getVaccinationStatus())
+                && otherPerson.getSchoolResidence().equals(getSchoolResidence());
     }
 
     @Override
@@ -127,7 +132,19 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Matriculation Number: ")
+                .append(getMatriculationNumber())
+                .append("; Faculty: ")
+                .append(getFaculty())
+                .append("; Vaccination Status: ")
+                .append(getVaccinationStatus())
+                .append("; Medical Details: ")
+                .append(getMedicalDetails())
+                .append("; Vaccination Status: ")
+                .append(getVaccinationStatus())
+                .append("; School Residence: ")
+                .append(getSchoolResidence());
         return builder.toString();
     }
 
