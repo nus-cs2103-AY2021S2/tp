@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,26 +20,32 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger LOGGER = LogsCenter.getLogger(ModelManager.class);
 
+    private final AppointmentSchedule appointmentSchedule;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAppointmentSchedule appointmentSchedule, ReadOnlyAddressBook addressBook,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(appointmentSchedule, addressBook, userPrefs);
 
-        LOGGER.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        LOGGER.fine("Initializing with appointment schedule: " + appointmentSchedule
+                + ", address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.appointmentSchedule = new AppointmentSchedule(appointmentSchedule);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(this.appointmentSchedule.getAppointmentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AppointmentSchedule(), new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,6 +72,8 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    //=========== AddressBook ================================================================================
+
     @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
@@ -75,8 +84,6 @@ public class ModelManager implements Model {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
-
-    //=========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -129,6 +136,69 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== AppointmentSchedule ========================================================================
+    @Override
+    public Path getAppointmentScheduleFilePath() {
+        return userPrefs.getAppointmentScheduleFilePath();
+    }
+
+    @Override
+    public void setAppointmentScheduleFilePath(Path appointmentScheduleFilePath) {
+        requireNonNull(appointmentScheduleFilePath);
+        userPrefs.setAppointmentScheduleFilePath(appointmentScheduleFilePath);
+    }
+
+    @Override
+    public void setAppointmentSchedule(ReadOnlyAppointmentSchedule appointmentSchedule) {
+        this.appointmentSchedule.resetData(appointmentSchedule);
+    }
+
+    @Override
+    public ReadOnlyAppointmentSchedule getAppointmentSchedule() {
+        return appointmentSchedule;
+    }
+
+    @Override
+    public boolean hasConflictingAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointmentSchedule.hasConflict(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        appointmentSchedule.removeAppointment(target);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        appointmentSchedule.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        appointmentSchedule.setAppointment(target, editedAppointment);
+    }
+
+    //=========== Filtered Appointment List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedAppointmentSchedule}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -143,9 +213,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return appointmentSchedule.equals(other.appointmentSchedule)
+                && addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }
