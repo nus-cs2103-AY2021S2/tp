@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -27,9 +26,9 @@ public class FindCommandTest {
     @Test
     public void equals() {
         MatriculationNumberContainsKeywordsPredicate firstPredicate =
-                new MatriculationNumberContainsKeywordsPredicate(Collections.singletonList("A3456789D"));
+                new MatriculationNumberContainsKeywordsPredicate("A3456789D");
         MatriculationNumberContainsKeywordsPredicate secondPredicate =
-                new MatriculationNumberContainsKeywordsPredicate(Collections.singletonList("A4567890E"));
+                new MatriculationNumberContainsKeywordsPredicate("A4567890E");
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -65,6 +64,6 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code MatriculationNumberContainsKeywordsPredicate}.
      */
     private MatriculationNumberContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new MatriculationNumberContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new MatriculationNumberContainsKeywordsPredicate(userInput);
     }
 }
