@@ -14,7 +14,7 @@ HeliBook is a **desktop app for managing you children's contacts, optimized for 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `helibook.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HeliBook.
 
