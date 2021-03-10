@@ -77,15 +77,13 @@ Format: `help`
 
 Adds a person to the records.
 
-Format: `add n/NAME i/MATRICULATION_NUMBER p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS 
-m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
+Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
 >**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
 
 Examples:
-* `add n/John Doe i/A1234567X p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC `
-* `add n/Betsy Crowe i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/not vaccinated 
-  m/nose lift surgery in 2012`
+* `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+* `add n/Betsy Crowe f/ENG i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/not vaccinated m/nose lift surgery in 2012`
 
 ### Editing a student entry: `edit`
 
