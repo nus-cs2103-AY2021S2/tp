@@ -9,7 +9,7 @@ import static seedu.us.among.commons.util.AppUtil.checkArgument;
  */
 public class Header {
 
-    public static final String MESSAGE_CONSTRAINTS = "Headers should be enclosed with a \" example \"";
+    public static final String MESSAGE_CONSTRAINTS = "Headers should be enclosed with a \" \"";
     public static final String VALIDATION_REGEX = ".*";
 
     public final String headerName;
@@ -22,7 +22,7 @@ public class Header {
     public Header(String headerName) {
         requireNonNull(headerName);
         checkArgument(isValidHeaderName(headerName), Header.MESSAGE_CONSTRAINTS);
-        this.headerName = headerName.substring(1, headerName.length() - 1);
+        this.headerName = headerName;
     }
 
     /**
