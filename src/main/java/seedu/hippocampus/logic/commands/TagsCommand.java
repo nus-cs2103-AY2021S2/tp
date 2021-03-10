@@ -1,11 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.hippocampus.logic.commands;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
+import seedu.hippocampus.model.Model;
+import seedu.hippocampus.model.tag.Tag;
 
 /**
  * Finds all tags or tags that contain the given keywords.

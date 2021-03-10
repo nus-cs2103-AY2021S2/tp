@@ -1,16 +1,16 @@
-package seedu.address.logic.parser;
+package seedu.hippocampus.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.ListCommand.ASC;
-import static seedu.address.logic.commands.ListCommand.DESC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
+import static seedu.hippocampus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.hippocampus.logic.commands.ListCommand.ASC;
+import static seedu.hippocampus.logic.commands.ListCommand.DESC;
+import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_SORT;
 
 import java.util.Comparator;
 import java.util.Optional;
 
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
+import seedu.hippocampus.logic.commands.ListCommand;
+import seedu.hippocampus.logic.parser.exceptions.ParseException;
+import seedu.hippocampus.model.person.Person;
 
 /**
  * Parses input arguments and creates a new ListCommand object

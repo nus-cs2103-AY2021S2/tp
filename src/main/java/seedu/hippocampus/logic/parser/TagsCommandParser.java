@@ -1,12 +1,12 @@
-package seedu.address.logic.parser;
+package seedu.hippocampus.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND;
+import static seedu.hippocampus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_FIND;
 
 import java.util.Optional;
 
-import seedu.address.logic.commands.TagsCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.hippocampus.logic.commands.TagsCommand;
+import seedu.hippocampus.logic.parser.exceptions.ParseException;
 
 public class TagsCommandParser implements Parser<TagsCommand> {
 
