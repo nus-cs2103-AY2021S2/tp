@@ -51,10 +51,10 @@ public class EventBook implements ReadOnlyEventBook {
         setEvents(newData.getEventList());
     }
 
-    //// person-level operations
+    //// event-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the event book.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -62,17 +62,17 @@ public class EventBook implements ReadOnlyEventBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a event to the event book.
+     * The event must not already exist in the event book.
      */
     public void addEvent(Event e) {
         events.add(e);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given event {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the event book.
+     * The event identity of {@code editedPerson} must not be the same as another existing event in the event book.
      */
     public void setEvent(Event target, Event editedPerson) {
         requireNonNull(editedPerson);
@@ -82,7 +82,7 @@ public class EventBook implements ReadOnlyEventBook {
 
     /**
      * Removes {@code key} from this {@code EventBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the event book.
      */
     public void removeEvent(Event key) {
         events.remove(key);

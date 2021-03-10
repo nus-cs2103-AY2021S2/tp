@@ -17,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.event.EventStatus;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -27,10 +28,15 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_CS2030 = "CS2030";
-    public static final String VALID_NAME_CS1010S = "CS1010S";
+    public static final String VALID_NAME_CS2107 = "CS2107";
     public static final String VALID_DESCRIPTION_CS2030 = "Object-oriented Programming";
+    public static final String VALID_DESCRIPTION_CS2107 = "Introduction to Information Security";
+    public static final EventStatus VALID_STATUS_CS2030 = EventStatus.DONE;
+    public static final EventStatus VALID_STATUS_CS2107 = EventStatus.IN_PROGRESS;
     public static final String VALID_TIME_START_CS2030 = "12/12/2021 12:00";
     public static final String VALID_TIME_END_CS2030 = "10/01/2020 10:00";
+    public static final String VALID_TIME_START_CS2107 = "10/03/2021 10:00";
+    public static final String VALID_TIME_END_CS2107 = "30/01/2022 12:00";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
