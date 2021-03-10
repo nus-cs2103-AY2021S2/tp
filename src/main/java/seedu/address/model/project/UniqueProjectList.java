@@ -33,6 +33,7 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public boolean contains(Project toCheck) {
         requireNonNull(toCheck);
+
         return internalList.stream().anyMatch(toCheck::isSameProject);
     }
 
@@ -42,6 +43,7 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public void add(Project toAdd) {
         requireNonNull(toAdd);
+
         if (contains(toAdd)) {
             throw new DuplicateProjectException();
         }
@@ -74,6 +76,7 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public void remove(Project toRemove) {
         requireNonNull(toRemove);
+
         if (!internalList.remove(toRemove)) {
             throw new ProjectNotFoundException();
         }
@@ -81,6 +84,7 @@ public class UniqueProjectList implements Iterable<Project> {
 
     public void setProjects(UniqueProjectList replacement) {
         requireNonNull(replacement);
+
         internalList.setAll(replacement.internalList);
     }
 
@@ -90,6 +94,7 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public void setProjects(List<Project> projects) {
         requireAllNonNull(projects);
+
         if (!projectsAreUnique(projects)) {
             throw new DuplicateProjectException();
         }

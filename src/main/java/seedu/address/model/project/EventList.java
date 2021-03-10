@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.task.repeatable.Event;
+
 public class EventList {
 
-    private final List<Events> events = new ArrayList<>();
+    private final List<Event> events = new ArrayList<>();
 
     /**
      * Constructs an empty {@code EventList}.
@@ -17,15 +19,15 @@ public class EventList {
     /**
      * Constructs an {@code EventList}.
      *
-     * @param events A list of {@code Events}.
+     * @param events A list of {@code Event}.
      */
-    public EventList (List<Events> events) {
+    public EventList (List<Event> events) {
         requireAllNonNull(events);
 
         this.events.addAll(events);
     }
 
-    public List<Events> getEvents() {
+    public List<Event> getEvents() {
         return events;
     }
 

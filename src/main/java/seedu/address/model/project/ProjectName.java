@@ -12,7 +12,7 @@ public class ProjectName {
     public static final String MESSAGE_CONSTRAINTS =
             "Project name should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
@@ -27,6 +27,7 @@ public class ProjectName {
      */
     public ProjectName(String name) {
         requireNonNull(name);
+
         checkArgument(isValidProjectName(name), MESSAGE_CONSTRAINTS);
         projectName = name;
     }

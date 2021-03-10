@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.task.Completable;
+
 public class CompletableTaskList {
 
     private final List<Completable> completableTasks = new ArrayList<>();

@@ -2,12 +2,12 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Completable;
+import seedu.address.model.task.repeatable.Event;
 
 /**
  * Represents a Project in the address book.
@@ -29,6 +29,7 @@ public class Project {
      */
     public Project(ProjectName projectName) {
         requireAllNonNull(projectName);
+
         this.projectName = projectName;
         this.events = new EventList();
         this.completableTasks = new CompletableTaskList();
