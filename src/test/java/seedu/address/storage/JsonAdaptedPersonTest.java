@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -22,7 +22,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
+    private static final String VALID_NAME = BENSON.getModuleName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
@@ -38,15 +38,25 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
+<<<<<<< HEAD
                 new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+=======
+                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = ModuleName.MESSAGE_CONSTRAINTS;
+>>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
+<<<<<<< HEAD
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+=======
+        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleName.class.getSimpleName());
+>>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

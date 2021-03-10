@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Task;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Task}.
  */
 class JsonAdaptedPerson {
 
@@ -46,8 +46,8 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
+    public JsonAdaptedPerson(Task source) {
+        name = source.getModuleName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         tagged.addAll(source.getTags().stream()
@@ -60,19 +60,20 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Task toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!ModuleName.isValidName(name)) {
+            throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final ModuleName modelModuleName = new ModuleName(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -91,7 +92,11 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+<<<<<<< HEAD
         return new Person(modelName, modelPhone, modelEmail, modelTags);
+=======
+        return new Task(modelModuleName, modelPhone, modelEmail, modelAddress, modelTags);
+>>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
     }
 
 }

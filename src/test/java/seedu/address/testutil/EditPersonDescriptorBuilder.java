@@ -6,9 +6,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Task;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,19 +29,27 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Task task) {
         descriptor = new EditPersonDescriptor();
+<<<<<<< HEAD
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setTags(person.getTags());
+=======
+        descriptor.setModuleName(task.getModuleName());
+        descriptor.setPhone(task.getPhone());
+        descriptor.setEmail(task.getEmail());
+        descriptor.setAddress(task.getAddress());
+        descriptor.setTags(task.getTags());
+>>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code ModuleName} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setModuleName(new ModuleName(name));
         return this;
     }
 
