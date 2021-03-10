@@ -7,7 +7,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public abstract class Repeatable {
 
-    public static final String MESSAGE_CONSTRAINTS = "Description can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_DESCRIPTION = "Description can take any values, and it should not be blank";
 
     /*
      * The first character of the description must not be a whitespace,
@@ -26,7 +26,7 @@ public abstract class Repeatable {
      */
     public Repeatable(String description, Interval interval,  LocalDate at) {
         requireAllNonNull(description, interval, at);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
         this.interval = interval;
         this.at = at;
@@ -40,7 +40,7 @@ public abstract class Repeatable {
      */
     public Repeatable(String description, Interval interval, LocalDate at, Boolean isDone) {
         requireAllNonNull(description, interval, at, isDone);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
         this.interval = interval;
         this.at = at;

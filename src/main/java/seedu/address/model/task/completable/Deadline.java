@@ -34,6 +34,7 @@ public class Deadline extends Completable {
      */
     public Deadline(String description, Boolean isDone, LocalDate by) {
         super(description, isDone);
+        requireNonNull(by);
         this.by = by;
     }
 

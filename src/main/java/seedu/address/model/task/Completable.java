@@ -6,7 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public abstract class Completable {
 
-    public static final String MESSAGE_CONSTRAINTS = "Description can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_DESCRIPTION = "Description can take any values, and it should not be blank";
 
     /*
      * The first character of the description must not be a whitespace,
@@ -23,7 +23,7 @@ public abstract class Completable {
      */
     public Completable(String description) {
         requireNonNull(description);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
         this.isDone = false;
     }
@@ -35,7 +35,7 @@ public abstract class Completable {
      */
     public Completable(String description, Boolean isDone) {
         requireAllNonNull(description, isDone);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
         this.isDone = isDone;
     }

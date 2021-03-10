@@ -17,6 +17,7 @@ public class TodoTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Todo(null));
         assertThrows(NullPointerException.class, () -> new Todo(null, null));
+        assertThrows(NullPointerException.class, () -> new Todo("test", null));
     }
 
     @Test
@@ -31,14 +32,14 @@ public class TodoTest {
 
     @Test
     public void isValidDescription() {
-        // null address
+        // null description
         assertThrows(NullPointerException.class, () -> Todo.isValidDescription(null));
 
-        // invalid addresses
+        // invalid description
         assertFalse(Todo.isValidDescription("")); // empty string
         assertFalse(Todo.isValidDescription(" ")); // spaces only
 
-        // valid addresses
+        // valid description
         assertTrue(Todo.isValidDescription("Blk 456, Den Road, #01-355"));
         assertTrue(Todo.isValidDescription("-")); // one character
         assertTrue(Todo.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long description
