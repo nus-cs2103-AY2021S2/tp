@@ -1,8 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +24,14 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 public class TagCommand extends Command{
+    public static final String COMMAND_WORD = "tag";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Appends tags to the tags of the person identified "
+            + "by the index number used in the displayed person list. "
+            + "Tags will be added to existing tags.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_TAG + "form teacher";;
     private final Index index;
     private final Set<Tag> tags;
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s";
@@ -45,19 +59,17 @@ public class TagCommand extends Command{
         return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, taggedPerson));
     }
 
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * appended with {@code tags}.
-     */
-    private Person createTaggedPerson(Person personToEdit) {
-        assert personToEdit != null;
+    private Person createTaggedPerson(Person personToTag) {
+        assert personToTag != null;
 
-        Name updatedName = personToEdit.getName();
-        Phone updatedPhone = personToEdit.getPhone();
-        Email updatedEmail = personToEdit.getEmail();
-        Address updatedAddress = personToEdit.getAddress();
-        Set<Tag> updatedTags = tags;
+        Name updatedName = personToTag.getName();
+        Phone updatedPhone = personToTag.getPhone();
+        Email updatedEmail = personToTag.getEmail();
+        Address updatedAddress = personToTag.getAddress();
+        Set<Tag> updatedTags = new HashSet<>(personToTag.getTags());
+        updatedTags.addAll(tags);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
+
 }
