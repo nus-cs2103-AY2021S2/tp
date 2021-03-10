@@ -114,14 +114,16 @@ public class MainWindow extends UiPart<Stage> {
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
         financialRecordListPanelPlaceholder.getChildren().add(financialRecordListPanel.getRoot());
 
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxPlaceholder.managedProperty().bind(commandBoxPlaceholder.visibleProperty());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplayPlaceholder.managedProperty().bind(resultDisplayPlaceholder.visibleProperty());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getBudgetBabyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -146,6 +148,15 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Toggles CLI visibility.
+     */
+    @FXML
+    public void handleCliVisibility() {
+        commandBoxPlaceholder.setVisible(!commandBoxPlaceholder.isVisible());
+        resultDisplayPlaceholder.setVisible(!resultDisplayPlaceholder.isVisible());
     }
 
     void show() {
