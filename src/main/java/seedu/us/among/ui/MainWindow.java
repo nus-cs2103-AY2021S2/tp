@@ -16,6 +16,7 @@ import seedu.us.among.commons.core.LogsCenter;
 import seedu.us.among.logic.Logic;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
+import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 
 /**
@@ -177,7 +178,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, RequestException {
         resultDisplay.setFeedbackToUser("");
         resultDisplay.getLoadingSpinnerPlaceholder().setVisible(true);
         try {
@@ -199,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | RequestException e) {
             //stop loading spinner (if any)
             resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
 

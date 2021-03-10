@@ -13,6 +13,7 @@ import java.util.List;
 
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.exceptions.CommandException;
+import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.EndpointList;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.endpoint.Endpoint;
@@ -68,7 +69,7 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException ce) {
+        } catch (CommandException | RequestException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
