@@ -28,7 +28,7 @@ public class SchoolResidence {
     }
 
     /**
-     * Returns true if the given string is a valid status.
+     * Returns true if the given string is a valid residence.
      *
      * @param test the string whose format is to be checked.
      * @return true if test is a valid residence, false otherwise.
@@ -47,8 +47,8 @@ public class SchoolResidence {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MatriculationNumber // instanceof handles nulls
-                && value.equals(((MatriculationNumber) other).value)); // state check
+                || (other instanceof SchoolResidence // instanceof handles nulls
+                && value.equals(((SchoolResidence) other).value)); // state check
     }
 
     @Override
