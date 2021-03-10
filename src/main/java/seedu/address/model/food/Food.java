@@ -41,6 +41,10 @@ public class Food {
         this.isUpdated = false;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public double getFats() {
         return this.fats;
     }
