@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
 
 /**
  * Lists all items in the storemando to the user.
@@ -21,6 +22,10 @@ public class ListCommand extends Command {
     private final Predicate<Item> predicate;
 
     public ListCommand(LocationContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    public ListCommand(TagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
