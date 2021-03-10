@@ -9,4 +9,3 @@ enum DressCode {
     ACTIVE
 }
 
-
