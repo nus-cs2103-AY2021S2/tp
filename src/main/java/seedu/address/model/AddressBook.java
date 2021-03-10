@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.human.Person;
 import seedu.address.model.human.person.UniquePersonList;
 
 /**
