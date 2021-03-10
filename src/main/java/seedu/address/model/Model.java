@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,9 +13,6 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
-    /** {@code Predicate} that always evaluate to false */
-    Predicate<Prefix> PREDICATE_SHOULD_NOT_HIDE = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -91,13 +87,13 @@ public interface Model {
 
     /**
      * Updates the display filter for PersonCard controls.
-     * @param predicate that returns true if prefix linked control should be hidden
+     * @param displayFilterPredicate that returns true if prefix linked control should be hidden
      */
-    void updateDisplayFilter(Predicate<Prefix> predicate);
+    void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate);
 
     /**
      * Returns the display filter for PersonCard controls.
      * @return predicate that returns true if prefix linked control should be hidden
      */
-    Predicate<Prefix> getDisplayFilter();
+    DisplayFilterPredicate getDisplayFilter();
 }

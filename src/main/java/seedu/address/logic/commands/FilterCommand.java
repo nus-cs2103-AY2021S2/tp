@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOULD_NOT_HIDE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
 
 /**
@@ -16,22 +15,24 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Applied filter";
 
-    private final ArgumentMultimap filterArguments;
+    private final DisplayFilterPredicate filterPredicate;
 
-    public FilterCommand(ArgumentMultimap filterArguments) {
-        this.filterArguments = filterArguments;
+    public FilterCommand(DisplayFilterPredicate filterPredicate) {
+        this.filterPredicate = filterPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (filterArguments.getArgumentSize() == 1) {
-            model.updateDisplayFilter(PREDICATE_SHOULD_NOT_HIDE);
-        } else {
-            model.updateDisplayFilter(prefix -> filterArguments.getValue(prefix).isPresent());
-        }
-        return new CommandResult(
-                String.format(MESSAGE_SUCCESS));
+        model.updateDisplayFilter(filterPredicate);
+        return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FilterCommand) // instanceof handles nulls
+                && filterPredicate.equals(((FilterCommand) other).filterPredicate);
     }
 }

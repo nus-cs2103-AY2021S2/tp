@@ -60,6 +60,7 @@ public class ArgumentMultimap {
 
     /**
      * Returns the number of arguments.
+     * @return Map size
      */
     public int getArgumentSize() {
         return argMultimap.size();

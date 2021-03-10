@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,8 +22,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
-    private Predicate<Prefix> displayFilter;
+    private DisplayFilterPredicate displayFilterPredicate;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,7 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        displayFilter = PREDICATE_SHOULD_NOT_HIDE;
+        displayFilterPredicate = new DisplayFilterPredicate();
     }
 
     public ModelManager() {
@@ -134,13 +132,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateDisplayFilter(Predicate<Prefix> displayFilter) {
-        this.displayFilter = displayFilter;
+    public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {
+        this.displayFilterPredicate = displayFilterPredicate;
     }
 
     @Override
-    public Predicate<Prefix> getDisplayFilter() {
-        return displayFilter;
+    public DisplayFilterPredicate getDisplayFilter() {
+        return displayFilterPredicate;
     }
 
     @Override
