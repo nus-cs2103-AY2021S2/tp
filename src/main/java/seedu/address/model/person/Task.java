@@ -20,16 +20,19 @@ public class Task {
     private final Phone phone;
     private final Email email;
 
+    // Data fields
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(ModuleName moduleName, Phone phone, Email email, Set<Tag> tags) {
+    public Task(ModuleName moduleName, Phone phone, Email email, Remark remark, Set<Tag> tags) {
         requireAllNonNull(moduleName, phone, email, tags);
         this.moduleName = moduleName;
         this.phone = phone;
         this.email = email;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -43,6 +46,10 @@ public class Task {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -84,13 +91,14 @@ public class Task {
         return otherTask.getModuleName().equals(getModuleName())
                 && otherTask.getPhone().equals(getPhone())
                 && otherTask.getEmail().equals(getEmail())
+                && otherTask.getRemark().equals(getRemark())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleName, phone, email, tags);
+        return Objects.hash(moduleName, phone, email, remark, tags);
     }
 
     @Override
@@ -100,7 +108,9 @@ public class Task {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail());
+                .append(getEmail())
+                .append("; Remark: ")
+                .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

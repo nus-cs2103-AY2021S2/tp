@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
 import seedu.address.model.tag.Tag;
 
@@ -26,6 +27,7 @@ class JsonAdaptedTask {
     private final String name;
     private final String phone;
     private final String email;
+    private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -34,10 +36,12 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                            @JsonProperty("email") String email,
+                           @JsonProperty("remark") String remark,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +54,7 @@ class JsonAdaptedTask {
         name = source.getModuleName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -91,8 +96,13 @@ class JsonAdaptedTask {
         }
         final Email modelEmail = new Email(email);
 
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Task(modelModuleName, modelPhone, modelEmail, modelTags);
+        return new Task(modelModuleName, modelPhone, modelEmail, modelRemark, modelTags);
     }
 
 }

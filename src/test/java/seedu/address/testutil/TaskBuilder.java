@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -18,10 +19,12 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_REMARK = "";
 
     private ModuleName moduleName;
     private Phone phone;
     private Email email;
+    private Remark remark;
     private Set<Tag> tags;
 
     /**
@@ -31,6 +34,7 @@ public class TaskBuilder {
         moduleName = new ModuleName(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -41,6 +45,7 @@ public class TaskBuilder {
         moduleName = taskToCopy.getModuleName();
         phone = taskToCopy.getPhone();
         email = taskToCopy.getEmail();
+        remark = taskToCopy.getRemark();
         tags = new HashSet<>(taskToCopy.getTags());
     }
 
@@ -76,8 +81,16 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public TaskBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Task build() {
-        return new Task(moduleName, phone, email, tags);
+        return new Task(moduleName, phone, email, remark, tags);
     }
 
 }

@@ -23,10 +23,10 @@ public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withName("Alice Pauline")
             .withPhone("94351253").withEmail("alice@example.com")
-            .withTags("friends").build();
+            .withRemark("Likes skiing.").withTags("friends").build();
     public static final Task BENSON = new TaskBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withRemark("Favourite pastime: Eating").withTags("owesMoney", "friends").build();
     public static final Task CARL = new TaskBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
     public static final Task DANIEL = new TaskBuilder().withName("Daniel Meier").withPhone("87652533")
