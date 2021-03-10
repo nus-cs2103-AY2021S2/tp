@@ -1,16 +1,16 @@
 package seedu.address.logic;
 
-import seedu.address.model.diet.DietPlan;
-import seedu.address.model.diet.MacroNutrientComposition;
-import seedu.address.model.food.Food;
-import seedu.address.model.food.FoodIntake;
-import seedu.address.model.food.FoodIntakeList;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Collections;
 import java.util.List;
+
+import seedu.address.model.diet.DietPlan;
+import seedu.address.model.diet.MacroNutrientComposition;
+import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntake;
+import seedu.address.model.food.FoodIntakeList;
 
 /**
  * Class for generating a progress report of diet plan.
@@ -18,7 +18,7 @@ import java.util.List;
 public class ProgressCalculator {
 
     // Leeway value for adherence to diet requirements (in percentage)
-    public static final double LEEWAY = 10.00;
+    public static final double LEEWAY = 5.00;
 
     /**
      * Calculates and reports on how much percentage of each day's food intake is adhering to the diet plan.
@@ -33,7 +33,7 @@ public class ProgressCalculator {
         List<FoodIntake> foodIntakes = foodIntakeList.getList();
 
         // Sort food intake list by dates
-        Collections.sort(foodIntakes, new foodIntakeComparator());
+        Collections.sort(foodIntakes, new FoodIntakeComparator());
 
         // Get the daily requirements of the diet plan
         MacroNutrientComposition composition = dietPlan.getMacroNutrientComposition();
@@ -84,7 +84,8 @@ public class ProgressCalculator {
                         String underString = String.format("%,.2f", under);
                         report.append("Your daily carbohydrate consumption is under by " + underString + "%\n\n");
                     } else {
-                        report.append("Your daily carbohydrate consumption is within diet requirements. Well done!\n\n");
+                        report.append("Your daily carbohydrate consumption "
+                                + "is within diet requirements. Well done!\n\n");
                     }
 
                     if (fatsAdherence > 100 + LEEWAY) {

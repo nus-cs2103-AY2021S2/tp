@@ -1,14 +1,14 @@
 package seedu.address.logic;
 
-import seedu.address.model.food.FoodIntake;
-
 import java.time.LocalDate;
 import java.util.Comparator;
+
+import seedu.address.model.food.FoodIntake;
 
 /**
  * Compares and sorts FoodIntake objects by the date
  */
-public class foodIntakeComparator implements Comparator<FoodIntake> {
+public class FoodIntakeComparator implements Comparator<FoodIntake> {
 
     @Override
     public int compare(FoodIntake firstIntake, FoodIntake secondIntake) {
