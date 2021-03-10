@@ -26,6 +26,9 @@ import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Type;
+import seedu.address.model.property.client.AskingPrice;
+import seedu.address.model.property.client.Contact;
+import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
@@ -60,6 +63,16 @@ public class ParserUtilTest {
     public static final LocalTime VALID_APPOINTMENT_TIME_LOCALTIME = LocalTime.parse(VALID_APPOINTMENT_TIME,
             DateTimeFormatter.ofPattern("HHmm"));
 
+    public static final String INVALID_CLIENT_NAME = "Alice&"; // '&' not allowed in names
+    public static final String INVALID_CLIENT_CONTACT = "+91234567"; // + not allowed
+    public static final String INVALID_CLIENT_EMAIL = "alice.example.com"; // missing @
+    public static final String INVALID_CLIENT_ASKING_PRICE = "$00800000"; // leading zeros not allowed
+
+    public static final String VALID_CLIENT_NAME = "Alice";
+    public static final String VALID_CLIENT_CONTACT = "91234567";
+    public static final String VALID_CLIENT_EMAIL = "alice@gmail.com";
+    public static final String VALID_CLIENT_ASKING_PRICE = "$800,000";
+
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -74,6 +87,8 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
+
+    // ===== Tests for general shared parser methods =============================================================
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -96,14 +111,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+    public void parseName_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseName((String) null));
     }
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_PROPERTY_NAME));
         assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_APPOINTMENT_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_CLIENT_NAME));
     }
 
     @Test
@@ -113,6 +129,9 @@ public class ParserUtilTest {
 
         expectedName = new Name(VALID_APPOINTMENT_NAME);
         assertEquals(expectedName, ParserUtil.parseName(VALID_APPOINTMENT_NAME));
+
+        expectedName = new Name(VALID_CLIENT_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_CLIENT_NAME));
     }
 
     @Test
@@ -123,6 +142,10 @@ public class ParserUtilTest {
 
         nameWithWhitespace = WHITESPACE + VALID_APPOINTMENT_NAME + WHITESPACE;
         expectedName = new Name(VALID_APPOINTMENT_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+
+        nameWithWhitespace = WHITESPACE + VALID_CLIENT_NAME + WHITESPACE;
+        expectedName = new Name(VALID_CLIENT_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
@@ -156,6 +179,8 @@ public class ParserUtilTest {
         expectedRemark = new Remark(VALID_APPOINTMENT_REMARK);
         assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
     }
+
+    // ===== Tests for property parser methods ===================================================================
 
     @Test
     public void parsePropertyType_null_throwsNullPointerException() {
@@ -249,6 +274,76 @@ public class ParserUtilTest {
         assertEquals(expectedDeadline, ParserUtil.parsePropertyDeadline(deadlineWithWhitespace));
     }
 
+    // ===== Tests for client parser methods =============================================================
+
+    @Test
+    public void parseClientContact_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseClientContact((String) null));
+    }
+
+    @Test
+    public void parseClientContact_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClientContact(INVALID_CLIENT_CONTACT));
+    }
+
+    @Test
+    public void parseClientContact_validValueWithoutWhitespace_returnsContact() throws Exception {
+        Contact expectedContact = new Contact(VALID_CLIENT_CONTACT);
+        assertEquals(expectedContact, ParserUtil.parseClientContact(VALID_CLIENT_CONTACT));
+    }
+
+    @Test
+    public void parseClientContact_validValueWithWhitespace_returnsTrimmedContact() throws Exception {
+        String contactWithWhitespace = WHITESPACE + VALID_CLIENT_CONTACT + WHITESPACE;
+        Contact expectedContact = new Contact(VALID_CLIENT_CONTACT);
+        assertEquals(expectedContact, ParserUtil.parseClientContact(contactWithWhitespace));
+    }
+    @Test
+    public void parseClientEmail_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseClientEmail((String) null));
+    }
+
+    @Test
+    public void parseClientEmail_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClientEmail(INVALID_CLIENT_EMAIL));
+    }
+
+    @Test
+    public void parseClientEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        Email expectedEmail = new Email(VALID_CLIENT_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseClientEmail(VALID_CLIENT_EMAIL));
+    }
+
+    @Test
+    public void parseClientEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+        String emailWithWhitespace = WHITESPACE + VALID_CLIENT_EMAIL + WHITESPACE;
+        Email expectedEmail = new Email(VALID_CLIENT_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseClientEmail(emailWithWhitespace));
+    }
+    @Test
+    public void parseClientAskingPrice_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseClientAskingPrice((String) null));
+    }
+
+    @Test
+    public void parseClientAskingPrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClientAskingPrice(INVALID_CLIENT_ASKING_PRICE));
+    }
+
+    @Test
+    public void parseClientAskingPrice_validValueWithoutWhitespace_returnsAskingPrice() throws Exception {
+        AskingPrice expectedAskingPrice = new AskingPrice(VALID_CLIENT_ASKING_PRICE);
+        assertEquals(expectedAskingPrice, ParserUtil.parseClientAskingPrice(VALID_CLIENT_ASKING_PRICE));
+    }
+
+    @Test
+    public void parseClientAskingPrice_validValueWithWhitespace_returnsTrimmedAskingPrice() throws Exception {
+        String askingPriceWithWhitespace = WHITESPACE + VALID_CLIENT_ASKING_PRICE + WHITESPACE;
+        AskingPrice expectedAskingPrice = new AskingPrice(VALID_CLIENT_ASKING_PRICE);
+        assertEquals(expectedAskingPrice, ParserUtil.parseClientAskingPrice(askingPriceWithWhitespace));
+    }
+    // ===== Tests for appointment parser methods =============================================================
+
     @Test
     public void parseAppointmentDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAppointmentDate((String) null));
@@ -295,8 +390,9 @@ public class ParserUtilTest {
         assertEquals(expectedTime, ParserUtil.parseAppointmentTime(timeWithWhitespace));
     }
 
-
+    // ===========================================================================================================
     // Placeholder test cases for Person attributes
+
     @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));

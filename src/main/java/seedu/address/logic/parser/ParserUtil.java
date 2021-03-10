@@ -15,12 +15,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.name.Name;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Type;
+import seedu.address.model.property.client.AskingPrice;
+import seedu.address.model.property.client.Contact;
+import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.DateTimeFormat;
@@ -56,7 +58,9 @@ public class ParserUtil {
      * @throws ParseException If the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
+        if (name == null) {
+            return null;
+        }
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
@@ -154,6 +158,65 @@ public class ParserUtil {
         }
     }
 
+    // =====  Parser methods for client attributes ===============================================================
+
+    /**
+     * Parses a {@code String contact} into a {@code Contact}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param contact The client contact string to be parsed.
+     * @return A {@code Contact}.
+     * @throws ParseException If the given {@code contact} is invalid.
+     */
+    public static Contact parseClientContact(String contact) throws ParseException {
+        if (contact == null) {
+            return null;
+        }
+        String trimmedContact = contact.trim();
+        if (!Contact.isValidContact(trimmedContact)) {
+            throw new ParseException(Contact.MESSAGE_CONSTRAINTS);
+        }
+        return new Contact(trimmedContact);
+    }
+
+    /**
+     * Parses a {@code String email} into a {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param email The client email string to be parsed.
+     * @return A {@code Email}.
+     * @throws ParseException If the given {@code email} is invalid.
+     */
+    public static Email parseClientEmail(String email) throws ParseException {
+        if (email == null) {
+            return null;
+        }
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses an {@code String askingPrice} into an {@code AskingPrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param askingPrice The client asking price string to be parsed.
+     * @return A {@code AskingPrice}.
+     * @throws ParseException If the given {@code askingPrice} is invalid.
+     */
+    public static AskingPrice parseClientAskingPrice(String askingPrice) throws ParseException {
+        if (askingPrice == null) {
+            return null;
+        }
+        String trimmedAskingPrice = askingPrice.trim();
+        if (!AskingPrice.isValidAskingPrice(trimmedAskingPrice)) {
+            throw new ParseException(AskingPrice.MESSAGE_CONSTRAINTS);
+        }
+        return new AskingPrice(trimmedAskingPrice);
+    }
+
     // =====  Parser methods for appointment attributes ==========================================================
 
     /**
@@ -233,13 +296,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static seedu.address.model.person.Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.person.Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(seedu.address.model.person.Email.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new seedu.address.model.person.Email(trimmedEmail);
     }
 
     /**

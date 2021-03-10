@@ -26,7 +26,7 @@ PocketEstate enables easy organization of mass clientele property information th
 
    * **`list`** : Lists all properties and appointments in the app.
 
-   * **`add property`**`n/Mayfair t/Condo a/1 Jurong East Street 32 p/ 609477 d/31-12-2021` : Adds a property with the corresponding information to the PocketEstate app.
+   * **`add property`**`n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021` : Adds a property with the corresponding information to the PocketEstate app.
 
    * **`delete property`**`2` : Deletes the 2nd property shown in the current list of properties.
 
@@ -46,7 +46,7 @@ PocketEstate enables easy organization of mass clientele property information th
   e.g. in `add property n/NAME`, `NAME` is a parameter which can be used as `add property n/Mayfair`.
 
 * Items in square brackets are optional.<br>
-  e.g `add appointment n/NAME r/REMARKS d/DATE [t/TIME]` can be used as `add appointment n/Meet John r/At M hotel d/17-2-2021` or as `add appointment n/Meet John r/At M hotel d/17-2-2021 t/2040`.
+  e.g `add appointment n/NAME r/REMARKS d/DATE [t/TIME]` can be used as `add appointment n/Meet John r/At M Hotel d/17-2-2021` or as `add appointment n/Meet John r/At M Hotel d/17-2-2021 t/2040`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME r/REMARKS`, `r/REMARKS n/NAME` is also acceptable.
@@ -75,7 +75,7 @@ Adds a property to the app.
 Format: `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]​`
 
 Examples:
-* `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/ 609477 d/31-12-2021`
+* `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021`
 * `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000`
 
 ### Adding an appointment: `add appointment`
@@ -85,8 +85,8 @@ Adds an appointment to the app.
 Format: `add appointment n/NAME r/REMARKS d/DATE [t/TIME]​`
 
 Examples:
-* `add appointment n/Meet Alex r/at M hotel d/17-2-2021`
-* `add appointment n/Meet Alex r/at M hotel d/17-2-2021 t/1500`
+* `add appointment n/Meet Alex r/At M Hotel d/17-2-2021`
+* `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
 
 ### Listing all properties and appointments : `list`
 
@@ -250,7 +250,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]` <br> e.g., `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000`
-**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE [t/TIME]` <br> e.g., `add appointment n/Meet Alex r/at M hotel d/17-2-2021 t/1500`
+**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE [t/TIME]` <br> e.g., `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
 **Clear** | `clear property` <br> `clear appointment`
 **Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE]`<br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br> e.g.,`edit appointment 3 d/2021-03-28 r/at M hotel`
