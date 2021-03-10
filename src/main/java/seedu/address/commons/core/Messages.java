@@ -10,4 +10,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_ARGUMENT_FORMAT = "Invalid argument format! \n%1$s";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! \n%1$s";
+    public static final String MESSAGE_INVALID_TIME_FORMAT = "Invalid time format! \n%1$s";
 }
