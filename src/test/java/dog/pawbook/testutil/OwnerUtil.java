@@ -22,7 +22,7 @@ public class OwnerUtil {
      * Returns an add command string for adding the {@code owner}.
      */
     public static String getAddCommand(Owner owner) {
-        return AddCommand.COMMAND_WORD + " " + getOwnerDetails(owner);
+        return AddCommand.COMMAND_WORD + " " + AddCommand.ENTITY_WORD + " " + getOwnerDetails(owner);
     }
 
     /**

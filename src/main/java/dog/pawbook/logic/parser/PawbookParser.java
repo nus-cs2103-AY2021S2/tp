@@ -2,7 +2,9 @@ package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static dog.pawbook.commons.core.Messages.MESSGAE_UNKNOWN_ENTITY;
 
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,9 +24,10 @@ import dog.pawbook.logic.parser.exceptions.ParseException;
 public class PawbookParser {
 
     /**
-     * Used for initial separation of command word and args.
+     * Used for initial separation of command word, entity type, and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<commandWord>\\S+) *(?<entityType>(?:owner|program|dog))?(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -41,10 +44,12 @@ public class PawbookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        final String entityType = Optional.ofNullable(matcher.group("entityType")).orElse("");
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return generateAddCommand(entityType, arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
@@ -67,6 +72,21 @@ public class PawbookParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+
+
     }
 
+    private AddCommand generateAddCommand(String entityType, String arguments) throws ParseException {
+        if (entityType.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        switch (entityType) {
+        case AddCommand.ENTITY_WORD:
+            return new AddCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSGAE_UNKNOWN_ENTITY);
+        }
+    }
 }
