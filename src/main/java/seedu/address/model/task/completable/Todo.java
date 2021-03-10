@@ -1,11 +1,13 @@
-package seedu.address.model.task;
+package seedu.address.model.task.completable;
+
+import seedu.address.model.task.Completable;
 
 import java.util.Objects;
 
 /**
- * Represents a Task as a Todo.
+ * Represents a Completable as a Todo.
  */
-public class Todo extends Task {
+public class Todo extends Completable {
 
     /**
      * Constructor for Todo.
@@ -13,7 +15,6 @@ public class Todo extends Task {
      */
     public Todo(String description) {
         super(description);
-        this.taskType = "T";
     }
 
     /**
@@ -23,7 +24,6 @@ public class Todo extends Task {
      */
     public Todo(String description, Boolean isDone) {
         super(description, isDone);
-        this.taskType = "T";
     }
 
     /**
@@ -43,19 +43,18 @@ public class Todo extends Task {
 
         Todo otherTodo = (Todo) other;
         return otherTodo.getDescription().equals(getDescription())
-                && otherTodo.getIsDone().equals(getIsDone())
-                && otherTodo.getTaskType().equals(getTaskType());
+                && otherTodo.getIsDone().equals(getIsDone());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(taskType, description, isDone);
+        return Objects.hash(description, isDone);
     }
 
     /**
-     * Returns a String representation of the Task.
-     * @return A String representation of the Task.
+     * Returns a String representation of the Completable.
+     * @return A String representation of the Completable.
      */
     @Override
     public String toString() {

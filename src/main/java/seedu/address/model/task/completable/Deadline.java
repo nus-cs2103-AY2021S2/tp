@@ -1,43 +1,41 @@
-package seedu.address.model.task;
+package seedu.address.model.task.completable;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
+import seedu.address.model.task.Completable;
 
 /**
- * Represents a Task with a Deadline.
+ * Represents a Completable with a Deadline.
  */
-public class Deadline extends Task {
-
+public class Deadline extends Completable {
     protected LocalDate by;
 
     /**
      * Constructor for Deadline.
-     * @param description Description of the Task.
-     * @param by Deadline of the Task.
+     * @param description Description of the Completable.
+     * @param by Deadline of the Completable.
      */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
-        this.taskType = "Deadline";
     }
 
     /**
      * Constructor for Deadline.
-     * @param description Description of the Task.
-     * @param isDone Marks whether the Task is Done.
-     * @param by Deadline of the Task.
+     * @param description Description of the Completable.
+     * @param isDone Marks whether the Completable is Done.
+     * @param by Deadline of the Completable.
      */
     public Deadline(String description, Boolean isDone, LocalDate by) {
         super(description, isDone);
         this.by = by;
-        this.taskType = "D";
     }
 
     /**
-     * Returns the Deadline of the Task.
-     * @return A LocalDate representing the Task Deadline.
+     * Returns the Deadline of the Completable.
+     * @return A LocalDate representing the Completable Deadline.
      */
     public LocalDate getBy() {
         assert this.by != null : "by should not be null!";
@@ -62,19 +60,18 @@ public class Deadline extends Task {
         Deadline otherDeadline = (Deadline) other;
         return otherDeadline.getDescription().equals(getDescription())
                 && otherDeadline.getIsDone().equals(getIsDone())
-                && otherDeadline.getBy().equals(getBy())
-                && otherDeadline.getTaskType().equals(getTaskType());
+                && otherDeadline.getBy().equals(getBy());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(taskType, description, isDone, by);
+        return Objects.hash(description, isDone, by);
     }
 
     /**
-     * Returns a String representation of the Task.
-     * @return A String representation of the Task.
+     * Returns a String representation of the Completable.
+     * @return A String representation of the Completable.
      */
     @Override
     public String toString() {
