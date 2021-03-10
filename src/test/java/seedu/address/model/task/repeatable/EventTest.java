@@ -20,7 +20,10 @@ public class EventTest {
         assertThrows(NullPointerException.class, () -> new Event(null, interval, validDate));
         assertThrows(NullPointerException.class, () -> new Event("test", null, validDate));
         assertThrows(NullPointerException.class, () -> new Event("test", interval, null));
-        assertThrows(NullPointerException.class, () -> new Event(null, null));
+        assertThrows(NullPointerException.class, () -> new Event(null, interval, false, validDate));
+        assertThrows(NullPointerException.class, () -> new Event("test", null, false, validDate));
+        assertThrows(NullPointerException.class, () -> new Event("test", interval, null, validDate));
+        assertThrows(NullPointerException.class, () -> new Event("test", interval, false, null));
     }
 
     @Test
@@ -29,10 +32,10 @@ public class EventTest {
         Interval validInterval = Interval.DAILY;
         String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval, false, validDate));
         String invalidDescription2 = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validInterval, false, validDate));
     }
 
     @Test
