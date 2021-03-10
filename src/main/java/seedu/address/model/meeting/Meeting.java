@@ -1,14 +1,16 @@
 package seedu.address.model.meeting;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Meeting {
     public static final String MESSAGE_CONSTRAINTS = "Meetings should be of the format "
-        + "\"description @ yyyy-mm-dd HH:MM\", and the description should not be blank.";
+            + "\"description @ yyyy-mm-dd HH:MM\", and the description should not be blank.";
+    public static final String DATETIME_CONSTRAINTS = "The input date and time must be existent.";
     // alphanumeric and special characters
     private static final String DESCRIPTION_REGEX = ".+";
     private static final String FOUR_DIGIT_REGEX = "[0-9]{4}";
@@ -16,9 +18,6 @@ public class Meeting {
     public static final String VALIDATION_REGEX = DESCRIPTION_REGEX + " @ "
             + FOUR_DIGIT_REGEX + "-" + TWO_DIGIT_REGEX + "-" + TWO_DIGIT_REGEX + " "
             + TWO_DIGIT_REGEX + ":" + TWO_DIGIT_REGEX;
-
-    public static final String DATETIME_CONSTRAINTS = "The input date and time must be existent.";
-
     public final String original;
     public final String value;
     public final LocalDateTime dateTime;
@@ -45,6 +44,12 @@ public class Meeting {
         return meeting.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Converts the Meeting time into a datetime format
+     *
+     * @param datetime     Meeting Time in String format
+     * @param errorMessage Error Message if the format is invalid
+     */
     public static LocalDateTime generateDateTime(String datetime, String errorMessage) {
         try {
             return LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("yyyy-MM-d H:m"));

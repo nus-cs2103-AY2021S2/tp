@@ -1,10 +1,11 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.meeting.Meeting;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 class MeetingTest {
     @Test
@@ -48,8 +49,10 @@ class MeetingTest {
     void generateDateTime() {
         String invalidDateTime = "";
         assertThrows(NullPointerException.class, () -> Meeting.generateDateTime(null, null));
-        assertThrows(IllegalArgumentException.class, () -> Meeting.generateDateTime("2020-18-56 12:34", invalidDateTime));
-        assertThrows(IllegalArgumentException.class, () -> Meeting.generateDateTime("2020-02-28 70:34", invalidDateTime));
+        assertThrows(IllegalArgumentException.class, () ->
+                Meeting.generateDateTime("2020-18-56 12:34", invalidDateTime));
+        assertThrows(IllegalArgumentException.class, () ->
+                Meeting.generateDateTime("2020-02-28 70:34", invalidDateTime));
 
         assertEquals("2020-04-01T18:00", Meeting.generateDateTime("2020-04-01 18:00", invalidDateTime).toString());
         assertEquals("2020-02-28T12:45", Meeting.generateDateTime("2020-02-28 12:45", invalidDateTime).toString());

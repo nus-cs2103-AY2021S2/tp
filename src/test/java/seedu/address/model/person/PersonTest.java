@@ -57,9 +57,9 @@ public class PersonTest {
     public void addMeeting() {
         assertThrows(NullPointerException.class, () -> ALICE.addMeeting(null));
 
-        Meeting meeting_sth = new Meeting(VALID_MEETING_STH);
+        Meeting meetingSth = new Meeting(VALID_MEETING_STH);
         Person editedAlice = new PersonBuilder(ALICE).withMeeting(VALID_MEETING_STH).build();
-        assertEquals(editedAlice, ALICE.addMeeting(meeting_sth));
+        assertEquals(editedAlice, ALICE.addMeeting(meetingSth));
     }
 
     @Test

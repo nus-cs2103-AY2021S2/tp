@@ -1,17 +1,8 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_PRANK;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_STH;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -22,8 +13,18 @@ import static seedu.address.testutil.TypicalMeetings.MEETING_PRANK;
 import static seedu.address.testutil.TypicalMeetings.MEETING_STH;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
+
 class ScheduleCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     void execute_validIndexUnfilteredList_success() {
@@ -33,7 +34,8 @@ class ScheduleCommandTest {
         Person editedPerson = personInList.withMeeting(VALID_MEETING_STH).build();
 
         ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_SECOND_PERSON, MEETING_STH);
-        String expectedMessage = String.format(ScheduleCommand.MESSAGE_MEETING_PERSON_SUCCESS, personToSchedule, MEETING_STH);
+        String expectedMessage =
+                String.format(ScheduleCommand.MESSAGE_MEETING_PERSON_SUCCESS, personToSchedule, MEETING_STH);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToSchedule, editedPerson);
@@ -58,7 +60,8 @@ class ScheduleCommandTest {
         Person editedPerson = personInList.withMeeting(VALID_MEETING_STH).build();
 
         ScheduleCommand scheduleCommand = new ScheduleCommand(INDEX_FIRST_PERSON, MEETING_STH);
-        String expectedMessage = String.format(ScheduleCommand.MESSAGE_MEETING_PERSON_SUCCESS, personToSchedule, MEETING_STH);
+        String expectedMessage =
+                String.format(ScheduleCommand.MESSAGE_MEETING_PERSON_SUCCESS, personToSchedule, MEETING_STH);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToSchedule, editedPerson);

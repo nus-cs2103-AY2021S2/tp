@@ -36,6 +36,9 @@ public class Person {
         this(name, phone, email, address, tags, Optional.empty());
     }
 
+    /**
+     * Full Constructor that is only called internally for testing.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -73,7 +76,9 @@ public class Person {
     /**
      * Returns an Optional object containing a Meeting.
      */
-    public Optional<Meeting> getMeeting() {return meeting;}
+    public Optional<Meeting> getMeeting() {
+        return meeting;
+    }
 
     /**
      * Creates a Person object identical to the original, but contains a new Meeting.

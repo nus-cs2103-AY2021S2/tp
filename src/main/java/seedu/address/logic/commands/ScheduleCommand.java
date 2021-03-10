@@ -21,7 +21,8 @@ public class ScheduleCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Schedules a meeting with the person identified by the index number used in the displayed person list.\n"
+            + ": Schedules a meeting with the person identified by the "
+            + "index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + PREFIX_MEETING + "MEETING_DESCRIPTION @ yyyy-mm-dd HH:MM\n"
             + "Example: " + COMMAND_WORD + " 1 m/ Insurance Plan @ 2021-03-05 14:50";
@@ -32,6 +33,9 @@ public class ScheduleCommand extends Command {
 
     private final Meeting meeting;
 
+    /**
+     * Constructor for Schedule Command
+     */
     public ScheduleCommand(Index targetIndex, Meeting meeting) {
         this.targetIndex = targetIndex;
         this.meeting = meeting;
