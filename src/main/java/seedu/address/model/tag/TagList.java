@@ -29,10 +29,6 @@ public class TagList implements Iterable<Tag> {
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
-        // a tutor should only have 1 name, email and gender.
-        if (toCheck instanceof Name || toCheck instanceof Email || toCheck instanceof Gender) {
-            return internalList.stream().anyMatch(toCheck::isSameTagType);
-        }
         return internalList.stream().anyMatch(toCheck::isSameTag);
     }
 
