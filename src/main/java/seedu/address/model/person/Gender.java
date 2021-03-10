@@ -1,9 +1,8 @@
 package seedu.address.model.person;
-
-import seedu.address.model.tag.Filterable;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a Person's name in the address book.
@@ -12,7 +11,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Gender implements Filterable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender should only contain alphanumeric characters and spaces, should be female or male, and it should not be blank";
+            "Gender should only contain alphanumeric characters and spaces, should be female or male,"
+                    + "and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
