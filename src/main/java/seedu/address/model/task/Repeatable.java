@@ -76,13 +76,13 @@ public abstract class Repeatable {
     }
 
     /**
-     * Returns the interval interval.
+     * Returns the Repeatable's interval.
      * @return Interval interval.
      */
     public abstract Interval getRecurrence();
 
     /**
-     * Sets the Interval interval to specified level.
+     * Sets the Repeatable's interval to specified level.
      * @param interval Level of Interval.
      */
     public abstract void  setRecurrence(Interval interval);

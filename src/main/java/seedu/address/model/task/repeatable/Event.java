@@ -8,33 +8,31 @@ import seedu.address.model.task.Interval;
 import seedu.address.model.task.Repeatable;
 
 /**
- * Represents a Completable as an Event.
+ * Represents a Repeatable as an Event.
  */
 public class Event extends Repeatable {
-    protected LocalDate at;
-    protected Interval interval;
 
     /**
-     * Constructor for Deadline.
-     * @param description Description of the Completable.
-     * @param at Event date of the Completable.
+     * Constructor for Event.
+     * @param description Description of the Event.
+     * @param at Date of the Event.
      */
     public Event(String description, Interval interval, LocalDate at) {
         super(description, interval, at);
     }
 
     /**
-     * Constructor for Deadline.
-     * @param description Description of the Completable.
-     * @param isDone Marks whether the Completable is Done.
-     * @param at Event date of the Completable.
+     * Constructor for Event.
+     * @param description Description of the Event.
+     * @param isDone Marks whether the Event is Done.
+     * @param at Date of the Event.
      */
     public Event(String description, Interval interval, Boolean isDone, LocalDate at) {
         super(description, interval, at, isDone);
     }
 
     /**
-     * Returns the interval interval.
+     * Returns the Event's interval.
      * @return Interval interval.
      */
     public Interval getRecurrence() {
@@ -42,7 +40,7 @@ public class Event extends Repeatable {
     }
 
     /**
-     * Sets the Interval interval to specified level.
+     * Sets the Event's interval to specified level.
      * @param interval Level of Interval.
      */
     public void setRecurrence(Interval interval) {
@@ -77,8 +75,8 @@ public class Event extends Repeatable {
     }
 
     /**
-     * Returns a String representation of the Completable.
-     * @return A String representation of the Completable.
+     * Returns a String representation of the Event.
+     * @return A String representation of the Event.
      */
     @Override
     public String toString() {
