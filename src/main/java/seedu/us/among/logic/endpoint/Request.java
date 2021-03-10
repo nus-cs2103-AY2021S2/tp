@@ -82,28 +82,25 @@ public abstract class Request {
         CloseableHttpClient httpClient = createHttpClient();
         CloseableHttpResponse response;
         String responseEntity = "";
+
         double responseTimeInSecond;
-        try {
-            long start = System.nanoTime();
-            response = httpClient.execute(request);
-            long end = System.nanoTime();
-            long duration = end - start;
-            responseTimeInSecond = (double) duration / 1_000_000_000;
+        long start = System.nanoTime();
+        response = httpClient.execute(request);
+        long end = System.nanoTime();
+        long duration = end - start;
+        responseTimeInSecond = (double) duration / 1_000_000_000;
 
-            try {
-                HttpEntity entity = response.getEntity();
-                if (entity != null) {
-                    //return data as string
-                    responseEntity = EntityUtils.toString(entity);
-                    responseEntity = JsonUtil.toPrettyPrintJsonString(responseEntity);
-                }
-
-            } finally {
-                response.close();
+        HttpEntity entity = response.getEntity();
+        if (entity != null) {
+            //return data as string
+            responseEntity = EntityUtils.toString(entity);
+            if (entity.getContentType().getValue().equals(ContentType.APPLICATION_JSON.toString())) {
+                responseEntity = JsonUtil.toPrettyPrintJsonString(responseEntity);
             }
-        } finally {
-            httpClient.close();
         }
+
+        response.close();
+        httpClient.close();
 
         return new Response(response.getProtocolVersion().toString(),
                 String.valueOf(response.getStatusLine().getStatusCode()),
