@@ -8,8 +8,8 @@ import static seedu.us.among.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidData(String)}
  */
 public class Data {
-
-    public static final String MESSAGE_CONSTRAINTS = "Data must be in a json string";
+    //to-do Jun Xiong Tan Jin force data to take in only json files
+    public static final String MESSAGE_CONSTRAINTS = "Data must be in a {\"key\": \"value\"} format.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -48,7 +48,18 @@ public class Data {
      * Returns true if a given string is a valid Data.
      */
     public static boolean isValidData(String test) {
-        return test.matches(VALIDATION_REGEX);
+        String headerString = test.strip().toString();
+        String[] headerPair = headerString.split(":", 2);
+        //Checks if there is a ":" in the data entered.
+        if (headerPair.length != 2) {
+            return false;
+        }
+        //Checks if header is enclosed with { }
+        if (headerString.startsWith("{") && headerString.endsWith("}")) {
+            return test.matches(VALIDATION_REGEX);
+        } else {
+            return false;
+        }
     }
 
     public static boolean isEmptyData(String test) {

@@ -45,7 +45,8 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
-        } catch (CommandException | ParseException | RequestException e) {
+            //to-do remove illegal arg exception Jun Xiong and Tan Jin
+        } catch (CommandException | ParseException | RequestException | IllegalArgumentException e) {
             setStyleToIndicateCommandFailure();
         } finally {
             commandTextField.setDisable(false);

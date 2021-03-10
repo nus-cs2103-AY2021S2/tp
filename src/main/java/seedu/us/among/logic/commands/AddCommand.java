@@ -18,26 +18,28 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_API_EXAMPLE_1 = "1.\n"
+    public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + " get "
-            + PREFIX_ADDRESS + " https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2 "
-            + PREFIX_DATA + " {somedata} "
-            + PREFIX_TAG + " cat "
-            + PREFIX_TAG + " fact\n";
+            + PREFIX_METHOD + "get "
+            + PREFIX_ADDRESS + "http://localhost:3000/ "
+            + PREFIX_DATA + "{some data} "
+            + PREFIX_HEADER + "\"key: value\" "
+            + PREFIX_HEADER + "\"key: value\" "
+            + PREFIX_TAG + "local "
+            + PREFIX_TAG + "data\n";
 
-    public static final String MESSAGE_API_EXAMPLE_2 = "2.\n"
+    public static final String MESSAGE_API_EXAMPLE_2 = "2. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + " get "
-            + PREFIX_ADDRESS + " https://api.data.gov.sg/v1/environment/air-temperature "
-            + PREFIX_TAG + " singapore ";
+            + PREFIX_METHOD + "get "
+            + PREFIX_ADDRESS + "https://api.data.gov.sg/v1/environment/air-temperature ";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an API endpoint to the API endpoint list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds an API endpoint to the API endpoint list.\n"
             + "Parameters: "
             + PREFIX_METHOD + " METHOD "
             + PREFIX_ADDRESS + " ADDRESS "
             + "[" + PREFIX_DATA + " DATA] "
-            + "[" + PREFIX_HEADER + " HEADER] "
+            + "[" + PREFIX_HEADER + " HEADER]... "
             + "[" + PREFIX_TAG + " TAG]...\n"
             + "Examples:\n"
             + MESSAGE_API_EXAMPLE_1

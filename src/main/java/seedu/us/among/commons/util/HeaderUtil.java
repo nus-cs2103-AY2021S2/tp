@@ -23,9 +23,6 @@ public class HeaderUtil {
         HashMap<String, String> headerMap = new HashMap<>();
         for (Header header : headerSet) {
             String headerString = header.toString();
-            //to-do update trimming once handling of headers is updated on add
-            //trim leading and trailing brackets and quotations
-            headerString = headerString.substring(2, headerString.length() - 2);
             String[] headerPair = headerString.split(":", 2);
             if (headerPair.length != 2) {
                 throw new RequestException(MESSAGE_INVALID_HEADER_FORMAT);

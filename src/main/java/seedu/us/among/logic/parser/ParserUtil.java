@@ -92,7 +92,7 @@ public class ParserUtil {
         requireNonNull(header);
         String trimmedHeader = header.trim();
         if (!Header.isValidHeaderName(trimmedHeader)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Header.MESSAGE_CONSTRAINTS);
         }
         return new Header(trimmedHeader);
     }
