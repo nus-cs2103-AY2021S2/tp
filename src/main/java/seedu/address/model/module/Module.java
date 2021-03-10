@@ -64,12 +64,57 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Checks if the module has the given assignment in its assignment list.
+     *
+     * @param assignment Assignment to be checked.
+     * @return Boolean
+     */
+    public boolean hasAssignment(Assignment assignment) {
+        return assignments.contains(assignment);
+    }
+
+    /**
+     * Checks if the module has the given exam in its exam list.
+     *
+     * @param exam Exam to be checked.
+     * @return Boolean
+     */
+    public boolean hasExam(Exam exam) {
+        return exams.contains(exam);
+    }
+
+    /**
      * Adds an assignment to the assignment list of the module.
      *
      * @param assignment Assignment to be added.
      */
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
+    }
+
+    /**
+     * Adds an exam to the exam list of the module.
+     *
+     * @param exam Exam to be added.
+     */
+    public void addExam(Exam exam) {
+        this.exams.add(exam);
+    }
+
+    /**
+     * Delete {@code assignment} from {@code assignments}
+     * {@code assignment} must exist in {@code assignments}
+     */
+    public Assignment deleteAssignment(Assignment assignment) {
+        return assignments.delete(assignment);
+    }
+
+    /**
+     * Delete {@code assignment} from {@code assignments}
+     * {@code assignment} must exist in {@code assignments}
+     */
+    public Exam deleteExam(Exam exam) {
+        return exams.delete(exam);
     }
 
     /**
