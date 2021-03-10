@@ -14,7 +14,9 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all clients";
+    public static final String MESSAGE_SUCCESS_ASCENDING = "Sorted all clients in ascending order.";
+
+    public static final String MESSAGE_SUCCESS_DESCENDING = "Sorted all clients in ascending order.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all clients by names in the order of "
             + "the specified direction and displays them as a list with index numbers.\n"
@@ -35,14 +37,10 @@ public class SortCommand extends Command {
             comparator = comparator.reversed();
         }
         model.updateSortedPersonList(comparator);
-        return new CommandResult(MESSAGE_SUCCESS + getDirection(direction));
-    }
-
-    private String getDirection(String direction) {
         if (direction.equals("/a")) {
-            return " in ascending order.";
+            return new CommandResult(MESSAGE_SUCCESS_ASCENDING);
         } else {
-            return " in descending order.";
+            return new CommandResult(MESSAGE_SUCCESS_DESCENDING);
         }
     }
 

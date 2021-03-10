@@ -151,6 +151,8 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== Sorted Person List Accessors =============================================================
+
     @Override
     public void updateSortedPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
