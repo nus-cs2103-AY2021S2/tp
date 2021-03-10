@@ -9,7 +9,7 @@ import static seedu.us.among.commons.util.AppUtil.checkArgument;
  */
 public class Header {
 
-    public static final String MESSAGE_CONSTRAINTS = "Headers should be enclosed with a \" \"";
+    public static final String MESSAGE_CONSTRAINTS = "Headers should be in the \"key: value\" format.";
     public static final String VALIDATION_REGEX = ".*";
 
     public final String headerName;
@@ -29,8 +29,14 @@ public class Header {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidHeaderName(String test) {
-        String temp = test.strip();
-        if (temp.startsWith("\"") && temp.endsWith("\"")) {
+        String headerString = test.strip().toString();
+        String[] headerPair = headerString.split(":", 2);
+        //Checks if there is a ":" in the data entered.
+        if (headerPair.length != 2) { 
+            return false;
+        }
+        //Checks if header is enclosed with ""
+        if (headerString.startsWith("\"") && headerString.endsWith("\"")) {
             return test.matches(VALIDATION_REGEX);
         } else {
             return false;
