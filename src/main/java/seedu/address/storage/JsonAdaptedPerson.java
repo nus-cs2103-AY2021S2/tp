@@ -92,11 +92,7 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-<<<<<<< HEAD
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
-=======
-        return new Task(modelModuleName, modelPhone, modelEmail, modelAddress, modelTags);
->>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
+        return new Task(modelModuleName, modelPhone, modelEmail, modelTags);
     }
 
 }

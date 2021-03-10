@@ -41,12 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-<<<<<<< HEAD
-        Person person = new Person(name, phone, email, tagList);
-=======
-        Task task = new Task(moduleName, phone, email, address, tagList);
->>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
-
+        Task task = new Task(moduleName, phone, email, tagList);
         return new AddCommand(task);
     }
 
