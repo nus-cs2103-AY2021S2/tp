@@ -53,7 +53,7 @@ public class Header {
      * Format state as text for viewing.
      */
     public String toString() {
-        return headerName;
+        return headerName.substring(1, headerName.length() - 1);
     }
 
 }

@@ -53,8 +53,8 @@ public class EndpointCard extends UiPart<Region> {
         name.setText(endpoint.getMethod().methodName);
         address.setText(endpoint.getAddress().value);
         data.setText(endpoint.getData().value);
-        endpoint.getHeaders().stream().sorted(Comparator.comparing(header -> header.headerName))
-                .forEach(header -> headers.getChildren().add(new Label(header.headerName)));
+        endpoint.getHeaders().stream().sorted(Comparator.comparing(header -> header.toString()))
+                .forEach(header -> headers.getChildren().add(new Label(header.toString())));
         endpoint.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
