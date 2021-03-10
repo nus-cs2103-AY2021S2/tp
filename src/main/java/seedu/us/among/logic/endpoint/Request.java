@@ -94,7 +94,7 @@ public abstract class Request {
         if (entity != null) {
             //return data as string
             responseEntity = EntityUtils.toString(entity);
-            if (entity.getContentType().getValue().equals(ContentType.APPLICATION_JSON.toString())) {
+            if (entity.getContentType().getValue().toLowerCase().contains("application/json")) {
                 responseEntity = JsonUtil.toPrettyPrintJsonString(responseEntity);
             }
         }
