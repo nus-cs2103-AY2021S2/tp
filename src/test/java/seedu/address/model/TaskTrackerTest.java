@@ -46,7 +46,7 @@ public class TaskTrackerTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Task editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
         TaskTrackerStub newData = new TaskTrackerStub(newTasks);
@@ -73,7 +73,7 @@ public class TaskTrackerTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInTaskTracker_returnsTrue() {
         taskTracker.addPerson(ALICE);
-        Task editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(taskTracker.hasPerson(editedAlice));
     }

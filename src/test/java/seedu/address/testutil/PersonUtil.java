@@ -30,18 +30,10 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-<<<<<<< HEAD
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        person.getTags().stream().forEach(
-=======
         sb.append(PREFIX_NAME + task.getModuleName().fullName + " ");
         sb.append(PREFIX_PHONE + task.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + task.getAddress().value + " ");
         task.getTags().stream().forEach(
->>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

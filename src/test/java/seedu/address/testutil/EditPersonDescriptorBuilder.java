@@ -31,18 +31,10 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Task task) {
         descriptor = new EditPersonDescriptor();
-<<<<<<< HEAD
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setTags(person.getTags());
-=======
         descriptor.setModuleName(task.getModuleName());
         descriptor.setPhone(task.getPhone());
         descriptor.setEmail(task.getEmail());
-        descriptor.setAddress(task.getAddress());
         descriptor.setTags(task.getTags());
->>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
     }
 
     /**
