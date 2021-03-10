@@ -1,53 +1,18 @@
 package seedu.hippocampus.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
-import seedu.hippocampus.commons.core.Messages;
-import seedu.hippocampus.commons.core.index.Index;
-import seedu.hippocampus.logic.commands.exceptions.CommandException;
-import seedu.hippocampus.model.Model;
-import seedu.hippocampus.model.person.Person;
-
 /**
- * Deletes a person identified using it's displayed index from HippoCampus.
+ * Represents a deletion command.
  */
-public class DeleteCommand extends Command {
+public abstract class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the person identified by the index number used in the displayed person list\n"
+            + "OR Delete the person with the provided tag,\n"
+            + "unless the person has other tags, then only the tag is removed\n"
+            + "Parameters: {INDEX (must be a positive integer) [INDEX]... | -t TAG [-t TAG]...}\n"
+            + "Example: " + COMMAND_WORD + " 1 2 3";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-
-    private final Index targetIndex;
-
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
-    }
-
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
-    }
 }

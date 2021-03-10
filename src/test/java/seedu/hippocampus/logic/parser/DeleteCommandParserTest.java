@@ -5,9 +5,12 @@ import static seedu.hippocampus.logic.parser.CommandParserTestUtil.assertParseFa
 import static seedu.hippocampus.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.hippocampus.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.hippocampus.logic.commands.DeleteCommand;
+import seedu.hippocampus.logic.commands.DeleteContactCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,7 +25,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteContactCommand(List.of(INDEX_FIRST_PERSON)));
     }
 
     @Test

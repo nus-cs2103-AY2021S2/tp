@@ -23,6 +23,16 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+
+    testLogging {
+        events "skipped", "failed"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams = false
+    }
 }
 
 task coverage(type: JacocoReport) {
