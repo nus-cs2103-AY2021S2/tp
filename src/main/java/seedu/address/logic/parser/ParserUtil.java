@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -96,12 +97,40 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String orderDescription} into a {@code OrderDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code orderDescription} is invalid. //todo does it
+     */
+    public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
+        requireNonNull(orderDescription);
+        String trimmedOrderDescription = orderDescription.trim();
+        // todo fix this
+//        if (!Tag.isValidTagName(trimmedTag)) {
+//            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+//        }
+        return new OrderDescription(trimmedOrderDescription);
+    }
+
+    /**
+     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>}.  todo
+     */
+    public static Set<OrderDescription> parseOrderDescriptions(Collection<String> orderDescriptions) throws ParseException {
+        requireNonNull(orderDescriptions);
+        final Set<OrderDescription> orderDescriptionSet = new HashSet<>();
+        for (String o : orderDescriptions) {
+            orderDescriptionSet.add(parseOrderDescription(o));
+        }
+        return orderDescriptionSet;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Tag parseTag(String tag) throws ParseException { // todo is this public just because of the tests
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {

@@ -21,7 +21,7 @@ public class JsonAdaptedOrderDescription {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedOrderDescription(OrderDescription source) {
-        orderDescription = source.orderDescription;
+        orderDescription = source.value;
     }
 
     @JsonValue

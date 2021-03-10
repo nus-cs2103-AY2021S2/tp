@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person { // todo will be refactored to "Order" from "Person"?
 
     // Identity fields
     private final Name name;
@@ -29,13 +29,15 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<OrderDescription> orderDescriptions) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags); // todo add orderDesc
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        // this.orderDescriptions.addAll(orderDescriptions);
+        if (orderDescriptions != null) { // todo remove
+            this.orderDescriptions.addAll(orderDescriptions);
+        }
     }
 
     public Name getName() {

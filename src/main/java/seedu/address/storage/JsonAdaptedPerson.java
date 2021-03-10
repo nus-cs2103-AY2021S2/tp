@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -36,7 +37,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            //@JsonProperty("orderDescriptions") List<JsonAdaptedOrderDescription> orderDescriptions,
+//            @JsonProperty("orderDescriptions") List<JsonAdaptedOrderDescription> orderDescriptions,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -112,12 +113,20 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        // todo
-//        if (noOrdersFound) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, OrderDescription.class.getSimpleName()));
-//        }
+        // throw error if no order descriptions found
+        // todo uncomment after fixing json tests
+        if (orderDescriptions.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OrderDescription.class.getSimpleName()));
+        }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, null); // todo
+        final List<OrderDescription> personOrderDescriptions = new ArrayList<>();
+        for (JsonAdaptedOrderDescription o : orderDescriptions) {
+            personOrderDescriptions.add(o.toModelType());
+        }
+        final Set<OrderDescription> modelOrderDescriptions = new HashSet<>(personOrderDescriptions);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelOrderDescriptions); // todo
     }
 
 }

@@ -21,6 +21,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ORDER_DESCRIPTION = "1 x Chocolate Cake";
 
     private Name name;
     private Phone phone;
@@ -39,6 +40,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         orderDescriptions = new HashSet<>();
+        orderDescriptions.add(new OrderDescription(DEFAULT_ORDER_DESCRIPTION)); // todo not very sure if there is a right way to add
     }
 
     /**
