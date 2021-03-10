@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SpamEZ is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+If you can type fast, SpamEZ can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +15,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2021S2-CS2103-T16-1/tp/releases).
+1. Download the latest `spamez.jar` from [here](https://github.com/AY2021S2-CS2103-T16-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for SpamEZ.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,11 +27,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
    
-   * **`tag`**`tag n/John Doe t/small` : Adds tag to contact John Doe in Address Book.
+   * **`tag`**`tag n/John Doe t/small` : Adds tag to contact John Doe.
 
    * **`clear`** : Deletes all contacts.
    
@@ -83,7 +84,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the contacts list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -97,13 +98,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all contacts.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the contacts list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -140,7 +141,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the contacts list.
 
 Format: `delete INDEX`
 
@@ -149,27 +150,31 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the contacts list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Adding tags to contacts : `tag`
+### Adding tags to a contact : `tag`
 
 Labels a contact based on his or her attributes.
 
 Format: tag n/NAME t/TAG
 
-### Assign additional nicknames to contacts : `name`
+### Assign an additional nickname to a contact : `name`
 
 Adds an optional nickname to the contact.
 
 Format: name INDEX [n/NAME]
 
-### Blacklist contacts : `blist`
+### Blacklist a contact : `blist`
 
 Blocks specific contacts, to specify that they do not want to be contacted.
 If the contact is already blacklisted, they will be un-blacklisted. 
 
 Format: blist INDEX
+
+* Changes the blacklist status of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Filter contacts: `filter`
 
@@ -177,17 +182,15 @@ Filters shown contacts based on the given keyword(s).
 
 Format: filter [keyword1, keyword2, …]
 
-
-
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the contacts list.
 
 Format: `clear`
 
 ### Adding a new remark or replacing an existing remark : `remark`
 
-Adds a new remark to the specified person from the address book. 
+Adds a new remark to the specified person in the contacts list. 
 If the person already has a remark, the new remark will replace the
 existing remark.
 
@@ -197,14 +200,13 @@ Format: `remark INDEX r/REMARK`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-
 Example:
 
 `remark 3 r/Currently on Stay Home Notice`
 
 ### Sort entries by name : `sort`
 
-Sort the entries in the address book by name in ascending alphabetical order.
+Sort the entries in the contacts list by name in ascending alphabetical order.
 
 Format: `sort`
 
@@ -216,14 +218,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SpamEZ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SpamEZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -235,7 +237,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SpamEZ home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -244,14 +246,14 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Blacklist** | `blist INDEX`<br> e.g., `blist 2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Filter** | `filter [keyword1,keyword2,...]`<br> e.g., `filter[Computing, Student]`
 **Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates`
-**Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
-**Name** | `name INDEX [n/NAME]`<br> e.g., `name 3 [n/Jo]`
-**Blacklist** | `blist INDEX`<br> e.g., `blist 2`
-**Filter** | `filter [keyword1,keyword2,...]`<br> e.g., `filter[Computing, Student]` 
-**List** | `list`
 **Help** | `help`
+**List** | `list`
+**Name** | `name INDEX [n/NAME]`<br> e.g., `name 3 [n/Jo]`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
+**Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`

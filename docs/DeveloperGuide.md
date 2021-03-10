@@ -255,17 +255,17 @@ and the required means of communication.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                 | I want to …​                                      | So that I can…​                                                      |
-| -------- | ------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                                     |                                                                        |
-| `* * *`  | user                                       | delete a person                                      | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                                | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | filter contacts by tag                               | minimize chance of sending emails to the wrong recipient               |
-| `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                    |
-| `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it       |
-| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                |
-| `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                      |
-| `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                |
+| -------- | ------------------------------------------ | ---------------------------------------------------- | ----------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user                                       | add a new contact                                    |                                                                         |
+| `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
+| `* * *`  | user                                       | find a contact by name                               | locate details of contacts without having to go through the entire list |
+| `* * *`  | user                                       | filter contacts by tag                               | minimize chance of sending emails to the wrong recipient                |
+| `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
+| `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
+| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                 |
+| `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
+| `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
 
 *{More to be added}*
 
@@ -277,10 +277,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list contacts
+2.  SpamEZ shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  SpamEZ deletes the contact
 
     Use case ends.
 
@@ -292,7 +292,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SpamEZ shows an error message.
 
       Use case resumes at step 2.
 
@@ -320,10 +320,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User request to add a specific person with a preferred mode of contact
-4.  AddressBook adds the person
+1.  User requests to list contacts
+2.  SpamEZ shows a list of contacts
+3.  User requests to edit the preferred mode of contact for a contact
+4.  SpamEZ edits the contact
     
     Use case ends.
 
@@ -331,8 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.    
-
+  Use case ends.
 
 **Use case: Blacklist a contact**
 
@@ -363,10 +362,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list contacts.
-2. AddressBook shows a list of contacts.
+2. SpamEZ shows a list of contacts.
 3. User requests to add an optional remark to a specific contact in the list.
-4. Addressbook adds the optional remark to the specific contact.
-5. Addressbook shows the updated list of contacts.
+4. SpamEZ adds the optional remark to the specific contact.
+5. SpamEZ shows the updated list of contacts.
    
    Use case ends.
 
@@ -374,13 +373,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-  * 3a1. Addressbook shows an error message.
+  * 3a1. SpamEZ shows an error message.
     
     Use case resumes at step 3.
 
 * 3b. The user enters details in the wrong format.
 
-    * 3b1. Addressbook shows an error message and the corect format.
+    * 3b1. SpamEZ shows an error message and the correct format.
 
       Use case resumes at step 3.
 
@@ -389,8 +388,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to sort the contact list by name in alphabetical order.
-2. AddressBook sorts the contact list.
-3. AddressBook displays the updated contact list.
+2. SpamEZ sorts the contact list.
+3. SpamEZ displays the updated contact list.
    
    Use case ends.
 
@@ -438,9 +437,9 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a contact
 
-1. Deleting a person while all persons are being shown
+1. Deleting a contact while all contacts are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
@@ -448,7 +447,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -467,7 +466,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Filter the list of contacts based on the keywords provided.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
     1. Test case: `find n/Alex Bernice` <br>
        Expected: A list of contacts whose name contains `Alex` **or** `Bernice`. The filter is case-insensitive, so `Alex` will match with `aLeX` too, for instance.
