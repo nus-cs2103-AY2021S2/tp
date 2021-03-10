@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,7 +32,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withSize(VALID_SIZE_BOB).withEmail(VALID_EMAIL_BOB)
+        Person editedAlice = new PersonBuilder(ALICE).withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withDescriptions(VALID_DESCRIPTION_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -76,8 +76,8 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withSize(VALID_SIZE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        // different colour -> returns false
+        editedAlice = new PersonBuilder(ALICE).withColour(VALID_COLOUR_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
