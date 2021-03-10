@@ -1,6 +1,6 @@
 package seedu.address.model.project;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,10 @@ public class CompletableTaskList {
     /**
      * Constructs a {@code CompletableTaskList}.
      *
-     * @param completableTasks A list of {@code Person}.
+     * @param completableTasks A list of {@code Tasks}.
      */
     public CompletableTaskList(List<Completable> completableTasks) {
-        requireAllNonNull(completableTasks);
+        requireNonNull(completableTasks);
 
         this.completableTasks.addAll(completableTasks);
     }

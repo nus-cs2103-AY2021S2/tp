@@ -1,6 +1,6 @@
 package seedu.address.model.project;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class ParticipantList {
      * @param participants A list of {@code Person}.
      */
     public ParticipantList(List<Person> participants) {
-        requireAllNonNull(participants);
+        requireNonNull(participants);
 
         this.participants.addAll(participants);
     }

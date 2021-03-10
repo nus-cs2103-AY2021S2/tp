@@ -1,6 +1,6 @@
 package seedu.address.model.project;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class EventList {
      * @param events A list of {@code Event}.
      */
     public EventList (List<Event> events) {
-        requireAllNonNull(events);
+        requireNonNull(events);
 
         this.events.addAll(events);
     }
