@@ -5,10 +5,14 @@ import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Set;
 
 import seedu.storemando.logic.commands.ListCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
+import seedu.storemando.model.item.Location;
 import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.tag.Tag;
 import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
 
 /**
@@ -24,23 +28,20 @@ public class ListCommandParser implements Parser<ListCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             return new ListCommand();
-        } else if (trimmedArgs.length() < 3) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.COMMAND_WORD));
         }
 
-        if (trimmedArgs.substring(0, 2).equals(PREFIX_LOCATION.getPrefix())) {
-            trimmedArgs = trimmedArgs.substring(2);
-            String[] keywords = trimmedArgs.split("\\s+");
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LOCATION, PREFIX_TAG);
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+            String locationKeywords = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()).toString();
+            String[] keywords = locationKeywords.split("\\s+");
             return new ListCommand(new LocationContainsKeywordsPredicate(Arrays.asList(keywords)));
-        } else if (trimmedArgs.substring(0, 2).equals(PREFIX_TAG.getPrefix())) {
-            trimmedArgs = trimmedArgs.substring(2);
-            String[] keywords = trimmedArgs.split("\\s+");
-            return new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
         } else {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.COMMAND_WORD));
+            String tagKeyword = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName;
+            String[] keywords = tagKeyword.split("\\s+");
+            return new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
     }
-
 }
