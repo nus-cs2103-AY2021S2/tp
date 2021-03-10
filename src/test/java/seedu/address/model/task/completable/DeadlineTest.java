@@ -12,25 +12,25 @@ public class DeadlineTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        LocalDate date = LocalDate.of(2020, 1, 1);
-        assertThrows(NullPointerException.class, () -> new Deadline(null, date));
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
+        assertThrows(NullPointerException.class, () -> new Deadline(null, validDate));
         assertThrows(NullPointerException.class, () -> new Deadline("test", null));
         assertThrows(NullPointerException.class, () -> new Deadline(null, null));
-        assertThrows(NullPointerException.class, () -> new Deadline(null, false, date));
+        assertThrows(NullPointerException.class, () -> new Deadline(null, false, validDate));
         assertThrows(NullPointerException.class, () -> new Deadline("test", false, null));
         assertThrows(NullPointerException.class, () -> new Deadline(null, null, null));
-        assertThrows(NullPointerException.class, () -> new Deadline("test", null, date));
+        assertThrows(NullPointerException.class, () -> new Deadline("test", null, validDate));
     }
 
     @Test
     public void constructor_invalidDescription_throwsIllegalArgumentException() {
-        LocalDate date = LocalDate.of(2020, 1, 1);
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
         String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, date));
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, false, date));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, false, validDate));
         String invalidDescription2 = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, date));
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, false, date));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, false, validDate));
     }
 
     @Test

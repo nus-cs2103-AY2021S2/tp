@@ -15,22 +15,23 @@ public class EventTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        LocalDate date = LocalDate.of(2020, 1, 1);
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
         Interval interval = Interval.DAILY;
-        assertThrows(NullPointerException.class, () -> new Event(null, interval, date));
+        assertThrows(NullPointerException.class, () -> new Event(null, interval, validDate));
         assertThrows(NullPointerException.class, () -> new Event("test", null));
         assertThrows(NullPointerException.class, () -> new Event(null, null));
     }
 
     @Test
     public void constructor_invalidDescription_throwsIllegalArgumentException() {
-        LocalDate date = LocalDate.of(2020, 1, 1);
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
+        Interval validInterval = Interval.DAILY;
         String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, date));
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, date));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validInterval, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription, validDate));
         String invalidDescription2 = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, date));
-        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, date));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Event(invalidDescription2, validDate));
     }
 
     @Test
