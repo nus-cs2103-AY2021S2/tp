@@ -2,7 +2,7 @@ package seedu.address.model.module;
 
 import java.util.Objects;
 
-public class Module {
+public class Module implements Comparable<Module> {
     private Title title;
     private AssignmentList assignments;
     private ExamList exams;
@@ -116,11 +116,17 @@ public class Module {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; Assignments: ")
+                .append(";\nAssignments: ")
                 .append(getAssignments())
+                .append("\n")
                 //.append("; Exam Date: ")
                 .append(getExams());
 
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Module o) {
+        return title.compareTo(o.title);
     }
 }

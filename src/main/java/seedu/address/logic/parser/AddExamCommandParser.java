@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 
 import java.time.LocalDateTime;
 
-import seedu.address.logic.commands.AddExamCommand;
+import seedu.address.logic.commands.addcommand.AddExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Exam;
 

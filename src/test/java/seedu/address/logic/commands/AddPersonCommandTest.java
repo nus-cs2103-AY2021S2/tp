@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.addcommand.AddPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -22,6 +23,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -152,6 +154,16 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public boolean hasModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasAssignment(Assignment assignment) {
             throw new AssertionError("This method should not be called.");
         }
@@ -170,6 +182,8 @@ public class AddPersonCommandTest {
         public void addExam(Exam exam) {
             throw new AssertionError("This method should not be called.");
         }
+
+
     }
 
     /**

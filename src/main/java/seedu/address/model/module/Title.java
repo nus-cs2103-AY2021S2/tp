@@ -3,7 +3,7 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class Title {
+public class Title implements Comparable<Title> {
 
     // todo change message constraints\
     public static final String MESSAGE_CONSTRAINTS =
@@ -52,5 +52,10 @@ public class Title {
     @Override
     public int hashCode() {
         return modTitle.hashCode();
+    }
+
+    @Override
+    public int compareTo(Title other) {
+        return modTitle.compareTo(other.modTitle);
     }
 }
