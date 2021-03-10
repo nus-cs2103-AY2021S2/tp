@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
 public class Person extends Human {
 
     // Identity fields
-    private final Email email;
+
 
     // Data fields
     private final Address address;
@@ -28,16 +28,11 @@ public class Person extends Human {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Address address, Set<Tag> tags) {
         super(name, phone);
-        requireAllNonNull(email, address, tags);
-        this.email = email;
+        requireAllNonNull(address, tags);
         this.address = address;
         this.tags.addAll(tags);
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public Address getAddress() {
@@ -82,7 +77,6 @@ public class Person extends Human {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -90,7 +84,7 @@ public class Person extends Human {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, address, tags);
     }
 
     @Override
@@ -99,8 +93,6 @@ public class Person extends Human {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
 
