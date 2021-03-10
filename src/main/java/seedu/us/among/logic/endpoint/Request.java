@@ -18,6 +18,7 @@ import org.apache.http.util.EntityUtils;
 import seedu.us.among.commons.util.HeaderUtil;
 import seedu.us.among.commons.util.JsonUtil;
 import seedu.us.among.commons.util.StringUtil;
+import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.MethodType;
 import seedu.us.among.model.endpoint.Response;
@@ -56,7 +57,7 @@ public abstract class Request {
      *
      * @return returns the response from the API call
      */
-    public abstract Response send() throws IOException;
+    public abstract Response send() throws IOException, RequestException;
 
     /**
      * Creates a http client with timeout set to 60 seconds.
@@ -117,7 +118,7 @@ public abstract class Request {
      * @param headerSet set of headers from endpoint
      * @return request with headers set
      */
-    public HttpUriRequest setHeaders(HttpUriRequest request, Set<Header> headerSet) {
+    public HttpUriRequest setHeaders(HttpUriRequest request, Set<Header> headerSet) throws RequestException {
         HashMap<String, String> headerMap = HeaderUtil.parseHeaders(headerSet);
         for (HashMap.Entry<String, String> headerPair : headerMap.entrySet()) {
             request.addHeader(headerPair.getKey(), headerPair.getValue());
