@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.time.LocalDateTime;
 
-import seedu.address.logic.commands.AddAssignmentCommand;
+import seedu.address.logic.commands.addcommand.AddAssignmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;

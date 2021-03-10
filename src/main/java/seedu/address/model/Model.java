@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 /**
@@ -88,6 +89,18 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Returns true if a module with the same title, exams, and assignments as {@code module}
+     * exists in the address book.
+     */
+    boolean hasModule(Module module);
+
+    /**
+     * Adds the given module.
+     * {@code module} must not already exists in RemindMe.
+     */
+    void addModule(Module module);
+
+    /**
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */
@@ -99,7 +112,15 @@ public interface Model {
      */
     void addAssignment(Assignment assignment);
 
-    boolean hasExam(Exam toAdd);
+    /**
+     * Returns true if an exam with the same date and time as {@code module} exists in the
+     * address book.
+     */
+    boolean hasExam(Exam exam);
 
-    void addExam(Exam toAdd);
+    /**
+     * Adds the given exam.
+     * {@code exam} must not already exist in the module it is to be added to.
+     */
+    void addExam(Exam exam);
 }

@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
+import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -129,5 +130,11 @@ public class ParserUtil {
         } catch (DateTimeParseException e) {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    public static Title parseTitle(String titleInput) {
+        String trimmedTitle = titleInput.trim();
+
+        return new Title(trimmedTitle);
     }
 }
