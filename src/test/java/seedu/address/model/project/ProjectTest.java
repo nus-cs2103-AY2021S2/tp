@@ -52,7 +52,7 @@ public class ProjectTest {
         ArrayList<Person> participants = new ArrayList<>();
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
-        
+
         assertDoesNotThrow(() -> new Project(name, eventList, completableTaskList, participantList));
     }
 
