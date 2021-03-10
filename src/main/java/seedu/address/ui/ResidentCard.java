@@ -48,7 +48,7 @@ public class ResidentCard extends UiPart<Region> {
         name.setText(resident.getName().fullName);
         phone.setText(resident.getPhone().value);
         email.setText(resident.getEmail().value);
-        year.setText("Year " +resident.getYear().value);
+        year.setText("Year " + resident.getYear().value);
         room.setText(resident.getRoom().value);
     }
 
