@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.budgetbaby.ablogic.commands.AddCommand;
-import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.ablogic.commands.ListCommand;
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ModelManager;
@@ -26,6 +25,7 @@ import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.abstorage.JsonAddressBookStorage;
 import seedu.budgetbaby.abstorage.StorageManager;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.UserPrefs;
