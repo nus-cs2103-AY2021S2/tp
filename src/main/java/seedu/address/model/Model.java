@@ -82,6 +82,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+        /** Returns an unmodifiable view of the filtered doctor list */
+    ObservableList<String> getFilteredDoctorList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

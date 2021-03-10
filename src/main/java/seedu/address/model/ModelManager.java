@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -128,6 +129,21 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<String> getFilteredDoctorList() {
+        // TODO: update to Person or Doctor Class
+        final ObservableList<String> internalList = FXCollections.observableArrayList();
+        internalList.add("Coming Soon!");
+        internalList.add("More Coming Soon!");
+        internalList.add("Even More Coming Soon!");
+        internalList.add("Much More Coming Soon!");
+        final ObservableList<String> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
+        final ObservableList<String> filteredDoctors = new FilteredList<>(internalUnmodifiableList);
+        return filteredDoctors;
+        
     }
 
     @Override

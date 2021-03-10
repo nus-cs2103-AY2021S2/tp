@@ -121,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
         // TODO add logic to getDoctorList
-        doctorListPanel = new DoctorListPanel(logic.getFilteredPersonList());
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
         doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
         // TODO add logic to getPatientList
         patientListPanel = new PatientListPanel(logic.getFilteredPersonList());

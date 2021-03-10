@@ -25,7 +25,7 @@ public class DoctorCard extends UiPart<Region> {
      */
 
     // TODO create doctor class and convert person class to doctor class
-    public final Person doctor;
+    public final String doctor;
 
     @FXML
     private HBox cardPane;
@@ -45,17 +45,22 @@ public class DoctorCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DoctorCard(Person doctor, int displayedIndex) {
+    public DoctorCard(String doctor, int displayedIndex) {
         super(FXML);
         this.doctor = doctor;
         id.setText(displayedIndex + ". ");
-        name.setText(doctor.getName().fullName);
-        phone.setText(doctor.getPhone().value);
-        address.setText(doctor.getAddress().value);
-        email.setText(doctor.getEmail().value);
-        doctor.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        // placeholders while doctor is still a string and not displayed
+        name.setText(doctor);
+        phone.setText("");
+        address.setText("");
+        email.setText("");
+        // name.setText(doctor.getName().fullName);
+        // phone.setText(doctor.getPhone().value);
+        // address.setText(doctor.getAddress().value);
+        // email.setText(doctor.getEmail().value);
+        // doctor.getTags().stream()
+        //         .sorted(Comparator.comparing(tag -> tag.tagName))
+        //         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
