@@ -1,6 +1,6 @@
 {
-  "_comment": "TaskTracker save file which contains the same Person values as in TypicalPersons#getTypicalTaskTracker()",
-  "persons" : [ {
+  "_comment": "TaskTracker save file which contains the same Task values as in TypicalTasks#getTypicalTaskTracker()",
+  "tasks" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",

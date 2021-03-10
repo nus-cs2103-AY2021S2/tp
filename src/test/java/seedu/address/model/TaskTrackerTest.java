@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalTaskTracker;
+import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskTracker;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Task;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.exceptions.DuplicateTaskException;
+import seedu.address.testutil.TaskBuilder;
 
 public class TaskTrackerTest {
 
@@ -27,7 +27,7 @@ public class TaskTrackerTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), taskTracker.getPersonList());
+        assertEquals(Collections.emptyList(), taskTracker.getTaskList());
     }
 
     @Test
@@ -43,47 +43,47 @@ public class TaskTrackerTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Task editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
+        // Two tasks with the same identity fields
+        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
         TaskTrackerStub newData = new TaskTrackerStub(newTasks);
 
-        assertThrows(DuplicatePersonException.class, () -> taskTracker.resetData(newData));
+        assertThrows(DuplicateTaskException.class, () -> taskTracker.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> taskTracker.hasPerson(null));
+    public void hasTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> taskTracker.hasTask(null));
     }
 
     @Test
-    public void hasPerson_personNotInTaskTracker_returnsFalse() {
-        assertFalse(taskTracker.hasPerson(ALICE));
+    public void hasTask_taskNotInTaskTracker_returnsFalse() {
+        assertFalse(taskTracker.hasTask(ALICE));
     }
 
     @Test
-    public void hasPerson_personInTaskTracker_returnsTrue() {
-        taskTracker.addPerson(ALICE);
-        assertTrue(taskTracker.hasPerson(ALICE));
+    public void hasTask_taskInTaskTracker_returnsTrue() {
+        taskTracker.addTask(ALICE);
+        assertTrue(taskTracker.hasTask(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInTaskTracker_returnsTrue() {
-        taskTracker.addPerson(ALICE);
-        Task editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void hasTask_taskWithSameIdentityFieldsInTaskTracker_returnsTrue() {
+        taskTracker.addTask(ALICE);
+        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(taskTracker.hasPerson(editedAlice));
+        assertTrue(taskTracker.hasTask(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> taskTracker.getPersonList().remove(0));
+    public void getTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> taskTracker.getTaskList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyTaskTracker whose persons list can violate interface constraints.
+     * A stub ReadOnlyTaskTracker whose tasks list can violate interface constraints.
      */
     private static class TaskTrackerStub implements ReadOnlyTaskTracker {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
@@ -93,7 +93,7 @@ public class TaskTrackerTest {
         }
 
         @Override
-        public ObservableList<Task> getPersonList() {
+        public ObservableList<Task> getTaskList() {
             return tasks;
         }
     }
