@@ -16,7 +16,6 @@ import seedu.budgetbaby.logic.BudgetBabyLogic;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
-import seedu.budgetbaby.model.util.SampleDataUtil;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private BudgetBabyLogic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FinancialRecordListPanel financialRecordListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane financialRecordListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,10 +111,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // TODO: create FinancialRecordListPanel
-        // use logic.getFinancialRecordList()
-        personListPanel = new PersonListPanel(SampleDataUtil.getSampleAddressBook().getPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
+        financialRecordListPanelPlaceholder.getChildren().add(financialRecordListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -167,8 +164,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public FinancialRecordListPanel getFinancialRecordListPanel() {
+        return financialRecordListPanel;
     }
 
     /**
