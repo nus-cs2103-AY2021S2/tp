@@ -22,22 +22,22 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[]{
-                new Task(new ModuleName("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Task(new ModuleName("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                         EMPTY_REMARK,
                         getTagSet("friends")),
-                new Task(new ModuleName("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Task(new ModuleName("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                         EMPTY_REMARK,
                         getTagSet("colleagues", "friends")),
-                new Task(new ModuleName("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example"
+            new Task(new ModuleName("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example"
                         + ".com"), EMPTY_REMARK,
                         getTagSet("neighbours")),
-                new Task(new ModuleName("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Task(new ModuleName("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                         EMPTY_REMARK,
                         getTagSet("family")),
-                new Task(new ModuleName("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Task(new ModuleName("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                         EMPTY_REMARK,
                         getTagSet("classmates")),
-                new Task(new ModuleName("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+            new Task(new ModuleName("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                         EMPTY_REMARK,
                         getTagSet("colleagues"))
         };

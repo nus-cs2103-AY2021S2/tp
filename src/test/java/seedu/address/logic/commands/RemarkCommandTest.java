@@ -12,19 +12,20 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskTracker;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.TaskTracker;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskTracker;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Task;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Task;
 import seedu.address.testutil.TaskBuilder;
 
 public class RemarkCommandTest {
 
-    private final static String REMARK_STUB = "Some remark";
+    private static final String REMARK_STUB = "Some remark";
 
     private Model model = new ModelManager(getTypicalTaskTracker(), new UserPrefs());
 
