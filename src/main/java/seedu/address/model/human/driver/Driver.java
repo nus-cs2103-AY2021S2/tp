@@ -2,10 +2,10 @@ package seedu.address.model.human.driver;
 
 import java.util.Objects;
 
+import seedu.address.model.human.Human;
 import seedu.address.model.human.Name;
-import seedu.address.model.human.Person;
 import seedu.address.model.human.Phone;
-import seedu.address.model.human.person.Human;
+import seedu.address.model.human.person.Person;
 
 /**
  * Represents a Driver to be attached to a Person.

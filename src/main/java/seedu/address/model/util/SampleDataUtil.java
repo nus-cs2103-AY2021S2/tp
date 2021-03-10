@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.human.Name;
-import seedu.address.model.human.Person;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.person.Address;
 import seedu.address.model.human.person.Email;
+import seedu.address.model.human.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
