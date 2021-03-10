@@ -67,25 +67,24 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    //TODO: make sure that PersonBuilder is changed to TaskBuilder
-//    @Test
-//    public void execute_storageThrowsIoException_throwsCommandException() {
-//        // Setup LogicManager with JsonTaskTrackerIoExceptionThrowingStub
-//        JsonTaskTrackerStorage taskTrackerStorage =
-//                new JsonTaskTrackerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTaskTracker.json"));
-//        JsonUserPrefsStorage userPrefsStorage =
-//                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-//        StorageManager storage = new StorageManager(taskTrackerStorage, userPrefsStorage);
-//        logic = new LogicManager(model, storage);
-//
-//        // Execute add command
-//        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
-//        Task expectedTask = new PersonBuilder(AMY).withTags().build();
-//        ModelManager expectedModel = new ModelManager();
-//        expectedModel.addPerson(expectedTask);
-//        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-//        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-//    }
+    @Test
+    public void execute_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonTaskTrackerIoExceptionThrowingStub
+        JsonTaskTrackerStorage taskTrackerStorage =
+                new JsonTaskTrackerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTaskTracker.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(taskTrackerStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add command
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
+        Task expectedTask = new PersonBuilder(AMY).withTags().build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addPerson(expectedTask);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
