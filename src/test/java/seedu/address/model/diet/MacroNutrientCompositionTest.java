@@ -23,7 +23,7 @@ public class MacroNutrientCompositionTest {
         assertFalse(MacroNutrientComposition.isValidComposition(-10, 130, -20));
 
         assertTrue(MacroNutrientComposition.isValidComposition(100, 0, 0));
-        assertTrue(MacroNutrientComposition.isValidComposition(20, 30, 30));
+        assertTrue(MacroNutrientComposition.isValidComposition(40, 30, 30));
         assertTrue(MacroNutrientComposition.isValidComposition(25, 50, 25));
     }
 
