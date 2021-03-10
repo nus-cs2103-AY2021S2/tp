@@ -77,6 +77,9 @@ public class HelpCommand extends Command {
         case HelpCommand.COMMAND_WORD:
             return new CommandResult(HelpCommand.MESSAGE_USAGE, false);
 
+        case TagsCommand.COMMAND_WORD:
+            return new CommandResult(TagsCommand.MESSAGE_USAGE, false);
+
         default:
             return new CommandResult(SHOWING_HELP_MESSAGE, false);
         }
