@@ -81,11 +81,11 @@
                 </padding>
               </StackPane>
 
-              <VBox fx:id="personList" minWidth="400" prefWidth="400" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <VBox fx:id="appointmentList" minWidth="400" prefWidth="400" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
             </VBox>
           </SplitPane>
