@@ -37,20 +37,11 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-<<<<<<< HEAD
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        tags = new HashSet<>(personToCopy.getTags());
-=======
     public PersonBuilder(Task taskToCopy) {
         moduleName = taskToCopy.getModuleName();
         phone = taskToCopy.getPhone();
         email = taskToCopy.getEmail();
-        address = taskToCopy.getAddress();
         tags = new HashSet<>(taskToCopy.getTags());
->>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
     }
 
     /**
@@ -85,13 +76,8 @@ public class PersonBuilder {
         return this;
     }
 
-<<<<<<< HEAD
-    public Person build() {
-        return new Person(name, phone, email, tags);
-=======
     public Task build() {
-        return new Task(moduleName, phone, email, address, tags);
->>>>>>> 0b8c8feb9aad11ae1aba8284be389d81151a3bc4
+        return new Task(moduleName, phone, email, tags);
     }
 
 }
