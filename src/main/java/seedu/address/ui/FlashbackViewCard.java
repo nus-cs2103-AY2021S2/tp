@@ -13,7 +13,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import seedu.address.model.flashcard.Flashcard;
 
-public class FlashbackViewCard extends UiPart<Region> {
+public class FlashbackViewCard extends UiPart<Region>{
     private static final String FXML = "FlashbackViewCard.fxml";
     public final Flashcard flashcard;
     @FXML
