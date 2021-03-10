@@ -51,13 +51,13 @@ public class Data {
         String headerString = test.strip().toString();
         String[] headerPair = headerString.split(":", 2);
         //Checks if there is a ":" in the data entered.
-        if (headerPair.length != 2) { 
+        if (headerPair.length != 2) {
             return false;
         }
         //Checks if header is enclosed with { }
         if (headerString.startsWith("{") && headerString.endsWith("}")) {
             return test.matches(VALIDATION_REGEX);
-        } else { 
+        } else {
             return false;
         }
     }
