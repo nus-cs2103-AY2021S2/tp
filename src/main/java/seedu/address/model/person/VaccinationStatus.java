@@ -40,8 +40,8 @@ public class VaccinationStatus {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MatriculationNumber // instanceof handles nulls
-                && value.equals(((MatriculationNumber) other).value)); // state check
+                || (other instanceof VaccinationStatus // instanceof handles nulls
+                && value.equals(((VaccinationStatus) other).value)); // state check
     }
 
     @Override
