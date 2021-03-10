@@ -2,7 +2,6 @@ package seedu.address.model.task.completable;
 
 import java.util.Objects;
 
-import seedu.address.commons.util.DateUtil;
 import seedu.address.model.task.Completable;
 
 /**

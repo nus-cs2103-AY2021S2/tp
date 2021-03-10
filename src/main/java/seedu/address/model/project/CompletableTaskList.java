@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.model.task.Completable;
-import seedu.address.model.task.repeatable.Event;
 
 public class CompletableTaskList {
 
