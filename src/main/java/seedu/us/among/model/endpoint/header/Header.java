@@ -8,12 +8,8 @@ import static seedu.us.among.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidHeaderName(String)}
  */
 public class Header {
-    /**
-     * to-do
-     * THIS WHOLE CLASS IS A TO-DO I JUST COPY PASTED TAGS
-     */
 
-    public static final String MESSAGE_CONSTRAINTS = "Header names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Headers should be enclosed with a \" example \"";
     public static final String VALIDATION_REGEX = ".*";
 
     public final String headerName;
@@ -25,15 +21,20 @@ public class Header {
      */
     public Header(String headerName) {
         requireNonNull(headerName);
-        checkArgument(isValidHeaderName(headerName), MESSAGE_CONSTRAINTS);
-        this.headerName = headerName;
+        checkArgument(isValidHeaderName(headerName), Header.MESSAGE_CONSTRAINTS);
+        this.headerName = headerName.substring(1, headerName.length() - 1);
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidHeaderName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        String temp = test.strip();
+        if (temp.startsWith("\"") && temp.endsWith("\"")) {
+            return test.matches(VALIDATION_REGEX);
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -52,7 +53,7 @@ public class Header {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + headerName + ']';
+        return headerName;
     }
 
 }
