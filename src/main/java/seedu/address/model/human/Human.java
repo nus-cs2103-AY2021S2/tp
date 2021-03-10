@@ -18,4 +18,12 @@ public abstract class Human {
         this.name = name;
         this.phone = phone;
     }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
 }

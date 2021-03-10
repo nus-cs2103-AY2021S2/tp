@@ -71,8 +71,7 @@ public class Driver extends Human {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ");
+                .append(getPhone());
 
         return builder.toString();
     }

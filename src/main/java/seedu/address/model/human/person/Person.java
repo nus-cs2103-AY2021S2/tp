@@ -36,14 +36,6 @@ public class Person extends Human {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return super.name;
-    }
-
-    public Phone getPhone() {
-        return super.phone;
-    }
-
     public Email getEmail() {
         return email;
     }
