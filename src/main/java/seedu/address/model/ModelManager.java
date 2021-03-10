@@ -143,7 +143,7 @@ public class ModelManager implements Model {
             FXCollections.unmodifiableObservableList(internalList);
         final ObservableList<String> filteredDoctors = new FilteredList<>(internalUnmodifiableList);
         return filteredDoctors;
-        
+
     }
 
     @Override
