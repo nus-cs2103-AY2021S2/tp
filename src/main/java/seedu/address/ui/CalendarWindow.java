@@ -119,6 +119,13 @@ public class CalendarWindow extends UiPart<Stage> {
                 CalendarBox calendarBox = CalendarBox.create(currentDate);
                 calendar.add(calendarBox.getRoot(), col, row);
 
+                //change today date background color to orange
+                if (todayDate.compareTo(currentDate) == 0) {
+                    calendarBox.getRoot().setStyle("-fx-background-color: #FF7F50");
+                }
+
+                //check if date is not within the month and
+                //change the day background color to grey
                 if (currentDate.getMonthValue() != this.month) {
                     calendarBox.getRoot().setDisable(true);
                     calendarBox.getRoot().setStyle("-fx-background-color: grey");
@@ -241,7 +248,7 @@ public class CalendarWindow extends UiPart<Stage> {
     private void updateMonthDays() {
         this.thisMonthDays = findNumberOfDaysInTheMonth();
         int firstDayOfMonth = this.firstDayOfTheMonth.getDayOfWeek().getValue();
-        this.prevMonthDays = firstDayOfMonth % 7;
+        this.prevMonthDays = firstDayOfMonth % 7 - 1;
         this.nextMonthDays = CALENDAR_SIZE - this.thisMonthDays - prevMonthDays;
     }
 
@@ -300,6 +307,15 @@ public class CalendarWindow extends UiPart<Stage> {
     public void handleToNext() {
         this.firstDayOfTheMonth = firstDayOfTheMonth.plusMonths(1);
         updateDayMonthYear(firstDayOfTheMonth);
+        refreshCalenderView();
+    }
+
+    /**
+     * Initialise calendar to current month of today's date.
+     */
+    @FXML
+    public void viewToday() {
+        updateDayMonthYear(todayDate);
         refreshCalenderView();
     }
 }
