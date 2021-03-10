@@ -39,8 +39,8 @@ public class ListCommandParser implements Parser<ListCommand> {
             String[] keywords = locationKeywords.split("\\s+");
             return new ListCommand(new LocationContainsKeywordsPredicate(Arrays.asList(keywords)));
         } else {
-            String tagKeyword = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName;
-            String[] keywords = tagKeyword.split("\\s+");
+            String tagKeywords = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName;
+            String[] keywords = tagKeywords.split("\\s+");
             return new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
     }

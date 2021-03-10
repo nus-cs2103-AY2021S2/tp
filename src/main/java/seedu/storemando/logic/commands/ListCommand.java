@@ -1,6 +1,11 @@
 package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.storemando.logic.parser.CliSyntax.PREFIX_EXPIRYDATE;
+import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.storemando.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.storemando.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.function.Predicate;
@@ -18,7 +23,14 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all items";
-    public static final String MESSAGE_USAGE = "ADD LATER";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the storemando. "
+        + "Parameters: "
+        + "[" + PREFIX_LOCATION + "LOCATION] "
+        + "[" + PREFIX_TAG + "TAG]\n"
+        + "Example:\n"
+        + "1. " + COMMAND_WORD + "\n"
+        + "2. " + COMMAND_WORD + " l/bedroom\n"
+        + "3. " + COMMAND_WORD + " t/favourite\n";
 
     private final Predicate<Item> predicate;
 
