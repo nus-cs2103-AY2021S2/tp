@@ -30,7 +30,7 @@
       <FlowPane fx:id="descriptions" />
       <Label fx:id="size" styleClass="cell_small_label" text="\$size" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="colour" styleClass="cell_small_label" text="\$colour" />
     </VBox>
   </GridPane>
 </HBox>
