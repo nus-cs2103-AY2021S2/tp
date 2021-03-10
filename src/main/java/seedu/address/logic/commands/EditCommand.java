@@ -54,7 +54,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -83,7 +83,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson)).setResidentCommand();
     }
 
     /**
@@ -131,7 +131,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.

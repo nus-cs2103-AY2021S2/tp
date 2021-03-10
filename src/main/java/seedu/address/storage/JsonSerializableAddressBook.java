@@ -12,6 +12,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.room.Room;
+import seedu.address.storage.room.JsonAdaptedRoom;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +22,19 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_ROOM = "Rooms list contains duplicate room(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and rooms.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("rooms") List<JsonAdaptedRoom> rooms) {
         this.persons.addAll(persons);
+        this.rooms.addAll(rooms);
     }
 
     /**
@@ -38,6 +44,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +60,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+        for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
+            Room room = jsonAdaptedRoom.toModelType();
+            if (addressBook.hasRoom(room)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ROOM);
+            }
+            addressBook.addRoom(room);
         }
         return addressBook;
     }
