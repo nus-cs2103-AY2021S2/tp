@@ -21,7 +21,7 @@ public class TaskBuilder {
     public static final String DEFAULT_DEADLINE = "2021-03-07 14:00";
     public static final String DEFAULT_MODULE = "CS3243";
     public static final String DEFAULT_DONE = String.valueOf(Boolean.FALSE);
-    public static final String DEFAULT_ADDRESS = "Not very hard.";
+    public static final String DEFAULT_DESCRIPTION = "Not very hard.";
 
     private Name name;
     private Deadline deadline;
@@ -38,7 +38,7 @@ public class TaskBuilder {
         name = new Name(DEFAULT_NAME);
         deadline = new Deadline(DEFAULT_DEADLINE);
         module = new Module(DEFAULT_MODULE);
-        description = new Description(DEFAULT_ADDRESS);
+        description = new Description(DEFAULT_DESCRIPTION);
         doneStatus = new DoneStatus(DEFAULT_DONE);
         tags = new HashSet<>();
     }
@@ -72,7 +72,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Task} that we are building.
+     * Sets the {@code DESCRIPTION} of the {@code Task} that we are building.
      */
     public TaskBuilder withDescription(String description) {
         this.description = new Description(description);

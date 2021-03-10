@@ -2,13 +2,13 @@
   "tasks": [ {
     "name": "Valid Task",
     "deadline": "9482424",
-    "module": "hans@example.com",
+    "module": "CS1010X",
     "description": "4th street",
     "doneStatus": "false"
   }, {
     "name": "Task With Invalid Deadline Field",
     "deadline": "948asdf2424",
-    "module": "hans@example.com",
+    "module": "CS1010X",
     "description": "4th street",
     "doneStatus": "false"
   } ]

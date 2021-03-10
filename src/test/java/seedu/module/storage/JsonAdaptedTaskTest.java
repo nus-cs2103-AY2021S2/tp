@@ -21,7 +21,7 @@ import seedu.module.model.task.Name;
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_DEADLINE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_DONE_STATUS = "not boolean string";
     private static final String INVALID_MODULE = "example.com";
     private static final String INVALID_TAG = "#friend";
@@ -29,7 +29,7 @@ public class JsonAdaptedTaskTest {
     private static final String VALID_NAME = MIDTERM.getName().toString();
     private static final String VALID_DEADLINE = MIDTERM.getDeadline().toString();
     private static final String VALID_MODULE = MIDTERM.getModule().toString();
-    private static final String VALID_ADDRESS = MIDTERM.getDescription().toString();
+    private static final String VALID_DESCRIPTION = MIDTERM.getDescription().toString();
     private static final String VALID_DONE_STATUS = MIDTERM.getDoneStatus().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = MIDTERM.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -45,7 +45,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(INVALID_NAME, VALID_DEADLINE, VALID_MODULE,
-                        VALID_ADDRESS, VALID_DONE_STATUS, VALID_TAGS);
+                        VALID_DESCRIPTION, VALID_DONE_STATUS, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -53,7 +53,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_DEADLINE, VALID_MODULE,
-                VALID_ADDRESS, VALID_DONE_STATUS, VALID_TAGS);
+                VALID_DESCRIPTION, VALID_DONE_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -62,7 +62,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidDeadline_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, INVALID_DEADLINE, VALID_MODULE,
-                        VALID_ADDRESS, VALID_DONE_STATUS, VALID_TAGS);
+                        VALID_DESCRIPTION, VALID_DONE_STATUS, VALID_TAGS);
         String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -70,7 +70,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullDeadline_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, null, VALID_MODULE,
-                VALID_ADDRESS, VALID_DONE_STATUS, VALID_TAGS);
+                VALID_DESCRIPTION, VALID_DONE_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -79,7 +79,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidModule_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, INVALID_MODULE,
-                        VALID_ADDRESS, VALID_DONE_STATUS, VALID_TAGS);
+                        VALID_DESCRIPTION, VALID_DONE_STATUS, VALID_TAGS);
         String expectedMessage = Module.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -87,7 +87,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullModule_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, null,
-                VALID_ADDRESS, VALID_DONE_STATUS, VALID_TAGS);
+                VALID_DESCRIPTION, VALID_DONE_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -96,7 +96,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_MODULE,
-                        INVALID_ADDRESS, VALID_DONE_STATUS, VALID_TAGS);;
+                        INVALID_DESCRIPTION, VALID_DONE_STATUS, VALID_TAGS);;
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -112,7 +112,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_invalidDoneStatus_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_MODULE,
-                VALID_ADDRESS, INVALID_DONE_STATUS, VALID_TAGS);
+                VALID_DESCRIPTION, INVALID_DONE_STATUS, VALID_TAGS);
         String expectedMessage = DoneStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -120,7 +120,7 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullDoneStatus_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_MODULE,
-                VALID_ADDRESS, null, VALID_TAGS);
+                VALID_DESCRIPTION, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DoneStatus.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -131,7 +131,7 @@ public class JsonAdaptedTaskTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DEADLINE, VALID_MODULE,
-                        VALID_ADDRESS, VALID_DONE_STATUS, invalidTags);
+                        VALID_DESCRIPTION, VALID_DONE_STATUS, invalidTags);
         assertThrows(IllegalValueException.class, task::toModelType);
     }
 
