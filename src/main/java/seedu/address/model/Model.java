@@ -104,23 +104,23 @@ public interface Model {
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */
-    boolean hasAssignment(Assignment assignment);
+    boolean hasAssignment(Module module, Assignment assignment);
 
     /**
      * Adds the given assignment.
      * {@code assignment} must not already exist in the module it is to be added to.
      */
-    void addAssignment(Assignment assignment);
+    void addAssignment(Module module, Assignment assignment);
 
     /**
      * Returns true if an exam with the same date and time as {@code module} exists in the
      * address book.
      */
-    boolean hasExam(Exam exam);
+    boolean hasExam(Module module, Exam exam);
 
     /**
      * Adds the given exam.
      * {@code exam} must not already exist in the module it is to be added to.
      */
-    void addExam(Exam exam);
+    void addExam(Module module, Exam exam);
 }

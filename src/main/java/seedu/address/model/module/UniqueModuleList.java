@@ -6,9 +6,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
@@ -29,7 +31,7 @@ public class UniqueModuleList implements Iterable<Module> {
 
     /**
      * Adds a module to the list.
-     * The module must not already exit in the list.
+     * The module must not already exist in the list.
      */
     public void add(Module toAdd) {
         requireNonNull(toAdd);
@@ -37,6 +39,21 @@ public class UniqueModuleList implements Iterable<Module> {
             throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Gets the module with the same module title as {@code module}
+     * {@code module} must already exist in the list.
+     */
+    public Module getModule(Module module) {
+        requireNonNull(module);
+
+        Predicate<Module> hasModuleTitle = (x) -> x.isSameModule(module);
+        FilteredList<Module> filteredModule = internalList.filtered(hasModuleTitle);
+        if (filteredModule.size() != 1) {
+            throw new ModuleNotFoundException();
+        }
+        return filteredModule.get(0);
     }
 
     /**
@@ -49,10 +66,8 @@ public class UniqueModuleList implements Iterable<Module> {
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
 
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new ModuleNotFoundException();
-        }
+        Module foundModule = getModule(target);
+        int index = internalList.indexOf(foundModule);
 
         boolean hasDuplicate = !target.isSameModule(editedModule) && contains(editedModule);
         if (hasDuplicate) {

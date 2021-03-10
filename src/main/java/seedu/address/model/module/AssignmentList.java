@@ -23,6 +23,20 @@ public class AssignmentList {
     }
 
     /**
+     * Gets the index of the {@code assignment} in the assignment list.
+     * {@code assignment} must exist in the assignment list.
+     */
+    public int getIndex(Assignment assignment) {
+        int index = -1;
+        for (int i = 0; i < assignments.size(); i++) {
+            if (assignments.get(i).equals(assignment)) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    /**
      * Adds an assignment to the list.
      *
      * @param assignment Assignment to be added.
@@ -40,6 +54,31 @@ public class AssignmentList {
     public Assignment delete(int index) {
         Assignment deleted = assignments.remove(index);
         return deleted;
+    }
+
+    /**
+     * Delete the {@code assignment} from assignment list.
+     * {@code assignment} must exist in the assignment list.
+     */
+    public Assignment delete(Assignment assignment) {
+        int index = getIndex(assignment);
+        return delete(index);
+    }
+
+    /**
+     * Checks if the assignment list contains the given assignment.
+     *
+     * @param assignment Assignment to check.
+     * @return Boolean.
+     */
+    public boolean contains(Assignment assignment) {
+        boolean hasAssignment = false;
+        for (int i = 0; i < assignments.size() && !hasAssignment; i++) {
+            if (assignments.get(i).equals(assignment)) {
+                hasAssignment = true;
+            }
+        }
+        return hasAssignment;
     }
 
     /**

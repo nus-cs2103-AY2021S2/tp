@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.addcommand;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
@@ -9,6 +10,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Exam;
+import seedu.address.model.module.Module;
 
 public class AddExamCommand extends Command {
 
@@ -25,13 +27,15 @@ public class AddExamCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New exam added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists at this date";
 
+    private final Module target;
     private final Exam toAdd;
 
     /**
      * Creates an AddExamComamnd to add the specified {@code Exam}.
      */
-    public AddExamCommand(Exam exam) {
-        requireNonNull(exam);
+    public AddExamCommand(Module module, Exam exam) {
+        requireAllNonNull(module, exam);
+        target = module;
         toAdd = exam;
     }
 
@@ -46,11 +50,11 @@ public class AddExamCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasExam(toAdd)) {
+        if (model.hasExam(target, toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXAM);
         }
 
-        model.addExam(toAdd);
+        model.addExam(target, toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
