@@ -312,3 +312,8 @@ _{More to be added}_
 - **Postman**: An existing API client for developers
 
 _{More to be added}_
+
+## **Appendix D: Developer Workflow**
+ 
+Please checkout the [workflow guide](https://ay2021s2-cs2103t-t12-4.github.io/tp/WorkflowGuide.html) to understand
+the adopted approach in maintaining imPoster.

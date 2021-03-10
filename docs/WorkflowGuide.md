@@ -1,3 +1,8 @@
+---
+layout: page
+title: Workflow Guide
+---
+
 <p align="center">
   <img src="images/imPoster.png" width="300px" />
   <h1 align="center">imPoster Workflow Guide</h1>
