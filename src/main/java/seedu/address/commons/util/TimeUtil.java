@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TIME_FORMAT;
 
 import java.time.LocalTime;
@@ -16,8 +17,12 @@ public class TimeUtil {
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
 
+    private static final String[] patterns;
+    private static final String[] examples;
+
     static {
-        String[] patterns = new String[]{"HHmm"};
+        patterns = new String[]{"HHmm"};
+        examples = new String[]{"1200"};
 
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
         Arrays.stream(patterns).map(DateTimeFormatter::ofPattern).forEach(builder::appendOptional);
@@ -36,7 +41,10 @@ public class TimeUtil {
         try {
             time = TIME_PARSER.parse(string, LocalTime::from);
         } catch (DateTimeParseException dte) {
-            throw new ParseException(String.format(MESSAGE_INVALID_TIME_FORMAT, "Only accepts HHmm, e.g. 1200"));
+            String errorMsg = "Format given should be one of " + String.join(", ", patterns) + "\n"
+                    + "Some examples are " + String.join(", ", examples);
+
+            throw new ParseException(String.format(MESSAGE_INVALID_TIME_FORMAT, errorMsg));
         }
 
         return time;

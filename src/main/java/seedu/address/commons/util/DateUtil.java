@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -16,8 +17,13 @@ public class DateUtil {
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
+    private static final String[] patterns;
+    private static final String[] examples;
+
     static {
-        String[] patterns = new String[]{"dd-MM-yyyy"};
+        patterns = new String[]{"dd-MM-yyyy"};
+        examples = new String[]{"12-12-2020"};
+
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
 
         Arrays.stream(patterns).map(DateTimeFormatter::ofPattern).forEach(builder::appendOptional);
@@ -36,8 +42,10 @@ public class DateUtil {
         try {
             date = DATE_PARSER.parse(string, LocalDate::from);
         } catch (DateTimeParseException dte) {
-            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT,
-                    "Only accept dd-MM-yyyy, e.g. 12-12-2020"));
+            String errorMsg = "Format given should be one of " + String.join(", ", patterns) + "\n"
+                    + "Some examples are " + String.join(", ", examples);
+
+            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, errorMsg));
         }
 
         return date;

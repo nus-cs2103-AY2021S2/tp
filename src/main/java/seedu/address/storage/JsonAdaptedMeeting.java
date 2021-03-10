@@ -19,7 +19,7 @@ public class JsonAdaptedMeeting {
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("date") LocalDate date, @JsonProperty("time") LocalTime time,
-                              @JsonProperty("description") String description) {
+            @JsonProperty("description") String description) {
         this.date = date;
         this.time = time;
         this.description = description;
