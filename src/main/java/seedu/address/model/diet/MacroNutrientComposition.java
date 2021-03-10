@@ -1,8 +1,8 @@
 package seedu.address.model.diet;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Wrapper class containing the composition for the various macronutrients.
@@ -71,8 +71,12 @@ public final class MacroNutrientComposition {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         MacroNutrientComposition that = (MacroNutrientComposition) o;
         return Double.compare(that.fats, fats) == 0
                 && Double.compare(that.carbohydrates, carbohydrates) == 0

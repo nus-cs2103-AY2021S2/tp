@@ -1,8 +1,8 @@
 package seedu.address.model.diet;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Wrapper class to contain nutritional breakdown of macronutrient consumption.
@@ -68,8 +68,12 @@ public class DietPlan {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         DietPlan dietPlan = (DietPlan) o;
         return planName.equals(dietPlan.planName)
                 && description.equals(dietPlan.description)
