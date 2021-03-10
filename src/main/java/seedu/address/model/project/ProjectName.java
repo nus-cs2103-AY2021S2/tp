@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Project's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidProjectName(String)}
  */
 public class ProjectName {
 
@@ -27,14 +27,14 @@ public class ProjectName {
      */
     public ProjectName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidProjectName(name), MESSAGE_CONSTRAINTS);
         projectName = name;
     }
 
     /**
      * Returns true if a given string is a valid project name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidProjectName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
