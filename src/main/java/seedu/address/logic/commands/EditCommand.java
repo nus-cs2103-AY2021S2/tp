@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -20,7 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.description.Description;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_SIZE + "SIZE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DRESSCODE + "DRESSCODE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SIZE + "36 "
@@ -96,11 +96,11 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Size updatedSize = editPersonDescriptor.getSize().orElse(personToEdit.getSize());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        DressCode updatedDressCode = editPersonDescriptor.getDressCode().orElse(personToEdit.getDressCode());
         Set<Description> updatedDescriptions = editPersonDescriptor.getDescriptions()
                 .orElse(personToEdit.getDescriptions());
 
-        return new Person(updatedName, updatedSize, updatedEmail, updatedAddress, updatedDescriptions);
+        return new Person(updatedName, updatedSize, updatedEmail, updatedDressCode, updatedDescriptions);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class EditCommand extends Command {
         private Name name;
         private Size size;
         private Email email;
-        private Address address;
+        private DressCode dresscode;
         private Set<Description> descriptions;
 
         public EditPersonDescriptor() {}
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setSize(toCopy.size);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setDressCode(toCopy.dresscode);
             setDescriptions(toCopy.descriptions);
         }
 
@@ -151,7 +151,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, size, email, address, descriptions);
+            return CollectionUtil.isAnyNonNull(name, size, email, dresscode, descriptions);
         }
 
         public void setName(Name name) {
@@ -178,12 +178,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setDressCode(DressCode dresscode) {
+            this.dresscode = dresscode;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<DressCode> getDressCode() {
+            return Optional.ofNullable(dresscode);
         }
 
         /**
@@ -221,7 +221,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getSize().equals(e.getSize())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getDressCode().equals(e.getDressCode())
                     && getDescriptions().equals(e.getDescriptions());
         }
     }

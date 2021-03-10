@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.description.Description;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -19,12 +19,12 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_SIZE = "25";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DRESSCODE = "FORMAL";
 
     private Name name;
     private Size size;
     private Email email;
-    private Address address;
+    private DressCode dresscode;
     private Set<Description> descriptions;
 
     /**
@@ -34,7 +34,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         size = new Size(DEFAULT_SIZE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        dresscode = new DressCode(DEFAULT_DRESSCODE);
         descriptions = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         size = personToCopy.getSize();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        dresscode = personToCopy.getDressCode();
         descriptions = new HashSet<>(personToCopy.getDescriptions());
     }
 
@@ -69,8 +69,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withAddress(String dresscode) {
+        this.dresscode = new DressCode(dresscode);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, size, email, address, descriptions);
+        return new Person(name, size, email, dresscode, descriptions);
     }
 
 }
