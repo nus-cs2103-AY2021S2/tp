@@ -64,7 +64,6 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = new PersonBuilder(BOB).build();
-
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
@@ -78,13 +77,13 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPerson));
 
         // multiple matriculation numbers - last matric number accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + MATRIC_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + FACULTY_DESC_BOB + MATRIC_DESC_AMY + MATRIC_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple faculties - last faculty accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + FACULTY_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_AMY + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
@@ -108,21 +107,21 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPerson));
 
         // multiple vaccination statuses - last vaccination status accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + MATRIC_DESC_AMY
-                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + STATUS_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
+                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_AMY + STATUS_DESC_BOB
                         + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple medical details  - last medical details accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + MATRIC_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_AMY
                         + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
 
         // multiple school residences  - last school residences accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB + MATRIC_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + MATRIC_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
-                        + RESIDENCE_DESC_BOB + RESIDENCE_DESC_AMY,
+                        + RESIDENCE_DESC_AMY + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedPerson));
     }
 
@@ -130,7 +129,7 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         Person expectedPerson = new PersonBuilder(AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + MATRIC_DESC_AMY + FACULTY_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + STATUS_DESC_AMY + DETAILS_DESC_AMY,
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + STATUS_DESC_AMY + DETAILS_DESC_AMY + RESIDENCE_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
