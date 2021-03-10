@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's colour in the address book.
@@ -21,7 +20,7 @@ public class Colour {
      * @param colour A valid colour address.
      */
     public Colour(String colour) {
-        if(colour == " " || colour == " "){
+        if (colour == " " || colour == " ") {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         requireNonNull(colour);
