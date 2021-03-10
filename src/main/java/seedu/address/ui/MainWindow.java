@@ -210,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
                 enterStartMode();
             }
 
-            if(commandText.equals("learn")) {
+            if (commandText.equals("learn")) {
                 enterLearnMode();
             }
 
@@ -221,10 +221,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
-//            if (commandResult.isLearn()) {
-//                handleLearn();
-//            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
