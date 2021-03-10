@@ -8,9 +8,9 @@ import seedu.address.commons.util.DateUtil;
 /**
  * Represents a Task as an Event.
  */
-public class Event extends Task {
+public class Event extends Task implements Recurrable {
     protected LocalDate at;
-    protected Integer recurrance;
+    protected Recurrence recurrence;
 
     /**
      * Constructor for Deadline.
@@ -42,6 +42,25 @@ public class Event extends Task {
     public LocalDate getAt() {
         assert this.at != null : "at should not be null!";
         return this.at;
+    }
+
+    /**
+     * Returns the recurrence interval.
+     * @return Recurrence interval.
+     */
+    @Override
+    public Recurrence getRecurrence() {
+        return this.recurrence;
+    }
+
+    /**
+     * Sets the Recurrence interval to specified level.
+     * @param recurrence Level of Recurrence.
+     */
+    @Override
+    public void setRecurrence(Recurrence recurrence) {
+        assert recurrence != null;
+        this.recurrence = recurrence;
     }
 
     /**
