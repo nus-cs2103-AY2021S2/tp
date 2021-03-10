@@ -22,6 +22,10 @@ public class Mode {
         this.currentMode = MODE_LEARN;
     }
 
+    public void switchModeMenu() {
+        this.currentMode = MODE_MENU;
+    }
+
     public Integer getMode() {
         return this.currentMode;
     }
