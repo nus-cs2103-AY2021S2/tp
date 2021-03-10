@@ -21,3 +21,4 @@ The product website is now live [here](https://ay2021s2-cs2103t-t13-1.github.io/
 
 ### Acknowledgements
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- This project makes use of [simple-json library](https://code.google.com/archive/p/json-simple/), version 1.1.1.
