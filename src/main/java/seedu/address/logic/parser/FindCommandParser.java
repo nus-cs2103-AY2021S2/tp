@@ -31,15 +31,31 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] keywords = trimmedArgs.split("\\s+");
         boolean isTagWord = Arrays.toString(keywords).contains("t/");
+
         if (isTagWord) {
-            Set<String> tagWords = new HashSet<>();
-            for (int index = 0; index < keywords.length; index++) {
-                String word = keywords[index];
-                tagWords.add(word.replaceFirst("t/", ""));
-            }
+            Set<String> tagWords = handleSearchByTag(keywords);
             return new FindCommand(new TagContainsKeywordsPredicate(tagWords));
         } else {
             return new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
+    }
+
+    /**
+     * Manages the given {@code String[]} of arguments to search matching tasks by tag
+     * and returns a Set object that contains the list of tag keywords for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public Set handleSearchByTag(String[] keywords) throws ParseException {
+        Set<String> tagWords = new HashSet<>();
+
+        for (int index = 0; index < keywords.length; index++) {
+            String word = keywords[index];
+            String tagKeyword = word.replaceFirst("t/", "");
+            if (tagKeyword.equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.TAG_USAGE));
+            }
+            tagWords.add(tagKeyword);
+        }
+        return tagWords;
     }
 }

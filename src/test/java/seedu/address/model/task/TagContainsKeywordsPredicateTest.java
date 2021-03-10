@@ -42,18 +42,24 @@ public class TagContainsKeywordsPredicateTest {
 
     @Test
     public void test_tagContainsKeywords_returnsTrue() {
+        TagContainsKeywordsPredicate predicate;
+
         // One keyword
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.singleton(
+        predicate = new TagContainsKeywordsPredicate(Collections.singleton(
                 "Alice"));
         assertTrue(predicate.test(new TaskBuilder().withTags("Alice").build()));
 
-        // Multiple keywords
+        // All multiple tag keywords match multiple tags
         predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Alice", "Bob")));
         assertTrue(predicate.test(new TaskBuilder().withTags("Alice", "Bob").build()));
 
-        // Only one matching keyword
-        predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Bob", "Carol")));
-        assertTrue(predicate.test(new TaskBuilder().withTags("Alice Carol").build()));
+        // All multiple tag keywords match multiple tags (Order does not matter)
+        predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Bob", "Alice")));
+        assertTrue(predicate.test(new TaskBuilder().withTags("Alice", "Bob").build()));
+
+        // All multiple tag keywords match some of the tags
+        predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Alice", "Bob")));
+        assertTrue(predicate.test(new TaskBuilder().withTags("Alice", "Bob", "Charles").build()));
 
         // Mixed-case keywords
         predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("aLIce", "bOB")));
@@ -62,18 +68,28 @@ public class TagContainsKeywordsPredicateTest {
 
     @Test
     public void test_tagDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.EMPTY_SET);
-        assertFalse(predicate.test(new TaskBuilder().withTags("Alice").build()));
+        TagContainsKeywordsPredicate predicate;
+
+        // Only match partial keyword
+        predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Car")));
+        assertFalse(predicate.test(new TaskBuilder().withTags("Carol").build()));
+
+        // Only match partial keyword, have extra characters
+        predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Carol")));
+        assertFalse(predicate.test(new TaskBuilder().withTags("Car").build()));
 
         // Non-matching keyword
         predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Carol")));
-        assertFalse(predicate.test(new TaskBuilder().withTags("Alice Bob").build()));
+        assertFalse(predicate.test(new TaskBuilder().withTags("AliceBob").build()));
 
-        // Keywords match phone, email and address, but does not match tag
+        // Keywords match title, phone, email and address, but does not match tag
         predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList
                 ("Alice", "12345", "alice@email.com", "Main Street")));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("CS2103").build()));
+
+        // Not all keywords match with the tags
+        predicate = new TagContainsKeywordsPredicate(new HashSet<>(Arrays.asList("Bob", "Carol")));
+        assertFalse(predicate.test(new TaskBuilder().withTags("Alice", "Bob").build()));
     }
 }

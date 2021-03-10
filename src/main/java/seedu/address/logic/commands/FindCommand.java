@@ -20,6 +20,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
+    public static final String TAG_USAGE = "Please enter input field to find tasks by tag(s) "
+            + "in correct format as follows:" + COMMAND_WORD + " t/ [TAG_NAME]";
+
     private final Predicate predicate;
 
     public FindCommand(Predicate predicate) {
