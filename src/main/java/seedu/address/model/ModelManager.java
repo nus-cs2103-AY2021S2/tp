@@ -30,18 +30,26 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+            ReadOnlyCommandHistory commandHistory) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, commandHistory);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", user prefs " + userPrefs
+                + " and command history " + commandHistory);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        // Always starts empty
-        commandHistory = new CommandHistory();
+        this.commandHistory = new CommandHistory(commandHistory);
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+        this(addressBook, userPrefs, new CommandHistory());
     }
 
     public ModelManager() {
@@ -163,7 +171,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && commandHistory.equals(other.commandHistory);
     }
 
 }

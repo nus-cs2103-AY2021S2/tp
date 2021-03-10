@@ -27,6 +27,8 @@ public class ViewHistoryCommand extends Command {
 
     public static final String MESSAGE_HEADER_SUCCESS = "Last %d command(s):\n";
 
+    public static final String MESSAGE_ENTRY_FORMAT = "%d:\t%s\n";
+
     private final Optional<Integer> optCount;
 
     /**
@@ -43,6 +45,13 @@ public class ViewHistoryCommand extends Command {
      */
     public ViewHistoryCommand() {
         optCount = Optional.empty();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewHistoryCommand // instanceof handles nulls
+                && optCount.equals(((ViewHistoryCommand) other).optCount)); // state check
     }
 
     /**
@@ -73,16 +82,9 @@ public class ViewHistoryCommand extends Command {
         for (int i = history.size() - 1; i >= history.size() - count; i--) {
             final int entryNum = i + 1;
             final String entryText = history.get(i).toString();
-            msg.append(String.format("%d:\t%s\n", entryNum, entryText));
+            msg.append(String.format(MESSAGE_ENTRY_FORMAT, entryNum, entryText));
         }
 
         return new CommandResult(msg.toString());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ViewHistoryCommand // instanceof handles nulls
-                && optCount == ((ViewHistoryCommand) other).optCount); // state check
     }
 }

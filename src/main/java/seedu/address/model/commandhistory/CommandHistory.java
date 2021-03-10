@@ -2,6 +2,7 @@ package seedu.address.model.commandhistory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents the command history of the application.
@@ -11,12 +12,24 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     private final List<CommandHistoryEntry> entries;
 
     /**
+     * Constructs a {@code CommandHistory} that is a copy of {@code other}.
+     *
+     * @param other The {@code CommandHistory} to copy.
+     */
+    public CommandHistory(ReadOnlyCommandHistory other) {
+        entries = new ArrayList<>(other.size());
+        for (int i = 0; i < other.size(); i++) {
+            entries.add(other.get(i));
+        }
+    }
+
+    /**
      * Constructs a {@code CommandHistory} with an initial list of entries.
      *
      * @param entries The initial list of entries.
      */
     public CommandHistory(List<CommandHistoryEntry> entries) {
-        this.entries = entries;
+        this.entries = new ArrayList<>(entries);
     }
 
     /**
@@ -28,6 +41,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
 
     /**
      * Appends the {@code CommandHistoryEntry} to the end of the command history.
+     *
      * @param entry The entry to append.
      */
     public void appendEntry(CommandHistoryEntry entry) {
@@ -35,13 +49,21 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     }
 
     /**
-     * Returns the number of entries in this {@code CommandHistory}.
+     * Two {@code CommandHistory} objects are equal when all entries are equal and in the same order.
      *
-     * @return The number of entries in this {@code CommandHistory}.
+     * @param other Other object to compare with.
+     * @return True if equal. False otherwise.
      */
     @Override
-    public int size() {
-        return entries.size();
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof CommandHistory)) {
+            return false;
+        }
+        CommandHistory that = (CommandHistory) other;
+        return entries.equals(that.entries);
     }
 
     /**
@@ -53,5 +75,20 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     @Override
     public CommandHistoryEntry get(int index) {
         return entries.get(index);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(entries);
+    }
+
+    /**
+     * Returns the number of entries in this {@code CommandHistory}.
+     *
+     * @return The number of entries in this {@code CommandHistory}.
+     */
+    @Override
+    public int size() {
+        return entries.size();
     }
 }
