@@ -6,12 +6,13 @@ import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a Person's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
-public class Name implements Filterable {
+public class Gender implements Filterable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Gender should only contain alphanumeric characters and spaces, should be female or male,"
+                    + "and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -19,46 +20,46 @@ public class Name implements Filterable {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    public final String personGender;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param gender A valid gender.
      */
-    public Name(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+    public Gender(String gender) {
+        requireNonNull(gender);
+        checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
+        personGender = gender;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidGender(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
 
     @Override
     public String toString() {
-        return fullName;
+        return personGender;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                && personGender.equals(((Name) other).fullName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return personGender.hashCode();
     }
 
     @Override
     public boolean filter(String s) {
-        return fullName.contains(s);
+        return personGender.contains(s);
     }
 }
