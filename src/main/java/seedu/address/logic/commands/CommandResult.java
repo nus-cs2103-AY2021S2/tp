@@ -17,17 +17,15 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Enter the learn mode. */
-    private final boolean learn;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean learn) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.learn = learn;
+//        this.learn = learn;
     }
 
     /**
@@ -35,7 +33,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -50,9 +48,6 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isLearn() {
-        return learn;
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -68,13 +63,12 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && learn == otherCommandResult.learn;
+                && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, learn);
+        return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
 }

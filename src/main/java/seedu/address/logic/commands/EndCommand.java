@@ -8,19 +8,18 @@ import seedu.address.model.Model;
 /**
  * Lists all flashcards in the address book to the user.
  */
-public class ListCommand extends Command {
+public class EndCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "end";
 
-    public static final String MESSAGE_SUCCESS = "Listed all flashcards";
+    public static final String MESSAGE_SUCCESS = "You are now in start mode";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
 }
