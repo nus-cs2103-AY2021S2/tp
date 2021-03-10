@@ -21,8 +21,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.human.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.human.PhoneContainsKeywordsPredicate;
+import seedu.address.model.human.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.human.person.NameContainsKeywordsPredicate;
 
 /**
