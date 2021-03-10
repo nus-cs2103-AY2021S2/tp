@@ -30,7 +30,7 @@
           </Menu>
                <Menu mnemonicParsing="false" text="View">
                  <items>
-                     <CheckMenuItem mnemonicParsing="false" onAction="#handleCliVisibility" selected="true" text="Show CLI" />
+                     <CheckMenuItem fx:id="cliVisibilityCheckMenuItem" mnemonicParsing="false" onAction="#handleCliVisibility" selected="true" text="Show CLI" />
                  </items>
                </Menu>
           <Menu mnemonicParsing="false" text="Help">
