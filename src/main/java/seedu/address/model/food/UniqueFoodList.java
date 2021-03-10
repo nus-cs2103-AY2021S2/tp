@@ -1,6 +1,6 @@
 package seedu.address.model.food;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,4 +89,22 @@ public class UniqueFoodList {
         }
         return stringBuilder.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UniqueFoodList that = (UniqueFoodList) o;
+        return Objects.equals(foodList, that.foodList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(foodList);
+    }
+
 }

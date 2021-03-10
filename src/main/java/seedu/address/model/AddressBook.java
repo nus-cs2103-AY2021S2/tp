@@ -18,7 +18,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
-    private final UniqueFoodList foodList;
+    private UniqueFoodList foodList;
     //Used to have an old comment here, removed due to checkstyle error. Refer to old template for more.
     {
         persons = new UniquePersonList();
@@ -29,11 +29,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Persons in the {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Creates an AddressBook using the Persons in the {@code toBeCopied}, and adds the associated {@code FoodList}.
+     */
+    public AddressBook(ReadOnlyAddressBook toBeCopied, UniqueFoodList uniqueFoodList) {
+        this();
+        resetData(toBeCopied);
+        this.foodList = uniqueFoodList;
     }
 
     //// list overwrite operations

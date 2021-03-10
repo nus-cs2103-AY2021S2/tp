@@ -95,6 +95,12 @@ public class AddressBookTest {
         }
 
         @Override
+        public UniqueFoodList getFoodList() {
+            // TODO: Improve abstraction
+            return null;
+        }
+
+        @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }

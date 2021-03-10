@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 
 /**
@@ -52,6 +53,9 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    /** Returns the UniqueFoodList */
+    UniqueFoodList getUniqueFoodList();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
