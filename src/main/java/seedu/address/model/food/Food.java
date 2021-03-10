@@ -14,22 +14,21 @@ public class Food {
             + "blank.";
     public static final String DIGIT_CONSTRAINTS = "Double value input can only be positive and more than 0.";
 
-    public final String name;
+    private final String name;
     private double fats;
     private double carbos;
     private double proteins;
     private double kiloCalories;
-    private boolean isUpdated; //Sets to True once any update function is called for this food item.
 
     /**
      * Initialises the food class.
      *
      * @param name     food name
-     * @param fats     amount of fats
      * @param carbos   amount of carbos
+     * @param fats     amount of fats
      * @param proteins amount of proteins
      */
-    public Food(String name, double fats, double carbos, double proteins) {
+    public Food(String name, double carbos, double fats, double proteins) {
         requireNonNull(name);
         checkArgument(isValidFoodName(name), MESSAGE_CONSTRAINTS); //Checks for all whitespaces and valid character
         checkArgument(isValidNumber(fats, carbos, proteins), DIGIT_CONSTRAINTS); //Checks for positive doubles inc 0.
@@ -38,7 +37,15 @@ public class Food {
         this.carbos = carbos;
         this.proteins = proteins;
         this.kiloCalories = calculateKiloCalories();
-        this.isUpdated = false;
+    }
+
+    /**
+     * Gets food name.
+     *
+     * @return food name
+     */
+    public String getName() {
+        return this.name;
     }
 
     public String getName() {
@@ -97,7 +104,6 @@ public class Food {
     public Food updateFats(double fats) {
         this.fats = fats;
         updateKiloCalories();
-        setUpdateTrue();
         return this;
     }
 
@@ -111,7 +117,6 @@ public class Food {
     public Food updateCarbos(double carbos) {
         this.carbos = carbos;
         updateKiloCalories();
-        setUpdateTrue();
         return this;
     }
 
@@ -124,15 +129,7 @@ public class Food {
     public Food updateProteins(double proteins) {
         this.proteins = proteins;
         updateKiloCalories();
-        setUpdateTrue();
         return this;
-    }
-
-    /**
-     * Sets food data as updated if it is updated at least once.
-     */
-    public void setUpdateTrue() {
-        this.isUpdated = true;
     }
 
     /**
@@ -157,14 +154,8 @@ public class Food {
 
     @Override
     public String toString() {
-        String statusString = new String();
-        if (this.isUpdated) {
-            statusString = "updated";
-        } else {
-            statusString = "saved";
-        }
         String result = this.name + " (Protein: " + this.proteins + "g, Carbohydrates: " + this.carbos + "g, Fats: "
-                + this.fats + ") has been " + statusString + ".";
+                + this.fats + "g)";
         return result;
     }
 }

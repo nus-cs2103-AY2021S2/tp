@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.food.Food;
 import seedu.address.model.person.Person;
 
 /**
@@ -56,6 +57,36 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a food with the same name as {@code food} exists in the food list.
+     */
+    boolean hasFoodItem(Food food);
+
+    /**
+     * Adds the given food item.
+     * {@code food} must not already exist in the food list.
+     */
+    void addFoodItem(Food food);
+
+    /**
+     * Updates food in food item list.
+     * @param food updated food item
+     */
+    void updateFoodItem(Food food);
+
+    /**
+     * Deletes food in food item list.
+     * @param index food index to be deleted
+     */
+    void deleteFoodItem(int index);
+
+    /**
+     * Lists all food items from the food items list.
+     *
+     * @return string output of all the food items
+     */
+    String listFoodItem();
 
     /**
      * Deletes the given person.

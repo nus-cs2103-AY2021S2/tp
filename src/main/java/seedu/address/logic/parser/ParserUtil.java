@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +35,49 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}
+     *
+     * @param date date string
+     * @return a DateTime object
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        LocalDateTime dateTime = LocalDateTime.parse(trimmedDate, formatter);
+        return dateTime;
+    }
+
+    /**
+     * Parses a {@code String value} into a {@code Double}
+     *
+     * @param doubleValue double string
+     * @return a Double value
+     * @throws ParseException if the given {@code value} is invalid.
+     */
+    public static Double parseDouble(String doubleValue) throws ParseException {
+        requireNonNull(doubleValue);
+        String trimmedValue = doubleValue.trim();
+        return Double.valueOf(trimmedValue);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseFoodName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
     }
 
     /**
