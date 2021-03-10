@@ -1,9 +1,16 @@
 package seedu.address.model.project;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.task.Interval;
+import seedu.address.model.task.repeatable.Event;
 
 public class EventListTest {
 
@@ -18,4 +25,11 @@ public class EventListTest {
         assertThrows(NullPointerException.class, () -> new EventList(null));
     }
 
+    @Test
+    public void constructor_singleEvent_valid() {
+        Event event = new Event("Test Event", Interval.NONE, LocalDate.of(2020, 1, 1));
+        ArrayList<Event> events = new ArrayList<>();
+        events.add(event);
+        assertDoesNotThrow(() -> new EventList(events));
+    }
 }
