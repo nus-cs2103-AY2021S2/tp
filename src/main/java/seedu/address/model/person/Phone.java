@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Taggable;
+import seedu.address.model.tag.Filterable;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone extends Taggable {
+public class Phone implements Filterable {
 
 
     public static final String MESSAGE_CONSTRAINTS =
