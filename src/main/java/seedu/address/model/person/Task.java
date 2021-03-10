@@ -20,19 +20,16 @@ public class Task {
     private final Phone phone;
     private final Email email;
 
-    // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(ModuleName moduleName, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(moduleName, phone, email, address, tags);
+    public Task(ModuleName moduleName, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(moduleName, phone, email, tags);
         this.moduleName = moduleName;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -48,10 +45,6 @@ public class Task {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -64,7 +57,7 @@ public class Task {
      * Returns true if both persons have the same moduleName.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Task otherTask) {
+    public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
             return true;
         }
@@ -91,14 +84,13 @@ public class Task {
         return otherTask.getModuleName().equals(getModuleName())
                 && otherTask.getPhone().equals(getPhone())
                 && otherTask.getEmail().equals(getEmail())
-                && otherTask.getAddress().equals(getAddress())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleName, phone, email, address, tags);
+        return Objects.hash(moduleName, phone, email, tags);
     }
 
     @Override
@@ -108,9 +100,7 @@ public class Task {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
