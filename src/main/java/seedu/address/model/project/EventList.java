@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.model.task.repeatable.Event;
 
@@ -29,6 +30,14 @@ public class EventList {
 
     public List<Event> getEvents() {
         return events;
+    }
+
+    /**
+     * Returns a sequential stream with this {@code EventList} as its source.
+     * @return a sequential Stream over the events in this {@code EventList}.
+     */
+    public Stream<Event> stream() {
+        return events.stream();
     }
 
     @Override

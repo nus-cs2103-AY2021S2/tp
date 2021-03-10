@@ -2,6 +2,7 @@ package seedu.address.model.task.completable;
 
 import java.util.Objects;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.task.Completable;
 
 /**
@@ -44,6 +45,11 @@ public class Todo extends Completable {
         Todo otherTodo = (Todo) other;
         return otherTodo.getDescription().equals(getDescription())
                 && otherTodo.getIsDone().equals(getIsDone());
+    }
+
+    @Override
+    public String getStringByDate() {
+        return null;
     }
 
     @Override

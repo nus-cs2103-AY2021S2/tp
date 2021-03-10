@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.model.task.Completable;
+import seedu.address.model.task.repeatable.Event;
 
 public class CompletableTaskList {
 
@@ -29,6 +31,14 @@ public class CompletableTaskList {
 
     public List<Completable> getCompletableTasks() {
         return completableTasks;
+    }
+
+    /**
+     * Returns a sequential stream with this {@code CompletableTaskList} as its source.
+     * @return a sequential Stream over the completables in this {@code CompletableTaskList}.
+     */
+    public Stream<Completable> stream() {
+        return completableTasks.stream();
     }
 
     @Override

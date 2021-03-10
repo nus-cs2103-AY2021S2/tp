@@ -83,6 +83,12 @@ public abstract class Completable {
     }
 
     /**
+     * Returns a String representation of the by date, or null if the completable does not have a by date.
+     * @return String representation of by date or null if the completable does not have a by date.
+     */
+    public abstract String getStringByDate();
+
+    /**
      * Checks if an instance of a Completable is equal to another Object.
      * @param other Object to be compared with.
      * @return True if both objects are equal. Else return false.

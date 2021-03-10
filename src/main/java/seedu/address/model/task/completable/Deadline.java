@@ -68,6 +68,11 @@ public class Deadline extends Completable {
     }
 
     @Override
+    public String getStringByDate() {
+        return DateUtil.decodeDateForStorage(by);
+    }
+
+    @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(description, isDone, by);
