@@ -27,8 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultiMap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PATTERN);
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_PATTERN);
         String nameString = argMultiMap.getPreamble();
         if (argMultiMap.getValue(PREFIX_PATTERN).isPresent()) {
             try {

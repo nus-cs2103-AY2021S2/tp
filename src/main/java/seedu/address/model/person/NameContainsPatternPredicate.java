@@ -4,6 +4,9 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
+/**
+ * Tests that a {@code Person}'s {@code Name} matches the pattern given.
+ */
 public class NameContainsPatternPredicate implements Predicate<Person> {
     private final Pattern pattern;
 
@@ -25,7 +28,7 @@ public class NameContainsPatternPredicate implements Predicate<Person> {
             return false;
         }
         NameContainsPatternPredicate that = (NameContainsPatternPredicate) o;
-        return Objects.equals(pattern, that.pattern);
+        return pattern.toString().equals(that.pattern.toString());
     }
 
     @Override
