@@ -49,16 +49,16 @@
               <Insets bottom="5" left="10" right="10" top="5" />
             </padding>
           </StackPane>
-          <VBox fx:id="personList" minWidth="340" prefWidth="482.0" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowSpan="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <VBox fx:id="flashcardList" minWidth="340" prefWidth="482.0" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowSpan="3" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="flashcardListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
 
 
           <VBox minWidth="500" prefWidth="511.0" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-            <StackPane fx:id="personcardViewCardPlaceholder" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="flashcardViewCardPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
         </GridPane>
 

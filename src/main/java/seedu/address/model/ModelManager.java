@@ -26,13 +26,13 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyFlashBack addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFlashBack flashBack, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(flashBack, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + flashBack + " and user prefs " + userPrefs);
 
-        this.flashBack = new FlashBack(addressBook);
+        this.flashBack = new FlashBack(flashBack);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFlashcards = new FilteredList<>(this.flashBack.getPersonList());
     }

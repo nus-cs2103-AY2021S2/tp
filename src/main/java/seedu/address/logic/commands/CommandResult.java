@@ -8,6 +8,7 @@ import java.util.Objects;
  * Represents the result of a command execution.
  */
 public class CommandResult {
+    private static final int DEFAULT_INDEX = -1;
 
     private final String feedbackToUser;
 
@@ -18,12 +19,36 @@ public class CommandResult {
     private final boolean exit;
 
     /**
+     * Turn on the view mode.
+     */
+    private final boolean showView;
+
+    /**
+     * Get the index of the card to show to the user.
+     */
+    private final int index;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showView = false;
+        this.index = DEFAULT_INDEX;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields {@code feedbackToUser, index},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, int index) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.showView = true;
+        this.index = index;
     }
 
     /**
@@ -38,8 +63,16 @@ public class CommandResult {
         return feedbackToUser;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isShowView() {
+        return showView;
     }
 
     public boolean isExit() {

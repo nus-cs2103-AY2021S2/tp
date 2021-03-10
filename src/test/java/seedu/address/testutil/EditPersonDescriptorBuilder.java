@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.flashcard.Priority;
-import seedu.address.model.flashcard.Category;
-import seedu.address.model.flashcard.Question;
-import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Priority;
+import seedu.address.model.flashcard.Question;
 import seedu.address.model.tag.Tag;
 
 /**

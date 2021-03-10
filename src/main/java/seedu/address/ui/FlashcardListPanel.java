@@ -13,9 +13,9 @@ import seedu.address.model.flashcard.Flashcard;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class FlashcardListPanel extends UiPart<Region> {
+    private static final String FXML = "FlashcardListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
 
     @FXML
     private ListView<Flashcard> personListView;
@@ -23,16 +23,16 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Flashcard> flashcardList) {
+    public FlashcardListPanel(ObservableList<Flashcard> flashcardList) {
         super(FXML);
         personListView.setItems(flashcardList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new FlashcardListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Flashcard> {
+    class FlashcardListViewCell extends ListCell<Flashcard> {
         @Override
         protected void updateItem(Flashcard flashcard, boolean empty) {
             super.updateItem(flashcard, empty);
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(flashcard, getIndex() + 1).getRoot());
+                setGraphic(new FlashbackCard(flashcard, getIndex() + 1).getRoot());
             }
         }
     }
