@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.budgetbaby.abmodel.AddressBook;
 import seedu.budgetbaby.abmodel.Model;
+import seedu.budgetbaby.logic.commands.CommandResult;
 
 /**
  * Clears the address book.

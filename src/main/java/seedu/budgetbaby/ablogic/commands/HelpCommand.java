@@ -1,6 +1,7 @@
 package seedu.budgetbaby.ablogic.commands;
 
 import seedu.budgetbaby.abmodel.Model;
+import seedu.budgetbaby.logic.commands.CommandResult;
 
 /**
  * Format full help instructions for every command for display.

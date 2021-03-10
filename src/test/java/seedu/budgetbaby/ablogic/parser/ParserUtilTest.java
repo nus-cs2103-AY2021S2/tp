@@ -2,7 +2,7 @@ package seedu.budgetbaby.ablogic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.budgetbaby.ablogic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.budgetbaby.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
 import static seedu.budgetbaby.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -18,6 +18,7 @@ import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Phone;
 import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.logic.parser.ParserUtil;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 public class ParserUtilTest {

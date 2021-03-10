@@ -1,4 +1,4 @@
-package seedu.budgetbaby.ablogic.parser;
+package seedu.budgetbaby.logic.parser;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.

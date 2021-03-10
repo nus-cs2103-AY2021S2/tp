@@ -1,4 +1,4 @@
-package seedu.budgetbaby.ablogic.parser;
+package seedu.budgetbaby.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;

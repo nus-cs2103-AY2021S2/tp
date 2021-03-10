@@ -24,6 +24,7 @@ import seedu.budgetbaby.abmodel.tag.Tag;
 import seedu.budgetbaby.commons.core.Messages;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.commons.util.CollectionUtil;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 
 /**

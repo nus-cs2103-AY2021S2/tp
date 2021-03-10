@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import seedu.budgetbaby.abstorage.StorageManager;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.commons.exceptions.DataConversionException;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
@@ -17,7 +16,7 @@ import seedu.budgetbaby.model.UserPrefs;
  */
 public class BudgetBabyStorageManager implements BudgetBabyStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(BudgetBabyStorageManager.class);
     private BudgetTrackerStorage budgetTrackerStorage;
     private UserPrefsStorage userPrefsStorage;
 

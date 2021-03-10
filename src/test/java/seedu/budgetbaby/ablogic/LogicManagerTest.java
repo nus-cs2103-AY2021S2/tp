@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.budgetbaby.ablogic.commands.AddCommand;
-import seedu.budgetbaby.ablogic.commands.CommandResult;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.ablogic.commands.ListCommand;
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ModelManager;

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ModelManager;
+import seedu.budgetbaby.logic.commands.CommandResult;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();

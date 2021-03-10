@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import seedu.budgetbaby.ablogic.commands.CommandResult;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.logic.BudgetBabyLogic;

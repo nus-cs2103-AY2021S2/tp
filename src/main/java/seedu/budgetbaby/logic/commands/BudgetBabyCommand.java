@@ -1,6 +1,5 @@
 package seedu.budgetbaby.logic.commands;
 
-import seedu.budgetbaby.ablogic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 

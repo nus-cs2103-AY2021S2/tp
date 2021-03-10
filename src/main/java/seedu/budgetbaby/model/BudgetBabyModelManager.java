@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.budgetbaby.abmodel.ModelManager;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.record.FinancialRecord;
@@ -18,7 +17,7 @@ import seedu.budgetbaby.model.record.FinancialRecord;
  * Represents the in-memory model of the address book data.
  */
 public class BudgetBabyModelManager implements BudgetBabyModel {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Logger logger = LogsCenter.getLogger(BudgetBabyModelManager.class);
 
     private final BudgetTracker budgetTracker;
     private final UserPrefs userPrefs;

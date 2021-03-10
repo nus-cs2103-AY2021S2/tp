@@ -18,6 +18,7 @@ import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.person.NameContainsKeywordsPredicate;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.commons.core.index.Index;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.testutil.EditPersonDescriptorBuilder;
 

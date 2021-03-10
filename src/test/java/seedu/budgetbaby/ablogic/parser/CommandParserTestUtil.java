@@ -3,6 +3,7 @@ package seedu.budgetbaby.ablogic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.budgetbaby.ablogic.commands.Command;
+import seedu.budgetbaby.logic.parser.Parser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 /**

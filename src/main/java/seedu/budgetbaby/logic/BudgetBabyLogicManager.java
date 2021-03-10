@@ -5,11 +5,10 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.ablogic.LogicManager;
-import seedu.budgetbaby.ablogic.commands.CommandResult;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.BudgetBabyParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
@@ -23,7 +22,7 @@ import seedu.budgetbaby.storage.BudgetBabyStorage;
  */
 public class BudgetBabyLogicManager implements BudgetBabyLogic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    private final Logger logger = LogsCenter.getLogger(BudgetBabyLogicManager.class);
 
     private final BudgetBabyModel model;
     private final BudgetBabyStorage storage;

@@ -1,4 +1,4 @@
-package seedu.budgetbaby.ablogic.commands;
+package seedu.budgetbaby.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 

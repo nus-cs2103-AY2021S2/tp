@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.ablogic.commands.Command;
-import seedu.budgetbaby.ablogic.commands.CommandResult;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.ablogic.parser.AddressBookParser;
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;

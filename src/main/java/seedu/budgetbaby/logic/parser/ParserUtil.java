@@ -1,4 +1,4 @@
-package seedu.budgetbaby.ablogic.parser;
+package seedu.budgetbaby.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 

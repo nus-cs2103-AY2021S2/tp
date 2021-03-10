@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.person.NameContainsKeywordsPredicate;
 import seedu.budgetbaby.commons.core.Messages;
+import seedu.budgetbaby.logic.commands.CommandResult;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

@@ -3,7 +3,7 @@ package seedu.budgetbaby.logic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.ablogic.commands.CommandResult;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;

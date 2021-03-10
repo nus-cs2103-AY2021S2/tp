@@ -9,6 +9,7 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 
 /**

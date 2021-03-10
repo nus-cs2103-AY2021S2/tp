@@ -1,4 +1,4 @@
-package seedu.budgetbaby.ablogic.parser;
+package seedu.budgetbaby.logic.parser;
 
 import seedu.budgetbaby.ablogic.commands.Command;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;

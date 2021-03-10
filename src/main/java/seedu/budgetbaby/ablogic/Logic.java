@@ -3,7 +3,7 @@ package seedu.budgetbaby.ablogic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.ablogic.commands.CommandResult;
+import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.abmodel.ReadOnlyAddressBook;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.commons.core.GuiSettings;

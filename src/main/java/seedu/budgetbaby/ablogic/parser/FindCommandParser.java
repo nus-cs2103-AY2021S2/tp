@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.budgetbaby.ablogic.commands.FindCommand;
 import seedu.budgetbaby.abmodel.person.NameContainsKeywordsPredicate;
+import seedu.budgetbaby.logic.parser.Parser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 /**

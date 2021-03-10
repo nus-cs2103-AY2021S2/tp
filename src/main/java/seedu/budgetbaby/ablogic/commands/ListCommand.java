@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.abmodel.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.budgetbaby.abmodel.Model;
+import seedu.budgetbaby.logic.commands.CommandResult;
 
 /**
  * Lists all persons in the address book to the user.
