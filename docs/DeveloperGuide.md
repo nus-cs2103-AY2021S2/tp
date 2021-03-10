@@ -160,13 +160,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 |--------|---------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 |* * *   |Driver                     |select passengers to be picked up                                |I can carpool with my colleagues                                                                |
 |* * *   |Driver                     |search for specific type of passengers                           |I can see if any passengers fulfil my criteria and view their carpool details                   |
-|* * *   |Driver                     |list all passengers                                              |                                                                                                |
-|* * *   |Passenger                  |create my profile                                                |                                                                                                |
+|* * *   |Driver                     |list all passengers                                              |I can see all the passengers available                                                                                                |
+|* * *   |Passenger                  |create my profile                                                |I can find carpooling drivers and be contacted by the driver if needed                                                                                                |
 |* * *   |Passenger                  |delete my profile                                                |my data will not be stored when I have stopped the service                                      |
 |* *     |Driver                     |filter passengers' destination and pickup point based on location|I don't have to spend too long to pick up or drop off passengers and minimise my travelling time|
 |* *     |Female Passenger           |find only female drivers                                         |I can be comfortable                                                                            |
 |*       |User concerned with privacy|limit the information I want to disclose                         |my private information exposed is limited                                                       |
-|*       |Driver                     |Indicate one-off trips                                           |                                                                                                |
+|*       |Driver                     |Indicate one-off trips                                           |my passengers would understand this is not a recurring trip                                                                                                |
 |* *     |Passenger                  |edit drop off location                                           |change the destination if needed and be more flexible                                           |
 |*       |Passenger                  |indicate the price willing to pay                                |I can incentivise the drivers to more likely to choose me and pick me up on time                |
 
