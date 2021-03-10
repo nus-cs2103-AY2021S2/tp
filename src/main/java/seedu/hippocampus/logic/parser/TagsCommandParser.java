@@ -16,14 +16,13 @@ public class TagsCommandParser implements Parser<TagsCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public TagsCommand parse(String args) throws ParseException {
-        if (args.trim().equals("")) {
-            return new TagsCommand(tag -> true);
-        }
-
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_FIND);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FIND);
 
         Optional<String> keyword = argMultimap.getValue(PREFIX_FIND);
+
+        if (keyword.isEmpty() && argMultimap.getPreamble().isEmpty()) {
+            return new TagsCommand(tag -> true);
+        }
 
         if (keyword.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagsCommand.MESSAGE_USAGE));

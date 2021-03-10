@@ -29,13 +29,13 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         boolean noName = !argMap.getValue(PREFIX_NAME).isPresent();
         boolean noTag = !argMap.getValue(PREFIX_TAG).isPresent();
-        boolean noNameOrTag = noName && noTag;
+        boolean noNameAndNoTag = noName && noTag;
 
         boolean moreThanOneName = argMap.getAllValues(PREFIX_NAME).size() > 1;
         boolean moreThanOneTag = argMap.getAllValues(PREFIX_TAG).size() > 1;
         boolean invalidNumberOfNamesOrTag = moreThanOneName || moreThanOneTag;
 
-        if (noNameOrTag || invalidNumberOfNamesOrTag) {
+        if (noNameAndNoTag || invalidNumberOfNamesOrTag) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

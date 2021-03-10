@@ -94,5 +94,5 @@ public interface Model {
      * Sorts the filtered person list to be sorted by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void sortFilteredPersonList(Comparator<Person> comparator);
+    void sortPersonList(Comparator<Person> comparator);
 }

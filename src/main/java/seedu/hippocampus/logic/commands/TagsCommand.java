@@ -16,7 +16,7 @@ public class TagsCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tags";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tags in the Hippocampus. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tags and the count of person tagged in Hippocampus."
             + "If keyword is given, list all tags containing given keyword.\n"
             + "Parameters: [-f TAG]\n"
             + "Example: find -f class";
@@ -30,9 +30,10 @@ public class TagsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         Map<Tag, Integer> tags = new HashMap<>();
-        model.getAddressBook().getPersonList().forEach(p ->
-            p.getTags().forEach(t ->
-                tags.compute(t, (k, v) -> v == null ? 1 : v + 1)));
+        model.getAddressBook()
+            .getPersonList()
+            .forEach(p -> p.getTags()
+                    .forEach(t ->tags.compute(t, (k, v) -> v == null ? 1 : v + 1)));
 
         String output = tags.entrySet().stream()
             .filter(t -> this.predicate.test(t.getKey()))

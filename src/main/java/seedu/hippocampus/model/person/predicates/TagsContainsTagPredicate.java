@@ -4,6 +4,9 @@ import java.util.function.Predicate;
 
 import seedu.hippocampus.model.person.Person;
 
+/**
+ * Tests that a {@code Person}'s {@code Tag}s matches the tag given.
+ */
 public class TagsContainsTagPredicate implements Predicate<Person> {
     private final String tag;
 
@@ -13,7 +16,7 @@ public class TagsContainsTagPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getTags().stream().anyMatch(tag -> tag.tagName.equals(this.tag));
+        return person.getTags().stream().anyMatch(tag -> tag.tagName.contains(this.tag));
     }
 
     @Override
