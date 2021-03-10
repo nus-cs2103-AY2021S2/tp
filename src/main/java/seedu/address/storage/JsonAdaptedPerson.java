@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Colour;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Size;
@@ -26,7 +26,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String size;
-    private final String email;
+    private final String colour;
     private final String address;
     private final List<JsonAdaptedDescription> descriptions = new ArrayList<>();
 
@@ -35,11 +35,11 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("size") String size,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("colour") String colour, @JsonProperty("address") String address,
             @JsonProperty("addedDescriptions") List<JsonAdaptedDescription> addedDescriptions) {
         this.name = name;
         this.size = size;
-        this.email = email;
+        this.colour = colour;
         this.address = address;
         if (addedDescriptions != null) {
             this.descriptions.addAll(addedDescriptions);
@@ -52,7 +52,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         size = source.getSize().value;
-        email = source.getEmail().value;
+        colour = source.getColour().colour;
         address = source.getAddress().value;
         descriptions.addAll(source.getDescriptions().stream()
                 .map(JsonAdaptedDescription::new)
@@ -84,15 +84,12 @@ class JsonAdaptedPerson {
         if (!Size.isValidSize(size)) {
             throw new IllegalValueException(Size.MESSAGE_CONSTRAINTS);
         }
-        final Size modelsize = new Size(size);
+        final Size modelSize = new Size(size);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (colour == null || !Colour.isValidColour(colour)) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Colour.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
+        final Colour modelColour = new Colour(colour);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -103,7 +100,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Description> modelDescriptions = new HashSet<>(garmentDescriptions);
-        return new Person(modelName, modelsize, modelEmail, modelAddress, modelDescriptions);
+        return new Person(modelName, modelSize, modelColour, modelAddress, modelDescriptions);
     }
 
 }
