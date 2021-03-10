@@ -41,8 +41,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("school") String school,
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
-                             @JsonProperty("guardian's name") String guardianName,
-                             @JsonProperty("guardian's phone") String guardianPhone,
+                             @JsonProperty("guardianName") String guardianName,
+                             @JsonProperty("guardianPhone") String guardianPhone,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.school = school;
@@ -127,7 +127,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(guardianName)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelGuardianName = new Name(guardianName);
 
@@ -135,7 +135,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(guardianPhone)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelGuardianPhone = new Phone(guardianPhone);
 

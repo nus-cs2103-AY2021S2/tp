@@ -77,8 +77,9 @@ public class AddCommandParserTest {
                 + TAG_DESC_MATH, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_MATH, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_BOB + SCHOOL_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + GUARDIAN_NAME_DESC_BOB + GUARDIAN_PHONE_DESC_BOB
+                + TAG_DESC_MATH, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + SCHOOL_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -107,7 +108,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + SCHOOL_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                        + ADDRESS_DESC_AMY + GUARDIAN_NAME_DESC_AMY + GUARDIAN_PHONE_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 
@@ -180,7 +182,7 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + SCHOOL_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB
+                + ADDRESS_DESC_BOB + GUARDIAN_NAME_DESC_BOB + GUARDIAN_PHONE_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_MATH, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported

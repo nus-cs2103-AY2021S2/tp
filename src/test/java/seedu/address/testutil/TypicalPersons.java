@@ -33,18 +33,18 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withSchool("Jurong West Secondary School")
             .withGuardianName("Amanda Pauline").withGuardianPhone("94351254")
-            .withTags("sec 1").build();
+            .withTags("sec1").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withSchool("Clementi Town Secondary School").withGuardianName("Jay Maier")
-            .withGuardianPhone("98765433").withTags("sec 2", "math").build();
+            .withGuardianPhone("98765433").withTags("sec2", "math").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withSchool("Wall Street Secondary School")
             .withGuardianName("Louis Kurz").withGuardianPhone("95352564").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withSchool("Clementi Town Secondary School")
-            .withGuardianName("Jay Maier").withGuardianPhone("98765433").withTags("sec 3").build();
+            .withGuardianName("Jay Maier").withGuardianPhone("98765433").withTags("sec3").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withSchool("Michegan Secondary School")
             .withGuardianName("John Meyer").withGuardianPhone("9482225").build();

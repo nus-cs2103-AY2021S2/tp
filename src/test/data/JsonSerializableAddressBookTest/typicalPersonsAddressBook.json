@@ -2,45 +2,66 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
+    "school" : "Jurong West Secondary School",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "guardianName" : "Amanda Pauline",
+    "guardianPhone" : "94351254",
+    "tagged" : [ "sec1" ]
   }, {
     "name" : "Benson Meier",
+    "school" : "Clementi Town Secondary School",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "guardianName" : "Jay Maier",
+    "guardianPhone" : "98765433",
+    "tagged" : [ "sec2", "math" ]
   }, {
     "name" : "Carl Kurz",
+    "school" : "Wall Street Secondary School",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "guardianName" : "Louis Kurz",
+    "guardianPhone" : "95352564",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
+    "school" : "Clementi Town Secondary School",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "guardianName" : "Jay Maier",
+    "guardianPhone" : "98765433",
+    "tagged" : [ "sec3" ]
   }, {
     "name" : "Elle Meyer",
+    "school" : "Michegan Secondary School",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "guardianName" : "John Meyer",
+    "guardianPhone" : "9482225",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
+    "school" : "Tokyo Secondary School",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "guardianName" : "Fay Kunz",
+    "guardianPhone" : "9482425",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
+    "school" : "Fourth Secondary School",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "guardianName" : "Barbara Best",
+    "guardianPhone" : "9482444",
     "tagged" : [ ]
   } ]
 }

@@ -60,7 +60,7 @@ public class ParserUtil {
     public static School parseSchool(String school) throws ParseException {
         requireNonNull(school);
         String trimmedSchool = school.trim();
-        if (!Name.isValidName(trimmedSchool)) {
+        if (!School.isValidSchool(trimmedSchool)) {
             throw new ParseException(School.MESSAGE_CONSTRAINTS);
         }
         return new School(trimmedSchool);
