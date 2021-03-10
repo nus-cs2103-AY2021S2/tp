@@ -82,6 +82,13 @@ public interface Model {
     void deleteFoodItem(int index);
 
     /**
+     * Lists all food items from the food items list.
+     *
+     * @return string output of all the food items
+     */
+    String listFoodItem();
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

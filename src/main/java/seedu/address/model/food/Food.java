@@ -163,13 +163,13 @@ public class Food {
     @Override
     public String toString() {
         String statusString = new String();
-        if (this.isUpdated) {
-            statusString = "updated";
-        } else {
-            statusString = "saved";
-        }
+//        if (this.isUpdated) {
+//            statusString = "updated";
+//        } else {
+//            statusString = "saved";
+//        }
         String result = this.name + " (Protein: " + this.proteins + "g, Carbohydrates: " + this.carbos + "g, Fats: "
-                + this.fats + "g) has been " + statusString + ".";
+                + this.fats + "g)";
         return result;
     }
 }

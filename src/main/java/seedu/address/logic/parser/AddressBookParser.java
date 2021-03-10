@@ -66,6 +66,9 @@ public class AddressBookParser {
         case DeleteFoodItemCommand.COMMAND_WORD:
             return new DeleteFoodItemCommandParser().parse(arguments);
 
+        case ListFoodItemCommand.COMMAND_WORD:
+            return new ListFoodItemCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

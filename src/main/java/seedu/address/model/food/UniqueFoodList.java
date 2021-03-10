@@ -72,4 +72,19 @@ public class UniqueFoodList {
     public void deleteFoodItem(int index) {
         this.foodList.remove(index);
     }
+
+    /**
+     * Lists all food items in the food list.
+     *
+     * @return string output of all food items
+     */
+    public String listAllFoodItem() {
+        StringBuilder stringBuilder = new StringBuilder();
+        int counter = 1; //Used for for-loop counter indicator.
+        for(Food food : this.foodList) {
+            stringBuilder.append(counter + ". " + food.toString() + "\n");
+            counter++;
+        }
+        return stringBuilder.toString();
+    }
 }

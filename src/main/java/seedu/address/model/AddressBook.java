@@ -117,6 +117,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Lists all food items from the food list.
+     *
+     * @return string output of the food list
+     */
+    public String listFoodItem() {
+        return foodList.listAllFoodItem();
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */

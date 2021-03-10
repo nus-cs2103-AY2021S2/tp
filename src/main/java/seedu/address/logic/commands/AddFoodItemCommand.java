@@ -40,6 +40,6 @@ public class AddFoodItemCommand extends Command {
         }
 
         model.addFoodItem(temporaryFood);
-        return new CommandResult(MESSAGE_SUCCESS + temporaryFood.getName() + ") into food list.");
+        return new CommandResult(MESSAGE_SUCCESS + temporaryFood + ") into food list.");
     }
 }
