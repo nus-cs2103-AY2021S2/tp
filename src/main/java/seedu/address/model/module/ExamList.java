@@ -102,6 +102,10 @@ public class ExamList {
         return new ArrayList<>(exams);
     }
 
+    public Exam getExamAt(int index) {
+        return exams.get(index);
+    }
+
     /**
      * Returns String representation of {@code ExamList}.
      *
