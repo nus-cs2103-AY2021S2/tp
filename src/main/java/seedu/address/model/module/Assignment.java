@@ -10,13 +10,6 @@ public class Assignment {
     // todo change message constraints
     public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted DD/MM/YYYY TIME";
 
-    /**
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    // todo change regex
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     public final Description description;
     public final LocalDateTime deadline;
 
@@ -30,6 +23,10 @@ public class Assignment {
         requireAllNonNull(description, deadline);
         this.description = description;
         this.deadline = deadline;
+    }
+
+    public boolean isSameAssignment(Assignment other) {
+        return this.equals(other);
     }
 
     @Override
