@@ -64,5 +64,7 @@ public class SessionDateTest {
         assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "12pm"));
         assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "12:52pm"));
         assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "09:32am"));
+        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "23:002"));
+        assertThrows(SessionException.class, () -> new SessionDate(correctDateValue, "23:592"));
     }
 }
