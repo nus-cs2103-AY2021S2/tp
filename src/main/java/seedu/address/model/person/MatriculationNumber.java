@@ -18,7 +18,6 @@ public class MatriculationNumber {
 
     public final String value;
 
-
     /**
      * Constructor for a MatriculationNumber object.
      * @param matriculationNumber The string of the matriculation number.

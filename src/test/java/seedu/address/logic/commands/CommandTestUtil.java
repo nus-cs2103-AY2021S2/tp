@@ -150,8 +150,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getMatriculationNumber().toString().split("\\s+");
-        model.updateFilteredPersonList(new MatriculationNumberContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String matriculationNumber = person.getMatriculationNumber().toString();
+        model.updateFilteredPersonList(new MatriculationNumberContainsKeywordsPredicate(matriculationNumber));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -173,7 +173,7 @@ public class CommandTestUtil {
 
         assertTrue(person != null);
         final String[] splitName = person.getMatriculationNumber().toString().split("\\s+");
-        model.updateFilteredPersonList(new MatriculationNumberContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new MatriculationNumberContainsKeywordsPredicate((splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

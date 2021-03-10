@@ -33,8 +33,7 @@ public class DeleteCommand extends Command {
     public DeleteCommand(MatriculationNumber matriculationNumber) {
         this.matriculationNumber = matriculationNumber;
 
-        List<String> matricNum = Arrays.asList(new String[]{matriculationNumber.toString()});
-        predicate = new MatriculationNumberContainsKeywordsPredicate(matricNum);
+        predicate = new MatriculationNumberContainsKeywordsPredicate(matriculationNumber.toString());
     }
 
     /**

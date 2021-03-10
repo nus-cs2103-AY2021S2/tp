@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIFTH_PE
 import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -29,9 +28,10 @@ public class FindCommandTest {
     @Test
     public void equals() {
         MatriculationNumberContainsKeywordsPredicate firstPredicate =
-                new MatriculationNumberContainsKeywordsPredicate(Collections.singletonList(MATRIC_NUMBER_FOURTH_PERSON));
+                new MatriculationNumberContainsKeywordsPredicate(MATRIC_NUMBER_FOURTH_PERSON);
         MatriculationNumberContainsKeywordsPredicate secondPredicate =
-                new MatriculationNumberContainsKeywordsPredicate(Collections.singletonList(MATRIC_NUMBER_FIFTH_PERSON));
+                new MatriculationNumberContainsKeywordsPredicate(MATRIC_NUMBER_FIFTH_PERSON);
+
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -67,6 +67,6 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code MatriculationNumberContainsKeywordsPredicate}.
      */
     private MatriculationNumberContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new MatriculationNumberContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new MatriculationNumberContainsKeywordsPredicate(userInput);
     }
 }
