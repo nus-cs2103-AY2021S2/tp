@@ -18,7 +18,8 @@ public class EventTest {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
         Interval interval = Interval.DAILY;
         assertThrows(NullPointerException.class, () -> new Event(null, interval, validDate));
-        assertThrows(NullPointerException.class, () -> new Event("test", null));
+        assertThrows(NullPointerException.class, () -> new Event("test", null, validDate));
+        assertThrows(NullPointerException.class, () -> new Event("test", interval, null));
         assertThrows(NullPointerException.class, () -> new Event(null, null));
     }
 

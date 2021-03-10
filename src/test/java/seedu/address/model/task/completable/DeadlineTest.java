@@ -15,11 +15,9 @@ public class DeadlineTest {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
         assertThrows(NullPointerException.class, () -> new Deadline(null, validDate));
         assertThrows(NullPointerException.class, () -> new Deadline("test", null));
-        assertThrows(NullPointerException.class, () -> new Deadline(null, null));
         assertThrows(NullPointerException.class, () -> new Deadline(null, false, validDate));
-        assertThrows(NullPointerException.class, () -> new Deadline("test", false, null));
-        assertThrows(NullPointerException.class, () -> new Deadline(null, null, null));
         assertThrows(NullPointerException.class, () -> new Deadline("test", null, validDate));
+        assertThrows(NullPointerException.class, () -> new Deadline("test", false, null));
     }
 
     @Test
