@@ -76,7 +76,7 @@ public class InsurancePolicy {
         if (policyUrl == null) {
             return policyId + ": No URL!";
         }
-        return "(" + policyId + ": " + policyUrl + ")";
+        return policyId + ": " + policyUrl + "";
     }
 
     /**
