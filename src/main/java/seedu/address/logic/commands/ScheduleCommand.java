@@ -23,8 +23,8 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Schedules a meeting with the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + PREFIX_MEETING + "MEETING_DESCRIPTION @ yyyy-mm-dd HH:MM "
-            + "Example: " + COMMAND_WORD + " 1 /m Insurance Plan @ 2021-03-05 14:50";
+            + PREFIX_MEETING + "MEETING_DESCRIPTION @ yyyy-mm-dd HH:MM\n"
+            + "Example: " + COMMAND_WORD + " 1 m/ Insurance Plan @ 2021-03-05 14:50";
 
     public static final String MESSAGE_MEETING_PERSON_SUCCESS = "Scheduled Meeting with Person: %1$s %2$s";
 

@@ -19,6 +19,7 @@ public class Meeting {
 
     public static final String DATETIME_CONSTRAINTS = "The input date and time must be existent.";
 
+    public final String original;
     public final String value;
     public final LocalDateTime dateTime;
 
@@ -32,6 +33,7 @@ public class Meeting {
         checkArgument(isValidMeeting(meeting), MESSAGE_CONSTRAINTS);
         String[] fragments = meeting.split(" @ ", 2);
         LocalDateTime parsedDt = generateDateTime(fragments[1], DATETIME_CONSTRAINTS);
+        original = meeting;
         value = fragments[0];
         dateTime = parsedDt;
     }

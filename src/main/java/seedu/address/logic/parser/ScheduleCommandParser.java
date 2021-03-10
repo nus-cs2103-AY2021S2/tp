@@ -33,9 +33,9 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ScheduleCommand.MESSAGE_USAGE), ive);
+                    ScheduleCommand.MESSAGE_USAGE), pe);
         }
 
         if (argMultimap.getValue(PREFIX_MEETING).isPresent()) {
