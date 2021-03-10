@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Arrays;
 
@@ -37,9 +38,12 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
                     ScheduleCommand.MESSAGE_USAGE), ive);
         }
 
-        Meeting meeting = new Meeting(argMultimap.getValue(PREFIX_MEETING).orElse(""));
-
-        return new ScheduleCommand(index, meeting);
+        if (argMultimap.getValue(PREFIX_MEETING).isPresent()) {
+            Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).get());
+            return new ScheduleCommand(index, meeting);
+        } else {
+            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+        }
     }
 
 }

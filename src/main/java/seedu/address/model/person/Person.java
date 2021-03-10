@@ -33,17 +33,17 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, null);
+        this(name, phone, email, address, tags, Optional.empty());
     }
 
-    private Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Meeting meeting) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.meeting = Optional.ofNullable(meeting);
+        this.meeting = meeting;
     }
 
     public Name getName() {
@@ -79,7 +79,7 @@ public class Person {
      * Creates a Person object identical to the original, but contains a new Meeting.
      */
     public Person addMeeting(Meeting meeting) {
-        return new Person(name, phone, email, address, tags, meeting);
+        return new Person(name, phone, email, address, tags, Optional.of(meeting));
     }
 
     /**

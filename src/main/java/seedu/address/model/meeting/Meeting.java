@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Meeting {
     public static final String MESSAGE_CONSTRAINTS = "Meetings should be of the format "
-        + "\"description @ yyyy-mm-dd HH:MM\", and the desciption should not me blank.";
+        + "\"description @ yyyy-mm-dd HH:MM\", and the description should not be blank.";
     // alphanumeric and special characters
     private static final String DESCRIPTION_REGEX = ".+";
     private static final String FOUR_DIGIT_REGEX = "[0-9]{4}";

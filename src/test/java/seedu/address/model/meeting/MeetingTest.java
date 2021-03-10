@@ -41,7 +41,7 @@ class MeetingTest {
 
         // valid meeting
         assertTrue(Meeting.isValidMeeting("Prank @ 2020-04-01 18:00"));
-        assertTrue(Meeting.isValidMeeting("Something @ 2021-03-06 12:45")); // minimal
+        assertTrue(Meeting.isValidMeeting("Something @ 2021-03-06 12:45"));
     }
 
     @Test
