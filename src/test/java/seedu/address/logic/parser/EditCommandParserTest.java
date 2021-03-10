@@ -82,16 +82,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_SIZE_DESC, Size.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_SIZE_DESC, Size.MESSAGE_CONSTRAINTS); // invalid size
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
                 Description.MESSAGE_CONSTRAINTS); // invalid description
 
-        // invalid phone followed by valid email
+        // invalid size followed by valid email
         assertParseFailure(parser, "1" + INVALID_SIZE_DESC + EMAIL_DESC_AMY, Size.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid size followed by invalid size. The test case for invalid size followed by valid size
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + SIZE_DESC_BOB + INVALID_SIZE_DESC, Size.MESSAGE_CONSTRAINTS);
 

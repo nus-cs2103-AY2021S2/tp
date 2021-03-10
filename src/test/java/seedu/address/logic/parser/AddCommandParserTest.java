@@ -55,7 +55,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + SIZE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPerson));
 
-        // multiple phones - last phone accepted
+        // multiple sizes - last size accepted
         assertParseSuccess(parser, NAME_DESC_BOB + SIZE_DESC_AMY + SIZE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPerson));
 
@@ -91,7 +91,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + SIZE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
-        // missing phone prefix
+        // missing size prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_SIZE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 

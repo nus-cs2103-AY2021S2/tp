@@ -72,7 +72,7 @@ public class PersonTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
+        // different size -> returns false
         editedAlice = new PersonBuilder(ALICE).withSize(VALID_SIZE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

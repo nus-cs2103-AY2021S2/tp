@@ -27,7 +27,7 @@ public class SizeTest {
         // invalid sizes
         assertFalse(Size.isValidSize("")); // empty string
         assertFalse(Size.isValidSize(" ")); // spaces only
-        assertFalse(Size.isValidSize("phone")); // non-numeric
+        assertFalse(Size.isValidSize("size")); // non-numeric
         assertFalse(Size.isValidSize("9011p041")); // alphabets within digits
         assertFalse(Size.isValidSize("9 1")); // spaces within digits
 

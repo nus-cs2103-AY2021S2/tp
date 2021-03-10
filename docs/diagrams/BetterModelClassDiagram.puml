@@ -15,7 +15,7 @@ UniquePersonList o-right-> Person
 Person -up-> "*" Tag
 
 Person *--> Name
-Person *--> Phone
+Person *--> Size
 Person *--> Email
 Person *--> Address
 @enduml

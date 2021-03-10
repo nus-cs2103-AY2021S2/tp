@@ -75,7 +75,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Size} of the {@code Person} that we are building.
      */
     public PersonBuilder withSize(String size) {
         this.size = new Size(size);

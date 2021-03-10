@@ -58,11 +58,11 @@ public class ParserUtil {
      */
     public static Size parseSize(String size) throws ParseException {
         requireNonNull(size);
-        String trimmedPhone = size.trim();
-        if (!Size.isValidSize(trimmedPhone)) {
+        String trimmedSize = size.trim();
+        if (!Size.isValidSize(trimmedSize)) {
             throw new ParseException(Size.MESSAGE_CONSTRAINTS);
         }
-        return new Size(trimmedPhone);
+        return new Size(trimmedSize);
     }
 
     /**
