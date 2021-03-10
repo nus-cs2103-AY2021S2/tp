@@ -89,20 +89,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Garment garment) {
+    public boolean hasGarment(Garment garment) {
         requireNonNull(garment);
         return addressBook.hasPerson(garment);
     }
 
     @Override
-    public void deletePerson(Garment target) {
-        addressBook.removePerson(target);
+    public void deleteGarment(Garment target) {
+        addressBook.removeGarment(target);
     }
 
     @Override
-    public void addPerson(Garment garment) {
+    public void addGarment(Garment garment) {
         addressBook.addGarment(garment);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_GARMENTS);
+        updateFilteredGarmentList(PREDICATE_SHOW_ALL_GARMENTS);
     }
 
     @Override
@@ -119,12 +119,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Garment> getFilteredPersonList() {
+    public ObservableList<Garment> getFilteredGarmentList() {
         return filteredGarments;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Garment> predicate) {
+    public void updateFilteredGarmentList(Predicate<Garment> predicate) {
         requireNonNull(predicate);
         filteredGarments.setPredicate(predicate);
     }

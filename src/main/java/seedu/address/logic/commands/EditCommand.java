@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GARMENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -23,7 +23,7 @@ import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Garment;
 import seedu.address.model.person.Size;
 
 /**
@@ -51,56 +51,56 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditGarmentDescriptor editPersonDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditGarmentDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPersonDescriptor = new EditGarmentDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Garment> lastShownList = model.getFilteredGarmentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Garment garmentToEdit = lastShownList.get(index.getZeroBased());
+        Garment editedGarment = createEditedGarment(garmentToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!garmentToEdit.isSameGarment(editedGarment) && model.hasGarment(editedGarment)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setGarment(garmentToEdit, editedGarment);
+        model.updateFilteredGarmentList(PREDICATE_SHOW_ALL_GARMENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedGarment));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Person} with the details of {@code garmentToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Garment createEditedGarment(Garment garmentToEdit, EditGarmentDescriptor editPersonDescriptor) {
+        assert garmentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Size updatedSize = editPersonDescriptor.getSize().orElse(personToEdit.getSize());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Name updatedName = editPersonDescriptor.getName().orElse(garmentToEdit.getName());
+        Size updatedSize = editPersonDescriptor.getSize().orElse(garmentToEdit.getSize());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(garmentToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(garmentToEdit.getAddress());
         Set<Description> updatedDescriptions = editPersonDescriptor.getDescriptions()
-                .orElse(personToEdit.getDescriptions());
+                .orElse(garmentToEdit.getDescriptions());
 
-        return new Person(updatedName, updatedSize, updatedEmail, updatedAddress, updatedDescriptions);
+        return new Garment(updatedName, updatedSize, updatedEmail, updatedAddress, updatedDescriptions);
     }
 
     @Override
@@ -126,20 +126,20 @@ public class EditCommand extends Command {
      * Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditGarmentDescriptor {
         private Name name;
         private Size size;
         private Email email;
         private Address address;
         private Set<Description> descriptions;
 
-        public EditPersonDescriptor() {}
+        public EditGarmentDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code descriptions} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditGarmentDescriptor(EditGarmentDescriptor toCopy) {
             setName(toCopy.name);
             setSize(toCopy.size);
             setEmail(toCopy.email);
@@ -211,12 +211,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditGarmentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditGarmentDescriptor e = (EditGarmentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getSize().equals(e.getSize())

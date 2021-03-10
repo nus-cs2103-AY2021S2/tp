@@ -55,19 +55,19 @@ public interface Model {
     /**
      * Returns true if a garment with the same identity as {@code garment} exists in the address book.
      */
-    boolean hasPerson(Garment garment);
+    boolean hasGarment(Garment garment);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Garment target);
+    void deleteGarment(Garment target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Garment garment);
+    void addGarment(Garment garment);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
