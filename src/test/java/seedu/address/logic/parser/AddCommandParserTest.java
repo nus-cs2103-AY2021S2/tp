@@ -43,7 +43,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        // remarks are empty by default
+        Task expectedTask = new TaskBuilder(BOB).withRemark("").withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -62,7 +63,8 @@ public class AddCommandParserTest {
                 + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
-        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        // remarks are empty by default
+        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withRemark("").withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
 
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -72,7 +74,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Task expectedTask = new TaskBuilder(AMY).withTags().build();
+        // remarks are empty by default
+        Task expectedTask = new TaskBuilder(AMY).withRemark("").withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
                 new AddCommand(expectedTask));
     }

@@ -8,6 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
 import seedu.address.model.tag.Tag;
 

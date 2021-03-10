@@ -95,8 +95,8 @@ public class TaskTrackerParserTest {
     public void parseCommand_remark() throws Exception {
         final String remark = "Some remark.";
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
-                        + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark);
-        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark(remark)), command);
+                        + INDEX_FIRST_TASK.getOneBased() + " " + PREFIX_REMARK + remark);
+        assertEquals(new RemarkCommand(INDEX_FIRST_TASK, new Remark(remark)), command);
     }
 
     @Test

@@ -19,7 +19,7 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_REMARK = "She likes aardvarks";
+    public static final String DEFAULT_REMARK = "";
 
     private ModuleName moduleName;
     private Phone phone;
@@ -84,7 +84,7 @@ public class TaskBuilder {
     /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRemark(String remark) {
+    public TaskBuilder withRemark(String remark) {
         this.remark = new Remark(remark);
         return this;
     }

@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -28,6 +29,7 @@ public class TaskUtil {
      * Returns the part of command string for the given {@code task}'s details.
      */
     public static String getTaskDetails(Task task) {
+        // add and edit do not have remark fields
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getModuleName().fullName + " ");
         sb.append(PREFIX_PHONE + task.getPhone().value + " ");
@@ -42,6 +44,7 @@ public class TaskUtil {
      * Returns the part of command string for the given {@code EditTaskDescriptor}'s details.
      */
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
+        // currently edit does not support editing of remarks
         StringBuilder sb = new StringBuilder();
         descriptor.getModuleName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

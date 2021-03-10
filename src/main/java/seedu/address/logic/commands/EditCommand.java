@@ -124,10 +124,10 @@ public class EditCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
+        // descriptors should not be allowed to have a remark field, since editing of remarks is not supported for now
         private ModuleName moduleName;
         private Phone phone;
         private Email email;
-        private Remark remark;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -140,7 +140,6 @@ public class EditCommand extends Command {
             setModuleName(toCopy.moduleName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -175,13 +174,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setRemark(Remark remark) {
-            this.remark = remark;
-        }
-
-        public Optional<Remark> getRemark() {
-            return Optional.ofNullable(remark);
-        }
+//        public void setRemark(Remark remark) {
+//            this.remark = remark;
+//        }
+//
+//        public Optional<Remark> getRemark() {
+//            return Optional.ofNullable(remark);
+//        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -218,7 +217,6 @@ public class EditCommand extends Command {
             return getModuleName().equals(e.getModuleName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getRemark().equals(e.getRemark())
                     && getTags().equals(e.getTags());
         }
     }
