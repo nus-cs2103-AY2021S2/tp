@@ -70,6 +70,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match size, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withSize("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+                .withColour("alice@colour.com").withAddress("Main Street").build()));
     }
 }

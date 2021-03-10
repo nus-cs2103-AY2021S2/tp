@@ -1,45 +1,45 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Wardrobe save file which contains the same Person values as in TypicalPersons#getTypicalWardrobe()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "size" : "53",
-    "email" : "alice@example.com",
+    "colour": "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "descriptions" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "size" : "32",
-    "email" : "johnd@example.com",
+    "colour": "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "descriptions" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "size" : "93",
-    "email" : "heinz@example.com",
+    "colour": "heinz@example.com",
     "address" : "wall street",
     "descriptions" : [ ]
   }, {
     "name" : "Daniel Meier",
     "size" : "33",
-    "email" : "cornelia@example.com",
+    "colour": "cornelia@example.com",
     "address" : "10th street",
     "descriptions" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "size" : "24",
-    "email" : "werner@example.com",
+    "colour": "werner@example.com",
     "address" : "michegan ave",
     "descriptions" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "size" : "27",
-    "email" : "lydia@example.com",
+    "colour": "lydia@example.com",
     "address" : "little tokyo",
     "descriptions" : [ ]
   }, {
     "name" : "George Best",
     "size" : "42",
-    "email" : "anna@example.com",
+    "colour": "anna@example.com",
     "address" : "4th street",
     "descriptions" : [ ]
   } ]

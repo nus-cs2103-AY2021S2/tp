@@ -19,26 +19,26 @@ import seedu.address.model.person.Garment;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Wardrobe wardrobe;
     private final UserPrefs userPrefs;
     private final FilteredList<Garment> filteredGarments;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given wardrobe and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyWardrobe wardrobe, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(wardrobe, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + wardrobe + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.wardrobe = new Wardrobe(wardrobe);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredGarments = new FilteredList<>(this.addressBook.getPersonList());
+        filteredGarments = new FilteredList<>(this.wardrobe.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Wardrobe(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,42 +66,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getWardrobeFilePath() {
+        return userPrefs.getWardrobeFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setWardrobeFilePath(Path wardrobeFilePath) {
+        requireNonNull(wardrobeFilePath);
+        userPrefs.setWardrobeFilePath(wardrobeFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Wardrobe ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setWardrobe(ReadOnlyWardrobe wardrobe) {
+        this.wardrobe.resetData(wardrobe);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyWardrobe getWardrobe() {
+        return wardrobe;
     }
 
     @Override
     public boolean hasGarment(Garment garment) {
         requireNonNull(garment);
-        return addressBook.hasPerson(garment);
+        return wardrobe.hasPerson(garment);
     }
 
     @Override
     public void deleteGarment(Garment target) {
-        addressBook.removeGarment(target);
+        wardrobe.removeGarment(target);
     }
 
     @Override
     public void addGarment(Garment garment) {
-        addressBook.addGarment(garment);
+        wardrobe.addGarment(garment);
         updateFilteredGarmentList(PREDICATE_SHOW_ALL_GARMENTS);
     }
 
@@ -109,14 +109,14 @@ public class ModelManager implements Model {
     public void setGarment(Garment target, Garment editedGarment) {
         requireAllNonNull(target, editedGarment);
 
-        addressBook.setGarment(target, editedGarment);
+        wardrobe.setGarment(target, editedGarment);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedWardrobe}
      */
     @Override
     public ObservableList<Garment> getFilteredGarmentList() {
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return wardrobe.equals(other.wardrobe)
                 && userPrefs.equals(other.userPrefs)
                 && filteredGarments.equals(other.filteredGarments);
     }

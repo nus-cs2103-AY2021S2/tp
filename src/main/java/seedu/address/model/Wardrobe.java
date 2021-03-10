@@ -9,10 +9,10 @@ import seedu.address.model.person.Garment;
 import seedu.address.model.person.UniqueGarmentList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the wardrobe level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Wardrobe implements ReadOnlyWardrobe {
 
     private final UniqueGarmentList garments;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         garments = new UniqueGarmentList();
     }
 
-    public AddressBook() {}
+    public Wardrobe() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an Wardrobe using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Wardrobe(ReadOnlyWardrobe toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Wardrobe} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyWardrobe newData) {
         requireNonNull(newData);
 
         setGarments(newData.getGarmentList());
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the wardrobe.
      */
     public boolean hasPerson(Garment garment) {
         requireNonNull(garment);
@@ -68,8 +68,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the wardrobe.
+     * The person must not already exist in the wardrobe.
      */
     public void addGarment(Garment g) {
         garments.add(g);
@@ -77,8 +77,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the wardrobe.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the wardrobe.
      */
     public void setGarment(Garment target, Garment editedGarment) {
         requireNonNull(editedGarment);
@@ -87,8 +87,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Wardrobe}.
+     * {@code key} must exist in the wardrobe.
      */
     public void removeGarment(Garment key) {
         garments.remove(key);
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && garments.equals(((AddressBook) other).garments));
+                || (other instanceof Wardrobe // instanceof handles nulls
+                && garments.equals(((Wardrobe) other).garments));
     }
 
     @Override

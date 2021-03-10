@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Colour;
 import seedu.address.model.person.Garment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Size;
@@ -18,12 +18,12 @@ public class GarmentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_SIZE = "25";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_COLOUR = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Size size;
-    private Email email;
+    private Colour colour;
     private Address address;
     private Set<Description> descriptions;
 
@@ -33,7 +33,7 @@ public class GarmentBuilder {
     public GarmentBuilder() {
         name = new Name(DEFAULT_NAME);
         size = new Size(DEFAULT_SIZE);
-        email = new Email(DEFAULT_EMAIL);
+        colour = new Colour(DEFAULT_COLOUR);
         address = new Address(DEFAULT_ADDRESS);
         descriptions = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class GarmentBuilder {
     public GarmentBuilder(Garment garmentToCopy) {
         name = garmentToCopy.getName();
         size = garmentToCopy.getSize();
-        email = garmentToCopy.getEmail();
+        colour = garmentToCopy.getColour();
         address = garmentToCopy.getAddress();
         descriptions = new HashSet<>(garmentToCopy.getDescriptions());
     }
@@ -83,15 +83,15 @@ public class GarmentBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Colour} of the {@code Person} that we are building.
      */
-    public GarmentBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public GarmentBuilder withColour(String colour) {
+        this.colour = new Colour(colour);
         return this;
     }
 
     public Garment build() {
-        return new Garment(name, size, email, address, descriptions);
+        return new Garment(name, size, colour, address, descriptions);
     }
 
 }

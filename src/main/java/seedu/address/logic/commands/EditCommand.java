@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GARMENTS;
@@ -21,7 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.description.Description;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Colour;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Garment;
 import seedu.address.model.person.Size;
@@ -39,12 +39,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_SIZE + "SIZE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_COLOUR + "COLOUR] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SIZE + "36 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_COLOUR + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,12 +95,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(garmentToEdit.getName());
         Size updatedSize = editPersonDescriptor.getSize().orElse(garmentToEdit.getSize());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(garmentToEdit.getEmail());
+        Colour updatedColour = editPersonDescriptor.getColour().orElse(garmentToEdit.getColour());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(garmentToEdit.getAddress());
         Set<Description> updatedDescriptions = editPersonDescriptor.getDescriptions()
                 .orElse(garmentToEdit.getDescriptions());
 
-        return new Garment(updatedName, updatedSize, updatedEmail, updatedAddress, updatedDescriptions);
+        return new Garment(updatedName, updatedSize, updatedColour, updatedAddress, updatedDescriptions);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
     public static class EditGarmentDescriptor {
         private Name name;
         private Size size;
-        private Email email;
+        private Colour colour;
         private Address address;
         private Set<Description> descriptions;
 
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
         public EditGarmentDescriptor(EditGarmentDescriptor toCopy) {
             setName(toCopy.name);
             setSize(toCopy.size);
-            setEmail(toCopy.email);
+            setColour(toCopy.colour);
             setAddress(toCopy.address);
             setDescriptions(toCopy.descriptions);
         }
@@ -151,7 +151,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, size, email, address, descriptions);
+            return CollectionUtil.isAnyNonNull(name, size, colour, address, descriptions);
         }
 
         public void setName(Name name) {
@@ -170,12 +170,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(size);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setColour(Colour colour) {
+            this.colour = colour;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Colour> getColour() {
+            return Optional.ofNullable(colour);
         }
 
         public void setAddress(Address address) {
@@ -220,7 +220,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getSize().equals(e.getSize())
-                    && getEmail().equals(e.getEmail())
+                    && getColour().equals(e.getColour())
                     && getAddress().equals(e.getAddress())
                     && getDescriptions().equals(e.getDescriptions());
         }

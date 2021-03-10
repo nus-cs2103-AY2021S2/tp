@@ -18,7 +18,7 @@ public class Garment {
     // Identity fields
     private final Name name;
     private final Size size;
-    private final Email email;
+    private final Colour colour;
 
     // Data fields
     private final Address address;
@@ -27,11 +27,11 @@ public class Garment {
     /**
      * Every field must be present and not null.
      */
-    public Garment(Name name, Size size, Email email, Address address, Set<Description> descriptions) {
-        requireAllNonNull(name, size, email, address, descriptions);
+    public Garment(Name name, Size size, Colour colour, Address address, Set<Description> descriptions) {
+        requireAllNonNull(name, size, colour, address, descriptions);
         this.name = name;
         this.size = size;
-        this.email = email;
+        this.colour = colour;
         this.address = address;
         this.descriptions.addAll(descriptions);
     }
@@ -44,8 +44,8 @@ public class Garment {
         return size;
     }
 
-    public Email getEmail() {
-        return email;
+    public Colour getColour() {
+        return colour;
     }
 
     public Address getAddress() {
@@ -90,7 +90,7 @@ public class Garment {
         Garment otherGarment = (Garment) other;
         return otherGarment.getName().equals(getName())
                 && otherGarment.getSize().equals(getSize())
-                && otherGarment.getEmail().equals(getEmail())
+                && otherGarment.getColour().equals(getColour())
                 && otherGarment.getAddress().equals(getAddress())
                 && otherGarment.getDescriptions().equals(getDescriptions());
     }
@@ -98,7 +98,7 @@ public class Garment {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, size, email, address, descriptions);
+        return Objects.hash(name, size, colour, address, descriptions);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Garment {
         builder.append(getName())
                 .append("; Size: ")
                 .append(getSize())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Colour: ")
+                .append(getColour())
                 .append("; Address: ")
                 .append(getAddress());
 

@@ -16,6 +16,6 @@ Person -up-> "*" Tag
 
 Person *--> Name
 Person *--> Size
-Person *--> Email
+Person *--> Colour
 Person *--> Address
 @enduml

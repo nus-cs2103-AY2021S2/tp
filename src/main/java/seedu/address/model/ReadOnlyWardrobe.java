@@ -6,7 +6,7 @@ import seedu.address.model.person.Garment;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyWardrobe {
 
     /**
      * Returns an unmodifiable view of the persons list.

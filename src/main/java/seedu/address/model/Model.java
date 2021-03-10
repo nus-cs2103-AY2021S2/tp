@@ -35,43 +35,43 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' wardrobe file path.
      */
-    Path getAddressBookFilePath();
+    Path getWardrobeFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' wardrobe file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setWardrobeFilePath(Path wardrobeFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces wardrobe data with the data in {@code wardrobe}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setWardrobe(ReadOnlyWardrobe wardrobe);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Wardrobe */
+    ReadOnlyWardrobe getWardrobe();
 
     /**
-     * Returns true if a garment with the same identity as {@code garment} exists in the address book.
+     * Returns true if a garment with the same identity as {@code garment} exists in the wardrobe.
      */
     boolean hasGarment(Garment garment);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the wardrobe.
      */
     void deleteGarment(Garment target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the wardrobe.
      */
     void addGarment(Garment garment);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the wardrobe.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setGarment(Garment target, Garment editedGarment);
