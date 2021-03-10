@@ -27,6 +27,8 @@ import seedu.us.among.model.endpoint.header.Header;
  * Parent class of request sending classes. Contains the two compulsory fields method and address.
  */
 public abstract class Request {
+    private static final int timeout = 60;
+
     private final MethodType method;
     private final String address;
 
@@ -62,7 +64,6 @@ public abstract class Request {
      * @return http client to execute request
      */
     private CloseableHttpClient createHttpClient() {
-        int timeout = 60;
         RequestConfig config = RequestConfig.custom()
                 .setConnectTimeout(timeout * 1000)
                 .setConnectionRequestTimeout(timeout * 1000)
