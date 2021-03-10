@@ -55,4 +55,16 @@ public class Tag implements Filterable {
     public boolean filter(String s) {
         return tagName.contains(s);
     }
+
+    public String getTagName() {
+        return this.tagName;
+    }
+
+    boolean isSameTag(Tag otherTag) {
+        if (otherTag == this) {
+            return true;
+        }
+        return otherTag != null
+                && otherTag.getTagName().equals(getTagName());
+    }
 }
