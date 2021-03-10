@@ -44,16 +44,16 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditCardDescriptor editCardDescriptor = new EditCardDescriptor();
         if (argMultimap.getValue(PREFIX_QUESTION).isPresent()) {
-            editCardDescriptor.setName(ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get()));
+            editCardDescriptor.setQuestion(ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get()));
         }
         if (argMultimap.getValue(PREFIX_ANSWER).isPresent()) {
-            editCardDescriptor.setPhone(ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get()));
+            editCardDescriptor.setAnswer(ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get()));
         }
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
-            editCardDescriptor.setEmail(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
+            editCardDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
         }
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
-            editCardDescriptor.setAddress(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
+            editCardDescriptor.setPriority(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editCardDescriptor::setTags);
 

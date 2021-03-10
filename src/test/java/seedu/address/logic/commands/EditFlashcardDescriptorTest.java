@@ -36,19 +36,19 @@ public class EditFlashcardDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCardDescriptor editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditCardDescriptor editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withQuestion(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withAnswer(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withCategory(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_AMY).withPriority(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

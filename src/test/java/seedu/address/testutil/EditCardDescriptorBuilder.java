@@ -32,42 +32,42 @@ public class EditCardDescriptorBuilder {
      */
     public EditCardDescriptorBuilder(Flashcard flashcard) {
         descriptor = new EditCardDescriptor();
-        descriptor.setName(flashcard.getName());
-        descriptor.setPhone(flashcard.getPhone());
-        descriptor.setEmail(flashcard.getEmail());
-        descriptor.setAddress(flashcard.getAddress());
+        descriptor.setQuestion(flashcard.getName());
+        descriptor.setAnswer(flashcard.getPhone());
+        descriptor.setCategory(flashcard.getEmail());
+        descriptor.setPriority(flashcard.getAddress());
         descriptor.setTags(flashcard.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditCardDescriptor} that we are building.
+     * Sets the {@code Question} of the {@code EditCardDescriptor} that we are building.
      */
-    public EditCardDescriptorBuilder withName(String name) {
-        descriptor.setName(new Question(name));
+    public EditCardDescriptorBuilder withQuestion(String question) {
+        descriptor.setQuestion(new Question(question));
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditCardDescriptor} that we are building.
+     * Sets the {@code Answer} of the {@code EditCardDescriptor} that we are building.
      */
-    public EditCardDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Answer(phone));
+    public EditCardDescriptorBuilder withAnswer(String answer) {
+        descriptor.setAnswer(new Answer(answer));
         return this;
     }
 
     /**
      * Sets the {@code Email} of the {@code EditCaradDescriptor} that we are building.
      */
-    public EditCardDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Category(email));
+    public EditCardDescriptorBuilder withCategory(String category) {
+        descriptor.setCategory(new Category(category));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditCardDescriptor} that we are building.
+     * Sets the {@code Priority} of the {@code EditCardDescriptor} that we are building.
      */
-    public EditCardDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Priority(address));
+    public EditCardDescriptorBuilder withPriority(String priority) {
+        descriptor.setPriority(new Priority(priority));
         return this;
     }
 

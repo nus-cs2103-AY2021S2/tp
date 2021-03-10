@@ -47,9 +47,9 @@ public class EditCommand extends Command {
             + PREFIX_QUESTION + "Who is the chess champion? "
             + PREFIX_ANSWER + "Magnus Carlsen";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Card: %1$s";
+    public static final String MESSAGE_EDIT_CARD_SUCCESS = "Edited Card: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This card already exists in Flashback!.";
+    public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in Flashback!.";
 
     private final Index index;
     private final EditCardDescriptor editCardDescriptor;
@@ -79,12 +79,12 @@ public class EditCommand extends Command {
         Flashcard editedFlashcard = createEditedCard(flashcardToEdit, editCardDescriptor);
 
         if (!flashcardToEdit.isSamePerson(editedFlashcard) && model.hasFlashcard(editedFlashcard)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_CARD);
         }
 
         model.setFlashcard(flashcardToEdit, editedFlashcard);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedFlashcard));
+        return new CommandResult(String.format(MESSAGE_EDIT_CARD_SUCCESS, editedFlashcard));
     }
 
     /**
@@ -94,10 +94,10 @@ public class EditCommand extends Command {
     private static Flashcard createEditedCard(Flashcard flashcardToEdit, EditCardDescriptor editCardDescriptor) {
         assert flashcardToEdit != null;
 
-        Question updatedQuestion = editCardDescriptor.getName().orElse(flashcardToEdit.getName());
-        Answer updatedAnswer = editCardDescriptor.getPhone().orElse(flashcardToEdit.getPhone());
-        Category updatedCategory = editCardDescriptor.getEmail().orElse(flashcardToEdit.getEmail());
-        Priority updatedPriority = editCardDescriptor.getAddress().orElse(flashcardToEdit.getAddress());
+        Question updatedQuestion = editCardDescriptor.getQuestion().orElse(flashcardToEdit.getName());
+        Answer updatedAnswer = editCardDescriptor.getAnswer().orElse(flashcardToEdit.getPhone());
+        Category updatedCategory = editCardDescriptor.getCategory().orElse(flashcardToEdit.getEmail());
+        Priority updatedPriority = editCardDescriptor.getPriority().orElse(flashcardToEdit.getAddress());
         Remark updatedRemark = flashcardToEdit.getRemark();
         Set<Tag> updatedTags = editCardDescriptor.getTags().orElse(flashcardToEdit.getTags());
 
@@ -123,8 +123,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the card with. Each non-empty field value will replace the
+     * corresponding field value of the card.
      */
     public static class EditCardDescriptor {
         private Question question;
@@ -140,10 +140,10 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditCardDescriptor(EditCardDescriptor toCopy) {
-            setName(toCopy.question);
-            setPhone(toCopy.answer);
-            setEmail(toCopy.category);
-            setAddress(toCopy.priority);
+            setQuestion(toCopy.question);
+            setAnswer(toCopy.answer);
+            setCategory(toCopy.category);
+            setPriority(toCopy.priority);
             setTags(toCopy.tags);
         }
 
@@ -154,35 +154,35 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(question, answer, category, priority, tags);
         }
 
-        public void setName(Question question) {
+        public void setQuestion(Question question) {
             this.question = question;
         }
 
-        public Optional<Question> getName() {
+        public Optional<Question> getQuestion() {
             return Optional.ofNullable(question);
         }
 
-        public void setPhone(Answer answer) {
+        public void setAnswer(Answer answer) {
             this.answer = answer;
         }
 
-        public Optional<Answer> getPhone() {
+        public Optional<Answer> getAnswer() {
             return Optional.ofNullable(answer);
         }
 
-        public void setEmail(Category category) {
+        public void setCategory(Category category) {
             this.category = category;
         }
 
-        public Optional<Category> getEmail() {
+        public Optional<Category> getCategory() {
             return Optional.ofNullable(category);
         }
 
-        public void setAddress(Priority priority) {
+        public void setPriority(Priority priority) {
             this.priority = priority;
         }
 
-        public Optional<Priority> getAddress() {
+        public Optional<Priority> getPriority() {
             return Optional.ofNullable(priority);
         }
 
@@ -218,10 +218,10 @@ public class EditCommand extends Command {
             // state check
             EditCardDescriptor e = (EditCardDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+            return getQuestion().equals(e.getQuestion())
+                    && getAnswer().equals(e.getAnswer())
+                    && getCategory().equals(e.getCategory())
+                    && getPriority().equals(e.getPriority())
                     && getTags().equals(e.getTags());
         }
     }
