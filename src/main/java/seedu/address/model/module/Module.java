@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Module {
     private Title title;
     private AssignmentList assignments;
-    private Exam exam;
+    private ExamList exams;
 
     /**
      * Constructs a {@code Module} with {@code Title} as the input representing the module title.
@@ -13,7 +13,7 @@ public class Module {
     public Module(Title title) {
         this.title = title;
         this.assignments = new AssignmentList();
-        this.exam = null;
+        this.exams = new ExamList();
     }
 
     /**
@@ -45,21 +45,22 @@ public class Module {
     }
 
     /**
-     * Gets the exam of the module.
+     * Gets the exams of the module.
      *
-     * @return Exam.
+     * @return List of module exams.
      */
-    public Exam getExam() {
-        return exam;
+    public ExamList getExams() {
+        return exams;
     }
 
     /**
-     * Sets the exam of the module to the given exam.
+     * Gets {@code exam} at specific index.
      *
-     * @param exam Exam to be set.
+     * @param index index of the examList.
+     * @return {@code exam} at index.
      */
-    public void setExam(Exam exam) {
-        this.exam = exam;
+    public Exam getExamAt(int index) {
+        return exams.getExamAt(index);
     }
 
     /**
@@ -72,8 +73,9 @@ public class Module {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both modules have the same title.
+     * This defines a weaker notion of equality between two modules.
+     * todo Remove if this is useless.
      */
     public boolean isSameModule(Module otherModule) {
         if (otherModule == this) {
@@ -101,13 +103,13 @@ public class Module {
         Module otherModule = (Module) other;
         return otherModule.getTitle().equals(getTitle())
                 && otherModule.getAssignments().equals(getAssignments())
-                && otherModule.getExam().equals(getExam());
+                && otherModule.getExams().equals(getExams());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, assignments, exam);
+        return Objects.hash(title, assignments, exams);
     }
 
     @Override
@@ -116,8 +118,8 @@ public class Module {
         builder.append(getTitle())
                 .append("; Assignments: ")
                 .append(getAssignments())
-                .append("; Exam Date: ")
-                .append(getExam());
+                //.append("; Exam Date: ")
+                .append(getExams());
 
         return builder.toString();
     }
