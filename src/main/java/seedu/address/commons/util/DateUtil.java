@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 

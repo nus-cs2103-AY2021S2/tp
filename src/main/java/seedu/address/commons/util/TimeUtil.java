@@ -1,6 +1,5 @@
 package seedu.address.commons.util;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TIME_FORMAT;
 
 import java.time.LocalTime;
