@@ -28,7 +28,8 @@ public class VaccinationStatus {
      * @return true if test is a valid statis, false otherwise.
      */
     public static boolean isValidStatus(String test) {
-        boolean result = test.equals("not vaccinated") || test.equals("vaccinated");
+        boolean result = test.equalsIgnoreCase("not vaccinated")
+                || test.equalsIgnoreCase("vaccinated");
         return result;
     }
 
