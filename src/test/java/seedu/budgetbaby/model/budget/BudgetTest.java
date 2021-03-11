@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class BudgetTest {
-    private final static double THRESHOLD = 0.0001;
+    private static final double THRESHOLD = 0.0001;
 
     @Test
     public void getAmountTest() {
