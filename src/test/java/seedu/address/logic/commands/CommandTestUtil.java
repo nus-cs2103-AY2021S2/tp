@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -148,8 +147,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getMatriculationNumber().toString().split("\\s+");
-        model.updateFilteredPersonList(new MatriculationNumberContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String matriculationNumber = person.getMatriculationNumber().toString();
+        model.updateFilteredPersonList(new MatriculationNumberContainsKeywordsPredicate(matriculationNumber));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

@@ -2,10 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
-
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.MatriculationNumberContainsKeywordsPredicate;
 
 /**
@@ -20,18 +19,10 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
 
-        String trimmedArgs = args.trim();
+        ParserUtil parserUtil = new ParserUtil();
+        MatriculationNumber matriculationNumber = parserUtil.parseMatric(args.trim());
 
-        if (trimmedArgs.length() == 9 && String.valueOf(trimmedArgs.charAt(0)).equalsIgnoreCase("A")) {
-            checkValidMatriculationNumber(trimmedArgs);
-        } else {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindCommand(new MatriculationNumberContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new MatriculationNumberContainsKeywordsPredicate(matriculationNumber.toString()));
     }
 
     /**

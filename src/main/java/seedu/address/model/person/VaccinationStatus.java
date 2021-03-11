@@ -28,7 +28,8 @@ public class VaccinationStatus {
      * @return true if test is a valid statis, false otherwise.
      */
     public static boolean isValidStatus(String test) {
-        boolean result = test.equals("not vaccinated") || test.equals("vaccinated");
+        boolean result = test.equalsIgnoreCase("not vaccinated")
+                || test.equalsIgnoreCase("vaccinated");
         return result;
     }
 
@@ -40,8 +41,8 @@ public class VaccinationStatus {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MatriculationNumber // instanceof handles nulls
-                && value.equals(((MatriculationNumber) other).value)); // state check
+                || (other instanceof VaccinationStatus // instanceof handles nulls
+                && value.equals(((VaccinationStatus) other).value)); // state check
     }
 
     @Override
