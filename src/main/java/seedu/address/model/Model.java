@@ -94,6 +94,12 @@ public interface Model {
 
     void addProperty(Property property);
 
+    int getPropertySize();
+
+    Property getProperty(int i);
+
+    void setProperty(int i, Property property);
+
     // ======================================================================================================
     // API for AppointmentBook
 

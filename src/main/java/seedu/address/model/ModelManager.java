@@ -97,6 +97,21 @@ public class ModelManager implements Model {
         propertyBook.addProperty(property);
     }
 
+    @Override
+    public int getPropertySize() {
+        return propertyBook.getPropertySize();
+    }
+
+    @Override
+    public Property getProperty(int i) {
+        return propertyBook.getProperty(i);
+    }
+
+    @Override
+    public void setProperty(int i, Property property) {
+        propertyBook.setProperty(i, property);
+    }
+
     //=========== AppointmentBook =============================================================================
 
     @Override

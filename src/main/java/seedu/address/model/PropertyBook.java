@@ -38,4 +38,16 @@ public class PropertyBook {
     public void addProperty(Property property) {
         properties.add(property);
     }
+
+    public int getPropertySize() {
+        return properties.size();
+    }
+
+    public Property getProperty(int i) {
+        return properties.get(i);
+    }
+
+    public void setProperty(int i, Property property) {
+        properties.set(i, property);
+    }
 }
