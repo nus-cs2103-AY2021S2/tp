@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         Flashcard flashcardToEdit = lastShownList.get(index.getZeroBased());
         Flashcard editedFlashcard = createEditedPerson(flashcardToEdit, editPersonDescriptor);
 
-        if (!flashcardToEdit.isSamePerson(editedFlashcard) && model.hasFlashcard(editedFlashcard)) {
+        if (!flashcardToEdit.isSameFlashcard(editedFlashcard) && model.hasFlashcard(editedFlashcard)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -94,10 +94,10 @@ public class EditCommand extends Command {
     private static Flashcard createEditedPerson(Flashcard flashcardToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert flashcardToEdit != null;
 
-        Question updatedQuestion = editPersonDescriptor.getName().orElse(flashcardToEdit.getName());
-        Answer updatedAnswer = editPersonDescriptor.getPhone().orElse(flashcardToEdit.getPhone());
-        Category updatedCategory = editPersonDescriptor.getEmail().orElse(flashcardToEdit.getEmail());
-        Priority updatedPriority = editPersonDescriptor.getAddress().orElse(flashcardToEdit.getAddress());
+        Question updatedQuestion = editPersonDescriptor.getName().orElse(flashcardToEdit.getQuestion());
+        Answer updatedAnswer = editPersonDescriptor.getPhone().orElse(flashcardToEdit.getAnswer());
+        Category updatedCategory = editPersonDescriptor.getEmail().orElse(flashcardToEdit.getCategory());
+        Priority updatedPriority = editPersonDescriptor.getAddress().orElse(flashcardToEdit.getPriority());
         Remark updatedRemark = flashcardToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(flashcardToEdit.getTags());
 

@@ -14,7 +14,7 @@ import seedu.address.model.flashcard.UniqueFlashcardList;
  */
 public class FlashBack implements ReadOnlyFlashBack {
 
-    private final UniqueFlashcardList persons;
+    private final UniqueFlashcardList flashcards;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class FlashBack implements ReadOnlyFlashBack {
      *   among constructors.
      */
     {
-        persons = new UniqueFlashcardList();
+        flashcards = new UniqueFlashcardList();
     }
 
     public FlashBack() {}
@@ -43,8 +43,8 @@ public class FlashBack implements ReadOnlyFlashBack {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Flashcard> flashcards) {
-        this.persons.setPersons(flashcards);
+    public void setFlashcards(List<Flashcard> flashcards) {
+        this.flashcards.setPersons(flashcards);
     }
 
     /**
@@ -53,7 +53,7 @@ public class FlashBack implements ReadOnlyFlashBack {
     public void resetData(ReadOnlyFlashBack newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setFlashcards(newData.getPersonList());
     }
 
     //// person-level operations
@@ -63,7 +63,7 @@ public class FlashBack implements ReadOnlyFlashBack {
      */
     public boolean hasPerson(Flashcard flashcard) {
         requireNonNull(flashcard);
-        return persons.contains(flashcard);
+        return flashcards.contains(flashcard);
     }
 
     /**
@@ -71,7 +71,7 @@ public class FlashBack implements ReadOnlyFlashBack {
      * The person must not already exist in the address book.
      */
     public void addPerson(Flashcard p) {
-        persons.add(p);
+        flashcards.add(p);
     }
 
     /**
@@ -82,7 +82,7 @@ public class FlashBack implements ReadOnlyFlashBack {
     public void setPerson(Flashcard target, Flashcard editedFlashcard) {
         requireNonNull(editedFlashcard);
 
-        persons.setPerson(target, editedFlashcard);
+        flashcards.setPerson(target, editedFlashcard);
     }
 
     /**
@@ -90,31 +90,31 @@ public class FlashBack implements ReadOnlyFlashBack {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Flashcard key) {
-        persons.remove(key);
+        flashcards.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return flashcards.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Flashcard> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return flashcards.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FlashBack // instanceof handles nulls
-                && persons.equals(((FlashBack) other).persons));
+                && flashcards.equals(((FlashBack) other).flashcards));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return flashcards.hashCode();
     }
 }

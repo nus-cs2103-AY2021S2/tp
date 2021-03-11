@@ -11,7 +11,7 @@ import seedu.address.model.ReadOnlyFlashBack;
 /**
  * Represents a storage for {@link FlashBack}.
  */
-public interface AddressBookStorage {
+public interface FlashBackStorage {
 
     /**
      * Returns the file path of the data file.

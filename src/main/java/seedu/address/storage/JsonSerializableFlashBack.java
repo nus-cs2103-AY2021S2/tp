@@ -17,17 +17,17 @@ import seedu.address.model.flashcard.Flashcard;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableFlashBack {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedFlashcard> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableFlashBack(@JsonProperty("persons") List<JsonAdaptedFlashcard> persons) {
         this.persons.addAll(persons);
     }
 
@@ -36,8 +36,8 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyFlashBack source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonSerializableFlashBack(ReadOnlyFlashBack source) {
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedFlashcard::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,8 +47,8 @@ class JsonSerializableAddressBook {
      */
     public FlashBack toModelType() throws IllegalValueException {
         FlashBack flashBack = new FlashBack();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Flashcard flashcard = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedFlashcard jsonAdaptedFlashcard : persons) {
+            Flashcard flashcard = jsonAdaptedFlashcard.toModelType();
             if (flashBack.hasPerson(flashcard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
