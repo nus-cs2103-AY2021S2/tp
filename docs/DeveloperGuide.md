@@ -236,7 +236,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Computing minor students in NUS who like typing, and is most of the week spent moving about meeting people for his internship, lectures, or social life, have busy workdays. 
+* Computing minor students in NUS who like typing, and is most of the week spent moving about meeting people for his internship, lectures, or social life, have busy workdays.
 * Wants to manage school life and social life together in one app, with meetups for projects, lectures, social activities, and family all organised.
 * Would like to keep track of contacts and organise them as well for easy searching and easy remembering.
 * Can type fast
