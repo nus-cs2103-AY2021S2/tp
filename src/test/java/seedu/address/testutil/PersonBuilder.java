@@ -69,7 +69,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String dresscode) {
+    public PersonBuilder withDressCode(String dresscode) {
         this.dresscode = new DressCode(dresscode);
         return this;
     }
