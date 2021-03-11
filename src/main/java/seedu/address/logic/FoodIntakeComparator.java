@@ -6,7 +6,7 @@ import java.util.Comparator;
 import seedu.address.model.food.FoodIntake;
 
 /**
- * Compares and sorts FoodIntake objects by the date
+ * Compares and sorts FoodIntake objects by the date, otherwise alphabetically.
  */
 public class FoodIntakeComparator implements Comparator<FoodIntake> {
 
@@ -14,7 +14,11 @@ public class FoodIntakeComparator implements Comparator<FoodIntake> {
     public int compare(FoodIntake firstIntake, FoodIntake secondIntake) {
         LocalDate firstIntakeDate = firstIntake.getDate();
         LocalDate secondIntakeDate = secondIntake.getDate();
-        return firstIntakeDate.compareTo(secondIntakeDate);
+        if (firstIntakeDate.isEqual(secondIntakeDate)) { //If both dates are the same, sort alphabetically.
+            return firstIntake.getFood().getName().compareTo(secondIntake.getFood().getName());
+        } else {
+            return firstIntakeDate.compareTo(secondIntakeDate);
+        }
     }
 
 }
