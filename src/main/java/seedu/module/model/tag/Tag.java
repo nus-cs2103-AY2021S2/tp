@@ -3,10 +3,6 @@ package seedu.module.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.AppUtil.checkArgument;
 
-import java.util.function.Predicate;
-
-import seedu.module.model.task.Task;
-
 /**
  * Represents a Tag in the module book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}

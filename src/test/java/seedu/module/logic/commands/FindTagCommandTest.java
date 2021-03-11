@@ -5,9 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.module.testutil.TypicalTasks.PAQ;
-import static seedu.module.testutil.TypicalTasks.PROJECT;
-import static seedu.module.testutil.TypicalTasks.TP;
+import static seedu.module.testutil.TypicalTasks.MIDTERM;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 import java.util.Arrays;
@@ -58,8 +56,7 @@ public class FindTagCommandTest {
     @Test
     public void execute_zeroKeywords_noTaskFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
-//        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        Tag pred = new Tag(" ");
+        Tag pred = new Tag("noneOfTheTagsGotThisGodlyName");
         FindTagCommand command = new FindTagCommand(pred);
         expectedModel.updateFilteredTaskList(command.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -68,13 +65,13 @@ public class FindTagCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
-//        NameContainsKeywordsPredicate predicate = preparePredicate("TP Project PAQ");
-        Tag pred = new Tag("TP Project PAQ");
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
+        Tag pred = new Tag("highPriority");
         FindTagCommand command = new FindTagCommand(pred);
         expectedModel.updateFilteredTaskList(command.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TP, PROJECT, PAQ), model.getFilteredTaskList());
+        System.out.println(model.getFilteredTaskList());
+        assertEquals(Arrays.asList(MIDTERM), model.getFilteredTaskList());
     }
 
     /**
