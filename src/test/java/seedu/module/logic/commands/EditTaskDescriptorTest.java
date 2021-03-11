@@ -8,7 +8,7 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,7 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HIGH).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

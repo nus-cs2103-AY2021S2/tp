@@ -6,7 +6,7 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 import static seedu.module.testutil.Assert.assertThrows;
 import static seedu.module.testutil.TypicalTasks.BOB;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
@@ -33,7 +33,7 @@ public class TaskTest {
 
         // same name, all other attributes different -> returns true
         Task editedAlice = new TaskBuilder(QUIZ).withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_BOB)
-                .withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HIGH).build();
         assertTrue(QUIZ.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,7 +85,7 @@ public class TaskTest {
         assertFalse(QUIZ.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new TaskBuilder(QUIZ).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new TaskBuilder(QUIZ).withTags(VALID_TAG_HIGH).build();
         assertFalse(QUIZ.equals(editedAlice));
     }
 }

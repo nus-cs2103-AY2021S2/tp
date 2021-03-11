@@ -14,9 +14,11 @@ import seedu.module.logic.commands.DoneCommand;
 import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.ExitCommand;
 import seedu.module.logic.commands.FindCommand;
+import seedu.module.logic.commands.FindTagCommand;
 import seedu.module.logic.commands.HelpCommand;
 import seedu.module.logic.commands.ListCommand;
 import seedu.module.logic.commands.NotDoneCommand;
+import seedu.module.logic.commands.TagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 
 /**
@@ -64,6 +66,9 @@ public class ModuleBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindTagCommand.COMMAND_WORD:
+            return new FindTagCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -75,6 +80,9 @@ public class ModuleBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

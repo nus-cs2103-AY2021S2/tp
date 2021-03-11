@@ -21,10 +21,13 @@ import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.logic.commands.ExitCommand;
 import seedu.module.logic.commands.FindCommand;
+import seedu.module.logic.commands.FindTagCommand;
 import seedu.module.logic.commands.HelpCommand;
 import seedu.module.logic.commands.ListCommand;
 import seedu.module.logic.commands.NotDoneCommand;
+import seedu.module.logic.commands.TagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
+import seedu.module.model.tag.Tag;
 import seedu.module.model.task.NameContainsKeywordsPredicate;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.EditTaskDescriptorBuilder;
@@ -86,6 +89,14 @@ public class ModuleBookParserTest {
     }
 
     @Test
+    public void parseCommand_findTag() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTagCommand command = (FindTagCommand) parser.parseCommand(
+                FindTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTagCommand(new Tag(keywords.get(0))), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -96,6 +107,14 @@ public class ModuleBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_tag() throws Exception {
+        Tag stubTag = new Tag("Stub");
+        TagCommand command = (TagCommand) parser.parseCommand(TagCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getTagDetails(stubTag));
+        assertEquals(new TagCommand(INDEX_FIRST_TASK, stubTag), command);
     }
 
     @Test
