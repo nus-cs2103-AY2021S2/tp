@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.EventBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventStatus;
-import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Event} objects to be used in tests.
