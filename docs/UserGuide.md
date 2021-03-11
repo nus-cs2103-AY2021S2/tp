@@ -51,11 +51,11 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
 
 Adds a person to the HippoCampus' Contacts List.
 
-Format: `add NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​`<br>
+Format: `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​`<br>
 * The birthday must be in a valid date format, e.g. 13 Jan
 
 Examples:
-* `add James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan` Adds a new person James Ho with specified details.
+* `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan` Adds a new person James Ho with specified details.
 
 ### Clearing all data : `clear`
 
@@ -67,15 +67,20 @@ Format: `clear`
 
 Deletes the specified person from the HippoCamus' Contact List.
 
-Format: `delete INDEX [INDEX…]`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list (without sorting).
-* The index must be a positive integer valid in the list.
+Format: `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`
+* If provided with index(es)
+  * Deletes the person at the specified `INDEX`.
+  * All indexes refers to the index number shown in the displayed person list (without sorting).
+  * All indexes must be a positive integer valid in the list.
+* If provided with tags
+  * Delete every person who is tagged with the specified tag.
+  * If the person is tagged with another tag, only the specified tag will be removed. The contact will not be deleted.
 
 Examples:
 * `delete 3` deletes contact at 3rd index.
 * `delete 3 4 5` deletes contacts at 3rd, 4th and 5th index.
+* `delete -t colleague` deletes contact with tag "colleague".
+* `delete -t colleague -t cs2103` deletes contacts with tag "colleague" and contacts with tag "cs2103"
 
 ### Editing contacts : `edit`
 
@@ -176,10 +181,10 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]` <br> e.g., `add James Ho -p 96280000 -t friend -t colleague`
+**Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX [INDEX…​]`<br> e.g., `delete 3 4 5`
-**Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit 2 -n Betsy Crower -t`
+**Delete** | `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`<br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
+**Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit 2 -n Betsy Crower -t colleague`
 **Find** | `find [-n NAME] [-t TAG]`<br> e.g., `find -n Bob -t cs2103`
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
 **Find tags** | `tags [-f KEYWORD]`<br> e.g.,`tags`<br> e.g., `tags -f cs2103`
