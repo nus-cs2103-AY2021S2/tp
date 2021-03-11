@@ -74,6 +74,12 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
+    //Test for improved version of findCommand
+    @Test
+    public void execute_incompleteKeyword_multiplePersonsFound() {
+        //TODO Add some useful code here
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
