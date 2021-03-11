@@ -24,6 +24,30 @@ public class OwnerTest {
     }
 
     @Test
+    public void getName() {
+        assertTrue(ALICE.getName().equals(new Name("Alice Pauline")));
+        assertTrue(BOB.getName().equals(new Name("Bob Choo")));
+    }
+
+    @Test
+    public void getPhone() {
+        assertTrue(ALICE.getPhone().equals(new Phone("94351253")));
+        assertTrue(BOB.getPhone().equals(new Phone("22222222")));
+    }
+
+    @Test
+    public void getEmail() {
+        assertTrue(ALICE.getEmail().equals(new Email("alice@example.com")));
+        assertTrue(BOB.getEmail().equals(new Email("bob@example.com")));
+    }
+
+    @Test
+    public void getAddress() {
+        assertTrue(ALICE.getAddress().equals(new Address("123, Jurong West Ave 6, #08-111")));
+        assertTrue(BOB.getAddress().equals(new Address("Block 123, Bobby Street 3")));
+    }
+
+    @Test
     public void isSameOwner() {
         // same object -> returns true
         assertTrue(ALICE.isSameOwner(ALICE));
