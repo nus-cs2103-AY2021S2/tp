@@ -15,6 +15,7 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.AesKeyStrength;
 import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.CompressionMethod;
+import net.lingala.zip4j.model.enums.EncryptionMethod;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -100,6 +101,8 @@ public class Authentication {
         }
 
         ZipParameters parameters = new ZipParameters();
+        parameters.setEncryptFiles(true);
+        parameters.setEncryptionMethod(EncryptionMethod.AES);
         parameters.setAesKeyStrength(AesKeyStrength.KEY_STRENGTH_256);
         parameters.setCompressionLevel(CompressionLevel.NORMAL);
         parameters.setCompressionMethod(CompressionMethod.DEFLATE);

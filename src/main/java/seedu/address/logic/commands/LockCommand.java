@@ -24,11 +24,20 @@ public class LockCommand extends Command {
     private final Optional<String> currentPassword;
     private final String newPassword;
 
+    /**
+     * Instantiates a LockCommand object with the new password.
+     * @param newPassword password used to lock the addressbook.json file into a zip file.
+     */
     public LockCommand(String newPassword) {
         this.currentPassword = Optional.empty();
         this.newPassword = newPassword;
     }
 
+    /**
+     * Instantiates a LockCommand object with the current password and new password.
+     * @param currentPassword current password that is used to lock the zip file containing addressbook.json.
+     * @param newPassword password used to lock the addressbook.json file into a zip file.
+     */
     public LockCommand(String currentPassword, String newPassword) {
         this.currentPassword = Optional.of(currentPassword);
         this.newPassword = newPassword;
