@@ -15,15 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import dog.pawbook.logic.commands.AddCommand;
 import dog.pawbook.logic.commands.DeleteCommand;
-import dog.pawbook.logic.commands.EditCommand;
-import dog.pawbook.logic.commands.EditCommand.EditOwnerDescriptor;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.owner.NameContainsKeywordsPredicate;
 import dog.pawbook.model.owner.Owner;
-import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
 import dog.pawbook.testutil.OwnerBuilder;
 import dog.pawbook.testutil.OwnerUtil;
 
@@ -43,15 +40,6 @@ public class PawbookParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + DeleteCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_OWNER), command);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Owner owner = new OwnerBuilder().build();
-        EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(owner).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_OWNER.getOneBased() + " " + OwnerUtil.getEditOwnerDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_OWNER, descriptor), command);
     }
 
     @Test
