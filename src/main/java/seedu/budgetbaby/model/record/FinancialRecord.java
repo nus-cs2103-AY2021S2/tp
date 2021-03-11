@@ -1,7 +1,11 @@
 package seedu.budgetbaby.model.record;
 
+
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents a Financial Record in the budget tracker.
@@ -10,26 +14,28 @@ import java.util.Objects;
 public class FinancialRecord {
 
     private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
+    private static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
 
     // Data fields
     private final Description description;
     private final Amount amount;
     private final Date timestamp;
-    //    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Category> categories = new HashSet<>();
 
     /**
      * Constructs a {@code FinancialRecord}.
      *
      * @param description A valid description.
      * @param amount      A valid amount.
+     * @param categories  A valid category.
      */
-    public FinancialRecord(Description description, Amount amount) {
-        //        requireNonNull(tagName);
-        //        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+    public FinancialRecord(Description description, Amount amount, Set<Category> categories) {
+        //requireNonNull(tagName);
+        //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.amount = amount;
         this.timestamp = new Date();
-        //        this.tags.addAll(tags);
+        this.categories.addAll(categories);
     }
 
     /**
@@ -40,12 +46,12 @@ public class FinancialRecord {
      * @param timestamp   A valid timestamp.
      */
     public FinancialRecord(Description description, Amount amount, Date timestamp) {
-        //        requireNonNull(tagName);
-        //        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        //requireNonNull(tagName);
+        //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.amount = amount;
         this.timestamp = timestamp;
-        //        this.tags.addAll(tags);
+        this.categories.addAll(categories);
     }
 
     public Description getDescription() {
@@ -64,9 +70,9 @@ public class FinancialRecord {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    //    public Set<Tag> getTags() {
-    //        return Collections.unmodifiableSet(tags);
-    //    }
+    public Set<Category> getTags() {
+        return Collections.unmodifiableSet(categories);
+    }
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -80,13 +86,15 @@ public class FinancialRecord {
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
             .append(getDescription())
             .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
-            .append(getAmount());
+            .append(getAmount())
+            .append(FINANCIAL_RECORD_DETAILS_DELIMITER)
+            .append(getTimestamp());
 
-        //        Set<Tag> tags = getTags();
-        //        if (!tags.isEmpty()) {
-        //            builder.append("; Tags: ");
-        //            tags.forEach(builder::append);
-        //        }
+        Set<Category> categories = getTags();
+        if (!categories.isEmpty()) {
+            builder.append("; Categories: ");
+            categories.forEach(builder::append);
+        }
         return builder.toString();
     }
 

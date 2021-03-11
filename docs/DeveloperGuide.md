@@ -63,7 +63,7 @@ students as they adjust themselves, easing into adulthood.
 
 * Optimised for university students by
     * setting monthly psending goals as university students have limited budgets 
-    * allowing university students to categorize their spendings with custom tags suiting their diverse lifestyles
+    * allowing university students to categorize their spendings with custom categories suiting their diverse lifestyles
     * providing statistics to help university students better visualize their spending habits and make future plans 
       (i.e. to cut down on costs incurred on food next month)
     * sending reminders to keep university students on track (i.e. how much money is left in their budget) as they are often busy with school

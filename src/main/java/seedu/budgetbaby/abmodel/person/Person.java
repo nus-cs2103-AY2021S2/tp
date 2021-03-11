@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.model.record.Category;
 
 /**
  * Represents a Person in the address book.
@@ -22,18 +22,18 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Category> categories = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Category> categories) {
+        requireAllNonNull(name, phone, email, address, categories);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.categories.addAll(categories);
     }
 
     public Name getName() {
@@ -56,8 +56,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Category> getTags() {
+        return Collections.unmodifiableSet(categories);
     }
 
     /**
@@ -98,7 +98,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, categories);
     }
 
     @Override
@@ -112,10 +112,10 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
+        Set<Category> categories = getTags();
+        if (!categories.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            categories.forEach(builder::append);
         }
         return builder.toString();
     }
