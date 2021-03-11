@@ -43,16 +43,16 @@ is responsible for,
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#ui-component) The UI of the App.
+* [**`Logic`**](#logic-component) The command executor.
+* [**`Model`**](#model-component) Holds the data of the App in memory.
+* [**`Storage`**](#storage-component) Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface` mentioned in the previous point).
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and
 exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -98,7 +98,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a item).
+1. The command execution can affect the `Model` (e.g. adding an item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with undo/redo
 history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
@@ -168,7 +168,7 @@ following operations:
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
 and `Model#redoAddressBook()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
 initial location book state, and the `currentStatePointer` pointing to that single location book state.
@@ -355,19 +355,9 @@ otherwise)
 **MSS**
 
 1. User requests to display all items in that specific location.
-2. StoreMando displays all items in that specific location.
+2. StoreMando displays all items in that specific location, can be 0 item.
 
    Use case ends.
-
-**Extensions**
-
-* 1a. The location does not exist in the storage.
-
-    * 1a1. StoreMando shows an error message.
-
-    * 1a2. StoreMando prompts the user for a correct input.
-
-      Use case resumes at step 1.
 
 **Use case: UC4 - Find an item**
 
@@ -398,6 +388,24 @@ otherwise)
     * 3a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 3.
+
+**Use case: UC6 - List all items**
+
+**MSS**
+
+1. User requests to display all items.
+2. StoreMando displays all items, can be 0 item.
+
+   Use case ends.
+
+**Use case: UC7 - List all items with a specific tag**
+
+**MSS**
+
+1. User requests to display all items with that specific tag.
+2. StoreMando displays all items with that specific tag, can be 0 item.
+
+   Use case ends.
 
 *{More to be added}*
 
