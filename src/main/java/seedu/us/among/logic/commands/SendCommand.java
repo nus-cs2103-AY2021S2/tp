@@ -40,13 +40,17 @@ public class SendCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_UNKNOWN_HOST = "The host name could not be resolved. Check your"
+            + " internet connection and endpoint URL.";
     public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
             + " that your data is added in the correct JSON format.";
-    public static final String MESSAGE_CONNECTION_ERROR = "The request was not performed successfully."
-            + " Check your internet connection and endpoint URL.";
-    public static final String MESSAGE_CALL_CANCELLED = "The request has been cancelled.";
+    public static final String MESSAGE_CONNECTION_ERROR = "Connection was lost or could not be established."
+            + " Check your internet connection and endpoint URL. This could also be a problem with the server"
+            + " you are attempting to connect to.";
+    public static final String MESSAGE_CALL_CANCELLED = "The request has been aborted.";
     public static final String MESSAGE_GENERAL_ERROR = "The request was not performed successfully."
-            + " Check that your endpoint fields are correct.";
+            + " Check that your endpoint fields are correct. This could also be a problem with the server"
+            + " you are attempting to connect to.";
 
     private final Index index;
 
@@ -71,13 +75,16 @@ public class SendCommand extends Command {
         EndpointCaller epc = new EndpointCaller(endpointToSend);
         Response response;
 
+        //to-do Tan Jin verify again all errors caught here due to API calls
         try {
             response = epc.callEndpoint();
-        } catch (UnknownHostException | ClientProtocolException | SocketTimeoutException e) {
+        } catch (UnknownHostException e) {
+            throw new RequestException(MESSAGE_UNKNOWN_HOST);
+        } catch (ClientProtocolException | SocketTimeoutException | SocketException | NoHttpResponseException e) {
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
             throw new RequestException(MESSAGE_INVALID_JSON);
-        } catch (IllegalStateException | SSLException | NoHttpResponseException | SocketException e) {
+        } catch (IllegalStateException | SSLException e) {
             throw new RequestException(MESSAGE_CALL_CANCELLED);
         } catch (IOException e) {
             throw new RequestException(MESSAGE_GENERAL_ERROR);
