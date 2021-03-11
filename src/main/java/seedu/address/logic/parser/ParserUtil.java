@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +121,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ProjectName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ProjectName parseProjectName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ProjectName.isValidProjectName(trimmedName)) {
+            throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectName(trimmedName);
     }
 }

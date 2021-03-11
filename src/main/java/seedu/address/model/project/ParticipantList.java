@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
 
@@ -29,6 +30,14 @@ public class ParticipantList {
 
     public List<Person> getParticipants() {
         return participants;
+    }
+
+    /**
+     * Returns a sequential stream with this {@code ParticipantList} as its source.
+     * @return a sequential Stream over the persons in this {@code ParticipantList}.
+     */
+    public Stream<Person> stream() {
+        return participants.stream();
     }
 
     @Override
