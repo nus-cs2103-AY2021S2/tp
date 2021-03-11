@@ -10,11 +10,11 @@ import seedu.budgetbaby.abmodel.person.Address;
 import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Phone;
-import seedu.budgetbaby.abmodel.tag.Tag;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.commons.util.StringUtil;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Amount;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 
 /**
@@ -134,24 +134,24 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Category parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Category.isValidTagName(trimmedTag)) {
+            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Category(trimmedTag);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<Category> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<Category> categorySet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            categorySet.add(parseTag(tagName));
         }
-        return tagSet;
+        return categorySet;
     }
 }

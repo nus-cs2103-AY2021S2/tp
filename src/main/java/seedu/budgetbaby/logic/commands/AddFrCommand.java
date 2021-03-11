@@ -2,6 +2,7 @@ package seedu.budgetbaby.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
@@ -19,12 +20,11 @@ public class AddFrCommand extends BudgetBabyCommand {
         + "Parameters: "
         + PREFIX_DESCRIPTION + "FR_DESCRIPTION "
         + PREFIX_AMOUNT + "FR_AMOUNT "
-        //        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_CATEGORY + "CATEGORY]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_DESCRIPTION + "Lunch "
-        + PREFIX_AMOUNT + "10";
-    //        + PREFIX_TAG + "friends "
-    //        + PREFIX_TAG + "owesMoney"
+        + PREFIX_AMOUNT + "10 "
+        + PREFIX_CATEGORY + "Food";
 
     public static final String MESSAGE_SUCCESS = "New financial record added: %1$s";
     //    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

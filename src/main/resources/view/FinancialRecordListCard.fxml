@@ -28,7 +28,7 @@
         </Label>
         <Label fx:id="description" styleClass="cell_big_label" text="\$description" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="categories" />
       <Label fx:id="amount" styleClass="cell_small_label" text="\$amount" />
     </VBox>
       <rowConstraints>
