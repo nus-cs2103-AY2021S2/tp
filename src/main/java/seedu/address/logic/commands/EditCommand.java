@@ -91,7 +91,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editFlashcardDescriptor}.
      */
-    private static Flashcard createEditedPerson(Flashcard flashcardToEdit, EditFlashcardDescriptor editFlashcardDescriptor) {
+    private static Flashcard createEditedPerson(Flashcard flashcardToEdit,
+                                                EditFlashcardDescriptor editFlashcardDescriptor) {
         assert flashcardToEdit != null;
 
         Question updatedQuestion = editFlashcardDescriptor.getQuestion().orElse(flashcardToEdit.getQuestion());
