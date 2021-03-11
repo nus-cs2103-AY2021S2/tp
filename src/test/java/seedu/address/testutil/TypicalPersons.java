@@ -24,29 +24,29 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withDressCode("123, Jurong West ").withEmail("alice@example.com")
+            .withDressCode("FORMAL").withEmail("alice@example.com")
             .withSize("53")
             .withDescriptions("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withDressCode("311, Clementi Ave 2, #02-25")
+            .withDressCode("FORMAL")
             .withEmail("johnd@example.com").withSize("32")
             .withDescriptions("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withSize("93")
-            .withEmail("heinz@example.com").withDressCode("wall street").build();
+            .withEmail("heinz@example.com").withDressCode("FORMAL").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withSize("33")
-            .withEmail("cornelia@example.com").withDressCode("10th street").withDescriptions("friends").build();
+            .withEmail("cornelia@example.com").withDressCode("CASUAL").withDescriptions("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withSize("24")
-            .withEmail("werner@example.com").withDressCode("michegan ave").build();
+            .withEmail("werner@example.com").withDressCode("CASUAL").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withSize("27")
-            .withEmail("lydia@example.com").withDressCode("little tokyo").build();
+            .withEmail("lydia@example.com").withDressCode("CASUAL").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withSize("42")
-            .withEmail("anna@example.com").withDressCode("4th street").build();
+            .withEmail("anna@example.com").withDressCode("ACTIVE").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withSize("24")
-            .withEmail("stefan@example.com").withDressCode("little india").build();
+            .withEmail("stefan@example.com").withDressCode("ACTIVE").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withSize("31")
-            .withEmail("hans@example.com").withDressCode("chicago ave").build();
+            .withEmail("hans@example.com").withDressCode("ACTIVE").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withSize(VALID_SIZE_AMY)
