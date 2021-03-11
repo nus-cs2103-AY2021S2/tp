@@ -88,10 +88,22 @@ public class InsurancePolicy {
         policyUrl = url;
     }
 
+    /**
+     * Checks if given {@code String} is a valid policy Id of the format Policy_****.
+     *
+     * @param test {@code String} to test.
+     * @return true if {@code String} is of valid policy Id format.
+     */
     public static boolean isPolicyId(String test) {
         return test.matches(CHECK_POLICY_ID_REGEX);
     }
 
+    /**
+     * Checks if given {@code String} is of a valid input format for this command.
+     *
+     * @param test {@code String} to test.
+     * @return true if {@code String} is of a valid input format for this command.
+     */
     public static boolean isValidPolicyInput(String test) {
         return test.matches(CHECK_POLICY_INPUT_REGEX);
     }

@@ -12,29 +12,7 @@
     <scene>
         <Scene>
             <VBox fx:id="outerBox" alignment="CENTER">
-                <children>
-
-                </children>
-<!--                <HBox fx:id="innerBox" alignment="CENTER">-->
-<!--                    <children>-->
-<!--                        &lt;!&ndash;                    <Label fx:id="policiesToDisplayText" text="Label">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        <HBox.margin>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                            <Insets right="5.0" />&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        </HBox.margin>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    </Label>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        <HBox.margin>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                            <Insets left="5.0" />&ndash;&gt;-->
-<!--                        &lt;!&ndash;                        </HBox.margin>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    </Button>&ndash;&gt;-->
-<!--                    </children>-->
-<!--                    <opaqueInsets>-->
-<!--                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />-->
-<!--                    </opaqueInsets>-->
-<!--                    <padding>-->
-<!--                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />-->
-<!--                    </padding>-->
-<!--                </HBox>-->
+                <children />
             </VBox>
         </Scene>
     </scene>

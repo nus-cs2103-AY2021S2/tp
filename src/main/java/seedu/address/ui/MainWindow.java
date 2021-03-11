@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -42,9 +41,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private MenuItem policiesMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -80,7 +76,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-//        setAccelerator(policiesMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**

@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -13,17 +14,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
-import java.util.logging.Logger;
-
 public class PoliciesWindow extends UiPart<Stage> {
 
     private static final String NO_POLICY_FEEDBACK = "This contact has no policies now!";
     private static final String NOT_URL = "No URL!";
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final Logger logger = LogsCenter.getLogger(PoliciesWindow.class);
     private static final String FXML = "PoliciesWindow.fxml";
-
-    @javafx.fxml.FXML
-    private Button copyButton;
 
     @FXML
     private VBox outerBox;
@@ -45,7 +41,7 @@ public class PoliciesWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the help window.
+     * Shows the policies window.
      * @throws IllegalStateException
      * <ul>
      *     <li>
@@ -63,7 +59,7 @@ public class PoliciesWindow extends UiPart<Stage> {
      * </ul>
      */
     public void show() {
-        logger.fine("Showing policies associated with chosen contact, if any.");
+        logger.fine("Showing policies, if any, associated with chosen contact.");
         getRoot().show();
     }
 
@@ -99,6 +95,11 @@ public class PoliciesWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 
+    /**
+     * Formats and sets up policies and their URLs for display in window.
+     *
+     * @param policiesToDisplay joined {@code String} of all policies associated with the chosen contact.
+     */
     public void setPoliciesToDisplay(String policiesToDisplay) {
         outerBox.getChildren().clear();
         String[] split = policiesToDisplay.split("\n");
@@ -114,9 +115,9 @@ public class PoliciesWindow extends UiPart<Stage> {
                     Button rowButton = new Button("Copy URL!");
                     rowButton.setOnAction(e -> copyUrl(possibleUrl));
                     row.setAlignment(Pos.CENTER);
-                    Hyperlink link = new Hyperlink(possibleUrl);
-                    link.setText(split[i]);
-                    row.getChildren().addAll(link, rowButton);
+                    // Hyperlink link = new Hyperlink(possibleUrl);
+                    // link.setText(split[i]);
+                    row.getChildren().addAll(new Label(split[i]), rowButton);
                 } else {
                     row.getChildren().addAll(new Label(split[i]));
                 }
