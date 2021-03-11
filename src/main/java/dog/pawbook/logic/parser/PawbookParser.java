@@ -15,7 +15,6 @@ import dog.pawbook.logic.commands.EditCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
-import dog.pawbook.logic.commands.ListCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -59,9 +58,6 @@ public class PawbookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
