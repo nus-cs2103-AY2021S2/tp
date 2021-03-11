@@ -142,6 +142,10 @@ public class Authentication {
         this.password = Optional.of(password);
     }
 
+    public void removePassword() {
+        this.password = Optional.empty();
+    }
+
     private void deleteJson() {
         File dataJson = new File(this.filePath.toString());
         dataJson.delete();
