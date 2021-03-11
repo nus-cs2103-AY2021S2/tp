@@ -18,8 +18,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-public class TagCommand extends Command{
+/**
+ * Appends tags to an existing person in the address book.
+ */
+public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Appends tags to the tags of the person identified "
             + "by the index number used in the displayed person list. "
@@ -27,7 +29,7 @@ public class TagCommand extends Command{
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TAG + "form teacher";;
+            + PREFIX_TAG + "form teacher";
     private final Index index;
     private final Set<Tag> tags;
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s";
@@ -55,6 +57,10 @@ public class TagCommand extends Command{
         return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, taggedPerson));
     }
 
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToTag}
+     * with tags appended with {@code tags}.
+     */
     private Person createTaggedPerson(Person personToTag) {
         assert personToTag != null;
 
