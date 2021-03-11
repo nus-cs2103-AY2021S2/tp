@@ -159,7 +159,8 @@ public class UniqueFlashcardListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Flashcard> listWithDuplicateFlashcards = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setPersons(listWithDuplicateFlashcards));
+        assertThrows(DuplicateFlashcardException.class, () ->
+                uniqueFlashcardList.setPersons(listWithDuplicateFlashcards));
     }
 
     @Test

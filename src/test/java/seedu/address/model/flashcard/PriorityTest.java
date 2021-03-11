@@ -28,6 +28,7 @@ public class PriorityTest {
         assertFalse(Priority.isValidPriority("")); // empty string
         assertFalse(Priority.isValidPriority(" ")); // spaces only
         assertFalse(Priority.isValidPriority("mid"));
+        assertFalse(Priority.isValidPriority("average"));
 
         // valid priorities
         assertTrue(Priority.isValidPriority("High"));

@@ -251,13 +251,25 @@ faster management of flashcards compared to a typical mouse/GUI driven app
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                     |I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | student                                    | add a new card                 | take down important concepts for future reference                                                                    |
-| `* * *`  | long-time user                             | delete an old card             | remove some notes that I no longer need                               |
-| `* * *`  | student                                    | view all my notes   | easily refer to all my study materials               |                                                |
-| `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly
+| Priority | As a …​                                     |I want to …​                     | So that I can…​                                                        
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- 
+| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App        
+| `* * *`  | new user | use the app with sample data | see how the app look like         
+| `* * *`  | student                                    | add a new card                 | take down important concepts for future reference                                                                    
+| `* * *`  | long-time user                             | delete an old card             | remove some notes that I no longer need                               
+| `* * *`  | student                                    | view all my notes   | easily refer to all my study materials               |                                                
+| `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly 
+| `* * * ` | impatient student | quickly edit my notes | use time saved to do other stuff 
+| `* *` | multi-discipline student | put my notes under different tags and categories | easily organize them
+| `* *`     | angry student   | undo my actions| my emotion will not cloud my judgements
+| `* *` | student | review my own performance after each study session | know what to improve on
+| `* *` | long-time user | find what I need easily | search through the list of decks without doing it manually 
+| `*`   | student | export a part of my materials | share it with others 
+| `*`   | experienced user | define my own aliases for commands | use them faster
+| `*`   | chemistry/biology Student | use subscripts | see the chemical formula easier
+| `*`   | careless student | archive my notes | easily restore them
+| `*`   | student | look at the statistics | focus on topics that I am not good at
+ 
 
 *{More to be added}*
 
