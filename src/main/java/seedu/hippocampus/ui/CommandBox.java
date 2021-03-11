@@ -3,7 +3,9 @@ package seedu.hippocampus.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
+import seedu.hippocampus.commons.util.InputHistory;
 import seedu.hippocampus.logic.commands.CommandResult;
 import seedu.hippocampus.logic.commands.exceptions.CommandException;
 import seedu.hippocampus.logic.parser.exceptions.ParseException;
@@ -21,6 +23,8 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
+    private InputHistory history;
+
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
@@ -29,6 +33,8 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setOnKeyPressed(e -> handleUserKey(e.getCode()));
+        history = new InputHistory();
     }
 
     /**
@@ -41,11 +47,31 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
 
+        history.add(commandText);
+
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    private void handleUserKey(KeyCode key) {
+        switch(key) {
+        case UP:
+            commandTextField.setText(history.getPrevious());
+            commandTextField.end();
+            break;
+        case DOWN:
+            commandTextField.setText(history.getNext());
+            commandTextField.end();
+            break;
+        case ESCAPE:
+            commandTextField.clear();
+            break;
+        default:
+            break;
         }
     }
 
