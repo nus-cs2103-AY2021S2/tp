@@ -33,7 +33,7 @@ public class FinancialRecordCard extends UiPart<Region> {
     @FXML
     private Label amount;
     @FXML
-    private FlowPane tags;
+    private FlowPane categories;
 
     /**
      * Creates a {@code FinancialRecordCard} with the given {@code FinancialRecord} and index to display.
@@ -46,7 +46,7 @@ public class FinancialRecordCard extends UiPart<Region> {
         amount.setText("$" + financialRecord.getAmount().toString());
         // person.getTags().stream()
         //     .sorted(Comparator.comparing(tag -> tag.tagName))
-        //     .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //     .forEach(tag -> categories.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

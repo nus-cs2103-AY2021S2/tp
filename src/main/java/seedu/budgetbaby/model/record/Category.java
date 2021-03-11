@@ -1,28 +1,28 @@
-package seedu.budgetbaby.abmodel.tag;
+package seedu.budgetbaby.model.record;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Category in the budget tracker.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Category {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Categories should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    public final String category;
 
     /**
      * Constructs a {@code Tag}.
      *
      * @param tagName A valid tag name.
      */
-    public Tag(String tagName) {
+    public Category(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.category = tagName;
     }
 
     /**
@@ -35,20 +35,20 @@ public class Tag {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+                || (other instanceof Category // instanceof handles nulls
+                && category.equals(((Category) other).category)); // state check
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return category.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + category + ']';
     }
 
 }

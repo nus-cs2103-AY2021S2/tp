@@ -11,10 +11,10 @@ import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.abmodel.person.Phone;
-import seedu.budgetbaby.abmodel.tag.Tag;
 import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 import seedu.budgetbaby.model.record.Amount;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
@@ -56,16 +56,16 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Category> getTagSet(String... strings) {
         return Arrays.stream(strings)
-            .map(Tag::new)
+            .map(Category::new)
             .collect(Collectors.toSet());
     }
 
     public static FinancialRecord[] getSampleFinancialRecords() {
         return new FinancialRecord[]{
-            new FinancialRecord(new Description("Lunch"), new Amount("10")),
-            new FinancialRecord(new Description("Dinner"), new Amount("10.50")),
+            new FinancialRecord(new Description("Lunch"), new Amount("10"), getTagSet("Food")),
+            new FinancialRecord(new Description("Dinner"), new Amount("10.50"), getTagSet("Food")),
         };
     }
 
