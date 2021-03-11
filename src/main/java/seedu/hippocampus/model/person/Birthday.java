@@ -1,6 +1,7 @@
 package seedu.hippocampus.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.hippocampus.commons.util.AppUtil.checkArgument;
 
 /** Represents a Person's birthday in HippoCampus.
  * Guarantees: immutable; is always valid.
@@ -22,6 +23,7 @@ public class Birthday {
      */
     public Birthday(String birthdate) {
         requireNonNull(birthdate);
+        checkArgument(isValidBirthday(birthdate), MESSAGE_CONSTRAINTS);
         value = birthdate;
     }
 
