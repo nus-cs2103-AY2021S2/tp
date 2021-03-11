@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.addcommandparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
@@ -13,6 +13,9 @@ import seedu.address.logic.commands.addcommand.AddAssignmentCommand;
 import seedu.address.logic.commands.addcommand.AddExamCommand;
 import seedu.address.logic.commands.addcommand.AddModuleCommand;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
