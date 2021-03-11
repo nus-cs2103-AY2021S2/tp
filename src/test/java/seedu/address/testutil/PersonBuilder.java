@@ -41,10 +41,10 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Flashcard flashcardToCopy) {
-        question = flashcardToCopy.getName();
-        answer = flashcardToCopy.getPhone();
-        category = flashcardToCopy.getEmail();
-        priority = flashcardToCopy.getAddress();
+        question = flashcardToCopy.getQuestion();
+        answer = flashcardToCopy.getAnswer();
+        category = flashcardToCopy.getCategory();
+        priority = flashcardToCopy.getPriority();
         remark = flashcardToCopy.getRemark();
         tags = new HashSet<>(flashcardToCopy.getTags());
     }

@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentFlashBack, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullQuestion.split("\\s+");
+        String[] keywords = ALICE.getQuestion().fullQuestion.split("\\s+");
         modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(flashBack, userPrefs)));
 

@@ -32,10 +32,10 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Flashcard flashcard) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(flashcard.getName());
-        descriptor.setPhone(flashcard.getPhone());
-        descriptor.setEmail(flashcard.getEmail());
-        descriptor.setAddress(flashcard.getAddress());
+        descriptor.setName(flashcard.getQuestion());
+        descriptor.setPhone(flashcard.getAnswer());
+        descriptor.setEmail(flashcard.getCategory());
+        descriptor.setAddress(flashcard.getPriority());
         descriptor.setTags(flashcard.getTags());
     }
 

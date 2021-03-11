@@ -20,7 +20,7 @@ import seedu.address.model.flashcard.exceptions.FlashcardNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Flashcard#isSamePerson(Flashcard)
+ * @see Flashcard#isSameFlashcard(Flashcard)
  */
 public class UniqueFlashcardList implements Iterable<Flashcard> {
 
@@ -33,7 +33,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      */
     public boolean contains(Flashcard toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameFlashcard);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
             throw new FlashcardNotFoundException();
         }
 
-        if (!target.isSamePerson(editedFlashcard) && contains(editedFlashcard)) {
+        if (!target.isSameFlashcard(editedFlashcard) && contains(editedFlashcard)) {
             throw new DuplicateFlashcardException();
         }
 
@@ -127,7 +127,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
     private boolean personsAreUnique(List<Flashcard> flashcards) {
         for (int i = 0; i < flashcards.size() - 1; i++) {
             for (int j = i + 1; j < flashcards.size(); j++) {
-                if (flashcards.get(i).isSamePerson(flashcards.get(j))) {
+                if (flashcards.get(i).isSameFlashcard(flashcards.get(j))) {
                     return false;
                 }
             }

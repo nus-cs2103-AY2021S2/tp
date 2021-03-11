@@ -27,21 +27,27 @@ public class CommandResult {
      * Get the index of the card to show to the user.
      */
     private final int index;
+    /**
+     * The application enters review mode.
+     */
+    private final boolean reviewMode;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean reviewMode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showView = false;
         this.index = DEFAULT_INDEX;
+        this.reviewMode = reviewMode;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields {@code feedbackToUser, index},
      * and other fields set to their default value.
+     * Uses for View Command.
      */
     public CommandResult(String feedbackToUser, int index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
@@ -49,6 +55,7 @@ public class CommandResult {
         this.exit = false;
         this.showView = true;
         this.index = index;
+        this.reviewMode = false;
     }
 
     /**
@@ -56,7 +63,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
