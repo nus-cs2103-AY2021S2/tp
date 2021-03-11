@@ -155,8 +155,12 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    //=========== Module List =============================================================
+    //=========== Module Planner =============================================================
 
+    @Override
+    public void setModulePlanner(ModulePlanner modulePlanner) {
+        this.modulePlanner.resetData(modulePlanner);
+    }
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);

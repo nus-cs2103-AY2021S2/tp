@@ -123,4 +123,9 @@ public interface Model {
      * {@code exam} must not already exist in the module it is to be added to.
      */
     void addExam(Module module, Exam exam);
+
+    /**
+     * Replaces module planner data with the data in {@code modulePlanner}.
+     */
+    void setModulePlanner(ModulePlanner modulePlanner);
 }
