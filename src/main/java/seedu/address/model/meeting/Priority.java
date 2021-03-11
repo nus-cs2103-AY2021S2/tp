@@ -27,7 +27,7 @@ public class Priority {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid priority.
      */
     public static boolean isValidPriority(String priority) {
         return priority.matches(VALIDATION_REGEX);

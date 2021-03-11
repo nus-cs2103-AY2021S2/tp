@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Meeting's DateTime in a meeting.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime>{
 
 
     public static final String MESSAGE_CONSTRAINTS = "DateTime should use YYYY-MM-DD HH:MM format";
@@ -39,6 +39,14 @@ public class DateTime {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(DateTime other) {
+        if (value.isBefore(other.value)) {
+            return -1;
+        }
+        return 1;
     }
 
     @Override

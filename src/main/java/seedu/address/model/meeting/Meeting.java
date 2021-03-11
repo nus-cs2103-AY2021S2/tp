@@ -7,10 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.meeting.DateTime;
-import seedu.address.model.meeting.Description;
-import seedu.address.model.meeting.Name;
-import seedu.address.model.meeting.Priority;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,13 +16,16 @@ import seedu.address.model.tag.Tag;
  */
 public class Meeting {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "The start date time of a meeting should be strictly earlier than the terminate date time.";
+
     // Identity fields
     private final Name name;
     private final DateTime start;
     private final DateTime terminate;
-    private final Priority priority;
 
     // Data fields
+    private final Priority priority;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -34,6 +34,7 @@ public class Meeting {
      */
     public Meeting(Name name, DateTime start, DateTime terminate, Priority priority, Description description, Set<Tag> tags) {
         requireAllNonNull(name, start, terminate, priority, description, tags);
+        checkArgument(isValidStartTerminate(start, terminate), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.start = start;
         this.terminate = terminate;
@@ -71,7 +72,7 @@ public class Meeting {
     }
 
     /**
-     * Returns true if both meetings have the same name.
+     * Returns true if both meetings have the same name, start and terminate time. (Use identify fields only)
      * This defines a weaker notion of equality between two meetings.
      */
     public boolean isSameMeeting(Meeting otherMeeting) {
@@ -83,6 +84,13 @@ public class Meeting {
                 && otherMeeting.getName().equals(getName())
                 && otherMeeting.getStart().equals(getStart())
                 && otherMeeting.getTerminate().equals(getTerminate());
+    }
+
+    /**
+     * Returns true if a given date time for the meeting is valid.
+     */
+    public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
+        return start.compareTo(terminate) == -1;
     }
 
     /**
