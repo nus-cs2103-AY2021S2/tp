@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashBack;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashBack;
 
 import org.junit.jupiter.api.Test;
 
