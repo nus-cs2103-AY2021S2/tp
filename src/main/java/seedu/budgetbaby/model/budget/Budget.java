@@ -10,6 +10,14 @@ public class Budget {
     public Budget() {}
 
     /**
+     * Initializes a Budget with a specified amount.
+     * @param amount The amount specified by the user.
+     */
+    public Budget(double amount) {
+        this.amount = amount;
+    }
+
+    /**
      * @return The budget amount set by the user.
      */
     public double getAmount() {
@@ -18,7 +26,7 @@ public class Budget {
 
     /**
      * Sets the budget to a specified amount.
-     * @param amount The specified amount by the user.
+     * @param amount The amount specified by the user.
      */
     public void setAmount(double amount) {
         this.amount = amount;
