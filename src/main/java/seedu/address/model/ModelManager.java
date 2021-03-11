@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.flashBack = new FlashBack(flashBack);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashcards = new FilteredList<>(this.flashBack.getPersonList());
+        filteredFlashcards = new FilteredList<>(this.flashBack.getFlashcardList());
     }
 
     public ModelManager() {
@@ -91,17 +91,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
-        return flashBack.hasPerson(flashcard);
+        return flashBack.hasFlashcard(flashcard);
     }
 
     @Override
     public void deleteFlashcard(Flashcard target) {
-        flashBack.removePerson(target);
+        flashBack.removeFlashcard(target);
     }
 
     @Override
     public void addFlashcard(Flashcard flashcard) {
-        flashBack.addPerson(flashcard);
+        flashBack.addFlashcard(flashcard);
         updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireAllNonNull(target, editedFlashcard);
 
-        flashBack.setPerson(target, editedFlashcard);
+        flashBack.setFlashcard(target, editedFlashcard);
     }
 
     //=========== Filtered Person List Accessors =============================================================
