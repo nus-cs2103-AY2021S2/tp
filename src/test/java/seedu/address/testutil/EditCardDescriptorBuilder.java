@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
-import seedu.address.model.flashcard.Priority;
-import seedu.address.model.flashcard.Category;
-import seedu.address.model.flashcard.Question;
-import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Priority;
+import seedu.address.model.flashcard.Question;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,10 +32,10 @@ public class EditCardDescriptorBuilder {
      */
     public EditCardDescriptorBuilder(Flashcard flashcard) {
         descriptor = new EditCardDescriptor();
-        descriptor.setQuestion(flashcard.getName());
-        descriptor.setAnswer(flashcard.getPhone());
-        descriptor.setCategory(flashcard.getEmail());
-        descriptor.setPriority(flashcard.getAddress());
+        descriptor.setQuestion(flashcard.getQuestion());
+        descriptor.setAnswer(flashcard.getAnswer());
+        descriptor.setCategory(flashcard.getCategory());
+        descriptor.setPriority(flashcard.getPriority());
         descriptor.setTags(flashcard.getTags());
     }
 

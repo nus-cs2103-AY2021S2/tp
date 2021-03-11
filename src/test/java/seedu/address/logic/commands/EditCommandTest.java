@@ -112,7 +112,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
-        Flashcard flashcardInList = model.getFlashBack().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Flashcard flashcardInList = model.getFlashBack().getCardList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditCardDescriptorBuilder(flashcardInList).build());
 
@@ -137,7 +137,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashBack().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashBack().getCardList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditCardDescriptorBuilder().withQuestion(VALID_NAME_BOB).build());

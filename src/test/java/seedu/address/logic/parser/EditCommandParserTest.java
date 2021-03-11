@@ -36,9 +36,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
-import seedu.address.model.flashcard.Priority;
 import seedu.address.model.flashcard.Answer;
 import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Priority;
 import seedu.address.model.flashcard.Question;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditCardDescriptorBuilder;
@@ -173,7 +173,8 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditCardDescriptor descriptor = new EditCardDescriptorBuilder().withAnswer(VALID_PHONE_BOB)
-                .withCategory(VALID_EMAIL_BOB).withPriority(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withCategory(VALID_EMAIL_BOB).withPriority(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

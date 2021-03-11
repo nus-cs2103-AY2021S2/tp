@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyFlashBack source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getCardList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,10 +49,10 @@ class JsonSerializableAddressBook {
         FlashBack flashBack = new FlashBack();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Flashcard flashcard = jsonAdaptedPerson.toModelType();
-            if (flashBack.hasPerson(flashcard)) {
+            if (flashBack.hasCard(flashcard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            flashBack.addPerson(flashcard);
+            flashBack.addCard(flashcard);
         }
         return flashBack;
     }

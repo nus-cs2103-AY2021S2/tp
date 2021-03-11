@@ -18,8 +18,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FlashBack;
 import seedu.address.model.Model;
 import seedu.address.model.flashcard.Flashcard;
-import seedu.address.testutil.EditCardDescriptorBuilder;
 import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -119,7 +119,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashcardList().size());
 
         Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
-        final String[] splitName = flashcard.getName().fullQuestion.split("\\s+");
+        final String[] splitName = flashcard.getQuestion().fullQuestion.split("\\s+");
         model.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredFlashcardList().size());

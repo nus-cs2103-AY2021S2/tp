@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a flash card's category in FlashBack.
  * Guarantees: immutable; is valid as declared in {@link #isValidCategory(String)}
  */
 public class Category {
@@ -16,14 +16,14 @@ public class Category {
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Category}.
      *
-     * @param email A valid email address.
+     * @param category A valid category.
      */
-    public Category(String email) {
-        requireNonNull(email);
-        checkArgument(isValidCategory(email), MESSAGE_CONSTRAINTS);
-        value = email;
+    public Category(String category) {
+        requireNonNull(category);
+        checkArgument(isValidCategory(category), MESSAGE_CONSTRAINTS);
+        value = category;
     }
 
     /**

@@ -30,10 +30,10 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Flashcard flashcard) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_QUESTION + flashcard.getName().fullQuestion + " ");
-        sb.append(PREFIX_ANSWER + flashcard.getPhone().value + " ");
-        sb.append(PREFIX_CATEGORY + flashcard.getEmail().value + " ");
-        sb.append(PREFIX_PRIORITY + flashcard.getAddress().value + " ");
+        sb.append(PREFIX_QUESTION + flashcard.getQuestion().fullQuestion + " ");
+        sb.append(PREFIX_ANSWER + flashcard.getAnswer().value + " ");
+        sb.append(PREFIX_CATEGORY + flashcard.getCategory().value + " ");
+        sb.append(PREFIX_PRIORITY + flashcard.getPriority().value + " ");
         flashcard.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

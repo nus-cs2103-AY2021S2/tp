@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Flashcard}'s {@code Question} matches any of the keywords given.
  */
 public class QuestionContainsKeywordsPredicate implements Predicate<Flashcard> {
     private final List<String> keywords;
@@ -18,7 +18,7 @@ public class QuestionContainsKeywordsPredicate implements Predicate<Flashcard> {
     @Override
     public boolean test(Flashcard flashcard) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(flashcard.getName().fullQuestion, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(flashcard.getQuestion().fullQuestion, keyword));
     }
 
     @Override

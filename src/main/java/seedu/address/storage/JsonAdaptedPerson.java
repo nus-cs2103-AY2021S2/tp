@@ -48,10 +48,10 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Flashcard source) {
-        name = source.getName().fullQuestion;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        name = source.getQuestion().fullQuestion;
+        phone = source.getAnswer().value;
+        email = source.getCategory().value;
+        address = source.getPriority().value;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

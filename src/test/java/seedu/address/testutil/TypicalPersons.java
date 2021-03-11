@@ -65,7 +65,7 @@ public class TypicalPersons {
     public static FlashBack getTypicalAddressBook() {
         FlashBack ab = new FlashBack();
         for (Flashcard flashcard : getTypicalPersons()) {
-            ab.addPerson(flashcard);
+            ab.addCard(flashcard);
         }
         return ab;
     }

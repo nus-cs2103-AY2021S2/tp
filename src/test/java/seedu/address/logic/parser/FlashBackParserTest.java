@@ -24,8 +24,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.flashcard.Flashcard;
-import seedu.address.testutil.EditCardDescriptorBuilder;
 import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
