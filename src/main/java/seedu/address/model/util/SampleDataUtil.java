@@ -53,7 +53,7 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    /*
+    /* To be added later (for now there is no Sample Events when the app starts and there is no data)
     public static Event[] getSampleEvent() {
         return new Event[] {
              new Event(new EventName("Lunch with John"), new EventTime("12/01/2021"), new EventTime("21/01/2021"),
