@@ -12,6 +12,8 @@ import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.module.commons.core.Messages;
@@ -56,11 +58,12 @@ class TagCommandTest {
     void execute_addTagFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        String[] expectedTags = new String[firstTask.getTags().size() + 1];
-        for (int i = 0; i < firstTask.getTags().size(); i++) {
-            expectedTags[i] = firstTask.getTags().iterator().next().tagName;
+        Set<Tag> tags = firstTask.getTags();
+        String[] expectedTags = new String[tags.size() + 1];
+        for (int i = 0; i < tags.size(); i++) {
+            expectedTags[i] = tags.iterator().next().tagName;
         }
-        expectedTags[firstTask.getTags().size()] = TAG_STUB;
+        expectedTags[tags.size()] = TAG_STUB;
         Task editedTask = new TaskBuilder(firstTask).withTags(expectedTags).build();
 
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, new Tag(TAG_STUB));
