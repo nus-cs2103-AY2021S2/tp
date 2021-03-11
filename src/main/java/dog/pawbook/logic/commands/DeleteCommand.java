@@ -17,6 +17,8 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
+    public static final String ENTITY_WORD = "owner";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the owner identified by the index number used in the displayed owner list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
