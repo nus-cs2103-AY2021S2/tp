@@ -117,20 +117,20 @@ Format: `search /MATRICULATION_NUMBER`
 Examples:
 * `search A1234567X` returns `John Doe`
 
-### Deleting a student by their matriculation number: `delete`
+### Deleting a student by their matriculation number: `deleteStud`
 
 Deletes the specified person from the address book.
 
-Format: `delete /MATRICULATION NUMBER`
+Format: `deleteStud /MATRICULATION NUMBER`
 
-* If the matriculation number does not exist in the records, a popup message will be displayed to inform users that 
+* If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
   the matriculation number is not found
 
 >**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
 
 
 Examples:
-* `delete /A7654321J` deletes Betsy Crowe from the records.
+* `deleteStud /A7654321J` deletes Betsy Crowe from the records.
 
 ### Clearing all student entries : `clear`
 
@@ -181,4 +181,4 @@ _Details coming soon ..._
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS ` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **List Students** | `list students`
 **Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
-**Delete** | `delete /MATRICULATION_NUMBER` <br> e.g., `delete A1234567X`
+**Delete Student** | `deleteStud /MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`
