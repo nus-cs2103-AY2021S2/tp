@@ -1,15 +1,11 @@
 package seedu.address.model.util;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import java.util.*;
+import java.util.stream.*;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
+import seedu.address.model.*;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.*;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -21,7 +17,7 @@ public class SampleDataUtil {
                 getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Birthday("1998-10-05"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"),new Birthday("2001-01-07"),
+            new Person(new Name("Charlotte Oliveiro"), new Birthday("2001-01-07"),
                 getTagSet("neighbours")),
             new Person(new Name("David Li"), new Birthday("1965-09-07"),
                 getTagSet("family")),

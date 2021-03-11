@@ -1,12 +1,10 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.*;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+
+import seedu.address.model.tag.*;
 
 /**
  * Represents a Person in the address book.
@@ -24,7 +22,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Birthday birthday, Set<Tag> tags) {
-        requireAllNonNull(name,  birthday, tags);
+        requireAllNonNull(name, birthday, tags);
         this.name = name;
         this.birthday = birthday;
         this.tags.addAll(tags);
@@ -34,7 +32,7 @@ public class Person {
         return name;
     }
 
-    public Birthday getBirthday(){
+    public Birthday getBirthday() {
         return birthday;
     }
 

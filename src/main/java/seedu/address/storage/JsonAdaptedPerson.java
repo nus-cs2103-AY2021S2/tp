@@ -1,18 +1,13 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import java.util.*;
+import java.util.stream.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.*;
+
+import seedu.address.commons.exceptions.*;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.*;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -71,16 +66,18 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (birthday == null) {
-            throw  new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
         }
 
         if (!Birthday.isValidBirthday(birthday)) {
-            throw  new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         }
 
         final  Birthday modelBirthday = new Birthday(birthday);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Person(modelName, modelBirthday, modelTags);
     }
 
