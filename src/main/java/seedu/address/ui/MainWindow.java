@@ -146,15 +146,15 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
-//    @FXML
-//    public void handleHelp(String helpMsg) {
-//        helpWindow.setHelpMessage(helpMsg);
-//        if (!helpWindow.isShowing()) {
-//            helpWindow.show();
-//        } else {
-//            helpWindow.focus();
-//        }
-//    }
+    //    @FXML
+    //    public void handleHelp(String helpMsg) {
+    //        helpWindow.setHelpMessage(helpMsg);
+    //        if (!helpWindow.isShowing()) {
+    //            helpWindow.show();
+    //        } else {
+    //            helpWindow.focus();
+    //        }
+    //    }
 
     void show() {
         primaryStage.show();
@@ -191,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
                 logger.info("isShowHelp()");
                 helpWindow.setHelpMessage(commandResult.getFeedbackToUser());
                 handleHelp();
-//                handleHelp(commandResult.getFeedbackToUser());
+                // handleHelp(commandResult.getFeedbackToUser());
             }
 
             if (commandResult.isExit()) {
