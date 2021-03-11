@@ -29,6 +29,10 @@ public class DateUtil {
         DATE_PARSER = builder.toFormatter();
     }
 
+    public static final String MESSAGE_CONSTRAINT = MESSAGE_INVALID_DATE_FORMAT + "Format given should be one of "
+        + String.join(", ", patterns) + "\n"
+        + "Some examples are " + String.join(", ", examples);
+
     /**
      * Takes a string and parses it into a LocalDate
      *
@@ -41,10 +45,7 @@ public class DateUtil {
         try {
             date = DATE_PARSER.parse(string, LocalDate::from);
         } catch (DateTimeParseException dte) {
-            String errorMsg = "Format given should be one of " + String.join(", ", patterns) + "\n"
-                    + "Some examples are " + String.join(", ", examples);
-
-            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, errorMsg));
+            throw new ParseException(MESSAGE_CONSTRAINT);
         }
 
         return date;

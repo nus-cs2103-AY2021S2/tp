@@ -3,11 +3,12 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.util.DateUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class Birthday {
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthdays should be in the form DD-MM-YYYY, and it should not be blank";
-
-    public static final String VALIDATION_REGEX = "^[0-9]{2}-[0-9]{2}-[0-9]{4}$";
+            seedu.address.commons.util.DateUtil.MESSAGE_CONSTRAINT;
 
     public final String birthday;
 
@@ -26,7 +27,12 @@ public class Birthday {
      * Returns true if a given string is a valid birthday.
      */
     public static boolean isValidBirthday(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            DateUtil.fromDateInput(test);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
 
     @Override
