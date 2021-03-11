@@ -58,8 +58,11 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
+
         Authentication authentication = new Authentication(userPrefs.getAddressBookFilePath());
         if (authentication.isExistsZip()) {
+            //Delay for 1 second so that password prompt will be last message in terminal.
+            Thread.sleep(2000);
             authentication.unlock();
         }
         authentication.setShutDownHook();
