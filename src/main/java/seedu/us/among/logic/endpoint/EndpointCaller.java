@@ -43,7 +43,7 @@ public class EndpointCaller {
             //to-do
             break;
         case DELETE:
-            //to-do
+            response = new DeleteRequest(endpointToSend).send();
             break;
         case HEAD:
             //to-do
