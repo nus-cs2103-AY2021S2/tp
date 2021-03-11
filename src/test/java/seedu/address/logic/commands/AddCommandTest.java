@@ -164,7 +164,7 @@ public class AddCommandTest {
         @Override
         public boolean hasFlashcard(Flashcard flashcard) {
             requireNonNull(flashcard);
-            return this.flashcard.isSameFlashcard(flashcard);
+            return this.flashcard.isSameCard(flashcard);
         }
     }
 
@@ -177,7 +177,7 @@ public class AddCommandTest {
         @Override
         public boolean hasFlashcard(Flashcard flashcard) {
             requireNonNull(flashcard);
-            return personsAdded.stream().anyMatch(flashcard::isSameFlashcard);
+            return personsAdded.stream().anyMatch(flashcard::isSameCard);
         }
 
         @Override

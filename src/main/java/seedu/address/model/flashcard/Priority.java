@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's address in the address book.
+ * Represents a flash card's priority in FlashBack.
  * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
  */
 public class Priority {
@@ -12,7 +12,7 @@ public class Priority {
     public static final String MESSAGE_CONSTRAINTS = "Priorities can only be High, Mid or Low";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the priority must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
 
@@ -20,7 +20,7 @@ public class Priority {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Priority}.
      *
      * @param priority A valid priority.
      */
@@ -31,7 +31,7 @@ public class Priority {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid priority.
      */
     public static boolean isValidPriority(String test) {
         return test.equals("High") || test.equals("Mid") || test.equals("Low");

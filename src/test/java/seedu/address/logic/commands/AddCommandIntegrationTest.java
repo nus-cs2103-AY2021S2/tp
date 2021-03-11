@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Flashcard flashcardInList = model.getFlashBack().getPersonList().get(0);
+        Flashcard flashcardInList = model.getFlashBack().getCardList().get(0);
         assertCommandFailure(new AddCommand(flashcardInList), model, AddCommand.MESSAGE_DUPLICATE_FLASHCARD);
     }
 

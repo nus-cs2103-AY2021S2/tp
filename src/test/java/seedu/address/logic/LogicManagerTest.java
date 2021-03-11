@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyFlashBack addressBook, Path filePath) throws IOException {
+        public void saveFlashBack(ReadOnlyFlashBack flashBack, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
