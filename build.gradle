@@ -63,6 +63,9 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    
+    //zip4j used to create/unzip a password protected zip containing the data .json file.
+    implementation group: 'net.lingala.zip4j', name: 'zip4j', version: '2.7.0'
 }
 
 shadowJar {
