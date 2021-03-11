@@ -71,6 +71,8 @@ public class ProjectsFolder implements ReadOnlyProjectsFolder {
      * The project must not already exist in the projects folder.
      */
     public void addProject(Project project) {
+        requireNonNull(project);
+
         projects.add(project);
     }
 
@@ -91,6 +93,8 @@ public class ProjectsFolder implements ReadOnlyProjectsFolder {
      * {@code key} must exist in the projects folder.
      */
     public void removeProject(Project key) {
+        requireNonNull(key);
+
         projects.remove(key);
     }
 

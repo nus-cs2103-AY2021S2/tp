@@ -12,17 +12,13 @@ import seedu.address.model.task.Completable;
  * Represents a Completable with a Deadline.
  */
 public class Deadline extends Completable {
-    protected LocalDate by;
-
     /**
      * Constructor for Deadline.
      * @param description Description of the Completable.
      * @param by Deadline of the Completable.
      */
     public Deadline(String description, LocalDate by) {
-        super(description);
-        requireNonNull(by);
-        this.by = by;
+        super(description, by);
     }
 
     /**
@@ -32,9 +28,7 @@ public class Deadline extends Completable {
      * @param by Deadline of the Completable.
      */
     public Deadline(String description, Boolean isDone, LocalDate by) {
-        super(description, isDone);
-        requireNonNull(by);
-        this.by = by;
+        super(description, by, isDone);
     }
 
     /**
@@ -65,11 +59,6 @@ public class Deadline extends Completable {
         return otherDeadline.getDescription().equals(getDescription())
                 && otherDeadline.getIsDone().equals(getIsDone())
                 && otherDeadline.getBy().equals(getBy());
-    }
-
-    @Override
-    public String getStringByDate() {
-        return DateUtil.decodeDateForStorage(by);
     }
 
     @Override

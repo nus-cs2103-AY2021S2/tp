@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+
+import seedu.address.commons.util.DateUtil;
+
 public abstract class Completable {
 
     public static final String MESSAGE_CONSTRAINTS_DESCRIPTION = "Description can take any values, and it should "
@@ -17,27 +21,32 @@ public abstract class Completable {
 
     protected String description;
     protected Boolean isDone;
+    protected LocalDate by;
 
     /**
      * Constructor for Completable.
      * @param description Description of the Completable.
+     * @param by Deadline of the Completable or Null if there is no deadline.
      */
-    public Completable(String description) {
-        requireNonNull(description);
+    public Completable(String description, LocalDate by) {
+        requireAllNonNull(description, by);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
+        this.by = by;
         this.isDone = false;
     }
 
     /**
      * Constructor for Completable.
      * @param description Description of the Completable.
+     * @param by Deadline of the Completable or Null if there is no deadline.
      * @param isDone Marks whether the Completable is Done.
      */
-    public Completable(String description, Boolean isDone) {
-        requireAllNonNull(description, isDone);
+    public Completable(String description, LocalDate by, Boolean isDone) {
+        requireAllNonNull(description, by, isDone);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
+        this.by = by;
         this.isDone = isDone;
     }
 
@@ -76,17 +85,19 @@ public abstract class Completable {
     }
 
     /**
+     * Returns a String representation of the by date, or null if the completable does not have a by date.
+     * @return String representation of by date or null if the completable does not have a by date.
+     */
+    public String getStringByDate() {
+        return by == null ? null : DateUtil.decodeDateForStorage(by);
+    };
+
+    /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(DESCRIPTION_VALIDATION_REGEX);
     }
-
-    /**
-     * Returns a String representation of the by date, or null if the completable does not have a by date.
-     * @return String representation of by date or null if the completable does not have a by date.
-     */
-    public abstract String getStringByDate();
 
     /**
      * Checks if an instance of a Completable is equal to another Object.
