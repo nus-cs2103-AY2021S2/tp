@@ -18,8 +18,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Endpoint> {
 
     @Override
     public boolean test(Endpoint endpoint) {
+        //Currently allows for checking of PartialWords in method, data, tags and headers.
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(endpoint.getMethod().methodName, keyword));
+                .anyMatch(keyword ->
+                        StringUtil.containsPartialWordIgnoreCase(endpoint.getMethod().methodName, keyword)
+                        || StringUtil.containsPartialWordIgnoreCase(endpoint.getTags().toString(), keyword)
+                        || StringUtil.containsPartialWordIgnoreCase(endpoint.getData().value, keyword)
+                        || StringUtil.containsPartialWordIgnoreCase(endpoint.getHeaders().toString(), keyword));
     }
 
     @Override

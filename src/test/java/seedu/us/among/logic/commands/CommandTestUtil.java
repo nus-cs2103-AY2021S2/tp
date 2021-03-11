@@ -112,6 +112,7 @@ public class CommandTestUtil {
 
         Endpoint endpoint = model.getFilteredEndpointList().get(targetIndex.getZeroBased());
         final String[] splitName = endpoint.getMethod().methodName.split("\\s+");
+        //to-do fix this test case for NameContainsKeywordsPredicate (got changed with find command)
         model.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredEndpointList().size());
