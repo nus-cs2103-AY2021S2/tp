@@ -148,7 +148,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteEvent(Event target) {  eventBook.removeEvent(target);
+    public void deleteEvent(Event target) {
+        eventBook.removeEvent(target);
     }
 
     @Override

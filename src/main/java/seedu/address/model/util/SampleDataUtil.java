@@ -53,6 +53,18 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    /*
+    public static Event[] getSampleEvent() {
+        return new Event[] {
+             new Event(new EventName("Lunch with John"), new EventTime("12/01/2021"), new EventTime("21/01/2021"),
+                     EventStatus.TODO, new Description("At VivoCity"), getTagSet("Friends"),
+                     new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                             new Address("Blk 30 Geylang Street 29, #06-40"),
+                             getTagSet("friends")))
+        };
+    }
+     */
+
     /**
      * Returns a tag set containing the list of strings given.
      */
