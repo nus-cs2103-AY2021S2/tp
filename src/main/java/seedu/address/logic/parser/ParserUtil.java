@@ -3,11 +3,14 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,10 +21,12 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
+    private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
@@ -138,6 +143,8 @@ public class ParserUtil {
         if (!InsurancePolicy.isValidPolicyInput(trimmedPolicy)) {
             throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
         }
+        logger.info("HIIIII" + trimmedPolicy);
+
 
         if (InsurancePolicy.isPolicyId(trimmedPolicy)) {
             return new InsurancePolicy(trimmedPolicy);
@@ -147,6 +154,9 @@ public class ParserUtil {
         String[] idAndUrl = trimmedPolicy.split(">", 2);
         String policyId = idAndUrl[0];
         String policyUrl = idAndUrl[1];
+
+        logger.info("BYEEEE" + Arrays.toString(idAndUrl));
+
         return new InsurancePolicy(policyId, policyUrl);
     }
 

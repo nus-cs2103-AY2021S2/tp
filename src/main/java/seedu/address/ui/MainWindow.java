@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,12 +35,16 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PoliciesWindow policiesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem policiesMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -66,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        policiesWindow = new PoliciesWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -74,6 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+//        setAccelerator(policiesMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -147,6 +154,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens a window to display all policies associated with selected client, or focuses on it if it's already opened.
+     */
+    @FXML
+    public void showPolicies(String policiesAndUrls) {
+        policiesWindow.setPoliciesToDisplay(policiesAndUrls);
+        if (!policiesWindow.isShowing()) {
+            policiesWindow.show();
+        } else {
+            policiesWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -180,6 +200,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowPolicies()) {
+                showPolicies(commandResult.getFeedbackToUser());
             }
 
             if (commandResult.isExit()) {

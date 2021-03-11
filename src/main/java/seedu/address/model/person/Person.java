@@ -128,6 +128,16 @@ public class Person {
         return Objects.hash(name, phone, email, address, tags, policies);
     }
 
+    public boolean hasPolicies() {
+        return policies.size() > 0;
+    }
+
+    public String getAllPoliciesAndUrls() {
+        final StringBuilder builder = new StringBuilder();
+        policies.forEach(string -> builder.append(string).append("\n"));
+        return builder.substring(0, builder.length() - 1);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
