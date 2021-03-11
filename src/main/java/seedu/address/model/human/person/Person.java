@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.model.human.Human;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
+import seedu.address.model.human.driver.Driver;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,26 +19,40 @@ import seedu.address.model.tag.Tag;
  */
 public class Person extends Human {
 
-    // Identity fields
-
+    private final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
 
     // Data fields
     private final Address address;
+    private final TripDays tripDays;
+    private final TripTimes tripTimes;
     private final Set<Tag> tags = new HashSet<>();
+    private Driver driver;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Address address, TripDays tripDays, TripTimes tripTimes, Set<Tag> tags) {
         super(name, phone);
-        requireAllNonNull(address, tags);
+        requireAllNonNull(address, tripDays, tripTimes, tags);
         this.address = address;
+        this.tripDays = tripDays;
+        this.tripTimes = tripTimes;
         this.tags.addAll(tags);
     }
 
     public Address getAddress() {
         return address;
     }
+
+    public TripDays getTripDays() {
+        return tripDays;
+    }
+
+    public TripTimes getTripTimes() {
+        return tripTimes;
+    }
+
+    public Driver getDriver() {return driver;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -78,6 +93,7 @@ public class Person extends Human {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTripDays().equals(getTripDays())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -94,7 +110,13 @@ public class Person extends Human {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Trip Days: ")
+                .append(getTripDays())
+                .append("; Trip Times: ")
+                .append(getTripTimes())
+                .append("; Driver: ")
+                .append(getDriver());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
