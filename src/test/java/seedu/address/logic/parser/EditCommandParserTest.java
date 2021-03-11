@@ -37,9 +37,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
 import seedu.address.model.flashcard.Priority;
+import seedu.address.model.flashcard.Answer;
 import seedu.address.model.flashcard.Category;
 import seedu.address.model.flashcard.Question;
-import seedu.address.model.flashcard.Answer;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditCardDescriptorBuilder;
 

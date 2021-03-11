@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -17,9 +17,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FlashBack;
 import seedu.address.model.Model;
-import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.testutil.EditCardDescriptorBuilder;
+import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.

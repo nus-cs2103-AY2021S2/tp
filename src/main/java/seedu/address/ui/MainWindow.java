@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FlashcardListPanel flashcardListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,10 +42,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane flashcardListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane flashcardViewCardPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -110,8 +113,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredPersonList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +166,18 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    private void handleView(int index) {
+        clearViewArea();
+        FlashbackViewCard flashbackViewCard = new FlashbackViewCard(logic.getFilteredPersonList().get(index));
+        flashcardViewCardPlaceholder.getChildren().add(flashbackViewCard.getRoot());
+    }
+
+    private void clearViewArea() {
+        flashcardViewCardPlaceholder.getChildren().clear();
+    }
+
+    public FlashcardListPanel getFlashcardListPanel() {
+        return flashcardListPanel;
     }
 
     /**
@@ -178,12 +191,18 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            clearViewArea();
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowView()) {
+                handleView(commandResult.getIndex());
             }
 
             return commandResult;

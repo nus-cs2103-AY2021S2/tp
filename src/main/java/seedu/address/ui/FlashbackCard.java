@@ -3,18 +3,18 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import seedu.address.model.flashcard.Flashcard;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class FlashbackCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "FlashcardListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -29,31 +29,39 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label question;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label priority;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label category;
     @FXML
     private FlowPane tags;
     @FXML
     private Label remark;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code FlashbackCard} with the given {@code flashcard} and index to display.
      */
-    public PersonCard(Flashcard flashcard, int displayedIndex) {
+    public FlashbackCard(Flashcard flashcard, int displayedIndex) {
         super(FXML);
         this.flashcard = flashcard;
         id.setText(displayedIndex + ". ");
-        name.setText(flashcard.getName().fullQuestion);
-        phone.setText(flashcard.getPhone().value);
-        address.setText(flashcard.getAddress().value);
-        email.setText(flashcard.getEmail().value);
+        question.setText(flashcard.getName().fullQuestion);
+        String text = flashcard.getAddress().toString();
+        priority.setText(text);
+        priority.setStyle("-fx-text-fill: white;");
+        if (text.equals("High")) {
+            priority.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        } else if (text.equals("Mid")) {
+            priority.setBackground(new Background(new BackgroundFill(Color.YELLOW, CornerRadii.EMPTY, Insets.EMPTY)));
+            priority.setStyle("-fx-text-fill: black;");
+        } else {
+            assert text.equals("Low");
+            priority.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+        category.setText(flashcard.getEmail().value);
         remark.setText(flashcard.getRemark().value);
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -68,12 +76,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof FlashbackCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        FlashbackCard card = (FlashbackCard) other;
         return id.getText().equals(card.id.getText())
                 && flashcard.equals(card.flashcard);
     }

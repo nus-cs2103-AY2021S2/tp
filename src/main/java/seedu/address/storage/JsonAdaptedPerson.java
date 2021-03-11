@@ -70,7 +70,8 @@ class JsonAdaptedPerson {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Question.class.getSimpleName()));
         }
         if (!Question.isValidQuestion(name)) {
             throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
@@ -86,7 +87,8 @@ class JsonAdaptedPerson {
         final Answer modelAnswer = new Answer(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Category.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Category.class.getSimpleName()));
         }
         if (!Category.isValidCategory(email)) {
             throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
@@ -94,7 +96,8 @@ class JsonAdaptedPerson {
         final Category modelCategory = new Category(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
         }
         if (!Priority.isValidPriority(address)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
