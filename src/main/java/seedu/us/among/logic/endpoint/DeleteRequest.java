@@ -12,7 +12,6 @@ import seedu.us.among.model.endpoint.Response;
  * Contains the logic for sending delete requests.
  */
 public class DeleteRequest extends Request {
-    private final Endpoint endpoint;
 
     /**
      * Constructor for DeleteRequest.
@@ -20,8 +19,7 @@ public class DeleteRequest extends Request {
      * @param endpoint endpoint to make API call on
      */
     public DeleteRequest(Endpoint endpoint) {
-        super(endpoint.getMethod().getMethodType(), endpoint.getAddress().value);
-        this.endpoint = endpoint;
+        super(endpoint);
     }
 
     /**
@@ -31,8 +29,8 @@ public class DeleteRequest extends Request {
      */
     @Override
     public Response send() throws IOException, RequestException {
-        HttpDelete request = new HttpDelete(this.getAddress());
-        request = (HttpDelete) super.setHeaders(request, this.endpoint.getHeaders());
+        HttpDelete request = new HttpDelete(super.getAddress());
+        request = (HttpDelete) super.setHeaders(request, super.getHeaders());
         return super.execute(request);
     }
 }

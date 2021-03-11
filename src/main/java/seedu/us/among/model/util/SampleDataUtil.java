@@ -35,7 +35,7 @@ public class SampleDataUtil {
                     getTagSet("github", "interesting"), new Response()),
             new Endpoint(new Method("GET"),
                     new Address("https://api.data.gov.sg/v1/environment/2-hour-weather-forecast"),
-                    getHeaderSet("\"Accept: application/jso\""), getTagSet("singapore"), new Response()),
+                    getHeaderSet("\"Accept: application/json\""), getTagSet("singapore"), new Response()),
             new Endpoint(new Method("GET"), new Address("https://api.data.gov.sg/v1/transport/taxi-availability"),
                     getHeaderSet("\"Accept: application/vnd.geo+json\""),
                     getTagSet("singapore", "transport"), new Response()),

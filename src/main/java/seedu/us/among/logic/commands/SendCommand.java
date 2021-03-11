@@ -95,8 +95,8 @@ public class SendCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Endpoint} with the details of {@code endpointToEdit}
-     * edited with {@code editEndpointDescriptor}.
+     * Creates and returns a {@code Endpoint} with the details of {@code endpointToSend}
+     * edited with {@code endpointResponse}.
      */
     private static Endpoint createEndpointWithResponse(Endpoint endpointToSend, Response endpointResponse) {
         assert endpointToSend != null;
