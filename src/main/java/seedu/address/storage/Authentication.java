@@ -14,7 +14,6 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.AesKeyStrength;
 import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.CompressionMethod;
-
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -28,6 +27,10 @@ public class Authentication {
     private Path filePath;
     private Optional<String> password;
 
+    /**
+     * Instantiates an Authentication object with the path of the data .json file.
+     * @param filePath path of the data .json file
+     */
     public Authentication(Path filePath) {
         this.filePath = filePath;
         this.password = Optional.empty();
@@ -37,15 +40,22 @@ public class Authentication {
      * Initiates a feedback loop to get the user's password to unlock the encrypted zip file.
      */
     public void unlock() throws ZipException {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("Please enter your password: ");
-            String attemptPassword = scanner.nextLine();
-            if (attemptUnzip(attemptPassword)) {
-                this.password = Optional.of(attemptPassword);
-                break;
-            } else {
-                System.out.println("Password is incorrect, please try again.");
+        assert isExistsZip() : "Zip must exist to call the unlock() method.";
+
+        //If there is zip but it's not locked, just unzip it.
+        if (!isExistsLockedZip()) {
+            attemptUnzip();
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.println("Please enter your password: ");
+                String attemptPassword = scanner.nextLine();
+                if (attemptUnzip(attemptPassword)) {
+                    this.password = Optional.of(attemptPassword);
+                    break;
+                } else {
+                    System.out.println("Password is incorrect, please try again.");
+                }
             }
         }
     }
@@ -58,6 +68,11 @@ public class Authentication {
         return Files.exists(Paths.get(this.getZipPath()));
     }
 
+    /**
+     * Checks if the locked zip file containing the data .json file exists.
+     * @return true if the zip file exists.
+     * @throws ZipException if error occurs when checking if the zip file is encrypted.
+     */
     public boolean isExistsLockedZip() throws ZipException {
         ZipFile dataZip = new ZipFile(this.getZipPath());
         return isExistsZip() && dataZip.isEncrypted();
@@ -90,12 +105,10 @@ public class Authentication {
 
     private boolean attemptUnzip(String password) throws ZipException {
         ZipFile dataZip = new ZipFile(this.getZipPath());
-        //First check if zip file encrypted and set the password to be used. If not encrypted, return true.
+        //First check if zip file encrypted and set the password to be used.
         try {
             if (dataZip.isEncrypted()) {
                 dataZip.setPassword(password.toCharArray());
-            } else {
-                return true;
             }
         } catch (ZipException e) {
             logger.info("Error attempting to check zip file at: " + this.getZipPath());
@@ -110,6 +123,10 @@ public class Authentication {
             logger.info("Error when unzipping file at: " + this.getZipPath());
             return false;
         }
+    }
+
+    private boolean attemptUnzip() throws ZipException {
+        return attemptUnzip("");
     }
 
     /**
