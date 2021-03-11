@@ -162,6 +162,21 @@ public class AddPropertyCommandTest {
         }
 
         @Override
+        public int getPropertySize() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Property getProperty(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setProperty(int i, Property property) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
