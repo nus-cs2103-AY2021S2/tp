@@ -28,6 +28,10 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LOCATION, PREFIX_TAG);
 
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
+
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent() && argMultimap.getValue(PREFIX_TAG).isEmpty()) {
             String locationKeywords = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()).toString();
             String[] keywords = locationKeywords.split("\\s+");
