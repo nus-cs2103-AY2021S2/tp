@@ -3,6 +3,7 @@ package seedu.budgetbaby.abmodel.tag;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.budgetbaby.model.record.Category;
 
 public class CategoryTest {

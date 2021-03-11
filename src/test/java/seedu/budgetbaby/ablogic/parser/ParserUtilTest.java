@@ -17,9 +17,9 @@ import seedu.budgetbaby.abmodel.person.Address;
 import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Phone;
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.logic.parser.ParserUtil;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.model.record.Category;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -190,7 +190,8 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Category> actualCategorySet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Category> expectedCategorySet = new HashSet<Category>(Arrays.asList(new Category(VALID_TAG_1), new Category(VALID_TAG_2)));
+        Set<Category> expectedCategorySet = new HashSet<Category>(Arrays.asList(new Category(VALID_TAG_1),
+                new Category(VALID_TAG_2)));
 
         assertEquals(expectedCategorySet, actualCategorySet);
     }

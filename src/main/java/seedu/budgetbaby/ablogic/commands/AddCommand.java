@@ -1,7 +1,11 @@
 package seedu.budgetbaby.ablogic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.budgetbaby.logic.parser.CliSyntax.*;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.budgetbaby.abmodel.Model;
 import seedu.budgetbaby.abmodel.person.Person;

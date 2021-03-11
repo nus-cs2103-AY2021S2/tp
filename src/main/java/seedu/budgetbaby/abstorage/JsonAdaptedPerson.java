@@ -14,8 +14,8 @@ import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.abmodel.person.Phone;
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
+import seedu.budgetbaby.model.record.Category;
 
 /**
  * Jackson-friendly version of {@link Person}.

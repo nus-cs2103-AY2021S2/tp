@@ -3,8 +3,8 @@ package seedu.budgetbaby.abstorage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
+import seedu.budgetbaby.model.record.Category;
 
 /**
  * Jackson-friendly version of {@link Category}.

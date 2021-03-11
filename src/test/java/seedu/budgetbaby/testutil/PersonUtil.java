@@ -1,5 +1,11 @@
 package seedu.budgetbaby.testutil;
 
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import java.util.Set;
 
 import seedu.budgetbaby.ablogic.commands.AddCommand;
@@ -7,7 +13,6 @@ import seedu.budgetbaby.ablogic.commands.EditCommand.EditPersonDescriptor;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.model.record.Category;
 
-import static seedu.budgetbaby.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Person.

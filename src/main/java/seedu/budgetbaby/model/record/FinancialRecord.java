@@ -1,10 +1,11 @@
 package seedu.budgetbaby.model.record;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.budgetbaby.model.record.Category.VALIDATION_REGEX;
-import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents a Financial Record in the budget tracker.
@@ -26,6 +27,7 @@ public class FinancialRecord {
      *
      * @param description A valid description.
      * @param amount      A valid amount.
+     * @param categories  A valid category.
      */
     public FinancialRecord(Description description, Amount amount, Set<Category> categories) {
         //requireNonNull(tagName);
@@ -34,13 +36,6 @@ public class FinancialRecord {
         this.amount = amount;
         this.timestamp = new Date();
         this.categories.addAll(categories);
-    }
-
-    /**
-     * Returns true if a given string is a valid tag name.
-     */
-    public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     /**

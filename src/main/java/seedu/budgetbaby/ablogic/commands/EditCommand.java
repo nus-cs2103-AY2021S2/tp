@@ -2,7 +2,11 @@ package seedu.budgetbaby.ablogic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.abmodel.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.budgetbaby.logic.parser.CliSyntax.*;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -16,12 +20,12 @@ import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.abmodel.person.Phone;
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.commons.core.Messages;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.commons.util.CollectionUtil;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
+import seedu.budgetbaby.model.record.Category;
 
 /**
  * Edits the details of an existing person in the address book.

@@ -10,11 +10,11 @@ import seedu.budgetbaby.abmodel.person.Address;
 import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Phone;
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.commons.util.StringUtil;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Amount;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 
 /**

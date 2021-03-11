@@ -2,7 +2,11 @@ package seedu.budgetbaby.ablogic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.budgetbaby.logic.parser.CliSyntax.*;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

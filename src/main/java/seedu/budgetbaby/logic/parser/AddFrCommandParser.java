@@ -1,15 +1,17 @@
 package seedu.budgetbaby.logic.parser;
 
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.budgetbaby.logic.parser.CliSyntax.*;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Amount;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 

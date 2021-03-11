@@ -2,7 +2,11 @@ package seedu.budgetbaby.ablogic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.budgetbaby.logic.parser.CliSyntax.*;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -11,13 +15,13 @@ import java.util.Set;
 
 import seedu.budgetbaby.ablogic.commands.EditCommand;
 import seedu.budgetbaby.ablogic.commands.EditCommand.EditPersonDescriptor;
-import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.logic.parser.ArgumentMultimap;
 import seedu.budgetbaby.logic.parser.ArgumentTokenizer;
 import seedu.budgetbaby.logic.parser.Parser;
 import seedu.budgetbaby.logic.parser.ParserUtil;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.model.record.Category;
 
 /**
  * Parses input arguments and creates a new EditCommand object
