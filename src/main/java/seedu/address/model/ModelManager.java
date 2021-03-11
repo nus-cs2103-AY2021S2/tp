@@ -12,34 +12,40 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final UniqueFoodList uniqueFoodList;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, UniqueFoodList uniqueFoodList, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new AddressBook(addressBook, uniqueFoodList);
+        this.uniqueFoodList = uniqueFoodList;
         this.userPrefs = new UserPrefs(userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + " and unique food list: " + uniqueFoodList
+                + " and user prefs " + userPrefs);
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UniqueFoodList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -146,7 +152,15 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
+                && uniqueFoodList.equals(other.uniqueFoodList)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    //=========== UniqueFoodList Accessors =============================================================
+
+    @Override
+    public UniqueFoodList getUniqueFoodList() {
+        return uniqueFoodList;
     }
 
     @Override
@@ -174,4 +188,5 @@ public class ModelManager implements Model {
     public String listFoodItem() {
         return addressBook.listFoodItem();
     }
+
 }

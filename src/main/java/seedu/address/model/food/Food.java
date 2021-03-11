@@ -48,10 +48,6 @@ public class Food {
         return this.name;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     public double getFats() {
         return this.fats;
     }

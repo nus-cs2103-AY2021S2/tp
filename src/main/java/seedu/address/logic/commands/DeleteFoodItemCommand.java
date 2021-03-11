@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -33,7 +33,7 @@ public class DeleteFoodItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ArrayList<Food> foodList = model.getAddressBook().getFoodList().getFoodList();
+        List<Food> foodList = model.getAddressBook().getFoodList().getFoodList();
         for (int i = 0; i < foodList.size(); i++) {
             if (foodList.get(i).getName().equals(this.foodName)) {
                 model.deleteFoodItem(i);

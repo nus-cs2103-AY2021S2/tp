@@ -1,14 +1,17 @@
 package seedu.address.model.food;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.food.exceptions.FoodItemNotFoundException;
 
 public class UniqueFoodList {
-    private ArrayList<Food> foodList;
+
+    private ObservableList<Food> foodList;
 
     public UniqueFoodList() {
-        foodList = new ArrayList<>();
+        foodList = FXCollections.observableArrayList();
     }
 
     /**
@@ -16,7 +19,7 @@ public class UniqueFoodList {
      *
      * @return food list
      */
-    public ArrayList getFoodList() {
+    public ObservableList<Food> getFoodList() {
         return this.foodList;
     }
 
@@ -86,4 +89,22 @@ public class UniqueFoodList {
         }
         return stringBuilder.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UniqueFoodList that = (UniqueFoodList) o;
+        return Objects.equals(foodList, that.foodList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(foodList);
+    }
+
 }
