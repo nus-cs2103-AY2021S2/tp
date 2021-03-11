@@ -79,6 +79,10 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
         records.remove(key);
     }
 
+    /**
+     * Sets the budget for the following months.
+     * @param budget The specified budget to be set.
+     */
     public void setBudget(Budget budget) {
         this.budget = budget;
     }

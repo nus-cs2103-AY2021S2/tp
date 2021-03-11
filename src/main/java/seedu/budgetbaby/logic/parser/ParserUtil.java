@@ -68,6 +68,12 @@ public class ParserUtil {
         return new Amount(trimmedAmount);
     }
 
+    /**
+     * Parses a String representation of a budget amount to a double.
+     * Leading and trailing whitespaces will be trimmed
+     *
+     * @throws ParseException if the given budget amount is negative.
+     */
     public static double parseBudgetAmount(String amount) throws ParseException {
         requireNonNull(amount);
         String trimmedAmount = amount.trim();

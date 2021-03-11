@@ -88,5 +88,9 @@ public interface BudgetBabyModel {
      */
     void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
 
+    /**
+     * Sets the budget for the following months.
+     * @param budget The specified budget to be set.
+     */
     void setBudget(Budget budget);
 }
