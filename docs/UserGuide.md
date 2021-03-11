@@ -126,18 +126,37 @@ Examples:
    `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the title of the 2nd task to be `Betsy Crower` and clears all existing tags.
 
-### Searching a task: `find`
+### Searching a task by title: `find`
 
-Find matching tasks based on the keyword(s) provided by the user.
+Find matching tasks based on the title keyword(s) provided by the user.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `project` will match `Project`
 * The order of the keywords does not matter. e.g. `CS2103 Project` will match `Project CS2103`
-* Only full words will be matched e.g. `proj` will not match `projects`
+* Only full keywords will be matched e.g. `proj` will not match `projects`
 
 Examples:
-* `find CS2103` returns `cs2103` and `CS2103 team project`
+* `find CS2103` returns matching tasks with title of `cs2103` or `CS2103 team project`
+
+### Searching a task by tag: `find t/`
+
+Find matching tasks based on the tag keyword provided by the user.
+
+Format: `find t/KEYWORD`
+
+* The search is case-insensitive. e.g `cs2103t` will match `CS2103T`
+* The keyword must be single, alphanumeric and no spacing allowed. e.g. `project CS2103` will not be allowed 
+  but `projectCS2103` will be acceptable.
+* Only full keyword will be matched e.g. `cs2103` will not match `cs2103t`
+* Suppose a task with multiple tags of `cs2103` and `cs2105`, it will be returned as a matching task 
+  if the user inputs falls under the following cases: 
+  1. `t/cs2103` only
+  2. `t/cs2105` only 
+  3. `t/cs2103` and `t/cs2105`
+
+Examples:
+* `find t/CS2103` returns matching tasks with tag of `CS2103` or `cs2103`
 
 ### Deleting a task : `delete`
 
