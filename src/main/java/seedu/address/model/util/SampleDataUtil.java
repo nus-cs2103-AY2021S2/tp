@@ -40,7 +40,7 @@ public class SampleDataUtil {
     public static ReadOnlyFlashBack getSampleAddressBook() {
         FlashBack sampleAb = new FlashBack();
         for (Flashcard sampleFlashcard : getSamplePersons()) {
-            sampleAb.addPerson(sampleFlashcard);
+            sampleAb.addFlashcard(sampleFlashcard);
         }
         return sampleAb;
     }
