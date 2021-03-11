@@ -24,20 +24,20 @@ public class Person extends Human {
 
     // Data fields
     private final Address address;
-    private final TripDays tripDays;
-    private final TripTimes tripTimes;
+    private final TripDay tripDay;
+    private final TripTime tripTime;
     private final Set<Tag> tags = new HashSet<>();
     private Optional<Driver> driver;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Address address, TripDays tripDays, TripTimes tripTimes, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
         super(name, phone);
-        requireAllNonNull(address, tripDays, tripTimes, tags);
+        requireAllNonNull(address, tripDay, tripTime, tags);
         this.address = address;
-        this.tripDays = tripDays;
-        this.tripTimes = tripTimes;
+        this.tripDay = tripDay;
+        this.tripTime = tripTime;
         this.tags.addAll(tags);
     }
 
@@ -45,12 +45,12 @@ public class Person extends Human {
         return address;
     }
 
-    public TripDays getTripDays() {
-        return tripDays;
+    public TripDay getTripDay() {
+        return tripDay;
     }
 
-    public TripTimes getTripTimes() {
-        return tripTimes;
+    public TripTime getTripTime() {
+        return tripTime;
     }
 
     public String getDriverStr() {return driver.isEmpty() ? MESSAGE_NO_ASSIGNED_DRIVER : driver.toString();}
@@ -94,15 +94,15 @@ public class Person extends Human {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTripDays().equals(getTripDays())
-                && otherPerson.getTripTimes().equals(getTripTimes())
+                && otherPerson.getTripDay().equals(getTripDay())
+                && otherPerson.getTripTime().equals(getTripTime())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, tripDays, tripTimes, tags);
+        return Objects.hash(name, phone, address, tripDay, tripTime, tags);
     }
 
     @Override
@@ -114,9 +114,9 @@ public class Person extends Human {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Trip Days: ")
-                .append(getTripDays())
+                .append(getTripDay())
                 .append("; Trip Times: ")
-                .append(getTripTimes())
+                .append(getTripTime())
                 .append("; Driver: ")
                 .append(getDriverStr());
 
