@@ -23,10 +23,10 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedTask {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
-    private final String name;
-    private final String code;
+    private final String moduleName;
+    private final String moduleCode;
     private final String phone;
     private final String email;
     private final String remark;
@@ -36,13 +36,14 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("code") String code,
+    public JsonAdaptedTask(@JsonProperty("moduleName") String moduleName,
+                           @JsonProperty("moduleCode") String moduleCode,
                            @JsonProperty("phone") String phone,
                            @JsonProperty("email") String email,
                            @JsonProperty("remark") String remark,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.code = code;
+        this.moduleName = moduleName;
+        this.moduleCode = moduleCode;
         this.phone = phone;
         this.email = email;
         this.remark = remark;
@@ -55,8 +56,8 @@ class JsonAdaptedTask {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        name = source.getModuleName().fullName;
-        code = source.getModuleCode().moduleCode;
+        moduleName = source.getModuleName().fullName;
+        moduleCode = source.getModuleCode().moduleCode;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         remark = source.getRemark().value;
@@ -76,23 +77,23 @@ class JsonAdaptedTask {
             personTags.add(tag.toModelType());
         }
 
-        if (name == null) {
+        if (moduleName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ModuleName.class.getSimpleName()));
         }
-        if (!ModuleName.isValidName(name)) {
+        if (!ModuleName.isValidName(moduleName)) {
             throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
         }
-        final ModuleName modelModuleName = new ModuleName(name);
+        final ModuleName modelModuleName = new ModuleName(moduleName);
 
-        if (code == null) {
+        if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ModuleCode.class.getSimpleName()));
         }
-        if (!ModuleCode.isValidModuleCode(code)) {
+        if (!ModuleCode.isValidModuleCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
-        final ModuleCode modelModuleCode = new ModuleCode(code);
+        final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
