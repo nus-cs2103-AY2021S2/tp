@@ -15,6 +15,7 @@ import seedu.us.among.logic.commands.FindCommand;
 import seedu.us.among.logic.commands.HelpCommand;
 import seedu.us.among.logic.commands.ListCommand;
 import seedu.us.among.logic.commands.RemoveCommand;
+import seedu.us.among.logic.commands.RunCommand;
 import seedu.us.among.logic.commands.SendCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 
@@ -71,6 +72,9 @@ public class ImposterParser {
 
         case SendCommand.COMMAND_WORD:
             return new SendCommandParser().parse(arguments);
+
+        case RunCommand.COMMAND_WORD:
+            return new RunCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
