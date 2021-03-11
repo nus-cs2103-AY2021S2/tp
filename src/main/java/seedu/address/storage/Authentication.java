@@ -26,7 +26,7 @@ public class Authentication {
 
     /** Path of the .json file containing the serialized address book */
     private Path filePath;
-    private Optional<String> password;
+    private Optional<String> password = Optional.empty();
 
 
     /**
@@ -35,7 +35,13 @@ public class Authentication {
      */
     public Authentication(Path filePath) {
         this.filePath = filePath;
-        this.password = Optional.empty();
+    }
+
+    /**
+     * Instantiates Authentication object with the default path "/data/addressbook.json"
+     */
+    public Authentication() {
+        this.filePath = Paths.get("/data/addressbook.json");
     }
 
     /**
@@ -121,6 +127,18 @@ public class Authentication {
         }));
     }
 
+    public String getPassword() {
+        return this.password.orElse("");
+    }
+
+    public boolean isPasswordPresent() {
+        return this.password.isPresent();
+    }
+
+    public void setPassword(String password) {
+        this.password = Optional.of(password);
+    }
+
     private void deleteJson() {
         File dataJson = new File(this.filePath.toString());
         dataJson.delete();
@@ -168,8 +186,6 @@ public class Authentication {
         return folderPath;
     }
 
-    public String getPassword() {
-        return this.password.orElse("");
-    }
+
 
 }
