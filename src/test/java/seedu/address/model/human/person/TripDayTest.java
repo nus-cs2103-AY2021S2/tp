@@ -20,7 +20,7 @@ public class TripDayTest {
     }
 
     @Test
-    public void equal_tripday_given_different_input_case() {
+    public void isEqual() {
         TripDay mon = new TripDay("monday");
         TripDay mon2 = new TripDay("MONDAY");
         assertTrue(mon.equals(mon2));

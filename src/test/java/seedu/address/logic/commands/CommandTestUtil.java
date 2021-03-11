@@ -31,10 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TRIPDAY_ALICE = "wednesday";
     public static final String VALID_TRIPDAY_BOB = "tuesday";
-    public static final String VALID_TRIPTIME_ALICE = "2103";
-    public static final String VALID_TRIPTIME_BOB = "1203";
+    public static final String VALID_TRIPTIME_BOB = "2103";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 

@@ -1,10 +1,10 @@
 package seedu.address.model.human.person;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class TripTimeTest {
     @Test
@@ -19,7 +19,7 @@ public class TripTimeTest {
     }
 
     @Test
-    public void equal_triptime_given_different_input_case() {
+    public void isEqual() {
         TripTime t1 = new TripTime("2300");
         TripTime t2 = new TripTime("2300");
         assertTrue(t1.equals(t2));

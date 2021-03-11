@@ -1,15 +1,16 @@
 package seedu.address.model.human.driver;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.DriverBuilder;
-import seedu.address.testutil.TypicalDrivers;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDrivers.ALICE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.DriverBuilder;
+import seedu.address.testutil.TypicalDrivers;
 
 public class DriverTest {
     @Test

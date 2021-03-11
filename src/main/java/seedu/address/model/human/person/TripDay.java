@@ -12,10 +12,10 @@ public class TripDay {
     public static final String MESSAGE_CONSTRAINTS = "TripDay should only be monday, tuesday, wednesday, thursday, "
             + "friday, saturday or sunday.";
 
-    public final String value;
-
     public static final String[] WEEKDAYS = new String[]{"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY",
-            "SATURDAY", "SUNDAY"};
+        "SATURDAY", "SUNDAY"};
+
+    public final String value;
 
     /**
      * Constructs a {@code TripDay}.

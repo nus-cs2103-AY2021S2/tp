@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Person extends Human {
 
-    private final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
+    public static final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
 
     // Data fields
     private final Address address;
@@ -53,7 +53,9 @@ public class Person extends Human {
         return tripTime;
     }
 
-    public String getDriverStr() {return driver.isEmpty() ? MESSAGE_NO_ASSIGNED_DRIVER : driver.toString();}
+    public String getDriverStr() {
+        return driver.isEmpty() ? MESSAGE_NO_ASSIGNED_DRIVER : driver.toString();
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

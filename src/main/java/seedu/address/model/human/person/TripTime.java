@@ -1,8 +1,5 @@
 package seedu.address.model.human.person;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -12,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TripTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "TripTime should only numeric and formatted in 24h time. eg. 1400.";
+    public static final String MESSAGE_CONSTRAINTS = "TripTime should only numeric and formatted in 24h time. "
+            + "eg. 1400.";
 
     public static final String VALIDATION_REGEX = "\\d{4}";
 
