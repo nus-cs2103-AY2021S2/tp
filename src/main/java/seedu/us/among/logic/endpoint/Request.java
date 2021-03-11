@@ -13,6 +13,7 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import seedu.us.among.commons.util.HeaderUtil;
@@ -28,6 +29,7 @@ import seedu.us.among.model.endpoint.header.Header;
  * Parent class of request sending classes. Contains the two compulsory fields method and address.
  */
 public abstract class Request {
+    private static CloseableHttpClient httpclient = HttpClients.createDefault();
     private static final int timeout = 60;
 
     private final MethodType method;
@@ -50,6 +52,10 @@ public abstract class Request {
 
     public String getAddress() {
         return this.address;
+    }
+
+    public static CloseableHttpClient getHttpclient() {
+        return httpclient;
     }
 
     /**
@@ -81,6 +87,7 @@ public abstract class Request {
     public Response execute(HttpUriRequest request) throws IOException {
         //solution adapted from https://mkyong.com/java/apache-httpclient-examples/
         CloseableHttpClient httpClient = createHttpClient();
+        Request.httpclient = httpClient;
         CloseableHttpResponse response;
         String responseEntity = "";
 
