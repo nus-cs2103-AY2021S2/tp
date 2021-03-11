@@ -28,6 +28,7 @@
           </Label>
           <Label fx:id="question" styleClass="cell_big_label" text="\$question" />
         </HBox>
+        <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
         <FlowPane fx:id="tags" />
         <Label fx:id="priority" styleClass="cell_small_label" text="\$priority">
                <VBox.margin>
