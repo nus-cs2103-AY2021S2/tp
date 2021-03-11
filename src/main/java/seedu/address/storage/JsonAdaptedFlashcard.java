@@ -33,7 +33,8 @@ class JsonAdaptedFlashcard {
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("name") String question, @JsonProperty("phone") String answer,
                                 @JsonProperty("email") String category, @JsonProperty("address") String priority,
-                                @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                @JsonProperty("remark") String remark,
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.question = question;
         this.answer = answer;
         this.category = category;
