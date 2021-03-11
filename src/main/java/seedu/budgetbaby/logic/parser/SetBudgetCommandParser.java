@@ -7,7 +7,7 @@ import seedu.budgetbaby.model.budget.Budget;
 /**
  * Parses input arguments and creates a new SetBudgetCommand object.
  */
-public class SetBudgetCommandParser implements  BudgetBabyCommandParser<SetBudgetCommand> {
+public class SetBudgetCommandParser implements BudgetBabyCommandParser<SetBudgetCommand> {
     @Override
     public SetBudgetCommand parse(String args) throws ParseException {
         double amount = ParserUtil.parseBudgetAmount(args);
