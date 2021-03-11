@@ -78,7 +78,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Project> getFilteredProjectsFolder() {
+    public ObservableList<Project> getFilteredProjectsList() {
         return model.getFilteredProjectList();
     }
 

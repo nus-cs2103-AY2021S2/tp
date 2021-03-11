@@ -49,7 +49,7 @@ public interface Logic {
     ReadOnlyProjectsFolder getProjectsFolder();
 
     /** Returns an unmodifiable view of the filtered list of projects */
-    ObservableList<Project> getFilteredProjectsFolder();
+    ObservableList<Project> getFilteredProjectsList();
 
     /**
      * Returns the user prefs' projects folder file path.
