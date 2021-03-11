@@ -19,7 +19,7 @@ import seedu.address.model.ReadOnlyAppointmentSchedule;
  */
 public class JsonAppointmentScheduleStorage implements AppointmentScheduleStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAppointmentScheduleStorage.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(JsonAppointmentScheduleStorage.class);
 
     private Path filePath;
 
@@ -54,7 +54,7 @@ public class JsonAppointmentScheduleStorage implements AppointmentScheduleStorag
         try {
             return Optional.of(jsonAppointmentSchedule.get().toModelType());
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            LOGGER.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }

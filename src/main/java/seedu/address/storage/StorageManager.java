@@ -17,7 +17,7 @@ import seedu.address.model.UserPrefs;
  */
 public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(StorageManager.class);
     private AppointmentScheduleStorage appointmentScheduleStorage;
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
@@ -66,7 +66,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        LOGGER.fine("Attempting to read data from file: " + filePath);
         return addressBookStorage.readAddressBook(filePath);
     }
 
@@ -77,7 +77,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        LOGGER.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
@@ -97,7 +97,7 @@ public class StorageManager implements Storage {
     public Optional<ReadOnlyAppointmentSchedule> readAppointmentSchedule(Path filePath)
             throws DataConversionException, IOException {
 
-        logger.fine("Attempting to read data from file: " + filePath);
+        LOGGER.fine("Attempting to read data from file: " + filePath);
         return appointmentScheduleStorage.readAppointmentSchedule(filePath);
     }
 
@@ -109,7 +109,7 @@ public class StorageManager implements Storage {
     @Override
     public void saveAppointmentSchedule(ReadOnlyAppointmentSchedule appointmentSchedule, Path filePath)
             throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        LOGGER.fine("Attempting to write to data file: " + filePath);
         appointmentScheduleStorage.saveAppointmentSchedule(appointmentSchedule, filePath);
     }
 }

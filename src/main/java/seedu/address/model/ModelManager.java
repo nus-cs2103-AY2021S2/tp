@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -18,7 +19,7 @@ import seedu.address.model.person.Person;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(ModelManager.class);
 
     private final AppointmentSchedule appointmentSchedule;
     private final AddressBook addressBook;
@@ -34,7 +35,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(appointmentSchedule, addressBook, userPrefs);
 
-        logger.fine("Initializing with appointment schedule: " + appointmentSchedule
+        LOGGER.fine("Initializing with appointment schedule: " + appointmentSchedule
                 + ", address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
@@ -128,6 +129,21 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<String> getFilteredDoctorList() {
+        // TODO: update to Person or Doctor Class
+        final ObservableList<String> internalList = FXCollections.observableArrayList();
+        internalList.add("Coming Soon!");
+        internalList.add("More Coming Soon!");
+        internalList.add("Even More Coming Soon!");
+        internalList.add("Much More Coming Soon!");
+        final ObservableList<String> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
+        final ObservableList<String> filteredDoctors = new FilteredList<>(internalUnmodifiableList);
+        return filteredDoctors;
+
     }
 
     @Override

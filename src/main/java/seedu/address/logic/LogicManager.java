@@ -80,6 +80,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<String> getFilteredDoctorList() {
+        return model.getFilteredDoctorList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
