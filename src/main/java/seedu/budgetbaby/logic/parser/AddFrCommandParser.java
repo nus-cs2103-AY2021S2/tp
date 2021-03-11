@@ -5,8 +5,10 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.budgetbaby.abmodel.tag.Tag;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Amount;
@@ -36,9 +38,9 @@ public class AddFrCommandParser implements BudgetBabyCommandParser<AddFrCommand>
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
 
-        //        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        FinancialRecord record = new FinancialRecord(description, amount);
+        FinancialRecord record = new FinancialRecord(description, amount, tagList);
 
         return new AddFrCommand(record);
     }

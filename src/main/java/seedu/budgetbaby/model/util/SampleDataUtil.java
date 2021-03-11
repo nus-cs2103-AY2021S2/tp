@@ -64,8 +64,8 @@ public class SampleDataUtil {
 
     public static FinancialRecord[] getSampleFinancialRecords() {
         return new FinancialRecord[]{
-            new FinancialRecord(new Description("Lunch"), new Amount("10")),
-            new FinancialRecord(new Description("Dinner"), new Amount("10.50")),
+            new FinancialRecord(new Description("Lunch"), new Amount("10"), getTagSet("Food")),
+            new FinancialRecord(new Description("Dinner"), new Amount("10.50"), getTagSet("Food")),
         };
     }
 
