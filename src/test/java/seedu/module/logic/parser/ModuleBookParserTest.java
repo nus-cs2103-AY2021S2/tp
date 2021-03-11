@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.commands.ClearCommand;
 import seedu.module.logic.commands.DeleteCommand;
+import seedu.module.logic.commands.DoneCommand;
 import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.logic.commands.ExitCommand;
@@ -23,6 +24,7 @@ import seedu.module.logic.commands.FindCommand;
 import seedu.module.logic.commands.FindTagCommand;
 import seedu.module.logic.commands.HelpCommand;
 import seedu.module.logic.commands.ListCommand;
+import seedu.module.logic.commands.NotDoneCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.NameContainsKeywordsPredicate;
@@ -53,6 +55,13 @@ public class ModuleBookParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_done() throws Exception {
+        DoneCommand command = (DoneCommand) parser.parseCommand(
+                DoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new DoneCommand(INDEX_FIRST_TASK), command);
     }
 
     @Test
@@ -92,10 +101,18 @@ public class ModuleBookParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
+
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_notdone() throws Exception {
+        NotDoneCommand command = (NotDoneCommand) parser.parseCommand(
+                NotDoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new NotDoneCommand(INDEX_FIRST_TASK), command);
     }
 
     @Test

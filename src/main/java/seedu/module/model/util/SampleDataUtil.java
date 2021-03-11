@@ -9,6 +9,7 @@ import seedu.module.model.ReadOnlyModuleBook;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
+import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
@@ -20,10 +21,10 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Task(new Name("Midterm"), new Deadline("2021-03-07 08:30"), new Module("CS3243"),
-                new Description("Not include CSP."),
+                new Description("Not include CSP."), new DoneStatus(false),
                 getTagSet("highPriority")),
             new Task(new Name("Team Project"), new Deadline("2021-03-15 16:00"), new Module("CS2103T"),
-                new Description("Wrap up version 1.2."), getTagSet())
+                new Description("Wrap up version 1.2."), new DoneStatus(true), getTagSet())
         };
     }
 

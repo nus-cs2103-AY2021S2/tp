@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
+import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
@@ -19,12 +20,15 @@ public class TaskBuilder {
     public static final String DEFAULT_NAME = "Assignment 6";
     public static final String DEFAULT_DEADLINE = "2021-03-07 14:00";
     public static final String DEFAULT_MODULE = "CS3243";
-    public static final String DEFAULT_ADDRESS = "Not very hard.";
+    public static final String DEFAULT_DONE = String.valueOf(Boolean.FALSE);
+    public static final String DEFAULT_DESCRIPTION = "Not very hard.";
 
     private Name name;
     private Deadline deadline;
     private Module module;
     private Description description;
+    private DoneStatus doneStatus;
+
     private Set<Tag> tags;
 
     /**
@@ -34,7 +38,8 @@ public class TaskBuilder {
         name = new Name(DEFAULT_NAME);
         deadline = new Deadline(DEFAULT_DEADLINE);
         module = new Module(DEFAULT_MODULE);
-        description = new Description(DEFAULT_ADDRESS);
+        description = new Description(DEFAULT_DESCRIPTION);
+        doneStatus = new DoneStatus(DEFAULT_DONE);
         tags = new HashSet<>();
     }
 
@@ -46,6 +51,7 @@ public class TaskBuilder {
         deadline = taskToCopy.getDeadline();
         module = taskToCopy.getModule();
         description = taskToCopy.getDescription();
+        doneStatus = taskToCopy.getDoneStatus();
         tags = new HashSet<>(taskToCopy.getTags());
     }
 
@@ -66,7 +72,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Task} that we are building.
+     * Sets the {@code DESCRIPTION} of the {@code Task} that we are building.
      */
     public TaskBuilder withDescription(String description) {
         this.description = new Description(description);
@@ -89,8 +95,16 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code DoneStatus} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withDoneStatus(String doneStatus) {
+        this.doneStatus = new DoneStatus(doneStatus);
+        return this;
+    }
+
     public Task build() {
-        return new Task(name, deadline, module, description, tags);
+        return new Task(name, deadline, module, description, doneStatus, tags);
     }
 
 }

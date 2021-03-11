@@ -22,12 +22,13 @@ import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
+import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
 
 /**
- * Edits the details of an existing task in the module book.
+ * Edits the details of an existing task in the module book except for DoneStatus.
  */
 public class EditCommand extends Command {
 
@@ -97,9 +98,11 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Module updatedModule = editTaskDescriptor.getModule().orElse(taskToEdit.getModule());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        DoneStatus originalDoneStatus = taskToEdit.getDoneStatus();
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription, updatedTags);
+        return new Task(updatedName, updatedDeadline, updatedModule, updatedDescription,
+                originalDoneStatus, updatedTags);
     }
 
     @Override

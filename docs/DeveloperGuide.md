@@ -317,7 +317,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. ModuleBook 3.5 shows an error message. 
+      
+      Use case ends.
 
 * 3a. The given index is out of range.
 
@@ -347,7 +349,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. ModuleBook 3.5 shows an error message.
+
+      Use case ends.
+    
 
 * 3a. The given index is out of range.
 
