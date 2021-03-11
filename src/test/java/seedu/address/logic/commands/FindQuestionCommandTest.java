@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.NEWTON;
+import static seedu.address.testutil.TypicalFlashcards.MERGE;
+import static seedu.address.testutil.TypicalFlashcards.RECURSION;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashBack;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,11 +21,11 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindQuestionCommand}.
  */
 public class FindQuestionCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFlashBack(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalFlashBack(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -55,7 +55,7 @@ public class FindQuestionCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noFlashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
         QuestionContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindQuestionCommand(predicate);
@@ -65,17 +65,17 @@ public class FindQuestionCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleFlashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
-        QuestionContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        QuestionContainsKeywordsPredicate predicate = preparePredicate("newton's merge recursion?");
         FindCommand command = new FindQuestionCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredFlashcardList());
+        assertEquals(Arrays.asList(NEWTON, MERGE, RECURSION), model.getFilteredFlashcardList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code QuestionContainsKeywordsPredicate}.
      */
     private QuestionContainsKeywordsPredicate preparePredicate(String userInput) {
         return new QuestionContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
