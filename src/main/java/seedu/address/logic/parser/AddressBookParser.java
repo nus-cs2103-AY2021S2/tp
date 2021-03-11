@@ -16,6 +16,7 @@ import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
+import seedu.address.logic.parser.addcommandparser.AddPersonCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
