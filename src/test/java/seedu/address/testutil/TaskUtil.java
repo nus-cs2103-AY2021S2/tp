@@ -34,9 +34,7 @@ public class TaskUtil {
         sb.append(PREFIX_PHONE + task.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
-        task.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        task.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }
 
