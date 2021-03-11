@@ -45,7 +45,7 @@ public class SampleDataUtil {
     }
 
     private static Project[] getSampleProjects() {
-        return new Project[]{
+        return new Project[] {
             new Project(new ProjectName("Sample Project"))
         };
     }

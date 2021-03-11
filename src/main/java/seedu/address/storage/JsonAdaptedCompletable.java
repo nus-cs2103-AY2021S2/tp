@@ -48,7 +48,7 @@ class JsonAdaptedCompletable {
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Completable toModelType() throws IllegalValueException {
-        if (by.equals("null")) {
+        if (by == null) {
             return new Todo(description, isDone);
         } else {
             LocalDate date = parseDate(by);

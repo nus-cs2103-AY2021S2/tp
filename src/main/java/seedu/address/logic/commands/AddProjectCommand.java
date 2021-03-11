@@ -16,7 +16,7 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to CoLAB. "
             + "Parameters: "
-            + PREFIX_NAME + "PROJECT_NAME ";
+            + PREFIX_NAME + "PROJECT_NAME";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists";
