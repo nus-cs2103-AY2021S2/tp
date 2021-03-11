@@ -2,90 +2,91 @@ package seedu.address.model.flashcard;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EQUATION;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalFlashcards.AT;
+import static seedu.address.testutil.TypicalFlashcards.PYTHAGOREAN;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.FlashcardBuilder;
 
 public class FlashcardTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Flashcard flashcard = new PersonBuilder().build();
+        Flashcard flashcard = new FlashcardBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> flashcard.getTags().remove(0));
     }
 
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(PYTHAGOREAN.isSameFlashcard(PYTHAGOREAN));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(PYTHAGOREAN.isSameFlashcard(null));
 
         // same name, all other attributes different -> returns true
-        Flashcard editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN).withAnswer(VALID_ANSWER_OCTOPUS)
+                .withCategory(VALID_CATEGORY_OCTOPUS)
+                .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
+        assertTrue(PYTHAGOREAN.isSameFlashcard(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        editedAlice = new FlashcardBuilder(PYTHAGOREAN).withQuestion(VALID_QUESTION_OCTOPUS).build();
+        assertFalse(PYTHAGOREAN.isSameFlashcard(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Flashcard editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        Flashcard editedBob = new FlashcardBuilder(AT).withQuestion(VALID_QUESTION_OCTOPUS.toLowerCase()).build();
+        assertFalse(AT.isSameFlashcard(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        String nameWithTrailingSpaces = VALID_QUESTION_OCTOPUS + " ";
+        editedBob = new FlashcardBuilder(AT).withQuestion(nameWithTrailingSpaces).build();
+        assertFalse(AT.isSameFlashcard(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Flashcard aliceCopy = new PersonBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Flashcard aliceCopy = new FlashcardBuilder(PYTHAGOREAN).build();
+        assertTrue(PYTHAGOREAN.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(PYTHAGOREAN.equals(PYTHAGOREAN));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(PYTHAGOREAN.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(PYTHAGOREAN.equals(5));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(PYTHAGOREAN.equals(AT));
 
         // different name -> returns false
-        Flashcard editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN).withQuestion(VALID_QUESTION_OCTOPUS).build();
+        assertFalse(PYTHAGOREAN.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new FlashcardBuilder(PYTHAGOREAN).withAnswer(VALID_ANSWER_OCTOPUS).build();
+        assertFalse(PYTHAGOREAN.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new FlashcardBuilder(PYTHAGOREAN).withCategory(VALID_CATEGORY_OCTOPUS).build();
+        assertFalse(PYTHAGOREAN.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new FlashcardBuilder(PYTHAGOREAN).withPriority(VALID_PRIORITY_OCTOPUS).build();
+        assertFalse(PYTHAGOREAN.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new FlashcardBuilder(PYTHAGOREAN).withTags(VALID_TAG_EQUATION).build();
+        assertFalse(PYTHAGOREAN.equals(editedAlice));
     }
 }

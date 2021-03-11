@@ -31,12 +31,12 @@ public class FlashbackViewCard extends UiPart<Region> {
     public FlashbackViewCard(Flashcard flashcard) {
         super(FXML);
         this.flashcard = flashcard;
-        question.setText(flashcard.getName().fullQuestion);
-        answer.setText(flashcard.getPhone().toString());
+        question.setText(flashcard.getQuestion().fullQuestion);
+        answer.setText(flashcard.getAnswer().toString());
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        String text = flashcard.getAddress().toString();
+        String text = flashcard.getPriority().toString();
         priority.setText(text);
         priority.setStyle("-fx-text-fill: white;");
         if (text.equals("High")) {
