@@ -6,9 +6,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
 
-
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all flashcards in FlashBack with question containing any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindQuestionCommand extends FindCommand {
