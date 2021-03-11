@@ -2,12 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_EINSTEIN;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ATP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_OCTOPUS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_OCTOPUS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_EINSTEIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_OCTOPUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EQUATION;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,8 @@ public class EditFlashcardDescriptorTest {
         assertFalse(DESC_EINSTEIN.equals(DESC_ATP));
 
         // different name -> returns false
-        EditCommand.EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_EINSTEIN).withQuestion(VALID_QUESTION_OCTOPUS).build();
+        EditCommand.EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_EINSTEIN)
+                .withQuestion(VALID_QUESTION_OCTOPUS).build();
         assertFalse(DESC_EINSTEIN.equals(editedAmy));
 
         // different phone -> returns false
