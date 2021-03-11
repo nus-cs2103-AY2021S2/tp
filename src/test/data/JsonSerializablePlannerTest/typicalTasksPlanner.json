@@ -1,46 +1,46 @@
 {
   "_comment": "PlanIt save file which contains the same Task values as in TypicalTasks#getTypicalPlanner()",
   "tasks" : [ {
-    "title" : "Alice Pauline",
+    "title" : "Assignment 79",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "description": "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "description": "Build the next Google",
+    "tagged" : [ "priorities" ]
   }, {
-    "title" : "Benson Meier",
+    "title" : "Build a gaming PC",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "description": "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "description": "buy: coffee, 3080, 40-inch monitor",
+    "tagged" : [ "findMoney", "priorities" ]
   }, {
-    "title" : "Carl Kurz",
+    "title" : "Countdown to finals",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "description": "wall street",
+    "description": "aiken doeet",
     "tagged" : [ ]
   }, {
-    "title" : "Daniel Meier",
+    "title" : "Demo our amazing product",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "description": "10th street",
-    "tagged" : [ "friends" ]
+    "description": "Number 1 for real",
+    "tagged" : [ "fact" ]
   }, {
-    "title" : "Elle Meyer",
+    "title" : "Ensure that I eat lunch",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "description": "michegan ave",
+    "description": "budget 3$",
     "tagged" : [ ]
   }, {
-    "title" : "Fiona Kunz",
+    "title" : "Final project consult again",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "description": "little tokyo",
+    "description": "at COM2",
     "tagged" : [ ]
   }, {
-    "title" : "George Best",
+    "title" : "Get ready for 2101 presentation",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "description": "4th street",
+    "description": "remember to shave",
     "tagged" : [ ]
   } ]
 }
