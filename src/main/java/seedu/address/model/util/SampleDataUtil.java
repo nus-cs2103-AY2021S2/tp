@@ -11,7 +11,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
-import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -61,7 +60,7 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static List<Meeting> getMeetingList() {
+    public static List<Event> getMeetingList() {
         return Collections.emptyList();
     }
 

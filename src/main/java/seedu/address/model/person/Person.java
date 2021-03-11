@@ -27,14 +27,14 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Event> dates = new ArrayList<>();
-    private final List<Meeting> meetings = new ArrayList<>();
+    private final List<Event> meetings = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
 
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Event> dates,
-                  List<Meeting> meetings) {
+                  List<Event> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -74,7 +74,7 @@ public class Person {
         return Collections.unmodifiableList(dates);
     }
 
-    public List<Meeting> getMeetings() {
+    public List<Event> getMeetings() {
         return Collections.unmodifiableList(meetings);
     }
 
@@ -144,11 +144,11 @@ public class Person {
             dates.forEach(builder::append);
         }
 
-        List<Meeting> meetings = getMeetings();
+        List<Event> meetings = getMeetings();
         if (!meetings.isEmpty()) {
             String meetingsStr = meetings
                     .stream()
-                    .map(Meeting::toString)
+                    .map(Event::toString)
                     .collect(Collectors.joining(", "));
 
             builder.append("; Meetings: ");

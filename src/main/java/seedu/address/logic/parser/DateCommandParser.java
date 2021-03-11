@@ -4,8 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
+
+import java.time.LocalDate;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.DateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Event;
@@ -33,13 +37,13 @@ public class DateCommandParser implements Parser<DateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DateCommand.MESSAGE_USAGE), pe);
         }
 
-        Event event;
-        if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            event = new Event(argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        } else {
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_DESCRIPTION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DateCommand.MESSAGE_USAGE));
         }
 
-        return new DateCommand(index, event);
+        LocalDate date = DateUtil.fromDateInput(argMultimap.getValue(PREFIX_DATE).get());
+        String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+
+        return new DateCommand(index, new Event(date, description));
     }
 }

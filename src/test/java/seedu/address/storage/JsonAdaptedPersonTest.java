@@ -34,8 +34,8 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedEvent> VALID_DATES = BENSON.getDates().stream()
             .map(JsonAdaptedEvent::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedMeeting> VALID_MEETINGS = BENSON.getMeetings().stream()
-            .map(JsonAdaptedMeeting::new)
+    private static final List<JsonAdaptedEvent> VALID_MEETINGS = BENSON.getMeetings().stream()
+            .map(JsonAdaptedEvent::new)
             .collect(Collectors.toList());
 
     @Test

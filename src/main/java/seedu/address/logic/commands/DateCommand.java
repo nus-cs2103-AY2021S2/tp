@@ -62,7 +62,7 @@ public class DateCommand extends Command {
         dates.add(event);
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), dates);
+                personToEdit.getAddress(), personToEdit.getTags(), dates, personToEdit.getMeetings());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

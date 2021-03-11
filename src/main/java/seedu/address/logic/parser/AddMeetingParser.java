@@ -15,7 +15,7 @@ import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Meeting;
+import seedu.address.model.person.Event;
 
 public class AddMeetingParser implements Parser<AddMeetingCommand> {
 
@@ -46,6 +46,6 @@ public class AddMeetingParser implements Parser<AddMeetingCommand> {
         LocalTime time = TimeUtil.fromTimeInput(argMultimap.getValue(PREFIX_TIME).get());
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
 
-        return new AddMeetingCommand(index, new Meeting(date, time, description));
+        return new AddMeetingCommand(index, new Event(date, time, description));
     }
 }
