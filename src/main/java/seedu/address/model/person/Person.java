@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
@@ -26,11 +27,14 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Event> dates = new ArrayList<>();
+    private final List<Meeting> meetings = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Event> dates) {
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Event> dates,
+                  List<Meeting> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -38,6 +42,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.dates.addAll(dates);
+        this.meetings.addAll(meetings);
     }
 
     public Name getName() {
@@ -64,8 +69,13 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+
     public List<Event> getDates() {
         return Collections.unmodifiableList(dates);
+    }
+
+    public List<Meeting> getMeetings() {
+        return Collections.unmodifiableList(meetings);
     }
 
     /**
@@ -101,7 +111,8 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getDates().equals(getDates());
+                && otherPerson.getDates().equals(getDates())
+                && otherPerson.getMeetings().equals(getMeetings());
     }
 
     @Override
@@ -132,7 +143,18 @@ public class Person {
             builder.append("; Dates: ");
             dates.forEach(builder::append);
         }
+
+        List<Meeting> meetings = getMeetings();
+        if (!meetings.isEmpty()) {
+            String meetingsStr = meetings
+                    .stream()
+                    .map(Meeting::toString)
+                    .collect(Collectors.joining(", "));
+
+            builder.append("; Meetings: ");
+            builder.append(meetingsStr);
+        }
+
         return builder.toString();
     }
-
 }
