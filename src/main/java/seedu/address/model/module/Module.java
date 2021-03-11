@@ -2,7 +2,7 @@ package seedu.address.model.module;
 
 import java.util.Objects;
 
-public class Module {
+public class Module implements Comparable<Module> {
     private Title title;
     private AssignmentList assignments;
     private ExamList exams;
@@ -64,12 +64,57 @@ public class Module {
     }
 
     /**
+     * Checks if the module has the given assignment in its assignment list.
+     *
+     * @param assignment Assignment to be checked.
+     * @return Boolean
+     */
+    public boolean hasAssignment(Assignment assignment) {
+        return assignments.contains(assignment);
+    }
+
+    /**
+     * Checks if the module has the given exam in its exam list.
+     *
+     * @param exam Exam to be checked.
+     * @return Boolean
+     */
+    public boolean hasExam(Exam exam) {
+        return exams.contains(exam);
+    }
+
+    /**
      * Adds an assignment to the assignment list of the module.
      *
      * @param assignment Assignment to be added.
      */
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
+    }
+
+    /**
+     * Adds an exam to the exam list of the module.
+     *
+     * @param exam Exam to be added.
+     */
+    public void addExam(Exam exam) {
+        this.exams.add(exam);
+    }
+
+    /**
+     * Delete {@code assignment} from {@code assignments}
+     * {@code assignment} must exist in {@code assignments}
+     */
+    public Assignment deleteAssignment(Assignment assignment) {
+        return assignments.delete(assignment);
+    }
+
+    /**
+     * Delete {@code assignment} from {@code assignments}
+     * {@code assignment} must exist in {@code assignments}
+     */
+    public Exam deleteExam(Exam exam) {
+        return exams.delete(exam);
     }
 
     /**
@@ -116,11 +161,17 @@ public class Module {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; Assignments: ")
+                .append(";\nAssignments: ")
                 .append(getAssignments())
+                .append("\n")
                 //.append("; Exam Date: ")
                 .append(getExams());
 
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Module o) {
+        return title.compareTo(o.title);
     }
 }

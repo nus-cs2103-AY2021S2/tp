@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
+import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -129,5 +130,22 @@ public class ParserUtil {
         } catch (DateTimeParseException e) {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Parses a {@code String titleInput} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Title parseTitle(String titleInput) throws ParseException {
+        requireNonNull(titleInput);
+        String trimmedTitle = titleInput.trim();
+
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Title(trimmedTitle);
     }
 }

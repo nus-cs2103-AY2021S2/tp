@@ -32,6 +32,33 @@ public class ExamList {
     }
 
     /**
+     * Returns if {@code exam} exists inside the exam list.
+     */
+    public boolean contains(Exam exam) {
+        boolean hasExam = false;
+        for (int i = 0; i < exams.size() && !hasExam; i++) {
+            if (exams.contains(exam)) {
+                hasExam = true;
+            }
+        }
+        return hasExam;
+    }
+
+    /**
+     * Gets the index of the {@code exam} in the exam list.
+     * {@code exam} must exist in the exam list.
+     */
+    public int getIndex(Exam exam) {
+        int index = -1;
+        for (int i = 0; i < exams.size(); i++) {
+            if (exams.get(i).equals(exam)) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    /**
      * Adds an {@code Exam} into the ExamList.
      *
      * @param exam Exam to be added.
@@ -49,6 +76,15 @@ public class ExamList {
     public Exam deleteAt(int index) {
         Exam deletedExam = exams.remove(index);
         return deletedExam;
+    }
+
+    /**
+     * Delete the {@code exam} from exam list.
+     * {@code exam} must exist in the exam list.
+     */
+    public Exam delete(Exam exam) {
+        int index = getIndex(exam);
+        return deleteAt(index);
     }
 
     /**

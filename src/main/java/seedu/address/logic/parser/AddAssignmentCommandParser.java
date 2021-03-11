@@ -7,10 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.time.LocalDateTime;
 
-import seedu.address.logic.commands.AddAssignmentCommand;
+import seedu.address.logic.commands.addcommand.AddAssignmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 
 /**
  * Parses input arguments and creates a new AddAssignmentCommand object
@@ -30,14 +32,16 @@ public class AddAssignmentCommandParser extends AddCommandParser implements Pars
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
         }
-        //todo add support for module
+
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
+        Module module = new Module(title);
 
         Description description = ParserUtil.parseAssignmentDescription(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
         LocalDateTime deadline = ParserUtil.parseAssignmentDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
 
         Assignment assignment = new Assignment(description, deadline);
 
-        return new AddAssignmentCommand(assignment);
+        return new AddAssignmentCommand(module, assignment);
     }
 
 }
