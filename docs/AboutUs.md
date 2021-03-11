@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jeremias Shae
 
-<img src="images/jeremias.jpg" width="200px">
+<img src="images/jellymias.png" width="200px">
 
 [[github](http://github.com/jellymias)]
 [[portfolio](team/jellymias.md)]

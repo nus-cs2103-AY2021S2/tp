@@ -5,7 +5,7 @@ title: User Guide
 
 RemindMe User Guide v1.1
 ---
-This user guide provide [start-up](#start-up) instructions as well as detailed descriptions and usage of
+This user guide provide [start-up](#start--up) instructions as well as detailed descriptions and usage of
 all the [features](#features) in the RemindMe app. You can also access the product website via this [link.](https://ay2021s2-cs2103t-w15-1.github.io/tp/)
 
 <div style="page-break-after: always;"></div>
@@ -13,17 +13,32 @@ all the [features](#features) in the RemindMe app. You can also access the produ
 ## Table of Contents
 
 * **[Introduction](#introduction)**
-* **[Start-up](#Start-up)**
+* **[Start-up](#start-up)**
 * **[Features](#features)**
-    * **[1. Show help page : `help`]()**
-    * **[2. Add an event/examination: `event/deadline (DESCRIPTION) (DD/MM/YYYY TIME)`]()**
-    * **[3. Delete an event/examination: `delete (INDEX)`]()**
-    * **[4. Edit a task]()**
-    * **[5. Delete a task]()**
-    * **[6. Calendar View]()**
-    * **[7. Pop-up Reminder]()**
+    * **[1. Show Help Page : `help`](#show-help-page--help)**
+    * **[2. Turn On/Off Reminder: `remind`](#turn-onoff-reminder-remind)**
+    * **[3. Add a Module: `add m/MODULE`](#add-a-module-add)**
+      * [3.1 Add an Assignment](#add-an-assignment)
+      * [3.2 Add an Exam](#add-an-exam)
+    * **[4. Add an Event: `event`](#add-an-event-event)**  
+    * **[5. Add a Person as friend: `add`](#add-a-person-as-friend-add)**  
+    * **[6. Delete a Module: `delete`](#delete-a-module-delete)**
+      * [6.1 Delete an Assignment/Exam/Event](#delete-an-assignmentexamevent)
+    * **[7. List Entries: `list`](#list-entries--list)**
+      * [7.1 List Modules: `list module`](#list-modules-list-modules)
+      * [7.2 List Assignments: `list assignments`](#list-assignments--list-assignments)
+      * [7.3 List Events: `list events`](#list-events--list-events)
+      * [7.4 List Exams: `list exams`](#list-exams--list-exams)
+    * **[8. Edit an Entry: `edit`](#edit-an-entry--edit)**
+    * **[9. Locate Entries: `find`](#locate-entries-find)**
+    * **[10. Calendar View: `calendar`](#calendar-view--calendar)**
+    * **[11. Clear Entries: `clear`](#clear-entries--clear)**
+    * **[12. Save the data](#save-the-data)**
+    * **[13. Edit the data file](#edit-an-entry--edit)**
+    * **[14. Exit the program: `exit`](#exit-the-program--exit)**
+   
 * **[Glossary](#glossary)**
-* **[Command summary](#command-summary)**
+* **[Command summary](#command-summary-(RemindMe))**
 
 <div style="page-break-after: always;"></div>
 
@@ -36,6 +51,10 @@ optimized for use via Command Line Interface(CLI) while still having the benefit
 Objectives of RemindMe:
 1. Allow students to be aware of deadlines of school events and exams.
 2. Allow students to have a calendar view of their school curriculums/schedules. 
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 
 ## Start-up
@@ -60,7 +79,7 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
      
    * **`ordered list`**: Displays an order list of items.
      
-   * ** `calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
+   * **`calendar`**: Dsiplays the calendar with the tasks' deadlines and friends' birthdays.
      
    * **`exit`** : Exits the app.
 
@@ -71,43 +90,37 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `exam m/MODULE`, `MODULE` is a parameter which can be used as `add m/CS2103`.
+
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g `m/MODULE [t/TAG]` can be used as `m/CS21O3 t/final` or as `m/CS2103`.
+  
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### *Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+### Show Help Page : `help`
+
+Shows a help page
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-### *Turn on/off reminder: `remind`
+### Turn On/Off Reminder: `remind`
 
 Turns on and off the reminder system. If remind is on,
 a reminder would pop out when starting the app RemindMe regarding
 the upcoming tasks.
 
-(insert image of reminder here)
+![Reminder](images/Reminder.png)
 
 Format: `remind`
 
@@ -116,139 +129,179 @@ Outcome:
 * `reminder is turned on!`
 * `reminder is turned off!`
 
-### *Adding an Assignment/Event: `event/deadline`
+### Add a Module: `add`
 
-Adds an assignment with a deadline or event to the calendar.
-
-Format: 
-
-* `event (DESCRIPTION) /from (DD/MM/YYYY TIME) /to (DD/MM/YYYY TIME)`
-
-* `deadline (DESCRIPTION) /by (DD/MM/YYYY TIME)`
-
-Examples:
-* `event Christmas Party /from 25/12/2021 1800 /to 25/12/2021 2300`
-* `deadline CS2103 Assignment /by 03/03/2021 2359`
-
-### *Deleting an Assignment/Event: `delete`
-
-Deletes an assignment with a deadline or event from the calendar.
+Adds a module to the calendar.
 
 Format: 
 
-* `delete /from (DD/MM/YYYY) /index (INDEX)`
+* `add m/MODULE`
 
 Examples:
-* `delete /from 25/12/2021 /index 1`
+* `add m/cs2103`
 
-### Listing all events : `list events`
+### Add an Assignment
 
-Shows a list of all events. Events are sorted by date.
+Adds an assignment under a module to a calendar with a date or/and with an optional tag/time.
+
+Format:
+* `add m/MODULE a/assignment d/DATE [t/TAG/TIME] `
+
+Examples:
+* `add m/cs2103 a/tut2 d/2021-01-12 t/23:59`
+
+### Add an Exam
+
+Add an exam under a module to a calendar with a date or/and with an optional tag/time.
+
+Format:
+* `add m/MODULE e/exam d/DATE [t/TAG/TIME]`
+
+Examples:
+* `add m/cs2103 e/final d/2021-01-12 t/23:59`
+
+### Add an Event: `event`
+
+Add an event with content and date specified.
+
+Format:
+* `event c/CONTENT d/DATE [t/TAG]`
+
+Examples:
+* `event c/floor party d/2021-4-30`
+
+### Add a Person as friend: `add`
+
+Add a person as friend with its birthday in RemindMe
+
+Format:
+
+* `add n/Name b/BIRTHDAY`
+
+Example:
+
+* `add n/Marcus b/2000-01-01`
+
+### Delete a Module: `delete`
+
+Deletes a module from RemindMe. Removing the module will remove all the relevant 
+exams and assignments.
+
+Format: 
+* `delete m/MODULE`
+
+
+Examples:
+* `delete m/cs2103T`
+
+### Delete an Assignment/Exam/Event
+
+Deletes an assignment/exam/event from the calendar.
+
+Format:
+* `delete i/index d/date`
+
+Examples:
+* `delete i/1 d/2020-11-22`
+
+### List Entries : `list`
+
+Shows a list of all assignments/events/exam deadlines sorted by date.
 
 Format: `list`
 
-### Listing all assignments : `list assignments`
+### List Modules: `list modules`
 
-Shows a list of all assignments. Assignments are sorted by date.
+Show a list of modules currently registered in RemindMe.
 
-Format: `list`
+Format: `list modules`
 
-### Editing a person : `edit`
 
-Edits an existing person in the address book.
+### List Assignments : `list assignments`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Shows a list of all assignments sorted by date.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Format: `list assignments`
+
+### List Events : `list events`
+Shows a list of all events sorted by date.
+
+Format: `list events`
+
+### List Exams : `list exams`
+Shows a list of all exams sorted by date.
+
+Format: `list exams`
+
+### Edit an Entry : `edit`
+
+Edits an existing exam/event/assignment's date/module/tag in the RemindMe.
+
+Format: `edit INDEX [m/MODULE] [d/DATE] [dd/deadline] [from/TIME to/TIME] [t/TAG]…​`
+
+* Edits the exam/event/assignment's deadline at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the exam/event/assignment will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/exam d/2021-01-22` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 p/assignment t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locate Entries: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds entries whose contents contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g `math` will match `MATH`
+* Only full words will be matched e.g. `math` will not match `maths`
+
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find math` returns `math exams` and `math assignment`
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
 
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### *Viewing Calendar of the current month
+### Calendar View : `calendar`
 Shows an image of the calendar with your reminders (e.g. tasks, assignments datelines, and friends’ birthday) for each specific dates.  
 ![result for 'calendar'](images/calendarResult.png)  
 Format: `calendar`
 
-### Clearing all entries : `clear`
+### Clear Entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear``
 
-### *Saving the data
+### Save the data
 
 RemindMe save your data in the hard disk automatically after every command that changes the data. There is no need for you to save manually.
 
-### *Editing the data file
+### Edit the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/remindme.json`. Advanced users are welcome to update data directly by editing that data file.
+RemindME data are saved as a JSON file `[JAR file location]/data/remindme.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, RemindMe will discard all data and start with an empty data file at the next run.
 </div>
 
-### Exiting the program : `exit`
+### Exit the program : `exit`
 
 Exits the program.
 
 Format: `exit
 
 ## Glossary
-* Examination: Consists of a start time, end time, date which it occurs on and the subject.
-* Event: Consists of a start time, end time and the date which it occurs on.
+* Module: Consists of a module ID and name.
+* Assignment: Consists of the name of the assignment and deadline with an optional tag.
+* Exam: Consists of the name, date and start-time with an optional tag.
+* Event: Consists of the event content and date with an optional tag.
 
-## Command summary (AB3)
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**View Calendar** | `calendar`
-**Help** | `help`
-
-## Command summary (RemindMe) 
+## Command Summary (RemindMe) 
 
 Action | Format, Examples
 --------|----------------

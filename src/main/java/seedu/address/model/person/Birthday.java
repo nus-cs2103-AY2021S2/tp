@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Birthday {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthdays should be in the form of day/date/year and allows for leading zeros to be omitted";
+            "Birthdays should be in the form of YYYY-MM-DD and allows for leading zeros to be omitted";
 
     public static final String VALIDATION_REGEX = "^[0-9]{4}-[01-12]{2}-[00-31]{2}$";
 

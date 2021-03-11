@@ -1,16 +1,19 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+
+import java.net.URISyntaxException;
+import java.util.logging.Logger;
 
 /**
  * The manager of the UI component.
@@ -20,7 +23,7 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/logo.png";
 
     private Logic logic;
     private MainWindow mainWindow;
@@ -41,6 +44,20 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
+            //start a thread to run background music
+            Runnable runnable = () -> {
+                Media media = null;
+                try {
+                    media = new Media(getClass().getResource("/audio/MSLogin.mp3").toURI().toString());
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.setAutoPlay(true);
+            };
+            Thread thread = new Thread(runnable);
+            thread.start();
+
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
