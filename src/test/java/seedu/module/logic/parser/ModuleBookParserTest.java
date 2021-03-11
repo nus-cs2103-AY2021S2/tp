@@ -16,12 +16,14 @@ import org.junit.jupiter.api.Test;
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.commands.ClearCommand;
 import seedu.module.logic.commands.DeleteCommand;
+import seedu.module.logic.commands.DoneCommand;
 import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.logic.commands.ExitCommand;
 import seedu.module.logic.commands.FindCommand;
 import seedu.module.logic.commands.HelpCommand;
 import seedu.module.logic.commands.ListCommand;
+import seedu.module.logic.commands.NotDoneCommand;
 import seedu.module.logic.commands.TagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;
@@ -56,6 +58,13 @@ public class ModuleBookParserTest {
     }
 
     @Test
+    public void parseCommand_done() throws Exception {
+        DoneCommand command = (DoneCommand) parser.parseCommand(
+                DoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new DoneCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Task task = new TaskBuilder().build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
@@ -84,6 +93,7 @@ public class ModuleBookParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
+
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
@@ -96,6 +106,13 @@ public class ModuleBookParserTest {
         TagCommand command = (TagCommand) parser.parseCommand(TagCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getTagDetails(stubTag));
         assertEquals(new TagCommand(INDEX_FIRST_TASK, stubTag), command);
+    }
+
+    @Test
+    public void parseCommand_notdone() throws Exception {
+        NotDoneCommand command = (NotDoneCommand) parser.parseCommand(
+                NotDoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new NotDoneCommand(INDEX_FIRST_TASK), command);
     }
 
     @Test
