@@ -93,25 +93,31 @@ public class Authentication {
      */
     public void lock() throws ZipException {
         ZipFile dataZip;
-        if (this.password.isPresent()) {
-            dataZip = new ZipFile(this.getZipPath(), this.password.get().toCharArray());
-        } else {
-            dataZip = new ZipFile(this.getZipPath());
-        }
-
-        ZipParameters parameters = new ZipParameters();
-        parameters.setEncryptFiles(true);
-        parameters.setEncryptionMethod(EncryptionMethod.AES);
-        parameters.setAesKeyStrength(AesKeyStrength.KEY_STRENGTH_256);
-        parameters.setCompressionLevel(CompressionLevel.NORMAL);
-        parameters.setCompressionMethod(CompressionMethod.DEFLATE);
-
         try {
-            dataZip.addFile(this.filePath.toString(), parameters);
+            //If ClientBook is locked, encrypt the zip file using the password.
+            if (this.password.isPresent()) {
+                dataZip = new ZipFile(this.getZipPath(), this.password.get().toCharArray());
+                ZipParameters parameters = new ZipParameters();
+                parameters.setEncryptFiles(true);
+                parameters.setEncryptionMethod(EncryptionMethod.AES);
+                parameters.setAesKeyStrength(AesKeyStrength.KEY_STRENGTH_256);
+                parameters.setCompressionLevel(CompressionLevel.NORMAL);
+                parameters.setCompressionMethod(CompressionMethod.DEFLATE);
+                dataZip.addFile(this.filePath.toString(), parameters);
+
+            //ClientBook is not locked, zip the data .json file without a password.
+            } else {
+                dataZip = new ZipFile(this.getZipPath());
+                dataZip.addFile(this.filePath.toString());
+            }
         } catch (ZipException e) {
-            logger.info("Failed to lock data file into a zip file");
+            logger.info("Failed to compress data .json file into a zip file");
             throw e;
         }
+
+
+
+
     }
 
     /**
