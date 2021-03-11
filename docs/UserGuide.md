@@ -37,7 +37,7 @@ StoreMando is a **desktop app for managing inventory, optimized for use via a Co
   e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is a parameter which can be used as `add n/Chocolate Milk`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/ITEM_NAME [e/EXPIRY_DATE]` can be used as `n/Olive Oil e/2020-10-10` or as `n/Olive Oil`.
+  e.g. `n/ITEM_NAME [e/EXPIRY_DATE]` can be used as `n/Olive Oil e/2020-10-10` or as `n/Olive Oil`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/favourite`, `t/favourite t/drink` etc.
@@ -45,7 +45,7 @@ StoreMando is a **desktop app for managing inventory, optimized for use via a Co
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/ITEM_NAME l/LOCATION`, `l/LOCATION n/ITEM_NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `e/2020-10-10 e/2020-08-08`, only `e/2020-08-08` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -77,14 +77,16 @@ Examples:
 
 Shows a list of all items in the inventory.
 
-Format: `list [LOCATION]`
+Format: `list` `list [l/LOCATION]` `list [t/TAG]`
 
-* You can view all items in the inventory by typing 'list' without specifying location.
+* You can view all items in the inventory by typing 'list' without specifying location/tag.
 * The search is case-insensitive. e.g 'room' will match 'Room'.
-* The order of keywords does not matter. e.g. 'Room Living' will match 'Living Room'.
-* Only location will be searched.
+* The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
+* Tag keyword only can contain one single word.
 * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
+* Only location/tag can be searched.
 * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'
+
 ### Updating an item's details : `update`
 =======
 
@@ -97,9 +99,8 @@ Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/T
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values **only if input values differ from the existing values**.
-* When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative.
-* You can remove all the items’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, the existing tags of the item will be removed i.e. adding of tags is not cumulative.
+* You can remove all the items’ tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 q/10 e/2020-10-11` Edits the quantity of the 1st item to be `10` and expiry date of the 1st item to be `2020-10-11` 
@@ -214,5 +215,5 @@ Action | Format, Examples
 **Add** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
-**List** | `list [LOCATION]`<br> e.g., `list fridge`
+**List** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g., `list` `list l/fridge` `list t/favourite`
 **Find** | `find KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch`
