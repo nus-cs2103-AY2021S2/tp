@@ -48,8 +48,8 @@ public class FlashbackCard extends UiPart<Region> {
         super(FXML);
         this.flashcard = flashcard;
         id.setText(displayedIndex + ". ");
-        question.setText(flashcard.getName().fullQuestion);
-        String text = flashcard.getAddress().toString();
+        question.setText(flashcard.getQuestion().fullQuestion);
+        String text = flashcard.getPriority().toString();
         priority.setText(text);
         priority.setStyle("-fx-text-fill: white;");
         if (text.equals("High")) {
@@ -61,7 +61,7 @@ public class FlashbackCard extends UiPart<Region> {
             assert text.equals("Low");
             priority.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
         }
-        category.setText(flashcard.getEmail().value);
+        category.setText(flashcard.getCategory().value);
         remark.setText(flashcard.getRemark().value);
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
