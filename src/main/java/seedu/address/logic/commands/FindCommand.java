@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all flashcards in FlashBack with a search criteria containing any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public abstract class FindCommand extends Command {
