@@ -25,7 +25,7 @@ public class EventBook implements ReadOnlyEventBook {
     public EventBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an EventBook using the Persons in the {@code toBeCopied}
      */
     public EventBook(ReadOnlyEventBook toBeCopied) {
         this();
@@ -43,7 +43,7 @@ public class EventBook implements ReadOnlyEventBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code EventBook} with {@code newData}.
      */
     public void resetData(ReadOnlyEventBook newData) {
         requireNonNull(newData);

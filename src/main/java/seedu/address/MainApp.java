@@ -78,7 +78,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialAddressData;
         Optional<ReadOnlyEventBook> eventBookOptional;
-        ReadOnlyEventBook initialEventData = null; //Change the format to the same as addressbook
+        // ReadOnlyEventBook initialEventData; Uncomment this when done
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -93,7 +93,8 @@ public class MainApp extends Application {
             initialAddressData = new AddressBook();
         }
 
-        /* try {
+        /* Once done with the storage, you can uncomment this and connect this properly
+        try {
             eventBookOptional = storage.readeventBook(); //Implement this
             if (!eventBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EventBook");
@@ -105,8 +106,10 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty EventBook");
             initialEventData = new EventBook();
-        } */
-        return new ModelManager(initialAddressData, userPrefs, initialEventData);
+        }
+       return new ModelManager(initialAddressData, userPrefs, initialEventData);
+       */
+        return new ModelManager(); // delete this when done
     }
 
     private void initLogging(Config config) {
