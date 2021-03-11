@@ -42,7 +42,8 @@ public class JsonAdaptedFlashcardTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedFlashcard person =
-                new JsonAdaptedFlashcard(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+                new JsonAdaptedFlashcard(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_REMARK, VALID_TAGS);
         String expectedMessage = Question.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -58,7 +59,8 @@ public class JsonAdaptedFlashcardTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedFlashcard person =
-                new JsonAdaptedFlashcard(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+                new JsonAdaptedFlashcard(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_REMARK, VALID_TAGS);
         String expectedMessage = Answer.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -74,7 +76,8 @@ public class JsonAdaptedFlashcardTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedFlashcard person =
-                new JsonAdaptedFlashcard(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+                new JsonAdaptedFlashcard(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
+                        VALID_REMARK, VALID_TAGS);
         String expectedMessage = Category.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -90,7 +93,8 @@ public class JsonAdaptedFlashcardTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedFlashcard person =
-                new JsonAdaptedFlashcard(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_REMARK, VALID_TAGS);
+                new JsonAdaptedFlashcard(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                        INVALID_ADDRESS, VALID_REMARK, VALID_TAGS);
         String expectedMessage = Priority.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -108,7 +112,8 @@ public class JsonAdaptedFlashcardTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedFlashcard person =
-                new JsonAdaptedFlashcard(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, invalidTags);
+                new JsonAdaptedFlashcard(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                        VALID_ADDRESS, VALID_REMARK, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
