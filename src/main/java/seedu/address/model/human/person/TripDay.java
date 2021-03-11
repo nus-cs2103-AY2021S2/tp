@@ -1,7 +1,5 @@
 package seedu.address.model.human.person;
 
-import java.time.DayOfWeek;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -14,7 +12,10 @@ public class TripDay {
     public static final String MESSAGE_CONSTRAINTS = "TripDay should only be monday, tuesday, wednesday, thursday, "
             + "friday, saturday or sunday.";
 
-    public final DayOfWeek value;
+    public final String value;
+
+    public static final String[] WEEKDAYS = new String[]{"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY",
+            "SATURDAY", "SUNDAY"};
 
     /**
      * Constructs a {@code TripDay}.
@@ -24,7 +25,7 @@ public class TripDay {
     public TripDay(String dayOfWeek) {
         requireNonNull(dayOfWeek);
         checkArgument(isValidTripDay(dayOfWeek), MESSAGE_CONSTRAINTS);
-        value = DayOfWeek.valueOf(dayOfWeek);
+        value = dayOfWeek.toUpperCase();
     }
 
     /**
@@ -32,13 +33,12 @@ public class TripDay {
      */
     public static boolean isValidTripDay(String tripDay) {
         String upperCaseTripDay = tripDay.toUpperCase();
-        for (DayOfWeek day : DayOfWeek.values()) {
-            if (!day.toString().equals(upperCaseTripDay)) {
-                return false;
+        for (String weekday : WEEKDAYS) {
+            if (weekday.equals(upperCaseTripDay)) {
+                return true;
             }
         }
-
-        return true;
+        return false;
     }
 
     @Override

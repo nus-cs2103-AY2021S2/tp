@@ -7,6 +7,8 @@ import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.person.Address;
 import seedu.address.model.human.person.Person;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,10 +20,14 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TRIPDAY = "FRIDAY";
+    public static final String DEFAULT_TRIPTIME = "1800";
 
     private Name name;
     private Phone phone;
     private Address address;
+    private TripDay tripDay;
+    private TripTime tripTime;
     private Set<Tag> tags;
 
     /**
@@ -31,6 +37,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
+        tripDay = new TripDay(DEFAULT_TRIPDAY);
+        tripTime = new TripTime(DEFAULT_TRIPTIME);
         tags = new HashSet<>();
     }
 
@@ -41,6 +49,8 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         address = personToCopy.getAddress();
+        tripDay = personToCopy.getTripDay();
+        tripTime = personToCopy.getTripTime();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -76,8 +86,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TripDay} of the {@code TripDay} that we are building.
+     */
+    public PersonBuilder withTripDay(String tripDay) {
+        this.tripDay = new TripDay(tripDay);
+        return this;
+    }
+
+    /**
+     * Sets the {@code TripTime} of the {@code TripTime} that we are building.
+     */
+    public PersonBuilder withTripTime(String tripTime) {
+        this.tripTime = new TripTime(tripTime);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, address, tags);
+        return new Person(name, phone, address, tripDay, tripTime, tags);
     }
 
 }

@@ -22,6 +22,8 @@ import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.person.Address;
 import seedu.address.model.human.person.Person;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,6 +47,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+
+    public static final TripDay STUB_TRIPDAY = new TripDay("monday");
+    public static final TripTime STUB_TRIPTIME = new TripTime("2300");
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -94,7 +99,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedAddress, STUB_TRIPDAY, STUB_TRIPTIME, updatedTags);
     }
 
     @Override
@@ -123,6 +128,8 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Address address;
+        private TripDay tripDay;
+        private TripTime tripTime;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -135,6 +142,8 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
+            setTripDays(toCopy.tripDay);
+            setTripTimes(toCopy.tripTime);
             setTags(toCopy.tags);
         }
 
@@ -142,7 +151,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, tags);
         }
 
         public void setName(Name name) {
@@ -167,6 +176,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setTripDays(TripDay tripDay) {
+            this.tripDay = tripDay;
+        }
+
+        public Optional<TripDay> getTripDays() {
+            return Optional.ofNullable(tripDay);
+        }
+
+        public void setTripTimes(TripTime tripTime) {
+            this.tripTime = tripTime;
+        }
+
+        public Optional<TripTime> getTripTimes() {
+            return Optional.ofNullable(tripTime);
         }
 
         /**
@@ -204,6 +229,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getAddress().equals(e.getAddress())
+                    && getTripDays().equals(e.getTripDays())
+                    && getTripTimes().equals(e.getTripTimes())
                     && getTags().equals(e.getTags());
         }
     }

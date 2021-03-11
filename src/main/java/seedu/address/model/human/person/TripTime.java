@@ -14,23 +14,30 @@ public class TripTime {
 
     public static final String MESSAGE_CONSTRAINTS = "TripTime should only numeric and formatted in 24h time. eg. 1400.";
 
-    public final int value;
+    public static final String VALIDATION_REGEX = "\\d{4}";
+
+    public final String value;
 
     /**
      * Constructs a {@code TripTime}.
      *
-     * @param tripTime A valid set of tripDays.
+     * @param tripTime A valid trip time.
      */
     public TripTime(String tripTime) {
         requireNonNull(tripTime);
         checkArgument(isValidTripTime(tripTime), MESSAGE_CONSTRAINTS);
-        this.value = Integer.parseInt(tripTime);
+        this.value = tripTime;
     }
 
     /**
-     * Returns true if a given string is a valid set of trip days.
+     * Returns true if a given string is a valid trip time.
      */
     public static boolean isValidTripTime(String tripTime) {
+
+        if (!tripTime.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
         int integerTripTime = Integer.parseInt(tripTime);
 
         if (integerTripTime < 0 || integerTripTime > 2359) {
@@ -42,7 +49,7 @@ public class TripTime {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return value;
     }
 
     @Override
@@ -54,7 +61,7 @@ public class TripTime {
 
     @Override
     public int hashCode() {
-        return value;
+        return value.hashCode();
     }
 
 }

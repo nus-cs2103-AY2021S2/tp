@@ -14,6 +14,8 @@ import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.person.Address;
 import seedu.address.model.human.person.Person;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +24,9 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+
+    public static final TripDay STUB_TRIPDAY = new TripDay("monday");
+    public static final TripTime STUB_TRIPTIME = new TripTime("2300");
 
     private final String name;
     private final String phone;
@@ -91,7 +96,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelAddress, STUB_TRIPDAY, STUB_TRIPTIME, modelTags);
     }
 
 }
