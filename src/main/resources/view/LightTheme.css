@@ -100,11 +100,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #104c91;
+    -fx-background-color: #547c91;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #1F8AC0;
+    -fx-background-color: #3b6978;
 }
 
 .list-cell:filled:selected {
@@ -122,13 +122,13 @@
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
+    -fx-font-size: 17px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-text-fill: #010504;
 }
 
@@ -313,7 +313,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#3b6978, 50%);
+    -fx-background-color: derive(#435560, 50%);
     -fx-background-insets: 3;
 }
 

@@ -52,7 +52,6 @@ public class FlashBack implements ReadOnlyFlashBack {
      */
     public void resetData(ReadOnlyFlashBack newData) {
         requireNonNull(newData);
-
         setFlashcards(newData.getCardList());
     }
 

@@ -1,16 +1,16 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "High",
+    "question": "Alice Pauline",
+    "answer": "94351253",
+    "category": "alice@example.com",
+    "priority": "High",
     "remark": "",
     "tagged": [ "friends" ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
+    "question": "Alice Pauline",
+    "answer": "94351253",
+    "category": "pauline@example.com",
     "remark": "",
-    "address": "High"
+    "priority": "High"
   } ]
 }

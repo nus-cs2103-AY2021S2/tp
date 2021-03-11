@@ -19,7 +19,7 @@ import seedu.address.model.flashcard.Flashcard;
 @JsonRootName(value = "addressbook")
 class JsonSerializableFlashBack {
 
-    public static final String MESSAGE_DUPLICATE_CARD = "Flash card list contains duplicate card(s).";
+    public static final String MESSAGE_DUPLICATE_CARD = "Flash cards list contains duplicate card(s).";
 
     private final List<JsonAdaptedFlashcard> persons = new ArrayList<>();
 
@@ -41,7 +41,7 @@ class JsonSerializableFlashBack {
     }
 
     /**
-     * Converts this FlashBack into the model's {@code FlashBack} object.
+     * Converts this address book into the model's {@code AddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
