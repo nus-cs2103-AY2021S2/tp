@@ -57,9 +57,6 @@ public class FindTagCommand extends Command {
                 listWithTag.add(t);
             }
         }
-        //        if (listWithTag.isEmpty()) {
-        //            throw new CommandException(Messages.MESSAGE_NO_TASK_WITH_TAG);
-        //        }
 
         model.updateFilteredTaskList(predicate);
         return new CommandResult(String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW,
