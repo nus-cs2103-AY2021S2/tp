@@ -2,11 +2,7 @@ package seedu.budgetbaby.ablogic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.budgetbaby.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,7 +11,7 @@ import java.util.Set;
 
 import seedu.budgetbaby.ablogic.commands.EditCommand;
 import seedu.budgetbaby.ablogic.commands.EditCommand.EditPersonDescriptor;
-import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.logic.parser.ArgumentMultimap;
 import seedu.budgetbaby.logic.parser.ArgumentTokenizer;
@@ -37,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_CATEGORY);
 
         Index index;
 
@@ -60,7 +56,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_CATEGORY)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -74,7 +70,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Set<Category>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {

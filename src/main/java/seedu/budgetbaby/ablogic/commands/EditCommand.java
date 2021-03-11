@@ -2,11 +2,7 @@ package seedu.budgetbaby.ablogic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.abmodel.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.budgetbaby.logic.parser.CliSyntax.*;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,7 +16,7 @@ import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.abmodel.person.Phone;
-import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.commons.core.Messages;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.commons.util.CollectionUtil;
@@ -42,7 +38,7 @@ public class EditCommand extends Command {
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_CATEGORY + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
@@ -98,9 +94,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Category> updatedCategories = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedCategories);
     }
 
     @Override
@@ -130,28 +126,28 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Set<Category> categories;
 
         public EditPersonDescriptor() {
         }
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code categories} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setTags(toCopy.categories);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, categories);
         }
 
         public void setName(Name name) {
@@ -187,20 +183,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code categories} to this object's {@code categories}.
+         * A defensive copy of {@code categories} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(Set<Category> categories) {
+            this.categories = (categories != null) ? new HashSet<>(categories) : null;
         }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code categories} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Category>> getTags() {
+            return (categories != null) ? Optional.of(Collections.unmodifiableSet(categories)) : Optional.empty();
         }
 
         @Override

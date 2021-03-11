@@ -14,7 +14,7 @@ import seedu.budgetbaby.abmodel.person.Email;
 import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.abmodel.person.Phone;
-import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 
 /**
@@ -65,9 +65,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Category> personCategories = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            personCategories.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +102,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Category> modelCategories = new HashSet<>(personCategories);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelCategories);
     }
 
 }

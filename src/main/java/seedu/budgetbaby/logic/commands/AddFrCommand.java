@@ -18,11 +18,11 @@ public class AddFrCommand extends BudgetBabyCommand {
         + "Parameters: "
         + PREFIX_DESCRIPTION + "FR_DESCRIPTION "
         + PREFIX_AMOUNT + "FR_AMOUNT "
-        + "[" + PREFIX_TAG + "CATEGORY]...\n"
+        + "[" + PREFIX_CATEGORY + "CATEGORY]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_DESCRIPTION + "Lunch "
         + PREFIX_AMOUNT + "10 "
-        + PREFIX_TAG + "Food";
+        + PREFIX_CATEGORY + "Food";
 
     public static final String MESSAGE_SUCCESS = "New financial record added: %1$s";
     //    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

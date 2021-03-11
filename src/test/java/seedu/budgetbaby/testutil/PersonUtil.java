@@ -1,17 +1,13 @@
 package seedu.budgetbaby.testutil;
 
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
-
 import java.util.Set;
 
 import seedu.budgetbaby.ablogic.commands.AddCommand;
 import seedu.budgetbaby.ablogic.commands.EditCommand.EditPersonDescriptor;
 import seedu.budgetbaby.abmodel.person.Person;
-import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.model.record.Category;
+
+import static seedu.budgetbaby.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Person.
@@ -35,7 +31,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_CATEGORY + s.category + " ")
         );
         return sb.toString();
     }
@@ -50,11 +46,11 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+            Set<Category> categories = descriptor.getTags().get();
+            if (categories.isEmpty()) {
+                sb.append(PREFIX_CATEGORY);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                categories.forEach(s -> sb.append(PREFIX_CATEGORY).append(s.category).append(" "));
             }
         }
         return sb.toString();

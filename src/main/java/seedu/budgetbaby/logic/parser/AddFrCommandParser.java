@@ -1,14 +1,12 @@
 package seedu.budgetbaby.logic.parser;
 
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.budgetbaby.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.budgetbaby.abmodel.tag.Tag;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Amount;
@@ -28,7 +26,7 @@ public class AddFrCommandParser implements BudgetBabyCommandParser<AddFrCommand>
      */
     public AddFrCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_CATEGORY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_AMOUNT)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -38,9 +36,9 @@ public class AddFrCommandParser implements BudgetBabyCommandParser<AddFrCommand>
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
 
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Category> categoryList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY));
 
-        FinancialRecord record = new FinancialRecord(description, amount, tagList);
+        FinancialRecord record = new FinancialRecord(description, amount, categoryList);
 
         return new AddFrCommand(record);
     }
