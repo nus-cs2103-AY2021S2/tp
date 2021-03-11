@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.CS2103;
 import static seedu.address.testutil.TypicalTasks.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -25,19 +25,19 @@ public class TaskTest {
     @Test
     public void isSameTask() {
         // same object -> returns true
-        assertTrue(ALICE.isSameTask(ALICE));
+        assertTrue(CS2103.isSameTask(CS2103));
 
         // null -> returns false
-        assertFalse(ALICE.isSameTask(null));
+        assertFalse(CS2103.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Task editedAlice = new TaskBuilder(CS2103).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTask(editedAlice));
+        assertTrue(CS2103.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameTask(editedAlice));
+        editedAlice = new TaskBuilder(CS2103).withName(VALID_NAME_BOB).build();
+        assertFalse(CS2103.isSameTask(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Task editedBob = new TaskBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
@@ -52,35 +52,35 @@ public class TaskTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Task aliceCopy = new TaskBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Task aliceCopy = new TaskBuilder(CS2103).build();
+        assertTrue(CS2103.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(CS2103.equals(CS2103));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(CS2103.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(CS2103.equals(5));
 
         // different task -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(CS2103.equals(BOB));
 
         // different name -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Task editedAlice = new TaskBuilder(CS2103).withName(VALID_NAME_BOB).build();
+        assertFalse(CS2103.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TaskBuilder(CS2103).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(CS2103.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new TaskBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TaskBuilder(CS2103).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(CS2103.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TaskBuilder(CS2103).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(CS2103.equals(editedAlice));
     }
 }

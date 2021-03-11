@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.CS2103;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskTracker;
 
 import java.util.Arrays;
@@ -45,9 +45,9 @@ public class TaskTrackerTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(CS2103).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
+        List<Task> newTasks = Arrays.asList(CS2103, editedAlice);
         TaskTrackerStub newData = new TaskTrackerStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> taskTracker.resetData(newData));
@@ -60,19 +60,19 @@ public class TaskTrackerTest {
 
     @Test
     public void hasTask_taskNotInTaskTracker_returnsFalse() {
-        assertFalse(taskTracker.hasTask(ALICE));
+        assertFalse(taskTracker.hasTask(CS2103));
     }
 
     @Test
     public void hasTask_taskInTaskTracker_returnsTrue() {
-        taskTracker.addTask(ALICE);
-        assertTrue(taskTracker.hasTask(ALICE));
+        taskTracker.addTask(CS2103);
+        assertTrue(taskTracker.hasTask(CS2103));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskTracker_returnsTrue() {
-        taskTracker.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        taskTracker.addTask(CS2103);
+        Task editedAlice = new TaskBuilder(CS2103).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(taskTracker.hasTask(editedAlice));
     }

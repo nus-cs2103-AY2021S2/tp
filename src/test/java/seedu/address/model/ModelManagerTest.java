@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
-import static seedu.address.testutil.TypicalTasks.BENSON;
+import static seedu.address.testutil.TypicalTasks.CS2103;
+import static seedu.address.testutil.TypicalTasks.CS2040;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_taskNotInTaskTracker_returnsFalse() {
-        assertFalse(modelManager.hasTask(ALICE));
+        assertFalse(modelManager.hasTask(CS2103));
     }
 
     @Test
     public void hasTask_taskInTaskTracker_returnsTrue() {
-        modelManager.addTask(ALICE);
-        assertTrue(modelManager.hasTask(ALICE));
+        modelManager.addTask(CS2103);
+        assertTrue(modelManager.hasTask(CS2103));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TaskTracker taskTracker = new TaskTrackerBuilder().withTask(ALICE).withTask(BENSON).build();
+        TaskTracker taskTracker = new TaskTrackerBuilder().withTask(CS2103).withTask(CS2040).build();
         TaskTracker differentTaskTracker = new TaskTracker();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTaskTracker, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getModuleName().fullName.split("\\s+");
+        String[] keywords = CS2103.getModuleName().fullName.split("\\s+");
         modelManager.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taskTracker, userPrefs)));
 

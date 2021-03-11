@@ -21,28 +21,26 @@ import seedu.address.model.person.Task;
  */
 public class TypicalTasks {
 
-    public static final Task ALICE = new TaskBuilder().withName("Alice Pauline")
+    public static final Task CS2103 = new TaskBuilder().withName("Software Engineering")
         .withCode("CS2103").withPhone("94351253")
-        .withEmail("alice@example.com").withRemark("Likes skiing.")
+        .withEmail("alice@example.com").withRemark("Being a software engineer is fun")
         .withTags("friends").build();
-    public static final Task BENSON = new TaskBuilder().withName("Benson Meier")
+    public static final Task CS2040 = new TaskBuilder().withName("Data Structures and Algorithm")
         .withCode("CS2040").withEmail("johnd@example.com")
-        .withPhone("98765432").withRemark("Favourite pastime: Eating")
+        .withPhone("98765432").withRemark("Favourite pastime: Kattis")
         .withTags("owesMoney", "friends").build();
-    public static final Task CARL = new TaskBuilder().withName("Carl Kurz")
+    public static final Task CS1010E = new TaskBuilder().withName("Programming Methodology I")
         .withCode("CS1010").withPhone("95352563")
-        .withEmail("heinz@example.com").build();
-    public static final Task DANIEL = new TaskBuilder().withName("Daniel Meier")
+        .withEmail("heinz@example.com").withRemark("PE1").build();
+    public static final Task CS2030 = new TaskBuilder().withName("Programming Methodology II")
         .withCode("CS2030").withPhone("87652533")
-        .withEmail("cornelia@example.com").withTags("friends").build();
-    public static final Task ELLE = new TaskBuilder().withName("Elle Meyer")
-        .withCode("CS3240").withPhone("9482224")
+        .withEmail("cornelia@example.com").withRemark("PE2")
+        .withTags("friends").build();
+    public static final Task CS3243 = new TaskBuilder().withName("Introduction to Artificial Intelligence")
+        .withCode("CS3243").withPhone("9482224")
         .withEmail("werner@example.com").build();
-    public static final Task FIONA = new TaskBuilder().withName("Fiona Kunz")
-        .withCode("CS2103").withPhone("9482427")
-        .withEmail("lydia@example.com").build();
-    public static final Task GEORGE = new TaskBuilder().withName("George Best")
-        .withCode("CS2010").withPhone("9482442")
+    public static final Task CS2100 = new TaskBuilder().withName("Computer Organization")
+        .withCode("CS2100").withPhone("9482442")
         .withEmail("anna@example.com").build();
 
     // Manually added
@@ -75,6 +73,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(CS2103, CS2040, CS1010E, CS2030, CS3243, CS2100));
     }
 }
