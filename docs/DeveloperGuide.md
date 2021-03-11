@@ -243,12 +243,12 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * tech-savvy insurance agents
 * have to manage large number of client related information
-* mainly use laptops on the go 
+* mainly use laptops on the go
 
-**Value proposition**: 
+**Value proposition**:
 * manage contacts faster than a typical mouse/GUI driven app
 * a central avenue to store information about their clients
-* typing-based easier to use than the trackpads 
+* typing-based easier to use than the trackpads
 * do not allow the user to insert attachments or group policies in our application.
 
 ### User stories
@@ -267,7 +267,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
 | `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
+| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
 | `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
 | `*`      | user with many persons in the address book | sort clients by name           | locate a client easily                                                 |
 
@@ -314,7 +314,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The user input does not follow the format required.
 
   * 1a1. ClientBook shows an error message.
-    
     Use case resumes at step 1.
 
 **Use case: List all clients**
@@ -384,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list of matched clients is empty.
 
   Use case ends.
-    
+
 *{More to be added}*
 
 ### Non-Functional Requirements

@@ -38,7 +38,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 - Locating clients by name: `find`
 - Deleting a client : `delete`
 - Exiting the program : `exit`
-- Saving the data 
+- Saving the data
 
 --------------------------------------------------------------------------------------------------------------------
 
