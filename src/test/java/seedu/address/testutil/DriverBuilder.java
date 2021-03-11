@@ -3,11 +3,6 @@ package seedu.address.testutil;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.driver.Driver;
-import seedu.address.model.human.person.Address;
-import seedu.address.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building Person objects.
