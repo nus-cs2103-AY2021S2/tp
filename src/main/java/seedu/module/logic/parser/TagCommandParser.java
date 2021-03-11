@@ -22,7 +22,7 @@ public class TagCommandParser implements Parser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the TagCommand
-     * and returns an TagCommand object for execution.
+     * and returns a TagCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
