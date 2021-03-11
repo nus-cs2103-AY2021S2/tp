@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
 
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -115,10 +116,17 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+//    @Override
+//    public boolean hasTask(Task task) {
+//        requireNonNull(task);
+//        return addressBook.hasTask(task);
+//    }
+
+
     @Override
     public void addTask(Task task) {
         addressBook.addTask(task);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override
@@ -127,6 +135,9 @@ public class ModelManager implements Model {
 
         addressBook.setTask(target, editedTask);
     }
+
+
+
 
 
     //=========== Filtered Person List Accessors =============================================================
@@ -138,6 +149,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
     }
 
     @Override
@@ -170,15 +186,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
-    }
-
 
 }

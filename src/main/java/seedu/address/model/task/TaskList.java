@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 import java.util.Iterator;
@@ -15,12 +16,20 @@ public class TaskList implements Iterable<Task> {
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean contains(Task toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameTask);
+    }
+
 
     /**
      * Adds a task to the list.
      * Task may be a duplicate
      */
-    public void add(Task toAdd) {
+    public void addTask(Task toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
     }
