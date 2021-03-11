@@ -48,9 +48,11 @@ public class LockCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Authentication authentication = model.getAuthentication();
+
+        //There is an existing password
         if (authentication.isPasswordPresent()) {
-            //Verify that the current password entered by user is the same as the password used to unlock the zip file.
-            if (!this.currentPassword.isPresent() || authentication.getPassword().equals(this.currentPassword.get())) {
+            //Verify that the current password entered by user is the same as the existing password.
+            if (!this.currentPassword.isPresent() || !authentication.getPassword().equals(this.currentPassword.get())) {
                 throw new CommandException(MESSAGE_INCORRECT_PASSWORD);
             }
         }

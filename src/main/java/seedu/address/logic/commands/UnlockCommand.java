@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,6 +22,10 @@ public class UnlockCommand extends Command {
 
     private final String currentPassword;
 
+    /**
+     * Instantiates an UnlockCommand object with the password that the user has entered.
+     * @param currentPassword user entered password used to unlock the zip file.
+     */
     public UnlockCommand(String currentPassword) {
         this.currentPassword = currentPassword;
     }
@@ -44,6 +47,6 @@ public class UnlockCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UnlockCommand // instanceof handles nulls
-                && currentPassword.equals(((UnlockCommand) other).currentPassword));// state check
+                && currentPassword.equals(((UnlockCommand) other).currentPassword)); // state check
     }
 }

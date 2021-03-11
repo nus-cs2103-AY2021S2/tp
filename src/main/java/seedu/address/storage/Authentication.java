@@ -74,7 +74,6 @@ public class Authentication {
      * @return true if the locked zip exists, false otherwise.
      */
     public boolean isExistsZip() {
-        System.out.println("Checking if zip exists");
         return Files.exists(Paths.get(this.getZipPath()));
     }
 
@@ -121,7 +120,6 @@ public class Authentication {
     public void setShutDownHook() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
-                System.out.println("Locking .json");
                 this.lock();
                 this.deleteJson();
             } catch (ZipException e) {

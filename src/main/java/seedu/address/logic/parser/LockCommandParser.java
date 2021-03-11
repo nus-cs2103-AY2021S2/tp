@@ -9,7 +9,9 @@ public class LockCommandParser implements Parser<LockCommand> {
 
     @Override
     public LockCommand parse(String args) throws ParseException {
-        String[] passwords = args.split("\\s+");
+        String trimmedArgs = args.trim();
+        String[] passwords = trimmedArgs.split("\\s+");
+
         if (passwords.length < 1 || passwords.length > 2) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, LockCommand.MESSAGE_USAGE));
         }
