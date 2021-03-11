@@ -63,7 +63,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete A1231234A";
+        String deleteCommand = "deleteStud A1231234A";
         assertCommandException(deleteCommand, MESSAGE_NONEXISTENT_MATRIC_NUM);
     }
 
