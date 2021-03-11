@@ -7,53 +7,45 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## CoLAB Project team
 
-### John Doe
+### Fang Junwei, Samuel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelfangjw.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/samuelfangjw)]
+[[portfolio](team/samuelfangjw.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
+* Role: Developer, in charge of Deliverables and Deadlines
 * Responsibilities: UI
 
-### Johnny Doe
+### Vevek Selvam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vevek.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/vevek)]
+[[portfolio](team/vevek.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Developer, in charge of Integration
+* Responsibilities: Model, Logic
 
-### Jean Doe
+### Nguyen Duc Danh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eriksen2411.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Eriksen2411)]
+[[portfolio](team/eriksen2411.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer, in charge of Documentation
+* Responsibilities: Storage
 
-### James Doe
+### Li Ruochen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lirc572.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/lirc572)]
+[[portfolio](team/lirc572.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer, in charge of Code quality
+* Responsibilities: Tests
+

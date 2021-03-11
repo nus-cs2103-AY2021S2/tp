@@ -203,13 +203,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -236,70 +236,188 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* student currently enrolled in a university
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* supports only features a university student needs without additional clutter
+* information organised by categories relevant to university students (e.g. tag by modules)
+* manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
+| `* * *`  | user                                       | add a new person               | keep track of details from peers I have crossed paths with             |
+| `* * *`  | user                                       | edit a person's details        | update their details when there is change                              |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | tag a person with tags         | easily keep track of who the contact is                                |
+| `* *`    | University Student                         | find contacts by modules taken | easily find contacts who take the same module as me                    |
+| `* *`    | Student Teaching Assistant                 | find contacts by tutorial group| easily find contacts of students in my class                           |
+| `* *`    | user                                       | purge all data in the app      | start my address book from fresh                                       |
+| `*`      | long time user                             | archive data files             | refer to old address books when needed                                 |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### UC1 - Add a person
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a person
+2. CoLAB adds the person
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given arguments are invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+#### UC2 - Find details of a specific person
+
+**MSS**
+
+1. User requests to find a person.
+2. CoLAB shows a list of persons that match user's query.
+3. User requests to view more details about a specific person in the list.
+4. CoLAB shows more information about the person in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list of persons is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CoLAB shows an error message.
 
       Use case resumes at step 2.
+
+
+#### UC3 - Delete a person
+
+**MSS**
+
+1. User requests to list persons.
+2. CoLAB shows a list of persons.
+3. User requests to delete a specific person in the list.
+4. CoLAB deletes the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list of persons is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 2.
+
+#### UC4 - Purge all entries from the app
+
+**MSS**
+
+1. User requests to delete all entries from the app.
+2. CoLAB asks user to confirm request.
+3. User confirms that they want to delete all entries.
+4. CoLAB deletes all data from the app.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User decides not to delete all entries.
+
+  Use case ends.
+
+#### UC5 - Find all persons that take a certain module
+
+**MSS**
+
+1. User requests to list all persons by modules taken.
+2. CoLAB lists all entries who have taken the modules.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given modules are invalid
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of persons is empty.
+
+  Use case ends.
+
+#### UC6 - Adding or Modifying information about a person
+
+**MSS**
+
+1. User requests to edit information about a person.
+2. CoLAB updates entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given arguments are invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+* Technical requirements:
+    * CoLAB should work on any _mainstream OS_ on both 32-bit and 64-bit architectures as long as it has Java `11` or above installed.
+    * CoLAB should work under _common screen resolutions_. (i.e. the window should not be out of boundary)
+* Performance requirements:
+    * CoLAB should be able to hold _up to 1000 persons_ without a noticeable sluggishness in performance for typical usage.
+    * The response to any command should be shown _within 1 second_.
+* Constraints:
+    * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
+    * CoLAB must be open source under [the MIT License](https://raw.githubusercontent.com/AY2021S2-CS2103T-T11-2/tp/master/LICENSE).
+* Quality requirements:
+    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+    * A user familiar with CLI tools should find CoLAB commands very intuitive.
+    * A user who has no experience with CLI tools should be able to find CoLAB easy to use with the help of the [_User Guide_](UserGuide.md).
+* Process requirements:
+    * the project is expected to adhere to a schedule that delivers a feature set every two weeks.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Common screen resolutions**: minimum _640×480_, maximum _3840×2160_
+* **Mainstream OS**: Windows, Linux, Unix, macOS
+* **MSS**: Main Success Scenario
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
@@ -317,15 +435,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -334,16 +452,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -351,6 +469,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

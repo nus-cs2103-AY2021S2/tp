@@ -1,36 +1,16 @@
 ---
 layout: page
-title: CoLAB User Guide
+title: User Guide
 ---
 
 CoLAB (Command Line Address Book) is a **desktop app for students currently enrolled in a university to keep track of people they have crossed paths with.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your contact management tasks done faster than traditional GUI apps.
 
-# Table of Contents
-- [CoLab User Guide](#colab-user-guide)
-- [Table of Contents](#table-of-contents)
-- [Quick Start](#quick-start)
-- [Features](#features)
-    - [Notes about the Command Format](#features)
-    - [Viewing Help](#viewing-help--help)
-    - [Adding a Person](#adding-a-person-add)
-    - [List all Persons](#listing-all-persons--list)
-    - [Editing a Person](#editing-a-person--edit)
-    - [Locating Persons by Name](#locating-persons-by-name-find)
-    - [Deleting a Person](#deleting-a-person--delete)
-    - [Clearing all entries](#clearing-all-entries--clear)
-    - [Exiting the Program](#exiting-the-program--exit)
-    - [Saving the Data](#saving-the-data)
-    - [Editing the Data File](#editing-the-data-file)
-    - [View more details about a person](#view-more-details-about-a-person-coming-soon)
-    - [Undo/Redo](#undoredo-coming-soon)
-    - [Archiving Data Files](#archiving-data-files-coming-soon)
-- [FAQ](#faq)
-- [Command Summary](#command-summary)
-- [Acknowledgements](#acknowledgements)
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -58,7 +38,7 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -68,7 +48,7 @@ CoLAB (Command Line Address Book) is a **desktop app for students currently enro
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -113,7 +93,7 @@ Shows a list of all persons in CoLAB.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person : `edit` `[coming soon]`
 
 Edits an existing person in CoLAB.
 
@@ -122,7 +102,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -136,7 +116,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -208,14 +188,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 Action | Format, Examples
 --------|------------------
@@ -227,6 +207,6 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 
-# Acknowledgements
+## **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
