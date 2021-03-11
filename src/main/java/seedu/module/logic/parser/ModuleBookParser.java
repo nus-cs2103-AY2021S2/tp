@@ -10,11 +10,14 @@ import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.commands.ClearCommand;
 import seedu.module.logic.commands.Command;
 import seedu.module.logic.commands.DeleteCommand;
+import seedu.module.logic.commands.DoneCommand;
 import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.ExitCommand;
 import seedu.module.logic.commands.FindCommand;
+import seedu.module.logic.commands.FindTagCommand;
 import seedu.module.logic.commands.HelpCommand;
 import seedu.module.logic.commands.ListCommand;
+import seedu.module.logic.commands.NotDoneCommand;
 import seedu.module.logic.commands.TagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 
@@ -57,11 +60,20 @@ public class ModuleBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case DoneCommand.COMMAND_WORD:
+            return new DoneCommandParser().parse(arguments);
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindTagCommand.COMMAND_WORD:
+            return new FindTagCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case NotDoneCommand.COMMAND_WORD:
+            return new NotDoneCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

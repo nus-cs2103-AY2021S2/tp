@@ -1,8 +1,9 @@
 {
   "tasks": [ {
     "name": "Hans Muster",
-    "deadline": "9482424",
+    "deadline": "2021-10-21 10:10",
     "module": "invalid@module!3e",
-    "description": "4th street"
+    "description": "4th street",
+    "doneStatus": "false"
   } ]
 }

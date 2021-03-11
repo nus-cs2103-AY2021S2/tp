@@ -20,21 +20,21 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the module book. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
+            + PREFIX_NAME + "TASK NAME "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_DEADLINE + "98765432 "
-            + PREFIX_MODULE + "johnd@example.com "
-            + PREFIX_DESCRIPTION + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "v1.2 "
+            + PREFIX_DEADLINE + "2021-01-30 12:00 "
+            + PREFIX_MODULE + "CS2103T "
+            + PREFIX_DESCRIPTION + "Finish basic commands for TP "
+            + PREFIX_TAG + "highPriority ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the module book";
+    public static final String MESSAGE_NOT_IMPLEMENTED = "Add feature is not yet implemented yet!";
 
     private final Task toAdd;
 
@@ -49,7 +49,6 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
