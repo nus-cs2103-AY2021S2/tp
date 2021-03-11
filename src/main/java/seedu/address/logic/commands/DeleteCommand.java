@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -30,6 +29,11 @@ public class DeleteCommand extends Command {
     private final MatriculationNumberContainsKeywordsPredicate predicate;
 
 
+    /**
+     * Creates a DeleteCommand object responsible for deleting a student by matriculation number.
+     *
+     * @param matriculationNumber Matriculation number of the student you want to delete.
+     */
     public DeleteCommand(MatriculationNumber matriculationNumber) {
         this.matriculationNumber = matriculationNumber;
 

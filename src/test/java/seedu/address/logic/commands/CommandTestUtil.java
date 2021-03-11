@@ -12,10 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_PERSON;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
