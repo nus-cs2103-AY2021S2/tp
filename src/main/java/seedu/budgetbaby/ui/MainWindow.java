@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -39,6 +40,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private CheckMenuItem cliVisibilityCheckMenuItem;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
@@ -62,6 +66,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        setCliDefaultVisibility(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -114,14 +119,16 @@ public class MainWindow extends UiPart<Stage> {
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
         financialRecordListPanelPlaceholder.getChildren().add(financialRecordListPanel.getRoot());
 
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxPlaceholder.managedProperty().bind(commandBoxPlaceholder.visibleProperty());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplayPlaceholder.managedProperty().bind(resultDisplayPlaceholder.visibleProperty());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getBudgetBabyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -137,6 +144,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the default CLI visibility on {@code guiSettings}
+     */
+    private void setCliDefaultVisibility(GuiSettings guiSettings) {
+        cliVisibilityCheckMenuItem.setSelected(guiSettings.getCliVisibility());
+        cliVisibilityCheckMenuItem.fire();
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -146,6 +161,15 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Toggles CLI visibility.
+     */
+    @FXML
+    public void handleCliVisibility() {
+        commandBoxPlaceholder.setVisible(cliVisibilityCheckMenuItem.isSelected());
+        resultDisplayPlaceholder.setVisible(cliVisibilityCheckMenuItem.isSelected());
     }
 
     void show() {
@@ -158,7 +182,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-            (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY(), cliVisibilityCheckMenuItem.isSelected());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

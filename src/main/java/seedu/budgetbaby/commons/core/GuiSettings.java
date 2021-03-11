@@ -12,10 +12,13 @@ public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
+    private static final boolean DEFAULT_CLI_VISIBILITY = true;
 
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+
+    private final boolean cliVisibility;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -24,15 +27,17 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
+        cliVisibility = DEFAULT_CLI_VISIBILITY;
     }
 
     /**
      * Constructs a {@code GuiSettings} with the specified height, width and position.
      */
-    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, boolean cliVisibility) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
+        this.cliVisibility = cliVisibility;
     }
 
     public double getWindowWidth() {
@@ -45,6 +50,10 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public boolean getCliVisibility() {
+        return cliVisibility;
     }
 
     @Override
@@ -60,12 +69,13 @@ public class GuiSettings implements Serializable {
 
         return windowWidth == o.windowWidth
                 && windowHeight == o.windowHeight
-                && Objects.equals(windowCoordinates, o.windowCoordinates);
+                && Objects.equals(windowCoordinates, o.windowCoordinates)
+                && cliVisibility == o.cliVisibility;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(windowWidth, windowHeight, windowCoordinates);
+        return Objects.hash(windowWidth, windowHeight, windowCoordinates, cliVisibility);
     }
 
     @Override
@@ -74,6 +84,7 @@ public class GuiSettings implements Serializable {
         sb.append("Width : " + windowWidth + "\n");
         sb.append("Height : " + windowHeight + "\n");
         sb.append("Position : " + windowCoordinates);
+        sb.append("CLI Visibility : " + cliVisibility);
         return sb.toString();
     }
 }
