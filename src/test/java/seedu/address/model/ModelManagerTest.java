@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.CS2103;
 import static seedu.address.testutil.TypicalTasks.CS2040;
+import static seedu.address.testutil.TypicalTasks.CS2103;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

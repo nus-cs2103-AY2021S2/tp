@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.CS2100;
 import static seedu.address.testutil.TypicalTasks.CS1010E;
 import static seedu.address.testutil.TypicalTasks.CS2030;
+import static seedu.address.testutil.TypicalTasks.CS2100;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskTracker;
 
 import java.util.Arrays;
