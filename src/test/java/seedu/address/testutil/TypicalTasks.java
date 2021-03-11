@@ -22,38 +22,46 @@ import seedu.address.model.person.Task;
 public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withName("Alice Pauline")
-            .withPhone("94351253").withEmail("alice@example.com")
-            .withRemark("Likes skiing.").withTags("friends").build();
+        .withCode("CS2103").withPhone("94351253")
+        .withEmail("alice@example.com").withRemark("Likes skiing.")
+        .withTags("friends").build();
     public static final Task BENSON = new TaskBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withRemark("Favourite pastime: Eating").withTags("owesMoney", "friends").build();
-    public static final Task CARL = new TaskBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").build();
-    public static final Task DANIEL = new TaskBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withTags("friends").build();
-    public static final Task ELLE = new TaskBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").build();
-    public static final Task FIONA = new TaskBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").build();
-    public static final Task GEORGE = new TaskBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").build();
+        .withCode("CS2040").withEmail("johnd@example.com")
+        .withPhone("98765432").withRemark("Favourite pastime: Eating")
+        .withTags("owesMoney", "friends").build();
+    public static final Task CARL = new TaskBuilder().withName("Carl Kurz")
+        .withCode("CS1010").withPhone("95352563")
+        .withEmail("heinz@example.com").build();
+    public static final Task DANIEL = new TaskBuilder().withName("Daniel Meier")
+        .withCode("CS2030").withPhone("87652533")
+        .withEmail("cornelia@example.com").withTags("friends").build();
+    public static final Task ELLE = new TaskBuilder().withName("Elle Meyer")
+        .withCode("CS3240").withPhone("9482224")
+        .withEmail("werner@example.com").build();
+    public static final Task FIONA = new TaskBuilder().withName("Fiona Kunz")
+        .withCode("CS2103").withPhone("9482427")
+        .withEmail("lydia@example.com").build();
+    public static final Task GEORGE = new TaskBuilder().withName("George Best")
+        .withCode("CS2010").withPhone("9482442")
+        .withEmail("anna@example.com").build();
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").build();
+        .withEmail("stefan@example.com").build();
     public static final Task IDA = new TaskBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").build();
+        .withEmail("hans@example.com").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
+        .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Task BOB = new TaskBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+        .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+        .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalTasks() {} // prevents instantiation
+    private TypicalTasks() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code TaskTracker} with all the typical tasks.

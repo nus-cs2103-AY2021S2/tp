@@ -1,12 +1,14 @@
 {
   "tasks": [ {
     "name": "Alice Pauline",
+    "code": "CS2103",
     "phone": "94351253",
     "email": "alice@example.com",
     "remark" : "She likes aardvarks",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
+    "code": "CS2103",
     "phone": "94351253",
     "email": "pauline@example.com",
     "remark" : "She likes aardvarks"

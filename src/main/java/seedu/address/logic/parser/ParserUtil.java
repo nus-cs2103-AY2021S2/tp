@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -48,6 +49,21 @@ public class ParserUtil {
             throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
         }
         return new ModuleName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String code} into a {@code ModuleName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code code} is invalid.
+     */
+    public static ModuleCode parseCode(String code) throws ParseException {
+        requireNonNull(code);
+        String trimmedModuleCode = code.trim();
+        if (!ModuleCode.isValidModuleCode(trimmedModuleCode)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedModuleCode);
     }
 
     /**

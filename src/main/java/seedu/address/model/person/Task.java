@@ -17,6 +17,7 @@ public class Task {
 
     // Identity fields
     private final ModuleName moduleName;
+    private final ModuleCode moduleCode;
     private final Phone phone;
     private final Email email;
 
@@ -27,9 +28,10 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(ModuleName moduleName, Phone phone, Email email, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(moduleName, phone, email, tags);
+    public Task(ModuleName moduleName, ModuleCode moduleCode, Phone phone, Email email, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(moduleName, moduleCode, phone, email, tags);
         this.moduleName = moduleName;
+        this.moduleCode = moduleCode;
         this.phone = phone;
         this.email = email;
         this.remark = remark;
@@ -38,6 +40,10 @@ public class Task {
 
     public ModuleName getModuleName() {
         return moduleName;
+    }
+
+    public ModuleCode getModuleCode() {
+        return moduleCode;
     }
 
     public Phone getPhone() {
@@ -70,7 +76,7 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getModuleName().equals(getModuleName());
+            && otherTask.getModuleName().equals(getModuleName());
     }
 
     /**
@@ -89,28 +95,31 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getModuleName().equals(getModuleName())
-                && otherTask.getPhone().equals(getPhone())
-                && otherTask.getEmail().equals(getEmail())
-                && otherTask.getRemark().equals(getRemark())
-                && otherTask.getTags().equals(getTags());
+            && otherTask.getModuleCode().equals(getModuleCode())
+            && otherTask.getPhone().equals(getPhone())
+            && otherTask.getEmail().equals(getEmail())
+            && otherTask.getRemark().equals(getRemark())
+            && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleName, phone, email, remark, tags);
+        return Objects.hash(moduleName, moduleCode, phone, email, remark, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getModuleName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Remark: ")
-                .append(getRemark());
+            .append("; Module Code: ")
+            .append(getModuleCode())
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail())
+            .append("; Remark: ")
+            .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

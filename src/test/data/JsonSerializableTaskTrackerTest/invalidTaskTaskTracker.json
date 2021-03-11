@@ -1,6 +1,7 @@
 {
   "tasks": [ {
     "name": "Hans Muster",
+    "code": "CS2103",
     "phone": "9482424",
     "email": "invalid@email!3e"
   } ]
