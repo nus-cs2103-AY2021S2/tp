@@ -17,7 +17,7 @@ public class TagsCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all tags";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tags and the count of "
-            + "person tagged in Hippocampus."
+            + "person tagged in Hippocampus.\n"
             + "If keyword is given, list all tags containing given keyword.\n"
             + "Parameters: [-f TAG]\n"
             + "Example: find -f class";
