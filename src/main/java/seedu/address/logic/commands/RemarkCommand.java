@@ -18,12 +18,12 @@ public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "remark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_REMARK + "[REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "Likes to swim.";
+        + "by the index number used in the last person listing. "
+        + "Existing remark will be overwritten by the input.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + PREFIX_REMARK + "[REMARK]\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_REMARK + "Likes to swim.";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
 
@@ -35,7 +35,7 @@ public class RemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
+     * @param index  of the person in the filtered person list to edit the remark
      * @param remark of the person to be updated to
      */
     public RemarkCommand(Index index, Remark remark) {
@@ -54,8 +54,8 @@ public class RemarkCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = new Task(taskToEdit.getModuleName(), taskToEdit.getPhone(), taskToEdit.getEmail(),
-                 remark, taskToEdit.getTags());
+        Task editedTask = new Task(taskToEdit.getModuleName(), taskToEdit.getModuleCode(), taskToEdit.getPhone(),
+            taskToEdit.getEmail(), remark, taskToEdit.getTags());
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

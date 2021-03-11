@@ -1,10 +1,12 @@
 {
   "persons": [ {
     "name": "Valid Person",
+    "code" : "CS2103",
     "phone": "9482424",
     "email": "hans@example.com"
   }, {
     "name": "Person With Invalid Phone Field",
+    "code" : "CS2103",
     "phone": "948asdf2424",
     "email": "hans@example.com"
   } ]

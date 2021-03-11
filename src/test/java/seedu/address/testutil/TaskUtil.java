@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -31,6 +32,7 @@ public class TaskUtil {
         // add and edit do not have remark fields
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getModuleName().fullName + " ");
+        sb.append(PREFIX_CODE + task.getModuleCode().moduleCode + " ");
         sb.append(PREFIX_PHONE + task.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
         task.getTags().stream().forEach(
@@ -46,6 +48,7 @@ public class TaskUtil {
         // currently edit does not support editing of remarks
         StringBuilder sb = new StringBuilder();
         descriptor.getModuleName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getModuleCode().ifPresent(code -> sb.append(PREFIX_CODE).append(code.moduleCode).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         if (descriptor.getTags().isPresent()) {

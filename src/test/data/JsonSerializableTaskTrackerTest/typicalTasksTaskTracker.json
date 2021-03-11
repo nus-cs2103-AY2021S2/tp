@@ -2,42 +2,49 @@
   "_comment": "TaskTracker save file which contains the same Task values as in TypicalTasks#getTypicalTaskTracker()",
   "tasks" : [ {
     "name" : "Alice Pauline",
+    "code" : "CS2103",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "remark" : "Likes skiing.",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
+    "code" : "CS2040",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "remark" : "Favourite pastime: Eating",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
+    "code" : "CS1010",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
+    "code" : "CS2030",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "remark" : "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
+    "code" : "CS3240",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
+    "code" : "CS2103",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
+    "code" : "CS2010",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "remark" : "",

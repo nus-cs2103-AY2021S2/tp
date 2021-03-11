@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -19,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -33,16 +35,17 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number used in the displayed task list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "by the index number used in the displayed task list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_CODE + "CODE] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -52,7 +55,7 @@ public class EditCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index of the task in the filtered task list to edit
+     * @param index              of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
     public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
@@ -92,12 +95,13 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         ModuleName updatedModuleName = editTaskDescriptor.getModuleName().orElse(taskToEdit.getModuleName());
+        ModuleCode updatedModuleCode = editTaskDescriptor.getModuleCode().orElse(taskToEdit.getModuleCode());
         Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
         Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
         Remark updatedRemark = taskToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedModuleName, updatedPhone, updatedEmail, updatedRemark, updatedTags);
+        return new Task(updatedModuleName, updatedModuleCode , updatedPhone, updatedEmail, updatedRemark, updatedTags);
     }
 
     @Override
@@ -115,7 +119,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editTaskDescriptor.equals(e.editTaskDescriptor);
+            && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
     /**
@@ -125,11 +129,13 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         // descriptors should not be allowed to have a remark field, since editing of remarks is not supported for now
         private ModuleName moduleName;
+        private ModuleCode moduleCode;
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
 
-        public EditTaskDescriptor() {}
+        public EditTaskDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -137,6 +143,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setModuleName(toCopy.moduleName);
+            setModuleCode(toCopy.moduleCode);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
@@ -146,7 +153,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleName, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(moduleName, moduleCode, phone, email, tags);
         }
 
         public void setModuleName(ModuleName moduleName) {
@@ -155,6 +162,14 @@ public class EditCommand extends Command {
 
         public Optional<ModuleName> getModuleName() {
             return Optional.ofNullable(moduleName);
+        }
+
+        public void setModuleCode(ModuleCode moduleCode) {
+            this.moduleCode = moduleCode;
+        }
+
+        public Optional<ModuleCode> getModuleCode() {
+            return Optional.ofNullable(moduleCode);
         }
 
         public void setPhone(Phone phone) {
@@ -206,9 +221,10 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getModuleName().equals(e.getModuleName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getTags().equals(e.getTags());
+                && getModuleCode().equals(e.getModuleCode())
+                && getPhone().equals(e.getPhone())
+                && getEmail().equals(e.getEmail())
+                && getTags().equals(e.getTags());
         }
     }
 }
