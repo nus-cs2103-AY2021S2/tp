@@ -19,6 +19,7 @@ public class Deadline extends Completable {
      */
     public Deadline(String description, LocalDate by) {
         super(description, by);
+        requireNonNull(by);
     }
 
     /**
@@ -29,6 +30,7 @@ public class Deadline extends Completable {
      */
     public Deadline(String description, Boolean isDone, LocalDate by) {
         super(description, by, isDone);
+        requireNonNull(by);
     }
 
     /**

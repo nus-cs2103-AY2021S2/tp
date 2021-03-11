@@ -29,7 +29,7 @@ public abstract class Completable {
      * @param by Deadline of the Completable or Null if there is no deadline.
      */
     public Completable(String description, LocalDate by) {
-        requireAllNonNull(description, by);
+        requireAllNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
         this.by = by;
@@ -43,7 +43,7 @@ public abstract class Completable {
      * @param isDone Marks whether the Completable is Done.
      */
     public Completable(String description, LocalDate by, Boolean isDone) {
-        requireAllNonNull(description, by, isDone);
+        requireAllNonNull(description, isDone);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
         this.by = by;
