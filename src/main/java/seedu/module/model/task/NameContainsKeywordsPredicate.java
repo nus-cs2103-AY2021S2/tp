@@ -27,4 +27,5 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
     }
+
 }

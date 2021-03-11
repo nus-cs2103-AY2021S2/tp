@@ -27,10 +27,9 @@ public class FindTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find tasks associated with "
             + "the tag provided and displays them as a list with index numbers.\n"
-            + "If multiple tags are found, only the last one will be added.\n"
+            + "If multiple tags are found, only the first one will be used.\n"
             + "Parameters: TAG \n"
-            + "Example: " + COMMAND_WORD + " homework"
-            + "t/Midterm";
+            + "Example: " + COMMAND_WORD + " midterm";
 
     public static final String MESSAGE_FIND_TAG_TASK_SUCCESS = "Tagged Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to tag must be provided.";
@@ -47,6 +46,10 @@ public class FindTagCommand extends Command {
         requireNonNull(tag);
         this.tag = tag;
         this.predicate = (Task x) -> x.getTags().contains(tag);
+    }
+
+    public Predicate<Task> getPredicate() {
+        return predicate;
     }
 
     @Override
