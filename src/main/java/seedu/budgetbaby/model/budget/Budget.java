@@ -1,6 +1,8 @@
 package seedu.budgetbaby.model.budget;
 
-// Represents the abstraction of a budget set by the user.
+/**
+ * Represents the abstraction of a budget set by the user.
+ */
 public class Budget {
     protected double amount;
 
