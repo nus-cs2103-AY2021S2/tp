@@ -16,14 +16,14 @@ import static seedu.module.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.module.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.module.testutil.TypicalTasks.AMY;
@@ -45,33 +45,33 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_LOW).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_AMY + DEADLINE_DESC_BOB + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple modules - last module accepted
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_AMY + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple descriptiones - last description accepted
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_AMY
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
-        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_LOW, VALID_TAG_HIGH)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedTaskMultipleTags));
+                + TAG_DESC_HIGH + TAG_DESC_LOW, new AddCommand(expectedTaskMultipleTags));
     }
 
     @Test
@@ -111,23 +111,23 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HIGH + TAG_DESC_LOW, Name.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_DEADLINE_DESC + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HIGH + TAG_DESC_LOW, Deadline.MESSAGE_CONSTRAINTS);
 
         // invalid module
         assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + INVALID_MODULE_DESC + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Module.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HIGH + TAG_DESC_LOW, Module.MESSAGE_CONSTRAINTS);
 
         // invalid description
         assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + INVALID_DESCRIPTION_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HIGH + TAG_DESC_LOW, Description.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_LOW, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + MODULE_DESC_BOB + INVALID_DESCRIPTION_DESC,
@@ -135,7 +135,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + DESCRIPTION_DESC_BOB + TAG_DESC_HIGH + TAG_DESC_LOW,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

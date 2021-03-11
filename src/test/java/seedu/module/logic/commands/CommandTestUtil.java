@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_BOB = "CS3244";
     public static final String VALID_DESCRIPTION_AMY = "Finish this ASAP.";
     public static final String VALID_DESCRIPTION_BOB = "Need to figure out the concept.";
-    public static final String VALID_TAG_HUSBAND = "priorityHigh";
-    public static final String VALID_TAG_FRIEND = "priorityLow";
+    public static final String VALID_TAG_HIGH = "priorityHigh";
+    public static final String VALID_TAG_LOW = "priorityLow";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,8 +45,8 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_BOB = " " + PREFIX_MODULE + VALID_MODULE_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_LOW = " " + PREFIX_TAG + VALID_TAG_LOW;
+    public static final String TAG_DESC_HIGH = " " + PREFIX_TAG + VALID_TAG_HIGH;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
@@ -63,10 +63,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withDeadline(VALID_DEADLINE_AMY).withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_LOW).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HIGH, VALID_TAG_LOW).build();
     }
 
     /**

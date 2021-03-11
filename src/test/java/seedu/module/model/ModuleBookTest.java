@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 import static seedu.module.testutil.Assert.assertThrows;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
@@ -46,7 +46,7 @@ public class ModuleBookTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HIGH)
                 .build();
         List<Task> newTasks = Arrays.asList(QUIZ, editedAlice);
         ModuleBookStub newData = new ModuleBookStub(newTasks);
@@ -73,7 +73,7 @@ public class ModuleBookTest {
     @Test
     public void hasTask_taskWithSameIdentityFieldsInModuleBook_returnsTrue() {
         moduleBook.addTask(QUIZ);
-        Task editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HIGH)
                 .build();
         assertTrue(moduleBook.hasTask(editedAlice));
     }

@@ -60,4 +60,13 @@ public class TaskUtil {
         }
         return sb.toString();
     }
+
+    /**
+     * Returns the part of command string for the given {@code EditTaskDescriptor}'s details.
+     */
+    public static String getTagDetails(Tag tag) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_TAG + tag.tagName);
+        return sb.toString();
+    }
 }
