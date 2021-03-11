@@ -1,30 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.name.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.property.Address;
-import seedu.address.model.property.Deadline;
-import seedu.address.model.property.PostalCode;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.Type;
-import seedu.address.model.property.client.AskingPrice;
-import seedu.address.model.property.client.Client;
-import seedu.address.model.property.client.Contact;
-import seedu.address.model.property.client.Email;
-import seedu.address.model.remark.Remark;
-import seedu.address.model.tag.Tag;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -37,7 +12,25 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.Optional;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.name.Name;
+import seedu.address.model.property.Address;
+import seedu.address.model.property.Deadline;
+import seedu.address.model.property.PostalCode;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.Type;
+import seedu.address.model.property.client.AskingPrice;
+import seedu.address.model.property.client.Client;
+import seedu.address.model.property.client.Contact;
+import seedu.address.model.property.client.Email;
+import seedu.address.model.remark.Remark;
 
 /**
  * Edits a property in the app.
@@ -78,9 +71,9 @@ public class EditPropertyCommand extends Command {
     private final EditPropertyDescriptor editPropertyDescriptor;
 
     /**
-     * Creates an AddPropertyCommand to add the specified {@code Property}.
+     * Creates an EditPropertyCommand to edit the specified {@code Property}.
      */
-    public EditPropertyCommand(Index index, EditPropertyDescriptor editPropertyDescriptor) {
+    public EditPropertyCommand(Index index, EditPropertyCommand.EditPropertyDescriptor editPropertyDescriptor) {
         requireNonNull(index);
         requireNonNull(editPropertyDescriptor);
 
@@ -122,7 +115,8 @@ public class EditPropertyCommand extends Command {
         Deadline updatedDeadline = editPropertyDescriptor.getDeadline().orElse(propertyToEdit.getDeadline());
         Remark updatedRemark = editPropertyDescriptor.getRemark().orElse(propertyToEdit.getRemarks());
 
-        Client updatedClient = createEditedClient(propertyToEdit.getClient(), editPropertyDescriptor.getClientDescriptor());
+        Client updatedClient = createEditedClient(propertyToEdit.getClient(),
+                editPropertyDescriptor.getClientDescriptor());
 
         return new Property(updatedName, updatedType, updatedAddress, updatedPostalCode, updatedDeadline,
                 updatedRemark, updatedClient);
