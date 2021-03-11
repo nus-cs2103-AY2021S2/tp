@@ -172,7 +172,7 @@ There is no need to save manually.
 
 ### Editing the data file
 
-PlanIt data are saved as a JSON file `[JAR file location]/data/planner.json`. 
+PlanIt data are saved as a JSON file `[JAR file location]/data/planit.json`. 
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
