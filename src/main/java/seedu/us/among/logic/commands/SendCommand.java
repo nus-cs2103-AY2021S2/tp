@@ -3,11 +3,14 @@ package seedu.us.among.logic.commands;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Set;
+import javax.net.ssl.SSLException;
 
+import org.apache.http.NoHttpResponseException;
 import org.apache.http.client.ClientProtocolException;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -41,6 +44,7 @@ public class SendCommand extends Command {
             + " that your data is added in the correct JSON format.";
     public static final String MESSAGE_CONNECTION_ERROR = "The request was not performed successfully."
             + " Check your internet connection and endpoint URL.";
+    public static final String MESSAGE_CALL_CANCELLED = "The request has been cancelled.";
     public static final String MESSAGE_GENERAL_ERROR = "The request was not performed successfully."
             + " Check that your endpoint fields are correct.";
 
@@ -73,6 +77,8 @@ public class SendCommand extends Command {
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
             throw new RequestException(MESSAGE_INVALID_JSON);
+        } catch (IllegalStateException | SSLException | NoHttpResponseException | SocketException e) {
+            throw new RequestException(MESSAGE_CALL_CANCELLED);
         } catch (IOException e) {
             throw new RequestException(MESSAGE_GENERAL_ERROR);
         }
