@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-
 import seedu.hippocampus.model.person.Address;
 import seedu.hippocampus.model.person.Birthday;
 import seedu.hippocampus.model.person.Email;

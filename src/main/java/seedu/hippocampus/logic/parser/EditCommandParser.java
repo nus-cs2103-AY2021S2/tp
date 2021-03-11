@@ -1,7 +1,6 @@
 package seedu.hippocampus.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.hippocampus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;

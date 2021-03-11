@@ -1,10 +1,9 @@
 package seedu.hippocampus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_TAG;
