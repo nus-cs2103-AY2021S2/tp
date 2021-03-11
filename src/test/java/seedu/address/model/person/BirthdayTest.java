@@ -27,10 +27,11 @@ public class BirthdayTest {
         // invalid birthday
         assertFalse(Birthday.isValidBirthday("")); // empty string
         assertFalse(Birthday.isValidBirthday(" ")); // spaces only
+        assertFalse(Birthday.isValidBirthday("99-99-9999"));
 
         // valid birthday
         assertTrue(Birthday.isValidBirthday("01-01-1998"));
-        assertTrue(Birthday.isValidBirthday("03-02-1998")); // one character
-        assertTrue(Birthday.isValidBirthday("02-01-2000")); // long address
+        assertTrue(Birthday.isValidBirthday("03-02-1998"));
+        assertTrue(Birthday.isValidBirthday("02-01-2000"));
     }
 }
