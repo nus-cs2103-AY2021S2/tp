@@ -3,10 +3,10 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_EINSTEIN;
-import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_EINSTEIN;
-import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_EINSTEIN;
 import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_EINSTEIN;
+import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_EINSTEIN;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_EINSTEIN;
+import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_EINSTEIN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFlashcards.EINS;
 
@@ -79,7 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + QUESTION_DESC_EINSTEIN + ANSWER_DESC_EINSTEIN + CATEGORY_DESC_EINSTEIN
+        String addCommand = AddCommand.COMMAND_WORD + QUESTION_DESC_EINSTEIN
+                + ANSWER_DESC_EINSTEIN + CATEGORY_DESC_EINSTEIN
                 + PRIORITY_DESC_EINSTEIN;
         Flashcard expectedFlashcard = new FlashcardBuilder(EINS).withTags().build();
         ModelManager expectedModel = new ModelManager();
