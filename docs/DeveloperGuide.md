@@ -384,7 +384,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list of matched clients is empty.
 
   Use case ends.
-    
+
+**Use case: Sort list of clients**
+
+**MSS**
+
+1.  User requests to sort clients with the specified direction
+2.  ClientBook shows the sorted list of clients.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of matched clients is empty.
+
+  Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements

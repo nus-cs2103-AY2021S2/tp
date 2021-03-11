@@ -16,7 +16,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_ASCENDING = "Sorted all clients in ascending order.";
 
-    public static final String MESSAGE_SUCCESS_DESCENDING = "Sorted all clients in ascending order.";
+    public static final String MESSAGE_SUCCESS_DESCENDING = "Sorted all clients in descending order.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all clients by names in the order of "
             + "the specified direction and displays them as a list with index numbers.\n"
@@ -42,6 +42,13 @@ public class SortCommand extends Command {
         } else {
             return new CommandResult(MESSAGE_SUCCESS_DESCENDING);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && direction.equals(((SortCommand) other).direction)); // state check
     }
 
     /**
