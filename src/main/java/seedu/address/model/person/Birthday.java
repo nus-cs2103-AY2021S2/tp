@@ -2,9 +2,6 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 /** Represents a Person's birthday in HippoCampus.
  * Guarantees: immutable; is always valid.
  */
@@ -25,7 +22,7 @@ public class Birthday {
      */
     public Birthday(String birthdate) {
         requireNonNull(birthdate);
-        value = LocalDate.parse(birthdate).format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        value = birthdate;
     }
 
     /**

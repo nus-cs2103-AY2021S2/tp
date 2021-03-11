@@ -108,10 +108,11 @@ class JsonAdaptedPerson {
 
         Birthday modelBirthday;
         if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
         }
         if (birthday.equals(Birthday.EMPTY_BIRTHDAY_STRING)) {
-            modelBirthday= Birthday.EMPTY_BIRTHDAY;
+            modelBirthday = Birthday.EMPTY_BIRTHDAY;
         } else if (!Birthday.isValidBirthday(birthday)) {
             throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         } else {

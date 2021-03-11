@@ -115,7 +115,7 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if(birthday == Birthday.EMPTY_BIRTHDAY_STRING) {
+        if (birthday == Birthday.EMPTY_BIRTHDAY_STRING) {
             return Birthday.EMPTY_BIRTHDAY;
         }
         try {
