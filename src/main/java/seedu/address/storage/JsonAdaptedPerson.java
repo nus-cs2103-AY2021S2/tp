@@ -74,7 +74,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         }
 
-        final  Birthday modelBirthday = new Birthday(birthday);
+        final Birthday modelBirthday = new Birthday(birthday);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 

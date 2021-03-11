@@ -145,13 +145,16 @@ public class EditPersonCommand extends Command {
             this.name = name;
         }
 
-        public void setBirthday(Birthday birthday) { this.birthday = birthday; }
+        public void setBirthday(Birthday birthday) {
+            this.birthday = birthday;
+        }
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public Optional<Birthday> getBirthday() { return Optional.ofNullable(birthday);
+        public Optional<Birthday> getBirthday() {
+            return Optional.ofNullable(birthday);
         }
 
         /**
