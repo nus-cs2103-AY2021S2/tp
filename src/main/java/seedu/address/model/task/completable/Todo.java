@@ -14,7 +14,7 @@ public class Todo extends Completable {
      * @param description Description of the Todo.
      */
     public Todo(String description) {
-        super(description);
+        super(description, null);
     }
 
     /**
@@ -23,7 +23,7 @@ public class Todo extends Completable {
      * @param isDone Marks whether the Todo is Done.
      */
     public Todo(String description, Boolean isDone) {
-        super(description, isDone);
+        super(description, null, isDone);
     }
 
     /**
