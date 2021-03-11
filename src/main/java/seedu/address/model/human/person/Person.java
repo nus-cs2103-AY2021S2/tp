@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.human.Human;
@@ -26,7 +27,7 @@ public class Person extends Human {
     private final TripDays tripDays;
     private final TripTimes tripTimes;
     private final Set<Tag> tags = new HashSet<>();
-    private Driver driver;
+    private Optional<Driver> driver;
 
     /**
      * Every field must be present and not null.
@@ -52,7 +53,7 @@ public class Person extends Human {
         return tripTimes;
     }
 
-    public Driver getDriver() {return driver;}
+    public String getDriverStr() {return driver.isEmpty() ? MESSAGE_NO_ASSIGNED_DRIVER : driver.toString();}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -94,13 +95,14 @@ public class Person extends Human {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTripDays().equals(getTripDays())
+                && otherPerson.getTripTimes().equals(getTripTimes())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, tags);
+        return Objects.hash(name, phone, address, tripDays, tripTimes, tags);
     }
 
     @Override
@@ -116,7 +118,7 @@ public class Person extends Human {
                 .append("; Trip Times: ")
                 .append(getTripTimes())
                 .append("; Driver: ")
-                .append(getDriver());
+                .append(getDriverStr());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
