@@ -1,8 +1,8 @@
-//package seedu.budgetbaby.model.budget;
+package seedu.budgetbaby.model.budget;
 
 // Represents the abstraction of a budget set by the user.
 public class Budget {
-    private double amount;
+    protected double amount;
 
     /**
      * Default constructor.
