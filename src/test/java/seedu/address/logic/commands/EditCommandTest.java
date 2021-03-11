@@ -2,17 +2,17 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_EINSTEIN;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ATP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_EINSTEIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_OCTOPUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EQUATION;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFlashcardAtIndex;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashBack;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashBack;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,7 +57,8 @@ public class EditCommandTest {
         Flashcard editedFlashcard = personInList.withQuestion(VALID_QUESTION_OCTOPUS).withAnswer(VALID_ANSWER_OCTOPUS)
                 .withTags(VALID_TAG_EQUATION).build();
 
-        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS)
+        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withQuestion(VALID_QUESTION_OCTOPUS)
                 .withAnswer(VALID_ANSWER_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
@@ -86,7 +87,8 @@ public class EditCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         Flashcard flashcardInFilteredList = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        Flashcard editedFlashcard = new FlashcardBuilder(flashcardInFilteredList).withQuestion(VALID_QUESTION_OCTOPUS).build();
+        Flashcard editedFlashcard = new FlashcardBuilder(flashcardInFilteredList)
+                .withQuestion(VALID_QUESTION_OCTOPUS).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD,
                 new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS).build());
 
@@ -122,7 +124,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS).build();
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+                .withQuestion(VALID_QUESTION_OCTOPUS).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
