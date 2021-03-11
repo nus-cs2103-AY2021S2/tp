@@ -285,13 +285,15 @@ individual quantities and respective expiry dates.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                     | I want to …​            | So that I can…​                                        |
-| -------- | ------------------------------ | -------------------------- | --------------------------------------------------------- |
-| `* * *`  | user                           | delete an item             | remove it when it is expired or used up                   |
-| `* * *`  | impulsive buyer                | add a new item             | keep track of it                                          |
-| `* *`    | well-organized user            | list down all items        | ensure that my items are in the correct location          |
-| `* * *`  | forgetful user with many items | search for an item quickly | locate them easily                                        |
-| `*`      | user who stocks up items daily | update my items            | change the items' expiry dates and quantities accordingly |
+| Priority | As a …​                          | I want to …​                    | So that I can…​                                        |
+| -------- | ---------------------------------   | ---------------------------------- | --------------------------------------------------------- |
+| `* * *`  | user                                | delete an item                     | remove it when it is expired or used up                   |
+| `* * *`  | impulsive buyer                     | add a new item                     | keep track of it                                          |
+| `* * *`  | user with many items                | list down all items                | know in one glance all the items I have                   |
+| `* * *`  | forgetful user with many items      | search for an item quickly         | locate them easily                                        |
+| `*`      | user who stocks up items daily      | update my items                    | change the items' expiry dates and quantities accordingly |
+| `* *`    | user who likes to tidy up my room   | see all items in the same location | see what items I have in that particular location         |
+| `* *`    | user who tags my items meaningfully | see all items with the same tag    | see what items I have with that particular tag            |
 
 _**(more to be added)**_
 
