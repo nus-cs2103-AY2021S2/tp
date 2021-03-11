@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
 import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
@@ -20,8 +20,8 @@ import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.DeleteCommand;
-import seedu.dictionote.logic.commands.EditCommand;
-import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.dictionote.logic.commands.EditContactCommand;
+import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
@@ -32,9 +32,9 @@ import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
-import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
+import seedu.dictionote.testutil.ContactUtil;
+import seedu.dictionote.testutil.EditContactDescriptorBuilder;
 import seedu.dictionote.testutil.NoteUtil;
-import seedu.dictionote.testutil.PersonUtil;
 
 
 
@@ -45,7 +45,7 @@ public class DictionoteParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Contact contact = new ContactBuilder().build();
-        AddContactCommand command = (AddContactCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
+        AddContactCommand command = (AddContactCommand) parser.parseCommand(ContactUtil.getAddCommand(contact));
         assertEquals(new AddContactCommand(contact), command);
     }
 
@@ -65,17 +65,17 @@ public class DictionoteParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_CONTACT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Contact contact = new ContactBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(contact).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contact).build();
+        EditContactCommand command = (EditContactCommand) parser.parseCommand(EditContactCommand.COMMAND_WORD + " "
+            + INDEX_FIRST_CONTACT.getOneBased() + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
+        assertEquals(new EditContactCommand(INDEX_FIRST_CONTACT, descriptor), command);
     }
 
     @Test

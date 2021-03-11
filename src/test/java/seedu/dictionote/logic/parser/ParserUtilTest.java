@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
 import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
@@ -53,10 +53,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_CONTACT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_CONTACT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
