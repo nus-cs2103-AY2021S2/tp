@@ -7,7 +7,7 @@ import dog.pawbook.logic.commands.CommandResult;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.ReadOnlyAddressBook;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 import javafx.collections.ObservableList;
 
 /**

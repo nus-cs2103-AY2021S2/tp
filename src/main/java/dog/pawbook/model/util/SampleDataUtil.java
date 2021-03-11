@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.ReadOnlyAddressBook;
-import dog.pawbook.model.owner.Address;
-import dog.pawbook.model.owner.Email;
-import dog.pawbook.model.owner.Name;
-import dog.pawbook.model.owner.Owner;
-import dog.pawbook.model.owner.Phone;
-import dog.pawbook.model.tag.Tag;
+import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.owner.Address;
+import dog.pawbook.model.managedentity.owner.Email;
+import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

@@ -16,7 +16,7 @@ import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

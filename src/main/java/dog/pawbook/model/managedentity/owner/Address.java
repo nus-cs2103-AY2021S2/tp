@@ -1,4 +1,4 @@
-package dog.pawbook.model.owner;
+package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;

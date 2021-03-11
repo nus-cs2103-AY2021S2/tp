@@ -19,7 +19,7 @@ import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.ReadOnlyUserPrefs;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.testutil.OwnerBuilder;
 import javafx.collections.ObservableList;
 
@@ -27,7 +27,7 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullOwner_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddOwnerCommand(null));
     }
 
     @Test
@@ -35,33 +35,34 @@ public class AddCommandTest {
         ModelStubAcceptingOwnerAdded modelStub = new ModelStubAcceptingOwnerAdded();
         Owner validOwner = new OwnerBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validOwner).execute(modelStub);
+        CommandResult commandResult = new AddOwnerCommand(validOwner).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validOwner), commandResult.getFeedbackToUser());
+        assertEquals(AddOwnerCommand.MESSAGE_SUCCESS + validOwner, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validOwner), modelStub.ownersAdded);
     }
 
     @Test
     public void execute_duplicateOwner_throwsCommandException() {
         Owner validOwner = new OwnerBuilder().build();
-        AddCommand addCommand = new AddCommand(validOwner);
+        AddOwnerCommand addOwnerCommand = new AddOwnerCommand(validOwner);
         ModelStub modelStub = new ModelStubWithOwner(validOwner);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_OWNER, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddOwnerCommand.MESSAGE_DUPLICATE_OWNER, () -> addOwnerCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Owner alice = new OwnerBuilder().withName("Alice").build();
         Owner bob = new OwnerBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddOwnerCommand addAliceCommand = new AddOwnerCommand(alice);
+        AddOwnerCommand addBobCommand = new AddOwnerCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddOwnerCommand addAliceCommandCopy = new AddOwnerCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false

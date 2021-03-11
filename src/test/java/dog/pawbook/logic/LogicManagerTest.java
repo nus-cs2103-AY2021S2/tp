@@ -17,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import dog.pawbook.logic.commands.AddCommand;
+import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.CommandResult;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.commands.exceptions.CommandException;
@@ -26,7 +26,7 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.ReadOnlyAddressBook;
 import dog.pawbook.model.UserPrefs;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.storage.JsonAddressBookStorage;
 import dog.pawbook.storage.JsonUserPrefsStorage;
 import dog.pawbook.storage.StorageManager;
@@ -79,8 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + " " + AddCommand.ENTITY_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
+        String addCommand = AddOwnerCommand.COMMAND_WORD + " " + AddOwnerCommand.ENTITY_WORD + NAME_DESC_AMY
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Owner expectedOwner = new OwnerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addOwner(expectedOwner);

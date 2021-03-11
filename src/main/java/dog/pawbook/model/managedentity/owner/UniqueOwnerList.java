@@ -1,4 +1,4 @@
-package dog.pawbook.model.owner;
+package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
@@ -6,8 +6,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import dog.pawbook.model.owner.exceptions.DuplicateOwnerException;
-import dog.pawbook.model.owner.exceptions.OwnerNotFoundException;
+import dog.pawbook.model.managedentity.owner.exceptions.DuplicateOwnerException;
+import dog.pawbook.model.managedentity.owner.exceptions.OwnerNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

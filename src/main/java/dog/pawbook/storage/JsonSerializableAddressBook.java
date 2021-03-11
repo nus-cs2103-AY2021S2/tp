@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.model.AddressBook;
 import dog.pawbook.model.ReadOnlyAddressBook;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

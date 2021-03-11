@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import dog.pawbook.commons.exceptions.IllegalValueException;
-import dog.pawbook.model.tag.Tag;
+import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.

@@ -1,4 +1,4 @@
-package dog.pawbook.model.owner;
+package dog.pawbook.model.managedentity.owner;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

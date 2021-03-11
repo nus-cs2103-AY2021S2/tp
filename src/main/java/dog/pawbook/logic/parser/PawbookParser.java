@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dog.pawbook.logic.commands.AddCommand;
+import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.commands.DeleteCommand;
 import dog.pawbook.logic.commands.ExitCommand;
@@ -45,7 +46,7 @@ public class PawbookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddOwnerCommand.COMMAND_WORD:
             return generateAddCommand(entityType, arguments);
 
         case DeleteCommand.COMMAND_WORD:
@@ -66,12 +67,12 @@ public class PawbookParser {
 
     private AddCommand generateAddCommand(String entityType, String arguments) throws ParseException {
         if (entityType.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOwnerCommand.MESSAGE_USAGE));
         }
 
         switch (entityType) {
-        case AddCommand.ENTITY_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddOwnerCommand.ENTITY_WORD:
+            return new AddOwnerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSGAE_UNKNOWN_ENTITY);

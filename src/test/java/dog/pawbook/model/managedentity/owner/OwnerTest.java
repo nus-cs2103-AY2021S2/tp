@@ -1,4 +1,4 @@
-package dog.pawbook.model.owner;
+package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.testutil.OwnerBuilder;
 
 public class OwnerTest {

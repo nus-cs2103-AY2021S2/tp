@@ -6,8 +6,8 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 
-import dog.pawbook.logic.commands.AddCommand;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.logic.commands.AddOwnerCommand;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * A utility class for Owner.
@@ -18,7 +18,7 @@ public class OwnerUtil {
      * Returns an add command string for adding the {@code owner}.
      */
     public static String getAddCommand(Owner owner) {
-        return AddCommand.COMMAND_WORD + " " + AddCommand.ENTITY_WORD + " " + getOwnerDetails(owner);
+        return AddOwnerCommand.COMMAND_WORD + " " + AddOwnerCommand.ENTITY_WORD + " " + getOwnerDetails(owner);
     }
 
     /**

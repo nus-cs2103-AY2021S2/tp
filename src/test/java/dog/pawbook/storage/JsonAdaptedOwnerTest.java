@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.exceptions.IllegalValueException;
-import dog.pawbook.model.owner.Address;
-import dog.pawbook.model.owner.Email;
-import dog.pawbook.model.owner.Name;
-import dog.pawbook.model.owner.Phone;
+import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.owner.Address;
+import dog.pawbook.model.managedentity.owner.Email;
+import dog.pawbook.model.managedentity.owner.Phone;
 
 public class JsonAdaptedOwnerTest {
     private static final String INVALID_NAME = "R@chel";

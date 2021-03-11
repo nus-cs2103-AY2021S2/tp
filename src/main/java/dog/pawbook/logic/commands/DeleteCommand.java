@@ -8,7 +8,7 @@ import dog.pawbook.commons.core.Messages;
 import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * Deletes a owner identified using it's displayed index from the address book.

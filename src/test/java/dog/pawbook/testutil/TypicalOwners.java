@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import dog.pawbook.model.AddressBook;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * A utility class containing a list of {@code Owner} objects to be used in tests.

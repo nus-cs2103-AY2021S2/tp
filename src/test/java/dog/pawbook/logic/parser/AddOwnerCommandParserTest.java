@@ -31,17 +31,17 @@ import static dog.pawbook.testutil.TypicalOwners.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import dog.pawbook.logic.commands.AddCommand;
-import dog.pawbook.model.owner.Address;
-import dog.pawbook.model.owner.Email;
-import dog.pawbook.model.owner.Name;
-import dog.pawbook.model.owner.Owner;
-import dog.pawbook.model.owner.Phone;
-import dog.pawbook.model.tag.Tag;
+import dog.pawbook.logic.commands.AddOwnerCommand;
+import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.owner.Address;
+import dog.pawbook.model.managedentity.owner.Email;
+import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.tag.Tag;
 import dog.pawbook.testutil.OwnerBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddOwnerCommandParserTest {
+    private AddOwnerCommandParser parser = new AddOwnerCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -49,29 +49,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddOwnerCommand(expectedOwner));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddOwnerCommand(expectedOwner));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddOwnerCommand(expectedOwner));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddOwnerCommand(expectedOwner));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedOwner));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddOwnerCommand(expectedOwner));
 
         // multiple tags - all accepted
         Owner expectedOwnerMultipleTags = new OwnerBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedOwnerMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddOwnerCommand(expectedOwnerMultipleTags));
     }
 
     @Test
@@ -79,12 +79,12 @@ public class AddCommandParserTest {
         // zero tags
         Owner expectedOwner = new OwnerBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedOwner));
+                new AddOwnerCommand(expectedOwner));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOwnerCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
@@ -136,6 +136,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOwnerCommand.MESSAGE_USAGE));
     }
 }

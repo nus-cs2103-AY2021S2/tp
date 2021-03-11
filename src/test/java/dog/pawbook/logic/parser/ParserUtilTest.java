@@ -14,11 +14,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.logic.parser.exceptions.ParseException;
-import dog.pawbook.model.owner.Address;
-import dog.pawbook.model.owner.Email;
-import dog.pawbook.model.owner.Name;
-import dog.pawbook.model.owner.Phone;
-import dog.pawbook.model.tag.Tag;
+import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.owner.Address;
+import dog.pawbook.model.managedentity.owner.Email;
+import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

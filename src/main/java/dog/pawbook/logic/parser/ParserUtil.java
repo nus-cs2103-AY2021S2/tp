@@ -9,11 +9,11 @@ import java.util.Set;
 import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.commons.util.StringUtil;
 import dog.pawbook.logic.parser.exceptions.ParseException;
-import dog.pawbook.model.owner.Address;
-import dog.pawbook.model.owner.Email;
-import dog.pawbook.model.owner.Name;
-import dog.pawbook.model.owner.Phone;
-import dog.pawbook.model.tag.Tag;
+import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.owner.Address;
+import dog.pawbook.model.managedentity.owner.Email;
+import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

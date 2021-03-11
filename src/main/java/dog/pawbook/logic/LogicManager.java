@@ -13,7 +13,7 @@ import dog.pawbook.logic.parser.PawbookParser;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ReadOnlyAddressBook;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.storage.Storage;
 import javafx.collections.ObservableList;
 

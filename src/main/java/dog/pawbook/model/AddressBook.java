@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import dog.pawbook.model.owner.Owner;
-import dog.pawbook.model.owner.UniqueOwnerList;
+import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.owner.UniqueOwnerList;
 import javafx.collections.ObservableList;
 
 /**

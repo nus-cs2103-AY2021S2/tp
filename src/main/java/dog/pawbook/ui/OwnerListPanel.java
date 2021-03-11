@@ -3,7 +3,7 @@ package dog.pawbook.ui;
 import java.util.logging.Logger;
 
 import dog.pawbook.commons.core.LogsCenter;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
