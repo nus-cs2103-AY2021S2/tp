@@ -62,10 +62,12 @@ public class CommandTestUtil {
 
     static {
         DESC_EINSTEIN = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_EINSTEIN)
-                .withAnswer(VALID_ANSWER_EINSTEIN).withCategory(VALID_CATEGORY_EINSTEIN).withPriority(VALID_PRIORITY_EINSTEIN)
+                .withAnswer(VALID_ANSWER_EINSTEIN).withCategory(VALID_CATEGORY_EINSTEIN)
+                .withPriority(VALID_PRIORITY_EINSTEIN)
                 .withTags(VALID_TAG_GENERAL).build();
         DESC_ATP = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS)
-                .withAnswer(VALID_ANSWER_OCTOPUS).withCategory(VALID_CATEGORY_OCTOPUS).withPriority(VALID_PRIORITY_OCTOPUS)
+                .withAnswer(VALID_ANSWER_OCTOPUS).withCategory(VALID_CATEGORY_OCTOPUS)
+                .withPriority(VALID_PRIORITY_OCTOPUS)
                 .withTags(VALID_TAG_EQUATION, VALID_TAG_GENERAL).build();
     }
 
