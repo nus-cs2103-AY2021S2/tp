@@ -36,7 +36,7 @@ public class SortCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         Comparator<Person> comparator = new SortCommand.PersonNameComparator();
-        comparator.reversed();
+        comparator = comparator.reversed();
         expectedModel.updateSortedPersonList(comparator);
 
         assertCommandSuccess(new SortCommand("/d"), model,
