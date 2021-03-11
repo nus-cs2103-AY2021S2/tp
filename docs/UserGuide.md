@@ -4,8 +4,8 @@ title: User Guide
 ---
 # User Guide
 
-`semester.config` is a **desktop app for managing details, optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). 
+`semester.config` is a **desktop app for managing details, optimized for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, `semester.config` can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -80,7 +80,7 @@ Add a deadline to the list
 
 Format: `add mc/MODULE_CODE mn/MODULE_NAME tn/TASK_NAME d/DATE [t/TIME]`
 
-Example:  
+Example:
 * `add mc/CS3243 mn/Introduction to Artificial Intelligence tn/Project 1 d/ Feb 15` will add this deadline to the list
 
 ### Clear Application : `clear`
@@ -89,7 +89,7 @@ Clears all deadlines from the application
 
 Format: `clear`
 
-### Delete a deadline: `delete` 
+### Delete a deadline: `delete`
 
 Deletes the specified deadline from the list
 
@@ -98,9 +98,9 @@ Format: `delete INDEX`
 * Index to be inserted must be positive, and
 * Index must be available on the list else an error will be thrown
 
-Example: 
+Example:
 * `delete 3` will delete the 3rd deadline on the list
-* Using `list` to show all deadlines, the user wants to delete the 2nd deadline. User use command `delete 2` to delete the 2nd deadline from the list 
+* Using `list` to show all deadlines, the user wants to delete the 2nd deadline. User use command `delete 2` to delete the 2nd deadline from the list
 
 ### Edit a deadline: `edit`
 
@@ -144,7 +144,7 @@ Format: `list`
 
 Marks deadline(s) in the application to be done.
 
-Format: `done INDEX…` 
+Format: `done INDEX…`
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 * Index must be available on the list else an error will be thrown
@@ -167,14 +167,14 @@ Format: sort `[/dt] [/mc] [/pt]`
 Clears all deadlines from the application.
 
 Format: `clear`
- 
+
 ### Showing time-based alerts: `show`
 
-Shows alert(s) for incoming deadlines based on the time range (if given). 
+Shows alert(s) for incoming deadlines based on the time range (if given).
 
 Format: `show [start/START_DATE] [end/END_DATE]`
 * If no time range is given, alert(s) shown will be deadlines next week.
-* If only `START_DATE` is given, alert(s) shown will be from **the `START_DATE` until the latest deadline**. 
+* If only `START_DATE` is given, alert(s) shown will be from **the `START_DATE` until the latest deadline**.
 * If only `END_DATE` is given, alert(s) shown will be from **today’s date until the `END_DATE`**.
 
 Example:
@@ -196,7 +196,7 @@ Example:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file
 that contains the data of your previous `semester.config` home folder.
 
 --------------------------------------------------------------------------------------------------------------------

@@ -243,7 +243,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers an all-keyboard workflow without needing to use a mouse
 
-**Value proposition**: 
+**Value proposition**:
 
 - manage upcoming CS assignment deadlines faster than a typical mouse/GUI driven app
 - consolidates all CS-coded module tasks into a single place for a CS student to manage and view easily
@@ -311,15 +311,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-  
     Use case ends.
 * 3a. The given index is invalid
     * 3a1. TaskTracker shows an error message.
-      
-        Use case resumes at step 2. 
+        Use case resumes at step 2.
 * 3b. Optional fields are not provided
     * 3b1. TaskTracker shows an error message
-      
+
         Use case resumes at step 2.
 
 **Use case: Setting a priority tag**
@@ -332,17 +330,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-  
+
     Use case ends.
 * 3a. The given index is invalid
     * 3a1. TaskTracker shows an error message
-    
+
       Use case resumes at step 2
 * 3b. The given priority tag is invalid
     * 3b1. TaskTracker shows an error message
-    
+
         Use case resumes at step 2
-    
+
 **Use case: Adding notes to a deadline**
 
 1. User requests to list deadlines
@@ -355,20 +353,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
     Use case ends
-* 3a. The given index is invalids
+* 3a. The given index is invalid
     * 3a1. TaskTracker shows an error message
-    
+
         Use case resumes at step 2
 * 3b. The deadline has existing notes
     * 3b1. TaskTracker requests for confirmation to overwrite previous notes
     * 3b2. User confirms the request to overwrite previous notes
     * 3b3. TaskTracker overwrites the previous notes with a new note
-    
+
         Use case ends
 
-  
-  
-  
+
+
 
 *{More to be added}*
 

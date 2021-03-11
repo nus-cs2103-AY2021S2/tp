@@ -14,13 +14,10 @@
       * sort : sort d/ march will sort and show all march tasks on the top of the list and then Jan, Feb … Dec
       * edit task [num list] : edit 3 will allow user to edit the 3rd module task from the list
       * add notes [num list] : add notes 3 will add notes to the 3rd module task from the list
-      * Priority tag HIGH/MEDIUM/LOW : pt/HIGH 3 will assign a high priority to the 3rd task on the list. 
+      * Priority tag HIGH/MEDIUM/LOW : pt/HIGH 3 will assign a high priority to the 3rd task on the list.
       * Time-based alert : alert will show a list of immediate tasks that will be due next week
       * clear : will delete all module tasks on the list
-
-6. Refer to the features for each individual commands for more details 
-
-
+  6. Refer to the features for each individual commands for more details 
 
 ## **Commands**
 
@@ -37,10 +34,10 @@
   * Format: pt/HIGH 3
     1. Will assignment a priority of HIGH to the 3rd task on the list
     2. Priority levels LOW -> MEDIUM -> HIGH
-    3. Index inserted must be positive, and 
+    3. Index inserted must be positive, and
     4. Index must be available on the list else an error will be thrown
     5. Priority tag must be either HIGH, MEDIUM or LOW.
-    6. Example: list to show all tasks on the list followed by pt/LOW 2 to assign a priority tag of LOW to the 2nd task on the list followed by sort LOW/low to view the list according to priority level 
+    6. Example: list to show all tasks on the list followed by pt/LOW 2 to assign a priority tag of LOW to the 2nd task on the list followed by sort LOW/low to view the list according to priority level
 
 
 
@@ -54,7 +51,7 @@
 4. ### Module code: *mc/*
   * Format: mc/ {module code}
     1. Sets the module code of a task
-    2. Module code must be a CS module code 
+    2. Module code must be a CS module code
 
 
 
@@ -70,7 +67,7 @@
 
 
 
-6. ### Clear Application: *clear* 
+6. ### Clear Application: *clear*
   * Clears all tasks from the application
   * Format: clear
 
@@ -110,7 +107,7 @@
 10. ### Shows alert(s) for incoming deadlines based on the time range (if give)
   * Format: alert start/START_DATE end/END_DATE
     1. If no time range is given, alert(s) shown will be deadlines next week.
-    2. If only START_DATE is given, alert(s) shown will be from the START_DATE until the latest deadline. 
+    2. If only START_DATE is given, alert(s) shown will be from the START_DATE until the latest deadline.
     3. If only END_DATE is given, alert(s) shown will be from today’s date until the END_DATE.
     4. alert start/10-10-2020 will show deadlines starting from 10 October 2020 onwards.
 
