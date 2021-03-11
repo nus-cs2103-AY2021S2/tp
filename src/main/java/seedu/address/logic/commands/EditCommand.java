@@ -28,7 +28,7 @@ import seedu.address.model.flashcard.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing flashcard in flashcard list.
  */
 public class EditCommand extends Command {
 
@@ -52,18 +52,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditFlashcardDescriptor editFlashcardDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editFlashcardDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditFlashcardDescriptor editFlashcardDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editFlashcardDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editFlashcardDescriptor = new EditFlashcardDescriptor(editFlashcardDescriptor);
     }
 
     @Override
@@ -76,9 +76,9 @@ public class EditCommand extends Command {
         }
 
         Flashcard flashcardToEdit = lastShownList.get(index.getZeroBased());
-        Flashcard editedFlashcard = createEditedPerson(flashcardToEdit, editPersonDescriptor);
+        Flashcard editedFlashcard = createEditedPerson(flashcardToEdit, editFlashcardDescriptor);
 
-        if (!flashcardToEdit.isSamePerson(editedFlashcard) && model.hasFlashcard(editedFlashcard)) {
+        if (!flashcardToEdit.isSameFlashcard(editedFlashcard) && model.hasFlashcard(editedFlashcard)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -89,17 +89,17 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editFlashcardDescriptor}.
      */
-    private static Flashcard createEditedPerson(Flashcard flashcardToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Flashcard createEditedPerson(Flashcard flashcardToEdit, EditFlashcardDescriptor editFlashcardDescriptor) {
         assert flashcardToEdit != null;
 
-        Question updatedQuestion = editPersonDescriptor.getName().orElse(flashcardToEdit.getName());
-        Answer updatedAnswer = editPersonDescriptor.getPhone().orElse(flashcardToEdit.getPhone());
-        Category updatedCategory = editPersonDescriptor.getEmail().orElse(flashcardToEdit.getEmail());
-        Priority updatedPriority = editPersonDescriptor.getAddress().orElse(flashcardToEdit.getAddress());
+        Question updatedQuestion = editFlashcardDescriptor.getQuestion().orElse(flashcardToEdit.getQuestion());
+        Answer updatedAnswer = editFlashcardDescriptor.getAnswer().orElse(flashcardToEdit.getAnswer());
+        Category updatedCategory = editFlashcardDescriptor.getCategory().orElse(flashcardToEdit.getCategory());
+        Priority updatedPriority = editFlashcardDescriptor.getPriority().orElse(flashcardToEdit.getPriority());
         Remark updatedRemark = flashcardToEdit.getRemark();
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(flashcardToEdit.getTags());
+        Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
 
         return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory,
                 updatedPriority, updatedRemark, updatedTags);
@@ -120,31 +120,31 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editFlashcardDescriptor.equals(e.editFlashcardDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditFlashcardDescriptor {
         private Question question;
         private Answer answer;
         private Category category;
         private Priority priority;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditFlashcardDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.question);
-            setPhone(toCopy.answer);
-            setEmail(toCopy.category);
-            setAddress(toCopy.priority);
+        public EditFlashcardDescriptor(EditFlashcardDescriptor toCopy) {
+            setQuestion(toCopy.question);
+            setAnswer(toCopy.answer);
+            setCategory(toCopy.category);
+            setPriority(toCopy.priority);
             setTags(toCopy.tags);
         }
 
@@ -155,35 +155,35 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(question, answer, category, priority, tags);
         }
 
-        public void setName(Question question) {
+        public void setQuestion(Question question) {
             this.question = question;
         }
 
-        public Optional<Question> getName() {
+        public Optional<Question> getQuestion() {
             return Optional.ofNullable(question);
         }
 
-        public void setPhone(Answer answer) {
+        public void setAnswer(Answer answer) {
             this.answer = answer;
         }
 
-        public Optional<Answer> getPhone() {
+        public Optional<Answer> getAnswer() {
             return Optional.ofNullable(answer);
         }
 
-        public void setEmail(Category category) {
+        public void setCategory(Category category) {
             this.category = category;
         }
 
-        public Optional<Category> getEmail() {
+        public Optional<Category> getCategory() {
             return Optional.ofNullable(category);
         }
 
-        public void setAddress(Priority priority) {
+        public void setPriority(Priority priority) {
             this.priority = priority;
         }
 
-        public Optional<Priority> getAddress() {
+        public Optional<Priority> getPriority() {
             return Optional.ofNullable(priority);
         }
 
@@ -212,17 +212,17 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditFlashcardDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditFlashcardDescriptor e = (EditFlashcardDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+            return getQuestion().equals(e.getQuestion())
+                    && getAnswer().equals(e.getAnswer())
+                    && getCategory().equals(e.getCategory())
+                    && getPriority().equals(e.getPriority())
                     && getTags().equals(e.getTags());
         }
     }
