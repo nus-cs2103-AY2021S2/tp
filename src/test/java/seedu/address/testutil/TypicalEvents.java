@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventStatus;
+import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Event} objects to be used in tests.
@@ -41,6 +44,17 @@ public class TypicalEvents {
     // TODO: When EventManager is created, we need to add a
     // getTypicalEventManager() method for initializing a Typical Manager
     // with all the test cases above
+
+    /**
+     * Returns an {@code EventBook} with all the typical events.
+     */
+    public static EventBook getTypicalEventBook() {
+        EventBook eb = new EventBook();
+        for (Event event : getTypicalEvents()) {
+            eb.addEvent(event);
+        }
+        return eb;
+    }
 
     public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(CS2030, CS2103T, CS2107,
