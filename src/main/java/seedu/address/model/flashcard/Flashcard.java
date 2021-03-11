@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Flashcard in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Flashcard {
@@ -39,19 +39,19 @@ public class Flashcard {
         this.tags.addAll(tags);
     }
 
-    public Question getName() {
+    public Question getQuestion() {
         return question;
     }
 
-    public Answer getPhone() {
+    public Answer getAnswer() {
         return answer;
     }
 
-    public Category getEmail() {
+    public Category getCategory() {
         return category;
     }
 
-    public Priority getAddress() {
+    public Priority getPriority() {
         return priority;
     }
 
@@ -68,21 +68,21 @@ public class Flashcard {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both flashcards have the same questions.
+     * This defines a weaker notion of equality between two flashcards.
      */
-    public boolean isSamePerson(Flashcard otherFlashcard) {
+    public boolean isSameFlashcard(Flashcard otherFlashcard) {
         if (otherFlashcard == this) {
             return true;
         }
 
         return otherFlashcard != null
-                && otherFlashcard.getName().equals(getName());
+                && otherFlashcard.getQuestion().equals(getQuestion());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both flashcards have the same data fields.
+     * This defines a stronger notion of equality between two flashcards.
      */
     @Override
     public boolean equals(Object other) {
@@ -95,10 +95,10 @@ public class Flashcard {
         }
 
         Flashcard otherFlashcard = (Flashcard) other;
-        return otherFlashcard.getName().equals(getName())
-                && otherFlashcard.getPhone().equals(getPhone())
-                && otherFlashcard.getEmail().equals(getEmail())
-                && otherFlashcard.getAddress().equals(getAddress())
+        return otherFlashcard.getQuestion().equals(getQuestion())
+                && otherFlashcard.getAnswer().equals(getAnswer())
+                && otherFlashcard.getCategory().equals(getCategory())
+                && otherFlashcard.getPriority().equals(getPriority())
                 && otherFlashcard.getTags().equals(getTags())
                 && otherFlashcard.getRemark().equals(getRemark());
     }
@@ -113,13 +113,13 @@ public class Flashcard {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Question: ")
-                .append(getName())
+                .append(getQuestion())
                 .append("; Answer: ")
-                .append(getPhone())
+                .append(getAnswer())
                 .append("; Category: ")
-                .append(getEmail())
+                .append(getCategory())
                 .append("; Priority: ")
-                .append(getAddress());
+                .append(getPriority());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
