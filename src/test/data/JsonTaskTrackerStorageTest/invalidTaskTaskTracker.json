@@ -1,8 +1,8 @@
 {
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "code": "CS2103",
     "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "email": "hans@example.com"
   } ]
 }

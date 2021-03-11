@@ -11,36 +11,36 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.TaskTracker;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalTasks;
 
 public class JsonSerializableTaskTrackerTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTaskTrackerTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsTaskTracker.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonTaskTracker.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonTaskTracker.json");
+    private static final Path TYPICAL_TASKS_FILE = TEST_DATA_FOLDER.resolve("typicalTasksTaskTracker.json");
+    private static final Path INVALID_TASK_FILE = TEST_DATA_FOLDER.resolve("invalidTaskTaskTracker.json");
+    private static final Path DUPLICATE_TASK_FILE = TEST_DATA_FOLDER.resolve("duplicateTaskTaskTracker.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableTaskTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+    public void toModelType_typicalTasksFile_success() throws Exception {
+        JsonSerializableTaskTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTaskTracker.class).get();
         TaskTracker taskTrackerFromFile = dataFromFile.toModelType();
-        TaskTracker typicalPersonsTaskTracker = TypicalPersons.getTypicalTaskTracker();
-        assertEquals(taskTrackerFromFile, typicalPersonsTaskTracker);
+        TaskTracker typicalTasksTaskTracker = TypicalTasks.getTypicalTaskTracker();
+        assertEquals(taskTrackerFromFile, typicalTasksTaskTracker);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableTaskTracker dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+    public void toModelType_invalidTaskFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableTaskTracker dataFromFile = JsonUtil.readJsonFile(INVALID_TASK_FILE,
                 JsonSerializableTaskTracker.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableTaskTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+    public void toModelType_duplicateTasks_throwsIllegalValueException() throws Exception {
+        JsonSerializableTaskTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TASK_FILE,
                 JsonSerializableTaskTracker.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableTaskTracker.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableTaskTracker.MESSAGE_DUPLICATE_TASK,
                 dataFromFile::toModelType);
     }
 

@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalTaskTracker;
+import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.HOON;
+import static seedu.address.testutil.TypicalTasks.IDA;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskTracker;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonTaskTrackerStorageTest {
     }
 
     @Test
-    public void readTaskTracker_invalidPersonTaskTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTaskTracker("invalidPersonTaskTracker.json"));
+    public void readTaskTracker_invalidTaskTaskTracker_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTaskTracker("invalidTaskTaskTracker.json"));
     }
 
     @Test
-    public void readTaskTracker_invalidAndValidPersonTaskTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTaskTracker("invalidAndValidPersonTaskTracker.json"));
+    public void readTaskTracker_invalidAndValidTaskTaskTracker_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTaskTracker("invalidAndValidTaskTaskTracker.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonTaskTrackerStorageTest {
         assertEquals(original, new TaskTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addTask(HOON);
+        original.removeTask(ALICE);
         jsonTaskTrackerStorage.saveTaskTracker(original, filePath);
         readBack = jsonTaskTrackerStorage.readTaskTracker(filePath).get();
         assertEquals(original, new TaskTracker(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addTask(IDA);
         jsonTaskTrackerStorage.saveTaskTracker(original); // file path not specified
         readBack = jsonTaskTrackerStorage.readTaskTracker().get(); // file path not specified
         assertEquals(original, new TaskTracker(readBack));
