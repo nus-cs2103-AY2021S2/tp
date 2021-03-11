@@ -66,13 +66,13 @@ public class FindTagCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredTaskList());
     }
 
-    //buggy
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("TP Project PAQ");
-        FindTagCommand command = new FindTagCommand(predicate);
-        expectedModel.updateFilteredTaskList(predicate);
+//        NameContainsKeywordsPredicate predicate = preparePredicate("TP Project PAQ");
+        Tag pred = new Tag("TP Project PAQ");
+        FindTagCommand command = new FindTagCommand(pred);
+        expectedModel.updateFilteredTaskList(command.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TP, PROJECT, PAQ), model.getFilteredTaskList());
     }
