@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindCategoryCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.flashcard.CategoryContainsKeywordsPredicate;
