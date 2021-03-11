@@ -24,7 +24,7 @@ public class SampleDataUtil {
                 new Description("Not include CSP."), new DoneStatus(false),
                 getTagSet("highPriority")),
             new Task(new Name("Team Project"), new Deadline("2021-03-15 16:00"), new Module("CS2103T"),
-                new Description("Wrap up version 1.2."), new DoneStatus(false), getTagSet())
+                new Description("Wrap up version 1.2."), new DoneStatus(true), getTagSet())
         };
     }
 
