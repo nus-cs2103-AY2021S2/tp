@@ -38,7 +38,7 @@ public class EditEndpointDescriptorBuilder {
 
     /**
      * Sets the {@code Name} of the {@code EditEndpointDescriptor} that we are
-     * building.
+     * building. //to-do refactor this from withName to withMethod (CommandTestUtil Class)
      */
     public EditEndpointDescriptorBuilder withName(String name) {
         descriptor.setMethod(new Method(name));

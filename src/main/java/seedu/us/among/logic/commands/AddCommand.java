@@ -22,7 +22,7 @@ public class AddCommand extends Command {
             + COMMAND_WORD + " "
             + PREFIX_METHOD + "get "
             + PREFIX_ADDRESS + "http://localhost:3000/ "
-            + PREFIX_DATA + "{some data} "
+            + PREFIX_DATA + "{some: data} "
             + PREFIX_HEADER + "\"key: value\" "
             + PREFIX_HEADER + "\"key: value\" "
             + PREFIX_TAG + "local "
