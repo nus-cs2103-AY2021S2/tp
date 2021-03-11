@@ -41,4 +41,11 @@ public class Budget {
         }
         return String.format("$%.2f", amount);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Budget
+                && Double.compare(amount, ((Budget) other).amount) == 0);
+    }
 }
