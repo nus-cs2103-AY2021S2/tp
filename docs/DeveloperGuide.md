@@ -269,7 +269,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
 | `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
-| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily                                                 |
+| `* *`    | insurance agent                            | sort my clients by name        | see my clients in a more organized way                                 |
 
 *{More to be added}*
 
