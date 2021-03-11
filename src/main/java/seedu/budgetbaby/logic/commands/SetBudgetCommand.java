@@ -6,6 +6,9 @@ import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.budget.Budget;
 
+/**
+ * Sets a budget for the following months.
+ */
 public class SetBudgetCommand extends BudgetBabyCommand {
     public static final String COMMAND_WORD = "set-bg";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the budget for the following months."
@@ -14,6 +17,10 @@ public class SetBudgetCommand extends BudgetBabyCommand {
 
     private final Budget toSet;
 
+    /**
+     * Creates a SetBudgetCommand to set the specified {@code Budget}
+     * @param budget The specified Budget.
+     */
     public SetBudgetCommand(Budget budget) {
         requireNonNull(budget);
         toSet = budget;
