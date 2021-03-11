@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+//import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -23,7 +23,7 @@ public class Birthday {
      *
      * @param birthday A valid birthday.
      */
-    public Birthday(String birthday) throws DateTimeParseException{
+    public Birthday(String birthday) throws DateTimeParseException {
         requireNonNull(birthday);
         //checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.birthday = LocalDate.parse(birthday);
