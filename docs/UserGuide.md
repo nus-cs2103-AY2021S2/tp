@@ -16,7 +16,7 @@ StoreMando is a **desktop app for managing inventory, optimized for use via a Co
 
 1. Download the latest `storemando.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-2/tp) **(link not yet available)**.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your StoreMando.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -169,7 +169,7 @@ StoreMando data are saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-StoreMando data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+StoreMando data are saved as a JSON file `[JAR file location]/data/storemando.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, StoreMando will discard all data and start with an empty data file at the next run.
@@ -200,7 +200,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous StoreMando home folder.
 
 **Q**: What if I want to have more features implemented in the product?
 **A**: Feel free to contact us at e0406389@u.nus.edu!
