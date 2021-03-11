@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,6 +27,7 @@ public class Authentication {
     /** Path of the .json file containing the serialized address book */
     private Path filePath;
     private Optional<String> password;
+
 
     /**
      * Instantiates an Authentication object with the path of the data .json file.
@@ -65,6 +67,7 @@ public class Authentication {
      * @return true if the locked zip exists, false otherwise.
      */
     public boolean isExistsZip() {
+        System.out.println("Checking if zip exists");
         return Files.exists(Paths.get(this.getZipPath()));
     }
 
@@ -101,6 +104,26 @@ public class Authentication {
             logger.info("Failed to lock data file into a zip file");
             throw e;
         }
+    }
+
+    /**
+     * Sets a hook to lock the data .json file in the zip file when the application closes.
+     */
+    public void setShutDownHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                System.out.println("Locking .json");
+                this.lock();
+                this.deleteJson();
+            } catch (ZipException e) {
+                e.printStackTrace();
+            }
+        }));
+    }
+
+    private void deleteJson() {
+        File dataJson = new File(this.filePath.toString());
+        dataJson.delete();
     }
 
     private boolean attemptUnzip(String password) throws ZipException {

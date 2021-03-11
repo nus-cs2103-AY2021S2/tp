@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import net.lingala.zip4j.exception.ZipException;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
@@ -62,6 +63,7 @@ public class MainApp extends Application {
         if (authentication.isExistsZip()) {
             authentication.unlock();
         }
+        authentication.setShutDownHook();
 
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
