@@ -11,6 +11,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TRIPDAYS = new Prefix("d/");
     public static final Prefix PREFIX_TRIPTIMES = new Prefix("h/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
-
+    public static final Prefix PREFIX_TAG = new Prefix("tag/");
+    public static final Prefix PREFIX_TRIPDAY = new Prefix("d/");
+    public static final Prefix PREFIX_TRIPTIME = new Prefix("t/");
 }

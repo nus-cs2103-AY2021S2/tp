@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,6 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.person.Address;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,4 +109,25 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    // TODO: update documentation
+
+    public static TripDay parseTripDay(String tripDay) throws ParseException {
+        requireNonNull(tripDay);
+        String trimmedTripDay = tripDay.trim();
+        if (!TripDay.isValidTripDay(tripDay)) {
+            throw new ParseException(TripDay.MESSAGE_CONSTRAINTS);
+        }
+        return new TripDay(trimmedTripDay);
+    }
+
+    public static TripTime parseTripTime(String tripTime) throws ParseException {
+        requireNonNull(tripTime);
+        String trimmedTripTime = tripTime.trim();
+        if (!TripTime.isValidTripTime(tripTime)) {
+            throw new ParseException(TripTime.MESSAGE_CONSTRAINTS);
+        }
+        return new TripTime(trimmedTripTime);
+    }
+
 }

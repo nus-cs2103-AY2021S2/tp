@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,12 +26,11 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    public static final TripDay STUB_TRIPDAY = new TripDay("monday");
-    public static final TripTime STUB_TRIPTIME = new TripTime("2300");
-
     private final String name;
     private final String phone;
     private final String address;
+    private final String tripDay;
+    private final String tripTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,11 +38,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDay,
+            @JsonProperty("tripTime") String tripTime, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.address = address;
+        this.tripDay = tripDay;
+        this.tripTime = tripTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,6 +57,8 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         address = source.getAddress().value;
+        tripDay = source.getTripDay().value.toString();
+        tripTime = source.getTripTime().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -95,8 +99,24 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (tripDay == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TripDay.class.getSimpleName()));
+        }
+        if (!TripDay.isValidTripDay(tripDay)) {
+            throw new IllegalValueException(TripDay.MESSAGE_CONSTRAINTS);
+        }
+        final TripDay modelTripDay = new TripDay(tripDay);
+
+        if (tripTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TripTime.class.getSimpleName()));
+        }
+        if (!TripTime.isValidTripTime(tripTime)) {
+            throw new IllegalValueException(TripTime.MESSAGE_CONSTRAINTS);
+        }
+        final TripTime modelTripTime = new TripTime(tripTime);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelAddress, STUB_TRIPDAY, STUB_TRIPTIME, modelTags);
+        return new Person(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
     }
 
 }

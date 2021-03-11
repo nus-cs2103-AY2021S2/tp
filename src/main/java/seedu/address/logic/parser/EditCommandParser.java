@@ -2,12 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAYS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIMES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -60,14 +55,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_TRIPDAYS).isPresent()) {
-            editPersonDescriptor.setTripDays(
-                    STUB_TRIPDAY
-            );
+            editPersonDescriptor.setTripDay(ParserUtil.parseTripDay(argMultimap.getValue(PREFIX_TRIPDAY).get()));
         }
         if (argMultimap.getValue(PREFIX_TRIPTIMES).isPresent()) {
-            editPersonDescriptor.setTripTimes(
-                    STUB_TRIPTIME
-            );
+            editPersonDescriptor.setTripTime(ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
