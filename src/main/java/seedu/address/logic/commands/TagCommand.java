@@ -30,11 +30,15 @@ public class TagCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "form teacher";
-    private final Index index;
-    private final Set<Tag> tags;
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s";
 
+    private final Index index;
+    private final Set<Tag> tags;
 
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param tags Set of tags to be appended to the person
+     */
     public TagCommand(Index index, Set<Tag> tags) {
         this.index = index;
         this.tags = tags;
