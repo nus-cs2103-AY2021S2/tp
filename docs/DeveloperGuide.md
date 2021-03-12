@@ -277,7 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | Reflective user | Archive past birthday celebrations | Revisit previous birthday celebration and their details for reuse |
 | `*` | CCA welfare IC with many sub-groups | Color tags | Differentiate contacts easily |
 | `**` | Welfare IC who plans ahead of time | Search date | See all birthdays on that day |
-| `* *` | Night owl | Enable dark mode | Use the app safely in dark environments |
+| `**` | Night owl | Enable dark mode | Use the app safely in dark environments |
 | `*` | Overworked welfare IC | See all upcoming birthdays as a weekly view / monthly calendar | Prioritize birthdays to plan |
 | `*` | Satisfied user | Share the application with my family and friends | Encourage close contacts to use the application |
 
