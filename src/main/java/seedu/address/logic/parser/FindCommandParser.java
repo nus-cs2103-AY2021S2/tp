@@ -1,12 +1,17 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 
 import java.util.Arrays;
 
+import seedu.address.logic.commands.FindCategoryCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.flashcard.CategoryContainsKeywordsPredicate;
+import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -15,19 +20,72 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * and returns a correct FindCommand object according to criteria for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.isEmpty() || trimmedArgs.length() < 2) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        String searchCriteria = trimmedArgs.substring(0, 2);
+        trimmedArgs = trimmedArgs.substring(2).trim();
+        if (invalidSearchCriteria(searchCriteria) || trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return findCommandByCriteria(searchCriteria, nameKeywords);
+    }
+
+    /**
+     * Returns a boolean stating whether the search criteria is valid.
+     *
+     * @param searchCriteria Field that the user wants to search by.
+     * @return True if search criteria is not valid. False if search criteria is valid.
+     */
+    public boolean invalidSearchCriteria(String searchCriteria) {
+        return (!isQuestion(searchCriteria)
+                && !isCategory(searchCriteria));
+    }
+
+    /**
+     * Returns a boolean stating whether the search criteria is according to question.
+     *
+     * @param searchCriteria Field that the user wants to search by.
+     * @return True if search criteria is according to question. False otherwise.
+     */
+    public boolean isQuestion(String searchCriteria) {
+        return searchCriteria.equals(PREFIX_QUESTION.getPrefix());
+    }
+
+    /**
+     * Returns a boolean stating whether the search criteria is according to category.
+     *
+     * @param searchCriteria Field that the user wants to search by.
+     * @return True if search criteria is according to category. False otherwise.
+     */
+    public boolean isCategory(String searchCriteria) {
+        return searchCriteria.equals(PREFIX_CATEGORY.getPrefix());
+    }
+
+    /**
+     * Returns the FindCommand object according to the search criteria.
+     *
+     * @param searchCriteria Field that the user wants to search by.
+     * @param nameKeywords Keywords the user wish to search by.
+     * @return The FindCommand object according to the search criteria.
+     */
+    public FindCommand findCommandByCriteria(String searchCriteria, String[] nameKeywords) {
+        if (isQuestion(searchCriteria)) {
+            return new FindQuestionCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else {
+            return new FindCategoryCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        }
     }
 
 }

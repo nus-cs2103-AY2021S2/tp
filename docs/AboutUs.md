@@ -31,14 +31,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/vuminhhieunus2019.png" width="200px">
 
-[[github](https://github.com/vuminhhieunus2019)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/vuminhhieunus2019)] [[portfolio](team/vuminhhieu.md)]
 
 * Role: Developer
 * Responsibilities: UI
 
 ### Lim Zi Qiang, Marcus
 
-<img src="images/marcus.png" width="200px">
+<img src="images/marc-97.png" width="200px">
 
 [[github](https://github.com/marc-97)]
 [[portfolio](team/marcus.md)]
@@ -47,7 +47,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Zen Lee
 
-<img src="images/zen.png" width="200px">
+<img src="images/zenlyj.png" width="200px">
 
 [[github](https://github.com/zenlyj)]
 [[portfolio](team/zenlee.md)]

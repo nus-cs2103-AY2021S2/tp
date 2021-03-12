@@ -9,24 +9,59 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 {:toc}
 * Quick start
 *  Features
-    *  Listing all cards: list
-*  Command Summary
+    * Viewing help: `help`
+    * Adding a new card: `add`
+    * Listing all cards: `list`
+    * Deleting a card: `delete`
+    * Viewing a card: `view`
+    * Clearing all cards: `clear`
+    * Exiting the program: `exit`
+    * Saving data
+    * Editing the data file
+    * Filtering cards: `[coming in v2.0]`
+* FAQ
+* Command Summary
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
+
 1. Ensure you have Java 11 or above installed in your Computer.
 1. Download the latest FlashBack.jar.
 1. Copy the file to the folder you want to use as the home folder for your FlashBack.
+1. Double-click the file to start the app. The GUI should appear in a few seconds.
+![GUI](./images/Ui.png)
 1. Type the command in the command box and press Enter to execute it:
-    * **`list`** and pressing Enter to view all the cards by the added order.
+    * **`help`** : Opens the help window.
+    * **`add`**`k/ Einstein’s Equation d/ e=mc^2 t/ Physics`: Adds a new flashcard named `Einstein's Equation` to FlashBack.
+    * **`delete`**`1`: Deletes the 1st card shown in the current list.
+    * **`clear`**: Deletes all cards. 
+    * **`exit`**: Exits the application.
 1. Refer to the Features below for details of each command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+### Viewing help: `help`
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+### Adding a new card: `add`
+
+Adds a new card to the card list.
+
+Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/ TAG]` <br />
+Note: The TAG is optional when adding a new card.
+
+Examples:
+* `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`  
+* `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
+
 
 ### Listing all cards : `list`
 
@@ -34,55 +69,18 @@ Shows all cards in the card list.
 
 Format: `list`
 
+### Deleting a card : `delete`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Deletes the specified card from the card list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the card at the specified `INDEX`.
+* The index refers to the index number shown in the displayed card list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd card in the card list.
 
 ### Viewing a card : `view`
 
@@ -139,4 +137,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
+**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br> e.g., `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`
+**Delete** | `delete INDEX` <br> e.g., `delete 1`
+**View** | `view INDEX` <br> e.g., `view 2`
+**Clear** | `clear`
 **List** | `list`
+**Help** | `help`
+**Exit** | `exit`
+

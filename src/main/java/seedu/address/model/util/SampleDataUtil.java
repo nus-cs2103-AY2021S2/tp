@@ -4,43 +4,61 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.*;
+import seedu.address.model.FlashBack;
+import seedu.address.model.ReadOnlyFlashBack;
+import seedu.address.model.flashcard.*;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code FlashBack} with sample data.
  */
 public class SampleDataUtil {
     public static final Remark EMPTY = new Remark("");
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY,
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY,
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY,
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY,
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY,
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY,
-                getTagSet("colleagues"))
+    public static Flashcard[] getSampleCards() {
+        return new Flashcard[] {
+            new Flashcard(new Question("What is the formula for hydrochloric acid?"),
+                    new Answer("HCl"),
+                    new Category("chemistry 101"),
+                    new Priority("Mid"),
+                    EMPTY,
+                    getTagSet("formula", "chemistry")),
+            new Flashcard(new Question("What is Newton's Second Law of Motion?"),
+                    new Answer("Force = Mass * Acceleration"),
+                    new Category("physics 101"),
+                    new Priority("Mid"),
+                    EMPTY,
+                    getTagSet("mechanics", "physics")),
+            new Flashcard(new Question("What is ATP?"),
+                    new Answer("Adenosine Triphosphate"),
+                    new Category("biology 101"),
+                    new Priority("Mid"),
+                    EMPTY,
+                    getTagSet("biology")),
+            new Flashcard(new Question("What is the time complexity of merge sort"),
+                    new Answer("O(nlogn)"),
+                    new Category("computer science"),
+                    new Priority("High"),
+                    EMPTY,
+                    getTagSet("sorting", "runtime")),
+            new Flashcard(new Question("When did Charles Darwin stop believing in Christianity?"),
+                    new Answer("After the Voyage of the Beagle"),
+                    new Category("history"),
+                    new Priority("Low"),
+                    EMPTY,
+                    getTagSet("Darwinian")),
+            new Flashcard(new Question("What is recursion?"),
+                    new Answer("recursion"),
+                    new Category("computer science"),
+                    new Priority("Low"),
+                    EMPTY,
+                    getTagSet("random"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static ReadOnlyFlashBack getSampleFlashBack() {
+        FlashBack sampleAb = new FlashBack();
+        for (Flashcard sampleFlashcard : getSampleCards()) {
+            sampleAb.addCard(sampleFlashcard);
         }
         return sampleAb;
     }

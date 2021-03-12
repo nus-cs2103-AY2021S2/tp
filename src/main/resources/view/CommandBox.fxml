@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
+<StackPane prefHeight="66.0" prefWidth="149.0" styleClass="stack-pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane fx:id="inputPane" styleClass="pane-no-border" VBox.vgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints percentWidth="100.0" />
+      <ColumnConstraints percentWidth="0.0" />
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints percentHeight="25.0" />
+      <RowConstraints percentHeight="25.0" />
+    </rowConstraints>
+    <TextField fx:id="commandTextField" onAction="#handleCommandEntered" prefHeight="26.0" prefWidth="142.0" promptText="Enter command here..." GridPane.rowIndex="0" />
+    <TextField fx:id="commandKeyword" onAction="#handleCommandEntered" prefHeight="26.0" prefWidth="142.0" promptText="Enter keyword here..." GridPane.rowIndex="1" />
+  </GridPane>
 </StackPane>
-
