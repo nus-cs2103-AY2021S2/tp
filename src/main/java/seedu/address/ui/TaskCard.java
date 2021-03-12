@@ -31,11 +31,11 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label moduleName;
     @FXML
+    private Label moduleCode;
+    @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label email;
+    private Label remark;
     @FXML
     private FlowPane tags;
 
@@ -47,8 +47,8 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         moduleName.setText(task.getModuleName().fullName);
-        phone.setText(task.getPhone().value);
-        email.setText(task.getEmail().value);
+        moduleCode.setText(task.getModuleCode().moduleCode);
+        remark.setText(task.getRemark().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

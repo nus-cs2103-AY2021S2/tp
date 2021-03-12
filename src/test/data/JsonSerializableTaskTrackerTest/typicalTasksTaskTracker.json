@@ -1,39 +1,46 @@
 {
   "_comment": "TaskTracker save file which contains the same Task values as in TypicalTasks#getTypicalTaskTracker()",
   "tasks" : [ {
-    "name" : "Alice Pauline",
+    "moduleName": "Software Engineering",
+    "moduleCode": "CS2103",
     "phone" : "94351253",
     "email" : "alice@example.com",
+    "remark" : "Being a software engineer is fun",
     "tagged" : [ "friends" ]
   }, {
-    "name" : "Benson Meier",
+    "moduleName": "Data Structures and Algorithm",
+    "moduleCode": "CS2040",
     "phone" : "98765432",
     "email" : "johnd@example.com",
+    "remark" : "Favourite pastime: Kattis",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "Carl Kurz",
+    "moduleName": "Programming Methodology I",
+    "moduleCode": "CS1010",
     "phone" : "95352563",
     "email" : "heinz@example.com",
+    "remark" : "PE1",
     "tagged" : [ ]
   }, {
-    "name" : "Daniel Meier",
+    "moduleName": "Programming Methodology II",
+    "moduleCode": "CS2030",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
+    "remark" : "PE2",
     "tagged" : [ "friends" ]
   }, {
-    "name" : "Elle Meyer",
+    "moduleName": "Introduction to Artificial Intelligence",
+    "moduleCode": "CS3243",
     "phone" : "9482224",
     "email" : "werner@example.com",
+    "remark" : "",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "tagged" : [ ]
-  }, {
-    "name" : "George Best",
+    "moduleName": "Computer Organization",
+    "moduleCode": "CS2100",
     "phone" : "9482442",
     "email" : "anna@example.com",
+    "remark" : "",
     "tagged" : [ ]
   } ]
 }

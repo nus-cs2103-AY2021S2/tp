@@ -1,12 +1,15 @@
 {
   "tasks": [ {
-    "name": "Alice Pauline",
+    "moduleName": "Software Engineering",
+    "moduleCode": "CS2103",
     "phone": "94351253",
     "email": "alice@example.com",
-    "tagged": [ "friends" ]
+    "remark" : "Aardvarks"
   }, {
-    "name": "Alice Pauline",
+    "moduleName": "Software Engineering",
+    "moduleCode": "CS2103",
     "phone": "94351253",
-    "email": "pauline@example.com"
+    "email": "alice@example.com",
+    "remark" : "Aardvarks"
   } ]
 }
