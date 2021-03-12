@@ -18,7 +18,7 @@ import dog.pawbook.logic.commands.DeleteOwnerCommand;
  */
 public class DeleteOwnerCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private DeleteOwnerCommandParser parser = new DeleteOwnerCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {

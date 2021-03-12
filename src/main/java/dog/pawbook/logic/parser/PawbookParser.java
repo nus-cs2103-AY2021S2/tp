@@ -86,7 +86,7 @@ public class PawbookParser {
 
         switch (entityType) {
         case DeleteOwnerCommand.ENTITY_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteOwnerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSGAE_UNKNOWN_ENTITY);
