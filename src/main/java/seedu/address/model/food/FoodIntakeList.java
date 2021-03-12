@@ -32,24 +32,19 @@ public class FoodIntakeList {
      */
     public void addFoodIntake(FoodIntake foodIntake) {
         this.foodIntakeList.add(foodIntake);
+        Collections.sort(this.foodIntakeList, new FoodIntakeComparator());
+        for (FoodIntake fdi : this.foodIntakeList) {
+            System.out.println(fdi);
+        }
     }
 
     /**
-     * Removes a FoodIntake object from the FoodIntakeList.
+     * Removes a FoodIntake item by index from the FoodIntakeList.
      *
-     * @param localDate date of the possible food intake item
-     * @param foodName  name of the possible food intake item
+     * @param index index of food intake item
      */
-    public void deleteFoodIntake(LocalDate localDate, String foodName) throws FoodIntakeNotFoundException {
-        for (int i = 0; i < foodIntakeList.size(); i++) {
-            FoodIntake temp = foodIntakeList.get(i);
-            if (temp.getFood().getName().equals(foodName)
-                    && temp.getDate().isEqual(localDate)) {
-                this.foodIntakeList.remove(i);
-                return;
-            }
-        }
-        throw new FoodIntakeNotFoundException();
+    public void deleteFoodIntake(int index) throws FoodIntakeNotFoundException {
+        this.foodIntakeList.remove(index);
     }
 
     /**
@@ -66,40 +61,46 @@ public class FoodIntakeList {
      * Gets all FoodIntake object based on the date provided.
      *
      * @param date filter date
-     * @return all FoodIntake object that are created for that date
+     * @return all FoodIntake object that are created for that date in String output
      */
-    public ObservableList<FoodIntake> getFoodIntakeListByDate(LocalDate date) {
+    public String getFoodIntakeListByDate(LocalDate date) {
+        StringBuilder stringBuilder = new StringBuilder();
         Collections.sort(this.foodIntakeList, new FoodIntakeComparator());
-        ObservableList<FoodIntake> tempList = FXCollections.observableArrayList();
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
             if (foodIntakeList.get(i).getDate().isEqual(date)) {
-                tempList.add(foodIntakeList.get(i));
+                stringBuilder.append(foodIntakeList.get(i) + "\n");
             } else if (foodIntakeList.get(i).getDate().isAfter(date)) {
                 break;
             }
         }
-        return tempList;
+        if (stringBuilder.toString().isEmpty()) {
+            stringBuilder.append("No record found during this date.");
+        }
+        return stringBuilder.toString();
     }
 
     /**
-     * Gets all FoodIntake object based on the date range provided inclusive.
+     * Gets all FoodIntake object based on the date range provided inclusive in String output.
      *
      * @param from start date
      * @param to   end date
-     * @return all FoodIntake object that lies within the date range
+     * @return all FoodIntake object that lies within the date range in String output
      */
-    public ObservableList<FoodIntake> getFoodIntakeListByDateRange(LocalDate from, LocalDate to) {
+    public String getFoodIntakeListByDateRange(LocalDate from, LocalDate to) {
         Collections.sort(this.foodIntakeList, new FoodIntakeComparator());
-        ObservableList<FoodIntake> tempList = FXCollections.observableArrayList();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < this.foodIntakeList.size(); i++) {
             if (foodIntakeList.get(i).getDate().isEqual(from) || foodIntakeList.get(i).getDate().isEqual(to)) {
-                tempList.add(foodIntakeList.get(i));
+                stringBuilder.append(foodIntakeList.get(i) + "\n");
             } else if (foodIntakeList.get(i).getDate().isAfter(from) && foodIntakeList.get(i).getDate().isBefore(to)) {
-                tempList.add(foodIntakeList.get(i));
+                stringBuilder.append(foodIntakeList.get(i) + "\n");
             } else if (foodIntakeList.get(i).getDate().isAfter(to)) {
                 break;
             }
         }
-        return tempList;
+        if (stringBuilder.toString().isEmpty()) {
+            stringBuilder.append("No record found during this period of time.");
+        }
+        return stringBuilder.toString();
     }
 }
