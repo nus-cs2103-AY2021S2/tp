@@ -56,7 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        ResidenceTrackerStorage residenceTrackerStorage = new JsonResidenceTrackerStorage(userPrefs.getAddressBookFilePath());
+        ResidenceTrackerStorage residenceTrackerStorage = 
+            new JsonResidenceTrackerStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(residenceTrackerStorage, userPrefsStorage);
 
         initLogging(config);
