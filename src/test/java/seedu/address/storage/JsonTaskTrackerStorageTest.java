@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.CS2103;
 import static seedu.address.testutil.TypicalTasks.HOON;
 import static seedu.address.testutil.TypicalTasks.IDA;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskTracker;
@@ -73,7 +73,7 @@ public class JsonTaskTrackerStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addTask(HOON);
-        original.removeTask(ALICE);
+        original.removeTask(CS2103);
         jsonTaskTrackerStorage.saveTaskTracker(original, filePath);
         readBack = jsonTaskTrackerStorage.readTaskTracker(filePath).get();
         assertEquals(original, new TaskTracker(readBack));

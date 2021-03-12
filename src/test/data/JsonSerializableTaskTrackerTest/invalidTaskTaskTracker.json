@@ -1,7 +1,7 @@
 {
   "tasks": [ {
-    "name": "Hans Muster",
-    "code": "CS2103",
+    "moduleName": "Software Engineering",
+    "moduleCode": "2103CS",
     "phone": "9482424",
     "email": "invalid@email!3e"
   } ]

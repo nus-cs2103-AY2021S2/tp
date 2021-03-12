@@ -1,12 +1,12 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
-    "code" : "CS2103",
+  "tasks": [ {
+    "moduleName": "Valid Task",
+    "moduleCode" : "CS2103",
     "phone": "9482424",
     "email": "hans@example.com"
   }, {
-    "name": "Person With Invalid Phone Field",
-    "code" : "CS2103",
+    "moduleName": "Person With Invalid module code",
+    "moduleCode" : "2103CS",
     "phone": "948asdf2424",
     "email": "hans@example.com"
   } ]

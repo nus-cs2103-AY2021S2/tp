@@ -17,10 +17,10 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "Software Engineerings";
     public static final String DEFAULT_CODE = "CS2103";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_PHONE = "85355256";
+    public static final String DEFAULT_EMAIL = "amy2@gmail.com";
     public static final String DEFAULT_REMARK = "";
 
     private ModuleName moduleName;
