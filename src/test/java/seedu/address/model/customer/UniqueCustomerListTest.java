@@ -14,8 +14,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.customer.exceptions.DuplicateCustomerException;
 import seedu.address.model.customer.exceptions.CustomerNotFoundException;
+import seedu.address.model.customer.exceptions.DuplicateCustomerException;
 import seedu.address.testutil.CustomerBuilder;
 
 public class UniqueCustomerListTest {
@@ -42,7 +42,7 @@ public class UniqueCustomerListTest {
     public void contains_customerWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCustomerList.add(ALICE);
         Customer editedAlice = new CustomerBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         assertTrue(uniqueCustomerList.contains(editedAlice));
     }
 
@@ -85,7 +85,7 @@ public class UniqueCustomerListTest {
     public void setCustomer_editedCustomerHasSameIdentity_success() {
         uniqueCustomerList.add(ALICE);
         Customer editedAlice = new CustomerBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         uniqueCustomerList.setCustomer(ALICE, editedAlice);
         UniqueCustomerList expectedUniqueCustomerList = new UniqueCustomerList();
         expectedUniqueCustomerList.add(editedAlice);
@@ -158,7 +158,8 @@ public class UniqueCustomerListTest {
     @Test
     public void setCustomers_listWithDuplicateCustomers_throwsDuplicateCustomerException() {
         List<Customer> listWithDuplicateCustomers = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateCustomerException.class, () -> uniqueCustomerList.setCustomers(listWithDuplicateCustomers));
+        assertThrows(DuplicateCustomerException.class, ()
+            -> uniqueCustomerList.setCustomers(listWithDuplicateCustomers));
     }
 
     @Test

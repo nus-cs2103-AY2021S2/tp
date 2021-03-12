@@ -25,9 +25,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditCustomerDescriptorBuilder;
 import seedu.address.testutil.CustomerBuilder;
 import seedu.address.testutil.CustomerUtil;
+import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 public class AddressBookParserTest {
 
@@ -49,7 +49,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_CUSTOMER), command);
     }
 
@@ -58,7 +58,7 @@ public class AddressBookParserTest {
         Customer customer = new CustomerBuilder().build();
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
+            + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_CUSTOMER, descriptor), command);
     }
 
@@ -72,7 +72,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 

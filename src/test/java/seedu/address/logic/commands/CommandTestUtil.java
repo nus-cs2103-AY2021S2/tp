@@ -17,8 +17,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 /**
@@ -62,20 +62,19 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
-     * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-     * - the {@code actualModel} matches {@code expectedModel}
+     * Executes the given {@code command}, confirms that <br> - the returned {@link CommandResult} matches {@code
+     * expectedCommandResult} <br> - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -86,20 +85,19 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-     * that takes a string {@code expectedMessage}.
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)} that takes a string
+     * {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
-     * Executes the given {@code command}, confirms that <br>
-     * - a {@code CommandException} is thrown <br>
-     * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered customer list and selected customer in {@code actualModel} remain unchanged
+     * Executes the given {@code command}, confirms that <br> - a {@code CommandException} is thrown <br> - the
+     * CommandException message matches {@code expectedMessage} <br> - the address book, filtered customer list and
+     * selected customer in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -111,9 +109,10 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredCustomerList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the {@code
+     * model}'s address book.
      */
     public static void showCustomerAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCustomerList().size());

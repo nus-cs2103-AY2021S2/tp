@@ -9,8 +9,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.UniqueCustomerList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameCustomer comparison)
+ * Wraps all data at the address-book level Duplicates are not allowed (by .isSameCustomer comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -23,11 +22,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
+
     {
         customers = new UniqueCustomerList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Customers in the {@code toBeCopied}
@@ -40,8 +41,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the customer list with {@code customers}.
-     * {@code customers} must not contain duplicate customers.
+     * Replaces the contents of the customer list with {@code customers}. {@code customers} must not contain duplicate
+     * customers.
      */
     public void setCustomers(List<Customer> customers) {
         this.customers.setCustomers(customers);
@@ -67,17 +68,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a customer to the address book.
-     * The customer must not already exist in the address book.
+     * Adds a customer to the address book. The customer must not already exist in the address book.
      */
     public void addCustomer(Customer p) {
         customers.add(p);
     }
 
     /**
-     * Replaces the given customer {@code target} in the list with {@code editedCustomer}.
-     * {@code target} must exist in the address book.
-     * The customer identity of {@code editedCustomer} must not be the same as another existing customer in the address book.
+     * Replaces the given customer {@code target} in the list with {@code editedCustomer}. {@code target} must exist in
+     * the address book. The customer identity of {@code editedCustomer} must not be the same as another existing
+     * customer in the address book.
      */
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireNonNull(editedCustomer);
@@ -86,8 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in the address book.
      */
     public void removeCustomer(Customer key) {
         customers.remove(key);
@@ -109,8 +108,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && customers.equals(((AddressBook) other).customers));
+            || (other instanceof AddressBook // instanceof handles nulls
+            && customers.equals(((AddressBook) other).customers));
     }
 
     @Override

@@ -8,16 +8,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.customer.exceptions.DuplicateCustomerException;
 import seedu.address.model.customer.exceptions.CustomerNotFoundException;
+import seedu.address.model.customer.exceptions.DuplicateCustomerException;
 
 /**
- * A list of customers that enforces uniqueness between its elements and does not allow nulls.
- * A customer is considered unique by comparing using {@code Customer#isSameCustomer(Customer)}. As such, adding and updating of
- * customers uses Customer#isSameCustomer(Customer) for equality so as to ensure that the customer being added or updated is
- * unique in terms of identity in the UniqueCustomerList. However, the removal of a customer uses Customer#equals(Object) so
- * as to ensure that the customer with exactly the same fields will be removed.
- *
+ * A list of customers that enforces uniqueness between its elements and does not allow nulls. A customer is considered
+ * unique by comparing using {@code Customer#isSameCustomer(Customer)}. As such, adding and updating of customers uses
+ * Customer#isSameCustomer(Customer) for equality so as to ensure that the customer being added or updated is unique in
+ * terms of identity in the UniqueCustomerList. However, the removal of a customer uses Customer#equals(Object) so as to
+ * ensure that the customer with exactly the same fields will be removed.
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Customer#isSameCustomer(Customer)
@@ -26,7 +26,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
 
     private final ObservableList<Customer> internalList = FXCollections.observableArrayList();
     private final ObservableList<Customer> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent customer as the given argument.
@@ -37,8 +37,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
-     * Adds a customer to the list.
-     * The customer must not already exist in the list.
+     * Adds a customer to the list. The customer must not already exist in the list.
      */
     public void add(Customer toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +48,9 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
-     * Replaces the customer {@code target} in the list with {@code editedCustomer}.
-     * {@code target} must exist in the list.
-     * The customer identity of {@code editedCustomer} must not be the same as another existing customer in the list.
+     * Replaces the customer {@code target} in the list with {@code editedCustomer}. {@code target} must exist in the
+     * list. The customer identity of {@code editedCustomer} must not be the same as another existing customer in the
+     * list.
      */
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireAllNonNull(target, editedCustomer);
@@ -69,8 +68,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
-     * Removes the equivalent customer from the list.
-     * The customer must exist in the list.
+     * Removes the equivalent customer from the list. The customer must exist in the list.
      */
     public void remove(Customer toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +83,8 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
-     * Replaces the contents of this list with {@code customers}.
-     * {@code customers} must not contain duplicate customers.
+     * Replaces the contents of this list with {@code customers}. {@code customers} must not contain duplicate
+     * customers.
      */
     public void setCustomers(List<Customer> customers) {
         requireAllNonNull(customers);
@@ -112,8 +110,8 @@ public class UniqueCustomerList implements Iterable<Customer> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueCustomerList // instanceof handles nulls
-                        && internalList.equals(((UniqueCustomerList) other).internalList));
+            || (other instanceof UniqueCustomerList // instanceof handles nulls
+            && internalList.equals(((UniqueCustomerList) other).internalList));
     }
 
     @Override
