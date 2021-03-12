@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-HippoCampus is a **desktop app for managing contacts and tasks, optimised for use via a Command Line Interface** (CLI) while still having the benefits of Graphical User Interface (GUI). If you can type fast, HippoCampus can get your contact management tasks done faster than traditional GUI apps.
+PartyPlanet is a **desktop app for managing birthdays of contacts, optimised for use via a Command Line 
+Interface** (CLI) while still having the benefits of Graphical User Interface (GUI). If you can type fast, 
+PartyPlanet can get the planning of your birthday celebrations done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +16,7 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `HippoCampus.jar` from [here](https://github.com/AY2021S2-CS2103-W16-3/tp/releases).
+2. Download the latest `PartyPlanet.jar` from [here](https://github.com/AY2021S2-CS2103-W16-3/tp/releases).
 
 3. Double-click the file to start the app.<br>
    ![Ui](images/Ui.png)
@@ -49,7 +51,7 @@ HippoCampus is a **desktop app for managing contacts and tasks, optimised for us
 
 ### Adding contacts : `add`
 
-Adds a person to the HippoCampus' Contacts List.
+Adds a person to the PartyPlanet's Contacts List.
 
 Format: `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​`<br>
 * The birthday must be in a valid date format, e.g. 13 Jan
@@ -59,13 +61,13 @@ Examples:
 
 ### Clearing all data : `clear`
 
-Removes all contacts from the HippoCamus' Contact List.
+Removes all contacts from the PartyPlanet's Contact List.
 
 Format: `clear`
 
 ### Deleting contacts : `delete`
 
-Deletes the specified person from the HippoCamus' Contact List.
+Deletes the specified person from the PartyPlanet's Contact List.
 
 Format: `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`
 * If provided with index(es)
@@ -84,7 +86,7 @@ Examples:
 
 ### Editing contacts : `edit`
 
-Edits an existing person in the HippoCamus' Contact List.
+Edits an existing person in the PartyPlanet's Contact List.
 
 Format: `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]`
 
@@ -113,7 +115,7 @@ Examples:
 
 ### Listing contacts : `list`
 
-Shows a list of all persons in the HippoCamus' Contact List.
+Shows a list of all persons in the PartyPlanet's Contact List.
 
 Format: `list [-s SORT_ORDER]`
 * List out all contacts by default.
@@ -124,7 +126,7 @@ Format: `list [-s SORT_ORDER]`
   * `bday`: in ascending order from Jan-01 to Dec-31
 
 Examples:
-* `list` Lists out all the contacts in HippoCampus.
+* `list` Lists out all the contacts in PartyPlanet.
 * `list -s asc` Lists out all the contacts in ascending lexicographical order.
 
 ### Finding tags : `tags`
@@ -170,7 +172,7 @@ Format: `exit`
 ## FAQ
 
 **Q**: **What is the name of your application?**<br>
-**A**: HippoCampus
+**A**: PartyPlanet
 
 **Q**: **How much does it cost?**<br>
 **A**: Free!
