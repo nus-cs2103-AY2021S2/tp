@@ -1,4 +1,4 @@
-package seedu.address.model.property.client;
+package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.DuplicatePropertyException;
+import seedu.address.model.property.exceptions.PropertyNotFoundException;
 
 public class UniquePropertyList implements Iterable<Property> {
 
@@ -32,7 +32,7 @@ public class UniquePropertyList implements Iterable<Property> {
     public void add(Property toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            //throw new DuplicatePropertyException();
+            throw new DuplicatePropertyException();
         }
         internalList.add(toAdd);
     }
@@ -47,11 +47,11 @@ public class UniquePropertyList implements Iterable<Property> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            //throw new PropertyNotFoundException();
+            throw new PropertyNotFoundException();
         }
 
         if (!target.isSameProperty(editedProperty) && contains(editedProperty)) {
-            //throw new DuplicatePropertyException();
+            throw new DuplicatePropertyException();
         }
 
         internalList.set(index, editedProperty);
@@ -64,26 +64,26 @@ public class UniquePropertyList implements Iterable<Property> {
     public void remove(Property toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            //throw new PropertyNotFoundException();
+            throw new PropertyNotFoundException();
         }
     }
 
-    public void setPropertys(UniquePropertyList replacement) {
+    public void setProperties(UniquePropertyList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code Propertys}.
-     * {@code Propertys} must not contain duplicate Propertys.
+     * Replaces the contents of this list with {@code properties}.
+     * {@code properties} must not contain duplicate Properties.
      */
-    public void setPropertys(List<Property> Propertys) {
-        requireAllNonNull(Propertys);
-        if (!PropertysAreUnique(Propertys)) {
-            //throw new DuplicatePropertyException();
+    public void setProperties(List<Property> properties) {
+        requireAllNonNull(properties);
+        if (!propertiesAreUnique(properties)) {
+            throw new DuplicatePropertyException();
         }
 
-        internalList.setAll(Propertys);
+        internalList.setAll(properties);
     }
 
     /**
@@ -111,16 +111,17 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
-     * Returns true if {@code Propertys} contains only unique Propertys.
+     * Returns true if {@code Properties} contains only unique Properties.
      */
-    private boolean PropertysAreUnique(List<Property> Propertys) {
-        for (int i = 0; i < Propertys.size() - 1; i++) {
-            for (int j = i + 1; j < Propertys.size(); j++) {
-                if (Propertys.get(i).isSameProperty(Propertys.get(j))) {
+    private boolean propertiesAreUnique(List<Property> properties) {
+        for (int i = 0; i < properties.size() - 1; i++) {
+            for (int j = i + 1; j < properties.size(); j++) {
+                if (properties.get(i).isSameProperty(properties.get(j))) {
                     return false;
                 }
             }
         }
         return true;
     }
+
 }
