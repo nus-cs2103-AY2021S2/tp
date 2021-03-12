@@ -16,7 +16,7 @@ import seedu.address.testutil.TypicalFlashcards;
 public class JsonSerializableFlashBackTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
-            "data", "JsonSerializableAddressBookTest");
+            "data", "JsonSerializableFlashBackTest");
     private static final Path TYPICAL_FLASHCARDS_FILE = TEST_DATA_FOLDER.resolve("typicalFlashcardFlashBack.json");
     private static final Path INVALID_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("invalidFlashcardFlashBack.json");
     private static final Path DUPLICATE_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("duplicateFlashcardFlashBack.json");
