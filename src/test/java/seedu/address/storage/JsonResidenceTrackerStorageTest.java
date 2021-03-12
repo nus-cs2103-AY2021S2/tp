@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ResidenceTracker;
 import seedu.address.model.ReadOnlyResidenceTracker;
+import seedu.address.model.ResidenceTracker;
 
 public class JsonResidenceTrackerStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -31,7 +31,8 @@ public class JsonResidenceTrackerStorageTest {
     }
 
     private java.util.Optional<ReadOnlyResidenceTracker> readAddressBook(String filePath) throws Exception {
-        return new JsonResidenceTrackerStorage(Paths.get(filePath)).readResidenceTracker(addToTestDataPathIfNotNull(filePath));
+        return new JsonResidenceTrackerStorage(Paths.get(filePath))
+            .readResidenceTracker(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
