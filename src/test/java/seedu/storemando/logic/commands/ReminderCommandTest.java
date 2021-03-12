@@ -18,7 +18,6 @@ import seedu.storemando.model.UserPrefs;
 import seedu.storemando.model.item.ItemExpiringPredicate;
 
 public class ReminderCommandTest {
-    private final Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
 
     @Test
@@ -28,28 +27,28 @@ public class ReminderCommandTest {
         ItemExpiringPredicate secondPredicate =
             new ItemExpiringPredicate((long) 7);
 
-       ReminderCommand ReminderFirstCommand = new ReminderCommand(firstPredicate);
-       ReminderCommand ReminderSecondCommand = new ReminderCommand(secondPredicate);
+        ReminderCommand reminderFirstCommand = new ReminderCommand(firstPredicate);
+        ReminderCommand reminderSecondCommand = new ReminderCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(ReminderFirstCommand.equals(ReminderFirstCommand));
+        assertTrue(reminderFirstCommand.equals(reminderFirstCommand));
 
         // same values -> returns true
-       ReminderCommand ReminderFirstCommandCopy = new ReminderCommand(firstPredicate);
-        assertTrue(ReminderFirstCommand.equals(ReminderFirstCommandCopy));
+        ReminderCommand reminderFirstCommandCopy = new ReminderCommand(firstPredicate);
+        assertTrue(reminderFirstCommand.equals(reminderFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(ReminderFirstCommand.equals(1));
+        assertFalse(reminderFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(ReminderFirstCommand.equals(null));
+        assertFalse(reminderFirstCommand.equals(null));
 
         // different Item -> returns false
-        assertFalse(ReminderFirstCommand.equals(ReminderSecondCommand));
+        assertFalse(reminderFirstCommand.equals(reminderSecondCommand));
     }
 
     @Test
-    public void execute_MultipleItemsFound() {
+    public void execute_multipleItemsFound() {
         ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 60);
         expectedModel.updateFilteredItemList(predicate);
         assertEquals(Arrays.asList(ELLE, FIONA, GEORGE), expectedModel.getFilteredItemList());
