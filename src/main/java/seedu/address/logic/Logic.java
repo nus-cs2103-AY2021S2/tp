@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,11 +25,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ResidenceTracker.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getResidenceTracker()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyResidenceTracker getResidenceTracker();
 
     /**
      * Returns an unmodifiable view of the filtered list of persons
@@ -37,9 +37,9 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' residence tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getResidenceTrackerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
