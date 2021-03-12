@@ -1,14 +1,17 @@
 package seedu.address.ui;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.ui.exceptions.InvalidThemeException;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.ui.exceptions.InvalidThemeException;
 
 public class ThemeFactoryTest {
 
@@ -21,10 +24,10 @@ public class ThemeFactoryTest {
     private static final String DEFAULT_FOREGROUND = "#f8f8f2";
     private static final String DEFAULT_BACKGROUND = "#272822";
     private static final String[] DEFAULT_COLOR = new String[] {
-            "#272822", "#f92672", "#a6e22e", "#f4bf75",
-            "#66d9ef", "#ae81ff", "#a1efe4", "#f8f8f2",
-            "#75715e", "#f92672", "#a6e22e", "#f4bf75",
-            "#66d9ef", "#ae81ff", "#a1efe4", "#f9f8f5"
+        "#272822", "#f92672", "#a6e22e", "#f4bf75",
+        "#66d9ef", "#ae81ff", "#a1efe4", "#f8f8f2",
+        "#75715e", "#f92672", "#a6e22e", "#f4bf75",
+        "#66d9ef", "#ae81ff", "#a1efe4", "#f9f8f5"
     };
 
     private static final Theme DEFAULT_THEME = ThemeFactory.getDefaultTheme();
@@ -42,23 +45,15 @@ public class ThemeFactoryTest {
     }
 
     @Test void themeFactory_loadInvalidTheme_failure() {
-        assertThrows(
-                FileNotFoundException.class,
-                () -> ThemeFactory.load(NOT_EXIST_PATH),
+        assertThrows(FileNotFoundException.class, () -> ThemeFactory.load(NOT_EXIST_PATH),
                 new FileNotFoundException().toString());
 
-        assertThrows(
-                InvalidThemeException.class,
-                () -> ThemeFactory.load(INVALID_THEME_PATH),
+        assertThrows(InvalidThemeException.class, () -> ThemeFactory.load(INVALID_THEME_PATH),
                 new InvalidThemeException("Invalid theme supplied").toString());
 
-        assertThrows(
-                DataConversionException.class,
-                () -> ThemeFactory.load(INVALID_JSON_PATH));
+        assertThrows(DataConversionException.class, () -> ThemeFactory.load(INVALID_JSON_PATH));
 
-        assertThrows(
-                DataConversionException.class,
-                () -> ThemeFactory.load(INVALID_CONTENT_PATH));
+        assertThrows(DataConversionException.class, () -> ThemeFactory.load(INVALID_CONTENT_PATH));
     }
 
 }

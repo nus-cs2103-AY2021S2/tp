@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class Theme implements Serializable {
 
-    public final Pattern REGEX_HEX_COLOR = Pattern.compile("^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$");
+    public static final Pattern REGEX_HEX_COLOR = Pattern.compile("^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$");
 
     /**
      * The foreground color of the application.

@@ -41,12 +41,15 @@ public class ThemeManager {
      */
     private static Scene scene = null;
 
-    static {
+    /**
+     * Initialized the variables in ThemeManager.
+     */
+    public static void init() {
         ThemeManager.theme = ThemeFactory.getDefaultTheme();
         InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
         ThemeManager.cssTemplate = new BufferedReader(new InputStreamReader(templateStream))
             .lines().collect(Collectors.joining("\n"));
-        ThemeManager.updateCss();
+        updateCss();
     }
 
     /**
@@ -105,6 +108,7 @@ public class ThemeManager {
         try {
             File temp = File.createTempFile("current", ".tmp");
             temp.deleteOnExit();
+            System.out.println(temp.getPath());
             BufferedWriter out = new BufferedWriter(new FileWriter(temp));
             out.write(cssString);
             out.close();

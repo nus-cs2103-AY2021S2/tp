@@ -1,8 +1,11 @@
 package seedu.address.ui;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class ThemeTest {
 
@@ -11,19 +14,19 @@ public class ThemeTest {
     private static final String DEFAULT_FOREGROUND = "#f8f8f2";
     private static final String DEFAULT_BACKGROUND = "#272822";
     private static final String[] DEFAULT_COLOR = new String[] {
-            "#272822", "#f92672", "#a6e22e", "#f4bf75",
-            "#66d9ef", "#ae81ff", "#a1efe4", "#f8f8f2",
-            "#75715e", "#f92672", "#a6e22e", "#f4bf75",
-            "#66d9ef", "#ae81ff", "#a1efe4", "#f9f8f5"
+        "#272822", "#f92672", "#a6e22e", "#f4bf75",
+        "#66d9ef", "#ae81ff", "#a1efe4", "#f8f8f2",
+        "#75715e", "#f92672", "#a6e22e", "#f4bf75",
+        "#66d9ef", "#ae81ff", "#a1efe4", "#f9f8f5"
     };
     private static final String[] DEFAULT_COLOR_INVALID_LENGTH = new String[] {
-            "#272822", "#f92672", "#a6e22e", "#f4bf75"
+        "#272822", "#f92672", "#a6e22e", "#f4bf75"
     };
     private static final String[] DEFAULT_COLOR_INVALID_COLOR = new String[] {
-            "#272822", "#f92672", "#a6e22e", "#f4bf75",
-            "#66d9ef", "#ae81ff", "#a1efe4", "#f8f8f2",
-            "#75715e", "#f92672", "#a6e22e", "#f4bf75",
-            "#66d9ef", "#ae81ff", "#a1efe4", INVALID_COLOR
+        "#272822", "#f92672", "#a6e22e", "#f4bf75",
+        "#66d9ef", "#ae81ff", "#a1efe4", "#f8f8f2",
+        "#75715e", "#f92672", "#a6e22e", "#f4bf75",
+        "#66d9ef", "#ae81ff", "#a1efe4", INVALID_COLOR
     };
 
     private final Theme t1 = new Theme(DEFAULT_FOREGROUND, DEFAULT_BACKGROUND, DEFAULT_COLOR);
