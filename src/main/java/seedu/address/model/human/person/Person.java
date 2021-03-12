@@ -38,6 +38,7 @@ public class Person extends Human {
         this.address = address;
         this.tripDay = tripDay;
         this.tripTime = tripTime;
+        this.driver = Optional.empty();
         this.tags.addAll(tags);
     }
 
