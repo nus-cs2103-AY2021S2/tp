@@ -33,6 +33,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label moduleCode;
     @FXML
+    private Label weightage;
+    @FXML
     private Label id;
     @FXML
     private Label remark;
@@ -48,6 +50,7 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         moduleName.setText(task.getModuleName().fullName);
         moduleCode.setText(task.getModuleCode().moduleCode);
+        weightage.setText(task.getWeightage().toString());
         remark.setText(task.getRemark().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
