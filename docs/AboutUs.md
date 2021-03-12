@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/geraldfan.png" width="200px">
 
-[[github](http://github.com/geraldfan)] 
+[[github](http://github.com/geraldfan)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Member
