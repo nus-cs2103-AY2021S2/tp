@@ -5,7 +5,7 @@ title: Dictionary
 
 * Table of Contents
   {:toc}
-  
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Week 1
@@ -71,6 +71,5 @@ These objects can be considered as connected in a certain network of certain str
 a sort of virtual simulation of the corresponding real world scenario – **so that a similar result can be achieved programmatically**.
 
 **OOP does not demand that the virtual world object network follow the real world exactly.**
-
 
 --------------------------------------------------------------------------------------------------------------------
