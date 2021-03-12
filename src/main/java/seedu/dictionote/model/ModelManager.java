@@ -131,8 +131,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Contact target) {
-        addressBook.removePerson(target);
+    public void deleteContact(Contact target) {
+        addressBook.removeContact(target);
     }
 
     @Override

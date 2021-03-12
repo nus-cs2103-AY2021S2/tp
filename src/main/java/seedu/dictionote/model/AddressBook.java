@@ -85,7 +85,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the dictionote book.
      */
-    public void removePerson(Contact key) {
+    public void removeContact(Contact key) {
         persons.remove(key);
     }
 

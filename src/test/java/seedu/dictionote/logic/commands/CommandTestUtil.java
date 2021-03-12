@@ -115,7 +115,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredContactList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
      * {@code model}'s dictionote book.
      */
     public static void showContactAtIndex(Model model, Index targetIndex) {

@@ -82,7 +82,7 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the dictionote book.
      */
-    void deletePerson(Contact target);
+    void deleteContact(Contact target);
 
     /**
      * Adds the given person.

@@ -19,7 +19,7 @@ import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
-import seedu.dictionote.logic.commands.DeleteCommand;
+import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
 import seedu.dictionote.logic.commands.ExitCommand;
@@ -64,9 +64,9 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_CONTACT), command);
+        DeleteContactCommand command = (DeleteContactCommand) parser.parseCommand(
+            DeleteContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
+        assertEquals(new DeleteContactCommand(INDEX_FIRST_CONTACT), command);
     }
 
     @Test
