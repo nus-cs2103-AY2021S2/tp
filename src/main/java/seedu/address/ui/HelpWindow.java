@@ -112,7 +112,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     public void setHelpMessage(String helpMsg) {
-        logger.info("helpMsg: " + helpMsg);
+        // logger.info("helpMsg: " + helpMsg);
         helpMessage.setText(helpMsg);
     }
 }
