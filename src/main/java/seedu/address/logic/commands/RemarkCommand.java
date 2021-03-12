@@ -55,7 +55,7 @@ public class RemarkCommand extends Command {
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = new Task(taskToEdit.getModuleName(), taskToEdit.getModuleCode(), taskToEdit.getPhone(),
-            taskToEdit.getEmail(), remark, taskToEdit.getTags());
+                remark, taskToEdit.getTags());
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

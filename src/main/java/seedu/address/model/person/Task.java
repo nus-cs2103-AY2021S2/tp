@@ -19,7 +19,6 @@ public class Task {
     private final ModuleName moduleName;
     private final ModuleCode moduleCode;
     private final Phone phone;
-    private final Email email;
 
     // Data fields
     private final Remark remark;
@@ -28,12 +27,11 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(ModuleName moduleName, ModuleCode moduleCode, Phone phone, Email email, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(moduleName, moduleCode, phone, email, tags);
+    public Task(ModuleName moduleName, ModuleCode moduleCode, Phone phone, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(moduleName, moduleCode, phone, tags);
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
         this.phone = phone;
-        this.email = email;
         this.remark = remark;
         this.tags.addAll(tags);
     }
@@ -48,10 +46,6 @@ public class Task {
 
     public Phone getPhone() {
         return phone;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public Remark getRemark() {
@@ -97,7 +91,6 @@ public class Task {
         return otherTask.getModuleName().equals(getModuleName())
             && otherTask.getModuleCode().equals(getModuleCode())
             && otherTask.getPhone().equals(getPhone())
-            && otherTask.getEmail().equals(getEmail())
             && otherTask.getRemark().equals(getRemark())
             && otherTask.getTags().equals(getTags());
     }
@@ -105,7 +98,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleName, moduleCode, phone, email, remark, tags);
+        return Objects.hash(moduleName, moduleCode, phone, remark, tags);
     }
 
     @Override
@@ -116,8 +109,6 @@ public class Task {
             .append(getModuleCode())
             .append("; Phone: ")
             .append(getPhone())
-            .append("; Email: ")
-            .append(getEmail())
             .append("; Remark: ")
             .append(getRemark());
 
