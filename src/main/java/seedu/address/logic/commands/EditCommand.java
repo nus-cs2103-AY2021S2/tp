@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -24,6 +25,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_CLEAN_STATUS_TAG + "y/n] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -97,9 +100,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<CleanStatusTag> updatedCleanStatus = editPersonDescriptor.getCleanStatusTag().orElse(
+                personToEdit.getCleanStatusTags());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedCleanStatus, updatedTags);
     }
 
     @Override
@@ -129,9 +134,11 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Set<CleanStatusTag> cleanStatusTag;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -142,6 +149,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setCleanStatusTag(toCopy.cleanStatusTag);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, cleanStatusTag, tags);
         }
 
         public void setName(Name name) {
@@ -185,11 +193,29 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code cleanStatusTag} to this object's {@code cleanStatusTag}.
+         * A defensive copy of {@code cleanStatusTag} is used internally.
+         */
+        public void setCleanStatusTag(Set<CleanStatusTag> cleanStatusTag) {
+            this.cleanStatusTag = (cleanStatusTag != null) ? new HashSet<>(cleanStatusTag) : null;
+        }
+
+        /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable cleanStatusTag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code cleanStatusTag} is null.
+         */
+        public Optional<Set<CleanStatusTag>> getCleanStatusTag() {
+            return (cleanStatusTag != null) ? Optional.of(
+                    Collections.unmodifiableSet(cleanStatusTag)) : Optional.empty();
         }
 
         /**
@@ -220,6 +246,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getCleanStatusTag().equals(e.getCleanStatusTag())
                     && getTags().equals(e.getTags());
         }
     }

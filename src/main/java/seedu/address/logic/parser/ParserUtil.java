@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +26,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -96,6 +98,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String clean status(y or n)} into a {@code CleanStatusTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cleanstatus} is invalid.
+     */
+    public static CleanStatusTag parseCleanStatusTag(String cleanStatus) throws ParseException {
+        requireNonNull(cleanStatus);
+        String trimmedTag = cleanStatus.trim();
+        if (!CleanStatusTag.isValidCleanStatusTag(trimmedTag)) {
+            throw new ParseException(CleanStatusTag.getMessageConstraints());
+        }
+        return new CleanStatusTag(trimmedTag);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -108,6 +125,18 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> cleanStatusTags} into a {@code Set<CleanStatusTag>}.
+     */
+    public static Set<CleanStatusTag> parseCleanStatusTags(Collection<String> cleanStatusTag) throws ParseException {
+        requireNonNull(cleanStatusTag);
+        final Set<CleanStatusTag> CleanStatusTagSet = new HashSet<>();
+        for (String tagName : cleanStatusTag) {
+            CleanStatusTagSet.add(parseCleanStatusTag(tagName));
+        }
+        return CleanStatusTagSet;
     }
 
     /**

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,16 +22,19 @@ public class Residence {
     // Data fields
     private final Address address;
     private final BookingDetails bookingDetails;
+    private final Set<CleanStatusTag> cleanStatusTag = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Residence(Name name, Address address, BookingDetails bookingDetails, Set<Tag> tags) {
+    public Residence(Name name, Address address, BookingDetails bookingDetails,
+                     Set<CleanStatusTag> cleanStatusTag, Set<Tag> tags) {
         this.bookingDetails = bookingDetails;
-        requireAllNonNull(name, address, tags);
+        requireAllNonNull(name, address, cleanStatusTag, tags);
         this.name = name;
         this.address = address;
+        this.cleanStatusTag.addAll(cleanStatusTag);
         this.tags.addAll(tags);
     }
 
@@ -45,6 +49,15 @@ public class Residence {
     public BookingDetails getBookingDetails() {
         return bookingDetails;
     }
+
+    /**
+     * Returns an immutable clean status tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<CleanStatusTag> getCleanStatusTag() {
+        return Collections.unmodifiableSet(cleanStatusTag);
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -85,13 +98,14 @@ public class Residence {
         return otherResidence.getName().equals(getName())
                 && otherResidence.getAddress().equals(getAddress())
                 && otherResidence.getBookingDetails().equals(getBookingDetails())
+                && otherResidence.getCleanStatusTag().equals(getCleanStatusTag())
                 && otherResidence.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, bookingDetails, tags);
+        return Objects.hash(name, address, bookingDetails, cleanStatusTag, tags);
     }
 
     @Override
@@ -102,6 +116,12 @@ public class Residence {
                 .append(getAddress())
                 .append("; Booking Details: ")
                 .append(getBookingDetails());
+
+        Set<CleanStatusTag> cleanStatusTags = getCleanStatusTag();
+        if (!cleanStatusTags.isEmpty()) {
+            builder.append("; CleanStatus: ");
+            cleanStatusTags.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

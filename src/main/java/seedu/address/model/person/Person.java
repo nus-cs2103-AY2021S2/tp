@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,17 +23,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Set<CleanStatusTag> cleanStatusTag = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<CleanStatusTag> cleanStatusTag, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.cleanStatusTag.addAll(cleanStatusTag);
         this.tags.addAll(tags);
     }
 
@@ -50,6 +54,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    /**
+     * Returns an immutable clean status tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<CleanStatusTag> getCleanStatusTags() {
+        return Collections.unmodifiableSet(cleanStatusTag);
     }
 
     /**
@@ -92,13 +104,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getCleanStatusTags().equals(getCleanStatusTags())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, cleanStatusTag, tags);
     }
 
     @Override
@@ -111,6 +124,12 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+
+        Set<CleanStatusTag> cleanStatusTags = getCleanStatusTags();
+        if (!cleanStatusTags.isEmpty()) {
+            builder.append("; CleanStatus: ");
+            cleanStatusTags.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
