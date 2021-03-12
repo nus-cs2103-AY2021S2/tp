@@ -1,17 +1,17 @@
 package seedu.storemando.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
+    import java.util.Arrays;
+    import java.util.Set;
+    import java.util.stream.Collectors;
 
-import seedu.storemando.model.ReadOnlyStoreMando;
-import seedu.storemando.model.StoreMando;
-import seedu.storemando.model.item.ExpiryDate;
-import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemName;
-import seedu.storemando.model.item.Location;
-import seedu.storemando.model.item.Quantity;
-import seedu.storemando.model.tag.Tag;
+    import seedu.storemando.model.ReadOnlyStoreMando;
+    import seedu.storemando.model.StoreMando;
+    import seedu.storemando.model.item.ExpiryDate;
+    import seedu.storemando.model.item.Item;
+    import seedu.storemando.model.item.ItemName;
+    import seedu.storemando.model.item.Location;
+    import seedu.storemando.model.item.Quantity;
+    import seedu.storemando.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code StoreMando} with sample data.
@@ -19,24 +19,27 @@ import seedu.storemando.model.tag.Tag;
 public class SampleDataUtil {
     public static Item[] getSampleItems() {
         return new Item[]{
-            new Item(new ItemName("Cooking Oil"), new Quantity("10"), new ExpiryDate("2020-10-10"),
-                new Location("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Item(new ItemName("Milo"), new Quantity("9"), new ExpiryDate("2020-10-10"),
-                new Location("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Item(new ItemName("Horlicks"), new Quantity("1"),
-                new ExpiryDate("2020-09-10"), new Location("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+            new Item(new ItemName("Cooking Oil"), new Quantity("10"), new ExpiryDate("2023-10-10"),
+                new Location("Cupboard 3"),
+                getTagSet("essential")),
+            new Item(new ItemName("Pail"), new Quantity("4"), new ExpiryDate("No Expiry Date"),
+                new Location("Toilet"),
+                getTagSet("cleaning")),
+            new Item(new ItemName("Beer"), new Quantity("10"),
+                new ExpiryDate("2021-09-10"), new Location("Room 2"),
+                getTagSet("favourite", "guests")),
             new Item(new ItemName("Chilli Sauce"), new Quantity("2"), new ExpiryDate("2023-10-10"),
-                new Location("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("favourite")),
-            new Item(new ItemName("French Fries"), new Quantity("1"), new ExpiryDate("2020-10-10"),
-                new Location("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("favourite")),
-            new Item(new ItemName("Olive Oil"), new Quantity("3"), new ExpiryDate("2021-10-10"),
-                new Location("Room"),
-                getTagSet("Need"))
+                new Location("Cupboard 1"),
+                getTagSet("sauces")),
+            new Item(new ItemName("Tomato Sauce"), new Quantity("1"), new ExpiryDate("2023-09-10"),
+                new Location("Cupboard 1"),
+                getTagSet("sauces")),
+            new Item(new ItemName("Mahjong Table"), new Quantity("2"), new ExpiryDate("No Expiry Date"),
+                new Location("Storeroom"),
+                getTagSet("guests")),
+            new Item(new ItemName("Chair"), new Quantity("5"), new ExpiryDate("No Expiry Date"),
+                new Location("Storeroom"),
+                getTagSet("guests"))
         };
     }
 
