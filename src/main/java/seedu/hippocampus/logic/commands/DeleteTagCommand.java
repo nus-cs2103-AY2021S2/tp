@@ -71,6 +71,7 @@ public class DeleteTagCommand extends DeleteCommand {
             Person editedPerson = new Person(person.getName(),
                     person.getPhone(),
                     person.getEmail(),
+                    person.getBirthday(),
                     person.getAddress(),
                     tags);
 

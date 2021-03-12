@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.hippocampus.model.person.Address;
+import seedu.hippocampus.model.person.Birthday;
 import seedu.hippocampus.model.person.Email;
 import seedu.hippocampus.model.person.Name;
 import seedu.hippocampus.model.person.Person;
@@ -19,11 +20,13 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_BIRTHDAY = "1999-10-27";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private Birthday birthday;
     private Address address;
     private Set<Tag> tags;
 
@@ -34,6 +37,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        birthday = new Birthday(DEFAULT_BIRTHDAY);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -45,6 +49,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        birthday = personToCopy.getBirthday();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -89,8 +94,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Birthday} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withBirthday(String birthday) {
+        this.birthday = new Birthday(birthday);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, birthday, address, tags);
     }
 
 }

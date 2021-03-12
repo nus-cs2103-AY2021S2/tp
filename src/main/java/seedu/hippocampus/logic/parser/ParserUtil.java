@@ -2,6 +2,7 @@ package seedu.hippocampus.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +11,7 @@ import seedu.hippocampus.commons.core.index.Index;
 import seedu.hippocampus.commons.util.StringUtil;
 import seedu.hippocampus.logic.parser.exceptions.ParseException;
 import seedu.hippocampus.model.person.Address;
+import seedu.hippocampus.model.person.Birthday;
 import seedu.hippocampus.model.person.Email;
 import seedu.hippocampus.model.person.Name;
 import seedu.hippocampus.model.person.Phone;
@@ -102,6 +104,28 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String birthday} into an {@code Birthday}.
+     * Returns default empty birthday if birthday is not specified.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code birthday} is invalid.
+     */
+    public static Birthday parseBirthday(String birthday) throws ParseException {
+        requireNonNull(birthday);
+        String trimmedBirthday = birthday.trim();
+        if (birthday == Birthday.EMPTY_BIRTHDAY_STRING) {
+            return Birthday.EMPTY_BIRTHDAY;
+        }
+        try {
+            return new Birthday(trimmedBirthday);
+        } catch (IllegalArgumentException err) { // birthday year exceeds current year
+            throw new ParseException((Birthday.MESSAGE_YEAR_CONSTRAINTS));
+        } catch (DateTimeException err) { // date in wrong format
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

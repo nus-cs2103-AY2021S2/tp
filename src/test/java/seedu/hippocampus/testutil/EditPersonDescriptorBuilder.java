@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.hippocampus.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.hippocampus.model.person.Address;
+import seedu.hippocampus.model.person.Birthday;
 import seedu.hippocampus.model.person.Email;
 import seedu.hippocampus.model.person.Name;
 import seedu.hippocampus.model.person.Person;
@@ -35,6 +36,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
+        descriptor.setBirthday(person.getBirthday());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }
@@ -60,6 +62,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Birthday} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withBirthday(String birthday) {
+        descriptor.setBirthday(new Birthday(birthday));
         return this;
     }
 
