@@ -12,7 +12,6 @@ import seedu.us.among.model.endpoint.Response;
  * Contains the logic for sending get requests.
  */
 public class GetRequest extends Request {
-    private final Endpoint endpoint;
 
     /**
      * Constructor for GetRequest.
@@ -20,8 +19,7 @@ public class GetRequest extends Request {
      * @param endpoint endpoint to make API call on
      */
     public GetRequest(Endpoint endpoint) {
-        super(endpoint.getMethod().getMethodType(), endpoint.getAddress().value);
-        this.endpoint = endpoint;
+        super(endpoint);
     }
 
     /**
@@ -31,8 +29,8 @@ public class GetRequest extends Request {
      */
     @Override
     public Response send() throws IOException, RequestException {
-        HttpGet request = new HttpGet(this.getAddress());
-        request = (HttpGet) super.setHeaders(request, this.endpoint.getHeaders());
+        HttpGet request = new HttpGet(super.getAddress());
+        request = (HttpGet) super.setHeaders(request, super.getHeaders());
         return super.execute(request);
     }
 }
