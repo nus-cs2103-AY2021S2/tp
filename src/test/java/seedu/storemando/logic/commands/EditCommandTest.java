@@ -78,7 +78,6 @@ public class EditCommandTest {
     @Test
     public void execute_filteredList_success() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
-
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
