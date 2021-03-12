@@ -49,8 +49,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, birthday, tagList, Collections.emptyList());
-
+        Person person = new Person(name, phone, email, address, birthday, tagList, Collections.emptyList(),
+                Collections.emptyList());
         return new AddCommand(person);
     }
 }
