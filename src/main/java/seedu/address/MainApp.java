@@ -16,14 +16,18 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.AppointmentScheduleStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonAppointmentScheduleStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -38,7 +42,7 @@ public class MainApp extends Application {
 
     public static final Version VERSION = new Version(0, 6, 0, true);
 
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
     protected Logic logic;
@@ -48,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        LOGGER.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +61,10 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AppointmentScheduleStorage appointmentScheduleStorage = new JsonAppointmentScheduleStorage(
+                userPrefs.getAppointmentScheduleFilePath());
+
+        storage = new StorageManager(appointmentScheduleStorage, addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,23 +81,57 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        return new ModelManager(initAppointmentSchedule(), initPatientRecords(), userPrefs);
+    }
+
+    private ReadOnlyAddressBook initPatientRecords() {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        ReadOnlyAddressBook patientRecords;
+
+        // non-existent patient records with start with sample address book for now.
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                LOGGER.info("Patient data file not found. Will be starting with a sample Patient AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
+            patientRecords = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            LOGGER.warning("Patient data file not in the correct format. Will be starting with an empty"
+                    + " Patient AddressBook");
+            patientRecords = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            LOGGER.warning("Problem while reading from the patient data file. Will be starting with an empty"
+                    + " Patient AddressBook");
+            patientRecords = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return patientRecords;
+    }
+
+    private ReadOnlyAppointmentSchedule initAppointmentSchedule () {
+        Optional<ReadOnlyAppointmentSchedule> appointmentScheduleOptional;
+        ReadOnlyAppointmentSchedule appointmentSchedule;
+
+        // On exception or non existent data file, initialize with empty Appointment Schedule
+        try {
+            appointmentScheduleOptional = storage.readAppointmentSchedule();
+            if (!appointmentScheduleOptional.isPresent()) {
+                LOGGER.info("Appointment data file not found. Will be starting with an empty AppointmentSchedule");
+            }
+
+            appointmentSchedule = appointmentScheduleOptional.orElseGet(AppointmentSchedule::new);
+        } catch (DataConversionException e) {
+            LOGGER.warning("Appointment data file not in the correct format. Will be starting with an empty"
+                    + " AppointmentSchedule");
+            appointmentSchedule = new AppointmentSchedule();
+        } catch (IOException e) {
+            LOGGER.warning("Problem while reading from the patient data file. Will be starting with an empty"
+                    + " AppointmentSchedule");
+            appointmentSchedule = new AppointmentSchedule();
+        }
+
+        return appointmentSchedule;
     }
 
     private void initLogging(Config config) {
@@ -109,17 +150,17 @@ public class MainApp extends Application {
         configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
 
         if (configFilePath != null) {
-            logger.info("Custom Config file specified " + configFilePath);
+            LOGGER.info("Custom Config file specified " + configFilePath);
             configFilePathUsed = configFilePath;
         }
 
-        logger.info("Using config file : " + configFilePathUsed);
+        LOGGER.info("Using config file : " + configFilePathUsed);
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
+            LOGGER.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
                     + "Using default config properties");
             initializedConfig = new Config();
         }
@@ -128,7 +169,7 @@ public class MainApp extends Application {
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            LOGGER.warning("Failed to save config file : " + StringUtil.getDetails(e));
         }
         return initializedConfig;
     }
@@ -140,18 +181,18 @@ public class MainApp extends Application {
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
-        logger.info("Using prefs file : " + prefsFilePath);
+        LOGGER.info("Using prefs file : " + prefsFilePath);
 
         UserPrefs initializedPrefs;
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
+            LOGGER.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            LOGGER.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -159,7 +200,7 @@ public class MainApp extends Application {
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            LOGGER.warning("Failed to save config file : " + StringUtil.getDetails(e));
         }
 
         return initializedPrefs;
@@ -167,17 +208,17 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        LOGGER.info("Starting App-Ointment " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        LOGGER.info("============================ [ Stopping App-Ointment ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            LOGGER.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
     }
 }
