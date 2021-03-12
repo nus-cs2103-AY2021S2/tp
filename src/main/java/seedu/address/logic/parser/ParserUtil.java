@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -110,8 +108,12 @@ public class ParserUtil {
         return tagSet;
     }
 
-    // TODO: update documentation
-
+    /**
+     * Parses a {@code String tripDay} into a {@code TripDay}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tripDay} is invalid.
+     */
     public static TripDay parseTripDay(String tripDay) throws ParseException {
         requireNonNull(tripDay);
         String trimmedTripDay = tripDay.trim();
@@ -121,6 +123,12 @@ public class ParserUtil {
         return new TripDay(trimmedTripDay);
     }
 
+    /**
+     * Parses a {@code String tripTime} into a {@code TripTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tripTime} is invalid.
+     */
     public static TripTime parseTripTime(String tripTime) throws ParseException {
         requireNonNull(tripTime);
         String trimmedTripTime = tripTime.trim();

@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -108,7 +107,8 @@ class JsonAdaptedPerson {
         final TripDay modelTripDay = new TripDay(tripDay);
 
         if (tripTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TripTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TripTime.class.getSimpleName()));
         }
         if (!TripTime.isValidTripTime(tripTime)) {
             throw new IllegalValueException(TripTime.MESSAGE_CONSTRAINTS);
