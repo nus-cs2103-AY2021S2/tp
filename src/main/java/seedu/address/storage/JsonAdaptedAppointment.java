@@ -46,7 +46,12 @@ class JsonAdaptedAppointment {
         name = source.getName().name;
         remark = source.getRemarks().remark;
         date = source.getDate().toString();
-        time = source.getTime().toString();
+        if (source.getTime() == null) {
+            time = null;
+        } else {
+            time = source.getTime().toString();
+        }
+
     }
 
     /**

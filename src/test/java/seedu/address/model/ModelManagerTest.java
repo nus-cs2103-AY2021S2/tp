@@ -10,12 +10,10 @@ import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.appointment.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AppointmentBookBuilder;
 
 public class ModelManagerTest {
@@ -123,8 +121,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAppointmentBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = MEET_ALEX.getName().name.split("\\s+");
-        modelManager.updateFilteredAppointmentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredAppointmentList(unused -> false);
         assertFalse(modelManager.equals(new ModelManager(appointmentBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

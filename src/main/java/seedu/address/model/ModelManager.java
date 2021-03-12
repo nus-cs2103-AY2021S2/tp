@@ -118,7 +118,7 @@ public class ModelManager implements Model {
     @Override
     public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
         requireNonNull(appointmentBookFilePath);
-        userPrefs.setAddressBookFilePath(appointmentBookFilePath);
+        userPrefs.setAppointmentBookFilePath(appointmentBookFilePath);
     }
 
     //=========== PropertyBook ================================================================================
