@@ -16,7 +16,6 @@ public class Event {
     private final LocalDate date;
     private final LocalTime time;
     private final String description;
-    private final boolean hasTime;
 
     /**
      * Constructs a {@code Event}
@@ -29,7 +28,6 @@ public class Event {
         this.date = date;
         this.time = null;
         this.description = description;
-        this.hasTime = false;
     }
 
     /**
@@ -44,7 +42,6 @@ public class Event {
         this.date = date;
         this.time = time;
         this.description = description;
-        this.hasTime = true;
     }
 
     public LocalDate getDate() {
@@ -60,7 +57,7 @@ public class Event {
     }
 
     public boolean hasTime() {
-        return hasTime;
+        return time != null;
     }
 
     /**
@@ -68,11 +65,10 @@ public class Event {
      * @return String to be displayed on the UI
      */
     public String toUi() {
-        if (hasTime) {
+        if (hasTime()) {
             return String.format("%s %s %s\n", DateUtil.toUi(date), TimeUtil.toUi(time), description);
-        } else {
-            return String.format("%s %s\n", DateUtil.toUi(date), description);
         }
+        return String.format("%s %s\n", DateUtil.toUi(date), description);
     }
 
     @Override
@@ -101,7 +97,7 @@ public class Event {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDate())
                 .append("; ");
-        if (hasTime) {
+        if (hasTime()) {
             builder.append(getTime())
                     .append("; ");
         }

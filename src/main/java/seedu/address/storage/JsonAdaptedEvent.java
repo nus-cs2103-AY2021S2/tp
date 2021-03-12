@@ -16,7 +16,6 @@ public class JsonAdaptedEvent {
     private final LocalDate date;
     private final LocalTime time;
     private final String description;
-    private final boolean hasTime;
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given {@code date}, {@code time} and {@code description}.
@@ -27,7 +26,6 @@ public class JsonAdaptedEvent {
         this.date = date;
         this.time = time;
         this.description = description;
-        this.hasTime = (time != null);
     }
 
     /**
@@ -37,17 +35,19 @@ public class JsonAdaptedEvent {
         date = source.getDate();
         time = source.getTime();
         description = source.getDescription();
-        hasTime = source.hasTime();
+    }
+
+    private boolean hasTime() {
+        return time != null;
     }
 
     /**
      * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      */
     public Event toModelType() {
-        if (hasTime) {
-            return new Event (date, time, description);
-        } else {
-            return new Event(date, description);
+        if (hasTime()) {
+            return new Event(date, time, description);
         }
+        return new Event(date, description);
     }
 }
