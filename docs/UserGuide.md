@@ -138,9 +138,9 @@ Daily Fat intake: 55 g
 
 Changes the current active diet plan to the newly specified plan.
 
-**Format:** `start p/plan`
+**Format:** `plan active p/plan`
 
-**Example:** `start p/1`
+**Example:** `plan active p/1`
 
 **Expected output:**
 
@@ -155,7 +155,7 @@ Daily Fat intake: 55 g
 
 Displays a list of available diet plans.
 
-**Format:** `plans`
+**Format:** `plan list`
 
 **Expected output:**
 
@@ -168,9 +168,9 @@ Here are the available diet plans:
 
 Displays information about a particular diet plan.
 
-**Format:** `plan \tID`
+**Format:** `plan t/ID`
 
-**Example:** `plan t\1`
+**Example:** `plan t/1`
 
 **Expected output:**
 
