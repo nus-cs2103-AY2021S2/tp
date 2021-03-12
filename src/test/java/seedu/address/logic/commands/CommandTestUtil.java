@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -31,6 +28,10 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_TRIPDAY = "FRIDAY";
+    public static final String VALID_TRIPDAY_MONDAY = "MONDAY";
+    public static final String VALID_TRIPTIME = "1800";
+    public static final String VALID_TRIPTIME_MORNING = "0830";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -40,12 +41,18 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String TRIPDAY_DESC_FRIDAY = " " + PREFIX_TRIPDAY + VALID_TRIPDAY;
+    public static final String TRIPDAY_DESC_MONDAY = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_MONDAY;
+    public static final String TRIPTIME_DESC_EVENING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME;
+    public static final String TRIPTIME_DESC_MORNING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_MORNING;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_TRIPDAY = " " + PREFIX_TRIPDAY + "FUNDAY"; // FUNDAY is not a valid week day
+    public static final String INVALID_TRIPTIME = " " + PREFIX_TRIPTIME + "21032103"; // 21032103 is not in the 24 hour time format
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

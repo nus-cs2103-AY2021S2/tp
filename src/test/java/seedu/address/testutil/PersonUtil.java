@@ -1,17 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAYS;
-
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.human.person.Person;
 import seedu.address.model.tag.Tag;
+
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Person.
@@ -33,7 +29,8 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-//        sb.append(PREFIX_TRIPDAYS + person.getTripDays().value + " ");
+        sb.append(PREFIX_TRIPDAY + person.getTripDay().value + " ");
+        sb.append(PREFIX_TRIPTIME + person.getTripTime().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

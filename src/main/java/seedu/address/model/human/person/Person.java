@@ -114,9 +114,9 @@ public class Person extends Human {
                 .append(getPhone())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Trip Days: ")
+                .append("; Trip Day: ")
                 .append(getTripDay())
-                .append("; Trip Times: ")
+                .append("; Trip Time: ")
                 .append(getTripTime())
                 .append("; Driver: ")
                 .append(getDriverStr());

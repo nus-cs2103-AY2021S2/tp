@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAYS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIMES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 import java.util.Set;
@@ -27,8 +25,9 @@ import seedu.address.model.tag.Tag;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    public static final TripDay STUB_TRIPDAY = new TripDay("monday");
-    public static final TripTime STUB_TRIPTIME = new TripTime("2300");
+    // TODO: remove stubs
+//    public static final TripDay STUB_TRIPDAY = new TripDay("monday");
+//    public static final TripTime STUB_TRIPTIME = new TripTime("2300");
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -37,9 +36,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAYS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY, PREFIX_TRIPTIME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAYS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY, PREFIX_TRIPTIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
