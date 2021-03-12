@@ -142,7 +142,7 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void setPerson(Contact target, Contact editedContact) {
+        public void setContact(Contact target, Contact editedContact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,6 +162,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void updateFilteredNoteList(Predicate<Note> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyNoteBook getNoteBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -173,6 +178,11 @@ public class AddContactCommandTest {
 
         @Override
         public void addNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteNote(Note note) {
             throw new AssertionError("This method should not be called.");
         }
 
