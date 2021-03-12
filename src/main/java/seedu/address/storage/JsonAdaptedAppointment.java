@@ -11,12 +11,11 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.name.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.util.DateTimeFormat;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Appointment}.
  */
 class JsonAdaptedAppointment {
 
