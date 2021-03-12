@@ -69,8 +69,8 @@ public class SampleDataUtil {
     }
 
     public static Event[] getSampleEvents() {
-        return new Event[] {new Event(new EventName("Lunch with John"), new EventTime("12/01/2021"),
-                new EventTime("21/01/2021"), EventStatus.TODO, new Description("At VivoCity"),
+        return new Event[] {new Event(new EventName("Lunch with John"), new EventTime("12/01/2021 10:10"),
+                new EventTime("21/01/2021 10:10"), EventStatus.TODO, new Description("At VivoCity"),
                 getTagSet("Friends"), getSamplePersonSet())
         };
     }
