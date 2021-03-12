@@ -74,7 +74,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code @birthday} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withBirthday(String birthday) {
         descriptor.setBirthday(new Birthday(birthday));

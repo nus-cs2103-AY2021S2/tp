@@ -2,12 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -91,10 +93,8 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if (!Birthday.isValidBirthday(trimmedBirthday)) {
-            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
-        }
-        return new Birthday(trimmedBirthday);
+        LocalDate birthdayDate = DateUtil.fromDateInput(trimmedBirthday);
+        return new Birthday(birthdayDate);
     }
 
     /**

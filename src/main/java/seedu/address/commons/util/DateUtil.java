@@ -51,6 +51,10 @@ public class DateUtil {
         return date;
     }
 
+    public static String toString(LocalDate localDate, DateTimeFormatter dateFormatter) {
+        return dateFormatter.format(localDate);
+    }
+
     public static String toUi(LocalDate localDate) {
         return DEFAULT_FORMATTER.format(localDate);
     }
