@@ -43,6 +43,19 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_itemAcceptedByModel_addExpiredSuccessful() throws Exception {
+        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
+        Item validItem = new ItemBuilder().withExpiryDate("2010-10-10").build();
+
+        CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS + AddCommand.MESSAGE_ITEM_EXPIRED_WARNING, validItem),
+            commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
+    }
+
+
+    @Test
     public void execute_duplicateItem_throwsCommandException() {
         Item validItem = new ItemBuilder().build();
         AddCommand addCommand = new AddCommand(validItem);
