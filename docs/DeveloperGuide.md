@@ -331,6 +331,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. FlashBack shows an error message
       
       Use case resumes at step 1
+    
+**Use case: Find cards by search criteria**
+
+**MSS**
+
+1. User requests to find cards by criteria with given keywords
+1. FlashBack shows a list of flashcards matching given keywords according to search criteria
+
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty
+
+  Use case ends
+
+* 1b. The search criteria is invalid or empty keywords
+  * 1b1. FlashBack shows an error message.
+    
+    Use case ends
 
 **Use case: List all flash cards**
 
