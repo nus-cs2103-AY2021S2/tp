@@ -59,7 +59,7 @@ public class ExpiryDateTest {
     }
 
     @Test
-    public void isExpiryDatePastCurrentDate(){
+    public void isExpiryDatePastCurrentDate() {
         // no expiryDate
         assertFalse(new ExpiryDate("No Expiry Date").isPastCurrentDate());
 
