@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.DARWIN;
+import static seedu.address.testutil.TypicalFlashcards.IDA;
+import static seedu.address.testutil.TypicalFlashcards.PYTHAGOREAN;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashBack;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -52,36 +52,36 @@ public class JsonFlashBackStorageTest {
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidFlashcardFlashBack.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidFlashcardFlashBack.json"));
     }
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        FlashBack original = getTypicalAddressBook();
-        JsonFlashBackStorage jsonAddressBookStorage = new JsonFlashBackStorage(filePath);
+        FlashBack original = getTypicalFlashBack();
+        JsonFlashBackStorage jsonFlashBackStorage = new JsonFlashBackStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveFlashBack(original, filePath);
-        ReadOnlyFlashBack readBack = jsonAddressBookStorage.readFlashBack(filePath).get();
+        jsonFlashBackStorage.saveFlashBack(original, filePath);
+        ReadOnlyFlashBack readBack = jsonFlashBackStorage.readFlashBack(filePath).get();
         assertEquals(original, new FlashBack(readBack));
 
-        // Modify data, overwrite exiting file, and read back
-        original.addCard(HOON);
-        original.removeCard(ALICE);
-        jsonAddressBookStorage.saveFlashBack(original, filePath);
-        readBack = jsonAddressBookStorage.readFlashBack(filePath).get();
+        // Modify data, overwrite existing file, and read back
+        original.addCard(DARWIN);
+        original.removeCard(PYTHAGOREAN);
+        jsonFlashBackStorage.saveFlashBack(original, filePath);
+        readBack = jsonFlashBackStorage.readFlashBack(filePath).get();
         assertEquals(original, new FlashBack(readBack));
 
         // Save and read without specifying file path
         original.addCard(IDA);
-        jsonAddressBookStorage.saveFlashBack(original); // file path not specified
-        readBack = jsonAddressBookStorage.readFlashBack().get(); // file path not specified
+        jsonFlashBackStorage.saveFlashBack(original); // file path not specified
+        readBack = jsonFlashBackStorage.readFlashBack().get(); // file path not specified
         assertEquals(original, new FlashBack(readBack));
 
     }

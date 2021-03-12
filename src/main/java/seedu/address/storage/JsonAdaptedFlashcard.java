@@ -28,7 +28,11 @@ class JsonAdaptedFlashcard {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
+<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedFlashcard.java
+     * Constructs a {@code JsonAdaptedFlashcard} with the given person details.
+=======
      * Constructs a {@code JsonAdaptedFlashcard} with the given flash card details.
+>>>>>>> c62b7fca8e6e2608d71e5cc2946c10944917bc3d:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
      */
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,

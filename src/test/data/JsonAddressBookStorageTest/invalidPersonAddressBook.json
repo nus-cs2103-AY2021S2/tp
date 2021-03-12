@@ -1,8 +1,0 @@
-{
-  "persons": [ {
-    "question": "Person with invalid name field: Ha!ns Mu@ster",
-    "answer": "9482424",
-    "category": "hans@example.com",
-    "priority": "4th street"
-  } ]
-}

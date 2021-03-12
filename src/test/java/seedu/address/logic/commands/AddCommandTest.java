@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyFlashBack;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.flashcard.Flashcard;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.FlashcardBuilder;
 
 public class AddCommandTest {
 
@@ -33,7 +33,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Flashcard validFlashcard = new PersonBuilder().build();
+        Flashcard validFlashcard = new FlashcardBuilder().build();
 
         CommandResult commandResult = new AddCommand(validFlashcard).execute(modelStub);
 
@@ -43,7 +43,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Flashcard validFlashcard = new PersonBuilder().build();
+        Flashcard validFlashcard = new FlashcardBuilder().build();
         AddCommand addCommand = new AddCommand(validFlashcard);
         ModelStub modelStub = new ModelStubWithPerson(validFlashcard);
 
@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Flashcard alice = new PersonBuilder().withName("Alice").build();
-        Flashcard bob = new PersonBuilder().withName("Bob").build();
+        Flashcard alice = new FlashcardBuilder().withQuestion("Alice").build();
+        Flashcard bob = new FlashcardBuilder().withQuestion("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

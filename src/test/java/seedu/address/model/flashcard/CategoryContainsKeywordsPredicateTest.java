@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.FlashcardBuilder;
 
-public class QuestionContainsKeywordsPredicateTest {
+public class CategoryContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
@@ -44,35 +44,35 @@ public class QuestionContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        QuestionContainsKeywordsPredicate predicate =
-                new QuestionContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("Alice Bob").build()));
+        CategoryContainsKeywordsPredicate predicate =
+                new CategoryContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        assertTrue(predicate.test(new FlashcardBuilder().withCategory("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("Alice Bob").build()));
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        assertTrue(predicate.test(new FlashcardBuilder().withCategory("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("Alice Carol").build()));
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        assertTrue(predicate.test(new FlashcardBuilder().withCategory("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("Alice Bob").build()));
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        assertTrue(predicate.test(new FlashcardBuilder().withCategory("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        QuestionContainsKeywordsPredicate predicate = new QuestionContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Alice").build()));
+        CategoryContainsKeywordsPredicate predicate = new CategoryContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new FlashcardBuilder().withCategory("Alice").build()));
 
         // Non-matching keyword
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Alice Bob").build()));
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Carol"));
+        assertFalse(predicate.test(new FlashcardBuilder().withCategory("Alice Bob").build()));
 
-        // Keywords match answer, category and priority, but does not match question
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Test", "Random", "Mid", "Math"));
+        // Keywords match phone, email and address, but does not match name
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Theorem", "Test", "Mid", "Math"));
         assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Theorem").withAnswer("Test")
                 .withCategory("Random").withPriority("Mid").build()));
     }

@@ -14,21 +14,21 @@ import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Flashcard.
  */
-public class PersonUtil {
+public class FlashcardUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code flashcard}.
      */
     public static String getAddCommand(Flashcard flashcard) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(flashcard);
+        return AddCommand.COMMAND_WORD + " " + getFlashcardDetails(flashcard);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code flashcard}'s details.
      */
-    public static String getPersonDetails(Flashcard flashcard) {
+    public static String getFlashcardDetails(Flashcard flashcard) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_QUESTION + flashcard.getQuestion().fullQuestion + " ");
         sb.append(PREFIX_ANSWER + flashcard.getAnswer().value + " ");
@@ -41,9 +41,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditFlashcardDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCardDescriptor descriptor) {
+    public static String getEditFlashcardDescriptorDetails(EditCardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getQuestion().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.fullQuestion).append(" "));
         descriptor.getAnswer().ifPresent(phone -> sb.append(PREFIX_ANSWER).append(phone.value).append(" "));

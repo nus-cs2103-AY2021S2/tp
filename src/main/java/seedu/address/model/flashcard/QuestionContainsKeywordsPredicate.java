@@ -27,5 +27,4 @@ public class QuestionContainsKeywordsPredicate implements Predicate<Flashcard> {
                 || (other instanceof QuestionContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((QuestionContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

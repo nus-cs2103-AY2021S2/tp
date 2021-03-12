@@ -3,11 +3,11 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_OCTOPUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EQUATION;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.PYTHAGOREAN;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashBack;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.flashcard.exceptions.DuplicateFlashcardException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.FlashcardBuilder;
 
 public class FlashBackTest {
 
@@ -38,7 +38,7 @@ public class FlashBackTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        FlashBack newData = getTypicalAddressBook();
+        FlashBack newData = getTypicalFlashBack();
         flashBack.resetData(newData);
         assertEquals(newData, flashBack);
     }
@@ -46,9 +46,9 @@ public class FlashBackTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Flashcard editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Flashcard> newFlashcards = Arrays.asList(ALICE, editedAlice);
+        Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN)
+                .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
+        List<Flashcard> newFlashcards = Arrays.asList(PYTHAGOREAN, editedAlice);
         FlashBackStub newData = new FlashBackStub(newFlashcards);
 
         assertThrows(DuplicateFlashcardException.class, () -> flashBack.resetData(newData));
@@ -61,20 +61,20 @@ public class FlashBackTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(flashBack.hasCard(ALICE));
+        assertFalse(flashBack.hasCard(PYTHAGOREAN));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        flashBack.addCard(ALICE);
-        assertTrue(flashBack.hasCard(ALICE));
+        flashBack.addCard(PYTHAGOREAN);
+        assertTrue(flashBack.hasCard(PYTHAGOREAN));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        flashBack.addCard(ALICE);
-        Flashcard editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        flashBack.addCard(PYTHAGOREAN);
+        Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN)
+                .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
         assertTrue(flashBack.hasCard(editedAlice));
     }
 

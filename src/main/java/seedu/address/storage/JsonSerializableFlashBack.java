@@ -21,14 +21,14 @@ class JsonSerializableFlashBack {
 
     public static final String MESSAGE_DUPLICATE_CARD = "Flash cards list contains duplicate card(s).";
 
-    private final List<JsonAdaptedFlashcard> persons = new ArrayList<>();
+    private final List<JsonAdaptedFlashcard> flashcards = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableFlashBack} with the given flashcards.
+     * Constructs a {@code JsonSerializableFlashBack} with the given flash card.
      */
     @JsonCreator
-    public JsonSerializableFlashBack(@JsonProperty("persons") List<JsonAdaptedFlashcard> flashcards) {
-        this.persons.addAll(flashcards);
+    public JsonSerializableFlashBack(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards) {
+        this.flashcards.addAll(flashcards);
     }
 
     /**
@@ -37,17 +37,18 @@ class JsonSerializableFlashBack {
      * @param source future changes to this will not affect the created {@code JsonSerializableFlashBack}.
      */
     public JsonSerializableFlashBack(ReadOnlyFlashBack source) {
-        persons.addAll(source.getCardList().stream().map(JsonAdaptedFlashcard::new).collect(Collectors.toList()));
+        flashcards.addAll(source.getCardList().stream()
+                .map(JsonAdaptedFlashcard::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this flashback into the model's {@code FlashBack} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public FlashBack toModelType() throws IllegalValueException {
         FlashBack flashBack = new FlashBack();
-        for (JsonAdaptedFlashcard jsonAdaptedFlashcard : persons) {
+        for (JsonAdaptedFlashcard jsonAdaptedFlashcard : flashcards) {
             Flashcard flashcard = jsonAdaptedFlashcard.toModelType();
             if (flashBack.hasCard(flashcard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CARD);
