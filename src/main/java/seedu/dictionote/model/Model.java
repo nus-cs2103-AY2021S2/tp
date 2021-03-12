@@ -13,7 +13,7 @@ import seedu.dictionote.model.note.Note;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Contact> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -82,7 +82,7 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the dictionote book.
      */
-    void deletePerson(Contact target);
+    void deleteContact(Contact target);
 
     /**
      * Adds the given person.
@@ -99,11 +99,11 @@ public interface Model {
     void setPerson(Contact target, Contact editedContact);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Contact> getFilteredPersonList();
+    ObservableList<Contact> getFilteredContactList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Contact> predicate);
+    void updateFilteredContactList(Predicate<Contact> predicate);
 }
