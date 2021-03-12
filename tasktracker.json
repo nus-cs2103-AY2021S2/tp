@@ -46,7 +46,7 @@
     "phone" : "123456789",
     "email" : "fayola@example.com",
     "remark" : "Project Report Submission",
-    "tagged" : [ "AI", "4k" ]
+    "tagged" : [ "4k", "AI" ]
   }, {
     "moduleName": "Effective Communication for Computing Professionals",
     "moduleCode": "CS2101",
