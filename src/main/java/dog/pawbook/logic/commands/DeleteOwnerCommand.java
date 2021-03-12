@@ -13,9 +13,7 @@ import dog.pawbook.model.managedentity.owner.Owner;
 /**
  * Deletes a owner identified using it's displayed index from the address book.
  */
-public class DeleteOwnerCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete";
+public class DeleteOwnerCommand extends DeleteCommand {
 
     public static final String ENTITY_WORD = "owner";
 
@@ -24,7 +22,7 @@ public class DeleteOwnerCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_OWNER_SUCCESS = "Deleted Owner: %1$s";
+    public static final String MESSAGE_SUCCESS = String.format(MESSAGE_DELETE_SUCCESS_FORMAT, ENTITY_WORD);
 
     private final Index targetIndex;
 
@@ -43,7 +41,7 @@ public class DeleteOwnerCommand extends Command {
 
         Owner ownerToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteOwner(ownerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_OWNER_SUCCESS, ownerToDelete));
+        return new CommandResult(MESSAGE_SUCCESS + ownerToDelete);
     }
 
     @Override

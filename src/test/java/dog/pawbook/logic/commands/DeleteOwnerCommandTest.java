@@ -31,7 +31,7 @@ public class DeleteOwnerCommandTest {
         Owner ownerToDelete = model.getFilteredOwnerList().get(INDEX_FIRST_OWNER.getZeroBased());
         DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(INDEX_FIRST_OWNER);
 
-        String expectedMessage = String.format(DeleteOwnerCommand.MESSAGE_DELETE_OWNER_SUCCESS, ownerToDelete);
+        String expectedMessage = DeleteOwnerCommand.MESSAGE_SUCCESS + ownerToDelete;
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteOwner(ownerToDelete);
@@ -54,7 +54,7 @@ public class DeleteOwnerCommandTest {
         Owner ownerToDelete = model.getFilteredOwnerList().get(INDEX_FIRST_OWNER.getZeroBased());
         DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(INDEX_FIRST_OWNER);
 
-        String expectedMessage = String.format(DeleteOwnerCommand.MESSAGE_DELETE_OWNER_SUCCESS, ownerToDelete);
+        String expectedMessage = DeleteOwnerCommand.MESSAGE_SUCCESS + ownerToDelete;
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteOwner(ownerToDelete);
