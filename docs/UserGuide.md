@@ -48,7 +48,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 ## Features
 
 ### Viewing help: `help`
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -56,12 +56,13 @@ Format: `help`
 
 Adds a new card to the card list.
 
-Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]` <br />
+
+Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/ TAG]` <br />
 Note: The TAGS are optional when adding a new card.
 
 Examples:
-* `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
-* `add q/ What is the Independence day of Singapore? a/August 9th 1965 c/History p/Mid`
+* `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`  
+* `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
 
 
 ### Listing all cards : `list`
