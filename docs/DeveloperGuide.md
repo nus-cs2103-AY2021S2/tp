@@ -236,8 +236,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts across multiple modules/organisations
-* has a need to keep track of many assignment deadlines
+* has a need to manage a significant number of contacts within CCA
+* has a need to keep track of all the birthdays of CCA members to plan celebrations
+* has a need to store contacts of favourite vendors to contact for birthday celebrations
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
