@@ -9,7 +9,7 @@ import dog.pawbook.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
-public class DeleteOwnerCommandParser implements Parser<DeleteOwnerCommand> {
+public class DeleteOwnerCommandParser extends DeleteCommandParser<DeleteOwnerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -18,12 +18,16 @@ public class DeleteOwnerCommandParser implements Parser<DeleteOwnerCommand> {
      */
     public DeleteOwnerCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = extractIndex(args);
             return new DeleteOwnerCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteOwnerCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(getUsageText(), pe);
         }
+    }
+
+    @Override
+    protected String getUsageText() {
+        return String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteOwnerCommand.MESSAGE_USAGE);
     }
 
 }
