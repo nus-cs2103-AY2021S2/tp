@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Meeting;
+import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -30,7 +30,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
+    private final List<JsonAdaptedEvent> dates = new ArrayList<>();
+    private final List<JsonAdaptedEvent> meetings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,8 +39,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("dates") List<JsonAdaptedEvent> dates,
+            @JsonProperty("meetings") List<JsonAdaptedEvent> meetings) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,7 +48,9 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-
+        if (dates != null) {
+            this.dates.addAll(dates);
+        }
         if (meetings != null) {
             this.meetings.addAll(meetings);
         }
@@ -64,8 +67,11 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        dates.addAll(source.getDates().stream()
+                .map(JsonAdaptedEvent::new)
+                .collect(Collectors.toList()));
         meetings.addAll(source.getMeetings().stream()
-                .map(JsonAdaptedMeeting::new)
+                .map(JsonAdaptedEvent::new)
                 .collect(Collectors.toList()));
     }
 
@@ -113,12 +119,17 @@ class JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final List<Meeting> modelMeetings = new ArrayList<>();
-        for (JsonAdaptedMeeting meeting : meetings) {
+        final List<Event> modelDates = new ArrayList<>();
+        for (JsonAdaptedEvent date : dates) {
+            modelDates.add(date.toModelType());
+        }
+
+        final List<Event> modelMeetings = new ArrayList<>();
+        for (JsonAdaptedEvent meeting : meetings) {
             modelMeetings.add(meeting.toModelType());
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMeetings);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelDates, modelMeetings);
     }
 
 }
