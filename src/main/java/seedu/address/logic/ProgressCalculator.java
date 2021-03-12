@@ -30,7 +30,7 @@ public class ProgressCalculator {
     public static String calculateProgress(FoodIntakeList foodIntakeList, DietPlan dietPlan) {
 
         // Get list of Foods
-        List<FoodIntake> foodIntakes = foodIntakeList.getList();
+        List<FoodIntake> foodIntakes = foodIntakeList.getFoodIntakeList();
 
         // Sort food intake list by dates
         Collections.sort(foodIntakes, new FoodIntakeComparator());

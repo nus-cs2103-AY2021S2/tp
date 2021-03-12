@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.food.Food;
+import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,25 +18,31 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
+    private UniqueFoodList foodList;
+    //Used to have an old comment here, removed due to checkstyle error. Refer to old template for more.
     {
         persons = new UniquePersonList();
+        foodList = new UniqueFoodList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Persons in the {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Creates an AddressBook using the Persons in the {@code toBeCopied}, and adds the associated {@code FoodList}.
+     */
+    public AddressBook(ReadOnlyAddressBook toBeCopied, UniqueFoodList uniqueFoodList) {
+        this();
+        resetData(toBeCopied);
+        this.foodList = uniqueFoodList;
     }
 
     //// list overwrite operations
@@ -64,6 +72,61 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if a person with the same identity as {@code food} exists in the food list.
+     */
+    public boolean hasFoodItem(Food food) {
+        requireNonNull(food);
+        return foodList.hasFoodItem(food);
+    }
+
+    /**
+     * Adds a food item into the food list.
+     * The food item must not exist in the food list.
+     *
+     * @param food food item
+     */
+    public void addFoodItem(Food food) {
+        foodList.addFoodItem(food);
+    }
+
+    /**
+     * Deletes a food item in the food list by its name.
+     *
+     * @param index food index
+     */
+    public void deleteFoodItem(int index) {
+        foodList.deleteFoodItem(index);
+    }
+
+    /**
+     * Updates a food item in the food list
+     * The food item must exist in the food list.
+     *
+     * @param food updated food item
+     */
+    public void updateFoodItem(Food food) {
+        foodList.updateFoodItem(food);
+    }
+
+    /**
+     * Gets the unique food list.
+     *
+     * @return a unique food list
+     */
+    public UniqueFoodList getFoodList() {
+        return foodList;
+    }
+
+    /**
+     * Lists all food items from the food list.
+     *
+     * @return string output of the food list
+     */
+    public String listFoodItem() {
+        return foodList.listAllFoodItem();
     }
 
     /**
@@ -117,4 +180,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+
 }

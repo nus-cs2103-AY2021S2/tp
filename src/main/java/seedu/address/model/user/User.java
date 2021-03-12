@@ -15,11 +15,11 @@ import seedu.address.model.person.Name;
 public class User {
     // Identity fields
     private final Name name;
+    private final Age age;
 
     // Data fields
     private final Bmi bmi;
     private final List<Food> foodList;
-
 
     /**
      * Creates a representation of the user with the given parameters.
@@ -28,11 +28,12 @@ public class User {
      * @param bmi Bmi object of the user
      * @param foodList Food list of the user
      */
-    public User(Name name, Bmi bmi, List<Food> foodList) {
+    public User(Name name, Bmi bmi, List<Food> foodList, Age age) {
         requireAllNonNull(name, bmi, foodList);
         this.name = name;
         this.bmi = bmi;
         this.foodList = foodList;
+        this.age = age;
     }
 
     public Name getName() {
@@ -45,6 +46,10 @@ public class User {
 
     public List<Food> getFoodList() {
         return foodList;
+    }
+
+    public Age getAge() {
+        return this.age;
     }
 
     /**
