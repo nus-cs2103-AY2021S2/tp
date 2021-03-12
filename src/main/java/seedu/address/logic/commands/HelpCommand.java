@@ -19,7 +19,7 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-    private String helpMessage = "Commands available";
+    private String helpMessage = "";
     private final Logger logger = LogsCenter.getLogger(HelpCommand.class);
 
     @Override
@@ -36,14 +36,14 @@ public class HelpCommand extends Command {
 
             currLine = reader.readLine();
             while (currLine != null) {
-                logger.info("currLine: " + currLine);
+                // logger.info("currLine: " + currLine);
 
                 helpMessage += commandSummaryParser(currLine);
 
                 currLine = reader.readLine();
             }
 
-            logger.info("help message now: \n" + helpMessage);
+            // logger.info("help message now: \n" + helpMessage);
 
 
             reader.close();
@@ -67,6 +67,6 @@ public class HelpCommand extends Command {
 
         // logger.info("\n" + commandName[2] + ": " + commandDesc[1]);
 
-        return "\n" + commandName[2] + ": " + commandDesc[1];
+        return commandName[2] + ": " + commandDesc[1] + "\n";
     }
 }

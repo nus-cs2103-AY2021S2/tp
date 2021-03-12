@@ -6,34 +6,52 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene>
-         <HBox alignment="CENTER">
-            <children>
-               <Label fx:id="helpMessage" text="Label">
-                  <HBox.margin>
-                     <Insets right="5.0" />
-                  </HBox.margin>
-               </Label>
-               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-                  <HBox.margin>
-                     <Insets left="5.0" />
-                  </HBox.margin>
-               </Button>
-            </children>
+        <VBox>
+              <Label fx:id="helpTitle" alignment="BOTTOM_LEFT" text="Label">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+              </Label>
+              <Label fx:id="helpMessage" text="Label" />
+            <HBox alignment="CENTER">
+                <children>
+
+                    <Label fx:id="helpLink" text="Label">
+                        <HBox.margin>
+                            <Insets right="5.0" />
+                        </HBox.margin>
+                    </Label>
+                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" textAlignment="RIGHT">
+                        <HBox.margin>
+                            <Insets left="5.0" />
+                        </HBox.margin>
+                    </Button>
+                </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
             <opaqueInsets>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </opaqueInsets>
             <padding>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
-         </HBox>
+        </VBox>
+
     </Scene>
   </scene>
 </fx:root>
