@@ -1,17 +1,17 @@
 package seedu.storemando.model.util;
 
-    import java.util.Arrays;
-    import java.util.Set;
-    import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-    import seedu.storemando.model.ReadOnlyStoreMando;
-    import seedu.storemando.model.StoreMando;
-    import seedu.storemando.model.item.ExpiryDate;
-    import seedu.storemando.model.item.Item;
-    import seedu.storemando.model.item.ItemName;
-    import seedu.storemando.model.item.Location;
-    import seedu.storemando.model.item.Quantity;
-    import seedu.storemando.model.tag.Tag;
+import seedu.storemando.model.ReadOnlyStoreMando;
+import seedu.storemando.model.StoreMando;
+import seedu.storemando.model.item.ExpiryDate;
+import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.ItemName;
+import seedu.storemando.model.item.Location;
+import seedu.storemando.model.item.Quantity;
+import seedu.storemando.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code StoreMando} with sample data.
