@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.logic.commands.AddOwnerCommand;
-import dog.pawbook.logic.commands.DeleteCommand;
+import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
@@ -31,9 +31,10 @@ public class PawbookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + DeleteCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_OWNER), command);
+        DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
+                DeleteOwnerCommand.COMMAND_WORD + " " + DeleteOwnerCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER
+                        .getOneBased());
+        assertEquals(new DeleteOwnerCommand(INDEX_FIRST_OWNER), command);
     }
 
     @Test

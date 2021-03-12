@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import dog.pawbook.logic.commands.AddCommand;
 import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.Command;
-import dog.pawbook.logic.commands.DeleteCommand;
+import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
@@ -49,7 +49,7 @@ public class PawbookParser {
         case AddOwnerCommand.COMMAND_WORD:
             return generateAddCommand(entityType, arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteOwnerCommand.COMMAND_WORD:
             return generateDeleteCommand(entityType, arguments);
 
         case ExitCommand.COMMAND_WORD:
@@ -79,13 +79,13 @@ public class PawbookParser {
         }
     }
 
-    private DeleteCommand generateDeleteCommand(String entityType, String arguments) throws ParseException {
+    private DeleteOwnerCommand generateDeleteCommand(String entityType, String arguments) throws ParseException {
         if (entityType.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteOwnerCommand.MESSAGE_USAGE));
         }
 
         switch (entityType) {
-        case DeleteCommand.ENTITY_WORD:
+        case DeleteOwnerCommand.ENTITY_WORD:
             return new DeleteCommandParser().parse(arguments);
 
         default:
