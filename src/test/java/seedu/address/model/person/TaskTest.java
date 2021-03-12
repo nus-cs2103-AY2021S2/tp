@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.BOB;
@@ -30,7 +29,7 @@ public class TaskTest {
         assertFalse(CS2103.isSameTask(null));
 
         // same name, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(CS2103).withPhone(VALID_PHONE_BOB)
+        Task editedAlice = new TaskBuilder(CS2103)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(CS2103.isSameTask(editedAlice));
 
@@ -68,10 +67,6 @@ public class TaskTest {
 
         // different name -> returns false
         Task editedAlice = new TaskBuilder(CS2103).withName(VALID_NAME_BOB).build();
-        assertFalse(CS2103.equals(editedAlice));
-
-        // different phone -> returns false
-        editedAlice = new TaskBuilder(CS2103).withPhone(VALID_PHONE_BOB).build();
         assertFalse(CS2103.equals(editedAlice));
 
         // different tags -> returns false
