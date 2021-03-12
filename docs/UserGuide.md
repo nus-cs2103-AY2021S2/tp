@@ -5,7 +5,7 @@ title: User Guide
 
 {PartyPlanet} is a **desktop app for managing birthdays of contacts, optimised for use via a Command Line 
 Interface** (CLI) while still having the benefits of Graphical User Interface (GUI). If you can type fast, 
-PartyPlanet can get the planning your birthday celebrations done faster than traditional GUI apps.
+PartyPlanet can get the planning of your birthday celebrations done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
