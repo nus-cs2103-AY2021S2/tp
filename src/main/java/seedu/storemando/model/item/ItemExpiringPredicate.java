@@ -5,6 +5,9 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.function.Predicate;
 import java.time.LocalDate;
 
+/**
+ * Tests that a {@code Item}'s {@code expiry date} is within the stipulated days from today.
+ */
 public class ItemExpiringPredicate implements Predicate<Item> {
     private final Long index;
 

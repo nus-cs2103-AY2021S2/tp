@@ -2,12 +2,13 @@ package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.function.Predicate;
-
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.ItemExpiringPredicate;
 
+/**
+ * Finds and lists all items in storemando whose item's expiry date is within a certain days from today.
+ */
 public class ReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "reminder";
