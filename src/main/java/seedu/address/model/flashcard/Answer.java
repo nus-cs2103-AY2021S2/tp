@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a flash card's answer in FlashBack.
  * Guarantees: immutable; is valid as declared in {@link #isValidAnswer(String)}
  */
 public class Answer {
@@ -16,7 +16,7 @@ public class Answer {
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Answer}.
      *
      * @param answer A valid answer.
      */
@@ -27,7 +27,7 @@ public class Answer {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid answer.
      */
     public static boolean isValidAnswer(String test) {
         return test.matches(VALIDATION_REGEX);

@@ -10,37 +10,61 @@ import seedu.address.model.flashcard.*;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code FlashBack} with sample data.
  */
 public class SampleDataUtil {
     public static final Remark EMPTY = new Remark("");
-    public static Flashcard[] getSamplePersons() {
+    public static Flashcard[] getSampleCards() {
         return new Flashcard[] {
-            new Flashcard(new Question("Alex Yeoh"), new Answer("87438807"), new Category("alexyeoh@example.com"),
-                new Priority("Blk 30 Geylang Street 29, #06-40"), EMPTY,
-                getTagSet("friends")),
-            new Flashcard(new Question("Bernice Yu"), new Answer("99272758"), new Category("berniceyu@example.com"),
-                new Priority("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY,
-                getTagSet("colleagues", "friends")),
-            new Flashcard(new Question("Charlotte Oliveiro"), new Answer("93210283"),
-                new Category("charlotte@example.com"), new Priority("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY,
-                getTagSet("neighbours")),
-            new Flashcard(new Question("David Li"), new Answer("91031282"), new Category("lidavid@example.com"),
-                new Priority("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY,
-                getTagSet("family")),
-            new Flashcard(new Question("Irfan Ibrahim"), new Answer("92492021"), new Category("irfan@example.com"),
-                new Priority("Blk 47 Tampines Street 20, #17-35"), EMPTY,
-                getTagSet("classmates")),
-            new Flashcard(new Question("Roy Balakrishnan"), new Answer("92624417"), new Category("royb@example.com"),
-                new Priority("Blk 45 Aljunied Street 85, #11-31"), EMPTY,
-                getTagSet("colleagues"))
+            new Flashcard(new Question("What is the formula for hydrochloric acid?"),
+                    new Answer("HCl"),
+                    new Category("Chemistry 101"),
+                    new Priority("Mid"),
+                    EMPTY,
+                    getTagSet("formula", "chemistry")),
+            new Flashcard(new Question("What is Newton's Second Law of Motion?"),
+                    new Answer("Force = Mass * Acceleration"),
+                    new Category("Physics 101"),
+                    new Priority("Mid"),
+                    EMPTY,
+                    getTagSet("mechanics", "physics")),
+            new Flashcard(new Question("What is ATP?"),
+                    new Answer("Adenosine Triphosphate"),
+                    new Category("Biology 101"),
+                    new Priority("Mid"),
+                    EMPTY,
+                    getTagSet("biology")),
+            new Flashcard(new Question("What is the time complexity of merge sort?"),
+                    new Answer("O(nlogn)"),
+                    new Category("Computer Science"),
+                    new Priority("High"),
+                    EMPTY,
+                    getTagSet("sorting", "runtime")),
+            new Flashcard(new Question("When did Charles Darwin stop believing in Christianity?"),
+                    new Answer("After the Voyage of the Beagle"),
+                    new Category("History"),
+                    new Priority("Low"),
+                    EMPTY,
+                    getTagSet("Darwinian")),
+            new Flashcard(new Question("What is recursion?"),
+                    new Answer("recursion"),
+                    new Category("Computer Science"),
+                    new Priority("Low"),
+                    EMPTY,
+                    getTagSet("random")),
+            new Flashcard(new Question("What is the author of Romeo and Juliet?"),
+                    new Answer("William Shakespeare"),
+                    new Category("Literature"),
+                    new Priority("High"),
+                    EMPTY,
+                    getTagSet("tragedy"))
         };
     }
 
-    public static ReadOnlyFlashBack getSampleAddressBook() {
+    public static ReadOnlyFlashBack getSampleFlashBack() {
         FlashBack sampleAb = new FlashBack();
-        for (Flashcard sampleFlashcard : getSamplePersons()) {
-            sampleAb.addPerson(sampleFlashcard);
+        for (Flashcard sampleFlashcard : getSampleCards()) {
+            sampleAb.addCard(sampleFlashcard);
         }
         return sampleAb;
     }

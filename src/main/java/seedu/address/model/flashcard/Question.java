@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a flash card's question in FlashBack.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuestion(String)}
  */
 public class Question {
@@ -13,7 +13,7 @@ public class Question {
             "Questions can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the question must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -21,7 +21,7 @@ public class Question {
     public final String fullQuestion;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Question}.
      *
      * @param question A valid question.
      */
@@ -32,7 +32,7 @@ public class Question {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid question.
      */
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);

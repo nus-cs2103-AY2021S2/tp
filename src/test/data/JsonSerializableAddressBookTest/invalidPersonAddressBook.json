@@ -1,8 +1,0 @@
-{
-  "persons": [ {
-    "question": "Hans Muster",
-    "answer": "9482424",
-    "category": "invalid@email!3e",
-    "priority": "4th street"
-  } ]
-}

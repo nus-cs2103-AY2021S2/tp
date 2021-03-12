@@ -9,26 +9,26 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Flashcard.
  */
-public class PersonUtil {
+public class FlashcardUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code flashcard}.
      */
     public static String getAddCommand(Flashcard flashcard) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(flashcard);
+        return AddCommand.COMMAND_WORD + " " + getFlashcardDetails(flashcard);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code flashcard}'s details.
      */
-    public static String getPersonDetails(Flashcard flashcard) {
+    public static String getFlashcardDetails(Flashcard flashcard) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_QUESTION + flashcard.getQuestion().fullQuestion + " ");
         sb.append(PREFIX_ANSWER + flashcard.getAnswer().value + " ");
@@ -41,14 +41,14 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditFlashcardDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditFlashcardDescriptorDetails(EditCardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.fullQuestion).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_ANSWER).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_CATEGORY).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_PRIORITY).append(address.value).append(" "));
+        descriptor.getQuestion().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.fullQuestion).append(" "));
+        descriptor.getAnswer().ifPresent(phone -> sb.append(PREFIX_ANSWER).append(phone.value).append(" "));
+        descriptor.getCategory().ifPresent(email -> sb.append(PREFIX_CATEGORY).append(email.value).append(" "));
+        descriptor.getPriority().ifPresent(address -> sb.append(PREFIX_PRIORITY).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

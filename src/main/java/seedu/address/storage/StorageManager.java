@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of FlashBack data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code FlashBackStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(FlashBackStorage flashBackStorage, UserPrefsStorage userPrefsStorage) {
         super();
@@ -47,33 +47,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ FlashBack methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return flashBackStorage.getAddressBookFilePath();
+    public Path getFlashBackFilePath() {
+        return flashBackStorage.getFlashBackFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyFlashBack> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(flashBackStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyFlashBack> readFlashBack() throws DataConversionException, IOException {
+        return readFlashBack(flashBackStorage.getFlashBackFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyFlashBack> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFlashBack> readFlashBack(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return flashBackStorage.readAddressBook(filePath);
+        return flashBackStorage.readFlashBack(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyFlashBack addressBook) throws IOException {
-        saveAddressBook(addressBook, flashBackStorage.getAddressBookFilePath());
+    public void saveFlashBack(ReadOnlyFlashBack flashBack) throws IOException {
+        saveFlashBack(flashBack, flashBackStorage.getFlashBackFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyFlashBack addressBook, Path filePath) throws IOException {
+    public void saveFlashBack(ReadOnlyFlashBack flashBack, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        flashBackStorage.saveAddressBook(addressBook, filePath);
+        flashBackStorage.saveFlashBack(flashBack, filePath);
     }
 
 }

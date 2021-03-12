@@ -28,7 +28,7 @@ class JsonAdaptedFlashcard {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedFlashcard} with the given flash card details.
      */
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
@@ -60,14 +60,14 @@ class JsonAdaptedFlashcard {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Flashcard} object.
+     * Converts this Jackson-friendly adapted card object into the model's {@code Flashcard} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted card.
      */
     public Flashcard toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> cardTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            cardTags.add(tag.toModelType());
         }
 
         if (question == null) {
@@ -110,7 +110,7 @@ class JsonAdaptedFlashcard {
         }
         final Remark modelRemark = new Remark(remark);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(cardTags);
         return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelPriority, modelRemark, modelTags);
     }
 

@@ -21,12 +21,12 @@ public interface Storage extends FlashBackStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getFlashBackFilePath();
 
     @Override
-    Optional<ReadOnlyFlashBack> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyFlashBack> readFlashBack() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyFlashBack addressBook) throws IOException;
+    void saveFlashBack(ReadOnlyFlashBack flashBack) throws IOException;
 
 }

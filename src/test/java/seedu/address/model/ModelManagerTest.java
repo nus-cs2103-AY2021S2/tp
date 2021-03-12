@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalFlashcards.EINSTEIN;
+import static seedu.address.testutil.TypicalFlashcards.PYTHAGOREAN;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.FlashBackBuilder;
 
 public class ModelManagerTest {
 
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setFlashBackFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setFlashBackFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasFlashcard(ALICE));
+        assertFalse(modelManager.hasFlashcard(PYTHAGOREAN));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addFlashcard(ALICE);
-        assertTrue(modelManager.hasFlashcard(ALICE));
+        modelManager.addFlashcard(PYTHAGOREAN);
+        assertTrue(modelManager.hasFlashcard(PYTHAGOREAN));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        FlashBack flashBack = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        FlashBack flashBack = new FlashBackBuilder().withFlashcard(PYTHAGOREAN).withFlashcard(EINSTEIN).build();
         FlashBack differentFlashBack = new FlashBack();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentFlashBack, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getQuestion().fullQuestion.split("\\s+");
+        String[] keywords = PYTHAGOREAN.getQuestion().fullQuestion.split("\\s+");
         modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(flashBack, userPrefs)));
 
@@ -126,7 +126,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setFlashBackFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(flashBack, differentUserPrefs)));
     }
 }
