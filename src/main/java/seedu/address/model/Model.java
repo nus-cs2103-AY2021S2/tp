@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -34,6 +36,7 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    //=========== AddressBook ================================================================================
     /**
      * Returns the user prefs' address book file path.
      */
@@ -79,9 +82,64 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered doctor list */
+    ObservableList<String> getFilteredDoctorList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    //=========== AppointmentSchedule ========================================================================
+    /**
+     * Returns the user prefs' appointment schedule file path.
+     */
+    Path getAppointmentScheduleFilePath();
+
+    /**
+     * Sets the user prefs' appointment schedule file path.
+     */
+    void setAppointmentScheduleFilePath(Path appointmentScheduleFilePath);
+
+    /**
+     * Replaces appointment schedule book data with the data in {@code addressBook}.
+     */
+    void setAppointmentSchedule(ReadOnlyAppointmentSchedule appointmentSchedule);
+
+    /** Returns the AppointmentSchedule */
+    ReadOnlyAppointmentSchedule getAppointmentSchedule();
+
+    /**
+     * Returns true if an appointment that conflicts with {@code appointment} exists in the appointment schedule.
+     */
+    boolean hasConflictingAppointment(Appointment appointment);
+
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the appointment schedule.
+     */
+    void deleteAppointment(Appointment target);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not be in conflict with existing appointments in the appointment schedule.
+     */
+    void addAppointment(Appointment appointment);
+
+    /**
+     * Replaces the given appointment {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the appointment schedule.
+     * The {@code editedAppointment} must not be in conflict with another appointment in the appointment schedule
+     */
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
+    /** Returns an unmodifiable view of the filtered appointment list */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 }

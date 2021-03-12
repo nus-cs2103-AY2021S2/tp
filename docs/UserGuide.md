@@ -179,7 +179,7 @@ App-Ointment data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-App-Ointment data are saved as a JSON file `[JAR file location]/data/App-Ointment.json`. Advanced users are welcome to update data directly by editing that data file.
+App-Ointment data are saved as a JSON file `[JAR file location]/data/PatientAddressBook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
 If your changes to the data file makes its format invalid, App-Ointment will discard all data and start with an empty data file at the next run.
