@@ -12,12 +12,13 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
-import seedu.address.logic.parser.addcommandparser.AddPersonCommandParser;
+import seedu.address.logic.commands.findcommand.FindCommand;
+import seedu.address.logic.parser.addcommandparser.AddCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.findcommandparser.FindCommandParser;
 
 /**
  * Parses user input.
@@ -47,7 +48,7 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddPersonCommand.COMMAND_WORD:
-            return new AddPersonCommandParser().parseCommand(arguments);
+            return new AddCommandParser().parseCommand(arguments);
 
         case EditPersonCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
@@ -61,8 +62,8 @@ public class AddressBookParser {
         case CalendarCommand.COMMAND_WORD:
             return new CalendarCommand();
 
-        case FindPersonCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parseCommand(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -128,4 +129,13 @@ public interface Model {
      * Replaces module planner data with the data in {@code modulePlanner}.
      */
     void setModulePlanner(ModulePlanner modulePlanner);
+
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate);
+
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getFilteredModuleList();
 }
