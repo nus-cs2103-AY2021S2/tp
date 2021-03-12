@@ -10,15 +10,14 @@ import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.hippocampus.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.hippocampus.commons.core.index.Index;
 import seedu.hippocampus.logic.commands.exceptions.CommandException;
 import seedu.hippocampus.model.AddressBook;
 import seedu.hippocampus.model.Model;
-import seedu.hippocampus.model.person.NameContainsKeywordsPredicate;
 import seedu.hippocampus.model.person.Person;
+import seedu.hippocampus.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.hippocampus.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -120,7 +119,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(splitName[0]));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

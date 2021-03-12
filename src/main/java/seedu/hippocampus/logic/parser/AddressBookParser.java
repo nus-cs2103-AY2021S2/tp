@@ -15,6 +15,7 @@ import seedu.hippocampus.logic.commands.ExitCommand;
 import seedu.hippocampus.logic.commands.FindCommand;
 import seedu.hippocampus.logic.commands.HelpCommand;
 import seedu.hippocampus.logic.commands.ListCommand;
+import seedu.hippocampus.logic.commands.TagsCommand;
 import seedu.hippocampus.logic.parser.exceptions.ParseException;
 
 /**
@@ -60,13 +61,16 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommandParser().parse(arguments);
+
+        case TagsCommand.COMMAND_WORD:
+            return new TagsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

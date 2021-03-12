@@ -1,6 +1,7 @@
 package seedu.hippocampus.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -88,4 +89,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Sorts the filtered person list to be sorted by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortPersonList(Comparator<Person> comparator);
 }

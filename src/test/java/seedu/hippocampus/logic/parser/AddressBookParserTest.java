@@ -4,12 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hippocampus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.hippocampus.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.hippocampus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hippocampus.testutil.Assert.assertThrows;
 import static seedu.hippocampus.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +23,8 @@ import seedu.hippocampus.logic.commands.FindCommand;
 import seedu.hippocampus.logic.commands.HelpCommand;
 import seedu.hippocampus.logic.commands.ListCommand;
 import seedu.hippocampus.logic.parser.exceptions.ParseException;
-import seedu.hippocampus.model.person.NameContainsKeywordsPredicate;
 import seedu.hippocampus.model.person.Person;
+import seedu.hippocampus.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.hippocampus.testutil.EditPersonDescriptorBuilder;
 import seedu.hippocampus.testutil.PersonBuilder;
 import seedu.hippocampus.testutil.PersonUtil;
@@ -71,10 +70,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String keywords = "foo";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME + " " + keywords);
+        assertEquals(new FindCommand(List.of(new NameContainsKeywordsPredicate(keywords))), command);
     }
 
     @Test
