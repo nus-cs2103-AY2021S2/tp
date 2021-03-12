@@ -32,10 +32,6 @@ public class FoodIntakeList {
      */
     public void addFoodIntake(FoodIntake foodIntake) {
         this.foodIntakeList.add(foodIntake);
-        Collections.sort(this.foodIntakeList, new FoodIntakeComparator());
-        for (FoodIntake fdi : this.foodIntakeList) {
-            System.out.println(fdi);
-        }
     }
 
     /**
