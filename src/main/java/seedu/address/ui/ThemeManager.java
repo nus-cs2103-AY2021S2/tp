@@ -19,7 +19,7 @@ public class ThemeManager {
     /**
      * Template of the css used by the application.
      */
-    private static String CSS_TEMPLATE;
+    private static String cssTemplate;
 
     /**
      * Current theme used by the application
@@ -44,7 +44,7 @@ public class ThemeManager {
     static {
         ThemeManager.theme = ThemeFactory.getDefaultTheme();
         InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
-        ThemeManager.CSS_TEMPLATE = new BufferedReader(new InputStreamReader(templateStream))
+        ThemeManager.cssTemplate = new BufferedReader(new InputStreamReader(templateStream))
             .lines().collect(Collectors.joining("\n"));
         ThemeManager.updateCss();
     }
@@ -94,7 +94,7 @@ public class ThemeManager {
      * @return true if the update was successful otherwise false.
      */
     private static boolean updateCss() {
-        String cssString = ThemeManager.CSS_TEMPLATE;
+        String cssString = ThemeManager.cssTemplate;
         cssString = cssString
             .replaceAll("\\$foreground", ThemeManager.theme.foreground)
             .replaceAll("\\$background", ThemeManager.theme.background);

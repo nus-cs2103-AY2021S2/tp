@@ -3,11 +3,15 @@ package seedu.address.ui;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * The theme object. Stores the color palette of the application.
  */
 public class Theme implements Serializable {
+
+    public final Pattern REGEX_HEX_COLOR = Pattern.compile("^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$");
+
     /**
      * The foreground color of the application.
      */
@@ -56,10 +60,24 @@ public class Theme implements Serializable {
         if (this.foreground.isEmpty() || this.background.isEmpty()) {
             return false;
         }
+        if (!REGEX_HEX_COLOR.matcher(this.foreground).find()) {
+            return false;
+        }
+        if (!REGEX_HEX_COLOR.matcher(this.background).find()) {
+            return false;
+        }
         if (color == null) {
             return false;
         }
-        return color.length == 16;
+        if (color.length != 16) {
+            return false;
+        }
+        for (String hex : color) {
+            if (!REGEX_HEX_COLOR.matcher(hex).find()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -82,11 +100,4 @@ public class Theme implements Serializable {
         return Arrays.equals(color, theme.color);
     }
 
-    @Override
-    public int hashCode() {
-        int result = foreground != null ? foreground.hashCode() : 0;
-        result = 31 * result + (background != null ? background.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(color);
-        return result;
-    }
 }
