@@ -14,6 +14,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
     * Listing all cards: `list`
     * Deleting a card: `delete`
     * Viewing a card: `view`
+    * Finding cards: `find` 
     * Clearing all cards: `clear`
     * Exiting the program: `exit`
     * Saving data
@@ -33,7 +34,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 1. Copy the file to the folder you want to use as the home folder for your FlashBack.
 1. Double-click the file to start the app. The GUI should appear in a few seconds.
 ![GUI](./images/Ui.png)
-1. Type the command in the command box and press Enter to execute it:
+1. Below are some commands you can try, type the command in the command box and press Enter to execute it:
     * **`help`** : Opens the help window.
     * **`add`**`k/ Einstein’s Equation d/ e=mc^2 t/ Physics`: Adds a new flashcard named `Einstein's Equation` to FlashBack.
     * **`delete`**`1`: Deletes the 1st card shown in the current list.
@@ -95,6 +96,23 @@ Format: `view INDEX`
 Examples:
 * `view 1` shows the 1st flashcard (in the displayed flashcard list).
 
+### Finding cards : `find`
+
+Find cards according to search criteria containing any of the given keywords.
+
+Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `equation` will match `Equation`
+* The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
+* The search will be according to the `CRITERIA` given. `q/` to search by questions or `c/` to search by categories.
+* Only full words will be matched e.g. `What` will not match `What?`
+* Flashcards matching at least one keyword will be returned (i.e. `OR` search). e.g. `Newton's Equation` will return `Newton's Second Law of Motion` and `Einstein's Equation`
+
+Examples:
+* `find q/ equation` will return cards with `Einstein's Equation` and `Chemistry Equation` as the questions.
+* `find c/ computer` will return cards with `computer` in the category.<br>
+![result for `find c/ computer`](images/findComputerResult.png)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from FlashBack.
@@ -140,6 +158,7 @@ Action | Format, Examples
 **Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br> e.g., `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
 **View** | `view INDEX` <br> e.g., `view 2`
+**Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`
 **Clear** | `clear`
 **List** | `list`
 **Help** | `help`
