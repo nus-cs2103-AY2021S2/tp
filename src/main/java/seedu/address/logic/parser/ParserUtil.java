@@ -34,6 +34,8 @@ public class ParserUtil {
             + "2H 30M - returns a duration of 2 hours, 30 minutes and 30 seconds\n"
             + "150M   - returns a duration of 150 minutes";
 
+    private static final String PREFIX_DURATION_PARSE_SEQUENCE = "PT";
+    private static final String REMOVE_WHITESPACE_REGEX = "\\s+";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
@@ -165,7 +167,8 @@ public class ParserUtil {
         requireNonNull(duration);
 
         try {
-            return Duration.parse("PT" + duration.replaceAll("\\s+", ""));
+            return Duration.parse(PREFIX_DURATION_PARSE_SEQUENCE + duration.replaceAll(
+                    REMOVE_WHITESPACE_REGEX, ""));
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_DURATION_FORMAT);
         }
