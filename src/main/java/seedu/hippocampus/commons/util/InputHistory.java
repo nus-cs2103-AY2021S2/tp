@@ -28,7 +28,7 @@ public class InputHistory {
      * @param s User input.
      */
     public void add(String s) {
-        if (lst.isEmpty() || isDifferentFromLastest(s)) {
+        if (lst.isEmpty() || isDifferentFromLatest(s)) {
             if (lst.size() == MAXSIZE) {
                 lst.remove(0);
             }
@@ -38,7 +38,7 @@ public class InputHistory {
         current = lst.size();
     }
 
-    private boolean isDifferentFromLastest(String s) {
+    private boolean isDifferentFromLatest(String s) {
         return !s.equals(lst.get(lst.size() - 1));
     }
 
