@@ -40,7 +40,7 @@ public class EndpointCaller {
             response = new PostRequest(endpointToSend).send();
             break;
         case PUT:
-            //to-do
+            response = new PutRequest(endpointToSend).send();
             break;
         case DELETE:
             response = new DeleteRequest(endpointToSend).send();
