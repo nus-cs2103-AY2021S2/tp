@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
     private final ModulePlanner modulePlanner;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,6 +44,7 @@ public class ModelManager implements Model {
         this.modulePlanner = new ModulePlanner(modulePlanner);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredModules = new FilteredList<>(this.modulePlanner.getModuleList());
     }
 
     public ModelManager() {
@@ -161,6 +164,18 @@ public class ModelManager implements Model {
     public void setModulePlanner(ModulePlanner modulePlanner) {
         this.modulePlanner.resetData(modulePlanner);
     }
+
+    @Override
+    public void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
+    }
+
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);

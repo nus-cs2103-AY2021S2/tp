@@ -1,8 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.findcommand;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -16,8 +19,10 @@ public class FindPersonCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: "
+            + PREFIX_NAME + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -36,7 +41,7 @@ public class FindPersonCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindPersonCommand // instanceof handles nulls
-                && predicate.equals(((FindPersonCommand) other).predicate)); // state check
+                || (other instanceof FindPersonCommand) // instanceof handles nulls
+                && predicate.equals(((FindPersonCommand) other).predicate); // state check
     }
 }
