@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
@@ -42,7 +41,6 @@ public class EditCommand extends Command {
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_CODE + "CODE] "
         + "[" + PREFIX_PHONE + "PHONE] "
-        + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
@@ -99,12 +97,11 @@ public class EditCommand extends Command {
         ModuleCode updatedModuleCode = editTaskDescriptor.getModuleCode().orElse(taskToEdit.getModuleCode());
         Weightage updatedWeightage = taskToEdit.getWeightage(); // edit command does not allow editing weightage
         Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
-        Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
         Remark updatedRemark = taskToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedModuleName, updatedModuleCode, updatedWeightage,
-                updatedPhone, updatedEmail, updatedRemark, updatedTags);
+                updatedPhone, updatedRemark, updatedTags);
     }
 
     @Override
@@ -134,7 +131,6 @@ public class EditCommand extends Command {
         private ModuleName moduleName;
         private ModuleCode moduleCode;
         private Phone phone;
-        private Email email;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {
@@ -148,7 +144,6 @@ public class EditCommand extends Command {
             setModuleName(toCopy.moduleName);
             setModuleCode(toCopy.moduleCode);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setTags(toCopy.tags);
         }
 
@@ -156,7 +151,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleName, moduleCode, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(moduleName, moduleCode, phone, tags);
         }
 
         public void setModuleName(ModuleName moduleName) {
@@ -181,14 +176,6 @@ public class EditCommand extends Command {
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         /**
@@ -226,7 +213,6 @@ public class EditCommand extends Command {
             return getModuleName().equals(e.getModuleName())
                 && getModuleCode().equals(e.getModuleCode())
                 && getPhone().equals(e.getPhone())
-                && getEmail().equals(e.getEmail())
                 && getTags().equals(e.getTags());
         }
     }

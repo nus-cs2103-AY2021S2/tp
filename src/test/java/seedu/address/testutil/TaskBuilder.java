@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
@@ -22,14 +21,12 @@ public class TaskBuilder {
     public static final String DEFAULT_CODE = "CS2103";
     public static final Integer DEFAULT_WEIGHTAGE = 0;
     public static final String DEFAULT_PHONE = "85355256";
-    public static final String DEFAULT_EMAIL = "amy2@gmail.com";
     public static final String DEFAULT_REMARK = "";
 
     private ModuleName moduleName;
     private ModuleCode moduleCode;
     private Weightage weightage;
     private Phone phone;
-    private Email email;
     private Remark remark;
     private Set<Tag> tags;
 
@@ -41,7 +38,6 @@ public class TaskBuilder {
         moduleCode = new ModuleCode(DEFAULT_CODE);
         weightage = new Weightage(DEFAULT_WEIGHTAGE);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
@@ -54,7 +50,6 @@ public class TaskBuilder {
         moduleCode = taskToCopy.getModuleCode();
         weightage = taskToCopy.getWeightage();
         phone = taskToCopy.getPhone();
-        email = taskToCopy.getEmail();
         remark = taskToCopy.getRemark();
         tags = new HashSet<>(taskToCopy.getTags());
     }
@@ -100,14 +95,6 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Task} that we are building.
-     */
-    public TaskBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
-    /**
      * Sets the {@code Remark} of the {@code Task} that we are building.
      */
     public TaskBuilder withRemark(String remark) {
@@ -116,7 +103,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(moduleName, moduleCode, weightage, phone, email, remark, tags);
+        return new Task(moduleName, moduleCode, weightage, phone, remark, tags);
     }
 
 }
