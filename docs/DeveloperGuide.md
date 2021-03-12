@@ -245,9 +245,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* manage contacts faster than a typical mouse/GUI driven app
-* group and access contacts by organization/module
-* track assignment deadlines
+* manage planning of birthdays faster than a typical mouse/GUI driven app
+* group and access CCA members by information such as matriculation batch/sub-committees
+* track upcoming birthdays to plan for
 
 ### User stories
 
