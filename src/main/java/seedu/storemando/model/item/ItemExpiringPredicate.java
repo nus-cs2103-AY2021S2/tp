@@ -17,10 +17,14 @@ public class ItemExpiringPredicate implements Predicate<Item> {
 
     @Override
     public boolean test(Item item) {
-        LocalDate itemExpiryDate = item.getExpiryDate().expiryDate;
-        LocalDate today = LocalDate.now();
-        Long daysDifference = DAYS.between(today, itemExpiryDate);
-        return daysDifference <= numOfDays;
+        try {
+            LocalDate itemExpiryDate = item.getExpiryDate().expiryDate;
+            LocalDate today = LocalDate.now();
+            Long daysDifference = DAYS.between(today, itemExpiryDate);
+            return daysDifference <= numOfDays;
+        } catch (NullPointerException ex) {
+            return false;
+        }
     }
 
     @Override
