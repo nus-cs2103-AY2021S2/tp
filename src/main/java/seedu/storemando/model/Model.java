@@ -8,7 +8,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.QuantityComparator;
 
 /**
  * The API of the Model component.

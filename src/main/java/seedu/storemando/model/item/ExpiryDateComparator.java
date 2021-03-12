@@ -1,6 +1,5 @@
 package seedu.storemando.model.item;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 
 public class ExpiryDateComparator implements Comparator<Item> {

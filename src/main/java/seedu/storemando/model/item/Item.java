@@ -2,7 +2,6 @@ package seedu.storemando.model.item;
 
 import static seedu.storemando.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -133,7 +132,7 @@ public class Item {
     }
 
     public int compareByQuantity(Item anotherItem) {
-        return  this.getQuantity().compare(anotherItem.getQuantity());
+        return this.getQuantity().compare(anotherItem.getQuantity());
     }
 
     public int compareByExpiryDate(Item anotherItem) {

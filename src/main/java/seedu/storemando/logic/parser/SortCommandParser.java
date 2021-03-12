@@ -2,8 +2,6 @@ package seedu.storemando.logic.parser;
 
 import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.stream.Stream;
-
 import seedu.storemando.logic.commands.SortCommand;
 import seedu.storemando.logic.commands.SortExpiryDateCommand;
 import seedu.storemando.logic.commands.SortQuantityCommand;

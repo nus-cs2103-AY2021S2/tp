@@ -1,13 +1,5 @@
 package seedu.storemando.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.storemando.logic.parser.CliSyntax.PREFIX_EXPIRYDATE;
-import static seedu.storemando.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
-
-import java.util.Comparator;
-import java.util.function.Predicate;
-
 import seedu.storemando.model.Model;
 
 public abstract class SortCommand extends Command {
