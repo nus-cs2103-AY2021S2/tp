@@ -1,5 +1,7 @@
 package seedu.storemando.logic.parser;
 
+import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.storemando.logic.commands.ReminderCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.ItemExpiringPredicate;
@@ -19,20 +21,19 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     public ReminderCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException("Empty arguments given.");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
         }
 
-        String[] indexes = trimmedArgs.split(" ");
-        System.out.println(indexes.length);
-        if (indexes.length > 1) {
-            throw new ParseException("There is more than 1 arguments given.");
+        String[] numOfArgs = trimmedArgs.split(" ");
+        if (numOfArgs.length > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
         }
 
         try {
-            Long x = Long.parseLong(indexes[0]);
-            return new ReminderCommand(new ItemExpiringPredicate(x));
+            Long numOfDayFromToday = Long.parseLong(numOfArgs[0]);
+            return new ReminderCommand(new ItemExpiringPredicate(numOfDayFromToday));
         } catch (NumberFormatException e) {
-            throw new ParseException("Argument is not an integer.");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
         }
     }
 }
