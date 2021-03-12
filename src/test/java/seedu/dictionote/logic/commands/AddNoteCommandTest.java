@@ -150,6 +150,11 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public void updateFilteredNoteList(Predicate<Note> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyNoteBook getNoteBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -161,6 +166,11 @@ public class AddNoteCommandTest {
 
         @Override
         public void addNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteNote(Note note) {
             throw new AssertionError("This method should not be called.");
         }
 

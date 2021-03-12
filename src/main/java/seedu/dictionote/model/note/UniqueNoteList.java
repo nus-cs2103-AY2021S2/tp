@@ -48,6 +48,14 @@ public class UniqueNoteList implements Iterable<Note> {
     }
 
     /**
+     * Deletes a note to the list.
+     */
+    public void delete(Note toRemove) {
+        requireNonNull(toRemove);
+        internalList.remove(toRemove);
+    }
+
+    /**
      * Replaces the contents of this list with {@code notes}.
      * {@code notes} must not contain duplicate persons.
      */

@@ -68,6 +68,11 @@ public class NoteBook implements ReadOnlyNoteBook {
         notes.add(n);
     }
 
+    public void deleteNote(Note n) {
+        notes.delete(n);
+    }
+
+
     //// util methods
 
     @Override
