@@ -28,6 +28,17 @@ public class EventList {
         this.events.addAll(events);
     }
 
+    /**
+     * Adds an event to this {@code EventList} and return that new {@code EventList}
+     *
+     * @param event {@code Event} to add.
+     */
+    public EventList addEvent(Event event) {
+        List<Event> events = this.events;
+        events.add(event);
+        return new EventList(events);
+    }
+
     public List<Event> getEvents() {
         return events;
     }

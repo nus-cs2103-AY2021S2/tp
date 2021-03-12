@@ -66,6 +66,17 @@ public class Project {
     }
 
     /**
+     * Adds an event to the {@code EventList}.\
+     *
+     * @param event {@code Event} to add.
+     */
+    public Project addEvent(Event event) {
+        EventList events = this.events.addEvent(event);
+        return new Project(this.getProjectName(), events,
+                this.getCompletableTasks(), this.getParticipants());
+    }
+
+    /**
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two projects.
      */

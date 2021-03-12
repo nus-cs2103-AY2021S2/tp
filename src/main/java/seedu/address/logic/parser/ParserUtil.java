@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +18,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Interval;
+import seedu.address.model.task.repeatable.Event;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -136,5 +141,36 @@ public class ParserUtil {
             throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
         }
         return new ProjectName(trimmedName);
+    }
+
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!trimmedDescription.matches("[\\p{Alnum}][\\p{Alnum} ]*")) {
+            throw new ParseException(Event.MESSAGE_DESCRIPTION_CONSTRAINTS);
+        }
+        return trimmedDescription;
+    }
+
+    public static Interval parseInterval(String interval) throws ParseException {
+        requireNonNull(interval);
+        String trimmedInterval = interval.trim();
+        try {
+            Interval.valueOf(trimmedInterval);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(Event.MESSAGE_INTERVAL_CONSTRAINTS);
+        }
+        return Interval.valueOf(trimmedInterval);
+    }
+
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            LocalDate.parse(trimmedDate, DateTimeFormatter.ofPattern("dd-MM-uuuu"));
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Event.MESSAGE_DATE_CONSTRAINTS);
+        }
+        return LocalDate.parse(trimmedDate, DateTimeFormatter.ofPattern("dd-MM-uuuu"));
     }
 }
