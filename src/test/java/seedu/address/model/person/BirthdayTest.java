@@ -43,3 +43,4 @@ public class BirthdayTest {
         assertTrue(Birthday.isValidBirthday("1985-15-12")); // alphabets only
     }
 }
+
