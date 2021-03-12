@@ -62,6 +62,8 @@ public class FlashBackParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
