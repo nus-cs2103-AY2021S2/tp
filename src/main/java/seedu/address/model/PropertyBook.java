@@ -2,20 +2,40 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.UniquePropertyList;
 
 /**
  * Wraps all data at the property-book level.
  * Duplicates are not allowed (by .isSameProperty comparison).
  */
-public class PropertyBook {
-    private final List<Property> properties;
+public class PropertyBook implements ReadOnlyPropertyBook {
+    //private final List<Property> properties;
+    private final UniquePropertyList properties;
+
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        properties = new UniquePropertyList();
+    }
 
     public PropertyBook() {
-        properties = new ArrayList<>();
+    }
+
+    /**
+     * Creates a Property Book using the Property in the {@code toBeCopied}
+     */
+    public PropertyBook(ReadOnlyPropertyBook toBeCopied) {
+        this();
+        resetData(toBeCopied);
     }
 
     /**
@@ -37,5 +57,66 @@ public class PropertyBook {
      */
     public void addProperty(Property property) {
         properties.add(property);
+    }
+
+    /**
+     * Replaces the contents of the property list with {@code properties}.
+     * {@code properties} must not contain duplicate properties.
+     */
+    public void setProperties(List<Property> properties) {
+        this.properties.setProperties(properties);
+    }
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyPropertyBook newData) {
+        requireNonNull(newData);
+        setProperties(newData.getPropertyList());
+    }
+
+    /**
+     * Replaces the given property {@code target} in the list with {@code editedProperty}.
+     * {@code target} must exist in the property book.
+     * The property identity of {@code editedProperty} must not be the same as another
+     * existing property in the property book.
+     */
+    public void setProperty(Property target, Property editedProperty) {
+        requireNonNull(editedProperty);
+
+        properties.setProperty(target, editedProperty);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeProperty(Property key) {
+        properties.remove(key);
+    }
+
+    //// util methods
+
+    @Override
+    public String toString() {
+        return properties.asUnmodifiableObservableList().size() + " properties";
+        // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Property> getPropertyList() {
+        return properties.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PropertyBook // instanceof handles nulls
+                && properties.equals(((PropertyBook) other).properties));
+    }
+
+    @Override
+    public int hashCode() {
+        return properties.hashCode();
     }
 }
