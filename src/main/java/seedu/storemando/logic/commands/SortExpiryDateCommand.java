@@ -2,14 +2,8 @@ package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.Comparator;
-
-import javafx.collections.ObservableList;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.ExpiryDateComparator;
-import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.QuantityComparator;
 
 public class SortExpiryDateCommand extends SortCommand {
 
@@ -17,7 +11,8 @@ public class SortExpiryDateCommand extends SortCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         ExpiryDateComparator comparator = new ExpiryDateComparator();
-        model.sortFilteredItemList(comparator);
+        model.updateSortedItemList(comparator);
+        model.setItems(model.getSortedItemList());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

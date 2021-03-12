@@ -37,6 +37,16 @@ public interface Logic {
     ObservableList<Item> getFilteredItemList();
 
     /**
+     * Returns an unmodifiable view of the sorted list of items
+     */
+    ObservableList<Item> getSortedItemList();
+
+    /**
+     * Returns an unmodifiable view of list of items
+     */
+    ObservableList<Item> getItemList();
+
+    /**
      * Returns the user prefs' storemando file path.
      */
     Path getStoreMandoFilePath();

@@ -20,6 +20,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.equals(QUANTITY_KEYWORD)) {
+            System.out.println("1");
             return new SortQuantityCommand();
         } else if (trimmedArgs.equals(EXPIRYDATE_KEYWORD)) {
             return new SortExpiryDateCommand();

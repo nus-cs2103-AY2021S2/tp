@@ -4,13 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.commons.core.LogsCenter;
 import seedu.storemando.model.item.Item;
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final StoreMando storeMando;
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
+    private final SortedList<Item> sortedItems;
 
     /**
      * Initializes a ModelManager with the given storeMando and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.storeMando = new StoreMando(storeMando);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.storeMando.getItemList());
+        sortedItems = new SortedList<>(this.storeMando.getItemList());
     }
 
     public ModelManager() {
@@ -114,6 +117,11 @@ public class ModelManager implements Model {
         storeMando.setItem(target, editedItem);
     }
 
+    @Override
+    public void setItems(List<Item> itemList) {
+        storeMando.setItems(itemList);
+    }
+
     //=========== Filtered Item List Accessors =============================================================
 
     /**
@@ -131,8 +139,22 @@ public class ModelManager implements Model {
         filteredItems.setPredicate(predicate);
     }
 
-    public void sortFilteredItemList(Comparator<Item> cmp) {
-        Collections.sort(getFilteredItemList(), cmp);
+
+    //=========== Sorted Item List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
+     * {@code versionedstoreMando}
+     */
+    @Override
+    public ObservableList<Item> getSortedItemList() {
+        return sortedItems;
+    }
+
+    @Override
+    public void updateSortedItemList(Comparator<Item> cmp) {
+        requireNonNull(cmp);
+        sortedItems.setComparator(cmp);
     }
 
     @Override

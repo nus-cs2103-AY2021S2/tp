@@ -9,8 +9,6 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import seedu.storemando.model.Model;
-import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
 
 public abstract class SortCommand extends Command {
 
@@ -24,6 +22,8 @@ public abstract class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "sorted all items";
 
+
+    public abstract CommandResult execute(Model model);
 
     public abstract boolean equals(Object other);
 }

@@ -65,6 +65,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Item> getSortedItemList() {
+        return model.getSortedItemList();
+    }
+
+    @Override
+    public ObservableList<Item> getItemList() {
+        return getSortedItemList();
+    }
+
+    @Override
     public Path getStoreMandoFilePath() {
         return model.getStoreMandoFilePath();
     }
