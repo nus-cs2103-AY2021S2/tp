@@ -1,16 +1,12 @@
 package seedu.us.among.ui;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -20,7 +16,6 @@ import seedu.us.among.commons.core.LogsCenter;
 import seedu.us.among.logic.Logic;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
-import seedu.us.among.logic.endpoint.Request;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 
@@ -41,9 +36,6 @@ public class MainWindow extends UiPart<Stage> {
     private EndpointListPanel endpointListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-
-    // Handle ctrl+c event for cancelling API calls
-    private EventHandler<KeyEvent> keyEventHandler;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -76,8 +68,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-
-        initialiseKeyEventHandler();
     }
 
     public Stage getPrimaryStage() {
@@ -131,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEndpointListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay);
+        CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay, primaryStage);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -184,45 +174,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Closes httpClient when ctrl + c is pressed.
-     *
-     * @param event key event for pressed keys
-     */
-    public void closeHttpClient(KeyEvent event) throws IOException {
-        KeyCombination kc = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN);
-        if (kc.match(event)) {
-            Request.getHttpclient().close();
-        }
-    }
-
-    /**
-     * Initialises key handler to be method for handling ctrl + c input.
-     */
-    public void initialiseKeyEventHandler() {
-        this.keyEventHandler = e -> {
-            try {
-                closeHttpClient(e);
-            } catch (IOException ioException) {
-                logger.info("Unable to stop request: " + ioException.getMessage());
-            }
-        };
-    }
-
-    /**
-     * Sets the key event handler to look out for key input of ctrl + c from user.
-     */
-    public void setKeyEventHandler() {
-        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, this.keyEventHandler);
-    }
-
-    /**
-     * Unsets the key event handler that looks out for key input of ctrl + c from user.
-     */
-    public void unsetKeyEventHandler() {
-        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, this.keyEventHandler);
-    }
-
-    /**
      * Executes the command and returns the result.
      *
      * @see Logic#execute(String)
@@ -230,10 +181,8 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException, RequestException {
         resultDisplay.setFeedbackToUser("");
         resultDisplay.getLoadingSpinnerPlaceholder().setVisible(true);
-        setKeyEventHandler();
         try {
             CommandResult commandResult = logic.execute(commandText);
-            unsetKeyEventHandler();
             resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             if (commandResult.isApiResponse()) {
@@ -252,7 +201,6 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException | RequestException e) {
-            unsetKeyEventHandler();
             //stop loading spinner (if any)
             resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
 
