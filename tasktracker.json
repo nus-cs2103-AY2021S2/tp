@@ -2,6 +2,7 @@
   "tasks" : [ {
     "moduleName": "Software Engineering",
     "moduleCode": "CS2103",
+    "weightage" : 0,
     "phone" : "123456789",
     "email" : "fayola@example.com",
     "remark" : "Debugging",
@@ -9,6 +10,7 @@
   }, {
     "moduleName": "Data Structure and Algorithms",
     "moduleCode": "CS2040",
+    "weightage" : 0,
     "phone" : "123456789",
     "email" : "fayola@example.com",
     "remark" : "PE2",
@@ -16,6 +18,7 @@
   }, {
     "moduleName": "Introduction to Artificial Intelligence",
     "moduleCode": "CS3243",
+    "weightage" : 0,
     "phone" : "123456789",
     "email" : "fayola@example.com",
     "remark" : "Group report 2",
@@ -23,6 +26,7 @@
   }, {
     "moduleName": "Introduction to Machine Learning",
     "moduleCode": "CS3244",
+    "weightage" : 0,
     "phone" : "123456789",
     "email" : "fayola@example.com",
     "remark" : "Final report submission",
@@ -30,6 +34,7 @@
   }, {
     "moduleName": "Design and Analysis of Algorithms",
     "moduleCode": "CS3230",
+    "weightage" : 0,
     "phone" : "123456789",
     "email" : "fayola@example.com",
     "remark" : "CodeCrunch level 2",
@@ -37,13 +42,15 @@
   }, {
     "moduleName": "Computer Vision and Pattern Recognition",
     "moduleCode": "CS4243",
+    "weightage" : 0,
     "phone" : "123456789",
     "email" : "fayola@example.com",
     "remark" : "Project Report Submission",
-    "tagged" : [ "AI", "4k" ]
+    "tagged" : [ "4k", "AI" ]
   }, {
     "moduleName": "Effective Communication for Computing Professionals",
     "moduleCode": "CS2101",
+    "weightage" : 0,
     "phone" : "123456789",
     "email" : "fayola@example.com",
     "remark" : "Peer Review",

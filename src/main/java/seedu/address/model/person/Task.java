@@ -18,6 +18,7 @@ public class Task {
     // Identity fields
     private final ModuleName moduleName;
     private final ModuleCode moduleCode;
+    private final Weightage weightage;
     private final Phone phone;
     private final Email email;
 
@@ -28,10 +29,12 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(ModuleName moduleName, ModuleCode moduleCode, Phone phone, Email email, Remark remark, Set<Tag> tags) {
+    public Task(ModuleName moduleName, ModuleCode moduleCode, Weightage weightage,
+                Phone phone, Email email, Remark remark, Set<Tag> tags) {
         requireAllNonNull(moduleName, moduleCode, phone, email, tags);
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
+        this.weightage = weightage;
         this.phone = phone;
         this.email = email;
         this.remark = remark;
@@ -44,6 +47,10 @@ public class Task {
 
     public ModuleCode getModuleCode() {
         return moduleCode;
+    }
+
+    public Weightage getWeightage() {
+        return weightage;
     }
 
     public Phone getPhone() {
@@ -96,6 +103,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getModuleName().equals(getModuleName())
             && otherTask.getModuleCode().equals(getModuleCode())
+            && otherTask.getWeightage().equals(getWeightage())
             && otherTask.getPhone().equals(getPhone())
             && otherTask.getEmail().equals(getEmail())
             && otherTask.getRemark().equals(getRemark())
@@ -114,6 +122,8 @@ public class Task {
         builder.append(getModuleName())
             .append("; Module Code: ")
             .append(getModuleCode())
+            .append("; Weightage: ")
+            .append(getWeightage())
             .append("; Phone: ")
             .append(getPhone())
             .append("; Email: ")

@@ -9,6 +9,7 @@ import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -19,12 +20,14 @@ public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "Software Engineerings";
     public static final String DEFAULT_CODE = "CS2103";
+    public static final Integer DEFAULT_WEIGHTAGE = 0;
     public static final String DEFAULT_PHONE = "85355256";
     public static final String DEFAULT_EMAIL = "amy2@gmail.com";
     public static final String DEFAULT_REMARK = "";
 
     private ModuleName moduleName;
     private ModuleCode moduleCode;
+    private Weightage weightage;
     private Phone phone;
     private Email email;
     private Remark remark;
@@ -36,6 +39,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         moduleName = new ModuleName(DEFAULT_NAME);
         moduleCode = new ModuleCode(DEFAULT_CODE);
+        weightage = new Weightage(DEFAULT_WEIGHTAGE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         remark = new Remark(DEFAULT_REMARK);
@@ -48,6 +52,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         moduleName = taskToCopy.getModuleName();
         moduleCode = taskToCopy.getModuleCode();
+        weightage = taskToCopy.getWeightage();
         phone = taskToCopy.getPhone();
         email = taskToCopy.getEmail();
         remark = taskToCopy.getRemark();
@@ -67,6 +72,14 @@ public class TaskBuilder {
      */
     public TaskBuilder withCode(String code) {
         this.moduleCode = new ModuleCode(code);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Weightage} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withWeightage(Integer weightage) {
+        this.weightage = new Weightage(weightage);
         return this;
     }
 
@@ -103,7 +116,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(moduleName, moduleCode, phone, email, remark, tags);
+        return new Task(moduleName, moduleCode, weightage, phone, email, remark, tags);
     }
 
 }

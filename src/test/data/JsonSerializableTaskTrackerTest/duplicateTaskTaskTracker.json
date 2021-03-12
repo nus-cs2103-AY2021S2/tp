@@ -2,12 +2,14 @@
   "tasks": [ {
     "moduleName": "Software Engineering",
     "moduleCode": "CS2103",
+    "weightage" : 0,
     "phone": "94351253",
     "email": "alice@example.com",
     "remark" : "Aardvarks"
   }, {
     "moduleName": "Software Engineering",
     "moduleCode": "CS2103",
+    "weightage" : 0,
     "phone": "94351253",
     "email": "alice@example.com",
     "remark" : "Aardvarks"
