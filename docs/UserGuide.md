@@ -84,11 +84,11 @@ A person can have any number of tags (including 0)
 </div>
 
 * Assigning Priorities:
-  
+
   Format:
-  
+
   `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS pr/PRIORITY [no/NOTES] d/DATE`
-  
+
   PRIORITY can be {1,2,3,4,5}
 
 
