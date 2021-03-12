@@ -20,7 +20,7 @@ public class DoneCommandParserTest {
     private DoneCommandParser parser = new DoneCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDoneCommand() {
         assertParseSuccess(parser, "1", new DoneCommand(INDEX_FIRST_TASK));
     }
 
