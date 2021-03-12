@@ -378,13 +378,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The exact task is already present in the list.
+* 2a. The exact task with the same name and module code is already present in the list.
 
     * 2a1. ModuleBook 3.5 displays an error message indicating task is present.
       
       Use case resumes at step 2.
 
-* 2b.  Invalid format for the add command
+* 2b.  Invalid format for the add command.
 
     * 2b1. ModuleBook 3.5 shows an error message with the correct format for add and example.
 
