@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HIGH = "priorityHigh";
     public static final String VALID_TAG_LOW = "priorityLow";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_AMY = " " + PREFIX_TASK_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_TASK_NAME + VALID_NAME_BOB;
     public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY;
     public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB;
     public static final String MODULE_DESC_AMY = " " + PREFIX_MODULE + VALID_MODULE_AMY;
@@ -48,7 +48,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_LOW = " " + PREFIX_TAG + VALID_TAG_LOW;
     public static final String TAG_DESC_HIGH = " " + PREFIX_TAG + VALID_TAG_HIGH;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_TASK_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty

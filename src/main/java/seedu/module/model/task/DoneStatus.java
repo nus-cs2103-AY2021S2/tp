@@ -73,7 +73,7 @@ public class DoneStatus {
 
     @Override
     public String toString() {
-        return value;
+        return isDone ? "Done" : "Not Done";
     }
 
     @Override
