@@ -37,28 +37,28 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the storemando";
     public static final String MESSAGE_ITEM_EXPIRED_WARNING = "\nWarning: Item has already expired!";
 
-    private final Item toAdd;
+    private final Item itemToAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Item}
      */
     public AddCommand(Item item) {
         requireNonNull(item);
-        toAdd = item;
+        itemToAdd = item;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasItem(toAdd)) {
+        if (model.hasItem(itemToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
-        model.addItem(toAdd);
+        model.addItem(itemToAdd);
 
-        String feedback = String.format(MESSAGE_SUCCESS, toAdd);
-        if (toAdd.isExpired()) {
+        String feedback = String.format(MESSAGE_SUCCESS, itemToAdd);
+        if (itemToAdd.isExpired()) {
             feedback += MESSAGE_ITEM_EXPIRED_WARNING;
         }
         return new CommandResult(feedback);
@@ -68,6 +68,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddCommand // instanceof handles nulls
-            && toAdd.equals(((AddCommand) other).toAdd));
+            && itemToAdd.equals(((AddCommand) other).itemToAdd));
     }
 }
