@@ -2,9 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -21,7 +19,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.Weightage;
@@ -40,11 +37,9 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_CODE + "CODE] "
-        + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_PHONE + "91234567 "
-        + PREFIX_EMAIL + "johndoe@example.com";
+        + PREFIX_NAME + "CS2103 Assignment";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -96,12 +91,11 @@ public class EditCommand extends Command {
         ModuleName updatedModuleName = editTaskDescriptor.getModuleName().orElse(taskToEdit.getModuleName());
         ModuleCode updatedModuleCode = editTaskDescriptor.getModuleCode().orElse(taskToEdit.getModuleCode());
         Weightage updatedWeightage = taskToEdit.getWeightage(); // edit command does not allow editing weightage
-        Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
         Remark updatedRemark = taskToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedModuleName, updatedModuleCode, updatedWeightage,
-                updatedPhone, updatedRemark, updatedTags);
+                updatedRemark, updatedTags);
     }
 
     @Override
@@ -130,7 +124,6 @@ public class EditCommand extends Command {
         // descriptors should not be allowed to have a remark field, since editing of remarks is not supported for now
         private ModuleName moduleName;
         private ModuleCode moduleCode;
-        private Phone phone;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {
@@ -143,7 +136,6 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setModuleName(toCopy.moduleName);
             setModuleCode(toCopy.moduleCode);
-            setPhone(toCopy.phone);
             setTags(toCopy.tags);
         }
 
@@ -151,7 +143,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleName, moduleCode, phone, tags);
+            return CollectionUtil.isAnyNonNull(moduleName, moduleCode, tags);
         }
 
         public void setModuleName(ModuleName moduleName) {
@@ -168,14 +160,6 @@ public class EditCommand extends Command {
 
         public Optional<ModuleCode> getModuleCode() {
             return Optional.ofNullable(moduleCode);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
         }
 
         /**
@@ -212,7 +196,6 @@ public class EditCommand extends Command {
 
             return getModuleName().equals(e.getModuleName())
                 && getModuleCode().equals(e.getModuleCode())
-                && getPhone().equals(e.getPhone())
                 && getTags().equals(e.getTags());
         }
     }

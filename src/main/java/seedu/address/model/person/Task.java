@@ -19,7 +19,6 @@ public class Task {
     private final ModuleName moduleName;
     private final ModuleCode moduleCode;
     private final Weightage weightage;
-    private final Phone phone;
 
     // Data fields
     private final Remark remark;
@@ -29,12 +28,11 @@ public class Task {
      * Every field must be present and not null.
      */
     public Task(ModuleName moduleName, ModuleCode moduleCode, Weightage weightage,
-                Phone phone, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(moduleName, moduleCode, phone, tags);
+                Remark remark, Set<Tag> tags) {
+        requireAllNonNull(moduleName, moduleCode, tags);
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
         this.weightage = weightage;
-        this.phone = phone;
         this.remark = remark;
         this.tags.addAll(tags);
     }
@@ -49,10 +47,6 @@ public class Task {
 
     public Weightage getWeightage() {
         return weightage;
-    }
-
-    public Phone getPhone() {
-        return phone;
     }
 
     public Remark getRemark() {
@@ -98,7 +92,6 @@ public class Task {
         return otherTask.getModuleName().equals(getModuleName())
             && otherTask.getModuleCode().equals(getModuleCode())
             && otherTask.getWeightage().equals(getWeightage())
-            && otherTask.getPhone().equals(getPhone())
             && otherTask.getRemark().equals(getRemark())
             && otherTask.getTags().equals(getTags());
     }
@@ -106,7 +99,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleName, moduleCode, weightage, phone, remark, tags);
+        return Objects.hash(moduleName, moduleCode, weightage, remark, tags);
     }
 
     @Override
@@ -117,8 +110,6 @@ public class Task {
             .append(getModuleCode())
             .append("; Weightage: ")
             .append(getWeightage())
-            .append("; Phone: ")
-            .append(getPhone())
             .append("; Remark: ")
             .append(getRemark());
 
