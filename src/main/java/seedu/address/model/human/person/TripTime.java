@@ -1,8 +1,5 @@
 package seedu.address.model.human.person;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -56,7 +53,7 @@ public class TripTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TripTime // instanceof handles nulls
-                && value == ((TripTime) other).value); // state check
+                && value.equals(((TripTime) other).value)); // state check
     }
 
     @Override
