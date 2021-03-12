@@ -15,7 +15,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ReminderDatePredicate;
 
 /**
  * Parses user input.
@@ -67,6 +69,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand(new ReminderDatePredicate());
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

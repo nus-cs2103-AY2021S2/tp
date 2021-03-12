@@ -24,6 +24,7 @@ public class DeliveryDate {
     private static final DateTimeFormatter ACCEPTABLE_FORMATS =
             DateTimeFormatter.ofPattern("[dd/MM/yyyy][dd-MM-yyyy][dd.MM.yyyy][dd MMM yyyy]");
     private static final long DELIVERY_DATE_BUFFER = 3L;
+    private static final long DELIVERY_DATE_REMIND = 4L;
 
     public final LocalDate value;
 
@@ -49,6 +50,16 @@ public class DeliveryDate {
     }
 
     /**
+     * Returns true if the order's delivery date is within 3 days of the current date.
+     */
+    public static boolean isWithinThreeDays(Person person) {
+        LocalDate toTest = person.getDeliveryDate().getValue();
+        LocalDate dateToday = LocalDate.now();
+        LocalDate acceptableDate = dateToday.plusDays(DELIVERY_DATE_REMIND);
+        return toTest.isEqual(dateToday) || toTest.isBefore(acceptableDate);
+    }
+
+    /**
      * Returns true if a given string is a valid delivery date.
      */
     public static boolean isValidDeliveryDate(String test) {
@@ -60,6 +71,10 @@ public class DeliveryDate {
         }
         // Test if date is 3 working days after current Date
         return isThreeDaysLater(test);
+    }
+
+    public LocalDate getValue() {
+        return this.value;
     }
 
     @Override
