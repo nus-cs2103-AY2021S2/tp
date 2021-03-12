@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
@@ -11,10 +10,10 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.project.EventList;
-import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.Model;
+import seedu.address.model.project.EventList;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.repeatable.Event;
 
 public class AddEventCommand extends Command {
 
@@ -37,6 +36,13 @@ public class AddEventCommand extends Command {
     private final Index index;
     private final Event eventToAdd;
 
+
+    /**
+     * Initializes a addEventCommand.
+     *
+     * @param index index of project to add event.
+     * @param event event to add.
+     */
     public AddEventCommand(Index index, Event event) {
         requireNonNull(index);
         requireNonNull(event);

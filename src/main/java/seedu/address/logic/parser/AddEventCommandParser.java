@@ -12,8 +12,6 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectName;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 

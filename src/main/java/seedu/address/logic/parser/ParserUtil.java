@@ -143,6 +143,13 @@ public class ParserUtil {
         return new ProjectName(trimmedName);
     }
 
+    /**
+     * Parses a String into a description
+     *
+     * @param description
+     * @return description.
+     * @throws ParseException exception related.
+     */
     public static String parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
@@ -152,6 +159,13 @@ public class ParserUtil {
         return trimmedDescription;
     }
 
+    /**
+     * Parses a String into an interval enum.
+     *
+     * @param interval
+     * @return Interval enum.
+     * @throws ParseException exception related.
+     */
     public static Interval parseInterval(String interval) throws ParseException {
         requireNonNull(interval);
         String trimmedInterval = interval.trim();
@@ -163,6 +177,13 @@ public class ParserUtil {
         return Interval.valueOf(trimmedInterval);
     }
 
+    /**
+     * Parses a String into a localDate.
+     *
+     * @param date
+     * @return localDate.
+     * @throws ParseException exception related.
+     */
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
