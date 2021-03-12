@@ -107,6 +107,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteNote(Note note) {
+        noteBook.deleteNote(note);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+    }
+
+    @Override
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
     }
@@ -168,6 +174,12 @@ public class ModelManager implements Model {
     public void updateFilteredContactList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
         filteredContacts.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredNoteList(Predicate<Note> predicate) {
+        requireNonNull(predicate);
+        filteredNote.setPredicate(predicate);
     }
 
     @Override
