@@ -14,7 +14,7 @@ public class Title implements Comparable<Title> {
      * otherwise " " (a blank string) becomes a valid input.
      */
     // todo change regex
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "\"[^\\\\s].*\"";
 
     public final String modTitle;
 
