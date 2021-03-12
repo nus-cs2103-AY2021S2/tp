@@ -20,7 +20,7 @@ import seedu.address.model.FlashBack;
 import seedu.address.model.ReadOnlyFlashBack;
 
 public class JsonFlashBackStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonFlashBackStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -47,7 +47,7 @@ public class JsonFlashBackStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatFlashBack.json"));
     }
 
     @Test
