@@ -91,6 +91,10 @@ public class ThemeManager {
         ThemeManager.updateCss();
     }
 
+    public static String getCssCacheUrl() {
+        return ThemeManager.cssCacheUrl;
+    }
+
     /**
      * Updates the css and css file to be used by the application.
      *
