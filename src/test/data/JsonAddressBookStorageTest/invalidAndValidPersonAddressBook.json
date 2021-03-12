@@ -2,10 +2,14 @@
   "persons": [ {
     "name": "Valid Person",
     "phone": "94",
-    "address": "4th street"
+    "address": "4th street",
+    "tripDay" : "FRIDAY",
+    "tripTime" : "1800"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
-    "address": "4th street"
+    "address": "4th street",
+    "tripDay" : "FRIDAY",
+    "tripTime" : "1800"
   } ]
 }
