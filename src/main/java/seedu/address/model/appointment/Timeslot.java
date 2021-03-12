@@ -4,14 +4,19 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationException;
 
 /**
  * Represents the timeslot allocated to an appointment.
+ * date time values are truncated to minutes.
  */
 public class Timeslot implements Comparable<Timeslot> {
+    public static final DateTimeFormatter DISPLAY_DATE_TIME_FORMATTER = DateTimeFormatter
+            .ofPattern("dd MMM yy hh:mm");
     public static final String MESSAGE_CONSTRAINTS = "Timeslot end date and time must be strictly "
             + "after the start date and time";
 
@@ -26,12 +31,15 @@ public class Timeslot implements Comparable<Timeslot> {
     public Timeslot(LocalDateTime start, LocalDateTime end) throws NegativeOrZeroDurationException {
         requireAllNonNull(start, end);
 
-        if (start.compareTo(end) > 0) {
+        LocalDateTime truncatedStart = start.truncatedTo(ChronoUnit.MINUTES);
+        LocalDateTime truncatedEnd = end.truncatedTo(ChronoUnit.MINUTES);
+
+        if (!truncatedEnd.isAfter(truncatedStart)) {
             throw new NegativeOrZeroDurationException();
         }
 
-        this.start = start;
-        this.end = end;
+        this.start = truncatedStart;
+        this.end = truncatedEnd;
     }
 
     /**
@@ -42,12 +50,15 @@ public class Timeslot implements Comparable<Timeslot> {
     public Timeslot(LocalDateTime start, Duration duration) throws NegativeOrZeroDurationException {
         requireAllNonNull(start, duration);
 
-        if (duration.isNegative() || duration.isZero()) {
+        LocalDateTime truncatedStart = start.truncatedTo(ChronoUnit.MINUTES);
+        LocalDateTime truncatedEnd = start.plus(duration).truncatedTo(ChronoUnit.MINUTES);
+
+        if (!truncatedEnd.isAfter(truncatedStart)) {
             throw new NegativeOrZeroDurationException();
         }
 
-        this.start = start;
-        this.end = start.plus(duration);
+        this.start = truncatedStart;
+        this.end = truncatedEnd;
     }
 
     //// Accessors
@@ -115,9 +126,9 @@ public class Timeslot implements Comparable<Timeslot> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("From ")
-                .append(getStart().toString())
+                .append(DISPLAY_DATE_TIME_FORMATTER.format(getStart()))
                 .append(" To ")
-                .append(getEnd().toString());
+                .append(DISPLAY_DATE_TIME_FORMATTER.format(getEnd()));
 
         return builder.toString();
     }
