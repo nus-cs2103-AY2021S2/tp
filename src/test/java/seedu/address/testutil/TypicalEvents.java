@@ -19,38 +19,23 @@ public class TypicalEvents {
             .withTimeStart("10/01/2020 10:00")
             .withTimeEnd("12/12/2021 12:00")
             .withTestPersons().build();
-
+    public static final Event CS2103T = new EventBuilder().build();
     public static final Event CS2107 = new EventBuilder().withName("CS2107")
             .withDescription("Introduction to Information Security")
             .withStatus(EventStatus.IN_PROGRESS)
             .withTimeStart("10/03/2021 10:00")
-            .withTimeEnd("30/01/2022 12:00").build();
-
+            .withTimeEnd("30/01/2022 12:00")
+            .withTestPersons().build();
     public static final Event CS1010S = new EventBuilder().withName("CS1010S")
             .withDescription("Programming Methodology I")
             .withStatus(EventStatus.DONE)
             .withTimeStart("01/12/2019 10:00")
             .withTimeEnd("02/01/2022 12:00").build();
-
     public static final Event COMPLETE_ASSIGNMENT = new EventBuilder()
             .withName("Complete Assignment 1")
-            .withDescription("Assignment from CS2030")
             .withStatus(EventStatus.TODO)
             .withTimeStart("05/10/2021 02:00")
             .withTimeEnd("10/10/2021 18:00").build();
-
-    // Manually added
-    public static final Event CS2100 = new EventBuilder().withName("CS2100")
-            .withDescription("Computer Organisation")
-            .withStatus(EventStatus.DONE)
-            .withTimeStart("03/11/2018 10:00")
-            .withTimeEnd("04/02/2021 12:00").build();
-
-    public static final Event CS3230 = new EventBuilder().withName("CS3230")
-            .withDescription("Design and Analysis of Algorithms")
-            .withStatus(EventStatus.IN_PROGRESS)
-            .withTimeStart("01/12/2021 10:00")
-            .withTimeEnd("05/01/2022 12:00").build();
 
     TypicalEvents() {} // prevents instantiation
 
@@ -58,9 +43,8 @@ public class TypicalEvents {
     // getTypicalEventManager() method for initializing a Typical Manager
     // with all the test cases above
 
-
     /**
-     * Returns an {@code AddressBook} with all the typical events.
+     * Returns an {@code EventBook} with all the typical events.
      */
     public static EventBook getTypicalEventBook() {
         EventBook eb = new EventBook();
@@ -71,7 +55,7 @@ public class TypicalEvents {
     }
 
     public static List<Event> getTypicalEvents() {
-        return new ArrayList<>(Arrays.asList(CS2030, CS2107,
+        return new ArrayList<>(Arrays.asList(CS2030, CS2103T, CS2107,
                 CS1010S, COMPLETE_ASSIGNMENT));
     }
 }

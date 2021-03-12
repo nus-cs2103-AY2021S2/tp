@@ -9,7 +9,7 @@ import seedu.address.model.event.Event;
 public interface ReadOnlyEventBook {
     /**
      * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate events.
+     * This list will not contain any duplicate persons.
      */
     ObservableList<Event> getEventList();
 }
