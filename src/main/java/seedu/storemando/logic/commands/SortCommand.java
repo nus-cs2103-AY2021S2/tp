@@ -16,9 +16,9 @@ public abstract class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = "sorts the items in StoreMando by quantity or expiry date. "
         + "Parameter:"
-        + PREFIX_QUANTITY
+        + "quantity"
         + "or "
-        + PREFIX_EXPIRYDATE;
+        + "expiryDate";
 
     public static final String MESSAGE_SUCCESS = "sorted all items";
 
