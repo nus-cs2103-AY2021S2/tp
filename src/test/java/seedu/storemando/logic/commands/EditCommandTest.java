@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.storemando.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRED_EXPIRYDATE_AMY;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRED_EXPIRYDATE_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -49,7 +51,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_unexpired_success() {
         Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
         Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
         ItemBuilder itemInList = new ItemBuilder(lastItem);
@@ -69,6 +71,27 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_someFieldsSpecifiedUnfilteredList_expired_success() {
+        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
+        Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
+        ItemBuilder itemInList = new ItemBuilder(lastItem);
+        Item editedItem = itemInList.withName(VALID_NAME_BOB).withQuantity(VALID_QUANTITY_BOB)
+            .withExpiryDate(VALID_EXPIRED_EXPIRYDATE_BOB).withTags(VALID_TAG_HUSBAND).build();
+
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BOB)
+            .withQuantity(VALID_QUANTITY_BOB).withExpiryDate(VALID_EXPIRED_EXPIRYDATE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS
+            + EditCommand.MESSAGE_ITEM_EXPIRED_WARNING, editedItem);
+
+        Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
+        expectedModel.setItem(lastItem, editedItem);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditCommand.EditItemDescriptor());
         String expectedMessage = String.format(EditCommand.MESSAGE_NO_CHANGE);
@@ -76,7 +99,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_unexpired_success() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BOB).build();
@@ -84,6 +107,24 @@ public class EditCommandTest {
             new EditItemDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+
+        Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
+        expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_filteredList_expired_success() {
+        showItemAtIndex(model, INDEX_FIRST_ITEM);
+        Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BOB)
+            .withExpiryDate(VALID_EXPIRED_EXPIRYDATE_BOB).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
+            new EditItemDescriptorBuilder().withName(VALID_NAME_BOB).withExpiryDate(VALID_EXPIRED_EXPIRYDATE_BOB).build());
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS
+            + EditCommand.MESSAGE_ITEM_EXPIRED_WARNING, editedItem);
 
         Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
         expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
