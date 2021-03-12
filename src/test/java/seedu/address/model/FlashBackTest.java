@@ -28,7 +28,7 @@ public class FlashBackTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), flashBack.getFlashcardList());
+        assertEquals(Collections.emptyList(), flashBack.getCardList());
     }
 
     @Test
@@ -56,31 +56,31 @@ public class FlashBackTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> flashBack.hasFlashcard(null));
+        assertThrows(NullPointerException.class, () -> flashBack.hasCard(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(flashBack.hasFlashcard(PYTHAGOREAN));
+        assertFalse(flashBack.hasCard(PYTHAGOREAN));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        flashBack.addFlashcard(PYTHAGOREAN);
-        assertTrue(flashBack.hasFlashcard(PYTHAGOREAN));
+        flashBack.addCard(PYTHAGOREAN);
+        assertTrue(flashBack.hasCard(PYTHAGOREAN));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        flashBack.addFlashcard(PYTHAGOREAN);
+        flashBack.addCard(PYTHAGOREAN);
         Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN)
                 .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
-        assertTrue(flashBack.hasFlashcard(editedAlice));
+        assertTrue(flashBack.hasCard(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> flashBack.getFlashcardList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> flashBack.getCardList().remove(0));
     }
 
     /**
@@ -94,7 +94,7 @@ public class FlashBackTest {
         }
 
         @Override
-        public ObservableList<Flashcard> getFlashcardList() {
+        public ObservableList<Flashcard> getCardList() {
             return flashcards;
         }
     }

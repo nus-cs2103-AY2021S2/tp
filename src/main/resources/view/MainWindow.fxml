@@ -35,8 +35,8 @@
             <ColumnConstraints percentWidth="50.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints percentHeight="35.0" />
-            <RowConstraints percentHeight="15.0" />
+            <RowConstraints percentHeight="30.0" />
+            <RowConstraints percentHeight="20.0" />
             <RowConstraints percentHeight="50.0" />
           </rowConstraints>
           <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="NEVER">
@@ -44,7 +44,7 @@
               <Insets bottom="5" left="10" right="10" top="5" />
             </padding>
           </StackPane>
-          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="NEVER">
+          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="150" minHeight="120" prefHeight="150" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" VBox.vgrow="NEVER">
             <padding>
               <Insets bottom="5" left="10" right="10" top="5" />
             </padding>

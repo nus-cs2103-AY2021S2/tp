@@ -12,7 +12,7 @@ import seedu.address.model.flashcard.Flashcard;
 
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
-    public static final String MESSAGE_VIEW_SUCCESS = "Viewed Flashcard: %1$s";
+    public static final String MESSAGE_VIEW_SUCCESS = "Viewed Flashcard: \n%1$s";
     public static final String MESSAGE_USAGE =
             "Views the flashcard identified by the index number used in the displayed flashcard list. "
             + "\n" + "Parameters: INDEX (must be a positive integer)"

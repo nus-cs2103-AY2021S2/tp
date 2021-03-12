@@ -26,29 +26,29 @@ public class FlashcardTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(PYTHAGOREAN.isSameFlashcard(PYTHAGOREAN));
+        assertTrue(PYTHAGOREAN.isSameCard(PYTHAGOREAN));
 
         // null -> returns false
-        assertFalse(PYTHAGOREAN.isSameFlashcard(null));
+        assertFalse(PYTHAGOREAN.isSameCard(null));
 
         // same name, all other attributes different -> returns true
         Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN).withAnswer(VALID_ANSWER_OCTOPUS)
                 .withCategory(VALID_CATEGORY_OCTOPUS)
                 .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
-        assertTrue(PYTHAGOREAN.isSameFlashcard(editedAlice));
+        assertTrue(PYTHAGOREAN.isSameCard(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new FlashcardBuilder(PYTHAGOREAN).withQuestion(VALID_QUESTION_OCTOPUS).build();
-        assertFalse(PYTHAGOREAN.isSameFlashcard(editedAlice));
+        assertFalse(PYTHAGOREAN.isSameCard(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Flashcard editedBob = new FlashcardBuilder(AT).withQuestion(VALID_QUESTION_OCTOPUS.toLowerCase()).build();
-        assertFalse(AT.isSameFlashcard(editedBob));
+        assertFalse(AT.isSameCard(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_QUESTION_OCTOPUS + " ";
         editedBob = new FlashcardBuilder(AT).withQuestion(nameWithTrailingSpaces).build();
-        assertFalse(AT.isSameFlashcard(editedBob));
+        assertFalse(AT.isSameCard(editedBob));
     }
 
     @Test

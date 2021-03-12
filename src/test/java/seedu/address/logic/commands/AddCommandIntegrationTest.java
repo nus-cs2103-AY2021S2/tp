@@ -39,7 +39,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateFlashcard_throwsCommandException() {
-        Flashcard flashcardInList = model.getFlashBack().getFlashcardList().get(0);
+        Flashcard flashcardInList = model.getFlashBack().getCardList().get(0);
         assertCommandFailure(new AddCommand(flashcardInList), model, AddCommand.MESSAGE_DUPLICATE_FLASHCARD);
     }
 

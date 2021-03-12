@@ -35,13 +35,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditFlashcardDescriptor;
+import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
 import seedu.address.model.flashcard.Answer;
 import seedu.address.model.flashcard.Category;
 import seedu.address.model.flashcard.Priority;
 import seedu.address.model.flashcard.Question;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditFlashcardDescriptorBuilder;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -115,7 +115,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + ANSWER_DESC_OCTOPUS + TAG_DESC_EQUATION
                 + CATEGORY_DESC_EINSTEIN + PRIORITY_DESC_EINSTEIN + QUESTION_DESC_EINSTEIN + TAG_DESC_GENERAL;
 
-        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_EINSTEIN)
                 .withAnswer(VALID_ANSWER_OCTOPUS).withCategory(VALID_CATEGORY_EINSTEIN)
                 .withPriority(VALID_PRIORITY_EINSTEIN)
@@ -130,7 +130,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_FLASHCARD;
         String userInput = targetIndex.getOneBased() + ANSWER_DESC_OCTOPUS + CATEGORY_DESC_EINSTEIN;
 
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withAnswer(VALID_ANSWER_OCTOPUS)
+        EditCardDescriptor descriptor = new EditCardDescriptorBuilder().withAnswer(VALID_ANSWER_OCTOPUS)
                 .withCategory(VALID_CATEGORY_EINSTEIN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -142,32 +142,32 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_FLASHCARD;
         String userInput = targetIndex.getOneBased() + QUESTION_DESC_EINSTEIN;
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+        EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_EINSTEIN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + ANSWER_DESC_EINSTEIN;
-        descriptor = new EditFlashcardDescriptorBuilder().withAnswer(VALID_ANSWER_EINSTEIN).build();
+        descriptor = new EditCardDescriptorBuilder().withAnswer(VALID_ANSWER_EINSTEIN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + CATEGORY_DESC_EINSTEIN;
-        descriptor = new EditFlashcardDescriptorBuilder().withCategory(VALID_CATEGORY_EINSTEIN).build();
+        descriptor = new EditCardDescriptorBuilder().withCategory(VALID_CATEGORY_EINSTEIN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + PRIORITY_DESC_EINSTEIN;
-        descriptor = new EditFlashcardDescriptorBuilder().withPriority(VALID_PRIORITY_EINSTEIN).build();
+        descriptor = new EditCardDescriptorBuilder().withPriority(VALID_PRIORITY_EINSTEIN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_GENERAL;
-        descriptor = new EditFlashcardDescriptorBuilder().withTags(VALID_TAG_GENERAL).build();
+        descriptor = new EditCardDescriptorBuilder().withTags(VALID_TAG_GENERAL).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -180,7 +180,7 @@ public class EditCommandParserTest {
                 + PRIORITY_DESC_EINSTEIN + CATEGORY_DESC_EINSTEIN + TAG_DESC_GENERAL
                 + ANSWER_DESC_OCTOPUS + PRIORITY_DESC_OCTOPUS + CATEGORY_DESC_OCTOPUS + TAG_DESC_EQUATION;
 
-        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withAnswer(VALID_ANSWER_OCTOPUS).withCategory(VALID_CATEGORY_OCTOPUS)
                 .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_GENERAL, VALID_TAG_EQUATION)
                 .build();
@@ -194,7 +194,7 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_FLASHCARD;
         String userInput = targetIndex.getOneBased() + INVALID_ANSWER_DESC + ANSWER_DESC_OCTOPUS;
-        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withAnswer(VALID_ANSWER_OCTOPUS).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -202,7 +202,7 @@ public class EditCommandParserTest {
         // other valid values specified
         userInput = targetIndex.getOneBased() + CATEGORY_DESC_OCTOPUS + INVALID_ANSWER_DESC + PRIORITY_DESC_OCTOPUS
                 + ANSWER_DESC_OCTOPUS;
-        descriptor = new EditFlashcardDescriptorBuilder().withAnswer(VALID_ANSWER_OCTOPUS)
+        descriptor = new EditCardDescriptorBuilder().withAnswer(VALID_ANSWER_OCTOPUS)
                 .withCategory(VALID_CATEGORY_OCTOPUS).withPriority(VALID_PRIORITY_OCTOPUS).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -213,7 +213,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_FLASHCARD;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withTags().build();
+        EditCardDescriptor descriptor = new EditCardDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

@@ -73,7 +73,7 @@ public class TypicalFlashcards {
     public static FlashBack getTypicalFlashBack() {
         FlashBack fb = new FlashBack();
         for (Flashcard flashcard : getTypicalFlashcards()) {
-            fb.addFlashcard(flashcard);
+            fb.addCard(flashcard);
         }
         return fb;
     }

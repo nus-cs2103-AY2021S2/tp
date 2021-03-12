@@ -18,13 +18,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditFlashcardDescriptor;
+import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
 import seedu.address.model.FlashBack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.flashcard.Flashcard;
-import seedu.address.testutil.EditFlashcardDescriptorBuilder;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 import seedu.address.testutil.FlashcardBuilder;
 
 /**
@@ -37,10 +37,10 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Flashcard editedFlashcard = new FlashcardBuilder().build();
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard).build();
+        EditCardDescriptor descriptor = new EditCardDescriptorBuilder(editedFlashcard).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedFlashcard);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedFlashcard);
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
@@ -57,12 +57,12 @@ public class EditCommandTest {
         Flashcard editedFlashcard = personInList.withQuestion(VALID_QUESTION_OCTOPUS).withAnswer(VALID_ANSWER_OCTOPUS)
                 .withTags(VALID_TAG_EQUATION).build();
 
-        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_OCTOPUS)
                 .withAnswer(VALID_ANSWER_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedFlashcard);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedFlashcard);
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(lastFlashcard, editedFlashcard);
@@ -72,10 +72,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD, new EditFlashcardDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD, new EditCardDescriptor());
         Flashcard editedFlashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedFlashcard);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedFlashcard);
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
 
@@ -90,9 +90,9 @@ public class EditCommandTest {
         Flashcard editedFlashcard = new FlashcardBuilder(flashcardInFilteredList)
                 .withQuestion(VALID_QUESTION_OCTOPUS).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD,
-                new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS).build());
+                new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedFlashcard);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedFlashcard);
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
@@ -103,10 +103,10 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Flashcard firstFlashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(firstFlashcard).build();
+        EditCardDescriptor descriptor = new EditCardDescriptorBuilder(firstFlashcard).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_FLASHCARD, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CARD);
     }
 
     @Test
@@ -114,17 +114,17 @@ public class EditCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         // edit person in filtered list into a duplicate in address book
-        Flashcard flashcardInList = model.getFlashBack().getFlashcardList().get(INDEX_SECOND_FLASHCARD.getZeroBased());
+        Flashcard flashcardInList = model.getFlashBack().getCardList().get(INDEX_SECOND_FLASHCARD.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD,
-                new EditFlashcardDescriptorBuilder(flashcardInList).build());
+                new EditCardDescriptorBuilder(flashcardInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CARD);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
+        EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_OCTOPUS).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
@@ -140,10 +140,10 @@ public class EditCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
         Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashBack().getFlashcardList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashBack().getCardList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS).build());
+                new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
@@ -153,7 +153,7 @@ public class EditCommandTest {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_FLASHCARD, DESC_EINSTEIN);
 
         // same values -> returns true
-        EditCommand.EditFlashcardDescriptor copyDescriptor = new EditFlashcardDescriptor(DESC_EINSTEIN);
+        EditCommand.EditCardDescriptor copyDescriptor = new EditCardDescriptor(DESC_EINSTEIN);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_FLASHCARD, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

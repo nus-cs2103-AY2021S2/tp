@@ -41,80 +41,80 @@ public class JsonAdaptedFlashcardTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedFlashcard person =
+        JsonAdaptedFlashcard flashcard =
                 new JsonAdaptedFlashcard(INVALID_QUESTION, VALID_ANSWER,
                         VALID_CATEGORY, VALID_PRIORITY, VALID_REMARK, VALID_TAGS);
         String expectedMessage = Question.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedFlashcard person = new JsonAdaptedFlashcard(null, VALID_ANSWER, VALID_CATEGORY,
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(null, VALID_ANSWER, VALID_CATEGORY,
                 VALID_PRIORITY, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedFlashcard person =
+        JsonAdaptedFlashcard flashcard =
                 new JsonAdaptedFlashcard(VALID_QUESTION, INVALID_ANSWER, VALID_CATEGORY,
                         VALID_PRIORITY, VALID_REMARK, VALID_TAGS);
         String expectedMessage = Answer.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedFlashcard person = new JsonAdaptedFlashcard(VALID_QUESTION, null, VALID_CATEGORY,
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(VALID_QUESTION, null, VALID_CATEGORY,
                 VALID_PRIORITY, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedFlashcard person =
+        JsonAdaptedFlashcard flashcard =
                 new JsonAdaptedFlashcard(VALID_QUESTION, VALID_ANSWER, INVALID_PRIORITY,
                         VALID_PRIORITY, VALID_REMARK, VALID_TAGS);
         String expectedMessage = Category.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedFlashcard person = new JsonAdaptedFlashcard(VALID_QUESTION, VALID_ANSWER, null,
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(VALID_QUESTION, VALID_ANSWER, null,
                 VALID_PRIORITY, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Category.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedFlashcard person =
+        JsonAdaptedFlashcard flashcard =
                 new JsonAdaptedFlashcard(VALID_QUESTION, VALID_ANSWER, VALID_CATEGORY,
                         INVALID_CATEGORY, VALID_REMARK, VALID_TAGS);
         String expectedMessage = Priority.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedFlashcard person = new JsonAdaptedFlashcard(VALID_QUESTION, VALID_ANSWER,
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(VALID_QUESTION, VALID_ANSWER,
                 VALID_CATEGORY, null, VALID_REMARK, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, flashcard::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedFlashcard person =
+        JsonAdaptedFlashcard flashcard =
                 new JsonAdaptedFlashcard(VALID_QUESTION, VALID_ANSWER, VALID_CATEGORY,
                         VALID_PRIORITY, VALID_REMARK, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        assertThrows(IllegalValueException.class, flashcard::toModelType);
     }
 
 }

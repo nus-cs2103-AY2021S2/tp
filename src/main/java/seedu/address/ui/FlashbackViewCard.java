@@ -24,6 +24,8 @@ public class FlashbackViewCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label priority;
+    @FXML
+    private Label category;
 
     /**
      * Creates a {@code FlashbackViewCard} with the given {@code flashcard}.
@@ -33,6 +35,7 @@ public class FlashbackViewCard extends UiPart<Region> {
         this.flashcard = flashcard;
         question.setText(flashcard.getQuestion().fullQuestion);
         answer.setText(flashcard.getAnswer().toString());
+        category.setText(flashcard.getCategory().toString());
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
