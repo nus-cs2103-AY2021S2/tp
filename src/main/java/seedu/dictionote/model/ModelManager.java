@@ -142,10 +142,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Contact target, Contact editedContact) {
+    public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
-        addressBook.setPerson(target, editedContact);
+        addressBook.setContact(target, editedContact);
     }
 
     //=========== Filtered Person List Accessors =============================================================

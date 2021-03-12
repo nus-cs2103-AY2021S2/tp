@@ -96,7 +96,7 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as
      * another existing person in the dictionote book.
      */
-    void setPerson(Contact target, Contact editedContact);
+    void setContact(Contact target, Contact editedContact);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Contact> getFilteredContactList();

@@ -76,7 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a person to the dictionote book.
      * The person must not already exist in the dictionote book.
      */
-    public void setPerson(Contact target, Contact editedContact) {
+    public void setContact(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
         persons.setPerson(target, editedContact);
     }
