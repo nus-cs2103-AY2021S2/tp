@@ -1,0 +1,16 @@
+{
+  "flashcards": [ {
+    "question": "Alice Pauline",
+    "answer": "94351253",
+    "category": "alice@example.com",
+    "priority": "High",
+    "remark": "",
+    "tagged": [ "friends" ]
+  }, {
+    "question": "Alice Pauline",
+    "answer": "94351253",
+    "category": "pauline@example.com",
+    "remark": "",
+    "priority": "High"
+  } ]
+}
