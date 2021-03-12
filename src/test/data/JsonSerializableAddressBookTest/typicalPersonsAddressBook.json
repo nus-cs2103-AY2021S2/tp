@@ -33,21 +33,21 @@
     "phone" : "9482224",
     "address" : "michegan ave",
     "tripDay" : "FRIDAY",
-    "tripTime" : "1530",
+    "tripTime" : "2100",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "address" : "little tokyo",
-    "tripDay" : "THURSDAY",
-    "tripTime" : "1800",
+    "tripDay" : "MONDAY",
+    "tripTime" : "0830",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "address" : "4th street",
-    "tripDay" : "MONDAY",
-    "tripTime" : "1800",
+    "tripDay" : "THURSDAY",
+    "tripTime" : "0715",
     "tagged" : [ ]
   } ]
 }
