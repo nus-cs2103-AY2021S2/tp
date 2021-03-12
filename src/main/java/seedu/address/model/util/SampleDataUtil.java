@@ -6,17 +6,17 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Customer;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Name;
+import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Customer[] getSamplePersons() {
+    public static Customer[] getSampleCustomers() {
         return new Customer[] {
             new Customer(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 getTagSet("friends")),
@@ -35,8 +35,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Customer sampleCustomer : getSamplePersons()) {
-            sampleAb.addPerson(sampleCustomer);
+        for (Customer sampleCustomer : getSampleCustomers()) {
+            sampleAb.addCustomer(sampleCustomer);
         }
         return sampleAb;
     }

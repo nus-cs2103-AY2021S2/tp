@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.customer;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -55,10 +55,10 @@ public class Customer {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both customers have the same name.
+     * This defines a weaker notion of equality between two customers.
      */
-    public boolean isSamePerson(Customer otherCustomer) {
+    public boolean isSameCustomer(Customer otherCustomer) {
         if (otherCustomer == this) {
             return true;
         }
@@ -68,8 +68,8 @@ public class Customer {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both customers have the same identity and data fields.
+     * This defines a stronger notion of equality between two customers.
      */
     @Override
     public boolean equals(Object other) {

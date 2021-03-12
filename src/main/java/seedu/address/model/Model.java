@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Customer;
+import seedu.address.model.customer.Customer;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Customer> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,33 +55,33 @@ public interface Model {
     /**
      * Returns true if a customer with the same identity as {@code customer} exists in the address book.
      */
-    boolean hasPerson(Customer customer);
+    boolean hasCustomer(Customer customer);
 
     /**
      * Deletes the given customer.
      * The customer must exist in the address book.
      */
-    void deletePerson(Customer target);
+    void deleteCustomer(Customer target);
 
     /**
      * Adds the given customer.
      * {@code customer} must not already exist in the address book.
      */
-    void addPerson(Customer customer);
+    void addCustomer(Customer customer);
 
     /**
      * Replaces the given customer {@code target} with {@code editedCustomer}.
      * {@code target} must exist in the address book.
      * The customer identity of {@code editedCustomer} must not be the same as another existing customer in the address book.
      */
-    void setPerson(Customer target, Customer editedCustomer);
+    void setCustomer(Customer target, Customer editedCustomer);
 
     /** Returns an unmodifiable view of the filtered customer list */
-    ObservableList<Customer> getFilteredPersonList();
+    ObservableList<Customer> getFilteredCustomerList();
 
     /**
      * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Customer> predicate);
+    void updateFilteredCustomerList(Predicate<Customer> predicate);
 }

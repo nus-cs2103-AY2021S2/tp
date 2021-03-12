@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Customer;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.UniqueCustomerList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameCustomer comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueCustomerList customers;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        customers = new UniqueCustomerList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Customers in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -43,8 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the customer list with {@code customers}.
      * {@code customers} must not contain duplicate customers.
      */
-    public void setPersons(List<Customer> customers) {
-        this.persons.setPersons(customers);
+    public void setCustomers(List<Customer> customers) {
+        this.customers.setCustomers(customers);
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setCustomers(newData.getCustomerList());
     }
 
     //// customer-level operations
@@ -61,17 +61,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a customer with the same identity as {@code customer} exists in the address book.
      */
-    public boolean hasPerson(Customer customer) {
+    public boolean hasCustomer(Customer customer) {
         requireNonNull(customer);
-        return persons.contains(customer);
+        return customers.contains(customer);
     }
 
     /**
      * Adds a customer to the address book.
      * The customer must not already exist in the address book.
      */
-    public void addPerson(Customer p) {
-        persons.add(p);
+    public void addCustomer(Customer p) {
+        customers.add(p);
     }
 
     /**
@@ -79,42 +79,42 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The customer identity of {@code editedCustomer} must not be the same as another existing customer in the address book.
      */
-    public void setPerson(Customer target, Customer editedCustomer) {
+    public void setCustomer(Customer target, Customer editedCustomer) {
         requireNonNull(editedCustomer);
 
-        persons.setPerson(target, editedCustomer);
+        customers.setCustomer(target, editedCustomer);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Customer key) {
-        persons.remove(key);
+    public void removeCustomer(Customer key) {
+        customers.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return customers.asUnmodifiableObservableList().size() + " customers";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Customer> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Customer> getCustomerList() {
+        return customers.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && customers.equals(((AddressBook) other).customers));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return customers.hashCode();
     }
 }

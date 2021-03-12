@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.person.Customer;
+import seedu.address.model.customer.Customer;
 
 /**
  * A utility class for test cases.
@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the customer in the {@code model}'s customer list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredCustomerList().size() / 2);
     }
 
     /**
      * Returns the last index of the customer in the {@code model}'s customer list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredCustomerList().size());
     }
 
     /**
      * Returns the customer in the {@code model}'s customer list at {@code index}.
      */
-    public static Customer getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Customer getCustomer(Model model, Index index) {
+        return model.getFilteredCustomerList().get(index.getZeroBased());
     }
 }

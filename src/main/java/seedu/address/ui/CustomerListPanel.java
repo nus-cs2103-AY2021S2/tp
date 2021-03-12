@@ -8,10 +8,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Customer;
+import seedu.address.model.customer.Customer;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of customers.
  */
 public class CustomerListPanel extends UiPart<Region> {
     private static final String FXML = "CustomerListPanel.fxml";
