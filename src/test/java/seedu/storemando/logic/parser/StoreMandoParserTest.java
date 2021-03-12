@@ -21,6 +21,7 @@ import seedu.storemando.logic.commands.ExitCommand;
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.commands.HelpCommand;
 import seedu.storemando.logic.commands.ListCommand;
+import seedu.storemando.logic.commands.ReminderCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
@@ -91,6 +92,15 @@ public class StoreMandoParserTest {
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
+    }
+
+    @Test
+    public void parseCommand_Reminder() throws Exception {
+        assertTrue(parser.parseCommand(ReminderCommand.COMMAND_WORD + " 3") instanceof ReminderCommand);
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE),
+            () -> parser.parseCommand("reminder"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE),
+            () -> parser.parseCommand("reminder xyz"));
     }
 
     @Test
