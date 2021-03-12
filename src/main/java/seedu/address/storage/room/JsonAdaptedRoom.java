@@ -48,7 +48,7 @@ public class JsonAdaptedRoom {
      */
     public JsonAdaptedRoom(Room source) {
         this.roomNumber = source.getRoomNumber().roomNumber;
-        this.roomType = source.getType().roomType.toString();
+        this.roomType = source.getRoomType().value.toString();
         this.isOccupied = source.isOccupied().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

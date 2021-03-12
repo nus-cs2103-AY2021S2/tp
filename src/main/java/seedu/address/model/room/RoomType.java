@@ -14,18 +14,18 @@ public class RoomType {
     public static final String MESSAGE_CONSTRAINTS =
             "The valid options for Room Type are: " + String.join(", ", EnumUtil.getNames(RoomTypeOptions.class));
 
-    public final RoomTypeOptions roomType;
+    public final RoomTypeOptions value;
 
     /**
      * Constructs a {@code RoomNumber}.
      *
-     * @param roomType A valid room type.
+     * @param value A valid room type.
      */
-    public RoomType(String roomType) {
-        roomType = roomType.toUpperCase();
-        requireNonNull(roomType);
-        checkArgument(isValidRoomType(roomType), MESSAGE_CONSTRAINTS);
-        this.roomType = RoomTypeOptions.valueOf(roomType);
+    public RoomType(String value) {
+        value = value.toUpperCase();
+        requireNonNull(value);
+        checkArgument(isValidRoomType(value), MESSAGE_CONSTRAINTS);
+        this.value = RoomTypeOptions.valueOf(value);
     }
 
     /**
@@ -44,18 +44,18 @@ public class RoomType {
 
     @Override
     public String toString() {
-        return roomType.toString();
+        return value.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RoomType // instanceof handles nulls
-                && roomType.equals(((RoomType) other).roomType)); // state check
+                && value.equals(((RoomType) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return roomType.hashCode();
+        return value.hashCode();
     }
 }

@@ -18,17 +18,17 @@ public class Room {
     // Identity fields
     // Room number, type, occupancy status, tags
     private final RoomNumber roomNumber;
-    private final RoomType type;
+    private final RoomType roomType;
     private final IsOccupied isOccupied;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Room(RoomNumber roomNumber, RoomType type, IsOccupied isOccupied, Set<Tag> tags) {
-        requireAllNonNull(roomNumber, type, isOccupied, tags);
+    public Room(RoomNumber roomNumber, RoomType roomType, IsOccupied isOccupied, Set<Tag> tags) {
+        requireAllNonNull(roomNumber, roomType, isOccupied, tags);
         this.roomNumber = roomNumber;
-        this.type = type;
+        this.roomType = roomType;
         this.isOccupied = isOccupied;
         this.tags.addAll(tags);
     }
@@ -37,8 +37,8 @@ public class Room {
         return roomNumber;
     }
 
-    public RoomType getType() {
-        return type;
+    public RoomType getRoomType() {
+        return roomType;
     }
 
     public IsOccupied isOccupied() {
@@ -78,7 +78,7 @@ public class Room {
 
         Room otherRoom = (Room) other;
         return otherRoom.getRoomNumber().equals(getRoomNumber())
-                && otherRoom.getType().equals(getType())
+                && otherRoom.getRoomType().equals(getRoomType())
                 && otherRoom.isOccupied().equals(isOccupied())
                 && otherRoom.getTags().equals(getTags());
     }
@@ -86,7 +86,7 @@ public class Room {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(roomNumber, type, isOccupied, tags);
+        return Objects.hash(roomNumber, roomType, isOccupied, tags);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Room {
         final StringBuilder builder = new StringBuilder();
         builder.append(getRoomNumber())
                 .append("; Type: ")
-                .append(getType())
+                .append(getRoomType())
                 .append("; Occupancy Status: ")
                 .append(isOccupied());
 

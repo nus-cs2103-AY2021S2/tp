@@ -94,7 +94,7 @@ public class EditRoomCommand extends Command {
         assert roomToEdit != null;
 
         RoomNumber updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
-        RoomType updatedRoomType = editRoomDescriptor.getRoomType().orElse(roomToEdit.getType());
+        RoomType updatedRoomType = editRoomDescriptor.getRoomType().orElse(roomToEdit.getRoomType());
         IsOccupied updatedIsOccupied = editRoomDescriptor.getIsOccupied().orElse(roomToEdit.isOccupied());
         Set<Tag> updatedTags = editRoomDescriptor.getTags().orElse(roomToEdit.getTags());
 
