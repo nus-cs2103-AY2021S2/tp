@@ -71,7 +71,7 @@ public class StoreMandoParser {
         case "reminder":
             System.out.println("reminder command executed.");
             System.out.println("Index found is: " + arguments);
-            return new HelpCommand(); // Just a placeholder.
+            return new ReminderCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
