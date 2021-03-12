@@ -49,7 +49,7 @@ public class ReminderCommandTest {
 
     @Test
     public void execute_multipleItemsFound() {
-        ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 60);
+        ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 80);
         expectedModel.updateFilteredItemList(predicate);
         assertEquals(Arrays.asList(ELLE, FIONA, GEORGE), expectedModel.getFilteredItemList());
     }
