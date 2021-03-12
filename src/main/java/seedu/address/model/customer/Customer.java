@@ -14,8 +14,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Customer {
-
     // Identity fields
+    private final CustomerId customerId;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -27,13 +27,17 @@ public class Customer {
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, CustomerId customerId) {
+        requireAllNonNull(name, phone, email, address, tags, customerId);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.customerId = customerId;
+    }
+    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this(name, phone, email, address, tags, CustomerId.getNextId());
     }
 
     public Name getName() {
@@ -50,6 +54,10 @@ public class Customer {
 
     public Address getAddress() {
         return address;
+    }
+
+    public CustomerId getId() {
+        return customerId;
     }
 
     /**
@@ -70,6 +78,7 @@ public class Customer {
         }
 
         return otherCustomer != null
+                && otherCustomer.getId().equals(getId())
                 && otherCustomer.getName().equals(getName());
     }
 
@@ -88,7 +97,8 @@ public class Customer {
         }
 
         Customer otherCustomer = (Customer) other;
-        return otherCustomer.getName().equals(getName())
+        return otherCustomer.getId().equals(getId())
+                && otherCustomer.getName().equals(getName())
                 && otherCustomer.getPhone().equals(getPhone())
                 && otherCustomer.getEmail().equals(getEmail())
                 && otherCustomer.getAddress().equals(getAddress())

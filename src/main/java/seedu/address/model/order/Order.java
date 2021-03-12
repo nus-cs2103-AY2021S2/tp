@@ -1,0 +1,131 @@
+package seedu.address.model.order;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.cheese.CheeseId;
+import seedu.address.model.cheese.CheeseType;
+import seedu.address.model.customer.CustomerId;
+
+/**
+ * Represents a Order in the Cheese Inventory Management System (CHIM).
+ * Guarantees: details are present and not null, field values are validated.
+ */
+public class Order {
+    // Identity fields
+    // Primary key for Order
+    private final OrderId orderId;
+    private final CheeseType orderCheeseType;
+    private final Quantity quantity;
+    private final CustomerId customerId;
+
+    // Data fields
+    private final OrderDate orderDate;
+    private final CompletedDate completedDate;
+
+    // Set of cheese IDs for this order
+    private final Set<CheeseId> cheeses = new HashSet<>();
+
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate,
+                 CompletedDate completedDate, CustomerId customerId) {
+        this(cheeseType, quantity, orderDate, completedDate, new HashSet<>(), customerId);
+    }
+
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
+                 Set<CheeseId> cheeses, CustomerId customerId) {
+        this(cheeseType, quantity, orderDate, completedDate, cheeses, OrderId.getNextId(), customerId);
+    }
+
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
+                 OrderId orderId, CustomerId customerId) {
+        this(cheeseType, quantity, orderDate, completedDate, new HashSet<>(), orderId, customerId);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
+                 Set<CheeseId> cheeses, OrderId orderId, CustomerId customerId) {
+        requireAllNonNull(orderDate, cheeseType, cheeses, customerId);
+        this.orderCheeseType = cheeseType;
+        this.quantity = quantity;
+        this.orderDate = orderDate;
+        this.completedDate = completedDate;
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.cheeses.addAll(cheeses);
+    }
+
+    public CheeseType getCheeseType() {
+        return orderCheeseType;
+    }
+
+    public Quantity getQuantity() {
+        return quantity;
+    }
+
+    public OrderDate getOrderDate() {
+        return orderDate;
+    }
+
+    public CompletedDate getCompletedDate() {
+        return completedDate;
+    }
+
+    public OrderId getOrderId() {
+        return orderId;
+    }
+
+    public CustomerId getCustomerId() {
+        return customerId;
+    }
+
+    /**
+     * Returns an immutable Cheese Ids set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<CheeseId> getCheeses() {
+        return Collections.unmodifiableSet(cheeses);
+    }
+
+    /**
+     * Returns true if both orders have the same name.
+     * This defines a weaker notion of equality between two orders.
+     */
+    public boolean isSameOrder(Order otherOrder) {
+        if (otherOrder == this) {
+            return true;
+        }
+
+        return otherOrder != null
+                && otherOrder.orderId.equals(orderId)
+                && otherOrder.customerId.equals(customerId);
+    }
+
+    /**
+     * Returns true if both orders have the same identity and data fields.
+     * This defines a stronger notion of equality between two orders.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Order)) {
+            return false;
+        }
+
+        Order otherOrder = (Order) other;
+        return otherOrder.getOrderId().equals(getOrderId())
+                && otherOrder.getCustomerId().equals(getCustomerId())
+                && otherOrder.getCheeseType().equals(getCheeseType())
+                && otherOrder.getQuantity().equals(getQuantity())
+                && otherOrder.getOrderDate().equals(getOrderDate())
+                && otherOrder.getCompletedDate().equals(getCompletedDate())
+                && otherOrder.getCheeses().equals(getCheeses());
+    }
+}

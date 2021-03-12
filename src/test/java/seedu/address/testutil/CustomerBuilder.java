@@ -3,8 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.CustomerIdStub;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -25,6 +27,7 @@ public class CustomerBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private CustomerId customerId;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class CustomerBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        customerId = CustomerIdStub.getNextId();
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class CustomerBuilder {
         phone = customerToCopy.getPhone();
         email = customerToCopy.getEmail();
         address = customerToCopy.getAddress();
+        customerId = customerToCopy.getId();
         tags = new HashSet<>(customerToCopy.getTags());
     }
 
@@ -89,8 +94,16 @@ public class CustomerBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code customerId} of the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withId(CustomerId customerId) {
+        this.customerId = customerId;
+        return this;
+    }
+
     public Customer build() {
-        return new Customer(name, phone, email, address, tags);
+        return new Customer(name, phone, email, address, tags, customerId);
     }
 
 }
