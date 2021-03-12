@@ -27,6 +27,7 @@ public class ThemeManagerTest {
         ThemeManager.applyThemeToScene();
         try {
             String defaultCss = Files.readString(Paths.get("src/test/data/ThemeTest/default.template.css"));
+            System.out.println(sceneStub.getStylesheets().get(0).substring(8));
             String tempCss = Files.readString(Paths.get(sceneStub.getStylesheets().get(0).substring(5)));
             assertEquals(defaultCss, tempCss);
         } catch (Exception e) {
