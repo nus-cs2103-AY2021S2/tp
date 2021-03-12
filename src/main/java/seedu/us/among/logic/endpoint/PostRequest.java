@@ -13,16 +13,13 @@ import seedu.us.among.model.endpoint.Response;
  */
 public class PostRequest extends Request {
 
-    private final Endpoint endpoint;
-
     /**
      * Constructor for PostRequest.
      *
      * @param endpoint endpoint to make API call on
      */
     public PostRequest(Endpoint endpoint) {
-        super(endpoint.getMethod().getMethodType(), endpoint.getAddress().value);
-        this.endpoint = endpoint;
+        super(endpoint);
     }
 
     /**
@@ -32,10 +29,10 @@ public class PostRequest extends Request {
      */
     @Override
     public Response send() throws IOException, RequestException {
-        HttpPost request = new HttpPost(this.getAddress());
+        HttpPost request = new HttpPost(super.getAddress());
 
-        request = (HttpPost) super.setHeaders(request, this.endpoint.getHeaders());
-        request = (HttpPost) super.setData(request, this.endpoint.getData());
+        request = (HttpPost) super.setHeaders(request, super.getHeaders());
+        request = (HttpPost) super.setData(request, super.getData());
 
         return super.execute(request);
     }

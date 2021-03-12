@@ -21,6 +21,7 @@ import seedu.us.among.commons.util.JsonUtil;
 import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Data;
+import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.MethodType;
 import seedu.us.among.model.endpoint.Response;
 import seedu.us.among.model.endpoint.header.Header;
@@ -34,24 +35,35 @@ public abstract class Request {
 
     private final MethodType method;
     private final String address;
+    private final Set<Header> headers;
+    private final Data data;
 
     /**
      * Constructor for Request.
      *
-     * @param method request method
-     * @param address request address
+     * @param endpoint endpoint to make API call on
      */
-    public Request(MethodType method, String address) {
-        this.method = method;
-        this.address = address;
-    }
-
-    public MethodType getMethodType() {
-        return this.method;
+    public Request(Endpoint endpoint) {
+        this.method = endpoint.getMethod().getMethodType();
+        this.address = endpoint.getAddress().value;
+        this.headers = endpoint.getHeaders();
+        this.data = endpoint.getData();
     }
 
     public String getAddress() {
         return this.address;
+    }
+
+    public Set<Header> getHeaders() {
+        return this.headers;
+    }
+
+    public Data getData() {
+        return this.data;
+    }
+
+    public MethodType getMethod() {
+        return this.method;
     }
 
     public static CloseableHttpClient getHttpclient() {
