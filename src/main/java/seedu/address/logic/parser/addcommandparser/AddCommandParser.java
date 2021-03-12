@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.addcommand.*;
+import seedu.address.logic.commands.addcommand.AddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
@@ -19,10 +19,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments, identifies which Add Command it refers to and
  * creates the corresponding Add Command.
  */
-public abstract class AddCommandParser {
+public class AddCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of an Add Command
      * and returns an Command object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String args) throws ParseException {

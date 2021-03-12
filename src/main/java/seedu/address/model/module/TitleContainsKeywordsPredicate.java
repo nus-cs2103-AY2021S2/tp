@@ -1,11 +1,9 @@
 package seedu.address.model.module;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 public class TitleContainsKeywordsPredicate implements Predicate<Module> {
     private final List<String> keywords;
 
