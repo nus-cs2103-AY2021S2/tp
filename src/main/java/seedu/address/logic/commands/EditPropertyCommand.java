@@ -73,7 +73,7 @@ public class EditPropertyCommand extends Command {
     /**
      * Creates an EditPropertyCommand to edit the specified {@code Property}.
      */
-    public EditPropertyCommand(Index index, EditPropertyCommand.EditPropertyDescriptor editPropertyDescriptor) {
+    public EditPropertyCommand(Index index, EditPropertyDescriptor editPropertyDescriptor) {
         requireNonNull(index);
         requireNonNull(editPropertyDescriptor);
 
