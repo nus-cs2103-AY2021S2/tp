@@ -24,7 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.resident.Resident;
 import seedu.address.testutil.ResidentBuilder;
 
-public class AddCommandTest {
+public class AddResidentCommandTest {
 
     @Test
     public void constructor_nullResident_throwsNullPointerException() {
