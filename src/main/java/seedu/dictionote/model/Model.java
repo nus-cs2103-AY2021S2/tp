@@ -104,6 +104,14 @@ public interface Model {
      */
     void setContact(Contact target, Contact editedContact);
 
+
+    /**
+     * Replaces the given note {@code target} with {@code editedNote}.
+     * {@code target} must exist in the dictionote book.
+     */
+    void setNote(Note target, Note editedNote);
+
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Contact> getFilteredContactList();
 
