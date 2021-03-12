@@ -2,9 +2,12 @@ package seedu.hippocampus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import seedu.hippocampus.commons.core.Messages;
 import seedu.hippocampus.model.Model;
-import seedu.hippocampus.model.person.NameContainsKeywordsPredicate;
+import seedu.hippocampus.model.person.Person;
 
 /**
  * Finds and lists all persons in HippoCampus whose name contains any of the argument keywords.
@@ -16,19 +19,24 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: [-n NAME] [-t TAG]\n"
+            + "Example: " + COMMAND_WORD + " -n Bob -t CS2030";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final List<Predicate<Person>> predicates;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(List<Predicate<Person>> predicates) {
+        this.predicates = predicates;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        Predicate<Person> overallPredicate = x -> true;
+        for (Predicate<Person> predicate: predicates) {
+            overallPredicate = overallPredicate.and(predicate);
+        }
+        model.updateFilteredPersonList(overallPredicate);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -37,6 +45,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicates.equals(((FindCommand) other).predicates)); // state check
     }
 }
