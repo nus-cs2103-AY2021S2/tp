@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
+import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
 import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
 
@@ -24,7 +25,7 @@ public class FindCommand extends Command {
         + "1. " + COMMAND_WORD + " alice bob charlie \n"
         + "2. " + COMMAND_WORD + " */alice bob charlie";
 
-    private final Predicate predicate;
+    private final Predicate<Item> predicate;
 
     public FindCommand(ItemNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
