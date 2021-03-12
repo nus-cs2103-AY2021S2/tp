@@ -2,6 +2,7 @@ package seedu.storemando.logic.parser;
 
 import seedu.storemando.logic.commands.ReminderCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
+import seedu.storemando.model.item.ItemExpiringPredicate;
 
 public class ReminderCommandParser implements Parser<ReminderCommand> {
 
@@ -18,6 +19,11 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
             throw new ParseException("There is more than 1 arguments given.");
         }
 
-        return new ReminderCommand(x->true);
+        try {
+            Long x = Long.parseLong(indexes[0]);
+            return new ReminderCommand(new ItemExpiringPredicate(x));
+        } catch (NumberFormatException e) {
+            throw new ParseException("Argument is not an integer.");
+        }
     }
 }

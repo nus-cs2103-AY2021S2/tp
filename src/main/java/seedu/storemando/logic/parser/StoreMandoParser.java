@@ -15,6 +15,7 @@ import seedu.storemando.logic.commands.ExitCommand;
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.commands.HelpCommand;
 import seedu.storemando.logic.commands.ListCommand;
+import seedu.storemando.logic.commands.ReminderCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 
 /**
@@ -68,9 +69,7 @@ public class StoreMandoParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case "reminder":
-            System.out.println("reminder command executed.");
-            System.out.println("Index found is: " + arguments);
+        case ReminderCommand.COMMAND_WORD:
             return new ReminderCommandParser().parse(arguments);
 
         default:

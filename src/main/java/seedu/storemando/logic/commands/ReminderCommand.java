@@ -6,14 +6,15 @@ import java.util.function.Predicate;
 
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
+import seedu.storemando.model.item.ItemExpiringPredicate;
 
 public class ReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "reminder";
 
-    private final Predicate predicate;
+    private final ItemExpiringPredicate predicate;
 
-    public ReminderCommand (Predicate predicate) {
+    public ReminderCommand (ItemExpiringPredicate predicate) {
         this.predicate = predicate;
     }
 
