@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import dog.pawbook.logic.commands.AddCommand;
 import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.Command;
+import dog.pawbook.logic.commands.DeleteCommand;
 import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.HelpCommand;
@@ -67,7 +68,7 @@ public class PawbookParser {
 
     private AddCommand generateAddCommand(String entityType, String arguments) throws ParseException {
         if (entityType.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOwnerCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         switch (entityType) {
@@ -79,9 +80,9 @@ public class PawbookParser {
         }
     }
 
-    private DeleteOwnerCommand generateDeleteCommand(String entityType, String arguments) throws ParseException {
+    private DeleteCommand generateDeleteCommand(String entityType, String arguments) throws ParseException {
         if (entityType.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteOwnerCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         switch (entityType) {
