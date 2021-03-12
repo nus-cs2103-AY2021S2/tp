@@ -60,24 +60,24 @@ public class UniqueFlashcardListTest {
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcard(null, PYTHAGOREAN));
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setCard(null, PYTHAGOREAN));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcard(PYTHAGOREAN, null));
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setCard(PYTHAGOREAN, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
         assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList
-                .setFlashcard(PYTHAGOREAN, PYTHAGOREAN));
+                .setCard(PYTHAGOREAN, PYTHAGOREAN));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
         uniqueFlashcardList.add(PYTHAGOREAN);
-        uniqueFlashcardList.setFlashcard(PYTHAGOREAN, PYTHAGOREAN);
+        uniqueFlashcardList.setCard(PYTHAGOREAN, PYTHAGOREAN);
         UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
         expectedUniqueFlashcardList.add(PYTHAGOREAN);
         assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
@@ -88,7 +88,7 @@ public class UniqueFlashcardListTest {
         uniqueFlashcardList.add(PYTHAGOREAN);
         Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN)
                 .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
-        uniqueFlashcardList.setFlashcard(PYTHAGOREAN, editedAlice);
+        uniqueFlashcardList.setCard(PYTHAGOREAN, editedAlice);
         UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
         expectedUniqueFlashcardList.add(editedAlice);
         assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
@@ -97,7 +97,7 @@ public class UniqueFlashcardListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniqueFlashcardList.add(PYTHAGOREAN);
-        uniqueFlashcardList.setFlashcard(PYTHAGOREAN, AT);
+        uniqueFlashcardList.setCard(PYTHAGOREAN, AT);
         UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
         expectedUniqueFlashcardList.add(AT);
         assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
@@ -107,7 +107,7 @@ public class UniqueFlashcardListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueFlashcardList.add(PYTHAGOREAN);
         uniqueFlashcardList.add(AT);
-        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setFlashcard(PYTHAGOREAN, AT));
+        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setCard(PYTHAGOREAN, AT));
     }
 
     @Test
@@ -130,7 +130,7 @@ public class UniqueFlashcardListTest {
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcards((UniqueFlashcardList) null));
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setCards((UniqueFlashcardList) null));
     }
 
     @Test
@@ -138,20 +138,20 @@ public class UniqueFlashcardListTest {
         uniqueFlashcardList.add(PYTHAGOREAN);
         UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
         expectedUniqueFlashcardList.add(AT);
-        uniqueFlashcardList.setFlashcards(expectedUniqueFlashcardList);
+        uniqueFlashcardList.setCards(expectedUniqueFlashcardList);
         assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
     }
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcards((List<Flashcard>) null));
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setCards((List<Flashcard>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueFlashcardList.add(PYTHAGOREAN);
         List<Flashcard> flashcardList = Collections.singletonList(AT);
-        uniqueFlashcardList.setFlashcards(flashcardList);
+        uniqueFlashcardList.setCards(flashcardList);
         UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
         expectedUniqueFlashcardList.add(AT);
         assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
@@ -161,7 +161,7 @@ public class UniqueFlashcardListTest {
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Flashcard> listWithDuplicateFlashcards = Arrays.asList(PYTHAGOREAN, PYTHAGOREAN);
         assertThrows(DuplicateFlashcardException.class, () ->
-                uniqueFlashcardList.setFlashcards(listWithDuplicateFlashcards));
+                uniqueFlashcardList.setCards(listWithDuplicateFlashcards));
     }
 
     @Test

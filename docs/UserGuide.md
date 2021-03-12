@@ -47,7 +47,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 ## Features
 
 ### Viewing help: `help`
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -55,12 +55,12 @@ Format: `help`
 
 Adds a new card to the card list.
 
-Format: `add k/ KEYWORD d/ DESCRIPTION [t/ TOPIC]` <br />
-Note: The TOPIC is optional when adding a new card.
+Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/ TAG]` <br />
+Note: The TAG is optional when adding a new card.
 
 Examples:
-* `add k/ Einstein’s Equation d/ e=mc^2 t/ Physics`
-* `add k/ Independence day of Singapore d/ August 9th 1965 t/ History`
+* `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`  
+* `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
 
 
 ### Listing all cards : `list`
@@ -137,7 +137,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add k/ KEYWORD d/ DESCRIPTION [t/ TOPIC]...` <br> e.g., `add k/ Einstein’s Equation d/ e=mc^2 t/ Physics`
+**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br> e.g., `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
 **View** | `view INDEX` <br> e.g., `view 2`
 **Clear** | `clear`

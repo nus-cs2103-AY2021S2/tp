@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditFlashcardDescriptor;
+import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.tag.Tag;
 
@@ -43,7 +43,7 @@ public class FlashcardUtil {
     /**
      * Returns the part of command string for the given {@code EditFlashcardDescriptor}'s details.
      */
-    public static String getEditFlashcardDescriptorDetails(EditFlashcardDescriptor descriptor) {
+    public static String getEditFlashcardDescriptorDetails(EditCardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getQuestion().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.fullQuestion).append(" "));
         descriptor.getAnswer().ifPresent(phone -> sb.append(PREFIX_ANSWER).append(phone.value).append(" "));

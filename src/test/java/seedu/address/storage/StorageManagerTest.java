@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonFlashBackStorage addressBookStorage = new JsonFlashBackStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -55,14 +55,14 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
         FlashBack original = getTypicalFlashBack();
-        storageManager.saveAddressBook(original);
-        ReadOnlyFlashBack retrieved = storageManager.readAddressBook().get();
+        storageManager.saveFlashBack(original);
+        ReadOnlyFlashBack retrieved = storageManager.readFlashBack().get();
         assertEquals(original, new FlashBack(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getFlashBackFilePath());
     }
 
 }

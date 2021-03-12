@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedFlashcard {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Flashcard's %s field is missing!";
 
     private final String question;
     private final String answer;
@@ -28,7 +28,11 @@ class JsonAdaptedFlashcard {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
+<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedFlashcard.java
      * Constructs a {@code JsonAdaptedFlashcard} with the given person details.
+=======
+     * Constructs a {@code JsonAdaptedFlashcard} with the given flash card details.
+>>>>>>> c62b7fca8e6e2608d71e5cc2946c10944917bc3d:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
      */
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
@@ -46,7 +50,7 @@ class JsonAdaptedFlashcard {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Flashcard} into this class for Jackson use.
      */
     public JsonAdaptedFlashcard(Flashcard source) {
         question = source.getQuestion().fullQuestion;
@@ -60,14 +64,18 @@ class JsonAdaptedFlashcard {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedFlashcard.java
+     * Converts this Jackson-friendly adapted card object into the model's {@code Flashcard} object.
+=======
+     * Converts this Jackson-friendly adapted person object into the model's {@code Flashcard} object.
+>>>>>>> 5b1346da262ccb99becdb0c95e9b01b2f4b6a06c:src/main/java/seedu/address/storage/JsonAdaptedFlashcard.java
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted card.
      */
     public Flashcard toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> cardTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            cardTags.add(tag.toModelType());
         }
 
         if (question == null) {
@@ -110,7 +118,7 @@ class JsonAdaptedFlashcard {
         }
         final Remark modelRemark = new Remark(remark);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(cardTags);
         return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelPriority, modelRemark, modelTags);
     }
 

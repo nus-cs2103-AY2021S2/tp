@@ -25,7 +25,7 @@ public class FlashBackBuilder {
      * Adds a new {@code Flashcard} to {@code FlashBack} that we are building.
      */
     public FlashBackBuilder withFlashcard(Flashcard flashcard) {
-        flashBack.addFlashcard(flashcard);
+        flashBack.addCard(flashcard);
         return this;
     }
 

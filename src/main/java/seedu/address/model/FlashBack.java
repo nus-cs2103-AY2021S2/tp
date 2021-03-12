@@ -10,7 +10,7 @@ import seedu.address.model.flashcard.UniqueFlashcardList;
 
 /**
  * Wraps all data at the FlashBack level
- * Duplicates are not allowed (by .isSameFlashcard comparison)
+ * Duplicates are not allowed (by .isSameCard comparison)
  */
 public class FlashBack implements ReadOnlyFlashBack {
 
@@ -30,7 +30,7 @@ public class FlashBack implements ReadOnlyFlashBack {
     public FlashBack() {}
 
     /**
-     * Creates a FlashBack using the Flashcards in the {@code toBeCopied}
+     * Creates an FlashBack using the cards in the {@code toBeCopied}
      */
     public FlashBack(ReadOnlyFlashBack toBeCopied) {
         this();
@@ -40,57 +40,55 @@ public class FlashBack implements ReadOnlyFlashBack {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the flashcard list with {@code flashcards}.
-     * {@code flashcards} must not contain duplicate flashcards.
+     * Replaces the contents of the card list with {@code flashcards}.
+     * {@code flashcards} must not contain duplicate flash cards.
      */
     public void setFlashcards(List<Flashcard> flashcards) {
-        this.flashcards.setFlashcards(flashcards);
+        this.flashcards.setCards(flashcards);
     }
 
     /**
-     * Resets the existing data of this {@code FlashBack} with {@code newData}.
+     * Resets the existing data of this {@code FlashCard} with {@code newData}.
      */
     public void resetData(ReadOnlyFlashBack newData) {
         requireNonNull(newData);
-
-        setFlashcards(newData.getFlashcardList());
+        setFlashcards(newData.getCardList());
     }
 
-    //// person-level operations
+    //// card-level operations
 
     /**
-     * Returns true if a flashcard with the same information as {@code flashcard} exists in the flashcard list.
+     * Returns true if a card with the same identity as {@code flashcard} exists in FlashBack
      */
-    public boolean hasFlashcard(Flashcard flashcard) {
+    public boolean hasCard(Flashcard flashcard) {
         requireNonNull(flashcard);
         return flashcards.contains(flashcard);
     }
 
     /**
-     * Adds a flashcard to flashcard list.
-     * The flashcard must not already exist in the flashcard list.
+     * Adds a card to FlashBack.
+     * The card must not already exist in FlashBack.
      */
-    public void addFlashcard(Flashcard f) {
-        flashcards.add(f);
+    public void addCard(Flashcard p) {
+        flashcards.add(p);
     }
 
     /**
-     * Replaces the given flashcard {@code target} in the list with {@code editedFlashcard}.
-     * {@code target} must exist in the flashcard list.
-     * The flashcard information of {@code editedFlashcard} must not be the same as another existing flashcard in
-     * the flashcard list.
+     * Replaces the given card {@code target} in the list with {@code editedFlashcard}.
+     * {@code target} must exist in FlashBack.
+     * The card identity of {@code editedFlashcard} must not be the same as another existing card in FlashBack.
      */
-    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+    public void setCard(Flashcard target, Flashcard editedFlashcard) {
         requireNonNull(editedFlashcard);
 
-        flashcards.setFlashcard(target, editedFlashcard);
+        flashcards.setCard(target, editedFlashcard);
     }
 
     /**
-     * Removes {@code key} from {@code FlashBack}.
-     * {@code key} must exist in the flashcard list.
+     * Removes {@code key} from this {@code FlashBack}.
+     * {@code key} must exist in FlashBack.
      */
-    public void removeFlashcard(Flashcard key) {
+    public void removeCard(Flashcard key) {
         flashcards.remove(key);
     }
 
@@ -98,12 +96,12 @@ public class FlashBack implements ReadOnlyFlashBack {
 
     @Override
     public String toString() {
-        return flashcards.asUnmodifiableObservableList().size() + " persons";
+        return flashcards.asUnmodifiableObservableList().size() + " cards";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Flashcard> getFlashcardList() {
+    public ObservableList<Flashcard> getCardList() {
         return flashcards.asUnmodifiableObservableList();
     }
 

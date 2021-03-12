@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.flashcard.Flashcard;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the FlashBack data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,17 +24,17 @@ public class ModelManager implements Model {
     private final FilteredList<Flashcard> filteredFlashcards;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given flashBack and userPrefs.
      */
     public ModelManager(ReadOnlyFlashBack flashBack, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(flashBack, userPrefs);
 
-        logger.fine("Initializing with address book: " + flashBack + " and user prefs " + userPrefs);
+        logger.fine("Initializing with FlashBack: " + flashBack + " and user prefs " + userPrefs);
 
         this.flashBack = new FlashBack(flashBack);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashcards = new FilteredList<>(this.flashBack.getFlashcardList());
+        filteredFlashcards = new FilteredList<>(this.flashBack.getCardList());
     }
 
     public ModelManager() {
@@ -67,20 +67,20 @@ public class ModelManager implements Model {
 
     @Override
     public Path getFlashBackFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getFlashBackFilePath();
     }
 
     @Override
     public void setFlashBackFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setFlashBackFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FlashBack ================================================================================
 
     @Override
-    public void setFlashBack(ReadOnlyFlashBack addressBook) {
-        this.flashBack.resetData(addressBook);
+    public void setFlashBack(ReadOnlyFlashBack flashBack) {
+        this.flashBack.resetData(flashBack);
     }
 
     @Override
@@ -91,17 +91,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
-        return flashBack.hasFlashcard(flashcard);
+        return flashBack.hasCard(flashcard);
     }
 
     @Override
     public void deleteFlashcard(Flashcard target) {
-        flashBack.removeFlashcard(target);
+        flashBack.removeCard(target);
     }
 
     @Override
     public void addFlashcard(Flashcard flashcard) {
-        flashBack.addFlashcard(flashcard);
+        flashBack.addCard(flashcard);
         updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
@@ -109,14 +109,14 @@ public class ModelManager implements Model {
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireAllNonNull(target, editedFlashcard);
 
-        flashBack.setFlashcard(target, editedFlashcard);
+        flashBack.setCard(target, editedFlashcard);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Flashcard List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Flashcard} backed by the internal list of
+     * {@code versionedFlashBack}
      */
     @Override
     public ObservableList<Flashcard> getFilteredFlashcardList() {

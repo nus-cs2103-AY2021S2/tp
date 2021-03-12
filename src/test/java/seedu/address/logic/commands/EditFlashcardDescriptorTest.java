@@ -12,15 +12,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EQUATION;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditFlashcardDescriptor;
-import seedu.address.testutil.EditFlashcardDescriptorBuilder;
+import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 
 public class EditFlashcardDescriptorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditFlashcardDescriptor descriptorWithSameValues = new EditFlashcardDescriptor(DESC_EINSTEIN);
+        EditCommand.EditCardDescriptor descriptorWithSameValues = new EditCardDescriptor(DESC_EINSTEIN);
         assertTrue(DESC_EINSTEIN.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,24 +36,24 @@ public class EditFlashcardDescriptorTest {
         assertFalse(DESC_EINSTEIN.equals(DESC_ATP));
 
         // different name -> returns false
-        EditCommand.EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_EINSTEIN)
+        EditCommand.EditCardDescriptor editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN)
                 .withQuestion(VALID_QUESTION_OCTOPUS).build();
         assertFalse(DESC_EINSTEIN.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditFlashcardDescriptorBuilder(DESC_EINSTEIN).withAnswer(VALID_ANSWER_OCTOPUS).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN).withAnswer(VALID_ANSWER_OCTOPUS).build();
         assertFalse(DESC_EINSTEIN.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditFlashcardDescriptorBuilder(DESC_EINSTEIN).withCategory(VALID_CATEGORY_OCTOPUS).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN).withCategory(VALID_CATEGORY_OCTOPUS).build();
         assertFalse(DESC_EINSTEIN.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditFlashcardDescriptorBuilder(DESC_EINSTEIN).withPriority(VALID_PRIORITY_OCTOPUS).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN).withPriority(VALID_PRIORITY_OCTOPUS).build();
         assertFalse(DESC_EINSTEIN.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditFlashcardDescriptorBuilder(DESC_EINSTEIN).withTags(VALID_TAG_EQUATION).build();
+        editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN).withTags(VALID_TAG_EQUATION).build();
         assertFalse(DESC_EINSTEIN.equals(editedAmy));
     }
 }

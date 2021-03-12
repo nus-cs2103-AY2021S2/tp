@@ -3,7 +3,7 @@ package seedu.address.model.flashcard;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's address in the address book.
+ * Represents a flash card's remark in FlashBack.
  */
 public class Remark {
     public final String value;

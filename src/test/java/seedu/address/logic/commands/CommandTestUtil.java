@@ -19,7 +19,7 @@ import seedu.address.model.FlashBack;
 import seedu.address.model.Model;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
-import seedu.address.testutil.EditFlashcardDescriptorBuilder;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -57,15 +57,15 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditFlashcardDescriptor DESC_EINSTEIN;
-    public static final EditCommand.EditFlashcardDescriptor DESC_ATP;
+    public static final EditCommand.EditCardDescriptor DESC_EINSTEIN;
+    public static final EditCommand.EditCardDescriptor DESC_ATP;
 
     static {
-        DESC_EINSTEIN = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_EINSTEIN)
+        DESC_EINSTEIN = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_EINSTEIN)
                 .withAnswer(VALID_ANSWER_EINSTEIN).withCategory(VALID_CATEGORY_EINSTEIN)
                 .withPriority(VALID_PRIORITY_EINSTEIN)
                 .withTags(VALID_TAG_GENERAL).build();
-        DESC_ATP = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS)
+        DESC_ATP = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_OCTOPUS)
                 .withAnswer(VALID_ANSWER_OCTOPUS).withCategory(VALID_CATEGORY_OCTOPUS)
                 .withPriority(VALID_PRIORITY_OCTOPUS)
                 .withTags(VALID_TAG_EQUATION, VALID_TAG_GENERAL).build();

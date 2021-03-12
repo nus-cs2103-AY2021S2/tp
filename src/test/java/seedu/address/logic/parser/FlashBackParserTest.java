@@ -15,18 +15,27 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCategoryCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindQuestionCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.flashcard.CategoryContainsKeywordsPredicate;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
-import seedu.address.testutil.EditFlashcardDescriptorBuilder;
+import seedu.address.testutil.EditCardDescriptorBuilder;
 import seedu.address.testutil.FlashcardBuilder;
 import seedu.address.testutil.FlashcardUtil;
 
 public class FlashBackParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FlashBackParser parser = new FlashBackParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -51,7 +60,7 @@ public class FlashBackParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Flashcard flashcard = new FlashcardBuilder().build();
-        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
+        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder(flashcard).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_FLASHCARD.getOneBased() + " "
                 + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
