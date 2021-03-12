@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CS2030;
-import static seedu.address.testutil.TypicalEvents.CS3230;
 import static seedu.address.testutil.TypicalEvents.CS2100;
+import static seedu.address.testutil.TypicalEvents.CS3230;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 
 import java.io.IOException;
@@ -107,4 +107,3 @@ public class JsonEventBookStorageTest {
         assertThrows(NullPointerException.class, () -> saveEventBook(new EventBook(), null));
     }
 }
-

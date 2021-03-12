@@ -6,7 +6,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEventBook;
+import seedu.address.model.event.Description;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventStatus;
+import seedu.address.model.event.EventTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -53,17 +60,20 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    /* To be added later (for now there is no Sample Events when the app starts and there is no data)
-    public static Event[] getSampleEvent() {
-        return new Event[] {
-             new Event(new EventName("Lunch with John"), new EventTime("12/01/2021"), new EventTime("21/01/2021"),
-                     EventStatus.TODO, new Description("At VivoCity"), getTagSet("Friends"),
-                     new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                             new Address("Blk 30 Geylang Street 29, #06-40"),
-                             getTagSet("friends")))
+    public static ReadOnlyEventBook getSampleEventBook() {
+        EventBook sampleEb = new EventBook();
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleEb.addEvent(sampleEvent);
+        }
+        return sampleEb;
+    }
+
+    public static Event[] getSampleEvents() {
+        return new Event[] {new Event(new EventName("Lunch with John"), new EventTime("12/01/2021"),
+                new EventTime("21/01/2021"), EventStatus.TODO, new Description("At VivoCity"),
+                getTagSet("Friends"), getSamplePersonSet())
         };
     }
-     */
 
     /**
      * Returns a tag set containing the list of strings given.

@@ -69,14 +69,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyEventBook> readEventBook() throws DataConversionException, IOException {
-        return readEventBook(eventBookStorage.getEventBookFilePath());
-    }
-
-    @Override
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return addressBookStorage.readAddressBook(filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyEventBook> readEventBook() throws DataConversionException, IOException {
+        return readEventBook(eventBookStorage.getEventBookFilePath());
     }
 
     @Override
@@ -91,14 +91,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveEventBook(ReadOnlyEventBook eventBook) throws IOException {
-        saveEventBook(eventBook, eventBookStorage.getEventBookFilePath());
-    }
-
-    @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    @Override
+    public void saveEventBook(ReadOnlyEventBook eventBook) throws IOException {
+        saveEventBook(eventBook, eventBookStorage.getEventBookFilePath());
     }
 
     @Override

@@ -10,7 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.*;
+import seedu.address.model.event.Description;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventStatus;
+import seedu.address.model.event.EventTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -96,7 +100,8 @@ class JsonAdaptedEvent {
         }
 
         if (eventName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventName.class.getSimpleName()));
         }
         if (!EventName.isValidName(eventName)) {
             throw new IllegalValueException(EventName.MESSAGE_CONSTRAINTS);
@@ -105,7 +110,8 @@ class JsonAdaptedEvent {
 
 
         if (start == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventTime.class.getSimpleName()));
         }
         if (!EventTime.isValidEventTime(start)) {
             throw new IllegalValueException(EventTime.MESSAGE_CONSTRAINTS);
@@ -113,7 +119,8 @@ class JsonAdaptedEvent {
         final EventTime modelTimeStart = new EventTime(start);
 
         if (end == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventTime.class.getSimpleName()));
         }
         if (!EventTime.isValidEventTime(end)) {
             throw new IllegalValueException(EventTime.MESSAGE_CONSTRAINTS);
@@ -121,7 +128,8 @@ class JsonAdaptedEvent {
         final EventTime modelTimeEnd = new EventTime(end);
 
         if (eventStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventStatus.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventStatus.class.getSimpleName()));
         }
 
         final EventStatus modelStatus;
@@ -136,11 +144,13 @@ class JsonAdaptedEvent {
             modelStatus = EventStatus.DONE;
             break;
         default:
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EventStatus.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EventStatus.class.getSimpleName()));
         }
 
         if (eventDescription == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(eventDescription)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
