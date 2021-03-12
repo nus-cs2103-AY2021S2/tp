@@ -2,8 +2,8 @@ package seedu.storemando.model.item;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-import java.util.function.Predicate;
 import java.time.LocalDate;
+import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Item}'s {@code expiry date} is within the stipulated days from today.
@@ -27,6 +27,6 @@ public class ItemExpiringPredicate implements Predicate<Item> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof ItemExpiringPredicate // instanceof handles nulls
-            && numOfDays == ((ItemExpiringPredicate)other).numOfDays); // state check
+            && numOfDays == ((ItemExpiringPredicate) other).numOfDays); // state check
     }
 }
