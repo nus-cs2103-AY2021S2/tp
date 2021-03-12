@@ -114,16 +114,16 @@ public class Flashcard {
         final StringBuilder builder = new StringBuilder();
         builder.append("Question: ")
                 .append(getQuestion())
-                .append("; Answer: ")
+                .append("\nAnswer: ")
                 .append(getAnswer())
-                .append("; Category: ")
+                .append("\nCategory: ")
                 .append(getCategory())
-                .append("; Priority: ")
+                .append("\nPriority: ")
                 .append(getPriority());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
