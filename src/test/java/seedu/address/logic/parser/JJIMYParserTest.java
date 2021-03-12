@@ -13,15 +13,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.customer.CustomerAddCommand;
+import seedu.address.logic.commands.customer.CustomerClearCommand;
+import seedu.address.logic.commands.customer.CustomerDeleteCommand;
+import seedu.address.logic.commands.customer.CustomerEditCommand;
+import seedu.address.logic.commands.customer.CustomerEditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.customer.CustomerFindCommand;
+import seedu.address.logic.commands.customer.CustomerListCommand;
 import seedu.address.logic.parser.components.CustomerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -37,35 +37,37 @@ public class JJIMYParserTest {
     @Test
     public void customer_parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCompo(
+        CustomerAddCommand command = (CustomerAddCommand) parser.parseCompo(
                 CustomerParser.COMPONENT_WORD + " " + PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        assertEquals(new CustomerAddCommand(person), command);
     }
 
     @Test
     public void customer_parseCommand_clear() throws Exception {
         assertTrue(parser.parseCompo(
-                CustomerParser.COMPONENT_WORD + " " + ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+                CustomerParser.COMPONENT_WORD + " " + CustomerClearCommand.COMMAND_WORD)
+                instanceof CustomerClearCommand);
         assertTrue(parser.parseCompo(
-                CustomerParser.COMPONENT_WORD + " " + ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+                CustomerParser.COMPONENT_WORD + " " + CustomerClearCommand.COMMAND_WORD + " 3")
+                instanceof CustomerClearCommand);
     }
 
     @Test
     public void customer_parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCompo(
-                CustomerParser.COMPONENT_WORD + " " + DeleteCommand.COMMAND_WORD + " "
+        CustomerDeleteCommand command = (CustomerDeleteCommand) parser.parseCompo(
+                CustomerParser.COMPONENT_WORD + " " + CustomerDeleteCommand.COMMAND_WORD + " "
                         + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        assertEquals(new CustomerDeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void customer_parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCompo(
-                CustomerParser.COMPONENT_WORD + " " + EditCommand.COMMAND_WORD + " "
+        CustomerEditCommand command = (CustomerEditCommand) parser.parseCompo(
+                CustomerParser.COMPONENT_WORD + " " + CustomerEditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new CustomerEditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
@@ -77,10 +79,10 @@ public class JJIMYParserTest {
     @Test
     public void customer_parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCompo(
-                CustomerParser.COMPONENT_WORD + " " + FindCommand.COMMAND_WORD + " "
+        CustomerFindCommand command = (CustomerFindCommand) parser.parseCompo(
+                CustomerParser.COMPONENT_WORD + " " + CustomerFindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new CustomerFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -92,9 +94,11 @@ public class JJIMYParserTest {
     @Test
     public void customer_parseCommand_list() throws Exception {
         assertTrue(parser.parseCompo(
-                CustomerParser.COMPONENT_WORD + " " + ListCommand.COMMAND_WORD) instanceof ListCommand);
+                CustomerParser.COMPONENT_WORD + " " + CustomerListCommand.COMMAND_WORD)
+                instanceof CustomerListCommand);
         assertTrue(parser.parseCompo(
-                CustomerParser.COMPONENT_WORD + " " + ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+                CustomerParser.COMPONENT_WORD + " " + CustomerListCommand.COMMAND_WORD + " 3")
+                instanceof CustomerListCommand);
     }
 
     @Test

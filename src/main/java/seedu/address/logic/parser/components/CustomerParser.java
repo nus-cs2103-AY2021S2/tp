@@ -5,18 +5,18 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.commands.AddCommandParser;
-import seedu.address.logic.parser.commands.DeleteCommandParser;
-import seedu.address.logic.parser.commands.EditCommandParser;
-import seedu.address.logic.parser.commands.FindCommandParser;
+import seedu.address.logic.commands.customer.CustomerAddCommand;
+import seedu.address.logic.commands.customer.CustomerClearCommand;
+import seedu.address.logic.commands.customer.CustomerDeleteCommand;
+import seedu.address.logic.commands.customer.CustomerEditCommand;
+import seedu.address.logic.commands.customer.CustomerFindCommand;
+import seedu.address.logic.commands.customer.CustomerListCommand;
+import seedu.address.logic.parser.commands.customer.CustomerAddCommandParser;
+import seedu.address.logic.parser.commands.customer.CustomerDeleteCommandParser;
+import seedu.address.logic.parser.commands.customer.CustomerEditCommandParser;
+import seedu.address.logic.parser.commands.customer.CustomerFindCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input without component.
@@ -43,23 +43,23 @@ public class CustomerParser implements ComponentParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case CustomerAddCommand.COMMAND_WORD:
+            return new CustomerAddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case CustomerEditCommand.COMMAND_WORD:
+            return new CustomerEditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case CustomerDeleteCommand.COMMAND_WORD:
+            return new CustomerDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case CustomerClearCommand.COMMAND_WORD:
+            return new CustomerClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case CustomerFindCommand.COMMAND_WORD:
+            return new CustomerFindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case CustomerListCommand.COMMAND_WORD:
+            return new CustomerListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -5,18 +5,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.commands.AddCommandParser;
-import seedu.address.logic.parser.commands.DeleteCommandParser;
-import seedu.address.logic.parser.commands.EditCommandParser;
-import seedu.address.logic.parser.commands.FindCommandParser;
+import seedu.address.logic.commands.inventory.InventoryAddCommand;
+import seedu.address.logic.commands.inventory.InventoryDeleteCommand;
+import seedu.address.logic.commands.inventory.InventoryListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -41,26 +34,21 @@ public class InventoryParser implements ComponentParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        final String messageNotImplemented = COMPONENT_WORD + " " + commandWord + " is still work in progress!";
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case InventoryAddCommand.COMMAND_WORD:
+            throw new ParseException(messageNotImplemented);
+            // return new InventoryAddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case InventoryDeleteCommand.COMMAND_WORD:
+            throw new ParseException(messageNotImplemented);
+            // return new InventoryDeleteCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case InventoryListCommand.COMMAND_WORD:
+            throw new ParseException(messageNotImplemented);
+            // return new InventoryListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
