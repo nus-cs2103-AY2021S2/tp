@@ -17,7 +17,7 @@
       * Priority tag HIGH/MEDIUM/LOW : pt/HIGH 3 will assign a high priority to the 3rd task on the list.
       * Time-based alert : alert will show a list of immediate tasks that will be due next week
       * clear : will delete all module tasks on the list
-  6. Refer to the features for each individual commands for more details 
+  6. Refer to the features for each individual commands for more details
 
 ## **Commands**
 
@@ -26,7 +26,7 @@
     1. eg: delete 3 will delete the 3rd task on the list
     2. Index to be inserted must be positive, and
     3. Index must be available on the list else an error will be thrown
-    4. Example: Using the command list to show all tasks, the user wants to delete the 2nd task. User use command delete 2 to delete the 2nd task from the list 
+    4. Example: Using the command list to show all tasks, the user wants to delete the 2nd task. User use command delete 2 to delete the 2nd task from the list
 
 
 
@@ -103,7 +103,7 @@
     2. Adding notes to a task that already has existing notes will overwrite the previous notes.
     3. Example: list followed by notes 2 n/Hello World! adds the note “Hello World!” to the 2nd task in the task list.
     4. Example: find assignment followed by notes 1 n/fooBar adds the note “fooBar” to the 1st task in the results of the find command.
- 
+
 10. ### Shows alert(s) for incoming deadlines based on the time range (if give)
   * Format: alert start/START_DATE end/END_DATE
     1. If no time range is given, alert(s) shown will be deadlines next week.
@@ -112,5 +112,5 @@
     4. alert start/10-10-2020 will show deadlines starting from 10 October 2020 onwards.
 
 
-## Acknowledgements 
+## Acknowledgements
 1. This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)

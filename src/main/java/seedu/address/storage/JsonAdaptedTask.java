@@ -15,6 +15,7 @@ import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +27,7 @@ class JsonAdaptedTask {
 
     private final String moduleName;
     private final String moduleCode;
+    private final Integer weightage;
     private final String phone;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -36,11 +38,13 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("moduleName") String moduleName,
                            @JsonProperty("moduleCode") String moduleCode,
+                           @JsonProperty("weightage") Integer weightage,
                            @JsonProperty("phone") String phone,
                            @JsonProperty("remark") String remark,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
+        this.weightage = weightage;
         this.phone = phone;
         this.remark = remark;
         if (tagged != null) {
@@ -54,6 +58,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         moduleName = source.getModuleName().fullName;
         moduleCode = source.getModuleCode().moduleCode;
+        weightage = source.getWeightage().weightage;
         phone = source.getPhone().value;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
@@ -90,6 +95,15 @@ class JsonAdaptedTask {
         }
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
+        if (weightage == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Weightage.class.getSimpleName()));
+        }
+        if (!Weightage.isValidWeightage(weightage)) {
+            throw new IllegalValueException(Weightage.MESSAGE_CONSTRAINTS);
+        }
+        final Weightage modelWeightage = new Weightage(weightage);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -104,7 +118,8 @@ class JsonAdaptedTask {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Task(modelModuleName, modelModuleCode, modelPhone, modelRemark, modelTags);
+        return new Task(modelModuleName, modelModuleCode, modelWeightage,
+                modelPhone, modelRemark, modelTags);
     }
 
 }

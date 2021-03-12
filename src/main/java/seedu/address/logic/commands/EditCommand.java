@@ -24,6 +24,7 @@ import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,11 +95,13 @@ public class EditCommand extends Command {
 
         ModuleName updatedModuleName = editTaskDescriptor.getModuleName().orElse(taskToEdit.getModuleName());
         ModuleCode updatedModuleCode = editTaskDescriptor.getModuleCode().orElse(taskToEdit.getModuleCode());
+        Weightage updatedWeightage = taskToEdit.getWeightage(); // edit command does not allow editing weightage
         Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
         Remark updatedRemark = taskToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedModuleName, updatedModuleCode, updatedPhone, updatedRemark, updatedTags);
+        return new Task(updatedModuleName, updatedModuleCode, updatedWeightage,
+                updatedPhone, updatedRemark, updatedTags);
     }
 
     @Override

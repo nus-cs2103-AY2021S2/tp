@@ -18,6 +18,7 @@ public class Task {
     // Identity fields
     private final ModuleName moduleName;
     private final ModuleCode moduleCode;
+    private final Weightage weightage;
     private final Phone phone;
 
     // Data fields
@@ -27,10 +28,12 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(ModuleName moduleName, ModuleCode moduleCode, Phone phone, Remark remark, Set<Tag> tags) {
+    public Task(ModuleName moduleName, ModuleCode moduleCode, Weightage weightage,
+                Phone phone, Remark remark, Set<Tag> tags) {
         requireAllNonNull(moduleName, moduleCode, phone, tags);
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
+        this.weightage = weightage;
         this.phone = phone;
         this.remark = remark;
         this.tags.addAll(tags);
@@ -42,6 +45,10 @@ public class Task {
 
     public ModuleCode getModuleCode() {
         return moduleCode;
+    }
+
+    public Weightage getWeightage() {
+        return weightage;
     }
 
     public Phone getPhone() {
@@ -90,6 +97,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getModuleName().equals(getModuleName())
             && otherTask.getModuleCode().equals(getModuleCode())
+            && otherTask.getWeightage().equals(getWeightage())
             && otherTask.getPhone().equals(getPhone())
             && otherTask.getRemark().equals(getRemark())
             && otherTask.getTags().equals(getTags());
@@ -98,7 +106,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleName, moduleCode, phone, remark, tags);
+        return Objects.hash(moduleName, moduleCode, weightage, phone, remark, tags);
     }
 
     @Override
@@ -107,6 +115,8 @@ public class Task {
         builder.append(getModuleName())
             .append("; Module Code: ")
             .append(getModuleCode())
+            .append("; Weightage: ")
+            .append(getWeightage())
             .append("; Phone: ")
             .append(getPhone())
             .append("; Remark: ")
