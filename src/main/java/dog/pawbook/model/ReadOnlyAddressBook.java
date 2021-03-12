@@ -1,6 +1,6 @@
 package dog.pawbook.model;
 
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 import javafx.collections.ObservableList;
 
 /**

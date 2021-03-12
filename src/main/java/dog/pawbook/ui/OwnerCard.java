@@ -2,7 +2,7 @@ package dog.pawbook.ui;
 
 import java.util.Comparator;
 
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;

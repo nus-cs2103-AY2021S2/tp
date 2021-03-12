@@ -1,10 +1,12 @@
-package dog.pawbook.model.owner;
+package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import dog.pawbook.model.managedentity.Name;
 
 public class NameTest {
 

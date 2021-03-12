@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import dog.pawbook.logic.commands.AddCommand;
-import dog.pawbook.logic.commands.DeleteCommand;
+import dog.pawbook.logic.commands.AddOwnerCommand;
+import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.testutil.OwnerBuilder;
 import dog.pawbook.testutil.OwnerUtil;
 
@@ -25,15 +25,16 @@ public class PawbookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Owner owner = new OwnerBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(OwnerUtil.getAddCommand(owner));
-        assertEquals(new AddCommand(owner), command);
+        AddOwnerCommand command = (AddOwnerCommand) parser.parseCommand(OwnerUtil.getAddCommand(owner));
+        assertEquals(new AddOwnerCommand(owner), command);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + DeleteCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_OWNER), command);
+        DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
+                DeleteOwnerCommand.COMMAND_WORD + " " + DeleteOwnerCommand.ENTITY_WORD + " " + INDEX_FIRST_OWNER
+                        .getOneBased());
+        assertEquals(new DeleteOwnerCommand(INDEX_FIRST_OWNER), command);
     }
 
     @Test

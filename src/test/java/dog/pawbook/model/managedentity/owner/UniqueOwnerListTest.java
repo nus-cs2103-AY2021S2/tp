@@ -1,4 +1,4 @@
-package dog.pawbook.model.owner;
+package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import dog.pawbook.model.owner.exceptions.DuplicateOwnerException;
-import dog.pawbook.model.owner.exceptions.OwnerNotFoundException;
+import dog.pawbook.model.managedentity.owner.exceptions.DuplicateOwnerException;
+import dog.pawbook.model.managedentity.owner.exceptions.OwnerNotFoundException;
 import dog.pawbook.testutil.OwnerBuilder;
 
 public class UniqueOwnerListTest {

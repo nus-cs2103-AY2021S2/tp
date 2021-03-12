@@ -1,7 +1,7 @@
 package dog.pawbook.testutil;
 
 import dog.pawbook.model.AddressBook;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * A utility class to help with building Addressbook objects.

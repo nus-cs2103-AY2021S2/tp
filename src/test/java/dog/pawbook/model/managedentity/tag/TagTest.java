@@ -1,4 +1,4 @@
-package dog.pawbook.model.tag;
+package dog.pawbook.model.managedentity.tag;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
 

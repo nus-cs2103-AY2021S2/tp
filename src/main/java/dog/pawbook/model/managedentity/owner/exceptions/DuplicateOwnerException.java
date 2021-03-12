@@ -1,4 +1,4 @@
-package dog.pawbook.model.owner.exceptions;
+package dog.pawbook.model.managedentity.owner.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Owners (Owners are considered duplicates if they have the same

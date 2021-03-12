@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import dog.pawbook.commons.exceptions.IllegalValueException;
-import dog.pawbook.model.owner.Address;
-import dog.pawbook.model.owner.Email;
-import dog.pawbook.model.owner.Name;
-import dog.pawbook.model.owner.Owner;
-import dog.pawbook.model.owner.Phone;
-import dog.pawbook.model.tag.Tag;
+import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.owner.Address;
+import dog.pawbook.model.managedentity.owner.Email;
+import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Owner}.

@@ -9,8 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dog.pawbook.logic.commands.AddCommand;
+import dog.pawbook.logic.commands.AddOwnerCommand;
 import dog.pawbook.logic.commands.Command;
 import dog.pawbook.logic.commands.DeleteCommand;
+import dog.pawbook.logic.commands.DeleteOwnerCommand;
 import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
@@ -45,10 +47,10 @@ public class PawbookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddOwnerCommand.COMMAND_WORD:
             return generateAddCommand(entityType, arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteOwnerCommand.COMMAND_WORD:
             return generateDeleteCommand(entityType, arguments);
 
         case ExitCommand.COMMAND_WORD:
@@ -70,8 +72,8 @@ public class PawbookParser {
         }
 
         switch (entityType) {
-        case AddCommand.ENTITY_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddOwnerCommand.ENTITY_WORD:
+            return new AddOwnerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSGAE_UNKNOWN_ENTITY);
@@ -84,8 +86,8 @@ public class PawbookParser {
         }
 
         switch (entityType) {
-        case DeleteCommand.ENTITY_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteOwnerCommand.ENTITY_WORD:
+            return new DeleteOwnerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSGAE_UNKNOWN_ENTITY);

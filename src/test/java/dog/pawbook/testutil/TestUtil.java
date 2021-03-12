@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.model.Model;
-import dog.pawbook.model.owner.Owner;
+import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
  * A utility class for test cases.

@@ -1,43 +1,35 @@
-package dog.pawbook.model.owner;
+package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import dog.pawbook.model.tag.Tag;
+import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
  * Represents a Owner in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Owner {
-
+public class Owner extends Entity {
     // Identity fields
-    private final Name name;
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Owner(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+        super(name, tags);
+        requireAllNonNull(phone, email, address, tags);
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public Phone getPhone() {
@@ -50,14 +42,6 @@ public class Owner {
 
     public Address getAddress() {
         return address;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -88,11 +72,10 @@ public class Owner {
         }
 
         Owner otherOwner = (Owner) other;
-        return otherOwner.getName().equals(getName())
+        return super.equals(other)
                 && otherOwner.getPhone().equals(getPhone())
                 && otherOwner.getEmail().equals(getEmail())
-                && otherOwner.getAddress().equals(getAddress())
-                && otherOwner.getTags().equals(getTags());
+                && otherOwner.getAddress().equals(getAddress());
     }
 
     @Override
