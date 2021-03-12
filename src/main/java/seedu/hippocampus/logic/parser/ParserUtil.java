@@ -2,6 +2,7 @@ package seedu.hippocampus.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -120,7 +121,9 @@ public class ParserUtil {
         }
         try {
             return new Birthday(trimmedBirthday);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException err) { // birthday year exceeds current year
+            throw new ParseException((Birthday.MESSAGE_YEAR_CONSTRAINTS));
+        } catch (DateTimeException err) { // date in wrong format
             throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
     }

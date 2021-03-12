@@ -3,12 +3,17 @@ package seedu.hippocampus.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.hippocampus.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+
 /** Represents a Person's birthday in HippoCampus.
  * Guarantees: immutable; is always valid.
  */
 public class Birthday {
 
     public static final String MESSAGE_CONSTRAINTS = "Birthday must be in the format yyyy-mm-dd";
+    public static final String MESSAGE_YEAR_CONSTRAINTS =
+            String.format("Year should not exceed %d", LocalDate.now().getYear());
 
     public static final String EMPTY_BIRTHDAY_STRING = "";
     public static final Birthday EMPTY_BIRTHDAY = new Birthday();
@@ -23,7 +28,8 @@ public class Birthday {
      */
     public Birthday(String birthdate) {
         requireNonNull(birthdate);
-        checkArgument(isValidBirthday(birthdate), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidBirthdayYear(birthdate), MESSAGE_YEAR_CONSTRAINTS);
+        isValidBirthday(birthdate);
         value = birthdate;
     }
 
@@ -43,10 +49,21 @@ public class Birthday {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given birthday string has a valid year.
      */
-    public static boolean isValidBirthday(String test) {
-        return (test.toCharArray()[4] == '-') && (test.toCharArray()[7] == '-');
+    public static boolean isValidBirthdayYear(String test) {
+        return Integer.parseInt(test.split("-")[0]) <= LocalDate.now().getYear();
+    }
+
+    /**
+     * Throws an error if a given string is an invalid birthday.
+     */
+    public static void isValidBirthday(String test) {
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeException err) {
+            throw new DateTimeException(MESSAGE_CONSTRAINTS);
+        }
     }
 
     @Override
