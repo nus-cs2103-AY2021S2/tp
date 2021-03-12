@@ -53,7 +53,7 @@ public class HelpCommand extends Command {
         }
 
         // return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
-        return new CommandResult(helpMessage, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, helpMessage, true, false);
     }
 
     private String commandSummaryParser(String info) {
