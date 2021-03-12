@@ -18,6 +18,7 @@ import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,12 +42,15 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ModuleName moduleName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ModuleCode moduleCode = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
+        // add command does not allow adding remarks for now, initialise with
+        // a default value of 0
+        Weightage weightage = new Weightage(0);
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straightaway
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Task task = new Task(moduleName, moduleCode , phone, email, remark, tagList);
+        Task task = new Task(moduleName, moduleCode, weightage, phone, email, remark, tagList);
         return new AddCommand(task);
     }
 

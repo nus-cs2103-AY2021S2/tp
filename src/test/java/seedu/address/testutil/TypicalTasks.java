@@ -22,25 +22,25 @@ import seedu.address.model.person.Task;
 public class TypicalTasks {
 
     public static final Task CS2103 = new TaskBuilder().withName("Software Engineering")
-        .withCode("CS2103").withPhone("94351253")
+        .withCode("CS2103").withWeightage(0).withPhone("94351253")
         .withEmail("alice@example.com").withRemark("Being a software engineer is fun")
         .withTags("friends").build();
     public static final Task CS2040 = new TaskBuilder().withName("Data Structures and Algorithm")
-        .withCode("CS2040").withEmail("johnd@example.com")
+        .withCode("CS2040").withWeightage(0).withEmail("johnd@example.com")
         .withPhone("98765432").withRemark("Favourite pastime: Kattis")
         .withTags("owesMoney", "friends").build();
     public static final Task CS1010E = new TaskBuilder().withName("Programming Methodology I")
-        .withCode("CS1010").withPhone("95352563")
+        .withCode("CS1010").withWeightage(0).withPhone("95352563")
         .withEmail("heinz@example.com").withRemark("PE1").build();
     public static final Task CS2030 = new TaskBuilder().withName("Programming Methodology II")
-        .withCode("CS2030").withPhone("87652533")
+        .withCode("CS2030").withWeightage(0).withPhone("87652533")
         .withEmail("cornelia@example.com").withRemark("PE2")
         .withTags("friends").build();
     public static final Task CS3243 = new TaskBuilder().withName("Introduction to Artificial Intelligence")
-        .withCode("CS3243").withPhone("9482224")
+        .withCode("CS3243").withWeightage(0).withPhone("9482224")
         .withEmail("werner@example.com").build();
     public static final Task CS2100 = new TaskBuilder().withName("Computer Organization")
-        .withCode("CS2100").withPhone("9482442")
+        .withCode("CS2100").withWeightage(0).withPhone("9482442")
         .withEmail("anna@example.com").build();
 
     // Manually added
