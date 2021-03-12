@@ -78,7 +78,7 @@ public class EditPropertyCommand extends Command {
         requireNonNull(editPropertyDescriptor);
 
         this.index = index;
-        this.editPropertyDescriptor = new EditPropertyCommand.EditPropertyDescriptor(editPropertyDescriptor);
+        this.editPropertyDescriptor = new EditPropertyDescriptor(editPropertyDescriptor);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class EditPropertyCommand extends Command {
      * edited with {@code editPropertyDescriptor}.
      */
     private static Property createEditedProperty(Property propertyToEdit,
-                                               EditPropertyCommand.EditPropertyDescriptor editPropertyDescriptor) {
+                                               EditPropertyDescriptor editPropertyDescriptor) {
         assert propertyToEdit != null;
 
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
@@ -127,7 +127,7 @@ public class EditPropertyCommand extends Command {
      * edited with {@code editClientDescriptor}.
      */
     private static Client createEditedClient(Client clientToEdit,
-                                                 Optional<EditPropertyCommand.EditClientDescriptor> clientDescriptor) {
+                                                 Optional<EditClientDescriptor> clientDescriptor) {
 
         if (clientDescriptor.isPresent()) {
             EditClientDescriptor editClientDescriptor = clientDescriptor.get();
@@ -166,9 +166,8 @@ public class EditPropertyCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
-        public EditPropertyDescriptor(EditPropertyCommand.EditPropertyDescriptor toCopy) {
+        public EditPropertyDescriptor(EditPropertyDescriptor toCopy) {
             setName(toCopy.name);
             setType(toCopy.type);
             setAddress(toCopy.address);
@@ -249,12 +248,12 @@ public class EditPropertyCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPropertyCommand.EditPropertyDescriptor)) {
+            if (!(other instanceof EditPropertyDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPropertyCommand.EditPropertyDescriptor e = (EditPropertyCommand.EditPropertyDescriptor) other;
+            EditPropertyDescriptor e = (EditPropertyDescriptor) other;
 
             return getName().equals(e.getName())
                     && getType().equals(e.getType())
@@ -276,9 +275,8 @@ public class EditPropertyCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
-        public EditClientDescriptor(EditPropertyCommand.EditClientDescriptor toCopy) {
+        public EditClientDescriptor(EditClientDescriptor toCopy) {
             setName(toCopy.name);
             setContact(contact);
             setEmail(email);
@@ -332,12 +330,12 @@ public class EditPropertyCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPropertyCommand.EditPropertyDescriptor)) {
+            if (!(other instanceof EditPropertyDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPropertyCommand.EditClientDescriptor e = (EditPropertyCommand.EditClientDescriptor) other;
+            EditClientDescriptor e = (EditClientDescriptor) other;
 
             return getName().equals(e.getName())
                     && getContact().equals(e.getContact())

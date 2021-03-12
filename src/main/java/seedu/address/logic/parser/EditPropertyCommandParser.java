@@ -15,16 +15,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditPropertyCommand;
+import seedu.address.logic.commands.EditPropertyCommand.EditClientDescriptor;
+import seedu.address.logic.commands.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AddPropertyCommand object.
+ * Parses input arguments and creates a new EditPropertyCommand object.
  */
 public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddPropertyCommand
-     * and returns an AddPropertyCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditPropertyCommand
+     * and returns an EditPropertyCommand object for execution.
      * @throws ParseException If the user input does not conform the expected format.
      */
     public EditPropertyCommand parse(String args) throws ParseException {
@@ -43,8 +45,8 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPropertyCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPropertyCommand.EditPropertyDescriptor editPropertyDescriptor =
-                new EditPropertyCommand.EditPropertyDescriptor();
+        EditPropertyDescriptor editPropertyDescriptor =
+                new EditPropertyDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPropertyDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -67,7 +69,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
             editPropertyDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
         }
 
-        EditPropertyCommand.EditClientDescriptor editClientDescriptor = new EditPropertyCommand.EditClientDescriptor();
+        EditClientDescriptor editClientDescriptor = new EditClientDescriptor();
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
             editClientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get()));
         }
