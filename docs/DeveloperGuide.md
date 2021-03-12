@@ -253,205 +253,165 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* * *` | new user exploring the app | see the app populated with sample data | know how the app will look like when it is in use |
-| `* * *` | user ready to starting to use the app | purge all current data | get rid of sample data used for exploring the app |
-| `* * *` | new user exploring the app | view a help page/ use a help command | know what functions are available/ learn the correct syntax for functions |
-| `* * *` | user starting to use the app | tag contacts to an organization/module | easily look up relevant contacts for the organization/module |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `* *`    | user who enjoys planning ahead             | search dates                                               | see tasks in a time period
-| `*` | busy student | check timetable | never be late |
-| `*` | busy student | track my meetings | see when I am free ||
-| `*`      | busy student                               | search free times                                          | find times to relax                              |
-| `* *`    | efficient student                          | look at the number of completed tasks each week            | monitor my productivity                          |
-| `* *`    | student with a plan                        | access the important reminders and tasks for the day/week  | remind myself to be on task and follow my plan   |
-| `* *` | forgetful student | record all my deadlines | easily access all deadlines due |
-| `*` | hardworking student | diligently plan my deadlines | always keep on task |
-| `* *` | social butterfly | keep track of events | always remember the things to attend |
-| `* *` | friend | record birthdays | wish my friends on time |
-| `* *`    | experienced user                           | execute multiple commands at a time                        | improve the efficiency of my workflow            |
-| `* *`    | long term user/student                     | Delete and wipe all my current tasks                       | use it in a clean slate for future semesters     |
-| `*`      | student taking many modules                | check exam dates                         |                                                                |
-| `* *`    | forgetful person                           | take down notes                          |                                                                |
-| `* *`    | clumsy person                              | undo/edit misspelled names/numbers/notes | fix mistakes                                                   |
-| `*`      | disorganized person                        | view a calendar                          | see all tasks in the coming month                              |
-| `*`      | disorganized person                        | set recurring tasks                      | have the same periodic reminder without keying it in manually  |
-| `*`      | reflective person                          | look at completed tasks/an archive       | reminisce on the past semester and feel accomplished           |
-| `* *`    | student with many modules and activities   | color code tags                          | differentiate tasks easily                                     |
-| `* * *`  | returning user                             | sort/search through contacts based on organisation/module  | contact the relevant people to set up a meeting     |
-| `*`      | returning user                             | edit a deadline/meeting that was pushed back               | properly reflect the updated times                  |
-| `*`      | returning user                             | change the task description of an existing task            | reflect the changed task                            |
-| `* *`    | returning user                             | mark tasks as complete                                     | review my productivity                              |
-| `* *`    | returning user                             | delete completed/irrelevant tasks                          | reduce clutter on HippoCampus                       |
-| `*`      | returning user                             | delete all tasks/deadlines related to a tag                | reduce clutter and prepare for subsequent modules   |
-| `*`      | returning user                             | replace tags (e.g. all cs2103 to cs3203)                   | transfer contacts                                   |
-| `*` | potential user exploring the app | import existing data from similar apps | compare features between apps to decide whether I’d like to use the app |
-| `*` | student | add my Modules | easily organise my contacts and tasks based on module |
-| `*` | user starting to use the app | tag meetings to an organisation/module | know what organisation/module the meeting is for |
-| `* *` | user starting to use the app | add tasks/deliverables along with an optional deadline | see what tasks need to be done |
-| `* *` | expert user | create shortcuts | run multiple repeated commands at once to save time |
-| `* *` | night owl | enable dark mode | use the app safely in dark environments |
-| `*` | overworked student | see my tasks/events in as a weekly view / monthly calendar | prioritize todos |
-| `*` | tech-savvy student | synchronize my todo list with cloud applications, e.g., Google Calendar | access todos from multiple platforms |
-| `*` | satisfied student | share links to the application with my friends and family on social media | encourage close contacts to use the application |
-| `*` | efficient student | group and manage multiple todos together | save time processing todos |
-| `* *` | efficient student | add priority levels to each todo | prioritize the order of todos |
-
-*{More to be added}*
+| Priority | As a … | I want to … | So that I can… |
+| --- | --- | --- | --- |
+| `***` | Potential user | See the app populated with sample data | See how the app will look like when it is in use |
+| `***` | New user | Purge all current data | Get rid of sample data used for exploring the app |
+| `***` | New user | Record birthdays | Keep track of birthdays of CCA members |
+| `**` | New user | Add contacts tagged to a subcommittee | Easily organise members in CCA |
+| `***` | New user | Add vendors tagged to a particular product/service | Easily look for vendors providing a particular service |
+| `***` | New user | Edit existing details tagged to a person | Append new information without retyping the same details |
+| `***` | New user | View a help page / use a help command | Know the correct syntax to use the functions/ know what functions the app supports |
+| `***` | New user | Add remarks to a person | Take note of their preferences (dietary, allergy, etc) |
+| `**` | Returning user | Sort / search through contacts based on tags | Easily find groups of relevant contacts / members |
+| `*` | Returning user | Sort / search through contacts based on birthday month | Plan mass celebration for everyone born in the same month |
+| `***` | Returning user | Change the details of a birthday plan | Reflect the changed plans |
+| `**` | Returning user | Delete all members belonging to a group | Reduce clutter and prepare for incoming batches of members |
+| `*` | Returning user | Encrypt application access as well as application data | Protect inadvertent data leak |
+| `*` | Returning user | Mark celebrations as completed | Know which birthdays are done |
+| `**` | Returning user | Delete completed/irrelevant contacts | Reduce the clutter on PartyPlanet |
+| `***` | Retiring welfare IC | Pass down the data to successor | (they) would not need to re-gather and re-enter details |
+| `*` | Expert user | Create shortcuts | Run multiple repeated commands at once to save time |
+| `**` | Clumsy user | Edit misspelled commands | Fix typo mistakes in the app |
+| `**` | Clumsy user | Undo/edit misspelled names/numbers/notes | Fix mistakes |
+| `*` | Reflective user | Archive past birthday celebrations | Revisit previous birthday celebration and their details for reuse |
+| `*` | CCA welfare IC with many sub-groups | Color tags | Differentiate contacts easily |
+| `**` | Welfare IC who plans ahead of time | Search date | See all birthdays on that day |
+| `* *` | Night owl | Enable dark mode | Use the app safely in dark environments |
+| `*` | Overworked welfare IC | See all upcoming birthdays as a weekly view / monthly calendar | Prioritize birthdays to plan |
+| `*` | Satisfied user | Share the application with my family and friends | Encourage close contacts to use the application |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `HippoCampus` application while the **Actor** is the `user`,
+(For all use cases below, the **System** is the `PartyPlanet` application while the **Actor** is the `User`,
 unless specified otherwise)
 
     Use case: UC1 - Add a contact
     MSS:
-      1. User enters the details for a contact to be added.
-      2. HippoCampus displays the new list of contacts with the added contact.
+      1. User requests to add a new contact.
+      2. PartyPlanet displays the new list of contacts with the added contact.
       Use case ends.
-
     Extensions:
-      1a. HippoCampus detects an error in the entered data.
-        1a1. HippoCampus shows the user an example of correct format.
-        1a2. HippoCampus requests for the correct data.
+      1a. PartyPlanet detects an error in the entered data.
+        1a1. PartyPlanet shows the user an example of the correct format.
+        1a2. PartyPlanet requests for the correct data.
         Use case ends.
-
 
 
     Use case: UC2 - Clear
     MSS:
       1. User requests to clear all data.
-      2. HippoCampus clears all existing data.
+      2. PartyPlanet clears all existing data.
       Use case ends.
-
 
 
     Use case: UC3 - Delete a contact
     MSS:
-      1. User request for a contact to be deleted.
-      2. HippoCampus displays the list of contacts without the deleted contact.
+      1. User requests for a contact to be deleted.
+      2. PartyPlanet displays the list of contacts without the deleted contact.
       Use case ends.
-
     Extensions:
       1a. The contact is invalid.
-        1a1. HippoCampus shows an error message.
+        1a1. PartyPlanet shows an error message.
         Use case ends.
-      1b. HippoCampus detects invalid format.
-        1b1. HippoCampus shows the user an example of the correct format.
-        1b2. HippoCampus requests for the correct data.
+      1b. PartyPlanet detects invalid format.
+        1b1. PartyPlanet shows the user an example of the correct format.
+        1b2. PartyPlanet requests for the correct data.
         Use case ends.
-
 
 
     Use case: UC4 - Edit a contact
     MSS:
       1. User request for a contact to be edited.
-      2. HippoCampus displays the updated details.
+      2. PartyPlanet displays the updated details.
       Use case ends.
-    
     Extensions:
-      1a. HippoCampus detects invalid format.
-        1a1. HippoCampus shows the user an example of the correct format.
-        1a2. HippoCampus requests for the correct data.
+      1a. PartyPlanet detects invalid format.
+        1a1. PartyPlanet shows the user an example of the correct format.
+        1a2. PartyPlanet requests for the correct data.
         Use case ends.
       1b. The contact is invalid.
-        1b1. HippoCampus requests for the correct data.
+        1b1. PartyPlanet requests for the correct data.
         Use case ends.
-
 
 
     Use case: UC5 - Find a contact
     MSS:
-      1. User enters the details to search for contacts.
-      2. HippoCampus displays a list of contacts that match the input.
+      1. User requests to search for relevant contacts.
+      2. PartyPlanet displays a list of contacts that match the input.
       Use case ends.
-
     Extensions:
-      1a. HippoCampus detects invalid format.
-        1a1. HippoCampus shows the user an example of correct format
-        1a2. HippoCampus requests for the correct data.
+      1a. PartyPlanet detects invalid format.
+        1a1. PartyPlanet shows the user an example of the correct format.
+        1a2. PartyPlanet requests for the correct data.
         Use case ends.
-
 
 
     Use case: UC6 - List contacts
     MSS:
-      1. User chooses to list all contacts 
-      2. HippoCampus displays a list of all contacts.
+      1. User requests to list out all contacts.
+      2. PartyPlanet displays a list of all contacts.
       Use case ends.
     Extensions:
       1a. User chooses a sort order from a list of possible sort orders.
-        1a1. HippoCampus displays the list of all contacts in the given sort order.
+        1a1. PartyPlanet displays the list of all contacts in the given sort order.
         Use case ends.
-      1b. User enters an invalid sort order or no sort order after a -f input.
-        1b1. HippoCampus displays an error.
+      1b. User enters an invalid / missing sort order.
+        1b1. PartyPlanet displays an error.
         Use case ends.
-
 
 
     Use case: UC7 - Find tags
     MSS:
-      1. User enters details to search for tags.
-      2. HippoCampus displays all tags.
+      1. User requests a search for relevant tags.
+      2. PartyPlanet displays all relevant tags.
       Use case ends.
-
     Extensions:
-      1a. HippoCampus detects wrong parameters.
-        1a1. HippoCampus displays an error message.
-        1a2. HippoCampus prompts users to re-enter input.
+      1a. PartyPlanet detects wrong parameters.
+        1a1. PartyPlanet displays an error message.
+        1a2. PartyPlanet prompts users to re-enter input.
         Use case ends.
-      1b. HippoCampus detects specific tags supplied.
-        1b1. HippoCampus displays all tags matching the name of the specified tag.
+      1b. PartyPlanet detects specific tags supplied.
+        1b1. PartyPlanet displays all tags matching the name of the specified tag.
         Use case ends.
-
 
 
     Use case: UC8 - Get Help
     MSS:
       1. User requests for help.
-      2. HippoCampus displays all available commands.
+      2. PartyPlanet displays all available commands.
       Use case ends.
-    
     Extensions:
       1a. User supplied a specific command as a parameter.
-        1a1. HippoCampus displays help for the specific command supplied.
+        1a1. PartyPlanet displays help for the specific command supplied.
         Use case ends.
-
       1b. User supplied an unrecognised command as a parameter.
-        1b1. HippoCampus displays an error.
+        1b1. PartyPlanet displays an error.
+        Use case ends.
+      1c. PartyPlanet detects an error in the entered data.
+        1c1. PartyPlanet shows the user an example of the correct format.
+        1c2. PartyPlanet requests for the correct data.
         Use case ends.
 
-      1c. HippoCampus detects an error in the entered data.
-        1c1. HippoCampus shows the user an example of correct format
-        1c2. HippoCampus requests for the correct data.
-        Use case ends.
 
-
-
-    Use case: UC9 - Exit HippoCampus
+    Use case: UC9 - Exit PartyPlanet
     MSS:
-      1. User request to exit.
-      2. HippoCampus exits and closes the window.
+      1. User requests to exit.
+      2. PartyPlanet exits and closes the window.
       Use case ends.
 
 ### Non-Functional Requirements
 
-1. HippoCampus should be usable by a novice who has never used a CLI address book before.
-2. HippoCampus should work on any _mainstream OS_ with minimally Java `11` installed.
-3. HippoCampus Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical
+1. PartyPlanet should be usable by a novice who has never used a CLI address book before.
+2. PartyPlanet should work on any _mainstream OS_ with minimally Java `11` installed.
+3. PartyPlanet Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical
    usage.
-4. HippoCampus should store data _locally only_, in a human editable text file, for privacy reasons.
-5. HippoCampus should only be for a _single user_ and should not require interaction with other users of HippoCampus.
+4. PartyPlanet should store data _locally only_, in a human editable text file, for privacy reasons.
+5. PartyPlanet should only be for a _single user_ and should not require interaction with other users of PartyPlanet.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
     should be able to accomplish most of the tasks faster using commands than using the mouse.
 7. The source code should be open source.
-8. HippoCampus should work without requiring an installer, the installation of any additional software, or any
+8. PartyPlanet should work without requiring an installer, the installation of any additional software, or any
    external connections.
 9. The total file size should not exceed _100MB_.
 
