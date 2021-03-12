@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -27,7 +28,7 @@ public class StorageManager implements Storage {
      */
     public StorageManager(AppointmentBookStorage appointmentBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        //this.addressBookStorage = addressBookStorage;
+        this.addressBookStorage = new JsonAddressBookStorage(Paths.get("data" , "addressbook.json"));
         this.appointmentBookStorage = appointmentBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
