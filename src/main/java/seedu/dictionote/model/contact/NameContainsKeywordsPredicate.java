@@ -1,5 +1,6 @@
 package seedu.dictionote.model.contact;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,8 +18,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Contact> {
 
     @Override
     public boolean test(Contact contact) {
+        // avoid returning false by anyMatch if no name keywords are provided.
+        if (keywords.isEmpty()) {
+            return true;
+        }
+
         return keywords.stream()
-                .allMatch(keyword -> StringUtil.containsIgnoreCase(contact.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsIgnoreCase(contact.getName().fullName, keyword));
     }
 
     @Override
