@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class IndexList {
-    public List<Index> indexList;
+    private List<Index> indexList;
 
     public IndexList(List<Index> indexList) {
         this.indexList = indexList;
@@ -18,4 +18,9 @@ public class IndexList {
     public void add(Index index) {
         this.indexList.add(index);
     }
+
+    public List<Index> getIndexList() {
+        return this.indexList;
+    }
+
 }
