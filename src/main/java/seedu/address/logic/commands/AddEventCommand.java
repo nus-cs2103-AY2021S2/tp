@@ -59,6 +59,10 @@ public class AddEventCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
+        if (index.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        }
+
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
         projectToEdit.addEvent(toAdd);

@@ -44,15 +44,15 @@ public class AddTodoCommand extends Command {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (this.index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        if (this.index.getZeroBased() < 0) {
+        if (index.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        Project projectToEdit = lastShownList.get(this.index.getZeroBased());
+        Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
         projectToEdit.addTodo(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
