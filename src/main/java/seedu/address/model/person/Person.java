@@ -14,7 +14,8 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated, immutable with the exception of groups.
+ * The groups inside the set groups may change as people are added into these groups.
  */
 public class Person {
 
@@ -22,6 +23,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Birthday birthday;
 
     // Data fields
     private final Address address;
@@ -32,14 +34,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Event> dates,
-                  List<Event> meetings) {
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags,
+                List<Event> dates, List<Event> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         this.tags.addAll(tags);
         this.dates.addAll(dates);
         this.meetings.addAll(meetings);
@@ -59,6 +61,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Birthday getBirthday() {
+        return birthday;
     }
 
     /**
@@ -110,6 +116,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getBirthday().equals(getBirthday())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getDates().equals(getDates())
                 && otherPerson.getMeetings().equals(getMeetings());
@@ -130,7 +137,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Birthday: ")
+                .append(getBirthday());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

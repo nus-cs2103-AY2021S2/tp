@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
@@ -23,23 +25,23 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), getDateList(), getMeetingList()),
+                    new Address("Blk 30 Geylang Street 29, #06-40"), new Birthday("01-01-1998"),
+                    getTagSet("friends"), getDateList(), getMeetingList()),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), getDateList(), getMeetingList()),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Birthday("01-02-1999"),
+                    getTagSet("colleagues", "friends"), getDateList(), getMeetingList()),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), getDateList(), getMeetingList()),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    new Birthday("03-11-1979"), getTagSet("neighbours"), getDateList(), getMeetingList()),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), getDateList(), getMeetingList()),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Birthday("14-12-1998"),
+                    getTagSet("family"), getDateList(), getMeetingList()),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"), getDateList(), getMeetingList()),
+                    new Address("Blk 47 Tampines Street 20, #17-35"), new Birthday("12-12-1995"),
+                    getTagSet("classmates"), getDateList(), getMeetingList()),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"), getDateList(), getMeetingList())
+                    new Address("Blk 45 Aljunied Street 85, #11-31"), new Birthday("05-02-1998"),
+                    getTagSet("colleagues"), getDateList(), getMeetingList())
         };
     }
 
@@ -60,11 +62,22 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Set<Person> getPersonSet(Person... persons) {
+        return Arrays.stream(persons)
+                .collect(Collectors.toSet());
+    }
+
+    public static Set<Group> getGroupSet(Group... groups) {
+        return Arrays.stream(groups)
+                .collect(Collectors.toSet());
+    }
+
     public static List<Event> getMeetingList() {
         return Collections.emptyList();
     }
 
     public static List<Event> getDateList() {
+
         return Collections.emptyList();
     }
 
