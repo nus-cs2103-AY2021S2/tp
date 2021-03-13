@@ -29,7 +29,7 @@ public class JsonAdaptedDeadlineTest {
     }
 
     @Test
-    public void toModelType_invalidDescription_throwsIllegalValueException() {
+    public void toModelType_invalidDescription_throwsIllegalArgumentException() {
         JsonAdaptedDeadline deadline =
                 new JsonAdaptedDeadline(INVALID_DESCRIPTION, VALID_DATE_STRING, VALID_IS_DONE);
         String expectedMessage = CompletableDeadline.MESSAGE_CONSTRAINTS_DESCRIPTION;
@@ -37,7 +37,14 @@ public class JsonAdaptedDeadlineTest {
     }
 
     @Test
-    public void toModelType_nullName_throwsNullPointerException() {
+    public void toModelType_invalidDate_throwsIllegalArgumentException() {
+        JsonAdaptedDeadline deadline =
+                new JsonAdaptedDeadline(INVALID_DESCRIPTION, VALID_DATE_STRING, VALID_IS_DONE);
+        assertThrows(IllegalArgumentException.class, deadline::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullDescription_throwsNullPointerException() {
         JsonAdaptedDeadline deadline = new JsonAdaptedDeadline(null, VALID_DATE_STRING, VALID_IS_DONE);
         assertThrows(NullPointerException.class, deadline::toModelType);
     }

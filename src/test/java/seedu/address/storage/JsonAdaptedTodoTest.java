@@ -25,7 +25,7 @@ public class JsonAdaptedTodoTest {
     }
 
     @Test
-    public void toModelType_invalidDescription_throwsIllegalValueException() {
+    public void toModelType_invalidDescription_throwsIllegalArgumentException() {
         JsonAdaptedTodo todo =
                 new JsonAdaptedTodo(INVALID_DESCRIPTION, VALID_IS_DONE);
         String expectedMessage = CompletableTodo.MESSAGE_CONSTRAINTS_DESCRIPTION;
