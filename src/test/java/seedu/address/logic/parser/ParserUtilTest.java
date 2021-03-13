@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
@@ -24,12 +25,18 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_INDEX = "a";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_INDEX_1 = "1";
+    private static final String VALID_INDEX_2 = "2";
+
+    private static final int VALID_INDEX_1_AS_INT = Integer.parseInt(VALID_INDEX_1);
+    private static final int VALID_INDEX_2_AS_INT = Integer.parseInt(VALID_INDEX_2);
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -167,4 +174,30 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseIndices_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIndices(null));
+    }
+
+    @Test
+    public void parseIndices_collectionWithInvalidIndices_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(Arrays.asList(VALID_INDEX_1, INVALID_INDEX)));
+    }
+
+    @Test
+    public void parseIndices_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseIndices(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseIndices_collectionWithValidIndices_returnsIndexSet() throws Exception {
+        Set<Index> actualIndexSet = ParserUtil.parseIndices(Arrays.asList(VALID_INDEX_1, VALID_INDEX_2));
+        Set<Index> expectedIndexSet = new HashSet<>(Arrays.asList(
+                Index.fromOneBased(VALID_INDEX_1_AS_INT), Index.fromOneBased(VALID_INDEX_2_AS_INT))
+        );
+
+        assertEquals(expectedIndexSet, actualIndexSet);
+    }
+
 }
