@@ -6,5 +6,7 @@ package seedu.address.ui;
 public enum UiCommand {
     NONE,
     OPEN_HELP_WINDOW,
-    EXIT_APPLICATION
+    EXIT_APPLICATION,
+    SHOW_PROJECTS,
+    SHOW_CONTACTS
 }
