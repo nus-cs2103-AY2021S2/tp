@@ -17,7 +17,7 @@ public class User {
     private final Name name;
     private final Age age;
     private final Gender gender;
-    private final IdealWeight ideal_weight;
+    private final IdealWeight idealWeight;
 
     // Data fields
     private final Bmi bmi;
@@ -30,14 +30,14 @@ public class User {
      * @param bmi Bmi object of the user
      * @param foodList Food list of the user
      */
-    public User(Name name, Bmi bmi, List<Food> foodList, Age age, Gender gender, IdealWeight ideal_weight) {
+    public User(Name name, Bmi bmi, List<Food> foodList, Age age, Gender gender, IdealWeight idealWeight) {
         requireAllNonNull(name, bmi, foodList);
         this.name = name;
         this.bmi = bmi;
         this.foodList = foodList;
         this.age = age;
         this.gender = gender;
-        this.ideal_weight = ideal_weight;
+        this.idealWeight = idealWeight;
     }
 
     /**
@@ -46,14 +46,14 @@ public class User {
      * @param bmi Bmi object of the user
      * @param foodList Food list of the user
      */
-    public User(Bmi bmi, List<Food> foodList, Age age, Gender gender, IdealWeight ideal_weight) {
+    public User(Bmi bmi, List<Food> foodList, Age age, Gender gender, IdealWeight idealWeight) {
         requireAllNonNull(bmi, foodList);
         this.name = null;
         this.bmi = bmi;
         this.foodList = foodList;
         this.age = age;
         this.gender = gender;
-        this.ideal_weight = ideal_weight;
+        this.idealWeight = idealWeight;
     }
 
     public Name getName() {
@@ -77,7 +77,7 @@ public class User {
     }
 
     public IdealWeight getIdealWeight() {
-        return this.ideal_weight;
+        return this.idealWeight;
     }
 
     /**

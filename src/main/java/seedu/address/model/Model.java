@@ -118,7 +118,7 @@ public interface Model {
      */
     boolean hasUser();
 
-     /*
+    /**
      * Gets Food intake list.
      *
      * @return food intake list

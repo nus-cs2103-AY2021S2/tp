@@ -8,18 +8,18 @@ public class IdealWeight {
     public static final String MESSAGE_CONSTRAINTS =
             "Ideal Weight should be in kilograms, greater than 1 and may include a decimal!";
     private static final String VALIDATION_REGEX = "^[1-9](\\d+)?$|^[1-9](\\d+)?.(\\d+)$";
-    private final double ideal_weight;
+    private final double idealWeight;
 
     /**
      * Initializes the ideal weight class.
-     * @param ideal_weight Ideal weight to be input
+     * @param idealWeight Ideal weight to be input
      */
-    public IdealWeight(double ideal_weight) {
-        this.ideal_weight = ideal_weight;
+    public IdealWeight(double idealWeight) {
+        this.idealWeight = idealWeight;
     }
 
     public double getIdealWeight() {
-        return this.ideal_weight;
+        return this.idealWeight;
     }
 
     /**
@@ -31,7 +31,7 @@ public class IdealWeight {
 
     @Override
     public String toString() {
-        return String.valueOf(this.ideal_weight);
+        return String.valueOf(this.idealWeight);
     }
 
     @Override
