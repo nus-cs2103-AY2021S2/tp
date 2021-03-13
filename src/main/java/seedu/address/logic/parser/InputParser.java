@@ -77,7 +77,7 @@ public class InputParser {
 
         case ThemeCommand.COMMAND_WORD:
             return new ThemeCommandParser().parse(arguments);
-            
+
         case AddGroupCommand.COMMAND_WORD:
             return new AddGroupParser().parse(arguments);
 
