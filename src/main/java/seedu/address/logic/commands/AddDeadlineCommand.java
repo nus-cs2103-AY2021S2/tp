@@ -35,6 +35,7 @@ public class AddDeadlineCommand extends Command {
 
     /**
      * Creates an AddDeadlineCommand to add specified {@code Deadline} to {@code Project} with {@code Index}.
+     *
      * @param index index of {@code Project} to add deadline in the list.
      * @param deadline {@code Deadline} to add.
      */
