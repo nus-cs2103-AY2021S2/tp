@@ -40,6 +40,9 @@ public interface Model {
     /** Returns the NoteBook */
     ReadOnlyNoteBook getNoteBook();
 
+    /** Returns the Dictionary */
+    ReadOnlyDictionary getDictionary();
+
     /**
      * Returns true if a note with the same content as {@code note} exists in the dictionote book.
      */
@@ -60,14 +63,14 @@ public interface Model {
      */
     Path getAddressBookFilePath();
     Path getNoteBookFilePath();
-    Path getDictionaryBookFilePath();
+    Path getDictionaryFilePath();
 
     /**
      * Sets the user prefs' dictionote book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
     void setNoteBookFilePath(Path noteBookFilePath);
-    void setDictionaryBookFilePath(Path getDictionaryBookFilePath);
+    void setDictionaryFilePath(Path getDictionaryFilePath);
 
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.

@@ -13,6 +13,7 @@ import static seedu.dictionote.testutil.TypicalContacts.ELLE;
 import static seedu.dictionote.testutil.TypicalContacts.FIONA;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
+import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,8 +31,10 @@ import seedu.dictionote.testutil.TypicalContacts;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindContactCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            getTypicalNoteBook(), getTypicalDictionary());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            getTypicalNoteBook(), getTypicalDictionary());
 
     @Test
     public void equals() {

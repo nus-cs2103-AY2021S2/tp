@@ -5,6 +5,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
+import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,10 @@ public class ListContactCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+                getTypicalNoteBook(), getTypicalDictionary());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                getTypicalNoteBook(), getTypicalDictionary());
     }
 
     @Test

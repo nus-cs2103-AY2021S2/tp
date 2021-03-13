@@ -9,6 +9,7 @@ import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
+import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,8 @@ import seedu.dictionote.model.note.Note;
  */
 public class DeleteNoteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            getTypicalNoteBook(), getTypicalDictionary());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +36,8 @@ public class DeleteNoteCommandTest {
 
         String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_DELETE_NOTE_SUCCESS, noteToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                getTypicalNoteBook(), getTypicalDictionary());
         expectedModel.deleteNote(noteToDelete);
 
         assertCommandSuccess(deleteNoteCommand, model, expectedMessage, expectedModel);
