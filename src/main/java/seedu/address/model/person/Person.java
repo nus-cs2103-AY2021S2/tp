@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person extends Item {
+public class Person implements Item {
 
     // Identity fields
     private final Name name;
@@ -73,6 +73,22 @@ public class Person extends Item {
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }
+
+    @Override
+    public boolean isSame(Item other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Person)) {
+            return false;
+        }
+
+        Person otherPerson = (Person) other;
+        return otherPerson != null
+                && otherPerson.getName().equals(getName());
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.

@@ -1,9 +1,8 @@
 package seedu.address.model.ingredient;
 
 import seedu.address.model.Item;
-import seedu.address.model.dish.Dish;
 
-public class Ingredient extends Item {
+public class Ingredient implements Item {
     private String name;
     private int quantity;
 
@@ -25,6 +24,21 @@ public class Ingredient extends Item {
             return true;
         }
 
+        return otherIngredient != null
+                && otherIngredient.getName().equals(otherIngredient.getName());
+    }
+
+    @Override
+    public boolean isSame(Item other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Ingredient)) {
+            return false;
+        }
+
+        Ingredient otherIngredient = (Ingredient) other;
         return otherIngredient != null
                 && otherIngredient.getName().equals(otherIngredient.getName());
     }

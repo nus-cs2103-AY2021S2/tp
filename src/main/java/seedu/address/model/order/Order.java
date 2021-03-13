@@ -1,14 +1,13 @@
 package seedu.address.model.order;
 
+import java.util.List;
+
+import javafx.util.Pair;
 import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
-import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-import javafx.util.Pair;
-
-public class Order extends Item {
+public class Order implements Item {
     private String id;
     private Person customer;
     private List<Pair<Dish, Integer>> dishQuantityList;
@@ -31,11 +30,17 @@ public class Order extends Item {
         return dishQuantityList;
     }
 
-    public boolean isSameOrder(Order otherOrder) {
-        if (otherOrder == this) {
+    @Override
+    public boolean isSame(Item other) {
+        if (other == this) {
             return true;
         }
 
+        if (!(other instanceof Order)) {
+            return false;
+        }
+
+        Order otherOrder = (Order) other;
         return otherOrder != null
                 && otherOrder.getId().equals(otherOrder.getId());
     }
@@ -57,7 +62,9 @@ public class Order extends Item {
     }
 
     private boolean listEquals(List<Pair<Dish, Integer>> otherList) {
-        if (otherList.size() != dishQuantityList.size()) return false;
+        if (otherList.size() != dishQuantityList.size()) {
+            return false;
+        }
 
         boolean result = true;
         for (int i = 0; i < dishQuantityList.size(); i++) {

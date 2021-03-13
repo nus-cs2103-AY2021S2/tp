@@ -1,4 +1,5 @@
 package seedu.address.model;
 
-public abstract class Item {
+public interface Item {
+    public boolean isSame(Item other);
 }
