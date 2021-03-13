@@ -11,8 +11,7 @@ import seedu.address.model.Planner;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Planner has been cleared!";
-
+    public static final String MESSAGE_SUCCESS = "The planner has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {
