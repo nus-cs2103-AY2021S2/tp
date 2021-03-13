@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Blacklist;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.ModeOfContact;
 import seedu.address.model.person.Name;
@@ -47,9 +48,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         ModeOfContact modeofContact = ParserUtil.parseModeOfContact(argMultimap.getValue(PREFIX_MODE_OF_CONTACT).get());
+        Blacklist blacklist = new Blacklist(); // add command does not allow blacklisting straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, modeofContact, tagList);
+        Person person = new Person(name, phone, email, address, modeofContact, blacklist, tagList);
 
         return new AddCommand(person);
     }
