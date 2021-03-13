@@ -39,10 +39,10 @@ public class AliasCommandParser implements Parser<AliasCommand> {
 
         switch (subCommandWord) {
 
-        case AddAliasCommand.SUB_COMMAND_WORD:
+        case AliasCommand.ADD_SUB_COMMAND_WORD:
             return new AddAliasCommandParser().parse(arguments);
 
-        case DeleteAliasCommand.SUB_COMMAND_WORD:
+        case AliasCommand.DELETE_SUB_COMMAND_WORD:
             return new DeleteAliasCommandParser().parse(arguments);
 
         default:

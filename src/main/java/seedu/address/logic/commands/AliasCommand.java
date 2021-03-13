@@ -6,15 +6,17 @@ package seedu.address.logic.commands;
 public abstract class AliasCommand extends Command {
 
     public static final String COMMAND_WORD = "alias";
+    public static final String ADD_SUB_COMMAND_WORD = "add";
+    public static final String DELETE_SUB_COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add or delete a command alias to the address book. "
             + "Parameters: "
             + "SUB_COMMAND [PARAMETERS]\n"
             + "Sub Commands: "
-            + AddAliasCommand.SUB_COMMAND_WORD + " ALIAS_NAME COMMAND_WORD, "
-            + DeleteAliasCommand.SUB_COMMAND_WORD + " ALIAS_NAME\n"
+            + ADD_SUB_COMMAND_WORD + " ALIAS_NAME COMMAND_WORD, "
+            + DELETE_SUB_COMMAND_WORD + " ALIAS_NAME\n"
             + "Example: "
-            + COMMAND_WORD + " " + AddAliasCommand.SUB_COMMAND_WORD + " ls " + ListCommand.COMMAND_WORD + ", "
-            + COMMAND_WORD + " " + DeleteAliasCommand.SUB_COMMAND_WORD + " l";
+            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " ls " + ListCommand.COMMAND_WORD + ", "
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " l";
 
 }

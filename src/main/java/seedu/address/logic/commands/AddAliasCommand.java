@@ -11,11 +11,9 @@ import seedu.address.model.alias.CommandAlias;
  */
 public class AddAliasCommand extends AliasCommand {
 
-    public static final String SUB_COMMAND_WORD = "add";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a command alias to the address book. "
-            + "Parameters: " + SUB_COMMAND_WORD + " ALIAS COMMAND\n"
-            + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " ls " + ListCommand.COMMAND_WORD;
+            + "Parameters: " + ADD_SUB_COMMAND_WORD + " ALIAS COMMAND\n"
+            + "Example: " + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " ls " + ListCommand.COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "New command alias added: %1$s";
     public static final String MESSAGE_DUPLICATE_ALIAS = "This alias already exists in the address book";
