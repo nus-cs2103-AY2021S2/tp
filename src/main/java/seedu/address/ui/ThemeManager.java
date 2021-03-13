@@ -41,7 +41,7 @@ public class ThemeManager {
     static {
         InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
         CSS_TEMPLATE = new BufferedReader(new InputStreamReader(templateStream))
-            .lines().collect(Collectors.joining("\n"));
+                .lines().collect(Collectors.joining("\n"));
     }
 
     /**
@@ -129,11 +129,11 @@ public class ThemeManager {
     private static String generateCssFromTheme(Theme theme) {
         String cssString = ThemeManager.CSS_TEMPLATE;
         cssString = cssString
-            .replaceAll("\\$foreground", theme.foreground)
-            .replaceAll("\\$background", theme.background);
+                .replaceAll("\\$foreground", theme.foreground)
+                .replaceAll("\\$background", theme.background);
         for (int i = 0; i < 16; i++) {
             cssString = cssString
-                .replaceAll("\\$c" + Integer.toHexString(i), theme.color[i]);
+                    .replaceAll("\\$c" + Integer.toHexString(i), theme.color[i]);
         }
         return cssString;
     }
