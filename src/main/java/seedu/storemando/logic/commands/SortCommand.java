@@ -14,6 +14,8 @@ public abstract class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "sorted all items";
 
+    public static final String MESSAGE_NO_ITEMS_TO_SORT = "Empty list cannot be sorted";
+
 
     public abstract CommandResult execute(Model model);
 

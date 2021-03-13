@@ -64,7 +64,7 @@ public class TypicalItems {
     } // prevents instantiation
 
     /**
-     * Returns an {@code StoreMando} with all the typical itemss.
+     * Returns an {@code StoreMando} with all the typical items.
      */
     public static StoreMando getTypicalStoreMando() {
         StoreMando ab = new StoreMando();
@@ -74,7 +74,37 @@ public class TypicalItems {
         return ab;
     }
 
+    /**
+     * Returns an {@code StoreMando} with all the typical items sorted by quantity.
+     */
+    public static StoreMando getTypicalStoreMandoSortedByQuantity() {
+        StoreMando ab = new StoreMando();
+        for (Item item : getSortedByQuantityTypicalItems()) {
+            ab.addItem(item);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code StoreMando} with all the typical itemss.
+     */
+    public static StoreMando getTypicalStoreMandoSortedByExpiryDate() {
+        StoreMando ab = new StoreMando();
+        for (Item item : getSortedByExpiryDateTypicalItems()) {
+            ab.addItem(item);
+        }
+        return ab;
+    }
+
     public static List<Item> getTypicalItems() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Item> getSortedByQuantityTypicalItems() {
+        return new ArrayList<>(Arrays.asList(BENSON, ELLE, CARL, DANIEL, ALICE, GEORGE, FIONA));
+    }
+
+    public static List<Item> getSortedByExpiryDateTypicalItems() {
+        return new ArrayList<>(Arrays.asList(BENSON, ELLE, DANIEL, FIONA, ALICE, GEORGE, CARL));
     }
 }
