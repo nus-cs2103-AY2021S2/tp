@@ -27,7 +27,11 @@ import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.storage.*;
+import seedu.dictionote.storage.JsonAddressBookStorage;
+import seedu.dictionote.storage.JsonDictionaryStorage;
+import seedu.dictionote.storage.JsonNoteBookStorage;
+import seedu.dictionote.storage.JsonUserPrefsStorage;
+import seedu.dictionote.storage.StorageManager;
 import seedu.dictionote.testutil.ContactBuilder;
 
 public class LogicManagerTest {

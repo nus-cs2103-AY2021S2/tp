@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
-import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

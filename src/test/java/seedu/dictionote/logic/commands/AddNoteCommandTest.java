@@ -15,7 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
-import seedu.dictionote.model.*;
+import seedu.dictionote.model.Model;
+import seedu.dictionote.model.NoteBook;
+import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDictionary;
+import seedu.dictionote.model.ReadOnlyNoteBook;
+import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;

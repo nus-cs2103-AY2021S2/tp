@@ -6,10 +6,10 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailu
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
-import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 
 import org.junit.jupiter.api.Test;
 

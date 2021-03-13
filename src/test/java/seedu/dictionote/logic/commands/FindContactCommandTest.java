@@ -12,8 +12,8 @@ import static seedu.dictionote.testutil.TypicalContacts.DANIEL;
 import static seedu.dictionote.testutil.TypicalContacts.ELLE;
 import static seedu.dictionote.testutil.TypicalContacts.FIONA;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
-import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import java.util.Arrays;
 import java.util.Collections;

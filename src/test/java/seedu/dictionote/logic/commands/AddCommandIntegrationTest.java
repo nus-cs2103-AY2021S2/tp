@@ -3,8 +3,8 @@ package seedu.dictionote.logic.commands;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
-import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
