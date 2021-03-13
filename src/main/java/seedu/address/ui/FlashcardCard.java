@@ -52,6 +52,9 @@ public class FlashcardCard extends UiPart<Region> {
     }
 
     // experiments
+    /**
+     * Creates a {@code PersonCode} with the given {@code Flashcard} and index to display in quiz mode.
+     */
     public FlashcardCard(Flashcard flashcard, int displayedIndex, boolean isQuiz) {
         super(FXML);
         this.flashcard = flashcard;
