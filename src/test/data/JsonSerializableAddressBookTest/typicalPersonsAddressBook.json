@@ -5,13 +5,13 @@
     "rating" : "3",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "WESTERN" ]
   }, {
     "name" : "Benson Meier",
     "rating" : "2",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "VEGAN", "DESSERT" ]
   }, {
     "name" : "Carl Kurz",
     "rating" : "1",
@@ -23,7 +23,7 @@
     "rating" : "5",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "FASTFOOD" ]
   }, {
     "name" : "Elle Meyer",
     "rating" : "2",

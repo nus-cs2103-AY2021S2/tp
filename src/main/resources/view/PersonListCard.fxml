@@ -22,10 +22,10 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="tags" />
       <Label fx:id="rating" styleClass="cell_small_label" text="\\$rating" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <FlowPane fx:id="tags"/>
     </VBox>
       <rowConstraints>
          <RowConstraints />

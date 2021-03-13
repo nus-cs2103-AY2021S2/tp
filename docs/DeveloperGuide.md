@@ -68,29 +68,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `FoodDiary` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Food Diary` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC01: Add a restaurant**
 
 **MSS**
 
 1.  User adds a restaurant
-2.  FoodDiary adds a new restaurant to the app.
+2.  Food Diary adds a new restaurant to the app.
     Use case ends.
 
 **Extensions**
 
-* 1a.  FoodDiary detects invalid command from user.
+* 1a.  Food Diary detects invalid command from user.
 
-    *   1a1. FoodDiary warns user about wrong syntax.
+    *   1a1. Food Diary warns user about wrong syntax.
 
     *	1a2. User enters correct syntax
 
          Use case resumes from step 2
 
-* 2a. FoodDiary detects duplicate restaurant that is already reviewed
+* 2a. Food Diary detects duplicate restaurant that is already reviewed
 
-    *	2a1. FoodDiary warns user about duplicate
+    *	2a1. Food Diary warns user about duplicate
 
     *	2a2. Suggests user to either delete or update review
 
@@ -101,13 +101,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list all restaurants.
-2.  FoodDiary displays all the restaurants.
+2.  Food Diary displays all the restaurants.
 
 **Extensions**
 
-* 1a. FoodDiary detects invalid command from user.
+* 1a. Food Diary detects invalid command from user.
 
-    * 1a1. FoodDiary warns user about wrong syntax.
+    * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
       Use case resumes from step 2.
@@ -124,19 +124,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User adds a new category
-2. FoodDiary adds the new category into the app
+2. Food Diary adds the new category into the app
+3. Food Diary displays the new category added in a tag
    
 Use case ends.
 
 **Extensions**
 
-* 1a. FoodDiary detects invalid command from user
-    * 1a1. FoodDiary warns user about wrong syntax
+* 1a. Food Diary detects invalid command from user
+    * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
       
       Use case resumes from step 2
 * 1b. New category already exists
-    * 1b1. FoodDiary tells user that the category already exists
+    * 1b1. Food Diary tells user that the category already exists
       
       Use case ends.
 
@@ -145,19 +146,19 @@ Use case ends.
 **MSS**
 
 1. User requests to add some information about the food experience with a restaurant
-2. FoodDiary requests for restaurant details and food experience
+2. Food Diary requests for restaurant details and food experience
 3. User keys in the restaurant details and food experience
-4. FoodDiary adds the food experience to the requested restaurant
+4. Food Diary adds the food experience to the requested restaurant
 
 **Extensions**:
 
-* 1a. FoodDiary detects invalid command from user
-    * 1a1. FoodDiary warns user about wrong syntax
+* 1a. Food Diary detects invalid command from user
+    * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
       
       Use case resumes from step 2
 * 2a. No restaurant found
-    * 2a1. FoodDiary tells user that no restaurants found
+    * 2a1. Food Diary tells user that no restaurants found
 
       Use case ends.
     
@@ -173,11 +174,11 @@ Use case ends.
 
 **Extensions**:
 * 1a. Food diary detects invalid command from user 
-    * 1a1. FoodDiary warns user about wrong syntax
+    * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
     
 * 2a. No restaurants found 
-    * 2a1. FoodDiary tells user that no restaurants found.
+    * 2a1. Food Diary tells user that no restaurants found.
 
       Use case ends.
     
