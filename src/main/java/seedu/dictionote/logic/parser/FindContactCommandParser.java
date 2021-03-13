@@ -34,8 +34,10 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
         List<String> tagsKeywords = argMultimap.getAllValues(PREFIX_TAG);
 
-        return new FindContactCommand(new NameContainsKeywordsPredicate(nameKeywords),
-                new TagsContainsKeywordsPredicate(tagsKeywords));
+        return new FindContactCommand(
+                new NameContainsKeywordsPredicate(nameKeywords),
+                new TagsContainsKeywordsPredicate(tagsKeywords)
+        );
     }
 
     /**
