@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 
 import seedu.address.model.Model;
+import seedu.address.storage.JsonModule;
 
 
 public class InfoCommand extends  Command{
@@ -15,8 +16,7 @@ public class InfoCommand extends  Command{
     public CommandResult execute(Model model) {
         //test
         requireNonNull(model);
-
-
+        JsonModule[] md = model.getAddressBook().getModuleInfo();
         return new CommandResult(MESSAGE_SUCCESS);
         //
     }

@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.UniquePersonList;
+import seedu.address.storage.JsonModule;
 
 /**
  * Wraps all data at the address-book level
@@ -21,7 +22,7 @@ import seedu.address.model.plan.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final mod[] moduleInfo = readModuleInfo();
+    private final JsonModule[] moduleInfo = readModuleInfo();
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -101,19 +102,27 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// util methods
 
-    private mod[] readModuleInfo() {
-        mod[] md = null;
+    /**
+     * reads the moduleinfo.json located in data folder and creates an array from the info
+     * @return array of module information
+     */
+    private JsonModule[] readModuleInfo() {
+        JsonModule[] md = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
             Path addressBookFilePath = Paths.get("data", "moduleinfo.json");
             String json = Files.readAllLines(addressBookFilePath).get(0);
-            Optional<mod[]> opt = JsonUtil.readJsonFile(addressBookFilePath, mod[].class);
+            Optional<JsonModule[]> opt = JsonUtil.readJsonFile(addressBookFilePath, JsonModule[].class);
             md = opt.get();
         } catch (Exception e) {
             System.out.println("There is an error in reading moduleinfo.json file please check");
             System.out.println(e.getMessage());
         }
         return md;
+    }
+
+    public JsonModule[] getModuleInfo() {
+        return moduleInfo;
     }
 
     @Override
@@ -138,14 +147,4 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
-}
-
-// class for json file to populate
-class mod {
-    public String module_code;
-    public String moduleTitle;
-    public String num_mc;
-    public String avail_sems;
-    public String[] prereqs;
-    public String[] preclusions;
 }
