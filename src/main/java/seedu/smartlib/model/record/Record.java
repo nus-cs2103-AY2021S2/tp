@@ -14,6 +14,7 @@ public class Record {
     private Name bookName;
     private Name readerName;
     private DateBorrowed dateBorrowed;
+    private DateReturned dateReturned;
 
     /**
      * Creates a borrowing record
@@ -24,8 +25,16 @@ public class Record {
         this.bookName = bookName;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;
+        this.dateReturned = null;
     }
 
+    /**
+     * Mark the record as returned
+     * @param dateReturned date that the book is returned
+     */
+    public void returnRecord(DateReturned dateReturned) {
+        this.dateReturned = dateReturned;
+    }
 
     public static int getOverallId() {
         return overallId;
