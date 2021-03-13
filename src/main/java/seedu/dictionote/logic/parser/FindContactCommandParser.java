@@ -26,7 +26,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)
+        if (!isAnyOfPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
         }
@@ -42,7 +42,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      * Returns true if at least one of the prefixes contains some {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean isAnyOfPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
