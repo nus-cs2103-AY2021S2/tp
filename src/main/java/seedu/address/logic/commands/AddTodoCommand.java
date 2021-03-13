@@ -52,7 +52,7 @@ public class AddTodoCommand {
         assert projectToEdit != null;
         projectToEdit.addTodo(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_TODO_ADDED_SUCCESS, projectToEdit));
+        return new CommandResult(String.format(MESSAGE_TODO_ADDED_SUCCESS, toAdd));
     }
 
     @Override
