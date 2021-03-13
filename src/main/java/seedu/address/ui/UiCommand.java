@@ -7,5 +7,7 @@ public enum UiCommand {
     NONE,
     OPEN_HELP_WINDOW,
     EXIT_APPLICATION,
-    DISPLAY_PROJECT
+    DISPLAY_PROJECT,
+    SHOW_PROJECTS,
+    SHOW_CONTACTS
 }

@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.repeatable.Event;
 
 public class ParticipantList {
 

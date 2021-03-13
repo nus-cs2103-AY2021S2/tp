@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -58,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane infoDisplayPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -151,6 +155,20 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    /**
+     * Shows projects tab.
+     */
+    public void handleShowProjectsTab() {
+        tabPane.getSelectionModel().select(0);
+    }
+
+    /**
+     * Shows contacts tab.
+     */
+    public void handleShowContactsTab() {
+        tabPane.getSelectionModel().select(1);
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -188,6 +206,12 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case DISPLAY_PROJECT:
             handleDisplayProject(commandResult.getIndexOfProject());
+            break;
+        case SHOW_CONTACTS:
+            handleShowContactsTab();
+            break;
+        case SHOW_PROJECTS:
+            handleShowProjectsTab();
             break;
         default:
             assert false : "Command result should not be invalid";

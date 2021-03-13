@@ -9,12 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.CompletableTaskList;
+import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.ParticipantList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.task.Completable;
+import seedu.address.model.project.TodoList;
+import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -26,7 +28,8 @@ class JsonAdaptedProject {
 
     private final String projectName;
     private final List<JsonAdaptedEvent> eventList = new ArrayList<>();
-    private final List<JsonAdaptedCompletable> completableList = new ArrayList<>();
+    private final List<JsonAdaptedTodo> todoList = new ArrayList<>();
+    private final List<JsonAdaptedDeadline> deadlineList = new ArrayList<>();
     private final List<JsonAdaptedPerson> participantsList = new ArrayList<>();
 
     /**
@@ -35,7 +38,8 @@ class JsonAdaptedProject {
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName,
                               @JsonProperty("events") List<JsonAdaptedEvent> eventList,
-                              @JsonProperty("completable") List<JsonAdaptedCompletable> completableList,
+                              @JsonProperty("todos") List<JsonAdaptedTodo> todoList,
+                              @JsonProperty("deadlines") List<JsonAdaptedDeadline> deadlineList,
                               @JsonProperty("participants") List<JsonAdaptedPerson> participantsList) {
         this.projectName = projectName;
 
@@ -43,8 +47,12 @@ class JsonAdaptedProject {
             this.eventList.addAll(eventList);
         }
 
-        if (completableList != null) {
-            this.completableList.addAll(completableList);
+        if (todoList != null) {
+            this.todoList.addAll(todoList);
+        }
+
+        if (deadlineList != null) {
+            this.deadlineList.addAll(deadlineList);
         }
 
         if (participantsList != null) {
@@ -60,8 +68,10 @@ class JsonAdaptedProject {
 
         eventList.addAll(source.getEvents().stream()
                 .map(JsonAdaptedEvent::new).collect(Collectors.toList()));
-        completableList.addAll(source.getCompletableTasks().stream()
-                .map(JsonAdaptedCompletable::new).collect(Collectors.toList()));
+        todoList.addAll(source.getTodos().stream()
+                .map(JsonAdaptedTodo::new).collect(Collectors.toList()));
+        deadlineList.addAll(source.getDeadlines().stream()
+                .map(JsonAdaptedDeadline::new).collect(Collectors.toList()));
         participantsList.addAll(source.getParticipants().stream()
                 .map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
@@ -77,9 +87,14 @@ class JsonAdaptedProject {
             projectEvents.add(event.toModelType());
         }
 
-        final List<Completable> projectCompletables = new ArrayList<>();
-        for (JsonAdaptedCompletable completable : completableList) {
-            projectCompletables.add(completable.toModelType());
+        final List<CompletableTodo> projectTodos = new ArrayList<>();
+        for (JsonAdaptedTodo todo : todoList) {
+            projectTodos.add(todo.toModelType());
+        }
+
+        final List<CompletableDeadline> projectDeadlines = new ArrayList<>();
+        for (JsonAdaptedDeadline deadline : deadlineList) {
+            projectDeadlines.add(deadline.toModelType());
         }
 
         final List<Person> projectParticipants = new ArrayList<>();
@@ -92,8 +107,8 @@ class JsonAdaptedProject {
                     projectName.getClass().getSimpleName()));
         }
 
-        return new Project(new ProjectName(projectName), new EventList(projectEvents),
-                new CompletableTaskList(projectCompletables), new ParticipantList(projectParticipants));
+        return new Project(new ProjectName(projectName), new EventList(projectEvents), new TodoList(projectTodos),
+                new DeadlineList(projectDeadlines), new ParticipantList(projectParticipants));
     }
 
 }

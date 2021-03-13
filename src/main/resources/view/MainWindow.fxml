@@ -55,7 +55,7 @@
             <SplitPane dividerPositions="0.85" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
 
-                <TabPane tabClosingPolicy="UNAVAILABLE" minWidth="200.0">
+                <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" minWidth="200.0">
                   <tabs>
                     <Tab text="Projects">
                       <content>
@@ -88,7 +88,6 @@
 
               </items>
             </SplitPane>
-
           </items>
 
           <padding>

@@ -2,11 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -15,6 +18,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Interval;
+import seedu.address.model.task.repeatable.Event;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -136,5 +141,52 @@ public class ParserUtil {
             throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
         }
         return new ProjectName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!trimmedDescription.matches("[\\p{Alnum}][\\p{Alnum} ]*")) {
+            throw new ParseException(Event.MESSAGE_DESCRIPTION_CONSTRAINTS);
+        }
+        return trimmedDescription;
+    }
+
+    /**
+     * Parses a {@code String Interval} into a {@code Interval}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Interval} is invalid.
+     */
+    public static Interval parseInterval(String interval) throws ParseException {
+        requireNonNull(interval);
+        String trimmedInterval = interval.trim();
+        try {
+            return Interval.valueOf(trimmedInterval);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(Event.MESSAGE_INTERVAL_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code LocalDate} is invalid.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            return DateUtil.encodeDate(trimmedDate);
+        } catch (DateConversionException e) {
+            throw new ParseException(Event.MESSAGE_DATE_CONSTRAINTS);
+        }
     }
 }
