@@ -42,6 +42,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         case "-e":
             return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(keywords)));
 
+        case "-a":
+            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(keywords)));
+
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
