@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyProjectsFolder;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -18,14 +19,18 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private ProjectsFolderStorage projectsFolderStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code ProjectsFolderStorage}
+     * and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, ProjectsFolderStorage projectsFolderStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
+        this.projectsFolderStorage = projectsFolderStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -76,4 +81,35 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ ProjectsFolder methods ==============================
+
+    @Override
+    public Path getProjectsFolderFilePath() {
+        return projectsFolderStorage.getProjectsFolderFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyProjectsFolder> readProjectsFolder() throws DataConversionException, IOException {
+        return readProjectsFolder(projectsFolderStorage.getProjectsFolderFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyProjectsFolder> readProjectsFolder(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+
+        return projectsFolderStorage.readProjectsFolder(filePath);
+    }
+
+    @Override
+    public void saveProjectsFolder(ReadOnlyProjectsFolder projectsFolder) throws IOException {
+        saveProjectsFolder(projectsFolder, projectsFolderStorage.getProjectsFolderFilePath());
+    }
+
+    @Override
+    public void saveProjectsFolder(ReadOnlyProjectsFolder projectsFolder, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+
+        projectsFolderStorage.saveProjectsFolder(projectsFolder, filePath);
+    }
 }

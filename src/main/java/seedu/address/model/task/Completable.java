@@ -1,8 +1,11 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDate;
+
+import seedu.address.commons.util.DateUtil;
 
 public abstract class Completable {
 
@@ -17,27 +20,32 @@ public abstract class Completable {
 
     protected String description;
     protected Boolean isDone;
+    protected LocalDate by;
 
     /**
      * Constructor for Completable.
      * @param description Description of the Completable.
+     * @param by Deadline of the Completable or Null if there is no deadline.
      */
-    public Completable(String description) {
-        requireNonNull(description);
+    public Completable(String description, LocalDate by) {
+        requireAllNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
+        this.by = by;
         this.isDone = false;
     }
 
     /**
      * Constructor for Completable.
      * @param description Description of the Completable.
+     * @param by Deadline of the Completable or Null if there is no deadline.
      * @param isDone Marks whether the Completable is Done.
      */
-    public Completable(String description, Boolean isDone) {
+    public Completable(String description, LocalDate by, Boolean isDone) {
         requireAllNonNull(description, isDone);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
+        this.by = by;
         this.isDone = isDone;
     }
 
@@ -74,6 +82,14 @@ public abstract class Completable {
     public void markAsDone() {
         this.isDone = true;
     }
+
+    /**
+     * Returns a String representation of the by date, or null if the completable does not have a by date.
+     * @return String representation of by date or null if the completable does not have a by date.
+     */
+    public String getStringByDate() {
+        return by == null ? null : DateUtil.decodeDateForStorage(by);
+    };
 
     /**
      * Returns true if a given string is a valid email.
