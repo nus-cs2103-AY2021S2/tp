@@ -1,19 +1,11 @@
 package seedu.address.model.util;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import javafx.collections.ObservableList;
-import javafx.util.Pair;
 import seedu.address.model.AddressBook;
-import seedu.address.model.AppointmentBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.medical.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -65,26 +57,4 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static AppointmentBook getSampleAppointmentBook(ReadOnlyAddressBook addressBook) {
-        ObservableList<Person> personList = addressBook.getPersonList();
-        AppointmentBook sampleAb = new AppointmentBook();
-        for (Appointment sampleAppt : getSampleAppointments(personList)) {
-            sampleAb.addAppointment(sampleAppt);
-        }
-        return sampleAb;
-    }
-
-    public static List<Appointment> getSampleAppointments(ObservableList<Person> personList) {
-        List<Appointment> appointmentList = new ArrayList<>();
-        for (Person p : personList){
-            appointmentList.add(new Appointment(p, LocalDateTime.now()));
-        }
-        return appointmentList;
-    }
-
-    public static Pair<ReadOnlyAddressBook, AppointmentBook> getSampleBooks() {
-        ReadOnlyAddressBook addressBook = getSampleAddressBook();
-        AppointmentBook appointmentBook = getSampleAppointmentBook(addressBook);
-        return new Pair(addressBook, appointmentBook);
-    }
 }

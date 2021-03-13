@@ -5,10 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.AppointmentBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -19,13 +17,13 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private BookStorage addressBookStorage;
+    private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(BookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -57,34 +55,25 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<Pair<ReadOnlyAddressBook, AppointmentBook>> readBooks() throws DataConversionException, IOException {
-        return readBooks(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
+        return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public Pair<Optional<ReadOnlyAddressBook>, Optional<AppointmentBook>> readAllBooks() throws DataConversionException, IOException {
-        return new Pair(this.readBooks(), readAppointmentBook());
-    }
-
-    private Optional<AppointmentBook> readAppointmentBook() {
-        return null;
-    }
-
-    @Override
-    public Optional<Pair<ReadOnlyAddressBook, AppointmentBook>> readBooks(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readBooks(filePath);
+        return addressBookStorage.readAddressBook(filePath);
     }
 
     @Override
-    public void saveBooks(ReadOnlyAddressBook addressBook, AppointmentBook appointmentBook) throws IOException {
-        saveBooks(addressBook, appointmentBook, addressBookStorage.getAddressBookFilePath());
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveBooks(ReadOnlyAddressBook addressBook, AppointmentBook appointmentBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveBooks(addressBook, appointmentBook, filePath);
+        addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
 }
