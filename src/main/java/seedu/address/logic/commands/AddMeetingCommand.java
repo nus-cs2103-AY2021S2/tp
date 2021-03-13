@@ -14,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Meeting;
+import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
 
 public class AddMeetingCommand extends Command {
@@ -35,13 +35,13 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting for %1$s";
 
     private final Index index;
-    private final Meeting meeting;
+    private final Event meeting;
 
     /**
      * @param index of the person in the filtered person list to add the meeting to
      * @param meeting the meeting to add
      */
-    public AddMeetingCommand(Index index, Meeting meeting) {
+    public AddMeetingCommand(Index index, Event meeting) {
         requireAllNonNull(index, meeting);
 
         this.index = index;
@@ -65,13 +65,13 @@ public class AddMeetingCommand extends Command {
         return new CommandResult(String.format(MESSAGE_ADD_MEETING_SUCCESS, editedPerson.getName()));
     }
 
-    private static Person createEditedPerson(Person personToEdit, Meeting meeting) {
+    private static Person createEditedPerson(Person personToEdit, Event meeting) {
         assert personToEdit != null;
-        List<Meeting> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
+        List<Event> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
         meetingsToEdit.add(meeting);
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), meetingsToEdit);
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getDates(), meetingsToEdit);
     }
 
     @Override
