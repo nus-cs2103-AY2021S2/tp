@@ -1,7 +1,6 @@
 package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Meeting's Description in the meeting book.
@@ -9,17 +8,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
-
     public final String fullDescription;
 
     /**
      * Constructs a {@code Description}.
      *
-     * @param Description A valid Description.
+     * @param description A valid Description.
      */
-    public Description(String Description) {
-        requireNonNull(Description);
-        fullDescription = Description;
+    public Description(String description) {
+        requireNonNull(description);
+        fullDescription = description;
     }
 
 
@@ -33,7 +31,8 @@ public class Description {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.meeting.Description // instanceof handles nulls
-                && fullDescription.equals(((seedu.address.model.meeting.Description) other).fullDescription)); // state check
+                && fullDescription.equals(((seedu.address.model.meeting.Description) other)
+                                .fullDescription)); // state check
     }
 
     @Override
