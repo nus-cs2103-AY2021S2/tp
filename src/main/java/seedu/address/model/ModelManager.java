@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -148,4 +150,19 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public AliasMapping getAliasMapping() {
+        return userPrefs.getAliasMapping();
+    }
+
+    @Override
+    public void setAliasMapping(AliasMapping aliasMapping) {
+        requireNonNull(aliasMapping);
+        userPrefs.setAliasMapping(aliasMapping);
+    }
+
+    @Override
+    public void addAlias(Alias alias) {
+        userPrefs.addAlias(alias);
+    }
 }

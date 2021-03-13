@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 
+import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -13,4 +15,13 @@ public interface ReadOnlyUserPrefs {
 
     Path getAddressBookFilePath();
 
+    AliasMapping getAliasMapping();
+
+    Alias getAlias(String aliasName);
+
+    boolean hasAlias(String aliasName);
+
+    boolean isReservedKeyword(String aliasName);
+
+    boolean aliasCommandWordContainsAlias(String commandWord);
 }

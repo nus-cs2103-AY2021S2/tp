@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -15,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private AliasMapping aliasMapping = new AliasMapping();
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setAliasMapping(newUserPrefs.getAliasMapping());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +60,40 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public AliasMapping getAliasMapping() {
+        return aliasMapping;
+    }
+
+    public void setAliasMapping(AliasMapping aliasMappings) {
+        requireNonNull(aliasMappings);
+        this.aliasMapping = aliasMappings;
+    }
+
+    public void addAlias(Alias alias) {
+        requireNonNull(alias);
+        aliasMapping.addAlias(alias);
+    }
+
+    public Alias getAlias(String aliasName) {
+        requireNonNull(aliasName);
+        return this.aliasMapping.getAlias(aliasName);
+    }
+
+    @Override
+    public boolean hasAlias(String aliasName) {
+        return this.aliasMapping.containsAlias(aliasName);
+    }
+
+    public boolean isReservedKeyword(String aliasName) {
+        requireNonNull(aliasName);
+        return this.aliasMapping.isReservedKeyword(aliasName);
+    }
+
+    public boolean aliasCommandWordContainsAlias(String commandWord) {
+        requireNonNull(commandWord);
+        return this.aliasMapping.aliasCommandWordContainsAlias(commandWord);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,12 +106,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath)
+                && aliasMapping.equals(o.aliasMapping);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, aliasMapping);
     }
 
     @Override
