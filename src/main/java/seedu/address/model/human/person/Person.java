@@ -41,6 +41,27 @@ public class Person extends Human {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Creates a new {@code Person} with a driver.
+     * @param name the {@code Name} of the {@code Person}
+     * @param phone the {@code Phone} of the {@code Person}
+     * @param address the {@code Address} of the {@code Person}
+     * @param tripDay the {@code TripDay} of the {@code Person}
+     * @param tripTime the {@code TripTime} of the {@code Person}
+     * @param driver the {@code Driver} assigned to {@code Person}
+     * @param tags the {@code Tag}s of the {@code Person}
+     */
+    public Person(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Driver driver,
+                  Set<Tag> tags) {
+        super(name, phone);
+        requireAllNonNull(address, tripDay, tripTime, tags);
+        this.address = address;
+        this.tripDay = tripDay;
+        this.tripTime = tripTime;
+        this.driver = Optional.of(driver);
+        this.tags.addAll(tags);
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -54,7 +75,11 @@ public class Person extends Human {
     }
 
     public String getDriverStr() {
-        return driver.isEmpty() ? MESSAGE_NO_ASSIGNED_DRIVER : driver.toString();
+        return driver.map(Driver::toString).orElse(MESSAGE_NO_ASSIGNED_DRIVER);
+    }
+
+    public Optional<Driver> getDriver() {
+        return driver;
     }
 
     /**
@@ -98,7 +123,8 @@ public class Person extends Human {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTripDay().equals(getTripDay())
                 && otherPerson.getTripTime().equals(getTripTime())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getDriver().equals(getDriver());
     }
 
     @Override

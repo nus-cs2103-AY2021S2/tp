@@ -3,7 +3,9 @@ package seedu.address.model.human.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
@@ -14,6 +16,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.DriverBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -92,6 +95,16 @@ public class PersonTest {
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // has driver, all other attributes same -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDriver(new DriverBuilder().build()).buildWithDriver();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different driver, all other attributes same -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDriver(
+                new DriverBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).build()
+        ).buildWithDriver();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

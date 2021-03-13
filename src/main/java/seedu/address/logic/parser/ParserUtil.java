@@ -138,4 +138,17 @@ public class ParserUtil {
         return new TripTime(trimmedTripTime);
     }
 
+
+    /**
+     * Parses {@code Collection<String> indices} into a {@code Set<Index>}.
+     */
+    public static Set<Index> parseIndices(Collection<String> indices) throws ParseException {
+        requireNonNull(indices);
+        final Set<Index> indicesSet = new HashSet<>();
+        for (String index : indices) {
+            indicesSet.add(parseIndex(index));
+        }
+        return indicesSet;
+    }
+
 }
