@@ -71,7 +71,8 @@ public class AddMeetingCommand extends Command {
         meetingsToEdit.add(meeting);
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getDates(), meetingsToEdit);
+                personToEdit.getAddress(), personToEdit.getBirthday(), personToEdit.getTags(), personToEdit.getDates(),
+                meetingsToEdit);
     }
 
     @Override
