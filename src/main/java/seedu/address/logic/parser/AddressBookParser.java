@@ -57,7 +57,7 @@ public class AddressBookParser {
 
         case AddDeadlineCommand.COMMAND_WORD:
             return new AddDeadlineCommandParser().parse(arguments);
-            
+
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
 

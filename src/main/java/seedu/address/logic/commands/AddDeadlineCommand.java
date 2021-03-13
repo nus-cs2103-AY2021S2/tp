@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.List;
 
@@ -14,7 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.deadline.Deadline;
-import seedu.address.model.task.repeatable.Event;
 
 /**
  * Adds an deadline to a specified project in CoLAB.
