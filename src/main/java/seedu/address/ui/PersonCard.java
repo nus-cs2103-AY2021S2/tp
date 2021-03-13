@@ -43,11 +43,17 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label matriculationNumber;
     @FXML
+    private Label faculty;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label residence;
+    @FXML
+    private Label medicalDetails;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -57,13 +63,16 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        matriculationNumber.setText(person.getMatriculationNumber().value);
-        phone.setText("Mobile Number: " + person.getPhone().value);
-        address.setText("Address: " + person.getAddress().value);
         vaccinationStatus.setText(person.getVaccinationStatus().value);
         vaccinationStatus.setBackground(person.getVaccinationStatus().value.equals("vaccinated") ? vaccinatedBg
                 : notVaccinatedBg);
-        email.setText("Email: " + person.getEmail().value);
+        matriculationNumber.setText(person.getMatriculationNumber().value);
+        faculty.setText(person.getFaculty().value);
+        phone.setText(person.getPhone().value);
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
+        residence.setText(person.getSchoolResidence().value);
+        medicalDetails.setText(person.getMedicalDetails().value);
     }
 
     @Override
