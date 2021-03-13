@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.food.Food;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -74,6 +75,9 @@ public class ParserUtil {
     public static Double parseDouble(String doubleValue) throws ParseException {
         requireNonNull(doubleValue);
         String trimmedValue = doubleValue.trim();
+        if (!trimmedValue.matches(Food.VALIDATION_POSITIVE_DOUBLE_REGEX)) {
+            throw new ParseException(Food.MESSAGE_DIGIT_CONSTRAINTS);
+        }
         return Double.valueOf(trimmedValue);
     }
 
@@ -86,8 +90,9 @@ public class ParserUtil {
     public static String parseFoodName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!trimmedName.matches(Food.VALIDATION_CHAR_REGEX)
+                || !trimmedName.matches(Food.VALIDATION_WHITESPACE_REGEX)) {
+            throw new ParseException(Food.MESSAGE_CONSTRAINTS);
         }
         return trimmedName;
     }
