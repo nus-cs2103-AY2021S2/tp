@@ -16,11 +16,19 @@ import seedu.storemando.ui.HelpWindow;
  */
 public class BrowserUtil {
 
-
+    /**
+     * Checks if the user has a browser installed.
+     *
+     * @return true if the user has a browser installed, false otherwise.
+     */
     public static boolean isBrowserAccessible() {
         return Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE);
     }
 
+    /** Checks if the user is connected to the internet.
+     *
+     * @return true if the user is connected to the internet, false otherwise.
+     */
     public static boolean isConnectedToInternet() {
         try {
             URL url = new URL(HelpWindow.USERGUIDE_URL);
@@ -32,6 +40,11 @@ public class BrowserUtil {
         }
     }
 
+    /**
+     * Opens the specified url in user's browser.
+     *
+     * @param url link of the website to visit.
+     */
     public static void displayWebsite(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));
