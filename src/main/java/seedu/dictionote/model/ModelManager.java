@@ -133,7 +133,7 @@ public class ModelManager implements Model {
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
     }
-  
+
     @Override
     public void setNote(Note target, Note editedContact) {
         requireAllNonNull(target, editedContact);
