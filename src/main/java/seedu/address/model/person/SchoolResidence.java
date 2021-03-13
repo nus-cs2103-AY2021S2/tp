@@ -11,6 +11,9 @@ public class SchoolResidence {
     private static final List<String> listResidences = Arrays.asList("PGPH", "PGPR", "KE7H", "SH", "KRH", "TH", "EH",
             "RH", "RVRC", "YNC", "TC", "CAPT", "RC4", "USP", "UTR");
 
+    private static final String stringResidences = "\"PGPH\", \"PGPR\", \"KE7H\", \"SH\", \"KRH\", \"TH\", \"EH\",\n"
+            + "\"RH\", \"RVRC\", \"YNC\", \"TC\", \"CAPT\", \"RC4\", \"USP\", \"UTR\"";
+
     public static final String MESSAGE_CONSTRAINTS = "The residence entered should be one of the following: \n"
             + listResidences.toString();
 
@@ -37,6 +40,14 @@ public class SchoolResidence {
         boolean result = listResidences.contains(test.toUpperCase())
                 || test.equalsIgnoreCase("Does not live on campus");
         return result;
+    }
+
+    public static List<String> getListResidences() {
+        return listResidences;
+    }
+
+    public static String getStringResidences() {
+        return stringResidences;
     }
 
     @Override
