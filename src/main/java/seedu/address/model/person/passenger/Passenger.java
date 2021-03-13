@@ -1,4 +1,4 @@
-package seedu.address.model.human.person;
+package seedu.address.model.person.passenger;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -8,17 +8,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.human.Human;
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.driver.Driver;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Passenger in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person extends Human {
+public class Passenger extends Person {
     private static final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
 
     // Data fields
@@ -31,7 +31,7 @@ public class Person extends Human {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
+    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
         super(name, phone);
         requireAllNonNull(address, tripDay, tripTime, tags);
         this.address = address;
@@ -42,17 +42,17 @@ public class Person extends Human {
     }
 
     /**
-     * Creates a new {@code Person} with a driver.
-     * @param name the {@code Name} of the {@code Person}
-     * @param phone the {@code Phone} of the {@code Person}
-     * @param address the {@code Address} of the {@code Person}
-     * @param tripDay the {@code TripDay} of the {@code Person}
-     * @param tripTime the {@code TripTime} of the {@code Person}
-     * @param driver the {@code Driver} assigned to {@code Person}
-     * @param tags the {@code Tag}s of the {@code Person}
+     * Creates a new {@code Passenger} with a driver.
+     * @param name the {@code Name} of the {@code Passenger}
+     * @param phone the {@code Phone} of the {@code Passenger}
+     * @param address the {@code Address} of the {@code Passenger}
+     * @param tripDay the {@code TripDay} of the {@code Passenger}
+     * @param tripTime the {@code TripTime} of the {@code Passenger}
+     * @param driver the {@code Driver} assigned to {@code Passenger}
+     * @param tags the {@code Tag}s of the {@code Passenger}
      */
-    public Person(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Driver driver,
-                  Set<Tag> tags) {
+    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Driver driver,
+                     Set<Tag> tags) {
         super(name, phone);
         requireAllNonNull(address, tripDay, tripTime, tags);
         this.address = address;
@@ -94,7 +94,7 @@ public class Person extends Human {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
+    public boolean isSamePerson(Passenger otherPerson) {
         if (otherPerson == this) {
             return true;
         }
@@ -113,11 +113,11 @@ public class Person extends Human {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Passenger)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
+        Passenger otherPerson = (Passenger) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getAddress().equals(getAddress())
