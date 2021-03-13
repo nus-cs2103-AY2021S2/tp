@@ -15,7 +15,7 @@ UniquePersonList o-right-> Person
 Person -up-> "*" Tag
 
 Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> Size
+Person *--> Colour
+Person *--> DressCode
 @enduml

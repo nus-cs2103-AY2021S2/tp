@@ -17,10 +17,10 @@ Class ReadOnlyUserPrefs
 
 Package Person {
 Class Person
-Class Address
-Class Email
+Class DressCode
+Class Colour
 Class Name
-Class Phone
+Class Size
 Class UniquePersonList
 }
 
@@ -43,14 +43,14 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
 Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Person *--> Size
+Person *--> Colour
+Person *--> DressCode
+Person *--> "*" Description
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> DressCode
+Address -[hidden]right-> Colour
 
 ModelManager ----->" ~* filtered list" Person
 @enduml

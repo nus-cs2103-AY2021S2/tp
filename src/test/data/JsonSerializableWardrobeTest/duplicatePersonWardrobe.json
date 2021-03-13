@@ -2,13 +2,13 @@
   "persons": [ {
     "name": "Alice Pauline",
     "size": "53",
-    "email": "alice@example.com",
+    "colour": "alice@example.com",
     "dresscode": "FORMAL",
     "descriptions": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "size": "53",
-    "email": "alice@example.com",
+    "colour": "pauline@example.com",
     "dresscode": "FORMAL"
   } ]
 }

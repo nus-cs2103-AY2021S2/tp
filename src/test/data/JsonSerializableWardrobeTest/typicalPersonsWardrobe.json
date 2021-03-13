@@ -1,45 +1,45 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Wardrobe save file which contains the same Person values as in TypicalPersons#getTypicalWardrobe()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "size" : "53",
-    "email" : "alice@example.com",
+    "colour": "alice@example.com",
     "dresscode" : "FORMAL",
     "descriptions" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "size" : "32",
-    "email" : "johnd@example.com",
+    "colour": "johnd@example.com",
     "dresscode" : "FORMAL",
     "descriptions" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "size" : "93",
-    "email" : "heinz@example.com",
+    "colour": "heinz@example.com",
     "dresscode" : "FORMAL",
     "descriptions" : [ ]
   }, {
     "name" : "Daniel Meier",
     "size" : "33",
-    "email" : "cornelia@example.com",
+    "colour": "cornelia@example.com",
     "dresscode" : "CASUAL",
     "descriptions" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "size" : "24",
-    "email" : "werner@example.com",
+    "colour": "werner@example.com",
     "dresscode" : "CASUAL",
     "descriptions" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "size" : "27",
-    "email" : "lydia@example.com",
+    "colour": "lydia@example.com",
     "dresscode" : "CASUAL",
     "descriptions" : [ ]
   }, {
     "name" : "George Best",
     "size" : "42",
-    "email" : "anna@example.com",
+    "colour": "anna@example.com",
     "dresscode" : "ACTIVE",
     "descriptions" : [ ]
   } ]

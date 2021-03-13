@@ -18,7 +18,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Size size;
-    private final Email email;
+    private final Colour colour;
 
     // Data fields
     private final DressCode dresscode;
@@ -27,11 +27,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Size size, Email email, DressCode dresscode, Set<Description> descriptions) {
-        requireAllNonNull(name, size, email, dresscode, descriptions);
+
+    public Person(Name name, Size size, Colour colour, DressCode dresscode, Set<Description> descriptions) {
+        requireAllNonNull(name, size, colour, dresscode, descriptions);
         this.name = name;
         this.size = size;
-        this.email = email;
+        this.colour = colour;
         this.dresscode = dresscode;
         this.descriptions.addAll(descriptions);
     }
@@ -44,8 +45,8 @@ public class Person {
         return size;
     }
 
-    public Email getEmail() {
-        return email;
+    public Colour getColour() {
+        return colour;
     }
 
     public DressCode getDressCode() {
@@ -90,7 +91,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getSize().equals(getSize())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getColour().equals(getEmail())
                 && otherPerson.getDressCode().equals(getDressCode())
                 && otherPerson.getDescriptions().equals(getDescriptions());
     }
@@ -98,7 +99,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, size, email, dresscode, descriptions);
+        return Objects.hash(name, size, colour, dresscode, descriptions);
     }
 
     @Override
@@ -107,8 +108,8 @@ public class Person {
         builder.append(getName())
                 .append("; Size: ")
                 .append(getSize())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Colour: ")
+                .append(getColour())
                 .append("; Address: ")
                 .append(getDressCode());
 

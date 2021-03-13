@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
 import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Colour;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Size;
 
@@ -24,13 +24,13 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_SIZE = "+65";
     private static final String INVALID_DRESSCODE = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_COLOUR = " ";
     private static final String INVALID_DESCRIPTION = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_SIZE = "12";
     private static final String VALID_DRESSCODE = "FORMAL";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_COLOUR = "rachel@example.com";
     private static final String VALID_DESCRIPTION_1 = "friend";
     private static final String VALID_DESCRIPTION_2 = "neighbour";
 
@@ -126,26 +126,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseColour_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseColour((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseColour_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseColour(INVALID_COLOUR));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseColour_validValueWithoutWhitespace_returnsColour() throws Exception {
+        Colour expectedColour = new Colour(VALID_COLOUR);
+        assertEquals(expectedColour, ParserUtil.parseColour(VALID_COLOUR));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseColour_validValueWithWhitespace_returnsTrimmedColour() throws Exception {
+        String colourWithWhitespace = WHITESPACE + VALID_COLOUR + WHITESPACE;
+        Colour expectedColour = new Colour(VALID_COLOUR);
+        assertEquals(expectedColour, ParserUtil.parseColour(colourWithWhitespace));
     }
 
     @Test

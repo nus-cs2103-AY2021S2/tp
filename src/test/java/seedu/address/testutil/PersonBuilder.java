@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.description.Description;
 import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Colour;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Size;
@@ -18,12 +18,12 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_SIZE = "25";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_COLOUR = "amy@gmail.com";
     public static final String DEFAULT_DRESSCODE = "FORMAL";
 
     private Name name;
     private Size size;
-    private Email email;
+    private Colour colour;
     private DressCode dresscode;
     private Set<Description> descriptions;
 
@@ -33,7 +33,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         size = new Size(DEFAULT_SIZE);
-        email = new Email(DEFAULT_EMAIL);
+        colour = new Colour(DEFAULT_COLOUR);
         dresscode = new DressCode(DEFAULT_DRESSCODE);
         descriptions = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         size = personToCopy.getSize();
-        email = personToCopy.getEmail();
+        colour = personToCopy.getColour();
         dresscode = personToCopy.getDressCode();
         descriptions = new HashSet<>(personToCopy.getDescriptions());
     }
@@ -83,15 +83,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Colour} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withColour(String colour) {
+        this.colour = new Colour(colour);
         return this;
     }
 
     public Person build() {
-        return new Person(name, size, email, dresscode, descriptions);
+        return new Person(name, size, colour, dresscode, descriptions);
     }
 
 }
