@@ -81,6 +81,15 @@ public class Appointment implements Comparable<Appointment> {
                 && getTimeslot().hasOverlap(toCheck.getTimeslot());
     }
 
+    /**
+     * Returns whether there is a scheduling conflict between this appointment and the other.
+     */
+    public boolean hasEditConflict(Appointment toCheck) {
+        return (patient.equals(toCheck.getPatient())
+                && doctor.equals(toCheck.getDoctor()))
+                && getTimeslot().hasOverlap(toCheck.getTimeslot());
+    }
+
     public boolean isDue() {
         return getAppointmentStart().isBefore(LocalDateTime.now());
     }

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -10,13 +10,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
-import java.sql.Time;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -37,7 +37,7 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
             + "by the index number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
             + "[" + PREFIX_PATIENT + "PATIENT] "
             + "[" + PREFIX_DOCTOR + "DOCTOR] "
             + "[" + PREFIX_TIMESLOT_START + "TIMESLOT START] "
@@ -50,7 +50,7 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_TIMESLOT_START + "2021-05-08 09:00 "
             + PREFIX_TIMESLOT_DURATION + "1H 00M "
             + PREFIX_TAG + "severe "
-            + PREFIX_TAG + "brainDamage";
+            + PREFIX_TAG + "fever";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -62,7 +62,7 @@ public class EditAppointmentCommand extends Command {
      * @param editAppointmentDescriptor details to edit the appointment with
      */
     public EditAppointmentCommand(EditAppointmentDescriptor editAppointmentDescriptor) {
-        requireNonNull(editAppointmentDescriptor);
+        requireAllNonNull(editAppointmentDescriptor);
         this.editAppointmentDescriptor = new EditAppointmentDescriptor(editAppointmentDescriptor);
     }
 
@@ -79,7 +79,7 @@ public class EditAppointmentCommand extends Command {
         Appointment appointmentToEdit = appointmentList.get(editAppointmentDescriptor.patientIndex.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
-        if (!appointmentToEdit.hasConflict(editedAppointment) && model.hasConflictingAppointment(editedAppointment)) {
+        if (model.hasConflictingAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
