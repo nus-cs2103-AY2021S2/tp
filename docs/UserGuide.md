@@ -47,7 +47,7 @@ Parameter: none
 Example:
 (Refer to mockup)
 
-### Add a food review: add
+### Add a food review: `add`
 
 Adds a food review to the Food Diary.
 
@@ -65,7 +65,7 @@ Example:
     add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim 
     
     
-### Delete a food review: delete
+### Delete a food review: `delete`
     
 Deletes a food review from the Food Diary.
 
@@ -87,7 +87,7 @@ Action | Format, Examples
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
 
-## <center> **Appendix** </center> 
+## <center> Appendix </center> 
 
 ### UI Mock-up 
 
