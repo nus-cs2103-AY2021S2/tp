@@ -12,7 +12,7 @@ import seedu.address.model.task.todo.Todo;
 
 import java.util.List;
 
-public class AddTodoCommand {
+public class AddTodoCommand extends Command {
 
     public static final String COMMAND_WORD = "addTto";
 
@@ -36,7 +36,7 @@ public class AddTodoCommand {
     public AddTodoCommand(Index index, Todo todo) {
         requireNonNull(todo);
         this.index = index;
-        toAdd = todo;
+        this.toAdd = todo;
     }
 
     @Override
@@ -44,11 +44,15 @@ public class AddTodoCommand {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (this.index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        Project projectToEdit = lastShownList.get(index.getZeroBased());
+        if (this.index.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        }
+
+        Project projectToEdit = lastShownList.get(this.index.getZeroBased());
         assert projectToEdit != null;
         projectToEdit.addTodo(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
@@ -61,4 +65,5 @@ public class AddTodoCommand {
                 || (other instanceof AddTodoCommand // instanceof handles nulls
                 && toAdd.equals(((AddTodoCommand) other).toAdd));
     }
+
 }
