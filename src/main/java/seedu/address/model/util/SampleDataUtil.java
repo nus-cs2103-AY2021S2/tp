@@ -5,12 +5,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.ProjectsFolder;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyProjectsFolder;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,12 +44,26 @@ public class SampleDataUtil {
         };
     }
 
+    private static Project[] getSampleProjects() {
+        return new Project[] {
+            new Project(new ProjectName("Sample Project"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyProjectsFolder getSampleProjectsFolder() {
+        ProjectsFolder samplePf = new ProjectsFolder();
+        for (Project sampleProject : getSampleProjects()) {
+            samplePf.addProject(sampleProject);
+        }
+        return samplePf;
     }
 
     /**
