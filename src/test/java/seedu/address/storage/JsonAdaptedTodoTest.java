@@ -13,9 +13,10 @@ public class JsonAdaptedTodoTest {
     private static final String INVALID_DESCRIPTION = " ";
 
     private static final String VALID_DESCRIPTION = TodoBuilder.DEFAULT_DESCRIPTION;
-    private static final Boolean VALID_IS_DONE = false;
+    private static final Boolean VALID_IS_DONE = TodoBuilder.DEFAULT_IS_DONE;
 
-    private static final Todo ASSIGNMENT = new TodoBuilder().withDescription("Assignment").withIsDone(true).build();
+    private static final Todo ASSIGNMENT = new TodoBuilder()
+            .withDescription(VALID_DESCRIPTION).withIsDone(VALID_IS_DONE).build();
 
     @Test
     public void toModelType_validTodoDetails_returnsTodo() throws Exception {
@@ -32,7 +33,7 @@ public class JsonAdaptedTodoTest {
     }
 
     @Test
-    public void toModelType_nullName_throwsIllegalValueException() {
+    public void toModelType_nullName_throwsNullPointerException() {
         JsonAdaptedTodo todo = new JsonAdaptedTodo(null, VALID_IS_DONE);
         assertThrows(NullPointerException.class, todo::toModelType);
     }
