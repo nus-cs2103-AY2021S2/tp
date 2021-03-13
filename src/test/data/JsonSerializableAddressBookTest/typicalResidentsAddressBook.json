@@ -42,5 +42,6 @@
     "email" : "anna@example.com",
     "year" : "3",
     "room" : "06-234"
-  } ]
+  } ],
+  "rooms": []
 }

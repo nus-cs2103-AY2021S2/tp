@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.room.Room;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
+    private final FilteredList<Room> filteredRooms;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.addressBook.getResidentList());
+        filteredRooms = new FilteredList<>(this.addressBook.getRoomList());
     }
 
     public ModelManager() {
@@ -129,6 +132,49 @@ public class ModelManager implements Model {
         filteredResidents.setPredicate(predicate);
     }
 
+    //=========== Room =============================================================
+
+    @Override
+    public boolean hasRoom(Room room) {
+        requireNonNull(room);
+        return addressBook.hasRoom(room);
+    }
+
+    @Override
+    public void addRoom(Room room) {
+        addressBook.addRoom(room);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+    }
+
+    @Override
+    public void deleteRoom(Room target) {
+        addressBook.removeRoom(target);
+    }
+
+    @Override
+    public void setRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+
+        addressBook.setRoom(target, editedRoom);
+    }
+
+    //=========== Filtered Room List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        return filteredRooms;
+    }
+
+    @Override
+    public void updateFilteredRoomList(Predicate<Room> predicate) {
+        requireNonNull(predicate);
+        filteredRooms.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -145,7 +191,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredResidents.equals(other.filteredResidents);
+                && filteredResidents.equals(other.filteredResidents)
+                && filteredRooms.equals(other.filteredRooms);
     }
 
 }

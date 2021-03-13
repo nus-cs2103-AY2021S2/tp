@@ -15,11 +15,20 @@ import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.resident.FindResidentCommand;
 import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.room.AddRoomCommand;
+import seedu.address.logic.commands.room.DeleteRoomCommand;
+import seedu.address.logic.commands.room.EditRoomCommand;
+import seedu.address.logic.commands.room.FindRoomCommand;
+import seedu.address.logic.commands.room.ListRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.resident.AddResidentCommandParser;
 import seedu.address.logic.parser.resident.DeleteResidentCommandParser;
 import seedu.address.logic.parser.resident.EditResidentCommandParser;
 import seedu.address.logic.parser.resident.FindResidentCommandParser;
+import seedu.address.logic.parser.room.AddRoomCommandParser;
+import seedu.address.logic.parser.room.DeleteRoomCommandParser;
+import seedu.address.logic.parser.room.EditRoomCommandParser;
+import seedu.address.logic.parser.room.FindRoomCommandParser;
 
 /**
  * Parses user input.
@@ -57,14 +66,31 @@ public class AddressBookParser {
         case DeleteResidentCommand.COMMAND_WORD:
             return new DeleteResidentCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case FindResidentCommand.COMMAND_WORD:
             return new FindResidentCommandParser().parse(arguments);
 
         case ListResidentCommand.COMMAND_WORD:
             return new ListResidentCommand();
+
+        //====== Room Commands ======
+        case AddRoomCommand.COMMAND_WORD:
+            return new AddRoomCommandParser().parse(arguments);
+
+        case EditRoomCommand.COMMAND_WORD:
+            return new EditRoomCommandParser().parse(arguments);
+
+        case DeleteRoomCommand.COMMAND_WORD:
+            return new DeleteRoomCommandParser().parse(arguments);
+
+        case FindRoomCommand.COMMAND_WORD:
+            return new FindRoomCommandParser().parse(arguments);
+
+        case ListRoomCommand.COMMAND_WORD:
+            return new ListRoomCommand();
+
+        //====== System Commands ======
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

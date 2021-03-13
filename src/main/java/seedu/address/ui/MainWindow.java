@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ResidentListPanel residentListPanel;
+    private RoomListPanel roomListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane residentListPanelPlaceholder;
+
+    @FXML
+    private StackPane roomListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -78,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -112,6 +117,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         residentListPanel = new ResidentListPanel(logic.getFilteredResidentList());
         residentListPanelPlaceholder.getChildren().add(residentListPanel.getRoot());
+
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
+        roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

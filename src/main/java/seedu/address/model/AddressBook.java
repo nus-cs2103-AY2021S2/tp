@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.UniqueResidentList;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.UniqueRoomList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,19 +17,22 @@ import seedu.address.model.resident.UniqueResidentList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueResidentList residents;
+    private final UniqueRoomList rooms;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
+    * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+    * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+    *
+    * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+    *   among constructors.
+    */
     {
         residents = new UniqueResidentList();
+        rooms = new UniqueRoomList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Residents in the {@code toBeCopied}
@@ -47,13 +52,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.residents.setResidents(residents);
     }
 
-    /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
-     */
-    public void resetData(ReadOnlyAddressBook newData) {
-        requireNonNull(newData);
-
-        setResidents(newData.getResidentList());
+    public void setRooms(List<Room> rooms) {
+        this.rooms.setRooms(rooms);
     }
 
     //// resident-level operations
@@ -94,6 +94,55 @@ public class AddressBook implements ReadOnlyAddressBook {
         residents.remove(key);
     }
 
+    //// room-level operations
+
+    /**
+     * Returns true if a room with the same identity as {@code room} exists SunRez.
+     */
+    public boolean hasRoom(Room room) {
+        requireNonNull(room);
+        return rooms.contains(room);
+    }
+
+    /**
+     * Adds a room to SunRez.
+     * The room must not already exist in SunRez.
+     */
+    public void addRoom(Room room) {
+        rooms.add(room);
+    }
+
+    /**
+     * Replaces the given room {@code target} in the list with {@code editedRoom}.
+     * {@code target} must exist in SunRez.
+     * The room identity of {@code editedRoom} must not be the same as another existing room in SunRez.
+     */
+    public void setRoom(Room target, Room editedRoom) {
+        requireNonNull(editedRoom);
+
+        rooms.setRoom(target, editedRoom);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code Room} must exist in SunRez.
+     */
+    public void removeRoom(Room key) {
+        rooms.remove(key);
+    }
+
+    //// meta methods
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyAddressBook newData) {
+        requireNonNull(newData);
+
+        setResidents(newData.getResidentList());
+        setRooms(newData.getRoomList());
+    }
+
     //// util methods
 
     @Override
@@ -105,6 +154,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Resident> getResidentList() {
         return residents.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Room> getRoomList() {
+        return rooms.asUnmodifiableObservableList();
     }
 
     @Override

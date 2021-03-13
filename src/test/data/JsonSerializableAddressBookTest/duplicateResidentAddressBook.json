@@ -11,5 +11,6 @@
     "email": "pauline@example.com",
     "year": "1",
     "room": "01-234"
-  } ]
+  } ],
+  "rooms": []
 }

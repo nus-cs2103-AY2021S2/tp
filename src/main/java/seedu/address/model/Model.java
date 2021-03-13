@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.room.Room;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,7 @@ import seedu.address.model.resident.Resident;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Resident> PREDICATE_SHOW_ALL_RESIDENTS = unused -> true;
+    Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -49,7 +51,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -85,4 +89,40 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredResidentList(Predicate<Resident> predicate);
+
+    /**
+     * Returns true if a room with the same room number as {@code room} exists in SunRez.
+     */
+    boolean hasRoom(Room room);
+
+    /**
+     * Deletes the given room.
+     * The room must exist in SunRez.
+     */
+    void deleteRoom(Room target);
+
+    /**
+     * Adds the given room.
+     * {@code room} must not already exist in SunRez.
+     */
+    void addRoom(Room room);
+
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in SunRez.
+     * The Room identity of {@code editedRoom} must not be the same as another existing room in SunRez.
+     */
+    void setRoom(Room target, Room editedRoom);
+
+    /**
+     * Returns an unmodifiable view of the filtered room list
+     */
+    ObservableList<Room> getFilteredRoomList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRoomList(Predicate<Room> predicate);
 }
