@@ -3,7 +3,6 @@ package seedu.storemando.commons.util;
 
 import java.awt.Desktop;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -48,7 +47,9 @@ public class BrowserUtil {
     public static void displayWebsite(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));
-        } catch (IOException | URISyntaxException e) {} //This exceptions will only be raised when the supplied url is invalid.
+        } catch (IOException | URISyntaxException e) {
+            //This exceptions will only be raised when the supplied url is invalid.
+        }
     }
 
 
