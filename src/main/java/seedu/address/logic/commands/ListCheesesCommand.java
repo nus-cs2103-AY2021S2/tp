@@ -18,6 +18,7 @@ public class ListCheesesCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCheeseList(PREDICATE_SHOW_ALL_CHEESES);
+        model.setPanelToCheeseList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -22,6 +22,7 @@ public class ListCheesesCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setPanelToCheeseList();
     }
 
     @Test

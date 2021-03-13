@@ -55,6 +55,8 @@ public class AddCommand extends Command {
         }
 
         model.addCustomer(toAdd);
+        model.setPanelToCustomerList();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

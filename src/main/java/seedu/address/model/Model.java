@@ -13,7 +13,9 @@ import seedu.address.model.order.Order;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
     Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
     Predicate<Cheese> PREDICATE_SHOW_ALL_CHEESES = unused -> true;
@@ -53,7 +55,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -131,30 +135,54 @@ public interface Model {
      */
     void setCheese(Cheese target, Cheese editedcheese);
 
-    /** Returns an unmodifiable view of the filtered customer list */
+    /**
+     * Returns an unmodifiable view of the filtered customer list
+     */
     ObservableList<Customer> getFilteredCustomerList();
 
-    /** Returns an unmodifiable view of the filtered order list */
+    /**
+     * Returns an unmodifiable view of the filtered order list
+     */
     ObservableList<Order> getFilteredOrderList();
 
-    /** Returns an unmodifiable view of the filtered cheese list */
+    /**
+     * Returns an unmodifiable view of the filtered cheese list
+     */
     ObservableList<Cheese> getFilteredCheeseList();
 
     /**
      * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCustomerList(Predicate<Customer> predicate);
 
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
 
     /**
      * Updates the filter of the filtered cheese list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCheeseList(Predicate<Cheese> predicate);
+
+    /**
+     * Sets the list panel in the UI to show the filtered customers list.
+     */
+    void setPanelToCustomerList();
+
+    /**
+     * Sets the list panel in the UI to show the filtered cheeses list.
+     */
+    void setPanelToCheeseList();
+
+    /**
+     * Sets the list panel in the UI to show the filtered orders list.
+     */
+    void setPanelToOrderList();
 }

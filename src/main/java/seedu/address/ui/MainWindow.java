@@ -120,8 +120,8 @@ public class MainWindow extends UiPart<Stage> {
         cheeseListPanel = new CheeseListPanel(logic.getFilteredCheeseList());
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getFilteredCustomerList());
 
-        // TODO: Create a way to toggle between the three views w.r.t. input commands
-        listPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
+        // Set list of customers as the default view when starting the application
+        listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -131,6 +131,23 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Updates what information to render in list panel after each command is executed.
+     * Default case is to show the list of customers.
+     */
+    void updateInnerParts() {
+        if (logic.getGuiSettings().isShowCheeseListPanel()) {
+            listPanelPlaceholder.getChildren().clear();
+            listPanelPlaceholder.getChildren().add(cheeseListPanel.getRoot());
+        } else if (logic.getGuiSettings().isShowOrderListPanel()) {
+            listPanelPlaceholder.getChildren().clear();
+            listPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
+        } else {
+            listPanelPlaceholder.getChildren().clear();
+            listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+        }
     }
 
     /**
@@ -195,6 +212,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            updateInnerParts();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

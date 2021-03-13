@@ -221,6 +221,22 @@ public class ModelManager implements Model {
         filteredCheeses.setPredicate(predicate);
     }
 
+    //=========== For Toggling UI Panel ==================================================================
+
+    @Override
+    public void setPanelToCustomerList() {
+        getGuiSettings().setPanelToCustomerList();
+    }
+
+    @Override
+    public void setPanelToCheeseList() {
+        getGuiSettings().setPanelToCheeseList();
+    }
+
+    @Override
+    public void setPanelToOrderList() {
+        getGuiSettings().setPanelToOrderList();
+    }
 
     @Override
     public boolean equals(Object obj) {
