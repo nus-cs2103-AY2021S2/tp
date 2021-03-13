@@ -21,39 +21,27 @@ public class ThemeManager {
      * Template of the css used by the application.
      */
     private static final String CSS_TEMPLATE;
-
-    static {
-        InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
-        CSS_TEMPLATE = new BufferedReader(new InputStreamReader(templateStream))
-            .lines().collect(Collectors.joining("\n"));
-    }
-
     /**
      * Current theme used by the application
      */
     private static Theme theme = null;
-
     /**
      * Path of the current theme
      */
     private static String themePath = null;
-
     /**
      * Path of the css file currently in use
      */
     private static String cssCacheUri = null;
-
     /**
      * The mainScene property from a MainWindow instance.
      */
     private static Scene scene = null;
 
-    /**
-     * Initialized the variables in ThemeManager.
-     */
-    public static void init() {
-        ThemeManager.theme = ThemeFactory.getDefaultTheme();
-        ThemeManager.cssCacheUri = getNewCssCacheUri(ThemeManager.theme);
+    static {
+        InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
+        CSS_TEMPLATE = new BufferedReader(new InputStreamReader(templateStream))
+            .lines().collect(Collectors.joining("\n"));
     }
 
     /**
@@ -84,6 +72,14 @@ public class ThemeManager {
     }
 
     /**
+     * Initialized the variables in ThemeManager.
+     */
+    public static void init() {
+        ThemeManager.theme = ThemeFactory.getDefaultTheme();
+        ThemeManager.cssCacheUri = getNewCssCacheUri(ThemeManager.theme);
+    }
+
+    /**
      * Sets the current theme of the application.
      *
      * @param newTheme  The new theme to be used.
@@ -100,6 +96,14 @@ public class ThemeManager {
 
     public static String getCssCacheUri() {
         return ThemeManager.cssCacheUri;
+    }
+
+    /**
+     * Applies the current theme to the application.
+     */
+    public static void applyThemeToScene() {
+        ThemeManager.scene.getStylesheets().clear();
+        ThemeManager.scene.getStylesheets().add(ThemeManager.cssCacheUri);
     }
 
     /**
@@ -150,11 +154,4 @@ public class ThemeManager {
         return "file:///" + temp.getAbsolutePath().replace(File.separator, "/");
     }
 
-    /**
-     * Applies the current theme to the application.
-     */
-    public static void applyThemeToScene() {
-        ThemeManager.scene.getStylesheets().clear();
-        ThemeManager.scene.getStylesheets().add(ThemeManager.cssCacheUri);
-    }
 }
