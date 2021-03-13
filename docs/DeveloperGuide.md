@@ -259,7 +259,7 @@ _{Explain here how the data archiving feature will be implemented}_
 #### User Stories : Main/UI
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        | Category       |
 | -------- | ------------------------------- | ----------------------------------------- | -------------------------------------------------------------- | -------------------- |
-| `* *`    | CS2103 Student                  | View note and content side-by-side     | Easily copy a note from content | Main/UI/UX         |
+| `* *`    | CS2103 Student                  | View note and dictionary side-by-side     | Easily copy a note from dictionary | Main/UI/UX         |
 | `* *`    | CS2103 Student                  | Open and close Contact panel              | Have more space for other content  | Main/Non-essential |
 | `* *`    | CS2103 Student                  | Open and close Dictionary panel           | Have more space for other content  | Main/Non-essential |
 | `* *`    | CS2103 Student                  | Open and close Dictionary manager panel   | Have more space for other content  | Main/Non-essential |
@@ -299,7 +299,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * 1a. The given display panel is invalid.
     * 1a1. Dictionote shows an error message
 
-        Use case ends.
+      Use case ends.
 
 
 
@@ -428,4 +428,3 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
-      
