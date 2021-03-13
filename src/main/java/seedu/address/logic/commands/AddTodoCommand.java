@@ -11,6 +11,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.todo.Todo;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 public class AddTodoCommand extends Command {
@@ -55,13 +56,13 @@ public class AddTodoCommand extends Command {
 
         for (CompletableTodo todo: projectToEdit.getTodos().getTodos()) {
             if (this.toAdd.equals(todo)) {
-                throw new CommandException(MESSAGE_DUPLICATE_TODO);
+                throw new CommandException(Messages.MESSAGE_DUPLICATE_TODO);
             }
         }
         
         projectToEdit.addTodo(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd));
     }
 
     @Override

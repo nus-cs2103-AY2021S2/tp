@@ -67,13 +67,13 @@ public class AddEventCommand extends Command {
 
         for (Event event: projectToEdit.getEvents().getEvents()) {
             if (this.toAdd.equals(event)) {
-                throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+                throw new CommandException(Messages.MESSAGE_DUPLICATE_EVENT);
             }
         }
 
         projectToEdit.addEvent(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, toAdd));
     }
 
     @Override
@@ -82,4 +82,5 @@ public class AddEventCommand extends Command {
                 || (other instanceof AddEventCommand // instanceof handles nulls
                 && toAdd.equals(((AddEventCommand) other).toAdd));
     }
+    
 }
