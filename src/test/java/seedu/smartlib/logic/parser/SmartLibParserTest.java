@@ -27,6 +27,7 @@ import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
 import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 import seedu.smartlib.testutil.ReaderBuilder;
 import seedu.smartlib.testutil.ReaderUtil;
@@ -93,8 +94,9 @@ public class SmartLibParserTest {
     @Test
     public void parseCommand_borrow() throws Exception {
         BorrowCommand command = (BorrowCommand) parser.parseCommand(BorrowCommand.COMMAND_WORD + " "
-                + PREFIX_BOOK + 2 + " " + PREFIX_READER + 2);
-        assertEquals(new BorrowCommand(2, 2), command);
+                + PREFIX_BOOK + "Atlas" + " " + PREFIX_READER + "Mingze");
+        Record record = new Record("Atals", "Mingze");
+        assertEquals(new BorrowCommand(record), command);
     }
 
     @Test

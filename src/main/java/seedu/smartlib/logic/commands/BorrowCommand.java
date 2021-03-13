@@ -5,6 +5,8 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
+import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
 
 /**
  * Adds a record indicating that a reader borrowing a book
@@ -12,7 +14,7 @@ import seedu.smartlib.model.Model;
 public class BorrowCommand extends Command {
 
     public static final String COMMAND_WORD = "borrow";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Borrow command not implemented yet";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
@@ -20,41 +22,36 @@ public class BorrowCommand extends Command {
             + PREFIX_BOOK + "[REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_BOOK + "Likes to swim.";
+    public static final String MESSAGE_SUCCESS = "New record added: %1$s";
+    public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the registered record base";
 
-    private final int bid;
-    private final int rid;
+    private final Record toAdd;
 
     /**
      * Creates a BorrowCommand to add a record
-     * @param bid book id
-     * @param rid reader id
+     * @param record recordToAdd
      */
-    public BorrowCommand(int bid, int rid) {
-        requireAllNonNull(bid, rid);
-        this.bid = bid;
-        this.rid = rid;
+    public BorrowCommand(Record record) {
+        requireAllNonNull(record);
+        toAdd = record;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
+        requireAllNonNull(model);
+
+        if (model.hasRecord(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_RECORD);
+        }
+
+        model.addRecord(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof BorrowCommand)) {
-            return false;
-        }
-
-        // state check
-        BorrowCommand e = (BorrowCommand) other;
-        return bid == e.bid
-                && rid == e.rid;
+        return other == this // short circuit if same object
+                || (other instanceof BorrowCommand // instanceof handles nulls
+                && toAdd.equals(((BorrowCommand) other).toAdd));
     }
 }

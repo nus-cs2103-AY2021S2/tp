@@ -7,6 +7,7 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
+import seedu.smartlib.model.record.Record;
 
 /**
  * Parses input arguments and creates a new {@code BorrowCommand} object
@@ -21,15 +22,12 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_READER);
 
-        int bid;
-        int rid;
-        try {
-            bid = Integer.parseInt(argMultimap.getValue(PREFIX_BOOK).orElse(""));
-            rid = Integer.parseInt(argMultimap.getValue(PREFIX_READER).orElse(""));
-        } catch (NumberFormatException nfe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE), nfe);
-        }
+        String bookName;
+        String readerName;
+        bookName = argMultimap.getValue(PREFIX_BOOK).orElse("");
+        readerName = argMultimap.getValue(PREFIX_READER).orElse("");
+        Record record = new Record(bookName, readerName);
 
-        return new BorrowCommand(bid, rid);
+        return new BorrowCommand(record);
     }
 }

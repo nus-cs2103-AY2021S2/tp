@@ -1,9 +1,9 @@
 package seedu.smartlib.model.record;
 
-import java.time.LocalDate;
+import seedu.smartlib.commons.core.name.Name;
 
-import seedu.smartlib.model.book.Book;
-import seedu.smartlib.model.reader.Reader;
+import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Record of borrowing activity
@@ -14,18 +14,54 @@ public class Record {
     private static int overallId = 0;
 
     private int recordId;
-    private Book book;
-    private Reader reader;
-    private LocalDate dateBorrowed;
+    private Name bookName;
+    private Name readerName;
+    private DateBorrowed dateBorrowed;
 
     /**
      * Creates a borrowing record
-     * @param book book that is borrowed
-     * @param reader reader who borrowed the book
+     * @param bookName book that is borrowed
+     * @param readerName reader who borrowed the book
      */
-    public Record(Book book, Reader reader) {
-        this.book = book;
-        this.reader = reader;
-        this.dateBorrowed = LocalDate.now();
+    public Record(Name bookName, Name readerName, DateBorrowed dateBorrowed) {
+        this.bookName = bookName;
+        this.readerName = readerName;
+        this.dateBorrowed = dateBorrowed;
+    }
+
+
+    public static int getOverallId() {
+        return overallId;
+    }
+
+    public int getRecordId() {
+        return recordId;
+    }
+
+    public Name getBookName() {
+        return bookName;
+    }
+
+    public Name getReaderName() {
+        return readerName;
+    }
+
+    public DateBorrowed getDateBorrowed() {
+        return dateBorrowed;
+    }
+
+    /**
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameRecord(Record otherRecord) {
+        if (otherRecord == this) {
+            return true;
+        }
+
+        return otherRecord != null
+                && otherRecord.getReaderName().equals(getReaderName())
+                && otherRecord.getBookName().equals(getBookName())
+                && otherRecord.getDateBorrowed().equals(getDateBorrowed());
     }
 }
