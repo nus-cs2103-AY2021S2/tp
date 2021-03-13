@@ -17,7 +17,7 @@ import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Event;
 
-public class AddMeetingParser implements Parser<AddMeetingCommand> {
+public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddMeetingCommand

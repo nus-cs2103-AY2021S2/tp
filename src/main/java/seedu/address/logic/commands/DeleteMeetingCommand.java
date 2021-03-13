@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
  */
 public class DeleteMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "rm-meeting";
+    public static final String COMMAND_WORD = "del-meeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the meeting identified "
             + "by the second index number used, for the person identified by the first index number.\n"
@@ -62,8 +62,8 @@ public class DeleteMeetingCommand extends Command {
         meetings.remove(meetingIndex.getZeroBased());
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getBirthday(), personToEdit.getTags(), meetings,
-                personToEdit.getMeetings());
+                personToEdit.getAddress(), personToEdit.getBirthday(), personToEdit.getTags(), personToEdit.getDates(),
+                meetings);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
