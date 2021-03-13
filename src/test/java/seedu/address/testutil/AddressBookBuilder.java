@@ -28,6 +28,10 @@ public class AddressBookBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Addressbook}.
+     * @return {@code Addressbook}.
+     */
     public AddressBook build() {
         return addressBook;
     }
