@@ -5,10 +5,9 @@ import java.util.Objects;
 import seedu.address.model.human.Human;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
-import seedu.address.model.human.person.Person;
 
 /**
- * Represents a Driver to be attached to a Person.
+ * Represents a Driver to be attached to a Driver.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Driver extends Human {
@@ -43,13 +42,13 @@ public class Driver extends Human {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Driver)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone());
+        Driver otherDriver = (Driver) other;
+        return otherDriver.getName().equals(getName())
+                && otherDriver.getPhone().equals(getPhone());
     }
 
     @Override

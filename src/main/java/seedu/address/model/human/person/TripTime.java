@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TripTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "TripTime should be formatted the 24h format. eg. 1400.";
+    public static final String MESSAGE_CONSTRAINTS = "TripTime should only numeric and formatted in 24h time. "
+            + "eg. 1400.";
 
     public static final String VALIDATION_REGEX = "\\d{4}";
 

@@ -19,7 +19,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person extends Human {
-
     private static final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
 
     // Data fields
