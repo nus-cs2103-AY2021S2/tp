@@ -51,6 +51,16 @@ public class ParticipantList {
         return new ParticipantList(participants);
     }
 
+    /**
+     * Returns true if this {@code ParticipantList} has the provided {@code Person}.
+     *
+     * @param person the person to test.
+     * @return whether the {@code Person} is in this {@code ParticipantList}.
+     */
+    public boolean contains(Person person) {
+        return stream().anyMatch(person::isSamePerson);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

@@ -77,6 +77,17 @@ public class Project {
     }
 
     /**
+     * Returns true if a participant with the same identity as {@code person} exists
+     * in this {@code Peroject}'s {@code participants}.
+     *
+     * @param person the {@code Person} to compare.
+     * @return true if a participant with the same identity as {@code person} exists under this {@code Peroject}.
+     */
+    public boolean hasParticipant(Person person) {
+        return participants.contains(person);
+    }
+
+    /**
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two projects.
      */

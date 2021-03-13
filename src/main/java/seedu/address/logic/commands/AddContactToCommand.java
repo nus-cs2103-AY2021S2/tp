@@ -26,7 +26,7 @@ public class AddContactToCommand extends Command {
             + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = "New contact %1$s added to project %2$s";
-    public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists under project %2$s";
+    public static final String MESSAGE_DUPLICATE_CONTACT = "This participant already exists under project %1$s";
 
     private final Index projectToAddToIndex;
     private final Index personToAddIndex;
@@ -58,6 +58,10 @@ public class AddContactToCommand extends Command {
         }
 
         Person personToAdd = lastShownPersonList.get(personToAddIndex.getZeroBased());
+
+        if (projectToAddTo.hasParticipant(personToAdd)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_CONTACT, projectToAddTo.getProjectName()));
+        }
 
         // logic goes here
         Project editedProject = createEditedProject(projectToAddTo, personToAdd);
