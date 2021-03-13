@@ -14,8 +14,8 @@ import seedu.smartlib.model.reader.exceptions.ReaderNotFoundException;
 /**
  * A list of readers that enforces uniqueness between its elements and does not allow nulls.
  * A reader is considered unique by comparing using {@code Reader#isSameReader(Reader)}. As such, adding and updating of
- * readers uses Reader#isSamePerson(Person) for equality so as to ensure that the reader being added or updated is
- * unique in terms of identity in the UniqueReaderList. However, the removal of a person uses Reader#equals(Object) so
+ * readers uses Reader#isSameREader(Reader) for equality so as to ensure that the reader being added or updated is
+ * unique in terms of identity in the UniqueReaderList. However, the removal of a reader uses Reader#equals(Object) so
  * as to ensure that the reader with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -29,7 +29,7 @@ public class UniqueReaderList implements Iterable<Reader> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent reader as the given argument.
      */
     public boolean contains(Reader toCheck) {
         requireNonNull(toCheck);
@@ -49,9 +49,9 @@ public class UniqueReaderList implements Iterable<Reader> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the reader {@code target} in the list with {@code editedReader}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedReader} must not be the same as another existing reader in the list.
      */
     public void setReader(Reader target, Reader editedReader) {
         requireAllNonNull(target, editedReader);
@@ -69,8 +69,8 @@ public class UniqueReaderList implements Iterable<Reader> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent reader from the list.
+     * The reader must exist in the list.
      */
     public void remove(Reader toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +85,8 @@ public class UniqueReaderList implements Iterable<Reader> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code readers}.
+     * {@code readers} must not contain duplicate readers.
      */
     public void setReaders(List<Reader> readers) {
         requireAllNonNull(readers);
@@ -122,7 +122,7 @@ public class UniqueReaderList implements Iterable<Reader> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique readers.
+     * Returns true if {@code readers} contains only unique readers.
      */
     private boolean readersAreUnique(List<Reader> readers) {
         for (int i = 0; i < readers.size() - 1; i++) {

@@ -11,7 +11,7 @@ import seedu.smartlib.model.record.Record;
 import seedu.smartlib.model.record.UniqueRecordList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the SmartLib level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class SmartLib implements ReadOnlySmartLib {
@@ -34,7 +34,7 @@ public class SmartLib implements ReadOnlySmartLib {
     public SmartLib() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a SmartLib using the Readers in the {@code toBeCopied}
      */
     public SmartLib(ReadOnlySmartLib toBeCopied) {
         this();
@@ -44,8 +44,8 @@ public class SmartLib implements ReadOnlySmartLib {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the reader list with {@code readers}.
+     * {@code readers} must not contain duplicate readers.
      */
     public void setReaders(List<Reader> readers) {
         this.readers.setReaders(readers);
@@ -60,7 +60,7 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code SmartLib} with {@code newData}.
      */
     public void resetData(ReadOnlySmartLib newData) {
         requireNonNull(newData);
@@ -69,7 +69,7 @@ public class SmartLib implements ReadOnlySmartLib {
         setRecords(newData.getRecordList());
     }
 
-    //// person-level operations
+    //// reader-level operations
 
     /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
@@ -104,9 +104,9 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given reader {@code target} in the list with {@code editedReader}.
+     * {@code target} must exist in SmartLib.
+     * The reader identity of {@code editedReader} must not be the same as another existing reader in SmartLib.
      */
     public void setReader(Reader target, Reader editedReader) {
         requireNonNull(editedReader);

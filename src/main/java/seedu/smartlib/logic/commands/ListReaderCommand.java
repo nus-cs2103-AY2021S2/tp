@@ -6,7 +6,7 @@ import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_READERS;
 import seedu.smartlib.model.Model;
 
 /**
- * Lists all readers in smartlib to the user.
+ * Lists all readers in SmartLib to the user.
  */
 public class ListReaderCommand extends Command {
 

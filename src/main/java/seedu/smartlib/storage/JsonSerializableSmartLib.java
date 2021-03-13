@@ -38,7 +38,7 @@ class JsonSerializableSmartLib {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlySmartLib} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableSmartLib}.
      */
