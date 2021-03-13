@@ -3,7 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
+import seedu.address.model.attribute.Attribute;
+
+import java.util.Optional;
 
 /**
  * Lists all persons in the address book to the user.
@@ -14,6 +18,24 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Lists clients, along with specified attributes\n"
+            + "Parameters: -ATTRIBUTE (must be policy, phone or email)\n"
+            + "Example: " + COMMAND_WORD + " -policy";
+
+    private final Optional<Attribute> attribute;
+
+    /**
+     * @param attribute attribute that list will show
+     */
+    public ListCommand(Attribute attribute) {
+        requireNonNull(attribute);
+        this.attribute = Optional.of(attribute);
+    }
+
+    public ListCommand() {
+        this.attribute = Optional.empty();
+    }
 
     @Override
     public CommandResult execute(Model model) {
