@@ -91,9 +91,10 @@ public class HelpCommand extends Command {
             String commandTitle = currLine;
             String commandInfo = "";
 
+            reader.readLine();
             currLine = reader.readLine();
             while (!currLine.startsWith("###") && !currLine.startsWith("---")) {
-                commandInfo += "\n" + currLine;
+                commandInfo += currLine + "\n";
                 currLine = reader.readLine();
             }
 
@@ -126,14 +127,21 @@ public class HelpCommand extends Command {
                 if (next.startsWith("<div")) {
                     String[] nextSplit = next.split("<|\\>");
                     String divContent = nextSplit[2];
-                    plainText += "\n" + divContent.substring(7);
+
+                    if (divContent.startsWith(":bulb:")) {
+                        plainText += "\uD83D\uDCA1 " + divContent.substring(9, 13) + " ";
+                    } else if (divContent.startsWith(":exclamation:")) {
+                        plainText += "❗ " + divContent.substring(16, 24) + " ";
+                    } else {
+                        plainText += divContent + "\n";
+                    }
                 } else if (next.contains("</div>")) {
                     String[] nextSplit = next.split("<");
                     if (!nextSplit[0].equals("")) {
-                        plainText += "\n" + next;
+                        plainText += next + "\n";
                     }
-                } else if (!next.startsWith("![")){
-                    plainText += "\n" + next;
+                } else if (!next.contains("![")){
+                    plainText += next + "\n";
                 }
 
                 // next = s.nextLine();
