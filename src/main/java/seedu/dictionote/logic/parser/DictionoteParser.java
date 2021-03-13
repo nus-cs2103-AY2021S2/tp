@@ -16,7 +16,7 @@ import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditNoteCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
-import seedu.dictionote.logic.commands.FindCommand;
+import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.FindContentCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
