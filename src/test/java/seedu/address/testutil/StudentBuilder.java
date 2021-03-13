@@ -2,15 +2,15 @@ package seedu.address.testutil;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A utility class to help with building Student objects.
