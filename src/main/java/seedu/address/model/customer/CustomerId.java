@@ -28,7 +28,6 @@ public class CustomerId extends AbstractId<CustomerId> {
 
     private static void updateNextId(CustomerId otherId) {
         if (nextId <= otherId.value) {
-            // Do not increment ID if it is creating a stub object
             // Ensures that the tests will produce customer ids of the same value
             nextId = otherId.value + 1;
         }

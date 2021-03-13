@@ -69,7 +69,7 @@ public class Customer {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same phone.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameCustomer(Customer otherCustomer) {
@@ -78,8 +78,7 @@ public class Customer {
         }
 
         return otherCustomer != null
-                && otherCustomer.getId().equals(getId())
-                && otherCustomer.getName().equals(getName());
+                && otherCustomer.getPhone().equals(getPhone());
     }
 
     /**

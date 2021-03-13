@@ -31,23 +31,14 @@ public class CustomerTest {
         // null -> returns false
         assertFalse(ALICE.isSameCustomer(null));
 
-        // same name, all other attributes different -> returns true
-        Customer editedAlice = new CustomerBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        // same phone, all other attributes different -> returns true
+        Customer editedAlice = new CustomerBuilder(ALICE).withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameCustomer(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new CustomerBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different phone, all other attributes same -> returns false
+        editedAlice = new CustomerBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.isSameCustomer(editedAlice));
-
-        // name differs in case, all other attributes same -> returns false
-        Customer editedBob = new CustomerBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameCustomer(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new CustomerBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameCustomer(editedBob));
     }
 
     @Test
