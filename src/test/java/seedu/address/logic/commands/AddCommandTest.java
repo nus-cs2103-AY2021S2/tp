@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -21,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -80,6 +82,7 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -127,6 +130,16 @@ public class AddCommandTest {
 
         @Override
         public UniqueFoodList getUniqueFoodList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addFoodIntake(LocalDate date, Food food) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public FoodIntakeList getFoodIntakeList() {
             throw new AssertionError("This method should not be called.");
         }
 
