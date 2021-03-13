@@ -1,5 +1,7 @@
 package seedu.dictionote.testutil;
 
+import java.util.HashSet;
+
 import seedu.dictionote.logic.commands.EditNoteCommand.EditNoteDescriptor;
 import seedu.dictionote.model.note.Note;
 
@@ -30,7 +32,7 @@ public class EditNoteDescriptorBuilder {
      * Sets the {@code Note} of the {@code EditNoteDescriptor} that we are building.
      */
     public EditNoteDescriptorBuilder withNote(String note) {
-        descriptor.setNote(new Note(note));
+        descriptor.setNote(new Note(note, new HashSet<>()));
         return this;
     }
 

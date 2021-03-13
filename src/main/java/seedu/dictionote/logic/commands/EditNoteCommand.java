@@ -5,6 +5,8 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -81,7 +83,7 @@ public class EditNoteCommand extends Command {
 
         Note updatedNote = editNoteDescriptor.getNote().orElse(noteToEdit);
         Set<Tag> updatedTags = editNoteDescriptor.getTags().orElse(noteToEdit.getTags());
-        return updatedNote;
+        return new Note(updatedNote.getNote(), updatedTags);
     }
 
     @Override
@@ -108,6 +110,7 @@ public class EditNoteCommand extends Command {
      */
     public static class EditNoteDescriptor {
         private Note note;
+        private Set<Tag> tags;
 
         public EditNoteDescriptor() {}
 
@@ -116,13 +119,14 @@ public class EditNoteCommand extends Command {
          */
         public EditNoteDescriptor(EditNoteDescriptor toCopy) {
             setNote(toCopy.note);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(note);
+            return CollectionUtil.isAnyNonNull(note, tags);
         }
 
         public void setNote(Note note) {
@@ -130,6 +134,23 @@ public class EditNoteCommand extends Command {
         }
         public Optional<Note> getNote() {
             return Optional.ofNullable(note);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override
@@ -147,7 +168,8 @@ public class EditNoteCommand extends Command {
             // state check
             EditNoteDescriptor e = (EditNoteDescriptor) other;
 
-            return getNote().equals(e.getNote());
+            return getNote().equals(e.getNote())
+                    && getTags().equals(e.getTags());
         }
     }
 }

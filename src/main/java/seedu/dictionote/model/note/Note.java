@@ -1,7 +1,5 @@
 package seedu.dictionote.model.note;
 
-import seedu.dictionote.model.tag.Tag;
-
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -9,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.dictionote.model.tag.Tag;
 
 /**
  * Represents a Note in the dictionote book.
@@ -39,7 +38,6 @@ public class Note {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-    
     /**
      * Returns true if both notes have the same note.
      */
