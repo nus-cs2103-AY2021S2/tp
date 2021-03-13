@@ -59,8 +59,8 @@ Creates a new passenger in the GME terminal.
 
 Format: `create n/NAME a/ADDRESS t/TIME`
 
->**Examples**:
->* `create n/Ben Dover a/Geylang t/18:00`
+**Examples:**
+* `create n/Ben Dover a/Geylang t/18:00`
 
 ### Listing all passengers : `list`
 
@@ -78,7 +78,9 @@ Format: `search CONSTRAINT`
 * List of constraints that can be searched includes:
   *availability*, *gender*
 
-> **Examples**:`search female` or `search available`
+**Examples:**
+* `search female`
+* `search available`
 
 ### Locating persons by name: `find`
 
@@ -93,9 +95,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
->**Examples**:
->* `find John` returns `john` and `John Doe`
->* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+**Examples:**
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Delete passengers: `delete`
@@ -109,8 +111,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * `search female` followed by `delete 3` deletes the *1st* person in the results of `search female` command
 
-> **Examples:
--** `list` followed by `delete 3` deletes the *3rd* person in the address book
+**Examples:**
+* `list` followed by `delete 3` deletes the *3rd* person in the address book
 
 
 
@@ -118,14 +120,14 @@ Format: `delete INDEX`
 
 Selects passengers from the current view in the GME terminal.
 
-Format: `drive INDEX [INDEX INDEX...]`
+Format: `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
 
 * The order of the passengers' index does not matter
 * The maximum number of passengers that can be selected at once is 6
 * You can select between 1 to 6 people to drive with one command
 
->**Examples**:
->* `search female` followed by `drive 2 3 4` selects the the *2nd*, *3rd* and *4th* person in the results of `search female` command
+**Examples**:
+* `search female` followed by `drive n/Ben p/91234567 2 3 4` selects the the *2nd*, *3rd* and *4th* person in the results of `search female` command, and assigns *Ben* with number *91234567* to be their driver
 
 ### Clearing all entries : `clear`
 
@@ -141,11 +143,11 @@ Format: `exit`
 
 ### Saving the data
 
-GME data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+GME data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-GME data are saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
+GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
 
 
 ### Archiving data files `[coming in v2.0]`
@@ -170,4 +172,4 @@ Action | Format, Examples
 **list** | `list`
 **search** | `search CONSTRAINT`<br> e.g., `search female or search available`
 **delete** | `delete INDEX`<br> e.g.,`delete 3`
-**drive** | `drive INDEX INDEX INDEX...`<br> e.g., `drive 2 3 4`
+**drive** | `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
