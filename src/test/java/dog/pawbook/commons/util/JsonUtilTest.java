@@ -1,17 +1,17 @@
 package dog.pawbook.commons.util;
 
-import java.io.File;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import dog.pawbook.commons.exceptions.DataConversionException;
 import org.junit.jupiter.api.Test;
 
+import dog.pawbook.commons.exceptions.DataConversionException;
 import dog.pawbook.testutil.SerializableTestClass;
 import dog.pawbook.testutil.TestUtil;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests JSON Read and Write
