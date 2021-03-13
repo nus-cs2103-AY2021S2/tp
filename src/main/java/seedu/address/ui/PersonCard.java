@@ -37,6 +37,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label tripDayTime;
+    @FXML
+    private Label driver;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -49,6 +53,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
+        tripDayTime.setText(person.getTripDay() + " " + person.getTripTime());
+        driver.setText(person.getDriverStr());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
