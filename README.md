@@ -12,7 +12,9 @@ options tasted in the vicinity of NUS.
 
 * The Food Diary will allow students to save time and effort when finding places to eat around the NUS vicinity.
 
-![Ui](docs/images/Ui.png)
+<div align="center">
+    <img alt="Ui" src="docs/images/Ui.png">
+</div>
 
 ## Acknowledgements
 
