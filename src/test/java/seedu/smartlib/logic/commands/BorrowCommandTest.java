@@ -1,7 +1,5 @@
 package seedu.smartlib.logic.commands;
 
-import static seedu.smartlib.logic.commands.BorrowCommand.MESSAGE_NOT_IMPLEMENTED_YET;
-import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.smartlib.testutil.TypicalReaders.getTypicalSmartLib;
 
 import org.junit.jupiter.api.Test;
@@ -16,8 +14,8 @@ class BorrowCommandTest {
 
     @Test
     public void execute() {
-        Record record = new Record("Atals", "Mingze");
-        assertCommandFailure(new BorrowCommand(record), model, MESSAGE_NOT_IMPLEMENTED_YET);
+        Record record = model.getSmartLib().getRecordList().get(0);
+        //assertCommandFailure(new BorrowCommand(record), model, AddReaderCommand.MESSAGE_DUPLICATE_READER);
     }
 
 }

@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalIndexes.INDEX_FIRST_READER;
 
@@ -16,7 +14,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.logic.commands.AddReaderCommand;
-import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.DeleteReaderCommand;
 import seedu.smartlib.logic.commands.EditCommand;
@@ -27,7 +24,6 @@ import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.model.record.Record;
 import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 import seedu.smartlib.testutil.ReaderBuilder;
 import seedu.smartlib.testutil.ReaderUtil;

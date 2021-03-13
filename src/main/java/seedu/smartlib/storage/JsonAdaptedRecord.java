@@ -2,17 +2,11 @@ package seedu.smartlib.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.exceptions.IllegalValueException;
 import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.record.Record;
-import seedu.smartlib.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Record}.
@@ -70,7 +64,8 @@ class JsonAdaptedRecord {
         final Name modelReaderName = new Name(readerName);
 
         if (dateBorrowed == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DateBorrowed.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateBorrowed.class.getSimpleName()));
         }
         if (!DateBorrowed.isValidDate(dateBorrowed)) {
             throw new IllegalValueException(DateBorrowed.MESSAGE_CONSTRAINTS);

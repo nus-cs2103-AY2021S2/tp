@@ -18,8 +18,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
+import seedu.smartlib.model.record.DateBorrowed;
+import seedu.smartlib.model.record.Record;
 import seedu.smartlib.testutil.ReaderBuilder;
 
 public class SmartLibTest {
@@ -49,7 +52,9 @@ public class SmartLibTest {
         Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
-        SmartLibStub newData = new SmartLibStub(newReaders);
+        Record record = new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23"));
+        List<Record> newRecords = Arrays.asList(record, record);
+        SmartLibStub newData = new SmartLibStub(newRecords, newReaders);
 
         assertThrows(DuplicateReaderException.class, () -> smartLib.resetData(newData));
     }
@@ -88,14 +93,21 @@ public class SmartLibTest {
      */
     private static class SmartLibStub implements ReadOnlySmartLib {
         private final ObservableList<Reader> readers = FXCollections.observableArrayList();
+        private final ObservableList<Record> records = FXCollections.observableArrayList();
 
-        SmartLibStub(Collection<Reader> readers) {
+        SmartLibStub(Collection<Record> records, Collection<Reader> readers) {
+            this.records.setAll(records);
             this.readers.setAll(readers);
         }
 
         @Override
         public ObservableList<Reader> getReaderList() {
             return readers;
+        }
+
+        @Override
+        public ObservableList<Record> getRecordList() {
+            return records;
         }
     }
 

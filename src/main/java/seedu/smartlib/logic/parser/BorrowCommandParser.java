@@ -1,18 +1,16 @@
 package seedu.smartlib.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
+
+import java.time.LocalDate;
 
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.record.Record;
-
-import java.time.LocalDate;
 
 /**
  * Parses input arguments and creates a new {@code BorrowCommand} object

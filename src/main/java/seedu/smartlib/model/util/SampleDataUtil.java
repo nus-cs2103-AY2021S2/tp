@@ -44,8 +44,8 @@ public class SampleDataUtil {
 
     public static Record[] getSampleRecords() {
         return new Record[] {
-                new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")),
-                new Record(new Name("The Avengers"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22"))
+            new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")),
+            new Record(new Name("The Avengers"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22"))
         };
     }
 

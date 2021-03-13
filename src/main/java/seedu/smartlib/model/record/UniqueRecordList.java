@@ -1,16 +1,15 @@
 package seedu.smartlib.model.record;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.smartlib.model.record.Record;
-import seedu.smartlib.model.record.exceptions.DuplicateRecordException;
-import seedu.smartlib.model.record.exceptions.RecordNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.smartlib.model.record.exceptions.DuplicateRecordException;
+import seedu.smartlib.model.record.exceptions.RecordNotFoundException;
 
 /**
  * A list of records that enforces uniqueness between its elements and does not allow nulls.

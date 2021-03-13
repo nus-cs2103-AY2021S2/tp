@@ -1,5 +1,7 @@
 package seedu.smartlib.storage;
 
+import static seedu.smartlib.logic.commands.BorrowCommand.MESSAGE_DUPLICATE_RECORD;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,8 +15,6 @@ import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
-
-import static seedu.smartlib.logic.commands.BorrowCommand.MESSAGE_DUPLICATE_RECORD;
 
 /**
  * An Immutable SmartLib that is serializable to JSON format.

@@ -15,8 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.DateBorrowed;
+import seedu.smartlib.model.record.Record;
 
 /**
  * A utility class containing a list of {@code Reader} objects to be used in tests.
@@ -55,6 +58,11 @@ public class TypicalReaders {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final Record RECORDA = new Record(
+            new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23"));
+    public static final Record RECORDB = new Record(
+            new Name("The Avengers"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22"));
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalReaders() {} // prevents instantiation
@@ -67,7 +75,14 @@ public class TypicalReaders {
         for (Reader reader : getTypicalReaders()) {
             ab.addReader(reader);
         }
+        for (Record record : getTypicalRecords()) {
+            ab.addRecord(record);
+        }
         return ab;
+    }
+
+    private static List<Record> getTypicalRecords() {
+        return new ArrayList<>(Arrays.asList(RECORDA, RECORDB));
     }
 
     public static List<Reader> getTypicalReaders() {

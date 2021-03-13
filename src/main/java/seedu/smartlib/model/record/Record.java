@@ -2,9 +2,6 @@ package seedu.smartlib.model.record;
 
 import seedu.smartlib.commons.core.name.Name;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 /**
  * Record of borrowing activity
  */

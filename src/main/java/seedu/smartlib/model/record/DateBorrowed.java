@@ -1,11 +1,9 @@
 package seedu.smartlib.model.record;
 
-import seedu.smartlib.model.reader.Email;
-
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
 
 public class DateBorrowed {
 
