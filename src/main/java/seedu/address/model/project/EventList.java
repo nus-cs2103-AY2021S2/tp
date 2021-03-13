@@ -8,6 +8,9 @@ import java.util.stream.Stream;
 
 import seedu.address.model.task.repeatable.Event;
 
+/**
+ * Represents a list of Events.
+ */
 public class EventList {
 
     private final List<Event> events = new ArrayList<>();
@@ -26,6 +29,16 @@ public class EventList {
         requireNonNull(events);
 
         this.events.addAll(events);
+    }
+
+    /**
+     * Adds an event to this {@code EventList}.
+     *
+     * @param event {@code Event} to add.
+     */
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        this.events.add(event);
     }
 
     public List<Event> getEvents() {
