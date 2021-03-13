@@ -1,10 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CARBOS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FATS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROTEINS;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,22 +14,20 @@ public class UpdateFoodItemCommand extends Command {
 
     public static final String COMMAND_WORD = "foodedit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the certain food provided.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": This updates the details of the food item specified.\n"
             + "Existing values will be overwritten by the input values and at least 1 value has to be different from"
-            + " default.\n"
-            + "Parameters: "
-            + "[" + PREFIX_NAME + "FOODNAME] "
-            + "[" + PREFIX_CARBOS + "CARBO_IN_DOUBLE_FORMAT] "
-            + "[" + PREFIX_FATS + "FAT_IN_DOUBLE_FORMAT] "
-            + "[" + PREFIX_PROTEINS + "PROTEIN_IN_DOUBLE_FORMAT] \n"
-            + "Example: " + COMMAND_WORD
-            + PREFIX_NAME + "tomato "
-            + PREFIX_FATS + "10.5";
+            + " original.\n"
+            + "Command usage: foodedit n/food name c/carbo(g) f/fat(g) p/protein(g)";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Successfully updated food item";
     public static final String MESSAGE_NOT_EDITED = "At least one field such as its carbos, fats or proteins "
             + "value must be edited and different from original. (Current Food being edited: ";
-    public static final String MESSAGE_NOT_FOUND = "The food item is not found.";
+    public static final String MESSAGE_NOT_FOUND = "The food item specified is not found. Please try again with a valid"
+            + " item.";
+
+    public static final String MESSAGE_NAME_MISSING = "Food name is missing! Please enter the food name. Here is "
+            + "the command guide: \n"
+            + MESSAGE_USAGE;
 
     private final EditFoodDescriptor editedFood;
 

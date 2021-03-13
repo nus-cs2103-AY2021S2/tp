@@ -14,10 +14,8 @@ import seedu.address.model.food.Food;
 public class DeleteFoodItemCommand extends Command {
     public static final String COMMAND_WORD = "fooddelete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the food item identified by its name.\n"
-            + "Parameters: name of food\n"
-            + "Example: " + COMMAND_WORD + " tomato";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": This deletes the food item from the tracker.\n"
+            + "Command usage: fooddelete n/food name";
 
     public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Successfully deleted food item: ";
 
