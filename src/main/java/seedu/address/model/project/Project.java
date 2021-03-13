@@ -66,6 +66,17 @@ public class Project {
     }
 
     /**
+     * Adds a participant to the {@code ParticipantList}.
+     *
+     * @param person {@code Person} to add.
+     */
+    public Project addParticipant(Person person) {
+        ParticipantList participants = this.participants.addParticipant(person);
+        return new Project(this.getProjectName(), this.getEvents(),
+                this.getCompletableTasks(), participants);
+    }
+
+    /**
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two projects.
      */

@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.ParticipantList;
 import seedu.address.model.project.Project;
 
 /**
@@ -73,8 +72,6 @@ public class AddContactToCommand extends Command {
     private Project createEditedProject(Project projectToEdit, Person personToAdd) {
         requireNonNull(projectToEdit);
 
-        ParticipantList participants = projectToEdit.getParticipants().addPerson(personToAdd);
-        return new Project(projectToEdit.getProjectName(), projectToEdit.getEvents(),
-                projectToEdit.getCompletableTasks(), participants);
+        return projectToEdit.addParticipant(personToAdd);
     }
 }

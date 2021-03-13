@@ -45,7 +45,7 @@ public class ParticipantList {
      *
      * @param person {@code Person} to add.
      */
-    public ParticipantList addPerson(Person person) {
+    public ParticipantList addParticipant(Person person) {
         List<Person> participants = this.participants;
         participants.add(person);
         return new ParticipantList(participants);
