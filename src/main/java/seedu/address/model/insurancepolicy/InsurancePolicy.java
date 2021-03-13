@@ -3,6 +3,7 @@ package seedu.address.model.insurancepolicy;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents an InsurancePolicy in the address book.
@@ -36,9 +37,17 @@ public class InsurancePolicy {
      * @param url the URL to the policy document.
      */
     public InsurancePolicy(String policyId, String url) {
-        requireNonNull(policyId, url);
         this.policyId = policyId;
         this.policyUrl = url;
+    }
+
+    /**
+     * Retrieves the {@code policyUrl} associated with this policy.
+     *
+     * @return the {@code policyUrl} in {@code Optional<String>}.
+     */
+    public Optional<String> getPolicyUrlIfPresent() {
+        return Optional.ofNullable(policyUrl);
     }
 
     /**
