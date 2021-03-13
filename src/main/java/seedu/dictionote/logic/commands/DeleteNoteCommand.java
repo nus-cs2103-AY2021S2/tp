@@ -11,7 +11,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
 /**
- * Deletes a note identified using it's displayed index from the contacts list.
+ * Deletes a note identified using it's displayed index from the notes list.
  */
 public class DeleteNoteCommand extends Command {
 

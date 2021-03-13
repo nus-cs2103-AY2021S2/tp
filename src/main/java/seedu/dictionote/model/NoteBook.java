@@ -72,6 +72,10 @@ public class NoteBook implements ReadOnlyNoteBook {
         notes.delete(n);
     }
 
+    public void setNote(Note target, Note editedNote) {
+        requireNonNull(editedNote);
+        notes.setNote(target, editedNote);
+    }
 
     //// util methods
 

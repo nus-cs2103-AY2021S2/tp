@@ -25,6 +25,14 @@ public class NoteBuilder {
         note = noteToCopy.getNote();
     }
 
+    /**
+     * Sets the {@code Note} of the {@code Note} that we are building.
+     */
+    public NoteBuilder withNote(String name) {
+        this.note = name;
+        return this;
+    }
+
     public Note build() {
         return new Note(note);
     }
