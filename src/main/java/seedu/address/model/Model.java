@@ -163,6 +163,10 @@ public interface Model {
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
 
+    Appointment getAppointment(int i);
+
+    int getAppointmentSize();
+
     /**
      * Returns the AppointmentBook
      */

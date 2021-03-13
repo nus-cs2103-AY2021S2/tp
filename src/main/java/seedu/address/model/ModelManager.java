@@ -201,6 +201,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Appointment getAppointment(int i) {
+        return appointmentBook.getAppointmentList().get(i);
+    }
+
+    @Override
+    public int getAppointmentSize() {
+        return appointmentBook.getAppointmentList().size();
+    }
+
+    @Override
     public void deleteAppointment(Appointment target) {
         appointmentBook.removeAppointment(target);
     }

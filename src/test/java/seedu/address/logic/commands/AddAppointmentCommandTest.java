@@ -239,6 +239,16 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public Appointment getAppointment(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getAppointmentSize() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
