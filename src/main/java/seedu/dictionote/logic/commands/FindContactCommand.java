@@ -31,6 +31,12 @@ public class FindContactCommand extends Command {
     private final NameContainsKeywordsPredicate namePredicate;
     private final TagsContainKeywordsPredicate tagsPredicate;
 
+    /**
+     * Creates a new {@code FindContactCommand} with two predicates (i.e., conditions):
+     * one applies to the contacts' names, and the other applies to their tags.
+     * @param namePredicate The predicate to be evaluated against the contacts' names.
+     * @param tagsPredicate The predicate to be evaluated against the contacts' tags.
+     */
     public FindContactCommand(NameContainsKeywordsPredicate namePredicate,
                               TagsContainKeywordsPredicate tagsPredicate) {
         this.namePredicate = namePredicate;

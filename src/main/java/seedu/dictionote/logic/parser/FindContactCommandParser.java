@@ -4,13 +4,13 @@ import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
-
-import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new FindCommand object
