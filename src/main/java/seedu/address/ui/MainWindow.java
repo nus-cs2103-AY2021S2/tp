@@ -32,18 +32,6 @@ import seedu.address.model.person.Email;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private static final DateTimeFormatter DATETIME_FORMAT = new DateTimeFormatterBuilder()
-            .appendPattern("[yyyy-MM-dd HH:mm]")
-            .appendPattern("[yyyy-MM-dd]")
-            .appendPattern("[d-M-yyyy HH:mm]")
-            .appendPattern("[d-M-yyyy]")
-            .appendPattern("[yyyy/MM/dd HH:mm]")
-            .appendPattern("[yyyy/MM/dd]")
-            .appendPattern("[d/M/yyyy HH:mm]")
-            .appendPattern("[d/M/yyyy]")
-            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
-            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
-            .toFormatter();
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -132,15 +120,6 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    private ObservableList<AppointmentStub> generateMockData() {
-        ObservableList<AppointmentStub> mockList = FXCollections.observableArrayList();
-        mockList.add(new AppointmentStub(new Email("alexyeoh@example.com"), "Mathematics (Sec 4)",
-                LocalDateTime.parse("2020-02-24 14:00", DATETIME_FORMAT), "Geylang"));
-        mockList.add(new AppointmentStub(new Email("bernice@example.com"), "Science (Sec 4)",
-                LocalDateTime.parse("2020-02-27 15:00", DATETIME_FORMAT), "Serangoon"));
-        return mockList;
-    }
-
     /**
      * Fills up all the placeholders of this window.
      */
@@ -148,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         tutorListPanel = new TutorListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
 
-        appointmentListPanel = new AppointmentListPanel(generateMockData());
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         resultDisplay = new ResultBarFooter();
