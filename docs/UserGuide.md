@@ -169,7 +169,7 @@ Format: `lock [CURRENT_PASSWORD] NEW_PASSWORD`
 
 Unlocks ClientBook.
 
-Format: `unlock [CURRENT_PASSWORD]`
+Format: `unlock CURRENT_PASSWORD`
 
 * Verifies the current password before unlocking ClientBook.
 
