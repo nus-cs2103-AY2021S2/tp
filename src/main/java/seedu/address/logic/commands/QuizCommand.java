@@ -14,7 +14,6 @@ public class QuizCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "You are now in quiz mode, good luck.";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
