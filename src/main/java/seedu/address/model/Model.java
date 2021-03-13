@@ -15,8 +15,8 @@ import seedu.address.model.order.Order;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
-    Predicate<Order> PREDICATE_SHOW_ALL_ORDER = unused -> true;
-    Predicate<Cheese> PREDICATE_SHOW_ALL_CHEESE = unused -> true;
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
+    Predicate<Cheese> PREDICATE_SHOW_ALL_CHEESES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

@@ -1,5 +1,7 @@
 package seedu.address.ui.panels;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -51,7 +53,7 @@ public class OrderListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 Customer customer = getCustomerById(order.getCustomerId());
-                assert customer != null;
+                requireNonNull(customer);
                 setGraphic(new OrderCard(order, customer, getIndex() + 1).getRoot());
             }
         }
