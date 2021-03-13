@@ -20,12 +20,10 @@ checkstyle {
     toolVersion = '8.29'
 }
 
-/*
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
-*/
 
 task coverage(type: JacocoReport) {
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
