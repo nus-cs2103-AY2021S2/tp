@@ -23,9 +23,6 @@ public class AddTodoCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Submit project report ";
 
-    public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in this project.";
-
     private final Index index;
     private final Todo toAdd;
 
