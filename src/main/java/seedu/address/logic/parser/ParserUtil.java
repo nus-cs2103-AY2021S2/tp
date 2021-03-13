@@ -91,4 +91,22 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String semNumber} into an {@code Integer}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code semNumber} is invalid.
+     */
+    public static int parseSemesterNumber(String semesterNumber) throws ParseException {
+        requireNonNull(semesterNumber);
+        String trimmedDescription = semesterNumber.trim();
+        int semesterNum = 0;
+        try {
+            semesterNum = Integer.parseInt(trimmedDescription);
+        } catch(NumberFormatException error) {
+            throw new ParseException("Invalid Semester Number");
+        }
+        return semesterNum;
+    }
 }

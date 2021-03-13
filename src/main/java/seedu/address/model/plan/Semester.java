@@ -12,7 +12,7 @@ public class Semester {
      * 2. Consider including isDone instance member to mark if the Semester has been completed
      */
     private final String SEMESTER_DESCRIPTION = "Semester: %1$2d\t\t Total MCs: %2$4d";
-    private final int semNumber;
+    public final int semNumber;
     private final List<Module> modules;
 
     public Semester(int semNumber) {

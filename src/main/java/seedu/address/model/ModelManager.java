@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -112,6 +113,27 @@ public class ModelManager implements Model {
         addressBook.setPlan(target, editedPlan);
     }
 
+    //=========== Semester ================================================================================
+
+    @Override
+    public boolean hasSemester(int planNumber, Semester semester) {
+        requireAllNonNull(planNumber, semester);
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        return plan.getSemesters().stream().anyMatch((currentSemester) -> {
+            return currentSemester.semNumber == semester.semNumber;
+        });
+    }
+
+//    @Override
+//    public void deleteSemester(Plan plan, Semester target) {
+//        addressBook.removeSemester(plan, target);
+//    }
+
+    @Override
+    public void addSemester(int planNumber, Semester semester) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        addressBook.setPlan(plan, plan.addSemester(semester));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
     //=========== Filtered Plan List Accessors =============================================================
