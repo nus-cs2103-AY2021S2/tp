@@ -10,6 +10,7 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
 
 /**
  * The API of the Model component.
@@ -108,11 +109,22 @@ public interface Model {
     //=========== FoodIntakeList Getters ==============================================================
 
     /**
+     * Adds the given user item.
+     */
+    void addUser(User user);
+
+    /**
+     * Checks whether user has been initialized
+     */
+    boolean hasUser();
+
+    /**
      * Gets Food intake list.
      *
      * @return food intake list
      */
     FoodIntakeList getFoodIntakeList();
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.

@@ -4,8 +4,12 @@ package seedu.address.model.user;
  * Represents a User's Bmi.
  */
 public class Bmi {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Weight should be in kg and Height should be in cm.\nBoth should be greater than 1"
+                    + " and may include a decimal.";
     private static final double HEALTHY_BMI_LOWER_BOUND = 18.5;
     private static final double HEALTHY_BMI_UPPER_BOUND = 22.9;
+    private static final String VALIDATION_REGEX = "^[1-9](\\d+)?$|^[1-9](\\d+)?.(\\d+)$";
 
     // Identity fields
     private final double weight;
@@ -59,6 +63,13 @@ public class Bmi {
 
     protected Double getBmi() {
         return this.bmi;
+    }
+
+    /**
+     * Returns true if a given string is a valid weight or height.
+     */
+    public static boolean isValidWeightOrHeight(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

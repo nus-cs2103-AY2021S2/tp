@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddFoodIntakeCommand;
 import seedu.address.logic.commands.AddFoodItemCommand;
+import seedu.address.logic.commands.AddUserCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -29,7 +30,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class AddressBookParser {
 
     /**
-     * Used for initial separation of command word and args.
+     * Useditial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
@@ -83,6 +84,9 @@ public class AddressBookParser {
         case ListFoodItemCommand.COMMAND_WORD:
             return new ListFoodItemCommand();
 
+        case AddUserCommand.COMMAND_WORD:
+            return new AddUserCommandParser().parse(arguments);
+
         case AddFoodIntakeCommand.COMMAND_WORD:
             return new AddFoodIntakeCommandParser().parse(arguments);
 
@@ -91,6 +95,7 @@ public class AddressBookParser {
 
         case QueryFoodIntakeCommand.COMMAND_WORD:
             return new QueryFoodIntakeCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

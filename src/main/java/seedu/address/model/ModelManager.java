@@ -16,6 +16,7 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -191,6 +192,16 @@ public class ModelManager implements Model {
         return addressBook.listFoodItem();
     }
 
+    @Override
+    public void addUser(User user) {
+        addressBook.addUser(user);
+    }
+
+    @Override
+    public boolean hasUser() {
+        return addressBook.hasUser();
+    }
+
     //=========== FoodIntakeList Accessors =============================================================
 
     @Override
@@ -202,4 +213,5 @@ public class ModelManager implements Model {
     public FoodIntakeList getFoodIntakeList() {
         return addressBook.getFoodIntakeList();
     }
+
 }

@@ -13,6 +13,7 @@ import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.user.User;
 
 /**
  * Wraps all data at the address-book level
@@ -23,6 +24,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private static final String DATE_FORMAT = "d MMM yyyy";
 
     private final UniquePersonList persons;
+
+    private User user;
 
     private UniqueFoodList foodList;
 
@@ -192,6 +195,36 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds the user information.
+     *
+     * @param user User object
+     */
+    public void addUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * Returns whether user information has been initialized.
+     *
+     * @return Boolean indicating whether user is initialized
+     */
+    public boolean hasUser() {
+        return this.user != null;
+    }
+
+    /**
+     * Returns the user information.
+     *
+     * @return User object
+     */
+    public User getUser() {
+        return this.user;
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      * Adds food intake object into the food intake list.
      *
      * @param date date of food intake object

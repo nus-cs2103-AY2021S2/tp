@@ -6,7 +6,7 @@ package seedu.address.model.user;
 public class Age {
     public static final String MESSAGE_CONSTRAINTS =
             "Ages should only contain numbers, and it should fall between 1 and 100!";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+    private static final String VALIDATION_REGEX = "^[1-9][0-9]?$|^100$";
     private final int age;
 
     /**
@@ -19,6 +19,13 @@ public class Age {
 
     public Integer getAge() {
         return this.age;
+    }
+
+    /**
+     * Returns true if a given string is a valid age.
+     */
+    public static boolean isValidAge(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
