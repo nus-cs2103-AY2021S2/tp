@@ -3,8 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 
 import java.util.List;
 
@@ -13,6 +12,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -22,35 +23,27 @@ public class AddDeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "addDto";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits event list of project identified by index.\n"
-            + "Existing list will be appended with the input event.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds deadline to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_INTERVAL + "INTERVAL "
-            + PREFIX_REPEATABLE_DATE + "REPEATABLE_DATE\n"
+            + PREFIX_DEADLINE_DATE + "REPEATABLE_DATE\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
-            + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_INTERVAL + "DAILY "
-            + PREFIX_REPEATABLE_DATE + "24-04-2021";
-
-    public static final String MESSAGE_EVENT_ADDED_SUCCESS = "New event added: %1$s";
+            + PREFIX_DESCRIPTION + "Project report due "
+            + PREFIX_DEADLINE_DATE + "24-04-2021";
 
     private final Index index;
-    private final Event eventToAdd;
-
+    private final Deadline toAdd;
 
     /**
-     * Creates an AddEventCommand to add specified {@code Event} to {@code Project} with {@code Index}.
-     *
-     * @param index index of {@code Project} to add event in the list.
-     * @param event {@code Event} to add.
+     * Creates an AddDeadlineCommand to add specified {@code Deadline} to {@code Project} with {@code Index}.
+     * @param index index of {@code Project} to add deadline in the list.
+     * @param deadline {@code Deadline} to add.
      */
-    public AddDeadlineCommand(Index index, Event event) {
-        requireAllNonNull(index, event);
-
+    public AddDeadlineCommand(Index index, Deadline deadline) {
+        requireAllNonNull(index, deadline);
 
         this.index = index;
-        this.eventToAdd = event;
+        this.toAdd = deadline;
     }
 
     @Override
@@ -64,15 +57,23 @@ public class AddDeadlineCommand extends Command {
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
-        projectToEdit.addEvent(eventToAdd);
+
+        for (CompletableDeadline deadline: projectToEdit.getDeadlines().getDeadlines()) {
+            if (this.toAdd.equals(deadline)) {
+                throw new CommandException(Messages.MESSAGE_DUPLICATE_DEADLINE);
+            }
+        }
+
+        projectToEdit.addDeadline(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_EVENT_ADDED_SUCCESS, projectToEdit));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddDeadlineCommand // instanceof handles nulls
-                && eventToAdd.equals(((AddDeadlineCommand) other).eventToAdd));
+                && toAdd.equals(((AddDeadlineCommand) other).toAdd));
     }
+
 }
