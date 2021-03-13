@@ -17,9 +17,9 @@ Class ReadOnlyUserPrefs
 
 Package Task {
 Class Task
-Class Address
+Class Description
 Class Email
-Class Name
+Class Title
 Class Phone
 Class UniqueTaskList
 }
@@ -42,15 +42,15 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Planner *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
-Task *--> Name
+Task *--> Title
 Task *--> Phone
 Task *--> Email
-Task *--> Address
+Task *--> Description
 Task *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Title -[hidden]right-> Phone
+Phone -[hidden]right-> Description
+Description -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Task
 @enduml

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Address;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
@@ -19,24 +19,24 @@ import seedu.address.model.task.Title;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Task(new Title("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Task(new Title("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Task(new Title("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Task(new Title("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Task(new Title("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Task(new Title("Assignment 79"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                new Description("Build the next Google"),
+                getTagSet("priorities")),
+            new Task(new Title("Build a gaming PC"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                new Description("buy: coffee, 3080, 40-inch monitor"),
+                getTagSet("findMoney", "priorities")),
+            new Task(new Title("Countdown to finals"), new Phone("93210283"), new Email("charlotte@example.com"),
+                new Description("aiken doeet"),
+                getTagSet("trying")),
+            new Task(new Title("Demo our amazing product"), new Phone("91031282"), new Email("lidavid@example.com"),
+                new Description("Number 1 for real"),
+                getTagSet("fact")),
+            new Task(new Title("Ensure that I eat lunch"), new Phone("92492021"), new Email("irfan@example.com"),
+                new Description("budget 3$"),
+                getTagSet("reminder")),
+            new Task(new Title("Final project consult again"), new Phone("92624417"), new Email("royb@example.com"),
+                new Description("at COM2"),
+                getTagSet("serious"))
         };
     }
 

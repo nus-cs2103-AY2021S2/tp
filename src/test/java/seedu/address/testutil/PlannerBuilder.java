@@ -4,7 +4,7 @@ import seedu.address.model.Planner;
 import seedu.address.model.task.Task;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Planner objects.
  * Example usage: <br>
  *     {@code Planner ab = new PlannerBuilder().withTask("John", "Doe").build();}
  */

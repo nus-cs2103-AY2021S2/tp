@@ -102,7 +102,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the planner data.
 * exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -121,7 +121,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the planner data in json format and read it back.
 
 ### Common classes
 

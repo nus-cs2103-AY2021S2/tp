@@ -35,7 +35,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label description;
     @FXML
     private Label email;
     @FXML
@@ -50,7 +50,7 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().fullTitle);
         phone.setText(task.getPhone().value);
-        address.setText(task.getAddress().value);
+        description.setText(task.getDescription().value);
         email.setText(task.getEmail().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
