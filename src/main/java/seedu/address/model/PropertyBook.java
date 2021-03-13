@@ -59,6 +59,36 @@ public class PropertyBook implements ReadOnlyPropertyBook {
         properties.add(property);
     }
 
+    public int getPropertySize() {
+        return properties.asUnmodifiableObservableList().size();
+    }
+
+    public Property getProperty(int i) {
+        return properties.asUnmodifiableObservableList().get(i);
+    }
+
+    /**
+     * Replaces the property at {@code i} in the list with {@code property}.
+     * {@code i} must exist in the property book.
+     * The property identity of {@code property} must not be the same as another
+     * existing property in the property book.
+     */
+    public void setProperty(int i, Property property) {
+        properties.setProperty(this.getProperty(i), property);
+    }
+
+    /**
+     * Replaces the given property {@code target} in the list with {@code editedProperty}.
+     * {@code target} must exist in the property book.
+     * The property identity of {@code editedProperty} must not be the same as another
+     * existing property in the property book.
+     */
+    public void setProperty(Property target, Property editedProperty) {
+        requireNonNull(editedProperty);
+
+        properties.setProperty(target, editedProperty);
+    }
+
     /**
      * Replaces the contents of the property list with {@code properties}.
      * {@code properties} must not contain duplicate properties.
@@ -73,18 +103,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     public void resetData(ReadOnlyPropertyBook newData) {
         requireNonNull(newData);
         setProperties(newData.getPropertyList());
-    }
-
-    /**
-     * Replaces the given property {@code target} in the list with {@code editedProperty}.
-     * {@code target} must exist in the property book.
-     * The property identity of {@code editedProperty} must not be the same as another
-     * existing property in the property book.
-     */
-    public void setProperty(Property target, Property editedProperty) {
-        requireNonNull(editedProperty);
-
-        properties.setProperty(target, editedProperty);
     }
 
     /**
