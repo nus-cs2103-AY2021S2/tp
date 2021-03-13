@@ -2,9 +2,9 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;

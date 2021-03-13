@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -51,7 +51,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_SIZE_DESC = " " + PREFIX_SIZE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_COLOUR_DESC = " " + PREFIX_COLOUR + " "; // missing '@' symbol
-    public static final String INVALID_DRESSCODE_DESC = " " + PREFIX_DRESSCODE; // empty string not allowed for addresses
+    public static final String INVALID_DRESSCODE_DESC = " " + PREFIX_DRESSCODE;
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION
             + "hubby*"; // '*' not allowed in descriptions
 

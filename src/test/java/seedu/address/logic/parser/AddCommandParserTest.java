@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.COLOUR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.COLOUR_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DRESSCODE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COLOUR_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DRESSCODE_DESC;
 
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -20,8 +20,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_BOB;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.description.Description;
-import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Size;
