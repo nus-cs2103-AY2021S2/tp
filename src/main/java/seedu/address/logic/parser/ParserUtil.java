@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.commons.util.DateUtil;
@@ -19,7 +20,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Interval;
-import seedu.address.model.task.repeatable.Event;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -152,8 +152,8 @@ public class ParserUtil {
     public static String parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!trimmedDescription.matches("[\\p{Alnum}][\\p{Alnum} ]*")) {
-            throw new ParseException(Event.MESSAGE_DESCRIPTION_CONSTRAINTS);
+        if (!trimmedDescription.matches("[^\\s].*")) {
+            throw new ParseException(Messages.MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS);
         }
         return trimmedDescription;
     }
@@ -170,7 +170,7 @@ public class ParserUtil {
         try {
             return Interval.valueOf(trimmedInterval);
         } catch (IllegalArgumentException iae) {
-            throw new ParseException(Event.MESSAGE_INTERVAL_CONSTRAINTS);
+            throw new ParseException(Messages.MESSAGE_PARSER_INTERVAL_CONSTRAINTS);
         }
     }
 
@@ -186,7 +186,8 @@ public class ParserUtil {
         try {
             return DateUtil.encodeDate(trimmedDate);
         } catch (DateConversionException e) {
-            throw new ParseException(Event.MESSAGE_DATE_CONSTRAINTS);
+            throw new ParseException(Messages.MESSAGE_PARSER_DATE_CONSTRAINTS);
         }
     }
+
 }
