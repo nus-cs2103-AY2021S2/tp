@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.ReminderDatePredicate;
 
 /**
- * Finds and lists all persons in CakeCollate database whose delivery date is within 3 days of the current date.
+ * Finds and lists all orders in CakeCollate database whose delivery date is within 3 days of the current date.
  *
  */
 
