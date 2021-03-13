@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.cheese.exceptions.CheeseNotFoundException;
 import seedu.address.model.cheese.exceptions.DuplicateCheeseException;
-import seedu.address.model.order.Order;
 import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
 
@@ -74,7 +73,7 @@ public class UniqueCheeseList implements Iterable<Cheese> {
      * Removes the equivalent cheese from the list.
      * The cheese must exist in the list.
      */
-    public void remove(Order toRemove) {
+    public void remove(Cheese toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new CheeseNotFoundException();

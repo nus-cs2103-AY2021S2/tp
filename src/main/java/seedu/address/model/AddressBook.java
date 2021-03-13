@@ -188,6 +188,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         cheeses.setCheese(target, editedCheese);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeCheese(Cheese key) {
+        cheeses.remove(key);
+    }
+
+
     //// util methods
 
     @Override
