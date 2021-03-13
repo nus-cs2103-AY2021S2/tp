@@ -27,6 +27,7 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private ReminderWindow reminderWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -59,8 +60,11 @@ public class UiManager implements Ui {
             thread.start();
 
             mainWindow = new MainWindow(primaryStage, logic);
+            reminderWindow = new ReminderWindow();
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            reminderWindow.show();
+
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
