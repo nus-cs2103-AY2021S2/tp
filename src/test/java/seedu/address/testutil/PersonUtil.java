@@ -48,7 +48,8 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getSize().ifPresent(phone -> sb.append(PREFIX_SIZE).append(phone.value).append(" "));
         descriptor.getColour().ifPresent(colour -> sb.append(PREFIX_COLOUR).append(colour.colour).append(" "));
-        descriptor.getDressCode().ifPresent(dresscode -> sb.append(PREFIX_DRESSCODE).append(dresscode.value).append(" "));
+        descriptor.getDressCode().ifPresent(dresscode -> sb.append(PREFIX_DRESSCODE)
+                .append(dresscode.value).append(" "));
 
         if (descriptor.getDescriptions().isPresent()) {
             Set<Description> descriptions = descriptor.getDescriptions().get();

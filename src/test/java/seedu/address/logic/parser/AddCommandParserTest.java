@@ -88,23 +88,18 @@ public class AddCommandParserTest {
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB,
                 expectedMessage);
-
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_SIZE_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB,
                 expectedMessage);
-
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + VALID_COLOUR_BOB + DRESSCODE_DESC_BOB,
                 expectedMessage);
-
         // missing address prefix
         assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + VALID_DRESSCODE_BOB,
                 expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_SIZE_BOB + VALID_COLOUR_BOB + VALID_DRESSCODE_BOB,
                 expectedMessage);
@@ -113,29 +108,21 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-
         assertParseFailure(parser, INVALID_NAME_DESC + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
-
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_SIZE_DESC + COLOUR_DESC_BOB  + DRESSCODE_DESC_BOB
-                + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Size.MESSAGE_CONSTRAINTS);
-
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_SIZE_DESC + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB
+                + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + INVALID_COLOUR_DESC + DRESSCODE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Colour.MESSAGE_CONSTRAINTS);
-
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + INVALID_DRESSCODE_DESC
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, DressCode.MESSAGE_CONSTRAINTS);
-
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB
                 + INVALID_DESCRIPTION_DESC + VALID_DESCRIPTION_FRIEND, Description.MESSAGE_CONSTRAINTS);
-
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + SIZE_DESC_BOB + COLOUR_DESC_BOB + INVALID_DRESSCODE_DESC,
                 Name.MESSAGE_CONSTRAINTS);
-
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
                 + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND,
