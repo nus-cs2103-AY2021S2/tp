@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_INTERVAL;
 
 import java.time.LocalDate;
 import java.util.stream.Stream;
@@ -27,7 +29,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
     public AddEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_REPEATABLE_INTERVAL, PREFIX_REPEATABLE_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_REPEATABLE_INTERVAL,
+                        PREFIX_REPEATABLE_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_REPEATABLE_INTERVAL, PREFIX_REPEATABLE_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));

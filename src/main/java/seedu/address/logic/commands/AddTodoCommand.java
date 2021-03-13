@@ -58,7 +58,7 @@ public class AddTodoCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_DUPLICATE_TODO);
             }
         }
-        
+
         projectToEdit.addTodo(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd));
