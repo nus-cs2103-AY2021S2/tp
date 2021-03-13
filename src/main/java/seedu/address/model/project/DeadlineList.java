@@ -31,7 +31,7 @@ public class DeadlineList {
         this.deadlines.addAll(deadlines);
     }
 
-    public List<CompletableDeadline> getCompletableTasks() {
+    public List<CompletableDeadline> getDeadlines() {
         return this.deadlines;
     }
 

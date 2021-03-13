@@ -31,7 +31,7 @@ public class TodoList {
         this.todos.addAll(todos);
     }
 
-    public List<CompletableTodo> getCompletableTasks() {
+    public List<CompletableTodo> getTodos() {
         return this.todos;
     }
 
