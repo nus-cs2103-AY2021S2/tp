@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 
 public class ThemeManagerTest {
 
