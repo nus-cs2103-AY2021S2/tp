@@ -93,6 +93,7 @@ public class ExpiryDate {
 
     /**
      * Compares between 2 ExpiryDate objects by seeing which item expires earlier
+     *
      * @param anotherExpiryDate ExpiryDate object to be compared to this
      * @return an integer to show which ExpiryDate is greater
      */

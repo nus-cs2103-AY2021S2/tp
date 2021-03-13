@@ -86,6 +86,7 @@ public interface Model {
      * Replaces every item in StoreMando's uniqueItemList with items in {@code itemList}.
      */
     void setItems(List<Item> itemList);
+
     /**
      * Returns an unmodifiable view of the filtered item list
      */
@@ -105,6 +106,7 @@ public interface Model {
 
     /**
      * Sorts the list
+     *
      * @param comparator
      */
     void updateSortedItemList(Comparator<Item> comparator);

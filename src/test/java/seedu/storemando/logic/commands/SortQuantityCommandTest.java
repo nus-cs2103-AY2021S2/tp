@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
-import seedu.storemando.model.item.Item;
 
 class SortQuantityCommandTest {
 

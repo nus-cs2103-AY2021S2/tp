@@ -1,6 +1,7 @@
 package seedu.storemando.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
@@ -34,6 +35,7 @@ class SortExpiryDateCommandTest {
         assertCommandFailure(new SortExpiryDateCommand(), model,
             SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
     }
+
     @Test
     void execute_sortSortedStoreMando_success() {
         Model model = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());

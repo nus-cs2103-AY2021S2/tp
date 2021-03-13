@@ -6,7 +6,6 @@ import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuc
 
 import org.junit.jupiter.api.Test;
 
-
 import seedu.storemando.logic.commands.SortCommand;
 import seedu.storemando.logic.commands.SortExpiryDateCommand;
 import seedu.storemando.logic.commands.SortQuantityCommand;

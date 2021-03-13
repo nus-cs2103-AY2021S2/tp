@@ -12,7 +12,7 @@ import seedu.storemando.model.item.Item;
 public class SortExpiryDateCommand extends SortCommand {
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getFilteredItemList();
 
