@@ -16,16 +16,9 @@ import seedu.address.model.tag.Tag;
 public class Client {
 
     // Identity fields
-<<<<<<< HEAD:src/main/java/seedu/address/model/person/Person.java
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
-    private final Remark remark;
-=======
     private Name name;
     private Phone phone;
     private Email email;
->>>>>>> 927734c55b70b76bddffd94916e0fcf0419d400d:src/main/java/seedu/address/model/client/Client.java
 
     // Data fields
     private Address address;
@@ -34,11 +27,7 @@ public class Client {
     /**
      * Every field must be present and not null.
      */
-<<<<<<< HEAD:src/main/java/seedu/address/model/person/Person.java
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-=======
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
->>>>>>> 927734c55b70b76bddffd94916e0fcf0419d400d:src/main/java/seedu/address/model/client/Client.java
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -103,22 +92,12 @@ public class Client {
             return false;
         }
 
-<<<<<<< HEAD:src/main/java/seedu/address/model/person/Person.java
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getRemark().equals(getRemark())
-                && otherPerson.getTags().equals(getTags());
-=======
         Client otherClient = (Client) other;
         return otherClient.getName().equals(getName())
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
                 && otherClient.getTags().equals(getTags());
->>>>>>> 927734c55b70b76bddffd94916e0fcf0419d400d:src/main/java/seedu/address/model/client/Client.java
     }
 
     @Override
