@@ -21,7 +21,7 @@ public class SmartLibBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code SmartLib} that we are building.
+     * Adds a new {@code Reader} to the {@code SmartLib} that we are building.
      */
     public SmartLibBuilder withReader(Reader reader) {
         smartLib.addReader(reader);

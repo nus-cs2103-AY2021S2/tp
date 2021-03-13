@@ -45,7 +45,7 @@ public interface Model {
     void setSmartLibFilePath(Path smartLibFilePath);
 
     /**
-     * Replaces smartlib's data with the data in {@code smartlib}.
+     * Replaces smartlib's data with the data in {@code smartLib}.
      */
     void setSmartLib(ReadOnlySmartLib smartLib);
 

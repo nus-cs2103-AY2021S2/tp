@@ -14,7 +14,7 @@ import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code SmartLib} with sample data.
  */
 public class SampleDataUtil {
     public static Reader[] getSampleReaders() {

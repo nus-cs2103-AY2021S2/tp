@@ -11,7 +11,7 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.tag.Tag;
 
 /**
- * Represents a reader in the address book.
+ * Represents a reader in SmartLib.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reader {
@@ -62,8 +62,8 @@ public class Reader {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both readers have the same name.
+     * This defines a weaker notion of equality between two readers.
      */
     public boolean isSameReader(Reader otherReader) {
         if (otherReader == this) {
@@ -75,8 +75,8 @@ public class Reader {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both readers have the same identity and data fields.
+     * This defines a stronger notion of equality between two readers.
      */
     @Override
     public boolean equals(Object other) {

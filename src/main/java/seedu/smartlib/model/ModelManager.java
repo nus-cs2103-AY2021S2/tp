@@ -14,7 +14,7 @@ import seedu.smartlib.commons.core.LogsCenter;
 import seedu.smartlib.model.reader.Reader;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of SmartLib's data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,15 +24,15 @@ public class ModelManager implements Model {
     private final FilteredList<Reader> filteredReaders;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given SmartLib and userPrefs.
      */
-    public ModelManager(ReadOnlySmartLib addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySmartLib smartLib, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(smartLib, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with SmartLib: " + smartLib + " and user prefs " + userPrefs);
 
-        this.smartLib = new SmartLib(addressBook);
+        this.smartLib = new SmartLib(smartLib);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredReaders = new FilteredList<>(this.smartLib.getReaderList());
     }
@@ -76,7 +76,7 @@ public class ModelManager implements Model {
         userPrefs.setSmartLibFilePath(smartLibFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== SmartLib ================================================================================
 
     @Override
     public void setSmartLib(ReadOnlySmartLib smartLib) {
@@ -114,10 +114,6 @@ public class ModelManager implements Model {
 
     //=========== Filtered Person List Accessors =============================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
     public ObservableList<Reader> getFilteredReaderList() {
         return filteredReaders;
