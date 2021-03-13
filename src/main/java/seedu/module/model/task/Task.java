@@ -22,17 +22,20 @@ public class Task {
 
     // Data fields
     private final Description description;
+    private final DoneStatus doneStatus;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Deadline deadline, Module module, Description description, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, module, description, tags);
+    public Task(Name name, Deadline deadline, Module module, Description description,
+                DoneStatus doneStatus, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, module, description, doneStatus, tags);
         this.name = name;
         this.deadline = deadline;
         this.module = module;
         this.description = description;
+        this.doneStatus = doneStatus;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +55,10 @@ public class Task {
         return description;
     }
 
+    public DoneStatus getDoneStatus() {
+        return doneStatus;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -61,7 +68,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if both tasks have the same name and same module code.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
@@ -70,7 +77,8 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && otherTask.getName().equals(getName())
+                && otherTask.getModule().equals(getModule());
     }
 
     /**
@@ -92,25 +100,29 @@ public class Task {
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getModule().equals(getModule())
                 && otherTask.getDescription().equals(getDescription())
+                && otherTask.getDoneStatus().equals(getDoneStatus())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, module, description, tags);
+        return Objects.hash(name, deadline, module, description, doneStatus, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Name: ")
+                .append(getName())
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Module: ")
                 .append(getModule())
                 .append("; Description: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Completion Status: ")
+                .append(getDoneStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

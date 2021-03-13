@@ -1,21 +1,15 @@
 package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.module.commons.core.Messages;
-import seedu.module.commons.core.index.Index;
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.NameContainsKeywordsPredicate;
 import seedu.module.model.task.Task;
 
 /**
@@ -63,12 +57,10 @@ public class FindTagCommand extends Command {
                 listWithTag.add(t);
             }
         }
-        if (listWithTag.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_NO_TASK_WITH_TAG);
-        }
 
         model.updateFilteredTaskList(predicate);
-        return new CommandResult(String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+        return new CommandResult(String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW,
+                model.getFilteredTaskList().size()));
     }
 
     @Override

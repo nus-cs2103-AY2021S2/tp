@@ -2,12 +2,9 @@ package seedu.module.logic.parser;
 
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
-
 import seedu.module.logic.commands.FindTagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;
-import seedu.module.model.task.NameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindTagCommand object
  */

@@ -4,11 +4,13 @@
     "deadline": "2021-02-01 12:00",
     "module": "CS3243",
     "description": "hmmm",
+    "doneStatus": "false",
     "tagged": [ "median" ]
   }, {
     "name": "Quiz",
     "deadline": "2021-01-12 13:00",
-    "module": "ST2131",
-    "description": "Is it easy?"
+    "module": "CS3243",
+    "description": "Is it easy?",
+    "doneStatus": "false"
   } ]
 }
