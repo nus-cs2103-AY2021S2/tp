@@ -24,12 +24,8 @@
       </HBox>
       <Label fx:id="rating" styleClass="cell_small_label" text="\\$rating" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-<<<<<<< HEAD
       <Label fx:id="review" styleClass="cell_small_label" text="\$review" />
-=======
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <FlowPane fx:id="tags"/>
->>>>>>> master
     </VBox>
       <rowConstraints>
          <RowConstraints />

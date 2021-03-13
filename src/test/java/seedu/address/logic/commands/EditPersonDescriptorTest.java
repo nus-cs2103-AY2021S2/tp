@@ -6,14 +6,9 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-<<<<<<< HEAD
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REVIEW_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-=======
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RATING_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REVIEW_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
->>>>>>> master
 
 import org.junit.jupiter.api.Test;
 

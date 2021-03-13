@@ -3,12 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-<<<<<<< HEAD
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REVIEW;
-=======
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
->>>>>>> master
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -26,12 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-<<<<<<< HEAD
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Review;
-=======
 import seedu.address.model.person.Rating;
->>>>>>> master
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,23 +38,13 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-<<<<<<< HEAD
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_RATING + "PHONE] "
             + "[" + PREFIX_REVIEW + "REVIEW] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_REVIEW + "johndoe@example.com";
-=======
-            + "[" + PREFIX_RATING + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_RATING + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
->>>>>>> master
+            + PREFIX_REVIEW + "I like this food a lot!";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -112,21 +94,12 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-<<<<<<< HEAD
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Review updatedReview = editPersonDescriptor.getReview().orElse(personToEdit.getReview());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedReview, updatedAddress, updatedTags);
-=======
         Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Review updatedEmail = editPersonDescriptor.getReview().orElse(personToEdit.getReview());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedRating, updatedEmail, updatedAddress, updatedTags);
->>>>>>> master
     }
 
     @Override
@@ -153,13 +126,8 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-<<<<<<< HEAD
-        private Phone phone;
-        private Review review;
-=======
         private Rating rating;
-        private Email email;
->>>>>>> master
+        private Review review;
         private Address address;
         private Set<Tag> tags;
 
@@ -171,13 +139,8 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-<<<<<<< HEAD
-            setPhone(toCopy.phone);
-            setReview(toCopy.review);
-=======
             setRating(toCopy.rating);
-            setEmail(toCopy.email);
->>>>>>> master
+            setReview(toCopy.review);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -186,11 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-<<<<<<< HEAD
-            return CollectionUtil.isAnyNonNull(name, phone, review, address, tags);
-=======
-            return CollectionUtil.isAnyNonNull(name, rating, email, address, tags);
->>>>>>> master
+            return CollectionUtil.isAnyNonNull(name, rating, review, address, tags);
         }
 
         public void setName(Name name) {
@@ -258,13 +217,8 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-<<<<<<< HEAD
-                    && getPhone().equals(e.getPhone())
-                    && getReview().equals(e.getReview())
-=======
                     && getRating().equals(e.getRating())
-                    && getEmail().equals(e.getEmail())
->>>>>>> master
+                    && getReview().equals(e.getReview())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

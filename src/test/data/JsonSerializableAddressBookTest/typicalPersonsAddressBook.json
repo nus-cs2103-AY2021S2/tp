@@ -2,79 +2,44 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
-<<<<<<< HEAD
-    "phone" : "94351253",
     "review" : "alice@example.com",
-=======
     "rating" : "3",
-    "email" : "alice@example.com",
->>>>>>> master
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "WESTERN" ]
   }, {
     "name" : "Benson Meier",
-<<<<<<< HEAD
-    "phone" : "98765432",
     "review" : "johnd@example.com",
-=======
     "rating" : "2",
-    "email" : "johnd@example.com",
->>>>>>> master
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "VEGAN", "DESSERT" ]
   }, {
     "name" : "Carl Kurz",
-<<<<<<< HEAD
-    "phone" : "95352563",
     "review" : "heinz@example.com",
-=======
     "rating" : "1",
-    "email" : "heinz@example.com",
->>>>>>> master
     "address" : "wall street",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
-<<<<<<< HEAD
-    "phone" : "87652533",
     "review" : "cornelia@example.com",
-=======
     "rating" : "5",
-    "email" : "cornelia@example.com",
->>>>>>> master
     "address" : "10th street",
     "tagged" : [ "FASTFOOD" ]
   }, {
     "name" : "Elle Meyer",
-<<<<<<< HEAD
-    "phone" : "9482224",
     "review" : "werner@example.com",
-=======
     "rating" : "2",
-    "email" : "werner@example.com",
->>>>>>> master
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-<<<<<<< HEAD
-    "phone" : "9482427",
     "review" : "lydia@example.com",
-=======
     "rating" : "1",
-    "email" : "lydia@example.com",
->>>>>>> master
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-<<<<<<< HEAD
-    "phone" : "9482442",
     "review" : "anna@example.com",
-=======
     "rating" : "0",
-    "email" : "anna@example.com",
->>>>>>> master
     "address" : "4th street",
     "tagged" : [ ]
   } ]

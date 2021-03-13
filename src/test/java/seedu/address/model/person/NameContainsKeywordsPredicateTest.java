@@ -66,18 +66,10 @@ public class NameContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-<<<<<<< HEAD
-        // Keywords match phone, review and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "Chicken is not so good", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withReview("alice@email.com").withAddress("Main Street").build()));
-=======
         // Keywords match rating, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withRating("2")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
->>>>>>> master
+                .withReview("alice@email.com").withAddress("Main Street").build()));
     }
 
     @Test
@@ -113,6 +105,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match tag
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withRating("2")
-                .withEmail("alice@email.com").withAddress("Main Street").withTags("FastFood").build()));
+                .withReview("alice@email.com").withAddress("Main Street").withTags("FastFood").build()));
     }
 }

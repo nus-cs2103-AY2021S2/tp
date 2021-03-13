@@ -1,23 +1,13 @@
 {
   "persons": [ {
     "name": "Valid Person",
-<<<<<<< HEAD
-    "phone": "9482424",
-    "review": "hans@example.com",
-    "address": "4th street"
-  }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "review": "hans@example.com",
-=======
     "rating": "4",
-    "email": "hans@example.com",
+    "review": "hans@example.com",
     "address": "4th street"
   }, {
     "name": "Person With Invalid Rating Field",
     "rating": "948asdf2424",
-    "email": "hans@example.com",
->>>>>>> master
+    "review": "hans@example.com",
     "address": "4th street"
   } ]
 }
