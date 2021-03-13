@@ -23,7 +23,7 @@ public class AddGroupCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the group of the specified name with the"
             + "specified persons indicated by the index numbers used in the last person listing. If group exists,"
-            + "add people into group if they were not in it.  \n"
+            + "add people into group if they are not in it.  \n"
             + "Parameters: " + PREFIX_NAME + "GROUP_NAME (must be alphanumeric only) "
             + PREFIX_PERSONS + "[INDEX]\n"
             + "Example: " + COMMAND_WORD + " "

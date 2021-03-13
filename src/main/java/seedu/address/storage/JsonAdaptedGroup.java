@@ -28,7 +28,7 @@ public class JsonAdaptedGroup {
      */
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("name") String groupName,
-                            @JsonProperty("persons")List<String> personNames) {
+            @JsonProperty("persons")List<String> personNames) {
         this.groupName = groupName;
 
         if (personNames != null) {
@@ -48,7 +48,8 @@ public class JsonAdaptedGroup {
 
     /**
      * Converts this Jackson-friendly adapted group object into the model's {@code Group} object.
-     *
+     * Requires list of person to construct group list.
+     * @param personList actual personList serialised from json file.
      * @throws IllegalValueException if there were any data constraints violated in the adapted group.
      */
     public Group toModelType(List<Person> personList) throws IllegalValueException {
@@ -66,7 +67,9 @@ public class JsonAdaptedGroup {
                 throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
             }
             Person person;
-            person = personList.stream().filter(x->x.getName().toString().equals(personName)).findFirst().get();
+            person = personList.stream().filter(x->x.getName()
+                    .toString().equals(personName))
+                    .findFirst().get();
             if (person == null) {
                 throw new IllegalValueException(MESSAGE_INVALID_PERSON);
             }

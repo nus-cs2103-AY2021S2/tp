@@ -119,7 +119,7 @@ public class ModelManager implements Model {
     @Override
     public void addGroup(Group group) {
         addressBook.addGroup(group);
-        updateFilteredPersonList(x->group.getPersons().contains(x));
+        updateFilteredPersonList(x -> group.getPersons().contains(x));
     }
 
     @Override
@@ -136,7 +136,7 @@ public class ModelManager implements Model {
     @Override
     public void setGroup(Name groupName, Group editedGroup) {
         addressBook.setGroup(groupName, editedGroup);
-        updateFilteredPersonList(x->editedGroup.getPersons().contains(x));
+        updateFilteredPersonList(x -> editedGroup.getPersons().contains(x));
     }
 
     //=========== Filtered Person List Accessors =============================================================
