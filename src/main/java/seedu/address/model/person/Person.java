@@ -28,16 +28,14 @@ public class Person { // todo will be refactored to "Order" from "Person"?
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<OrderDescription> orderDescriptions) {
-        requireAllNonNull(name, phone, email, address, tags); // todo add orderDesc
+    public Person(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags, orderDescriptions);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        if (orderDescriptions != null) { // todo remove
-            this.orderDescriptions.addAll(orderDescriptions);
-        }
+        this.orderDescriptions.addAll(orderDescriptions);
     }
 
     public Name getName() {

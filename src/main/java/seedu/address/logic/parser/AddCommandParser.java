@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<OrderDescription> orderDescriptionSet = ParserUtil.parseOrderDescriptions(argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList, orderDescriptionSet);
+        Person person = new Person(name, phone, email, address, orderDescriptionSet, tagList);
 
         return new AddCommand(person);
     }

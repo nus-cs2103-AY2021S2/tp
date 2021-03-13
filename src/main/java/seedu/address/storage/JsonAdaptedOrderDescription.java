@@ -6,20 +6,19 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.OrderDescription;
 
 
-// todo remove all references to Tag in orderDesc related editted files
 public class JsonAdaptedOrderDescription {
     private final String orderDescription;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedOrderDescription} with the given {@code orderDescription}.
      */
     @JsonCreator
-    public JsonAdaptedOrderDescription(String tagName) {
-        this.orderDescription = tagName;
+    public JsonAdaptedOrderDescription(String orderDescription) {
+        this.orderDescription = orderDescription;
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code orderDescription} into this class for Jackson use.
      */
     public JsonAdaptedOrderDescription(OrderDescription source) {
         orderDescription = source.value;
@@ -31,7 +30,7 @@ public class JsonAdaptedOrderDescription {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted OrderDescription object into the model's {@code OrderDescription} object.
      *
      */
     public OrderDescription toModelType() throws IllegalValueException {

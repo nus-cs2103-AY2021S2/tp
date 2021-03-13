@@ -22,28 +22,28 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"),
-                getOrderDescriptionSet("2 x Chocolate Cake")),
+                    getOrderDescriptionSet("2 x Chocolate Cake"), getTagSet("friends")
+            ),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"),
-                getOrderDescriptionSet("2 x Vanilla Cake")),
+                    getOrderDescriptionSet("2 x Vanilla Cake"), getTagSet("colleagues", "friends")
+            ),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"),
-                getOrderDescriptionSet("2 x Chocolate Cake", "3 x Kiwi Cake")),
+                    getOrderDescriptionSet("2 x Chocolate Cake", "3 x Kiwi Cake"), getTagSet("neighbours")
+            ),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"),
-                getOrderDescriptionSet("2 x Chocolate Cake")),
+                    getOrderDescriptionSet("2 x Chocolate Cake"), getTagSet("family")
+            ),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"),
-                getOrderDescriptionSet("1 x Strawberry Cake", "1 x Chocolate Vanilla Cake", "1 x Berries Cake")),
+                    getOrderDescriptionSet("1 x Strawberry Cake", "1 x Chocolate Vanilla Cake", "1 x Berries Cake"), getTagSet("classmates")
+            ),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"),
-                getOrderDescriptionSet("1 x Black Forest Cake")),
+                    getOrderDescriptionSet("1 x Black Forest Cake"), getTagSet("colleagues")
+            ),
         };
     }
 
