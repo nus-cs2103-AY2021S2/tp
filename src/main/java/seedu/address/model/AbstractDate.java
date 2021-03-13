@@ -53,6 +53,14 @@ public abstract class AbstractDate {
         }
     }
 
+    /**
+     * @param dateText A String containing date
+     * @return false if date is invalid otherwise true
+     */
+    public static boolean isValidDate(String dateText) {
+        return parseDate(dateText) != null;
+    }
+
     @Override
     public String toString() {
         return value.format(TO_STRING_FORMATTER);

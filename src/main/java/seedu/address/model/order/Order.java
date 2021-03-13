@@ -15,6 +15,7 @@ import seedu.address.model.customer.CustomerId;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Order {
+
     // Identity fields
     // Primary key for Order
     private final OrderId orderId;
@@ -128,4 +129,26 @@ public class Order {
                 && otherOrder.getCompletedDate().equals(getCompletedDate())
                 && otherOrder.getCheeses().equals(getCheeses());
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        builder.append(getOrderId())
+            .append("; Cheese Type: ")
+            .append(getCheeseType())
+            .append("; Quantity: ")
+            .append(getQuantity())
+            .append("; Order Date: ")
+            .append(getOrderDate())
+            .append("; Completed Date: ")
+            .append(getCompletedDate())
+            .append("; Customer ID: ")
+            .append(getCustomerId())
+            .append("; Cheese IDs: ")
+            .append(getCheeses());
+
+        return builder.toString();
+    }
+
 }

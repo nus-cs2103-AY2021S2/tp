@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.HOON;
 import static seedu.address.testutil.TypicalCustomers.IDA;
-import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;

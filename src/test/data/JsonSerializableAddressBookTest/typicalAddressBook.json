@@ -49,5 +49,35 @@
     "address" : "4th street",
     "customerId" : 7,
     "tagged" : [ ]
+  } ],
+  "cheeses": [ {
+    "cheeseId": 1,
+    "cheeseType": "Camembert",
+    "manufactureDate": "2021-03-04 07:00",
+    "maturityDate": "2021-04-04 07:00",
+    "expiryDate": "2022-03-04 06:00"
+  }, {
+    "cheeseId": 2,
+    "cheeseType": "Feta",
+    "manufactureDate": "2021-03-06 07:00",
+    "maturityDate": "2021-04-06 07:00",
+    "expiryDate": "2023-04-04 06:00"
+  } ],
+  "orders": [ {
+    "orderId": 1,
+    "cheeseType": "Camembert",
+    "quantity": 1,
+    "orderDate": "2021-02-05 07:00",
+    "completedDate": "2022-02-10 13:00",
+    "customerId": 1,
+    "cheeseIds": []
+  }, {
+    "orderId": 2,
+    "cheeseType": "Feta",
+    "quantity": 5,
+    "orderDate": "2021-03-06 08:00",
+    "completedDate": "2022-03-06 10:00",
+    "customerId": 2,
+    "cheeseIds": []
   } ]
 }

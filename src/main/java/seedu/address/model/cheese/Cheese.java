@@ -91,4 +91,21 @@ public class Cheese {
             && otherCheese.getExpiryDate().equals(getExpiryDate());
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        builder.append(getCheeseId())
+            .append("; Cheese Type: ")
+            .append(getCheeseType())
+            .append("; Manufacture Date: ")
+            .append(getManufactureDate())
+            .append("; Maturity Date: ")
+            .append(getMaturityDate())
+            .append("; Expiry Date: ")
+            .append(getExpiryDate());
+
+        return builder.toString();
+    }
+
 }
