@@ -9,46 +9,45 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
-    public final String tagName;
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be of displayed categories.";
+    public final TagCategories tagCategory;
 
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tagCategory A valid tag name.
      */
-    public Tag(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public Tag(String tagCategory) {
+        requireNonNull(tagCategory);
+
+        checkArgument(isValidTagName(tagCategory), MESSAGE_CONSTRAINTS);
+        this.tagCategory = TagCategories.find(tagCategory);
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
-    public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidTagName(String tagCategory) {
+        return TagCategories.matches(tagCategory) && !(tagCategory.toLowerCase().equals("invalid"));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+                && tagCategory.equals(((Tag) other).tagCategory)); // state check
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return tagCategory.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + tagCategory.name() + ']';
     }
 
 }
