@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.meeting.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.group.Group;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -23,7 +23,7 @@ public class MeetingBuilder {
     private DateTime terminate;
     private Priority priority;
     private Description description;
-    private Set<Tag> tags;
+    private Set<Group> tags;
 
     /**
      * Creates a {@code MeetingBuilder} with the default details.
@@ -46,7 +46,7 @@ public class MeetingBuilder {
         terminate = meetingToCopy.getTerminate();
         priority = meetingToCopy.getPriority();
         description = meetingToCopy.getDescription();
-        tags = new HashSet<>(meetingToCopy.getTags());
+        tags = new HashSet<>(meetingToCopy.getGroups());
     }
 
     /**
@@ -61,7 +61,7 @@ public class MeetingBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Meeting} that we are building.
      */
     public MeetingBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = SampleDataUtil.getGroupSet(tags);
         return this;
     }
 

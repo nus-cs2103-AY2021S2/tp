@@ -1,7 +1,7 @@
 package seedu.address.model.meeting;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.group.Group;
 
 
 import java.util.HashSet;
@@ -17,8 +17,8 @@ class MeetingTest {
     private static final DateTime TERMINATE = new DateTime("2021-03-11 16:04");
     private static final Priority PRIORITY = new Priority("4");
     private static final Description DESCRIPTION = new Description("This is the time skinnychenpi write this test.");
-    private static final Tag TAG = new Tag("MeetingTest");
-    private Set<Tag> TAGS = new HashSet<>();
+    private static final Group TAG = new Group("MeetingTest");
+    private Set<Group> TAGS = new HashSet<>();
 
     @Test
     public void isSameMeeting() {
