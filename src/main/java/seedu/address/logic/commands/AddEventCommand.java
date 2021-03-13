@@ -34,7 +34,7 @@ public class AddEventCommand extends Command {
     public static final String MESSAGE_EVENT_ADDED_SUCCESS = "New event added: %1$s";
 
     private final Index index;
-    private final Event eventToAdd;
+    private final Event toAdd;
 
 
     /**
@@ -46,9 +46,8 @@ public class AddEventCommand extends Command {
     public AddEventCommand(Index index, Event event) {
         requireAllNonNull(index, event);
 
-
         this.index = index;
-        this.eventToAdd = event;
+        this.toAdd = event;
     }
 
     @Override
@@ -62,15 +61,15 @@ public class AddEventCommand extends Command {
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
-        projectToEdit.addEvent(eventToAdd);
+        projectToEdit.addEvent(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_EVENT_ADDED_SUCCESS, projectToEdit));
+        return new CommandResult(String.format(MESSAGE_EVENT_ADDED_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddEventCommand // instanceof handles nulls
-                && eventToAdd.equals(((AddEventCommand) other).eventToAdd));
+                && toAdd.equals(((AddEventCommand) other).toAdd));
     }
 }
