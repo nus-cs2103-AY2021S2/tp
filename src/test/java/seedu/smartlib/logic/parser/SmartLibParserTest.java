@@ -21,7 +21,7 @@ import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.DeleteReaderCommand;
 import seedu.smartlib.logic.commands.EditCommand;
 import seedu.smartlib.logic.commands.ExitCommand;
-import seedu.smartlib.logic.commands.FindCommand;
+import seedu.smartlib.logic.commands.FindReaderCommand;
 import seedu.smartlib.logic.commands.HelpCommand;
 import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
@@ -73,9 +73,9 @@ public class SmartLibParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindReaderCommand command = (FindReaderCommand) parser.parseCommand(
+                FindReaderCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindReaderCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

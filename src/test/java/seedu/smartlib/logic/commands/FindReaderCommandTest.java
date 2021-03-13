@@ -21,9 +21,9 @@ import seedu.smartlib.model.UserPrefs;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindReaderCommand}.
  */
-public class FindCommandTest {
+public class FindReaderCommandTest {
     private Model model = new ModelManager(getTypicalSmartLib(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalSmartLib(), new UserPrefs());
 
@@ -34,14 +34,14 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindReaderCommand findFirstCommand = new FindReaderCommand(firstPredicate);
+        FindReaderCommand findSecondCommand = new FindReaderCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindReaderCommand findFirstCommandCopy = new FindReaderCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -58,7 +58,27 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noReaderFound() {
         String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        FindReaderCommand command = new FindReaderCommand(predicate);
+        expectedModel.updateFilteredReaderList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredReaderList());
+    }
+
+    @Test
+    public void execute_partialKeyword_noReaderFound() {
+        String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Kur");
+        FindReaderCommand command = new FindReaderCommand(predicate);
+        expectedModel.updateFilteredReaderList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredReaderList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noReaderFound() {
+        String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Hello Hi");
+        FindReaderCommand command = new FindReaderCommand(predicate);
         expectedModel.updateFilteredReaderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredReaderList());
@@ -68,7 +88,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleReadersFound() {
         String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        FindReaderCommand command = new FindReaderCommand(predicate);
         expectedModel.updateFilteredReaderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredReaderList());
