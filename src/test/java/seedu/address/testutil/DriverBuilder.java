@@ -5,7 +5,7 @@ import seedu.address.model.human.Phone;
 import seedu.address.model.human.driver.Driver;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Driver objects.
  */
 public class DriverBuilder {
 
@@ -16,7 +16,7 @@ public class DriverBuilder {
     private Phone phone;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code DriverBuilder} with the default details.
      */
     public DriverBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -24,7 +24,7 @@ public class DriverBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the DriverBuilder with the data of {@code personToCopy}.
      */
     public DriverBuilder(Driver personToCopy) {
         name = personToCopy.getName();
@@ -32,7 +32,7 @@ public class DriverBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Driver} that we are building.
      */
     public DriverBuilder withName(String name) {
         this.name = new Name(name);
@@ -40,7 +40,7 @@ public class DriverBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Driver} that we are building.
      */
     public DriverBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
