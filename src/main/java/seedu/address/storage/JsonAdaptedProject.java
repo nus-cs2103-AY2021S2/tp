@@ -26,7 +26,7 @@ class JsonAdaptedProject {
 
     private final String projectName;
     private final List<JsonAdaptedEvent> eventList = new ArrayList<>();
-    private final List<JsonAdaptedCompletable> completableList = new ArrayList<>();
+    private final List<JsonAdaptedDeadline> completableList = new ArrayList<>();
     private final List<JsonAdaptedPerson> participantsList = new ArrayList<>();
 
     /**
@@ -35,7 +35,7 @@ class JsonAdaptedProject {
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName,
                               @JsonProperty("events") List<JsonAdaptedEvent> eventList,
-                              @JsonProperty("completable") List<JsonAdaptedCompletable> completableList,
+                              @JsonProperty("completable") List<JsonAdaptedDeadline> completableList,
                               @JsonProperty("participants") List<JsonAdaptedPerson> participantsList) {
         this.projectName = projectName;
 
@@ -61,7 +61,7 @@ class JsonAdaptedProject {
         eventList.addAll(source.getEvents().stream()
                 .map(JsonAdaptedEvent::new).collect(Collectors.toList()));
         completableList.addAll(source.getCompletableTasks().stream()
-                .map(JsonAdaptedCompletable::new).collect(Collectors.toList()));
+                .map(JsonAdaptedDeadline::new).collect(Collectors.toList()));
         participantsList.addAll(source.getParticipants().stream()
                 .map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
@@ -78,7 +78,7 @@ class JsonAdaptedProject {
         }
 
         final List<CompletableTodo> projectCompletableTodos = new ArrayList<>();
-        for (JsonAdaptedCompletable completable : completableList) {
+        for (JsonAdaptedDeadline completable : completableList) {
             projectCompletableTodos.add(completable.toModelType());
         }
 

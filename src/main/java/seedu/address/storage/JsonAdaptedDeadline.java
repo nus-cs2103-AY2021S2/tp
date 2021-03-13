@@ -15,7 +15,7 @@ import seedu.address.model.task.todo.Todo;
 /**
  * Jackson-friendly version of {@link CompletableTodo}.
  */
-class JsonAdaptedCompletable {
+class JsonAdaptedDeadline {
     private final String description;
     private final String by;
     private final Boolean isDone;
@@ -25,9 +25,9 @@ class JsonAdaptedCompletable {
      * {@code at} and {@code isDone}.
      */
     @JsonCreator
-    public JsonAdaptedCompletable(@JsonProperty("description")String description,
-                                  @JsonProperty("date") String by,
-                                  @JsonProperty("isDone") Boolean isDone) {
+    public JsonAdaptedDeadline(@JsonProperty("description")String description,
+                               @JsonProperty("date") String by,
+                               @JsonProperty("isDone") Boolean isDone) {
         this.description = description;
         this.by = by;
         this.isDone = isDone;
@@ -36,7 +36,7 @@ class JsonAdaptedCompletable {
     /**
      * Converts a given {@code Event} into this class for Jackson use.
      */
-    public JsonAdaptedCompletable(CompletableTodo source) {
+    public JsonAdaptedDeadline(CompletableTodo source) {
         description = source.getDescription();
         by = source.getStringByDate();
         isDone = source.getIsDone();
