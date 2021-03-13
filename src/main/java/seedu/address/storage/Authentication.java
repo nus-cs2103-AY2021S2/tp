@@ -114,10 +114,6 @@ public class Authentication {
             logger.info("Failed to compress data .json file into a zip file");
             throw e;
         }
-
-
-
-
     }
 
     /**
