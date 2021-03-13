@@ -8,9 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_HUSB
 import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COLOUR_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DRESSCODE_DESC;
-
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DRESSCODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SIZE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -19,12 +18,10 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_BOB;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -124,7 +121,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_SIZE_DESC + COLOUR_DESC_BOB  + DRESSCODE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Size.MESSAGE_CONSTRAINTS);
 
-        // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + INVALID_COLOUR_DESC + DRESSCODE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Colour.MESSAGE_CONSTRAINTS);
 
