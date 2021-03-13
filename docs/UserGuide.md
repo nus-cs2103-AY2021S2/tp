@@ -70,20 +70,21 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 ### 1.1 Input weight, height and ideal weight
 
 On application's first launch, the user is prompted to enter his/her height, weight and ideal weight.
+Other commands will be unavailable until this command is first input.
 
-**Format:** `bmi h/height(cm) w/weight(kg) i/ideal_weight(kg)`
+**Format:** `bmi g/gender a/age h/height(cm) w/weight(kg) i/ideal_weight(kg)`
 
-**Example:** `bmi h/170 w/70 i/80`
+**Example:** `bmi g/M a/43 h/170 w/70 i/80`
 
 **Expected output:**
 
-BMI (h: 170cm, w: 70kg, i: 80kg) has been saved.
+Success in updating user information
 
 ### 1.2 Query weight, height and BMI
 
 The user can query their weight and height everyday to see their progress.
 
-**Format:** `bmi query`
+**Format:** `bmi_query`
 
 **Expected output:**
 
@@ -95,16 +96,16 @@ BMI: 34.6 (High Risk)
 
 ### 1.3 Update weight, height and ideal weight
 
-The user can query their weight and height everyday to see what they have input. 
+The user can update their weight and height everyday to track their progress. 
 This is recommended, so the user will have a more accurate view of their BMI status.
 
-**Format:** `bmi update h/height(cm) w/weight(kg) i/ideal_weight(kg)`
+**Format:** `bmi_update g/gender a/age h/height(cm) w/weight(kg) i/ideal_weight(kg)`
 
-**Example:** `bmi update h/170 w/70 i/80`
+**Example:** `bmi_update g/M a/43 h/170 w/70 i/80`
 
 **Expected output:**
 
-BMI (h: 170cm, w: 70kg, i: 80kg) updated for current user.
+Success in updating user information
 
 ## 2. Diet Plan Selector
 
