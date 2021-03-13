@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 
 public class FindContactCommandParserTest {
 
@@ -24,7 +25,9 @@ public class FindContactCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindContactCommand expectedFindContactCommand =
-                new FindContactCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindContactCommand(
+                        new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
+                        new TagsContainKeywordsPredicate(Arrays.asList("A", "B")));
         assertParseSuccess(parser, "Alice Bob", expectedFindContactCommand);
 
         // multiple whitespaces between keywords

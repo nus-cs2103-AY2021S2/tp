@@ -30,6 +30,7 @@ import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
 import seedu.dictionote.testutil.ContactUtil;
@@ -85,11 +86,18 @@ public class DictionoteParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+    public void parseCommand_findContact() throws Exception {
+        List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
+        List<String> tagKeywords = Arrays.asList("friends", "family", "tutors");
+
         FindContactCommand command = (FindContactCommand) parser.parseCommand(
-            FindContactCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindContactCommand(new NameContainsKeywordsPredicate(keywords)), command);
+            FindContactCommand.COMMAND_WORD
+                    + " "
+                    + nameKeywords.stream().collect(Collectors.joining(" ")));
+
+        assertEquals(new FindContactCommand(
+                new NameContainsKeywordsPredicate(nameKeywords),
+                new TagsContainKeywordsPredicate(tagKeywords)), command);
     }
 
     @Test

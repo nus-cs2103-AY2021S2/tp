@@ -20,6 +20,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -30,19 +31,23 @@ public class FindContactCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
+        NameContainsKeywordsPredicate firstNamePredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
+        NameContainsKeywordsPredicate secondNamePredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        TagsContainKeywordsPredicate firstTagsPredicate =
+                new TagsContainKeywordsPredicate(Collections.singletonList("first"));
+        TagsContainKeywordsPredicate secondTagsPredicate =
+                new TagsContainKeywordsPredicate(Collections.singletonList("second"));
 
-        FindContactCommand findFirstCommand = new FindContactCommand(firstPredicate);
-        FindContactCommand findSecondCommand = new FindContactCommand(secondPredicate);
+        FindContactCommand findFirstCommand = new FindContactCommand(firstNamePredicate, firstTagsPredicate);
+        FindContactCommand findSecondCommand = new FindContactCommand(secondNamePredicate, secondTagsPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindContactCommand findFirstCommandCopy = new FindContactCommand(firstPredicate);
+        FindContactCommand findFirstCommandCopy = new FindContactCommand(firstNamePredicate, firstTagsPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -56,21 +61,29 @@ public class FindContactCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noContactFound() {
         String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindContactCommand command = new FindContactCommand(predicate);
-        expectedModel.updateFilteredContactList(predicate);
+
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
+        TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate(" ");
+
+        FindContactCommand command = new FindContactCommand(namePredicate, tagsPredicate);
+        expectedModel.updateFilteredContactList(namePredicate.and(tagsPredicate));
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredContactList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleContactsFound() {
         String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindContactCommand command = new FindContactCommand(predicate);
-        expectedModel.updateFilteredContactList(predicate);
+
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
+        TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate(" ");
+
+        FindContactCommand command = new FindContactCommand(namePredicate, tagsPredicate);
+        expectedModel.updateFilteredContactList(namePredicate.and(tagsPredicate));
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredContactList());
     }
@@ -78,7 +91,14 @@ public class FindContactCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code TagsContainKeywordsPredicate}.
+     */
+    private TagsContainKeywordsPredicate prepareTagsPredicate(String userInput) {
+        return new TagsContainKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

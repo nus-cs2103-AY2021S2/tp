@@ -48,7 +48,7 @@ public class FindContactCommand extends Command {
         requireNonNull(model);
 
         // satisfy both name- and tag-matching.
-        model.updateFilteredContactList(contact -> namePredicate.test(contact) && tagsPredicate.test(contact));
+        model.updateFilteredContactList(namePredicate.and(tagsPredicate));
         return new CommandResult(
                 String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredContactList().size()));
     }
