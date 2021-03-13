@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Task in the address book.
+ * Represents a Task in the planner.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
@@ -21,18 +21,18 @@ public class Task {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(title, phone, email, address, tags);
+    public Task(Title title, Phone phone, Email email, Description description, Set<Tag> tags) {
+        requireAllNonNull(title, phone, email, description, tags);
         this.title = title;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.description = description;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Task {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Description getDescription() {
+        return description;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Task {
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getPhone().equals(getPhone())
                 && otherTask.getEmail().equals(getEmail())
-                && otherTask.getAddress().equals(getAddress())
+                && otherTask.getDescription().equals(getDescription())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, email, address, tags);
+        return Objects.hash(title, phone, email, description, tags);
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Task {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Description: ")
+                .append(getDescription());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

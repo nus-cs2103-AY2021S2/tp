@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' planner file path.
      */
-    Path getAddressBookFilePath();
+    Path getPlannerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' planner file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPlannerFilePath(Path plannerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces planner data with the data in {@code planner}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPlanner(ReadOnlyPlanner planner);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Planner */
+    ReadOnlyPlanner getPlanner();
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the planner.
      */
     boolean hasTask(Task task);
 
     /**
      * Deletes the given task.
-     * The task must exist in the address book.
+     * The task must exist in the planner.
      */
     void deleteTask(Task target);
 
     /**
      * Adds the given task.
-     * {@code task} must not already exist in the address book.
+     * {@code task} must not already exist in the planner.
      */
     void addTask(Task task);
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in the address book.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
+     * {@code target} must exist in the planner.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the planner.
      */
     void setTask(Task target, Task editedTask);
 

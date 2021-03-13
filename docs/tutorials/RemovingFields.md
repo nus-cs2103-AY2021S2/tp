@@ -91,12 +91,14 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 
 ```json
 {
-  "tasks": [ {
-    "title": "Task with invalid title field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "tasks": [
+    {
+      "title": "Task with invalid title field: Ha!ns Mu@ster",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "description": "4th street"
+    }
+  ]
 }
 ```
 
