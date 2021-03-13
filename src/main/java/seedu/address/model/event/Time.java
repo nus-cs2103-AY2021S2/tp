@@ -1,6 +1,5 @@
 package seedu.address.model.event;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
@@ -22,9 +21,10 @@ public class Time {
      * @param time A valid time.
      */
     public Time(String time) {
-        requireNonNull(time);
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        this.time = LocalDateTime.parse(time, TIME_FORMATTER);
+        if (time != null) {
+            this.time = LocalDateTime.parse(time, TIME_FORMATTER);
+        }
     }
 
     public LocalDateTime getTime() {
@@ -35,13 +35,13 @@ public class Time {
      * Returns true if a given string is a valid time.
      */
     public static boolean isValidTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test == null || test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns the time in a string.
      */
     public String toString() {
-        return this.time.format(TIME_FORMATTER);
+        return this.time != null ? this.time.format(TIME_FORMATTER) : "";
     }
 }
