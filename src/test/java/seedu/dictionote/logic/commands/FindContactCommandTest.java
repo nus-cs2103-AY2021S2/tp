@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.dictionote.testutil.TypicalContacts.CARL;
-import static seedu.dictionote.testutil.TypicalContacts.ELLE;
-import static seedu.dictionote.testutil.TypicalContacts.FIONA;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.*;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import java.util.Arrays;
@@ -21,6 +18,7 @@ import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
+import seedu.dictionote.testutil.TypicalContacts;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -61,8 +59,8 @@ public class FindContactCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noContactFound() {
-        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_allContactsFound() {
+        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 7);
 
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
         TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate(" ");
@@ -71,14 +69,14 @@ public class FindContactCommandTest {
         expectedModel.updateFilteredContactList(namePredicate.and(tagsPredicate));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredContactList());
+        assertEquals(TypicalContacts.getTypicalPersons(), model.getFilteredContactList());
     }
 
     @Test
-    public void execute_multipleKeywords_multipleContactsFound() {
+    public void execute_nameKeywords_multipleContactsFound() {
         String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 3);
 
-        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate(" ");
 
         FindContactCommand command = new FindContactCommand(namePredicate, tagsPredicate);
@@ -86,6 +84,34 @@ public class FindContactCommandTest {
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredContactList());
+    }
+
+    @Test
+    public void execute_tagKeywords_multipleContactsFound() {
+        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 3);
+
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
+        TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate("friends");
+
+        FindContactCommand command = new FindContactCommand(namePredicate, tagsPredicate);
+        expectedModel.updateFilteredContactList(namePredicate.and(tagsPredicate));
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredContactList());
+    }
+
+    @Test
+    public void execute_nameAndTagKeywords_multipleContactsFound() {
+        String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 1);
+
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Meier");
+        TagsContainKeywordsPredicate tagsPredicate = prepareTagsPredicate("owesMoney");
+
+        FindContactCommand command = new FindContactCommand(namePredicate, tagsPredicate);
+        expectedModel.updateFilteredContactList(namePredicate.and(tagsPredicate));
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getFilteredContactList());
     }
 
     /**
