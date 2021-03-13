@@ -8,6 +8,9 @@ import java.util.stream.Stream;
 
 import seedu.address.model.task.repeatable.Event;
 
+/**
+ * Represents a list of Events.
+ */
 public class EventList {
 
     private final List<Event> events = new ArrayList<>();
