@@ -9,7 +9,6 @@ public abstract class Human {
     protected final Name name;
     protected final Phone phone;
 
-
     /**
      * Every field must be present and not null.
      */

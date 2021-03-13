@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,8 +21,9 @@ import seedu.address.model.Model;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.person.Address;
-import seedu.address.model.human.person.Email;
 import seedu.address.model.human.person.Person;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,16 +39,17 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_PHONE + "91234567 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+
+    public static final TripDay STUB_TRIPDAY = new TripDay("monday");
+    public static final TripTime STUB_TRIPTIME = new TripTime("2300");
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -95,11 +96,10 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedAddress, STUB_TRIPDAY, STUB_TRIPTIME, updatedTags);
     }
 
     @Override
@@ -127,8 +127,9 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
         private Address address;
+        private TripDay tripDay;
+        private TripTime tripTime;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -140,8 +141,9 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setTripDays(toCopy.tripDay);
+            setTripTimes(toCopy.tripTime);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +151,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, tags);
         }
 
         public void setName(Name name) {
@@ -168,20 +170,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
         public void setAddress(Address address) {
             this.address = address;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setTripDays(TripDay tripDay) {
+            this.tripDay = tripDay;
+        }
+
+        public Optional<TripDay> getTripDays() {
+            return Optional.ofNullable(tripDay);
+        }
+
+        public void setTripTimes(TripTime tripTime) {
+            this.tripTime = tripTime;
+        }
+
+        public Optional<TripTime> getTripTimes() {
+            return Optional.ofNullable(tripTime);
         }
 
         /**
@@ -218,8 +228,9 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getTripDays().equals(e.getTripDays())
+                    && getTripTimes().equals(e.getTripTimes())
                     && getTags().equals(e.getTags());
         }
     }

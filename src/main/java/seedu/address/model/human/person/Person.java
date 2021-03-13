@@ -5,11 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.human.Human;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
+import seedu.address.model.human.driver.Driver;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,30 +20,42 @@ import seedu.address.model.tag.Tag;
  */
 public class Person extends Human {
 
-    // Identity fields
-    private final Email email;
+    public static final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
 
     // Data fields
     private final Address address;
+    private final TripDay tripDay;
+    private final TripTime tripTime;
     private final Set<Tag> tags = new HashSet<>();
+    private Optional<Driver> driver;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
         super(name, phone);
-        requireAllNonNull(email, address, tags);
-        this.email = email;
+        requireAllNonNull(address, tripDay, tripTime, tags);
         this.address = address;
+        this.tripDay = tripDay;
+        this.tripTime = tripTime;
+        this.driver = Optional.empty();
         this.tags.addAll(tags);
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public Address getAddress() {
         return address;
+    }
+
+    public TripDay getTripDay() {
+        return tripDay;
+    }
+
+    public TripTime getTripTime() {
+        return tripTime;
+    }
+
+    public String getDriverStr() {
+        return driver.isEmpty() ? MESSAGE_NO_ASSIGNED_DRIVER : driver.toString();
     }
 
     /**
@@ -82,15 +96,16 @@ public class Person extends Human {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTripDay().equals(getTripDay())
+                && otherPerson.getTripTime().equals(getTripTime())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, address, tripDay, tripTime, tags);
     }
 
     @Override
@@ -99,10 +114,14 @@ public class Person extends Human {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Trip Days: ")
+                .append(getTripDay())
+                .append("; Trip Times: ")
+                .append(getTripTime())
+                .append("; Driver: ")
+                .append(getDriverStr());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

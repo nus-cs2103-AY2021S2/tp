@@ -3,10 +3,11 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAYS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIMES;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,12 +18,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
+
+    public static final TripDay STUB_TRIPDAY = new TripDay("monday");
+    public static final TripTime STUB_TRIPTIME = new TripTime("2300");
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -32,7 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAYS,
+                        PREFIX_TRIPTIMES, PREFIX_TAG);
 
         Index index;
 
@@ -49,12 +56,20 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
+        if (argMultimap.getValue(PREFIX_TRIPDAYS).isPresent()) {
+            editPersonDescriptor.setTripDays(
+                    STUB_TRIPDAY
+            );
+        }
+        if (argMultimap.getValue(PREFIX_TRIPTIMES).isPresent()) {
+            editPersonDescriptor.setTripTimes(
+                    STUB_TRIPTIME
+            );
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
