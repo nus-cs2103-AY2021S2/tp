@@ -8,6 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.todo.Todo;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public class AddTodoCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Submit project report ";
 
-    public static final String MESSAGE_TODO_ADDED_SUCCESS = "New todo added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This todo already exists in CoLAB";
+    public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in this project.";
 
     private final Index index;
     private final Todo toAdd;
@@ -54,9 +55,16 @@ public class AddTodoCommand extends Command {
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
+
+        for (CompletableTodo todo: projectToEdit.getTodos().getTodos()) {
+            if (this.toAdd.equals(todo)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TODO);
+            }
+        }
+        
         projectToEdit.addTodo(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_TODO_ADDED_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
