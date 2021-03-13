@@ -46,9 +46,9 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PATIENT + "1 "
-            + PREFIX_DOCTOR + "Dr. Grey "
-            + PREFIX_TIMESLOT_START + "2021-01-01 00:00 "
-            + PREFIX_TIMESLOT_DURATION + "1H 30M "
+            + PREFIX_DOCTOR + "Dr. Phon "
+            + PREFIX_TIMESLOT_START + "2021-05-08 09:00 "
+            + PREFIX_TIMESLOT_DURATION + "1H 00M "
             + PREFIX_TAG + "severe "
             + PREFIX_TAG + "brainDamage";
 
@@ -56,18 +56,14 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This  already exists in the Appointment list.";
 
-    private final Index patientIndex;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
-     * @param patientIndex of the appointment in the filtered appointment list to edit
      * @param editAppointmentDescriptor details to edit the appointment with
      */
-    public EditAppointmentCommand(Index patientIndex, EditAppointmentDescriptor editAppointmentDescriptor) {
-        requireNonNull(patientIndex);
+    public EditAppointmentCommand(EditAppointmentDescriptor editAppointmentDescriptor) {
         requireNonNull(editAppointmentDescriptor);
 
-        this.patientIndex = patientIndex;
         this.editAppointmentDescriptor = new EditAppointmentDescriptor(editAppointmentDescriptor);
     }
 
@@ -76,11 +72,11 @@ public class EditAppointmentCommand extends Command {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
-        if (patientIndex.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Appointment appointmentToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         if (!appointmentToEdit.hasConflict(editedAppointment) && model.hasConflictingAppointment(editedAppointment)) {
@@ -99,12 +95,12 @@ public class EditAppointmentCommand extends Command {
     private static Appointment createEditedAppointment(Appointment appointmentToEdit, EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
-        Person updatedPatient = editAppointmentDescriptor.getPatient().orElse(appointmentToEdit.getPatient());
+        Index updatedPatientIndex = editAppointmentDescriptor.getPatientIndex().orElse(appointmentToEdit.getPatientIndex());
         String updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
         Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
 
-        return new Appointment(updatedPatient, updatedDoctor, updatedTimeslot, updatedTags);
+        return new Appointment(updatedPatientIndex, updatedDoctor, updatedTimeslot, updatedTags);
     }
 
     @Override
@@ -121,7 +117,7 @@ public class EditAppointmentCommand extends Command {
 
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
-        return patientIndex.equals(e.patientIndex)
+        return index.equals(e.index)
                 && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
     }
 
@@ -130,7 +126,7 @@ public class EditAppointmentCommand extends Command {
      * corresponding field value of the appointment.
      */
     public static class EditAppointmentDescriptor {
-        private Person patient;
+        private Index patientIndex;
         private String doctor;
         private Timeslot timeslot;
         private Set<Tag> tags;
@@ -142,7 +138,7 @@ public class EditAppointmentCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
-            setPatient(toCopy.patient);
+            setPatientIndex(toCopy.patientIndex);
             setDoctor(toCopy.doctor);
             setTimeslot(toCopy.timeslot);
             setTags(toCopy.tags);
@@ -152,15 +148,15 @@ public class EditAppointmentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(patient, doctor, timeslot, tags);
+            return CollectionUtil.isAnyNonNull(patientIndex, doctor, timeslot, tags);
         }
 
-        public void setPatient(Person patient) {
-            this.patient = patient;
+        public void setPatientIndex(Index patientIndex) {
+            this.patientIndex = PatientIndex;
         }
 
-        public Optional<Person> getPatient() {
-            return Optional.ofNullable(patient);
+        public Optional<Index> getPatientIndex() {
+            return Optional.ofNullable(patientIndex);
         }
 
         public void setDoctor(String doctor) {
@@ -211,7 +207,7 @@ public class EditAppointmentCommand extends Command {
             // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return getPatient().equals(e.getPatient())
+            return getPatientIndex().equals(e.getPatientIndex())
                     && getDoctor().equals(e.getDoctor())
                     && getTimeslot().equals(e.getTimeslot())
                     && getTags().equals(e.getTags());
