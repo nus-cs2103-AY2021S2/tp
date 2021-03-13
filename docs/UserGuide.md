@@ -62,36 +62,36 @@ while still having the benefits of a Graphical User Interface (GUI).
 </div>
 
 
-### Adding a person: `add`
+### Adding a customer: `add`
 
-Adds a person to the address book.
+Adds a customer to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PREFERRED_CAR [x/COE_EXPIRY_DATE] [t/TAG]…​`
 
 Note that the `COE_EXPIRY_DATE` is in Year Month Day order with spaces and two digits for the month and day.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A customer can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/Honda City`
 * `add n/Betsy Crowe c/Honda City t/friend e/betsycrowe@example.com x/2011 03 27 a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all customers : `list`
 
-Shows a list of all persons in the system
+Shows a list of all customers in the system
 
 Format: `list`
 
-### Deleting a person : `delete`
+### Deleting a customer : `delete`
 
-Deletes the specified person from the contact list.
+Deletes the specified customer from the contact list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 

@@ -56,7 +56,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user with numerous customer contacts       | list customer by car brand preference | locate customers who prefer a specific car brand easily         |
 | `* *`    | user with numerous ex-customers            | list customers with expiring COE   |  have a list of potential customers who might purchase a new car   |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many customers contacts          | sort customer by name          | locate a person easily                                                 |
+| `*`      | user with many customers contacts          | sort customer by name          | locate a customer easily                                                 |
 | `*`      | user                                       | send customer holiday greetings| maintain cordial relationship with my customer                         | 
 | `*`      | user                                       | track family status of customers| make appropriate recommendations for car type for family              |
 
@@ -133,7 +133,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness (response time within 100ms) in 
+2.  Should be able to hold up to 1000 customers without a noticeable sluggishness (response time within 100ms) in 
     performance for 
     typical 
     usage.
@@ -177,17 +177,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a customer
 
-1. Deleting a person while all persons are being shown
+1. Deleting a customer while all customers are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
