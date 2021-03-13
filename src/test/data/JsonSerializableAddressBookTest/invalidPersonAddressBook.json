@@ -1,8 +1,13 @@
 {
   "persons": [ {
     "name": "Hans Muster",
+<<<<<<< HEAD
     "phone": "9482424",
     "review": " ",
+=======
+    "rating": "4",
+    "email": "invalid@email!3e",
+>>>>>>> master
     "address": "4th street"
   } ]
 }

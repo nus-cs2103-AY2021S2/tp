@@ -47,15 +47,20 @@ Parameter: none
 Example:
 (Refer to mockup)
 
-### Add a food review: add
+### Add a food review: `add`
 
 Adds a food review to the Food Diary.
 
+<<<<<<< HEAD
 Format: `add n/<RESTAURANT NAME> a/ADDRESS re/REVIEW c/CATEGORIES`   
+=======
+Format: `add n/<RESTAURANT NAME> ra/RATING a/ADDRESS d/DESCRIPTION c/CATEGORIES`   
+>>>>>>> master
     
 Parameters:
     
    1. `Name (of restaurant)`
+<<<<<<< HEAD
    2. `Address`
    3. `Review of food experience`
    4. `Categories (tag)`
@@ -63,9 +68,19 @@ Parameters:
 Example:
     
     add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 re/best for Butter Chicken c/Indian Muslim 
+=======
+   2. `Rating`  
+   3. `Address`
+   4. `Description/review`
+   5. `Categories (tag)`
+
+Example:
+    
+    add  n/Al Amaan Restaurant ra/5 a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim 
+>>>>>>> master
     
     
-### Delete a food review: delete
+### Delete a food review: `delete`
     
 Deletes a food review from the Food Diary.
 
@@ -83,7 +98,11 @@ Example:
 
 Action | Format, Examples
 --------|------------------
+<<<<<<< HEAD
 **Add** | `add n/<RESTAURANT NAME> a/ADDRESS re/REVIEW c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 re/best for Butter Chicken c/Indian Muslim`
+=======
+**Add** | `add n/<RESTAURANT NAME> ra/5 a/ADDRESS d/DESCRIPTION c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim`
+>>>>>>> master
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
 

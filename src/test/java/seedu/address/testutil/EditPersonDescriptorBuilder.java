@@ -8,8 +8,12 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+<<<<<<< HEAD
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Review;
+=======
+import seedu.address.model.person.Rating;
+>>>>>>> master
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,8 +37,13 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
+<<<<<<< HEAD
         descriptor.setPhone(person.getPhone());
         descriptor.setReview(person.getReview());
+=======
+        descriptor.setRating(person.getRating());
+        descriptor.setEmail(person.getEmail());
+>>>>>>> master
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }
@@ -48,10 +57,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Rating} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditPersonDescriptorBuilder withRating(String rating) {
+        descriptor.setRating(new Rating(rating));
         return this;
     }
 
