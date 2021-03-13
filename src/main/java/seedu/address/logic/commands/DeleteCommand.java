@@ -26,10 +26,23 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    public static final String MESSAGE_DELETE_PEOPLE_SUCCESS = "Deleted People: %1$s";
+
     private final IndexList targetIndexList;
 
     public DeleteCommand(IndexList targetIndexList) {
         this.targetIndexList = targetIndexList;
+    }
+
+    public static String getResultString(List<Person> peopleToDelete) {
+        if(peopleToDelete.size() == 1) {
+            return String.format(MESSAGE_DELETE_PERSON_SUCCESS, peopleToDelete.get(0));
+        }
+        String convertedToString = "";
+        for (Person person: peopleToDelete) {
+            convertedToString = convertedToString + String.format("\n%1$s", person);
+        }
+        return String.format(MESSAGE_DELETE_PEOPLE_SUCCESS, convertedToString);
     }
 
     @Override
@@ -47,7 +60,7 @@ public class DeleteCommand extends Command {
             model.deletePerson(personToDelete);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, peopleToDelete));
+        return new CommandResult(getResultString(peopleToDelete));
     }
 
     @Override
