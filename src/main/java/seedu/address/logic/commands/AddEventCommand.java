@@ -38,7 +38,6 @@ public class AddEventCommand extends Command {
 
     /**
      * Creates an AddEventCommand to add specified {@code Event} to {@code Project} with {@code Index}.
-     *
      * @param index index of {@code Project} to add event in the list.
      * @param event {@code Event} to add.
      */
@@ -82,5 +81,5 @@ public class AddEventCommand extends Command {
                 || (other instanceof AddEventCommand // instanceof handles nulls
                 && toAdd.equals(((AddEventCommand) other).toAdd));
     }
-    
+
 }

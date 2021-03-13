@@ -9,27 +9,28 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
 /**
- * Parses input arguments and creates a new AddEventCommand object.
+ * Parses input arguments and creates a new AddTodoCommand object.
  */
-public class AddEventCommandParser implements Parser<AddEventCommand> {
+public class AddTodoCommandParser implements Parser<AddTodoCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddEventCommand
-     * and returns an AddEventCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTodoCommand
+     * and returns an AddTodoCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public AddEventCommand parse(String args) throws ParseException {
+    public AddTodoCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_REPEATABLE_INTERVAL, PREFIX_REPEATABLE_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_REPEATABLE_INTERVAL, PREFIX_REPEATABLE_DATE)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTodoCommand.MESSAGE_USAGE));
         }
 
         Index index;
