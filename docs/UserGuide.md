@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+EzManage is a **desktop app for managing students, tutors and classes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is named as EzManage as it allows tuition centres managers to easily manage students, tutors and classes all in one single web application.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `ezmanage.jar`. [coming soon!]
+# from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your EzManage.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -47,7 +48,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add_person n/NAME`, `NAME` is a parameter which can be used as `add_person n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -81,17 +82,17 @@ Adds a tutor, student or class to the contact list.
 
 Format: 
 
-For Person: `add tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-For Class: `add d/DAY t/TIMESLOT l/LEVEL s/SUBJECT [t/TAG]…​`
+For Person: `add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+For Class: `add_session d/DAY t/TIMESLOT l/LEVEL s/SUBJECT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add tp/tutor n/Betsy Crowe p/91234567 e/betsyc@example.come a/Betsy street`
-* `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math`
+* `add_person tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add_person tp/tutor n/Betsy Crowe p/91234567 e/betsyc@example.come a/Betsy street`
+* `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math`
 
 ### Listing all persons : `list`
 
@@ -172,11 +173,9 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Delete
+### Deleting a tutor/student/class : `delete`
 
-#### Deleting a tutor/student/class
-
-Deletes the specified person from the address book.
+Deletes the specified person from the list of tutors, students or classes.
 
 Format:<br>
 `delete t/ID` for tutors<br>
@@ -196,7 +195,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the list of students, tutors and classes.
 
 Format: `clear`
 
@@ -208,11 +207,11 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EzManage data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EzManage data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -235,7 +234,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | For Person:`add tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
+**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
 **Clear** | `clear`
 **Delete** | Tutor <br> `delete t/ID`<br> e.g., `delete t/8`<br><br> Student <br> `delete s/ID`<br> e.g., `delete s/22` <br><br> Class<br>`delete c/ID` <br> e.g., `delete c/9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
