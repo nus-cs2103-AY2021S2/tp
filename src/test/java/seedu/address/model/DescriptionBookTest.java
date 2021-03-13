@@ -12,15 +12,15 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 */
 
 // import java.util.Arrays;
-import java.util.Collection;
+//import java.util.Collection;
 import java.util.Collections;
 // import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.plan.Plan;
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;
+//import seedu.address.model.plan.Plan;
 // import seedu.address.model.plan.exceptions.DuplicatePersonException;
 // import seedu.address.testutil.PersonBuilder;
 
@@ -87,11 +87,14 @@ public class DescriptionBookTest {
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
-     */
 
+    */
+
+    /*
     /**
      * A stub ReadOnlyAddressBook whose plans list can violate interface constraints.
      */
+    /*
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Plan> plans = FXCollections.observableArrayList();
 
@@ -103,6 +106,9 @@ public class DescriptionBookTest {
         public ObservableList<Plan> getPersonList() {
             return plans;
         }
-    }
 
+        @Override
+        public get
+    }
+    */
 }

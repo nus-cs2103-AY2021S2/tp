@@ -7,12 +7,12 @@ import java.util.Arrays;
  */
 
 public class JsonModule {
-    public String module_code;
-    public String moduleTitle;
-    public String num_mc;
-    public String avail_sems;
-    public String[] prereqs;
-    public String[] preclusions;
+    private String moduleCode;
+    private String moduleTitle;
+    private String numMc;
+    private String availSems;
+    private String[] prereqs;
+    private String[] preclusions;
 
     /**
      * Properly formats the elements for user viewing
@@ -20,9 +20,57 @@ public class JsonModule {
      */
     @Override
     public String toString() {
-        return  module_code + ", " + moduleTitle + ", " + num_mc + " mc" +
-                "\navailable sem: " + avail_sems + '\n' +
-                "prereqs: " + Arrays.toString(prereqs) +
-                "\npreclusions: " + Arrays.toString(preclusions);
+        return moduleCode + ", " + moduleTitle + ", " + numMc + " mc"
+                + "\navailable sem: " + availSems + '\n'
+                + "prereqs: " + Arrays.toString(prereqs)
+                + "\npreclusions: " + Arrays.toString(preclusions);
+    }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
+
+    public String getModuleTitle() {
+        return moduleTitle;
+    }
+
+    public void setModuleTitle(String moduleTitle) {
+        this.moduleTitle = moduleTitle;
+    }
+
+    public String getNumMc() {
+        return numMc;
+    }
+
+    public void setNumMc(String numMc) {
+        this.numMc = numMc;
+    }
+
+    public String getAvailSems() {
+        return availSems;
+    }
+
+    public void setAvailSems(String availSems) {
+        this.availSems = availSems;
+    }
+
+    public String[] getPrereqs() {
+        return prereqs;
+    }
+
+    public void setPrereqs(String[] prereqs) {
+        this.prereqs = prereqs;
+    }
+
+    public String[] getPreclusions() {
+        return preclusions;
+    }
+
+    public void setPreclusions(String[] preclusions) {
+        this.preclusions = preclusions;
     }
 }

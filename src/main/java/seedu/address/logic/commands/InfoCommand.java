@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import seedu.address.model.Model;
 import seedu.address.storage.JsonModule;
@@ -10,7 +10,7 @@ import seedu.address.storage.JsonModule;
  * Finds and list module information to the user.
  */
 
-public class InfoCommand extends  Command{
+public class InfoCommand extends Command {
     public static final String COMMAND_WORD = "info";
 
     public static final String MESSAGE_SUCCESS = "Listed all modules";
@@ -33,7 +33,7 @@ public class InfoCommand extends  Command{
      * Creates a infocommand to find the specified {@code moduleCode} and list its information
      * @param moduleCode the modulecode of the module information to be listed
      */
-    public InfoCommand (String moduleCode){
+    public InfoCommand (String moduleCode) {
         this.moduleCode = moduleCode;
     }
 
@@ -50,9 +50,9 @@ public class InfoCommand extends  Command{
         requireNonNull(model);
         JsonModule[] informationOfModules = model.getAddressBook().getModuleInfo();
 
-        if(noArgument()) {
+        if (noArgument()) {
             StringBuilder str = new StringBuilder();
-            for(int i = 0; i < informationOfModules.length; i++) {
+            for (int i = 0; i < informationOfModules.length; i++) {
                 str.append(informationOfModules[i].toString());
                 str.append("\n\n");
             }
@@ -77,8 +77,8 @@ public class InfoCommand extends  Command{
      * @return the module information if found otherwise a module not found message
      */
     private CommandResult findMatchingModule(JsonModule[] informationOfModules) {
-        for(int i = 0; i < informationOfModules.length; i++) {
-            if(informationOfModules[i].module_code.equals(this.moduleCode)) {
+        for (int i = 0; i < informationOfModules.length; i++) {
+            if (informationOfModules[i].getModuleCode().equals(this.moduleCode)) {
                 return new CommandResult(informationOfModules[i].toString() + MESSAGE_FOUND);
             }
         }
