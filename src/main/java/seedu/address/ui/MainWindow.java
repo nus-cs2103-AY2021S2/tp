@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -223,7 +224,7 @@ public class MainWindow extends UiPart<Stage> {
      * Displays the project at the current index.
      * @param index Index of project to display.
      */
-    private void handleDisplayProject(Integer index) {
+    private void handleDisplayProject(Index index) {
         assert index != null;
 
         if (projectDisplayPanel == null) {
@@ -231,6 +232,6 @@ public class MainWindow extends UiPart<Stage> {
             infoDisplayPlaceholder.getChildren().add(projectDisplayPanel.getRoot());
         }
 
-        projectDisplayPanel.displayProject(logic.getFilteredProjectsList().get(index));
+        projectDisplayPanel.displayProject(logic.getFilteredProjectsList().get(index.getZeroBased()), index);
     }
 }

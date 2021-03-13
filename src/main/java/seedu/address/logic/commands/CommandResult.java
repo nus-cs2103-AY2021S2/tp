@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.ui.UiCommand;
 
 /**
@@ -13,7 +14,7 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    private final Integer indexOfProject;
+    private final Index indexOfProject;
 
     /** Information on which UI command to excecute **/
     private final UiCommand uiCommand;
@@ -21,7 +22,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, UiCommand uiCommand, Integer indexOfProject) {
+    public CommandResult(String feedbackToUser, UiCommand uiCommand, Index indexOfProject) {
         requireAllNonNull(feedbackToUser, uiCommand, indexOfProject);
         this.feedbackToUser = feedbackToUser;
         this.uiCommand = uiCommand;
@@ -54,7 +55,7 @@ public class CommandResult {
         return uiCommand;
     }
 
-    public Integer getIndexOfProject() {
+    public Index getIndexOfProject() {
         return indexOfProject;
     }
 

@@ -23,24 +23,24 @@ public class ViewProjectCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Viewing Project: %s";
 
-    private int index;
+    private Index index;
 
     /**
      * Creates a ViewProjectCommand to view the {@code Project} at the specified {@code index}.
      */
     public ViewProjectCommand(Index index) {
-        this.index = index.getZeroBased();
+        this.index = index;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (index >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, lastShownList.get(index)),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, lastShownList.get(index.getZeroBased())),
                 UiCommand.DISPLAY_PROJECT, index);
     }
 }
