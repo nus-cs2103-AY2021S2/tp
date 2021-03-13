@@ -111,6 +111,12 @@ public interface Model {
 
     void addProperty(Property property);
 
+    int getPropertySize();
+
+    Property getProperty(int i);
+
+    void setProperty(int i, Property property);
+
     /**
      * Deletes the given property.
      * The property must exist in the property book.
