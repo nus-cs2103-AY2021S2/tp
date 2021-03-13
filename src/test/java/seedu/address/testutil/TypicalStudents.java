@@ -35,14 +35,14 @@ public class TypicalStudents {
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withStudyLevel("P2").withGuardianPhone("81902144").withRelationship("Father")
+            .withStudyLevel("Primary 2").withGuardianPhone("81902144").withRelationship("Father")
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withStudyLevel("Uni CS1101S").withGuardianPhone("98621032").withRelationship("Mother").build();
+            .withStudyLevel("University CS1101S").withGuardianPhone("98621032").withRelationship("Mother").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
-            .withStudyLevel("JC 2").withGuardianPhone("97213021").withRelationship("Father")
+            .withStudyLevel("Junior College 2").withGuardianPhone("97213021").withRelationship("Father")
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
@@ -60,7 +60,7 @@ public class TypicalStudents {
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withStudyLevel("Sec 4").withGuardianPhone("98110022").withRelationship("Father").build();
+            .withStudyLevel("Secondary 4").withGuardianPhone("98110022").withRelationship("Father").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withStudyLevel("JC 4").withGuardianPhone("87621200").withRelationship("Uncle").build();

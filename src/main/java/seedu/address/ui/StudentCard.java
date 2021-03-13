@@ -50,12 +50,12 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
-        studyLevel.setText(student.getStudyLevel());
-        guardianPhone.setText(student.getGuardianPhone().value);
-        relationship.setText(student.getRelationship());
+        phone.setText("Phone: " + student.getPhone().value);
+        address.setText("Address: " + student.getAddress().value);
+        email.setText("Email: " + student.getEmail().value);
+        studyLevel.setText("Study Level: " + student.getStudyLevel());
+        guardianPhone.setText("Guardian Phone: " + student.getGuardianPhone().value);
+        relationship.setText("Guardian Relationship: " + student.getRelationship());
     }
 
     @Override

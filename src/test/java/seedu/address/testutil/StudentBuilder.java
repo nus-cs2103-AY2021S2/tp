@@ -1,10 +1,16 @@
 package seedu.address.testutil;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.address.model.session.Session;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A utility class to help with building Student objects.
@@ -14,9 +20,9 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_STUDY_LEVEL = "Sec 5";
-    public static final String DEFAULT_GUARDIAN_PHONE = "33333333";
+    public static final String DEFAULT_ADDRESS = "Blk 136 Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_STUDY_LEVEL = "Secondary 5";
+    public static final String DEFAULT_GUARDIAN_PHONE = "91234567";
     public static final String DEFAULT_RELATIONSHIP = "Mother";
 
     private Name name;
@@ -26,6 +32,7 @@ public class StudentBuilder {
     private String studyLevel;
     private Phone guardianPhone;
     private String relationship;
+    private List<Session> sessions;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -38,6 +45,7 @@ public class StudentBuilder {
         studyLevel = DEFAULT_STUDY_LEVEL;
         guardianPhone = new Phone(DEFAULT_GUARDIAN_PHONE);
         relationship = DEFAULT_RELATIONSHIP;
+        sessions = new ArrayList<>();
     }
 
     /**
@@ -51,6 +59,7 @@ public class StudentBuilder {
         studyLevel = studentToCopy.getStudyLevel();
         guardianPhone = studentToCopy.getGuardianPhone();
         relationship = studentToCopy.getRelationship();
+        sessions = studentToCopy.getListOfSessions();
     }
 
     /**
@@ -108,6 +117,34 @@ public class StudentBuilder {
         this.relationship = relationship;
         return this;
     }
+
+    /**
+     * Adds a {@code Session} to the {@code sessions} of the {@code Student}.
+     */
+    public StudentBuilder withSession(Session session) {
+        requireAllNonNull(session);
+        this.sessions.add(session);
+        return this;
+    }
+
+    /**
+     * Sets the {@code sessions} of the {@code Student} to the given session list.
+     */
+    public StudentBuilder withNewListOfSessions(List<Session> sessionList) {
+        requireAllNonNull(sessionList);
+        this.sessions = sessionList;
+        return this;
+    }
+
+    /**
+     * Appends a given list of sessions to the {@code sessions} of the {@code Student}.
+     */
+    public StudentBuilder withListOfSessions(List<Session> sessionList) {
+        requireAllNonNull(sessionList);
+        this.sessions.addAll(sessionList);
+        return this;
+    }
+
 
     public Student build() {
         return new Student(name, phone, email, address, studyLevel, guardianPhone, relationship);
