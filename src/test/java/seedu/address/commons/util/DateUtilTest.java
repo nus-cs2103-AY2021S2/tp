@@ -14,7 +14,7 @@ public class DateUtilTest {
     public void encodeDate_invalidDate_throwsDateConversionException() {
         String invalidDate = "209-01-01";
         String invalidDate1 = "20090101";
-        String invalidDate2 = "01-01-2001";
+        String invalidDate2 = "2001-01-01";
         String invalidDate3 = "a";
         String invalidDate4 = "";
         String invalidDate5 = " ";
