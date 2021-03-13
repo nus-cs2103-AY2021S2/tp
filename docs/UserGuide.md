@@ -197,7 +197,7 @@ Opens user guide of StoreMando on browser or displays the URL of user guide on h
 
 Format: `help`
 
-* User guide opened on browser only if there is a supporting browser **and** internet connection.
+* Opens user guide on browser only if there is a supporting browser **and** internet connection.
 * Otherwise, displays a help window containing the URL of StoreMando's user guide.
 
 
