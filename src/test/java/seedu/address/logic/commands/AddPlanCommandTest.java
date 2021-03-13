@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPlanCommandTest {
@@ -147,6 +148,16 @@ public class AddPlanCommandTest {
 
         @Override
         public void updateFilteredPlanList(Predicate<Plan> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSemester(int planNumber, Semester semester) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSemester(int planNumber, Semester semester) {
             throw new AssertionError("This method should not be called.");
         }
     }
