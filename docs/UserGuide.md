@@ -8,7 +8,7 @@ and efficiently add classes for modules and easily view their tasks.
 It is optimised for users who prefer typing.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
