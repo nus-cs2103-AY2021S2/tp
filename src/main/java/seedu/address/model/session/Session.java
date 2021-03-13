@@ -2,6 +2,8 @@ package seedu.address.model.session;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 /**
  * Represents an individual tuition session at one time slot for one student
  */
@@ -39,5 +41,25 @@ public class Session {
 
     public Fee getFee() {
         return fee;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(sessionDate, duration, subject, fee);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getSessionDate())
+                .append("; Duration: ")
+                .append(getDuration())
+                .append("; Subject: ")
+                .append(getSubject())
+                .append("; Fee: ")
+                .append(getFee());
+
+        return builder.toString();
     }
 }

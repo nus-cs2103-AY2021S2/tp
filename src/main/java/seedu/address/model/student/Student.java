@@ -2,7 +2,11 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import seedu.address.model.session.Session;
 
 /**
  * Represents a Student in the address book.
@@ -21,6 +25,9 @@ public class Student {
     private final Phone guardianPhone;
     private final String relationship;
 
+    // Session field
+    private List<Session> sessions;
+
     /**
      * Every field must be present and not null.
      */
@@ -34,6 +41,7 @@ public class Student {
         this.studyLevel = studyLevel;
         this.guardianPhone = guardianPhone;
         this.relationship = relationship;
+        this.sessions = new ArrayList<>();
     }
 
     public Name getName() {
@@ -62,6 +70,19 @@ public class Student {
 
     public String getRelationship() {
         return relationship;
+    }
+
+    public List<Session> getListOfSessions() {
+        return this.sessions;
+    }
+
+    /**
+     * Adds a tuition session to the student.
+     * @param session to be added.
+     */
+    public void addSession(Session session) {
+        requireAllNonNull(session);
+        this.sessions.add(session);
     }
 
     /**
@@ -98,7 +119,8 @@ public class Student {
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getStudyLevel().equals(getStudyLevel())
                 && otherStudent.getGuardianPhone().equals(getGuardianPhone())
-                && otherStudent.getRelationship().equals(getRelationship());
+                && otherStudent.getRelationship().equals(getRelationship())
+                && otherStudent.getListOfSessions().equals(getListOfSessions());
     }
 
     @Override
