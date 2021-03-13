@@ -15,9 +15,30 @@ import seedu.dictionote.commons.util.ConfigUtil;
 import seedu.dictionote.commons.util.StringUtil;
 import seedu.dictionote.logic.Logic;
 import seedu.dictionote.logic.LogicManager;
-import seedu.dictionote.model.*;
+
+import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.Dictionary;
+import seedu.dictionote.model.NoteBook;
+import seedu.dictionote.model.Model;
+import seedu.dictionote.model.ModelManager;
+import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDictionary;
+import seedu.dictionote.model.ReadOnlyNoteBook;
+import seedu.dictionote.model.ReadOnlyUserPrefs;
+import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.util.SampleDataUtil;
-import seedu.dictionote.storage.*;
+
+import seedu.dictionote.storage.AddressBookStorage;
+import seedu.dictionote.storage.DictionaryStorage;
+import seedu.dictionote.storage.JsonAddressBookStorage;
+import seedu.dictionote.storage.JsonDictionaryStorage;
+import seedu.dictionote.storage.JsonNoteBookStorage;
+import seedu.dictionote.storage.JsonUserPrefsStorage;
+import seedu.dictionote.storage.NoteBookStorage;
+import seedu.dictionote.storage.Storage;
+import seedu.dictionote.storage.StorageManager;
+import seedu.dictionote.storage.UserPrefsStorage;
+
 import seedu.dictionote.ui.Ui;
 import seedu.dictionote.ui.UiManager;
 

@@ -32,7 +32,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary) {
         super();
         requireAllNonNull(addressBook, userPrefs, noteBook);
 
@@ -200,7 +201,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Content> getFilteredContentList() { return filteredContent; }
+    public ObservableList<Content> getFilteredContentList() {
+        return filteredContent;
+    }
 
     @Override
     public void updateFilteredContactList(Predicate<Contact> predicate) {

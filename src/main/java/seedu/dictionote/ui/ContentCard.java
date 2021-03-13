@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.dictionote.model.dictionary.Content;
-import seedu.dictionote.model.note.Note;
 
 /**
  * An UI component that displays information of a {@code Note}.

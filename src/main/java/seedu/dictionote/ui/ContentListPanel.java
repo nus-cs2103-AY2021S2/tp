@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.dictionary.Content;
-import seedu.dictionote.model.note.Note;
 
 /**
  * Panel containing the list of persons.

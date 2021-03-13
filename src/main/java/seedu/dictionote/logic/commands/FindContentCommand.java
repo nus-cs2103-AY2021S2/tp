@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.ContentContainsKeywordsPredicate;
 
 /**

@@ -7,7 +7,12 @@ import java.util.logging.Logger;
 
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.commons.exceptions.DataConversionException;
-import seedu.dictionote.model.*;
+import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDictionary;
+import seedu.dictionote.model.ReadOnlyNoteBook;
+import seedu.dictionote.model.ReadOnlyUserPrefs;
+import seedu.dictionote.model.UserPrefs;
+
 
 /**
  * Manages storage of AddressBook data in local storage.

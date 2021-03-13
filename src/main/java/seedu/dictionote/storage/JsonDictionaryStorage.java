@@ -12,9 +12,7 @@ import seedu.dictionote.commons.exceptions.DataConversionException;
 import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.commons.util.FileUtil;
 import seedu.dictionote.commons.util.JsonUtil;
-import seedu.dictionote.model.Dictionary;
 import seedu.dictionote.model.ReadOnlyDictionary;
-import seedu.dictionote.model.ReadOnlyNoteBook;
 
 /**
  * A class to access NoteBook data stored as a json file on the hard disk.

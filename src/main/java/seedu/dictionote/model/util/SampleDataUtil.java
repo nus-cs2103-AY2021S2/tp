@@ -4,7 +4,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.dictionote.model.*;
+import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.Dictionary;
+import seedu.dictionote.model.NoteBook;
+import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDictionary;
+import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;

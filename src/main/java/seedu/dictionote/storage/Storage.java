@@ -5,7 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.dictionote.commons.exceptions.DataConversionException;
-import seedu.dictionote.model.*;
+import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDictionary;
+import seedu.dictionote.model.ReadOnlyNoteBook;
+import seedu.dictionote.model.ReadOnlyUserPrefs;
+import seedu.dictionote.model.UserPrefs;
 
 /**
  * API of the Storage component
