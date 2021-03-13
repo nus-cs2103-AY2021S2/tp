@@ -17,7 +17,14 @@ public class InfoCommand extends  Command{
         //test
         requireNonNull(model);
         JsonModule[] md = model.getAddressBook().getModuleInfo();
-        return new CommandResult(MESSAGE_SUCCESS);
+        StringBuilder str = new StringBuilder();
+        for(int i = 0; i < md.length; i++) {
+            str.append(md[i].toString());
+            str.append("\n\n");
+        }
+        System.out.println(str);
+        return new CommandResult(str.toString());
+//        return new CommandResult(MESSAGE_SUCCESS);
         //
     }
 }
