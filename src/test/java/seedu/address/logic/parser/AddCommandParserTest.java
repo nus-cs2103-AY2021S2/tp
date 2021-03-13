@@ -99,7 +99,10 @@ public class AddCommandParserTest {
                 + ORDER_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(expectedPersonMultipleTags));
 
-        // todo add delivery date tests
+        //  multiple delivery dates - last accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + ORDER_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_AMY + DELIVERY_DATE_DESC_BOB,
+                new AddCommand(expectedPerson));
     }
 
     @Test

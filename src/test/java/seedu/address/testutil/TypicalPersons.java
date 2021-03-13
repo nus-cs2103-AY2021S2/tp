@@ -28,7 +28,6 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    // todo test out two, three order descriptions
     // needs to correspond to typicalPersonsAddressBook
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -49,7 +48,7 @@ public class TypicalPersons {
             .withDeliveryDate("01 Jan 2022").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withOrderDescriptions("1 Raisins Cake Thing")
+            .withOrderDescriptions("1 Raisins Cake Thing", "1 x Blackforest cake", "1 x Vanilla Cake")
             .withDeliveryDate("31/12/2022").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")

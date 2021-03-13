@@ -97,7 +97,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>} if {@code
      * orderDescriptions} is non-empty.
      * If {@code orderDescriptions} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<OrderDescription>} containing zero orderDescriptions. // todo why are there empty strings
+     * {@code Set<OrderDescription>} containing zero orderDescriptions.
      */
     private Optional<Set<OrderDescription>> parseOrderDescriptionsForEdit(Collection<String> orderDescriptions)
             throws ParseException {

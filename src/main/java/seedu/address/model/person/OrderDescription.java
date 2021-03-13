@@ -12,7 +12,7 @@ public class OrderDescription {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    // todo need help, why is this catching o/1 x Amy errors (errors using prefix when there shouldnt be)
+    // todo need help, why is this able to catch o/1 x Amy errors (errors using prefix when there shouldnt be)
 
     public final String value;
 

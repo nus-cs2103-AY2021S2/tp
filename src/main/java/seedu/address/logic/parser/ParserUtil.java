@@ -101,7 +101,7 @@ public class ParserUtil {
      * Parses a {@code String orderDescription} into a {@code OrderDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code orderDescription} is invalid. //todo does it
+     * @throws ParseException if the given {@code orderDescription} is invalid.
      */
     public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
         requireNonNull(orderDescription);
@@ -133,7 +133,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException { // todo is this public just because of the tests
+    public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
