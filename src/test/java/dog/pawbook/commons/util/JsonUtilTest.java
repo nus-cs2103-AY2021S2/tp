@@ -1,14 +1,17 @@
 package dog.pawbook.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 
+import dog.pawbook.commons.exceptions.DataConversionException;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.testutil.SerializableTestClass;
 import dog.pawbook.testutil.TestUtil;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests JSON Read and Write
@@ -39,7 +42,38 @@ public class JsonUtilTest {
         assertEquals(serializableTestClass.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
     }
 
-    //TODO: @Test jsonUtil_readJsonStringToObjectInstance_correctObject()
+    @Test
+    public void jsonUtil_readJsonStringToObjectInstance_correctObject() throws IOException {
+        SerializableTestClass serializableTestClass = new SerializableTestClass();
+        serializableTestClass.setTestValues();
 
-    //TODO: @Test jsonUtil_writeThenReadObjectToJson_correctObject()
+        FileUtil.writeToFile(SERIALIZATION_FILE, SerializableTestClass.JSON_STRING_REPRESENTATION);
+
+        String jsonString = FileUtil.readFromFile(SERIALIZATION_FILE);
+
+        SerializableTestClass object = JsonUtil.fromJsonString(jsonString, SerializableTestClass.class);
+
+        assertEquals(object.getName(), SerializableTestClass.getNameTestValue());
+        assertEquals(object.getListOfLocalDateTimes(), SerializableTestClass.getListTestValues());
+        assertEquals(object.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
+    }
+
+    @Test
+    public void jsonUtil_writeThenReadObjectToJson_correctObject() throws IOException, DataConversionException {
+        SerializableTestClass serializableTestClass = new SerializableTestClass();
+        serializableTestClass.setTestValues();
+
+        JsonUtil.saveJsonFile(serializableTestClass, SERIALIZATION_FILE);
+
+        Optional<SerializableTestClass> optionalObjectFromFile = JsonUtil.readJsonFile(SERIALIZATION_FILE,
+                SerializableTestClass.class);
+
+        assertTrue(optionalObjectFromFile.isPresent());
+
+        SerializableTestClass object = optionalObjectFromFile.get();
+
+        assertEquals(object.getName(), SerializableTestClass.getNameTestValue());
+        assertEquals(object.getListOfLocalDateTimes(), SerializableTestClass.getListTestValues());
+        assertEquals(object.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
+    }
 }
