@@ -18,6 +18,7 @@ import seedu.address.model.room.RoomType;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.JsonAdaptedTag;
 
+
 /**
  * Jackson-friendly version of {@link Room}.
  */

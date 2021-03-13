@@ -3,7 +3,6 @@ package seedu.address.logic.parser.room;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.room.DeleteRoomCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -26,7 +25,7 @@ public class DeleteRoomCommandParser implements Parser<DeleteRoomCommand> {
             return new DeleteRoomCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteRoomCommand.MESSAGE_USAGE), pe);
         }
     }
 }

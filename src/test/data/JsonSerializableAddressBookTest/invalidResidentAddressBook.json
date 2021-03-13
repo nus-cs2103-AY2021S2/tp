@@ -1,0 +1,10 @@
+{
+  "residents": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "year" : "1",
+    "room": "01-234"
+  } ],
+  "rooms": []
+}

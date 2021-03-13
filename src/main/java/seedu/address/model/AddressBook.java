@@ -3,32 +3,31 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.resident.Resident;
+import seedu.address.model.resident.UniqueResidentList;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.UniqueRoomList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameResident comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueResidentList residents;
     private final UniqueRoomList rooms;
 
     /*
-     *  The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     *  between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     *  Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *  among constructors.
-     */
+    * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+    * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+    *
+    * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+    *   among constructors.
+    */
     {
-        persons = new UniquePersonList();
+        residents = new UniqueResidentList();
         rooms = new UniqueRoomList();
     }
 
@@ -36,7 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Residents in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -46,52 +45,53 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the resident list with {@code residents}.
+     * {@code residents} must not contain duplicate residents.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setResidents(List<Resident> residents) {
+        this.residents.setResidents(residents);
     }
 
     public void setRooms(List<Room> rooms) {
         this.rooms.setRooms(rooms);
     }
 
-    //// person-level operations
+    //// resident-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a resident with the same identity as {@code resident} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasResident(Resident resident) {
+        requireNonNull(resident);
+        return residents.contains(resident);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a resident to the address book.
+     * The resident must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addResident(Resident p) {
+        residents.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given resident {@code target} in the list with {@code editedResident}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The resident identity of {@code editedResident} must not be the same
+     * as another existing resident in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setResident(Resident target, Resident editedResident) {
+        requireNonNull(editedResident);
 
-        persons.setPerson(target, editedPerson);
+        residents.setResident(target, editedResident);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeResident(Resident key) {
+        residents.remove(key);
     }
 
     //// room-level operations
@@ -139,7 +139,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setResidents(newData.getResidentList());
         setRooms(newData.getRoomList());
     }
 
@@ -147,13 +147,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return residents.asUnmodifiableObservableList().size() + " residents";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Resident> getResidentList() {
+        return residents.asUnmodifiableObservableList();
     }
 
     @Override
@@ -165,11 +165,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && residents.equals(((AddressBook) other).residents));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons, rooms);
+        return residents.hashCode();
     }
 }
