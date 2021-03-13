@@ -14,7 +14,8 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated, immutable with the exception of groups.
+ * The groups inside the set groups may change as people are added into these groups.
  */
 public class Person {
 

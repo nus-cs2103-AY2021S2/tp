@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -72,6 +73,9 @@ public class InputParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddGroupCommand.COMMAND_WORD:
+            return new AddGroupParser().parse(arguments);
 
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingParser().parse(arguments);
