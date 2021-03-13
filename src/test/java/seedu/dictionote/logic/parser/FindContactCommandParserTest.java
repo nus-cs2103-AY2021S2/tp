@@ -22,16 +22,16 @@ public class FindContactCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindContactCommand() {
         // no leading and trailing whitespaces
         FindContactCommand expectedFindContactCommand =
                 new FindContactCommand(
                         new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
                         new TagsContainKeywordsPredicate(Arrays.asList("A", "B")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindContactCommand);
+        assertParseSuccess(parser, " n/Alice n/Bob t/A t/B", expectedFindContactCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindContactCommand);
+        assertParseSuccess(parser, " \n n/Alice \n \t n/Bob t/A  \t t/B", expectedFindContactCommand);
     }
 
 }

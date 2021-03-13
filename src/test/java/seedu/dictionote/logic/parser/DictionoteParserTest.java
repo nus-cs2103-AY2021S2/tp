@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
@@ -93,7 +95,9 @@ public class DictionoteParserTest {
         FindContactCommand command = (FindContactCommand) parser.parseCommand(
             FindContactCommand.COMMAND_WORD
                     + " "
-                    + nameKeywords.stream().collect(Collectors.joining(" ")));
+                    + nameKeywords.stream().map(nk -> PREFIX_NAME + nk).collect(Collectors.joining(" "))
+                    + " "
+                    + tagKeywords.stream().map(tk -> PREFIX_TAG + tk).collect(Collectors.joining(" ")));
 
         assertEquals(new FindContactCommand(
                 new NameContainsKeywordsPredicate(nameKeywords),
