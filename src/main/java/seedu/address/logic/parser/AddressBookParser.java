@@ -15,11 +15,13 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteFoodIntakeCommand;
 import seedu.address.logic.commands.DeleteFoodItemCommand;
+import seedu.address.logic.commands.EditUserCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListFoodItemCommand;
+import seedu.address.logic.commands.ListUserCommand;
 import seedu.address.logic.commands.QueryFoodIntakeCommand;
 import seedu.address.logic.commands.UpdateFoodItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -84,8 +86,14 @@ public class AddressBookParser {
         case ListFoodItemCommand.COMMAND_WORD:
             return new ListFoodItemCommand();
 
+        case EditUserCommand.COMMAND_WORD:
+            return new EditUserCommandParser().parse(arguments);
+
         case AddUserCommand.COMMAND_WORD:
             return new AddUserCommandParser().parse(arguments);
+
+        case ListUserCommand.COMMAND_WORD:
+            return new ListUserCommand();
 
         case AddFoodIntakeCommand.COMMAND_WORD:
             return new AddFoodIntakeCommandParser().parse(arguments);

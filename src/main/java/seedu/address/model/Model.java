@@ -119,6 +119,16 @@ public interface Model {
     boolean hasUser();
 
     /**
+     * Updates the user object.
+     */
+    void editUser(User user);
+
+    /**
+     * Lists the user object.
+     */
+    String listUser();
+
+    /**
      * Gets Food intake list.
      *
      * @return food intake list

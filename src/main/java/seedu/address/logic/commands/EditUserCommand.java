@@ -7,39 +7,32 @@ import seedu.address.model.Model;
 import seedu.address.model.user.User;
 
 /**
- * BMI initialization command
+ * BMI update command
  */
-public class AddUserCommand extends Command {
+public class EditUserCommand extends Command {
 
-    public static final String COMMAND_WORD = "bmi";
+    public static final String COMMAND_WORD = "bmi_update";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Records the user's gender, age, height, weight"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the user's gender, age, height, weight"
             + " and ideal weight.\nParameters: g/gender a/age h/height(cm) w/weight(kg) "
             + "i/ideal_weight";
 
     public static final String MESSAGE_SUCCESS = "Success in updating user information";
 
-    public static final String MESSAGE_UPDATE = "Unsuccessful! Please update your particulars "
-            + "using the bmi update command.";
-
     private final User temporaryUser;
 
     /**
-     * Creates a User command to create the user object.
+     * Creates a User command to update the user object.
      */
-    public AddUserCommand(User user) {
+    public EditUserCommand(User user) {
         temporaryUser = user;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasUser()) {
-            return new CommandResult(MESSAGE_UPDATE);
-        }
-
-        model.addUser(temporaryUser);
+        model.editUser(temporaryUser);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
 }

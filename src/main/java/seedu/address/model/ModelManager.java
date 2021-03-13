@@ -16,6 +16,7 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.Bmi;
 import seedu.address.model.user.User;
 
 /**
@@ -200,6 +201,33 @@ public class ModelManager implements Model {
     @Override
     public boolean hasUser() {
         return addressBook.hasUser();
+    }
+
+    @Override
+    public void editUser(User updateUser) {
+        User oldUser = addressBook.getUser();
+        User newUser = new User(updateUser.getBmi(), oldUser.getFoodList(), updateUser.getAge(),
+                updateUser.getGender(), updateUser.getIdealWeight());
+        addressBook.addUser(newUser);
+    }
+
+    @Override
+    public String listUser() {
+        User user = addressBook.getUser();
+        Bmi bmi = user.getBmi();
+        String details = "Below is your current height and weight:\nLast Updated: "
+                + user.getLastUpdated() + "\nWeight: " + bmi.getWeight()
+                + " kg\nHeight: " + bmi.getHeight() + " cm\n BMI: ";
+
+        if (bmi.getWeight() <= bmi.getLowerBoundWeight()) {
+            details += String.format("%.2f", bmi.calculateBmi()) + " (High Risk of nutritional deficiency)";
+        } else if (bmi.getWeight() >= bmi.getUpperBoundWeight()) {
+            details += String.format("%.2f", bmi.calculateBmi()) + " (High Risk of Obesity-related diseases)";
+        } else {
+            details += String.format("%.2f", bmi.calculateBmi()) + " (Healthy range)";
+        }
+
+        return details;
     }
 
     //=========== FoodIntakeList Accessors =============================================================

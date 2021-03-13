@@ -2,12 +2,12 @@ package seedu.address.model.user;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import seedu.address.model.food.Food;
 import seedu.address.model.person.Name;
-
-
 
 /**
  * Handles the representation of the User class in DieTrack.
@@ -18,6 +18,7 @@ public class User {
     private final Age age;
     private final Gender gender;
     private final IdealWeight idealWeight;
+    private final LocalDate lastUpdated;
 
     // Data fields
     private final Bmi bmi;
@@ -38,6 +39,7 @@ public class User {
         this.age = age;
         this.gender = gender;
         this.idealWeight = idealWeight;
+        this.lastUpdated = LocalDate.now();
     }
 
     /**
@@ -54,6 +56,7 @@ public class User {
         this.age = age;
         this.gender = gender;
         this.idealWeight = idealWeight;
+        this.lastUpdated = LocalDate.now();
     }
 
     public Name getName() {
@@ -78,6 +81,11 @@ public class User {
 
     public IdealWeight getIdealWeight() {
         return this.idealWeight;
+    }
+
+    public String getLastUpdated() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return formatter.format(this.lastUpdated);
     }
 
     /**
