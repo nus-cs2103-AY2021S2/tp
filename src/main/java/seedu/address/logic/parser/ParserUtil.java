@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME_FORMAT;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +33,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -48,12 +51,17 @@ public class ParserUtil {
      * @return a DateTime object
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static LocalDateTime parseDate(String date) throws ParseException {
+    public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-        LocalDateTime dateTime = LocalDateTime.parse(trimmedDate, formatter);
-        return dateTime;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(trimmedDate, formatter);
+        } catch (DateTimeParseException de) {
+            throw new ParseException(MESSAGE_INVALID_DATETIME_FORMAT);
+        }
+        return localDate;
     }
 
     /**
