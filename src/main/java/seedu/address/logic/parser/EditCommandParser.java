@@ -96,10 +96,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (orderDescriptions.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> orderDescriptionSet = orderDescriptions.size() == 1 && orderDescriptions.contains("")
-                        ? Collections.emptySet()
-                        : orderDescriptions;
-        return Optional.of(ParserUtil.parseOrderDescriptions(orderDescriptionSet));
+
+        return Optional.of(ParserUtil.parseOrderDescriptions(orderDescriptions));
     }
 
 

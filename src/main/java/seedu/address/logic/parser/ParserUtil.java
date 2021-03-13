@@ -105,10 +105,11 @@ public class ParserUtil {
     public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
         requireNonNull(orderDescription);
         String trimmedOrderDescription = orderDescription.trim();
-        // todo fix this
-//        if (!Tag.isValidTagName(trimmedTag)) {
-//            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-//        }
+
+        if (!OrderDescription.isValidOrderDescription(trimmedOrderDescription)) {
+            throw new ParseException(OrderDescription.MESSAGE_CONSTRAINTS);
+        }
+
         return new OrderDescription(trimmedOrderDescription);
     }
 

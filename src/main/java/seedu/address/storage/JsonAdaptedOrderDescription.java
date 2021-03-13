@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.OrderDescription;
 
 
@@ -33,8 +34,10 @@ public class JsonAdaptedOrderDescription {
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
      *
      */
-    public OrderDescription toModelType() {
-        // no validation checks for order description so far
+    public OrderDescription toModelType() throws IllegalValueException {
+        if (!OrderDescription.isValidOrderDescription(orderDescription)) {
+            throw new IllegalValueException(OrderDescription.MESSAGE_CONSTRAINTS);
+        }
         return new OrderDescription(orderDescription);
     }
 }

@@ -49,8 +49,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String ORDER_CHOCOLATE = " " + PREFIX_ORDER_DESCRIPTION + VALID_CHOCOLATE_ORDER;
-    public static final String ORDER_BERRY = " " + PREFIX_ORDER_DESCRIPTION + VALID_BERRY_ORDER;
+    public static final String ORDER_AMY = " " + PREFIX_ORDER_DESCRIPTION + VALID_CHOCOLATE_ORDER;
+    public static final String ORDER_BOB = " " + PREFIX_ORDER_DESCRIPTION + VALID_BERRY_ORDER;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -59,8 +59,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ORDER_DESC = " " + PREFIX_ORDER_DESCRIPTION; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    // todo invalid order desc don't have i think
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_ORDER_DESCRIPTION + "ORDER DESCRIPTION...] " // todo test if it looks right
+            + "[" + PREFIX_ORDER_DESCRIPTION + "ORDER DESCRIPTION]... " // todo test if it looks right - done
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "

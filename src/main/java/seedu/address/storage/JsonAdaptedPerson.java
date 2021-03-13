@@ -37,15 +37,15 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-//            @JsonProperty("orderDescriptions") List<JsonAdaptedOrderDescription> orderDescriptions,
+            @JsonProperty("orderDescriptions") List<JsonAdaptedOrderDescription> orderDescriptions,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-//        if (orderDescriptions != null) {
-//            this.orderDescriptions.addAll(orderDescriptions);
-//        }
+        if (orderDescriptions != null) {
+            this.orderDescriptions.addAll(orderDescriptions);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -119,6 +119,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     OrderDescription.class.getSimpleName()));
         }
+
 
         final List<OrderDescription> personOrderDescriptions = new ArrayList<>();
         for (JsonAdaptedOrderDescription o : orderDescriptions) {
