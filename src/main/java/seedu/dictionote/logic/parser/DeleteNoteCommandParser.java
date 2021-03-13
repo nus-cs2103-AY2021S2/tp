@@ -8,7 +8,7 @@ import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteNoteCommand object
  */
 public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 

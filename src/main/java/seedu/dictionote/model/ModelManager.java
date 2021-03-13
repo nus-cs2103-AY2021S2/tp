@@ -117,7 +117,11 @@ public class ModelManager implements Model {
         return noteBook;
     }
 
-
+    @Override
+    public void setNote(Note target, Note editedContact) {
+        requireAllNonNull(target, editedContact);
+        noteBook.setNote(target, editedContact);
+    }
     //=========== AddressBook ================================================================================
 
     @Override

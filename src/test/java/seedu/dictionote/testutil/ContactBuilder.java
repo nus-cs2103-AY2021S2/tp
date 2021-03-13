@@ -49,19 +49,20 @@ public class ContactBuilder {
         tags = new HashSet<>(contactToCopy.getTags());
     }
 
-    /**
-     * Sets the {@code Name} of the {@code Contact} that we are building.
-     */
-    public ContactBuilder withName(String name) {
-        this.name = new Name(name);
-        return this;
-    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Contact} that we are building.
      */
     public ContactBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Contact} that we are building.
+     */
+    public ContactBuilder withName(String name) {
+        this.name = new Name(name);
         return this;
     }
 
