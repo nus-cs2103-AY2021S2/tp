@@ -9,6 +9,7 @@ import java.util.Objects;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
 
@@ -98,6 +99,16 @@ public class Project {
     public void addTodo(Todo todo) {
         requireNonNull(todo);
         this.todos.addTodo(todo);
+    }
+
+    /**
+     * Adds a deadline to {@code DeadlineList} field of this {@code Project}.
+     *
+     * @param deadline {@code Deadline} to add.
+     */
+    public void addDeadline(Deadline deadline) {
+        requireNonNull(deadline);
+        this.deadlines.addDeadline(deadline);
     }
 
     /**
