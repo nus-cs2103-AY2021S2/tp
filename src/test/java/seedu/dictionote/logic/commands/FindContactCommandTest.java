@@ -5,7 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.dictionote.testutil.TypicalContacts.*;
+import static seedu.dictionote.testutil.TypicalContacts.ALICE;
+import static seedu.dictionote.testutil.TypicalContacts.BENSON;
+import static seedu.dictionote.testutil.TypicalContacts.CARL;
+import static seedu.dictionote.testutil.TypicalContacts.DANIEL;
+import static seedu.dictionote.testutil.TypicalContacts.ELLE;
+import static seedu.dictionote.testutil.TypicalContacts.FIONA;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import java.util.Arrays;
