@@ -9,37 +9,27 @@ import seedu.address.commons.util.DateUtil;
 import seedu.address.model.task.CompletableDeadline;
 
 /**
- * Represents a CompletableTodo with a Deadline.
+ * Represents a CompletableDeadline as a Deadline.
  */
 public class Deadline extends CompletableDeadline {
+
     /**
      * Constructor for Deadline.
-     * @param description Description of the CompletableTodo.
-     * @param by Deadline of the CompletableTodo.
+     * @param description Description of the Deadline.
+     * @param by Deadline of the Deadline.
      */
     public Deadline(String description, LocalDate by) {
         super(description, by);
-        requireNonNull(by);
     }
 
     /**
      * Constructor for Deadline.
-     * @param description Description of the CompletableTodo.
-     * @param isDone Marks whether the CompletableTodo is Done.
-     * @param by Deadline of the CompletableTodo.
+     * @param description Description of the Deadline.
+     * @param isDone Marks whether the Deadline is Done.
+     * @param by Deadline of the Deadline.
      */
-    public Deadline(String description, Boolean isDone, LocalDate by) {
+    public Deadline(String description, LocalDate by, Boolean isDone) {
         super(description, by, isDone);
-        requireNonNull(by);
-    }
-
-    /**
-     * Returns the Deadline of the CompletableTodo.
-     * @return A LocalDate representing the CompletableTodo Deadline.
-     */
-    public LocalDate getBy() {
-        assert this.by != null : "by should not be null!";
-        return this.by;
     }
 
     /**
@@ -70,8 +60,8 @@ public class Deadline extends CompletableDeadline {
     }
 
     /**
-     * Returns a String representation of the CompletableTodo.
-     * @return A String representation of the CompletableTodo.
+     * Returns a String representation of the Deadline.
+     * @return A String representation of the Deadline.
      */
     @Override
     public String toString() {

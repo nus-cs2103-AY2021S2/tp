@@ -51,6 +51,15 @@ public abstract class CompletableDeadline {
     }
 
     /**
+     * Returns the deadline of the Deadline.
+     * @return A LocalDate representing the deadline of the Deadline.
+     */
+    public LocalDate getBy() {
+        assert this.by != null : "by should not be null!";
+        return this.by;
+    }
+
+    /**
      * Returns a status icon dependent on the status of the CompletableDeadline.
      * @return A string representing the CompletableDeadline's status.
      */
