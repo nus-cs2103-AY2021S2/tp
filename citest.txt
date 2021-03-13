@@ -1,0 +1,2 @@
+test 3 - 13/3 remove auto clrf
+test 4 - force commit

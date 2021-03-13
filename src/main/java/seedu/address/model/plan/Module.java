@@ -1,15 +1,15 @@
 package seedu.address.model.plan;
 
-import seedu.address.model.plan.exceptions.ModuleExceptions;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.address.model.plan.exceptions.ModuleExceptions;
 
 public class Module {
 
     private String moduleTitle;
     private String moduleCode;
-    private int MCs;
+    private int moduleCredits;
     private String descriptions;
     private boolean isDone;
     private String grade;
@@ -17,10 +17,16 @@ public class Module {
     private List<Module> prerequisites = new ArrayList<>();
     private List<Module> preclusions = new ArrayList<>();
 
-    public Module (String moduleTitle, String moduleCode, int MCs) {
+    /**
+     * Constructor for creating a module.
+     * @param moduleTitle Title of module.
+     * @param moduleCode Code of module.
+     * @param moduleCredits Number of module credits module offers.
+     */
+    public Module (String moduleTitle, String moduleCode, int moduleCredits) {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
-        this.MCs = MCs;
+        this.moduleCredits = moduleCredits;
         this.isDone = false;
     }
 
@@ -33,7 +39,7 @@ public class Module {
     }
 
     public int getMCs() {
-        return MCs;
+        return moduleCredits;
     }
 
     public String getDescriptions() {
@@ -44,6 +50,11 @@ public class Module {
         return grade;
     }
 
+    /**
+     * Custom method to compare modules.
+     * @param otherModule The module to compare to.
+     * @return True if modules are the same.
+     */
     public boolean isSameModule(Module otherModule) {
         if (this == otherModule) {
             return true;
@@ -76,7 +87,8 @@ public class Module {
     public void doneModule (String grade) throws ModuleExceptions {
         if (isDone) {
             throw new ModuleExceptions("Module is already mark as done");
-        } else if (grade.length() >= 2 || !Character.isUpperCase(grade.charAt(0)) ) { //grade length entered is longer than 2 or first letter is not upper case
+        } else if (grade.length() >= 2 || !Character.isUpperCase(grade.charAt(0))) {
+            //grade length entered is longer than 2 or first letter is not upper case
             throw new ModuleExceptions("Invalid grade, please try again");
         }
         this.grade = grade;
@@ -115,17 +127,25 @@ public class Module {
         case "C-":
             numGrade = 1.5;
             break;
-            default: numGrade = 0;
+        default: numGrade = 0;
         }
         return numGrade;
     }
 
+    /**
+     * Add pre-reqs to module.
+     * @param prereq a prerequisite module.
+     */
     public void addPrerequisites(Module... prereq) {
         for (Module m : prereq) {
             prerequisites.add(m);
         }
     }
 
+    /**
+     * Add preclusions to module.
+     * @param preclu a preclusion to the module.
+     */
     public void addPreclusions (Module ... preclu) {
         for (Module m : preclu) {
             preclusions.add(m);
