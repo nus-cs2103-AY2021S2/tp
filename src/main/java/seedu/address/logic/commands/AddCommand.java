@@ -12,13 +12,13 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Adds a task to the address book.
+ * Adds a task to the planner.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the planner. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_PHONE + "PHONE "
@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner";
 
     private final Task toAdd;
 
