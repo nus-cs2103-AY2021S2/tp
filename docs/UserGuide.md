@@ -85,8 +85,7 @@ Format: `list [LOCATION]`
 * Only location will be searched.
 * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
 * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'
-### Updating an item's details : `update`
-=======
+
 
 ### Editing an item's details : `edit`
 
@@ -150,6 +149,25 @@ Examples:
 * `list` followed by `delete 2` deletes the second item in the entire inventory.
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
+
+### sorting the inventory: `sort`
+
+Sorts the inventory from the inventory based on quantity or expiry date.
+
+Format 1: `sort quantity`
+
+* `sort quantity` will sort the inventory according to individual item's quantity.
+  
+
+Format 2: `sort expiryDate`
+
+* `sort expiryDate` will sort the inventory according to individual item's expiry date.
+*  Items without expiry date will pushed to the back of the sorted list.
+
+Examples:
+* `find Chocolate` followed by `sort quantity` sorts the items from the result of the `find` command.
+* `list Room 2` followed by `sort expiryDate` sorts the recorded list of items in Room 2 by expiry date.
+
 
 ### Clearing all entries : `clear`
 
