@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.ui.UiCommand;
 
 /**
  * Represents the result of a command execution.
@@ -11,19 +13,16 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
+    /** Information on which UI command to excecute **/
+    private final UiCommand uiCommand;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+    public CommandResult(String feedbackToUser, UiCommand uiCommand) {
+        requireAllNonNull(feedbackToUser, uiCommand);
+        this.feedbackToUser = feedbackToUser;
+        this.uiCommand = uiCommand;
     }
 
     /**
@@ -31,19 +30,23 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, UiCommand.NONE);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public UiCommand getUiCommand() {
+        return uiCommand;
     }
 
-    public boolean isExit() {
-        return exit;
+    /**
+     * Returns true if there is a UiCommand.
+     * @return true if UiCommand is not {@code UiCommand.NONE}
+     */
+    public boolean hasUiCommand() {
+        return getUiCommand() != UiCommand.NONE;
     }
 
     @Override
@@ -59,13 +62,12 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && uiCommand == otherCommandResult.uiCommand;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, uiCommand);
     }
 
 }

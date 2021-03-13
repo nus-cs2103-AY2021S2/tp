@@ -3,18 +3,44 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.ui.UiCommand;
+
 public class CommandResultTest {
+    @Test
+    public void hasUiCommand_commandPresent_assertTrue() {
+        CommandResult commandResultHelp = new CommandResult("test", UiCommand.OPEN_HELP_WINDOW);
+        CommandResult commandResultExit = new CommandResult("test", UiCommand.EXIT_APPLICATION);
+
+        assertTrue(commandResultHelp.hasUiCommand());
+        assertTrue(commandResultExit.hasUiCommand());
+    }
+
+    @Test
+    public void hasUiCommand_commandNotPresent_assertTrue() {
+        CommandResult commandResultNone = new CommandResult("test", UiCommand.NONE);
+
+        assertFalse(commandResultNone.hasUiCommand());
+    }
+
+    @Test
+    public void constructor_nullValues_throwsException() {
+        assertThrows(NullPointerException.class, () -> new CommandResult(null, null));
+        assertThrows(NullPointerException.class, () -> new CommandResult("test", null));
+        assertThrows(NullPointerException.class, () -> new CommandResult(null, UiCommand.NONE));
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", UiCommand.NONE)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -29,10 +55,10 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", UiCommand.OPEN_HELP_WINDOW)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", UiCommand.EXIT_APPLICATION)));
     }
 
     @Test
@@ -46,9 +72,11 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                UiCommand.OPEN_HELP_WINDOW).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
+                UiCommand.EXIT_APPLICATION).hashCode());
     }
 }
