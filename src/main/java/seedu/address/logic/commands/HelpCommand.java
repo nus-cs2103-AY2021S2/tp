@@ -23,6 +23,8 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
+    public static final String HELP_TITLE = "Commands available";
+
     private String helpMessage = "";
     private String specifiedCommand;
 
@@ -108,7 +110,7 @@ public class HelpCommand extends Command {
         }
 
         // return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
-        return new CommandResult(SHOWING_HELP_MESSAGE, plainCommandInfo, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, plainCommandTitle, plainCommandInfo, true, false);
     }
 
     private String formatPlainText(String markdown, String type) {
@@ -173,7 +175,7 @@ public class HelpCommand extends Command {
         }
 
         // return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
-        return new CommandResult(SHOWING_HELP_MESSAGE, helpMessage, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, HELP_TITLE, helpMessage, true, false);
     }
 
     private String commandSummaryParser(String info) {

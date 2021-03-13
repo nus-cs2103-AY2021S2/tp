@@ -189,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 // logger.info("isShowHelp()");
-                helpWindow.setHelpMessage(commandResult.getHelpMsg());
+                helpWindow.setHelpText(commandResult.getHelpTitle(), commandResult.getHelpMsg());
                 // resultDisplay.setFeedbackToUser("Opened help window.");
                 handleHelp();
                 // handleHelp(commandResult.getFeedbackToUser());

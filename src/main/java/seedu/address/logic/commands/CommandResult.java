@@ -11,6 +11,8 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    private final String helpTitle;
+
     private final String helpMsg;
 
     /** Help information should be shown to the user. */
@@ -24,6 +26,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.helpTitle = "";
         this.helpMsg = "";
         this.showHelp = showHelp;
         this.exit = exit;
@@ -37,8 +40,9 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
-    public CommandResult(String feedbackToUser, String helpMsg, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, String helpTitle, String helpMsg, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.helpTitle = helpTitle;
         this.helpMsg = helpMsg;
         this.showHelp = showHelp;
         this.exit = exit;
@@ -46,6 +50,10 @@ public class CommandResult {
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public String getHelpTitle() {
+        return helpTitle;
     }
 
     public String getHelpMsg() {
@@ -81,5 +89,4 @@ public class CommandResult {
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
-
 }
