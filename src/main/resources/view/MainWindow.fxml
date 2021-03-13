@@ -24,7 +24,7 @@
         <top>
             <VBox prefHeight="150.0">
                <children>
-              <MenuBar fx:id="menuBar" maxHeight="25.0" prefHeight="25.0" VBox.vgrow="NEVER">
+              <MenuBar fx:id="menuBar" maxHeight="25.0" VBox.vgrow="NEVER">
                 <Menu mnemonicParsing="false" text="File">
                   <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                 </Menu>
@@ -64,6 +64,10 @@
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
         </left>
+
+          <center>
+               <StackPane fx:id = "meetingDashboardPlaceholder"  BorderPane.alignment="CENTER" />
+          </center>
         
       </BorderPane>
     </Scene>

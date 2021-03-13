@@ -1,9 +1,14 @@
 package seedu.address.ui;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -17,6 +22,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.*;
+import seedu.address.model.tag.Tag;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private MeetingDashboard meetingDashboard;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -50,6 +58,11 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane meetingDashboardPlaceholder;
+
+    static ObservableList<Meeting> meetingObservableList= FXCollections.observableArrayList();
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,6 +135,25 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        //for now I just create a custom meeting and put in a observable List, to test the UI.
+
+        String description = "A regular meeting. Nothing special. Clear up a few documents.";
+        Set<Tag> setTags = new HashSet<>();
+        setTags.add(new Tag("Hello"));
+        setTags.add(new Tag("TestTag"));
+
+        meetingObservableList.add(new Meeting(new Name("A very long meeting"), new DateTime("2021-02-03 12:00"), new DateTime("2021-02-03 14:00"), new Priority("1"),
+                new Description(description), setTags));
+        meetingObservableList.add(new Meeting(new Name("Sample Meeting"), new DateTime("2021-10-03 12:00"), new DateTime("2021-12-03 14:00"), new Priority("4"),
+                new Description(description), setTags));
+
+
+        meetingDashboard = new MeetingDashboard(meetingObservableList);
+        Node s = meetingDashboard.getRoot();
+        meetingDashboardPlaceholder.getChildren().add(meetingDashboard.getRoot());
+        meetingObservableList.add(new Meeting(new Name("The next Meeting"), new DateTime("2021-10-03 12:00"), new DateTime("2021-12-03 14:00"), new Priority("4"),
+                new Description(description), setTags));
     }
 
     /**
