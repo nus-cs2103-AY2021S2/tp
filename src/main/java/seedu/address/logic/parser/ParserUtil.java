@@ -33,18 +33,36 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Description}.
+     * Parses a {@code String description} into an {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Description parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Description.isValidAddress(trimmedAddress)) {
+    public static Description parsePlan(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Description(trimmedAddress);
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String semNumber} into an {@code Integer}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code semNumber} is invalid.
+     */
+    public static int parsePlanNumber(String planNumber) throws ParseException {
+        requireNonNull(planNumber);
+        String trimmedPlanNumber = planNumber.trim();
+        int planNum = 0;
+        try {
+            planNum = Integer.parseInt(trimmedPlanNumber);
+        } catch(NumberFormatException error) {
+            throw new ParseException("Invalid Plan Number");
+        }
+        return planNum;
     }
 
     /**

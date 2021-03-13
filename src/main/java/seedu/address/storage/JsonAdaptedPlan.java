@@ -12,36 +12,45 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.plan.Description;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
 import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Plan}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedPlan {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Plan's %s field is missing!";
-    private final String address;
+    private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedSemester> semesters = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given plan details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.address = address;
+    public JsonAdaptedPlan(@JsonProperty("description") String address,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("semesters") List<JsonAdaptedSemester> semesters) {
+        this.description = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if(semesters != null) {
+            this.semesters.addAll(semesters);
         }
     }
 
     /**
      * Converts a given {@code Plan} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Plan source) {
-        address = source.getDescription().value;
+    public JsonAdaptedPlan(Plan source) {
+        description = source.getDescription().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        semesters.addAll(source.getSemesters().stream()
+                .map(JsonAdaptedSemester::new)
                 .collect(Collectors.toList()));
     }
 
@@ -51,22 +60,27 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted plan.
      */
     public Plan toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> planTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            planTags.add(tag.toModelType());
         }
 
-        if (address == null) {
+        final List<Semester> planSemesters = new ArrayList<>();
+        for(JsonAdaptedSemester sem : semesters) {
+            planSemesters.add(sem.toModelType());
+        }
+
+        if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                         Description.class.getSimpleName()));
         }
-        if (!Description.isValidAddress(address)) {
+        if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(address);
+        final Description modelDescription = new Description(description);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Plan(modelDescription, modelTags);
+        final Set<Tag> modelTags = new HashSet<>(planTags);
+        return new Plan(modelDescription, modelTags, planSemesters);
     }
 
 }
