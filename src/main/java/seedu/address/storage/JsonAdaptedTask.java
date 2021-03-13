@@ -10,10 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.Weightage;
@@ -29,8 +27,6 @@ class JsonAdaptedTask {
     private final String moduleName;
     private final String moduleCode;
     private final Integer weightage;
-    private final String phone;
-    private final String email;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -41,15 +37,11 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(@JsonProperty("moduleName") String moduleName,
                            @JsonProperty("moduleCode") String moduleCode,
                            @JsonProperty("weightage") Integer weightage,
-                           @JsonProperty("phone") String phone,
-                           @JsonProperty("email") String email,
                            @JsonProperty("remark") String remark,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
         this.weightage = weightage;
-        this.phone = phone;
-        this.email = email;
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -63,8 +55,6 @@ class JsonAdaptedTask {
         moduleName = source.getModuleName().fullName;
         moduleCode = source.getModuleCode().moduleCode;
         weightage = source.getWeightage().weightage;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -109,22 +99,6 @@ class JsonAdaptedTask {
         }
         final Weightage modelWeightage = new Weightage(weightage);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
@@ -132,7 +106,7 @@ class JsonAdaptedTask {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Task(modelModuleName, modelModuleCode, modelWeightage,
-                modelPhone, modelEmail, modelRemark, modelTags);
+                modelRemark, modelTags);
     }
 
 }
