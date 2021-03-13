@@ -1,11 +1,8 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.time.LocalDate;
-
-import seedu.address.commons.util.DateUtil;
 
 public abstract class CompletableTodo {
 
@@ -20,32 +17,27 @@ public abstract class CompletableTodo {
 
     protected String description;
     protected Boolean isDone;
-    protected LocalDate by;
 
     /**
      * Constructor for CompletableTodo.
      * @param description Description of the CompletableTodo.
-     * @param by Deadline of the CompletableTodo or Null if there is no deadline.
      */
-    public CompletableTodo(String description, LocalDate by) {
-        requireAllNonNull(description);
+    public CompletableTodo(String description) {
+        requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
-        this.by = by;
         this.isDone = false;
     }
 
     /**
      * Constructor for CompletableTodo.
      * @param description Description of the CompletableTodo.
-     * @param by Deadline of the CompletableTodo or Null if there is no deadline.
      * @param isDone Marks whether the CompletableTodo is Done.
      */
-    public CompletableTodo(String description, LocalDate by, Boolean isDone) {
+    public CompletableTodo(String description, Boolean isDone) {
         requireAllNonNull(description, isDone);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
-        this.by = by;
         this.isDone = isDone;
     }
 
@@ -68,6 +60,16 @@ public abstract class CompletableTodo {
     }
 
     /**
+     * Returns the CompletableTodo description.
+     * @return A String representing the CompletableTodo description.
+     */
+    public void setDescription(String description) {
+        requireNonNull(description);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
+        this.description = description;
+    }
+
+    /**
      * Returns the status of the CompletableTodo.
      * @return A Boolean representing the CompletableTodo's status.
      */
@@ -84,15 +86,7 @@ public abstract class CompletableTodo {
     }
 
     /**
-     * Returns a String representation of the by date, or null if the completable does not have a by date.
-     * @return String representation of by date or null if the completable does not have a by date.
-     */
-    public String getStringByDate() {
-        return by == null ? null : DateUtil.decodeDateForStorage(by);
-    };
-
-    /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid Description.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(DESCRIPTION_VALIDATION_REGEX);

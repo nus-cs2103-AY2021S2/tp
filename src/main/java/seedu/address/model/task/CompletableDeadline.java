@@ -4,6 +4,7 @@ import seedu.address.commons.util.DateUtil;
 
 import java.time.LocalDate;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -68,6 +69,16 @@ public abstract class CompletableDeadline {
     }
 
     /**
+     * Returns the CompletableTodo description.
+     * @return A String representing the CompletableTodo description.
+     */
+    public void setDescription(String description) {
+        requireNonNull(description);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
+        this.description = description;
+    }
+
+    /**
      * Returns the status of the CompletableTodo.
      * @return A Boolean representing the CompletableTodo's status.
      */
@@ -92,7 +103,7 @@ public abstract class CompletableDeadline {
     };
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid Description.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(DESCRIPTION_VALIDATION_REGEX);

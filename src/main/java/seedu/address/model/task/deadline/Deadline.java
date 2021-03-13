@@ -6,12 +6,12 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.CompletableDeadline;
 
 /**
  * Represents a CompletableTodo with a Deadline.
  */
-public class Deadline extends CompletableTodo {
+public class Deadline extends CompletableDeadline {
     /**
      * Constructor for Deadline.
      * @param description Description of the CompletableTodo.
