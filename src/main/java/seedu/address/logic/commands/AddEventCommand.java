@@ -34,7 +34,6 @@ public class AddEventCommand extends Command {
     private final Index index;
     private final Event toAdd;
 
-
     /**
      * Creates an AddEventCommand to add specified {@code Event} to {@code Project} with {@code Index}.
      * @param index index of {@code Project} to add event in the list.

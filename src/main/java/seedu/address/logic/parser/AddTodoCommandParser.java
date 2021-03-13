@@ -23,6 +23,7 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTodoCommand
      * and returns an AddTodoCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format.
      */
     public AddTodoCommand parse(String args) throws ParseException {
