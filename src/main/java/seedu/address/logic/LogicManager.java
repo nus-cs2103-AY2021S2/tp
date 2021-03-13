@@ -23,15 +23,16 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+
+    // Enforce user initialization
+    private static final String INITIALIZATION_ERROR_MESSAGE = "Please input your user information first,"
+            + " using the following command:\nbmi g/gender a/age h/height(cm) w/weight(kg) i/ideal_weight";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
-
-    // Enforce user initialization
-    private static final String INITIALIZATION_ERROR_MESSAGE = "Please input your user information first,"
-            + " using the following command:\nbmi g/gender a/age h/height(cm) w/weight(kg) i/ideal_weight";
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.

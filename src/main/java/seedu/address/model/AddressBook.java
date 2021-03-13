@@ -135,7 +135,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds the user information.
      *
-     * @param User user object
+     * @param user User object
      */
     public void addUser(User user) {
         this.user = user;

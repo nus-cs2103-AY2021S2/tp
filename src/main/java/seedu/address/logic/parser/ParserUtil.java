@@ -84,7 +84,12 @@ public class ParserUtil {
         return trimmedName;
     }
 
-
+    /**
+     * Parses a {@code String ageString} into an Integer.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static int parseAge(String ageString) throws ParseException {
         requireNonNull(ageString);
         String trimmedAge = ageString.trim();
@@ -95,6 +100,12 @@ public class ParserUtil {
         return Integer.parseInt(trimmedAge);
     }
 
+    /**
+     * Parses a {@code String weightHeightString} into a Double.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static double parseWeightAndHeight(String weightHeightString) throws ParseException {
         requireNonNull(weightHeightString);
         String trimmedWeightHeight = weightHeightString.trim();
@@ -105,6 +116,12 @@ public class ParserUtil {
         return Double.parseDouble(trimmedWeightHeight);
     }
 
+    /**
+     * Parses a {@code String gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static String parseGender(String gender) throws ParseException {
         requireNonNull(gender);
         String trimmedGender = gender.trim();
@@ -115,6 +132,12 @@ public class ParserUtil {
         return trimmedGender;
     }
 
+    /**
+     * Parses a {@code String idealWeightString} into a Double.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static double parseIdealWeight(String idealWeightString) throws ParseException {
         requireNonNull(idealWeightString);
         String trimmedWeight = idealWeightString.trim();
