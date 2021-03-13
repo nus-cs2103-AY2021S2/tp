@@ -22,8 +22,7 @@ public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "addEto";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits event list of project identified by index.\n"
-            + "Existing list will be appended with the input event.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds event to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_REPEATABLE_INTERVAL + "INTERVAL "
