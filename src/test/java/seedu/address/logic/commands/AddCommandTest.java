@@ -156,6 +156,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void editUser(User user) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String listUser() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public FoodIntakeList getFoodIntakeList() {
             throw new AssertionError("This method should not be called.");
         }

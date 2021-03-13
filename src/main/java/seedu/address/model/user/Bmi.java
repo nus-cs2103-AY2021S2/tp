@@ -33,35 +33,35 @@ public class Bmi {
      * Returns the Double value representing the Bmi.
      * @return Double value representing the Bmi
      */
-    protected double calculateBmi() {
-        return this.weight / Math.pow(this.height, 2);
+    public double calculateBmi() {
+        return this.weight / Math.pow((this.height * 0.01), 2);
     }
 
     /**
      * Returns the lower bound of weight for the healthy Bmi.
      * @return Double value representing lower bound of healthy weight
      */
-    protected double getLowerBoundWeight() {
-        return HEALTHY_BMI_LOWER_BOUND * Math.pow(this.height, 2);
+    public double getLowerBoundWeight() {
+        return HEALTHY_BMI_LOWER_BOUND * Math.pow((this.height * 0.01), 2);
     }
 
     /**
      * Returns the upper bound of weight for the healthy Bmi.
      * @return Double value representing upper bound of healthy weight
      */
-    protected double getUpperBoundWeight() {
-        return HEALTHY_BMI_UPPER_BOUND * Math.pow(this.height, 2);
+    public double getUpperBoundWeight() {
+        return HEALTHY_BMI_UPPER_BOUND * Math.pow((this.height * 0.01), 2);
     }
 
-    protected Double getHeight() {
+    public Double getHeight() {
         return this.height;
     }
 
-    protected Double getWeight() {
+    public Double getWeight() {
         return this.weight;
     }
 
-    protected Double getBmi() {
+    public Double getBmi() {
         return this.bmi;
     }
 

@@ -11,8 +11,8 @@ public class Food {
     public static final String VALIDATION_CHAR_REGEX = "[a-zA-Z ]*";
     public static final String VALIDATION_POSITIVE_DOUBLE_REGEX = "(\\d*\\.?\\d+)";
     public static final String MESSAGE_CONSTRAINTS = "Food name can take any alphabets charcter and it should not be"
-            + "blank.";
-    public static final String DIGIT_CONSTRAINTS = "Double value input can only be positive and more than 0.";
+            + " blank.";
+    public static final String MESSAGE_DIGIT_CONSTRAINTS = "Double value input can only be positive and more than 0.";
 
     private final String name;
     private double fats;
@@ -31,7 +31,7 @@ public class Food {
     public Food(String name, double carbos, double fats, double proteins) {
         requireNonNull(name);
         checkArgument(isValidFoodName(name), MESSAGE_CONSTRAINTS); //Checks for all whitespaces and valid character
-        checkArgument(isValidNumber(fats, carbos, proteins), DIGIT_CONSTRAINTS); //Checks for positive doubles inc 0.
+        checkArgument(isValidNumber(fats, carbos, proteins), MESSAGE_DIGIT_CONSTRAINTS); //Checks for positive doubles.
         this.name = name.toLowerCase();
         this.fats = fats;
         this.carbos = carbos;

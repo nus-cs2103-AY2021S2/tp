@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CARBOS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FATS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROTEINS;
@@ -23,14 +22,13 @@ public class AddFoodItemCommandParser implements Parser<AddFoodItemCommand> {
      */
     public AddFoodItemCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_NAME, PREFIX_PROTEINS, PREFIX_CARBOS, PREFIX_FATS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PROTEINS, PREFIX_CARBOS, PREFIX_FATS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_NAME, PREFIX_PROTEINS, PREFIX_CARBOS, PREFIX_FATS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PROTEINS, PREFIX_CARBOS, PREFIX_FATS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddFoodItemCommand.MESSAGE_USAGE));
         }
 
-        //LocalDateTime dateTime = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         String name = ParserUtil.parseFoodName(argMultimap.getValue(PREFIX_NAME).get());
         Double carbos = ParserUtil.parseDouble(argMultimap.getValue(PREFIX_CARBOS).get());
         Double fats = ParserUtil.parseDouble(argMultimap.getValue(PREFIX_FATS).get());
