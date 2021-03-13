@@ -1,13 +1,9 @@
 package seedu.address.model.appointment;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.List;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -85,5 +81,4 @@ public class Appointment {
     public int hashCode() {
         return Objects.hash(email, subject, dateTime, location);
     }
-
 }

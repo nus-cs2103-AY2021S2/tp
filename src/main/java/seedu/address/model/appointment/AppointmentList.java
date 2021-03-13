@@ -2,17 +2,14 @@ package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
-import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 
 import java.util.Iterator;
 import java.util.List;
 
-// To implement
-// Method: isSameAppoinment
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 
 public class AppointmentList implements Iterable<Appointment> {
 
@@ -25,7 +22,7 @@ public class AppointmentList implements Iterable<Appointment> {
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameAppointment);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -43,7 +40,8 @@ public class AppointmentList implements Iterable<Appointment> {
     /**
      * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment in the list.
+     * The appointment identity of {@code editedAppointment} must not be
+     * the same as another existing appointment in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
@@ -53,7 +51,7 @@ public class AppointmentList implements Iterable<Appointment> {
             throw new AppointmentNotFoundException();
         }
 
-        if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
+        if (!target.equals(editedAppointment) && contains(editedAppointment)) {
             throw new DuplicateAppointmentException();
         }
 
@@ -71,7 +69,7 @@ public class AppointmentList implements Iterable<Appointment> {
         }
     }
 
-    public void setAppointments(Appointment replacement) {
+    public void setAppointments(AppointmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -106,6 +104,10 @@ public class AppointmentList implements Iterable<Appointment> {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.appointment.AppointmentList // instanceof handles nulls
                 && internalList.equals(((seedu.address.model.appointment.AppointmentList) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
         return internalList.hashCode();
     }
 
@@ -115,7 +117,7 @@ public class AppointmentList implements Iterable<Appointment> {
     private boolean appointmentsAreUnique(List<Appointment> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {
             for (int j = i + 1; j < appointments.size(); j++) {
-                if (appointments.get(i).isSameAppointment(appointments.get(j))) {
+                if (appointments.get(i).equals(appointments.get(j))) {
                     return false;
                 }
             }
