@@ -59,12 +59,12 @@ Adds an item to the inventory.
 
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An item can have any number of tags (including 0)
 
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Expiry date of an item is optional.
 
 </div>
@@ -101,9 +101,9 @@ Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/T
     specifying any tags after it.
 
 Examples:
-*  `edit 1 q/10 e/2020-10-11` Edits the quantity of the 1st item to be `10` and expiry date of the 1st item to be `2020-10-11` 
+*  `edit 1 q/10 e/2020-10-11` Edits the quantity of the 1st item to be `10` and expiry date of the 1st item to be `2020-10-11`
    if the existing quantity and expiry date of the 1st item are both not `10` and `2020-10-11` respectively.
-*  `edit 2 n/Chocolate Bread t/` Edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if 
+*  `edit 2 n/Chocolate Bread t/` Edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
    there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
 
 ### Locating items by name: `find`
@@ -157,7 +157,7 @@ Sorts the inventory from the inventory based on quantity or expiry date.
 Format 1: `sort quantity`
 
 * `sort quantity` will sort the inventory according to individual item's quantity.
-  
+
 
 Format 2: `sort expiryDate`
 
