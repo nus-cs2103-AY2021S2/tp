@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.CompletableTaskList;
+import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.ParticipantList;
 import seedu.address.model.project.Project;
@@ -93,7 +93,7 @@ class JsonAdaptedProject {
         }
 
         return new Project(new ProjectName(projectName), new EventList(projectEvents),
-                new CompletableTaskList(projectCompletableTodos), new ParticipantList(projectParticipants));
+                new DeadlineList(projectCompletableTodos), new ParticipantList(projectParticipants));
     }
 
 }

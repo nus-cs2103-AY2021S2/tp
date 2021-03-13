@@ -47,13 +47,13 @@ public class ProjectTest {
         CompletableTodo completableTodo = new Todo("Test Description");
         ArrayList<CompletableTodo> completableTodos = new ArrayList<>();
         completableTodos.add(completableTodo);
-        CompletableTaskList completableTaskList = new CompletableTaskList(completableTodos);
+        DeadlineList deadlineList = new DeadlineList(completableTodos);
 
         ArrayList<Person> participants = new ArrayList<>();
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
 
-        assertDoesNotThrow(() -> new Project(name, eventList, completableTaskList, participantList));
+        assertDoesNotThrow(() -> new Project(name, eventList, deadlineList, participantList));
     }
 
     @Test

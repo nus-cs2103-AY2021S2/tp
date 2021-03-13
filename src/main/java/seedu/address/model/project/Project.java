@@ -20,7 +20,7 @@ public class Project {
 
     // Data fields
     private final EventList events;
-    private final CompletableTaskList completableTasks;
+    private final DeadlineList completableTasks;
     private final ParticipantList participants;
 
     /**
@@ -32,7 +32,7 @@ public class Project {
 
         this.projectName = projectName;
         this.events = new EventList();
-        this.completableTasks = new CompletableTaskList();
+        this.completableTasks = new DeadlineList();
         this.participants = new ParticipantList();
     }
 
@@ -40,7 +40,7 @@ public class Project {
      * Constructs a {@code Project}
      * Every field must be present and not null.
      */
-    public Project(ProjectName projectName, EventList events, CompletableTaskList completableTasks,
+    public Project(ProjectName projectName, EventList events, DeadlineList completableTasks,
                    ParticipantList participants) {
         requireAllNonNull(projectName, events, completableTasks, participants);
         this.projectName = projectName;
@@ -57,7 +57,7 @@ public class Project {
         return events;
     }
 
-    public CompletableTaskList getCompletableTasks() {
+    public DeadlineList getCompletableTasks() {
         return completableTasks;
     }
 

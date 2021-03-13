@@ -16,13 +16,13 @@ public class CompletableTodoTaskListTest {
 
     @Test
     public void constructor_empty_createEmptyCompletableTaskList() {
-        CompletableTaskList emptyCompletableTaskList = new CompletableTaskList();
-        assertTrue(emptyCompletableTaskList.getCompletableTasks().isEmpty());
+        DeadlineList emptyDeadlineList = new DeadlineList();
+        assertTrue(emptyDeadlineList.getCompletableTasks().isEmpty());
     }
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CompletableTaskList(null));
+        assertThrows(NullPointerException.class, () -> new DeadlineList(null));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class CompletableTodoTaskListTest {
         CompletableTodo completableTodo = new Todo("Test Description");
         ArrayList<CompletableTodo> completableTodos = new ArrayList<>();
         completableTodos.add(completableTodo);
-        assertDoesNotThrow(() -> new CompletableTaskList(completableTodos));
+        assertDoesNotThrow(() -> new DeadlineList(completableTodos));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class CompletableTodoTaskListTest {
         CompletableTodo completableTodo = new Todo("Test Description");
         ArrayList<CompletableTodo> completableTodos = new ArrayList<>();
         completableTodos.add(completableTodo);
-        CompletableTaskList completableTaskList = new CompletableTaskList(completableTodos);
-        assertEquals(completableTodos, completableTaskList.getCompletableTasks());
+        DeadlineList deadlineList = new DeadlineList(completableTodos);
+        assertEquals(completableTodos, deadlineList.getCompletableTasks());
     }
 }
