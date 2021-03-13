@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ProjectDisplayPanel projectDisplayPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -53,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane infoDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -142,32 +146,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Opens the help window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
-    }
-
     void show() {
         primaryStage.show();
-    }
-
-    /**
-     * Closes the application.
-     */
-    @FXML
-    private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -205,8 +185,52 @@ public class MainWindow extends UiPart<Stage> {
         case OPEN_HELP_WINDOW:
             handleHelp();
             break;
+        case DISPLAY_PROJECT:
+            handleDisplayProject(commandResult.getIndexOfProject());
+            break;
         default:
             assert false : "Command result should not be invalid";
         }
+    }
+
+    // Handlers for UI Commands
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleHelp() {
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void handleExit() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
+        logic.setGuiSettings(guiSettings);
+        helpWindow.hide();
+        primaryStage.hide();
+    }
+
+    /**
+     * Displays the project at the current index.
+     * @param index Index of project to display.
+     */
+    private void handleDisplayProject(Integer index) {
+        assert index != null;
+
+        if (projectDisplayPanel == null) {
+            projectDisplayPanel = new ProjectDisplayPanel();
+            infoDisplayPlaceholder.getChildren().add(projectDisplayPanel.getRoot());
+        }
+
+        projectDisplayPanel.displayProject(logic.getFilteredProjectsList().get(index));
     }
 }

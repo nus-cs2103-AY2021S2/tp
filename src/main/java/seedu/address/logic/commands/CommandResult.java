@@ -13,25 +13,38 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    private final Integer indexOfProject;
+
     /** Information on which UI command to excecute **/
     private final UiCommand uiCommand;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, UiCommand uiCommand) {
-        requireAllNonNull(feedbackToUser, uiCommand);
+    public CommandResult(String feedbackToUser, UiCommand uiCommand, Integer indexOfProject) {
+        requireAllNonNull(feedbackToUser, uiCommand, indexOfProject);
         this.feedbackToUser = feedbackToUser;
         this.uiCommand = uiCommand;
+        this.indexOfProject = indexOfProject;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code uiCommand}
+     * and other fields set to their default value.
+     */
+    public CommandResult (String feedbackToUser, UiCommand uiCommand) {
+        this(feedbackToUser, uiCommand, null);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, UiCommand.NONE);
+        this(feedbackToUser, UiCommand.NONE, null);
     }
+
+
 
     public String getFeedbackToUser() {
         return feedbackToUser;
@@ -39,6 +52,10 @@ public class CommandResult {
 
     public UiCommand getUiCommand() {
         return uiCommand;
+    }
+
+    public Integer getIndexOfProject() {
+        return indexOfProject;
     }
 
     /**

@@ -50,6 +50,7 @@
                 </StackPane>
 
                 <VBox fx:id="infoDisplay" minHeight="100.0">
+                  <StackPane fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS"/>
                   <styleClass>
                     <String fx:value="pane-with-border"/>
                     <String fx:value="info-display"/>
