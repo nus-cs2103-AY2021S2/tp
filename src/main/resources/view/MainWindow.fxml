@@ -40,58 +40,60 @@
 
         <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
           <items>
-            <SplitPane dividerPositions="0.15" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+
+            <VBox fx:id="infoDisplay" minHeight="100.0">
+              <StackPane fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS"/>
+              <styleClass>
+                <String fx:value="pane-with-border"/>
+                <String fx:value="info-display"/>
+              </styleClass>
+              <padding>
+                <Insets bottom="20.0" left="20.0" top="20.0" right="20.0" />
+              </padding>
+            </VBox>
+
+            <SplitPane dividerPositions="0.85" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
 
-                <StackPane fx:id="resultDisplayPlaceholder" minWidth="200.0" styleClass="pane-with-border">
+                <TabPane tabClosingPolicy="UNAVAILABLE" minWidth="200.0">
+                  <tabs>
+                    <Tab text="Projects">
+                      <content>
+                        <VBox fx:id="projectList" styleClass="pane-with-border-and-tab">
+                          <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                          <padding>
+                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                          </padding>
+                        </VBox>
+                      </content>
+                    </Tab>
+                    <Tab text="Contacts">
+                      <content>
+                        <VBox fx:id="personList" styleClass="pane-with-border-and-tab">
+                          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                          <padding>
+                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                          </padding>
+                        </VBox>
+                      </content>
+                    </Tab>
+                  </tabs>
+                </TabPane>
+
+                <StackPane fx:id="resultDisplayPlaceholder" minWidth="200.0" styleClass="pane-with-border" >
                   <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    <Insets bottom="10.0" left="10.0" top="10.0" right="10.0" />
                   </padding>
                 </StackPane>
 
-                <VBox fx:id="infoDisplay" minHeight="100.0">
-                  <StackPane fx:id="infoDisplayPlaceholder" VBox.vgrow="ALWAYS"/>
-                  <styleClass>
-                    <String fx:value="pane-with-border"/>
-                    <String fx:value="info-display"/>
-                  </styleClass>
-                  <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                  </padding>
-                </VBox>
-
               </items>
-              <padding>
-                <Insets bottom="10.0" left="10.0" top="10.0"/>
-              </padding>
             </SplitPane>
 
-            <TabPane tabClosingPolicy="UNAVAILABLE" minWidth="200.0">
-              <tabs>
-                <Tab text="Projects">
-                  <content>
-                    <VBox fx:id="projectList" styleClass="pane-with-border-and-tab">
-                      <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-                      </padding>
-                    </VBox>
-                  </content>
-                </Tab>
-                <Tab text="Contacts">
-                  <content>
-                    <VBox fx:id="personList" styleClass="pane-with-border-and-tab">
-                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-                      </padding>
-                    </VBox>
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-
           </items>
+
+          <padding>
+            <Insets bottom="10.0" left="10.0" top="10.0" right="10.0" />
+          </padding>
         </SplitPane>
 
         <StackPane>
