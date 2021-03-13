@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
@@ -29,27 +30,30 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final UniqueFoodList uniqueFoodList;
+    private final DietPlanList dietPlanList;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, UniqueFoodList uniqueFoodList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, UniqueFoodList uniqueFoodList,
+                        DietPlanList dietPlanList, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         this.addressBook = new AddressBook(addressBook, uniqueFoodList);
         this.uniqueFoodList = uniqueFoodList;
+        this.dietPlanList = dietPlanList;
         this.userPrefs = new UserPrefs(userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and unique food list: " + uniqueFoodList
-                + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", unique food list: " + uniqueFoodList
+                + ", diet plan list: " + dietPlanList + " and user prefs " + userPrefs);
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UniqueFoodList(), new UserPrefs());
+        this(new AddressBook(), new UniqueFoodList(), new DietPlanList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -240,6 +244,13 @@ public class ModelManager implements Model {
     @Override
     public FoodIntakeList getFoodIntakeList() {
         return addressBook.getFoodIntakeList();
+    }
+
+    //=========== DietPlanList Accessors =============================================================
+
+    @Override
+    public DietPlanList getDietPlanList() {
+        return dietPlanList;
     }
 
 }

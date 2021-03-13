@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path uniqueFoodListFilePath = Paths.get("data" , "foodlist.json");
+    private Path dietPlanListFilePath = Paths.get("data" , "dietplanlist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -56,6 +57,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return uniqueFoodListFilePath;
     }
 
+    public Path getDietPlanListFilePath() {
+        return dietPlanListFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
@@ -64,6 +69,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setUniqueFoodListFilePath(Path uniqueFoodListFilePath) {
         requireNonNull(uniqueFoodListFilePath);
         this.uniqueFoodListFilePath = uniqueFoodListFilePath;
+    }
+
+    public void setDietPlanListFilePath(Path dietPlanListFilePath) {
+        requireNonNull(dietPlanListFilePath);
+        this.dietPlanListFilePath = dietPlanListFilePath;
     }
 
     @Override
@@ -79,12 +89,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
-                && uniqueFoodListFilePath.equals(o.uniqueFoodListFilePath);
+                && uniqueFoodListFilePath.equals(o.uniqueFoodListFilePath)
+                && dietPlanListFilePath.equals(o.dietPlanListFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, uniqueFoodListFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, uniqueFoodListFilePath, dietPlanListFilePath);
     }
 
     @Override
@@ -92,7 +103,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
-        sb.append("\nLocal data file location : " + uniqueFoodListFilePath);
+        sb.append("\nLocal unique food list file location : " + uniqueFoodListFilePath);
+        sb.append("\nLocal diet plan list file location : " + dietPlanListFilePath);
         return sb.toString();
     }
 
