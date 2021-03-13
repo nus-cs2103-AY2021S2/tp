@@ -16,11 +16,12 @@ import seedu.address.model.person.Person;
 public class PolicyCommand extends Command {
 
     public static final String COMMAND_WORD = "policy";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all policies associated a particular client.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
+
+    private static final String NO_POLICIES = " has no policies now!";
 
     private final Index targetIndex;
 
@@ -40,10 +41,11 @@ public class PolicyCommand extends Command {
         Person personPoliciesToDisplay = lastShownList.get(targetIndex.getZeroBased());
 
         if (!personPoliciesToDisplay.hasPolicies()) {
-            return new CommandResult("This contact has no policies now!", false, true, false);
+            String feedback = personPoliciesToDisplay.getName() + NO_POLICIES;
+            return new CommandResult(feedback, false, true, false);
         }
 
-        String policiesAndUrls = personPoliciesToDisplay.getAllPoliciesAndUrls();
+        String policiesAndUrls = personPoliciesToDisplay.getPersonNameAndAllPolicies();
         return new CommandResult(policiesAndUrls, false, true, false);
     }
 

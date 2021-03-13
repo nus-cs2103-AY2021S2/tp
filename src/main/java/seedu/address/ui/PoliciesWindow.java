@@ -20,6 +20,7 @@ public class PoliciesWindow extends UiPart<Stage> {
     private static final String NOT_URL = "No URL!";
     private static final Logger logger = LogsCenter.getLogger(PoliciesWindow.class);
     private static final String FXML = "PoliciesWindow.fxml";
+    private static final String COPY_URL_TEXT = "Copy URL!";
 
     @FXML
     private VBox outerBox;
@@ -42,6 +43,7 @@ public class PoliciesWindow extends UiPart<Stage> {
 
     /**
      * Shows the policies window.
+     *
      * @throws IllegalStateException
      * <ul>
      *     <li>
@@ -95,41 +97,43 @@ public class PoliciesWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 
+    public void noPolicyToDisplay(String noPolicyFeedback) {
+        HBox row = new HBox();
+        row.getChildren().add(new Label(noPolicyFeedback));
+        outerBox.getChildren().clear();
+        outerBox.getChildren().add(row);
+        outerBox.setPadding(new Insets(25, 50, 25, 50));
+    }
+
     /**
      * Formats and sets up policies and their URLs for display in window.
      *
      * @param policiesToDisplay joined {@code String} of all policies associated with the chosen contact.
      */
-    public void setPoliciesToDisplay(String policiesToDisplay) {
+    public void setPoliciesToDisplay(String name, String policiesToDisplay) {
+        // TODO: tidy up code
         outerBox.getChildren().clear();
         String[] split = policiesToDisplay.split("\n");
-        if (hasPoliciesToDisplay(split)) {
-            for (int i = 0; i < split.length; i++) {
-                HBox row = new HBox(10);
 
-                String[] policyNumAndUrl = split[i].split(": ", 2);
-                final String policyNum = policyNumAndUrl[0];
-                final String possibleUrl = policyNumAndUrl[1];
+        getRoot().setTitle(name + "\'s Policies");
 
-                if (isUrl(possibleUrl)) {
-                    Button rowButton = new Button("Copy URL!");
-                    rowButton.setOnAction(e -> copyUrl(possibleUrl));
-                    row.setAlignment(Pos.CENTER);
-                    // Hyperlink link = new Hyperlink(possibleUrl);
-                    // link.setText(split[i]);
-                    row.getChildren().addAll(new Label(split[i]), rowButton);
-                } else {
-                    row.getChildren().addAll(new Label(split[i]));
-                }
+        for (int i = 0; i < split.length; i++) {
+            HBox row = new HBox(10);
 
-                outerBox.getChildren().add(row);
+            String[] policyNumAndUrl = split[i].split(": ", 2);
+            final String possibleUrl = policyNumAndUrl[1];
+
+            if (isUrl(possibleUrl)) {
+                Button rowButton = new Button(COPY_URL_TEXT);
+                rowButton.setOnAction(e -> copyUrl(possibleUrl));
+                row.setAlignment(Pos.CENTER);
+                row.getChildren().addAll(new Label(split[i]), rowButton);
+            } else {
+                row.getChildren().addAll(new Label(split[i]));
             }
-            outerBox.setSpacing(5);
-        } else {
-            HBox row = new HBox();
-            row.getChildren().add(new Label(split[0]));
             outerBox.getChildren().add(row);
         }
+        outerBox.setSpacing(10);
         outerBox.setPadding(new Insets(25, 50, 25, 50));
     }
 

@@ -13,7 +13,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
-    "policies" : ["Policy_2222>null"]
+    "policies" : ["Policy_2222>www.youtube.com"]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -27,7 +27,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tagged" : [ "friends" ],
-    "policies" : [ "Policy_3333>null", "Policy_3334>null" ]
+    "policies" : [ "Policy_3333>null", "Policy_3334>www.google.com" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -48,6 +48,6 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ],
-    "policies" : [ "Policy_4444>null", "Policy_4445>null", "Policy_4446>null", "Policy_4447>null" ]
+    "policies" : [ "Policy_4444>null", "Policy_4445>www.facebook.com", "Policy_4446>null", "Policy_4447>www.yahoo.com" ]
   } ]
 }
