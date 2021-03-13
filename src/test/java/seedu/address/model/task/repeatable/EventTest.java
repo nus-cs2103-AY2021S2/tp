@@ -89,12 +89,12 @@ public class EventTest {
 
         // different interval -> returns false
         editedTutorial = new EventBuilder(TUTORIAL).withInterval(Interval.NONE).build();
-        assertNotEquals(editedTutorial, ALICE);
+        assertNotEquals(editedTutorial, TUTORIAL);
 
         // different by date -> returns false
         editedTutorial = new EventBuilder(TUTORIAL)
                 .withAtDate(LocalDate.of(2019, 01, 01)).build();
-        assertNotEquals(editedTutorial, ALICE);
+        assertNotEquals(editedTutorial, TUTORIAL);
 
     }
 }

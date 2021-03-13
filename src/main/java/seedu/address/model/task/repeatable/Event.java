@@ -71,7 +71,9 @@ public class Event extends Repeatable {
 
         Event otherEvent = (Event) other;
         return otherEvent.getDescription().equals(getDescription())
-                && otherEvent.getIsDone().equals(getIsDone());
+                && otherEvent.getIsDone().equals(getIsDone())
+                && otherEvent.getRecurrence().equals(getRecurrence())
+                && otherEvent.getAt().equals(getAt());
     }
 
     @Override
