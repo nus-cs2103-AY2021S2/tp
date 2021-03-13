@@ -177,8 +177,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseOrderDescription_collectionWithInvalidOrderDescription_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseOrderDescriptions(Arrays.asList(VALID_ORDER_DESC_1, INVALID_ORDER_DESC)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderDescriptions(Arrays.asList(VALID_ORDER_DESC_1,
+                INVALID_ORDER_DESC)));
     }
 
     @Test

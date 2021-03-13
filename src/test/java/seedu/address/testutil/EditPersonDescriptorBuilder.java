@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OrderDescription;
@@ -39,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setOrderDescriptions(person.getOrderDescriptions());
         descriptor.setTags(person.getTags());
+        descriptor.setDeliveryDate(person.getDeliveryDate());
     }
 
     /**
@@ -73,8 +75,12 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code OrderDescription} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withOrderDescriptions(String... orderDescriptions) {
-        Set<OrderDescription> orderDescriptionSet = Stream.of(orderDescriptions).map(OrderDescription::new).collect(Collectors.toSet());
+        Set<OrderDescription> orderDescriptionSet = Stream.of(orderDescriptions)
+                .map(OrderDescription::new).collect(Collectors.toSet());
         descriptor.setOrderDescriptions(orderDescriptionSet);
         return this;
     }
@@ -86,6 +92,14 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code DeliveryDate} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDeliveryDate(String deliveryDate) {
+        descriptor.setDeliveryDate(new DeliveryDate(deliveryDate));
         return this;
     }
 

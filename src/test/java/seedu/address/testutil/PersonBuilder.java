@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OrderDescription;
@@ -22,13 +23,15 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ORDER_DESCRIPTION = "1 x Chocolate Cake";
+    public static final String DEFAULT_DELIVERY_DATE = "01/01/2022";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
     private Set<OrderDescription> orderDescriptions;
+    private Set<Tag> tags;
+    private DeliveryDate deliveryDate;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -38,9 +41,10 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
         orderDescriptions = new HashSet<>();
-        orderDescriptions.add(new OrderDescription(DEFAULT_ORDER_DESCRIPTION)); // todo not very sure if there is a right way to add
+        orderDescriptions.add(new OrderDescription(DEFAULT_ORDER_DESCRIPTION));
+        tags = new HashSet<>();
+        deliveryDate = new DeliveryDate(DEFAULT_DELIVERY_DATE);
     }
 
     /**
@@ -51,8 +55,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
         orderDescriptions = new HashSet<>(personToCopy.getOrderDescriptions());
+        tags = new HashSet<>(personToCopy.getTags());
+        deliveryDate = personToCopy.getDeliveryDate();
     }
 
     /**
@@ -94,15 +99,24 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
-
-    // todo trace what this function is supposed to be used for - only tests i think
+    /**
+     * Sets the {@code OrderDescription} of the {@code OrderDescription} that we are building.
+     */
     public PersonBuilder withOrderDescriptions(String ... orderDescriptions) {
         this.orderDescriptions = SampleDataUtil.getOrderDescriptionSet(orderDescriptions);
         return this;
     }
 
+    /**
+     * Sets the {@code DeliveryDate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDeliveryDate(String deliveryDate) {
+        this.deliveryDate = new DeliveryDate(deliveryDate);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, orderDescriptions, tags);
+        return new Person(name, phone, email, address, orderDescriptions, tags, deliveryDate);
     }
 
 }

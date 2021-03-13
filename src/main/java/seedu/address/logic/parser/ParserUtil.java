@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OrderDescription;
@@ -114,9 +115,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>}.  todo
+     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>}.
      */
-    public static Set<OrderDescription> parseOrderDescriptions(Collection<String> orderDescriptions) throws ParseException {
+    public static Set<OrderDescription> parseOrderDescriptions(Collection<String> orderDescriptions)
+            throws ParseException {
         requireNonNull(orderDescriptions);
         final Set<OrderDescription> orderDescriptionSet = new HashSet<>();
         for (String o : orderDescriptions) {
@@ -150,5 +152,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String deliveryDate} into an {@code DeliveryDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deliveryDate} is invalid.
+     */
+    public static DeliveryDate parseDeliveryDate(String deliveryDate) throws ParseException {
+        requireNonNull(deliveryDate);
+        String trimmedDeliveryDate = deliveryDate.trim();
+        if (!DeliveryDate.isValidDeliveryDate(trimmedDeliveryDate)) {
+            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
+        }
+        return new DeliveryDate(trimmedDeliveryDate);
     }
 }

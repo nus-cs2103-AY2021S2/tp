@@ -108,9 +108,12 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // order description
-        assertParseFailure(parser, "1" + ORDER_AMY + ORDER_BOB + ORDER_DESC_EMPTY, OrderDescription.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + ORDER_AMY + ORDER_DESC_EMPTY + ORDER_BOB, OrderDescription.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + ORDER_DESC_EMPTY + ORDER_AMY + ORDER_BOB, OrderDescription.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + ORDER_AMY + ORDER_BOB + ORDER_DESC_EMPTY,
+                OrderDescription.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + ORDER_AMY + ORDER_DESC_EMPTY + ORDER_BOB,
+                OrderDescription.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + ORDER_DESC_EMPTY + ORDER_AMY + ORDER_BOB,
+                OrderDescription.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + ORDER_DESC_EMPTY, OrderDescription.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured

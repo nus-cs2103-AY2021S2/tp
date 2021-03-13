@@ -8,8 +8,10 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OrderDescription;
@@ -30,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedOrderDescription> orderDescriptions = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String deliveryDate;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,17 +41,19 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("orderDescriptions") List<JsonAdaptedOrderDescription> orderDescriptions,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("deliveryDate") String deliveryDate) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (orderDescriptions != null) {
+        if (orderDescriptions != null) { // handle null below
             this.orderDescriptions.addAll(orderDescriptions);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.deliveryDate = deliveryDate;
     }
 
     /**
@@ -66,6 +71,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        deliveryDate = source.getDeliveryDate().toString();
     }
 
     /**
@@ -111,15 +117,21 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (deliveryDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DeliveryDate.class.getSimpleName()));
+        }
+        if (!DeliveryDate.isValidDeliveryDate(deliveryDate)) {
+            throw new IllegalValueException(DeliveryDate.MESSAGE_CONSTRAINTS);
+        }
+        final DeliveryDate modelDeliveryDate = new DeliveryDate(deliveryDate);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        // throw error if no order descriptions found
-        // todo uncomment after fixing json tests
-        if (orderDescriptions.isEmpty()) {
+        if (orderDescriptions.isEmpty() || orderDescriptions == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     OrderDescription.class.getSimpleName()));
         }
-
 
         final List<OrderDescription> personOrderDescriptions = new ArrayList<>();
         for (JsonAdaptedOrderDescription o : orderDescriptions) {
@@ -127,7 +139,8 @@ class JsonAdaptedPerson {
         }
         final Set<OrderDescription> modelOrderDescriptions = new HashSet<>(personOrderDescriptions);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelOrderDescriptions, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelOrderDescriptions, modelTags,
+                modelDeliveryDate);
     }
 
 }

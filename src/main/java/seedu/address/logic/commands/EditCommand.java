@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
@@ -21,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OrderDescription;
@@ -29,41 +31,41 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing order in CakeCollate.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the order identified "
+            + "by the index number used in the displayed order list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_ORDER_DESCRIPTION + "ORDER DESCRIPTION]... " // todo test if it looks right - done
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ORDER_DESCRIPTION + "ORDER DESCRIPTION]... "
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_DATE + "DELIVERY_DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"; // todo update all usages
+            + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This order already exists in CakeCollate.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the order in the filtered order list to edit
+     * @param editPersonDescriptor details to edit the order with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
-
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
@@ -80,7 +82,7 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) { // todo where is this addPerson
+        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -103,8 +105,11 @@ public class EditCommand extends Command {
         Set<OrderDescription> updatedOrderDescriptions =
                 editPersonDescriptor.getOrderDescription().orElse(personToEdit.getOrderDescriptions());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        DeliveryDate updatedDeliveryDate =
+                editPersonDescriptor.getDeliveryDate().orElse(personToEdit.getDeliveryDate());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrderDescriptions, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrderDescriptions,
+                updatedTags, updatedDeliveryDate);
     }
 
     @Override
@@ -126,8 +131,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the order with. Each non-empty field value will replace the
+     * corresponding field value of the order.
      */
     public static class EditPersonDescriptor {
         private Name name;
@@ -136,6 +141,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<OrderDescription> orderDescriptions;
         private Set<Tag> tags;
+        private DeliveryDate deliveryDate;
 
         public EditPersonDescriptor() {}
 
@@ -150,13 +156,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setOrderDescriptions(toCopy.orderDescriptions);
             setTags(toCopy.tags);
+            setDeliveryDate(toCopy.deliveryDate);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, orderDescriptions, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate);
         }
 
         public void setName(Name name) {
@@ -192,13 +199,13 @@ public class EditCommand extends Command {
         }
 
         public void setOrderDescriptions(Set<OrderDescription> orderDescriptions) {
-            this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) : null; // check if both paths being taken?
+            this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) : null;
         }
 
         public Optional<Set<OrderDescription>> getOrderDescription() {
             return (orderDescriptions != null)
                     ? Optional.of(Collections.unmodifiableSet(orderDescriptions))
-                    : Optional.empty(); // todo figure out why null important for multiple values allowing fields
+                    : Optional.empty();
         }
 
         /**
@@ -216,6 +223,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setDeliveryDate(DeliveryDate deliveryDate) {
+            this.deliveryDate = deliveryDate;
+        }
+
+        public Optional<DeliveryDate> getDeliveryDate() {
+            return Optional.ofNullable(deliveryDate);
         }
 
         @Override
@@ -238,7 +253,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getOrderDescription().equals(e.getOrderDescription())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getDeliveryDate().equals(e.getDeliveryDate());
         }
     }
 }

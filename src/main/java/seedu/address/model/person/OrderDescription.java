@@ -3,20 +3,24 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-// todo im not sure if this class name can be improved
-// todo javadocs after fixing class name
 public class OrderDescription {
 
     public static final String MESSAGE_CONSTRAINTS = "Order description should not be left blank.";
-
-    public final String value;
 
     /*
      * The first character of the order description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*"; // todo need help, why is this catching o/1 x Amy errors (errors using prefix when there shouldnt be)
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+    // todo need help, why is this catching o/1 x Amy errors (errors using prefix when there shouldnt be)
 
+    public final String value;
+
+    /**
+     * Constructs an {@code Order Description}.
+     *
+     * @param orderDescription A valid order description
+     */
     public OrderDescription(String orderDescription) {
         requireNonNull(orderDescription);
         checkArgument(isValidOrderDescription(orderDescription), MESSAGE_CONSTRAINTS);
