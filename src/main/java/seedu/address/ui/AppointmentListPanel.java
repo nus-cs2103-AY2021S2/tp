@@ -36,8 +36,6 @@ public class AppointmentListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Appointment appointment, boolean empty) {
             super.updateItem(appointment, empty);
-            System.out.println(appointment);
-            System.out.println(empty);
             if (empty || appointment == null) {
                 setGraphic(null);
                 setText(null);
