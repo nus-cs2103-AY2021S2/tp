@@ -76,7 +76,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_tagContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("FastFood"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("FastFood"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").withTags("FastFood").build()));
 
         // Multiple keywords
