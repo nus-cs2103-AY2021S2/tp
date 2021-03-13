@@ -1,17 +1,14 @@
 package seedu.address.model.project;
 
-import seedu.address.model.task.CompletableDeadline;
-import seedu.address.model.task.CompletableTodo;
-import seedu.address.model.task.deadline.Deadline;
-import seedu.address.model.task.todo.Todo;
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.testutil.Assert.assertThrows;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.todo.Todo;
 
 public class TodoListTest {
 
@@ -42,4 +39,5 @@ public class TodoListTest {
         TodoList todoList = new TodoList(todos);
         assertEquals(todos, todoList.getTodos());
     }
+
 }
