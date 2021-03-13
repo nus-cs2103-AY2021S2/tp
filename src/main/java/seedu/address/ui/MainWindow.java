@@ -185,12 +185,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
+            if (commandResult.hasUiCommand()) {
+                executeUiCommand(commandResult);
             }
 
             return commandResult;
@@ -198,6 +194,19 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    private void executeUiCommand(CommandResult commandResult) {
+        switch (commandResult.getUiCommand()) {
+        case EXIT_APPLICATION:
+            handleExit();
+            break;
+        case OPEN_HELP_WINDOW:
+            handleHelp();
+            break;
+        default:
+            assert false : "Command result should not be invalid";
         }
     }
 }

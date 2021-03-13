@@ -36,7 +36,6 @@ public class DateUtil {
      */
     public static String decodeDate(LocalDate date) {
         requireNonNull(date);
-        assert date != null : "date should not be null!";
         return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
@@ -47,7 +46,6 @@ public class DateUtil {
      */
     public static String decodeDateForStorage(LocalDate date) {
         requireNonNull(date);
-        assert date != null : "date should not be null!";
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }
