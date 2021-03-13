@@ -16,7 +16,6 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.human.driver.Driver;
 import seedu.address.testutil.DriverBuilder;
 import seedu.address.testutil.PersonBuilder;
 
