@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.task.Completable;
 
 public class AddTtoCommand {
 
@@ -15,7 +14,7 @@ public class AddTtoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Task to CoLAB. "
             + "Parameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_START_DATE + "DUE DATE]...\n"
+            + "[" + PREFIX_DEADLINE_DATE + "DUE DATE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Submit project report "
             + PREFIX_TAG + "17-10-2021";

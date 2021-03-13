@@ -8,14 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.task.Completable;
-import seedu.address.model.task.completable.Deadline;
-import seedu.address.model.task.completable.Todo;
+import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
- * Jackson-friendly version of {@link Completable}.
+ * Jackson-friendly version of {@link CompletableDeadline}.
  */
-class JsonAdaptedCompletable {
+class JsonAdaptedDeadline {
     private final String description;
     private final String by;
     private final Boolean isDone;
@@ -25,42 +24,38 @@ class JsonAdaptedCompletable {
      * {@code at} and {@code isDone}.
      */
     @JsonCreator
-    public JsonAdaptedCompletable(@JsonProperty("description")String description,
-                                  @JsonProperty("date") String by,
-                                  @JsonProperty("isDone") Boolean isDone) {
+    public JsonAdaptedDeadline(@JsonProperty("description")String description,
+                               @JsonProperty("date") String by,
+                               @JsonProperty("isDone") Boolean isDone) {
         this.description = description;
         this.by = by;
         this.isDone = isDone;
     }
 
     /**
-     * Converts a given {@code Event} into this class for Jackson use.
+     * Converts a given {@code Deadline} into this class for Jackson use.
      */
-    public JsonAdaptedCompletable(Completable source) {
+    public JsonAdaptedDeadline(CompletableDeadline source) {
         description = source.getDescription();
         by = source.getStringByDate();
         isDone = source.getIsDone();
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Event} object.
+     * Converts this Jackson-friendly adapted tag object into the model's {@code Deadline} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
-    public Completable toModelType() throws IllegalValueException {
-        if (by == null) {
-            return new Todo(description, isDone);
-        } else {
-            LocalDate date = parseDate(by);
-            return new Deadline(description, isDone, date);
-        }
+    public CompletableDeadline toModelType() throws IllegalValueException {
+        LocalDate date = parseDate(by);
+        return new Deadline(description, date , isDone);
     }
 
     private LocalDate parseDate(String date) throws IllegalValueException {
         try {
             return DateUtil.encodeDate(date);
         } catch (DateConversionException e) {
-            // TODO update e.getMessage with date constraints
+            // TODO: update e.getMessage with date constraints
             throw new IllegalValueException(e.getMessage());
         }
     }

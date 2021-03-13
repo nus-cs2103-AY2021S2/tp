@@ -22,10 +22,10 @@ public class DateUtil {
     public static LocalDate encodeDate(String date) throws DateConversionException {
         requireNonNull(date);
         try {
-            return LocalDate.parse(date);
+            return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         } catch (DateTimeParseException e) {
             throw new DateConversionException("An error occurred while encoding date,"
-                    + " use the yyyy-mm-dd format.");
+                    + " use the dd-MM-yyyy format.");
         }
     }
 
