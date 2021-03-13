@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final UniqueAliasMap aliases;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.aliases = new UniqueAliasMap();
     }
 
     public ModelManager() {
@@ -130,6 +134,33 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyUniqueAliasMap getAliasMap() {
+        return aliases;
+    }
+
+    @Override
+    public void addAlias(CommandAlias aliasCommandPair) {
+        aliases.addAlias(aliasCommandPair);
+    }
+
+    @Override
+    public void deleteAlias(Alias alias) {
+        aliases.removeAlias(alias);
+    }
+
+    @Override
+    public boolean hasAlias(Alias alias) {
+        requireNonNull(alias);
+        return aliases.hasAlias(alias);
+    }
+
+    @Override
+    public boolean hasAlias(CommandAlias commandAlias) {
+        requireNonNull(commandAlias);
+        return aliases.hasAlias(commandAlias);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -145,7 +176,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && aliases.equals(other.aliases);
     }
 
 }

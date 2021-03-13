@@ -19,7 +19,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -145,6 +148,31 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyUniqueAliasMap getAliasMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(CommandAlias commandAlias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAlias(CommandAlias commandAlias) {
             throw new AssertionError("This method should not be called.");
         }
     }

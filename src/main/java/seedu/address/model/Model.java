@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +86,30 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns the AliasMap */
+    ReadOnlyUniqueAliasMap getAliasMap();
+
+    /**
+     * Adds the given command alias.
+     * {@code commandAlias} must not already exist in the address book.
+     */
+    void addAlias(CommandAlias commandAlias);
+
+    /**
+     * Deletes the given alias.
+     * The alias must exist in the address book.
+     */
+    void deleteAlias(Alias alias);
+
+    /**
+     * Returns true if an alias with the same identity as {@code alias} exists in the address book.
+     */
+    boolean hasAlias(Alias alias);
+
+    /**
+     * Returns true if a command alias with the same identity as {@code commandAlias} exists in the address book.
+     */
+    boolean hasAlias(CommandAlias commandAlias);
+
 }
