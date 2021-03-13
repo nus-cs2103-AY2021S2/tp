@@ -8,7 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DriveCommand;
-import seedu.address.model.human.driver.Driver;
+import seedu.address.model.person.driver.Driver;
 
 /**
  * A utility class for Driver.

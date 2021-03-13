@@ -22,8 +22,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.human.driver.Driver;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.person.driver.Driver;
+import seedu.address.model.person.passenger.Passenger;
 import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -93,7 +93,7 @@ class DriveCommandTest {
     public void execute_singlePersonUnfilteredList_success() {
         int index = 0;
         Driver driver = new DriverBuilder().build();
-        Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(index))
+        Passenger editedPerson = new PersonBuilder(model.getFilteredPersonList().get(index))
                 .withDriver(driver).buildWithDriver();
 
         DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder()
@@ -115,7 +115,7 @@ class DriveCommandTest {
 
         Driver driver = new DriverBuilder().build();
         for (int idx : index) {
-            Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(idx - 1))
+            Passenger editedPerson = new PersonBuilder(model.getFilteredPersonList().get(idx - 1))
                     .withDriver(driver).buildWithDriver();
             joiner.add(editedPerson.getName().toString());
             expectedModel.setPerson(model.getFilteredPersonList().get(idx - 1), editedPerson);
@@ -130,10 +130,10 @@ class DriveCommandTest {
     @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Passenger personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         Driver driver = new DriverBuilder().build();
-        Person editedPerson = new PersonBuilder(personInFilteredList)
+        Passenger editedPerson = new PersonBuilder(personInFilteredList)
                 .withDriver(driver).buildWithDriver();
 
         DriveCommand driveCommand = new DriveCommand(driver, new CommuterBuilder()

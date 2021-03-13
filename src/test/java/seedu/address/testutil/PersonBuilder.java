@@ -4,18 +4,18 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.driver.Driver;
-import seedu.address.model.human.person.Address;
-import seedu.address.model.human.person.Person;
-import seedu.address.model.human.person.TripDay;
-import seedu.address.model.human.person.TripTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
+import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.TripDay;
+import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Passenger objects.
  */
 public class PersonBuilder {
 
@@ -49,7 +49,7 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
+    public PersonBuilder(Passenger personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         address = personToCopy.getAddress();
@@ -60,7 +60,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Passenger} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
@@ -68,7 +68,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Passenger} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -76,7 +76,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Passenger} that we are building.
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -84,7 +84,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Passenger} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -92,7 +92,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code TripDay} of the {@code Person} that we are building.
+     * Sets the {@code TripDay} of the {@code Passenger} that we are building.
      */
     public PersonBuilder withTripDay(String tripDay) {
         this.tripDay = new TripDay(tripDay);
@@ -100,7 +100,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code TripTime} of the {@code Person} that we are building.
+     * Sets the {@code TripTime} of the {@code Passenger} that we are building.
      */
     public PersonBuilder withTripTime(String tripTime) {
         this.tripTime = new TripTime(tripTime);
@@ -108,19 +108,19 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Driver} of the {@code Person} that we are building.
+     * Sets the {@code Driver} of the {@code Passenger} that we are building.
      */
     public PersonBuilder withDriver(Driver driver) {
         this.driver = Optional.ofNullable(driver);
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, address, tripDay, tripTime, tags);
+    public Passenger build() {
+        return new Passenger(name, phone, address, tripDay, tripTime, tags);
     }
 
-    public Person buildWithDriver() {
-        return new Person(name, phone, address, tripDay, tripTime, driver.get(), tags);
+    public Passenger buildWithDriver() {
+        return new Passenger(name, phone, address, tripDay, tripTime, driver.get(), tags);
     }
 
 }

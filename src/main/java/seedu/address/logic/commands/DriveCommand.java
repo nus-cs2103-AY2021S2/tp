@@ -14,13 +14,13 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.driver.Driver;
-import seedu.address.model.human.person.Address;
-import seedu.address.model.human.person.Person;
-import seedu.address.model.human.person.TripDay;
-import seedu.address.model.human.person.TripTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
+import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.TripDay;
+import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,7 +48,7 @@ public class DriveCommand extends Command {
     private final Set<Index> persons;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Passenger}
      */
     public DriveCommand(Driver driver, Set<Index> persons) {
         requireNonNull(driver);
@@ -65,7 +65,7 @@ public class DriveCommand extends Command {
         }
         StringJoiner joiner = new StringJoiner(", ");
 
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Passenger> lastShownList = model.getFilteredPersonList();
 
         for (Index idx : persons) {
             if (idx.getZeroBased() >= lastShownList.size()) {
@@ -74,8 +74,8 @@ public class DriveCommand extends Command {
         }
 
         for (Index idx : persons) {
-            Person personToEdit = lastShownList.get(idx.getZeroBased());
-            Person editedPerson = assignDriverToPerson(personToEdit, driver);
+            Passenger personToEdit = lastShownList.get(idx.getZeroBased());
+            Passenger editedPerson = assignDriverToPerson(personToEdit, driver);
             joiner.add(editedPerson.getName().toString());
             model.setPerson(personToEdit, editedPerson);
         }
@@ -86,12 +86,12 @@ public class DriveCommand extends Command {
     }
 
     /**
-     * Assigns the given {@code Driver} to the given {@code Person}.
-     * @param personToEdit the {@code Person} to add the {@code Driver} to.
-     * @param driver the {@code Driver} to add to the {@code Person}.
-     * @return a new {@code Person}, with the given driver assigned.
+     * Assigns the given {@code Driver} to the given {@code Passenger}.
+     * @param personToEdit the {@code Passenger} to add the {@code Driver} to.
+     * @param driver the {@code Driver} to add to the {@code Passenger}.
+     * @return a new {@code Passenger}, with the given driver assigned.
      */
-    private static Person assignDriverToPerson(Person personToEdit, Driver driver) {
+    private static Passenger assignDriverToPerson(Passenger personToEdit, Driver driver) {
         requireNonNull(personToEdit);
         requireNonNull(driver);
 
@@ -102,7 +102,7 @@ public class DriveCommand extends Command {
         TripDay updatedTripDay = personToEdit.getTripDay();
         TripTime updatedTripTime = personToEdit.getTripTime();
 
-        return new Person(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, driver,
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, driver,
                 updatedTags);
     }
 

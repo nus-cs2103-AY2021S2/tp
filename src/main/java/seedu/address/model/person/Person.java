@@ -1,18 +1,18 @@
-package seedu.address.model.human;
+package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Human. Abstract class to group shared variables between driver and person.
+ * Represents a Person. Abstract class to group shared variables between driver and person.
  */
-public abstract class Human {
+public abstract class Person {
     protected final Name name;
     protected final Phone phone;
 
     /**
      * Every field must be present and not null.
      */
-    public Human(Name name, Phone phone) {
+    public Person(Name name, Phone phone) {
         requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;

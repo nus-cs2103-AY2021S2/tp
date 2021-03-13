@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.person.passenger.Passenger;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -28,9 +28,9 @@ public class FindCommand extends Command {
             + "\n2. " + COMMAND_WORD + " " + PREFIX_TAG + "female"
             + "\n3. " + COMMAND_WORD + " " + PREFIX_PHONE + "91031282";
 
-    private final Predicate<Person> predicate;
+    private final Predicate<Passenger> predicate;
 
-    public FindCommand(Predicate<Person> predicate) {
+    public FindCommand(Predicate<Passenger> predicate) {
         this.predicate = predicate;
     }
 
