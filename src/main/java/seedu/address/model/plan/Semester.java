@@ -11,10 +11,14 @@ public class Semester {
      * 1. Implement SemesterParser
      * 2. Consider including isDone instance member to mark if the Semester has been completed
      */
-    private final String SEMESTER_DESCRIPTION = "Semester: %1$2d\t\t Total MCs: %2$4d";
+    private final String semesterDescription = "Semester: %1$2d\t\t Total MCs: %2$4d";
     private final int semNumber;
     private final List<Module> modules;
 
+    /**
+     * Constructor of Semester object.
+     * @param semNumber Number of Semester.
+     */
     public Semester(int semNumber) {
         this.semNumber = semNumber;
         modules = new ArrayList<Module>(10);
@@ -62,7 +66,7 @@ public class Semester {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        String formattedSemesterDescription = String.format(SEMESTER_DESCRIPTION, getSemNumber(), getTotalMCs(), "\n");
+        String formattedSemesterDescription = String.format(semesterDescription, getSemNumber(), getTotalMCs(), "\n");
         stringBuilder.append(formattedSemesterDescription);
         for (Module mod : modules) {
             stringBuilder.append(mod.toString());
