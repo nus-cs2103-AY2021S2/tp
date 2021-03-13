@@ -20,7 +20,7 @@ public class ThemeManagerTest {
 
     @Test
     public void themeManager_setTheme_success() {
-        VBox vBox  = new VBox();
+        VBox vBox = new VBox();
         Scene sceneStub = new Scene(vBox);
         ThemeManager.init();
         ThemeManager.setScene(sceneStub);
