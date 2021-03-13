@@ -51,5 +51,4 @@ public class CompletableTaskList {
     public int hashCode() {
         return completableTasks.hashCode();
     }
-
 }
