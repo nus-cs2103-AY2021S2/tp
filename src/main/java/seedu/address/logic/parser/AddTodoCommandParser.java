@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.todo.Todo;
 
 /**
  * Parses input arguments and creates a new AddTodoCommand object.
@@ -42,12 +43,10 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
         }
 
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Interval interval = ParserUtil.parseInterval(argMultimap.getValue(PREFIX_REPEATABLE_INTERVAL).get());
-        LocalDate at = ParserUtil.parseDate(argMultimap.getValue(PREFIX_REPEATABLE_DATE).get());
 
-        Event event = new Event(description, interval, at);
+        Todo todo = new Todo(description);
 
-        return new AddEventCommand(index, event);
+        return new AddTodoCommand(index, todo);
     }
 
     /**
