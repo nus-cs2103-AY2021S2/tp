@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Residence's name in the ResidenceTracker.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidResidenceName(String)}
  */
 public class ResidenceName {
 
@@ -27,14 +27,14 @@ public class ResidenceName {
      */
     public ResidenceName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidResidenceName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidResidenceName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

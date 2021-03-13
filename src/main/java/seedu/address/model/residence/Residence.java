@@ -11,7 +11,7 @@ import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Residence in the residenceAddress book.
+ * Represents a Residence in ResidenceTracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Residence {
@@ -38,11 +38,11 @@ public class Residence {
         this.tags.addAll(tags);
     }
 
-    public ResidenceName getName() {
+    public ResidenceName getResidenceName() {
         return residenceName;
     }
 
-    public ResidenceAddress getAddress() {
+    public ResidenceAddress getResidenceAddress() {
         return residenceAddress;
     }
 
@@ -77,7 +77,7 @@ public class Residence {
         }
 
         return otherResidence != null
-                && otherResidence.getName().equals(getName());
+                && otherResidence.getResidenceName().equals(getResidenceName());
     }
 
     /**
@@ -95,8 +95,8 @@ public class Residence {
         }
 
         Residence otherResidence = (Residence) other;
-        return otherResidence.getName().equals(getName())
-                && otherResidence.getAddress().equals(getAddress())
+        return otherResidence.getResidenceName().equals(getResidenceName())
+                && otherResidence.getResidenceAddress().equals(getResidenceAddress())
                 && otherResidence.getBookingDetails().equals(getBookingDetails())
                 && otherResidence.getCleanStatusTag().equals(getCleanStatusTag())
                 && otherResidence.getTags().equals(getTags());
@@ -111,9 +111,9 @@ public class Residence {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; ResidenceAddress: ")
-                .append(getAddress())
+        builder.append(getResidenceName())
+                .append("; Residence Address: ")
+                .append(getResidenceAddress())
                 .append("; Booking Details: ")
                 .append(getBookingDetails());
 
