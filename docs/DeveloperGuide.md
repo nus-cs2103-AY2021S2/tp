@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -151,11 +151,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -163,7 +163,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -208,7 +208,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -234,73 +234,161 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: An independent tutor
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* has a need to manage a significant number of student contacts (100 - 200)
+* prefers desktop apps over other types
+* can type fast (80 _WPM_ and above)
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: 
+* Cut down admin overhead for independent tutors
+* All in one platform to manage their students' information
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                   | So that I can…​                                           |
+| -------- | ------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------ |
+| `* * *`  | user                                       | create a student's profile                        | keep track of my student's information                       |
+| `* * *`  | user                                       | see the profile of a particular student           | get their information                                        |
+| `* * *`  | user                                       | see a list of all my students' profile            |                                                              |
+| `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
+| `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
+| `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
+| `* * *`  | user                                       | delete an individual tuition session              | update my tuition schedule                                   |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+*(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: Delete a person**
+**Use case: UC01 - Create a student profile**
 
-**MSS**
+MSS:
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters the add student command, together with the student details.
+2. TutorBuddy creates the profile in the background.
+3. TutorBuddy displays the success message.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. The list is empty.
+* 1a. TutorBuddy detects an error in the entered data.
+    * 1a1. TutorBuddy displays an error message.
+
+    Use case ends.
+
+**Use case: UC02 - Delete a student profile**
+
+MSS:
+
+1. User enters the delete student command, along with the student’s name.
+2. TutorBuddy verifies that the student profile exists.
+3. TutorBuddy prompts the user to confirm the deletion.
+4. User confirms the deletion.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. TutorBuddy detects an error in the entered command.
+    * 2a1. TutorBuddy displays error messages to the user.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. TutorBuddy detects that the user does not exist.
+    * 3a1. TutorBuddy displays an error message for unknown student profiles.
 
-    * 3a1. AddressBook shows an error message.
+  Use case ends.
 
-      Use case resumes at step 2.
+* 4a. User cancels the confirmation of deletion.
+    * 4a1. Student profile is not created; the student is returned to the home page.
+
+  Use case ends.
+
+**Use case: UC03 - Find a student’s profile**
+
+MSS:
+
+1. User enters the find student command, along with a keyword from the student’s name.
+2. TutorBuddy displays all students’ profiles matching the keyword if any.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. TutorBuddy detects empty keyword field
+    * 1a1. TutorBuddy displays an error message for no keyword specified.
+
+  Use case ends.
+
+**Use case: UC04 - Create a session**
+
+**Preconditions: Student profile linked to session has been created.**
+
+MSS:
+
+1. User enters the add session command, together with the session details.
+2. TutorBuddy creates the session.
+3. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 1a. TutorBuddy detects an error in the entered data.
+    * 1a1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+* 1b. TutorBuddy detects another session that the user has in the same timeframe.
+    * 1b1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+**Use case: UC05 -  Getting the emails from the application**
+
+MSS:
+
+1. User enters the command to get the email from TutorBuddy.
+2. TutorBuddy returns a list of all the email addresses to the user.
+3. User copies the email address given.
+
+   Use case ends.
 
 *{More to be added}*
 
-### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+### Non-Functional Requirements  
+* Technical requirements:  
+    * TutorBuddy should work on both 32-bit and 64-bit environments.
+    * TutorBuddy should work on any _mainstream OS_ with Java `11` or above installed.
+    * The user should have enough memory on their computer to ensure that data will be stored in the application without errors.
+* Performance requirements:
+    * TutorBuddy should be able to hold up to _500 students_ or _500 sessions_ without a noticeable dip in performance for typical usage.
+    * Response time from any command should be within 1 second.
+* Constraints:
+    * TutorBuddy should be backward compatible with data produced by earlier versions of the system.
+* Quality requirements:
+    * The user should take no longer than 1 hour to learn the different functionalities of TutorBuddy from the user guide.
+* Process requirements:
+    * TutorBuddy should be completed before AY20/21 Week 13
+* Any other noteworthy points:
+    * A user with above average typing speed (80 _WPM_ and above) for regular English text (i.e. not code, not system admin commands) should be able to use most of the functionalities in TutorBuddy faster using commands rather than using the mouse.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: Command Line Interface where users can interact with their OS system.
+* **MSS**: Main Success Scenario
+* **WPM**: Words Per Minute
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -330,17 +418,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

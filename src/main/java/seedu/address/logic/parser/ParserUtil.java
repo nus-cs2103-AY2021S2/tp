@@ -2,18 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,29 +91,48 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String studyLevel} into an {@code studyLevel}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static String parseStudyLevel(String studyLevel) throws ParseException {
+        requireNonNull(studyLevel);
+        String trimmedStudyLevel = studyLevel.trim();
+        if (trimmedStudyLevel.equals("")) {
+            throw new ParseException("Study level parse error");
         }
-        return new Tag(trimmedTag);
+        return trimmedStudyLevel;
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String guardianPhone} into a {@code guardianPhone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Phone parseGuardianPhone(String guardianPhone) throws ParseException {
+        requireNonNull(guardianPhone);
+        String trimmedPhone = guardianPhone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new Phone(trimmedPhone);
     }
+
+    /**
+     * Parses a {@code String relationship} into an {@code relationship}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static String parseRelationship(String relationship) throws ParseException {
+        requireNonNull(relationship);
+        String trimmedRelationship = relationship.trim();
+        if (trimmedRelationship.equals("")) {
+            throw new ParseException("Relationship parse error");
+        }
+        return trimmedRelationship;
+    }
+
 }

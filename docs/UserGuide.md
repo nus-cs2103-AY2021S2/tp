@@ -2,11 +2,24 @@
 layout: page
 title: User Guide
 ---
+# TutorBuddy
+TutorBuddy is an application made for independent tutors as a management tool to cut down on admin overheads,
+by graphically managing their student’s information with a Graphical User Interface (GUI).
+It allows for faster and more effective student management.
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
+**Table of Contents**
+* [Quick start](#quick-start)
+* [Features](#features)
+  * [Listing all students: `list_student`](#listing-all-students-list_student)
+  * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
+  * [Adding a student: `add_student`](#adding-a-student-add_student)
+  * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
+  * [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)
+  * [Adding a tuition session: `add_session`](#adding-a-tuition-session-add_session)
+  * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
+  * [Exit the program: `exit`](#exit-the-program-exit)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,179 +27,179 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `TutorBuddy.jar` from [here](#).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the home folder for your TutorBuddy application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. <br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`list_student`** and pressing Enter will open the list of all students.<br>
+
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   **Students**
+  * `list_student`: List all students
+  * `find_student James`: Finds and lists all students that have the name **James**
+  * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`: Adds a student John Doe to the Tutor Buddy application
+  * `delete_student 3`: Deletes the 3rd student in the student list
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   **Tuition Session**
+  * `list_session`: List all tuition sessions
+  * `find_session James`: Finds and lists all tuition sessions that James have
+  * `add_session n/John Doe d/14-02-2021 t/1300 s/Biology f/40`: Adds a tuition session for John Doe happening on 14-02-2021
+  * `delete_session 1`: Deletes the 1st tuition session in the tuition session list
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   **General**
+  * `exit`: Exits the application
 
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits gitthe app.
-
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+### Listing all students: `list_student`
 
-**:information_source: Notes about the command format:**<br>
+Shows a list of all students in the TutorBuddy
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+Format: `list_student` <br>
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+### Locating student profile by name: `find_student`
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+Finds students that matches the keyword given
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Format: `find_student KEYWORD`
+* The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”.
+* As long as the keyword matches the name of the student, it will be regarded as a match. For example, if a student’s name is “John Lee”, searching “John” will be sufficient.
+* Only the student’s name will be searched.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+Example:
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+\# | Student Name
+---- |---------
+1 | John Lee
+2 | Johnz Tan
+3 | Jon Koh
+4 | Samuel Lee
 
-</div>
+* `find_student John` returns John Lee
+* `find_student Sam` returns nothing
+* `find_student Lee` returns "John Lee" and "Samuel Lee"
 
-### Viewing help : `help`
+### Adding a student: `add_student`
 
-Shows a message explaning how to access the help page.
+Adds a student to the TutorBuddy
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
 
-### Listing all persons : `list`
+### Deleting a student: `delete_student`
 
-Shows a list of all persons in the address book.
+Deletes the specified student from TutorBuddy
 
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `delete_student STUDENT_NAME` <br>
+* Deletes the student with the specified name
+* `STUDENT_NAME` must have an exact match to the name in the student profile
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `list_student` followed by `delete_student 2` deletes the 2nd student in the address book.
+* `find_student Betsy` followed by `delete_student 1` deletes the 1st student in the results of the find_student command.
 
-### Locating persons by name: `find`
+### Listing all tuition sessions: `list_session`
 
-Finds persons whose names contain any of the given keywords.
+Shows a list of all tuition sessions in TutorBuddy
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `list_session`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+### Locating tuition session by student name / date: `find_session`
+
+Find tuition sessions that match the keyword given
+
+Format: `find_session KEYWORD`
+* The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”
+* For student names:
+  * Any word that a student’s name contains will be matched. For example, if a session student’s name is “moon”, searching “moo” will match it
+* For dates:
+  * Only the exact date in the format (DD-MM-YYYY) will be matched.
+
+Example:<br>
+The command `list_session` will show the following:
+
+\# | Sessions
+---- |---------
+1 | John Lee<br>15/2/2021 13:00<br>2h $60/h<br>Computer Science
+2 | Johnz Lee<br>16/2/2021 14:00<br>1.5h $30/h<br>Math
+3 | John Dam<br>18/2/2021 15:00<br>2h $0.10/h<br>Software Engineering
+4 | Sammuel Bruce Lee<br>19/2/2021 18:00<br>2h $30/h<br>Wing Chun
+
+* `find_session John` returns all John in TutorBuddy
+* `find_session Jo` returns all John in TutorBuddy
+* `find_session John Lee` returns all John Lee in TutorBuddy
+* `find_session Zach` returns nothing
+
+### Adding a tuition session: `add_session`
+
+Adds a tuition session to the TutorBuddy
+
+Format: `add_session n/STUDENT_NAME d/DATE t/TIME l/LENGTH_OF_SESSION s/SUBJECT f/FEE`
+
+* `STUDENT_NAME` should match the exact student’s name in TutorBuddy
+* `DATE` should be in DD-MM-YYYY format
+* `TIME` should be in 24-hr format
+* `LENGTH_OF_SESSION` should be in hours
+* `FEE` should be the tuition fee/hr
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `add_session n/John Doe d/14-02-2021 t/1800 l/2 s/Biology f/40`
 
-### Deleting a person : `delete`
+### Deleting a tuition session: `delete_session`
 
-Deletes the specified person from the address book.
+Deletes the specified tuition session from the TutorBuddy
 
-Format: `delete INDEX`
+Format: `delete_session INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the tuition session at the specified INDEX
+* The index refers to the index number shown in the displayed session list
+* The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list_session` followed by `delete_session 2` deletes the 2nd session in the TutorBuddy
+* `find_session Betsy` followed by `delete_session 1` deletes the 1st session in the results of the find_session command
 
-### Clearing all entries : `clear`
+### Exit the program: `exit`
 
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
+Exits the program
 
 Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorBuddy home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
+**Students**
+
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**List** | `list_student`
+**Find** | `find_student KEYWORD`<br><br>e.g. `find_student John`
+**Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+**Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
+
+**Tuition Session**
+
+Action | Format, Examples
+--------|------------------
+**List** | `list_session`
+**Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
+**Add** | `add_session n/STUDENT_NAME d/DATE t/TIME l/LENGTH_OF_SESSION s/SUBJECT f/FEE`<br><br> e.g., `add_session n/John Doe d/14-02-2021 t/1800 l/2 s/Biology f/40`
+**Delete** | `delete_session INDEX`<br><br>e.g. `delete_session 3`
