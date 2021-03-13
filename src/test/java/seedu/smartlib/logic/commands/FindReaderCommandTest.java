@@ -65,6 +65,26 @@ public class FindReaderCommandTest {
     }
 
     @Test
+    public void execute_partialKeyword_noReaderFound() {
+        String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Kur");
+        FindReaderCommand command = new FindReaderCommand(predicate);
+        expectedModel.updateFilteredReaderList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredReaderList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noReaderFound() {
+        String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Hello Hi");
+        FindReaderCommand command = new FindReaderCommand(predicate);
+        expectedModel.updateFilteredReaderList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredReaderList());
+    }
+
+    @Test
     public void execute_multipleKeywords_multipleReadersFound() {
         String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");

@@ -5,6 +5,7 @@ import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseFailu
 import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +18,8 @@ public class FindReaderCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindReaderCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindReaderCommand.MESSAGE_USAGE));
     }
 
     @Test
