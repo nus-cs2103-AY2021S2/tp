@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -38,7 +38,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_TASK_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "

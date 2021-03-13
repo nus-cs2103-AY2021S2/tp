@@ -48,6 +48,8 @@ public class TypicalTasks {
     public static final Task OP = new TaskBuilder().withName("OP 2")
             .withDeadline("2021-04-02 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("CS2101").withDescription("Need to divide ourselves into two groups.").build();
+    public static final Task PRACTICAL = new TaskBuilder().withName("Practical").withModule("CS3244")
+            .withDescription("ML FTW").withDeadline("2021-03-02 00:00").build();
 
     // Manually added
     public static final Task MISSION = new TaskBuilder().withName("Mission")
@@ -64,8 +66,6 @@ public class TypicalTasks {
             .withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
             .withTags(VALID_TAG_HIGH, VALID_TAG_LOW)
             .build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalTasks() {} // prevents instantiation
 

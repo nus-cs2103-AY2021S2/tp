@@ -68,7 +68,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if both tasks have the same name and same module code.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
@@ -77,7 +77,8 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && otherTask.getName().equals(getName())
+                && otherTask.getModule().equals(getModule());
     }
 
     /**
@@ -112,7 +113,8 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Name: ")
+                .append(getName())
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Module: ")

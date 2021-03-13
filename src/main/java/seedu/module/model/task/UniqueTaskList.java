@@ -29,7 +29,9 @@ public class UniqueTaskList implements Iterable<Task> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent task as the given argument.
+     * Checks if the list contains a task with the same name and module code as {@code toCheck}.
+     * @param toCheck task to be checked against all tasks in internalList.
+     * @return true if a task in the list is matched. false otherwise
      */
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);

@@ -77,17 +77,18 @@ Format: `list`
 
 Adds a task to ModuleBook3.5.
 
-Format: `add d/DESCRIPTION b/TIME [t/TAG]…​`
+Format: `add n/TASK NAME m/MODULE d/DESCRIPTION b/DEADLINE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Enter the time you wish to complete your task in the format: YYYY-mm-dd HH:mm
 </div>
 
 
-![add message](images/addImageUI.png)
+![add message](images/addTaskUiV1.2.png)
 
 Examples:
-* `add d/CS2103T b/2021-01-20 20:00 t/tagname`
+* `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 t/urgent`
+* `add n/practice set 1 m/CS3230 d/practice master's theorem b/2021-03-15 00:00 t/optional`
 
 ### Deleting a task : `delete`
 

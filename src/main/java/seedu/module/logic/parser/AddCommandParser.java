@@ -4,8 +4,8 @@ import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -32,18 +32,18 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE,
-                    PREFIX_MODULE, PREFIX_DESCRIPTION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_MODULE,
+                    PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_MODULE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TASK_NAME, PREFIX_MODULE, PREFIX_DESCRIPTION, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_TASK_NAME).get());
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         DoneStatus newTaskDoneStatus = new DoneStatus(false);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

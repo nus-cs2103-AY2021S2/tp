@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.module.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
@@ -18,26 +18,23 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the module book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the module book. \n"
             + "Parameters: "
-            + PREFIX_NAME + "TASK NAME "
-            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_TASK_NAME + "TASK NAME "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DEADLINE + "DEADLINE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "v1.2 "
+            + PREFIX_TASK_NAME + "TP v1.2 "
             + PREFIX_DEADLINE + "2021-01-30 12:00 "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Finish basic commands for TP "
             + PREFIX_TAG + "highPriority ";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the module book";
-    public static final String MESSAGE_NOT_IMPLEMENTED = "Add feature is not yet implemented yet!";
-
+    public static final String MESSAGE_SUCCESS = "New task added successfully:\n%1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task with this name and module exists in the module book";
     private final Task toAdd;
-
     /**
      * Creates an AddCommand to add the specified {@code Task}
      */

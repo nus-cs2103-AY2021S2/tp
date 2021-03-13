@@ -4,16 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 import static seedu.module.testutil.Assert.assertThrows;
 import static seedu.module.testutil.TypicalTasks.BOB;
+import static seedu.module.testutil.TypicalTasks.PRACTICAL;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.module.testutil.TaskBuilder;
+
 
 public class TaskTest {
 
@@ -31,14 +35,24 @@ public class TaskTest {
         // null -> returns false
         assertFalse(QUIZ.isSameTask(null));
 
-        // same name, all other attributes different -> returns true
+        // same name and different module all other attributes different -> returns false
         Task editedAlice = new TaskBuilder(QUIZ).withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withTags(VALID_TAG_HIGH).build();
-        assertTrue(QUIZ.isSameTask(editedAlice));
-
-        // different name, all other attributes same -> returns false
-        editedAlice = new TaskBuilder(QUIZ).withName(VALID_NAME_BOB).build();
         assertFalse(QUIZ.isSameTask(editedAlice));
+
+        // same name and same module, all other attributes different -> returns true
+        editedAlice = new TaskBuilder(PRACTICAL).withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
+                .withDeadline(VALID_DEADLINE_BOB).build();
+        assertTrue(PRACTICAL.isSameTask(editedAlice));
+
+        //different name and same module, all other attributes different -> return false
+        editedAlice = new TaskBuilder(QUIZ).withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
+                .withDeadline(VALID_DEADLINE_BOB).build();
+        assertFalse(PRACTICAL.isSameTask(editedAlice));
+
+        // different name, different module -> returns false
+        editedAlice = new TaskBuilder(QUIZ).withName(VALID_NAME_AMY).withModule(VALID_MODULE_AMY).build();
+        assertFalse(PRACTICAL.isSameTask(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Task editedBob = new TaskBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
