@@ -48,6 +48,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         case "-t":
             return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
 
+        case "-i":
+            return new FindCommand(new InsurancePolicyContainsKeywordsPredicate(Arrays.asList(keywords)));
+
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
