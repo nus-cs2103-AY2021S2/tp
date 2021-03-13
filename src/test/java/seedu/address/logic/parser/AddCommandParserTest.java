@@ -37,7 +37,6 @@ import seedu.address.model.person.Colour;
 import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Size;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
