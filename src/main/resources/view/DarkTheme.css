@@ -90,7 +90,7 @@
 .list-view {
     -fx-background-insets: 5;
     -fx-padding: 0;
-    -fx-background-color: -COLOR_PRIMARY;
+    -fx-background-color: -COLOR_PRIMARY_LIGHT;
 }
 
 .list-cell {

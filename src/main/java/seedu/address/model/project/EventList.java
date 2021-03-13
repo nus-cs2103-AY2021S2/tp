@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.task.repeatable.Event;
 
 public class EventList {
@@ -52,4 +54,11 @@ public class EventList {
         return events.hashCode();
     }
 
+    /**
+     * Returns {@code events as an {@code ObservableList<Event>}}
+     * @return An {@code ObservableList<Event>}
+     */
+    public ObservableList<Event> getAsObservableList() {
+        return FXCollections.observableList(events);
+    }
 }
