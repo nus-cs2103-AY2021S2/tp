@@ -11,16 +11,16 @@ import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Residence in the address book.
+ * Represents a Residence in the residenceAddress book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Residence {
 
     // Identity fields
-    private final Name name;
+    private final ResidenceName residenceName;
 
     // Data fields
-    private final Address address;
+    private final ResidenceAddress residenceAddress;
     private final BookingDetails bookingDetails;
     private final Set<CleanStatusTag> cleanStatusTag = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
@@ -28,22 +28,22 @@ public class Residence {
     /**
      * Every field must be present and not null.
      */
-    public Residence(Name name, Address address, BookingDetails bookingDetails,
+    public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress, BookingDetails bookingDetails,
                      Set<CleanStatusTag> cleanStatusTag, Set<Tag> tags) {
         this.bookingDetails = bookingDetails;
-        requireAllNonNull(name, address, cleanStatusTag, tags);
-        this.name = name;
-        this.address = address;
+        requireAllNonNull(residenceName, residenceAddress, cleanStatusTag, tags);
+        this.residenceName = residenceName;
+        this.residenceAddress = residenceAddress;
         this.cleanStatusTag.addAll(cleanStatusTag);
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public ResidenceName getName() {
+        return residenceName;
     }
 
-    public Address getAddress() {
-        return address;
+    public ResidenceAddress getAddress() {
+        return residenceAddress;
     }
 
     public BookingDetails getBookingDetails() {
@@ -68,7 +68,7 @@ public class Residence {
     }
 
     /**
-     * Returns true if both residences have the same name.
+     * Returns true if both residences have the same residenceName.
      * This defines a weaker notion of equality between two residences.
      */
     public boolean isSameResidence(Residence otherResidence) {
@@ -105,14 +105,14 @@ public class Residence {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, bookingDetails, cleanStatusTag, tags);
+        return Objects.hash(residenceName, residenceAddress, bookingDetails, cleanStatusTag, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Address: ")
+                .append("; ResidenceAddress: ")
                 .append(getAddress())
                 .append("; Booking Details: ")
                 .append(getBookingDetails());
