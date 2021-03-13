@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.ListView?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <Label fx:id="projectName" styleClass="cell_huge_label"/>
-  <ListView fx:id="eventListView" VBox.vgrow="NEVER"/>
+  <TabPane side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+    <tabs>
+      <Tab text="Events">
+        <content>
+          <ListView fx:id="eventListView"/>
+        </content>
+      </Tab>
+      <Tab text="Tasks">
+        <content>
+          <AnchorPane/>
+        </content>
+      </Tab>
+    </tabs>
+  </TabPane>
   <styleClass>
     <String fx:value="pane-with-border"/>
     <String fx:value="white-text"/>
