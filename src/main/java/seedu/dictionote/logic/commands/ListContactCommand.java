@@ -6,13 +6,13 @@ import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 import seedu.dictionote.model.Model;
 
 /**
- * Lists all persons in the dictionote book to the user.
+ * Lists all contacts in the contacts list to the user.
  */
-public class ListCommand extends Command {
+public class ListContactCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "listcontact";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all contacts";
 
 
     @Override

@@ -19,7 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.CommandResult;
-import seedu.dictionote.logic.commands.ListCommand;
+import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
@@ -67,8 +67,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListContactCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListContactCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
