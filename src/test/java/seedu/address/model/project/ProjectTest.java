@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Completable;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.Interval;
-import seedu.address.model.task.completable.Todo;
+import seedu.address.model.task.todo.Todo;
 import seedu.address.model.task.repeatable.Event;
 
 public class ProjectTest {
@@ -44,10 +44,10 @@ public class ProjectTest {
         events.add(event);
         EventList eventList = new EventList(events);
 
-        Completable completable = new Todo("Test Description");
-        ArrayList<Completable> completables = new ArrayList<>();
-        completables.add(completable);
-        CompletableTaskList completableTaskList = new CompletableTaskList(completables);
+        CompletableTodo completableTodo = new Todo("Test Description");
+        ArrayList<CompletableTodo> completableTodos = new ArrayList<>();
+        completableTodos.add(completableTodo);
+        CompletableTaskList completableTaskList = new CompletableTaskList(completableTodos);
 
         ArrayList<Person> participants = new ArrayList<>();
         participants.add(ALICE);

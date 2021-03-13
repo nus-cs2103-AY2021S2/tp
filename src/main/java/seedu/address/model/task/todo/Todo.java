@@ -1,13 +1,13 @@
-package seedu.address.model.task.completable;
+package seedu.address.model.task.todo;
 
 import java.util.Objects;
 
-import seedu.address.model.task.Completable;
+import seedu.address.model.task.CompletableTodo;
 
 /**
- * Represents a Completable as a Todo.
+ * Represents a CompletableTodo as a Todo.
  */
-public class Todo extends Completable {
+public class Todo extends CompletableTodo {
 
     /**
      * Constructor for Todo.
@@ -53,8 +53,8 @@ public class Todo extends Completable {
     }
 
     /**
-     * Returns a String representation of the Completable.
-     * @return A String representation of the Completable.
+     * Returns a String representation of the CompletableTodo.
+     * @return A String representation of the CompletableTodo.
      */
     @Override
     public String toString() {

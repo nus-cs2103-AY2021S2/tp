@@ -1,4 +1,6 @@
-package seedu.address.model.task.completable;
+package seedu.address.model.task.todo;
+
+import seedu.address.model.task.deadline.Deadline;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

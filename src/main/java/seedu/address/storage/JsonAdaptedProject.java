@@ -14,7 +14,7 @@ import seedu.address.model.project.EventList;
 import seedu.address.model.project.ParticipantList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.task.Completable;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -77,9 +77,9 @@ class JsonAdaptedProject {
             projectEvents.add(event.toModelType());
         }
 
-        final List<Completable> projectCompletables = new ArrayList<>();
+        final List<CompletableTodo> projectCompletableTodos = new ArrayList<>();
         for (JsonAdaptedCompletable completable : completableList) {
-            projectCompletables.add(completable.toModelType());
+            projectCompletableTodos.add(completable.toModelType());
         }
 
         final List<Person> projectParticipants = new ArrayList<>();
@@ -93,7 +93,7 @@ class JsonAdaptedProject {
         }
 
         return new Project(new ProjectName(projectName), new EventList(projectEvents),
-                new CompletableTaskList(projectCompletables), new ParticipantList(projectParticipants));
+                new CompletableTaskList(projectCompletableTodos), new ParticipantList(projectParticipants));
     }
 
 }

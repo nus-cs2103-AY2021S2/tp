@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.task.Completable;
-import seedu.address.model.task.completable.Todo;
+import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.todo.Todo;
 
-public class CompletableTaskListTest {
+public class CompletableTodoTaskListTest {
 
     @Test
     public void constructor_empty_createEmptyCompletableTaskList() {
@@ -27,18 +27,18 @@ public class CompletableTaskListTest {
 
     @Test
     public void constructor_singleCompletableTask_valid() {
-        Completable completable = new Todo("Test Description");
-        ArrayList<Completable> completables = new ArrayList<>();
-        completables.add(completable);
-        assertDoesNotThrow(() -> new CompletableTaskList(completables));
+        CompletableTodo completableTodo = new Todo("Test Description");
+        ArrayList<CompletableTodo> completableTodos = new ArrayList<>();
+        completableTodos.add(completableTodo);
+        assertDoesNotThrow(() -> new CompletableTaskList(completableTodos));
     }
 
     @Test
     public void getCompletableTasks_validCompletableTaskList_equalsOriginalList() {
-        Completable completable = new Todo("Test Description");
-        ArrayList<Completable> completables = new ArrayList<>();
-        completables.add(completable);
-        CompletableTaskList completableTaskList = new CompletableTaskList(completables);
-        assertEquals(completables, completableTaskList.getCompletableTasks());
+        CompletableTodo completableTodo = new Todo("Test Description");
+        ArrayList<CompletableTodo> completableTodos = new ArrayList<>();
+        completableTodos.add(completableTodo);
+        CompletableTaskList completableTaskList = new CompletableTaskList(completableTodos);
+        assertEquals(completableTodos, completableTaskList.getCompletableTasks());
     }
 }

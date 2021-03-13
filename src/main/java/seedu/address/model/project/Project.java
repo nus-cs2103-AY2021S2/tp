@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Completable;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -115,10 +115,10 @@ public class Project {
             events.forEach(builder::append);
         }
 
-        List<Completable> completableTasks = getCompletableTasks().getCompletableTasks();
-        if (!completableTasks.isEmpty()) {
-            builder.append("; Completable Tasks: ");
-            completableTasks.forEach(builder::append);
+        List<CompletableTodo> completableTodoTasks = getCompletableTasks().getCompletableTasks();
+        if (!completableTodoTasks.isEmpty()) {
+            builder.append("; CompletableTodo Tasks: ");
+            completableTodoTasks.forEach(builder::append);
         }
 
         List<Person> participants = getParticipants().getParticipants();

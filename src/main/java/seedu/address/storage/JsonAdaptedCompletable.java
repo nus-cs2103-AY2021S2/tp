@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.task.Completable;
-import seedu.address.model.task.completable.Deadline;
-import seedu.address.model.task.completable.Todo;
+import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.todo.Todo;
 
 /**
- * Jackson-friendly version of {@link Completable}.
+ * Jackson-friendly version of {@link CompletableTodo}.
  */
 class JsonAdaptedCompletable {
     private final String description;
@@ -36,7 +36,7 @@ class JsonAdaptedCompletable {
     /**
      * Converts a given {@code Event} into this class for Jackson use.
      */
-    public JsonAdaptedCompletable(Completable source) {
+    public JsonAdaptedCompletable(CompletableTodo source) {
         description = source.getDescription();
         by = source.getStringByDate();
         isDone = source.getIsDone();
@@ -47,7 +47,7 @@ class JsonAdaptedCompletable {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
-    public Completable toModelType() throws IllegalValueException {
+    public CompletableTodo toModelType() throws IllegalValueException {
         if (by == null) {
             return new Todo(description, isDone);
         } else {

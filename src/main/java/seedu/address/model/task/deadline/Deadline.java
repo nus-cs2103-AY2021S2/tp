@@ -1,4 +1,4 @@
-package seedu.address.model.task.completable;
+package seedu.address.model.task.deadline;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,16 +6,16 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.task.Completable;
+import seedu.address.model.task.CompletableTodo;
 
 /**
- * Represents a Completable with a Deadline.
+ * Represents a CompletableTodo with a Deadline.
  */
-public class Deadline extends Completable {
+public class Deadline extends CompletableTodo {
     /**
      * Constructor for Deadline.
-     * @param description Description of the Completable.
-     * @param by Deadline of the Completable.
+     * @param description Description of the CompletableTodo.
+     * @param by Deadline of the CompletableTodo.
      */
     public Deadline(String description, LocalDate by) {
         super(description, by);
@@ -24,9 +24,9 @@ public class Deadline extends Completable {
 
     /**
      * Constructor for Deadline.
-     * @param description Description of the Completable.
-     * @param isDone Marks whether the Completable is Done.
-     * @param by Deadline of the Completable.
+     * @param description Description of the CompletableTodo.
+     * @param isDone Marks whether the CompletableTodo is Done.
+     * @param by Deadline of the CompletableTodo.
      */
     public Deadline(String description, Boolean isDone, LocalDate by) {
         super(description, by, isDone);
@@ -34,8 +34,8 @@ public class Deadline extends Completable {
     }
 
     /**
-     * Returns the Deadline of the Completable.
-     * @return A LocalDate representing the Completable Deadline.
+     * Returns the Deadline of the CompletableTodo.
+     * @return A LocalDate representing the CompletableTodo Deadline.
      */
     public LocalDate getBy() {
         assert this.by != null : "by should not be null!";
@@ -70,8 +70,8 @@ public class Deadline extends Completable {
     }
 
     /**
-     * Returns a String representation of the Completable.
-     * @return A String representation of the Completable.
+     * Returns a String representation of the CompletableTodo.
+     * @return A String representation of the CompletableTodo.
      */
     @Override
     public String toString() {
