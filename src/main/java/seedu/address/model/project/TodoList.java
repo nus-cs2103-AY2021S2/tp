@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.todo.Todo;
 
 /**
  * Represents a list of Todos.
@@ -29,6 +30,16 @@ public class TodoList {
         requireNonNull(todos);
 
         this.todos.addAll(todos);
+    }
+
+    /**
+     * Adds a todo to this {@code TodoList}.
+     *
+     * @param todo {@code Todo} to add.
+     */
+    public void addTodo(Todo todo) {
+        requireNonNull(todo);
+        this.todos.add(todo);
     }
 
     public List<CompletableTodo> getTodos() {
