@@ -2,11 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+import seedu.address.model.medical.Appointment;
+import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +22,10 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+
+    // Medical fields
+    private List<MedicalRecord> records;
+    private List<Appointment> appointments;
 
     /**
      * Every field must be present and not null.
