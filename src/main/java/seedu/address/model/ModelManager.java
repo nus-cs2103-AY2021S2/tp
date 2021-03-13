@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
@@ -198,6 +200,18 @@ public class ModelManager implements Model {
     @Override
     public boolean hasUser() {
         return addressBook.hasUser();
+    }
+
+    //=========== FoodIntakeList Accessors =============================================================
+
+    @Override
+    public void addFoodIntake(LocalDate date, Food food) {
+        addressBook.addFoodIntake(date, food);
+    }
+
+    @Override
+    public FoodIntakeList getFoodIntakeList() {
+        return addressBook.getFoodIntakeList();
     }
 
 }

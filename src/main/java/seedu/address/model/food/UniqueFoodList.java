@@ -67,6 +67,21 @@ public class UniqueFoodList {
     }
 
     /**
+     * Checks if the food list contains a particular food item.
+     *
+     * @param foodName food name
+     * @return positive index if found, otherwise return -1
+     */
+    public int getFoodItemIndex(String foodName) {
+        for (int i = 0; i < this.foodList.size(); i++) {
+            if (this.foodList.get(i).getName().equals(foodName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * Deletes a food item from the food list based on the food name.
      *
      * @param index food item index
