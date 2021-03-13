@@ -3,6 +3,7 @@ package seedu.us.among.logic.endpoint;
 import java.io.IOException;
 
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
 
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.endpoint.Endpoint;
@@ -29,10 +30,10 @@ public class PostRequest extends Request {
      */
     @Override
     public Response send() throws IOException, RequestException {
-        HttpPost request = new HttpPost(super.getAddress());
+        HttpUriRequest request = new HttpPost(super.getAddress());
 
-        request = (HttpPost) super.setHeaders(request, super.getHeaders());
-        request = (HttpPost) super.setData(request, super.getData());
+        request = super.setHeaders(request, super.getHeaders());
+        request = super.setData(request, super.getData());
 
         return super.execute(request);
     }

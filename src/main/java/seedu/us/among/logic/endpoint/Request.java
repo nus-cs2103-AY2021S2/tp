@@ -1,7 +1,7 @@
 package seedu.us.among.logic.endpoint;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.http.HttpEntity;
@@ -14,7 +14,6 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import seedu.us.among.commons.util.HeaderUtil;
@@ -31,8 +30,9 @@ import seedu.us.among.model.endpoint.header.Header;
  * Parent class of request sending classes. Contains the two compulsory fields method and address.
  */
 public abstract class Request {
-    private static CloseableHttpClient httpclient = HttpClients.createDefault();
-    private static final int timeout = 60;
+    public static final int CONVERT_NANO_SECONDS = 1_000_000_000;
+    private static final CloseableHttpClient httpclient = createHttpClient();
+    private static final int TIMEOUT = 60 * 1000;
 
     private final MethodType method;
     private final String address;
@@ -83,11 +83,11 @@ public abstract class Request {
      *
      * @return http client to execute request
      */
-    private CloseableHttpClient createHttpClient() {
+    private static CloseableHttpClient createHttpClient() {
         RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(timeout * 1000)
-                .setConnectionRequestTimeout(timeout * 1000)
-                .setSocketTimeout(timeout * 1000).build();
+                .setConnectTimeout(TIMEOUT)
+                .setConnectionRequestTimeout(TIMEOUT)
+                .setSocketTimeout(TIMEOUT).build();
         return HttpClientBuilder.create().setDefaultRequestConfig(config).build();
     }
 
@@ -98,37 +98,46 @@ public abstract class Request {
      * @return response from api call
      */
     public Response execute(HttpUriRequest request) throws IOException {
-        //solution adapted from https://mkyong.com/java/apache-httpclient-examples/
-        CloseableHttpClient httpClient = createHttpClient();
-        Request.httpclient = httpClient;
-        CloseableHttpResponse response;
+        return executeTimed(request);
+    }
+
+    private String formatEntity(HttpEntity entity) throws IOException {
         String responseEntity = "";
-
-        double responseTimeInSecond;
-        long start = System.nanoTime();
-        response = httpClient.execute(request);
-        long end = System.nanoTime();
-        long duration = end - start;
-        responseTimeInSecond = (double) duration / 1_000_000_000;
-
-        HttpEntity entity = response.getEntity();
         if (entity != null) {
-            //return data as string
             responseEntity = EntityUtils.toString(entity);
             if (entity.getContentType().getValue().toLowerCase().contains("application/json")) {
                 responseEntity = JsonUtil.toPrettyPrintJsonString(responseEntity);
             }
         }
+        return responseEntity;
+    }
 
-        response.close();
-        httpClient.close();
+    /**
+     * Executes API call and records the time taken to execute the call.
+     *
+     * @param request request to execute
+     * @return response from api call
+     */
+    private Response executeTimed(HttpUriRequest request) throws IOException {
+        // double try is needed because we want to time the execution as accurately as possible
+        // also that the following will auto close httpClient and response
+        try (CloseableHttpClient httpClient = createHttpClient()) {
+            long start = System.nanoTime();
+            try (CloseableHttpResponse response = httpClient.execute(request)) {
+                long end = System.nanoTime();
+                double responseTimeInSecond = (double) (end - start) / CONVERT_NANO_SECONDS;
 
-        return new Response(response.getProtocolVersion().toString(),
-                String.valueOf(response.getStatusLine().getStatusCode()),
-                response.getStatusLine().getReasonPhrase(),
-                response.getStatusLine().toString(),
-                responseEntity,
-                StringUtil.getResponseTimeInString(responseTimeInSecond));
+                HttpEntity entity = response.getEntity();
+                String responseEntity = formatEntity(entity);
+
+                return new Response(response.getProtocolVersion().toString(),
+                        String.valueOf(response.getStatusLine().getStatusCode()),
+                        response.getStatusLine().getReasonPhrase(),
+                        response.getStatusLine().toString(),
+                        responseEntity,
+                        StringUtil.getResponseTimeInString(responseTimeInSecond));
+            }
+        }
     }
 
     /**
@@ -139,8 +148,8 @@ public abstract class Request {
      * @return request with headers set
      */
     public HttpUriRequest setHeaders(HttpUriRequest request, Set<Header> headerSet) throws RequestException {
-        HashMap<String, String> headerMap = HeaderUtil.parseHeaders(headerSet);
-        for (HashMap.Entry<String, String> headerPair : headerMap.entrySet()) {
+        Map<String, String> headerMap = HeaderUtil.parseHeaders(headerSet);
+        for (Map.Entry<String, String> headerPair : headerMap.entrySet()) {
             request.addHeader(headerPair.getKey(), headerPair.getValue());
         }
         return request;
@@ -156,13 +165,12 @@ public abstract class Request {
     public HttpUriRequest setData(HttpUriRequest request, Data data) throws IOException {
         StringEntity entity = new StringEntity(data.value);
         entity.setContentType(ContentType.APPLICATION_JSON.getMimeType());
-        //strange checkstyle requirement for separator wrap due to casting, using print statement to bypass???
         if (request instanceof HttpPost) {
-            System.out.println("Set Data"); ((HttpPost) request)
-                    .setEntity(entity);
+            HttpPost postRequest = (HttpPost) request;
+            postRequest.setEntity(entity);
         } else {
-            System.out.println("Set Data"); ((HttpPut) request)
-                    .setEntity(entity);
+            HttpPut putRequest = (HttpPut) request;
+            putRequest.setEntity(entity);
         }
         return request;
     }

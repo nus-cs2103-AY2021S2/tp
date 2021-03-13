@@ -1,6 +1,7 @@
 package seedu.us.among.commons.util;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
@@ -19,8 +20,8 @@ public class HeaderUtil {
      * @param headerSet set of headers from endpoint
      * @return hashmap of header key-value pair
      */
-    public static HashMap<String, String> parseHeaders(Set<Header> headerSet) throws RequestException {
-        HashMap<String, String> headerMap = new HashMap<>();
+    public static Map<String, String> parseHeaders(Set<Header> headerSet) throws RequestException {
+        Map<String, String> headerMap = new HashMap<>();
         for (Header header : headerSet) {
             String headerString = header.toString();
             String[] headerPair = headerString.split(":", 2);
