@@ -127,4 +127,11 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredItemList().size());
     }
 
+    public static void showEmptyListAfterFind(Model model, Item item) {
+        final String[] splitName = item.getItemName().fullName.split("\\s+");
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0]), false));
+
+        assertEquals(0, model.getFilteredItemList().size());
+    }
+
 }
