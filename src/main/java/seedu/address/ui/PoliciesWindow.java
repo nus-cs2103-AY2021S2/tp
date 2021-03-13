@@ -97,6 +97,11 @@ public class PoliciesWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 
+    /**
+     * Formats a policy window for a contact with no policies.
+     *
+     * @param noPolicyFeedback {@code String} to display indicating that contact has no policies.
+     */
     public void noPolicyToDisplay(String noPolicyFeedback) {
         HBox row = new HBox();
         row.getChildren().add(new Label(noPolicyFeedback));
