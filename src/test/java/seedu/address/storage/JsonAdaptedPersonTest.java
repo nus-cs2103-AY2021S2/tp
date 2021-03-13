@@ -74,7 +74,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidColour_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_SIZE, INVALID_COLOUR, VALID_DRESSCODE, VALID_DESCRIPTIONS);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Colour.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

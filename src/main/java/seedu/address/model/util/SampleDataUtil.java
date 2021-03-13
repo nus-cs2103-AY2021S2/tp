@@ -19,7 +19,6 @@ import seedu.address.model.person.Size;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-<<<<<<< HEAD
             new Person(new Name("Alex Yeoh"), new Size("34"), new Colour("alexyeoh@example.com"),
                 new DressCode("FORMAL"),
                 getDescriptionSet("friends")),

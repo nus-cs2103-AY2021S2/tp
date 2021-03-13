@@ -91,7 +91,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getSize().equals(getSize())
-                && otherPerson.getColour().equals(getEmail())
+                && otherPerson.getColour().equals(getColour())
                 && otherPerson.getDressCode().equals(getDressCode())
                 && otherPerson.getDescriptions().equals(getDescriptions());
     }

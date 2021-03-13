@@ -1,28 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.COLOUR_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.COLOUR_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DRESSCODE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_SIZE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -171,13 +150,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-<<<<<<< HEAD
         String userInput = targetIndex.getOneBased() + SIZE_DESC_AMY + DRESSCODE_DESC_AMY + COLOUR_DESC_AMY
                 + DESCRIPTION_DESC_FRIEND + SIZE_DESC_AMY + DRESSCODE_DESC_AMY + COLOUR_DESC_AMY + DESCRIPTION_DESC_FRIEND
                 + SIZE_DESC_BOB + DRESSCODE_DESC_BOB + COLOUR_DESC_BOB + DESCRIPTION_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withSize(VALID_SIZE_BOB)
-                withColour(VALID_COLOUR_BOB).withDressCode(VALID_DRESSCODE_BOB).withDescriptions(VALID_DESCRIPTION_FRIEND,
+                .withColour(VALID_COLOUR_BOB).withDressCode(VALID_DRESSCODE_BOB).withDescriptions(VALID_DESCRIPTION_FRIEND,
                         VALID_DESCRIPTION_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

@@ -51,7 +51,6 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB).withDescriptions(VALID_DESCRIPTION_FRIEND).build();
 
         // whitespace only preamble
-<<<<<<< HEAD
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
                 + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPerson));
 
@@ -118,16 +117,16 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
 
-        assertParseFailure(parser, INVALID_NAME_DESC + SIZE_DESC_BOB + EMAIL_DESC_BOB + DRESSCODE_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_SIZE_DESC + EMAIL_DESC_BOB + DRESSCODE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_SIZE_DESC + COLOUR_DESC_BOB  + DRESSCODE_DESC_BOB
                 + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Size.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + INVALID_EMAIL_DESC + DRESSCODE_DESC_BOB
-                + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + INVALID_COLOUR_DESC + DRESSCODE_DESC_BOB
+                + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, Colour.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + INVALID_DRESSCODE_DESC
