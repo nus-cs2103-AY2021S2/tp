@@ -51,7 +51,7 @@ public class UserInputParser {
             return new AddPatientCommandParser().parse(arguments);
 
         case EditPatientCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditPatientCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
