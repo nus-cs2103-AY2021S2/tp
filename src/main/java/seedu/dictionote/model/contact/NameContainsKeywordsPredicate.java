@@ -17,8 +17,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Contact> {
 
     @Override
     public boolean test(Contact contact) {
+        // avoid returning false by anyMatch if no name keywords are provided.
+        if (keywords.isEmpty()) {
+            return true;
+        }
+
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(contact.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsIgnoreCase(contact.getName().fullName, keyword));
     }
 
     @Override
