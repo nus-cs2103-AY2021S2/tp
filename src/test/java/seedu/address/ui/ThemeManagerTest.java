@@ -22,7 +22,7 @@ public class ThemeManagerTest {
     @Test
     public void themeManager_setTheme_success() {
         Scene sceneStub = new Scene(new Group());
-        
+
         ThemeManager.init();
         ThemeManager.setScene(sceneStub);
         ThemeManager.applyThemeToScene();
