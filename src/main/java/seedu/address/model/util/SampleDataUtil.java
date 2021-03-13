@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Meeting;
@@ -57,6 +58,16 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    public static Set<Person> getPersonSet(Person... persons) {
+        return Arrays.stream(persons)
+                .collect(Collectors.toSet());
+    }
+
+    public static Set<Group> getGroupSet(Group... groups) {
+        return Arrays.stream(groups)
                 .collect(Collectors.toSet());
     }
 

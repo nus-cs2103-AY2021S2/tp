@@ -67,6 +67,7 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+
         return ab;
     }
 
