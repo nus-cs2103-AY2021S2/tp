@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -10,9 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.todo.Todo;
-
-import java.text.MessageFormat;
-import java.util.List;
 
 public class AddTodoCommand extends Command {
 
