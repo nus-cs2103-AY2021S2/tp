@@ -21,7 +21,7 @@ public class AddContactToCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an existing contact to an existing project. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_INDEX + "INDEX]...\n"
+            + PREFIX_INDEX + "CONTACT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INDEX + "1";
 
