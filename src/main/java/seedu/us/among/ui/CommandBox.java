@@ -143,7 +143,7 @@ public class CommandBox extends UiPart<Region> {
      * @param event key event for pressed keys
      */
     public void closeHttpClient(KeyEvent event) throws IOException {
-        KeyCombination kc = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_DOWN);
+        KeyCombination kc = new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN);
         if (kc.match(event)) {
             Request.getHttpclient().close();
         }
