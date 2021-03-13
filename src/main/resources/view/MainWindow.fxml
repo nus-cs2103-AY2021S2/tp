@@ -65,7 +65,7 @@
               </padding>
             </SplitPane>
 
-            <TabPane tabClosingPolicy="UNAVAILABLE" minWidth="200.0">
+            <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" minWidth="200.0">
               <tabs>
                 <Tab text="Projects">
                   <content>
