@@ -151,6 +151,8 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the flashcard panel for learn mode.
      */
     private void enterLearnMode() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
@@ -158,6 +160,8 @@ public class MainWindow extends UiPart<Stage> {
      * Hides the flashcard panel for start mode.
      */
     private void enterStartMode() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(false);
     }
 
@@ -167,6 +171,8 @@ public class MainWindow extends UiPart<Stage> {
      * and only the question description is shown (since it is quiz).
      */
     private void enterQuizMode() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList(), true);
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         flashcardListPanelPlaceholder.setVisible(true);
     }
 

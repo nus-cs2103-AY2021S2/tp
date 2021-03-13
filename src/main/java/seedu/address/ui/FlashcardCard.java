@@ -51,6 +51,18 @@ public class FlashcardCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    // experiments
+    public FlashcardCard(Flashcard flashcard, int displayedIndex, boolean isQuiz) {
+        super(FXML);
+        this.flashcard = flashcard;
+        id.setText("Quiz " + displayedIndex + ": ");
+        question.setText(flashcard.getQuestion().value);
+        answer.setText("Answer: ");
+        flashcard.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

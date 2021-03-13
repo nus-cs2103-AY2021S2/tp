@@ -29,6 +29,16 @@ public class FlashcardListPanel extends UiPart<Region> {
         flashcardListView.setCellFactory(listView -> new FlashcardListViewCell());
     }
 
+    /**
+     * Creates a {@code FlashcardListPanel} with the given {@code ObservableList}.
+     */
+    public FlashcardListPanel(ObservableList<Flashcard> flashcardList, boolean isQuiz) {
+        super(FXML);
+        flashcardListView.setItems(flashcardList);
+        flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz());
+    }
+
+
 
 
     /**
@@ -48,4 +58,20 @@ public class FlashcardListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Flashcard} using a {@code FlashcardCard}.
+     */
+    class FlashcardListViewCellQuiz extends ListCell<Flashcard> {
+        @Override
+        protected void updateItem(Flashcard flashcard, boolean empty) {
+            super.updateItem(flashcard, empty);
+
+            if (empty || flashcard == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new FlashcardCard(flashcard, getIndex() + 1, true).getRoot());
+            }
+        }
+    }
 }
