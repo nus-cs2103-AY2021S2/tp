@@ -9,16 +9,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Garment;
+import seedu.address.model.garment.Garment;
 
 /**
- * Adds a garment to the address book.
+ * Adds a garment to the wardrobe.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a garment to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a garment to the wardrobe. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SIZE + "SIZE "
@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_DESCRIPTION + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New garment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This garment already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_GARMENT = "This garment already exists in the wardrobe";
 
     private final Garment toAdd;
 
@@ -51,7 +51,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasGarment(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_GARMENT);
         }
 
         model.addGarment(toAdd);

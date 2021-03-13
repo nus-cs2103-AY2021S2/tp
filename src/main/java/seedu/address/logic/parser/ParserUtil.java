@@ -10,10 +10,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Size;
+import seedu.address.model.garment.Address;
+import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.Name;
+import seedu.address.model.garment.Size;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

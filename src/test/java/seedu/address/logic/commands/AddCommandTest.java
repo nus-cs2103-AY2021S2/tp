@@ -18,36 +18,36 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Garment;
-import seedu.address.testutil.GarmentBuilder;
 import seedu.address.model.ReadOnlyWardrobe;
 import seedu.address.model.Wardrobe;
+import seedu.address.model.garment.Garment;
+import seedu.address.testutil.GarmentBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullGarment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_garmentAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingGarmentAdded modelStub = new ModelStubAcceptingGarmentAdded();
         Garment validGarment = new GarmentBuilder().build();
 
         CommandResult commandResult = new AddCommand(validGarment).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validGarment), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validGarment), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validGarment), modelStub.garmentsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateGarment_throwsCommandException() {
         Garment validGarment = new GarmentBuilder().build();
         AddCommand addCommand = new AddCommand(validGarment);
         ModelStub modelStub = new ModelStubWithGarment(validGarment);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_GARMENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different garment -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addGarment(Garment garment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,65 +124,65 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Garment garment) {
+        public boolean hasGarment(Garment garment) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Garment target) {
+        public void deleteGarment(Garment target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Garment target, Garment editedPerson) {
+        public void setGarment(Garment target, Garment editedGarment) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Garment> getFilteredPersonList() {
+        public ObservableList<Garment> getFilteredGarmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Garment> predicate) {
+        public void updateFilteredGarmentList(Predicate<Garment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single garment.
      */
     private class ModelStubWithGarment extends ModelStub {
         private final Garment garment;
 
-        ModelStubWithPerson(Garment garment) {
+        ModelStubWithGarment(Garment garment) {
             requireNonNull(garment);
             this.garment = garment;
         }
 
         @Override
-        public boolean hasPerson(Garment garment) {
+        public boolean hasGarment(Garment garment) {
             requireNonNull(garment);
             return this.garment.isSameGarment(garment);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the garment being added.
      */
     private class ModelStubAcceptingGarmentAdded extends ModelStub {
-        final ArrayList<Garment> personsAdded = new ArrayList<>();
+        final ArrayList<Garment> garmentsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Garment garment) {
+        public boolean hasGarment(Garment garment) {
             requireNonNull(garment);
-            return personsAdded.stream().anyMatch(garment::isSamePerson);
+            return garmentsAdded.stream().anyMatch(garment::isSameGarment);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addGarment(Garment garment) {
+            requireNonNull(garment);
+            garmentsAdded.add(garment);
         }
 
         @Override

@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GARMENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalGarments.ALICE;
+import static seedu.address.testutil.TypicalGarments.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.garment.NameContainsKeywordsPredicate;
 import seedu.address.testutil.WardrobeBuilder;
 
 public class ModelManagerTest {
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasGarment_nullGarment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasGarment(null));
     }
 
     @Test
-    public void hasPerson_personNotInWardrobe_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasGarment_garmentNotInWardrobe_returnsFalse() {
+        assertFalse(modelManager.hasGarment(ALICE));
     }
 
     @Test
-    public void hasPerson_personInWardrobe_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasGarment_garmentInWardrobe_returnsTrue() {
+        modelManager.addGarment(ALICE);
+        assertTrue(modelManager.hasGarment(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredGarmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredGarmentList().remove(0));
     }
 
     @Test
     public void equals() {
-        Wardrobe wardrobe = new WardrobeBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Wardrobe wardrobe = new WardrobeBuilder().withGarment(ALICE).withGarment(BENSON).build();
         Wardrobe differentWardrobe = new Wardrobe();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,11 +118,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredGarmentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(wardrobe, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredGarmentList(PREDICATE_SHOW_ALL_GARMENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
