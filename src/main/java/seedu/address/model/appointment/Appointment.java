@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.appointment;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -81,5 +81,4 @@ public class Appointment {
     public int hashCode() {
         return Objects.hash(email, subject, dateTime, location);
     }
-
 }
