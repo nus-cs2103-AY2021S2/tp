@@ -24,7 +24,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         }
         for (String s: keywords) {
             for (Tag t: person.getTags()) {
-                if (s.equalsIgnoreCase(t.tagName)) {
+                if (s.equalsIgnoreCase(t.tagCategory.name())) {
                     return true;
                 }
             }
