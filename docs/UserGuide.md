@@ -151,15 +151,15 @@ Examples:
 
 ### Sorting the list of clients : `sort`
 
-Sort the list of clients in ClientBook by their names in alphabetical order.
+Sorts the list of clients in ClientBook by their names in alphabetical order.
 
 Format: `sort DIRECTION`
 
-* Sort the list of clients according the specified `DIRECTION`.
-* The specified `DIRECTION` can be `/a` for ascending order or `/d` for descending order.
+* Sorts the list of clients according the specified `DIRECTION`.
+* The specified `DIRECTION` can be `-a` for ascending order or `-d` for descending order.
 
 Examples:
-* `sort /a` sorts the current list of clients in ascending order.
+* `sort -a` sorts the current list of clients in ascending order.
 
 
 ### Exiting the program : `exit`

@@ -22,24 +22,24 @@ public class SortCommandTest {
 
     @Test
     public void execute_nameSortedInAscendingOrder() {
+        SortCommand sortCommand = new SortCommand(SortCommand.DIRECTION_ASCENDING);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         Comparator<Person> comparator = new SortCommand.PersonNameComparator();
         expectedModel.updateSortedPersonList(comparator);
 
-        assertCommandSuccess(new SortCommand("/a"), model,
-                SortCommand.MESSAGE_SUCCESS_ASCENDING, expectedModel);
+        assertCommandSuccess(sortCommand, model, SortCommand.MESSAGE_SUCCESS_ASCENDING, expectedModel);
     }
 
     @Test
     public void execute_nameSortedInDescendingOrder() {
+        SortCommand sortCommand = new SortCommand(SortCommand.DIRECTION_DESCENDING);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         Comparator<Person> comparator = new SortCommand.PersonNameComparator();
         comparator = comparator.reversed();
         expectedModel.updateSortedPersonList(comparator);
 
-        assertCommandSuccess(new SortCommand("/d"), model,
-                SortCommand.MESSAGE_SUCCESS_DESCENDING, expectedModel);
+        assertCommandSuccess(sortCommand, model, SortCommand.MESSAGE_SUCCESS_DESCENDING, expectedModel);
     }
 }

@@ -23,7 +23,8 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         String direction = trimmedArgs.split("\\s+")[0];
-        if (!direction.equals("/a") && !direction.equals("/d")) {
+        if (!direction.equals(SortCommand.DIRECTION_ASCENDING)
+                && !direction.equals(SortCommand.DIRECTION_DESCENDING)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }

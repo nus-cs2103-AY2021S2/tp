@@ -20,9 +20,9 @@ public class SortCommandParserTest {
     @Test
     public void parse_validArgs_returnsSortCommand() {
         // user want to sort in ascending order
-        assertParseSuccess(parser, "/a", new SortCommand("/a"));
+        assertParseSuccess(parser, "-a", new SortCommand(SortCommand.DIRECTION_ASCENDING));
 
         // user want to sort in descending order
-        assertParseSuccess(parser, "/d", new SortCommand("/d"));
+        assertParseSuccess(parser, "-d", new SortCommand(SortCommand.DIRECTION_DESCENDING));
     }
 }

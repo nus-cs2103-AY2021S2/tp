@@ -14,14 +14,18 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
+    public static final String DIRECTION_ASCENDING = "-a";
+
+    public static final String DIRECTION_DESCENDING = "-d";
+
     public static final String MESSAGE_SUCCESS_ASCENDING = "Sorted all clients in ascending order.";
 
     public static final String MESSAGE_SUCCESS_DESCENDING = "Sorted all clients in descending order.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all clients by names in the order of "
             + "the specified direction and displays them as a list with index numbers.\n"
-            + "Parameters: DIRECTION (/a for ascending, /d for descending)\n"
-            + "Example: " + COMMAND_WORD + " /a";;
+            + "Parameters: DIRECTION (-a for ascending, -d for descending)\n"
+            + "Example: " + COMMAND_WORD + " -a";;
 
     private final String direction;
 
@@ -33,11 +37,11 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Comparator<Person> comparator = new PersonNameComparator();
-        if (direction.equals("/d")) {
+        if (direction.equals(DIRECTION_DESCENDING)) {
             comparator = comparator.reversed();
         }
         model.updateSortedPersonList(comparator);
-        if (direction.equals("/a")) {
+        if (direction.equals(DIRECTION_ASCENDING)) {
             return new CommandResult(MESSAGE_SUCCESS_ASCENDING);
         } else {
             return new CommandResult(MESSAGE_SUCCESS_DESCENDING);
