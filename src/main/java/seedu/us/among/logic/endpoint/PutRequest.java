@@ -1,0 +1,39 @@
+package seedu.us.among.logic.endpoint;
+
+import java.io.IOException;
+
+import org.apache.http.client.methods.HttpPut;
+
+import seedu.us.among.logic.endpoint.exceptions.RequestException;
+import seedu.us.among.model.endpoint.Endpoint;
+import seedu.us.among.model.endpoint.Response;
+
+/**
+ * Contains the logic for sending put requests.
+ */
+public class PutRequest extends Request {
+
+    /**
+     * Constructor for PutRequest.
+     *
+     * @param endpoint endpoint to make API call on
+     */
+    public PutRequest(Endpoint endpoint) {
+        super(endpoint);
+    }
+
+    /**
+     * Executes the API call with a put request.
+     *
+     * @return returns the response from the API call
+     */
+    @Override
+    public Response send() throws IOException, RequestException {
+        HttpPut request = new HttpPut(super.getAddress());
+
+        request = (HttpPut) super.setHeaders(request, super.getHeaders());
+        request = (HttpPut) super.setData(request, super.getData());
+
+        return super.execute(request);
+    }
+}
