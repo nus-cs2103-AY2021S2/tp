@@ -4,15 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Interval;
-import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
 
 /**

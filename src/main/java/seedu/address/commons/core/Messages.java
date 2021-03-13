@@ -14,5 +14,11 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in this project.";
     public static final String MESSAGE_ADD_TODO_SUCCESS = "New todo added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in this project.";
+    public static final String MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS =
+            "Description should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_PARSER_INTERVAL_CONSTRAINTS =
+            "Interval should be one of: NONE, DAILY, WEEKLY, FORTNIGHTLY, MONTHLY, YEARLY";
+    public static final String MESSAGE_PARSER_DATE_CONSTRAINTS =
+            "Date should be in the form dd-MM-yyyy";
 
 }
