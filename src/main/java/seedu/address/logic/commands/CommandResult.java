@@ -23,7 +23,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, UiCommand uiCommand, Index indexOfProject) {
-        requireAllNonNull(feedbackToUser, uiCommand, indexOfProject);
+        requireAllNonNull(feedbackToUser, uiCommand);
         this.feedbackToUser = feedbackToUser;
         this.uiCommand = uiCommand;
         this.indexOfProject = indexOfProject;
