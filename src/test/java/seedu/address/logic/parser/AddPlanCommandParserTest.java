@@ -28,14 +28,14 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.model.plan.Description;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddPlanCommandParserTest {
+    private AddPlanCommandParser parser = new AddPlanCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -43,29 +43,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPlan));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddPlanCommand(expectedPlan));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPlan));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddPlanCommand(expectedPlan));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPlan));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddPlanCommand(expectedPlan));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPlan));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddPlanCommand(expectedPlan));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPlan));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddPlanCommand(expectedPlan));
 
         // multiple tags - all accepted
         Plan expectedPlanMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPlanMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddPlanCommand(expectedPlanMultipleTags));
     }
 
     @Test
@@ -73,12 +73,12 @@ public class AddCommandParserTest {
         // zero tags
         Plan expectedPlan = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPlan));
+                new AddPlanCommand(expectedPlan));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPlanCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
@@ -114,6 +114,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPlanCommand.MESSAGE_USAGE));
     }
 }

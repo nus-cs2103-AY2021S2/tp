@@ -61,7 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
      */
-    public boolean hasPerson(Plan plan) {
+    public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
         return persons.contains(plan);
     }
@@ -70,7 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a plan to the address book.
      * The plan must not already exist in the address book.
      */
-    public void addPerson(Plan p) {
+    public void addPlan(Plan p) {
         persons.add(p);
     }
 
@@ -79,7 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The plan identity of {@code editedPlan} must not be the same as another existing plan in the address book.
      */
-    public void setPerson(Plan target, Plan editedPlan) {
+    public void setPlan(Plan target, Plan editedPlan) {
         requireNonNull(editedPlan);
 
         persons.setPerson(target, editedPlan);
@@ -89,7 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Plan key) {
+    public void removePlan(Plan key) {
         persons.remove(key);
     }
 

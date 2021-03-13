@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPlanCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -27,8 +27,8 @@ public class DescriptionBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Plan plan = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(plan));
-        assertEquals(new AddCommand(plan), command);
+        AddPlanCommand command = (AddPlanCommand) parser.parseCommand(PersonUtil.getAddCommand(plan));
+        assertEquals(new AddPlanCommand(plan), command);
     }
 
     @Test

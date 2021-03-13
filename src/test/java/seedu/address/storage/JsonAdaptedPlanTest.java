@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.JsonAdaptedPlan.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -24,21 +24,21 @@ public class JsonAdaptedPlanTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
+        JsonAdaptedPlan person = new JsonAdaptedPlan(BENSON);
         assertEquals(BENSON, person.toModelType());
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedPlan person =
+                new JsonAdaptedPlan(INVALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_TAGS);
+        JsonAdaptedPlan person = new JsonAdaptedPlan(null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -47,8 +47,8 @@ public class JsonAdaptedPlanTest {
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_ADDRESS, invalidTags);
+        JsonAdaptedPlan person =
+                new JsonAdaptedPlan(VALID_ADDRESS, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 

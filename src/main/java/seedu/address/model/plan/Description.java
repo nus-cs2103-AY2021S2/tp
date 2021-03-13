@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Plan's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
 
@@ -26,14 +26,14 @@ public class Description {
      */
     public Description(String address) {
         requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
