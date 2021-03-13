@@ -19,15 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-<<<<<<< HEAD
-import seedu.address.model.person.*;
-=======
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
->>>>>>> 927734c55b70b76bddffd94916e0fcf0419d400d
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,16 +93,6 @@ public class EditCommand extends Command {
     private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
         assert clientToEdit != null;
 
-<<<<<<< HEAD
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
-=======
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
@@ -114,7 +100,6 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
->>>>>>> 927734c55b70b76bddffd94916e0fcf0419d400d
     }
 
     @Override
