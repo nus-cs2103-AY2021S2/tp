@@ -66,6 +66,7 @@ public class SmartLib implements ReadOnlySmartLib {
         requireNonNull(newData);
 
         setReaders(newData.getReaderList());
+        setRecords(newData.getRecordList());
     }
 
     //// person-level operations
@@ -125,7 +126,8 @@ public class SmartLib implements ReadOnlySmartLib {
 
     @Override
     public String toString() {
-        return readers.asUnmodifiableObservableList().size() + " persons";
+        return readers.asUnmodifiableObservableList().size() + " persons"
+                + "\n" + records.asUnmodifiableObservableList().size() + " records";
         // TODO: refine later
     }
 

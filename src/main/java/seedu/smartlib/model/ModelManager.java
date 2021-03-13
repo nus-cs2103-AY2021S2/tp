@@ -116,6 +116,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addRecord(Record record) {
+        System.out.println(smartLib);
         smartLib.addRecord(record);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
     }

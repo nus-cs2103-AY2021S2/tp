@@ -11,6 +11,8 @@ import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.DateBorrowed;
+import seedu.smartlib.model.record.Record;
 import seedu.smartlib.model.tag.Tag;
 
 /**
@@ -40,10 +42,20 @@ public class SampleDataUtil {
         };
     }
 
+    public static Record[] getSampleRecords() {
+        return new Record[] {
+                new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")),
+                new Record(new Name("The Avengers"), new Name("Bernice Yu"), new DateBorrowed("2021-01-22"))
+        };
+    }
+
     public static ReadOnlySmartLib getSampleSmartLib() {
         SmartLib sampleAb = new SmartLib();
         for (Reader sampleReader : getSampleReaders()) {
             sampleAb.addReader(sampleReader);
+        }
+        for (Record sampleRecord : getSampleRecords()) {
+            sampleAb.addRecord(sampleRecord);
         }
         return sampleAb;
     }
