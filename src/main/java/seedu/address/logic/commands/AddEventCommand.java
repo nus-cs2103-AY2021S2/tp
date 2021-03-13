@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -32,6 +33,7 @@ public class AddEventCommand extends Command {
             + PREFIX_REPEATABLE_DATE + "24-04-2021";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in this project.";
 
     private final Index index;
     private final Event toAdd;
@@ -65,6 +67,13 @@ public class AddEventCommand extends Command {
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
+
+        for (Event event: projectToEdit.getEvents().getEvents()) {
+            if (this.toAdd.equals(event)) {
+                throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+            }
+        }
+        
         projectToEdit.addEvent(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
