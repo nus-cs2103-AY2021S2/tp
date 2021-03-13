@@ -7,7 +7,7 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
-import seedu.dictionote.model.contact.TagsContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -36,7 +36,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
         return new FindContactCommand(
                 new NameContainsKeywordsPredicate(nameKeywords),
-                new TagsContainsKeywordsPredicate(tagsKeywords)
+                new TagsContainKeywordsPredicate(tagsKeywords)
         );
     }
 

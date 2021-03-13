@@ -7,7 +7,7 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
-import seedu.dictionote.model.contact.TagsContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 
 /**
  * Finds and lists all contacts in the contacts list whose name contains any of the argument keywords.
@@ -29,10 +29,10 @@ public class FindContactCommand extends Command {
             + PREFIX_TAG + "tutors ";
 
     private final NameContainsKeywordsPredicate namePredicate;
-    private final TagsContainsKeywordsPredicate tagsPredicate;
+    private final TagsContainKeywordsPredicate tagsPredicate;
 
     public FindContactCommand(NameContainsKeywordsPredicate namePredicate,
-                              TagsContainsKeywordsPredicate tagsPredicate) {
+                              TagsContainKeywordsPredicate tagsPredicate) {
         this.namePredicate = namePredicate;
         this.tagsPredicate = tagsPredicate;
     }
