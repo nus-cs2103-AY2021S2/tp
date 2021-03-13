@@ -4,15 +4,13 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.dictionote.model.AddressBook;
-import seedu.dictionote.model.NoteBook;
-import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.ReadOnlyNoteBook;
+import seedu.dictionote.model.*;
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
@@ -74,5 +72,20 @@ public class SampleDataUtil {
             sampleNb.addNote(sampleNote);
         }
         return sampleNb;
+    }
+
+    public static Content[] getSampleContent() {
+        return new Content[] {
+            new Content("Week 1: OOP programming."),
+            new Content("Week #: Some Topic")
+        };
+    }
+
+    public static ReadOnlyDictionary getSampleDictionary() {
+        Dictionary sampleCt = new Dictionary();
+        for (Content sampleContent : getSampleContent()) {
+            sampleCt.addContent(sampleContent);
+        }
+        return sampleCt;
     }
 }

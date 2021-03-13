@@ -16,6 +16,7 @@ import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.storage.Storage;
 
@@ -72,6 +73,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Note> getFilteredNoteList() {
         return model.getFilteredNoteList();
+    }
+
+    @Override
+    public ObservableList<Content> getFilteredContentList() {
+        return model.getFilteredContentList();
     }
 
     @Override

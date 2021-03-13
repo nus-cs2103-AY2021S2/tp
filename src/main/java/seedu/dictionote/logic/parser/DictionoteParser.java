@@ -6,19 +6,7 @@ import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.dictionote.logic.commands.AddContactCommand;
-import seedu.dictionote.logic.commands.AddNoteCommand;
-import seedu.dictionote.logic.commands.ClearCommand;
-import seedu.dictionote.logic.commands.CloseCommand;
-import seedu.dictionote.logic.commands.Command;
-import seedu.dictionote.logic.commands.DeleteContactCommand;
-import seedu.dictionote.logic.commands.DeleteNoteCommand;
-import seedu.dictionote.logic.commands.EditContactCommand;
-import seedu.dictionote.logic.commands.ExitCommand;
-import seedu.dictionote.logic.commands.FindCommand;
-import seedu.dictionote.logic.commands.HelpCommand;
-import seedu.dictionote.logic.commands.ListCommand;
-import seedu.dictionote.logic.commands.OpenCommand;
+import seedu.dictionote.logic.commands.*;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
@@ -68,6 +56,9 @@ public class DictionoteParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindContentCommand.COMMAND_WORD:
+            return new FindContentCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

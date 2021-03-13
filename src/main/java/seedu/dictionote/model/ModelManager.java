@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
 
 /**
@@ -25,27 +26,32 @@ public class ModelManager implements Model {
     private final FilteredList<Note> filteredNote;
     private final NoteBook noteBook;
     private final FilteredList<Contact> filteredContacts;
+    private final Dictionary dictionary;
+    private final FilteredList<Content> filteredContent;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyNoteBook noteBook) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary) {
         super();
         requireAllNonNull(addressBook, userPrefs, noteBook);
 
         logger.fine("Initializing with dictionote book: " + addressBook
                 + " and user prefs " + userPrefs
-                + "and note book" + noteBook);
+                + "and note book" + noteBook
+                + "and dictionary content" + dictionary);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.noteBook = new NoteBook(noteBook);
+        this.dictionary = new Dictionary(dictionary);
         filteredNote = new FilteredList<>(this.noteBook.getNoteList());
         filteredContacts = new FilteredList<>(this.addressBook.getContactList());
+        filteredContent = new FilteredList<>(this.dictionary.getContentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new NoteBook());
+        this(new AddressBook(), new UserPrefs(), new NoteBook(), new Dictionary());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -93,6 +99,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(noteBookFilePath);
     }
 
+    @Override
+    public Path getDictionaryBookFilePath() {
+        return userPrefs.getDictionaryBookFilePath();
+    }
+
+    @Override
+    public void setDictionaryBookFilePath(Path dictionaryBookFilePath) {
+        requireNonNull(dictionaryBookFilePath);
+        userPrefs.setAddressBookFilePath(dictionaryBookFilePath);
+    }
+
     //=========== NoteBook ===================================================================================
     @Override
     public boolean hasNote(Note note) {
@@ -115,6 +132,14 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
+    }
+
+
+    //=========== DicitonaryBook ===================================================================================
+    @Override
+    public boolean hasContent(Content content) {
+        requireNonNull(content);
+        return dictionary.hasContent(content);
     }
 
 
@@ -171,6 +196,9 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Content> getFilteredContentList() { return filteredContent; }
+
+    @Override
     public void updateFilteredContactList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
         filteredContacts.setPredicate(predicate);
@@ -180,6 +208,12 @@ public class ModelManager implements Model {
     public void updateFilteredNoteList(Predicate<Note> predicate) {
         requireNonNull(predicate);
         filteredNote.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredContentList(Predicate<Content> predicate) {
+        requireNonNull(predicate);
+        filteredContent.setPredicate(predicate);
     }
 
     @Override
@@ -200,5 +234,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredContacts.equals(other.filteredContacts);
     }
-
 }
