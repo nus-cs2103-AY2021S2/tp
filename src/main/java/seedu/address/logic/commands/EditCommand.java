@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -22,8 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Review;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Review;
 import seedu.address.model.tag.Tag;
 
 /**
