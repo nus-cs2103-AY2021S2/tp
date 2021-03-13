@@ -78,6 +78,10 @@ public class Person extends Human {
         return driver.map(Driver::toString).orElse(MESSAGE_NO_ASSIGNED_DRIVER);
     }
 
+    public Optional<Driver> getDriver() {
+        return driver;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -119,7 +123,8 @@ public class Person extends Human {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTripDay().equals(getTripDay())
                 && otherPerson.getTripTime().equals(getTripTime())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getDriver().equals(getDriver());
     }
 
     @Override

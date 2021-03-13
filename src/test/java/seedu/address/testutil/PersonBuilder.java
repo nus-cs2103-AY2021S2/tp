@@ -1,10 +1,12 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
+import seedu.address.model.human.driver.Driver;
 import seedu.address.model.human.person.Address;
 import seedu.address.model.human.person.Person;
 import seedu.address.model.human.person.TripDay;
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private TripDay tripDay;
     private TripTime tripTime;
     private Set<Tag> tags;
+    private Optional<Driver> driver;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +43,7 @@ public class PersonBuilder {
         tripDay = new TripDay(DEFAULT_TRIPDAY);
         tripTime = new TripTime(DEFAULT_TRIPTIME);
         tags = new HashSet<>();
+        driver = Optional.empty();
     }
 
     /**
@@ -52,6 +56,7 @@ public class PersonBuilder {
         tripDay = personToCopy.getTripDay();
         tripTime = personToCopy.getTripTime();
         tags = new HashSet<>(personToCopy.getTags());
+        driver = personToCopy.getDriver();
     }
 
     /**
@@ -87,7 +92,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code TripDay} of the {@code TripDay} that we are building.
+     * Sets the {@code TripDay} of the {@code Person} that we are building.
      */
     public PersonBuilder withTripDay(String tripDay) {
         this.tripDay = new TripDay(tripDay);
@@ -95,15 +100,27 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code TripTime} of the {@code TripTime} that we are building.
+     * Sets the {@code TripTime} of the {@code Person} that we are building.
      */
     public PersonBuilder withTripTime(String tripTime) {
         this.tripTime = new TripTime(tripTime);
         return this;
     }
 
+    /**
+     * Sets the {@code Driver} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDriver(Driver driver) {
+        this.driver = Optional.ofNullable(driver);
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, address, tripDay, tripTime, tags);
+    }
+
+    public Person buildWithDriver() {
+        return new Person(name, phone, address, tripDay, tripTime, driver.get(), tags);
     }
 
 }
