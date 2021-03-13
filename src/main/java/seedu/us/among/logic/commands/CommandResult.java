@@ -22,6 +22,9 @@ public class CommandResult {
     /** API response should be shown to the user. */
     private final boolean isApiResponse;
 
+    /** Toggle should be done. */
+    private final String toggleTheme;
+
     /** API endpoint to be consumed by the UI for displaying response. */
     private final Endpoint endpoint;
 
@@ -34,6 +37,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.isApiResponse = false;
+        this.toggleTheme = null;
         this.endpoint = null;
     }
 
@@ -46,7 +50,20 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.isApiResponse = isApiResponse;
+        this.toggleTheme = null;
         this.endpoint = endpoint;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields, including the newly added theme to toggle.
+     */
+    public CommandResult(String feedbackToUser, String themeToToggle) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.isApiResponse = false;
+        this.toggleTheme = themeToToggle;
+        this.endpoint = null;
     }
 
     /**
@@ -75,6 +92,10 @@ public class CommandResult {
 
     public boolean isApiResponse() {
         return isApiResponse;
+    }
+
+    public String getToggleTheme() {
+        return this.toggleTheme;
     }
 
     @Override

@@ -107,4 +107,35 @@ public class StringUtil {
         return String.format("%s seconds", get3DecimalPlace(value));
     }
 
+    //Solution below taken from https://www.javacodeexamples.com/convert-string-to-title-case-in-java-example/641
+    /**
+     * Returns word in title case.
+     *
+     * @param str string to return in title case
+     * @return string with title case
+     */
+    public static String toTitleCase(String str) {
+
+        if (str == null || str.isEmpty()) {
+            return "";
+        }
+
+        if (str.length() == 1) {
+            return str.toUpperCase();
+        }
+
+        String[] parts = str.split(" ");
+
+        StringBuilder sb = new StringBuilder(str.length());
+
+        for (String part : parts) {
+            char[] charArray = part.toLowerCase().toCharArray();
+            charArray[0] = Character.toUpperCase(charArray[0]);
+
+            sb.append(new String(charArray)).append(" ");
+        }
+
+        return sb.toString().trim();
+    }
+
 }
