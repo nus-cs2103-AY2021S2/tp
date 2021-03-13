@@ -94,8 +94,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Colour updatedColour = editPersonDescriptor.getColour().orElse(personToEdit.getColour());
         Size updatedSize = editPersonDescriptor.getSize().orElse(personToEdit.getSize());
-       	Colour updatedColour = editPersonDescriptor.getColour().orElse(personToEdit.getColour());
         DressCode updatedDressCode = editPersonDescriptor.getDressCode().orElse(personToEdit.getDressCode());
         Set<Description> updatedDescriptions = editPersonDescriptor.getDescriptions()
                 .orElse(personToEdit.getDescriptions());
