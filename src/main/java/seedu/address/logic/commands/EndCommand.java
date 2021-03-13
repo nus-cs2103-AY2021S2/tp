@@ -12,7 +12,7 @@ public class EndCommand extends Command {
 
     public static final String COMMAND_WORD = "end";
 
-    public static final String MESSAGE_SUCCESS = "You are now in start mode";
+    public static final String MESSAGE_SUCCESS = "Welcome back. Enter \"learn\" or \"quiz\" for different modes.";
 
 
     @Override
