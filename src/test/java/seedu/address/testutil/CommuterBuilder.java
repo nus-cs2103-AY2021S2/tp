@@ -15,16 +15,26 @@ public class CommuterBuilder {
     private static final int DEFAULT_INDEX_1_AS_INT = Integer.parseInt(DEFAULT_INDEX_1);
     private static final int DEFAULT_INDEX_2_AS_INT = Integer.parseInt(DEFAULT_INDEX_2);
 
-
-    private final Index index1;
-    private final Index index2;
+    private Set<Index> indices;
 
     /**
      * Creates a {@code DriverBuilder} with the default details.
      */
     public CommuterBuilder() {
-        index1 = Index.fromOneBased(DEFAULT_INDEX_1_AS_INT);
-        index2 = Index.fromOneBased(DEFAULT_INDEX_2_AS_INT);
+        indices = new HashSet<>();
+        indices.add(Index.fromOneBased(DEFAULT_INDEX_1_AS_INT));
+        indices.add(Index.fromOneBased(DEFAULT_INDEX_2_AS_INT));
+    }
+
+    /**
+     * Sets the {@code Index}es of the {@code Set} that we are building.
+     */
+    public CommuterBuilder withIndices(int[] intIndices) {
+        this.indices.clear();
+        for (int idx : intIndices) {
+            indices.add(Index.fromOneBased(idx));
+        }
+        return this;
     }
 
     /**
@@ -32,9 +42,6 @@ public class CommuterBuilder {
      * @return A {@code Set} containing the given {@code Index}s
      */
     public Set<Index> build() {
-        final Set<Index> indicesSet = new HashSet<>();
-        indicesSet.add(index1);
-        indicesSet.add(index2);
-        return indicesSet;
+        return indices;
     }
 }
