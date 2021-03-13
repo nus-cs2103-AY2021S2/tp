@@ -14,31 +14,31 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the planner data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Planner planner;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given planner and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPlanner planner, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(planner, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with planner: " + planner + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.planner = new Planner(planner);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        filteredTasks = new FilteredList<>(this.planner.getTaskList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Planner(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,42 +66,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPlannerFilePath() {
+        return userPrefs.getPlannerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPlannerFilePath(Path plannerFilePath) {
+        requireNonNull(plannerFilePath);
+        userPrefs.setPlannerFilePath(plannerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Planner ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setPlanner(ReadOnlyPlanner planner) {
+        this.planner.resetData(planner);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyPlanner getPlanner() {
+        return planner;
     }
 
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        return addressBook.hasTask(task);
+        return planner.hasTask(task);
     }
 
     @Override
     public void deleteTask(Task target) {
-        addressBook.removeTask(target);
+        planner.removeTask(target);
     }
 
     @Override
     public void addTask(Task task) {
-        addressBook.addTask(task);
+        planner.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -109,14 +109,14 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
-        addressBook.setTask(target, editedTask);
+        planner.setTask(target, editedTask);
     }
 
     //=========== Filtered Task List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedPlanner}
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return planner.equals(other.planner)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks);
     }
