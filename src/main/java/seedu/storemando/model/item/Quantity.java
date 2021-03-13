@@ -53,6 +53,6 @@ public class Quantity {
     }
 
     public int compare(Quantity anotherQuantity) {
-        return this.value.compareTo(anotherQuantity.value);
+        return Integer.parseInt(this.value) - Integer.parseInt(anotherQuantity.value);
     }
 }

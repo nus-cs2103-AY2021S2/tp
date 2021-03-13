@@ -1,5 +1,6 @@
 package seedu.storemando.logic.commands;
 
+import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 
 public abstract class SortCommand extends Command {
@@ -17,7 +18,7 @@ public abstract class SortCommand extends Command {
     public static final String MESSAGE_NO_ITEMS_TO_SORT = "Empty list cannot be sorted";
 
 
-    public abstract CommandResult execute(Model model);
+    public abstract CommandResult execute(Model model) throws CommandException;
 
     public abstract boolean equals(Object other);
 }
