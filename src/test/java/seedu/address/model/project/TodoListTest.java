@@ -2,6 +2,7 @@ package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -40,6 +41,14 @@ public class TodoListTest {
         todos.add(todo);
         TodoList todoList = new TodoList(todos);
         assertEquals(todos, todoList.getTodos());
+    }
+
+    @Test
+    public void getCopyOf_validTodoList_copyOfOriginal() {
+        TodoList todoList = new TodoList();
+        TodoList todoListCopy = todoList.getCopy();
+        assertEquals(todoList, todoListCopy);
+        assertFalse(todoList == todoListCopy);
     }
 
 }
