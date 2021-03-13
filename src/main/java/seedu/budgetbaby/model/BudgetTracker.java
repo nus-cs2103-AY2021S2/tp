@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.model.record.FinancialRecordList;
 
@@ -14,6 +15,7 @@ import seedu.budgetbaby.model.record.FinancialRecordList;
 public class BudgetTracker implements ReadOnlyBudgetTracker {
 
     private final FinancialRecordList records;
+    private Budget budget;
 
     {
         records = new FinancialRecordList();
@@ -75,6 +77,14 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void removeFinancialRecord(FinancialRecord key) {
         records.remove(key);
+    }
+
+    /**
+     * Sets the budget for the following months.
+     * @param budget The specified budget to be set.
+     */
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
     //// util methods

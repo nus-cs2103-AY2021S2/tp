@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
+import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -104,6 +105,12 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         requireAllNonNull(target, editedRecord);
 
         budgetTracker.setFinancialRecord(target, editedRecord);
+    }
+
+    @Override
+    public void setBudget(Budget budget) {
+        requireNonNull(budget);
+        budgetTracker.setBudget(budget);
     }
 
     //=========== Filtered Person List Accessors =============================================================

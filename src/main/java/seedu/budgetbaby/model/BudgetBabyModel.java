@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.core.GuiSettings;
+import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -86,4 +87,10 @@ public interface BudgetBabyModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
+
+    /**
+     * Sets the budget for the following months.
+     * @param budget The specified budget to be set.
+     */
+    void setBudget(Budget budget);
 }

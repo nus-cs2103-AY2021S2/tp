@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.budgetbaby.ablogic.commands.HelpCommand;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
+import seedu.budgetbaby.logic.commands.SetBudgetCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 /**
@@ -40,6 +41,9 @@ public class BudgetBabyParser {
 
         case AddFrCommand.COMMAND_WORD:
             return new AddFrCommandParser().parse(arguments);
+
+        case SetBudgetCommand.COMMAND_WORD:
+            return new SetBudgetCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
