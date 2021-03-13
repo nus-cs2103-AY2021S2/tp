@@ -22,10 +22,10 @@ public class DateUtil {
     public static LocalDate encodeDate(String date) throws DateConversionException {
         requireNonNull(date);
         try {
-            return LocalDate.parse(date);
+            return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         } catch (DateTimeParseException e) {
             throw new DateConversionException("An error occurred while encoding date,"
-                    + " use the yyyy-mm-dd format.");
+                    + " use the dd-MM-yyyy format.");
         }
     }
 
@@ -36,7 +36,6 @@ public class DateUtil {
      */
     public static String decodeDate(LocalDate date) {
         requireNonNull(date);
-        assert date != null : "date should not be null!";
         return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
@@ -47,7 +46,6 @@ public class DateUtil {
      */
     public static String decodeDateForStorage(LocalDate date) {
         requireNonNull(date);
-        assert date != null : "date should not be null!";
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

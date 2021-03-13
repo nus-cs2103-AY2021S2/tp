@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.Interval;
-import seedu.address.model.task.completable.Deadline;
+import seedu.address.model.task.deadline.Deadline;
 
 public class EventTest {
 
