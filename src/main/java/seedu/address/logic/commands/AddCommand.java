@@ -54,6 +54,7 @@ public class AddCommand extends Command {
         }
 
         model.addFlashcard(toAdd);
+        model.commitFlashBack();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -19,7 +19,7 @@ import seedu.address.model.flashcard.Flashcard;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final FlashBack flashBack;
+    private final VersionedFlashBack versionedFlashBack;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
 
@@ -32,9 +32,9 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with FlashBack: " + flashBack + " and user prefs " + userPrefs);
 
-        this.flashBack = new FlashBack(flashBack);
+        this.versionedFlashBack = new VersionedFlashBack(flashBack);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashcards = new FilteredList<>(this.flashBack.getCardList());
+        filteredFlashcards = new FilteredList<>(this.versionedFlashBack.getCardList());
     }
 
     public ModelManager() {
@@ -80,28 +80,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setFlashBack(ReadOnlyFlashBack flashBack) {
-        this.flashBack.resetData(flashBack);
+        this.versionedFlashBack.resetData(flashBack);
     }
 
     @Override
     public ReadOnlyFlashBack getFlashBack() {
-        return flashBack;
+        return versionedFlashBack;
     }
 
     @Override
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
-        return flashBack.hasCard(flashcard);
+        return versionedFlashBack.hasCard(flashcard);
     }
 
     @Override
     public void deleteFlashcard(Flashcard target) {
-        flashBack.removeCard(target);
+        versionedFlashBack.removeCard(target);
     }
 
     @Override
     public void addFlashcard(Flashcard flashcard) {
-        flashBack.addCard(flashcard);
+        versionedFlashBack.addCard(flashcard);
         updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireAllNonNull(target, editedFlashcard);
 
-        flashBack.setCard(target, editedFlashcard);
+        versionedFlashBack.setCard(target, editedFlashcard);
     }
 
     //=========== Filtered Flashcard List Accessors =============================================================
@@ -143,9 +143,23 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return flashBack.equals(other.flashBack)
+        return versionedFlashBack.equals(other.versionedFlashBack)
                 && userPrefs.equals(other.userPrefs)
                 && filteredFlashcards.equals(other.filteredFlashcards);
     }
 
+    @Override
+    public void commitFlashBack() {
+        versionedFlashBack.commit();
+    }
+
+    @Override
+    public boolean canUndoFlashBack() {
+        return versionedFlashBack.canUndo();
+    }
+
+    @Override
+    public void undoFlashBack() {
+        versionedFlashBack.undo();
+    }
 }
