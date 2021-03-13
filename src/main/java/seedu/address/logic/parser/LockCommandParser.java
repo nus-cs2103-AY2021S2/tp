@@ -12,7 +12,7 @@ public class LockCommandParser implements Parser<LockCommand> {
         String trimmedArgs = args.trim();
         String[] passwords = trimmedArgs.split("\\s+");
 
-        if (passwords.length < 1 || passwords.length > 2) {
+        if (trimmedArgs.length() == 0 || passwords.length < 1 || passwords.length > 2) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, LockCommand.MESSAGE_USAGE));
         }
         //Length 1: User only provided new password.
