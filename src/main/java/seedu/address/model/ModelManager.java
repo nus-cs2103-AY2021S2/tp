@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.medical.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,25 +21,27 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final AppointmentBook appointmentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, AppointmentBook appointmentBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", appointment book: " + appointmentBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.appointmentBook = appointmentBook;
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new AppointmentBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -127,6 +130,31 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasAppointment(Appointment appt) {
+        return appointmentBook.hasAppointment(appt);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment appt) {
+        appointmentBook.deleteAppointment(appt);
+    }
+
+    @Override
+    public void addAppointment(Appointment appt) {
+        appointmentBook.addAppointment(appt);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppt) {
+        appointmentBook.setAppointment(target, editedAppt);
+    }
+
+    @Override
+    public AppointmentBook getAppointmentBook() {
+        return appointmentBook;
     }
 
     @Override

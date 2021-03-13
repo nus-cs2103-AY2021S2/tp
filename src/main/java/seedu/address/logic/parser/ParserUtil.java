@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.medical.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -121,4 +124,19 @@ public class ParserUtil {
         }
         return tagSet;
     }
+// TODO: make this parsing not so SHIT
+    public static LocalDateTime parseDate(String unsortedDate) throws ParseException {
+        try {
+            String[] sorted = unsortedDate.split(" ");
+            return LocalDateTime.of(Integer.parseInt(sorted[2]), //Year
+                    Integer.parseInt(sorted[1]), //Month
+                    Integer.parseInt(sorted[0]), //Day
+                    Integer.parseInt(sorted[3].substring(0, sorted[3].length() - 2)), //Hour
+                    Integer.parseInt(sorted[3].substring(sorted[3].length() - 2)));//Minute
+        }
+        catch (NumberFormatException | DateTimeException | ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+    }
+
 }

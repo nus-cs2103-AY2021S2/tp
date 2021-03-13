@@ -4,13 +4,15 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import javafx.util.Pair;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.AppointmentBook;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
  * Represents a storage for {@link seedu.address.model.AddressBook}.
  */
-public interface AddressBookStorage {
+public interface BookStorage {
 
     /**
      * Returns the file path of the data file.
@@ -22,24 +24,25 @@ public interface AddressBookStorage {
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
+     * @return
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<Pair<ReadOnlyAddressBook, AppointmentBook>> readBooks() throws DataConversionException, IOException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<Pair<ReadOnlyAddressBook, AppointmentBook>> readBooks(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveBooks(ReadOnlyAddressBook addressBook, AppointmentBook appointmentBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveBooks(ReadOnlyAddressBook)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveBooks(ReadOnlyAddressBook addressBook, AppointmentBook appointmentBook, Path filePath) throws IOException;
 
 }

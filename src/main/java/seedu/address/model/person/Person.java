@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.*;
 
-import seedu.address.model.medical.Appointment;
 import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.tag.Tag;
 
@@ -25,7 +24,6 @@ public class Person {
 
     // Medical fields
     private List<MedicalRecord> records;
-    private List<Appointment> appointments;
 
     /**
      * Every field must be present and not null.
