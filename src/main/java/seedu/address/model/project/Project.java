@@ -1,5 +1,6 @@
 package seedu.address.model.project;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -71,6 +72,7 @@ public class Project {
      * @param person {@code Person} to add.
      */
     public Project addParticipant(Person person) {
+        requireNonNull(person);
         ParticipantList participants = this.participants.addParticipant(person);
         return new Project(this.getProjectName(), this.getEvents(),
                 this.getCompletableTasks(), participants);

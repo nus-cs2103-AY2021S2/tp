@@ -49,7 +49,7 @@ public class AddContactToCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        Project projectToAddTo = lastShownProjectList.get(personToAddIndex.getZeroBased());
+        Project projectToAddTo = lastShownProjectList.get(projectToAddToIndex.getZeroBased());
 
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
