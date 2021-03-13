@@ -14,8 +14,8 @@ import seedu.address.testutil.DeadlineBuilder;
 
 public class DeadlineTest {
 
-    private static Deadline TEST_DEADLINE = new DeadlineBuilder().build();
-    private static Deadline DIFFERENT_DEADLINE = new DeadlineBuilder().withDescription("DIFFERENT").build();
+    private static final Deadline TEST_DEADLINE = new DeadlineBuilder().build();
+    private static final Deadline DIFFERENT_DEADLINE = new DeadlineBuilder().withDescription("DIFFERENT").build();
 
     @Test
     public void constructor_null_throwsNullPointerException() {
