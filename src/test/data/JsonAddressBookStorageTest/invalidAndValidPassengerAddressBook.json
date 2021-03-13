@@ -1,12 +1,12 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
+  "passengers": [ {
+    "name": "Valid Passenger",
     "phone": "94",
     "address": "4th street",
     "tripDay" : "FRIDAY",
     "tripTime" : "1800"
   }, {
-    "name": "Person With Invalid Phone Field",
+    "name": "Passenger With Invalid Phone Field",
     "phone": "948asdf2424",
     "address": "4th street",
     "tripDay" : "FRIDAY",

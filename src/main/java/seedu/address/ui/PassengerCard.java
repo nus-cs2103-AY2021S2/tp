@@ -12,9 +12,9 @@ import seedu.address.model.person.passenger.Passenger;
 /**
  * An UI component that displays information of a {@code Passenger}.
  */
-public class PersonCard extends UiPart<Region> {
+public class PassengerCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "PassengerListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Passenger person;
+    public final Passenger passenger;
 
     @FXML
     private HBox cardPane;
@@ -44,18 +44,18 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Passenger} and index to display.
+     * Creates a {@code PassengerCard} with the given {@code Passenger} and index to display.
      */
-    public PersonCard(Passenger person, int displayedIndex) {
+    public PassengerCard(Passenger passenger, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.passenger = passenger;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        tripDayTime.setText(person.getTripDay() + " " + person.getTripTime());
-        driver.setText(person.getDriverStr());
-        person.getTags().stream()
+        name.setText(passenger.getName().fullName);
+        phone.setText(passenger.getPhone().value);
+        address.setText(passenger.getAddress().value);
+        tripDayTime.setText(passenger.getTripDay() + " " + passenger.getTripTime());
+        driver.setText(passenger.getDriverStr());
+        passenger.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -68,13 +68,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof PassengerCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        PassengerCard card = (PassengerCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && passenger.equals(card.passenger);
     }
 }

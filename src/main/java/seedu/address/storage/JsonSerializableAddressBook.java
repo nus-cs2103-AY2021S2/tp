@@ -19,16 +19,16 @@ import seedu.address.model.person.passenger.Passenger;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PASSENGER = "Passengers list contains duplicate passenger(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPassenger> passengers = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given passengers.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("passengers") List<JsonAdaptedPassenger> passengers) {
+        this.passengers.addAll(passengers);
     }
 
     /**
@@ -37,7 +37,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        passengers.addAll(source.getPassengerList().stream().map(JsonAdaptedPassenger::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +48,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Passenger person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedPassenger jsonAdaptedPassenger : passengers) {
+            Passenger passenger = jsonAdaptedPassenger.toModelType();
+            if (addressBook.hasPassenger(passenger)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PASSENGER);
             }
-            addressBook.addPerson(person);
+            addressBook.addPassenger(passenger);
         }
         return addressBook;
     }

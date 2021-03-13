@@ -17,10 +17,10 @@ public class TagContainsKeywordsPredicate implements Predicate<Passenger> {
     }
 
     @Override
-    public boolean test(Passenger person) {
+    public boolean test(Passenger passenger) {
         return keywords.stream()
                 .anyMatch(keyword ->
-                    person.getTags().stream().anyMatch(tag ->
+                    passenger.getTags().stream().anyMatch(tag ->
                         StringUtil.containsWordIgnoreCase(tag.toString(), keyword)
                 ));
     }

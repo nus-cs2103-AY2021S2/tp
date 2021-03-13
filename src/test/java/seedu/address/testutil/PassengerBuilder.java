@@ -17,7 +17,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Passenger objects.
  */
-public class PersonBuilder {
+public class PassengerBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -34,9 +34,9 @@ public class PersonBuilder {
     private Optional<Driver> driver;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code PassengerBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public PassengerBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
@@ -47,22 +47,22 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PassengerBuilder with the data of {@code passengerToCopy}.
      */
-    public PersonBuilder(Passenger personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        address = personToCopy.getAddress();
-        tripDay = personToCopy.getTripDay();
-        tripTime = personToCopy.getTripTime();
-        tags = new HashSet<>(personToCopy.getTags());
-        driver = personToCopy.getDriver();
+    public PassengerBuilder(Passenger passengerToCopy) {
+        name = passengerToCopy.getName();
+        phone = passengerToCopy.getPhone();
+        address = passengerToCopy.getAddress();
+        tripDay = passengerToCopy.getTripDay();
+        tripTime = passengerToCopy.getTripTime();
+        tags = new HashSet<>(passengerToCopy.getTags());
+        driver = passengerToCopy.getDriver();
     }
 
     /**
      * Sets the {@code Name} of the {@code Passenger} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public PassengerBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -70,7 +70,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Passenger} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PassengerBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -78,7 +78,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Passenger} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public PassengerBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -86,7 +86,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Passenger} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public PassengerBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -94,7 +94,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code TripDay} of the {@code Passenger} that we are building.
      */
-    public PersonBuilder withTripDay(String tripDay) {
+    public PassengerBuilder withTripDay(String tripDay) {
         this.tripDay = new TripDay(tripDay);
         return this;
     }
@@ -102,7 +102,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code TripTime} of the {@code Passenger} that we are building.
      */
-    public PersonBuilder withTripTime(String tripTime) {
+    public PassengerBuilder withTripTime(String tripTime) {
         this.tripTime = new TripTime(tripTime);
         return this;
     }
@@ -110,7 +110,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Driver} of the {@code Passenger} that we are building.
      */
-    public PersonBuilder withDriver(Driver driver) {
+    public PassengerBuilder withDriver(Driver driver) {
         this.driver = Optional.ofNullable(driver);
         return this;
     }

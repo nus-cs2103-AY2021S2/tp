@@ -80,9 +80,9 @@ Format: `search CONSTRAINT`
 
 > **Examples**:`search female` or `search available`
 
-### Locating persons by name: `find`
+### Locating passengers by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds passengers whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -90,7 +90,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Passengers matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 >**Examples**:
@@ -104,13 +104,13 @@ Deletes the specific passenger from the GME terminal.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the passenger at the specified `INDEX`.
+* The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `search female` followed by `delete 3` deletes the *1st* person in the results of `search female` command
+* `search female` followed by `delete 3` deletes the *1st* passenger in the results of `search female` command
 
 > **Examples:
--** `list` followed by `delete 3` deletes the *3rd* person in the address book
+-** `list` followed by `delete 3` deletes the *3rd* passenger in the address book
 
 
 
@@ -125,7 +125,7 @@ Format: `drive INDEX [INDEX INDEX...]`
 * You can select between 1 to 6 people to drive with one command
 
 >**Examples**:
->* `search female` followed by `drive 2 3 4` selects the the *2nd*, *3rd* and *4th* person in the results of `search female` command
+>* `search female` followed by `drive 2 3 4` selects the the *2nd*, *3rd* and *4th* passenger in the results of `search female` command
 
 ### Clearing all entries : `clear`
 

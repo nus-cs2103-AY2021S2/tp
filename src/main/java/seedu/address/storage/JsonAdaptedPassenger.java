@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Passenger}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedPassenger {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Passenger's %s field is missing!";
 
@@ -33,12 +33,13 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPassenger} with the given passenger details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDay,
-            @JsonProperty("tripTime") String tripTime, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPassenger(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                                @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDay,
+                                @JsonProperty("tripTime") String tripTime,
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -52,11 +53,11 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Passenger} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Passenger source) {
+    public JsonAdaptedPassenger(Passenger source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         address = source.getAddress().value;
-        tripDay = source.getTripDay().value.toString();
+        tripDay = source.getTripDay().value;
         tripTime = source.getTripTime().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -64,14 +65,14 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Passenger} object.
+     * Converts this Jackson-friendly adapted passenger object into the model's {@code Passenger} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted passenger.
      */
     public Passenger toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> passengerTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            passengerTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -115,7 +116,7 @@ class JsonAdaptedPerson {
         }
         final TripTime modelTripTime = new TripTime(tripTime);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(passengerTags);
         return new Passenger(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
     }
 

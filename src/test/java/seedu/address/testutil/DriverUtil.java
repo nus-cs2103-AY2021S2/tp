@@ -21,10 +21,10 @@ public class DriverUtil {
         return DriveCommand.COMMAND_WORD + " " + getDriverDetails(driver) + getCommuterDetails(indices);
     }
 
-    public static String getDriverDetails(Driver person) {
+    public static String getDriverDetails(Driver driver) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
+        sb.append(PREFIX_NAME + driver.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + driver.getPhone().value + " ");
         return sb.toString();
     }
 

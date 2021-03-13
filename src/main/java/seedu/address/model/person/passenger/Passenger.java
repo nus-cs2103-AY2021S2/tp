@@ -94,13 +94,13 @@ public class Passenger extends Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Passenger otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePassenger(Passenger otherPassenger) {
+        if (otherPassenger == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPassenger != null
+                && otherPassenger.getName().equals(getName());
     }
 
     /**
@@ -117,14 +117,14 @@ public class Passenger extends Person {
             return false;
         }
 
-        Passenger otherPerson = (Passenger) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTripDay().equals(getTripDay())
-                && otherPerson.getTripTime().equals(getTripTime())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getDriver().equals(getDriver());
+        Passenger otherPassenger = (Passenger) other;
+        return otherPassenger.getName().equals(getName())
+                && otherPassenger.getPhone().equals(getPhone())
+                && otherPassenger.getAddress().equals(getAddress())
+                && otherPassenger.getTripDay().equals(getTripDay())
+                && otherPassenger.getTripTime().equals(getTripTime())
+                && otherPassenger.getTags().equals(getTags())
+                && otherPassenger.getDriver().equals(getDriver());
     }
 
     @Override

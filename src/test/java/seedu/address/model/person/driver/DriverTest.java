@@ -59,7 +59,7 @@ public class DriverTest {
         // different type -> returns false
         assertFalse(TypicalDrivers.ALICE.equals(5));
 
-        // different person -> returns false
+        // different passenger -> returns false
         assertFalse(TypicalDrivers.ALICE.equals(TypicalDrivers.BOB));
 
         // different name -> returns false

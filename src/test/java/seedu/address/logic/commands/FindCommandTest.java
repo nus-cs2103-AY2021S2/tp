@@ -3,15 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPassengers.ALICE;
+import static seedu.address.testutil.TypicalPassengers.CARL;
+import static seedu.address.testutil.TypicalPassengers.DANIEL;
+import static seedu.address.testutil.TypicalPassengers.ELLE;
+import static seedu.address.testutil.TypicalPassengers.FIONA;
+import static seedu.address.testutil.TypicalPassengers.GEORGE;
+import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -55,48 +55,48 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different passenger -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noPassengerFound() {
+        String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredPassengerList());
     }
 
     @Test
-    public void execute_multipleNameKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleNameKeywords_multiplePassengersFound() {
+        String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPassengerList());
     }
 
     @Test
-    public void execute_onePhoneKeyword_onePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+    public void execute_onePhoneKeyword_onePassengersFound() {
+        String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 1);
         PhoneContainsKeywordsPredicate predicate = preparePhonePredicate("94351253");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE), model.getFilteredPassengerList());
     }
 
     @Test
-    public void execute_oneAddressKeyword_onePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_oneAddressKeyword_onePassengersFound() {
+        String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 3);
         AddressContainsKeywordsPredicate predicate = prepareAddressPredicate("street");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, DANIEL, GEORGE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, DANIEL, GEORGE), model.getFilteredPassengerList());
     }
 
     /**

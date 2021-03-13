@@ -48,9 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         TripDay tripDay = ParserUtil.parseTripDay(argMultimap.getValue(PREFIX_TRIPDAY).get());
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
 
-        Passenger person = new Passenger(name, phone, address, tripDay, tripTime, tagList);
+        Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(passenger);
     }
 
     /**

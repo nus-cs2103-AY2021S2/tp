@@ -10,42 +10,42 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditPassengerDescriptor;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Passenger.
  */
-public class PersonUtil {
+public class PassengerUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code passenger}.
      */
-    public static String getAddCommand(Passenger person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Passenger passenger) {
+        return AddCommand.COMMAND_WORD + " " + getPassengerDetails(passenger);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code passenger}'s details.
      */
-    public static String getPersonDetails(Passenger person) {
+    public static String getPassengerDetails(Passenger passenger) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_TRIPDAY + person.getTripDay().value + " ");
-        sb.append(PREFIX_TRIPTIME + person.getTripTime().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + passenger.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + passenger.getPhone().value + " ");
+        sb.append(PREFIX_ADDRESS + passenger.getAddress().value + " ");
+        sb.append(PREFIX_TRIPDAY + passenger.getTripDay().value + " ");
+        sb.append(PREFIX_TRIPTIME + passenger.getTripTime().value + " ");
+        passenger.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditPassengerDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPassengerDescriptorDetails(EditPassengerDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

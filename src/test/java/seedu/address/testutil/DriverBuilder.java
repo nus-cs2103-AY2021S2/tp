@@ -24,11 +24,11 @@ public class DriverBuilder {
     }
 
     /**
-     * Initializes the DriverBuilder with the data of {@code personToCopy}.
+     * Initializes the DriverBuilder with the data of {@code passengerToCopy}.
      */
-    public DriverBuilder(Driver personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+    public DriverBuilder(Driver passengerToCopy) {
+        name = passengerToCopy.getName();
+        phone = passengerToCopy.getPhone();
     }
 
     /**

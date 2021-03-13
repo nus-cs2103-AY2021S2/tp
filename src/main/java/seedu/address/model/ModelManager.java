@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Passenger> filteredPersons;
+    private final FilteredList<Passenger> filteredPassengers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPassengers = new FilteredList<>(this.addressBook.getPassengerList());
     }
 
     public ModelManager() {
@@ -89,27 +89,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Passenger person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasPassenger(Passenger passenger) {
+        requireNonNull(passenger);
+        return addressBook.hasPassenger(passenger);
     }
 
     @Override
-    public void deletePerson(Passenger target) {
-        addressBook.removePerson(target);
+    public void deletePassenger(Passenger passenger) {
+        addressBook.removePassenger(passenger);
     }
 
     @Override
-    public void addPerson(Passenger person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addPassenger(Passenger passenger) {
+        addressBook.addPassenger(passenger);
+        updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
     }
 
     @Override
-    public void setPerson(Passenger target, Passenger editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPassenger(Passenger target, Passenger editedPassenger) {
+        requireAllNonNull(target, editedPassenger);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setPassenger(target, editedPassenger);
     }
 
     //=========== Filtered Passenger List Accessors =============================================================
@@ -119,14 +119,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Passenger> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Passenger> getFilteredPassengerList() {
+        return filteredPassengers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Passenger> predicate) {
+    public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPassengers.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPassengers.equals(other.filteredPassengers);
     }
 
 }

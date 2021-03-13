@@ -16,9 +16,9 @@ public class AddressContainsKeywordsPredicate implements Predicate<Passenger> {
     }
 
     @Override
-    public boolean test(Passenger person) {
+    public boolean test(Passenger passenger) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(passenger.getAddress().toString(), keyword));
     }
 
     @Override
