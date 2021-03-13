@@ -46,24 +46,22 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
 
         if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
-            editAppointmentDescriptor.setPatient(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get()));
+            editAppointmentDescriptor.setPatientIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
+            editAppointmentDescriptor.setDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditPatientCommand.MESSAGE_NOT_EDITED);
+        if (argMultimap.getValue(PREFIX_TIMESLOT_END).isPresent()) {
+            editAppointmentDescriptor.setTimeslot(ParserUtil.parseTimeslotByEnd(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
+                    argMultimap.getValue(PREFIX_TIMESLOT_END).get()));
+        } else {
+            editAppointmentDescriptor.setTimeslot(ParserUtil.parseTimeslotByDuration(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
+                    argMultimap.getValue(PREFIX_TIMESLOT_DURATION).get()));
         }
 
-        return new EditAppointmentCommand(index, editPersonDescriptor);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
+
+        return new EditAppointmentCommand(editAppointmentDescriptor);
     }
 
     /**
