@@ -3,7 +3,10 @@ package seedu.us.among.model.endpoint;
 import static seedu.us.among.commons.util.AppUtil.checkArgument;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.util.Objects;
+
+import seedu.us.among.commons.util.JsonUtil;
 
 /**
  * Represents an Endpoint's response after an API call.
@@ -68,26 +71,48 @@ public class Response {
     }
 
     public String getProtocolVersion() {
+        if (this.protocolVersion.equals("")) {
+            return "No Data";
+        }
         return this.protocolVersion;
     }
 
     public String getStatusCode() {
+        if (this.statusCode.equals("")) {
+            return "No Data";
+        }
         return this.statusCode;
     }
 
     public String getReasonPhrase() {
+        if (this.reasonPhrase.equals("")) {
+            return "No Data";
+        }
         return this.reasonPhrase;
     }
 
     public String getStatusLine() {
+        if (this.statusLine.equals("")) {
+            return "No Data";
+        }
         return this.statusLine;
     }
 
     public String getResponseEntity() {
-        return this.responseEntity;
+        if (this.responseEntity.equals("")) {
+            return "No Data";
+        }
+        try {
+            return JsonUtil.toPrettyPrintJsonString(this.responseEntity);
+        } catch (IOException ex) {
+            return this.responseEntity; // not of JSON format
+        }
     }
 
     public String getResponseTime() {
+        if (this.responseTime.equals("")) {
+            return "No Data";
+        }
         return this.responseTime;
     }
 
@@ -95,13 +120,13 @@ public class Response {
     public String toString() {
         return "Time Taken: "
                 + getResponseTime()
-                + " seconds; "
+                + " | Protocol Version: "
                 + getProtocolVersion()
-                + "; Status Code: "
+                + " | Status Code: "
                 + getStatusCode()
-                + "; Reason Phrase: "
+                + " | Reason Phrase: "
                 + getReasonPhrase()
-                + ": Response Body: "
+                + "\nResponse Body:\n"
                 + getResponseEntity();
     }
 

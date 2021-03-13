@@ -160,29 +160,30 @@ public class Endpoint {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getMethod())
-                .append("; Address: ")
+        builder.append("Method:\n")
+                .append(getMethod())
+                .append("\nAddress:\n")
                 .append(getAddress());
 
         if (!data.isEmpty()) {
-            builder.append("; Data: ")
+            builder.append("\nData:\n")
                     .append(getData());
         }
 
         Set<Header> headers = getHeaders();
         if (!headers.isEmpty()) {
-            builder.append("; Headers: ");
+            builder.append("\nHeaders:\n");
             headers.forEach(builder::append);
         }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\nTags:\n");
             tags.forEach(builder::append);
         }
 
         if (response != null) {
-            builder.append("; Last Response: ")
+            builder.append("\nLast Response:\n")
                     .append(getResponse());
         }
         return builder.toString();

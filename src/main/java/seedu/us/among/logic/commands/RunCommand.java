@@ -7,10 +7,13 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Set;
+import javax.net.ssl.SSLException;
 
+import org.apache.http.NoHttpResponseException;
 import org.apache.http.client.ClientProtocolException;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -26,6 +29,7 @@ import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.endpoint.Response;
 import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
+
 
 public class RunCommand extends Command {
 
@@ -55,10 +59,13 @@ public class RunCommand extends Command {
             + MESSAGE_API_EXAMPLE_1
             + MESSAGE_API_EXAMPLE_2;
 
+    public static final String MESSAGE_UNKNOWN_HOST = "The host name could not be resolved. Check your"
+            + " internet connection and endpoint URL.";
     public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
             + " that your data is added in the correct JSON format.";
     public static final String MESSAGE_CONNECTION_ERROR = "The request was not performed successfully."
             + " Check your internet connection and endpoint URL.";
+    public static final String MESSAGE_CALL_CANCELLED = "The request has been aborted.";
     public static final String MESSAGE_GENERAL_ERROR = "The request was not performed successfully."
             + " Check that your endpoint fields are correct.";
     private final Endpoint toRun;
@@ -79,10 +86,14 @@ public class RunCommand extends Command {
         Response response;
         try {
             response = epc.callEndpoint();
-        } catch (UnknownHostException | ClientProtocolException | SocketTimeoutException e) {
+        } catch (UnknownHostException e) {
+            throw new RequestException(MESSAGE_UNKNOWN_HOST);
+        } catch (ClientProtocolException | SocketTimeoutException | SocketException | NoHttpResponseException e) {
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
             throw new RequestException(MESSAGE_INVALID_JSON);
+        } catch (IllegalStateException | SSLException e) {
+            throw new RequestException(MESSAGE_CALL_CANCELLED);
         } catch (IOException e) {
             throw new RequestException(MESSAGE_GENERAL_ERROR);
         }
