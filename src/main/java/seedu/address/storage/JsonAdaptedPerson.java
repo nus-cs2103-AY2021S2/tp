@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.description.Description;
-import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Size;
@@ -92,7 +92,8 @@ class JsonAdaptedPerson {
         final Colour modelColour = new Colour(colour);
 
         if (dresscode == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DressCode.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DressCode.class.getSimpleName()));
         }
         if (!DressCode.isValidDressCode(dresscode)) {
             throw new IllegalValueException(DressCode.MESSAGE_CONSTRAINTS);
