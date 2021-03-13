@@ -51,18 +51,19 @@ Example:
 
 Adds a food review to the Food Diary.
 
-Format: `add n/<RESTAURANT NAME> a/ADDRESS d/DESCRIPTION c/CATEGORIES`   
+Format: `add n/<RESTAURANT NAME> ra/RATING a/ADDRESS d/DESCRIPTION c/CATEGORIES`   
     
 Parameters:
     
    1. `Name (of restaurant)`
-   2. `Address`
-   3. `Description/review`
-   4. `Categories (tag)`
+   2. `Rating`  
+   3. `Address`
+   4. `Description/review`
+   5. `Categories (tag)`
 
 Example:
     
-    add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim 
+    add  n/Al Amaan Restaurant ra/5 a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim 
     
     
 ### Delete a food review: `delete`
@@ -83,7 +84,7 @@ Example:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/<RESTAURANT NAME> a/ADDRESS d/DESCRIPTION c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim`
+**Add** | `add n/<RESTAURANT NAME> ra/5 a/ADDRESS d/DESCRIPTION c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant a/12 Clementi Rd, Singapore 129742 d/best for Butter Chicken c/Indian Muslim`
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
 
