@@ -1,12 +1,12 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.util.DateUtil;
-
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDate;
+
+import seedu.address.commons.util.DateUtil;
 
 public abstract class CompletableDeadline {
 
@@ -24,12 +24,12 @@ public abstract class CompletableDeadline {
     protected LocalDate by;
 
     /**
-     * Constructor for CompletableTodo.
-     * @param description Description of the CompletableTodo.
-     * @param by Deadline of the CompletableTodo or Null if there is no deadline.
+     * Constructor for CompletableDeadline.
+     * @param description Description of the CompletableDeadline.
+     * @param by Deadline of the CompletableDeadline.
      */
     public CompletableDeadline(String description, LocalDate by) {
-        requireAllNonNull(description);
+        requireAllNonNull(description, by);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
         this.by = by;
@@ -37,13 +37,13 @@ public abstract class CompletableDeadline {
     }
 
     /**
-     * Constructor for CompletableTodo.
-     * @param description Description of the CompletableTodo.
-     * @param by Deadline of the CompletableTodo or Null if there is no deadline.
-     * @param isDone Marks whether the CompletableTodo is Done.
+     * Constructor for CompletableDeadline.
+     * @param description Description of the CompletableDeadline.
+     * @param by Deadline of the CompletableDeadline.
+     * @param isDone Marks whether the CompletableDeadline is Done.
      */
     public CompletableDeadline(String description, LocalDate by, Boolean isDone) {
-        requireAllNonNull(description, isDone);
+        requireAllNonNull(description, by, isDone);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS_DESCRIPTION);
         this.description = description;
         this.by = by;
@@ -51,8 +51,8 @@ public abstract class CompletableDeadline {
     }
 
     /**
-     * Returns a status icon dependent on the status of the CompletableTodo.
-     * @return A string representing the CompletableTodo's status.
+     * Returns a status icon dependent on the status of the CompletableDeadline.
+     * @return A string representing the CompletableDeadline's status.
      */
     public String getStatusIcon() {
         assert isDone != null;
@@ -60,8 +60,8 @@ public abstract class CompletableDeadline {
     }
 
     /**
-     * Returns the CompletableTodo description.
-     * @return A String representing the CompletableTodo description.
+     * Returns the CompletableDeadline description.
+     * @return A String representing the CompletableDeadline description.
      */
     public String getDescription() {
         assert this.description != null;
@@ -69,8 +69,8 @@ public abstract class CompletableDeadline {
     }
 
     /**
-     * Returns the CompletableTodo description.
-     * @return A String representing the CompletableTodo description.
+     * Returns the CompletableDeadline description.
+     * @return A String representing the CompletableDeadline description.
      */
     public void setDescription(String description) {
         requireNonNull(description);
@@ -79,8 +79,8 @@ public abstract class CompletableDeadline {
     }
 
     /**
-     * Returns the status of the CompletableTodo.
-     * @return A Boolean representing the CompletableTodo's status.
+     * Returns the status of the CompletableDeadline.
+     * @return A Boolean representing the CompletableDeadline's status.
      */
     public Boolean getIsDone() {
         assert this.isDone != null;
@@ -95,11 +95,12 @@ public abstract class CompletableDeadline {
     }
 
     /**
-     * Returns a String representation of the by date, or null if the completable does not have a by date.
-     * @return String representation of by date or null if the completable does not have a by date.
+     * Returns a String representation of the by date.
+     * @return String representation of by date.
      */
     public String getStringByDate() {
-        return by == null ? null : DateUtil.decodeDateForStorage(by);
+        assert this.by != null;
+        return DateUtil.decodeDateForStorage(by);
     };
 
     /**
@@ -110,7 +111,7 @@ public abstract class CompletableDeadline {
     }
 
     /**
-     * Checks if an instance of a CompletableTodo is equal to another Object.
+     * Checks if an instance of a CompletableDeadline is equal to another Object.
      * @param other Object to be compared with.
      * @return True if both objects are equal. Else return false.
      */
@@ -121,8 +122,8 @@ public abstract class CompletableDeadline {
     public abstract int hashCode();
 
     /**
-     * Returns a String representation of the CompletableTodo.
-     * @return A String representation of the CompletableTodo.
+     * Returns a String representation of the CompletableDeadline.
+     * @return A String representation of the CompletableDeadline.
      */
     @Override
     public abstract String toString();
