@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an planner
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyPlanner {
 
     /**
      * Returns an unmodifiable view of the tasks list.

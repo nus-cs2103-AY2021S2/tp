@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 
 /**
- * Finds and lists all tasks in address book whose title contains any of the argument keywords.
+ * Finds and lists all tasks in planner whose title contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -18,7 +18,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose titles contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " quiz meeting task742";
 
     public static final String TAG_USAGE = "Please enter input field to find tasks by tag(s) "
             + "in correct format as follows:" + COMMAND_WORD + " t/ [TAG_NAME]";
