@@ -141,13 +141,6 @@ public interface Model {
     String listUser();
 
     /**
-     * Gets Food intake list.
-     *
-     * @return food intake list
-     */
-    FoodIntakeList getFoodIntakeList();
-
-    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
