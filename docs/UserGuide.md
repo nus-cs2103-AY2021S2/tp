@@ -12,7 +12,7 @@ It is optimised for users who prefer typing.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="start"></a> Quick start
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -201,7 +201,7 @@ start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="faq"></a> FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file 
@@ -209,7 +209,7 @@ that contains the data of your previous PlanIt home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="summary"></a> Command summary
+## Command summary
 
 Action | Format, Examples
 --------|------------------
