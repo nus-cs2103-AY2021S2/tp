@@ -21,10 +21,13 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.DietPlanListStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonDietPlanListStorage;
 import seedu.address.storage.JsonUniqueFoodListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -62,7 +65,8 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         UniqueFoodListStorage uniqueFoodListStorage =
                 new JsonUniqueFoodListStorage(userPrefs.getUniqueFoodListFilePath());
-        storage = new StorageManager(addressBookStorage, uniqueFoodListStorage, userPrefsStorage);
+        DietPlanListStorage dietPlanListStorage = new JsonDietPlanListStorage(userPrefs.getDietPlanListFilePath());
+        storage = new StorageManager(addressBookStorage, uniqueFoodListStorage, dietPlanListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -84,28 +88,37 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         Optional<UniqueFoodList> uniqueFoodListOptional;
         UniqueFoodList uniqueFoodList;
+        Optional<DietPlanList> dietPlanListOptional;
+        DietPlanList dietPlanList;
         try {
             addressBookOptional = storage.readAddressBook();
             uniqueFoodListOptional = storage.readFoodList();
+            dietPlanListOptional = storage.readDietPlanList();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             if (!uniqueFoodListOptional.isPresent()) {
                 logger.info("Food data file not found. Will be starting fresh");
             }
+            if (!dietPlanListOptional.isPresent()) {
+                logger.info("Diet plans file not found. Will be starting fresh");
+            }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             uniqueFoodList = uniqueFoodListOptional.orElse(new UniqueFoodList());
+            dietPlanList = dietPlanListOptional.orElse(new DietPlanList());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             uniqueFoodList = new UniqueFoodList();
+            dietPlanList = new DietPlanList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             uniqueFoodList = new UniqueFoodList();
+            dietPlanList = new DietPlanList();
         }
 
-        return new ModelManager(initialData, uniqueFoodList, userPrefs);
+        return new ModelManager(initialData, uniqueFoodList, dietPlanList, userPrefs);
     }
 
     private void initLogging(Config config) {

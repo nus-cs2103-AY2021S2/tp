@@ -11,8 +11,8 @@ import seedu.address.model.food.Food;
  */
 public class JsonAdaptedFood {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Food's %s field is missing!";
-    public static final String INVALID_FIELD_MESSAGE_FORMAT = "Food's %s field is invalid!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "%s's name field is missing!";
+    public static final String INVALID_FIELD_MESSAGE_FORMAT = "%s's name field is invalid!";
 
     private final String name;
     private final double fats;

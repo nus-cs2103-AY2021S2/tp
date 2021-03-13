@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
@@ -16,6 +17,7 @@ import seedu.address.model.user.User;
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
@@ -75,7 +77,6 @@ public interface Model {
      */
     String listFoodItem();
 
-    //=========== UnqiueFoodList Setters ==============================================================
     /**
      * Adds the given food item.
      * {@code food} must not already exist in the food list.
@@ -97,7 +98,11 @@ public interface Model {
     /** Returns the UniqueFoodList */
     UniqueFoodList getUniqueFoodList();
 
-    //=========== FoodIntakeList Setters ==============================================================
+    //=========== DietPlanList Accessors ==============================================================
+
+    DietPlanList getDietPlanList();
+
+    //=========== FoodIntakeList Accessors ==============================================================
 
     /**
      * Adds the food consumed on the day to the food intake list.
@@ -106,7 +111,14 @@ public interface Model {
      */
     void addFoodIntake(LocalDate date, Food food);
 
-    //=========== FoodIntakeList Getters ==============================================================
+    /**
+     * Gets Food intake list.
+     *
+     * @return food intake list
+     */
+    FoodIntakeList getFoodIntakeList();
+
+    //=========== User Accessors ==============================================================
 
     /**
      * Adds the given user item.
@@ -117,13 +129,6 @@ public interface Model {
      * Checks whether user has been initialized
      */
     boolean hasUser();
-
-    /**
-     * Gets Food intake list.
-     *
-     * @return food intake list
-     */
-    FoodIntakeList getFoodIntakeList();
 
     /**
      * Deletes the given person.
@@ -152,4 +157,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
 }
