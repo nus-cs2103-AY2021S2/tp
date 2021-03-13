@@ -36,6 +36,7 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddPropertyCommand
      * and returns an AddPropertyCommand object for execution.
+     *
      * @throws ParseException If the user input does not conform the expected format.
      */
     public AddPropertyCommand parse(String args) throws ParseException {

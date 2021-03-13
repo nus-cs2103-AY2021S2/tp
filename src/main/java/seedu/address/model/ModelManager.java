@@ -22,11 +22,34 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     private final PropertyBook propertyBook;
+    private final FilteredList<Property> filteredProperties;
+
+    private final UserPrefs userPrefs;
     private final AppointmentBook appointmentBook;
+    private final FilteredList<Appointment> filteredAppointments;
+
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyAppointmentBook appointmentBook, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(appointmentBook, userPrefs);
+
+        logger.fine("Initializing with appointment book: " + appointmentBook + " and user prefs " + userPrefs);
+
+        addressBook = new AddressBook();
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        propertyBook = new PropertyBook();
+        filteredProperties = new FilteredList<>(propertyBook.getPropertyList());
+
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.appointmentBook = new AppointmentBook(appointmentBook);
+        filteredAppointments = new FilteredList<>(this.appointmentBook.getAppointmentList());
+    }
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,11 +65,14 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
         propertyBook = new PropertyBook();
+        filteredProperties = new FilteredList<>(propertyBook.getPropertyList());
         appointmentBook = new AppointmentBook();
+        filteredAppointments = new FilteredList<>(appointmentBook.getAppointmentList());
     }
 
+
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AppointmentBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -84,6 +110,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getAppointmentBookFilePath() {
+        return userPrefs.getAppointmentBookFilePath();
+    }
+
+    @Override
+    public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
+        requireNonNull(appointmentBookFilePath);
+        userPrefs.setAppointmentBookFilePath(appointmentBookFilePath);
+    }
+
     //=========== PropertyBook ================================================================================
 
     @Override
@@ -95,9 +132,40 @@ public class ModelManager implements Model {
     @Override
     public void addProperty(Property property) {
         propertyBook.addProperty(property);
+        updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+    }
+
+    @Override
+    public void deleteProperty(Property target) {
+        propertyBook.removeProperty(target);
+    }
+
+    @Override
+    public ReadOnlyPropertyBook getPropertyBook() {
+        return propertyBook;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return filteredProperties;
+    }
+
+    @Override
+    public void updateFilteredPropertyList(Predicate<Property> predicate) {
+        requireNonNull(predicate);
+        filteredProperties.setPredicate(predicate);
     }
 
     //=========== AppointmentBook =============================================================================
+
+    @Override
+    public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
+        this.appointmentBook.resetData(appointmentBook);
+    }
 
     @Override
     public boolean hasAppointment(Appointment appointment) {
@@ -108,7 +176,25 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         appointmentBook.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+        appointmentBook.setAppointment(target, editedAppointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        appointmentBook.removeAppointment(target);
+    }
+
+    @Override
+    public ReadOnlyAppointmentBook getAppointmentBook() {
+        return appointmentBook;
+    }
+
 
     //=========== AddressBook ================================================================================
 
@@ -162,6 +248,22 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    //=========== Filtered Appointment List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedAppointmentBook}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -177,9 +279,15 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return /*(addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)) ||
+                (propertyBook.equals(other.propertyBook)
+                && userPrefs.equals(other.userPrefs)
+                && filteredProperties.equals(other.filteredProperties)) ||*/
+                appointmentBook.equals(other.appointmentBook)
+                        && userPrefs.equals(other.userPrefs)
+                        && filteredAppointments.equals(other.filteredAppointments);
     }
 
 }
