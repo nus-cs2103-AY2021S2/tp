@@ -41,14 +41,14 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_TIME + "1500 ";
 
     public static final String MESSAGE_SUCCESS = "Edited appointment: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROPERTY = "This appointment already exists in the app";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the app";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
-     * Creates an EditPropertyCommand to edit the specified {@code Property}.
+     * Creates an EditAppointmentCommand to edit the specified {@code Appointment}.
      */
     public EditAppointmentCommand(Index index, EditAppointmentDescriptor editAppointmentDescriptor) {
         requireNonNull(index);
@@ -70,7 +70,7 @@ public class EditAppointmentCommand extends Command {
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
@@ -78,8 +78,8 @@ public class EditAppointmentCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Property} with the details of {@code propertyToEdit}
-     * edited with {@code editPropertyDescriptor}.
+     * Creates and returns an {@code Appointment} with the details of {@code appointmentToEdit}
+     * edited with {@code editAppointmentDescriptor}.
      */
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {

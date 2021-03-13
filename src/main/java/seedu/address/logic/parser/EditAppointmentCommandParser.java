@@ -14,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses input arguments and creates a new EditPropertyCommand object.
+ * Parses input arguments and creates a new EditAppointmentCommand object.
  */
 public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
 
@@ -37,8 +37,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
-        EditAppointmentDescriptor editAppointmentDescriptor =
-                new EditAppointmentDescriptor();
+        EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editAppointmentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
