@@ -40,6 +40,17 @@ public class ParticipantList {
         return participants.stream();
     }
 
+    /**
+     * Adds a person to this {@code ParticipantList} and return that new {@code ParticipantList}.
+     *
+     * @param person {@code Person} to add.
+     */
+    public ParticipantList addPerson(Person person) {
+        List<Person> participants = this.participants;
+        participants.add(person);
+        return new ParticipantList(participants);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
