@@ -2,9 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
 
 /**
  * Finds and lists all tasks in planner whose title contains any of the argument keywords.
@@ -19,9 +20,12 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " quiz meeting task742";
 
-    private final TitleContainsKeywordsPredicate predicate;
+    public static final String TAG_USAGE = "Please enter input field to find tasks by tag(s) "
+            + "in correct format as follows:" + COMMAND_WORD + " t/ [TAG_NAME]";
 
-    public FindCommand(TitleContainsKeywordsPredicate predicate) {
+    private final Predicate predicate;
+
+    public FindCommand(Predicate predicate) {
         this.predicate = predicate;
     }
 
