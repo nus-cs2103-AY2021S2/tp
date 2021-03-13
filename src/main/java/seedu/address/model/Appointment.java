@@ -6,126 +6,86 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
-// To implement
-// Class: Appointment, DuplicateAppointmentException, AppointmentNotFoundException
-// Method: isSameAppoinment
-public class AppointmentList implements Iterable<Appointment> {
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.subject.SubjectName;
 
-    private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Appointment> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+/**
+ * Appointment class to store appointment objects to represent tutee and tutor relations
+ */
+public class Appointment {
+
+    private final Email email;
+    private final SubjectName subject;
+    private final LocalDateTime dateTime;
+    private final Address location;
+
+    private final String formatter = "dd MM yyyy";
+
 
     /**
-     * Returns true if the list contains an equivalent appointment as the given argument.
+     * Primary constructor for appointment class.
+     * @param email Email of tutor.
+     * @param subject Subject tutor is teaching to tutee.
+     * @param dateTime LocalDateTime
+     * @param location Location of teaching venue
      */
-    public boolean contains(Appointment toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameAppointment);
+    Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
+                Address location) {
+        this.email = email;
+        this.subject = subject;
+        this.dateTime = dateTime;
+        this.location = location;
     }
 
     /**
-     * Adds an appointment to the list.
-     * The appointment must not already exist in the list.
+     * Helper method to parse date time.
+     * @param date Date in string
+     * @param time 24 hr time in integer
+     * @return LocalDateTime for given date and time
      */
-    public void add(Appointment toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateAppointmentException();
-        }
-        internalList.add(toAdd);
-    }
+    private LocalDateTime parseDateTime(String date, int time) {
+        String[] tempArray = date.split("\\s+");
+        List<Integer> dateList =
+                Arrays.stream(tempArray).map(Integer::parseInt).collect(Collectors.toList());
+        int hour = time / 100;
+        int min = time % 100;
 
-    /**
-     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
-     * {@code target} must exist in the list.
-     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment in the list.
-     */
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
-        requireAllNonNull(target, editedAppointment);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new AppointmentNotFoundException();
-        }
-
-        if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
-            throw new DuplicateAppointmentException();
-        }
-
-        internalList.set(index, editedAppointment);
-    }
-
-    /**
-     * Removes the equivalent appointment from the list.
-     * The appointment must exist in the list.
-     */
-    public void remove(Appointment toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new AppointmentNotFoundException();
-        }
-    }
-
-    public void setAppointments(seedu.address.model.Appointment replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code appointments}.
-     * {@code appointments} must not contain duplicate appointments.
-     */
-    public void setAppointments(List<Appointment> appointments) {
-        requireAllNonNull(appointments);
-        if (!appointmentsAreUnique(appointments)) {
-            throw new DuplicateAppointmentException();
-        }
-
-        internalList.setAll(appointments);
-    }
-
-    /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
-    public ObservableList<Appointment> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        LocalDateTime dateAndTime = LocalDateTime.of(dateList.get(1), dateList.get(2),
+                dateList.get(3), hour, min);
+        return dateAndTime;
     }
 
     @Override
-    public Iterator<Appointment> iterator() {
-        return internalList.iterator();
+    public String toString() {
+        return String.format("Appointment with Tutor (%s) at %s", this.email.value,
+                LocalDateTime.parse(this.dateTime.toString(),
+                        DateTimeFormatter.ofPattern(formatter)));
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.AppointmentList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.AppointmentList) other).internalList));
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Appointment that = (Appointment) o;
+        return Objects.equals(email, that.email) && Objects.equals(subject, that.subject)
+                && Objects.equals(dateTime, that.dateTime) && Objects.equals(location, that.location);
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return Objects.hash(email, subject, dateTime, location);
     }
 
-    /**
-     * Returns true if {@code appointments} contains only unique appointments.
-     */
-    private boolean appointmentsAreUnique(List<Appointment> appointments) {
-        for (int i = 0; i < appointments.size() - 1; i++) {
-            for (int j = i + 1; j < appointments.size(); j++) {
-                if (appointments.get(i).isSameAppointment(appointments.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }
-

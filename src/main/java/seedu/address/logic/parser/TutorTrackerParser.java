@@ -15,12 +15,21 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.appointmentcommands.AddAppointmentCommand;
+import seedu.address.logic.commands.appointmentcommands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
+import seedu.address.logic.commands.appointmentcommands.FindAppointmentCommand;
+import seedu.address.logic.commands.appointmentcommands.ListAppointmentCommand;
+import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
+import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
+import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
+import seedu.address.logic.parser.appointmentparser.FindAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TutorTrackerParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -67,6 +76,22 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        /* Appointment Commands */
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
+
+        case EditAppointmentCommand.COMMAND_WORD:
+            return new EditAppointmentCommandParser().parse(arguments);
+
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
+
+        case FindAppointmentCommand.COMMAND_WORD:
+            return new FindAppointmentCommandParser().parse(arguments);
+
+        case ListAppointmentCommand.COMMAND_WORD:
+            return new ListAppointmentCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
