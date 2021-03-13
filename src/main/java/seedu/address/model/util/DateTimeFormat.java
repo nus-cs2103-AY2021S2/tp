@@ -19,9 +19,9 @@ public class DateTimeFormat {
     public static final DateTimeFormatter INPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("HHmm");
 
     /**
-     * Output date format, e.g. Jan 23 2021.
+     * Output date format, e.g. Jan 23, 2021.
      */
-    public static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM d u");
+    public static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM d, u");
 
     /**
      * Output time format, e.g. 7:33PM.

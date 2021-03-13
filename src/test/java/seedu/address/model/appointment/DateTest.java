@@ -16,9 +16,9 @@ public class DateTest {
 
     @Test
     public void testStringConversion() {
-        assertEquals("Jan 24 2021",
+        assertEquals("Jan 24, 2021",
                 new Date(LocalDate.parse("2021-01-24")).toString());
-        assertEquals("Feb 29 2000",
+        assertEquals("Feb 29, 2000",
                 new Date(LocalDate.parse("2000-02-29")).toString());
     }
 }
