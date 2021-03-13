@@ -80,11 +80,11 @@ public class SendCommand extends Command {
             response = epc.callEndpoint();
         } catch (UnknownHostException e) {
             throw new RequestException(MESSAGE_UNKNOWN_HOST);
-        } catch (ClientProtocolException | SocketTimeoutException | SocketException | NoHttpResponseException e) {
+        } catch (ClientProtocolException | SocketTimeoutException | SocketException e) {
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
             throw new RequestException(MESSAGE_INVALID_JSON);
-        } catch (IllegalStateException | SSLException e) {
+        } catch (IllegalStateException | SSLException | NoHttpResponseException e) {
             throw new RequestException(MESSAGE_CALL_CANCELLED);
         } catch (IOException e) {
             throw new RequestException(MESSAGE_GENERAL_ERROR);

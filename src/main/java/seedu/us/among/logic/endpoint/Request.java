@@ -31,7 +31,7 @@ import seedu.us.among.model.endpoint.header.Header;
  */
 public abstract class Request {
     public static final int CONVERT_NANO_SECONDS = 1_000_000_000;
-    private static final CloseableHttpClient httpclient = createHttpClient();
+    private static CloseableHttpClient httpclient = createHttpClient();
     private static final int TIMEOUT = 60 * 1000;
 
     private final MethodType method;
@@ -122,6 +122,7 @@ public abstract class Request {
         // double try is needed because we want to time the execution as accurately as possible
         // also that the following will auto close httpClient and response
         try (CloseableHttpClient httpClient = createHttpClient()) {
+            Request.httpclient = httpClient;
             long start = System.nanoTime();
             try (CloseableHttpResponse response = httpClient.execute(request)) {
                 long end = System.nanoTime();
