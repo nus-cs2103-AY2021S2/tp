@@ -1,21 +1,24 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.*;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
+
+import static seedu.address.commons.util.DateTimeUtil.DATETIME_FORMAT;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -56,10 +59,28 @@ public class SampleDataUtil {
         };
     }
 
+    public static Appointment[] getSampleAppointment() {
+        return new Appointment[] {
+            new Appointment(new Email("alexyeoh@example.com"), new SubjectName("Mathematics"),
+                    LocalDateTime.parse("2020-02-24 14:00", DATETIME_FORMAT), new Address("Geylang")),
+            new Appointment(new Email("bernice@example.com"), new SubjectName("Science"),
+                    LocalDateTime.parse("2020-02-27 15:00", DATETIME_FORMAT), new Address("Hougang"))
+        };
+    }
+
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        return sampleAb;
+    }
+
+    public static ReadOnlyAppointmentBook getSampleAppointmentBook() {
+        AppointmentBook sampleAb = new AppointmentBook();
+        for (Appointment samplePerson : getSampleAppointment()) {
+            sampleAb.addAppointment(samplePerson);
         }
         return sampleAb;
     }
