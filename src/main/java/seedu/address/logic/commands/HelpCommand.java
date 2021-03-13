@@ -47,6 +47,13 @@ public class HelpCommand extends Command {
 
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof HelpCommand // instanceof handles nulls
+                && specifiedCommand.equals(((HelpCommand) other).specifiedCommand)); // state check
+    }
+
     private CommandResult executeSpecific(String specifiedCommand) {
         // logger.info("specifiedCommand: " + specifiedCommand);
         // if (specifiedCommand != "find") {
@@ -71,11 +78,11 @@ public class HelpCommand extends Command {
             currLine = reader.readLine();
             while (currLine != null) {
                 if (currLine.startsWith("###")) { // is a subheading aka start of command explanation
-                    logger.info(currLine);
+                    // logger.info(currLine);
                     String[] splitSubheading = currLine.split("`");
-                    logger.info(Arrays.toString(splitSubheading));
-                    logger.info("splitSubheading[0]: " + splitSubheading[0]);
-                    logger.info("splitSubheading[1]: " + splitSubheading[1]);
+                    // logger.info(Arrays.toString(splitSubheading));
+                    // logger.info("splitSubheading[0]: " + splitSubheading[0]);
+                    // logger.info("splitSubheading[1]: " + splitSubheading[1]);
                     if (!splitSubheading[1].equals(specifiedCommand)) { // not the command we want: keep looping
                         currLine = reader.readLine();
                         continue;
@@ -115,7 +122,7 @@ public class HelpCommand extends Command {
     }
 
     private String formatPlainText(String markdown, String type) {
-        logger.info("command title/info:\n" + markdown);
+        // logger.info("command title/info:\n" + markdown);
         if (type == "title") {
             return markdown.substring(4);
         } else if (type == "info") {
