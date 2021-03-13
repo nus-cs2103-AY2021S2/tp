@@ -69,7 +69,7 @@ public class DeleteOwnerCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_OWNER;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOwnerList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEntityList().size());
 
         DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(outOfBoundIndex);
 

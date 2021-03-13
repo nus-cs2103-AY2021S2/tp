@@ -19,9 +19,9 @@ import dog.pawbook.model.managedentity.owner.exceptions.DuplicateOwnerException;
 import dog.pawbook.model.managedentity.owner.exceptions.OwnerNotFoundException;
 import dog.pawbook.testutil.OwnerBuilder;
 
-public class UniqueOwnerListTest {
+public class UniqueEntityListTest {
 
-    private final UniqueOwnerList uniqueOwnerList = new UniqueOwnerList();
+    private final UniqueEntityList uniqueOwnerList = new UniqueEntityList();
 
     @Test
     public void contains_nullOwner_throwsNullPointerException() {
@@ -77,7 +77,7 @@ public class UniqueOwnerListTest {
     public void setOwner_editedOwnerIsSameOwner_success() {
         uniqueOwnerList.add(ALICE);
         uniqueOwnerList.setOwner(ALICE, ALICE);
-        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
         expectedUniqueOwnerList.add(ALICE);
         assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
@@ -88,7 +88,7 @@ public class UniqueOwnerListTest {
         Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueOwnerList.setOwner(ALICE, editedAlice);
-        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
         expectedUniqueOwnerList.add(editedAlice);
         assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
@@ -97,7 +97,7 @@ public class UniqueOwnerListTest {
     public void setOwner_editedOwnerHasDifferentIdentity_success() {
         uniqueOwnerList.add(ALICE);
         uniqueOwnerList.setOwner(ALICE, BOB);
-        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
         expectedUniqueOwnerList.add(BOB);
         assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
@@ -123,19 +123,19 @@ public class UniqueOwnerListTest {
     public void remove_existingOwner_removesOwner() {
         uniqueOwnerList.add(ALICE);
         uniqueOwnerList.remove(ALICE);
-        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
         assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }
 
     @Test
     public void setOwners_nullUniqueOwnerList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueOwnerList.setOwners((UniqueOwnerList) null));
+        assertThrows(NullPointerException.class, () -> uniqueOwnerList.setOwners((UniqueEntityList) null));
     }
 
     @Test
     public void setOwners_uniqueOwnerList_replacesOwnListWithProvidedUniqueOwnerList() {
         uniqueOwnerList.add(ALICE);
-        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
         expectedUniqueOwnerList.add(BOB);
         uniqueOwnerList.setOwners(expectedUniqueOwnerList);
         assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
@@ -151,7 +151,7 @@ public class UniqueOwnerListTest {
         uniqueOwnerList.add(ALICE);
         List<Owner> ownerList = Collections.singletonList(BOB);
         uniqueOwnerList.setOwners(ownerList);
-        UniqueOwnerList expectedUniqueOwnerList = new UniqueOwnerList();
+        UniqueEntityList expectedUniqueOwnerList = new UniqueEntityList();
         expectedUniqueOwnerList.add(BOB);
         assertEquals(expectedUniqueOwnerList, uniqueOwnerList);
     }

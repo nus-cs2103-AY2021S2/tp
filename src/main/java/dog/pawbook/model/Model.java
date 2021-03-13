@@ -50,7 +50,7 @@ public interface Model {
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyAddressBook<Owner> getAddressBook();
 
     /**
      * Returns true if a owner with the same identity as {@code owner} exists in the address book.
@@ -60,6 +60,7 @@ public interface Model {
     /**
      * Deletes the given owner.
      * The owner must exist in the address book.
+     * @param target
      */
     void deleteOwner(Owner target);
 

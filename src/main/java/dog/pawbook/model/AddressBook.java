@@ -4,17 +4,17 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import dog.pawbook.model.managedentity.owner.Owner;
-import dog.pawbook.model.managedentity.owner.UniqueOwnerList;
+import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.owner.UniqueEntityList;
 import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameOwner comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
 
-    private final UniqueOwnerList owners;
+    private final UniqueEntityList<T> owners;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        owners = new UniqueOwnerList();
+        owners = new UniqueEntityList();
     }
 
     public AddressBook() {}
@@ -43,7 +43,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the owner list with {@code owners}.
      * {@code owners} must not contain duplicate owners.
      */
-    public void setOwners(List<Owner> owners) {
+    public void setEntities(List<T> owners) {
         this.owners.setOwners(owners);
     }
 
@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setOwners(newData.getOwnerList());
+        setEntities(newData.getEntityList());
     }
 
     //// owner-level operations
@@ -61,7 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a owner with the same identity as {@code owner} exists in the address book.
      */
-    public boolean hasOwner(Owner owner) {
+    public boolean hasEntity(T owner) {
         requireNonNull(owner);
         return owners.contains(owner);
     }
@@ -70,7 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a owner to the address book.
      * The owner must not already exist in the address book.
      */
-    public void addOwner(Owner p) {
+    public void addEntity(T p) {
         owners.add(p);
     }
 
@@ -79,7 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The owner identity of {@code editedOwner} must not be the same as another existing owner in the address book.
      */
-    public void setOwner(Owner target, Owner editedOwner) {
+    public void setEntity(T target, T editedOwner) {
         requireNonNull(editedOwner);
 
         owners.setOwner(target, editedOwner);
@@ -89,7 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeOwner(Owner key) {
+    public void removeEntity(T key) {
         owners.remove(key);
     }
 
@@ -102,7 +102,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Owner> getOwnerList() {
+    public ObservableList<T> getEntityList() {
         return owners.asUnmodifiableObservableList();
     }
 

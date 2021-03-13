@@ -19,22 +19,22 @@ import javafx.collections.transformation.FilteredList;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final AddressBook<Owner> addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Owner> filteredOwners;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook<Owner> addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new AddressBook<Owner>(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredOwners = new FilteredList<>(this.addressBook.getOwnerList());
+        filteredOwners = new FilteredList<Owner>(this.addressBook.getEntityList());
     }
 
     public ModelManager() {
@@ -84,24 +84,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyAddressBook<Owner> getAddressBook() {
         return addressBook;
     }
 
     @Override
     public boolean hasOwner(Owner owner) {
         requireNonNull(owner);
-        return addressBook.hasOwner(owner);
+        return addressBook.hasEntity(owner);
     }
 
     @Override
     public void deleteOwner(Owner target) {
-        addressBook.removeOwner(target);
+        addressBook.removeEntity(target);
     }
 
     @Override
     public void addOwner(Owner owner) {
-        addressBook.addOwner(owner);
+        addressBook.addEntity(owner);
         updateFilteredOwnerList(PREDICATE_SHOW_ALL_OWNERS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setOwner(Owner target, Owner editedOwner) {
         requireAllNonNull(target, editedOwner);
 
-        addressBook.setOwner(target, editedOwner);
+        addressBook.setEntity(target, editedOwner);
     }
 
     //=========== Filtered Owner List Accessors =============================================================

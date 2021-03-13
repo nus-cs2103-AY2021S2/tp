@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.exceptions.DuplicateOwnerException;
 import dog.pawbook.model.managedentity.owner.exceptions.OwnerNotFoundException;
 import javafx.collections.FXCollections;
@@ -22,25 +23,26 @@ import javafx.collections.ObservableList;
  *
  * @see Owner#isSameOwner(Owner)
  */
-public class UniqueOwnerList implements Iterable<Owner> {
 
-    private final ObservableList<Owner> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Owner> internalUnmodifiableList =
+public class UniqueEntityList<T extends Entity> implements Iterable<T> {
+
+    private final ObservableList<T> internalList = FXCollections.observableArrayList();
+    private final ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent owner as the given argument.
      */
-    public boolean contains(Owner toCheck) {
+    public boolean contains(T toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameOwner);
+        return internalList.stream().anyMatch(toCheck::isSameEntity);
     }
 
     /**
      * Adds a owner to the list.
      * The owner must not already exist in the list.
      */
-    public void add(Owner toAdd) {
+    public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateOwnerException();
@@ -53,7 +55,7 @@ public class UniqueOwnerList implements Iterable<Owner> {
      * {@code target} must exist in the list.
      * The owner identity of {@code editedOwner} must not be the same as another existing owner in the list.
      */
-    public void setOwner(Owner target, Owner editedOwner) {
+    public void setOwner(T target, T editedOwner) {
         requireAllNonNull(target, editedOwner);
 
         int index = internalList.indexOf(target);
@@ -61,7 +63,7 @@ public class UniqueOwnerList implements Iterable<Owner> {
             throw new OwnerNotFoundException();
         }
 
-        if (!target.isSameOwner(editedOwner) && contains(editedOwner)) {
+        if (!target.isSameEntity(editedOwner) && contains(editedOwner)) {
             throw new DuplicateOwnerException();
         }
 
@@ -72,14 +74,14 @@ public class UniqueOwnerList implements Iterable<Owner> {
      * Removes the equivalent owner from the list.
      * The owner must exist in the list.
      */
-    public void remove(Owner toRemove) {
+    public void remove(T toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new OwnerNotFoundException();
         }
     }
 
-    public void setOwners(UniqueOwnerList replacement) {
+    public void setOwners(UniqueEntityList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,7 +90,7 @@ public class UniqueOwnerList implements Iterable<Owner> {
      * Replaces the contents of this list with {@code owners}.
      * {@code owners} must not contain duplicate owners.
      */
-    public void setOwners(List<Owner> owners) {
+    public void setOwners(List<T> owners) {
         requireAllNonNull(owners);
         if (!ownersAreUnique(owners)) {
             throw new DuplicateOwnerException();
@@ -100,20 +102,20 @@ public class UniqueOwnerList implements Iterable<Owner> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Owner> asUnmodifiableObservableList() {
+    public ObservableList<T> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Owner> iterator() {
+    public Iterator<T> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueOwnerList // instanceof handles nulls
-                        && internalList.equals(((UniqueOwnerList) other).internalList));
+                || (other instanceof UniqueEntityList // instanceof handles nulls
+                        && internalList.equals(((UniqueEntityList) other).internalList));
     }
 
     @Override
@@ -124,10 +126,10 @@ public class UniqueOwnerList implements Iterable<Owner> {
     /**
      * Returns true if {@code owners} contains only unique owners.
      */
-    private boolean ownersAreUnique(List<Owner> owners) {
+    private boolean ownersAreUnique(List<T> owners) {
         for (int i = 0; i < owners.size() - 1; i++) {
             for (int j = i + 1; j < owners.size(); j++) {
-                if (owners.get(i).isSameOwner(owners.get(j))) {
+                if (owners.get(i).isSameEntity(owners.get(j))) {
                     return false;
                 }
             }

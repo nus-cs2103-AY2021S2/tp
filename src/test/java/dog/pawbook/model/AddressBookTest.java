@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.owner.exceptions.DuplicateOwnerException;
 import dog.pawbook.testutil.OwnerBuilder;
@@ -28,7 +29,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getOwnerList());
+        assertEquals(Collections.emptyList(), addressBook.getEntityList());
     }
 
     @Test
@@ -48,7 +49,7 @@ public class AddressBookTest {
         // Two owners with the same identity fields
         Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Owner> newOwners = Arrays.asList(ALICE, editedAlice);
+        List<Entity> newOwners = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newOwners);
 
         assertThrows(DuplicateOwnerException.class, () -> addressBook.resetData(newData));
@@ -56,45 +57,45 @@ public class AddressBookTest {
 
     @Test
     public void hasOwner_nullOwner_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasOwner(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasEntity(null));
     }
 
     @Test
     public void hasOwner_ownerNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasOwner(ALICE));
+        assertFalse(addressBook.hasEntity(ALICE));
     }
 
     @Test
     public void hasOwner_ownerInAddressBook_returnsTrue() {
-        addressBook.addOwner(ALICE);
-        assertTrue(addressBook.hasOwner(ALICE));
+        addressBook.addEntity(ALICE);
+        assertTrue(addressBook.hasEntity(ALICE));
     }
 
     @Test
     public void hasOwner_ownerWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addOwner(ALICE);
+        addressBook.addEntity(ALICE);
         Owner editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasOwner(editedAlice));
+        assertTrue(addressBook.hasEntity(editedAlice));
     }
 
     @Test
     public void getOwnerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getOwnerList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEntityList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose owners list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Owner> owners = FXCollections.observableArrayList();
+        private final ObservableList<Entity> owners = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Owner> owners) {
+        AddressBookStub(Collection<Entity> owners) {
             this.owners.setAll(owners);
         }
 
         @Override
-        public ObservableList<Owner> getOwnerList() {
+        public ObservableList<Entity> getEntityList() {
             return owners;
         }
     }
