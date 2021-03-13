@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,9 @@ import seedu.smartlib.model.reader.Reader;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Reader> PREDICATE_SHOW_ALL_READERS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Record> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,6 +62,11 @@ public interface Model {
     boolean hasReader(Reader reader);
 
     /**
+     * Returns true if a record with the same identity as {@code record} exists in the registered record base.
+     */
+    boolean hasRecord(Record record);
+
+    /**
      * Deletes the given reader.
      * The reader must exist in the registered reader base.
      */
@@ -68,6 +77,13 @@ public interface Model {
      * {@code reader} must not already exist in the registered reader base.
      */
     void addReader(Reader reader);
+
+    /**
+     * Adds the given record.
+     * {@code record} must not already exist in the registered record base.
+     */
+    void addRecord(Record record);
+
 
     /**
      * Replaces the given reader {@code target} with {@code editedReader}.
@@ -84,4 +100,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReaderList(Predicate<Reader> predicate);
+
+    void updateFilteredRecordList(Predicate<Record> predicate);
 }

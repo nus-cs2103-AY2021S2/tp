@@ -1,5 +1,7 @@
 package seedu.smartlib.storage;
 
+import static seedu.smartlib.logic.commands.BorrowCommand.MESSAGE_DUPLICATE_RECORD;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +14,7 @@ import seedu.smartlib.commons.exceptions.IllegalValueException;
 import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
 
 /**
  * An Immutable SmartLib that is serializable to JSON format.
@@ -22,13 +25,16 @@ class JsonSerializableSmartLib {
     public static final String MESSAGE_DUPLICATE_READER = "Readers list contains duplicate reader(s).";
 
     private final List<JsonAdaptedReader> readers = new ArrayList<>();
+    private final List<JsonAdaptedRecord> records = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableSmartLib} with the given readers.
      */
     @JsonCreator
-    public JsonSerializableSmartLib(@JsonProperty("readers") List<JsonAdaptedReader> readers) {
+    public JsonSerializableSmartLib(@JsonProperty("readers") List<JsonAdaptedReader> readers,
+                                    @JsonProperty("records") List<JsonAdaptedRecord> records) {
         this.readers.addAll(readers);
+        this.records.addAll(records);
     }
 
     /**
@@ -38,6 +44,7 @@ class JsonSerializableSmartLib {
      */
     public JsonSerializableSmartLib(ReadOnlySmartLib source) {
         readers.addAll(source.getReaderList().stream().map(JsonAdaptedReader::new).collect(Collectors.toList()));
+        records.addAll(source.getRecordList().stream().map(JsonAdaptedRecord::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +60,13 @@ class JsonSerializableSmartLib {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_READER);
             }
             smartLib.addReader(reader);
+        }
+        for (JsonAdaptedRecord jsonAdaptedRecord : records) {
+            Record record = jsonAdaptedRecord.toModelType();
+            if (smartLib.hasRecord(record)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_RECORD);
+            }
+            smartLib.addRecord(record);
         }
         return smartLib;
     }

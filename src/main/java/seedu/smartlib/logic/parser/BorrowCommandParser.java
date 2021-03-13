@@ -1,12 +1,16 @@
 package seedu.smartlib.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
+import java.time.LocalDate;
+
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
+import seedu.smartlib.model.record.DateBorrowed;
+import seedu.smartlib.model.record.Record;
 
 /**
  * Parses input arguments and creates a new {@code BorrowCommand} object
@@ -21,15 +25,12 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_READER);
 
-        int bid;
-        int rid;
-        try {
-            bid = Integer.parseInt(argMultimap.getValue(PREFIX_BOOK).orElse(""));
-            rid = Integer.parseInt(argMultimap.getValue(PREFIX_READER).orElse(""));
-        } catch (NumberFormatException nfe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE), nfe);
-        }
 
-        return new BorrowCommand(bid, rid);
+        Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());
+        Name readerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get());
+        DateBorrowed dateBorrowed = new DateBorrowed(LocalDate.now());
+        Record record = new Record(bookName, readerName, dateBorrowed);
+
+        return new BorrowCommand(record);
     }
 }

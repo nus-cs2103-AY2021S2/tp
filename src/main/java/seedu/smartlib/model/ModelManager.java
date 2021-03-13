@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.LogsCenter;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
 
 /**
  * Represents the in-memory model of SmartLib's data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final SmartLib smartLib;
     private final UserPrefs userPrefs;
     private final FilteredList<Reader> filteredReaders;
+    private final FilteredList<Record> filteredRecords;
 
     /**
      * Initializes a ModelManager with the given SmartLib and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.smartLib = new SmartLib(smartLib);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredReaders = new FilteredList<>(this.smartLib.getReaderList());
+        filteredRecords = new FilteredList<>(this.smartLib.getRecordList());
     }
 
     public ModelManager() {
@@ -95,6 +98,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasRecord(Record record) {
+        requireNonNull(record);
+        return smartLib.hasRecord(record);
+    }
+
+    @Override
     public void deleteReader(Reader target) {
         smartLib.removeReader(target);
     }
@@ -103,6 +112,13 @@ public class ModelManager implements Model {
     public void addReader(Reader reader) {
         smartLib.addReader(reader);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
+    }
+
+    @Override
+    public void addRecord(Record record) {
+        System.out.println(smartLib);
+        smartLib.addRecord(record);
+        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
     }
 
     @Override
@@ -123,6 +139,12 @@ public class ModelManager implements Model {
     public void updateFilteredReaderList(Predicate<Reader> predicate) {
         requireNonNull(predicate);
         filteredReaders.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredRecordList(Predicate<Record> predicate) {
+        requireNonNull(predicate);
+        filteredRecords.setPredicate(predicate);
     }
 
     @Override
