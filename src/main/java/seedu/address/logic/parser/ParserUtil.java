@@ -12,6 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.person.Address;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,4 +107,35 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String tripDay} into a {@code TripDay}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tripDay} is invalid.
+     */
+    public static TripDay parseTripDay(String tripDay) throws ParseException {
+        requireNonNull(tripDay);
+        String trimmedTripDay = tripDay.trim();
+        if (!TripDay.isValidTripDay(tripDay)) {
+            throw new ParseException(TripDay.MESSAGE_CONSTRAINTS);
+        }
+        return new TripDay(trimmedTripDay);
+    }
+
+    /**
+     * Parses a {@code String tripTime} into a {@code TripTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tripTime} is invalid.
+     */
+    public static TripTime parseTripTime(String tripTime) throws ParseException {
+        requireNonNull(tripTime);
+        String trimmedTripTime = tripTime.trim();
+        if (!TripTime.isValidTripTime(tripTime)) {
+            throw new ParseException(TripTime.MESSAGE_CONSTRAINTS);
+        }
+        return new TripTime(trimmedTripTime);
+    }
+
 }

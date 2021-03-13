@@ -54,7 +54,7 @@ public class TripTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TripTime // instanceof handles nulls
-                && value == ((TripTime) other).value); // state check
+                && value.equals(((TripTime) other).value)); // state check
     }
 
     @Override

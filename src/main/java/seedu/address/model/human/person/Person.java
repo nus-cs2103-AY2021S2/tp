@@ -19,8 +19,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person extends Human {
-
-    public static final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
+    private static final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
 
     // Data fields
     private final Address address;
@@ -116,9 +115,9 @@ public class Person extends Human {
                 .append(getPhone())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Trip Days: ")
+                .append("; Trip Day: ")
                 .append(getTripDay())
-                .append("; Trip Times: ")
+                .append("; Trip Time: ")
                 .append(getTripTime())
                 .append("; Driver: ")
                 .append(getDriverStr());

@@ -48,9 +48,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    public static final TripDay STUB_TRIPDAY = new TripDay("monday");
-    public static final TripTime STUB_TRIPTIME = new TripTime("2300");
-
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -98,8 +95,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        TripDay updatedTripDay = editPersonDescriptor.getTripDay().orElse(personToEdit.getTripDay());
+        TripTime updatedTripTime = editPersonDescriptor.getTripTime().orElse(personToEdit.getTripTime());
 
-        return new Person(updatedName, updatedPhone, updatedAddress, STUB_TRIPDAY, STUB_TRIPTIME, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedTags);
     }
 
     @Override
@@ -128,9 +127,9 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Address address;
+        private Set<Tag> tags;
         private TripDay tripDay;
         private TripTime tripTime;
-        private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
 
@@ -142,9 +141,9 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
-            setTripDays(toCopy.tripDay);
-            setTripTimes(toCopy.tripTime);
             setTags(toCopy.tags);
+            setTripDay(toCopy.tripDay);
+            setTripTime(toCopy.tripTime);
         }
 
         /**
@@ -178,19 +177,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setTripDays(TripDay tripDay) {
+        public void setTripDay(TripDay tripDay) {
             this.tripDay = tripDay;
         }
 
-        public Optional<TripDay> getTripDays() {
+        public Optional<TripDay> getTripDay() {
             return Optional.ofNullable(tripDay);
         }
 
-        public void setTripTimes(TripTime tripTime) {
+        public void setTripTime(TripTime tripTime) {
             this.tripTime = tripTime;
         }
 
-        public Optional<TripTime> getTripTimes() {
+        public Optional<TripTime> getTripTime() {
             return Optional.ofNullable(tripTime);
         }
 
@@ -229,8 +228,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getAddress().equals(e.getAddress())
-                    && getTripDays().equals(e.getTripDays())
-                    && getTripTimes().equals(e.getTripTimes())
+                    && getTripDay().equals(e.getTripDay())
+                    && getTripTime().equals(e.getTripTime())
                     && getTags().equals(e.getTags());
         }
     }
