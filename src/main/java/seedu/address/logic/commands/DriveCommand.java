@@ -53,4 +53,12 @@ public class DriveCommand extends Command {
         }
         return new CommandResult(testOutput.toString());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DriveCommand // instanceof handles nulls
+                && (driver.equals(((DriveCommand) other).driver)
+                && persons.equals(((DriveCommand) other).persons)));
+    }
 }

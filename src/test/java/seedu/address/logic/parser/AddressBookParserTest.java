@@ -9,12 +9,15 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DriveCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -22,8 +25,12 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.human.driver.Driver;
 import seedu.address.model.human.person.NameContainsKeywordsPredicate;
 import seedu.address.model.human.person.Person;
+import seedu.address.testutil.CommuterBuilder;
+import seedu.address.testutil.DriverBuilder;
+import seedu.address.testutil.DriverUtil;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -36,7 +43,6 @@ public class AddressBookParserTest {
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        command.equals(new AddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
 
@@ -86,6 +92,15 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_drive() throws Exception {
+        Driver driver = new DriverBuilder().build();
+        Set<Index> commuters = new CommuterBuilder().build();
+        DriveCommand command = (DriveCommand) parser.parseCommand(DriverUtil.getDriveCommand(driver, commuters));
+
+        assertEquals(new DriveCommand(driver, commuters), command);
     }
 
     @Test
