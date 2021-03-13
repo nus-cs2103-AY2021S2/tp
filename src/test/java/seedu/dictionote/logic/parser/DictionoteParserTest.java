@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
@@ -23,13 +25,14 @@ import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
 import seedu.dictionote.logic.commands.ExitCommand;
-import seedu.dictionote.logic.commands.FindCommand;
+import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
+import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
 import seedu.dictionote.testutil.ContactUtil;
@@ -85,11 +88,20 @@ public class DictionoteParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    public void parseCommand_findContact() throws Exception {
+        List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
+        List<String> tagKeywords = Arrays.asList("friends", "family", "tutors");
+
+        FindContactCommand command = (FindContactCommand) parser.parseCommand(
+            FindContactCommand.COMMAND_WORD
+                    + " "
+                    + nameKeywords.stream().map(nk -> PREFIX_NAME + nk).collect(Collectors.joining(" "))
+                    + " "
+                    + tagKeywords.stream().map(tk -> PREFIX_TAG + tk).collect(Collectors.joining(" ")));
+
+        assertEquals(new FindContactCommand(
+                new NameContainsKeywordsPredicate(nameKeywords),
+                new TagsContainKeywordsPredicate(tagKeywords)), command);
     }
 
     @Test

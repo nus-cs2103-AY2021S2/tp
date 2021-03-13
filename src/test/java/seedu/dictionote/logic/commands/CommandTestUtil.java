@@ -20,6 +20,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.testutil.EditContactDescriptorBuilder;
+import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -37,6 +38,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_NOTE_CONTENT = "My love, I have been waiting for you";
+    public static final String VALID_REPLACED_NOTE_CONTENT = "I have changed this note";
 
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -62,6 +64,8 @@ public class CommandTestUtil {
 
     public static final EditContactCommand.EditContactDescriptor DESC_AMY;
     public static final EditContactCommand.EditContactDescriptor DESC_BOB;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_NOTE;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_REPLACED_NOTE;
 
     static {
         DESC_AMY = new EditContactDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -70,6 +74,8 @@ public class CommandTestUtil {
         DESC_BOB = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
+        DESC_REPLACED_NOTE = new EditNoteDescriptorBuilder().withNote(VALID_NOTE_CONTENT).build();
     }
 
     /**

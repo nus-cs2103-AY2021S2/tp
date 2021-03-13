@@ -71,7 +71,7 @@ public class DeleteNoteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no note.
      */
     private void showNoNote(Model model) {
         model.updateFilteredContactList(p -> false);

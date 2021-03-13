@@ -133,15 +133,19 @@ public class ModelManager implements Model {
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
     }
+  
+    @Override
+    public void setNote(Note target, Note editedContact) {
+        requireAllNonNull(target, editedContact);
+        noteBook.setNote(target, editedContact);
+    }
 
-
-    //=========== DicitonaryBook ===================================================================================
+    //=========== Dictionary ===================================================================================
     @Override
     public boolean hasContent(Content content) {
         requireNonNull(content);
         return dictionary.hasContent(content);
     }
-
 
     //=========== AddressBook ================================================================================
 

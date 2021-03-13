@@ -107,6 +107,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void setNote(Note oldNote, Note newNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
