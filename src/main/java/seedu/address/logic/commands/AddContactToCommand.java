@@ -47,7 +47,7 @@ public class AddContactToCommand extends Command {
         List<Project> lastShownProjectList = model.getFilteredProjectList();
 
         if (projectToAddToIndex.getZeroBased() >= lastShownProjectList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
         Project projectToAddTo = lastShownProjectList.get(personToAddIndex.getZeroBased());
