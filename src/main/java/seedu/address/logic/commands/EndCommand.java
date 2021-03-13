@@ -12,7 +12,8 @@ public class EndCommand extends Command {
 
     public static final String COMMAND_WORD = "end";
 
-    public static final String MESSAGE_SUCCESS = "Welcome back. Enter \"learn\" or \"quiz\" for different modes.";
+    public static final String MESSAGE_SUCCESS = "Welcome back.\n"
+            + "Enter \"learn\" or \"quiz\" for different modes.";
 
 
     @Override

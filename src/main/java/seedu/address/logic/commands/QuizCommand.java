@@ -12,7 +12,8 @@ public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_SUCCESS = "You are now in quiz mode, enter \"start\" to start quiz.";
+    public static final String MESSAGE_SUCCESS = "You are now in quiz mode.\n"
+            + "Enter \"start\" to start quiz.";
 
     @Override
     public CommandResult execute(Model model) {

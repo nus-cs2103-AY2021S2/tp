@@ -12,7 +12,8 @@ public class LearnCommand extends Command {
 
     public static final String COMMAND_WORD = "learn";
 
-    public static final String MESSAGE_SUCCESS = "You are now in learn mode. Enter \"end\" to end your study or "
+    public static final String MESSAGE_SUCCESS = "You are now in learn mode.\n"
+            + "Enter \"end\" to end your study or "
             + "\"quiz\" to start a quiz session on the flashcards.";
 
 

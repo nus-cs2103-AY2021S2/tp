@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model;
 
 import static seedu.address.model.util.LocalDatabasePopulator.getDatabaseOfFlashcards;
 
@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import seedu.address.model.person.Flashcard;
 
 /**
  * Class Quiz represents a quiz session.

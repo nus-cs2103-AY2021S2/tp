@@ -162,6 +162,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows the flashcard panel for learn mode.
+     * TODO: make changes to GUI and data structure s.t. only one question is shown at a time
+     * and only the question description is shown (since it is quiz).
+     */
+    private void enterQuizMode() {
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -212,6 +221,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.equals("learn")) {
                 enterLearnMode();
+            }
+
+            if (commandText.equals("quiz")) {
+                enterQuizMode();
             }
 
             if (commandResult.isShowHelp()) {
