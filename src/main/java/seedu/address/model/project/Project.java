@@ -1,5 +1,6 @@
 package seedu.address.model.project;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -66,14 +67,13 @@ public class Project {
     }
 
     /**
-     * Adds an event to the {@code EventList}.\
+     * Adds an event to {@code EventList} field of this {@code Project}.
      *
      * @param event {@code Event} to add.
      */
-    public Project addEvent(Event event) {
-        EventList events = this.events.addEvent(event);
-        return new Project(this.getProjectName(), events,
-                this.getCompletableTasks(), this.getParticipants());
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        this.events.addEvent(event);
     }
 
     /**

@@ -15,11 +15,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.repeatable.Event;
 
+/**
+ * Parses input arguments and creates a new AddEventCommand object
+ */
 public class AddEventCommandParser implements Parser<AddEventCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddProjectCommand
-     * and returns an AddProjectCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddEventCommand
+     * and returns an AddEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddEventCommand parse(String args) throws ParseException {

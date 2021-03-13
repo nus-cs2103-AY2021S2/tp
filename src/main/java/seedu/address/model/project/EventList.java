@@ -29,14 +29,13 @@ public class EventList {
     }
 
     /**
-     * Adds an event to this {@code EventList} and return that new {@code EventList}
+     * Adds an event to this {@code EventList}.
      *
      * @param event {@code Event} to add.
      */
-    public EventList addEvent(Event event) {
-        List<Event> events = this.events;
-        events.add(event);
-        return new EventList(events);
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        this.events.add(event);
     }
 
     public List<Event> getEvents() {
