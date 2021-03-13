@@ -24,8 +24,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -105,15 +105,15 @@ public class AddCommandParserTest {
 
         // missing tripDay prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
-                        + VALID_TRIPDAY + TRIPTIME_DESC_EVENING, expectedMessage);
+                        + VALID_TRIPDAY_FRIDAY + TRIPTIME_DESC_EVENING, expectedMessage);
 
         // missing tripTime prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
-                + TRIPDAY_DESC_FRIDAY + VALID_TRIPTIME, expectedMessage);
+                + TRIPDAY_DESC_FRIDAY + VALID_TRIPTIME_EVENING, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_ADDRESS_BOB
-                        + VALID_TRIPDAY + VALID_TRIPTIME, expectedMessage);
+                        + VALID_TRIPDAY_FRIDAY + VALID_TRIPTIME_EVENING, expectedMessage);
     }
 
     @Test

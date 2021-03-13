@@ -15,7 +15,9 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_FRIDAY;
+import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_EVENING;
+import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_MORNING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -23,8 +25,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -102,17 +106,18 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY
-                        + VALID_TRIPDAY + VALID_TRIPTIME, Name.MESSAGE_CONSTRAINTS);
+                        + VALID_TRIPDAY_FRIDAY + VALID_TRIPTIME_EVENING, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + TRIPDAY_DESC_MONDAY + TRIPTIME_DESC_MORNING;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_AMY)
+                .withTripDay(VALID_TRIPDAY_MONDAY).withTripTime(VALID_TRIPTIME_MORNING)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -153,13 +158,13 @@ public class EditCommandParserTest {
 
         // tripDay
         userInput = targetIndex.getOneBased() + TRIPDAY_DESC_FRIDAY;
-        descriptor = new EditPersonDescriptorBuilder().withTripDay(VALID_TRIPDAY).build();
+        descriptor = new EditPersonDescriptorBuilder().withTripDay(VALID_TRIPDAY_FRIDAY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tripTime
         userInput = targetIndex.getOneBased() + TRIPTIME_DESC_EVENING;
-        descriptor = new EditPersonDescriptorBuilder().withTripTime(VALID_TRIPTIME).build();
+        descriptor = new EditPersonDescriptorBuilder().withTripTime(VALID_TRIPTIME_EVENING).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -178,8 +183,8 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTripDay(VALID_TRIPDAY)
-                .withTripTime(VALID_TRIPTIME).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withAddress(VALID_ADDRESS_BOB).withTripDay(VALID_TRIPDAY_FRIDAY)
+                .withTripTime(VALID_TRIPTIME_EVENING).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
