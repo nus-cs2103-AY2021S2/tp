@@ -32,7 +32,6 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        //todo: Replace PREFIX_TRIPDAYS and PREFIX_TRIPTIMES with updated prefixes in lines 42 and 45
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY,
                         PREFIX_TRIPTIME, PREFIX_TAG);

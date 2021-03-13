@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRIPDAY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRIPTIME;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -22,6 +24,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -34,6 +38,8 @@ import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
 import seedu.address.model.human.person.Address;
 import seedu.address.model.human.person.Person;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -81,26 +87,33 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPerson));
     }
 
-    // TODO: add more test cases to check for missing fields
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                        + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING, expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + ADDRESS_DESC_BOB
+                        + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING, expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_ADDRESS_BOB
+                        + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING, expectedMessage);
+
+        // missing tripDay prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                        + VALID_TRIPDAY_FRIDAY + TRIPTIME_DESC_EVENING, expectedMessage);
+
+        // missing tripTime prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                + TRIPDAY_DESC_FRIDAY + VALID_TRIPTIME_EVENING, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_ADDRESS_BOB
+                        + VALID_TRIPDAY_FRIDAY + VALID_TRIPTIME_EVENING, expectedMessage);
     }
 
     @Test
@@ -120,15 +133,35 @@ public class AddCommandParserTest {
                 + TRIPTIME_DESC_EVENING
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
+        // invalid tripDay
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + INVALID_TRIPDAY
+                + TRIPTIME_DESC_EVENING
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TripDay.MESSAGE_CONSTRAINTS);
+
+        // invalid tripTime
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
+                + INVALID_TRIPTIME
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TripTime.MESSAGE_CONSTRAINTS);
+
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
                 + TRIPTIME_DESC_EVENING
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
-        // two invalid values, only first invalid value reported
+        // two invalid values, only first invalid value reported (Name)
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_ADDRESS_DESC
                         + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING,
                 Name.MESSAGE_CONSTRAINTS);
+
+        // two invalid values, only first invalid value reported (Address)
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_ADDRESS_DESC
+                        + INVALID_TRIPDAY + TRIPTIME_DESC_EVENING,
+                Address.MESSAGE_CONSTRAINTS);
+
+        // two invalid values, only first invalid value reported (TripDay)
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
+                        + INVALID_TRIPDAY + INVALID_TRIPTIME,
+                TripDay.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB

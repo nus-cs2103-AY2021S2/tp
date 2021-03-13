@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,6 +46,14 @@ public class EditPersonDescriptorTest {
 
         // different address -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different tripDay -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTripDay(VALID_TRIPDAY_MONDAY).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different tripTime -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTripTime(VALID_TRIPTIME_MORNING).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
