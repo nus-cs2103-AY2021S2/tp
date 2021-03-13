@@ -25,15 +25,10 @@ public class TypicalClients {
 
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRemark("She likes aardvarks.")
+            .withPhone("94351253")
             .withTags("friends").build();
-<<<<<<< HEAD:src/test/java/seedu/address/testutil/TypicalPersons.java
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withRemark("He can't take beer!")
-=======
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
->>>>>>> 927734c55b70b76bddffd94916e0fcf0419d400d:src/test/java/seedu/address/testutil/TypicalClients.java
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")

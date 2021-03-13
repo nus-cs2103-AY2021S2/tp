@@ -32,7 +32,6 @@ public class Client {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.remark = remark;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -51,10 +50,6 @@ public class Client {
 
     public Address getAddress() {
         return address;
-    }
-
-    public Remark getRemark() {
-        return remark;
     }
 
     /**
@@ -103,7 +98,7 @@ public class Client {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark);
+        return Objects.hash(name, phone, email, address, tags);
     }
 
     @Override
@@ -115,9 +110,7 @@ public class Client {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress())
-                .append("; Remark: ")
-                .append(getRemark());
+                .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
