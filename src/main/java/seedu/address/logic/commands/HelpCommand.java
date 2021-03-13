@@ -5,11 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.MarkdownPlainTextParser;
 import seedu.address.model.Model;
 
 /**
@@ -24,14 +23,21 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     public static final String HELP_TITLE = "Commands available";
+    public static final String FEATURES_HEADING = "## Features";
 
     private String helpMessage = "";
-    private String specifiedCommand;
+    private final String specifiedCommand;
 
     private final Logger logger = LogsCenter.getLogger(HelpCommand.class);
 
-    public HelpCommand() {}
+    public HelpCommand() {
+        this.specifiedCommand = "";
+    }
 
+    /**
+     * Constructs a {@HelpCommand} with the specified {@specifiedCommand}.
+     * @param specifiedCommand  Command supported by the app and documented in the user guide
+     */
     public HelpCommand(String specifiedCommand) {
         requireNonNull(specifiedCommand);
         this.specifiedCommand = specifiedCommand;
@@ -39,7 +45,7 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        if (specifiedCommand != null) {
+        if (specifiedCommand != "") {
             return executeSpecific(specifiedCommand);
         } else {
             return executeNonSpecific();
@@ -55,11 +61,6 @@ public class HelpCommand extends Command {
     }
 
     private CommandResult executeSpecific(String specifiedCommand) {
-        // logger.info("specifiedCommand: " + specifiedCommand);
-        // if (specifiedCommand != "find") {
-        //     return null;
-        // }
-
         String plainCommandTitle = "";
         String plainCommandInfo = "";
 
@@ -67,104 +68,49 @@ public class HelpCommand extends Command {
             String projectDir = System.getProperty("user.dir");
             BufferedReader reader = new BufferedReader(new FileReader(projectDir + "/docs/UserGuide.md"));
 
-
             String currLine = reader.readLine();
-            while (currLine != null && !currLine.equals("## Features")) {
+            while (currLine != null && !currLine.equals(FEATURES_HEADING)) {
                 currLine = reader.readLine();
             }
-
-            // currLine = "## Features" at this pt
 
             currLine = reader.readLine();
             while (currLine != null) {
-                if (currLine.startsWith("###")) { // is a subheading aka start of command explanation
-                    // logger.info(currLine);
-                    String[] splitSubheading = currLine.split("`");
-                    // logger.info(Arrays.toString(splitSubheading));
-                    // logger.info("splitSubheading[0]: " + splitSubheading[0]);
-                    // logger.info("splitSubheading[1]: " + splitSubheading[1]);
-                    if (!splitSubheading[1].equals(specifiedCommand)) { // not the command we want: keep looping
-                        currLine = reader.readLine();
-                        continue;
-                    }
+                String[] splitSubheading = currLine.split("`");
 
-                    break; // is the command we want: stop looping
+                if (currLine.startsWith("###") && splitSubheading[1].equals(specifiedCommand)) {
+                    break;
                 }
-                // logger.info("currLine: " + currLine);
 
                 currLine = reader.readLine();
             }
 
+            MarkdownPlainTextParser parser = new MarkdownPlainTextParser();
             String commandTitle = currLine;
             String commandInfo = "";
 
             reader.readLine();
+
             currLine = reader.readLine();
             while (!currLine.startsWith("###") && !currLine.startsWith("---")) {
                 commandInfo += currLine + "\n";
                 currLine = reader.readLine();
             }
 
-            plainCommandTitle = formatPlainText(commandTitle, "title");
-            plainCommandInfo = formatPlainText(commandInfo, "info");
-
-            // logger.info("help message now: \n" + helpMessage);
-
+            plainCommandTitle = parser.formatPlainText(commandTitle, "title");
+            plainCommandInfo = parser.formatPlainText(commandInfo, "info");
 
             reader.close();
-
         } catch (IOException e) {
             System.out.println("Error reading file: " + e);
         }
 
-        // return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
         return new CommandResult(SHOWING_HELP_MESSAGE, plainCommandTitle, plainCommandInfo, true, false);
-    }
-
-    private String formatPlainText(String markdown, String type) {
-        // logger.info("command title/info:\n" + markdown);
-        if (type == "title") {
-            return markdown.substring(4);
-        } else if (type == "info") {
-            Scanner s = new Scanner(markdown);
-            String plainText = "";
-
-            while (s.hasNext()) {
-                String next = s.nextLine();
-                if (next.startsWith("<div")) {
-                    String[] nextSplit = next.split("<|\\>");
-                    String divContent = nextSplit[2];
-
-                    if (divContent.startsWith(":bulb:")) {
-                        plainText += "\uD83D\uDCA1 " + divContent.substring(9, 13) + " ";
-                    } else if (divContent.startsWith(":exclamation:")) {
-                        plainText += "❗ " + divContent.substring(16, 24) + " ";
-                    } else {
-                        plainText += divContent + "\n";
-                    }
-                } else if (next.contains("</div>")) {
-                    String[] nextSplit = next.split("<");
-                    if (!nextSplit[0].equals("")) {
-                        plainText += next + "\n";
-                    }
-                } else if (!next.contains("![")){
-                    plainText += next + "\n";
-                }
-
-                // next = s.nextLine();
-            }
-
-            return plainText;
-        } else {
-            return "error formatting";
-        }
     }
 
     private CommandResult executeNonSpecific() {
         try {
             String projectDir = System.getProperty("user.dir");
             BufferedReader reader = new BufferedReader(new FileReader(projectDir + "/docs/UserGuide.md"));
-
 
             String currLine = reader.readLine();
             while (currLine != null && !currLine.equals("--------|------------------")) {
@@ -173,36 +119,22 @@ public class HelpCommand extends Command {
 
             currLine = reader.readLine();
             while (currLine != null) {
-                // logger.info("currLine: " + currLine);
-
                 helpMessage += commandSummaryParser(currLine);
-
                 currLine = reader.readLine();
             }
 
-            // logger.info("help message now: \n" + helpMessage);
-
-
             reader.close();
-
         } catch (IOException e) {
             System.out.println("Error reading file: " + e);
         }
 
-        // return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
         return new CommandResult(SHOWING_HELP_MESSAGE, HELP_TITLE, helpMessage, true, false);
     }
 
     private String commandSummaryParser(String info) {
         String[] separatedInfo = info.split("\\|");
-        // logger.info("separatedInfo: " + Arrays.toString(separatedInfo));
         String[] commandName = separatedInfo[0].split("\\*");
-        // logger.info("commandName[]: " + Arrays.toString(commandName));
-
         String[] commandDesc = separatedInfo[1].split("`");
-        // logger.info("commandDesc[]: " + Arrays.toString(commandDesc));
-
-        // logger.info("\n" + commandName[2] + ": " + commandDesc[1]);
 
         return commandName[2] + ": " + commandDesc[1] + "\n";
     }

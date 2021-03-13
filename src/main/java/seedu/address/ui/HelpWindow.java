@@ -41,7 +41,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpLink.setText(HELP_LINK);
-//        helpMessage.setText(HELP_MESSAGE);
+        // helpMessage.setText(HELP_MESSAGE);
         // logger.info("help message is: " + helpMsg);
         // helpMessage.setText(helpMsg);
     }

@@ -35,6 +35,12 @@ public class HelpCommandParser implements Parser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
+        isValidCommand(trimmedArgs);
+
+        return new HelpCommand(trimmedArgs);
+    }
+
+    private void isValidCommand(String trimmedArgs) throws ParseException {
         switch (trimmedArgs) {
         case AddCommand.COMMAND_WORD:
         case EditCommand.COMMAND_WORD:
@@ -44,12 +50,9 @@ public class HelpCommandParser implements Parser {
         case ListCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
-            break;
+            return;
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
-
-
-        return new HelpCommand(trimmedArgs);
     }
 }

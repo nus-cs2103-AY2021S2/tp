@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -11,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.HelpCommand;
 
 class HelpCommandParserTest {
-    HelpCommandParser parser = new HelpCommandParser();
+    private HelpCommandParser parser = new HelpCommandParser();
 
     //    @Test
     //    void parse_commandNotSpecified_success() {

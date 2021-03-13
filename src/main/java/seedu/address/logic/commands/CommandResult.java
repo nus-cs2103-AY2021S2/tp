@@ -23,13 +23,23 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     * @param helpTitle The heading shown in bold text in the help window.
+     * @param helpMsg   The body text of the help window.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, String helpTitle, String helpMsg, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.helpTitle = "";
-        this.helpMsg = "";
+        this.helpTitle = helpTitle;
+        this.helpMsg = helpMsg;
         this.showHelp = showHelp;
         this.exit = exit;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHelp}
+     * and {@code exit}, and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, "", "", showHelp, exit);
     }
 
     /**
@@ -38,14 +48,6 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
-    }
-
-    public CommandResult(String feedbackToUser, String helpTitle, String helpMsg, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.helpTitle = helpTitle;
-        this.helpMsg = helpMsg;
-        this.showHelp = showHelp;
-        this.exit = exit;
     }
 
     public String getFeedbackToUser() {
