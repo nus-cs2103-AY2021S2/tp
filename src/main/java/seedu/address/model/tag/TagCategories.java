@@ -15,7 +15,8 @@ public enum TagCategories {
     VEGAN,
     FRUITS,
     DESSERT,
-    OTHERS;
+    OTHERS,
+    INVALID;
 
     /**
      * Checks if a String given fits any of the Categories in TagCategories.
@@ -42,7 +43,7 @@ public enum TagCategories {
                 return tagCategory;
             }
         }
-        return TagCategories.OTHERS;
+        return TagCategories.INVALID;
     }
 
     /**

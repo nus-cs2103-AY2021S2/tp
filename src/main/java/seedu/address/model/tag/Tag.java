@@ -19,7 +19,7 @@ public class Tag {
      */
     public Tag(String tagCategory) {
         requireNonNull(tagCategory);
-        System.out.print(tagCategory);
+
         checkArgument(isValidTagName(tagCategory), MESSAGE_CONSTRAINTS);
         this.tagCategory = TagCategories.find(tagCategory);
     }
@@ -28,7 +28,7 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String tagCategory) {
-        return TagCategories.matches(tagCategory);
+        return TagCategories.matches(tagCategory) && !(tagCategory.toLowerCase().equals("invalid"));
     }
 
     @Override

@@ -35,7 +35,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
 
-    public static final String VALID_TAG_WESTERN = "western";
+    public static final String VALID_TAG_WESTERN = "WESTERN";
     public static final String VALID_TAG_FASTFOOD = "fastfood";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
