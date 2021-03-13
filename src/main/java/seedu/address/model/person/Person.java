@@ -17,8 +17,8 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Review review;
     private final Rating rating;
-    private final Email email;
 
     // Data fields
     private final Address address;
@@ -27,11 +27,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Rating rating, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, rating, email, address, tags);
+
+    public Person(Name name, Rating rating, Review review, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, rating, review, address, tags);
         this.name = name;
         this.rating = rating;
-        this.email = email;
+        this.review = review;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -44,8 +45,8 @@ public class Person {
         return rating;
     }
 
-    public Email getEmail() {
-        return email;
+    public Review getReview() {
+        return review;
     }
 
     public Address getAddress() {
@@ -90,7 +91,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getRating().equals(getRating())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getReview().equals(getReview())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -98,7 +99,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, rating, email, address, tags);
+        return Objects.hash(name, rating, review, address, tags);
     }
 
     @Override
@@ -107,8 +108,8 @@ public class Person {
         builder.append(getName())
                 .append("; Rating: ")
                 .append(getRating())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Review: ")
+                .append(getReview())
                 .append("; Address: ")
                 .append(getAddress());
 
