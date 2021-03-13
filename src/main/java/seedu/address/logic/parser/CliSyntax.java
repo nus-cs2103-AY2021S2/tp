@@ -18,4 +18,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_CARBOS = new Prefix("c/");
     public static final Prefix PREFIX_FATS = new Prefix("f/");
     public static final Prefix PREFIX_PROTEINS = new Prefix("p/");
+
+    /* Prefix definitions for BMI */
+    public static final Prefix PREFIX_HEIGHT = new Prefix("h/");
+    public static final Prefix PREFIX_WEIGHT = new Prefix("w/");
+    public static final Prefix PREFIX_GENDER = new Prefix("g/");
+    public static final Prefix PREFIX_AGE = new Prefix("a/");
+    public static final Prefix PREFIX_IDEAL_WEIGHT = new Prefix("i/");
 }

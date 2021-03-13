@@ -16,6 +16,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.user.Age;
+import seedu.address.model.user.Bmi;
+import seedu.address.model.user.Gender;
+import seedu.address.model.user.IdealWeight;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -79,6 +83,49 @@ public class ParserUtil {
         }
         return trimmedName;
     }
+
+
+    public static int parseAge(String ageString) throws ParseException {
+        requireNonNull(ageString);
+        String trimmedAge = ageString.trim();
+        if (!Age.isValidAge(trimmedAge)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+        }
+
+        return Integer.parseInt(trimmedAge);
+    }
+
+    public static double parseWeightAndHeight(String weightHeightString) throws ParseException {
+        requireNonNull(weightHeightString);
+        String trimmedWeightHeight = weightHeightString.trim();
+        if (!Bmi.isValidWeightOrHeight(trimmedWeightHeight)) {
+            throw new ParseException(Bmi.MESSAGE_CONSTRAINTS);
+        }
+
+        return Double.parseDouble(trimmedWeightHeight);
+    }
+
+    public static String parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+
+        return trimmedGender;
+    }
+
+    public static double parseIdealWeight(String idealWeightString) throws ParseException {
+        requireNonNull(idealWeightString);
+        String trimmedWeight = idealWeightString.trim();
+        if (!IdealWeight.isValidIdealWeight(trimmedWeight)) {
+            throw new ParseException(IdealWeight.MESSAGE_CONSTRAINTS);
+        }
+
+        return Double.parseDouble(trimmedWeight);
+    }
+
+    // *********************************************************************************
 
     /**
      * Parses a {@code String name} into a {@code Name}.

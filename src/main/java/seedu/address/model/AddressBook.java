@@ -9,6 +9,7 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.user.User;
 
 /**
  * Wraps all data at the address-book level
@@ -17,6 +18,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+
+    private User user;
 
     private UniqueFoodList foodList;
     //Used to have an old comment here, removed due to checkstyle error. Refer to old template for more.
@@ -127,6 +130,33 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public String listFoodItem() {
         return foodList.listAllFoodItem();
+    }
+
+    /**
+     * Adds the user information.
+     *
+     * @param User user object
+     */
+    public void addUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * Returns whether user information has been initialized.
+     *
+     * @return Boolean indicating whether user is initialized
+     */
+    public boolean hasUser() {
+        return this.user != null;
+    }
+
+    /**
+     * Returns the user information.
+     *
+     * @return User object
+     */
+    public User getUser() {
+        return this.user;
     }
 
     /**

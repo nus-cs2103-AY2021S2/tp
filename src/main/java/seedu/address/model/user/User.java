@@ -16,6 +16,8 @@ public class User {
     // Identity fields
     private final Name name;
     private final Age age;
+    private final Gender gender;
+    private final IdealWeight ideal_weight;
 
     // Data fields
     private final Bmi bmi;
@@ -28,12 +30,30 @@ public class User {
      * @param bmi Bmi object of the user
      * @param foodList Food list of the user
      */
-    public User(Name name, Bmi bmi, List<Food> foodList, Age age) {
+    public User(Name name, Bmi bmi, List<Food> foodList, Age age, Gender gender, IdealWeight ideal_weight) {
         requireAllNonNull(name, bmi, foodList);
         this.name = name;
         this.bmi = bmi;
         this.foodList = foodList;
         this.age = age;
+        this.gender = gender;
+        this.ideal_weight = ideal_weight;
+    }
+
+    /**
+     * Creates a representation of the user with the given parameters.
+     * All fields must not be empty.
+     * @param bmi Bmi object of the user
+     * @param foodList Food list of the user
+     */
+    public User(Bmi bmi, List<Food> foodList, Age age, Gender gender, IdealWeight ideal_weight) {
+        requireAllNonNull(bmi, foodList);
+        this.name = null;
+        this.bmi = bmi;
+        this.foodList = foodList;
+        this.age = age;
+        this.gender = gender;
+        this.ideal_weight = ideal_weight;
     }
 
     public Name getName() {
@@ -50,6 +70,14 @@ public class User {
 
     public Age getAge() {
         return this.age;
+    }
+
+    public Gender getGender() {
+        return this.gender;
+    }
+
+    public IdealWeight getIdealWeight() {
+        return this.ideal_weight;
     }
 
     /**

@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
 
 /**
  * The API of the Model component.
@@ -91,6 +92,16 @@ public interface Model {
      * @return string output of all the food items
      */
     String listFoodItem();
+
+    /**
+     * Adds the given user item.
+     */
+    void addUser(User user);
+
+    /**
+     * Checks whether user has been initialized
+     */
+    boolean hasUser();
 
     /**
      * Deletes the given person.

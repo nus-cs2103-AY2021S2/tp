@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddUserCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,6 +29,10 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
+    // Enforce user initialization
+    private static final String INITIALIZATION_ERROR_MESSAGE = "Please input your user information first,"
+            + " using the following command:\nbmi g/gender a/age h/height(cm) w/weight(kg) i/ideal_weight";
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -42,8 +47,19 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        if (model.hasUser()) {
+            Command command = addressBookParser.parseCommand(commandText);
+            commandResult = command.execute(model);
+        } else {
+            // Check if command is creating new user
+            Command command = addressBookParser.parseCommand(commandText);
+            if (command instanceof AddUserCommand) {
+                commandResult = command.execute(model);
+            } else {
+                // Prompt user to initialize user
+                commandResult = new CommandResult(INITIALIZATION_ERROR_MESSAGE, false, false);
+            }
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());

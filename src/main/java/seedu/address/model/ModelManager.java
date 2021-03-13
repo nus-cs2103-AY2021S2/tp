@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -187,6 +188,16 @@ public class ModelManager implements Model {
     @Override
     public String listFoodItem() {
         return addressBook.listFoodItem();
+    }
+
+    @Override
+    public void addUser(User user) {
+        addressBook.addUser(user);
+    }
+
+    @Override
+    public boolean hasUser() {
+        return addressBook.hasUser();
     }
 
 }
