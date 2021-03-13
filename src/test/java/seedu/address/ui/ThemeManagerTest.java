@@ -21,7 +21,8 @@ public class ThemeManagerTest {
 
     @Test
     public void themeManager_setTheme_success() {
-        Scene sceneStub = new Scene(new Group(), 300, 300, Color.BLACK);
+        Scene sceneStub = new Scene(new Group());
+        
         ThemeManager.init();
         ThemeManager.setScene(sceneStub);
         ThemeManager.applyThemeToScene();
