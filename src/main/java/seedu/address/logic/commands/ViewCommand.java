@@ -1,0 +1,38 @@
+package seedu.address.logic.commands;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.person.PersonTypePredicate;
+
+import static java.util.Objects.requireNonNull;
+
+public class ViewCommand extends Command {
+    public static final String COMMAND_WORD = "view";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": View all students or tutors.\n"
+            + "Parameters: STUDENT or TUTOR\n"
+            + "Example: " + COMMAND_WORD + " STUDENT";
+
+    public static final String MESSAGE_SUCCESS = "Displayed all relevant persons.";
+    private final PersonTypePredicate predicate;
+
+    public ViewCommand(PersonTypePredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    @Override
+    public CommandResult execute(Model model) {
+        requireNonNull(model);
+        model.updateFilteredPersonList(predicate);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && predicate.equals(((ViewCommand) other).predicate)); // state check
+    }
+}
