@@ -5,7 +5,6 @@ import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseFailu
 import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
