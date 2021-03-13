@@ -168,7 +168,7 @@ Retrieves previously entered input.
 * Pressing `Up` arrow key in the text input panel reverts to eariler input.
 * Pressing `Down` arrow key undoes the history revert.
 * At the most recent input, `Down` arrow key once more clears the text box.
-* `ESC` key clears the text box for a new entry.
+* `ESC` key clears the text box.
 
 ### Coming Soon (Additional Features)
 * Add/Edit/Delete Modules and Tasks/Deliverables

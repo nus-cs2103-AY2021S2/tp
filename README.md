@@ -4,10 +4,10 @@
 * PartyPlanet is a desktop app for managing contacts, birthdays, and celebration plans<br>
   Example usages:
   * Keep track of friends' contacts/birthdays
-  * Record important details to organise birthday celebrations easily
+  * Record down important details to organise birthday celebrations easily
   * Quickly access contacts with upcoming birthdays
 
-* It is named `PartyPlanet` because the it will help you plan a party that’s **out of this world!**
+* It is named `PartyPlanet` because it will help you plan a party that’s **out of this world!**
 * For new users keen to start using PartyPlanet, check out the **[User Guide](docs/UserGuide.md)**.
 * For the detailed documentation of this project, see the **[Developer Guide](docs/DeveloperGuide.md)**.
 
