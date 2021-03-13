@@ -1,8 +1,11 @@
 package seedu.address.model.task.repeatable;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.time.LocalDate;
 
@@ -10,8 +13,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
+import seedu.address.testutil.EventBuilder;
 
 public class EventTest {
+
+    private static final Event TUTORIAL = new EventBuilder().withDescription("CS2106 Tutorial")
+            .withAtDate(LocalDate.of(2020, 01, 01)).withInterval(Interval.WEEKLY).build();
+    private static final Event LAB = new EventBuilder().withDescription("CS2030S Lab")
+            .withAtDate(LocalDate.of(2021, 01, 03)).withInterval(Interval.DAILY).build();
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -51,8 +60,41 @@ public class EventTest {
         assertFalse(Deadline.isValidDescription(" ")); // spaces only
 
         // valid description
-        assertTrue(Deadline.isValidDescription("Blk 456, Den Road, #01-355"));
+        assertTrue(Deadline.isValidDescription("Tutorial, CS2106, #01-355"));
         assertTrue(Deadline.isValidDescription("-")); // one character
-        assertTrue(Deadline.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
+        assertTrue(Deadline.isValidDescription("Lab; Com1; 123456; SINGAPORE"));
+    }
+
+    @Test
+    public void equals() {
+        // same values -> returns true
+        Event tutorialCopy = new EventBuilder(TUTORIAL).build();
+        assertEquals(TUTORIAL, tutorialCopy);
+
+        // same object -> returns true
+        assertEquals(TUTORIAL, TUTORIAL);
+
+        // null -> returns false
+        assertNotEquals(TUTORIAL, null);
+
+        // different type -> returns false
+        assertNotEquals(TUTORIAL, 5);
+
+        // different event -> returns false
+        assertNotEquals(LAB, TUTORIAL);
+
+        // different name -> returns false
+        Event editedTutorial = new EventBuilder(TUTORIAL).withDescription("NOT TUTORIAL").build();
+        assertNotEquals(editedTutorial, TUTORIAL);
+
+        // different interval -> returns false
+        editedTutorial = new EventBuilder(TUTORIAL).withInterval(Interval.NONE).build();
+        assertNotEquals(editedTutorial, ALICE);
+
+        // different by date -> returns false
+        editedTutorial = new EventBuilder(TUTORIAL)
+                .withAtDate(LocalDate.of(2019, 01, 01)).build();
+        assertNotEquals(editedTutorial, ALICE);
+
     }
 }
