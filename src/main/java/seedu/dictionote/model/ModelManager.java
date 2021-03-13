@@ -101,14 +101,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getDictionaryBookFilePath() {
-        return userPrefs.getDictionaryBookFilePath();
+    public Path getDictionaryFilePath() {
+        return userPrefs.getDictionaryFilePath();
     }
 
     @Override
-    public void setDictionaryBookFilePath(Path dictionaryBookFilePath) {
-        requireNonNull(dictionaryBookFilePath);
-        userPrefs.setAddressBookFilePath(dictionaryBookFilePath);
+    public void setDictionaryFilePath(Path dictionaryFilePath) {
+        requireNonNull(dictionaryFilePath);
+        userPrefs.setAddressBookFilePath(dictionaryFilePath);
     }
 
     //=========== NoteBook ===================================================================================
@@ -146,6 +146,11 @@ public class ModelManager implements Model {
     public boolean hasContent(Content content) {
         requireNonNull(content);
         return dictionary.hasContent(content);
+    }
+
+    @Override
+    public ReadOnlyDictionary getDictionary() {
+        return null;
     }
 
     //=========== AddressBook ================================================================================

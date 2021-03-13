@@ -15,6 +15,6 @@ public interface ReadOnlyUserPrefs {
 
     Path getNoteBookFilePath();
 
-    Path getDictionaryBookFilePath();
+    Path getDictionaryFilePath();
 
 }

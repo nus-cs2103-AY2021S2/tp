@@ -68,7 +68,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         NoteBookStorage noteBookStorage = new JsonNoteBookStorage(userPrefs.getNoteBookFilePath());
-        DictionaryStorage dictionaryStorage = new JsonDictionaryStorage(userPrefs.getDictionaryBookFilePath());
+        DictionaryStorage dictionaryStorage = new JsonDictionaryStorage(userPrefs.getDictionaryFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage, dictionaryStorage);
 
         initLogging(config);
