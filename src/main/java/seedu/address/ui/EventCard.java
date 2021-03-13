@@ -10,9 +10,9 @@ import seedu.address.model.task.repeatable.Event;
 /**
  * An UI component that displays information of an {@code Event}.
  */
-public class EventDisplayCard extends UiPart<Region> {
+public class EventCard extends UiPart<Region> {
 
-    private static final String FXML = "EventDisplayCard.fxml";
+    private static final String FXML = "EventCard.fxml";
 
     public final Event event;
 
@@ -28,9 +28,9 @@ public class EventDisplayCard extends UiPart<Region> {
     private Label date;
 
     /**
-     * Creates a {@code EventDisplayCard} with the given {@code Event} and index to display.
+     * Creates a {@code EventCard} with the given {@code Event} and index to display.
      */
-    public EventDisplayCard(Event event, int displayedIndex) {
+    public EventCard(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
         id.setText(displayedIndex + ". ");
@@ -47,12 +47,12 @@ public class EventDisplayCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EventDisplayCard)) {
+        if (!(other instanceof EventCard)) {
             return false;
         }
 
         // state check
-        EventDisplayCard card = (EventDisplayCard) other;
+        EventCard card = (EventCard) other;
         return id.getText().equals(card.id.getText())
                 && event.equals(card.event);
     }

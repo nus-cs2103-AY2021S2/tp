@@ -42,6 +42,14 @@ public class EventList {
         return events.stream();
     }
 
+    /**
+     * Returns {@code events} as an {@code ObservableList<Event>}
+     * @return An {@code ObservableList<Event>}
+     */
+    public ObservableList<Event> getAsObservableList() {
+        return FXCollections.observableList(events);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -54,11 +62,4 @@ public class EventList {
         return events.hashCode();
     }
 
-    /**
-     * Returns {@code events as an {@code ObservableList<Event>}}
-     * @return An {@code ObservableList<Event>}
-     */
-    public ObservableList<Event> getAsObservableList() {
-        return FXCollections.observableList(events);
-    }
 }

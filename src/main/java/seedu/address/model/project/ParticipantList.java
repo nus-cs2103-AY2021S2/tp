@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.repeatable.Event;
 
 public class ParticipantList {
 
@@ -38,6 +41,14 @@ public class ParticipantList {
      */
     public Stream<Person> stream() {
         return participants.stream();
+    }
+
+    /**
+     * Returns {@code participants} as a {@code ObservableList<Person>}
+     * @return An {@code ObservableList<Person>}
+     */
+    public ObservableList<Person> getAsObservableList() {
+        return FXCollections.observableList(participants);
     }
 
     @Override

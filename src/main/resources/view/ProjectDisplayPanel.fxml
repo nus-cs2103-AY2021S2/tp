@@ -22,6 +22,11 @@
           <AnchorPane/>
         </content>
       </Tab>
+      <Tab text="Participants">
+        <content>
+          <ListView fx:id="participantListView"/>
+        </content>
+      </Tab>
     </tabs>
   </TabPane>
   <styleClass>
