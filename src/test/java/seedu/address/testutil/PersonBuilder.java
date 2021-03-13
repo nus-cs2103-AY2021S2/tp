@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Review;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,12 +18,12 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_RATING = "3";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_REVIEW = "I like this food!";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Rating rating;
-    private Email email;
+    private Review review;
     private Address address;
     private Set<Tag> tags;
 
@@ -33,7 +33,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         rating = new Rating(DEFAULT_RATING);
-        email = new Email(DEFAULT_EMAIL);
+        review = new Review(DEFAULT_REVIEW);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         rating = personToCopy.getRating();
-        email = personToCopy.getEmail();
+        review = personToCopy.getReview();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -82,15 +82,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Review} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withReview(String review) {
+        this.review = new Review(review);
         return this;
     }
 
     public Person build() {
-        return new Person(name, rating, email, address, tags);
+        return new Person(name, rating, review, address, tags);
     }
 
 }

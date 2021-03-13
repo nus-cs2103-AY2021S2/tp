@@ -55,7 +55,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority| As a …​                                                       | I want to …​                                  | So that I can…​                                             |
 | ------- | ---------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------- |
-| `* * *` | User wanting to add a food experience to a particular restaurant | Add a food experience                            | refer back to the particular element that defined my food experience  |
+| `* * *` | User wanting to add a review of food experience to a particular restaurant | Add a review of food experience                  | refer back to the particular element that defined my food experience  |
 | `* * *` | User with little patience and time                               | Add names of places I have visited               | efficiently add a review to a place I have visited               |
 | `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had          | easily show them to my friends              |
 | `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before         | decide where I shall re-visit                                          |
