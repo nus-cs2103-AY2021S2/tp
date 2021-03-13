@@ -24,8 +24,7 @@ public class ThemeManagerTest {
             .readString(Path.of("src/test/data/ThemeTest/default.template.css")));
         assertEquals(ThemeFactory.getDefaultTheme(), ThemeManager.getTheme());
         assertEquals("src/test/data/ThemeTest/valid.theme.json", ThemeManager.getThemePath());
-        String cssCacheUri = ThemeManager.getCssCacheUri().replace("file:///", "");
-        String cssCache = assertDoesNotThrow(() -> Files.readString(Path.of(cssCacheUri)));
+        String cssCache = assertDoesNotThrow(() -> Files.readString(Path.of(ThemeManager.getCssCacheUri())));
         assertEquals(defaultCss.replaceAll("\\s", ""), cssCache.replaceAll("\\s", ""));
     }
 

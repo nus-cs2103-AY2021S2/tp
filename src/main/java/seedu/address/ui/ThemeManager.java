@@ -103,7 +103,7 @@ public class ThemeManager {
      */
     public static void applyThemeToScene() {
         ThemeManager.scene.getStylesheets().clear();
-        ThemeManager.scene.getStylesheets().add(ThemeManager.cssCacheUri);
+        ThemeManager.scene.getStylesheets().add("file:///" + ThemeManager.cssCacheUri);
     }
 
     /**
@@ -151,7 +151,7 @@ public class ThemeManager {
         BufferedWriter out = new BufferedWriter(new FileWriter(temp));
         out.write(cssString);
         out.close();
-        return "file:///" + temp.getAbsolutePath().replace(File.separator, "/");
+        return temp.getAbsolutePath().replace(File.separator, "/");
     }
 
 }
