@@ -7,10 +7,28 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import com.sun.javafx.scene.traversal.SceneTraversalEngine;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class ThemeManagerTest {
+
+    public class TestGUI extends Application {
+
+        public Scene scene;
+
+        @Override
+        public void start(Stage primaryStage) throws Exception {
+            Group group = new Group();
+            this.scene = new Scene(group);
+            primaryStage.setScene(scene);
+        }
+    }
 
     @Test
     public void themeManager_init_success() {
@@ -18,20 +36,4 @@ public class ThemeManagerTest {
         assertEquals(ThemeManager.getTheme(), ThemeFactory.getDefaultTheme());
     }
 
-    @Test
-    public void themeManager_setTheme_success() {
-        VBox vBox = new VBox();
-        Scene sceneStub = new Scene(vBox);
-        ThemeManager.init();
-        ThemeManager.setScene(sceneStub);
-        ThemeManager.applyThemeToScene();
-        try {
-            String defaultCss = Files.readString(Paths.get("src/test/data/ThemeTest/default.template.css"));
-            System.out.println(sceneStub.getStylesheets().get(0).substring(8));
-            String tempCss = Files.readString(Paths.get(sceneStub.getStylesheets().get(0).substring(5)));
-            assertEquals(defaultCss, tempCss);
-        } catch (Exception e) {
-            System.out.println("err:" + e.toString());
-        }
-    }
 }

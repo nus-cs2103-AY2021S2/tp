@@ -16,10 +16,17 @@ import seedu.address.MainApp;
  * Class for managing the theme of the application. Stores data on what theme is currently being applied.
  */
 public class ThemeManager {
+
     /**
      * Template of the css used by the application.
      */
-    private static String cssTemplate;
+    private static final String CSS_TEMPLATE;
+
+    static {
+        InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
+        CSS_TEMPLATE = new BufferedReader(new InputStreamReader(templateStream))
+            .lines().collect(Collectors.joining("\n"));
+    }
 
     /**
      * Current theme used by the application
@@ -34,7 +41,7 @@ public class ThemeManager {
     /**
      * Path of the css file currently in use
      */
-    private static String cssCacheUrl = null;
+    private static String cssCacheUri = null;
 
     /**
      * The mainScene property from a MainWindow instance.
@@ -46,10 +53,7 @@ public class ThemeManager {
      */
     public static void init() {
         ThemeManager.theme = ThemeFactory.getDefaultTheme();
-        InputStream templateStream = MainApp.class.getResourceAsStream("/view/Template.css");
-        ThemeManager.cssTemplate = new BufferedReader(new InputStreamReader(templateStream))
-            .lines().collect(Collectors.joining("\n"));
-        updateCss();
+        ThemeManager.cssCacheUri = getNewCssCacheUri(ThemeManager.theme);
     }
 
     /**
@@ -88,39 +92,62 @@ public class ThemeManager {
     public static void setTheme(Theme newTheme, String themePath) {
         ThemeManager.theme = newTheme;
         ThemeManager.themePath = themePath;
-        ThemeManager.updateCss();
+        String newCssCache = getNewCssCacheUri(newTheme);
+        if (newCssCache != null) {
+            ThemeManager.cssCacheUri = getNewCssCacheUri(newTheme);
+        }
     }
 
-    public static String getCssCacheUrl() {
-        return ThemeManager.cssCacheUrl;
+    public static String getCssCacheUri() {
+        return ThemeManager.cssCacheUri;
     }
 
     /**
-     * Updates the css and css file to be used by the application.
+     * Returns the URI of the updated CSS cache.
      *
-     * @return true if the update was successful otherwise false.
+     * @return URI of the updated CSS cache.
      */
-    private static boolean updateCss() {
-        String cssString = ThemeManager.cssTemplate;
+    private static String getNewCssCacheUri(Theme theme) {
+        String cssString = generateCssFromTheme(theme);
+        try {
+            return createCssCacheFile(cssString);
+        } catch (IOException ioException) {
+            return null;
+        }
+    }
+
+    /**
+     * Generates CSS based on theme given.
+     *
+     * @param theme The theme to be used.
+     * @return cssTemplate with colors assigned.
+     */
+    private static String generateCssFromTheme(Theme theme) {
+        String cssString = ThemeManager.CSS_TEMPLATE;
         cssString = cssString
-            .replaceAll("\\$foreground", ThemeManager.theme.foreground)
-            .replaceAll("\\$background", ThemeManager.theme.background);
+            .replaceAll("\\$foreground", theme.foreground)
+            .replaceAll("\\$background", theme.background);
         for (int i = 0; i < 16; i++) {
             cssString = cssString
-                .replaceAll("\\$c" + Integer.toHexString(i), ThemeManager.theme.color[i]);
+                .replaceAll("\\$c" + Integer.toHexString(i), theme.color[i]);
         }
-        try {
-            File temp = File.createTempFile("current", ".tmp");
-            temp.deleteOnExit();
-            System.out.println(temp.getPath());
-            BufferedWriter out = new BufferedWriter(new FileWriter(temp));
-            out.write(cssString);
-            out.close();
-            ThemeManager.cssCacheUrl = "file:///" + temp.getAbsolutePath().replace(File.separator, "/");
-        } catch (IOException ioException) {
-            return false;
-        }
-        return true;
+        return cssString;
+    }
+
+    /**
+     * Creates a temporary file containing the given CSS.
+     *
+     * @param cssString CSS to be written to the file.
+     * @return The temp file location.
+     * @throws IOException The file cannot be created/written to.
+     */
+    private static String createCssCacheFile(String cssString) throws IOException {
+        File temp = File.createTempFile("current", ".tmp");
+        temp.deleteOnExit();
+        BufferedWriter out = new BufferedWriter(new FileWriter(temp));
+        out.write(cssString);
+        out.close();
+        return "file:///" + temp.getAbsolutePath().replace(File.separator, "/");
     }
 
     /**
@@ -128,6 +155,6 @@ public class ThemeManager {
      */
     public static void applyThemeToScene() {
         ThemeManager.scene.getStylesheets().clear();
-        ThemeManager.scene.getStylesheets().add(ThemeManager.cssCacheUrl);
+        ThemeManager.scene.getStylesheets().add(ThemeManager.cssCacheUri);
     }
 }
