@@ -1,6 +1,4 @@
-package seedu.address.model.task.todo;
-
-import seedu.address.model.task.deadline.Deadline;
+package seedu.address.model.task.deadline;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,9 +15,9 @@ public class DeadlineTest {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
         assertThrows(NullPointerException.class, () -> new Deadline(null, validDate));
         assertThrows(NullPointerException.class, () -> new Deadline("test", null));
-        assertThrows(NullPointerException.class, () -> new Deadline(null, false, validDate));
-        assertThrows(NullPointerException.class, () -> new Deadline("test", null, validDate));
-        assertThrows(NullPointerException.class, () -> new Deadline("test", false, null));
+        assertThrows(NullPointerException.class, () -> new Deadline(null, validDate, false));
+        assertThrows(NullPointerException.class, () -> new Deadline("test", validDate, null));
+        assertThrows(NullPointerException.class, () -> new Deadline("test", null, false));
     }
 
     @Test
@@ -27,10 +25,10 @@ public class DeadlineTest {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
         String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, false, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription, validDate, false));
         String invalidDescription2 = " ";
         assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, validDate));
-        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, false, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDescription2, validDate, false));
     }
 
     @Test

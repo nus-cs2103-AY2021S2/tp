@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.Interval;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.todo.Todo;
 import seedu.address.model.task.repeatable.Event;
 
@@ -44,16 +46,22 @@ public class ProjectTest {
         events.add(event);
         EventList eventList = new EventList(events);
 
-        CompletableTodo completableTodo = new Todo("Test Description");
-        ArrayList<CompletableTodo> completableTodos = new ArrayList<>();
-        completableTodos.add(completableTodo);
-        DeadlineList deadlineList = new DeadlineList(completableTodos);
+        Todo todo = new Todo("Test Description");
+        ArrayList<CompletableTodo> todos = new ArrayList<>();
+        todos.add(todo);
+        TodoList todoList = new TodoList(todos);
+
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
+        Deadline deadline = new Deadline("Test Description", validDate);
+        ArrayList<CompletableDeadline> deadlines = new ArrayList<>();
+        deadlines.add(deadline);
+        DeadlineList deadlineList = new DeadlineList(deadlines);
 
         ArrayList<Person> participants = new ArrayList<>();
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
 
-        assertDoesNotThrow(() -> new Project(name, eventList, deadlineList, participantList));
+        assertDoesNotThrow(() -> new Project(name, eventList, todoList, deadlineList, participantList));
     }
 
     @Test
