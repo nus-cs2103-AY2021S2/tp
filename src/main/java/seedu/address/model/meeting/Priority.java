@@ -11,9 +11,11 @@ public class Priority {
 
     public static final String MESSAGE_CONSTRAINTS = "Priority can only vary from 1 to 5.";
 
+    public static final String VALIDATION_REGEX = "^[1-5]*$";
+
     public final int priority;
 
-    public static final String VALIDATION_REGEX = "^[1-5]*$";
+
 
     /**
      * Constructs an {@code Priority}.

@@ -1,5 +1,6 @@
 package seedu.address.model.meeting;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -7,7 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,7 +32,8 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Name name, DateTime start, DateTime terminate, Priority priority, Description description, Set<Tag> tags) {
+    public Meeting(Name name, DateTime start, DateTime terminate, Priority priority,
+                   Description description, Set<Tag> tags) {
         requireAllNonNull(name, start, terminate, priority, description, tags);
         checkArgument(isValidStartTerminate(start, terminate), MESSAGE_CONSTRAINTS);
         this.name = name;
