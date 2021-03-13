@@ -7,16 +7,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddFoodIntakeCommand;
 import seedu.address.logic.commands.AddFoodItemCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteFoodIntakeCommand;
 import seedu.address.logic.commands.DeleteFoodItemCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListFoodItemCommand;
+import seedu.address.logic.commands.QueryFoodIntakeCommand;
 import seedu.address.logic.commands.UpdateFoodItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -80,6 +83,14 @@ public class AddressBookParser {
         case ListFoodItemCommand.COMMAND_WORD:
             return new ListFoodItemCommand();
 
+        case AddFoodIntakeCommand.COMMAND_WORD:
+            return new AddFoodIntakeCommandParser().parse(arguments);
+
+        case DeleteFoodIntakeCommand.COMMAND_WORD:
+            return new DeleteFoodIntakeCommandParser().parse(arguments);
+
+        case QueryFoodIntakeCommand.COMMAND_WORD:
+            return new QueryFoodIntakeCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -14,6 +14,8 @@ public class CliSyntax {
 
     /* Prefix definitions for Food */
     public static final Prefix PREFIX_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_DATE_FROM = new Prefix("df/");
+    public static final Prefix PREFIX_DATE_TO = new Prefix("dt/");
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_CARBOS = new Prefix("c/");
     public static final Prefix PREFIX_FATS = new Prefix("f/");

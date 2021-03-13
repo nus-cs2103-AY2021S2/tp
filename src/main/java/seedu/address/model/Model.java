@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 
@@ -54,9 +56,7 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns the UniqueFoodList */
-    UniqueFoodList getUniqueFoodList();
-
+    //=========== UnqiueFoodList Accessors =============================================================
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -67,6 +67,14 @@ public interface Model {
      */
     boolean hasFoodItem(Food food);
 
+    /**
+     * Lists all food items from the food items list.
+     *
+     * @return string output of all the food items
+     */
+    String listFoodItem();
+
+    //=========== UnqiueFoodList Setters ==============================================================
     /**
      * Adds the given food item.
      * {@code food} must not already exist in the food list.
@@ -85,13 +93,26 @@ public interface Model {
      */
     void deleteFoodItem(int index);
 
-    /**
-     * Lists all food items from the food items list.
-     *
-     * @return string output of all the food items
-     */
-    String listFoodItem();
+    /** Returns the UniqueFoodList */
+    UniqueFoodList getUniqueFoodList();
 
+    //=========== FoodIntakeList Setters ==============================================================
+
+    /**
+     * Adds the food consumed on the day to the food intake list.
+     * @param date date of intake
+     * @param food food object
+     */
+    void addFoodIntake(LocalDate date, Food food);
+
+    //=========== FoodIntakeList Getters ==============================================================
+
+    /**
+     * Gets Food intake list.
+     *
+     * @return food intake list
+     */
+    FoodIntakeList getFoodIntakeList();
     /**
      * Deletes the given person.
      * The person must exist in the address book.

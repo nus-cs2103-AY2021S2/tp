@@ -2,10 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntake;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -16,13 +20,19 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private static final String DATE_FORMAT = "d MMM yyyy";
+
     private final UniquePersonList persons;
 
     private UniqueFoodList foodList;
+
+    private FoodIntakeList foodIntakeList;
     //Used to have an old comment here, removed due to checkstyle error. Refer to old template for more.
     {
         persons = new UniquePersonList();
         foodList = new UniqueFoodList();
+        foodIntakeList = new FoodIntakeList(LocalDate.parse("11 Mar 2021",
+                DateTimeFormatter.ofPattern(DATE_FORMAT)));
     }
 
     public AddressBook() {
@@ -72,6 +82,58 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addPerson(Person p) {
+        persons.add(p);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setPerson(Person target, Person editedPerson) {
+        requireNonNull(editedPerson);
+
+        persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removePerson(Person key) {
+        persons.remove(key);
+    }
+
+    //// util methods
+
+    @Override
+    public String toString() {
+        return persons.asUnmodifiableObservableList().size() + " persons";
+        // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddressBook // instanceof handles nulls
+                && persons.equals(((AddressBook) other).persons));
+    }
+
+    @Override
+    public int hashCode() {
+        return persons.hashCode();
     }
 
     /**
@@ -130,55 +192,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds food intake object into the food intake list.
+     *
+     * @param date date of food intake object
+     * @param food food item of food intake object
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addFoodIntake(LocalDate date, Food food) {
+        foodIntakeList.addFoodIntake(new FoodIntake(date, food));
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Returns the FoodIntakeList instance.
+     * @return FoodIntakeList instance
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
-    }
-
-    //// util methods
-
-    @Override
-    public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
-    }
-
-    @Override
-    public int hashCode() {
-        return persons.hashCode();
+    public FoodIntakeList getFoodIntakeList() {
+        return foodIntakeList;
     }
 
 
