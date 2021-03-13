@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
@@ -20,7 +20,8 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, UiCommand uiCommand) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
+        requireAllNonNull(feedbackToUser, uiCommand);
+        this.feedbackToUser = feedbackToUser;
         this.uiCommand = uiCommand;
     }
 
@@ -45,7 +46,7 @@ public class CommandResult {
      * @return true if UiCommand is not {@code UiCommand.NONE}
      */
     public boolean hasUiCommand() {
-        return uiCommand != UiCommand.NONE;
+        return getUiCommand() != UiCommand.NONE;
     }
 
     @Override

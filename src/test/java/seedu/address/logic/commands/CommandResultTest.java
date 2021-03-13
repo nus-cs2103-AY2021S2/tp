@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,29 @@ import org.junit.jupiter.api.Test;
 import seedu.address.ui.UiCommand;
 
 public class CommandResultTest {
+    @Test
+    public void hasUiCommand_commandPresent_assertTrue() {
+        CommandResult commandResultHelp = new CommandResult("test", UiCommand.OPEN_HELP_WINDOW);
+        CommandResult commandResultExit = new CommandResult("test", UiCommand.EXIT_APPLICATION);
+
+        assertTrue(commandResultHelp.hasUiCommand());
+        assertTrue(commandResultExit.hasUiCommand());
+    }
+
+    @Test
+    public void hasUiCommand_commandNotPresent_assertTrue() {
+        CommandResult commandResultNone = new CommandResult("test", UiCommand.NONE);
+
+        assertFalse(commandResultNone.hasUiCommand());
+    }
+
+    @Test
+    public void constructor_nullValues_throwsException() {
+        assertThrows(NullPointerException.class, () -> new CommandResult(null, null));
+        assertThrows(NullPointerException.class, () -> new CommandResult("test", null));
+        assertThrows(NullPointerException.class, () -> new CommandResult(null, UiCommand.NONE));
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
