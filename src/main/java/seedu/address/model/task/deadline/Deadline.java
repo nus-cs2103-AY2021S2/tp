@@ -1,7 +1,5 @@
 package seedu.address.model.task.deadline;
 
-import static java.util.Objects.requireNonNull;
-
 import java.time.LocalDate;
 import java.util.Objects;
 

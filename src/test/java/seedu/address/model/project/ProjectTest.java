@@ -17,8 +17,8 @@ import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.Interval;
 import seedu.address.model.task.deadline.Deadline;
-import seedu.address.model.task.todo.Todo;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.todo.Todo;
 
 public class ProjectTest {
 

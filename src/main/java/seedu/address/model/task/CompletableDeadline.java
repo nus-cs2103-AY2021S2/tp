@@ -79,7 +79,6 @@ public abstract class CompletableDeadline {
 
     /**
      * Returns the CompletableDeadline description.
-     * @return A String representing the CompletableDeadline description.
      */
     public void setDescription(String description) {
         requireNonNull(description);

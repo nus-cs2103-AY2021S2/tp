@@ -47,8 +47,8 @@ class JsonAdaptedDeadline {
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public CompletableDeadline toModelType() throws IllegalValueException {
-            LocalDate date = parseDate(by);
-            return new Deadline(description,date ,isDone);
+        LocalDate date = parseDate(by);
+        return new Deadline(description, date , isDone);
     }
 
     private LocalDate parseDate(String date) throws IllegalValueException {

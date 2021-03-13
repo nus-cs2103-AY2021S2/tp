@@ -61,7 +61,6 @@ public abstract class CompletableTodo {
 
     /**
      * Returns the CompletableTodo description.
-     * @return A String representing the CompletableTodo description.
      */
     public void setDescription(String description) {
         requireNonNull(description);

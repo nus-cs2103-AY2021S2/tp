@@ -1,12 +1,12 @@
 package seedu.address.model.project;
 
-import seedu.address.model.task.CompletableTodo;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.task.CompletableTodo;
 
 /**
  * Represents a list of Todos.
