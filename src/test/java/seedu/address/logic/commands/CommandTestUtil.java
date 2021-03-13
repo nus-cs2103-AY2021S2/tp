@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.ui.UiCommand;
 
 /**
  * Contains helper methods for testing commands.
@@ -92,6 +93,16 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage} and a {@code uiCommand}.
+     */
+    public static void assertCommandSuccessWithUiCommand(Command command, Model actualModel, String expectedMessage,
+            UiCommand uiCommand, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, uiCommand);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

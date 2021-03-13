@@ -165,14 +165,14 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Shows projects tab.
      */
-    public void showProjectsTab() {
+    public void handleShowProjectsTab() {
         tabPane.getSelectionModel().select(0);
     }
 
     /**
      * Shows contacts tab.
      */
-    public void showContactsTab() {
+    public void handleShowContactsTab() {
         tabPane.getSelectionModel().select(1);
     }
 
@@ -222,6 +222,12 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case OPEN_HELP_WINDOW:
             handleHelp();
+            break;
+        case SHOW_CONTACTS:
+            handleShowContactsTab();
+            break;
+        case SHOW_PROJECTS:
+            handleShowProjectsTab();
             break;
         default:
             assert false : "Command result should not be invalid";
