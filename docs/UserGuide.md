@@ -132,11 +132,26 @@ Format: `deleteStud /MATRICULATION NUMBER`
 Examples:
 * `deleteStud /A7654321J` deletes Betsy Crowe from the records.
 
-### Clearing all student entries : `clear`
+### Viewing statistics: `stats`
 
-Clears all entries from the records.
+Displays the statistics of the requested Faculty/School Residence, the whole of NUS or statistics of all Faculties
+and School Residences. 
 
-Format: `clear`
+Format: <br>
+`stats /FACULTY`
+`stats /SCHOOL_RESIDENCE`
+`stats NUS`
+`stats all`
+
+* If there is no available data for the requested Faculty or School Residence, an message will be displayed to inform
+  users that the requested Faculty or School Residence has no available data.
+  
+
+Examples:
+* `stats /COM` displays the percentage of vaccinated students in School of Computing.
+* `stats /RC4` displays the percentage of vaccinated students in RC4.
+* `stats NUS` displays the percentage of vaccinated students in NUS.
+* `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
 
 ### Exiting the program : `exit`
 
@@ -182,3 +197,4 @@ _Details coming soon ..._
 **List Students** | `list students`
 **Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
 **Delete Student** | `deleteStud /MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`
+**View Statistics** | `stats /FACULTY` e.g., `stats COM` <br> `stats /SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
