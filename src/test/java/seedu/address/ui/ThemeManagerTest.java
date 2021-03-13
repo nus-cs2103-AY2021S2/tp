@@ -7,8 +7,8 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 
 public class ThemeManagerTest {
 
@@ -20,9 +20,8 @@ public class ThemeManagerTest {
 
     @Test
     public void themeManager_setTheme_success() {
-        Group root = new Group();
-        Scene sceneStub = new Scene(root);
-
+        VBox vBox  = new VBox();
+        Scene sceneStub = new Scene(vBox);
         ThemeManager.init();
         ThemeManager.setScene(sceneStub);
         ThemeManager.applyThemeToScene();
