@@ -137,15 +137,39 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dictionaryContent} into a {@code String}.
+     * Parses a {@code String week} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code note} is invalid.
+     * @throws ParseException if the given {@code week} is invalid.
      */
-    public static String parseContent(String dictionaryContent) throws ParseException {
-        requireNonNull(dictionaryContent);
-        String trimmedName = dictionaryContent.trim();
-        return trimmedName;
+    public static String parseWeek(String week) throws ParseException {
+        requireNonNull(week);
+        String trimmedWeek = week.trim();
+        return trimmedWeek;
+    }
+
+    /**
+     * Parses a {@code String header} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code header} is invalid.
+     */
+    public static String parseHeader(String header) throws ParseException {
+        requireNonNull(header);
+        String trimmedHeader = header.trim();
+        return trimmedHeader;
+    }
+
+    /**
+     * Parses a {@code String maincontent} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code maincontent} is invalid.
+     */
+    public static String parseMainContent(String maincontent) throws ParseException {
+        requireNonNull(maincontent);
+        String trimmedMainContent = maincontent.trim();
+        return trimmedMainContent;
     }
 
     /** Parses a {@code String option} into a {@code UiOptionAction}.

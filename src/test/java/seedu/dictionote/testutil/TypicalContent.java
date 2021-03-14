@@ -13,9 +13,9 @@ import seedu.dictionote.model.dictionary.Content;
  */
 public class TypicalContent {
 
-    public static final Content WEEK_1 = new Content("OOP programming");
-    public static final Content WEEK_14 = new Content("Reading Week!");
-    public static final Content WEEK_16 = new Content("Congrats you're done with the module!");
+    public static final Content WEEK_1 = new Content("Week 1\n", "OOP\n", "some content\n");
+    public static final Content WEEK_14 = new Content("Week 14\n", "Reading week!\n", "revision\n");
+    public static final Content WEEK_16 = new Content("Week 16\n", "Exams week\n","Congrats you're done with the module!\n");
 
     private TypicalContent() {} // prevents instantiation
 

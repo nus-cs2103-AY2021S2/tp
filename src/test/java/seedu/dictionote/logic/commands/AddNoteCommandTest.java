@@ -191,6 +191,11 @@ public class AddNoteCommandTest {
         }
 
         @Override
+        public void addContent(Content content) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Content> getFilteredContentList() {
             throw new AssertionError("This method should not be called.");
         }
