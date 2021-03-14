@@ -2,10 +2,10 @@ package seedu.storemando.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.storemando.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.storemando.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
+import static seedu.storemando.logic.commands.CommandTestUtil.DESC_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.DESC_CHEESE;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -53,11 +53,11 @@ public class EditCommandTest {
         Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
         Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
         ItemBuilder itemInList = new ItemBuilder(lastItem);
-        Item editedItem = itemInList.withName(VALID_NAME_BOB).withQuantity(VALID_QUANTITY_BOB)
+        Item editedItem = itemInList.withName(VALID_NAME_BANANA).withQuantity(VALID_QUANTITY_BANANA)
             .withTags(VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BOB)
-            .withQuantity(VALID_QUANTITY_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA)
+            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
@@ -80,9 +80,9 @@ public class EditCommandTest {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
 
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BOB).build();
+        Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BANANA).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
-            new EditItemDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
@@ -162,7 +162,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidItemIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
-        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
@@ -180,17 +180,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStoreMando().getItemList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-            new EditItemDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ITEM, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ITEM, DESC_CHEESE);
 
         // same values -> returns true
-        EditItemDescriptor copyDescriptor = new EditCommand.EditItemDescriptor(DESC_AMY);
+        EditItemDescriptor copyDescriptor = new EditCommand.EditItemDescriptor(DESC_CHEESE);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ITEM, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -204,10 +204,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ITEM, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ITEM, DESC_CHEESE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ITEM, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ITEM, DESC_BANANA)));
     }
 
 }

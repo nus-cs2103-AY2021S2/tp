@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.ALICE;
-import static seedu.storemando.testutil.TypicalItems.BENSON;
+import static seedu.storemando.testutil.TypicalItems.BREAD;
+import static seedu.storemando.testutil.TypicalItems.MILK;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasItem_itemNotInStoreMando_returnsFalse() {
-        assertFalse(modelManager.hasItem(ALICE));
+        assertFalse(modelManager.hasItem(MILK));
     }
 
     @Test
     public void hasItem_itemInStoreMando_returnsTrue() {
-        modelManager.addItem(ALICE);
-        assertTrue(modelManager.hasItem(ALICE));
+        modelManager.addItem(MILK);
+        assertTrue(modelManager.hasItem(MILK));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        StoreMando storeMando = new StoreMandoBuilder().withItem(ALICE).withItem(BENSON).build();
+        StoreMando storeMando = new StoreMandoBuilder().withItem(MILK).withItem(BREAD).build();
         StoreMando differentStoreMando = new StoreMando();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentStoreMando, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getItemName().fullName.split("\\s+");
+        String[] keywords = MILK.getItemName().fullName.split("\\s+");
         modelManager.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(keywords), false));
         assertFalse(modelManager.equals(new ModelManager(storeMando, userPrefs)));
 

@@ -3,9 +3,9 @@ package seedu.storemando.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.storemando.testutil.Assert.assertThrows;
-import static seedu.storemando.testutil.TypicalItems.ALICE;
-import static seedu.storemando.testutil.TypicalItems.HOON;
-import static seedu.storemando.testutil.TypicalItems.IDA;
+import static seedu.storemando.testutil.TypicalItems.CHAIR;
+import static seedu.storemando.testutil.TypicalItems.MILK;
+import static seedu.storemando.testutil.TypicalItems.TOOTHBRUSH;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.io.IOException;
@@ -20,7 +20,8 @@ import seedu.storemando.model.ReadOnlyStoreMando;
 import seedu.storemando.model.StoreMando;
 
 public class JsonStoreMandoStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonStoreMandoStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+        "JsonStoreMandoStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -72,14 +73,14 @@ public class JsonStoreMandoStorageTest {
         assertEquals(original, new StoreMando(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addItem(HOON);
-        original.removeItem(ALICE);
+        original.addItem(TOOTHBRUSH);
+        original.removeItem(MILK);
         jsonStoreMandoStorage.saveStoreMando(original, filePath);
         readBack = jsonStoreMandoStorage.readStoreMando(filePath).get();
         assertEquals(original, new StoreMando(readBack));
 
         // Save and read without specifying file path
-        original.addItem(IDA);
+        original.addItem(CHAIR);
         jsonStoreMandoStorage.saveStoreMando(original); // file path not specified
         readBack = jsonStoreMandoStorage.readStoreMando().get(); // file path not specified
         assertEquals(original, new StoreMando(readBack));

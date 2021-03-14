@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.commons.core.Messages.MESSAGE_LESS_THAN_TWO_ITEMS_LISTED_OVERVIEW;
 import static seedu.storemando.commons.core.Messages.MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.storemando.testutil.TypicalItems.CARL;
-import static seedu.storemando.testutil.TypicalItems.ELLE;
-import static seedu.storemando.testutil.TypicalItems.FIONA;
+import static seedu.storemando.testutil.TypicalItems.LIPTON;
+import static seedu.storemando.testutil.TypicalItems.NESCAFE;
+import static seedu.storemando.testutil.TypicalItems.OIL;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -72,7 +72,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredItemList());
+        assertEquals(Arrays.asList(OIL, NESCAFE, LIPTON), model.getFilteredItemList());
     }
 
     /**
