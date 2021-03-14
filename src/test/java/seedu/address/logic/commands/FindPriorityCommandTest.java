@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFlashcards.ACID;
-import static seedu.address.testutil.TypicalFlashcards.MERGE;
 import static seedu.address.testutil.TypicalFlashcards.EINSTEIN;
+import static seedu.address.testutil.TypicalFlashcards.MERGE;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashBack;
 
 import java.util.Arrays;
