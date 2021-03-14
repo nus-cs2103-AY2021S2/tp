@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Represents a list of Deadlines.
@@ -29,6 +30,16 @@ public class DeadlineList {
         requireNonNull(deadlines);
 
         this.deadlines.addAll(deadlines);
+    }
+
+    /**
+     * Adds a deadline to this {@code DeadlineList}.
+     *
+     * @param deadline {@code Deadline} to add.
+     */
+    public void addDeadline(Deadline deadline) {
+        requireNonNull(deadline);
+        this.deadlines.add(deadline);
     }
 
     public List<CompletableDeadline> getDeadlines() {

@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPEATABLE_INTERVAL;
 
 import java.util.List;
 
@@ -22,35 +22,29 @@ public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "addEto";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits event list of project identified by index.\n"
-            + "Existing list will be appended with the input event.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds event to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_INTERVAL + "INTERVAL "
+            + PREFIX_REPEATABLE_INTERVAL + "INTERVAL "
             + PREFIX_REPEATABLE_DATE + "REPEATABLE_DATE\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_INTERVAL + "DAILY "
+            + PREFIX_REPEATABLE_INTERVAL + "DAILY "
             + PREFIX_REPEATABLE_DATE + "24-04-2021";
 
-    public static final String MESSAGE_EVENT_ADDED_SUCCESS = "New event added: %1$s";
-
     private final Index index;
-    private final Event eventToAdd;
-
+    private final Event toAdd;
 
     /**
      * Creates an AddEventCommand to add specified {@code Event} to {@code Project} with {@code Index}.
-     *
      * @param index index of {@code Project} to add event in the list.
      * @param event {@code Event} to add.
      */
     public AddEventCommand(Index index, Event event) {
         requireAllNonNull(index, event);
 
-
         this.index = index;
-        this.eventToAdd = event;
+        this.toAdd = event;
     }
 
     @Override
@@ -64,15 +58,23 @@ public class AddEventCommand extends Command {
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
-        projectToEdit.addEvent(eventToAdd);
+
+        for (Event event: projectToEdit.getEvents().getEvents()) {
+            if (this.toAdd.equals(event)) {
+                throw new CommandException(Messages.MESSAGE_DUPLICATE_EVENT);
+            }
+        }
+
+        projectToEdit.addEvent(toAdd);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_EVENT_ADDED_SUCCESS, projectToEdit));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddEventCommand // instanceof handles nulls
-                && eventToAdd.equals(((AddEventCommand) other).eventToAdd));
+                && toAdd.equals(((AddEventCommand) other).toAdd));
     }
+
 }

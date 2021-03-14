@@ -9,7 +9,9 @@ import java.util.Objects;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.todo.Todo;
 
 /**
  * Represents a Project in the address book.
@@ -87,6 +89,26 @@ public class Project {
     public void addEvent(Event event) {
         requireNonNull(event);
         this.events.addEvent(event);
+    }
+
+    /**
+     * Adds an todo to {@code TodoList} field of this {@code Project}.
+     *
+     * @param todo {@code Todo} to add.
+     */
+    public void addTodo(Todo todo) {
+        requireNonNull(todo);
+        this.todos.addTodo(todo);
+    }
+
+    /**
+     * Adds a deadline to {@code DeadlineList} field of this {@code Project}.
+     *
+     * @param deadline {@code Deadline} to add.
+     */
+    public void addDeadline(Deadline deadline) {
+        requireNonNull(deadline);
+        this.deadlines.addDeadline(deadline);
     }
 
     /**
