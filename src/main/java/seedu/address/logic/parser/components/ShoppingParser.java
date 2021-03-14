@@ -10,6 +10,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.shopping.ShoppingAddCommand;
 import seedu.address.logic.commands.shopping.ShoppingDeleteCommand;
 import seedu.address.logic.commands.shopping.ShoppingListCommand;
+import seedu.address.logic.parser.commands.shopping.ShoppingDeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -43,8 +44,7 @@ public class ShoppingParser implements ComponentParser {
             // return new ShoppingAddCommandParser().parse(arguments);
 
         case ShoppingDeleteCommand.COMMAND_WORD:
-            throw new ParseException(messageNotImplemented);
-            // return new ShoppingDeleteCommandParser().parse(arguments);
+             return new ShoppingDeleteCommandParser().parse(arguments);
 
         case ShoppingListCommand.COMMAND_WORD:
             throw new ParseException(messageNotImplemented);
