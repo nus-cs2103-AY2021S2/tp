@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.UniqueBookList;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.UniqueReaderList;
 import seedu.smartlib.model.record.Record;
@@ -16,6 +18,7 @@ import seedu.smartlib.model.record.UniqueRecordList;
  */
 public class SmartLib implements ReadOnlySmartLib {
 
+    private final UniqueBookList books;
     private final UniqueReaderList readers;
     private final UniqueRecordList records;
 
@@ -27,6 +30,7 @@ public class SmartLib implements ReadOnlySmartLib {
      *   among constructors.
      */
     {
+        books = new UniqueBookList();
         readers = new UniqueReaderList();
         records = new UniqueRecordList();
     }
@@ -42,6 +46,14 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     //// list overwrite operations
+
+    /**
+     * Replaces the contents of the book list with {@code books}.
+     * {@code books} must not contain duplicate books.
+     */
+    public void setBooks(List<Book> books) {
+        this.books.setBooks(books);
+    }
 
     /**
      * Replaces the contents of the reader list with {@code readers}.
@@ -65,6 +77,7 @@ public class SmartLib implements ReadOnlySmartLib {
     public void resetData(ReadOnlySmartLib newData) {
         requireNonNull(newData);
 
+        setBooks(newData.getBookList());
         setReaders(newData.getReaderList());
         setRecords(newData.getRecordList());
     }
@@ -122,6 +135,32 @@ public class SmartLib implements ReadOnlySmartLib {
         readers.remove(key);
     }
 
+    //// book-level operations
+
+    /**
+     * Returns true if a book with the same identity as {@code book} exists in the registered book base.
+     */
+    public boolean hasBook(Book book) {
+        requireNonNull(book);
+        return books.contains(book);
+    }
+
+    /**
+     * Adds a book to the registered book base.
+     * The book must not already exist in the registered book base.
+     */
+    public void addBook(Book toAdd) {
+        books.addBook(toAdd);
+    }
+
+    /**
+     * Removes {@code book} from this {@code SmartLib}.
+     * {@code book} must exist in the SmartLib registered book base.
+     */
+    public void removeBook(Book book) {
+        books.remove(book);
+    }
+
     //// util methods
 
     @Override
@@ -129,6 +168,11 @@ public class SmartLib implements ReadOnlySmartLib {
         return readers.asUnmodifiableObservableList().size() + " persons"
                 + "\n" + records.asUnmodifiableObservableList().size() + " records";
         // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Book> getBookList() {
+        return books.asUnmodifiableObservableList();
     }
 
     @Override
@@ -145,7 +189,9 @@ public class SmartLib implements ReadOnlySmartLib {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SmartLib // instanceof handles nulls
-                && readers.equals(((SmartLib) other).readers));
+                && readers.equals(((SmartLib) other).readers)
+                && records.equals(((SmartLib) other).records)
+                && books.equals(((SmartLib) other).books));
     }
 
     @Override

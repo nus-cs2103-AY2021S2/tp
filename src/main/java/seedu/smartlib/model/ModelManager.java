@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.LogsCenter;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
 
     private final SmartLib smartLib;
     private final UserPrefs userPrefs;
+    private final FilteredList<Book> filteredBooks;
     private final FilteredList<Reader> filteredReaders;
     private final FilteredList<Record> filteredRecords;
 
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
 
         this.smartLib = new SmartLib(smartLib);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredBooks = new FilteredList<>(this.smartLib.getBookList());
         filteredReaders = new FilteredList<>(this.smartLib.getReaderList());
         filteredRecords = new FilteredList<>(this.smartLib.getRecordList());
     }
@@ -92,6 +95,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasBook(Book book) {
+        requireNonNull(book);
+        return smartLib.hasBook(book);
+    }
+
+    @Override
     public boolean hasReader(Reader reader) {
         requireNonNull(reader);
         return smartLib.hasReader(reader);
@@ -104,8 +113,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteBook(Book target) {
+        smartLib.removeBook(target);
+    }
+
+    @Override
     public void deleteReader(Reader target) {
         smartLib.removeReader(target);
+    }
+
+    @Override
+    public void addBook(Book book) {
+        smartLib.addBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
     @Override
@@ -145,8 +165,19 @@ public class ModelManager implements Model {
     //=========== Filtered Person List Accessors =============================================================
 
     @Override
+    public ObservableList<Book> getFilteredBookList() {
+        return filteredBooks;
+    }
+
+    @Override
     public ObservableList<Reader> getFilteredReaderList() {
         return filteredReaders;
+    }
+
+    @Override
+    public void updateFilteredBookList(Predicate<Book> predicate) {
+        requireNonNull(predicate);
+        filteredBooks.setPredicate(predicate);
     }
 
     @Override
@@ -177,7 +208,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return smartLib.equals(other.smartLib)
                 && userPrefs.equals(other.userPrefs)
-                && filteredReaders.equals(other.filteredReaders);
+                && filteredReaders.equals(other.filteredReaders)
+                && filteredRecords.equals(other.filteredRecords)
+                && filteredBooks.equals(other.filteredBooks);
     }
 
 }

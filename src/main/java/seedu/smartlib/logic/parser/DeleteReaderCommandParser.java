@@ -7,7 +7,7 @@ import seedu.smartlib.logic.commands.DeleteReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteReaderCommand object
  */
 public class DeleteReaderCommandParser implements Parser<DeleteReaderCommand> {
 
