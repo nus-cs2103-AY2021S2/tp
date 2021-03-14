@@ -159,6 +159,17 @@ Exits the app.
 
 Format: `exit`
 
+### InputHistory / Keyboard shortcuts :
+
+Retrieves previously entered input.
+
+* Entering new command adds new entry to InputHistory.
+* InputHistory will save last 20 inputs.
+* Pressing `Up` arrow key in the text input panel reverts to earlier input.
+* Pressing `Down` arrow key undoes the history revert.
+* At the most recent input, pressing `Down` arrow key once more clears the text box.
+* `ESC` key clears the text box.
+
 ### Coming Soon (Additional Features)
 * Add/Edit/Delete Modules and Tasks/Deliverables
 * Archiving of Data Files
