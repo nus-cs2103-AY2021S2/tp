@@ -37,23 +37,27 @@ public class AddAppointmentCommandTest {
     public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
         Person validPerson = new PersonBuilder().build();
         ModelStubAcceptingAppointmentAdded modelStub = new ModelStubAcceptingAppointmentAdded(validPerson);
-        Appointment validAppointment = new AppointmentBuilder().withMatric(validPerson.getMatriculationNumber().toString()).build();
+        Appointment validAppointment = new AppointmentBuilder()
+                .withMatric(validPerson.getMatriculationNumber().toString()).build();
 
         CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
 
-        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAppointment), modelStub.appointmentsAdded);
     }
 
     @Test
     public void execute_duplicateAppointment_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        Appointment validAppointment = new AppointmentBuilder().withMatric(validPerson.getMatriculationNumber().toString()).build();
+        Appointment validAppointment = new AppointmentBuilder()
+                .withMatric(validPerson.getMatriculationNumber().toString()).build();
 
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
         ModelStub modelStub = new ModelStubWithPersonAndAppointment(validPerson, validAppointment);
 
-        assertThrows(CommandException.class, AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppointmentCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppointmentCommand.execute(modelStub));
     }
 
     @Test
