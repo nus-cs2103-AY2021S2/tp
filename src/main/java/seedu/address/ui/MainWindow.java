@@ -156,24 +156,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows projects tab.
-     */
-    public void handleShowProjectsTab() {
-        tabPane.getSelectionModel().select(0);
-    }
-
-    /**
-     * Shows contacts tab.
-     */
-    public void handleShowContactsTab() {
-        tabPane.getSelectionModel().select(1);
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
-    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -258,4 +240,19 @@ public class MainWindow extends UiPart<Stage> {
 
         projectDisplayPanel.displayProject(logic.getFilteredProjectsList().get(index.getZeroBased()), index);
     }
+
+    /**
+     * Shows projects tab.
+     */
+    public void handleShowProjectsTab() {
+        tabPane.getSelectionModel().select(0);
+    }
+
+    /**
+     * Shows contacts tab.
+     */
+    public void handleShowContactsTab() {
+        tabPane.getSelectionModel().select(1);
+    }
+
 }
