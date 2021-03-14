@@ -11,12 +11,8 @@ import seedu.address.logic.commands.DoneCommand;
 
 public class DoneCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
-
-    @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DoneCommand(INDEX_FIRST_PERSON));
-    }
+    private DoneCommandParser parser = new DoneCommandParser();
+    
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
