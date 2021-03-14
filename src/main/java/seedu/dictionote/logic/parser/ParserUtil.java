@@ -14,6 +14,7 @@ import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -130,10 +131,10 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code note} is invalid.
      */
-    public static String parseNote(String noteContent) throws ParseException {
+    public static Note parseNote(String noteContent) throws ParseException {
         requireNonNull(noteContent);
-        String trimmedName = noteContent.trim();
-        return trimmedName;
+        Note note = new Note(noteContent);
+        return note;
     }
 
     /**
