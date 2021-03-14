@@ -30,10 +30,10 @@ GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -57,7 +57,7 @@ Format: `help`
 
 Adds a new passenger in the GME terminal.
 
-Format: `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [t/TAG]`
+Format: `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [tag/TAG]`
 
 * Day is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
 * Time is required to be in the 24-hour format. e.g. `0530` or `2359` 
@@ -188,7 +188,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**add** | `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [t/TAG]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
+**add** | `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [tag/TAG]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
 **list** | `list`
 **edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
 **search** | `search CONSTRAINT`<br> e.g., `search female or search available`
