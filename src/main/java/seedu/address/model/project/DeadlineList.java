@@ -45,10 +45,21 @@ public class DeadlineList {
 
     /**
      * Returns {@code deadlines} as an {@code ObservableList<CompletableDeadline>}
+     *
      * @return An {@code ObservableList<CompletableDeadline>}
      */
     public ObservableList<CompletableDeadline> getDeadlines() {
         return this.deadlines;
+    }
+
+    /**
+     * Deletes a deadline from this {@code DeadlineList}
+     * .
+     * @param i Index of {@code Deadline} to be deleted.
+     */
+    public void deleteDeadline(Integer i) {
+        requireNonNull(i);
+        this.deadlines.remove(i);
     }
 
     /**

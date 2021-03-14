@@ -45,10 +45,21 @@ public class TodoList {
 
     /**
      * Returns {@code TodoList} as an {@code ObservableList<CompletableTodo>}
+     *
      * @return An {@code ObservableList<CompletableTodo>}
      */
     public ObservableList<CompletableTodo> getTodos() {
         return this.todos;
+    }
+
+    /**
+     * Deletes an todo from this {@code TodoList}.
+     *
+     * @param i Index of {@code Todo} to be deleted.
+     */
+    public void deleteTodo(Integer i) {
+        requireNonNull(i);
+        this.todos.remove(i);
     }
 
     /**
@@ -61,6 +72,7 @@ public class TodoList {
 
     /**
      * Returns a sequential stream with this {@code TodoList} as its source.
+     *
      * @return a sequential Stream over the Todos in this {@code TodoList}.
      */
     public Stream<CompletableTodo> stream() {

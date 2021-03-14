@@ -43,7 +43,18 @@ public class EventList {
     }
 
     /**
+     * Deletes an event from this {@code EventList}.
+     *
+     * @param i Index of {@code Event} to be deleted.
+     */
+    public void deleteEvent(Integer i) {
+        requireNonNull(i);
+        this.events.remove(i);
+    }
+
+    /**
      * Returns a copy of this {@code EventList}
+     *
      * @return A copy of this {@code EventList}
      */
     public EventList getCopy() {
@@ -52,6 +63,7 @@ public class EventList {
 
     /**
      * Returns a sequential stream with this {@code EventList} as its source.
+     *
      * @return a sequential Stream over the events in this {@code EventList}.
      */
     public Stream<Event> stream() {
@@ -60,6 +72,7 @@ public class EventList {
 
     /**
      * Returns {@code events} as an {@code ObservableList<Event>}
+     *
      * @return An {@code ObservableList<Event>}
      */
     public ObservableList<Event> getEvents() {
