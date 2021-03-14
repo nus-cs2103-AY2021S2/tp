@@ -21,6 +21,7 @@ public class Note {
     private final Set<Tag> tags = new HashSet<>();
     private LocalDateTime createTime;
     private LocalDateTime lastEditTime;
+    private Boolean isDone;
 
     /**
      * Every field must be present and not null.
@@ -31,6 +32,16 @@ public class Note {
         this.tags.addAll(tags);
         this.createTime = now();
         this.lastEditTime = now();
+        this.isDone = false;
+    }
+
+    private Note(String note, Set<Tag> tags, LocalDateTime createdTime, Boolean isDone) {
+        requireAllNonNull(note, tags);
+        this.note = note;
+        this.tags.addAll(tags);
+        this.createTime = createdTime;
+        this.lastEditTime = now();
+        this.isDone = isDone;
     }
 
     private Note(String note, Set<Tag> tags, LocalDateTime createdTime) {
@@ -39,13 +50,23 @@ public class Note {
         this.tags.addAll(tags);
         this.createTime = createdTime;
         this.lastEditTime = now();
+        this.isDone = true;
     }
 
     /**
      * Method to call the above private constructor for note.
      */
 
-    public Note createNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
+    public Note createEditedNote(String note, Set<Tag> tags, LocalDateTime createdTime,
+                                 Boolean isDone) {
+        return new Note(note, tags, createdTime, isDone);
+    }
+
+    /**
+     * Method to call the above private constructor for note.
+     */
+
+    public Note markAsDoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
         return new Note(note, tags, createdTime);
     }
 
@@ -67,6 +88,10 @@ public class Note {
 
     public LocalDateTime getLastEditTime() {
         return lastEditTime;
+    }
+
+    public Boolean getIsDone() {
+        return isDone;
     }
 
     public void setLastEditTime(LocalDateTime time) {
