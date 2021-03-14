@@ -1,7 +1,7 @@
 package seedu.iScam.logic.parser;
 
 import static seedu.iScam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ON;
@@ -30,10 +30,10 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddMeetingCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT, PREFIX_ON, PREFIX_ADDRESS,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT, PREFIX_ON, PREFIX_LOCATION,
                 PREFIX_DESCRIPTION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT, PREFIX_ON, PREFIX_ADDRESS, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT, PREFIX_ON, PREFIX_LOCATION, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
@@ -42,7 +42,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         Client client = new Client(new Name("John Doe"), new Phone("12345678"), new Email("john@gmail.com"),
                 new Location("Kent Ridge"), new HashSet<Tag>());
         // Parse string into date and time
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         // Parse string into description
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

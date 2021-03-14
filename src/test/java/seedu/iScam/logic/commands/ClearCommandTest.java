@@ -1,7 +1,7 @@
 package seedu.iScam.logic.commands;
 
 import static seedu.iScam.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.iScam.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.iScam.testutil.TypicalClients.getTypicalLocationBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +22,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new ClientBook());
+        Model model = new ModelManager(getTypicalLocationBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalLocationBook(), new UserPrefs());
+        expectedModel.setClientBook(new ClientBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

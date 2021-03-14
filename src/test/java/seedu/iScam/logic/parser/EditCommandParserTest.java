@@ -15,8 +15,8 @@ import static seedu.iScam.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.iScam.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.iScam.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.iScam.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.iScam.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
+import static seedu.iScam.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -101,7 +101,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_LOCATION_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -112,7 +112,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_LOCATION_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -154,7 +154,7 @@ public class EditCommandParserTest {
 
         // iScam
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditClientDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        descriptor = new EditClientDescriptorBuilder().withAddress(VALID_LOCATION_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -173,7 +173,7 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_LOCATION_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -193,7 +193,7 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
                 + PHONE_DESC_BOB;
         descriptor = new EditClientDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).build();
+                .withAddress(VALID_LOCATION_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

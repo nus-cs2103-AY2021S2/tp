@@ -1,7 +1,7 @@
 package seedu.iScam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ON;
@@ -36,11 +36,11 @@ public class EditMeetingCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_CLIENT + "CLIENT_ID]"
             + "[" + PREFIX_ON + "DATE_TIME]"
-            + "[" + PREFIX_ADDRESS + "ADDRESS]"
+            + "[" + PREFIX_LOCATION + "ADDRESS]"
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ADDRESS + "Macdonald, Bedok"
+            + PREFIX_LOCATION + "Macdonald, Bedok"
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

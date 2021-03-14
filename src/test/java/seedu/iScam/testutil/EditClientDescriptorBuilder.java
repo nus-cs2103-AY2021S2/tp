@@ -35,7 +35,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setName(client.getName());
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
-        descriptor.setAddress(client.getAddress());
+        descriptor.setLocation(client.getLocation());
         descriptor.setTags(client.getTags());
     }
 
@@ -67,7 +67,7 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code Location} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Location(address));
+        descriptor.setLocation(new Location(address));
         return this;
     }
 

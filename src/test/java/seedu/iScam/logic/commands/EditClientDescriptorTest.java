@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.iScam.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.iScam.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.iScam.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -48,7 +48,7 @@ public class EditClientDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different iScam -> returns false
-        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withAddress(VALID_LOCATION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

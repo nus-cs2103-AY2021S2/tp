@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iScam.commons.core.GuiSettings;
 import seedu.iScam.model.client.NameContainsKeywordsPredicate;
-import seedu.iScam.testutil.AddressBookBuilder;
+import seedu.iScam.testutil.ClientBookBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new ClientBook(), new ClientBook(modelManager.getAddressBook()));
+        assertEquals(new ClientBook(), new ClientBook(modelManager.getClientBook()));
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("iScam/book/file/path"));
+        userPrefs.setClientBookFilePath(Paths.get("iScam/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/iScam/book/file/path"));
+        userPrefs.setClientBookFilePath(Paths.get("new/iScam/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -62,14 +62,14 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setClientBookFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("iScam/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setClientBookFilePath(path);
+        assertEquals(path, modelManager.getClientBookFilePath());
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ClientBook clientBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        ClientBook clientBook = new ClientBookBuilder().withClient(ALICE).withClient(BENSON).build();
         ClientBook differentClientBook = new ClientBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -126,7 +126,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setClientBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(clientBook, differentUserPrefs)));
     }
 }

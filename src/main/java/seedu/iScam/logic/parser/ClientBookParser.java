@@ -23,7 +23,7 @@ import seedu.iScam.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ClientBookParser {
 
     /**
      * Used for initial separation of command word and args.

@@ -2,7 +2,7 @@ package seedu.iScam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.iScam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ON;
@@ -32,7 +32,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
     public EditMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CLIENT, PREFIX_ON, PREFIX_ADDRESS, PREFIX_DESCRIPTION,
+                ArgumentTokenizer.tokenize(args, PREFIX_CLIENT, PREFIX_ON, PREFIX_LOCATION, PREFIX_DESCRIPTION,
                         PREFIX_TAG);
 
         Index index;
@@ -51,8 +51,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         if (argMultimap.getValue(PREFIX_ON).isPresent()) {
             // Parse string to date and time to set in descriptor
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editMeetingDescriptor.setAddress(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+            editMeetingDescriptor.setAddress(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             // Parse string to Description to set in descriptor

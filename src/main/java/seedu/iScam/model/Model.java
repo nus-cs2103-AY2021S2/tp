@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' iScam book file path.
      */
-    Path getAddressBookFilePath();
+    Path getClientBookFilePath();
 
     /**
      * Sets the user prefs' iScam book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setClientBookFilePath(Path addressBookFilePath);
 
     /**
      * Replaces iScam book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyClientBook addressBook);
+    void setClientBook(ReadOnlyClientBook addressBook);
 
     /** Returns the ClientBook */
-    ReadOnlyClientBook getAddressBook();
+    ReadOnlyClientBook getClientBook();
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the iScam book.

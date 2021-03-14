@@ -16,7 +16,7 @@ public interface ClientBookStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getClientBookFilePath();
 
     /**
      * Returns ClientBook data as a {@link ReadOnlyClientBook}.
@@ -24,23 +24,23 @@ public interface ClientBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyClientBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getClientBookFilePath()
      */
-    Optional<ReadOnlyClientBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyClientBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyClientBook addressBook) throws IOException;
+    void saveClientBook(ReadOnlyClientBook addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyClientBook)
+     * @see #saveClientBook(ReadOnlyClientBook)
      */
-    void saveAddressBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException;
+    void saveClientBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException;
 
 }

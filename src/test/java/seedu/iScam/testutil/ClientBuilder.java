@@ -16,7 +16,7 @@ public class ClientBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
@@ -31,7 +31,7 @@ public class ClientBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        location = new Location(DEFAULT_ADDRESS);
+        location = new Location(DEFAULT_LOCATION);
         tags = new HashSet<>();
     }
 
@@ -42,7 +42,7 @@ public class ClientBuilder {
         name = clientToCopy.getName();
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
-        location = clientToCopy.getAddress();
+        location = clientToCopy.getLocation();
         tags = new HashSet<>(clientToCopy.getTags());
     }
 
@@ -65,8 +65,8 @@ public class ClientBuilder {
     /**
      * Sets the {@code Location} of the {@code Client} that we are building.
      */
-    public ClientBuilder withAddress(String address) {
-        this.location = new Location(address);
+    public ClientBuilder withLocation(String location) {
+        this.location = new Location(location);
         return this;
     }
 

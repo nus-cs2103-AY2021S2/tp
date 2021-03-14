@@ -1,7 +1,7 @@
 package seedu.iScam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -96,7 +96,7 @@ public class EditCommand extends Command {
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
-        Location updatedLocation = editClientDescriptor.getAddress().orElse(clientToEdit.getLocation());
+        Location updatedLocation = editClientDescriptor.getLocation().orElse(clientToEdit.getLocation());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
         return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedTags);
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.location);
+            setLocation(toCopy.location);
             setTags(toCopy.tags);
         }
 
@@ -176,11 +176,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Location location) {
+        public void setLocation(Location location) {
             this.location = location;
         }
 
-        public Optional<Location> getAddress() {
+        public Optional<Location> getLocation() {
             return Optional.ofNullable(location);
         }
 
@@ -219,7 +219,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags());
         }
     }

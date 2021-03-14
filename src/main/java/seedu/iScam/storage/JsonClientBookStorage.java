@@ -27,26 +27,26 @@ public class JsonClientBookStorage implements ClientBookStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getClientBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyClientBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException {
+        return readClientBook(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readClientBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyClientBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableClientBook> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableClientBook.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -60,21 +60,21 @@ public class JsonClientBookStorage implements ClientBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyClientBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveClientBook(ReadOnlyClientBook clientBook) throws IOException {
+        saveClientBook(clientBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyClientBook)}.
+     * Similar to {@link #saveClientBook(ReadOnlyClientBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveClientBook(ReadOnlyClientBook clientBook, Path filePath) throws IOException {
+        requireNonNull(clientBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableClientBook(clientBook), filePath);
     }
 
 

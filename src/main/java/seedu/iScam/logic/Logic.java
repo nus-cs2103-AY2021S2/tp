@@ -26,7 +26,7 @@ public interface Logic {
     /**
      * Returns the ClientBook.
      *
-     * @see seedu.iScam.model.Model#getAddressBook()
+     * @see seedu.iScam.model.Model#getClientBook()
      */
     ReadOnlyClientBook getAddressBook();
 

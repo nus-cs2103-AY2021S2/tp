@@ -22,25 +22,25 @@ public class JsonSerializableClientBookTest {
 
     @Test
     public void toModelType_typicalClientsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_CLIENTS_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableClientBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_CLIENTS_FILE,
+                JsonSerializableClientBook.class).get();
         ClientBook clientBookFromFile = dataFromFile.toModelType();
-        ClientBook typicalClientsClientBook = TypicalClients.getTypicalAddressBook();
+        ClientBook typicalClientsClientBook = TypicalClients.getTypicalLocationBook();
         assertEquals(clientBookFromFile, typicalClientsClientBook);
     }
 
     @Test
     public void toModelType_invalidClientFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_CLIENT_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableClientBook dataFromFile = JsonUtil.readJsonFile(INVALID_CLIENT_FILE,
+                JsonSerializableClientBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateClients_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CLIENT_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_CLIENT,
+        JsonSerializableClientBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CLIENT_FILE,
+                JsonSerializableClientBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableClientBook.MESSAGE_DUPLICATE_CLIENT,
                 dataFromFile::toModelType);
     }
 

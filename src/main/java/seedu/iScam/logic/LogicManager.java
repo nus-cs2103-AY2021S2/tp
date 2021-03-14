@@ -10,7 +10,7 @@ import seedu.iScam.commons.core.LogsCenter;
 import seedu.iScam.logic.commands.Command;
 import seedu.iScam.logic.commands.CommandResult;
 import seedu.iScam.logic.commands.exceptions.CommandException;
-import seedu.iScam.logic.parser.AddressBookParser;
+import seedu.iScam.logic.parser.ClientBookParser;
 import seedu.iScam.logic.parser.exceptions.ParseException;
 import seedu.iScam.model.Model;
 import seedu.iScam.model.ReadOnlyClientBook;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ClientBookParser clientBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        clientBookParser = new ClientBookParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = clientBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveClientBook(model.getClientBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyClientBook getAddressBook() {
-        return model.getAddressBook();
+        return model.getClientBook();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getClientBookFilePath();
     }
 
     @Override

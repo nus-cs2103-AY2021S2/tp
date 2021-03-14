@@ -2,7 +2,7 @@ package seedu.iScam.logic.commands;
 
 import static seedu.iScam.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.iScam.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.iScam.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.iScam.testutil.TypicalClients.getTypicalLocationBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalLocationBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newClient_success() {
         Client validClient = new ClientBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
         expectedModel.addClient(validClient);
 
         assertCommandSuccess(new AddCommand(validClient), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateClient_throwsCommandException() {
-        Client clientInList = model.getAddressBook().getClientList().get(0);
+        Client clientInList = model.getClientBook().getClientList().get(0);
         assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
