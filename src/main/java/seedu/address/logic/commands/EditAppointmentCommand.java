@@ -78,7 +78,7 @@ public class EditAppointmentCommand extends Command {
         Appointment appointmentToEdit = appointmentList.get(editAppointmentDescriptor.patientIndex.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
-        if (model.hasConflictingAppointment(editedAppointment)) {
+        if (model.hasEditConflictingAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
         // if remove the previous line, would result in error here
