@@ -52,7 +52,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
             // Parse string to date and time to set in descriptor
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editMeetingDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editMeetingDescriptor.setAddress(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             // Parse string to Description to set in descriptor

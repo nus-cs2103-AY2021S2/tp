@@ -39,7 +39,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         Client client = new Client(new Name("John Doe"), new Phone("12345678"), new Email("john@gmail.com"),
                 new Location("Kent Ridge"), new HashSet<Tag>());
         // Parse string into date and time
-        Location location = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_ADDRESS).get());
         // Parse string into description
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

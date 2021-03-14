@@ -71,13 +71,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code iScam} is invalid.
      */
-    public static Location parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (! Location.isValidAddress(trimmedAddress)) {
+    public static Location parseLocation(String location) throws ParseException {
+        requireNonNull(location);
+        String trimmedLocation = location.trim();
+        if (! Location.isValidLocation(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
-        return new Location(trimmedAddress);
+        return new Location(trimmedLocation);
     }
 
     /**

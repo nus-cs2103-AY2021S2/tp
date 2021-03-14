@@ -93,7 +93,7 @@ public class EditCommand extends Command {
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
-        Location updatedLocation = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Location updatedLocation = editClientDescriptor.getAddress().orElse(clientToEdit.getLocation());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
         return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedTags);

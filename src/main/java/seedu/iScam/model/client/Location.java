@@ -5,11 +5,11 @@ import static seedu.iScam.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Client's iScam in the iScam book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
 public class Location {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Locations can take any values, and it should not be blank";
 
     /*
      * The first character of the iScam must not be a whitespace,
@@ -22,18 +22,18 @@ public class Location {
     /**
      * Constructs an {@code Location}.
      *
-     * @param address A valid iScam.
+     * @param location A valid iScam.
      */
-    public Location(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Location(String location) {
+        requireNonNull(location);
+        checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);
+        value = location;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidLocation(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

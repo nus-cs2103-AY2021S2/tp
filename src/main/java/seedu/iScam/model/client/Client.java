@@ -48,10 +48,10 @@ public class Client {
         return email;
     }
 
-    public Location getAddress() {
+    public Location getLocation() {
         return location;
     }
-
+    
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -91,7 +91,7 @@ public class Client {
         return otherClient.getName().equals(getName())
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
-                && otherClient.getAddress().equals(getAddress())
+                && otherClient.getLocation().equals(getLocation())
                 && otherClient.getTags().equals(getTags());
     }
 
@@ -110,7 +110,7 @@ public class Client {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Location: ")
-                .append(getAddress());
+                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
