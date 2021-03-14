@@ -39,6 +39,19 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if {@code keyword} is contained within {@sentence}, with case ignored.
+     * @param sentence  The sentence which might contain {@code keyword}.
+     * @param keyword   The keyword whose existence in {@code sentence} is checked.
+     */
+    public static boolean containsIgnoreCase(String sentence, String keyword) {
+        requireNonNull(sentence);
+        requireNonNull(keyword);
+
+        return sentence.toLowerCase()
+                .contains(keyword.toLowerCase());
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
