@@ -30,8 +30,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> checkTags(person.getTags(), keyword));
+            return keywords.stream()
+                    .anyMatch(keyword -> checkTags(person.getTags(), keyword));
     }
 
     @Override

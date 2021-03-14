@@ -17,8 +17,8 @@ public class AddressContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> person.getAddress().value.toLowerCase().contains(keyword.toLowerCase()));
+            return keywords.stream()
+                    .anyMatch(keyword -> person.getAddress().value.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

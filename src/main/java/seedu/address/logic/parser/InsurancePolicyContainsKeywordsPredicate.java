@@ -29,8 +29,8 @@ public class InsurancePolicyContainsKeywordsPredicate implements Predicate<Perso
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> checkPolicies(person.getPolicies(), keyword));
+            return keywords.stream()
+                    .anyMatch(keyword -> checkPolicies(person.getPolicies(), keyword));
     }
 
     @Override

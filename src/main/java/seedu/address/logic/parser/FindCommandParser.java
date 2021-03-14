@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,30 +27,35 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] keywords = trimmedArgs.split("\\s+");
-        boolean hasFlag = keywords[0].charAt(0) == '-';
+        String flag = trimmedArgs.split("\\s+")[0];
+        boolean hasFlag = flag.charAt(0) == '-';
 
-        if (!hasFlag) {
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        if (hasFlag) {
+            trimmedArgs = trimmedArgs.substring(2).trim();
         }
 
-        String field = keywords[0];
-        switch (field) {
+        List<String> keywords = Arrays.asList(trimmedArgs.split("\\s*&\\s*"));
+
+        if (!hasFlag) {
+            return new FindCommand(new NameContainsKeywordsPredicate(keywords));
+        }
+
+        switch (flag) {
 
         case "-p":
-            return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new PhoneContainsKeywordsPredicate(keywords));
 
         case "-e":
-            return new FindCommand(new EmailContainsKeywordsPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new EmailContainsKeywordsPredicate(keywords));
 
         case "-a":
-            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new AddressContainsKeywordsPredicate(keywords));
 
         case "-t":
-            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new TagContainsKeywordsPredicate(keywords));
 
         case "-i":
-            return new FindCommand(new InsurancePolicyContainsKeywordsPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new InsurancePolicyContainsKeywordsPredicate(keywords));
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
