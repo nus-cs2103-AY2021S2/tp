@@ -15,9 +15,10 @@ public class Student extends Person {
      * @param address
      * @param tags
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Student(PersonId personId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.setPersonType(new PersonType("student"));
+        this.setPersonId(personId);
     }
 
 }

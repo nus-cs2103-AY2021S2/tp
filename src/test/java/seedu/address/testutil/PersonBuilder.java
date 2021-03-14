@@ -7,6 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_PERSON_TYPE = "student";
+    public static final String DEFAULT_PERSON_ID = "s/5";
 
 
     private Name name;
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private PersonType personType;
+    private PersonId personId;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -105,14 +108,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code PersonId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPersonId(String id) {
+        this.personId = new PersonId(id);
+        return this;
+    }
+
+    /**
      * Build
      * @return Person
      */
     public Person build() {
         if (this.personType.toString().equals("student")) {
-            return new Student(name, phone, email, address, tags);
+            return new Student(personId, name, phone, email, address, tags);
         } else {
-            return new Tutor(name, phone, email, address, tags);
+            return new Tutor(personId, name, phone, email, address, tags);
         }
     }
 

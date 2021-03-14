@@ -25,6 +25,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     private PersonType personType;
+    private PersonId personId;
     /**
      * Every field must be present and not null.
      */
@@ -57,8 +58,16 @@ public class Person {
         return personType;
     }
 
+    public PersonId getPersonId() {
+        return personId;
+    }
+
     public void setPersonType(PersonType personType) {
         this.personType = personType;
+    }
+
+    public void setPersonId(PersonId personId) {
+        this.personId = personId;
     }
 
     /**
@@ -101,7 +110,8 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getPersonId().equals(getPersonId());
     }
 
     @Override

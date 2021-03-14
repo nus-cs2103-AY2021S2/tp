@@ -17,6 +17,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -49,7 +50,8 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         PersonType personType = ParserUtil.parsePersonType(argMultimap.getValue(PREFIX_PERSON_TYPE).get());
-        Person person = returnPersonBasedOnType(personType.toString(), name, phone, email, address, tagList);
+        PersonId personId = new PersonId("s/12345");
+        Person person = returnPersonBasedOnType(personType.toString(), personId, name, phone, email, address, tagList);
         return new AddPersonCommand(person);
     }
 
@@ -61,12 +63,12 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    private Person returnPersonBasedOnType(String personType, Name name, Phone phone, Email email,
+    private Person returnPersonBasedOnType(String personType, PersonId personId, Name name, Phone phone, Email email,
                                            Address address, Set<Tag> tags) {
         if (personType.equals("student")) {
-            return new Student(name, phone, email, address, tags);
+            return new Student(personId, name, phone, email, address, tags);
         } else {
-            return new Tutor(name, phone, email, address, tags);
+            return new Tutor(personId, name, phone, email, address, tags);
         }
     }
 

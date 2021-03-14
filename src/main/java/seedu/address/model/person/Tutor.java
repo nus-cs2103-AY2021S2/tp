@@ -14,8 +14,9 @@ public class Tutor extends Person {
      * @param address
      * @param tags
      */
-    public Tutor(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Tutor(PersonId personId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.setPersonType(new PersonType("tutor"));
+        this.setPersonId(personId);
     }
 }
