@@ -237,6 +237,11 @@ public class ModelManager implements Model {
         sochedule.setTask(target, editedTask);
     }
 
+    @Override
+    public void doneTask(Task target) {
+        sochedule.removeTask(target);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Task}
      */
