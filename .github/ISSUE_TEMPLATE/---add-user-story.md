@@ -10,5 +10,10 @@ assignees: ''
 ...so that __________________________________.
 
 ________________________________________________________________
+### Describe the feature
+*Define precisely the desired behavior.*
+
+
+________________________________________________________________
 ### Additional context
-*Describe possible implementations, to highlight required scope of work.*
+*What is the current implementation, and the required scope of work?*

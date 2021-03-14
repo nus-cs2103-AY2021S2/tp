@@ -1,8 +1,8 @@
 ---
-name: "\U0001F4A1 Feature / enhancement request"
-about: Suggest feature / improvements (including internal tests)
+name: "\U0001F4A1 Feature enhancement"
+about: Suggest improvements (including internal tests)
 title: "\U0001F4A1 "
-labels: ''
+labels: type::enhancement
 assignees: ''
 
 ---
