@@ -5,6 +5,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class VaccinationStatus {
 
+    enum VacStatusEnum {
+        VACCINATED, NOT_VACCINATED
+    }
+
     public static final String MESSAGE_CONSTRAINTS = "Vaccination status should only be of the format 'vaccinated' "
             + "or 'not vaccinated' ";
 
@@ -28,9 +32,14 @@ public class VaccinationStatus {
      * @return true if test is a valid statis, false otherwise.
      */
     public static boolean isValidStatus(String test) {
-        boolean result = test.equalsIgnoreCase("not vaccinated")
-                || test.equalsIgnoreCase("vaccinated");
-        return result;
+        test = test.replaceAll(" ", "_").toUpperCase();
+        try {
+            boolean result = VacStatusEnum.valueOf(test) == VacStatusEnum.NOT_VACCINATED
+                    || VacStatusEnum.valueOf(test) == VacStatusEnum.VACCINATED;
+            return result;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     @Override
