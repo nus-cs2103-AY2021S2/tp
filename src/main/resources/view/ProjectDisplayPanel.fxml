@@ -9,15 +9,21 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.Group?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
     <URL value="@ProjectDisplayPanel.css"/>
   </stylesheets>
 
   <Label fx:id="projectName" styleClass="cell_huge_label"/>
-  <TabPane fx:id="tabPane" side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+  <TabPane fx:id="tabPane" side="LEFT" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
     <tabs>
-      <Tab text="Events">
+      <Tab>
+        <graphic>
+          <Group >
+            <Label styleClass="tab-label" text="Events" rotate="90"/>
+          </Group>
+        </graphic>
         <content>
           <VBox styleClass="project-display-panel-vbox">
             <Label text="Events" styleClass="label-header"/>
@@ -25,7 +31,12 @@
           </VBox>
         </content>
       </Tab>
-      <Tab text="Deadlines">
+      <Tab>
+        <graphic>
+          <Group >
+            <Label styleClass="tab-label" text="Deadlines" rotate="90"/>
+          </Group>
+        </graphic>
         <content>
           <VBox styleClass="project-display-panel-vbox">
             <Label text="Deadlines" styleClass="label-header"/>
@@ -33,15 +44,25 @@
           </VBox>
         </content>
       </Tab>
-      <Tab text="Todos">
+      <Tab>
+        <graphic>
+          <Group >
+            <Label styleClass="tab-label" text="Todos" rotate="90"/>
+          </Group>
+        </graphic>
         <content>
           <VBox styleClass="project-display-panel-vbox">
-            <Label text="Todos" styleClass="label-header"/>
+            <Label  text="Todos" styleClass="label-header"/>
             <ListView fx:id="completableTodoListView" VBox.vgrow="ALWAYS"/>
           </VBox>
         </content>
       </Tab>
-      <Tab text="Participants">
+      <Tab>
+        <graphic>
+          <Group >
+            <Label styleClass="tab-label" text="Participants" rotate="90"/>
+          </Group>
+        </graphic>
         <content>
           <VBox styleClass="project-display-panel-vbox">
             <Label text="Participants" styleClass="label-header"/>
