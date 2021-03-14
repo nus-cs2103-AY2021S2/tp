@@ -59,4 +59,11 @@ public class StatsCommandFaculty extends StatsCommand {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatsCommandFaculty) // instanceof handles nulls
+                && faculty.equals(((StatsCommandFaculty) other).faculty); // state check
+    }
+
 }

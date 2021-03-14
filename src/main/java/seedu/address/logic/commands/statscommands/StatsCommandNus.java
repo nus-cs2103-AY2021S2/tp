@@ -11,6 +11,7 @@ import seedu.address.model.person.Person;
 
 public class StatsCommandNus extends StatsCommand {
     public static final String MESSAGE_STATS_SUCCESS = "Percentage NUS vaccinated: %.2f%%";
+    public static final String MESSAGE_STATS_FAILURE = "No available data in Vax@NUS";
 
     @Override
     public CommandResult execute(Model model) throws CommandException { // NUS
@@ -26,9 +27,18 @@ public class StatsCommandNus extends StatsCommand {
                 }
             }
             float stats = (float) counter / totalStudents;
+            if (Float.isNaN(stats) || stats > 1) {
+                throw new CommandException(MESSAGE_STATS_FAILURE);
+            }
             return new CommandResult(String.format(MESSAGE_STATS_SUCCESS, stats * 100));
         } catch (Exception e) {
             throw new CommandException(MESSAGE_STATS_FAILURE);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatsCommandNus); // instanceof handles nulls
     }
 }

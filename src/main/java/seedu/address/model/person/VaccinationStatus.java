@@ -12,8 +12,8 @@ public class VaccinationStatus {
     public static final String MESSAGE_CONSTRAINTS = "Vaccination status should only be of the format 'vaccinated' "
             + "or 'not vaccinated' ";
 
-    public final VacStatusEnum status;
-    public final String textUI;
+    public final VacStatusEnum status; // enum for Vaccination status
+    public final String textUI; // string to display on the GUI
 
     /**
      * Constructs an {@code VaccinationStatus}.

@@ -57,4 +57,11 @@ public class StatsCommandResidence extends StatsCommand {
             throw new CommandException(MESSAGE_STATS_FAILURE);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatsCommandResidence) // instanceof handles nulls
+                && residence.equals(((StatsCommandResidence) other).residence); // state check
+    }
 }
