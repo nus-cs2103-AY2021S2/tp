@@ -26,15 +26,16 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
 import seedu.address.testutil.CustomerBuilder;
 
-public class AddCommandTest {
+public class AddCustomerCommandTest {
 
     @Test
     public void constructor_nullCustomer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCustomerCommand(null));
     }
 
     @Test
@@ -42,9 +43,9 @@ public class AddCommandTest {
         ModelStubAcceptingCustomerAdded modelStub = new ModelStubAcceptingCustomerAdded();
         Customer validCustomer = new CustomerBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validCustomer).execute(modelStub);
+        CommandResult commandResult = new AddCustomerCommand(validCustomer).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCustomer), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCustomer), modelStub.customersAdded);
         assertTrue(modelStub.getGuiSettings().isShowCustomerListPanel());
     }
@@ -52,10 +53,10 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateCustomer_throwsCommandException() {
         Customer validCustomer = new CustomerBuilder().build();
-        AddCommand addCommand = new AddCommand(validCustomer);
+        AddCustomerCommand addCommand = new AddCustomerCommand(validCustomer);
         ModelStub modelStub = new ModelStubWithCustomer(validCustomer);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCommand
+        assertThrows(CommandException.class, AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCommand
                 .execute(modelStub));
     }
 
@@ -63,14 +64,14 @@ public class AddCommandTest {
     public void equals() {
         Customer alice = new CustomerBuilder().withName("Alice").build();
         Customer bob = new CustomerBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCustomerCommand addAliceCommand = new AddCustomerCommand(alice);
+        AddCustomerCommand addBobCommand = new AddCustomerCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCustomerCommand addAliceCommandCopy = new AddCustomerCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -241,6 +242,16 @@ public class AddCommandTest {
         public void setPanelToOrderList() {
             throw new AssertionError("This method should not be called.");
         }
+
+		@Override
+		public boolean hasCustomerWithPhone(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+		}
+
+		@Override
+		public Customer getCustomerWithPhone(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+		}
     }
 
     /**
