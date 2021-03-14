@@ -1,9 +1,9 @@
 package seedu.smartlib.model.record;
 
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
 
 public class DateReturned {
 

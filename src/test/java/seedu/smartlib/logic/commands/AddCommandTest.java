@@ -121,6 +121,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void markRecordAsReturned(Record record) {
+
+        }
+
+        @Override
         public void setSmartLib(ReadOnlySmartLib newData) {
             throw new AssertionError("This method should not be called.");
         }

@@ -1,6 +1,5 @@
 package seedu.smartlib.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;

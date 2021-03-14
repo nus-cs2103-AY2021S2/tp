@@ -25,8 +25,10 @@ class JsonAdaptedRecord {
      * Constructs a {@code JsonAdaptedRecord} with the given record details.
      */
     @JsonCreator
-    public JsonAdaptedRecord(@JsonProperty("bookName") String bookName, @JsonProperty("readerName") String readerName,
-                             @JsonProperty("dateBorrowed") String dateBorrowed, @JsonProperty("dateReturned") String dateReturned) {
+    public JsonAdaptedRecord(@JsonProperty("bookName") String bookName,
+                             @JsonProperty("readerName") String readerName,
+                             @JsonProperty("dateBorrowed") String dateBorrowed,
+                             @JsonProperty("dateReturned") String dateReturned) {
         this.bookName = bookName;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;

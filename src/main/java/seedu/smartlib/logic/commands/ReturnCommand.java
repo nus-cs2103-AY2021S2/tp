@@ -1,12 +1,10 @@
 package seedu.smartlib.logic.commands;
 
+import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.record.Record;
-import seedu.smartlib.model.record.exceptions.RecordNotFoundException;
-
-import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 
 /**
  * Marks the record indicating that a reader returning a book
@@ -14,9 +12,11 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 public class ReturnCommand extends Command {
 
     public static final String COMMAND_WORD = "return";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": returns the book by the reader, both specified by name";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": returns the book by the reader, both specified by name";
     public static final String MESSAGE_SUCCESS = "Record marked as returned.";
-    public static final String MESSAGE_NO_SUCH_RECORD_FOUND = "No such record found. Either already returned or never borrowed";
+    public static final String MESSAGE_NO_SUCH_RECORD_FOUND =
+            "No such record found. Either already returned or never borrowed";
 
     private final Record toReturn;
 

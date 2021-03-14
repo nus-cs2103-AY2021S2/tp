@@ -1,23 +1,19 @@
 package seedu.smartlib.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
+
+import java.time.LocalDate;
+import java.util.stream.Stream;
+
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.ReturnCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.record.DateReturned;
 import seedu.smartlib.model.record.Record;
-
-import java.time.LocalDate;
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
 /**
  * Parses input arguments and creates a new {@code ReturnCommand} object
