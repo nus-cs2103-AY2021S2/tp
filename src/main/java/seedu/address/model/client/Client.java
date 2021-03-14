@@ -22,6 +22,7 @@ public class Client {
 
     // Data fields
     private Address address;
+    // private InsurancePlan insurancePlan;
     private Set<Tag> tags = new HashSet<>();
 
     /**
