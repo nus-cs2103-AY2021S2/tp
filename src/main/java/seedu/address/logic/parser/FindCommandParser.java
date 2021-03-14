@@ -26,19 +26,22 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        checkEmptyInputField(trimmedArgs, "title");
+        checkEmptyInputField(trimmedArgs, "input");
 
         String[] keywords = trimmedArgs.split("\\s+");
         boolean isTagWord = Arrays.toString(keywords).contains("t/");
         boolean isDescription = Arrays.toString(keywords).contains("d/");
 
         if (isTagWord) {
+            checkMultipleFindTypes(keywords, "tag");
             Set<String> tagWords = handleSearchByTag(keywords);
             return new FindCommand(new TagContainsKeywordsPredicate(tagWords));
         } else if (isDescription) {
+            checkMultipleFindTypes(keywords, "description");
             List<String> descriptionWords = handleSearchByDescription(keywords);
             return new FindCommand(new DescriptionContainsKeywordsPredicate(descriptionWords));
-        } else { // default case is find by title
+        } else {
+            checkMultipleFindTypes(keywords, "title");
             return new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
     }
@@ -60,7 +63,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Manages the given {@code String[]} of arguments to search matching tasks by tag
+     * Manages the given {@code String[]} of arguments to search matching tasks by description
      * and returns a List object that contains the description keywords for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -87,14 +90,68 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     private void checkEmptyInputField(String input, String findType) throws ParseException {
         if (input.isEmpty()) {
-            if (findType.equals("tag")) {
+            boolean isEmptyTagInput = findType.equals("tag"); // t/(empty input)
+            boolean isEmptyDescriptionInput = findType.equals("description"); // d/(empty input)
+
+            if (isEmptyTagInput) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.TAG_USAGE));
-            } else if (findType.equals("description")) {
+            } else if (isEmptyDescriptionInput) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.DESCRIPTION_USAGE));
-            } else { // default condition is empty title
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            } else { // default condition is empty input
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
+        }
+    }
+
+    private void checkMultipleFindTypes(String[] keywords, String findType) throws ParseException {
+        int numDescription = 0;
+        int numTag = 0;
+
+        checkMultipleTypesInTitle(keywords, findType);
+        for (String keyword : keywords) {
+            boolean isTagFind = keyword.contains("t/");
+            boolean isDescriptionFind = keyword.contains("d/");
+
+            if (isTagFind) {
+                numTag++;
+            } else if (isDescriptionFind) {
+                numDescription++;
+            }
+        }
+        checkMultipleDescriptionTag(numDescription, numTag, findType);
+    }
+
+    private void checkMultipleTypesInTitle(String[] keywords, String findType) throws ParseException {
+        boolean isDescriptionInTitle = findType.equals("description") && !(keywords[0].contains("d/"));
+        boolean isTagInTitle = findType.equals("tag") && !(keywords[0].contains("t/"));
+
+        if (isDescriptionInTitle) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_COMMANDS));
+        } else if (isTagInTitle) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_COMMANDS));
+        }
+    }
+
+    private void checkMultipleDescriptionTag(int numDescription, int numTag, String findType) throws ParseException {
+        boolean isMultipleCommands;
+
+        switch (findType) {
+        case "description":
+            isMultipleCommands = numTag > 0 || numDescription > 1;
+
+            if (isMultipleCommands) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_COMMANDS));
+            }
+            break;
+        case "tag":
+            isMultipleCommands = numDescription > 0;
+
+            if (isMultipleCommands) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_COMMANDS));
+            }
+            break;
+        default:
+            break;
         }
     }
 }

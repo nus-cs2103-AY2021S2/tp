@@ -29,6 +29,22 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_multipleFindArgs_throwsParseException() {
+        assertParseFailure(parser, "d/Bob   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "d/Bob   t/project   t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "t/exam  d/Bob   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "Alice   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "Alice   t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "Alice  d/Bob t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
@@ -43,7 +59,7 @@ public class FindCommandParserTest {
                 new HashSet<>(Arrays.asList("Bob", "Charlie"))));
         assertParseSuccess(parser, "t/Bob t/Charlie", expectedFindCommand);
 
-        // located description from keywords
+        // locate description from keywords
         expectedFindCommand =
                 new FindCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "d/Alice Bob", expectedFindCommand);
