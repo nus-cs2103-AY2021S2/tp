@@ -17,10 +17,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
-import seedu.address.model.appointment.Timeslot;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.tag.Tag;
 
 
@@ -39,8 +36,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
 
         if (!(arePrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_DOCTOR)
                 || arePrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_TIMESLOT_START, PREFIX_TIMESLOT_END)
-                || arePrefixesPresent(argMultimap,PREFIX_PATIENT, PREFIX_TIMESLOT_START, PREFIX_TIMESLOT_DURATION)
-                || arePrefixesPresent(argMultimap,PREFIX_PATIENT, PREFIX_TAG))
+                || arePrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_TIMESLOT_START, PREFIX_TIMESLOT_DURATION)
+                || arePrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_TAG))
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE));
@@ -49,7 +46,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
 
         if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
-            editAppointmentDescriptor.setPatientIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get()));
+            editAppointmentDescriptor
+                    .setPatientIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get()));
         }
 
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
@@ -57,11 +55,13 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         }
 
         if (argMultimap.getValue(PREFIX_TIMESLOT_END).isPresent()) {
-            editAppointmentDescriptor.setTimeslot(ParserUtil.parseTimeslotByEnd(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
+            editAppointmentDescriptor.setTimeslot(ParserUtil
+                    .parseTimeslotByEnd(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
                     argMultimap.getValue(PREFIX_TIMESLOT_END).get()));
         }
         if (argMultimap.getValue(PREFIX_TIMESLOT_DURATION).isPresent()) {
-            editAppointmentDescriptor.setTimeslot(ParserUtil.parseTimeslotByDuration(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
+            editAppointmentDescriptor
+                    .setTimeslot(ParserUtil.parseTimeslotByDuration(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
                     argMultimap.getValue(PREFIX_TIMESLOT_DURATION).get()));
         }
 

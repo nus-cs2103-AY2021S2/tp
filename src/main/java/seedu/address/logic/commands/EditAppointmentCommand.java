@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -82,8 +81,8 @@ public class EditAppointmentCommand extends Command {
         if (model.hasConflictingAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
-
-        model.setAppointment(appointmentToEdit, editedAppointment);     /// if remove the previous line, would result in error here
+        // if remove the previous line, would result in error here
+        model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
@@ -92,9 +91,9 @@ public class EditAppointmentCommand extends Command {
      * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    private static Appointment createEditedAppointment(Appointment appointmentToEdit, EditAppointmentDescriptor editAppointmentDescriptor) {
+    private static Appointment createEditedAppointment(Appointment appointmentToEdit,
+                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
-//// probably here
         Person updatedPatient = appointmentToEdit.getPatient();
         String updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
