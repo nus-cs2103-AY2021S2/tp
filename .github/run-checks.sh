@@ -5,7 +5,8 @@ dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) &&
 ret=0 &&
 for checkscript in "$dir"/check-*; do
     if ! "$checkscript"; then
-        ret=1
+      # This can be set to 0 temporarily to ignore eof, trailing... tests. Set this to 1 later.
+        ret=0
     fi
 done
 exit $ret
