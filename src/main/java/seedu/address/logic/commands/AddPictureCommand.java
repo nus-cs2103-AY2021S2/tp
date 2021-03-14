@@ -32,8 +32,6 @@ public class AddPictureCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-
-
         return new CommandResult(String.format(MESSAGE_ADD_PICTURE_SUCCESS, "fake name"));
     }
 

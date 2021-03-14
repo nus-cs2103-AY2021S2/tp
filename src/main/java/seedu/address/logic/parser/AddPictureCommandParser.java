@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FileUtil;
@@ -26,7 +27,13 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
             throwParseException();
         }
 
-        Index index = ParserUtil.parseIndex(argArr[0]);
+        Index index = null;
+
+        try {
+            index = ParserUtil.parseIndex(argArr[0]);
+        } catch (ParseException pe) {
+            throwParseException();
+        }
 
         if (!FileUtil.isValidPath(argArr[1])) {
             throw new ParseException("Invalid file path supplied");
@@ -35,6 +42,16 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
 
         if (!FileUtil.isFileExists(path)) {
             throw new ParseException("Cannot find file at specified path");
+        }
+
+        // Check extension
+        String[] allowedExtensions = { ".png", ".jpeg", ".jpg" };
+        boolean hasCorrectExt = Arrays.stream(allowedExtensions)
+                .map(path::endsWith)
+                .reduce(false, (x, y) -> x || y);
+        if (!hasCorrectExt) {
+            throw new ParseException("Given file is not an image. Accepted extensions: "
+                    + String.join(",", allowedExtensions) );
         }
 
         return new AddPictureCommand(index, path);
