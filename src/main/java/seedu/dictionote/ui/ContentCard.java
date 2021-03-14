@@ -54,7 +54,7 @@ public class ContentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ContentCard)) {
             return false;
         }
 
