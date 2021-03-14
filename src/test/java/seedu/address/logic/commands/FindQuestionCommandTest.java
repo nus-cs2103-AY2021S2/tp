@@ -50,7 +50,7 @@ public class FindQuestionCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different card -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -65,9 +65,29 @@ public class FindQuestionCommandTest {
     }
 
     @Test
+    public void execute_multipleKeywords_noFlashcardFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        QuestionContainsKeywordsPredicate predicate = preparePredicate("123 test random");
+        FindCommand command = new FindQuestionCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredFlashcardList());
+    }
+
+    @Test
     public void execute_multipleKeywords_multipleFlashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
         QuestionContainsKeywordsPredicate predicate = preparePredicate("newton's merge recursion?");
+        FindCommand command = new FindQuestionCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(NEWTON, MERGE, RECURSION), model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_multiplePartialKeywords_multipleFlashcardFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        QuestionContainsKeywordsPredicate predicate = preparePredicate("new mer recursion");
         FindCommand command = new FindQuestionCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
