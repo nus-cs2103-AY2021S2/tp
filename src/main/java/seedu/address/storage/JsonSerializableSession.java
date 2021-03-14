@@ -28,7 +28,8 @@ class JsonSerializableSession {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableSession(@JsonProperty("sessions") List<JsonAdaptedSession> sessions, @JsonProperty("sessionCounter") String sessionCounter) {
+    public JsonSerializableSession(@JsonProperty("sessions") List<JsonAdaptedSession> sessions,
+                                   @JsonProperty("sessionCounter") String sessionCounter) {
         this.sessions.addAll(sessions);
         Session.setSessionCount(sessionCounter);
         this.sessionCounter = sessionCounter;
