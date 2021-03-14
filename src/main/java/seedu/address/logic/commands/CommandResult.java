@@ -25,6 +25,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
+
     public CommandResult(String feedbackToUser, ObservableList<Person> tutorsToView, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.tutorsToView = tutorsToView;
@@ -77,13 +78,14 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && tutorsToView.equals(otherCommandResult.tutorsToView)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, tutorsToView, showHelp, exit);
     }
 
 }
