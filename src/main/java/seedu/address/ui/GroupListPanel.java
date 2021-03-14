@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
@@ -20,7 +19,7 @@ public class GroupListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(GroupListPanel.class);
 
     @FXML
-    ListView<Name> groupListView;
+    private ListView<Name> groupListView;
 
     /**
      * Creates a {@code GroupListPanel} with the given {@code ObservableMap}.
@@ -32,8 +31,7 @@ public class GroupListPanel extends UiPart<Region> {
             if (change.wasAdded()) {
                 groupListView.getItems().add(change.getKey());
             }
-            Platform.runLater(() ->
-            {
+            Platform.runLater(() -> {
                 groupListView.getSelectionModel().select(change.getKey());
                 groupListView.scrollTo(change.getKey());
             });
