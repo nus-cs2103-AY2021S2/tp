@@ -29,6 +29,8 @@
           </Menu>
         </MenuBar>
 
+        <StackPane fx:id="reviewModePlaceholder"  VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS"></StackPane>
+
         <GridPane fx:id="commandModePane" styleClass="grid-with-border" VBox.vgrow="ALWAYS">
           <columnConstraints>
             <ColumnConstraints percentWidth="50.0" />
