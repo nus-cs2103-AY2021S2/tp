@@ -17,20 +17,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dictionote.logic.commands.AddContactCommand;
-import seedu.dictionote.logic.commands.AddNoteCommand;
-import seedu.dictionote.logic.commands.ClearCommand;
-import seedu.dictionote.logic.commands.CloseCommand;
-import seedu.dictionote.logic.commands.DeleteContactCommand;
-import seedu.dictionote.logic.commands.EditContactCommand;
+import seedu.dictionote.logic.commands.*;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
-import seedu.dictionote.logic.commands.ExitCommand;
-import seedu.dictionote.logic.commands.FindContactCommand;
-import seedu.dictionote.logic.commands.HelpCommand;
-import seedu.dictionote.logic.commands.ListContactCommand;
-import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 import seedu.dictionote.model.note.Note;
@@ -79,6 +70,13 @@ public class DictionoteParserTest {
         EditContactCommand command = (EditContactCommand) parser.parseCommand(EditContactCommand.COMMAND_WORD + " "
             + INDEX_FIRST_CONTACT.getOneBased() + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
         assertEquals(new EditContactCommand(INDEX_FIRST_CONTACT, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_emailContact() throws Exception {
+        EmailContactCommand command = (EmailContactCommand) parser.parseCommand(
+                EmailContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
+        assertEquals(new EmailContactCommand(INDEX_FIRST_CONTACT), command);
     }
 
     @Test
