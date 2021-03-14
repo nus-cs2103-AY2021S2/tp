@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 public class Session {
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
-    private static int sessionCount = 0;
+    private static int sessionCount = 1;
 
     private final String classId;
     private final Day day;

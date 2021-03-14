@@ -158,19 +158,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-    public ObservableList<Session> getFilteredSessionList() {
-        return filteredSessions;
-    }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
-     * {@code versionedAddressBook}
-     * @param predicate
-     */
-    public void updateFilteredSessionList(Predicate<Session> predicate) {
-        requireNonNull(predicate);
-        filteredSessions.setPredicate(predicate);
-    }
 
 
     @Override
