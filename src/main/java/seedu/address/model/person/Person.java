@@ -17,8 +17,11 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final School school;
     private final Phone phone;
     private final Email email;
+    private final Name guardianName;
+    private final Phone guardianPhone;
 
     // Data fields
     private final Address address;
@@ -27,17 +30,25 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, School school, Phone phone, Email email, Address address, Name guardianName,
+                  Phone guardianPhone, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
+        this.school = school;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.guardianName = guardianName;
+        this.guardianPhone = guardianPhone;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
+    }
+
+    public School getSchool() {
+        return school;
     }
 
     public Phone getPhone() {
@@ -50,6 +61,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Name getGuardianName() {
+        return guardianName;
+    }
+
+    public Phone getGuardianPhone() {
+        return guardianPhone;
     }
 
     /**
@@ -89,28 +108,37 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getSchool().equals(getSchool())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGuardianName().equals(getGuardianName())
+                && otherPerson.getGuardianPhone().equals(getGuardianPhone())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, school, phone, email, address, guardianName, guardianPhone, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; School: ")
+                .append(getSchool())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Guardian's Name: ")
+                .append(getGuardianName())
+                .append("; Guardian's Phone: ")
+                .append(getGuardianPhone());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
