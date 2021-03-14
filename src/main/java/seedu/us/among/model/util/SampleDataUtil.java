@@ -107,7 +107,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns eighth typical endpoint.
+     * Returns sample response from a valid endpoint.
      */
     public static String getSampleValidResponse() {
         return "{\"data\":{\"id\":2,\"email\":\"janet.weaver@reqres.in\",\"first_name\":"
