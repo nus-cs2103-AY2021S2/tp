@@ -14,9 +14,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import static seedu.address.testutil.TypicalMeetings.MEETING1;
 import static seedu.address.testutil.TypicalMeetings.MEETING2;
-import static seedu.address.testutil.TypicalMeetings.MEETING3;
-import static seedu.address.testutil.TypicalMeetings.MEETING4;
-import static seedu.address.testutil.TypicalMeetings.MEETING5;
+//import static seedu.address.testutil.TypicalMeetings.MEETING3;
+//import static seedu.address.testutil.TypicalMeetings.MEETING4;
+//import static seedu.address.testutil.TypicalMeetings.MEETING5;
 
 
 class UniqueMeetingListTest {
