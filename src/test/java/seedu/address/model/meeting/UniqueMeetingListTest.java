@@ -14,10 +14,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import static seedu.address.testutil.TypicalMeetings.MEETING1;
 import static seedu.address.testutil.TypicalMeetings.MEETING2;
-//import static seedu.address.testutil.TypicalMeetings.MEETING3;
-//import static seedu.address.testutil.TypicalMeetings.MEETING4;
-//import static seedu.address.testutil.TypicalMeetings.MEETING5;
-
 
 class UniqueMeetingListTest {
     private final UniqueMeetingList uniqueMeetingList = new UniqueMeetingList();
@@ -41,7 +37,7 @@ class UniqueMeetingListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueMeetingList.add(MEETING1);
-        Meeting editedMeeting1 = new MeetingBuilder(MEETING1).withPriority("1").withTags("RandomTag")
+        Meeting editedMeeting1 = new MeetingBuilder(MEETING1).withPriority("1").withGroups("RandomTag")
                 .build();
         assertTrue(uniqueMeetingList.contains(editedMeeting1));
     }
@@ -84,7 +80,7 @@ class UniqueMeetingListTest {
     @Test
     public void setMeeting_editedPersonHasSameIdentity_success() {
         uniqueMeetingList.add(MEETING1);
-        Meeting editedMEETING1 = new MeetingBuilder(MEETING1).withPriority("1").withTags("randomTag")
+        Meeting editedMEETING1 = new MeetingBuilder(MEETING1).withPriority("1").withGroups("randomTag")
                 .build();
         uniqueMeetingList.setMeeting(MEETING1, editedMEETING1);
         UniqueMeetingList expecteduniqueMeetingList = new UniqueMeetingList();

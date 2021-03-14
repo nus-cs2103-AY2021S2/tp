@@ -11,12 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParseDateUtil;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.Name;
 import seedu.address.model.meeting.Priority;
-import seedu.address.model.tag.Tag;
 
 
 /**
@@ -32,7 +32,7 @@ public class JsonAdaptedMeeting {
     private final String description;
     private final String priority;
 
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedGroup> group = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdoptedMeeting} with the given meeting details.
@@ -44,14 +44,14 @@ public class JsonAdaptedMeeting {
                               @JsonProperty("endDateTime") String endDateTime,
                               @JsonProperty("description") String description,
                               @JsonProperty("priority") String priority,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("group") List<JsonAdaptedGroup> group) {
         this.name = name;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.description = description;
         this.priority = priority;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (group != null) {
+            this.group.addAll(group);
         }
     }
 
@@ -65,8 +65,8 @@ public class JsonAdaptedMeeting {
         endDateTime = ParseDateUtil.formatDateTime(source.getTerminate().value);
         description = source.getDescription().fullDescription;
         priority = source.getPriority().toString();
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        group.addAll(source.getGroups().stream()
+                .map(JsonAdaptedGroup::new)
                 .collect(Collectors.toList()));
     }
 
@@ -77,9 +77,9 @@ public class JsonAdaptedMeeting {
      */
 
     public Meeting toModelType() throws IllegalValueException {
-        final List<Tag> meetingTags = new ArrayList<>();
-        for (JsonAdaptedTag tag: tagged) {
-            meetingTags.add(tag.toModelType());
+        final List<Group> meetingGroups = new ArrayList<>();
+        for (JsonAdaptedGroup g: group) {
+            meetingGroups.add(g.toModelType());
         }
 
         if (name == null) {
@@ -118,7 +118,7 @@ public class JsonAdaptedMeeting {
         }
 
         final Priority modelPriority = new Priority(priority);
-        final Set<Tag> modelTags = new HashSet<>(meetingTags);
+        final Set<Group> modelTags = new HashSet<>(meetingGroups);
         try {
             return new Meeting(modelName, modelStart, modelTerminate,
                     modelPriority, modelDescription, modelTags);

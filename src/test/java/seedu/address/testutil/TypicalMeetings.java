@@ -19,7 +19,6 @@ import java.util.List;
 
 import seedu.address.model.meeting.Meeting;
 
-
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -28,23 +27,23 @@ public class TypicalMeetings {
     // Manually added - Meeting's details found in {@code CommandTestUtil}
     public static final Meeting MEETING1 = new MeetingBuilder().withName(VALID_NAME_MEETING1).withStart(VALID_START_MEETING1)
             .withTerminate(VALID_TERMINATE_MEETING1).withPriority(VALID_PRIORITY_MEETING1).withDescription(VALID_DESCRIPTION_MEETING1)
-            .withTags(VALID_TAG_MEETING1).build();
+            .withGroups(VALID_TAG_MEETING1).build();
     public static final Meeting MEETING2 = new MeetingBuilder().withName(VALID_NAME_MEETING2).withStart(VALID_START_MEETING2)
             .withTerminate(VALID_TERMINATE_MEETING2).withPriority(VALID_PRIORITY_MEETING2).withDescription(VALID_DESCRIPTION_MEETING2)
-            .withTags(VALID_TAG_MEETING2).build();
+            .withGroups(VALID_TAG_MEETING2).build();
 
     public static final Meeting MEETING3 = new MeetingBuilder().withName("CS2103 ONLINE Lecture")
             .withStart("2020-03-11 14:00").withTerminate("2020-03-11 16:00")
             .withPriority("5").withDescription("Taught by Damith")
-            .withTags("Lectures").build();
+            .withGroups("Lectures").build();
     public static final Meeting MEETING4 = new MeetingBuilder().withName("CS2106 ONLINE Lecture")
             .withStart("2020-03-10 10:00").withTerminate("2020-03-10 12:00")
             .withPriority("5").withDescription("Taught by Djordje")
-            .withTags("Lectures").build();
+            .withGroups("Lectures").build();
     public static final Meeting MEETING5 = new MeetingBuilder().withName("Chess Club Meetings")
             .withStart("2020-03-17 10:00").withTerminate("2020-03-17 12:00")
             .withPriority("3").withDescription("Bring your chess board")
-            .withTags("Extracurricular").build();
+            .withGroups("Extracurricular").build();
 
 
 

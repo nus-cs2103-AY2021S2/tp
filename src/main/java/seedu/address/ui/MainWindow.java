@@ -25,7 +25,7 @@ import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.Name;
 import seedu.address.model.meeting.Priority;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.group.Group;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -141,27 +141,27 @@ public class MainWindow extends UiPart<Stage> {
         //for now I just create a custom meeting and put in a observable List, to test the UI.
 
         String description = "A regular meeting. Nothing special. Clear up a few documents.";
-        Set<Tag> setTags = new HashSet<>();
-        setTags.add(new Tag("Hello"));
-        setTags.add(new Tag("TestTag"));
+        Set<Group> setGroups = new HashSet<>();
+        setGroups.add(new Group("Hello"));
+        setGroups.add(new Group("TestGroup"));
 
         meetingObservableList.add(new Meeting(new Name("A very long meeting"),
                 new DateTime("2021-02-03 12:00"),
                 new DateTime("2021-02-03 14:00"),
                 new Priority("1"),
-                new Description(description), setTags));
+                new Description(description), setGroups));
         meetingObservableList.add(new Meeting(new Name("Sample Meeting"),
                 new DateTime("2021-10-03 12:00"),
                 new DateTime("2021-12-03 14:00"),
                 new Priority("4"),
-                new Description(description), setTags));
+                new Description(description), setGroups));
 
 
         meetingObservableList.add(new Meeting(new Name("The next Meeting"),
                 new DateTime("2021-10-03 12:00"),
                 new DateTime("2021-12-03 14:00"),
                 new Priority("4"),
-                new Description(description), setTags));
+                new Description(description), setGroups));
 
         // can delete  up to here ..
         meetingDashboard = new MeetingDashboard(meetingObservableList);
