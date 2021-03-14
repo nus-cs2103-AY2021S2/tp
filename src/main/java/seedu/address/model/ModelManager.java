@@ -97,13 +97,6 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePlan(Plan target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Plan plan) {
-        addressBook.addPerson(plan);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PLANS);
         addressBook.removePlan(target);
     }
 
@@ -194,6 +187,10 @@ public class ModelManager implements Model {
         Plan plan = addressBook.getPersonList().get(planNumber);
         Semester semester = plan.getSemesters().get(semNumber);
         semester.addModule(module);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PLANS);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
+//
+//    public Module seekModule(String moduleCode) {
+//
+//    }
 }

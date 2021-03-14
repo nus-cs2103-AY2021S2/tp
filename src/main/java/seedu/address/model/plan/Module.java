@@ -157,7 +157,7 @@ public class Module {
     }
 
     public static Module seekModule(String moduleCode) throws ModuleExceptions{
-        JsonModule[] moduleInfo = Model.getAddressBook().getModuleInfo();
+        JsonModule[] moduleInfo = Model.getPlans().getModuleInfo();
         int l = moduleInfo.length;
         for (int i = 0; i < l; i++) {
             if (moduleInfo[i].getModuleCode().equals(moduleCode)) {
@@ -173,9 +173,5 @@ public class Module {
     @Override
     public String toString() {
         return getModuleCode() + " " + getModuleTitle();
-    }
-
-    public static void main(String args[]) {
-        System.out.println("helloworld");
     }
 }

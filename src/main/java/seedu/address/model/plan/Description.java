@@ -37,13 +37,6 @@ public class Description {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if a given string is a valid email.
-     */
-    public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     @Override
     public String toString() {
         return value;

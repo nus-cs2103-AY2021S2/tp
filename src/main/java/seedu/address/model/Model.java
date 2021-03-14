@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
+import seedu.address.model.plan.Module;
 
 /**
  * The API of the Model component.

@@ -45,10 +45,10 @@ public class AddModuleCommand extends Command{
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Plan> lastShownPlan = model.getFilteredPersonList();
+        List<Plan> lastShownPlan = model.getFilteredPlanList();
 
         if (planNumber.getZeroBased() >= lastShownPlan.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
         }
 
         if (model.hasModule(planNumber.getZeroBased(), semNumber.getZeroBased(), toAdd)) {
