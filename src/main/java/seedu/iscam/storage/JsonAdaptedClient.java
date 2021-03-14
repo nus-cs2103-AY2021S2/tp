@@ -98,7 +98,7 @@ class JsonAdaptedClient {
                     Location.class.getSimpleName()));
         }
         if (!Location.isValidLocation(location)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            throw new IllegalValueException(String.format(Location.MESSAGE_CONSTRAINTS,
                     Location.class.getSimpleName()));
         }
         final Location modelLocation = new Location(location);
