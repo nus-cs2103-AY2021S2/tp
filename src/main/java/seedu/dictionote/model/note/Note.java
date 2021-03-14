@@ -36,6 +36,10 @@ public class Note {
         this.isDone = false;
     }
 
+    /**
+     * Constructor with the note and tag
+     */
+
     public Note(String note, Set<Tag> tags) {
         requireAllNonNull(note, tags);
         this.note = note;

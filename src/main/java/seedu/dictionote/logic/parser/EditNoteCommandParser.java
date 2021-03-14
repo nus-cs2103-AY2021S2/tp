@@ -2,8 +2,8 @@ package seedu.dictionote.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.dictionote.logic.parser.CliSyntax.*;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
