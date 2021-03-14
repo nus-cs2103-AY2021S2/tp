@@ -69,7 +69,7 @@ public class Authentication {
 
         //If there is zip but it's not locked, just unzip it.
         if (!isExistsLockedZip()) {
-            attemptUnzip();
+            attemptUnzipUnprotected();
         } else {
             Scanner scanner = new Scanner(System.in);
             while (true) {
@@ -207,7 +207,12 @@ public class Authentication {
         }
     }
 
-    private boolean attemptUnzip() throws ZipException {
+    /**
+     * Attempts to unzip the unprotected addressbook.zip file.
+     * @return true if unzip is successful
+     * @throws ZipException when trying to unzip the file.
+     */
+    private boolean attemptUnzipUnprotected() throws ZipException {
         return attemptUnzip("");
     }
 
