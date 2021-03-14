@@ -41,9 +41,29 @@ public class Plan {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Adds a semester to the Plan.
+     */
+    public Plan addSemester(Semester semester) {
+        semesters.add(semester);
+        return this;
+    }
+
+    /**
+     * Returns List of Semesters.
+     */
+    public List<Semester> getSemesters() {
+        return List.copyOf(semesters);
+    }
+
+
+    /**
+     * Returns Description of Plan.
+     */
     public Description getDescription() {
         return description;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

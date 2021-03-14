@@ -29,7 +29,7 @@ public class Semester {
     }
 
     public List<Module> getModules() {
-        return modules;
+        return List.copyOf(modules);
     }
 
     public int getTotalMCs() {
@@ -69,7 +69,7 @@ public class Semester {
         String formattedSemesterDescription = String.format(semesterDescription, getSemNumber(), getTotalMCs(), "\n");
         stringBuilder.append(formattedSemesterDescription);
         for (Module mod : modules) {
-            stringBuilder.append(mod.toString());
+            stringBuilder.append(mod.toString() + "\n");
         }
         return stringBuilder.toString();
     }

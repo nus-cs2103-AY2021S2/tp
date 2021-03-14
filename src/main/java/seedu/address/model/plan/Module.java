@@ -154,6 +154,10 @@ public class Module {
 
     @Override
     public String toString() {
-        return getModuleCode() + " " + getModuleTitle();
+        if (grade == null) {
+            return getModuleCode() + " - " + getModuleTitle();
+        } else {
+            return getModuleCode() + " - " + getModuleTitle() + "\t" + getGrade();
+        }
     }
 }

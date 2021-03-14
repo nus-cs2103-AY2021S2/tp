@@ -11,7 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
+import seedu.address.model.util.History;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +26,13 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Plan> filteredPlans;
+
+    private boolean hasMasterPlan = false;
+    private boolean hasCurrentSemester = false;
+
+    private History history;
+    private Plan masterPlan;
+    private int currentSemesterNumber; // Semesters are indexed by ID
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -66,50 +77,73 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPlansFilePath() {
+        return userPrefs.getPlansFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setPlansFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setPlansFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Plan ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setPlans(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyAddressBook getPlans() {
         return addressBook;
     }
 
     @Override
-    public boolean hasPerson(Plan plan) {
+    public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
-        return addressBook.hasPerson(plan);
+        return addressBook.hasPlan(plan);
     }
 
     @Override
-    public void deletePerson(Plan target) {
-        addressBook.removePerson(target);
+    public void deletePlan(Plan target) {
+        addressBook.removePlan(target);
     }
 
     @Override
-    public void addPerson(Plan plan) {
-        addressBook.addPerson(plan);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addPlan(Plan plan) {
+        addressBook.addPlan(plan);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
     @Override
-    public void setPerson(Plan target, Plan editedPlan) {
+    public void setPlan(Plan target, Plan editedPlan) {
         requireAllNonNull(target, editedPlan);
 
-        addressBook.setPerson(target, editedPlan);
+        addressBook.setPlan(target, editedPlan);
+    }
+
+    //=========== Semester ================================================================================
+
+    @Override
+    public boolean hasSemester(int planNumber, Semester semester) {
+        requireAllNonNull(planNumber, semester);
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        return plan.getSemesters().stream().anyMatch((currentSemester) -> {
+            return currentSemester.getSemNumber() == semester.getSemNumber();
+        });
+    }
+
+    //    @Override
+    //    public void deleteSemester(Plan plan, Semester target) {
+    //        addressBook.removeSemester(plan, target);
+    //    }
+
+    @Override
+    public void addSemester(int planNumber, Semester semester) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        addressBook.setPlan(plan, plan.addSemester(semester));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
     //=========== Filtered Plan List Accessors =============================================================
@@ -119,14 +153,90 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Plan> getFilteredPersonList() {
+    public ObservableList<Plan> getFilteredPlanList() {
         return filteredPlans;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Plan> predicate) {
+    public void updateFilteredPlanList(Predicate<Plan> predicate) {
         requireNonNull(predicate);
         filteredPlans.setPredicate(predicate);
+    }
+
+    @Override
+    public History getHistory() throws CommandException {
+        if (history == null) {
+            history = createHistory();
+        }
+        return history;
+    }
+
+    private History createHistory() throws CommandException {
+        if (!hasMasterPlan) {
+            throw new CommandException("You must set a master plan first!");
+        }
+        if (!hasCurrentSemester) {
+            throw new CommandException("You must set a current semester first!");
+        }
+        return new History(getMasterPlan(), getCurrentSemester());
+    }
+
+    @Override
+    public Plan getMasterPlan() throws CommandException {
+        if (!hasMasterPlan) {
+            throw new CommandException("You must set a master plan first!");
+        }
+
+        return masterPlan;
+    }
+
+    @Override
+    public Semester getCurrentSemester() throws CommandException {
+        if (!hasCurrentSemester) {
+            throw new CommandException("You must set a current semester first!");
+        }
+
+        Semester currentSem = null;
+        for (Semester semester : getMasterPlan().getSemesters()) {
+            if (semester.getSemNumber() == currentSemesterNumber) {
+                currentSem = semester;
+                break;
+            }
+        }
+
+        // If the currentSem is still null it is possible that currentSemesterNumber no longer
+        // matches any existing semesters, suggesting it may have been deleted.
+        if (currentSem == null) {
+            hasCurrentSemester = false;
+            throw new CommandException("Set the current semester again, it may have been removed or deleted.");
+        }
+        return currentSem;
+    }
+
+    @Override
+    public void setCurrentSemester(int currentSemesterNumber) throws CommandException {
+        Plan masterPlan = getMasterPlan();
+        int maxSemesterNumber = 0;
+        for (Semester semester : masterPlan.getSemesters()) {
+            if (semester.getSemNumber() > maxSemesterNumber) {
+                maxSemesterNumber = semester.getSemNumber();
+            }
+        }
+
+        if (currentSemesterNumber <= 0 || currentSemesterNumber > maxSemesterNumber) {
+            String semNumOutOfBounds = "The argument provided to current semester must be between 1 and " +
+                    maxSemesterNumber;
+            throw new CommandException(semNumOutOfBounds);
+        }
+
+        this.currentSemesterNumber = currentSemesterNumber;
+        this.hasCurrentSemester = true;
+    }
+
+    @Override
+    public void setMasterPlan(Plan plan) {
+        this.masterPlan = plan;
+        this.hasMasterPlan = true;
     }
 
     @Override

@@ -14,13 +14,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.plan.Plan;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PlanBuilder;
 
 public class PlanTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Plan plan = new PersonBuilder().build();
+        Plan plan = new PlanBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> plan.getTags().remove(0));
     }
 
