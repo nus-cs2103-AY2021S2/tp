@@ -22,6 +22,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.commands.ListProjectsCommand;
+import seedu.address.logic.commands.ShowEventsTabCommand;
 import seedu.address.logic.commands.ViewProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -99,6 +100,9 @@ public class AddressBookParser {
 
         case ViewProjectCommand.COMMAND_WORD:
             return new ViewProjectCommandParser().parse(arguments);
+
+        case ShowEventsTabCommand.COMMAND_WORD:
+            return new ShowEventsTabCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

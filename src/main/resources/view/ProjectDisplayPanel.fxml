@@ -15,7 +15,7 @@
   </stylesheets>
 
   <Label fx:id="projectName" styleClass="cell_huge_label"/>
-  <TabPane side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+  <TabPane fx:id="tabPane" side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
     <tabs>
       <Tab text="Events">
         <content>

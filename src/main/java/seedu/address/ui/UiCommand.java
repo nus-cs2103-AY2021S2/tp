@@ -9,5 +9,6 @@ public enum UiCommand {
     EXIT_APPLICATION,
     DISPLAY_PROJECT,
     SHOW_PROJECTS,
-    SHOW_CONTACTS
+    SHOW_CONTACTS,
+    SHOW_EVENTS
 }

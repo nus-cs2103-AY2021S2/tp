@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -178,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void executeUiCommand(CommandResult commandResult) {
+    private void executeUiCommand(CommandResult commandResult) throws CommandException {
         switch (commandResult.getUiCommand()) {
         case EXIT_APPLICATION:
             handleExit();
@@ -194,6 +197,9 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case SHOW_PROJECTS:
             handleShowProjectsTab();
+            break;
+        case SHOW_EVENTS:
+            handleShowEventsTab();
             break;
         default:
             assert false : "Command result should not be invalid";
@@ -253,6 +259,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleShowContactsTab() {
         tabPane.getSelectionModel().select(1);
+    }
+
+    /**
+     * Shows contacts tab.
+     */
+    public void handleShowEventsTab() throws CommandException {
+        try {
+            projectDisplayPanel.showEventsTab();
+        } catch (NullPointerException e) {
+            throw new CommandException(MESSAGE_UI_PROJECT_NOT_DISPLAYED, e);
+        }
     }
 
 }

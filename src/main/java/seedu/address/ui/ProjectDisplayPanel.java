@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -21,10 +22,19 @@ import seedu.address.model.task.repeatable.Event;
  */
 public class ProjectDisplayPanel extends UiPart<Region> {
     private static final String FXML = "ProjectDisplayPanel.fxml";
+
+    private static final Integer EVENTS_TAB = 0;
+    private static final Integer DEADLINES_TAB = 1;
+    private static final Integer TODOS_TAB = 2;
+    private static final Integer PARTICIPANTS_TAB = 3;
+
     private final Logger logger = LogsCenter.getLogger(ProjectDisplayPanel.class);
 
     @FXML
     private Label projectName;
+
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     private ListView<Event> eventListView;
@@ -64,6 +74,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
         participantListView.setItems(new FilteredList<>(project.getParticipants().getAsObservableList()));
         participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
+    }
+
+    public void showEventsTab() {
+        tabPane.getSelectionModel().select(EVENTS_TAB);
     }
 
     /**
