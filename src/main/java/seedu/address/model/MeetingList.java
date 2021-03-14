@@ -40,14 +40,6 @@ public class MeetingList implements ReadOnlyMeetingList {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the meetings list with {@code meetings}.
-     * {@code meetings} must not contain duplicate meetings.
-     */
-    public void setMeetings(List<Meeting> meetings) {
-        this.meetings.setMeetings(meetings);
-    }
-
-    /**
      * Resets the existing data of this {@code MeetingList} with {@code newData}.
      */
     public void resetData(ReadOnlyMeetingList newData) {
@@ -72,6 +64,14 @@ public class MeetingList implements ReadOnlyMeetingList {
      */
     public void addMeeting(Meeting p) {
         meetings.add(p);
+    }
+
+    /**
+     * Replaces the contents of the meetings list with {@code meetings}.
+     * {@code meetings} must not contain duplicate meetings.
+     */
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings.setMeetings(meetings);
     }
 
     /**
