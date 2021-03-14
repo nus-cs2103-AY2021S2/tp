@@ -20,12 +20,10 @@ public class DeleteTodoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the todo identified by it's index number within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer)\n"
-            + PREFIX_REMOVE_TASK_INDEX + "TODO_INDEX "
-            + "Example: " + COMMAND_WORD + " 1"
-            + PREFIX_REMOVE_TASK_INDEX + "Submit project report ";
-
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+            + "Parameters: PROJECT_INDEX (must be a positive integer)"
+            + PREFIX_REMOVE_TASK_INDEX + "TODO_INDEX \n"
+            + "Example: " + COMMAND_WORD + " 1" + " "
+            + PREFIX_REMOVE_TASK_INDEX + " 2";
 
     private final Index targetIndex;
 
@@ -44,7 +42,7 @@ public class DeleteTodoCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, personToDelete));
     }
 
     @Override
