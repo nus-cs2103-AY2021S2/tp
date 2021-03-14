@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.task.Task;
 
 /**
  * Finds and lists all tasks in planner whose title contains any of the argument keywords.
@@ -20,12 +21,15 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " quiz meeting task742";
 
-    public static final String TAG_USAGE = "Please enter input field to find tasks by tag(s) "
+    public static final String TAG_USAGE = "Please enter valid input field to find tasks by tag(s) "
             + "in correct format as follows:" + COMMAND_WORD + " t/ [TAG_NAME]";
 
-    private final Predicate predicate;
+    public static final String DESCRIPTION_USAGE = "Please enter valid input field to find tasks by description "
+            + "in correct format as follows:" + COMMAND_WORD + " d/ [DESCRIPTION_NAME]";
 
-    public FindCommand(Predicate predicate) {
+    private final Predicate<Task> predicate;
+
+    public FindCommand(Predicate<Task> predicate) {
         this.predicate = predicate;
     }
 

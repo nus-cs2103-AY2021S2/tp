@@ -135,9 +135,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `project` will match `Project`
 * The order of the keywords does not matter. e.g. `CS2103 Project` will match `Project CS2103`
 * Only full keywords will be matched e.g. `proj` will not match `projects`
+* Tasks matching at least one keyword will be returned e.g. `find proj` will match `find projects`
 
 Examples:
-* `find CS2103` returns matching tasks with title of `cs2103` or `CS2103 team project`
+* `find CS2103 team project` returns matching tasks with title of following words `CS2103`, `team`, `project`
 
 ### Searching a task by tag: `find t/`
 
@@ -157,6 +158,20 @@ Format: `find t/KEYWORD`
 
 Examples:
 * `find t/CS2103` returns matching tasks with tag of `CS2103` or `cs2103`
+
+### Searching a task by description: `find d/`
+
+Find matching tasks based on the description keywords provided by the user.
+
+Format: `find d/KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `write user guide` will match `write User Guide`
+* The order of the keywords does not matter. e.g. `user guide` will match `guide user`
+* Only full keywords will be matched e.g. `proj` will not match `projects`
+* Tasks matching at least one keyword will be returned e.g. `write guide` will match `write user guide`
+
+Examples:
+* `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
 
 ### Deleting a task : `delete`
 
