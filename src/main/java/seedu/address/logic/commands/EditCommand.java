@@ -95,11 +95,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
-        Review updatedEmail = editPersonDescriptor.getReview().orElse(personToEdit.getReview());
+        Review updatedReview = editPersonDescriptor.getReview().orElse(personToEdit.getReview());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedRating, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedRating, updatedReview, updatedAddress, updatedTags);
     }
 
     @Override
