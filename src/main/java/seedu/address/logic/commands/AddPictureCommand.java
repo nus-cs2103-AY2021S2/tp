@@ -23,7 +23,7 @@ public class AddPictureCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a picture to the person identified "
             + "by the index number used in the last person listing. \n"
-            + "Parameters: INDEX (must be a positive integer) PICTURE FILE \n"
+            + "Parameters: INDEX (must be a positive integer) PICTURE_FILE_PATH \n"
             + "Example: " + COMMAND_WORD + " 1 /Users/john/img_of_friend.jpg";
 
     public static final String MESSAGE_ADD_PICTURE_SUCCESS = "Added picture for %1$s";
