@@ -16,13 +16,13 @@ public class ReminderDatePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return isWithinThreeDays(person);
+        return isWithinXDays(person);
     }
 
     /**
      * Returns true if the order's delivery date is within 3 days of the current date.
      */
-    public boolean isWithinThreeDays(Person person) {
+    public boolean isWithinXDays(Person person) {
         LocalDate toTest = person.getDeliveryDate().getValue();
         LocalDate dateToday = LocalDate.now();
         LocalDate acceptableDate = dateToday.plusDays(days + 1);
