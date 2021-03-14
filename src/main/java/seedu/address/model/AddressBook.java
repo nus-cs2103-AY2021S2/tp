@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import com.sun.javafx.fxml.expression.Expression;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -58,6 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
+        setTasks(newData.getTaskList());
         setPersons(newData.getPersonList());
     }
 
@@ -100,6 +100,43 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// util methods
 
+    /**
+     * Replaces the contents of the task list with {@code tasks}.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in HEY MATEz.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
+
+    /**
+     * Adds a task to HEY MATEz.
+     */
+    public void addTask(Task t) {
+        tasks.addTask(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in HEY MATEz.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
@@ -122,28 +159,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    /**
-     * Adds a task to HEY MATEz.
-     */
-    public void addTask(Task t) {
-        tasks.add(t);
-    }
-
-    /**
-     * Replaces the given task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in HEY MATEz.
-     */
-    public void setTask(Task target, Task editedTask) {
-        requireNonNull(editedTask);
-
-        tasks.setTask(target, editedTask);
-    }
-
-    @Override
-    public ObservableList<Task> getTaskList() {
-        return tasks.asUnmodifiableObservableList();
     }
 
 }

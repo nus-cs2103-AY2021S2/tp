@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,7 +24,6 @@ public class AddTaskCommand extends Command {
             + PREFIX_DESCRIPTION + "Draft meeting agenda and proposal for board meeting";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
-//    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Task toAddTask;
 
@@ -38,10 +38,6 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-//        if (model.hasPerson(toAddTask)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-//        }
         model.addTask(toAddTask);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAddTask));
     }

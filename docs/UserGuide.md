@@ -18,9 +18,9 @@ as this application is catered to people who are used to typing on the keyboard 
 ### 1. Adding Task: `addTask`  
 Adds a task and its description to the list.
 
-Format: `addTask DESCRIPTION`
+Format: `addTask TITLE d/DESCRIPTION`
 
-Examples: `addTask assignment`
+Examples: `addTask assignment d/Math quiz 2`
 
 
 ### 2. Deleting Task: `deleteTask`
