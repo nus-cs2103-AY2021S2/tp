@@ -46,6 +46,6 @@ public class DateUtil {
      */
     public static String decodeDateForStorage(LocalDate date) {
         requireNonNull(date);
-        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 }

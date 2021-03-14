@@ -55,7 +55,6 @@ class JsonAdaptedEvent {
         try {
             eventInterval = Interval.valueOf(interval);
         } catch (IllegalArgumentException e) {
-            // TODO update e.getMessage with interval constraints
             throw new IllegalValueException(e.getMessage());
         }
 
@@ -63,7 +62,6 @@ class JsonAdaptedEvent {
         try {
             date = DateUtil.encodeDate(at);
         } catch (DateConversionException e) {
-            // TODO update e.getMessage with date constraints
             throw new IllegalValueException(e.getMessage());
         }
 
