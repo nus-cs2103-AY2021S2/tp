@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 /**
@@ -43,9 +44,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane dates;
+    private VBox dates;
     @FXML
-    private FlowPane meetings;
+    private VBox meetings;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -62,9 +63,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        person.getDates()
-                .forEach(date -> dates.getChildren().add(new Label(date.toString())));
-        // Temporary UI to test meetings
+
+        // Temporary UI to test dates and meetings
+        person.getDates().forEach(date -> dates.getChildren().add(new Label(date.toString())));
         person.getMeetings().forEach(meeting -> meetings.getChildren().add(new Label(meeting.toUi())));
     }
 
