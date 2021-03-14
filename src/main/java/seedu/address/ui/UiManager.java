@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
@@ -27,6 +28,7 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private ReminderWindow reminderWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -45,27 +47,51 @@ public class UiManager implements Ui {
 
         try {
             //start a thread to run background music
-            Runnable runnable = () -> {
-                Media media = null;
-                try {
-                    media = new Media(getClass().getResource("/audio/MSLogin.mp3").toURI().toString());
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.setAutoPlay(true);
-            };
-            Thread thread = new Thread(runnable);
+            Runnable music = playMusic();
+            Thread thread = new Thread(music);
             thread.start();
 
             mainWindow = new MainWindow(primaryStage, logic);
+            reminderWindow = new ReminderWindow();
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            reminderWindow.show();
+
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+    }
+
+    /**
+     * Creates new runnable that plays the background music for the RemindMe.
+     * @return music playing Runnable.
+     */
+    private Runnable playMusic() {
+        Runnable runnable = () -> {
+            Media media = null;
+            try {
+                media = new Media(getClass().getResource("/audio/MSLogin.mp3").toURI().toString());
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setOnReady(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.play();
+                }
+            });
+            mediaPlayer.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.seek(Duration.ZERO);
+                }
+            });
+            //mediaPlayer.play();
+        };
+        return runnable;
     }
 
     private Image getImage(String imagePath) {
