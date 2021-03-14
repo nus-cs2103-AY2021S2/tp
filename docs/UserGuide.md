@@ -160,10 +160,11 @@ Format: `exit`
 
 Locks ClientBook.
 
-Format: `lock [CURRENT_PASSWORD] NEW_PASSWORD`
+Format: `lock [CURRENT_PASSWORD] [NEW_PASSWORD]`
 
 * Verifies the current password before locking ClientBook with the new password.
-* The current password field can be omitted if ClientBook is not yet locked.
+* The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
+* The `NEW_PASSWORD` field can be omitted if you wish to use the last used password.
 
 ### Unlocking ClientBook : `unlock`
 
