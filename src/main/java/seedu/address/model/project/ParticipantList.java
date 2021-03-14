@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
@@ -46,9 +47,9 @@ public class ParticipantList {
      * @param person {@code Person} to add.
      */
     public ParticipantList addParticipant(Person person) {
-        List<Person> participants = this.participants;
-        participants.add(person);
-        return new ParticipantList(participants);
+        return new ParticipantList(Stream.concat(participants.stream(), Stream.of(person))
+                .collect(Collectors.toList())
+        );
     }
 
     /**
