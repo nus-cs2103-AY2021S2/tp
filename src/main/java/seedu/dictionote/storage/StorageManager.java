@@ -8,9 +8,11 @@ import java.util.logging.Logger;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.commons.exceptions.DataConversionException;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.UserPrefs;
+
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -21,17 +23,20 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private NoteBookStorage noteBookStorage;
+    private DictionaryStorage dictionaryStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
-                          NoteBookStorage noteBookStorage) {
+                          NoteBookStorage noteBookStorage,
+                          DictionaryStorage dictionaryStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.noteBookStorage = noteBookStorage;
+        this.dictionaryStorage = dictionaryStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -107,5 +112,34 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ Dictionary methods ==============================
+
+    @Override
+    public Path getDictionaryFilePath() {
+        return dictionaryStorage.getDictionaryFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyDictionary> readDictionary() throws DataConversionException, IOException {
+        return readDictionary(dictionaryStorage.getDictionaryFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyDictionary> readDictionary(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return dictionaryStorage.readDictionary(filePath);
+    }
+
+    @Override
+    public void saveDictionary(ReadOnlyDictionary dictionary) throws IOException {
+        saveDictionary(dictionary, dictionaryStorage.getDictionaryFilePath());
+    }
+
+    @Override
+    public void saveDictionary(ReadOnlyDictionary dictionary, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        dictionaryStorage.saveDictionary(dictionary, filePath);
     }
 }

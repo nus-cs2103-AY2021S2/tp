@@ -8,6 +8,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailu
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
@@ -33,7 +34,8 @@ import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
  */
 public class EditNoteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            getTypicalNoteBook(), getTypicalDictionary());
 
 
     @Test
@@ -45,7 +47,7 @@ public class EditNoteCommandTest {
         String expectedMessage = String.format(EditNoteCommand.MESSAGE_EDIT_NOTE_SUCCESS, editedNote);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new UserPrefs(), getTypicalNoteBook());
+                new UserPrefs(), getTypicalNoteBook(), getTypicalDictionary());
 
         assertCommandSuccess(editNoteCommand, model, expectedMessage, expectedModel);
     }

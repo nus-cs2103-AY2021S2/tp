@@ -136,6 +136,18 @@ public class ParserUtil {
         return trimmedName;
     }
 
+    /**
+     * Parses a {@code String dictionaryContent} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static String parseContent(String dictionaryContent) throws ParseException {
+        requireNonNull(dictionaryContent);
+        String trimmedName = dictionaryContent.trim();
+        return trimmedName;
+    }
+
     /** Parses a {@code String option} into a {@code UiOptionAction}.
      * Leading and trailing whitespaces will be trimmed.
      *

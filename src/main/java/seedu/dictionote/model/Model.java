@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
 
 /**
@@ -14,6 +15,7 @@ import seedu.dictionote.model.note.Note;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
+    Predicate<Content> PREDICATE_SHOW_ALL_CONTENT = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -38,6 +40,9 @@ public interface Model {
     /** Returns the NoteBook */
     ReadOnlyNoteBook getNoteBook();
 
+    /** Returns the Dictionary */
+    ReadOnlyDictionary getDictionary();
+
     /**
      * Returns true if a note with the same content as {@code note} exists in the dictionote book.
      */
@@ -58,12 +63,14 @@ public interface Model {
      */
     Path getAddressBookFilePath();
     Path getNoteBookFilePath();
+    Path getDictionaryFilePath();
 
     /**
      * Sets the user prefs' dictionote book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
     void setNoteBookFilePath(Path noteBookFilePath);
+    void setDictionaryFilePath(Path getDictionaryFilePath);
 
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.
@@ -77,6 +84,8 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the dictionote book.
      */
     boolean hasContact(Contact contact);
+
+    boolean hasContent(Content content);
 
     /**
      * Deletes the given person.
@@ -114,6 +123,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Contact> getFilteredContactList();
+    ObservableList<Content> getFilteredContentList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -126,5 +136,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredNoteList(Predicate<Note> predicate);
+
+    void updateFilteredContentList(Predicate<Content> predicate);
 
 }
