@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PlannerParser" as PlannerParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteTaskCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "d:DeleteTaskCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete-task 1")
 activate LogicManager
 
-LogicManager -> PlannerParser : parseCommand("delete 1")
+LogicManager -> PlannerParser : parseCommand("delete-task 1")
 activate PlannerParser
 
 create DeleteCommandParser

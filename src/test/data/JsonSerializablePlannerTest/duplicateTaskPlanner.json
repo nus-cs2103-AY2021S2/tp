@@ -1,13 +1,15 @@
 {
   "tasks": [ {
     "title": "Alice Pauline",
-    "deadline": "94351253",
+    "deadline": "12 Oct 2019",
+    "starttime": "1230",
     "email": "alice@example.com",
     "description": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "title": "Alice Pauline",
-    "deadline": "94351253",
+    "deadline": "12 Oct 2019",
+    "starttime": "1230",
     "email": "pauline@example.com",
     "description": "4th street"
   } ]

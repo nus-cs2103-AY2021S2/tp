@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -23,6 +24,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
+import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -39,6 +41,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_STARTTIME + "15:30] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -95,11 +98,12 @@ public class EditCommand extends Command {
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        StartTime updatedStartTime = editTaskDescriptor.getStartTime().orElse(taskToEdit.getStartTime());
         Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedDeadline, updatedEmail, updatedDescription, updatedTags);
+        return new Task(updatedTitle, updatedDeadline, updatedStartTime, updatedEmail, updatedDescription, updatedTags);
     }
 
     @Override
@@ -127,6 +131,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Title title;
         private Deadline deadline;
+        private StartTime starttime;
         private Email email;
         private Description description;
         private Set<Tag> tags;
@@ -140,6 +145,7 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setDeadline(toCopy.deadline);
+            setStartTime(toCopy.starttime);
             setEmail(toCopy.email);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
@@ -149,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, email, description, tags);
+            return CollectionUtil.isAnyNonNull(title, deadline, starttime, email, description, tags);
         }
 
         public void setTitle(Title title) {
@@ -166,6 +172,14 @@ public class EditCommand extends Command {
 
         public Optional<Deadline> getDeadline() {
             return Optional.ofNullable(deadline);
+        }
+
+        public void setStartTime(StartTime starttime) {
+            this.starttime = starttime;
+        }
+
+        public Optional<StartTime> getStartTime() {
+            return Optional.ofNullable(starttime);
         }
 
         public void setEmail(Email email) {

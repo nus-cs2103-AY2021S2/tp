@@ -14,6 +14,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
+import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -26,6 +27,7 @@ class JsonAdaptedTask {
 
     private final String title;
     private final String deadline;
+    private final String starttime;
     private final String email;
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -35,10 +37,12 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
-            @JsonProperty("email") String email, @JsonProperty("description") String description,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("starttime") String starttime, @JsonProperty("email") String email,
+                           @JsonProperty("description") String description,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.deadline = deadline;
+        this.starttime = starttime;
         this.email = email;
         this.description = description;
         if (tagged != null) {
@@ -52,6 +56,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().fullTitle;
         deadline = source.getDeadline().value;
+        starttime = source.getStartTime().value;
         email = source.getEmail().value;
         description = source.getDescription().value;
         tagged.addAll(source.getTags().stream()
@@ -87,6 +92,15 @@ class JsonAdaptedTask {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
+        if (starttime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StartTime.class.getSimpleName()));
+        }
+        if (!StartTime.isValidStartTime(starttime)) {
+            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        final StartTime modelStartTime = new StartTime(starttime);
+
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
@@ -105,7 +119,7 @@ class JsonAdaptedTask {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelDeadline, modelEmail, modelDescription, modelTags);
+        return new Task(modelTitle, modelDeadline, modelStartTime, modelEmail, modelDescription, modelTags);
     }
 
 }

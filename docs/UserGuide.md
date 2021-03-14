@@ -32,7 +32,7 @@ It is optimised for users who prefer typing.
 
    * **`add`**`n/eat dinner` : Adds a task titled `eat dinner` to the todo list.
 
-   * **`delete`**`3` : Deletes the 3rd task shown in the current list.
+   * **`delete-task`**`3` : Deletes the 3rd task shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -135,9 +135,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `project` will match `Project`
 * The order of the keywords does not matter. e.g. `CS2103 Project` will match `Project CS2103`
 * Only full keywords will be matched e.g. `proj` will not match `projects`
+* Tasks matching at least one keyword will be returned e.g. `find proj` will match `find projects`
 
 Examples:
-* `find CS2103` returns matching tasks with title of `cs2103` or `CS2103 team project`
+* `find CS2103 team project` returns matching tasks with title of following words `CS2103`, `team`, `project`
 
 ### Searching a task by tag: `find t/`
 
@@ -158,19 +159,52 @@ Format: `find t/KEYWORD`
 Examples:
 * `find t/CS2103` returns matching tasks with tag of `CS2103` or `cs2103`
 
-### Deleting a task : `delete`
+### Searching a task by description: `find d/`
+
+Find matching tasks based on the description keywords provided by the user.
+
+Format: `find d/KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `write user guide` will match `write User Guide`
+* The order of the keywords does not matter. e.g. `user guide` will match `guide user`
+* Only full keywords will be matched e.g. `proj` will not match `projects`
+* Tasks matching at least one keyword will be returned e.g. `write guide` will match `write user guide`
+
+Examples:
+* `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
+
+### Deleting a task : `delete-task`
 
 Deletes an existing task from the task list.
 
-Format: `delete INDEX`
+Format: `delete-task INDEX`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the task list.
-* `find Work` followed by `delete 1` deletes the 1st task in the result of the `find` command.
+* `list` followed by `delete-task 2` deletes the 2nd task in the task list.
+* `find Work` followed by `delete-task 1` deletes the 1st task in the result of the `find` command.
+
+### Deleting a field from a task : `delete-field`
+
+Deletes an existing field from a task in the task list.
+
+Format: `delete-field INDEX FIELD`
+
+* Deletes the specified field of task at `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Fields are specified in the format of `d/` `tags/`.
+* Exactly one field must be specified.
+* Title field cannot be deleted.
+
+Examples:
+* `list` followed by `delete-field 2 d/` deletes the description from the 2nd task in the task list.
+* `find Cat` followed by `delete-field 1 tags/` deletes all the tags from the 1st task in the result of the 
+  `find` command.
+
 
 ### Clearing all entries : `clear`
 
@@ -215,7 +249,8 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/TITLE` <br> e.g., `add n/eat dinner`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete-Task** | `delete-task INDEX`<br> e.g., `delete-task 3`
+**Delete-Field** | `delete-field INDEX FIELD`<br> e.g., `delete-field 1 d/`
 **Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103 team project`
 **List** | `list`
