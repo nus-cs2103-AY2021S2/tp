@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 
 /**
@@ -22,6 +23,7 @@ public class StorageManager implements Storage {
 
     private AddressBookStorage addressBookStorage;
     private UniqueFoodListStorage uniqueFoodListStorage;
+    private FoodIntakeListStorage foodIntakeListStorage;
     private DietPlanListStorage dietPlanListStorage;
     private UserPrefsStorage userPrefsStorage;
 
@@ -30,10 +32,12 @@ public class StorageManager implements Storage {
      * and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UniqueFoodListStorage uniqueFoodListStorage,
-                          DietPlanListStorage dietPlanListStorage, UserPrefsStorage userPrefsStorage) {
+                          FoodIntakeListStorage foodIntakeListStorage, DietPlanListStorage dietPlanListStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.uniqueFoodListStorage = uniqueFoodListStorage;
+        this.foodIntakeListStorage = foodIntakeListStorage;
         this.dietPlanListStorage = dietPlanListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -111,6 +115,35 @@ public class StorageManager implements Storage {
     public void saveFoodList(UniqueFoodList foodList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         uniqueFoodListStorage.saveFoodList(foodList, filePath);
+    }
+
+    // ================ FoodIntakeList methods ==============================
+
+    @Override
+    public Path getFoodIntakeListFilePath() {
+        return foodIntakeListStorage.getFoodIntakeListFilePath();
+    }
+
+    @Override
+    public Optional<FoodIntakeList> readFoodIntakeList() throws DataConversionException, IOException {
+        return readFoodIntakeList(foodIntakeListStorage.getFoodIntakeListFilePath());
+    }
+
+    @Override
+    public Optional<FoodIntakeList> readFoodIntakeList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return foodIntakeListStorage.readFoodIntakeList(filePath);
+    }
+
+    @Override
+    public void saveFoodIntakeList(FoodIntakeList foodIntakeList) throws IOException {
+        saveFoodIntakeList(foodIntakeList, foodIntakeListStorage.getFoodIntakeListFilePath());
+    }
+
+    @Override
+    public void saveFoodIntakeList(FoodIntakeList foodIntakeList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        foodIntakeListStorage.saveFoodIntakeList(foodIntakeList, filePath);
     }
 
     // ================ DietPlanList methods ==============================
