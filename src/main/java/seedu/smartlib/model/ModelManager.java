@@ -208,9 +208,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return smartLib.equals(other.smartLib)
                 && userPrefs.equals(other.userPrefs)
-                && filteredReaders.equals(other.filteredReaders)
-                && filteredRecords.equals(other.filteredRecords)
-                && filteredBooks.equals(other.filteredBooks);
+                && filteredReaders.equals(other.filteredReaders);
     }
 
 }

@@ -189,9 +189,7 @@ public class SmartLib implements ReadOnlySmartLib {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SmartLib // instanceof handles nulls
-                && readers.equals(((SmartLib) other).readers)
-                && records.equals(((SmartLib) other).records)
-                && books.equals(((SmartLib) other).books));
+                && readers.equals(((SmartLib) other).readers));
     }
 
     @Override
