@@ -6,12 +6,15 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * Deletes a contact identified using it's displayed index from the contacts list.
+ * Opens a new window to send an email to a contact identified using it's displayed index from the contacts list.
  */
 public class EmailContactCommand extends Command {
 
@@ -24,6 +27,7 @@ public class EmailContactCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_EMAIL_CONTACT_SUCCESS = "New email window open: to %1$s";
+    public static final String MESSAGE_INVALID_MAILTO_LINK = "Invalid email link.";
 
     private final Index targetIndex;
 
@@ -40,10 +44,17 @@ public class EmailContactCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        // TODO: add call to email client.
-
         Contact contactToEmail = lastShownList.get(targetIndex.getZeroBased());
-        // model.deleteContact(contactToEmail);
+        URI contactMailtoLink = URI.create("mailto:" + contactToEmail.getEmail());
+        Desktop userDesktop = Desktop.getDesktop();
+
+        // credit to TorstenH. and alexey_s from CodeProject for the URL invocation code.
+        // link to the posts: https://www.codeproject.com/questions/398241/how-to-open-url-in-java
+        try {
+            userDesktop.browse(contactMailtoLink); // invoke user's OS default mail client.
+        } catch (IOException e) {
+            throw new CommandException(MESSAGE_INVALID_MAILTO_LINK);
+        }
 
         return new CommandResult(String.format(MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail));
     }
