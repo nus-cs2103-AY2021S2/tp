@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -48,73 +49,73 @@ public class MeetingList implements ReadOnlyMeetingList {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code MeetingList} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyMeetingList newData) {
         requireNonNull(newData);
 
-        setClients(newData.getClientList());
+        setMeetings(newData.getMeetingList());
     }
 
     //// client-level operations
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the meeting list.
      */
-    public boolean hasClient(Client client) {
-        requireNonNull(client);
-        return clients.contains(client);
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.contains(meeting);
     }
 
     /**
-     * Adds a client to the address book.
-     * The client must not already exist in the address book.
+     * Adds a meeting to the meeting list.
+     * The meeting must not already exist in the meeting list.
      */
-    public void addClient(Client p) {
-        clients.add(p);
+    public void addMeeting(Meeting p) {
+        meetings.add(p);
     }
 
     /**
-     * Replaces the given client {@code target} in the list with {@code editedClient}.
+     * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
      * {@code target} must exist in the address book.
-     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the meeting list.
      */
-    public void setClient(Client target, Client editedClient) {
-        requireNonNull(editedClient);
+    public void setMeetings(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
 
-        clients.setClient(target, editedClient);
+        meetings.setMeeting(target, editedMeeting);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Meeting List}.
+     * {@code key} must exist in the meeting list.
      */
-    public void removeClient(Client key) {
-        clients.remove(key);
+    public void removeMeeting(Meeting key) {
+        meetings.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return clients.asUnmodifiableObservableList().size() + " clients";
+        return meetings.asUnmodifiableObservableList().size() + " clients";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Client> getClientList() {
-        return clients.asUnmodifiableObservableList();
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && clients.equals(((AddressBook) other).clients));
+                || (other instanceof MeetingList // instanceof handles nulls
+                && meetings.equals(((MeetingList) other).meetings));
     }
 
     @Override
     public int hashCode() {
-        return clients.hashCode();
+        return meetings.hashCode();
     }
 }
