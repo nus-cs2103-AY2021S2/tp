@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.ProjectsFolder;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.CompletableTaskList;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.ParticipantList;

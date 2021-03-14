@@ -1,10 +1,13 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.AddContactToCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
@@ -31,7 +34,9 @@ public class AddContactToCommandTest {
 
         String expectedMessage = String.format(MESSAGE_SUCCESS, personToAdd.getName(), projectToAddTo.getProjectName());
 
-        ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(
+                getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs()
+        );
         expectedModel.setProject(
                 projectToAddTo,
                 projectToAddTo.addParticipant(personToAdd)
@@ -44,14 +49,20 @@ public class AddContactToCommandTest {
     public void execute_invalidProjectIndex_throwsCommandException() {
         AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_THIRD_PERSON, INDEX_FIRST_PERSON);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> addContactToCommand.execute(model));
+        assertThrows(
+                CommandException.class,
+                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> addContactToCommand.execute(model)
+        );
     }
 
     @Test
     public void execute_invalidContactIndex_throwsCommandException() {
         AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST_PERSON, Index.fromOneBased(8));
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> addContactToCommand.execute(model));
+        assertThrows(
+                CommandException.class,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> addContactToCommand.execute(model)
+        );
     }
 
     @Test
@@ -65,7 +76,13 @@ public class AddContactToCommandTest {
                 projectToAddTo.addParticipant(personToAdd)
         );
 
-        assertThrows(CommandException.class, String.format(AddContactToCommand.MESSAGE_DUPLICATE_CONTACT, projectToAddTo.getProjectName()), () -> addContactToCommand.execute(model));
+        assertThrows(
+                CommandException.class,
+                String.format(
+                        AddContactToCommand.MESSAGE_DUPLICATE_CONTACT,
+                        projectToAddTo.getProjectName()
+                ), () -> addContactToCommand.execute(model)
+        );
     }
 
     @Test
