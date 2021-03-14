@@ -26,8 +26,8 @@ public class AddDateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Save a special date for the person identified "
             + "by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
+            + PREFIX_DATE + "DATE "
+            + PREFIX_DESCRIPTION + "DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "12-12-2021 "
             + PREFIX_DESCRIPTION + "Wedding Anniversary";
