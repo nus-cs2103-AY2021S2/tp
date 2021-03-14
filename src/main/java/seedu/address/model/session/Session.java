@@ -88,18 +88,6 @@ public class Session {
 
     public static final String VALIDATION_REGEX = " [c][\\/]\\d";
 
-    /**
-     * Returns true if both sessions have the same name.
-     * This defines a weaker notion of equality between two sessions.
-     */
-    public boolean isSameSession(Session otherSession) {
-        if (otherSession == this) {
-            return true;
-        }
-
-        return otherSession != null
-                && otherSession.getClassId().equals(getClassId());
-    }
 
     /**
      * Adds a student to the session
