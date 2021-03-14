@@ -62,7 +62,7 @@ class JsonAdaptedOrder {
         cheeseType = source.getCheeseType().value;
         quantity = source.getQuantity().value;
         orderDate = source.getOrderDate().toString();
-        completedDate = source.getCompletedDate().toString();
+        completedDate = source.getCompletedDate().map(x -> x.toString()).orElse(null);
         customerId = source.getCustomerId().value;
         cheeseIds.addAll(source.getCheeses().stream()
                     .map(x -> x.value)
@@ -109,14 +109,14 @@ class JsonAdaptedOrder {
         }
         final OrderDate modelOrderDate = new OrderDate(orderDate);
 
+        final CompletedDate modelCompletedDate;
         if (completedDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                CompletedDate.class.getSimpleName()));
-        }
-        if (!CompletedDate.isValidDate(completedDate)) {
+            modelCompletedDate = null;
+        } else if (!CompletedDate.isValidDate(completedDate)) {
             throw new IllegalValueException(CompletedDate.MESSAGE_CONSTRAINTS);
+        } else {
+            modelCompletedDate = new CompletedDate(completedDate);
         }
-        final CompletedDate modelCompletedDate = new CompletedDate(completedDate);
 
         if (customerId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

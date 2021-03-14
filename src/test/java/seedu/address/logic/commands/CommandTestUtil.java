@@ -75,6 +75,7 @@ public class CommandTestUtil {
     public static final String VALID_ORDER_DATE_2 = "2021-03-06 08:00";
     public static final String VALID_COMPLETED_DATE_1 = "2022-02-10 13:00";
     public static final String VALID_COMPLETED_DATE_2 = "2022-03-06 10:00";
+    public static final String VALID_INCOMPLETE_DATE = null;
 
 
     static {

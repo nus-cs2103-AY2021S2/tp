@@ -46,7 +46,7 @@ public class OrderBuilder {
         this.cheeseType = orderToCopy.getCheeseType();
         this.quantity = orderToCopy.getQuantity();
         this.orderDate = orderToCopy.getOrderDate();
-        this.completedDate = orderToCopy.getCompletedDate();
+        this.completedDate = orderToCopy.getCompletedDate().orElse(null);
         this.orderId = orderToCopy.getOrderId();
         this.customerId = orderToCopy.getCustomerId();
     }
@@ -79,7 +79,11 @@ public class OrderBuilder {
      * Sets the {@code CompletedDate} of the {@code Order} that we are building.
      */
     public OrderBuilder withCompletedDate(String completedDate) {
-        this.completedDate = new CompletedDate(completedDate);
+        if (completedDate == null) {
+            this.completedDate = null;
+        } else {
+            this.completedDate = new CompletedDate(completedDate);
+        }
         return this;
     }
 
