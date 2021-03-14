@@ -263,13 +263,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a client by name          | locate details of clients without having to go through the entire list |
 | `* * *`  | forgetful user                             | store many clients details     | remember them easily                                                   |
 | `* * *`  | first time user                            | find out how to use ClientBook | familiarise myself with the app                                        |
-| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy.                   |
+| `* * *`  | insurance agent                            | filter clients by details      | find my clients who share the same insurance policy                   |
 | `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
 | `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
-| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
-| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily                                                 |
+| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information
+| `* *`    | insurance agent on the go                  | lock Clientbook with a password| prevent the leakage of my clients' information
+| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily|
 
 *{More to be added}*
 
@@ -384,6 +385,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Lock ClientBook**
+
+**MSS**
+1. User requests to lock ClientBook.
+2. ClientBook is locked.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. ClientBook is already locked but user did not enter the current password.
+    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
+    
+* 1b. ClientBook is already locked and user entered the incorrect current password.
+    * 1b1. ClientBook shows an error message. Use case resumes at step 1.
+    
+**Use case: Unlock ClientBook**
+
+**MSS**
+1. User requests to unlock ClientBook.
+2. ClientBook is unlocked.
+
+    Use case ends.
+
+**Extensions**
+* 1a. User enters the incorrect current password that is used to lock ClientBook.
+    * 1a1. ClientBook shows an error message. Use case resumes at step 1.
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
