@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_PRIORITY + "Mid "
             + PREFIX_TAG + "tragedy";
     public static final String MESSAGE_SUCCESS = "New flashcard added:\n %1$s";
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This card has already been existed in FlashBack.";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This card already exists in FlashBack.";
 
     private final Flashcard toAdd;
 
