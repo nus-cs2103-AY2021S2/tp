@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -25,10 +26,10 @@ public class Task {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Title field must be present and not null.
      */
     public Task(Title title, Phone phone, Email email, Description description, Set<Tag> tags) {
-        requireAllNonNull(title, phone, email, description, tags);
+        requireNonNull(title);
         this.title = title;
         this.phone = phone;
         this.email = email;

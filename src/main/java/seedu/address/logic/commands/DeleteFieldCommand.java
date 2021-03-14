@@ -66,7 +66,7 @@ public class DeleteFieldCommand extends Command {
 
         model.setTask(taskToDeleteFieldFrom, taskWithFieldDeleted);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS, taskToDeleteFieldFrom));
+        return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS, taskWithFieldDeleted));
     }
     //to change
 
@@ -86,16 +86,16 @@ public class DeleteFieldCommand extends Command {
         if (field.equals(PREFIX_TITLE)) {
             throw new CommandException("Cannot delete title field.");
         } else if (field.equals(PREFIX_PHONE)) {
-            Phone updatedPhone = null;
+            Phone updatedPhone = new Phone("");
             return new Task(title, updatedPhone, oldEmail, oldDescription, oldTags);
         } else if (field.equals(PREFIX_EMAIL)) {
-            Email updatedEmail = null;
+            Email updatedEmail = new Email("");
             return new Task(title, oldPhone, updatedEmail, oldDescription, oldTags);
         } else if (field.equals(PREFIX_DESCRIPTION)) {
-            Description updatedDescription = null;
+            Description updatedDescription = new Description("");
             return new Task(title, oldPhone, oldEmail, updatedDescription, oldTags);
         } else if (field.equals(PREFIX_TAG)) {
-            Set<Tag> updatedTags = null;
+            Set<Tag> updatedTags = new HashSet<>();
             return new Task(title, oldPhone, oldEmail, oldDescription, updatedTags);
         } else {
             throw new CommandException(Messages.MESSAGE_UNKNOWN_COMMAND);
