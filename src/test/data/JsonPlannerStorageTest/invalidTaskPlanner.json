@@ -1,7 +1,7 @@
 {
   "tasks": [ {
     "title": "Task with invalid title field: Ha!ns Mu@ster",
-    "phone": "9482424",
+    "deadline": "9482424",
     "email": "hans@example.com",
     "description": "4th street"
   } ]

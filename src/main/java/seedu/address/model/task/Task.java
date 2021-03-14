@@ -17,7 +17,7 @@ public class Task {
 
     // Identity fields
     private final Title title;
-    private final Phone phone;
+    private final Deadline deadline;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Email email, Description description, Set<Tag> tags) {
-        requireAllNonNull(title, phone, email, description, tags);
+    public Task(Title title, Deadline deadline, Email email, Description description, Set<Tag> tags) {
+        requireAllNonNull(title, deadline, email, description, tags);
         this.title = title;
-        this.phone = phone;
+        this.deadline = deadline;
         this.email = email;
         this.description = description;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Task {
         return title;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     public Email getEmail() {
@@ -89,7 +89,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
-                && otherTask.getPhone().equals(getPhone())
+                && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getEmail().equals(getEmail())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getTags().equals(getTags());
@@ -98,15 +98,15 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, email, description, tags);
+        return Objects.hash(title, deadline, email, description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Deadline: ")
+                .append(getDeadline())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Description: ")
