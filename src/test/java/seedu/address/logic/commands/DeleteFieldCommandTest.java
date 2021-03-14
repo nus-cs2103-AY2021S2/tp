@@ -82,6 +82,8 @@ public class DeleteFieldCommandTest {
         Model expectedModel = new ModelManager(new Planner(model.getPlanner()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), taskWithFieldDeleted);
 
+        showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
+
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 

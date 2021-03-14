@@ -33,12 +33,13 @@ public class DeleteFieldCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the specified field in the task identified by the index number "
             + "used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TITLE + "]"
-            + "[" + PREFIX_DESCRIPTION + "]"
-            + "[" + PREFIX_PHONE + "]"
-            + "[" + PREFIX_TAG + "]... \n"
-            + "Exactly one prefix is to be specified.\n"
+            + "Parameters: INDEX (must be a positive integer) FIELD\n"
+            + "Field can be: "
+            + PREFIX_TITLE + " or "
+            + PREFIX_DESCRIPTION + " or "
+            + PREFIX_PHONE + " or "
+            + PREFIX_TAG + " \n"
+            + "Exactly one field is to be specified.\n"
             + "Example: " + COMMAND_WORD + " 1" + " tags/";
 
     public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Deleted Field in Task: %1$s";
@@ -72,7 +73,7 @@ public class DeleteFieldCommand extends Command {
         Task taskWithFieldDeleted = deleteFieldFromTask(taskToDeleteFieldFrom, targetField);
 
         model.setTask(taskToDeleteFieldFrom, taskWithFieldDeleted);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
         return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS, taskWithFieldDeleted));
     }
 
