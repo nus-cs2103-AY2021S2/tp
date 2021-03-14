@@ -8,11 +8,27 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 */
 public class InsurancePlan {
 
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Insurance Plan should not start with a space and only contain alphanumeric characters";
+
     public final String planName;
 
     public InsurancePlan(String planName) {
         requireNonNull(planName);
+        checkArgument(isValidPlan(planName), MESSAGE_CONSTRAINTS);
         this.planName = planName;
+    }
+
+    /**
+     * Returns true if a given string is a valid email.
+     */
+    public static boolean isValidPlan(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

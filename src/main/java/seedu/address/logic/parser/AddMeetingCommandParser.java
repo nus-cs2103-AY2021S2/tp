@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.InsurancePlan;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.meeting.Description;
@@ -24,6 +25,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
      * and returns an AddMeetingCommand object for execution.
@@ -40,7 +42,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         // PLACEHOLDER ONLY - Replace with finding a client from Storage via ID
         Client client = new Client(new Name("John Doe"), new Phone("12345678"), new Email("john@gmail.com"),
-                new Address("Kent Ridge"), new HashSet<Tag>());
+                new Address("Kent Ridge"), new InsurancePlan("Plan A"), new HashSet<Tag>());
         // Parse string into date and time
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         // Parse string into description
