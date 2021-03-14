@@ -172,3 +172,4 @@ Action | Format, Examples
 **search** | `search CONSTRAINT`<br> e.g., `search female or search available`
 **delete** | `delete INDEX`<br> e.g.,`delete 3`
 **drive** | `drive INDEX INDEX INDEX...`<br> e.g., `drive 2 3 4`
+**find** | `find a/ADDRESS` or `find n/NAME` or `find p/PHONE NUMBER` or `find tag/TAG` <br> e.g., `find tag/female`
