@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
@@ -29,6 +30,9 @@ import seedu.dictionote.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+
+    private static final float DEFAULT_WINDOW_WIDTH_RATIO = 0.5f;
+    private static final float DEFAULT_WINDOW_HEIGHT_RATIO = 0.66f;
 
     private static final float CONTACT_SPLIT = 0.25f;
     private static final float DICTIONARY_SPLIT = 0.3f;
@@ -115,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        setWindowDefaultSize(logic.getGuiSettings(), primaryStage);
 
         setAccelerators();
 
@@ -187,12 +191,16 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets the default size based on {@code guiSettings}.
      */
-    private void setWindowDefaultSize(GuiSettings guiSettings) {
-        primaryStage.setHeight(guiSettings.getWindowHeight());
-        primaryStage.setWidth(guiSettings.getWindowWidth());
+    private void setWindowDefaultSize(GuiSettings guiSettings, Stage primaryStage) {
         if (guiSettings.getWindowCoordinates() != null) {
+            primaryStage.setHeight(guiSettings.getWindowHeight());
+            primaryStage.setWidth(guiSettings.getWindowWidth());
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        } else {
+            primaryStage.setHeight(Screen.getPrimary().getBounds().getHeight() * DEFAULT_WINDOW_HEIGHT_RATIO);
+            primaryStage.setWidth(Screen.getPrimary().getBounds().getWidth() * DEFAULT_WINDOW_WIDTH_RATIO);
+            System.out.println(Screen.getPrimary().getBounds().getHeight() + ":" + Screen.getPrimary().getBounds().getWidth());
         }
     }
 
