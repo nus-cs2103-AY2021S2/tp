@@ -41,8 +41,26 @@ public class EventList {
         this.events.add(event);
     }
 
+    /**
+     * Deletes an event from this {@code EventList}.
+     *
+     * @param i Index of {@code Event} to be deleted.
+     */
+    public void deleteEvent(Integer i) {
+        requireNonNull(i);
+        this.events.remove(i);
+    }
+
     public List<Event> getEvents() {
         return events;
+    }
+
+    /**
+     * Returns a copy of this {@code EventList}
+     * @return A copy of this {@code EventList}
+     */
+    public EventList getCopy() {
+        return new EventList(getEvents());
     }
 
     /**

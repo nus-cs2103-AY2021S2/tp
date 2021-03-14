@@ -33,6 +33,14 @@ public class ParticipantList {
     }
 
     /**
+     * Returns a copy of this {@code ParticipantList}
+     * @return A copy of this {@code ParticipantList}
+     */
+    public ParticipantList getCopy() {
+        return new ParticipantList(getParticipants());
+    }
+
+    /**
      * Returns a sequential stream with this {@code ParticipantList} as its source.
      * @return a sequential Stream over the persons in this {@code ParticipantList}.
      */

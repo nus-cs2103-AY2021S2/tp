@@ -19,7 +19,7 @@ public class DeleteProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the project identified by index from CoLAB.\n"
-            + "Parameters: PROJECT_INDEX\n"
+            + "Parameters: PROJECT_INDEX (must be a positive integer)\n"
             + "Sample: " + COMMAND_WORD + " 2";
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
