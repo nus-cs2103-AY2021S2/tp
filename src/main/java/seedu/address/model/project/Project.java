@@ -114,7 +114,27 @@ public class Project {
     /**
      * Deletes a deadline from {@code DeadlineList} field of this {@code Project}.
      *
-     * @param deadline Index of {@code Deadline} to be deleted.
+     * @param i Index of {@code Deadline} to be deleted.
+     */
+    public void deleteDeadline(Integer i) {
+        requireNonNull(i);
+        this.deadlines.deleteDeadline(i);
+    }
+
+    /**
+     * Deletes an event from {@code EventList} field of this {@code Project}.
+     *
+     * @param i Index of {@code Event} to be deleted.
+     */
+    public void deleteEvent(Integer i) {
+        requireNonNull(i);
+        this.events.deleteEvent(i);
+    }
+
+    /**
+     * Deletes a deadline from {@code DeadlineList} field of this {@code Project}.
+     *
+     * @param i Index of {@code Deadline} to be deleted.
      */
     public void deleteDeadline(Integer i) {
         requireNonNull(i);
