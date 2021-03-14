@@ -12,13 +12,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.plan.Semester;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddSemesterCommand object
  */
 public class AddSemesterCommandParser implements Parser<AddSemesterCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddSemesterCommand
+     * and returns an AddSemesterCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddSemesterCommand parse(String args) throws ParseException {
@@ -34,7 +34,6 @@ public class AddSemesterCommandParser implements Parser<AddSemesterCommand> {
         Index planNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PLAN_NUMBER).get());
 
         Semester semester = new Semester(semNumber);
-
         return new AddSemesterCommand(planNumber, semester);
     }
 

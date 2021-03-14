@@ -14,13 +14,13 @@ import seedu.address.model.plan.Plan;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddPlanCommand object
  */
 public class AddPlanCommandParser implements Parser<AddPlanCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPlanCommand
+     * and returns an AddPlanCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPlanCommand parse(String args) throws ParseException {
@@ -36,7 +36,6 @@ public class AddPlanCommandParser implements Parser<AddPlanCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Plan plan = new Plan(description, tagList);
-
         return new AddPlanCommand(plan);
     }
 
