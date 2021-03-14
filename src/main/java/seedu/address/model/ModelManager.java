@@ -30,30 +30,37 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final UniqueFoodList uniqueFoodList;
+    private final FoodIntakeList foodIntakeList;
     private final DietPlanList dietPlanList;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, UniqueFoodList uniqueFoodList,
+    public ModelManager(ReadOnlyAddressBook addressBook, UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList,
                         DietPlanList dietPlanList, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        this.addressBook = new AddressBook(addressBook, uniqueFoodList);
+        this.addressBook = new AddressBook(addressBook, uniqueFoodList, foodIntakeList);
         this.uniqueFoodList = uniqueFoodList;
+        this.foodIntakeList = foodIntakeList;
         this.dietPlanList = dietPlanList;
         this.userPrefs = new UserPrefs(userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + ", unique food list: " + uniqueFoodList
+        logger.fine("Initializing with address book: " + addressBook
+                + ", unique food list: " + uniqueFoodList + ", food intake list: " + foodIntakeList
                 + ", diet plan list: " + dietPlanList + " and user prefs " + userPrefs);
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+    /**
+     * Initializes a ModelManager.
+     */
     public ModelManager() {
-        this(new AddressBook(), new UniqueFoodList(), new DietPlanList(), new UserPrefs());
+        this(new AddressBook(), new UniqueFoodList(),
+                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -161,6 +168,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && uniqueFoodList.equals(other.uniqueFoodList)
+                && foodIntakeList.equals(other.foodIntakeList)
                 && filteredPersons.equals(other.filteredPersons);
     }
 
@@ -210,7 +218,8 @@ public class ModelManager implements Model {
     @Override
     public void editUser(User updateUser) {
         User oldUser = addressBook.getUser();
-        User newUser = new User(updateUser.getBmi(), oldUser.getFoodList(), updateUser.getAge(),
+        User newUser = new User(updateUser.getBmi(), oldUser.getFoodList(),
+                oldUser.getFoodIntakeList(), updateUser.getAge(),
                 updateUser.getGender(), updateUser.getIdealWeight());
         addressBook.addUser(newUser);
     }
@@ -243,7 +252,7 @@ public class ModelManager implements Model {
 
     @Override
     public FoodIntakeList getFoodIntakeList() {
-        return addressBook.getFoodIntakeList();
+        return foodIntakeList;
     }
 
     //=========== DietPlanList Accessors =============================================================

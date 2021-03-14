@@ -2,6 +2,7 @@ package seedu.address.model.food;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,14 @@ public class FoodIntakeList {
      */
     public FoodIntakeList(LocalDate startDate) {
         this.startDate = startDate;
+        this.foodIntakeList = FXCollections.observableArrayList();
+    }
+
+    /**
+     * Constructs a FoodIntakeList without date.
+     */
+    public FoodIntakeList() {
+        this.startDate = null;
         this.foodIntakeList = FXCollections.observableArrayList();
     }
 
@@ -98,5 +107,22 @@ public class FoodIntakeList {
             stringBuilder.append("No record found during this period of time.");
         }
         return stringBuilder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        FoodIntakeList other = (FoodIntakeList) o;
+        return Objects.equals(foodIntakeList, other.foodIntakeList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(foodIntakeList);
     }
 }

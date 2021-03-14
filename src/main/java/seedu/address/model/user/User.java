@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import seedu.address.model.food.Food;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.person.Name;
 
 /**
@@ -23,6 +24,7 @@ public class User {
     // Data fields
     private final Bmi bmi;
     private final List<Food> foodList;
+    private final FoodIntakeList foodIntakeList;
 
     /**
      * Creates a representation of the user with the given parameters.
@@ -31,11 +33,13 @@ public class User {
      * @param bmi Bmi object of the user
      * @param foodList Food list of the user
      */
-    public User(Name name, Bmi bmi, List<Food> foodList, Age age, Gender gender, IdealWeight idealWeight) {
+    public User(Name name, Bmi bmi, List<Food> foodList, FoodIntakeList foodIntakeList,
+                Age age, Gender gender, IdealWeight idealWeight) {
         requireAllNonNull(name, bmi, foodList);
         this.name = name;
         this.bmi = bmi;
         this.foodList = foodList;
+        this.foodIntakeList = foodIntakeList;
         this.age = age;
         this.gender = gender;
         this.idealWeight = idealWeight;
@@ -48,7 +52,8 @@ public class User {
      * @param bmi Bmi object of the user
      * @param foodList Food list of the user
      */
-    public User(Bmi bmi, List<Food> foodList, Age age, Gender gender, IdealWeight idealWeight) {
+    public User(Bmi bmi, List<Food> foodList, FoodIntakeList foodIntakeList,
+                Age age, Gender gender, IdealWeight idealWeight) {
         requireAllNonNull(bmi, foodList);
         this.name = null;
         this.bmi = bmi;
@@ -57,6 +62,7 @@ public class User {
         this.gender = gender;
         this.idealWeight = idealWeight;
         this.lastUpdated = LocalDate.now();
+        this.foodIntakeList = foodIntakeList;
     }
 
     public Name getName() {
@@ -69,6 +75,10 @@ public class User {
 
     public List<Food> getFoodList() {
         return foodList;
+    }
+
+    public FoodIntakeList getFoodIntakeList() {
+        return foodIntakeList;
     }
 
     public Age getAge() {

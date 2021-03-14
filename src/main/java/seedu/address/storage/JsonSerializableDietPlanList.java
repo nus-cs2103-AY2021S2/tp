@@ -20,14 +20,14 @@ public class JsonSerializableDietPlanList {
 
     public static final String MESSAGE_DUPLICATE_ENTRY = "Diet plan list contains duplicated diet plan(s).";
 
-    private final List<JsonAdaptedDietPlan> dietPlans = new ArrayList<>();
+    private final List<JsonAdaptedDietPlan> plans = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableDietPlanList} with the given diet plans.
      */
     @JsonCreator
-    public JsonSerializableDietPlanList(@JsonProperty("plans") List<JsonAdaptedDietPlan> dietPlans) {
-        this.dietPlans.addAll(dietPlans);
+    public JsonSerializableDietPlanList(@JsonProperty("plans") List<JsonAdaptedDietPlan> plans) {
+        this.plans.addAll(plans);
     }
 
     /**
@@ -36,7 +36,7 @@ public class JsonSerializableDietPlanList {
      * @param source future changes to this will not affect the created {@code JsonSerializableDietPlanList}.
      */
     public JsonSerializableDietPlanList(DietPlanList source) {
-        this.dietPlans.addAll(source.getPlanList().stream().map(JsonAdaptedDietPlan::new).collect(Collectors.toList()));
+        this.plans.addAll(source.getPlanList().stream().map(JsonAdaptedDietPlan::new).collect(Collectors.toList()));
     }
 
     /**
@@ -46,7 +46,7 @@ public class JsonSerializableDietPlanList {
      */
     public DietPlanList toModelType() throws IllegalValueException {
         DietPlanList dietPlanList = new DietPlanList();
-        for (JsonAdaptedDietPlan jsonAdaptedDietPlan : dietPlans) {
+        for (JsonAdaptedDietPlan jsonAdaptedDietPlan : plans) {
             DietPlan dietPlan = jsonAdaptedDietPlan.toModelType();
             if (dietPlanList.hasDietPlan(dietPlan)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ENTRY);
