@@ -1,6 +1,5 @@
 package seedu.address.model.meeting;
 
-import seedu.address.logic.parser.ParseDateUtil;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -8,6 +7,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import seedu.address.logic.parser.ParseDateUtil;
 
 
 /**
