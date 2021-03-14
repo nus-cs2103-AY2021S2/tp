@@ -9,7 +9,7 @@ import seedu.dictionote.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
-public class DeleteCommandParser implements Parser<DeleteContactCommand> {
+public class DeleteContactCommandParser implements Parser<DeleteContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand

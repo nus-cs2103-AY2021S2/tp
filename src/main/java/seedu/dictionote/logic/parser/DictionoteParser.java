@@ -63,7 +63,7 @@ public class DictionoteParser {
             return new EditNoteCommandParser().parse(arguments);
 
         case DeleteContactCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteContactCommandParser().parse(arguments);
 
         case DeleteNoteCommand.COMMAND_WORD:
             return new DeleteNoteCommandParser().parse(arguments);
