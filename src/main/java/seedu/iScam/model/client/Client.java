@@ -51,7 +51,6 @@ public class Client {
     public Location getLocation() {
         return location;
     }
-    
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
