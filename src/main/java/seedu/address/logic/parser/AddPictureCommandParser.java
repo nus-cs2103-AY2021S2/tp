@@ -45,13 +45,17 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
         }
 
         // Check extension
+        String fileName = path.toString();
+        int lastIndexOf = fileName.lastIndexOf('.');
+        String ext = fileName.substring(lastIndexOf);
+
         String[] allowedExtensions = { ".png", ".jpeg", ".jpg" };
         boolean hasCorrectExt = Arrays.stream(allowedExtensions)
-                .map(path::endsWith)
+                .map(ext::equals)
                 .reduce(false, (x, y) -> x || y);
         if (!hasCorrectExt) {
             throw new ParseException("Given file is not an image. Accepted extensions: "
-                    + String.join(",", allowedExtensions) );
+                    + String.join(", ", allowedExtensions) );
         }
 
         return new AddPictureCommand(index, path);
