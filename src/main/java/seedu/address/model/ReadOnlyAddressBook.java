@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.plan.Plan;
+import seedu.address.storage.JsonModule;
 
 /**
  * Unmodifiable view of an address book
@@ -14,4 +15,8 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Plan> getPersonList();
 
+    /**
+     * Returns　an array of module information from moduleinfo.json
+     */
+    JsonModule[] getModuleInfo();
 }
