@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import seedu.partyplanet.commons.core.LogsCenter;
+import seedu.partyplanet.model.AddressBook;
 import seedu.partyplanet.model.ReadOnlyAddressBook;
 
 
@@ -15,7 +16,6 @@ public class StateHistory {
     private ArrayList<ReadOnlyAddressBook> states;
     private int currentStatePointer;
 
-
     private final Logger logger = LogsCenter.getLogger(StateHistory.class);
 
     /**
@@ -23,9 +23,10 @@ public class StateHistory {
      */
     public StateHistory(ReadOnlyAddressBook savedState) {
         this.states = new ArrayList<>();
-        states.add(savedState);
-        logger.info("Initialised stateHistory. Current state has " + states.get(states.size() - 1).toString()
-                + ". Current number of states is: " + states.size());
+        this.states.add(new AddressBook(savedState));
+        this.currentStatePointer = 0;
+        logger.info("Initialised stateHistory." + " Current number of states is: " + states.size()
+            + ". Currently on state: " + currentStatePointer);
     }
 
     /**
@@ -36,44 +37,38 @@ public class StateHistory {
         if (currentStatePointer != states.size() - 1) {
             clearStatesAfterCurrent();
         }
-        states.add(newState);
+        states.add(new AddressBook(newState));
         currentStatePointer++;
-        logger.info("Added state to stateHistory. Current state has " + states.get(states.size() - 1).toString()
-                + ". Current number of states is: " + states.size());
+        logger.info("Added state to stateHistory." + " Current number of states is: " + states.size()
+                + ". Currently on state: " + currentStatePointer);
     }
 
     /**
      * Retrieves the previous state of the AddressBook
      * @return the previous state of the AddressBook
-     * @throws ArrayIndexOutOfBoundsException when there is no valid previous state
+     * @throws IndexOutOfBoundsException when there is no valid previous state
      */
-    public ReadOnlyAddressBook previousState() throws ArrayIndexOutOfBoundsException {
+    public ReadOnlyAddressBook previousState() throws IndexOutOfBoundsException {
         currentStatePointer--;
+        ReadOnlyAddressBook previousState;
         try {
-            return states.get(currentStatePointer);
-        } catch (ArrayIndexOutOfBoundsException e) {
+            previousState = states.get(currentStatePointer);
+        } catch (IndexOutOfBoundsException e) {
             currentStatePointer++;
             throw e;
         }
+        logger.info("Went to previous state." + " Current number of states is: " + states.size()
+                + ". Currently on state: " + currentStatePointer);
+        return previousState;
     }
 
-    /**
-     * Retrieves the next state of the AddressBook
-     * @return the next state of the AddressBook
-     * @throws ArrayIndexOutOfBoundsException when there is no next state
-     */
-    public ReadOnlyAddressBook nextState() throws ArrayIndexOutOfBoundsException {
-        currentStatePointer++;
-        try {
-            return states.get(currentStatePointer);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            currentStatePointer--;
-            throw e;
-        }
+    // TODO  for redo command
+    public ReadOnlyAddressBook nextState() {
+        return states.get(currentStatePointer);
     }
 
     private void clearStatesAfterCurrent() {
-        states.subList(currentStatePointer + 1, states.size() - 1).clear();
+        logger.info("called clear");
+        states.subList(currentStatePointer + 1, states.size()).clear();
     }
-
 }

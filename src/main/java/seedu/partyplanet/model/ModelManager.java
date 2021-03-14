@@ -22,7 +22,6 @@ import seedu.partyplanet.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final AddressBook addressBook;
     private final StateHistory stateHistory;
     private final UserPrefs userPrefs;
@@ -87,7 +86,6 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
-        stateHistory.addState(addressBook);
     }
 
     @Override
@@ -104,13 +102,11 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
-        stateHistory.addState(addressBook);
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        stateHistory.addState(addressBook);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -118,8 +114,18 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-        stateHistory.addState(addressBook);
     }
+
+    @Override
+    public void addState() {
+        stateHistory.addState(getAddressBook());
+    }
+
+    @Override
+    public StateHistory getStateHistory() {
+        return stateHistory;
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 

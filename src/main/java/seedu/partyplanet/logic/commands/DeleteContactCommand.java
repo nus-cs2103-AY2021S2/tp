@@ -43,7 +43,7 @@ public class DeleteContactCommand extends DeleteCommand {
         for (Person personToDelete : deletedPersons) {
             model.deletePerson(personToDelete);
         }
-
+        model.addState();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, displayPersons(deletedPersons)));
     }
 
