@@ -65,7 +65,7 @@ public class TypicalOwners {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Owner owner : getTypicalOwners()) {
-            ab.addOwner(owner);
+            ab.addEntity(owner);
         }
         return ab;
     }

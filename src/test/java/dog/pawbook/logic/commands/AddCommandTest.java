@@ -120,7 +120,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyAddressBook<Owner> getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -164,7 +164,7 @@ public class AddCommandTest {
         @Override
         public boolean hasOwner(Owner owner) {
             requireNonNull(owner);
-            return this.owner.isSameOwner(owner);
+            return this.owner.isSameEntity(owner);
         }
     }
 
@@ -177,7 +177,7 @@ public class AddCommandTest {
         @Override
         public boolean hasOwner(Owner owner) {
             requireNonNull(owner);
-            return ownersAdded.stream().anyMatch(owner::isSameOwner);
+            return ownersAdded.stream().anyMatch(owner::isSameEntity);
         }
 
         @Override
@@ -187,7 +187,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyAddressBook<Owner> getAddressBook() {
             return new AddressBook();
         }
     }

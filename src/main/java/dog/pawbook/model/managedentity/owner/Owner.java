@@ -45,19 +45,6 @@ public class Owner extends Entity {
     }
 
     /**
-     * Returns true if both owners have the same name.
-     * This defines a weaker notion of equality between two owners.
-     */
-    public boolean isSameOwner(Owner otherOwner) {
-        if (otherOwner == this) {
-            return true;
-        }
-
-        return otherOwner != null
-                && otherOwner.getName().equals(getName());
-    }
-
-    /**
      * Returns true if both owners have the same identity and data fields.
      * This defines a stronger notion of equality between two owners.
      */

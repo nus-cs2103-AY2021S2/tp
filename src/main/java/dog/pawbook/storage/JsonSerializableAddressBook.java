@@ -17,7 +17,7 @@ import dog.pawbook.model.managedentity.owner.Owner;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableAddressBook<T extends JsonAdaptedEntity> {
 
     public static final String MESSAGE_DUPLICATE_OWNER = "Owners list contains duplicate owner(s).";
 
@@ -36,8 +36,8 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        owners.addAll(source.getOwnerList().stream().map(JsonAdaptedOwner::new).collect(Collectors.toList()));
+    public JsonSerializableAddressBook(ReadOnlyAddressBook<Owner> source) {
+        owners.addAll(source.getEntityList().stream().map(JsonAdaptedOwner::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,10 +49,10 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedOwner jsonAdaptedOwner : owners) {
             Owner owner = jsonAdaptedOwner.toModelType();
-            if (addressBook.hasOwner(owner)) {
+            if (addressBook.hasEntity(owner)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_OWNER);
             }
-            addressBook.addOwner(owner);
+            addressBook.addEntity(owner);
         }
         return addressBook;
     }

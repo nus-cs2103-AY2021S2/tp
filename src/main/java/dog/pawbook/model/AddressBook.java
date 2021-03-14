@@ -4,17 +4,17 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import dog.pawbook.model.managedentity.owner.Owner;
-import dog.pawbook.model.managedentity.owner.UniqueOwnerList;
+import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.owner.UniqueEntityList;
 import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameOwner comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class AddressBook<T extends Entity> implements ReadOnlyAddressBook<T> {
 
-    private final UniqueOwnerList owners;
+    private final UniqueEntityList<T> entities;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        owners = new UniqueOwnerList();
+        entities = new UniqueEntityList();
     }
 
     public AddressBook() {}
@@ -42,9 +42,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the contents of the owner list with {@code owners}.
      * {@code owners} must not contain duplicate owners.
+     * @param entities
      */
-    public void setOwners(List<Owner> owners) {
-        this.owners.setOwners(owners);
+    public void setEntities(List<T> entities) {
+        this.entities.setEntities(entities);
     }
 
     /**
@@ -53,68 +54,69 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setOwners(newData.getOwnerList());
+        setEntities(newData.getEntityList());
     }
 
     //// owner-level operations
 
     /**
      * Returns true if a owner with the same identity as {@code owner} exists in the address book.
+     * @param entity
      */
-    public boolean hasOwner(Owner owner) {
-        requireNonNull(owner);
-        return owners.contains(owner);
+    public boolean hasEntity(T entity) {
+        requireNonNull(entity);
+        return entities.contains(entity);
     }
 
     /**
      * Adds a owner to the address book.
      * The owner must not already exist in the address book.
      */
-    public void addOwner(Owner p) {
-        owners.add(p);
+    public void addEntity(T p) {
+        entities.add(p);
     }
 
     /**
-     * Replaces the given owner {@code target} in the list with {@code editedOwner}.
+     * Replaces the given entity {@code target} in the list with {@code editedOwner}.
      * {@code target} must exist in the address book.
-     * The owner identity of {@code editedOwner} must not be the same as another existing owner in the address book.
+     * The entity identity of {@code editedOwner} must not be the same as another existing entity in the address book.
      */
-    public void setOwner(Owner target, Owner editedOwner) {
-        requireNonNull(editedOwner);
+    public void setEntity(T target, T editedEntity) {
+        requireNonNull(editedEntity);
 
-        owners.setOwner(target, editedOwner);
+        entities.setEntity(target, editedEntity);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeOwner(Owner key) {
-        owners.remove(key);
+    public void removeEntity(T key) {
+        entities.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return owners.asUnmodifiableObservableList().size() + " owners";
+        return entities.asUnmodifiableObservableList().size() + " owners";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Owner> getOwnerList() {
-        return owners.asUnmodifiableObservableList();
+    public ObservableList<T> getEntityList() {
+        return entities.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && owners.equals(((AddressBook) other).owners));
+                && entities.equals(((AddressBook) other).entities));
     }
 
     @Override
     public int hashCode() {
-        return owners.hashCode();
+        return entities.hashCode();
     }
 }

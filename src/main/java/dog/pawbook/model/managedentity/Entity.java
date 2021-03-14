@@ -53,4 +53,17 @@ public abstract class Entity {
 
         return otherEntity.getName().equals(getName()) && otherEntity.getTags().equals(getTags());
     }
+
+    /**
+     * Returns true if both entities have the same name.
+     * This defines a weaker notion of equality between two entities.
+     */
+    public <T extends Entity> boolean isSameEntity(T otherEntity) {
+        if (otherEntity == this) {
+            return true;
+        }
+
+        return otherEntity != null
+                && otherEntity.getName().equals(getName());
+    }
 }

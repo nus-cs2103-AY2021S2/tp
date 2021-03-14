@@ -20,7 +20,7 @@ import dog.pawbook.model.managedentity.tag.Tag;
 /**
  * Jackson-friendly version of {@link Owner}.
  */
-class JsonAdaptedOwner {
+class JsonAdaptedOwner implements JsonAdaptedEntity<Owner> {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Owner's %s field is missing!";
 
