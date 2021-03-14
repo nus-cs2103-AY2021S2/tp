@@ -51,7 +51,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 
 
 * Items in square brackets are optional.
- e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+ e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 
 * Items with …​ after them can be used multiple times including zero times.
@@ -62,7 +62,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.
  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
@@ -74,7 +74,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -118,20 +118,23 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds clients whose names contain any of the given keywords.
+Finds clients whose names/fields contain any of the given keywords.
 
-Format: `find KEYWORD [& MORE_KEYWORDS]`
+Format: `find [FLAG] KEYWORD [& MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g hans will match Hans.
 * The order of the keywords does not matter.
-* Only the name field is searched.
-* The delimiter `&` between keywords is used to indicate mutiple keywords.
-* Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans & Bo will return Hans Gruber, Bo Yang.
+* The name field is searched when there is no flag.
+* The other fields can searched when a flag is used.
+* The flags are `-p`, `-e`, `-a`, `-t` and `-i`, representing phone, email, address, tags and policies respectively.
+* The delimiter `&` between keywords is used to indicate multiple keywords.
+* Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans & Bo will return Hans Sum, Bo Yang.
 
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex & david` returns `Alex Yeoh`, `David Li`<br>
+* `find alex & david` returns `Alex Yeoh`, `David Li`
+* `find -a orchard` returns `Alex Yeoh` whose address is `Orchard Road`<br>
 
 ### Deleting a person : `delete`
 
@@ -186,6 +189,6 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James & Jake`
+**Find** | `find [FLAG] KEYWORD [& MORE_KEYWORDS]`<br> e.g., `find -a Bedok & Clementi`
 **List** | `list`
 **Help** | `help`
