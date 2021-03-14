@@ -41,9 +41,9 @@ Examples: `viewTasks`
 
 Adds a member and his/ her contract number to contact list
 
-Format: `addMember NAME -p PHONE NUMBER`
+Format: `addMember NAME -p PHONE NUMBER -e email`
 
-Examples: `addMember Dylan -p 64529356`
+Examples: `addMember Dylan -p 64529356 -e test@test.com`
 
 ### 5. Delete Member: `deleteMember`
 
