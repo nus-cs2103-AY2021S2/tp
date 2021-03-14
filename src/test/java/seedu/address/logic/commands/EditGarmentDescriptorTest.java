@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_BOB;
 
@@ -48,7 +48,11 @@ public class EditGarmentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
+<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/EditGarmentDescriptorTest.java
         editedAmy = new EditGarmentDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+=======
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDressCode(VALID_DRESSCODE_BOB).build();
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/test/java/seedu/address/logic/commands/EditPersonDescriptorTest.java
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

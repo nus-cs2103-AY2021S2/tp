@@ -11,11 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.description.Description;
+<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedGarment.java
 import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+=======
+import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Size;
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
 
 /**
  * Jackson-friendly version of {@link Garment}.
@@ -27,20 +35,25 @@ class JsonAdaptedGarment {
     private final String name;
     private final String size;
     private final String colour;
-    private final String address;
+    private final String dresscode;
     private final List<JsonAdaptedDescription> descriptions = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedGarment} with the given garment details.
      */
     @JsonCreator
+<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedGarment.java
     public JsonAdaptedGarment(@JsonProperty("name") String name, @JsonProperty("size") String size,
             @JsonProperty("colour") String colour, @JsonProperty("address") String address,
+=======
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("size") String size,
+            @JsonProperty("colour") String colour, @JsonProperty("dresscode") String dresscode,
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
             @JsonProperty("addedDescriptions") List<JsonAdaptedDescription> addedDescriptions) {
         this.name = name;
         this.size = size;
         this.colour = colour;
-        this.address = address;
+        this.dresscode = dresscode;
         if (addedDescriptions != null) {
             this.descriptions.addAll(addedDescriptions);
         }
@@ -53,7 +66,7 @@ class JsonAdaptedGarment {
         name = source.getName().fullName;
         size = source.getSize().value;
         colour = source.getColour().colour;
-        address = source.getAddress().value;
+        dresscode = source.getDressCode().value;
         descriptions.addAll(source.getDescriptions().stream()
                 .map(JsonAdaptedDescription::new)
                 .collect(Collectors.toList()));
@@ -91,13 +104,14 @@ class JsonAdaptedGarment {
         }
         final Colour modelColour = new Colour(colour);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (dresscode == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DressCode.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!DressCode.isValidDressCode(dresscode)) {
+            throw new IllegalValueException(DressCode.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final DressCode modelAddress = new DressCode(dresscode);
 
         final Set<Description> modelDescriptions = new HashSet<>(garmentDescriptions);
         return new Garment(modelName, modelSize, modelColour, modelAddress, modelDescriptions);

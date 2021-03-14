@@ -10,10 +10,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
+<<<<<<< HEAD
 import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+=======
+import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Size;
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -71,13 +78,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static DressCode parseDresscode(String dresscode) throws ParseException {
+        requireNonNull(dresscode);
+        String trimmedDresscode = dresscode.trim();
+        if (!DressCode.isValidDressCode(trimmedDresscode)) {
+            throw new ParseException(DressCode.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new DressCode(trimmedDresscode);
     }
 
     /**

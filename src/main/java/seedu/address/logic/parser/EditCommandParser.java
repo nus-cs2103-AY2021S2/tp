@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
@@ -32,7 +32,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_ADDRESS,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
                         PREFIX_DESCRIPTION);
 
         Index index;
@@ -53,8 +53,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
             editGarmentDescriptor.setColour(ParserUtil.parseColour(argMultimap.getValue(PREFIX_COLOUR).get()));
         }
+<<<<<<< HEAD
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editGarmentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+=======
+        if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
+            editPersonDescriptor.setDressCode(ParserUtil.parseDresscode(argMultimap.getValue(PREFIX_DRESSCODE).get()));
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
         }
         parseDescriptionsForEdit(argMultimap.getAllValues(PREFIX_DESCRIPTION))
                 .ifPresent(editGarmentDescriptor::setDescriptions);

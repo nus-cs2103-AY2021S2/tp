@@ -15,21 +15,28 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
+<<<<<<< HEAD
 import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+=======
+import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Size;
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_SIZE = "+65";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_DRESSCODE = " ";
     private static final String INVALID_COLOUR = " ";
     private static final String INVALID_DESCRIPTION = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_SIZE = "12";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_DRESSCODE = "FORMAL";
     private static final String VALID_COLOUR = "rachel@example.com";
     private static final String VALID_DESCRIPTION_1 = "friend";
     private static final String VALID_DESCRIPTION_2 = "neighbour";
@@ -103,26 +110,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseDressCode_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDresscode((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseDressCode_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDresscode(INVALID_DRESSCODE));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseDressCode_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        DressCode expectedDressCode = new DressCode(VALID_DRESSCODE);
+        assertEquals(expectedDressCode, ParserUtil.parseDresscode(VALID_DRESSCODE));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseDressCode_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+        String addressWithWhitespace = WHITESPACE + VALID_DRESSCODE + WHITESPACE;
+        DressCode expectedDressCode = new DressCode(VALID_DRESSCODE);
+        assertEquals(expectedDressCode, ParserUtil.parseDresscode(addressWithWhitespace));
     }
 
     @Test

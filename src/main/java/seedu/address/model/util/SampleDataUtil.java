@@ -7,16 +7,25 @@ import java.util.stream.Collectors;
 import seedu.address.model.ReadOnlyWardrobe;
 import seedu.address.model.Wardrobe;
 import seedu.address.model.description.Description;
+<<<<<<< HEAD
 import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
+=======
+import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Size;
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
 
 /**
  * Contains utility methods for populating {@code Wardrobe} with sample data.
  */
 public class SampleDataUtil {
+<<<<<<< HEAD
     public static Garment[] getSampleGarments() {
         return new Garment[] {
             new Garment(new Name("Alex Yeoh"), new Size("34"), new Colour("alexyeoh@example.com"),
@@ -36,6 +45,27 @@ public class SampleDataUtil {
                 getDescriptionSet("classmates")),
             new Garment(new Name("Roy Balakrishnan"), new Size("35"), new Colour("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
+=======
+    public static Person[] getSamplePersons() {
+        return new Person[] {
+            new Person(new Name("Alex Yeoh"), new Size("34"), new Colour("alexyeoh@example.com"),
+                new DressCode("FORMAL"),
+                getDescriptionSet("friends")),
+            new Person(new Name("Bernice Yu"), new Size("29"), new Colour("berniceyu@example.com"),
+                new DressCode("CASUAL"),
+                getDescriptionSet("colleagues", "friends")),
+            new Person(new Name("Charlotte Oliveiro"), new Size("26"), new Colour("charlotte@example.com"),
+                new DressCode("ACTIVE"),
+                getDescriptionSet("neighbours")),
+            new Person(new Name("David Li"), new Size("43"), new Colour("lidavid@example.com"),
+                new DressCode("FORMAL"),
+                getDescriptionSet("family")),
+            new Person(new Name("Irfan Ibrahim"), new Size("44"), new Colour("irfan@example.com"),
+                new DressCode("CASUAL"),
+                getDescriptionSet("classmates")),
+            new Person(new Name("Roy Balakrishnan"), new Size("35"), new Colour("royb@example.com"),
+                new DressCode("ACTIVE"),
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
                 getDescriptionSet("colleagues"))
         };
     }

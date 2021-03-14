@@ -1,26 +1,26 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.COLOUR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.COLOUR_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COLOUR_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DRESSCODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SIZE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_BOB;
@@ -37,11 +37,19 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditGarmentDescriptor;
 import seedu.address.model.description.Description;
+<<<<<<< HEAD
 import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
 import seedu.address.testutil.EditGarmentDescriptorBuilder;
+=======
+import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Size;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
 
 public class EditCommandParserTest {
 
@@ -82,9 +90,15 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+<<<<<<< HEAD
         assertParseFailure(parser, "1" + INVALID_SIZE_DESC, Size.MESSAGE_CONSTRAINTS); // invalid size
         assertParseFailure(parser, "1" + INVALID_COLOUR_DESC, Colour.MESSAGE_CONSTRAINTS); // invalid colour
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+=======
+        assertParseFailure(parser, "1" + INVALID_SIZE_DESC, Size.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_COLOUR_DESC, Colour.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_DRESSCODE_DESC, DressCode.MESSAGE_CONSTRAINTS);
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
                 Description.MESSAGE_CONSTRAINTS); // invalid description
 
@@ -105,7 +119,8 @@ public class EditCommandParserTest {
                 + TAG_EMPTY + DESCRIPTION_DESC_FRIEND + DESCRIPTION_DESC_HUSBAND, Description.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_COLOUR_DESC + VALID_ADDRESS_AMY + VALID_SIZE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_COLOUR_DESC + VALID_DRESSCODE_AMY
+                        + VALID_SIZE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -113,10 +128,15 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_GARMENT;
         String userInput = targetIndex.getOneBased() + SIZE_DESC_BOB + DESCRIPTION_DESC_HUSBAND
-                + COLOUR_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + DESCRIPTION_DESC_FRIEND;
+                + COLOUR_DESC_AMY + DRESSCODE_DESC_AMY + NAME_DESC_AMY + DESCRIPTION_DESC_FRIEND;
 
+<<<<<<< HEAD
         EditGarmentDescriptor descriptor = new EditGarmentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_AMY).withAddress(VALID_ADDRESS_AMY)
+=======
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_AMY).withDressCode(VALID_DRESSCODE_AMY)
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND, VALID_DESCRIPTION_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -157,8 +177,13 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
+<<<<<<< HEAD
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
         descriptor = new EditGarmentDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+=======
+        userInput = targetIndex.getOneBased() + DRESSCODE_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withDressCode(VALID_DRESSCODE_AMY).build();
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -171,6 +196,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
+<<<<<<< HEAD
         Index targetIndex = INDEX_FIRST_GARMENT;
         String userInput = targetIndex.getOneBased() + SIZE_DESC_AMY + ADDRESS_DESC_AMY + COLOUR_DESC_AMY
                 + DESCRIPTION_DESC_FRIEND + SIZE_DESC_AMY + ADDRESS_DESC_AMY + COLOUR_DESC_AMY + DESCRIPTION_DESC_FRIEND
@@ -178,6 +204,17 @@ public class EditCommandParserTest {
 
         EditGarmentDescriptor descriptor = new EditGarmentDescriptorBuilder().withSize(VALID_SIZE_BOB)
                 .withColour(VALID_COLOUR_BOB).withAddress(VALID_ADDRESS_BOB).withDescriptions(VALID_DESCRIPTION_FRIEND,
+=======
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + SIZE_DESC_AMY + DRESSCODE_DESC_AMY + COLOUR_DESC_AMY
+                + DESCRIPTION_DESC_FRIEND + SIZE_DESC_AMY + DRESSCODE_DESC_AMY + COLOUR_DESC_AMY
+                + DESCRIPTION_DESC_FRIEND + SIZE_DESC_BOB + DRESSCODE_DESC_BOB + COLOUR_DESC_BOB
+                + DESCRIPTION_DESC_HUSBAND;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withSize(VALID_SIZE_BOB)
+                .withColour(VALID_COLOUR_BOB).withDressCode(VALID_DRESSCODE_BOB)
+                .withDescriptions(VALID_DESCRIPTION_FRIEND,
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
                         VALID_DESCRIPTION_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -195,10 +232,15 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + COLOUR_DESC_BOB + INVALID_SIZE_DESC + ADDRESS_DESC_BOB
+        userInput = targetIndex.getOneBased() + COLOUR_DESC_BOB + INVALID_SIZE_DESC + DRESSCODE_DESC_BOB
                 + SIZE_DESC_BOB;
+<<<<<<< HEAD
         descriptor = new EditGarmentDescriptorBuilder().withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
+=======
+        descriptor = new EditPersonDescriptorBuilder().withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB)
+                .withDressCode(VALID_DRESSCODE_BOB).build();
+>>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

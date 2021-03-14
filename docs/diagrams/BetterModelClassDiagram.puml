@@ -17,5 +17,5 @@ Person -up-> "*" Tag
 Person *--> Name
 Person *--> Size
 Person *--> Colour
-Person *--> Address
+Person *--> DressCode
 @enduml
