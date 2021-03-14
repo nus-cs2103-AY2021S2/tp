@@ -12,25 +12,24 @@ import static java.util.Objects.requireNonNull;
  */
 public class FindAppointmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String COMMAND_WORD = "find appointment";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " charlie monday";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final AppointmentNameContainsKeywordsPredicate predicate;
 
-    public FindAppointmentCommand(NameContainsKeywordsPredicate predicate) {
+    public FindAppointmentCommand(AppointmentNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override
@@ -40,3 +39,4 @@ public class FindAppointmentCommand extends Command {
                 && predicate.equals(((FindAppointmentCommand) other).predicate)); // state check
     }
 }
+
