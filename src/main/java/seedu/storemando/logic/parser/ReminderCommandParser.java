@@ -20,12 +20,8 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     @Override
     public ReminderCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
-        }
-
         String[] numOfArgs = trimmedArgs.split(" ");
-        if (numOfArgs.length > 1) {
+        if (trimmedArgs.isEmpty() || numOfArgs.length > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
         }
 
