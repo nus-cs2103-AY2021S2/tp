@@ -25,6 +25,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.diet.MacroNutrientComposition;
+import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.util.SampleDataUtil;
@@ -127,7 +128,8 @@ public class MainApp extends Application {
             // TODO Implement reading of diet plans list from file
             // Using dummy data now for testing
             MacroNutrientComposition dummyMacros = new MacroNutrientComposition(20, 10, 70);
-            DietPlan dummyPlan = new DietPlan("DummyPlan", "This is a dummy plan.", dummyMacros);
+            DietPlan dummyPlan = new DietPlan("DummyPlan", "This is a dummy plan.", dummyMacros,
+                    PlanType.WEIGHTGAIN);
 
             dietPlanList = new DietPlanList();
             dietPlanList.addDietPlan(dummyPlan);

@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
+import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
@@ -152,6 +154,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public List<DietPlan> recommendDiets(PlanType planType) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addFoodIntake(LocalDate date, Food food) {
             throw new AssertionError("This method should not be called.");
         }
@@ -173,6 +180,16 @@ public class AddCommandTest {
 
         @Override
         public String listUser() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PlanType getUserGoal() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public double getUserBmi() {
             throw new AssertionError("This method should not be called.");
         }
 
