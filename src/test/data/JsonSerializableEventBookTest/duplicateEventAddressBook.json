@@ -1,0 +1,16 @@
+{
+  "events": [ {
+    "name": "CS2030",
+    "start": "10/01/2020 10:00",
+    "end": "12/12/2021 12:00",
+    "status": "DONE",
+    "description": "Object oriented Programming module",
+    "tagged": ["A"]
+  }, {
+    "name": "CS2030",
+    "start": "10/01/2020 10:00",
+    "end": "12/12/2021 12:00",
+    "status": "DONE",
+    "description": "Object oriented Programming module"
+  } ]
+}

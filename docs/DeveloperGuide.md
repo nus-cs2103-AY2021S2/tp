@@ -244,7 +244,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
 * Adding of events to friends in the address book
 * Ability to find a common timeslot where all your friends are available to meet based on their schedules added

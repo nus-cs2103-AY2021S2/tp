@@ -16,6 +16,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -24,7 +25,9 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.EventBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonEventBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -58,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        EventBookStorage eventBookStorage = new JsonEventBookStorage(userPrefs.getEventBookFilePath());
+        storage = new StorageManager(addressBookStorage, eventBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -78,7 +82,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialAddressData;
         Optional<ReadOnlyEventBook> eventBookOptional;
-        // ReadOnlyEventBook initialEventData; Uncomment this when done
+        ReadOnlyEventBook initialEventData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -93,13 +97,12 @@ public class MainApp extends Application {
             initialAddressData = new AddressBook();
         }
 
-        /* Once done with the storage, you can uncomment this and connect this properly
         try {
-            eventBookOptional = storage.readeventBook(); //Implement this
+            eventBookOptional = storage.readEventBook();
             if (!eventBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EventBook");
             }
-            initialAddressData = eventBookOptional.orElseGet(SampleDataUtil::getSampleEventBook);
+            initialEventData = eventBookOptional.orElseGet(SampleDataUtil::getSampleEventBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty EventBook");
             initialEventData = new EventBook();
@@ -107,9 +110,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty EventBook");
             initialEventData = new EventBook();
         }
-       return new ModelManager(initialAddressData, userPrefs, initialEventData);
-       */
-        return new ModelManager(); // delete this when done
+        return new ModelManager(initialAddressData, userPrefs, initialEventData);
     }
 
     private void initLogging(Config config) {
