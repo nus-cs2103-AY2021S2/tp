@@ -146,13 +146,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Isbn parseIsbn(String Isbn) throws ParseException {
-        requireNonNull(Isbn);
-        String trimmedIsbn = Isbn.trim();
-        //todo:debug
-//        if (!Isbn.isValidIsbn(trimmedIsbn)) {
-//            throw new ParseException(Isbn.MESSAGE_CONSTRAINT);
-//        }
+    public static Isbn parseIsbn(String isbn) throws ParseException {
+        requireNonNull(isbn);
+        String trimmedIsbn = isbn.trim();
+        if (!Isbn.isValidIsbn(trimmedIsbn)) {
+            throw new ParseException(Isbn.MESSAGE_CONSTRAINTS);
+        }
         return new Isbn(trimmedIsbn);
     }
 

@@ -1,5 +1,13 @@
 package seedu.smartlib.logic.parser;
 
+import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
+
+import java.util.stream.Stream;
+
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.AddBookCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
@@ -7,12 +15,6 @@ import seedu.smartlib.model.book.Author;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
-
-
-import java.util.stream.Stream;
-
-import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.smartlib.logic.parser.CliSyntax.*;
 
 public class AddBookCommandParser implements Parser<AddBookCommand> {
 

@@ -1,7 +1,5 @@
 package seedu.smartlib.model.book;
 
-import seedu.smartlib.commons.core.name.Name;
-
 /**
  * Represents an author in SmartLib.
  */

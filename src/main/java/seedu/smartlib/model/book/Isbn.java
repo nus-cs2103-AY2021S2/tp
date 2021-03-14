@@ -28,12 +28,12 @@ public class Isbn {
     /**
      * Constructs an {@code ISBN}.
      *
-     * @param Isbn A valid ISBN number.
+     * @param isbn A valid ISBN number.
      */
-    public Isbn(String Isbn) {
-        requireNonNull(Isbn);
-        checkArgument(isValidIsbn(Isbn), MESSAGE_CONSTRAINTS);
-        value = Isbn;
+    public Isbn(String isbn) {
+        requireNonNull(isbn);
+        checkArgument(isValidIsbn(isbn), MESSAGE_CONSTRAINTS);
+        value = isbn;
     }
 
     /**

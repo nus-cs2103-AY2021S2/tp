@@ -1,10 +1,10 @@
 package seedu.smartlib.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
 
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;

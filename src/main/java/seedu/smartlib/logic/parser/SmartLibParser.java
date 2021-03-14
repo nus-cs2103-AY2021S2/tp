@@ -6,7 +6,19 @@ import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.smartlib.logic.commands.*;
+import seedu.smartlib.logic.commands.AddBookCommand;
+import seedu.smartlib.logic.commands.AddReaderCommand;
+import seedu.smartlib.logic.commands.BorrowCommand;
+import seedu.smartlib.logic.commands.ClearCommand;
+import seedu.smartlib.logic.commands.Command;
+import seedu.smartlib.logic.commands.DeleteBookCommand;
+import seedu.smartlib.logic.commands.DeleteReaderCommand;
+import seedu.smartlib.logic.commands.EditCommand;
+import seedu.smartlib.logic.commands.ExitCommand;
+import seedu.smartlib.logic.commands.FindReaderCommand;
+import seedu.smartlib.logic.commands.HelpCommand;
+import seedu.smartlib.logic.commands.ListReaderCommand;
+import seedu.smartlib.logic.commands.ReturnCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 
 /**
