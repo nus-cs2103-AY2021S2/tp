@@ -37,7 +37,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -133,10 +132,6 @@ public class AddCommandParserTest {
         // invalid email
         assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + INVALID_EMAIL_DESC
                 + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid description
-        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_DESCRIPTION_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB

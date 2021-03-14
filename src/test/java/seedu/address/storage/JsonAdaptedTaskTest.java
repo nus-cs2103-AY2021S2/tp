@@ -110,15 +110,6 @@ public class JsonAdaptedTaskTest {
     }
 
     @Test
-    public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_STARTTIME, VALID_EMAIL, INVALID_DESCRIPTION,
-                        VALID_TAGS);
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
-    }
-
-    @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_DEADLINE, VALID_STARTTIME, VALID_EMAIL,
                 null, VALID_TAGS);
