@@ -23,7 +23,6 @@ public class Task {
     private final CompletionStatus completionStatus = new CompletionStatus();
     private final Set<Category> categories = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
-
     /**
      * Name field must be present and not null.
      */

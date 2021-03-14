@@ -2,17 +2,17 @@ package seedu.address.model.event;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Time {
 
-    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("hh:mm");
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should be represented in 24-hour notation, in the format of hh:mm";
+            "Time should be represented in 24-hour notation, in the format of HH:mm";
     public static final String VALIDATION_REGEX = "^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$";
 
-    private LocalDateTime time;
+    private LocalTime time;
 
 
     /**
@@ -23,11 +23,11 @@ public class Time {
     public Time(String time) {
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         if (time != null) {
-            this.time = LocalDateTime.parse(time, TIME_FORMATTER);
+            this.time = LocalTime.parse(time, TIME_FORMATTER);
         }
     }
 
-    public LocalDateTime getTime() {
+    public LocalTime getTime() {
         return this.time;
     }
 
