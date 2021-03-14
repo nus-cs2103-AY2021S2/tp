@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.residence.Residence;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +22,7 @@ public class ModelManager implements Model {
 
     private final ResidenceTracker residenceTracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Residence> filteredResidences;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -30,11 +31,11 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(residenceTracker, userPrefs);
 
-        logger.fine("Initializing with address book: " + residenceTracker + " and user prefs " + userPrefs);
+        logger.fine("Initializing with residence tracker: " + residenceTracker + " and user prefs " + userPrefs);
 
         this.residenceTracker = new ResidenceTracker(residenceTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.residenceTracker.getPersonList());
+        filteredResidences = new FilteredList<>(this.residenceTracker.getResidenceList());
     }
 
     public ModelManager() {
@@ -89,44 +90,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return residenceTracker.hasPerson(person);
+    public boolean hasResidence(Residence residence) {
+        requireNonNull(residence);
+        return residenceTracker.hasResidence(residence);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        residenceTracker.removePerson(target);
+    public void deleteResidence(Residence target) {
+        residenceTracker.removeResidence(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        residenceTracker.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addResidence(Residence residence) {
+        residenceTracker.addResidence(residence);
+        updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setResidence(Residence target, Residence editedResidence) {
+        requireAllNonNull(target, editedResidence);
 
-        residenceTracker.setPerson(target, editedPerson);
+        residenceTracker.setResidence(target, editedResidence);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Residence} backed by the internal list of
      * {@code versionedResidenceTracker}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Residence> getFilteredResidenceList() {
+        return filteredResidences;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredResidenceList(Predicate<Residence> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredResidences.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +146,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return residenceTracker.equals(other.residenceTracker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredResidences.equals(other.filteredResidences);
     }
 
 }

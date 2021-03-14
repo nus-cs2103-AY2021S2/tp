@@ -6,12 +6,14 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.residence.Residence;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
+    Predicate<Residence> PREDICATE_SHOW_ALL_RESIDENCES = unused -> true;
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -49,40 +51,41 @@ public interface Model {
      */
     void setResidenceTracker(ReadOnlyResidenceTracker residenceTracker);
 
-    /** Returns the AddressBook */
+    /** Returns the ResidenceTracker */
     ReadOnlyResidenceTracker getResidenceTracker();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasResidence(Residence residence);
 
     /**
      * Deletes the given person.
      * The person must exist in the residence tracker.
      */
-    void deletePerson(Person target);
+    void deleteResidence(Residence target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the residence tracker.
      */
-    void addPerson(Person person);
+    void addResidence(Residence residence);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given residence {@code target} with {@code editedResidence}.
      * {@code target} must exist in the residence tracker.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the residence
+     * The residence identity of {@code editedPerson} must not be the same as another existing residence in the residence
      * tracker.
      */
-    void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void setResidence(Residence target, Residence editedResidence);
+
+    /** Returns an unmodifiable view of the filtered residence list */
+    ObservableList<Residence> getFilteredResidenceList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered residence list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredResidenceList(Predicate<Residence> predicate);
 }

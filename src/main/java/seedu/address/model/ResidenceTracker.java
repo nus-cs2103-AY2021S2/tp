@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.residence.Residence;
+import seedu.address.model.residence.UniqueResidenceList;
 
 /**
  * Wraps all data at the residence-tracker level
@@ -14,7 +14,7 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class ResidenceTracker implements ReadOnlyResidenceTracker {
 
-    private final UniquePersonList persons;
+    private final UniqueResidenceList residences;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,14 +24,15 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        residences = new UniqueResidenceList();
     }
 
     public ResidenceTracker() {}
 
     /**
-     * Creates a ResidenceTracker using the Persons in the {@code toBeCopied}
+     * Creates a ResidenceTracker using the Residences in the {@code toBeCopied}
      */
+
     public ResidenceTracker(ReadOnlyResidenceTracker toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -40,11 +41,11 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the residence list with {@code residences}.
+     * {@code residences} must not contain duplicate residences.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setResidences(List<Residence> residences) {
+        this.residences.setResidences(residences);
     }
 
     /**
@@ -53,7 +54,7 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
     public void resetData(ReadOnlyResidenceTracker newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setResidences(newData.getResidenceList());
     }
 
     //// person-level operations
@@ -61,17 +62,17 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the residence tracker.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasResidence(Residence residence) {
+        requireNonNull(residence);
+        return residences.contains(residence);
     }
 
     /**
      * Adds a person to the residence tracker.
      * The person must not already exist in the residence tracker.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addResidence(Residence r) {
+        residences.add(r);
     }
 
     /**
@@ -80,42 +81,42 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the residence
      * tracker.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setResidence(Residence target, Residence editedResidence) {
+        requireNonNull(editedResidence);
 
-        persons.setPerson(target, editedPerson);
+        residences.setResidence(target, editedResidence);
     }
 
     /**
      * Removes {@code key} from this {@code ResidenceTracker}.
      * {@code key} must exist in the residence tracker.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeResidence(Residence key) {
+        residences.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return residences.asUnmodifiableObservableList().size() + " residences";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Residence> getResidenceList() {
+        return residences.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ResidenceTracker // instanceof handles nulls
-                && persons.equals(((ResidenceTracker) other).persons));
+                && residences.equals(((ResidenceTracker) other).residences));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return residences.hashCode();
     }
 }

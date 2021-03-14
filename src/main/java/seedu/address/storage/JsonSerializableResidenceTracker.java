@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "residencetracker")
 class JsonSerializableResidenceTracker {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Residences list contains duplicate residences(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -37,7 +37,7 @@ class JsonSerializableResidenceTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableResidenceTracker}.
      */
     public JsonSerializableResidenceTracker(ReadOnlyResidenceTracker source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getResidenceList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,10 +49,10 @@ class JsonSerializableResidenceTracker {
         ResidenceTracker residenceTracker = new ResidenceTracker();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (residenceTracker.hasPerson(person)) {
+            if (residenceTracker.hasResidence(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            residenceTracker.addPerson(person);
+            residenceTracker.addResidence(person);
         }
         return residenceTracker;
     }
