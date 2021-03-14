@@ -87,4 +87,10 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void addSession(Session session);
+
+    /**
+     * Deletes the given session.
+     * The session must exist in the address book.
+     */
+    void removeSession(Session session);
 }

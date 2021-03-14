@@ -119,6 +119,11 @@ public class ModelManager implements Model {
         addressBook.addSession(session);
     }
 
+    @Override
+    public void removeSession(Session target) {
+        addressBook.removeSession(target);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

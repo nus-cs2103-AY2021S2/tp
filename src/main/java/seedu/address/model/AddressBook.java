@@ -119,6 +119,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         sessions.add(s);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeSession(Session key) {
+        sessions.remove(key);
+    }
+
     @Override
     public ObservableList<Session> getSessionList() {
         return sessions.asUnmodifiableObservableList();
