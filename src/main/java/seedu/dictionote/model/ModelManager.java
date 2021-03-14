@@ -150,7 +150,7 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyDictionary getDictionary() {
-        return null;
+        return dictionary;
     }
 
     //=========== AddressBook ================================================================================
