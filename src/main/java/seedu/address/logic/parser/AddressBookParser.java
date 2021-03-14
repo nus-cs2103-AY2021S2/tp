@@ -70,7 +70,6 @@ public class AddressBookParser {
         case FindAppointmentCommand.COMMAND_WORD:
             return new FindAppointmentCommandParser().parse(arguments);
 
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
