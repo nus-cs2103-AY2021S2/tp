@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -15,6 +16,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Session {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Session ID should only be c/[session ID], and it should not be blank";
     private static int sessionCount = 0;
 
     private final String classId;
@@ -23,7 +26,7 @@ public class Session {
     private final Subject subject;
     private final Set<Tag> tags = new HashSet<>();
     private final Person tutor = null;
-    private final ArrayList<Person> students = new ArrayList<>();
+    private final UniquePersonList students = new UniquePersonList();
 
     /**
      * Every field must be present and not null.
@@ -31,7 +34,7 @@ public class Session {
     public Session(Day day, Timeslot timeslot, Subject subject, Set<Tag> tags) {
         sessionCount++;
         requireAllNonNull(day, timeslot, subject);
-        this.classId = "c_" + sessionCount;
+        this.classId = "c/" + sessionCount;
         this.day = day;
         this.timeslot = timeslot;
         this.subject = subject;
@@ -58,13 +61,19 @@ public class Session {
         return tutor;
     }
 
-    public ArrayList<Person> getStudents() {
+    public UniquePersonList getStudents() {
         return students;
     }
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    /*
+     * The first character of the session ID must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "c/\\d+";
 
     /**
      * Adds a student to the session
@@ -73,6 +82,50 @@ public class Session {
     public void assignStudent(Person student) {
         requireAllNonNull(student);
         this.students.add(student);
+    }
+
+    /**
+     * Returns true if both sessions have the same ID.
+     * This defines a weaker notion of equality between two sessions.
+     */
+    public boolean isSameSession(Session otherSession) {
+        if (otherSession == this) {
+            return true;
+        }
+
+        return otherSession != null
+                && otherSession.getClassId().equals(getClassId());
+    }
+
+    /**
+     * Returns true if a given string is a valid session ID.
+     */
+    public static boolean isValidSessionId(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if both sessions have the same session ID and data fields.
+     * This defines a stronger notion of equality between two sessions.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Session)) {
+            return false;
+        }
+
+        Session otherSession = (Session) other;
+        return otherSession.getClassId().equals(getClassId())
+                && otherSession.getDay().equals(getDay())
+                && otherSession.getTimeslot().equals(getTimeslot())
+                && otherSession.getSubject().equals(getSubject())
+                && otherSession.getTags().equals(getTags())
+                && otherSession.getTutor().equals(getTutor())
+                && otherSession.getStudents().equals(getStudents());
     }
 
     @Override

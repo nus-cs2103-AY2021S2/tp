@@ -15,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.session.Day;
+import seedu.address.model.session.Session;
 import seedu.address.model.session.Subject;
 import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
@@ -188,5 +189,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String session ID} into a {@code session ID }.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseSessionId(String sessionId) throws ParseException {
+        requireNonNull(sessionId);
+        String trimmedClassId = sessionId.trim();
+        if (!Session.isValidSessionId(sessionId)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedClassId;
     }
 }

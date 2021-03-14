@@ -39,6 +39,14 @@ public class SessionList {
     }
 
     /**
+     * Returns true if the list contains an equivalent session as the given argument.
+     */
+    public boolean contains(Session toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameSession);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Session> asUnmodifiableObservableList() {

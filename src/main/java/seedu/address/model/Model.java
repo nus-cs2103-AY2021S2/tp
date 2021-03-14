@@ -92,5 +92,13 @@ public interface Model {
      * Deletes the given session.
      * The session must exist in the address book.
      */
-    void removeSession(Session session);
+    void deleteSession(Session session);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    public ObservableList<Session> getFilteredSessionList();
+
+    public void updateFilteredSessionList(Predicate<Session> predicate);
 }
