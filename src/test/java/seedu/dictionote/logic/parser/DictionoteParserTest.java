@@ -12,6 +12,7 @@ import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
 import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +55,7 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_addNote() throws Exception {
-        Note note = new Note("this is a sample CS2103 note haha");
+        Note note = new Note("this is a sample CS2103 note haha", new HashSet<>());
         AddNoteCommand command = (AddNoteCommand) parser.parseCommand(NoteUtil.getAddNoteCommand(note));
         assertEquals(new AddNoteCommand(note), command);
     }

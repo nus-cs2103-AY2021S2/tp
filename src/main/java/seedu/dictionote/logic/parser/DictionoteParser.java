@@ -17,6 +17,7 @@ import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditNoteCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
+import seedu.dictionote.logic.commands.FindContentCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
@@ -72,6 +73,9 @@ public class DictionoteParser {
 
         case FindContactCommand.COMMAND_WORD:
             return new FindContactCommandParser().parse(arguments);
+
+        case FindContentCommand.COMMAND_WORD:
+            return new FindContentCommandParser().parse(arguments);
 
         case ListContactCommand.COMMAND_WORD:
             return new ListContactCommand();

@@ -1,5 +1,7 @@
 package seedu.dictionote.testutil;
 
+import java.util.HashSet;
+
 import seedu.dictionote.model.note.Note;
 
 /**
@@ -34,7 +36,7 @@ public class NoteBuilder {
     }
 
     public Note build() {
-        return new Note(note);
+        return new Note(note, new HashSet<>());
     }
 
 }
