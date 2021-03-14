@@ -8,11 +8,19 @@ import java.util.List;
 
 public class SchoolResidence {
 
-    private static final List<String> listResidences = Arrays.asList("PGPH", "PGPR", "KE7H", "SH", "KRH", "TH", "EH",
-            "RH", "RVRC", "YNC", "TC", "CAPT", "RC4", "USP", "UTR");
+    enum ResidenceAbbreviation {
+        PGPH, PGPR, KE7H, SH, KRH, TH, EH, RH, RVRC, YNC, TC, CAPT, RC4, USP, UTR;
+    }
+
+    public static final List<ResidenceAbbreviation> LIST_RESIDENCES = Arrays.asList(
+            ResidenceAbbreviation.PGPH, ResidenceAbbreviation.PGPR, ResidenceAbbreviation.KE7H,
+            ResidenceAbbreviation.SH, ResidenceAbbreviation.KRH, ResidenceAbbreviation.TH, ResidenceAbbreviation.EH,
+            ResidenceAbbreviation.RH, ResidenceAbbreviation.RVRC, ResidenceAbbreviation.YNC, ResidenceAbbreviation.TC,
+            ResidenceAbbreviation.CAPT, ResidenceAbbreviation.RC4, ResidenceAbbreviation.USP, ResidenceAbbreviation.UTR
+    );
 
     public static final String MESSAGE_CONSTRAINTS = "The residence entered should be one of the following: \n"
-            + listResidences.toString();
+            + LIST_RESIDENCES.toString();
 
     public final String value;
 
@@ -34,9 +42,13 @@ public class SchoolResidence {
      * @return true if test is a valid residence, false otherwise.
      */
     public static boolean isValidResidence(String test) {
-        boolean result = listResidences.contains(test.toUpperCase())
-                || test.equalsIgnoreCase("Does not live on campus");
-        return result;
+        try {
+            boolean result = test.equalsIgnoreCase("Does not live on campus")
+                    || LIST_RESIDENCES.contains(ResidenceAbbreviation.valueOf(test.toUpperCase()));
+            return result;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     @Override
