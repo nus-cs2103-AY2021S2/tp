@@ -9,7 +9,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
 /**
@@ -39,20 +38,6 @@ public class DeleteTodoCommand extends Command {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
-
-        Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteProject(projectToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
-    }
-
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Project> lastShownList = model.getFilteredProjectList();
-
         if (projectIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
@@ -64,18 +49,18 @@ public class DeleteTodoCommand extends Command {
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
         assert projectToEdit != null;
 
-        projectToEdit(toAdd);
+        projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd));
 
-
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, personToDelete));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteTodoCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteTodoCommand) other).targetIndex)); // state check
+                && projectIndex.equals(((DeleteTodoCommand) other).projectIndex))
+                && targetTodoIndex.equals(((DeleteTodoCommand) other).targetTodoIndex); // state check
     }
+
 }

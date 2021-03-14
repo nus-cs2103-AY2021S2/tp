@@ -90,7 +90,7 @@ public class Project {
         requireNonNull(deadline);
         this.deadlines.addDeadline(deadline);
     }
-    
+
     /**
      * Adds an event to {@code EventList} field of this {@code Project}.
      *
