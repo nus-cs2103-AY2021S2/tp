@@ -36,7 +36,7 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().allMatch(toCheck::equals);
     }
 
     /**
