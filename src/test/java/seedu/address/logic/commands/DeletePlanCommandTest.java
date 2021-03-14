@@ -21,41 +21,41 @@ import seedu.address.model.plan.Plan;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeletePlanCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Plan planToDelete = model.getFilteredPlanList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeletePlanCommand deletePlanCommand = new DeletePlanCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, planToDelete);
+        String expectedMessage = String.format(DeletePlanCommand.MESSAGE_DELETE_PERSON_SUCCESS, planToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getPlans(), new UserPrefs());
         expectedModel.deletePlan(planToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletePlanCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPlanList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeletePlanCommand deletePlanCommand = new DeletePlanCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
+        assertCommandFailure(deletePlanCommand, model, Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeletePlanCommand deleteFirstCommand = new DeletePlanCommand(INDEX_FIRST_PERSON);
+        DeletePlanCommand deleteSecondCommand = new DeletePlanCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeletePlanCommand deleteFirstCommandCopy = new DeletePlanCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

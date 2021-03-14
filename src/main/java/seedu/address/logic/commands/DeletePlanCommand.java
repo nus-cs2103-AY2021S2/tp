@@ -10,23 +10,27 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.plan.Plan;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
+
 /**
  * Deletes a plan identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeletePlanCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deletep";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the plan identified by the index number used in the displayed plan list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: "
+            + PREFIX_PLAN_NUMBER + "PLAN NUMBER (must be a valid plan number)\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_PLAN_NUMBER + "1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Plan: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Plan deleted: Plan %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeletePlanCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -41,13 +45,13 @@ public class DeleteCommand extends Command {
 
         Plan planToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePlan(planToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, planToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, targetIndex.getOneBased() + planToDelete.toString()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeletePlanCommand // instanceof handles nulls
+                && targetIndex.equals(((DeletePlanCommand) other).targetIndex)); // state check
     }
 }
