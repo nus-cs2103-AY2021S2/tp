@@ -53,20 +53,42 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Create passengers: `create`
+### Add passengers: `add`
 
-Creates a new passenger in the GME terminal.
+Adds a new passenger in the GME terminal.
 
-Format: `create n/NAME a/ADDRESS t/TIME`
+Format: `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [t/TAG]`
+
+* Day is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
+* Time is required to be in the 24-hour format. e.g. `0530` or `2359` 
 
 >**Examples**:
->* `create n/Ben Dover a/Geylang t/18:00`
+>* `add n/Ben Dover p/91234567 a/Geylang d/FRIDAY t/1800`
+>* `add n/Jenny Talia p/98765432 a/Yishun Avenue 4 d/SATURDAY t/0830 tag/female`
 
 ### Listing all passengers : `list`
 
 Lists the passengers currently stored in the GME terminal.
 
 Format: `list`
+
+### Editing a person : `edit`
+
+Edits an existing person in the GME terminal.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…​`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `tag/` without
+  specifying any tags after it.
+
+>**Examples**:
+>* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+>* `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
 
 ### Search for passengers: `search`
 
@@ -156,7 +178,7 @@ _Details coming soon ..._
 
 # FAQ
 
-**Q:** Where can I find the data stored by the address book?
+**Q:** Where can I find the data stored by GME terminal?
 
 **A:** The json file containing the data stored is named `GreenMileageEfforts.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
 
@@ -166,8 +188,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**create** | `create n/NAME a/ADDRESS t/TIME` <br> e.g., `create n/Mike Hunt a/Geylang t/18:00`
+**add** | `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [t/TAG]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
 **list** | `list`
+**edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
 **search** | `search CONSTRAINT`<br> e.g., `search female or search available`
 **delete** | `delete INDEX`<br> e.g.,`delete 3`
 **drive** | `drive INDEX INDEX INDEX...`<br> e.g., `drive 2 3 4`
