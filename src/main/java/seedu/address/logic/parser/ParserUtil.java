@@ -51,6 +51,8 @@ public class ParserUtil {
             return Attribute.PHONE;
         } else if (attribute.equals("-email")) {
             return Attribute.EMAIL;
+        } else if (attribute.equals("-address")) {
+            return Attribute.ADDRESS;
         } else {
             throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
         }

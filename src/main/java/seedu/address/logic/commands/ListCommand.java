@@ -6,8 +6,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.person.Person;
 
+import java.util.Comparator;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Lists all persons in the address book to the user.
@@ -16,7 +19,9 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all clients";
+
+    public static final String MESSAGE_SUCCESS_ATTRIBUTE = "Listed all clients and filtered specified attribute";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists clients, along with specified attributes\n"
@@ -37,10 +42,26 @@ public class ListCommand extends Command {
         this.attribute = Optional.empty();
     }
 
+    public boolean isAttributeSpecified() {
+        return this.attribute.isPresent();
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (this.attribute.isEmpty()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            model.updatePersonListByAttribute(this.attribute.get());
+            return new CommandResult(MESSAGE_SUCCESS_ATTRIBUTE);
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && attribute.equals(((ListCommand) other).attribute)); // state check
     }
 }

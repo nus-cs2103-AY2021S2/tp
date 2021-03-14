@@ -22,7 +22,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         String trimmedArgs = args.trim();
         String[] splitArgs = trimmedArgs.split("\\s+");
 
-        if (trimmedArgs.length() == 0) {
+        if (trimmedArgs.isEmpty()) {
             return new ListCommand();
         } else {
             try {
