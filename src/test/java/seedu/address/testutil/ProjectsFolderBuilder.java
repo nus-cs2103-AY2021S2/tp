@@ -16,6 +16,11 @@ public class ProjectsFolderBuilder {
         projectsFolder = new ProjectsFolder();
     }
 
+    /**
+     * Constructs a {@code ProjectsFolderBuilder} object using the given {@code projectsFolder}
+     *
+     * @param projectsFolder the {@code ProjectsFolder} to construct the {@code ProjectsFolderBuilder} with
+     */
     public ProjectsFolderBuilder(ProjectsFolder projectsFolder) {
         this.projectsFolder = projectsFolder;
     }
@@ -30,6 +35,7 @@ public class ProjectsFolderBuilder {
 
     /**
      * Builds the {@code ProjectsFolder} object.
+     *
      * @return {@code ProjectsFolder}.
      */
     public ProjectsFolder build() {

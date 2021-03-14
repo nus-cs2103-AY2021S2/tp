@@ -74,6 +74,7 @@ public class EventBuilder {
 
     /**
      * Builds the {@code Event} object.
+     *
      * @return {@code Event}.
      */
     public Event build() {

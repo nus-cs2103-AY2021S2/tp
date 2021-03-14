@@ -61,6 +61,7 @@ public class DeadlineBuilder {
 
     /**
      * Builds the {@code Deadline} object.
+     *
      * @return {@code Deadline}.
      */
     public Deadline build() {

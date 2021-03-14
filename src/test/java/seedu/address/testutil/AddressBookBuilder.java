@@ -30,6 +30,7 @@ public class AddressBookBuilder {
 
     /**
      * Builds the {@code Addressbook}.
+     *
      * @return {@code Addressbook}.
      */
     public AddressBook build() {

@@ -78,7 +78,11 @@ public class ProjectBuilder {
         return this;
     }
 
-
+    /**
+     * Builds the {@code Project} object.
+     *
+     * @return {@code Project}.
+     */
     public Project build() {
         return new Project(projectName, eventList, todoList, deadlineList, participantList);
     }
