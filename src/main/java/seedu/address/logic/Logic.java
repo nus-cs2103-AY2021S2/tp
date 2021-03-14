@@ -50,8 +50,8 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the predicate for display filtering.
-     * @return predicate that returns true if prefix linked control should be hidden
+     * Returns predicate that determines field control visibility.
+     * @return predicate that returns true if prefix linked control should be shown
      */
     DisplayFilterPredicate getDisplayFilter();
 }
