@@ -15,7 +15,7 @@ public class WorkloadTest {
     @Test
     public void constructor_invalidWorkload_throwsIllegalArgumentException() {
         String invalidWorkload = "";
-        assertThrows(IllegalArgumentException.class, () -> new Workload(4));
+        assertThrows(IllegalArgumentException.class, () -> new Workload("4"));
         assertThrows(IllegalArgumentException.class, () -> new Workload(invalidWorkload));
     }
 
@@ -29,13 +29,13 @@ public class WorkloadTest {
         assertFalse(Workload.isValidWorkload(" ")); // spaces only
         assertFalse(Workload.isValidWorkload("^")); // only non-alphanumeric characters
         assertFalse(Workload.isValidWorkload("peter*")); // contains non-alphanumeric characters
-        assertFalse(Workload.isValidWorkload(0)); // contains 0
-        assertFalse(Workload.isValidWorkload(-1)); // contains negative
-        assertFalse(Workload.isValidWorkload(4)); // beyond 3
+        assertFalse(Workload.isValidWorkload("0")); // contains 0
+        assertFalse(Workload.isValidWorkload("-1")); // contains negative
+        assertFalse(Workload.isValidWorkload("4")); // beyond 3
 
         // valid name
-        assertTrue(Workload.isValidWorkload(1)); // 1
-        assertTrue(Workload.isValidWorkload(2)); // 2
-        assertTrue(Workload.isValidWorkload(3)); // 3
+        assertTrue(Workload.isValidWorkload("1")); // 1
+        assertTrue(Workload.isValidWorkload("2")); // 2
+        assertTrue(Workload.isValidWorkload("3")); // 3
     }
 }

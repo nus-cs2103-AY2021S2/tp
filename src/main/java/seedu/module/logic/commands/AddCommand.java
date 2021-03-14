@@ -6,6 +6,7 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 
 import seedu.module.logic.commands.exceptions.CommandException;
 import seedu.module.model.Model;
@@ -24,12 +25,14 @@ public class AddCommand extends Command {
             + PREFIX_MODULE + "MODULE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_WORKLOAD + "WORKLOAD "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TASK_NAME + "TP v1.2 "
             + PREFIX_DEADLINE + "2021-01-30 12:00 "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Finish basic commands for TP "
+            + PREFIX_WORKLOAD + "1 "
             + PREFIX_TAG + "highPriority ";
 
     public static final String MESSAGE_SUCCESS = "New task added successfully:\n%1$s";
