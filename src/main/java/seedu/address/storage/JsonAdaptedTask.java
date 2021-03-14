@@ -11,11 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Email;
-import seedu.address.model.task.Phone;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.*;
+import seedu.address.model.task.Deadline;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -25,7 +22,7 @@ class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String title;
-    private final String phone;
+    private final String deadline;
     private final String email;
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -34,11 +31,11 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("phone") String phone,
+    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
             @JsonProperty("email") String email, @JsonProperty("description") String description,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
-        this.phone = phone;
+        this.deadline = deadline;
         this.email = email;
         this.description = description;
         if (tagged != null) {
@@ -51,7 +48,7 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().fullTitle;
-        phone = source.getPhone().value;
+        deadline = source.getDeadline().value;
         email = source.getEmail().value;
         description = source.getDescription().value;
         tagged.addAll(source.getTags().stream()
@@ -78,13 +75,13 @@ class JsonAdaptedTask {
         }
         final Title modelTitle = new Title(title);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Deadline modelDeadline = new Deadline(deadline);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -104,7 +101,7 @@ class JsonAdaptedTask {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelPhone, modelEmail, modelDescription, modelTags);
+        return new Task(modelTitle, modelDeadline, modelEmail, modelDescription, modelTags);
     }
 
 }

@@ -20,7 +20,7 @@ Class Task
 Class Description
 Class Email
 Class Title
-Class Phone
+Class Deadline
 Class UniqueTaskList
 }
 
@@ -43,13 +43,13 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 Planner *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
 Task *--> Title
-Task *--> Phone
+Task *--> Deadline
 Task *--> Email
 Task *--> Description
 Task *--> "*" Tag
 
-Title -[hidden]right-> Phone
-Phone -[hidden]right-> Description
+Title -[hidden]right-> Deadline
+Deadline -[hidden]right-> Description
 Description -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Task

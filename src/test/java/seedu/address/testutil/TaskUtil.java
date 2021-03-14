@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -31,7 +31,7 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().fullTitle + " ");
-        sb.append(PREFIX_PHONE + task.getPhone().value + " ");
+        sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
         sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
         task.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
@@ -44,7 +44,7 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.fullTitle).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getDescription().ifPresent(description ->
                 sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));

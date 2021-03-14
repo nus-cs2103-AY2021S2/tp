@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
@@ -39,8 +39,8 @@ public class EditTaskDescriptorTest {
         EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTitle(VALID_TITLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different phone -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        // different deadline -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false

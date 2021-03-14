@@ -15,20 +15,20 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Phone;
 import seedu.address.model.task.Title;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_DEADLINE = "+651234";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_DEADLINE = "123456";
     private static final String VALID_DESCRIPTION = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -80,26 +80,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseDeadline_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeadline((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseDeadline_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
+        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 
     @Test

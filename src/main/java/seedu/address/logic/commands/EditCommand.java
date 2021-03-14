@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -20,11 +20,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Email;
-import seedu.address.model.task.Phone;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.*;
+import seedu.address.model.task.Deadline;
 
 /**
  * Edits the details of an existing task in the planner.
@@ -38,12 +35,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_DEADLINE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
@@ -94,12 +91,12 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
-        Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedPhone, updatedEmail, updatedDescription, updatedTags);
+        return new Task(updatedTitle, updatedDeadline, updatedEmail, updatedDescription, updatedTags);
     }
 
     @Override
@@ -126,7 +123,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Title title;
-        private Phone phone;
+        private Deadline deadline;
         private Email email;
         private Description description;
         private Set<Tag> tags;
@@ -139,7 +136,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
-            setPhone(toCopy.phone);
+            setDeadline(toCopy.deadline);
             setEmail(toCopy.email);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
@@ -149,7 +146,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, phone, email, description, tags);
+            return CollectionUtil.isAnyNonNull(title, deadline, email, description, tags);
         }
 
         public void setTitle(Title title) {
@@ -160,12 +157,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
         }
 
         public void setEmail(Email email) {
@@ -217,7 +214,7 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getPhone().equals(e.getPhone())
+                    && getDeadline().equals(e.getDeadline())
                     && getEmail().equals(e.getEmail())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags());

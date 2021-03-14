@@ -56,7 +56,7 @@ It is optimised for users who prefer typing.
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/TITLE p/PHONE_NUMBER`, `p/PHONE_NUMBER n/TITLE` is also acceptable.
+  e.g. if the command specifies `n/TITLE set/DEADLINE`, `set/DEADLINE n/TITLE` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last 
   occurrence of the parameter will be taken.<br>
@@ -94,24 +94,24 @@ Format: `list`
 
 Adds a deadline to an existing task in the list.
 
-Format: `Add INDEX [d/DATE]…​`
+Format: `Add INDEX [set/DATE]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
 * Existing values will be updated to the input values.
 * When editing dateline, the existing dates of the task will be removed i.e adding of dateline is not cumulative.
-* You can remove all the task’s dateline by typing `d/` without
+* You can remove all the task’s dateline by typing `set/` without
   specifying any deadline after it.
 
 Examples:
-*  `Add 1 d/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021.
-*  `Add 2 d/` Clears the existing deadline of 2nd task on the list.
+*  `Add 1 set/2021-05-13` Adds a deadline to the 1st task on the list which is to be `13 May 2021.
+*  `Add 2 set/` Clears the existing deadline of 2nd task on the list.
 
 ### Editing a task : `edit`
 
 Edits an existing task in the planner.
 
-Format: `edit INDEX [n/TITLE] [p/PHONE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]…​`
+Format: `edit INDEX [n/TITLE] [set/DEADLINE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. 
   The index **must be a positive integer** 1, 2, 3, …​
@@ -122,7 +122,7 @@ Format: `edit INDEX [n/TITLE] [p/PHONE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st task to be 
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the deadline number and email address of the 1st task to be 
    `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the title of the 2nd task to be `Betsy Crower` and clears all existing tags.
 
@@ -216,7 +216,7 @@ Action | Format, Examples
 **Add** | `add n/TITLE` <br> e.g., `add n/eat dinner`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/TITLE] [p/PHONE_NUMBER] [e/EMAIL] [d/DESCRIPTION] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [e/EMAIL] [d/DESCRIPTION] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103 team project`
 **List** | `list`
 **Help** | `help`

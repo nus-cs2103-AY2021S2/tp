@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.AMY;
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + DEADLINE_DESC_AMY + EMAIL_DESC_AMY
                 + DESCRIPTION_DESC_AMY;
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
