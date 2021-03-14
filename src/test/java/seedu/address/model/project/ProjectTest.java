@@ -13,10 +13,12 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Completable;
+import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.Interval;
-import seedu.address.model.task.completable.Todo;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.todo.Todo;
 
 public class ProjectTest {
 
@@ -44,16 +46,22 @@ public class ProjectTest {
         events.add(event);
         EventList eventList = new EventList(events);
 
-        Completable completable = new Todo("Test Description");
-        ArrayList<Completable> completables = new ArrayList<>();
-        completables.add(completable);
-        CompletableTaskList completableTaskList = new CompletableTaskList(completables);
+        Todo todo = new Todo("Test Description");
+        ArrayList<CompletableTodo> todos = new ArrayList<>();
+        todos.add(todo);
+        TodoList todoList = new TodoList(todos);
+
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
+        Deadline deadline = new Deadline("Test Description", validDate);
+        ArrayList<CompletableDeadline> deadlines = new ArrayList<>();
+        deadlines.add(deadline);
+        DeadlineList deadlineList = new DeadlineList(deadlines);
 
         ArrayList<Person> participants = new ArrayList<>();
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
 
-        assertDoesNotThrow(() -> new Project(name, eventList, completableTaskList, participantList));
+        assertDoesNotThrow(() -> new Project(name, eventList, todoList, deadlineList, participantList));
     }
 
     @Test

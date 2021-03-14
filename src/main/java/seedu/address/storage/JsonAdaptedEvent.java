@@ -40,7 +40,7 @@ class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         description = source.getDescription();
-        interval = source.getRecurrence().toString();
+        interval = source.getRecurrence().name();
         at = DateUtil.decodeDateForStorage(source.getAt());
         isDone = source.getIsDone();
     }

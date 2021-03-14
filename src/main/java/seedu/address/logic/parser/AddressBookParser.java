@@ -8,15 +8,20 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactToCommand;
+import seedu.address.logic.commands.AddDeadlineCommand;
+import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddProjectCommand;
+import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListContactsCommand;
+import seedu.address.logic.commands.ListProjectsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -55,11 +60,23 @@ public class AddressBookParser {
         case AddContactToCommand.COMMAND_WORD:
             return new AddContactToCommandParser().parse(arguments);
 
+        case AddDeadlineCommand.COMMAND_WORD:
+            return new AddDeadlineCommandParser().parse(arguments);
+
+        case AddEventCommand.COMMAND_WORD:
+            return new AddEventCommandParser().parse(arguments);
+
+        case AddTodoCommand.COMMAND_WORD:
+            return new AddTodoCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteProjectCommand.COMMAND_WORD:
+            return new DeleteProjectCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -67,8 +84,11 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListContactsCommand.COMMAND_WORD:
+            return new ListContactsCommand();
+
+        case ListProjectsCommand.COMMAND_WORD:
+            return new ListProjectsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

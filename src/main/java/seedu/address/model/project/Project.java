@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Completable;
+import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.todo.Todo;
 
 /**
  * Represents a Project in the address book.
@@ -21,7 +24,8 @@ public class Project {
 
     // Data fields
     private final EventList events;
-    private final CompletableTaskList completableTasks;
+    private final TodoList todos;
+    private final DeadlineList deadlines;
     private final ParticipantList participants;
 
     /**
@@ -33,7 +37,8 @@ public class Project {
 
         this.projectName = projectName;
         this.events = new EventList();
-        this.completableTasks = new CompletableTaskList();
+        this.todos = new TodoList();
+        this.deadlines = new DeadlineList();
         this.participants = new ParticipantList();
     }
 
@@ -41,28 +46,38 @@ public class Project {
      * Constructs a {@code Project}
      * Every field must be present and not null.
      */
-    public Project(ProjectName projectName, EventList events, CompletableTaskList completableTasks,
+    public Project(ProjectName projectName, EventList events, TodoList todos, DeadlineList deadlines,
                    ParticipantList participants) {
-        requireAllNonNull(projectName, events, completableTasks, participants);
+        requireAllNonNull(projectName, events, todos, deadlines, participants);
         this.projectName = projectName;
         this.events = events;
-        this.completableTasks = completableTasks;
+        this.todos = todos;
+        this.deadlines = deadlines;
         this.participants = participants;
     }
 
     public ProjectName getProjectName() {
+        assert projectName != null;
         return projectName;
     }
 
     public EventList getEvents() {
+        assert events != null;
         return events;
     }
 
-    public CompletableTaskList getCompletableTasks() {
-        return completableTasks;
+    public TodoList getTodos() {
+        assert todos != null;
+        return todos;
+    }
+
+    public DeadlineList getDeadlines() {
+        assert deadlines != null;
+        return deadlines;
     }
 
     public ParticipantList getParticipants() {
+        assert participants != null;
         return participants;
     }
 
@@ -74,19 +89,49 @@ public class Project {
     public Project addParticipant(Person person) {
         requireNonNull(person);
         ParticipantList participants = this.participants.addParticipant(person);
-        return new Project(this.getProjectName(), this.getEvents(),
-                this.getCompletableTasks(), participants);
+        return new Project(this.getProjectName(),
+                this.getEvents(), this.getTodos(), this.getDeadlines(), participants);
     }
 
     /**
      * Returns true if a participant with the same identity as {@code person} exists
-     * in this {@code Peroject}'s {@code participants}.
+     * in this {@code Project}'s {@code participants}.
      *
      * @param person the {@code Person} to compare.
-     * @return true if a participant with the same identity as {@code person} exists under this {@code Peroject}.
+     * @return true if a participant with the same identity as {@code person} exists under this {@code Project}.
      */
     public boolean hasParticipant(Person person) {
         return participants.contains(person);
+    }
+
+    /**
+     * Adds an event to {@code EventList} field of this {@code Project}.
+     *
+     * @param event {@code Event} to add.
+     */
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        this.events.addEvent(event);
+    }
+
+    /**
+     * Adds an todo to {@code TodoList} field of this {@code Project}.
+     *
+     * @param todo {@code Todo} to add.
+     */
+    public void addTodo(Todo todo) {
+        requireNonNull(todo);
+        this.todos.addTodo(todo);
+    }
+
+    /**
+     * Adds a deadline to {@code DeadlineList} field of this {@code Project}.
+     *
+     * @param deadline {@code Deadline} to add.
+     */
+    public void addDeadline(Deadline deadline) {
+        requireNonNull(deadline);
+        this.deadlines.addDeadline(deadline);
     }
 
     /**
@@ -119,13 +164,14 @@ public class Project {
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
                 && otherProject.getEvents().equals(getEvents())
-                && otherProject.getCompletableTasks().equals(getCompletableTasks())
+                && otherProject.getTodos().equals(getTodos())
+                && otherProject.getDeadlines().equals(getDeadlines())
                 && otherProject.getParticipants().equals(getParticipants());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectName, events, completableTasks, participants);
+        return Objects.hash(projectName, events, todos, deadlines, participants);
     }
 
     @Override
@@ -139,10 +185,16 @@ public class Project {
             events.forEach(builder::append);
         }
 
-        List<Completable> completableTasks = getCompletableTasks().getCompletableTasks();
-        if (!completableTasks.isEmpty()) {
-            builder.append("; Completable Tasks: ");
-            completableTasks.forEach(builder::append);
+        List<CompletableTodo> todos = getTodos().getTodos();
+        if (!todos.isEmpty()) {
+            builder.append("; Todos: ");
+            todos.forEach(builder::append);
+        }
+
+        List<CompletableDeadline> deadlines = getDeadlines().getDeadlines();
+        if (!deadlines.isEmpty()) {
+            builder.append("; Deadlines: ");
+            deadlines.forEach(builder::append);
         }
 
         List<Person> participants = getParticipants().getParticipants();
@@ -153,5 +205,4 @@ public class Project {
 
         return builder.toString();
     }
-
 }

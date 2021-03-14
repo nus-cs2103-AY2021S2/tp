@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -53,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -159,6 +163,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows projects tab.
+     */
+    public void handleShowProjectsTab() {
+        tabPane.getSelectionModel().select(0);
+    }
+
+    /**
+     * Shows contacts tab.
+     */
+    public void handleShowContactsTab() {
+        tabPane.getSelectionModel().select(1);
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -185,12 +203,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
+            if (commandResult.hasUiCommand()) {
+                executeUiCommand(commandResult);
             }
 
             return commandResult;
@@ -198,6 +212,25 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    private void executeUiCommand(CommandResult commandResult) {
+        switch (commandResult.getUiCommand()) {
+        case EXIT_APPLICATION:
+            handleExit();
+            break;
+        case OPEN_HELP_WINDOW:
+            handleHelp();
+            break;
+        case SHOW_CONTACTS:
+            handleShowContactsTab();
+            break;
+        case SHOW_PROJECTS:
+            handleShowProjectsTab();
+            break;
+        default:
+            assert false : "Command result should not be invalid";
         }
     }
 }

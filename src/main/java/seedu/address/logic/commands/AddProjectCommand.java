@@ -24,7 +24,7 @@ public class AddProjectCommand extends Command {
     private final Project toAdd;
 
     /**
-     * Creates an AddProjectCommand to add the specified {@code Project}
+     * Creates an AddProjectCommand to add the specified {@code Project}.
      */
     public AddProjectCommand(Project project) {
         requireNonNull(project);
