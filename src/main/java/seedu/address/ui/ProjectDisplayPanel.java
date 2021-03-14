@@ -52,14 +52,14 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     public void displayProject(Project project, Index index) {
         this.projectName.setText(index.getOneBased() + ". " + project.getProjectName().toString());
 
-        eventListView.setItems(new FilteredList<>(project.getEvents().getAsObservableList()));
+        eventListView.setItems(new FilteredList<>(project.getEvents().getEvents()));
         eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
 
-        completableDeadlineListView.setItems(new FilteredList<>(project.getDeadlines().getAsObservableList()));
+        completableDeadlineListView.setItems(new FilteredList<>(project.getDeadlines().getDeadlines()));
         completableDeadlineListView.setCellFactory(listView ->
                 new ProjectDisplayPanel.CompletableDeadlineListViewCell());
 
-        completableTodoListView.setItems(new FilteredList<>(project.getTodos().getAsObservableList()));
+        completableTodoListView.setItems(new FilteredList<>(project.getTodos().getTodos()));
         completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
 
         participantListView.setItems(new FilteredList<>(project.getParticipants().getAsObservableList()));

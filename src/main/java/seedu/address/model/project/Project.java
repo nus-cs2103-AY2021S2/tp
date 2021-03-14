@@ -156,19 +156,19 @@ public class Project {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectName());
 
-        List<Event> events = getEvents().getAsObservableList();
+        List<Event> events = getEvents().getEvents();
         if (!events.isEmpty()) {
             builder.append("; Events: ");
             events.forEach(builder::append);
         }
 
-        List<CompletableTodo> todos = getTodos().getAsObservableList();
+        List<CompletableTodo> todos = getTodos().getTodos();
         if (!todos.isEmpty()) {
             builder.append("; Todos: ");
             todos.forEach(builder::append);
         }
 
-        List<CompletableDeadline> deadlines = getDeadlines().getAsObservableList();
+        List<CompletableDeadline> deadlines = getDeadlines().getDeadlines();
         if (!deadlines.isEmpty()) {
             builder.append("; Deadlines: ");
             deadlines.forEach(builder::append);

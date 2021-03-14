@@ -47,7 +47,7 @@ public class TodoList {
      * Returns {@code TodoList} as an {@code ObservableList<CompletableTodo>}
      * @return An {@code ObservableList<CompletableTodo>}
      */
-    public ObservableList<CompletableTodo> getAsObservableList() {
+    public ObservableList<CompletableTodo> getTodos() {
         return this.todos;
     }
 

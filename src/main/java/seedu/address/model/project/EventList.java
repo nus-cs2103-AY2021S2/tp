@@ -62,7 +62,7 @@ public class EventList {
      * Returns {@code events} as an {@code ObservableList<Event>}
      * @return An {@code ObservableList<Event>}
      */
-    public ObservableList<Event> getAsObservableList() {
+    public ObservableList<Event> getEvents() {
         return events;
     }
 

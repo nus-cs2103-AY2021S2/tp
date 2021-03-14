@@ -47,7 +47,7 @@ public class DeadlineList {
      * Returns {@code deadlines} as an {@code ObservableList<CompletableDeadline>}
      * @return An {@code ObservableList<CompletableDeadline>}
      */
-    public ObservableList<CompletableDeadline> getAsObservableList() {
+    public ObservableList<CompletableDeadline> getDeadlines() {
         return this.deadlines;
     }
 
