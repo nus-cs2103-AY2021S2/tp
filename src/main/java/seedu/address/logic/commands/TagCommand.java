@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -27,12 +28,15 @@ public class TagCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Tags will be added to existing tags.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_OPTION + "OPTION]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "form teacher";
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s";
+    public static final String MESSAGE_TAG_REPLACE_PERSON_SUCCESS = "Tags replaced for: %1$s";
 
     private final Index index;
+    private final boolean isReplace;
     private final Set<Tag> tags;
 
     /**
@@ -42,6 +46,17 @@ public class TagCommand extends Command {
     public TagCommand(Index index, Set<Tag> tags) {
         this.index = index;
         this.tags = tags;
+        this.isReplace = false;
+    }
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param tags Set of tags to be appended to the person
+     * @param isReplace Whether this TagCommand is meant to replace existing tags
+     */
+    public TagCommand(Index index, Set<Tag> tags, boolean isReplace) {
+        this.index = index;
+        this.tags = tags;
+        this.isReplace = true;
     }
 
     @Override
@@ -54,11 +69,19 @@ public class TagCommand extends Command {
         }
 
         Person personToTag = lastShownList.get(index.getZeroBased());
-        Person taggedPerson = createTaggedPerson(personToTag);
+        Person taggedPerson;
+        if (isReplace) {
+            taggedPerson= createReplacedTaggedPerson(personToTag);
+            model.setPerson(personToTag, taggedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_TAG_REPLACE_PERSON_SUCCESS, taggedPerson));
+        } else {
+            taggedPerson = createTaggedPerson(personToTag);
+            model.setPerson(personToTag, taggedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, taggedPerson));
+        }
 
-        model.setPerson(personToTag, taggedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, taggedPerson));
     }
 
     /**
@@ -78,4 +101,19 @@ public class TagCommand extends Command {
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToTag}
+     * with tags replaced with {@code tags}.
+     */
+    private Person createReplacedTaggedPerson(Person personToTag) {
+        assert personToTag != null;
+
+        Name updatedName = personToTag.getName();
+        Phone updatedPhone = personToTag.getPhone();
+        Email updatedEmail = personToTag.getEmail();
+        Address updatedAddress = personToTag.getAddress();
+        Set<Tag> updatedTags = tags;
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+    }
 }
