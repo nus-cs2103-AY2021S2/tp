@@ -17,7 +17,7 @@ import seedu.address.model.plan.Description;
 public class JsonAdaptedPlanTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_SEMESTER = "1";
+
     private static final String VALID_ADDRESS = BENSON.getDescription().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)

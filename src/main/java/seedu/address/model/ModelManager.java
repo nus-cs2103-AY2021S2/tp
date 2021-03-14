@@ -120,7 +120,7 @@ public class ModelManager implements Model {
         requireAllNonNull(planNumber, semester);
         Plan plan = addressBook.getPersonList().get(planNumber);
         return plan.getSemesters().stream().anyMatch((currentSemester) -> {
-            return currentSemester.semNumber == semester.semNumber;
+            return currentSemester.getSemNumber() == semester.getSemNumber();
         });
     }
 
