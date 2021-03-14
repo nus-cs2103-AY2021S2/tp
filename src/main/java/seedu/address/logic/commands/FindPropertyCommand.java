@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.PropertyNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
@@ -12,25 +13,29 @@ import static java.util.Objects.requireNonNull;
  */
 public class FindPropertyCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "find property";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties containing any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " hdb jurong";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PropertyNameContainsKeywordsPredicate predicate;
 
-    public FindPropertyCommand(NameContainsKeywordsPredicate predicate) {
+    public FindPropertyCommand(PropertyNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPropertyList(predicate);
+
+        int propertyListSize = model.getFilteredPropertyList().size();
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(propertyListSize > 1
+                        ? Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW
+                        : Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, propertyListSize));
     }
 
     @Override
