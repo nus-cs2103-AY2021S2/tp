@@ -42,7 +42,7 @@ class JsonAdaptedPlan {
     }
 
     /**
-     * Converts a given {@code Plan} into this class for Jackson use.
+     * Converts a given {@code Plan} into this class for Json use.
      */
     public JsonAdaptedPlan(Plan source) {
         description = source.getDescription().value;

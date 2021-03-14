@@ -2,6 +2,7 @@ package seedu.address.model.plan;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +29,7 @@ public class Plan {
         requireAllNonNull(description, tags);
         this.description = description;
         this.tags.addAll(tags);
+        this.semesters = new ArrayList<>();
     }
 
     /**

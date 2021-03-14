@@ -22,12 +22,12 @@ public class Description {
     /**
      * Constructs an {@code Description}.
      *
-     * @param address A valid address.
+     * @param description A valid address.
      */
-    public Description(String address) {
-        requireNonNull(address);
-        checkArgument(isValidDescription(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Description(String description) {
+        requireNonNull(description);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        value = description;
     }
 
     /**
