@@ -13,6 +13,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.residence.ResidenceAddress;
+import seedu.address.model.residence.ResidenceName;
 import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
@@ -43,13 +45,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static ResidenceName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        if (!ResidenceName.isValidResidenceName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new ResidenceName(trimmedName);
     }
 
     /**
@@ -73,13 +75,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static ResidenceAddress parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
+        if (!ResidenceAddress.isValidResidenceAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new ResidenceAddress(trimmedAddress);
     }
 
     /**
@@ -132,11 +134,11 @@ public class ParserUtil {
      */
     public static Set<CleanStatusTag> parseCleanStatusTags(Collection<String> cleanStatusTag) throws ParseException {
         requireNonNull(cleanStatusTag);
-        final Set<CleanStatusTag> CleanStatusTagSet = new HashSet<>();
+        final Set<CleanStatusTag> cleanStatusTagSet = new HashSet<>();
         for (String tagName : cleanStatusTag) {
-            CleanStatusTagSet.add(parseCleanStatusTag(tagName));
+            cleanStatusTagSet.add(parseCleanStatusTag(tagName));
         }
-        return CleanStatusTagSet;
+        return cleanStatusTagSet;
     }
 
     /**
