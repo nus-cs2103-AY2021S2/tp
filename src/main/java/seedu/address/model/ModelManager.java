@@ -239,7 +239,7 @@ public class ModelManager implements Model {
 
     @Override
     public void doneTask(Task target) {
-        sochedule.removeTask(target);
+        target.markTaskAsDone();
     }
 
     /**
