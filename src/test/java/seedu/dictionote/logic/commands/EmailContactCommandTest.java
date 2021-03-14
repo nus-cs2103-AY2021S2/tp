@@ -6,6 +6,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailu
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
@@ -17,6 +18,7 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.UserPrefs;
@@ -28,7 +30,12 @@ import seedu.dictionote.model.contact.Contact;
  */
 public class EmailContactCommandTest {
 
-    private Model model = new ModelManagerStub(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
+    private Model model = new ModelManagerStub(
+            getTypicalAddressBook(),
+            new UserPrefs(),
+            getTypicalNoteBook(),
+            getTypicalDictionary()
+    );
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -37,8 +44,12 @@ public class EmailContactCommandTest {
 
         String expectedMessage = String.format(EmailContactCommand.MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail);
 
-        ModelManager expectedModel =
-                new ModelManagerStub(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
+        ModelManager expectedModel = new ModelManagerStub(
+                model.getAddressBook(),
+                new UserPrefs(),
+                getTypicalNoteBook(),
+                getTypicalDictionary()
+        );
 
         expectedModel.emailContact(contactToEmail);
 
@@ -62,8 +73,12 @@ public class EmailContactCommandTest {
 
         String expectedMessage = String.format(EmailContactCommand.MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail);
 
-        ModelManager expectedModel =
-                new ModelManagerStub(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
+        ModelManager expectedModel = new ModelManagerStub(
+                model.getAddressBook(),
+                new UserPrefs(),
+                getTypicalNoteBook(),
+                getTypicalDictionary()
+        );
 
         expectedModel.emailContact(contactToEmail);
 
@@ -112,8 +127,8 @@ public class EmailContactCommandTest {
      */
     private static class ModelManagerStub extends ModelManager {
         public ModelManagerStub(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                                ReadOnlyNoteBook noteBook) {
-            super(addressBook, userPrefs, noteBook);
+                                ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary) {
+            super(addressBook, userPrefs, noteBook, dictionary);
         }
 
         @Override
