@@ -21,7 +21,7 @@ public class BorrowCommand extends Command {
             + PREFIX_BOOK + "[REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_BOOK + "Likes to swim.";
-    public static final String MESSAGE_SUCCESS = "New record added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New borrowing record added.";
     public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the registered record base";
 
     private final Record toAdd;

@@ -16,6 +16,7 @@ import seedu.smartlib.logic.commands.ExitCommand;
 import seedu.smartlib.logic.commands.FindReaderCommand;
 import seedu.smartlib.logic.commands.HelpCommand;
 import seedu.smartlib.logic.commands.ListReaderCommand;
+import seedu.smartlib.logic.commands.ReturnCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,6 +66,9 @@ public class SmartLibParser {
 
         case BorrowCommand.COMMAND_WORD:
             return new BorrowCommandParser().parse(arguments);
+
+        case ReturnCommand.COMMAND_WORD:
+            return new ReturnCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
