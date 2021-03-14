@@ -16,9 +16,9 @@ import seedu.iScam.testutil.TypicalClients;
 public class JsonSerializableClientBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableClientBookTest");
-    private static final Path TYPICAL_CLIENTS_FILE = TEST_DATA_FOLDER.resolve("typicalClientsAddressBook.json");
-    private static final Path INVALID_CLIENT_FILE = TEST_DATA_FOLDER.resolve("invalidClientAddressBook.json");
-    private static final Path DUPLICATE_CLIENT_FILE = TEST_DATA_FOLDER.resolve("duplicateClientAddressBook.json");
+    private static final Path TYPICAL_CLIENTS_FILE = TEST_DATA_FOLDER.resolve("typicalClientsClientBook.json");
+    private static final Path INVALID_CLIENT_FILE = TEST_DATA_FOLDER.resolve("invalidClientClientBook.json");
+    private static final Path DUPLICATE_CLIENT_FILE = TEST_DATA_FOLDER.resolve("duplicateClientClientBook.json");
 
     @Test
     public void toModelType_typicalClientsFile_success() throws Exception {
