@@ -79,6 +79,12 @@ public interface Model {
     void addTask(Task task);
 
     /**
+     * Complete the given task.
+     * {@code task} must not already exist in the Sochedule.
+     */
+    void doneTask(Task task);
+
+    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the Sochedule.
      * The task identity of {@code editedTask} must not be the same as another existing task in the Sochedule.
