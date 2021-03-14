@@ -110,10 +110,11 @@ Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
 * Partial words can be matched when searching by questions or priorities. e.g. `Wh` will match `What?`
 * Only full words will be matched when searching by categories or tags. e.g. `Wh` will not match `What?`
 * Flashcards matching at least one keyword will be returned. e.g. `find q/ Newton's Equation` will return flashcards with question of `Newton's Second Law of Motion` and `Einstein's Equation`
-<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-You can list all flashcards again by using `list` command
-</div>
+<div markdown="span" class="alert alert-primary">
 
+:bulb: **Tip:** You can list all flashcards again by using `list` command
+
+</div>
 
 Examples:
 * `find q/ equation` will return flashcards with `Equation` or `equation` in its questions.
@@ -142,8 +143,11 @@ FlashBack data are saved in the hard disk automatically after any command that c
 
 FlashBack data are saved as a JSON file `[JAR file location]/data/flashback.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FlashBack will discard all data and start with an empty data file at the next run.
+
 </div>
 
 ### Filtering cards: `[coming in v2.0]`
