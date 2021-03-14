@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -25,12 +26,15 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_ORDER_DESC = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_ORDER_DESC_1 = "chocolate mousse";
+    private static final String VALID_ORDER_DESC_2 = "1 x strawberry thing";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -146,6 +150,46 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseOrderDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderDescription(null));
+    }
+
+    @Test
+    public void parseOrderDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderDescription(INVALID_ORDER_DESC));
+    }
+
+    @Test
+    public void parseOrderDescription_validValue_returnsOrderDescription() throws ParseException {
+        OrderDescription expectedOrderDescription = new OrderDescription(VALID_ORDER_DESC_1);
+        assertEquals(expectedOrderDescription, ParserUtil.parseOrderDescription(VALID_ORDER_DESC_1));
+    }
+
+    @Test
+    public void parseOrderDescription_validValueWithWhitespace_returnsTrimmedOrderDescription() throws ParseException {
+        String untrimmed = WHITESPACE + VALID_ORDER_DESC_1 + WHITESPACE;
+        OrderDescription expectedOrderDescription = new OrderDescription(VALID_ORDER_DESC_1);
+        assertEquals(expectedOrderDescription, ParserUtil.parseOrderDescription(untrimmed));
+    }
+
+    @Test
+    public void parseOrderDescription_collectionWithInvalidOrderDescription_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderDescriptions(Arrays.asList(VALID_ORDER_DESC_1,
+                INVALID_ORDER_DESC)));
+    }
+
+    @Test
+    public void parseOrderDescription_collectionWithValidOrderDescription_returnsSet() throws Exception {
+        Set<OrderDescription> actualOrderDescriptionSet =
+                ParserUtil.parseOrderDescriptions(Arrays.asList(VALID_ORDER_DESC_1, VALID_ORDER_DESC_2));
+        Set<OrderDescription> expectedOrderDescriptionSet =
+                new HashSet<>(Arrays.asList(new OrderDescription(VALID_ORDER_DESC_1),
+                        new OrderDescription(VALID_ORDER_DESC_2)));
+
+        assertEquals(expectedOrderDescriptionSet, actualOrderDescriptionSet);
     }
 
     @Test

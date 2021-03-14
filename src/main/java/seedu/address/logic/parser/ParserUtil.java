@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -94,6 +95,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String orderDescription} into a {@code OrderDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code orderDescription} is invalid.
+     */
+    public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
+        requireNonNull(orderDescription);
+        String trimmedOrderDescription = orderDescription.trim();
+
+        if (!OrderDescription.isValidOrderDescription(trimmedOrderDescription)) {
+            throw new ParseException(OrderDescription.MESSAGE_CONSTRAINTS);
+        }
+
+        return new OrderDescription(trimmedOrderDescription);
+    }
+
+    /**
+     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>}.
+     */
+    public static Set<OrderDescription> parseOrderDescriptions(Collection<String> orderDescriptions)
+            throws ParseException {
+        requireNonNull(orderDescriptions);
+        final Set<OrderDescription> orderDescriptionSet = new HashSet<>();
+        for (String o : orderDescriptions) {
+            orderDescriptionSet.add(parseOrderDescription(o));
+        }
+        return orderDescriptionSet;
     }
 
     /**

@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.DeliveryDate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OrderDescription;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final List<JsonAdaptedOrderDescription> orderDescriptions = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String deliveryDate;
 
@@ -38,12 +40,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("orderDescriptions") List<JsonAdaptedOrderDescription> orderDescriptions,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("deliveryDate") String deliveryDate) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        if (orderDescriptions != null) { // handle null below
+            this.orderDescriptions.addAll(orderDescriptions);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -58,6 +64,10 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        orderDescriptions.addAll(
+                source.getOrderDescriptions().stream()
+                .map(JsonAdaptedOrderDescription::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -118,7 +128,19 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelDeliveryDate);
+        if (orderDescriptions.isEmpty() || orderDescriptions == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    OrderDescription.class.getSimpleName()));
+        }
+
+        final List<OrderDescription> personOrderDescriptions = new ArrayList<>();
+        for (JsonAdaptedOrderDescription o : orderDescriptions) {
+            personOrderDescriptions.add(o.toModelType());
+        }
+        final Set<OrderDescription> modelOrderDescriptions = new HashSet<>(personOrderDescriptions);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelOrderDescriptions, modelTags,
+                modelDeliveryDate);
     }
 
 }
