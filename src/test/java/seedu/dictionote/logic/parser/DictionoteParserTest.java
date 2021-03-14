@@ -100,7 +100,7 @@ public class DictionoteParserTest {
     @Test
     public void parseCommand_listCommand() throws Exception {
         assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD) instanceof ListCommandCommand);
-        assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
+        assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD + " 3") instanceof ListCommandCommand);
     }
 
     @Test
