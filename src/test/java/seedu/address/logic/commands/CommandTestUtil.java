@@ -67,6 +67,8 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
 
+    public static final String INVALID_INDEX_STANDALONE = " " + "0";
+
     public static final String INVALID_INDEX_DESC = " " + PREFIX_INDEX + "0"; // index must be positive
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

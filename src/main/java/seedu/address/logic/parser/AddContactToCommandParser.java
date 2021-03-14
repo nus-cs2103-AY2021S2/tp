@@ -26,13 +26,7 @@ public class AddContactToCommandParser implements Parser<AddContactToCommand> {
         Index projectIndex;
         Index contactIndex;
 
-        try {
-            projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactToCommand.MESSAGE_USAGE), pe
-            );
-        }
+        projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         if (!argMultimap.getValue(PREFIX_INDEX).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactToCommand.MESSAGE_USAGE));

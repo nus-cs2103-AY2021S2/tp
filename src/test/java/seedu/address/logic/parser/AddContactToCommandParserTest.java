@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INDEX_DESC_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.INDEX_STANDALONE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.INDEX_STANDALONE_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INDEX_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_INDEX_STANDALONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -40,14 +41,21 @@ public class AddContactToCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactToCommand.MESSAGE_USAGE);
 
-        // missing index prefix
-        assertParseFailure(parser, INDEX_STANDALONE_ONE + INDEX_STANDALONE_TWO,
+        // missing project index
+        assertParseFailure(parser, INDEX_DESC_TWO,
+                MESSAGE_INVALID_INDEX);
+
+        // missing contact index
+        assertParseFailure(parser, INDEX_STANDALONE_TWO,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid index
+        // invalid project index
+        assertParseFailure(parser, INVALID_INDEX_STANDALONE + INDEX_DESC_TWO, MESSAGE_INVALID_INDEX);
+
+        // invalid contact index
         assertParseFailure(parser, INDEX_STANDALONE_ONE + INVALID_INDEX_DESC, MESSAGE_INVALID_INDEX);
     }
 }
