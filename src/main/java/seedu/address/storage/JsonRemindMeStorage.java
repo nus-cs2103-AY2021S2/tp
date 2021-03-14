@@ -43,17 +43,17 @@ public class JsonRemindMeStorage implements RemindMeStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyRemindMeApp> readRemindME(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyRemindMeApp> readRemindMe(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableRemindMeApp> jsonRemindMeApp = JsonUtil.readJsonFile(
+                filePath, JsonSerializableRemindMeApp.class);
+        if (!jsonRemindMeApp.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonRemindMeApp.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -61,21 +61,21 @@ public class JsonRemindMeStorage implements RemindMeStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveRemindMe(ReadOnlyRemindMeApp remindMeApp) throws IOException {
+        saveRemindMe(remindMeApp, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveRemindMe(ReadOnlyRemindMeApp)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveRemindMe(ReadOnlyRemindMeApp remindMeApp, Path filePath) throws IOException {
+        requireNonNull(remindMeApp);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableRemindMeApp(remindMeApp), filePath);
     }
 
 }

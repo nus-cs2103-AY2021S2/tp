@@ -128,7 +128,7 @@ public interface Model {
     /**
      * Replaces module planner data with the data in {@code modulePlanner}.
      */
-    void setModulePlanner(ModulePlanner modulePlanner);
+    void setRemindMeApp(RemindMeApp modulePlanner);
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.

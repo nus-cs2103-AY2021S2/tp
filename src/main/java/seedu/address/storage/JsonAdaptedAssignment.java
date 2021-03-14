@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
-import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Assignment}.
  */
 class JsonAdaptedAssignment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assignment's %s field is missing!";
@@ -64,22 +64,23 @@ class JsonAdaptedAssignment {
 
         final Description modelDescription;
         if (description.equals("")) {
-            logger.info("Description for Assignment is empty.");
+            logger.info("Description for Assignment is empty. Assigning default description");
+            modelDescription = Description.defaultDescription();
         } else if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         } else {
             modelDescription = new Description(description);
         }
 
-        if (deadline == null) {
+        if (deadline == null || !LocalDateTimeUtil.isValidDateTime(deadline)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
         }
 
         final LocalDateTime modelDeadline = LocalDateTime.parse(deadline,
-                DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+                LocalDateTimeUtil.DATETIME_FORMATTER);
 
-        return new Assignment(modelDescription, deadline);
+        return new Assignment(modelDescription, modelDeadline);
     }
 
 }

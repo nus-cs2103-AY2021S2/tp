@@ -1,6 +1,7 @@
 package seedu.address.model.module;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AssignmentList {
     private ArrayList<Assignment> assignments;
@@ -10,6 +11,15 @@ public class AssignmentList {
      */
     public AssignmentList() {
         this.assignments = new ArrayList<>();
+    }
+
+    /**
+     * Constructs an {@code AssignmentList} to store {@code Assignments} with given {@code ArrayList<Assignment>};
+     *
+     * @param assignments assignments to construct the AssignmentList.
+     */
+    public AssignmentList(ArrayList<Assignment> assignments) {
+        this.assignments = assignments;
     }
 
     /**
@@ -79,6 +89,10 @@ public class AssignmentList {
             }
         }
         return hasAssignment;
+    }
+
+    public List<Assignment> getAssignments() {
+        return new ArrayList<>(assignments);
     }
 
     /**

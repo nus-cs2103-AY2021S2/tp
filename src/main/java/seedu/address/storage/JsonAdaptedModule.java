@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.Assignment;
 import seedu.address.model.module.AssignmentList;
+import seedu.address.model.module.Exam;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.module.Module;
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -24,55 +26,59 @@ class JsonAdaptedModule {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
 
-    private Title title;
-    private AssignmentList assignments;
-    private ExamList exams;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private String title;
+    private ArrayList<JsonAdaptedAssignment> assignmentList;
+    private ArrayList<JsonAdaptedExam> examList;
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("title") Title title,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("exams") ) {
-        this.name = name;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+    public JsonAdaptedModule(@JsonProperty("title") String title,
+                             @JsonProperty("assignmentList") ArrayList<JsonAdaptedAssignment> assignmentList,
+                             @JsonProperty("examList") ArrayList<JsonAdaptedExam> examList) {
+        this.title = title;
+        this.assignmentList = assignmentList;
+        this.examList = examList;
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Module} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+    public JsonAdaptedModule(Module source) {
+        title = source.getTitle().modTitle;
+        assignmentList.addAll(source.getAssignments().getAssignments().stream()
+                .map(JsonAdaptedAssignment::new).collect(Collectors.toList()));
+
+        examList.addAll(source.getExams().getExams().stream()
+                .map(JsonAdaptedExam::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted Module object into the model's {@code Module} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Module.
      */
-    public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+    public Module toModelType() throws IllegalValueException {
+        final ArrayList<Assignment> modelAssignments = new ArrayList<>();
+        final ArrayList<Exam> modelExams = new ArrayList<>();
+        for (JsonAdaptedAssignment assignment : assignmentList) {
+            modelAssignments.add(assignment.toModelType());
+        }
+        for (JsonAdaptedExam exam : examList) {
+            modelExams.add(exam.toModelType());
         }
 
-        if (name == null) {
+        if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+        if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelTags);
+        final Title modelTitle = new Title(title);
+        final AssignmentList modelAssignmentLists = new AssignmentList(modelAssignments);
+        final ExamList modelExamList = new ExamList(modelExams);
+        return new Module(modelTitle, modelAssignmentLists, modelExamList);
     }
 
 }

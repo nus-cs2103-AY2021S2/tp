@@ -97,7 +97,7 @@ public class ModelManagerTest {
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
-        ModulePlanner modulePlanner = new ModulePlanner();
+        RemindMeApp modulePlanner = new RemindMeApp();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true

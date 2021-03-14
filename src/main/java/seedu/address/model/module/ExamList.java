@@ -3,6 +3,7 @@ package seedu.address.model.module;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Represents a ExamList in Module.
@@ -21,6 +22,7 @@ public class ExamList {
     public ExamList() {
         exams = new ArrayList<>();
     }
+
 
     /**
      * Constucts an {@code ExamList} that stores existing {@code Exams} from input.

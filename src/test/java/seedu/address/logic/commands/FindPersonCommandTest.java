@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.findcommand.FindPersonCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ModulePlanner;
+import seedu.address.model.RemindMeApp;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -26,8 +26,8 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindPersonCommand}.
  */
 public class FindPersonCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new ModulePlanner(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new ModulePlanner(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new RemindMeApp(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new RemindMeApp(), new UserPrefs());
 
     @Test
     public void equals() {

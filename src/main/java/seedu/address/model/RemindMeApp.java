@@ -11,7 +11,7 @@ import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
 
-public class ModulePlanner implements ReadOnlyModulePlanner {
+public class RemindMeApp implements ReadOnlyRemindMeApp {
 
     private final UniqueModuleList modules;
 
@@ -26,12 +26,12 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         modules = new UniqueModuleList();
     }
 
-    public ModulePlanner() {}
+    public RemindMeApp() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public ModulePlanner(ReadOnlyModulePlanner toBeCopied) {
+    public RemindMeApp(ReadOnlyRemindMeApp toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -43,7 +43,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyModulePlanner newData) {
+    public void resetData(ReadOnlyRemindMeApp newData) {
         requireNonNull(newData);
         setModules(newData.getModuleList());
     }
@@ -151,7 +151,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     @Override
     public String toString() {
-        return modules.asUnmodifiableObservableList().size() + " persons";
+        return modules.asUnmodifiableObservableList().size() + " modules";
         // TODO: refine later
     }
 
@@ -163,8 +163,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModulePlanner // instanceof handles nulls
-                && modules.equals(((ModulePlanner) other).modules));
+                || (other instanceof RemindMeApp // instanceof handles nulls
+                && modules.equals(((RemindMeApp) other).modules));
     }
 
     @Override

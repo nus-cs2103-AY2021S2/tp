@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final ModulePlanner modulePlanner;
+    private final RemindMeApp remindMeApp;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
-                        ReadOnlyModulePlanner modulePlanner,
+                        ReadOnlyRemindMeApp remindMeApp,
                         ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
@@ -41,14 +41,14 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        this.modulePlanner = new ModulePlanner(modulePlanner);
+        this.remindMeApp = new RemindMeApp(remindMeApp);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredModules = new FilteredList<>(this.modulePlanner.getModuleList());
+        filteredModules = new FilteredList<>(this.remindMeApp.getModuleList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new ModulePlanner(), new UserPrefs());
+        this(new AddressBook(), new RemindMeApp(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -161,8 +161,8 @@ public class ModelManager implements Model {
     //=========== Module Planner =============================================================
 
     @Override
-    public void setModulePlanner(ModulePlanner modulePlanner) {
-        this.modulePlanner.resetData(modulePlanner);
+    public void setRemindMeApp(RemindMeApp remindMeApp) {
+        this.remindMeApp.resetData(remindMeApp);
     }
 
     @Override
@@ -179,36 +179,36 @@ public class ModelManager implements Model {
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
-        return modulePlanner.hasModule(module);
+        return remindMeApp.hasModule(module);
     }
 
     @Override
     public void addModule(Module module) {
         requireNonNull(module);
-        modulePlanner.addModule(module);
+        remindMeApp.addModule(module);
     }
 
     @Override
     public boolean hasAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
-        return modulePlanner.hasAssignment(module, assignment);
+        return remindMeApp.hasAssignment(module, assignment);
     }
 
     @Override
     public void addAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
-        modulePlanner.addAssignment(module, assignment);
+        remindMeApp.addAssignment(module, assignment);
     }
 
     @Override
     public boolean hasExam(Module module, Exam exam) {
         requireAllNonNull(module, exam);
-        return modulePlanner.hasExam(module, exam);
+        return remindMeApp.hasExam(module, exam);
     }
 
     @Override
     public void addExam(Module module, Exam exam) {
         requireAllNonNull(module, exam);
-        modulePlanner.addExam(module, exam);
+        remindMeApp.addExam(module, exam);
     }
 }

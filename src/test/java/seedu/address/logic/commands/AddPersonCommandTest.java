@@ -19,7 +19,7 @@ import seedu.address.logic.commands.addcommand.AddPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ModulePlanner;
+import seedu.address.model.RemindMeApp;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Assignment;
@@ -186,7 +186,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setModulePlanner(ModulePlanner modulePlanner) {
+        public void setRemindMeApp(RemindMeApp modulePlanner) {
             throw new AssertionError("This method should not be called.");
         }
 
