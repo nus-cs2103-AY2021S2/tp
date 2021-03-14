@@ -52,7 +52,7 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
      */
     public boolean hasEditConflict(Appointment toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().allMatch(toCheck::hasConflict);
+        return internalList.stream().allMatch(toCheck::hasEditConflict);
     }
 
     /**
