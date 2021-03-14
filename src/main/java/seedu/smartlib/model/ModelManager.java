@@ -122,6 +122,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markRecordAsReturned(Record record) {
+        Record foundRecord = null;
+        for (Record r : smartLib.getRecordList()) {
+            if (r.equals(record)) {
+                foundRecord = r;
+            }
+        }
+        if (foundRecord != null) {
+            foundRecord.setDateReturned(record.getDateReturned());
+        }
+        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
+    }
+
+    @Override
     public void setReader(Reader target, Reader editedReader) {
         requireAllNonNull(target, editedReader);
 

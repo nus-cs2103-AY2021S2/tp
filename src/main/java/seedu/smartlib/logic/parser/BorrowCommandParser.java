@@ -1,12 +1,15 @@
 package seedu.smartlib.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
 import java.time.LocalDate;
+import java.util.stream.Stream;
 
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.record.DateBorrowed;
@@ -22,9 +25,12 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public BorrowCommand parse(String args) throws ParseException {
-        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_READER);
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOOK, PREFIX_READER)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReaderCommand.MESSAGE_USAGE));
+        }
 
         Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());
         Name readerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get());
@@ -32,5 +38,13 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
         Record record = new Record(bookName, readerName, dateBorrowed);
 
         return new BorrowCommand(record);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

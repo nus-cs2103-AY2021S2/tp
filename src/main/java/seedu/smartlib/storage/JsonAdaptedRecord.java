@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.exceptions.IllegalValueException;
 import seedu.smartlib.model.record.DateBorrowed;
+import seedu.smartlib.model.record.DateReturned;
 import seedu.smartlib.model.record.Record;
 
 /**
@@ -18,16 +19,18 @@ class JsonAdaptedRecord {
     private final String bookName;
     private final String readerName;
     private final String dateBorrowed;
+    private final String dateReturned;
 
     /**
      * Constructs a {@code JsonAdaptedRecord} with the given record details.
      */
     @JsonCreator
     public JsonAdaptedRecord(@JsonProperty("bookName") String bookName, @JsonProperty("readerName") String readerName,
-                             @JsonProperty("dateBorrowed") String dateBorrowed) {
+                             @JsonProperty("dateBorrowed") String dateBorrowed, @JsonProperty("dateReturned") String dateReturned) {
         this.bookName = bookName;
         this.readerName = readerName;
         this.dateBorrowed = dateBorrowed;
+        this.dateReturned = dateReturned;
     }
 
     /**
@@ -37,6 +40,11 @@ class JsonAdaptedRecord {
         bookName = source.getBookName().fullName;
         readerName = source.getReaderName().fullName;
         dateBorrowed = source.getDateBorrowed().toString();
+        if (source.getDateReturned() == null) {
+            dateReturned = null;
+        } else {
+            dateReturned = source.getDateReturned().toString();
+        }
     }
 
     /**
@@ -72,7 +80,14 @@ class JsonAdaptedRecord {
         }
         final DateBorrowed modelDateBorrowed = new DateBorrowed(dateBorrowed);
 
-        return new Record(modelBookName, modelReaderName, modelDateBorrowed);
+        final DateReturned modelDateReturned;
+        if (dateReturned == null) {
+            modelDateReturned = null;
+        } else {
+            modelDateReturned = new DateReturned(dateReturned);
+        }
+        return new Record(modelBookName, modelReaderName, modelDateBorrowed, modelDateReturned);
+
     }
 
 }

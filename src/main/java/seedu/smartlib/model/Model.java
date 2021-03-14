@@ -84,6 +84,10 @@ public interface Model {
      */
     void addRecord(Record record);
 
+    /**
+     * Search for the latest given record and mark it as returned
+     */
+    void markRecordAsReturned(Record record);
 
     /**
      * Replaces the given reader {@code target} with {@code editedReader}.
