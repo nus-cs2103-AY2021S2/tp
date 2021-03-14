@@ -1,11 +1,13 @@
 package seedu.dictionote.logic.commands;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
+import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyUserPrefs;
+import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
 
@@ -13,7 +15,9 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.dictionote.logic.commands.CommandTestUtil.*;
+import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
@@ -25,17 +29,18 @@ import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
  */
 public class EmailContactCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
+    private Model model = new ModelManagerStub(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
 
     @Test
-    @Disabled
     public void execute_validIndexUnfilteredList_success() throws IOException {
         Contact contactToEmail = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
         EmailContactCommand emailContactCommand = new EmailContactCommand(INDEX_FIRST_CONTACT);
 
         String expectedMessage = String.format(EmailContactCommand.MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
+        ModelManager expectedModel =
+                new ModelManagerStub(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
+
         expectedModel.emailContact(contactToEmail);
 
         assertCommandSuccess(emailContactCommand, model, expectedMessage, expectedModel);
@@ -50,7 +55,6 @@ public class EmailContactCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_validIndexFilteredList_success() {
         showContactAtIndex(model, INDEX_FIRST_CONTACT);
 
@@ -59,7 +63,9 @@ public class EmailContactCommandTest {
 
         String expectedMessage = String.format(EmailContactCommand.MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
+        ModelManager expectedModel =
+                new ModelManagerStub(model.getAddressBook(), new UserPrefs(), getTypicalNoteBook());
+
         expectedModel.emailContact(contactToEmail);
 
         showContactAtIndex(expectedModel, INDEX_FIRST_CONTACT);
@@ -103,11 +109,18 @@ public class EmailContactCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * A stub ModelManager that does not invoke the OS's mail client.
      */
-    private void showNoContact(Model model) {
-        model.updateFilteredContactList(p -> false);
+    private static class ModelManagerStub extends ModelManager {
+        public ModelManagerStub(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                                ReadOnlyNoteBook noteBook) {
+            super(addressBook, userPrefs, noteBook);
+        }
 
-        assertTrue(model.getFilteredContactList().isEmpty());
+        @Override
+        public void emailContact(Contact contact) {
+            // for the sake of unit testing, do not invoke the OS's mail client.
+            return;
+        }
     }
 }
