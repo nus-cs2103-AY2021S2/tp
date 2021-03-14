@@ -19,7 +19,8 @@ import seedu.address.logic.commands.ListCommand;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://github.com/AY2021S2-CS2103T-W12-1/tp/blob/master/docs/UserGuide.md";
+    public static final String USERGUIDE_URL = "https://github.com/AY2021S2-CS2103T-W12-1/"
+                                                + "tp/blob/master/docs/UserGuide.md";
     public static final String HELP_MESSAGE = "Refer to the full user guide here: " + USERGUIDE_URL + "\n";
     public static final String COMMANDGUIDE_MESSAGE = AddCommand.MESSAGE_USAGE + "\n\n" + DeleteCommand.MESSAGE_USAGE
                                                         + "\n\n" + ListCommand.MESSAGE_USAGE + "\n\n"
