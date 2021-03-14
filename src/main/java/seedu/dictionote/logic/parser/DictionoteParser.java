@@ -18,8 +18,10 @@ import seedu.dictionote.logic.commands.EditNoteCommand;
 import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
+import seedu.dictionote.logic.commands.FindContentCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
+import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
@@ -74,11 +76,17 @@ public class DictionoteParser {
         case FindContactCommand.COMMAND_WORD:
             return new FindContactCommandParser().parse(arguments);
 
+        case FindContentCommand.COMMAND_WORD:
+            return new FindContentCommandParser().parse(arguments);
+
         case ListContactCommand.COMMAND_WORD:
             return new ListContactCommand();
 
         case EmailContactCommand.COMMAND_WORD:
             return new EmailContactCommandParser().parse(arguments);
+            
+        case MarkAsDoneNoteCommand.COMMAND_WORD:
+            return new MarkAsDoneNoteCommandParser().parse(arguments);
 
         case OpenCommand.COMMAND_WORD:
             return new OpenCommandParser().parse(arguments);

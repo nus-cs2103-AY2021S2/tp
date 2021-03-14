@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.DESC_REPLACED_NOTE;
 import static seedu.dictionote.logic.commands.CommandTestUtil.VALID_NOTE_CONTENT;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
@@ -19,12 +19,10 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.EditNoteCommand.EditNoteDescriptor;
-import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
-import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.EditContactDescriptorBuilder;
 import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
 
@@ -33,22 +31,8 @@ import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
  */
 public class EditNoteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
-
-
-    @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditNoteCommand editNoteCommand = new EditNoteCommand(INDEX_FIRST_NOTE,
-                new EditNoteDescriptor());
-        Note editedNote = model.getFilteredNoteList().get(INDEX_FIRST_CONTACT.getZeroBased());
-
-        String expectedMessage = String.format(EditNoteCommand.MESSAGE_EDIT_NOTE_SUCCESS, editedNote);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new UserPrefs(), getTypicalNoteBook());
-
-        assertCommandSuccess(editNoteCommand, model, expectedMessage, expectedModel);
-    }
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            getTypicalNoteBook(), getTypicalDictionary());
 
     @Test
     public void execute_duplicateContactFilteredList_failure() {
