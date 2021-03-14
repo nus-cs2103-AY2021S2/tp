@@ -139,6 +139,10 @@ public class ModelManager implements Model {
         updateFilteredPersonList(x -> editedGroup.getPersons().contains(x));
     }
 
+    //=========== PictureStorageManager ======================================================================
+
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

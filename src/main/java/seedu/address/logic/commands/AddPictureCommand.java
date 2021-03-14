@@ -6,6 +6,7 @@ import java.util.Objects;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyUserPrefs;
 
 public class AddPictureCommand extends Command {
 
@@ -32,7 +33,13 @@ public class AddPictureCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        ReadOnlyUserPrefs userPrefs = model.getUserPrefs();
+        Path pictureDir = userPrefs.getPictureStorageDirPath();
+        Path newFilePath = pictureDir.resolve(filePath.getFileName());
 
+        FileUtil.copyFile(filePath, newFilePath);
+
+        Picture pic = new Picture(newFilePath);
 
 
         return new CommandResult(String.format(MESSAGE_ADD_PICTURE_SUCCESS, "fake name"));
