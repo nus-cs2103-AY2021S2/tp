@@ -19,15 +19,15 @@ import seedu.address.model.person.Person;
 /**
  * Adds a special date to an existing person in the FriendDex.
  */
-public class DateCommand extends Command {
+public class AddDateCommand extends Command {
 
-    public static final String COMMAND_WORD = "date";
+    public static final String COMMAND_WORD = "add-date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Save a special date for the person identified "
             + "by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
+            + PREFIX_DATE + "DATE "
+            + PREFIX_DESCRIPTION + "DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "12-12-2021 "
             + PREFIX_DESCRIPTION + "Wedding Anniversary";
@@ -41,7 +41,7 @@ public class DateCommand extends Command {
      * @param index of the person in the filtered person list to add date to
      * @param event details of the date to add
      */
-    public DateCommand(Index index, Event event) {
+    public AddDateCommand(Index index, Event event) {
         requireAllNonNull(index, event);
 
         this.index = index;
@@ -75,11 +75,11 @@ public class DateCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof DateCommand)) {
+        if (!(other instanceof AddDateCommand)) {
             return false;
         }
 
-        DateCommand e = (DateCommand) other;
+        AddDateCommand e = (AddDateCommand) other;
         return index.equals(e.index) && event.equals(e.event);
     }
 }
