@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
 import seedu.smartlib.model.record.DateBorrowed;
@@ -92,12 +93,18 @@ public class SmartLibTest {
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class SmartLibStub implements ReadOnlySmartLib {
+        private final ObservableList<Book> books = FXCollections.observableArrayList();
         private final ObservableList<Reader> readers = FXCollections.observableArrayList();
         private final ObservableList<Record> records = FXCollections.observableArrayList();
 
         SmartLibStub(Collection<Record> records, Collection<Reader> readers) {
             this.records.setAll(records);
             this.readers.setAll(readers);
+        }
+
+        @Override
+        public ObservableList<Book> getBookList() {
+            return books;
         }
 
         @Override

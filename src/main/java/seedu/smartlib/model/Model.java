@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.GuiSettings;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
@@ -12,6 +13,9 @@ import seedu.smartlib.model.record.Record;
  * The API of the Model component.
  */
 public interface Model {
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Reader> PREDICATE_SHOW_ALL_READERS = unused -> true;
 
@@ -57,6 +61,11 @@ public interface Model {
     ReadOnlySmartLib getSmartLib();
 
     /**
+     * Returns true if a book with the same identity as {@code book} exists in the registered book base.
+     */
+    boolean hasBook(Book book);
+
+    /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
      */
     boolean hasReader(Reader reader);
@@ -67,10 +76,22 @@ public interface Model {
     boolean hasRecord(Record record);
 
     /**
+     * Deletes the given book.
+     * The book must exist in the registered book base.
+     */
+    void deleteBook(Book target);
+
+    /**
      * Deletes the given reader.
      * The reader must exist in the registered reader base.
      */
     void deleteReader(Reader target);
+
+    /**
+     * Adds the given book.
+     * {@code book} must not already exist in the registered book base.
+     */
+    void addBook(Book book);
 
     /**
      * Adds the given reader.
@@ -98,6 +119,15 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered reader list */
     ObservableList<Reader> getFilteredReaderList();
+
+    /** Returns an unmodifiable view of the filtered book list */
+    ObservableList<Book> getFilteredBookList();
+
+    /**
+     * Updates the filter of the filtered book list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBookList(Predicate<Book> predicate);
 
     /**
      * Updates the filter of the filtered reader list to filter by the given {@code predicate}.

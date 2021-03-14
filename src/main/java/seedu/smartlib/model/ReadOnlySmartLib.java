@@ -1,6 +1,7 @@
 package seedu.smartlib.model;
 
 import javafx.collections.ObservableList;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
@@ -10,7 +11,13 @@ import seedu.smartlib.model.record.Record;
 public interface ReadOnlySmartLib {
 
     /**
-     * Returns an unmodifiable view of the persons list.
+     * Returns an unmodifiable view of the books list.
+     * This list will not contain any duplicate books.
+     */
+    ObservableList<Book> getBookList();
+
+    /**
+     * Returns an unmodifiable view of the readers list.
      * This list will not contain any duplicate persons.
      */
     ObservableList<Reader> getReaderList();

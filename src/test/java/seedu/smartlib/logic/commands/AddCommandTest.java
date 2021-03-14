@@ -20,6 +20,7 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.ReadOnlyUserPrefs;
 import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 import seedu.smartlib.testutil.ReaderBuilder;
@@ -136,6 +137,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasBook(Book book) {
+            return false;
+        }
+
+        @Override
         public boolean hasReader(Reader reader) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,8 +152,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteBook(Book target) {
+
+        }
+
+        @Override
         public void deleteReader(Reader target) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBook(Book book) {
+
         }
 
         @Override
@@ -158,6 +174,16 @@ public class AddCommandTest {
         @Override
         public ObservableList<Reader> getFilteredReaderList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Book> getFilteredBookList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredBookList(Predicate<Book> predicate) {
+
         }
 
         @Override
