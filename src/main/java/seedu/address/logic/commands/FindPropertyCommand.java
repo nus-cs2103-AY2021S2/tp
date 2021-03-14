@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.PropertyNameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
 

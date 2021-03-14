@@ -1,6 +1,7 @@
 package seedu.address.model.appointment;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.property.Property;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -8,7 +9,7 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class PropertyNameContainsKeywordsPredicate implements Predicate<Appointment> {
+public class PropertyNameContainsKeywordsPredicate implements Predicate<Property> {
     private final List<String> keywords;
 
     public PropertyNameContainsKeywordsPredicate(List<String> keywords) {
@@ -16,9 +17,9 @@ public class PropertyNameContainsKeywordsPredicate implements Predicate<Appointm
     }
 
     @Override
-    public boolean test(Appointment appointment) {
+    public boolean test(Property property) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(appointment.getName().name, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(property.getName().name, keyword));
     }
 
     @Override
