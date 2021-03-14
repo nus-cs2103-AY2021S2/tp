@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -22,12 +23,14 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_STARTTIME + "STARTTIME"
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "This is a task "
-            + PREFIX_DEADLINE + "98765432 "
+            + PREFIX_DEADLINE + "12 Oct 2012 "
+            + PREFIX_STARTTIME + "15:30"
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_DESCRIPTION + "This is the task's description "
             + PREFIX_TAG + "tag1 "
