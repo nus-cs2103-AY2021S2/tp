@@ -39,8 +39,8 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with dictionote book: " + addressBook
                 + " and user prefs " + userPrefs
-                + "and note book" + noteBook
-                + "and dictionary content" + dictionary);
+                + " and note book " + noteBook
+                + " and dictionary content " + dictionary);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
