@@ -9,6 +9,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
+import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -34,6 +35,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setTitle(task.getTitle());
         descriptor.setDeadline(task.getDeadline());
+        descriptor.setStartTime(task.getStartTime());
         descriptor.setEmail(task.getEmail());
         descriptor.setDescription(task.getDescription());
         descriptor.setTags(task.getTags());
@@ -52,6 +54,13 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder withDeadline(String deadline) {
         descriptor.setDeadline(new Deadline(deadline));
+        return this;
+    }
+    /**
+     * Sets the {@code StartTime} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withStartTime(String starttime) {
+        descriptor.setStartTime(new StartTime(starttime));
         return this;
     }
 

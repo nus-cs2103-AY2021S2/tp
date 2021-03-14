@@ -19,6 +19,7 @@ public class Task {
     private final Title title;
     private final Deadline deadline;
     private final Email email;
+    private final StartTime starttime;
 
     // Data fields
     private final Description description;
@@ -27,10 +28,12 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Deadline deadline, Email email, Description description, Set<Tag> tags) {
-        requireAllNonNull(title, deadline, email, description, tags);
+    public Task(Title title, Deadline deadline, StartTime starttime, Email email,
+                Description description, Set<Tag> tags) {
+        requireAllNonNull(title, deadline, starttime, email, description, tags);
         this.title = title;
         this.deadline = deadline;
+        this.starttime = starttime;
         this.email = email;
         this.description = description;
         this.tags.addAll(tags);
@@ -42,6 +45,10 @@ public class Task {
 
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public StartTime getStartTime() {
+        return starttime;
     }
 
     public Email getEmail() {
@@ -90,6 +97,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getStartTime().equals(getStartTime())
                 && otherTask.getEmail().equals(getEmail())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getTags().equals(getTags());
@@ -98,7 +106,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, email, description, tags);
+        return Objects.hash(title, deadline, starttime, email, description, tags);
     }
 
     @Override
@@ -107,6 +115,8 @@ public class Task {
         builder.append(getTitle())
                 .append("; Deadline: ")
                 .append(getDeadline())
+                .append("; StartTime: ")
+                .append(getStartTime())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Description: ")

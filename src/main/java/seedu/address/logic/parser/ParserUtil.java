@@ -13,6 +13,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
+import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Title;
 
 /**
@@ -51,7 +52,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Deadline}.
+     * Parses a {@code String deadline} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
@@ -63,6 +64,21 @@ public class ParserUtil {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String starttime} into a {@code StartTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static StartTime parseStartTime(String starttime) throws ParseException {
+        requireNonNull(starttime);
+        String trimmedStartTime = starttime.trim();
+        if (!Deadline.isValidDeadline(trimmedStartTime)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new StartTime(trimmedStartTime);
     }
 
     /**
