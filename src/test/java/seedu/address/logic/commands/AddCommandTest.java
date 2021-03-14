@@ -148,6 +148,21 @@ public class AddCommandTest {
         public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void undoFlashBack() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoFlashBack() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitFlashBack() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
