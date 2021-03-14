@@ -1,16 +1,16 @@
 package seedu.dictionote.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
-public class MarkAsDoneNoteCommand extends Command{
+public class MarkAsDoneNoteCommand extends Command {
     public static final String COMMAND_WORD = "markasdonenote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
