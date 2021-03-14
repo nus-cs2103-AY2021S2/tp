@@ -1,7 +1,11 @@
 package seedu.iscam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.iscam.logic.parser.CliSyntax.*;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.iscam.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.Collections;
