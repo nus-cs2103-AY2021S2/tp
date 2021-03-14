@@ -66,8 +66,7 @@ low|user adopting this products|clear all my contacts from the address book|clea
 1. User requests to list all contacts.
 2. Teaching Assistant shows a list of all contacts.
 3. User requests to delete a specific contact in this list.
-4. Teaching Assistant deletes the contact.
-   
+4. Teaching Assistant deletes the contact. \
    Use case ends.
    
  **Extensions**
