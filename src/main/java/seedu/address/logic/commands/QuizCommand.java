@@ -6,15 +6,14 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import seedu.address.model.Model;
 
 /**
- * Lists all flashcards in the address book to the user.
+ * Enter flashcard quiz mode.
  */
-public class EndCommand extends Command {
+public class QuizCommand extends Command {
 
-    public static final String COMMAND_WORD = "end";
+    public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_SUCCESS = "Welcome back.\n"
-            + "Enter \"learn\" or \"quiz\" for different modes.";
-
+    public static final String MESSAGE_SUCCESS = "You are now in quiz mode.\n"
+            + "Enter \"start\" to start quiz.";
 
     @Override
     public CommandResult execute(Model model) {
@@ -22,5 +21,4 @@ public class EndCommand extends Command {
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
-
 }
