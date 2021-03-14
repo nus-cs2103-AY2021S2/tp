@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "369, Yishun Ave 4, #02-25 "
             + PREFIX_TRIPDAY + "wednesday "
             + PREFIX_TRIPTIME + "1930 "
-            + PREFIX_TAG + "female ";
+            + PREFIX_TAG + "female";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the GME Terminal";
