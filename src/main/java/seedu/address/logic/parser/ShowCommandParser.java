@@ -8,7 +8,7 @@ import seedu.address.logic.commands.ShowMCCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new ShowCommand object
  */
 public class ShowCommandParser implements Parser<ShowCommand> {
 
