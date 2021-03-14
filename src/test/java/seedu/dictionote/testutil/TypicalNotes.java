@@ -2,6 +2,7 @@ package seedu.dictionote.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.dictionote.model.NoteBook;
@@ -13,9 +14,9 @@ import seedu.dictionote.model.note.Note;
  */
 public class TypicalNotes {
 
-    public static final Note MI_AMOR = new Note("My love, I have been waiting for you");
-    public static final Note MI_VIDA = new Note("Life has been great");
-    public static final Note CS2103T_EXAM = new Note("CS2103T Exam will be on Monday");
+    public static final Note MI_AMOR = new Note("My love, I have been waiting for you", new HashSet<>());
+    public static final Note MI_VIDA = new Note("Life has been great", new HashSet<>());
+    public static final Note CS2103T_EXAM = new Note("CS2103T Exam will be on Monday", new HashSet<>());
 
     private TypicalNotes() {} // prevents instantiation
 

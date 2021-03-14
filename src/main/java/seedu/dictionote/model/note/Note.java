@@ -2,8 +2,12 @@ package seedu.dictionote.model.note;
 
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import seedu.dictionote.model.tag.Tag;
 
 /**
  * Represents a Note in the dictionote book.
@@ -11,19 +15,29 @@ import java.util.Objects;
  */
 public class Note {
     private final String note;
+    // Data fields
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Note(String note) {
-        requireAllNonNull(note);
+    public Note(String note, Set<Tag> tags) {
+        requireAllNonNull(note, tags);
         this.note = note;
+        this.tags.addAll(tags);
     }
 
     public String getNote() {
         return note;
     }
 
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
     /**
      * Returns true if both notes have the same note.
      */
@@ -51,19 +65,26 @@ public class Note {
         }
 
         Note otherNote = (Note) other;
-        return otherNote.getNote().equals(getNote());
+        return otherNote.getNote().equals(getNote())
+                && otherNote.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(note);
+        return Objects.hash(note, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getNote());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 }
