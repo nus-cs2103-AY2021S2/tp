@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.AppointmentNameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
 
@@ -19,9 +18,9 @@ public class FindAppointmentCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " charlie monday";
 
-    private final AppointmentNameContainsKeywordsPredicate predicate;
+    private final AppointmentContainsKeywordsPredicate predicate;
 
-    public FindAppointmentCommand(AppointmentNameContainsKeywordsPredicate predicate) {
+    public FindAppointmentCommand(AppointmentContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

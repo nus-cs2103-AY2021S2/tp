@@ -1,11 +1,9 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.AppointmentNameContainsKeywordsPredicate;
-import seedu.address.model.appointment.PropertyNameContainsKeywordsPredicate;
+import seedu.address.model.appointment.PropertyContainsKeywordsPredicate;
 
 import java.util.Arrays;
 
@@ -31,7 +29,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindPropertyCommand(new PropertyNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindPropertyCommand(new PropertyContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

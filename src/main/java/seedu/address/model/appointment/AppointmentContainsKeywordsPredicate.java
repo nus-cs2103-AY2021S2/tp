@@ -8,10 +8,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class AppointmentNameContainsKeywordsPredicate implements Predicate<Appointment> {
+public class AppointmentContainsKeywordsPredicate implements Predicate<Appointment> {
     private final List<String> keywords;
 
-    public AppointmentNameContainsKeywordsPredicate(List<String> keywords) {
+    public AppointmentContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,8 +24,8 @@ public class AppointmentNameContainsKeywordsPredicate implements Predicate<Appoi
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AppointmentNameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((AppointmentNameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof AppointmentContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((AppointmentContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

@@ -9,10 +9,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class PropertyNameContainsKeywordsPredicate implements Predicate<Property> {
+public class PropertyContainsKeywordsPredicate implements Predicate<Property> {
     private final List<String> keywords;
 
-    public PropertyNameContainsKeywordsPredicate(List<String> keywords) {
+    public PropertyContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -25,8 +25,8 @@ public class PropertyNameContainsKeywordsPredicate implements Predicate<Property
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PropertyNameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((PropertyNameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof PropertyContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((PropertyContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

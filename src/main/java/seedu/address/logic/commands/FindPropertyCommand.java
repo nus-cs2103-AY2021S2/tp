@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.PropertyNameContainsKeywordsPredicate;
+import seedu.address.model.appointment.PropertyContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
 
@@ -19,9 +19,9 @@ public class FindPropertyCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " hdb jurong";
 
-    private final PropertyNameContainsKeywordsPredicate predicate;
+    private final PropertyContainsKeywordsPredicate predicate;
 
-    public FindPropertyCommand(PropertyNameContainsKeywordsPredicate predicate) {
+    public FindPropertyCommand(PropertyContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

@@ -1,10 +1,8 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.AppointmentNameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 
 import java.util.Arrays;
 
@@ -30,7 +28,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindAppointmentCommand(new AppointmentNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
