@@ -41,11 +41,8 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
+  e.g `n/NAME [r/SCHOOL RESIDENCE]` can be used as `n/John Doe r/RC4` or as `n/John Doe`.
+  
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -54,6 +51,48 @@ Vax@NUS is a **one stop management app to efficiently track and and schedule COV
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+**NOTE: The following parameter formats must be followed:**
+> The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by 
+  > 7 numbers and ends with an alphabet. 
+
+> The `FACULTY` of a student must be one of the following:
+  > * FASS (for Faculty of Arts and Social Sciences)
+  > * BIZ (for NUS Business School) 
+  > * COM (for School of Computing)
+  > * SCALE (for School of Continuing and Lifelong Education)
+  > * DEN (for Faculty of Dentistry)
+  > * SDE (for School of Design and Environment)
+  > * DNUS (for Duke-NUS Medical School)
+  > * ENG (for Faculty of Engineering)
+  > * ISEP (for Integrative Sciences and Engineering)
+  > * LAW (for Faculty of Law)
+  > * MED (for Yong Loo Lin School of Medicine)
+  > * MUSIC (for Yong Siew Toh Conservatory of Music)
+  > * SPH (for Saw Swee Hock School of Public Health)
+  > * SPP (for Lee Kuan Yew School of Public Policy)
+  > * SCI (for Faculty of Science)
+  > * USP (for University Scholars Programme)
+  > * YNC (for Yale-NUS College)
+  
+> The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
+
+> The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
+  > * PGPH (for Prince George's Park House)
+  > * PGPR (for Prince George's Park Residences)
+  > * KE7H (for King Edward VII Hall)
+  > * SH (for Sheares Hall)
+  > * KRH (for Kent Ridge Hall)
+  > * TH (for Temasek Hall)
+  > * EH (for Eusoff Hall)
+  > * RH (for Raffles Hall)
+  > * RVRC (for Ridge View Residential College)
+  > * YNC (for Yale-NUS College)
+  > * TC (for Tembusu College)
+  > * CAPT (for College of Alice and Peter Tan)
+  > * RC4 (for Residential College 4)
+  > * USP (for University Scholars Programme)
+  > * UTR (for Utown Residences)
 
 </div>
 
@@ -70,15 +109,12 @@ Format: `help`
 
 Adds a person to the records.
 
-Format: `add n/NAME i/MATRICULATION_NUMBER p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS 
-m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
+Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
->**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
 
 Examples:
-* `add n/John Doe i/A1234567X p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC `
-* `add n/Betsy Crowe i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/not vaccinated 
-  m/nose lift surgery in 2012`
+* `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+* `add n/Betsy Crowe f/ENG i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/not vaccinated m/nose lift surgery in 2012`
 
 ### Editing a student entry: `edit`
 
@@ -86,8 +122,6 @@ Edits a student in the records.
 
 Format: `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
->**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
-> 
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -111,8 +145,6 @@ Shows all the details in the records of the student with the matching matriculat
 
 Format: `search /MATRICULATION_NUMBER`
 
->**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
-
 
 Examples:
 * `search A1234567X` returns `John Doe`
@@ -125,9 +157,7 @@ Format: `deleteStud /MATRICULATION NUMBER`
 
 * If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
   the matriculation number is not found
-
->**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
-
+  
 
 Examples:
 * `deleteStud /A7654321J` deletes Betsy Crowe from the records.
@@ -191,9 +221,10 @@ _Details coming soon ..._
 
 ## Command Summary
 
-**Action**  | **Format, Examples**
---------|-----------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS ` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., ` add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
+**edit** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **List Students** | `list students`
 **Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
 **Delete Student** | `deleteStud /MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`

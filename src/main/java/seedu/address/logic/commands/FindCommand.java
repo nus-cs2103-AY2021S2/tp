@@ -8,15 +8,15 @@ import seedu.address.model.person.MatriculationNumberContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds student whose "
-            + "matriculation number matches the specified keywords (case-insensitive) and displays the student.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "matriculation number matches the specified keywords (case-sensitive) and displays the student.\n"
+            + "Parameters: KEYWORD \n"
             + "Example: " + COMMAND_WORD + " a01234567r";
 
     private final MatriculationNumberContainsKeywordsPredicate predicate;

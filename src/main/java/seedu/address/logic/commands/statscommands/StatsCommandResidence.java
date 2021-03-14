@@ -1,20 +1,20 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.statscommands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Faculty;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.VaccinationStatus;
+import seedu.address.model.person.SchoolResidence;
 
-public class StatsCommandFaculty extends StatsCommand {
-    private Faculty faculty;
+public class StatsCommandResidence extends StatsCommand {
+    private SchoolResidence residence;
 
-    public StatsCommandFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    public StatsCommandResidence(SchoolResidence residence) {
+        this.residence = residence;
     }
 
     @Override
@@ -23,11 +23,11 @@ public class StatsCommandFaculty extends StatsCommand {
         List<Person> studentList = model.getAddressBook().getPersonList();
 
         try {
-            float stats = calculateRatioVaccinated(studentList, faculty);
+            float stats = calculateRatioVaccinated(studentList, residence);
             if (Float.isNaN(stats) || stats > 1) {
                 throw new CommandException(MESSAGE_STATS_FAILURE);
             }
-            return new CommandResult(String.format(MESSAGE_STATS_SUCCESS, faculty, stats * 100));
+            return new CommandResult(String.format(MESSAGE_STATS_SUCCESS, residence, stats * 100));
         } catch (Exception e) {
             throw new CommandException(MESSAGE_STATS_FAILURE);
         }
@@ -35,20 +35,18 @@ public class StatsCommandFaculty extends StatsCommand {
 
     /**
      * @param stuList List of all students in Vax@NUS system.
-     * @param faculty Faculty to calculate ratio vaccinated.
-     * @return A float representing the ratio of number vaccinated to total students in the faculty.
+     * @param resi School residence to calculate ratio vaccinated.
+     * @return A float representing the ratio of number vaccinated to total students in the residence.
      * @throws CommandException if the data is corrupted.
      */
-    public static float calculateRatioVaccinated(List<Person> stuList, Faculty faculty) throws CommandException {
-        VaccinationStatus vaccinated = new VaccinationStatus("vaccinated");
+    public static float calculateRatioVaccinated(List<Person> stuList, SchoolResidence resi) throws CommandException {
         int totalStudents = 0;
         int counter = 0;
-
         try {
             for (Person p : stuList) {
-                if (p.getFaculty().equals(faculty)) {
+                if (p.getSchoolResidence().equals(resi)) {
                     totalStudents++;
-                    if (p.getVaccinationStatus().equals(vaccinated)) {
+                    if (p.isVaccinated()) {
                         counter++;
                     }
                 }
@@ -59,5 +57,4 @@ public class StatsCommandFaculty extends StatsCommand {
             throw new CommandException(MESSAGE_STATS_FAILURE);
         }
     }
-
 }

@@ -4,10 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.List;
 
-import seedu.address.logic.commands.StatsCommand;
-import seedu.address.logic.commands.StatsCommandAll;
-import seedu.address.logic.commands.StatsCommandFaculty;
-import seedu.address.logic.commands.StatsCommandResidence;
+import seedu.address.logic.commands.statscommands.StatsCommand;
+import seedu.address.logic.commands.statscommands.StatsCommandAll;
+import seedu.address.logic.commands.statscommands.StatsCommandFaculty;
+import seedu.address.logic.commands.statscommands.StatsCommandNus;
+import seedu.address.logic.commands.statscommands.StatsCommandResidence;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Faculty;
 import seedu.address.model.person.SchoolResidence;
@@ -28,7 +29,7 @@ public class StatsCommandParser implements Parser<StatsCommand> {
             return new StatsCommandFaculty(faculty);
         }
         if (trimmedUserInput.equals("NUS")) {
-            return new StatsCommand();
+            return new StatsCommandNus();
         }
         if (trimmedUserInput.equals("all")) {
             return new StatsCommandAll();
