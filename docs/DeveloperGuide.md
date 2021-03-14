@@ -276,7 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 2. **Reliability**:
     - GME shall allow drivers to pick passengers throughout the week ant any time during the day, up to 6 passengers depending on car size.
     - GME Should be able to hold up to 1000 persons (drivers and passengers included) without a noticeable sluggishness in performance for typical usage.
-3. **Security:** 
+3. **Security:**
     - Only users that creates their own profile can view their private information and change the privacy settings
 4. **Integrity**
     - All monetary amounts (including passenger's tips) must be accurate to two decimal places and in SGD.
