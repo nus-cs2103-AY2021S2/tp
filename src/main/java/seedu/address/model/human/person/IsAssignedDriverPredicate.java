@@ -1,17 +1,14 @@
 package seedu.address.model.human.person;
 
-import seedu.address.model.human.driver.Driver;
-
-import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
  * Tests that whether a {@code Person} is assigned {@code Driver} matches the status given.
  */
-public class IsAssignedDriverPerdicate implements Predicate<Person> {
+public class IsAssignedDriverPredicate implements Predicate<Person> {
     private final boolean isAssigned;
 
-    public IsAssignedDriverPerdicate(Boolean isAssigned) {
+    public IsAssignedDriverPredicate(Boolean isAssigned) {
         this.isAssigned = isAssigned;
     }
 

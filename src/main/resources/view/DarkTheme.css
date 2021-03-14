@@ -131,7 +131,7 @@
     -fx-border-color: #e0643c;
 }
 
-.list-cell:filled:odd:selected {
+.:wlist-cell:filled:odd:selected {
     -fx-border-color: #1368cf;
 }
 
