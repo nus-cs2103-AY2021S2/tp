@@ -11,9 +11,7 @@ import java.util.Optional;
  */
 public class InsurancePolicy {
 
-    public static final String CHECK_POLICY_ID_REGEX = "Policy_[0-9]{4}";
-    public static final String CHECK_POLICY_INPUT_REGEX = "Policy_[0-9]{4}(>.*)?";
-    public static final String MESSAGE_CONSTRAINTS = "PolicyIDs should be of the form 'Policy_****'. URLs should be "
+    public static final String MESSAGE_CONSTRAINTS = "PolicyIDs should not contain '>'!. URLs should be "
             + "preceded by '>' after the PolicyID.";
 
     public final String policyId;
@@ -46,7 +44,7 @@ public class InsurancePolicy {
      *
      * @return the {@code policyUrl} in {@code Optional<String>}.
      */
-    public Optional<String> getPolicyUrlIfPresent() {
+    public Optional<String> getOptionalPolicyUrl() {
         return Optional.ofNullable(policyUrl);
     }
 
@@ -89,31 +87,45 @@ public class InsurancePolicy {
     }
 
     /**
-     * Sets policy URL for this insurance policy.
+     * Checks if input contains a valid policy ID without '>' character in the ID.
      *
-     * @param url to this policy's document.
+     * @param input policy input to check.
+     * @return true if policy input contains a valid policy ID.
      */
-    public void setPolicyUrl(String url) {
-        policyUrl = url;
+    public static boolean isValidPolicyId(String input) {
+        String[] splitByAngularBracket = input.split(">", 2);
+
+        if (splitByAngularBracket.length == 1) {
+            // return true if length is 1, since no '>' was used, meaning no URL and valid policy ID.
+            return true;
+        }
+
+        // If input is of a correct format, then splitting by '>' would give us policy ID in the 0th index,
+        // and policy URL in the 1st index.
+
+        // By definition, URLs should not contain angular brackets, as they are usually used as delimiters around
+        // URLs in free text. Hence our choice to use the '>' character as delimiter here.
+
+        // Thus, we want to check if the URL contains any '>' which was what the input should have been split by.
+
+        String possibleUrl = splitByAngularBracket[1];
+
+        for (int i = 0; i < possibleUrl.length(); i++) {
+            if (possibleUrl.charAt(i) == '>') {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
-     * Checks if given {@code String} is a valid policy Id of the format Policy_****.
+     * Checks if a policy input by user contains a URL associated with the policy.
      *
-     * @param test {@code String} to test.
-     * @return true if {@code String} is of valid policy Id format.
+     * @param test policy input split by our delimiter '>'.
+     * @return true if input contains URL.
      */
-    public static boolean isPolicyId(String test) {
-        return test.matches(CHECK_POLICY_ID_REGEX);
-    }
-
-    /**
-     * Checks if given {@code String} is of a valid input format for this command.
-     *
-     * @param test {@code String} to test.
-     * @return true if {@code String} is of a valid input format for this command.
-     */
-    public static boolean isValidPolicyInput(String test) {
-        return test.matches(CHECK_POLICY_INPUT_REGEX);
+    public static boolean hasPolicyUrl(String[] test) {
+        return test.length == 2;
     }
 }

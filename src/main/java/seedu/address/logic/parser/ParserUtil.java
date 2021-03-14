@@ -7,9 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -27,8 +25,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
-    private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -140,19 +136,19 @@ public class ParserUtil {
         requireNonNull(policy);
         String trimmedPolicy = policy.trim();
 
-        if (!InsurancePolicy.isValidPolicyInput(trimmedPolicy)) {
+        if (!InsurancePolicy.isValidPolicyId(trimmedPolicy)) {
             throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
         }
 
-        if (InsurancePolicy.isPolicyId(trimmedPolicy)) {
-            return new InsurancePolicy(trimmedPolicy);
+        String[] idAndUrl = trimmedPolicy.split(">", 2);
+
+        if (!InsurancePolicy.hasPolicyUrl(idAndUrl)) {
+            return new InsurancePolicy(idAndUrl[0]);
         }
 
         // Else contains URL too
-        String[] idAndUrl = trimmedPolicy.split(">", 2);
         String policyId = idAndUrl[0];
         String policyUrl = idAndUrl[1];
-
         return new InsurancePolicy(policyId, policyUrl);
     }
 

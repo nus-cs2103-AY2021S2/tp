@@ -88,16 +88,16 @@ Adds a client to ClientBook.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID[>POLICY_URL]] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags and policies (including 0)
+A person can have any number of tags and insurance policies (including 0)
 </div>
 
-* It is perfectly fine to not include the URL to the policy document!
-* To include the URL, remember to use '>' to indicate that a particular policy is linked to a URL, as shown in the second example below.
+* It is perfectly fine to not include the URL to the insurance policy document!
+* To include the URL, remember to use '>' to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
 
 Examples:
-* (example of a client with policy but no URL)`add n/John Doe p/98765432 e/johnd@example.com a/Orchard i/Policy_1273 t/basic`
-* (example of a client with policy and URL)`add n/Tom Tan p/91234567 e/tomt@example.com a/Orchard i/Policy_1274>www.myinsurancecompany.com/policy_1274 t/basic`
-* (example with no policy and no tag)`add n/Betsy Crowe e/betsycrowe@example.com a/Kent Ridge`
+* (example of a client with insurance policy but no URL)`add n/John Doe p/98765432 e/johnd@example.com a/Orchard i/Policy_1273 t/basic`
+* (example of a client with insurance policy and URL)`add n/Tom Tan p/91234567 e/tomt@example.com a/Orchard i/Policy_1274>www.myinsurancecompany.com/policy_1274 t/basic`
+* (example with no insurance policy and no tag)`add n/Betsy Crowe e/betsycrowe@example.com a/Kent Ridge`
 
 ### Listing all persons : `list`
 
@@ -163,10 +163,12 @@ Format: `policy INDEX`
 * Selects the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Policy ID cannot contain '>' character!
+* Note that your URLs with should not contain '>' characters either! They are not valid URLs by the Internet's definition.
 
 Examples:
-* `list` followed by `policy 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `policy 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
+* `find Betsy` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
 
 ### Exiting the program : `exit`
 
