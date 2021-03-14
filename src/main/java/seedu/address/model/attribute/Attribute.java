@@ -1,5 +1,8 @@
 package seedu.address.model.attribute;
 
+/**
+ * An enumeration of Attributes that a person object can have
+ */
 public enum Attribute {
     POLICY_ID, EMAIL, ADDRESS, PHONE;
 

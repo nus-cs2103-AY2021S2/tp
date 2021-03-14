@@ -40,18 +40,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code attribute string} into an {@code Attribute} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Attribute parseAttribute(String attribute) throws ParseException {
-        if (attribute.equals("-policy")) {
+        String trimmedAttribute = attribute.trim();
+        if (trimmedAttribute.equals("-policy")) {
             return Attribute.POLICY_ID;
-        } else if (attribute.equals("-phone")) {
+        } else if (trimmedAttribute.equals("-phone")) {
             return Attribute.PHONE;
-        } else if (attribute.equals("-email")) {
+        } else if (trimmedAttribute.equals("-email")) {
             return Attribute.EMAIL;
-        } else if (attribute.equals("-address")) {
+        } else if (trimmedAttribute.equals("-address")) {
             return Attribute.ADDRESS;
         } else {
             throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);

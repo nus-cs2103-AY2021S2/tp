@@ -50,6 +50,10 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Creates a code{Person} with the specified code{attribute} using the input code{person}.
+     * Other than name and tags, other unspecified field is empty.
+     */
     public Person(Person person, Attribute attribute) {
         requireAllNonNull(person, attribute);
         this.name = person.name;

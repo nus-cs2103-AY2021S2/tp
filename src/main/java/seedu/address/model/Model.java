@@ -88,7 +88,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Updates the person list to show only the particular given {@code attribute}.
+     * Updates the Persons in person list to have only the particular given {@code attribute}.
      * @throws NullPointerException if {@code attribute} is null.
      */
     void updatePersonListByAttribute(Attribute attributeType);

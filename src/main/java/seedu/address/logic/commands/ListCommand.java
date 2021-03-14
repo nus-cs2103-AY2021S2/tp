@@ -9,7 +9,7 @@ import seedu.address.model.attribute.Attribute;
 import java.util.Optional;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the address book to the user. Attribute can be specified to show only specific attributes.
  */
 public class ListCommand extends Command {
 
