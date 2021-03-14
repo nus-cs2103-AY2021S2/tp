@@ -148,7 +148,7 @@ Example output:
 ### Show the number of MCs the user is currently taking: `show MCs`
 Format: `Show MCs`
 
-Example output: `The current MCs you are taking is xxx`
+Example output: `Current MCs this semester: xxx`
 
 ### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
 Format: `Show CAP`
@@ -159,7 +159,7 @@ using this formula
 ![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
 
 
-Example output `Current CAP is xxx`
+Example output `Current CAP is: xxx`
 
 ### Add/Delete Semester to/from Plan: `add/delete`
 Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`  
@@ -220,12 +220,12 @@ The details to output are as follows:
 ## Semester commands
 
 ### Show the number of MCs the user is currently taking: `show MCs`
-Format: `Show MCs`
+Format: `Show mcs`
 
 Example output: `The current MCs you are taking is xxx`
 
 ### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
-Format: `Show CAP`
+Format: `show cap`
 
 This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP 
 using this formula
@@ -299,12 +299,11 @@ Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
 
 ### View module info: `info`
-=======
 Format: `info m/MODULE_CODE`    
 > Tip: A user can also add a module to a plan/semester (See `add/delete`)  
 
-By default, this command takes in one optional argument, `MODULE_CODE`,
-=======
+
+### By default, this command takes in one optional argument, `MODULE_CODE`
 Format: `info m/MODULE_CODE`
 Tip: A user can also add a module to a plan/semester (See `add/delete`)
 By default, this command takes in one optional argument, `MODULE_CODE`,
