@@ -42,6 +42,16 @@ public class TodoList {
         this.todos.add(todo);
     }
 
+    /**
+     * Deletes an todo from this {@code TodoList}.
+     *
+     * @param i Index of {@code Todo} to be deleted.
+     */
+    public void deleteTodo(Integer i) {
+        requireNonNull(i);
+        this.todos.remove(i);
+    }
+
     public List<CompletableTodo> getTodos() {
         return this.todos;
     }

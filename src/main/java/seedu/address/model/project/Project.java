@@ -82,6 +82,16 @@ public class Project {
     }
 
     /**
+     * Adds a deadline to {@code DeadlineList} field of this {@code Project}.
+     *
+     * @param deadline {@code Deadline} to add.
+     */
+    public void addDeadline(Deadline deadline) {
+        requireNonNull(deadline);
+        this.deadlines.addDeadline(deadline);
+    }
+    
+    /**
      * Adds an event to {@code EventList} field of this {@code Project}.
      *
      * @param event {@code Event} to add.
@@ -99,16 +109,6 @@ public class Project {
     public void addTodo(Todo todo) {
         requireNonNull(todo);
         this.todos.addTodo(todo);
-    }
-
-    /**
-     * Adds a deadline to {@code DeadlineList} field of this {@code Project}.
-     *
-     * @param deadline {@code Deadline} to add.
-     */
-    public void addDeadline(Deadline deadline) {
-        requireNonNull(deadline);
-        this.deadlines.addDeadline(deadline);
     }
 
     /**
@@ -132,13 +132,13 @@ public class Project {
     }
 
     /**
-     * Deletes a deadline from {@code DeadlineList} field of this {@code Project}.
+     * Deletes a todo from {@code TodoList} field of this {@code Project}.
      *
-     * @param i Index of {@code Deadline} to be deleted.
+     * @param i Index of {@code Todo} to be deleted.
      */
-    public void deleteDeadline(Integer i) {
+    public void deleteTodo(Integer i) {
         requireNonNull(i);
-        this.deadlines.deleteDeadline(i);
+        this.todos.deleteTodo(i);
     }
 
     /**
