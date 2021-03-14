@@ -112,6 +112,16 @@ public class Project {
     }
 
     /**
+     * Deletes a deadline from {@code DeadlineList} field of this {@code Project}.
+     *
+     * @param deadline Index of {@code Deadline} to be deleted.
+     */
+    public void deleteDeadline(Integer i) {
+        requireNonNull(i);
+        this.deadlines.deleteDeadline(i);
+    }
+
+    /**
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two projects.
      */

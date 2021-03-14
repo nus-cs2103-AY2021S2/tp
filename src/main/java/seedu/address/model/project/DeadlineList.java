@@ -42,6 +42,16 @@ public class DeadlineList {
         this.deadlines.add(deadline);
     }
 
+    /**
+     * Deletes a deadline from this {@code DeadlineList}.
+     *
+     * @param i Index of {@code Deadline} to be deleted.
+     */
+    public void deleteDeadline(Integer i) {
+        requireNonNull(i);
+        this.deadlines.remove(i);
+    }
+
     public List<CompletableDeadline> getDeadlines() {
         return this.deadlines;
     }

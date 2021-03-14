@@ -58,11 +58,17 @@ public class DeleteTodoCommand extends Command {
         }
 
         if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased()).getTodos().getTodos().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
+        Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
+        assert projectToEdit != null;
+
+        projectToEdit(toAdd);
+        model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd));
+
+
         return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, personToDelete));
     }
 
