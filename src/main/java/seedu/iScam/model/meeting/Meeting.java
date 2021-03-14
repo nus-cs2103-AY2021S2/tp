@@ -1,6 +1,6 @@
-package seedu.iScam.model.meeting;
+package seedu.address.model.meeting;
 
-import static seedu.iScam.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -8,21 +8,23 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.iScam.model.client.Location;
-import seedu.iScam.model.client.Client;
-import seedu.iScam.model.tag.Tag;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Name;
+import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Meeting in the iScam book.
+ * Represents a Meeting in the address book.
  * Guarantees: identity fields are present and not null, data fields are validated, immutable.
  */
 public class Meeting {
     // Identity fields
     private Client client;
+    private Name name;
     private LocalDateTime dateTime;
 
     // Data fields
-    private Location location;
+    private Address address;
     private Description description;
     private Set<Tag> tags = new HashSet<>();
     private boolean isDone;
@@ -30,12 +32,26 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Client client, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
-        requireAllNonNull(client, dateTime, location, description, tags);
+    public Meeting(Client client, LocalDateTime dateTime, Address address, Description description, Set<Tag> tags) {
+        requireAllNonNull(client, dateTime, address, description, tags);
         this.client = client;
         this.dateTime = dateTime;
 
-        this.location = location;
+        this.address = address;
+        this.description = description;
+        this.tags = tags;
+        this.isDone = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Meeting(Name name, LocalDateTime dateTime, Address address, Description description, Set<Tag> tags) {
+        requireAllNonNull(name, dateTime, address, description, tags);
+        this.name = name;
+        this.dateTime = dateTime;
+
+        this.address = address;
         this.description = description;
         this.tags = tags;
         this.isDone = false;
@@ -49,13 +65,15 @@ public class Meeting {
         return dateTime;
     }
 
-    public Location getAddress() {
-        return location;
+    public Address getAddress() {
+        return address;
     }
 
     public Description getDescription() {
         return description;
     }
+
+    public boolean getIsDone() { return isDone; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -66,11 +84,11 @@ public class Meeting {
     }
 
     /**
-     * Update the iScam where the meeting takes place.
-     * @param newLocation A validated new iScam.
+     * Update the address where the meeting takes place.
+     * @param newAddress A validated new address.
      */
-    public void relocate(Location newLocation) {
-        this.location = newLocation;
+    public void relocate(Address newAddress) {
+        this.address = newAddress;
     }
 
     /**
@@ -117,7 +135,7 @@ public class Meeting {
         Meeting otherMeeting = (Meeting) other;
         return otherMeeting.getClient().equals(this.client)
                 && otherMeeting.getDateTime().isEqual(this.dateTime)
-                && otherMeeting.getAddress().equals(this.location)
+                && otherMeeting.getAddress().equals(this.address)
                 && otherMeeting.getDescription().equals(this.description)
                 && otherMeeting.getTags().equals(this.tags);
     }
@@ -125,7 +143,7 @@ public class Meeting {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(client, dateTime, location, description, tags, isDone);
+        return Objects.hash(client, dateTime, address, description, tags, isDone);
     }
 
     @Override
@@ -134,8 +152,8 @@ public class Meeting {
         builder.append(client.getName())
                 .append("; Date & Time: ")
                 .append(dateTime.toString())
-                .append("; Location: ")
-                .append(location.toString())
+                .append("; Address: ")
+                .append(address.toString())
                 .append("; Description: ")
                 .append(description.toString());
 
