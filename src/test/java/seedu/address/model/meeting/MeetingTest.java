@@ -1,14 +1,13 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
-
-
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.model.tag.Tag;
+
 
 class MeetingTest {
 

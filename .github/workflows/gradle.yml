@@ -23,7 +23,7 @@ jobs:
 
       - name: Run repository-wide tests
         if: runner.os == 'Linux'
-        working-directory:  ${{ github.workspace }}/.github
+        working-directory: ${{ github.workspace }}/.github
         run: ./run-checks.sh
 
       - name: Validate Gradle Wrapper
