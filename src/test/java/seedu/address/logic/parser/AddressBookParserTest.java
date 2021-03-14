@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CHEESE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteCheeseCommand;
+import seedu.address.logic.commands.DeleteCustomerCommand;
+import seedu.address.logic.commands.DeleteOrderCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommandStub;
 import seedu.address.logic.commands.ExitCommand;
@@ -48,10 +52,24 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_CUSTOMER), command);
+    public void parseCommand_deleteCustomer() throws Exception {
+        DeleteCustomerCommand command = (DeleteCustomerCommand) parser.parseCommand(
+                DeleteCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
+        assertEquals(new DeleteCustomerCommand(INDEX_FIRST_CUSTOMER), command);
+    }
+
+    @Test
+    public void parseCommand_deleteCheese() throws Exception {
+        DeleteCheeseCommand command = (DeleteCheeseCommand) parser.parseCommand(
+                DeleteCheeseCommand.COMMAND_WORD + " " + INDEX_FIRST_CHEESE.getOneBased());
+        assertEquals(new DeleteCheeseCommand(INDEX_FIRST_CHEESE), command);
+    }
+
+    @Test
+    public void parseCommand_deleteOrder() throws Exception {
+        DeleteOrderCommand command = (DeleteOrderCommand) parser.parseCommand(
+                DeleteOrderCommand.COMMAND_WORD + " " + INDEX_FIRST_ORDER.getOneBased());
+        assertEquals(new DeleteOrderCommand(INDEX_FIRST_ORDER), command);
     }
 
     @Test
