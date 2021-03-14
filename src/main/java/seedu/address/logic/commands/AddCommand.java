@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_SCHOOL_RESIDENCE + "SCHOOL RESIDENCE \n"
             + PREFIX_NAME + "John Doe "
             + PREFIX_MATRICULATION_NUMBER + "A01234567X "
-            + PREFIX_FACULTY + "SCI"
+            + PREFIX_FACULTY + "SCI "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
