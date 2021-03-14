@@ -38,7 +38,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             trimmedArgs = trimmedArgs.substring(2).trim();
         }
 
-        List<String> keywords = Arrays.asList(trimmedArgs.split("\\s*&\\s*"));
+        List<String> keywords = Arrays.asList(trimmedArgs.split("\\s+&\\s+"));
 
         if (!hasFlag) {
             return new FindCommand(new NameContainsKeywordsPredicate(keywords));
