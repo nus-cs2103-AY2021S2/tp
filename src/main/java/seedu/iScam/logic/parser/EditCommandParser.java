@@ -2,8 +2,8 @@ package seedu.iScam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.iScam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_TAG;

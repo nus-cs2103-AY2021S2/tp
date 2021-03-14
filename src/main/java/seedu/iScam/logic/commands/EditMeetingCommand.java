@@ -1,9 +1,9 @@
 package seedu.iScam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_TAG;
 
