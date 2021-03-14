@@ -6,6 +6,11 @@ public class Ingredient implements Item {
     private String name;
     private int quantity;
 
+    /**
+     * Ingredient constructor
+     * @param name
+     * @param quantity
+     */
     public Ingredient(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
@@ -17,15 +22,6 @@ public class Ingredient implements Item {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public boolean isSameIngredient(Ingredient otherIngredient) {
-        if (otherIngredient == this) {
-            return true;
-        }
-
-        return otherIngredient != null
-                && otherIngredient.getName().equals(otherIngredient.getName());
     }
 
     @Override

@@ -16,11 +16,20 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
     private final ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Check if list contains item
+     * @param toCheck
+     * @return result
+     */
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSame);
     }
 
+    /**
+     * Add item to list
+     * @param toAdd
+     */
     public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -29,6 +38,11 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Set item
+     * @param target
+     * @param editedItem
+     */
     public void setItem(T target, T editedItem) {
         requireAllNonNull(target, editedItem);
 
@@ -44,6 +58,10 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
         internalList.set(index, editedItem);
     }
 
+    /**
+     * Remove item
+     * @param toRemove
+     */
     public void remove(T toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -51,11 +69,19 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
         }
     }
 
+    /**
+     * Set items based on replacement UniqueItemList
+     * @param replacement
+     */
     public void setItems(UniqueItemList<T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
+    /**
+     * Set items based on list
+     * @param list
+     */
     public void setItems(List<T> list) {
         requireAllNonNull(list);
         if (!itemsAreUnique(list)) {

@@ -16,6 +16,12 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.dish.Dish;
+import seedu.address.model.dish.ReadOnlyDishBook;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.ReadOnlyIngredientBook;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.ReadOnlyOrderBook;
 import seedu.address.model.person.PersonBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.ReadOnlyPersonBook;
@@ -145,6 +151,111 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDishBook(ReadOnlyDishBook dishBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyDishBook getDishBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDish(Dish dish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteDish(Dish dish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDish(Dish dish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDish(Dish target, Dish editedDish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Dish> getFilteredDishList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setIngredientBook(ReadOnlyIngredientBook ingredientBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyIngredientBook getIngredientBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasIngredient(Ingredient ingredient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteIngredient(Ingredient ingredient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addIngredient(Ingredient ingredient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setIngredient(Ingredient target, Ingredient editedIngredient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Ingredient> getFilteredIngredientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOrderBook(ReadOnlyOrderBook orderBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyOrderBook getOrderBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOrder(Order target, Order editedOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Order> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");
         }
     }

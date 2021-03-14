@@ -12,6 +12,12 @@ public class Order implements Item {
     private Person customer;
     private List<Pair<Dish, Integer>> dishQuantityList;
 
+    /**
+     * Order constructor
+     * @param name
+     * @param customer
+     * @param dishQuantityList
+     */
     public Order(String name, Person customer, List<Pair<Dish, Integer>> dishQuantityList) {
         this.id = name;
         this.customer = customer;

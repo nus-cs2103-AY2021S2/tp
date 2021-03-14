@@ -41,9 +41,11 @@ public class ModelManager implements Model {
     private final FilteredList<Order> filteredOrders;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given books and userPrefs.
      */
-    public ModelManager(ReadOnlyPersonBook personBook, ReadOnlyDishBook dishBook, ReadOnlyIngredientBook ingredientBook, ReadOnlyOrderBook orderBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPersonBook personBook, ReadOnlyDishBook dishBook,
+                        ReadOnlyIngredientBook ingredientBook, ReadOnlyOrderBook orderBook,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(personBook, userPrefs);
 
@@ -58,6 +60,26 @@ public class ModelManager implements Model {
         filteredDishes = new FilteredList<>(this.dishBook.getDishList());
         filteredIngredients = new FilteredList<>(this.ingredientBook.getIngredientList());
         filteredOrders = new FilteredList<>(this.orderBook.getOrderList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyPersonBook personBook, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(personBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + personBook + " and user prefs " + userPrefs);
+
+        this.personBook = new PersonBook(personBook);
+        this.dishBook = null;
+        this.ingredientBook = null;
+        this.orderBook = null;
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.personBook.getPersonList());
+        filteredDishes = null;
+        filteredIngredients = null;
+        filteredOrders = null;
     }
 
     public ModelManager() {
@@ -249,7 +271,7 @@ public class ModelManager implements Model {
     /**
      * Replaces the given ingredient {@code target} with {@code editedIngredient}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedIngredient} must not be the same as another existing ingredient in the address book.
+     * The person identity of {@code editedIngredient} must not be the same as another existing ingredient.
      */
     public void setIngredient(Ingredient target, Ingredient editedIngredient) {
         requireAllNonNull(target, editedIngredient);

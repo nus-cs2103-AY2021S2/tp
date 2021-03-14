@@ -15,36 +15,66 @@ public class DishBook implements ReadOnlyDishBook {
 
     public DishBook() {}
 
+    /**
+     * Constructor to copy dishbook
+     * @param toBeCopied
+     */
     public DishBook(ReadOnlyDishBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
+    /**
+     * Set dishes from list
+     * @param dishes
+     */
     public void setDishes(List<Dish> dishes) {
         this.dishes.setItems(dishes);
     }
 
+    /**
+     * Reset list data using new data
+     * @param newData
+     */
     public void resetData(ReadOnlyDishBook newData) {
         requireNonNull(newData);
 
         setDishes(newData.getDishList());
     }
 
+    /**
+     * Check if dish exists
+     * @param dish
+     * @return result
+     */
     public boolean hasDish(Dish dish) {
         requireNonNull(dish);
 
         return dishes.contains(dish);
     }
 
+    /**
+     * Add new dish
+     * @param o
+     */
     public void addDish(Dish o) {
         dishes.add(o);
     }
 
+    /**
+     * Set details of new dish
+     * @param target
+     * @param editedDish
+     */
     public void setDish(Dish target, Dish editedDish) {
         requireNonNull(editedDish);
         dishes.setItem(target, editedDish);
     }
 
+    /**
+     * Remove dish
+     * @param key
+     */
     public void removeDish(Dish key) {
         dishes.remove(key);
     }

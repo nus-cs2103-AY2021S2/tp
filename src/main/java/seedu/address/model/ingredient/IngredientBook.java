@@ -15,36 +15,66 @@ public class IngredientBook implements ReadOnlyIngredientBook {
 
     public IngredientBook() {}
 
+    /**
+     * Constructor to copy ingredient book
+     * @param toBeCopied
+     */
     public IngredientBook(ReadOnlyIngredientBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
+    /**
+     * Set ingredients from list
+     * @param ingredients
+     */
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients.setItems(ingredients);
     }
 
+    /**
+     * Reset list data using new data
+     * @param newData
+     */
     public void resetData(ReadOnlyIngredientBook newData) {
         requireNonNull(newData);
 
         setIngredients(newData.getIngredientList());
     }
 
+    /**
+     * Check if ingredient exists
+     * @param ingredient
+     * @return result
+     */
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
 
         return ingredients.contains(ingredient);
     }
 
+    /**
+     * Add new ingredient
+     * @param o
+     */
     public void addIngredient(Ingredient o) {
         ingredients.add(o);
     }
 
+    /**
+     * Set ingredient details
+     * @param target
+     * @param editedIngredient
+     */
     public void setIngredient(Ingredient target, Ingredient editedIngredient) {
         requireNonNull(editedIngredient);
         ingredients.setItem(target, editedIngredient);
     }
 
+    /**
+     * Remove ingredient
+     * @param key
+     */
     public void removeIngredient(Ingredient key) {
         ingredients.remove(key);
     }

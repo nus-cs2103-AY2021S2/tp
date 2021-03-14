@@ -17,20 +17,20 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.dish.ReadOnlyDishBook;
 import seedu.address.model.ingredient.ReadOnlyIngredientBook;
 import seedu.address.model.order.ReadOnlyOrderBook;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.person.AddressBookStorage;
+import seedu.address.storage.person.JsonAddressBookStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -97,7 +97,7 @@ public class MainApp extends Application {
             initialPersonBook = new PersonBook();
         }
 
-        return new ModelManager(initialPersonBook, initialDishBook, initialIngredientBook, initialOrderBook, userPrefs);
+        return new ModelManager(initialPersonBook, userPrefs);
     }
 
     private void initLogging(Config config) {

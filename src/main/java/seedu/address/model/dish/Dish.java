@@ -11,6 +11,12 @@ public class Dish implements Item {
     private double price;
     private List<Pair<Ingredient, Integer>> ingredientQuantityList;
 
+    /**
+     * Dish constructor
+     * @param name
+     * @param price
+     * @param ingredientQuantityList
+     */
     public Dish(String name, double price, List<Pair<Ingredient, Integer>> ingredientQuantityList) {
         this.name = name;
         this.price = price;
