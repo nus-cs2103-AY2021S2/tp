@@ -98,14 +98,19 @@ Examples:
 
 ### Finding cards : `find`
 
-Find cards according to search criteria containing any of the given keywords.
+Find cards according to a search criteria containing any of the given keywords.
 
 Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `equation` will match `Equation`
 * The order of the keywords does not matter. e.g. `Newton Equation` will match `Equation Newton`
-* The search will be according to the `CRITERIA` given. `q/` to search by questions or `c/` to search by categories.
-* Only full words will be matched e.g. `What` will not match `What?`
+* The search will be according to the `CRITERIA` given, does not support searching by more than one different criteria:
+  * `q/` to search by questions.
+  * `c/` to search by categories.
+  * `t/` to search by tags.
+  * `p/` to search by priorities.
+* Partial words can be matched when searching by questions. e.g. `Wh` will match `What?`
+* Only full words will be matched when searching by categories, tags, or priorities. e.g. `Wh` will not match `What?`
 * Flashcards matching at least one keyword will be returned (i.e. `OR` search). e.g. `Newton's Equation` will return `Newton's Second Law of Motion` and `Einstein's Equation`
 
 Examples:
