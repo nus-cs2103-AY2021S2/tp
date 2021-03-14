@@ -63,14 +63,14 @@
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
               <children>
-              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="freePersonListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </children>
             </VBox>
             <HBox GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="pane-with-border" HBox.hgrow="ALWAYS" minWidth="400" prefWidth="400">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
-              <StackPane HBox.hgrow="ALWAYS"/>
+              <StackPane fx:id="takenPersonListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
             </HBox>
           </GridPane>
         </VBox>

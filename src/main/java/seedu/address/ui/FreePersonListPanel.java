@@ -25,7 +25,7 @@ public class FreePersonListPanel extends UiPart<Region> {
      */
     public FreePersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(personList.filtered(x-> x.getDriver().isPresent()));
         personListView.setCellFactory(listView -> new FreePersonListViewCell());
     }
 

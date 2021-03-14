@@ -25,7 +25,7 @@ public class TakenPersonListPanel extends UiPart<Region> {
      */
     public TakenPersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(personList.filtered(x-> !x.getDriver().isPresent()));
         personListView.setCellFactory(listView -> new TakenPersonListViewCell());
     }
 
