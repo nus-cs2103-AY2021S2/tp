@@ -26,6 +26,14 @@ public class FoodIntakeList {
     }
 
     /**
+     * Constructs a FoodIntakeList without date.
+     */
+    public FoodIntakeList() {
+        this.startDate = null;
+        this.foodIntakeList = FXCollections.observableArrayList();
+    }
+
+    /**
      * Adds a FoodIntake object to the FoodIntakeList.
      *
      * @param foodIntake FoodIntake object to add to list
