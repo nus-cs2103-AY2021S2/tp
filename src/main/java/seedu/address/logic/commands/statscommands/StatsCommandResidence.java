@@ -34,17 +34,18 @@ public class StatsCommandResidence extends StatsCommand {
     }
 
     /**
-     * @param stuList List of all students in Vax@NUS system.
-     * @param resi School residence to calculate ratio vaccinated.
+     * @param studentList List of all students in Vax@NUS system.
+     * @param residence School residence to calculate ratio vaccinated.
      * @return A float representing the ratio of number vaccinated to total students in the residence.
      * @throws CommandException if the data is corrupted.
      */
-    public static float calculateRatioVaccinated(List<Person> stuList, SchoolResidence resi) throws CommandException {
+    public static float calculateRatioVaccinated(List<Person> studentList, SchoolResidence residence)
+            throws CommandException {
         int totalStudents = 0;
         int counter = 0;
         try {
-            for (Person p : stuList) {
-                if (p.getSchoolResidence().equals(resi)) {
+            for (Person p : studentList) {
+                if (p.getSchoolResidence().equals(residence)) {
                     totalStudents++;
                     if (p.isVaccinated()) {
                         counter++;

@@ -34,17 +34,17 @@ public class StatsCommandFaculty extends StatsCommand {
     }
 
     /**
-     * @param stuList List of all students in Vax@NUS system.
+     * @param studentList List of all students in Vax@NUS system.
      * @param faculty Faculty to calculate ratio vaccinated.
      * @return A float representing the ratio of number vaccinated to total students in the faculty.
      * @throws CommandException if the data is corrupted.
      */
-    public static float calculateRatioVaccinated(List<Person> stuList, Faculty faculty) throws CommandException {
+    public static float calculateRatioVaccinated(List<Person> studentList, Faculty faculty) throws CommandException {
         int totalStudents = 0;
         int counter = 0;
 
         try {
-            for (Person p : stuList) {
+            for (Person p : studentList) {
                 if (p.getFaculty().equals(faculty)) {
                     totalStudents++;
                     if (p.isVaccinated()) {

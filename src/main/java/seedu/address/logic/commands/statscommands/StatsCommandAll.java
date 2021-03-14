@@ -51,7 +51,6 @@ public class StatsCommandAll extends StatsCommand {
                 throw new CommandException(MESSAGE_STATS_FAILURE);
             }
         }
-        System.out.println(sb.toString());
         return new CommandResult(sb.toString());
     }
 
