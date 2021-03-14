@@ -28,7 +28,7 @@ public class AddSemesterCommand extends Command {
             + PREFIX_PLAN_NUMBER + "1 "
             + PREFIX_SEM_NUMBER + "2 ";
 
-    public static final String MESSAGE_SUCCESS = "New semester added to \"Plan %1$s\": %2$s";
+    public static final String MESSAGE_SUCCESS = "New semester added to Plan %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_PLAN = "This semester already exists";
 
     private final Semester toAdd;

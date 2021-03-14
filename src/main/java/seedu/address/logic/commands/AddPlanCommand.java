@@ -24,7 +24,7 @@ public class AddPlanCommand extends Command {
             + PREFIX_TAG + "fun "
             + PREFIX_TAG + "good prospects";
 
-    public static final String MESSAGE_SUCCESS = "New plan added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New plan added: Plan %1$s";
     public static final String MESSAGE_DUPLICATE_PLAN = "This plan already exists";
 
     private final Plan toAdd;
@@ -46,7 +46,7 @@ public class AddPlanCommand extends Command {
         }
 
         model.addPlan(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredPlanList().size() + toAdd.toString()));
     }
 
     @Override
