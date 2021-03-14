@@ -17,7 +17,11 @@ public class TaskDescription {
 
     public final String description;
 
-
+    /**
+     * Constructs a TaskDescription
+     *
+     * @param description valid description
+     */
     public TaskDescription(String description) {
         requireNonNull(description);
         checkArgument(isValidName(description), MESSAGE_CONSTRAINTS);
