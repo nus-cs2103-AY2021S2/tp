@@ -42,9 +42,10 @@ public class EmailContactCommand extends Command {
 
         // TODO: add call to email client.
 
-        Contact contactToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteContact(contactToDelete);
-        return new CommandResult(String.format(MESSAGE_EMAIL_CONTACT_SUCCESS, contactToDelete));
+        Contact contactToEmail = lastShownList.get(targetIndex.getZeroBased());
+        // model.deleteContact(contactToEmail);
+
+        return new CommandResult(String.format(MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail));
     }
 
     @Override
