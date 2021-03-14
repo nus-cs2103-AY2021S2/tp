@@ -20,7 +20,6 @@ import seedu.address.model.task.Title;
 public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
@@ -80,14 +79,6 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, null, VALID_DESCRIPTION, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, VALID_EMAIL, INVALID_DESCRIPTION, VALID_TAGS);
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 

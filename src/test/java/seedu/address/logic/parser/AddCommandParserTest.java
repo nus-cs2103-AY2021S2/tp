@@ -123,10 +123,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, TITLE_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + DESCRIPTION_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid description
-        assertParseFailure(parser, TITLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_DESCRIPTION_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
-
         // invalid tag
         assertParseFailure(parser, TITLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);

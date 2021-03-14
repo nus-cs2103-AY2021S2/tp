@@ -1,7 +1,7 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
-//import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's description in the planner.
@@ -11,11 +11,7 @@ public class Description {
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values";
 
-    /*
-     * The first character of the description must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s][\\S\\s]*";
+    public static final String VALIDATION_REGEX = ".*";
 
     public final String value;
 
@@ -26,7 +22,7 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
-        //checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         value = description;
     }
 
