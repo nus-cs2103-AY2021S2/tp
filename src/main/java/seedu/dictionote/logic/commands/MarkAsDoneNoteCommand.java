@@ -49,5 +49,4 @@ public class MarkAsDoneNoteCommand extends Command{
                 || (other instanceof MarkAsDoneNoteCommand // instanceof handles nulls
                 && targetIndex.equals(((MarkAsDoneNoteCommand) other).targetIndex)); // state check
     }
-    
 }
