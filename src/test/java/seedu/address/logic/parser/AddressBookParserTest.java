@@ -19,6 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -62,6 +63,15 @@ public class AddressBookParserTest {
                 FindAppointmentCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_find_property() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindPropertyCommand command = (FindPropertyCommand) parser.parseCommand(
+                FindPropertyCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPropertyCommand(new PropertyContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
