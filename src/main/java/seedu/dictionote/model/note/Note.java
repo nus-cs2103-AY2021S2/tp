@@ -45,7 +45,7 @@ public class Note {
      * Method to call the above private constructor for note.
      */
 
-    public Note createNote(String note, Set<Tag> tags, LocalDateTime createdTime){
+    public Note createNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
         return new Note(note, tags, createdTime);
     }
 
