@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlySochedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -17,17 +16,15 @@ import seedu.address.model.UserPrefs;
  */
 public class SocheduleStorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private static final Logger logger = LogsCenter.getLogger(SocheduleStorageManager.class);
     private UserPrefsStorage userPrefsStorage;
     private SocheduleStorage socheduleStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code SocheduleStorageManager} with the given {@code socheduleStorage} and {@code UserPrefStorage}.
      */
     public SocheduleStorageManager(SocheduleStorage socheduleStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = null;
         this.userPrefsStorage = userPrefsStorage;
         this.socheduleStorage = socheduleStorage;
     }
@@ -48,37 +45,6 @@ public class SocheduleStorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
-
-    // ================ AddressBook methods ==============================
-    // AddressBook placeholder functions will be removed once dependency
-    // to AddressBookStorage is removed in Storage interface
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return null;
-    }
-
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        return Optional.empty();
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        // DO NOTHING
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        // DO NOTHING
-    }
-
     // ================ Sochedule methods ==============================
 
     @Override
