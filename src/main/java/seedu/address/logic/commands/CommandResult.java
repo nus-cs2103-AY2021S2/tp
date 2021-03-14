@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the result of a command execution.
