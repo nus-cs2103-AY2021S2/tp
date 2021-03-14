@@ -12,7 +12,7 @@ public class SchoolResidence {
         PGPH, PGPR, KE7H, SH, KRH, TH, EH, RH, RVRC, YNC, TC, CAPT, RC4, USP, UTR;
     }
 
-    public static final List<ResidenceAbbreviation> listResidences = Arrays.asList(
+    public static final List<ResidenceAbbreviation> LIST_RESIDENCES = Arrays.asList(
             ResidenceAbbreviation.PGPH, ResidenceAbbreviation.PGPR, ResidenceAbbreviation.KE7H,
             ResidenceAbbreviation.SH, ResidenceAbbreviation.KRH, ResidenceAbbreviation.TH, ResidenceAbbreviation.EH,
             ResidenceAbbreviation.RH, ResidenceAbbreviation.RVRC, ResidenceAbbreviation.YNC, ResidenceAbbreviation.TC,
@@ -20,7 +20,7 @@ public class SchoolResidence {
     );
 
     public static final String MESSAGE_CONSTRAINTS = "The residence entered should be one of the following: \n"
-            + listResidences.toString();
+            + LIST_RESIDENCES.toString();
 
     public final String value;
 
@@ -44,7 +44,7 @@ public class SchoolResidence {
     public static boolean isValidResidence(String test) {
         try {
             boolean result = test.equalsIgnoreCase("Does not live on campus")
-                    || listResidences.contains(ResidenceAbbreviation.valueOf(test.toUpperCase()));
+                    || LIST_RESIDENCES.contains(ResidenceAbbreviation.valueOf(test.toUpperCase()));
             return result;
         } catch (IllegalArgumentException e) {
             return false;
