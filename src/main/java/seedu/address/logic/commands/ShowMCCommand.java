@@ -6,6 +6,12 @@ import seedu.address.model.plan.Semester;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Concrete implementation of ShowCommand to show MCs.
+ *
+ * Shows the user the total number of MCs that the user is doing in
+ * the semester marked as the `current semester`.
+ */
 public class ShowMCCommand extends ShowCommand {
 
     @Override

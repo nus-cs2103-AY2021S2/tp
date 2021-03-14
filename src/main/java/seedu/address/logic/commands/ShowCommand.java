@@ -5,7 +5,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Adds a plan to the address book.
+ * Abstract class representing a show command.
+ *
+ * A show command is used by the user to get NUS Module Planner to output summary
+ * statistics of data the user has provided the app with.
  */
 public abstract class ShowCommand extends Command {
 
