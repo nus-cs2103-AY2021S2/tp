@@ -24,7 +24,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.storage.JsonSocheduleStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.SocheduleStorage;
-import seedu.address.storage.SocheduleStorageManager;
+import seedu.address.storage.StorageManager;
 import seedu.address.storage.Storage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
@@ -56,7 +56,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         SocheduleStorage socheduleStorage = new JsonSocheduleStorage(userPrefs.getAddressBookFilePath());
-        storage = new SocheduleStorageManager(socheduleStorage, userPrefsStorage);
+        storage = new StorageManager(socheduleStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -176,7 +176,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Socehdule ] =============================");
+        logger.info("============================ [ Stopping Sochedule ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

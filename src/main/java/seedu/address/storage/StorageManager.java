@@ -14,16 +14,16 @@ import seedu.address.model.UserPrefs;
 /**
  * Manages storage of Sochedule data in local storage.
  */
-public class SocheduleStorageManager implements Storage {
+public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(SocheduleStorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private UserPrefsStorage userPrefsStorage;
     private SocheduleStorage socheduleStorage;
 
     /**
      * Creates a {@code SocheduleStorageManager} with the given {@code socheduleStorage} and {@code UserPrefStorage}.
      */
-    public SocheduleStorageManager(SocheduleStorage socheduleStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(SocheduleStorage socheduleStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.userPrefsStorage = userPrefsStorage;
         this.socheduleStorage = socheduleStorage;
