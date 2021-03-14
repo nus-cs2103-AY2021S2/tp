@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.human.person.Person;
+import seedu.address.model.human.person.IsAssignedDriverPerdicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -121,6 +122,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Person> getFilteredPersonListByDriverStatus(Boolean isAssigned) {
+        return filteredPersons.filtered(new IsAssignedDriverPerdicate(isAssigned));
     }
 
     @Override
