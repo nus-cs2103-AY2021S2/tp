@@ -104,7 +104,8 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, new UniqueFoodList(), new FoodIntakeList(LocalDate.now()), new DietPlanList(), userPrefs);
+        modelManager = new ModelManager(addressBook, new UniqueFoodList(),
+                new FoodIntakeList(LocalDate.now()), new DietPlanList(), userPrefs);
         ModelManager modelManagerCopy = new ModelManager(addressBook, new UniqueFoodList(),
                 new FoodIntakeList(LocalDate.now()), new DietPlanList(), userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));

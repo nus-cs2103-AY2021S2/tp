@@ -13,8 +13,6 @@ import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 
-import java.time.LocalDate;
-
 public class ClearCommandTest {
 
     @Test
@@ -28,9 +26,9 @@ public class ClearCommandTest {
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

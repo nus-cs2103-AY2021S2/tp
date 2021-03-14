@@ -16,8 +16,6 @@ import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-import java.time.LocalDate;
-
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
@@ -25,9 +23,11 @@ public class AddCommandIntegrationTest {
 
     private Model model;
 
+    @SuppressWarnings("checkstyle:LineLength")
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(), new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(),
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AddCommandIntegrationTest {
         Person validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,

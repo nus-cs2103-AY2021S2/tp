@@ -15,8 +15,6 @@ import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 
-import java.time.LocalDate;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
@@ -28,9 +26,9 @@ public class ListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UniqueFoodList(),
-                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(), new DietPlanList(), new UserPrefs());
     }
 
     @Test
