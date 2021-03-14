@@ -32,7 +32,7 @@ public class DeleteFoodIntakeCommandParser implements Parser<DeleteFoodIntakeCom
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteFoodItemCommand.MESSAGE_USAGE));
+                    DeleteFoodIntakeCommand.MESSAGE_USAGE));
         }
 
         LocalDate date;

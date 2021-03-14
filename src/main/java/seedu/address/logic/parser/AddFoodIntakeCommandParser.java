@@ -27,17 +27,17 @@ public class AddFoodIntakeCommandParser implements Parser<AddFoodIntakeCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddFoodIntakeCommand.MESSAGE_USAGE));
         }
 
-        LocalDate dateTime;
+        LocalDate date;
         String name;
 
         try {
-            dateTime = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_DATETIME_FORMAT,
                     AddFoodIntakeCommand.MESSAGE_USAGE));
         }
         name = ParserUtil.parseFoodName(argMultimap.getValue(PREFIX_NAME).get());
-        return new AddFoodIntakeCommand(dateTime, name);
+        return new AddFoodIntakeCommand(date, name);
     }
 
     /**
