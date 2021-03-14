@@ -6,10 +6,19 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.naming.ldap.UnsolicitedNotification;
+
 public class Faculty {
 
-    private static final List<String> listFaculty = Arrays.asList("FASS", "BIZ", "COM", "SCALE", "DEN", "SDE", "DNUS",
-            "ENG", "ISEP", "LAW", "MED", "MUSIC", "SPH", "SPP", "SCI", "USP", "YNC");
+    enum FacultyAbbreviation {
+        FASS, BIZ, COM, SCALE, DEN, SDE, DNUS, ENG, ISEP, LAW, MED, MUSIC, SPH, SPP, SCI, USP, YNC
+    }
+
+    public static final List<FacultyAbbreviation> listFaculty = Arrays.asList(FacultyAbbreviation.FASS,
+            FacultyAbbreviation.BIZ, FacultyAbbreviation.COM, FacultyAbbreviation.SCALE, FacultyAbbreviation.DEN,
+            FacultyAbbreviation.SDE, FacultyAbbreviation.DNUS, FacultyAbbreviation.ENG, FacultyAbbreviation.ISEP,
+            FacultyAbbreviation.LAW, FacultyAbbreviation.MED, FacultyAbbreviation.MUSIC, FacultyAbbreviation.SPH,
+            FacultyAbbreviation.SPP, FacultyAbbreviation.SCI, FacultyAbbreviation.USP, FacultyAbbreviation.YNC);
 
     public static final String MESSAGE_CONSTRAINTS = "The faculty entered should be one of the following: \n"
             + listFaculty.toString();
@@ -34,7 +43,11 @@ public class Faculty {
      * @return true if test is a valid faculty, false otherwise.
      */
     public static boolean isValidFaculty(String test) {
-        return listFaculty.contains(test.toUpperCase());
+        try {
+            return listFaculty.contains(FacultyAbbreviation.valueOf(test.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     @Override
