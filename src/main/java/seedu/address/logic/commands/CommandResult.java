@@ -4,12 +4,19 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents the result of a command execution.
  */
 public class CommandResult {
 
     private final String feedbackToUser;
+
+    /** A view of the specified entry should be shown to the user. */
+    private final boolean viewEntry;
+
+    private final Person person;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -18,11 +25,26 @@ public class CommandResult {
     private final boolean exit;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified fields,
+     * used for help command
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.viewEntry = false;
+        this.person = null;
+        this.exit = exit;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields,
+     * used for view command
+     */
+    public CommandResult(String feedbackToUser, Person person, boolean viewEntry, boolean exit) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.viewEntry = viewEntry;
+        this.person = person;
         this.exit = exit;
     }
 
@@ -40,6 +62,14 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isViewEntry() {
+        return viewEntry;
+    }
+
+    public Person getPerson() {
+        return person;
     }
 
     public boolean isExit() {

@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_RATING + "5 "
-            + PREFIX_REVIEW + "I like this food a lot!"
+            + PREFIX_REVIEW + "I like this food a lot! "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "FastFood "
             + PREFIX_TAG + "Vegan";
