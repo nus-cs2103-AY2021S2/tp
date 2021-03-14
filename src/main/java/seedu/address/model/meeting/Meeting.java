@@ -87,6 +87,8 @@ public class Meeting {
                 && otherMeeting.getTerminate().equals(getTerminate());
     }
 
+
+
     /**
      * Returns true if a given date time for the meeting is valid.
      */

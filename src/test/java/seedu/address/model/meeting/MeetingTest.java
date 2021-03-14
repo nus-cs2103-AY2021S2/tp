@@ -18,7 +18,7 @@ class MeetingTest {
     private static final Priority PRIORITY = new Priority("4");
     private static final Description DESCRIPTION = new Description("This is the time skinnychenpi write this test.");
     private static final Tag TAG = new Tag("MeetingTest");
-    private Set<Tag> TAGS = new HashSet<>();
+    private static final Set<Tag> TAGS = new HashSet<>();
 
     @Test
     public void isSameMeeting() {
