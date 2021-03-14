@@ -1,9 +1,7 @@
-package seedu.address.logic.parser;
+package seedu.address.model.person;
 
 import java.util.List;
 import java.util.function.Predicate;
-
-import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Address} matches any of the keywords given.
@@ -17,8 +15,8 @@ public class AddressContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-            return keywords.stream()
-                    .anyMatch(keyword -> person.getAddress().value.toLowerCase().contains(keyword.toLowerCase()));
+        return keywords.stream()
+                .anyMatch(keyword -> person.getAddress().value.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

@@ -1,10 +1,9 @@
-package seedu.address.logic.parser;
+package seedu.address.model.person;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.model.insurancepolicy.InsurancePolicy;
-import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code InsurancePolicy} matches any of the keywords given.
@@ -29,8 +28,8 @@ public class InsurancePolicyContainsKeywordsPredicate implements Predicate<Perso
 
     @Override
     public boolean test(Person person) {
-            return keywords.stream()
-                    .anyMatch(keyword -> checkPolicies(person.getPolicies(), keyword));
+        return keywords.stream()
+                .anyMatch(keyword -> checkPolicies(person.getPolicies(), keyword));
     }
 
     @Override

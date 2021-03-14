@@ -1,10 +1,9 @@
-package seedu.address.logic.parser;
+package seedu.address.model.person;
 
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,8 +29,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-            return keywords.stream()
-                    .anyMatch(keyword -> checkTags(person.getTags(), keyword));
+        return keywords.stream()
+                .anyMatch(keyword -> checkTags(person.getTags(), keyword));
     }
 
     @Override
