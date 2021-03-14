@@ -3,8 +3,10 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -145,5 +147,22 @@ public class ParserUtil {
      */
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses a {@code String indexes} into a {@code List<Index>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static List<Index> parseIndexes(String indexes) throws ParseException {
+        requireNonNull(indexes);
+        String[] indexStringArray = indexes.trim().split(" ");
+        List<Index> indexArray = new ArrayList<>();
+
+        for (String s: indexStringArray) {
+            indexArray.add(parseIndex(s));
+        }
+        return indexArray;
     }
 }

@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddDateCommand;
+import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -76,6 +78,12 @@ public class InputParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ThemeCommand.COMMAND_WORD:
+            return new ThemeCommandParser().parse(arguments);
+
+        case AddGroupCommand.COMMAND_WORD:
+            return new AddGroupParser().parse(arguments);
 
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingParser().parse(arguments);
