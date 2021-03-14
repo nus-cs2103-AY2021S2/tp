@@ -17,8 +17,8 @@ public class TagSearchCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches for tasks based on the tags "
                                                        + "specified (case-insensitive) and displays them as a list "
                                                        + "with index numbers.\n"
-                                                       + "Parameters: TAGS [MORE_TAGS]...\n"
-                                                       + "Example: " + COMMAND_WORD + " alice bob charlie";
+                                                       + "Parameters: TAG [MORE_TAGS]...\n"
+                                                       + "Example: " + COMMAND_WORD + "lab tutorial";
 
     private final TagContainsKeywordsPredicate predicate;
 

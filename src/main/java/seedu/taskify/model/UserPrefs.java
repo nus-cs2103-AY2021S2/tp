@@ -14,7 +14,7 @@ import seedu.taskify.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path taskifyFilePath = Paths.get("data" , "addressbook.json");
+    private Path taskifyFilePath = Paths.get("data" , "taskify.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
