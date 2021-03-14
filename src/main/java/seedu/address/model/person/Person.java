@@ -27,6 +27,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Picture picture;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Event> dates = new ArrayList<>();
     private final List<Event> meetings = new ArrayList<>();
@@ -34,14 +35,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags,
-                List<Event> dates, List<Event> meetings) {
+    public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, Picture picture,
+            Set<Tag> tags, List<Event> dates, List<Event> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.birthday = birthday;
+        this.address = address;
+        this.picture = picture;
         this.tags.addAll(tags);
         this.dates.addAll(dates);
         this.meetings.addAll(meetings);
@@ -59,12 +61,18 @@ public class Person {
         return email;
     }
 
+    public Birthday getBirthday() {
+        return birthday;
+    }
+
     public Address getAddress() {
         return address;
     }
 
-    public Birthday getBirthday() {
-        return birthday;
+    public Picture getPicture() { return picture; }
+
+    public Person setPicture(Picture picture) {
+        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
     }
 
     /**
@@ -75,13 +83,20 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-
     public List<Event> getDates() {
         return Collections.unmodifiableList(dates);
     }
 
+    public Person setDates(List<Event> dates) {
+        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+    }
+
     public List<Event> getMeetings() {
         return Collections.unmodifiableList(meetings);
+    }
+
+    public Person setMeetings(List<Event> meetings) {
+        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
     }
 
     /**
@@ -115,8 +130,9 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getBirthday().equals(getBirthday())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getPicture().equals(getPicture())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getDates().equals(getDates())
                 && otherPerson.getMeetings().equals(getMeetings());
@@ -125,7 +141,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, birthday, address, picture, tags, dates, meetings);
     }
 
     @Override
@@ -136,10 +152,12 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Birthday: ")
+                .append(getBirthday())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Birthday: ")
-                .append(getBirthday());
+                .append("; Picture: ")
+                .append(getPicture());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

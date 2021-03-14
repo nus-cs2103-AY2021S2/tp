@@ -69,10 +69,8 @@ public class AddMeetingCommand extends Command {
         assert personToEdit != null;
         List<Event> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
         meetingsToEdit.add(meeting);
-
-        return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getBirthday(), personToEdit.getTags(), personToEdit.getDates(),
-                meetingsToEdit);
+        
+        return personToEdit.setMeetings(meetingsToEdit);
     }
 
     @Override

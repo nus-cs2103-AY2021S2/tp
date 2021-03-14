@@ -19,10 +19,9 @@ public class PictureStorageManager implements PictureStorage {
     }
 
     public Picture copyPicture(Path filePath) throws IOException {
-
         Path newPath = dirPath.resolve(filePath.getFileName());
         Files.copy(filePath, newPath);
 
-        return new Picture();
+        return new Picture(newPath);
     }
 }

@@ -79,4 +79,11 @@ public class FileUtil {
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
     }
+
+    /**
+     * Assumes source file exists
+     */
+    public static void copyFile(Path source, Path dest) throws IOException {
+        Files.copy(source, dest);
+    }
 }

@@ -58,12 +58,10 @@ public class DateCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        List<Event> dates = new ArrayList<>(personToEdit.getDates());
-        dates.add(event);
+        List<Event> datesToEdit = new ArrayList<>(personToEdit.getDates());
+        datesToEdit.add(event);
 
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getBirthday(), personToEdit.getTags(), dates,
-                personToEdit.getMeetings());
+        Person editedPerson = personToEdit.setDates(datesToEdit);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
