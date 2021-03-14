@@ -183,6 +183,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void emailContact(Contact contact) {
+        requireNonNull(contact);
+        addressBook.emailContact(contact);
+    }
+
+    @Override
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
