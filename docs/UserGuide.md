@@ -109,16 +109,17 @@ Finds persons whose names contain any of the given keywords.
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* The attribute searched is defined by the same prefixes used for adding people.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only one keyword and one type of prefix can be specified
+* Keywords separated by space will require both keywords to be matched.
+  e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`
+* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`
 
 >**Examples**:
->* `find John` returns `john` and `John Doe`
->* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+>* `find n/John` returns `john` and `John Doe`
+>* `find a/Clementi` returns `John Doe`, `Mary Apple`<br>
+  ![result for 'find alex david'](images/findCommandExample.png)
 
 ### Delete passengers: `delete`
 
@@ -194,3 +195,4 @@ Action | Format, Examples
 **search** | `search CONSTRAINT`<br> e.g., `search female or search available`
 **delete** | `delete INDEX`<br> e.g.,`delete 3`
 **drive** | `drive INDEX INDEX INDEX...`<br> e.g., `drive 2 3 4`
+**find** | `find a/ADDRESS` or `find n/NAME` or `find p/PHONE NUMBER` or `find tag/TAG` <br> e.g., `find tag/female`
