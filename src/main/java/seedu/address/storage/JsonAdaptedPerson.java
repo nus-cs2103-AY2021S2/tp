@@ -30,7 +30,6 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-//        this.birthday = birthday;
         this.name = name;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -64,7 +63,6 @@ class JsonAdaptedPerson {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-
         final Name modelName = new Name(name);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

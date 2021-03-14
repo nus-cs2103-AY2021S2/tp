@@ -24,7 +24,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_BIRTHDAY_AMY = "1995-01-07";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
