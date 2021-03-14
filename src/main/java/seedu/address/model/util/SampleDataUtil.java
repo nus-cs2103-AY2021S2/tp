@@ -13,6 +13,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Tutor;
+import seedu.address.model.session.Day;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.Subject;
+import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +52,12 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+    public static ReadOnlyAddressBook getSampleSessions() {
+        AddressBook sampleSession = new AddressBook();
+        sampleSession.addSession(new Session("1", new Day("WEDNESDAY"), new Timeslot("12:30 to 13:00"),
+                new Subject("Piano"), getTagSet("Morning")));
+        return sampleSession;
     }
 
     /**

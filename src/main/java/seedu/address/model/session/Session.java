@@ -41,6 +41,22 @@ public class Session {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     * @param classId
+     * @param day
+     * @param timeslot
+     * @param subject
+     * @param tags
+     */
+    public Session(String classId, Day day, Timeslot timeslot, Subject subject, Set<Tag> tags) {
+        this.classId = classId;
+        this.day = day;
+        this.timeslot = timeslot;
+        this.subject = subject;
+        this.tags.addAll(tags);
+    }
+
     public String getClassId() {
         return classId;
     }
@@ -71,6 +87,19 @@ public class Session {
 
 
     public static final String VALIDATION_REGEX = " [c][\\/]\\d";
+
+    /**
+     * Returns true if both sessions have the same name.
+     * This defines a weaker notion of equality between two sessions.
+     */
+    public boolean isSameSession(Session otherSession) {
+        if (otherSession == this) {
+            return true;
+        }
+
+        return otherSession != null
+                && otherSession.getClassId().equals(getClassId());
+    }
 
     /**
      * Adds a student to the session

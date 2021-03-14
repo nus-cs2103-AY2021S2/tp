@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionList;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -103,6 +104,15 @@ public class AddressBookTest {
         @Override
         public ObservableList<Session> getSessionList() {
             return sessions;
+        }
+
+        @Override
+        public void setSessions(SessionList sessions) {
+        }
+
+        @Override
+        public SessionList getSessions() {
+            return null;
         }
     }
 

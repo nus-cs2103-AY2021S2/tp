@@ -17,7 +17,7 @@ import seedu.address.model.session.SessionList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final SessionList sessions;
+    private SessionList sessions;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -59,6 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setSessions(newData.getSessions());
     }
 
     //// person-level operations
@@ -128,12 +129,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+<<<<<<< HEAD
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeSession(Session key) {
         sessions.remove(key);
     }
+
 
     @Override
     public ObservableList<Session> getSessionList() {
@@ -145,6 +148,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons));
+    }
+    public SessionList getSessions() {
+        return sessions;
+    }
+    @Override
+    public void setSessions(SessionList sessions) {
+        this.sessions = sessions;
     }
 
     @Override

@@ -8,6 +8,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.SessionNotFoundException;
 
+
 /**
  * A list of sessions tht does not allow nulls.
  *
@@ -28,6 +29,7 @@ public class SessionList {
     }
 
     /**
+<<<<<<< HEAD
      * Removes the equivalent session from the list.
      * The session must exist in the list.
      */
@@ -39,6 +41,8 @@ public class SessionList {
     }
 
     /**
+=======
+>>>>>>> cd001c730f07dc44f63ed430127d1a1e1c32e3e7
      * Returns true if the list contains an equivalent session as the given argument.
      */
     public boolean contains(Session toCheck) {
