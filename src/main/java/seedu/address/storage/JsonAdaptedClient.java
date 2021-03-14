@@ -110,10 +110,10 @@ class JsonAdaptedClient {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePlan.class.getSimpleName()));
         }
-        if (!InsurancePlan.isValidPlan(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!InsurancePlan.isValidPlan(insurancePlan)) {
+            throw new IllegalValueException(InsurancePlan.MESSAGE_CONSTRAINTS);
         }
-        final InsurancePlan modelPlan = new InsurancePlan(address);
+        final InsurancePlan modelPlan = new InsurancePlan(insurancePlan);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelPlan, modelTags);
