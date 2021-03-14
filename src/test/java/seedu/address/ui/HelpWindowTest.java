@@ -11,9 +11,10 @@ import org.testfx.api.FxToolkit;
 import guitests.guihandles.HelpWindowHandle;
 
 /**
- * Contains tests for the {@code HelpWindow}.
- *
+ * @@author {se-edu}-reused
  * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Contains tests for the {@code HelpWindow}.
  */
 public class HelpWindowTest extends GuiUnitTest {
 

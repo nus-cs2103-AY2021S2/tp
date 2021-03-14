@@ -22,9 +22,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 /**
- * Contains tests for the {@code PersonListPanel}.
- *
+ * @@author {se-edu}-reused
  * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Contains tests for the {@code PersonListPanel}.
  */
 public class PersonListPanelTest extends GuiUnitTest {
     private static final ObservableList<Person> TYPICAL_PERSONS =

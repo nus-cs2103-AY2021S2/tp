@@ -3,9 +3,10 @@ package guitests.guihandles;
 import javafx.stage.Stage;
 
 /**
- * Provides a handle for {@code MainWindow}.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Provides a handle for {@code MainWindow}.
  */
 public class MainWindowHandle extends StageHandle {
 

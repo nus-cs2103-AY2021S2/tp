@@ -9,9 +9,10 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * Provides a handle to a person card in the person list panel.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Provides a handle to a person card in the person list panel.
  */
 public class PersonCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";

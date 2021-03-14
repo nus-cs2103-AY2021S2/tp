@@ -23,9 +23,10 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 
 /**
- * Contains tests for closing of the {@code MainWindow}.
+ * @@author {se-edu}-reused
+ * Reused with from AB4 https://github.com/se-edu/addressbook-level4/
  *
- * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ * Contains tests for closing of the {@code MainWindow}.
  */
 public class MainWindowCloseTest extends GuiUnitTest {
     @TempDir

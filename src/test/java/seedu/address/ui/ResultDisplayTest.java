@@ -8,9 +8,10 @@ import org.junit.jupiter.api.Test;
 import guitests.guihandles.ResultDisplayHandle;
 
 /**
- * Contains tests for the {@code ResultDisplay}.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Contains tests for the {@code ResultDisplay}.
  */
 public class ResultDisplayTest extends GuiUnitTest {
 

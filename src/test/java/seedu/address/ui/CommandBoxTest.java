@@ -14,9 +14,10 @@ import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
- * Contains tests for the {@code CommandBox}.
- *
+ * @@author {se-edu}-reused
  * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Contains tests for the {@code CommandBox}.
  */
 public class CommandBoxTest extends GuiUnitTest {
 

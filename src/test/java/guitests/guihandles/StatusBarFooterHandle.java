@@ -4,9 +4,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 
 /**
- * A handle for the {@code StatusBarFooter} at the footer of the application.
- *
+ * @@author {se-edu}-reused
  * Reused with modifications from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * A handle for the {@code StatusBarFooter} at the footer of the application.
  */
 public class StatusBarFooterHandle extends NodeHandle<Node> {
     public static final String STATUS_BAR_PLACEHOLDER = "#statusbarPlaceholder";

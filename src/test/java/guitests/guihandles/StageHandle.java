@@ -13,9 +13,10 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Provides access to a stage in a JavaFx application for GUI testing purposes.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Provides access to a stage in a JavaFx application for GUI testing purposes.
  */
 public abstract class StageHandle {
     protected final GuiRobot guiRobot = new GuiRobot();

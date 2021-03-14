@@ -12,9 +12,10 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains tests for the {@code PersonCard}.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Contains tests for the {@code PersonCard}.
  */
 public class PersonCardTest extends GuiUnitTest {
 

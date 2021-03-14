@@ -10,9 +10,10 @@ import javafx.scene.Node;
 import seedu.address.ui.testutil.UiPartExtension;
 
 /**
- * A GUI unit test class for AddressBook.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * A GUI unit test class for AddressBook.
  */
 public abstract class GuiUnitTest {
     // TODO: Remove this workaround after using JavaFX version 13 or above

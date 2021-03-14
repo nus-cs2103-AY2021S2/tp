@@ -5,9 +5,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
 /**
- * A handle to the {@code CommandBox} in the GUI.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * A handle to the {@code CommandBox} in the GUI.
  */
 public class CommandBoxHandle extends NodeHandle<TextField> {
 

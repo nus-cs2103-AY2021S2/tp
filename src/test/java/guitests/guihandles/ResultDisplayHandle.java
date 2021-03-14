@@ -3,9 +3,10 @@ package guitests.guihandles;
 import javafx.scene.control.TextArea;
 
 /**
- * A handler for the {@code ResultDisplay} of the UI
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * A handler for the {@code ResultDisplay} of the UI
  */
 public class ResultDisplayHandle extends NodeHandle<TextArea> {
 

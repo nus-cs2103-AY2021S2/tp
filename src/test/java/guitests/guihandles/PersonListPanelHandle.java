@@ -9,9 +9,10 @@ import javafx.scene.control.ListView;
 import seedu.address.model.person.Person;
 
 /**
- * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
  */
 public class PersonListPanelHandle extends NodeHandle<ListView<Person>> {
     public static final String PERSON_LIST_VIEW_ID = "#personListView";

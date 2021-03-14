@@ -5,9 +5,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * A handle to the {@code HelpWindow} of the application.
- *
+ * @@author {se-edu}-reused
  * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * A handle to the {@code HelpWindow} of the application.
  */
 public class HelpWindowHandle extends StageHandle {
 

@@ -6,9 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 
 /**
- * Provides a handle to the main menu of the app.
- *
+ * @@author {se-edu}-reused
  * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Provides a handle to the main menu of the app.
  */
 public class MainMenuHandle extends NodeHandle<Node> {
     public static final String MENU_BAR_ID = "#menuBar";

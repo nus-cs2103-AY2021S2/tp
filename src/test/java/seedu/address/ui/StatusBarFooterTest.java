@@ -11,9 +11,10 @@ import org.junit.jupiter.api.Test;
 import guitests.guihandles.StatusBarFooterHandle;
 
 /**
- * Contains tests for the {@code StatusBarFooter}.
- *
+ * @@author {se-edu}-reused
  * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
+ *
+ * Contains tests for the {@code StatusBarFooter}.
  */
 public class StatusBarFooterTest extends GuiUnitTest {
 

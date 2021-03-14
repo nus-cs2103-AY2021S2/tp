@@ -9,10 +9,11 @@ import guitests.guihandles.exceptions.StageNotFoundException;
 import javafx.stage.Stage;
 
 /**
+ * @@author {se-edu}-reused
+ * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
+ *
  * Robot used to simulate user actions on the GUI.
  * Extends {@link FxRobot} by adding some customized functionality and workarounds.
- *
- * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
  */
 public class GuiRobot extends FxRobot {
 
