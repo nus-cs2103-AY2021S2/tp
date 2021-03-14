@@ -9,7 +9,10 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<Stage minHeight="570.0" minWidth="750.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Stage title="Reminder" minHeight="570.0" minWidth="750.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/logo.png" />
+    </icons>
     <scene>
         <Scene>
             <AnchorPane minHeight="570.0" minWidth="750.0">
