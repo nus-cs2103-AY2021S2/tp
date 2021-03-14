@@ -76,8 +76,32 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
     }
 
+    /**
+     * Displays the events tab.
+     */
     public void showEventsTab() {
         tabPane.getSelectionModel().select(EVENTS_TAB);
+    }
+
+    /**
+     * Displays the deadlines tab.
+     */
+    public void showDeadlinesTab() {
+        tabPane.getSelectionModel().select(DEADLINES_TAB);
+    }
+
+    /**
+     * Displays the todo tab.
+     */
+    public void showTodosTab() {
+        tabPane.getSelectionModel().select(TODOS_TAB);
+    }
+
+    /**
+     * Displays the participants tab.
+     */
+    public void showParticipantsTab() {
+        tabPane.getSelectionModel().select(PARTICIPANTS_TAB);
     }
 
     /**
