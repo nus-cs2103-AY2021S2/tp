@@ -5,10 +5,13 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.NonOverlappingBookingList;
 import seedu.address.model.booking.UniqueVenueList;
 import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +20,10 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final NonOverlappingBookingList bookings;
+
     private final UniqueVenueList venues;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,7 +34,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+
+        bookings = new NonOverlappingBookingList();
+
         venues = new UniqueVenueList();
+
     }
 
     public AddressBook() {}
@@ -79,6 +89,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds a booking to the address book.
+     * The booking must not already exist in the address book.
+     */
+    public void addBooking(Booking b) {
+        bookings.add(b);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -105,6 +123,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         venues.remove(key);
     }
 
+
+    //// booking-level operations
+    /**
+     * Removes {@code bookingId} from this {@code AddressBook}.
+     * {@code bookingId} must exist in the address book.
+     */
+    public void removeBooking(int bookingId) {
+        bookings.removeById(bookingId);
+    }
 
     //// util methods
 
@@ -134,6 +161,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+
+    @Override
+    public ObservableList<Booking> getBookingList() {
+        return bookings.asUnmodifiableObservableList();
+    }
+
+
+    /**
+     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     */
+    public boolean hasBooking(Booking booking) {
+        requireNonNull(booking);
+        return bookings.contains(booking);
     }
 
     /**

@@ -36,6 +36,20 @@ public class Booking {
         this.id = id;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Booking(String booker, Venue venue, String description,
+                   LocalDateTime bookingStart, LocalDateTime bookingEnd) {
+        requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
+        this.booker = booker;
+        this.venue = venue;
+        this.description = description;
+        this.bookingStart = bookingStart;
+        this.bookingEnd = bookingEnd;
+        this.id = getNewBookingId();
+    }
+
     public String getBooker() {
         return booker;
     }
@@ -119,7 +133,7 @@ public class Booking {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Booker: ")
+        builder.append(" Booker: ")
                 .append(getBooker())
                 .append("; Venue: ")
                 .append(getVenue())
@@ -128,7 +142,9 @@ public class Booking {
                 .append("; Start of booking: ")
                 .append(getBookingStart())
                 .append("; End of booking: ")
-                .append(getBookingEnd());
+                .append(getBookingEnd())
+                .append("; ID: ")
+                .append(getId());
 
         return builder.toString();
     }

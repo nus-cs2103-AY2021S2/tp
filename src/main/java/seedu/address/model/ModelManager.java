@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
 
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Booking> filteredBookings;
     private final FilteredList<Venue> filteredVenues;
 
     /**
@@ -36,7 +38,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        filteredPersons = new FilteredList<Person>(this.addressBook.getPersonList());
+        filteredBookings = new FilteredList<Booking>(this.addressBook.getBookingList());
         filteredVenues = new FilteredList<>(this.addressBook.getVenueList());
     }
 
@@ -98,6 +102,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasBooking(Booking booking) {
+        requireNonNull(booking);
+        return addressBook.hasBooking(booking);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -106,6 +116,12 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addBooking(Booking booking) {
+        addressBook.addBooking(booking);
+        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     @Override
@@ -127,6 +143,12 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    //=========== Bookings ================================================================================
+    @Override
+    public void deleteBooking(int bookingId) {
+        addressBook.removeBooking(bookingId);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -145,6 +167,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        requireNonNull(predicate);
+        filteredBookings.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -160,6 +188,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
+                && filteredBookings.equals(other.filteredBookings)
                 && filteredPersons.equals(other.filteredPersons);
     }
     //=========== Venue List =============================================================

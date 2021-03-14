@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -115,6 +116,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addBooking(Booking booking) {
+
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -127,6 +133,11 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasBooking(Booking booking) {
+            return false;
         }
 
         @Override
@@ -167,6 +178,17 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBooking(int bookingId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public void updateFilteredBookingList(Predicate<Booking> predicate) {
+
         }
 
         @Override
