@@ -90,7 +90,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private AnchorPane noteContentDisplay;
 
-
     @FXML
     private SplitPane contactSplitPanel;
 
@@ -120,9 +119,28 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-
     }
 
+    /**
+     * Setup event listener for divider.
+     */
+    private void addSplitPaneListener() {
+        mainSplitPanel.getDividers().get(0).positionProperty().addListener((observeValue, oldValue, newValue) -> {
+            logic.getGuiSettings().setMainSplitRatio(newValue.doubleValue());
+        });
+
+        contactSplitPanel.getDividers().get(0).positionProperty().addListener((observeValue, oldValue, newValue) -> {
+            logic.getGuiSettings().setContactSplitRatio(newValue.doubleValue());
+        });
+
+        dictionarySplitPanel.getDividers().get(0).positionProperty().addListener((observeValue, oldValue, newValue) -> {
+            logic.getGuiSettings().setDictionarySplitRatio(newValue.doubleValue());
+        });
+
+        noteSplitPanel.getDividers().get(0).positionProperty().addListener((observeValue, oldValue, newValue) -> {
+            logic.getGuiSettings().setNoteSplitRatio(newValue.doubleValue());
+        });
+    }
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -213,9 +231,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void configContactSplit() {
         if (contactDisplay.isVisible()) {
-            contactSplitPanel.setDividerPositions(logic.getGuiSettings().getContactSplitRatio());
+            setDividerPosition(contactSplitPanel, logic.getGuiSettings().getContactSplitRatio());
         } else {
-            contactSplitPanel.setDividerPositions(0);
+            setDividerPosition(contactSplitPanel, 0);
         }
     }
 
@@ -224,11 +242,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void configDictionarySplit() {
         if (!dictionaryListDisplay.isVisible() && dictionaryContentDisplay.isVisible()) {
-            dictionarySplitPanel.setDividerPositions(0);
+            setDividerPosition(dictionarySplitPanel, 0);
         } else if (dictionaryListDisplay.isVisible() && !dictionaryContentDisplay.isVisible()) {
-            dictionarySplitPanel.setDividerPositions(1);
+            setDividerPosition(dictionarySplitPanel, 1);
         } else {
-            dictionarySplitPanel.setDividerPositions(logic.getGuiSettings().getDictionarySplitRatio());
+            setDividerPosition(dictionarySplitPanel, logic.getGuiSettings().getDictionarySplitRatio());
         }
     }
 
@@ -237,11 +255,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void configNoteSplit() {
         if (!noteListDisplay.isVisible() && noteContentDisplay.isVisible()) {
-            noteSplitPanel.setDividerPositions(0);
+            setDividerPosition(noteSplitPanel, 0);
         } else if (noteListDisplay.isVisible() && !noteContentDisplay.isVisible()) {
-            noteSplitPanel.setDividerPositions(1);
+            setDividerPosition(noteSplitPanel, 1);
         } else {
-            noteSplitPanel.setDividerPositions(logic.getGuiSettings().getNoteSplitRatio());
+            setDividerPosition(noteSplitPanel, logic.getGuiSettings().getNoteSplitRatio());
         }
     }
 
@@ -250,14 +268,22 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void configMainSplit() {
         if (!noteListDisplay.isVisible() && !noteContentDisplay.isVisible()) {
-            mainSplitPanel.setDividerPositions(1);
+            setDividerPosition(mainSplitPanel, 1);
         } else if (!dictionaryListDisplay.isVisible() && !dictionaryContentDisplay.isVisible()) {
-            mainSplitPanel.setDividerPositions(0);
+            setDividerPosition(mainSplitPanel, 0);
         } else {
-            mainSplitPanel.setDividerPositions(logic.getGuiSettings().getMainSplitRatio());
+            setDividerPosition(mainSplitPanel, logic.getGuiSettings().getMainSplitRatio());
         }
     }
 
+    /**
+     * set divider position for splitpane
+     */
+    private void setDividerPosition(SplitPane splitPane, double position) {
+        if (splitPane.getDividerPositions()[0] != position) {
+            splitPane.setDividerPositions(position);
+        }
+    }
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -286,6 +312,7 @@ public class MainWindow extends UiPart<Stage> {
             logic.getGuiSettings().getMainSplitRatio(), contactDisplay.isVisible(),
             dictionaryContentDisplay.isVisible(), dictionaryListDisplay.isVisible(),
             noteContentDisplay.isVisible(), noteListDisplay.isVisible());
+
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -318,6 +345,13 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShown() {
         setupDisplayPanel();
         commandBox.requestFocus();
+
+        resultDisplay.setFeedbackToUser(logic.getGuiSettings().getContactSplitRatio() + ":"
+                + logic.getGuiSettings().getDictionarySplitRatio() + ":"
+                + logic.getGuiSettings().getNoteSplitRatio() + ":"
+                + logic.getGuiSettings().getMainSplitRatio());
+
+        addSplitPaneListener();
     }
 
     /**
@@ -388,10 +422,6 @@ public class MainWindow extends UiPart<Stage> {
         handlePanelVisibility(uiActionOption, false);
     }
 
-    public ContactListPanel getContactListPanel() {
-        return contactListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -401,16 +431,18 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
 
-
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             executeUiAction(commandResult.getUiAction(), commandResult.getUiActionOption());
 
+            configSplit();
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setErrorFeedbackToUser(e.getMessage());
+            configSplit();
             throw e;
         }
     }
