@@ -51,7 +51,7 @@ public class FindCategoryCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different card -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -59,6 +59,26 @@ public class FindCategoryCommandTest {
     public void execute_zeroKeywords_noFlashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
         CategoryContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindCommand command = new FindCategoryCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noFlashcardFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        CategoryContainsKeywordsPredicate predicate = preparePredicate("123 test random");
+        FindCommand command = new FindCategoryCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_multiplePartialKeywords_noFlashcardFound() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        CategoryContainsKeywordsPredicate predicate = preparePredicate("physic comp scienc");
         FindCommand command = new FindCategoryCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
