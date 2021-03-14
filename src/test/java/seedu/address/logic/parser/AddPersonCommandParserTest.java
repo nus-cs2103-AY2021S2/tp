@@ -31,7 +31,8 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.persons.AddPersonCommand;
+import seedu.address.logic.parser.persons.AddPersonCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,8 +41,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.group.Group;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddPersonCommandParserTest {
+    private AddPersonCommandParser parser = new AddPersonCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -49,29 +50,30 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple groups - all accepted
         Person expectedPersonMultipleGroups = new PersonBuilder(BOB).withGroups(VALID_GROUP_FRIEND, VALID_GROUP_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + GROUP_DESC_HUSBAND + GROUP_DESC_FRIEND, new AddCommand(expectedPersonMultipleGroups));
+                + GROUP_DESC_HUSBAND + GROUP_DESC_FRIEND, new AddPersonCommand(expectedPersonMultipleGroups));
+
     }
 
     @Test
@@ -79,12 +81,12 @@ public class AddCommandParserTest {
         // zero group
         Person expectedPerson = new PersonBuilder(AMY).withGroups().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddPersonCommand(expectedPerson));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
@@ -136,6 +138,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + GROUP_DESC_HUSBAND + GROUP_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
     }
 }

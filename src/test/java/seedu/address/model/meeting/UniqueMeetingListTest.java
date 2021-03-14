@@ -15,7 +15,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMeetings.MEETING1;
 import static seedu.address.testutil.TypicalMeetings.MEETING2;
 
-
 class UniqueMeetingListTest {
     private final UniqueMeetingList uniqueMeetingList = new UniqueMeetingList();
 

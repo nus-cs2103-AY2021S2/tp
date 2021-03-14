@@ -36,13 +36,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("grouped") List<JsonAdaptedGroup> grouped) {
+            @JsonProperty("group") List<JsonAdaptedGroup> group) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (grouped != null) {
-            this.grouped.addAll(grouped);
+        if (group != null) {
+            this.grouped.addAll(group);
         }
     }
 
