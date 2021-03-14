@@ -3,8 +3,8 @@ package seedu.iScam.logic.parser;
 import static seedu.iScam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iScam.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.iScam.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.iScam.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.iScam.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.iScam.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.iScam.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.iScam.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Test;
 import seedu.iScam.commons.core.index.Index;
 import seedu.iScam.logic.commands.EditCommand;
 import seedu.iScam.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Email;
+import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Name;
 import seedu.iScam.model.client.Phone;
 import seedu.iScam.model.tag.Tag;
@@ -173,8 +173,8 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + LOCATION_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+                .withEmail(VALID_EMAIL_BOB).withLocation(VALID_LOCATION_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
