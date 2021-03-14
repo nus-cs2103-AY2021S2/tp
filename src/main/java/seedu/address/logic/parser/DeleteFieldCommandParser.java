@@ -4,14 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteFieldCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteFieldCommand object
  */
-public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand>{
+public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteFieldCommand
      * and returns a DeleteFieldCommand object for execution.

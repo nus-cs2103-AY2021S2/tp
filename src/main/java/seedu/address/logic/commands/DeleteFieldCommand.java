@@ -47,6 +47,10 @@ public class DeleteFieldCommand extends Command {
 
     private final Prefix targetField;
 
+    /**
+     * @param targetIndex of the task in the filtered task list to delete the field from
+     * @param targetField the field user wants to delete
+     */
     public DeleteFieldCommand(Index targetIndex, String targetField) {
         requireNonNull(targetIndex);
         requireNonNull(targetField);
