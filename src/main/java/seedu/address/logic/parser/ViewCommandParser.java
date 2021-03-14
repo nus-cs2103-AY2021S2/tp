@@ -1,11 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.model.person.PersonType.isValidPersonType;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonType;
-import static seedu.address.model.person.PersonType.isValidPersonType;
 import seedu.address.model.person.PersonTypePredicate;
 
 
