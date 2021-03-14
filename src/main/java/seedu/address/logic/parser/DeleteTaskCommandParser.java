@@ -7,7 +7,7 @@ import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteTaskCommand object
  */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
