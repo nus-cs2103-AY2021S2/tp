@@ -1,23 +1,26 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.flashcard.Flashcard;
-import seedu.address.model.flashcard.UniqueFlashcardList;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
+/*
+@@author marc-97-reused
+Reused from
+https://github.com/se-edu/addressbook-level4/blob/master/src/main/java/seedu/address/model/VersionedAddressBook.java
+with minor modification
+ */
 /**
- * Wraps all data at the FlashBack level
- * Duplicates are not allowed (by .isSameCard comparison)
+ * {@code FlashBack} with states tracking for undo
  */
 public class VersionedFlashBack extends FlashBack {
 
     private final List<ReadOnlyFlashBack> flashBackStates;
     private int currentStatePointer;
 
+    /**
+     * Creates a VersionedFlashBack using the cards in the {@code toBeCopied}
+     */
     public VersionedFlashBack(ReadOnlyFlashBack toBeCopied) {
         super(toBeCopied);
 
@@ -26,6 +29,9 @@ public class VersionedFlashBack extends FlashBack {
         currentStatePointer = 0;
     }
 
+    /**
+     * Saves updated state of FlashBack into the list of states
+     */
     public void commit() {
         removeStatesAfterCurrentPointer();
         flashBackStates.add(new FlashBack(this));
@@ -69,3 +75,4 @@ public class VersionedFlashBack extends FlashBack {
         }
     }
 }
+//@@author
