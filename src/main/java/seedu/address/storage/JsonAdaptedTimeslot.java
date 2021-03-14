@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Timeslot;
@@ -34,12 +33,10 @@ public class JsonAdaptedTimeslot {
         end = source.getEnd().toString();
     }
 
-    @JsonValue
     public String getStart() {
         return start;
     }
 
-    @JsonValue
     public String getEnd() {
         return end;
     }
