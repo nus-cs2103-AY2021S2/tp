@@ -45,7 +45,7 @@ public class DoneCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+          if (targetIndex.getZeroBased() >= lastShownList.size()) {
           throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
@@ -62,14 +62,14 @@ public class DoneCommand extends Command {
                     personToEdit.getEmail(), personToEdit.getAddress(),
                     personToEdit.getRemark(), personToEdit.getTags(), new Done(""));
 
-            }
-
-            model.setPerson(personToEdit, editedPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_DONE_PERSON_SUCCESS, personToEdit));
         }
 
-
-
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_DONE_PERSON_SUCCESS, personToEdit));
     }
+
+
+
+}
 
