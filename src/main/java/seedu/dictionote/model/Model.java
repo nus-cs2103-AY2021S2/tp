@@ -17,6 +17,7 @@ public interface Model {
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
     Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
 
+    //#region
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

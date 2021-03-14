@@ -6,6 +6,8 @@ import java.util.List;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
@@ -41,7 +43,8 @@ public class DeleteNoteCommand extends Command {
 
         Note noteToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteNote(noteToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_NOTE_SUCCESS, noteToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_NOTE_SUCCESS, noteToDelete),
+            UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
 
     @Override

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root maximized="true" minHeight="300.0" minWidth="500.0" onCloseRequest="#handleExit" title="Dictionote" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="200.0" minWidth="200.0" onCloseRequest="#handleExit" title="Dictionote" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -28,73 +28,90 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <SplitPane fx:id="contactSplitPanel" dividerPositions="0.0" VBox.vgrow="ALWAYS">
+            <SplitPane fx:id="contactSplitPanel" dividerPositions="0.25" VBox.vgrow="ALWAYS">
               <items>
-                <AnchorPane fx:id="contactDisplay" minHeight="0.0" minWidth="0.0" prefWidth="100.0" visible="false" SplitPane.resizableWithParent="false">
+                <AnchorPane fx:id="contactDisplay" minHeight="0.0" minWidth="0.0" SplitPane.resizableWithParent="false">
                      <children>
 
-                    <VBox fx:id="personList" minWidth="100.0" prefWidth="100.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <VBox styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                       </padding>
-                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                      <StackPane fx:id="contactListPanelPlaceholder" VBox.vgrow="ALWAYS" />
 
                        <StackPane fx:id="statusbarPlaceholder" />
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis>
                     </VBox>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <SplitPane fx:id="mainSplitPanel" dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                       <children>
-                                          <SplitPane fx:id="dictionarySplitPanel" dividerPositions="0.3" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <items>
-                                              <AnchorPane fx:id="dictionaryListDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                                   <children>
-                                                      <StackPane fx:id="dictionaryListPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children></AnchorPane>
-                                              <AnchorPane fx:id="dictionaryContentDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                                   <children>
-                                                      <StackPane fx:id="dictionaryContentPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children></AnchorPane>
-                                            </items>
-                                          </SplitPane>
-                                       </children></AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                       <children>
-                                          <SplitPane fx:id="noteSplitPanel" dividerPositions="0.3" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <items>
-                                              <AnchorPane fx:id="noteListDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                                   <children>
-                                                      <StackPane fx:id="noteListPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children></AnchorPane>
-                                              <AnchorPane fx:id="noteContentDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                                   <children>
-                                                      <StackPane fx:id="noteContentPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children></AnchorPane>
-                                            </items>
-                                          </SplitPane>
-                                       </children></AnchorPane>
-                                </items>
-                              </SplitPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <bottom>
 
-                                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="130.0" minHeight="130.0" prefHeight="130.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                          <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" BorderPane.alignment="CENTER">
                             <padding>
                               <Insets bottom="5" left="10" right="10" top="5" />
                             </padding>
                           </StackPane>
+                           </bottom>
+                           <center>
+                              <BorderPane BorderPane.alignment="CENTER">
+                                 <center>
+                                    <SplitPane fx:id="mainSplitPanel" dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <SplitPane fx:id="dictionarySplitPanel" dividerPositions="0.3" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <AnchorPane fx:id="dictionaryListDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                         <children>
+                                                            <StackPane fx:id="dictionaryListPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                    <AnchorPane fx:id="dictionaryContentDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                         <children>
+                                                            <StackPane fx:id="dictionaryContentPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <SplitPane fx:id="noteSplitPanel" dividerPositions="0.3" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <AnchorPane fx:id="noteListDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                         <children>
+                                                            <StackPane fx:id="noteListPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                    <AnchorPane fx:id="noteContentDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                         <children>
+                                                            <StackPane fx:id="noteContentPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </center>
+                                 <bottom>
 
-                          <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                            <padding>
-                              <Insets bottom="5" left="10" right="10" top="5" />
-                            </padding>
-                          </StackPane>
-                           </children>
-                        </VBox>
+                                      <StackPane fx:id="resultDisplayPlaceholder" minHeight="0.0" minWidth="0.0" styleClass="pane-with-border" BorderPane.alignment="CENTER">
+                                  <padding>
+                                    <Insets bottom="5" left="10" right="10" top="5" />
+                                  </padding>
+                                </StackPane>
+                                 </bottom>
+                              </BorderPane>
+                           </center>
+                        </BorderPane>
                      </children>
                   </AnchorPane>
               </items>

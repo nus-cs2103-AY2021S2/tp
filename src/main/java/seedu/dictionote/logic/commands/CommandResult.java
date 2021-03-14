@@ -17,7 +17,6 @@ public class CommandResult {
     /** The action UI should take.*/
     private final UiAction uiAction;
 
-
     /** The option of the action UI.*/
     private final UiActionOption uiActionOption;
 
@@ -71,14 +70,13 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && uiAction == otherCommandResult.uiAction
-                && uiActionOption == otherCommandResult.uiActionOption;
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, uiAction, uiActionOption);
     }
+
 
 }
