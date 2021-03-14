@@ -30,7 +30,7 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
-            .withPolicies("Policy_1111>null")
+            .withPolicies("Policy_1111>no_url")
             .build();
     public static final Person BENSON = new PersonBuilder()
             .withName("Benson Meier")
@@ -51,7 +51,7 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withTags("friends")
-            .withPolicies("Policy_3333>null", "Policy_3334>www.google.com")
+            .withPolicies("Policy_3333>no_url", "Policy_3334>www.google.com")
             .build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
@@ -70,7 +70,7 @@ public class TypicalPersons {
             .withPhone("9482442")
             .withEmail("anna@example.com")
             .withAddress("4th street")
-            .withPolicies("Policy_4444>null", "Policy_4445>www.facebook.com", "Policy_4446>null",
+            .withPolicies("Policy_4444>no_url", "Policy_4445>www.facebook.com", "Policy_4446>no_url",
                     "Policy_4447>www.yahoo.com")
             .build();
 

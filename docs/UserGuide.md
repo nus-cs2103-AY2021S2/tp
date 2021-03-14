@@ -151,6 +151,22 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Viewing a contact's policies: `policy`
+
+Launches a popup window to show all the policies associated with the selected contact, if the selected contact has any policies.
+
+![without policy URL](images/without_policy_URL.png)
+![with policy URL](images/with_policy_URL.png)
+
+Format: `policy INDEX`
+
+* Selects the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `policy 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `policy 1` deletes the 1st person in the results of the `find` command.
 
 ### Exiting the program : `exit`
 
@@ -189,6 +205,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Policy** | `policy INDEX`<br> e.g., `policy 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James & Jake`
 **List** | `list`

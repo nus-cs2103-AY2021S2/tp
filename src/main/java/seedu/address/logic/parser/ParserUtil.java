@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -144,8 +143,6 @@ public class ParserUtil {
         if (!InsurancePolicy.isValidPolicyInput(trimmedPolicy)) {
             throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
         }
-        logger.info("HIIIII" + trimmedPolicy);
-
 
         if (InsurancePolicy.isPolicyId(trimmedPolicy)) {
             return new InsurancePolicy(trimmedPolicy);
@@ -155,8 +152,6 @@ public class ParserUtil {
         String[] idAndUrl = trimmedPolicy.split(">", 2);
         String policyId = idAndUrl[0];
         String policyUrl = idAndUrl[1];
-
-        logger.info("BYEEEE" + Arrays.toString(idAndUrl));
 
         return new InsurancePolicy(policyId, policyUrl);
     }

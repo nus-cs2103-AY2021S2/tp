@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
-    "policies" : ["Policy_1111>null"]
+    "policies" : ["Policy_1111>no_url"]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -27,7 +27,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tagged" : [ "friends" ],
-    "policies" : [ "Policy_3333>null", "Policy_3334>www.google.com" ]
+    "policies" : [ "Policy_3333>no_url", "Policy_3334>www.google.com" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -48,6 +48,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ],
-    "policies" : [ "Policy_4444>null", "Policy_4445>www.facebook.com", "Policy_4446>null", "Policy_4447>www.yahoo.com" ]
+    "policies" : [ "Policy_4444>no_url", "Policy_4445>www.facebook.com", "Policy_4446>no_url",
+      "Policy_4447>www.yahoo.com" ]
   } ]
 }
