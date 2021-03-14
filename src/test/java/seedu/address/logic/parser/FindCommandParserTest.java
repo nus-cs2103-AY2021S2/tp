@@ -10,6 +10,7 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.TagContainsKeywordsPredicate;
 import seedu.address.model.task.TitleContainsKeywordsPredicate;
 
@@ -23,6 +24,24 @@ public class FindCommandParserTest {
                 FindCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "t/  ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.TAG_USAGE));
+        assertParseFailure(parser, "d/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.DESCRIPTION_USAGE));
+    }
+
+    @Test
+    public void parse_multipleFindArgs_throwsParseException() {
+        assertParseFailure(parser, "d/Bob   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "d/Bob   t/project   t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "t/exam  d/Bob   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "Alice   d/Charlie", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "Alice   t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
+        assertParseFailure(parser, "Alice  d/Bob t/exam", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MULTIPLE_COMMANDS));
     }
 
     @Test
@@ -35,9 +54,15 @@ public class FindCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
 
+        // locate multiple tags from keywords
         expectedFindCommand = new FindCommand(new TagContainsKeywordsPredicate(
                 new HashSet<>(Arrays.asList("Bob", "Charlie"))));
         assertParseSuccess(parser, "t/Bob t/Charlie", expectedFindCommand);
+
+        // locate description from keywords
+        expectedFindCommand =
+                new FindCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "d/Alice Bob", expectedFindCommand);
 
     }
 
