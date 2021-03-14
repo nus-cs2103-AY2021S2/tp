@@ -21,4 +21,7 @@ public class CliSyntax {
 
     // For commands that need a secondary index
     public static final Prefix PREFIX_INDEX = new Prefix("i/");
+
+    //Groups
+    public static final Prefix PREFIX_PERSONS = new Prefix("p/");
 }

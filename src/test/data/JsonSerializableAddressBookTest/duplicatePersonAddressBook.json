@@ -12,5 +12,6 @@
     "email": "pauline@example.com",
     "birthday" : "01-01-1998",
     "address": "4th street"
-  } ]
+  } ],
+  "groups": []
 }
