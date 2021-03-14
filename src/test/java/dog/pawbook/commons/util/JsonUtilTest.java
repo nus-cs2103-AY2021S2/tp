@@ -47,33 +47,24 @@ public class JsonUtilTest {
         SerializableTestClass serializableTestClass = new SerializableTestClass();
         serializableTestClass.setTestValues();
 
-        FileUtil.writeToFile(SERIALIZATION_FILE, SerializableTestClass.JSON_STRING_REPRESENTATION);
+        SerializableTestClass object =
+                JsonUtil.fromJsonString(SerializableTestClass.JSON_STRING_REPRESENTATION, SerializableTestClass.class);
 
-        String jsonString = FileUtil.readFromFile(SERIALIZATION_FILE);
-
-        SerializableTestClass object = JsonUtil.fromJsonString(jsonString, SerializableTestClass.class);
-
-        assertEquals(object.getName(), SerializableTestClass.getNameTestValue());
-        assertEquals(object.getListOfLocalDateTimes(), SerializableTestClass.getListTestValues());
-        assertEquals(object.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
+        assertEquals(object, serializableTestClass);
     }
 
     @Test
     public void jsonUtil_writeThenReadObjectToJson_correctObject() throws IOException, DataConversionException {
-        SerializableTestClass serializableTestClass = new SerializableTestClass();
-        serializableTestClass.setTestValues();
+        SerializableTestClass writtenSerializableTestObject = new SerializableTestClass();
+        writtenSerializableTestObject.setTestValues();
 
-        JsonUtil.saveJsonFile(serializableTestClass, SERIALIZATION_FILE);
+        JsonUtil.saveJsonFile(writtenSerializableTestObject, SERIALIZATION_FILE);
 
-        Optional<SerializableTestClass> optionalObjectFromFile = JsonUtil.readJsonFile(SERIALIZATION_FILE,
-                SerializableTestClass.class);
+        Optional<SerializableTestClass> optionalObjectFromFile =
+                JsonUtil.readJsonFile(SERIALIZATION_FILE, SerializableTestClass.class);
 
         assertTrue(optionalObjectFromFile.isPresent());
 
-        SerializableTestClass object = optionalObjectFromFile.get();
-
-        assertEquals(object.getName(), SerializableTestClass.getNameTestValue());
-        assertEquals(object.getListOfLocalDateTimes(), SerializableTestClass.getListTestValues());
-        assertEquals(object.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
+        assertEquals(optionalObjectFromFile.get(), writtenSerializableTestObject);
     }
 }
