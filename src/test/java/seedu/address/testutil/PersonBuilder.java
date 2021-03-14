@@ -1,10 +1,15 @@
 package seedu.address.testutil;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.opentest4j.TestAbortedException;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -12,6 +17,7 @@ import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Picture;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,11 +35,12 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
     private Birthday birthday;
+    private Address address;
+    private Picture picture;
     private Set<Tag> tags;
-    private List<Event> dates;
-    private List<Event> meetings;
+    private final List<Event> dates;
+    private final List<Event> meetings;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,8 +49,9 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
+        address = new Address(DEFAULT_ADDRESS);
+        picture = null;
         tags = new HashSet<>();
         dates = new ArrayList<>();
         meetings = new ArrayList<>();
@@ -56,8 +64,9 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
         birthday = personToCopy.getBirthday();
+        address = personToCopy.getAddress();
+        picture = personToCopy.getPicture();
         tags = new HashSet<>(personToCopy.getTags());
         dates = new ArrayList<>(personToCopy.getDates());
         meetings = new ArrayList<>(personToCopy.getMeetings());
@@ -68,22 +77,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -111,9 +104,39 @@ public class PersonBuilder {
         return this;
     }
 
-
-    public Person build() {
-        return new Person(name, phone, email, address, birthday, tags, dates, meetings);
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAddress(String address) {
+        this.address = new Address(address);
+        return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code filePath} into a {@code Picture} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPicture(String filePath) {
+        Path path;
+
+        try {
+            path = ParserUtil.parsePictureFilePath(filePath);
+        } catch (ParseException pe) {
+            throw new TestAbortedException("ParseException occurred: " + pe.getMessage());
+        }
+
+        this.picture = new Picture(path);
+        return this;
+    }
+
+    public Person build() {
+        return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
+    }
 }

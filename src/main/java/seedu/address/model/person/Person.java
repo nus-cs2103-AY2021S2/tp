@@ -140,12 +140,13 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
+        // TODO: Add checking for two pictures
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getBirthday().equals(getBirthday())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getPicture().equals(getPicture())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getDates().equals(getDates())
                 && otherPerson.getMeetings().equals(getMeetings());
