@@ -1,9 +1,9 @@
 package seedu.iScam.testutil;
 
-import static seedu.iScam.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
-import static seedu.iScam.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.iScam.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
+import static seedu.iScam.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_PHONE_AMY;

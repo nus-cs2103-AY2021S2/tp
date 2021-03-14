@@ -14,8 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.iScam.logic.parser.exceptions.ParseException;
-import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Email;
+import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Name;
 import seedu.iScam.model.client.Phone;
 import seedu.iScam.model.tag.Tag;

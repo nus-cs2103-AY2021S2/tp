@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.iScam.commons.exceptions.IllegalValueException;
-import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Email;
+import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Name;
 import seedu.iScam.model.client.Phone;
 
