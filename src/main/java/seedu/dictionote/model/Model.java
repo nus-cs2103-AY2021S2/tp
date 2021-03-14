@@ -15,7 +15,9 @@ import seedu.dictionote.model.note.Note;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
-    Predicate<Content> PREDICATE_SHOW_ALL_CONTENT = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Content> PREDICATE_SHOW_ALL_CONTENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,6 +87,9 @@ public interface Model {
      */
     boolean hasContact(Contact contact);
 
+    /**
+     * Returns true if a text with the same content as {@code content} exists in the dictionote book.
+     */
     boolean hasContent(Content content);
 
     /**
@@ -106,6 +111,12 @@ public interface Model {
     void addContact(Contact contact);
 
     /**
+     * Adds the given content.
+     * {@code content} must not already exist in the dictionote book.
+     */
+    void addContent(Content content);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the dictionote book.
      * The person identity of {@code editedPerson} must not be the same as
@@ -123,6 +134,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Contact> getFilteredContactList();
+
+    /** Returns an unmodifiable view of the filtered list of content */
     ObservableList<Content> getFilteredContentList();
 
     /**
@@ -137,6 +150,10 @@ public interface Model {
      */
     void updateFilteredNoteList(Predicate<Note> predicate);
 
+    /**
+     * Updates the filter of the filtered content list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredContentList(Predicate<Content> predicate);
 
 }

@@ -28,7 +28,11 @@ public class ContentCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label dictionarycontent;
+    private Label week;
+    @FXML
+    private Label header;
+    @FXML
+    private Label maincontent;
 
     /**
      * Creates a {@code NoteCard} with the given {@code Note} and index to display.
@@ -37,7 +41,9 @@ public class ContentCard extends UiPart<Region> {
         super(FXML);
         this.content = content;
         id.setText(displayedIndex + ". ");
-        dictionarycontent.setText(content.getContent());
+        week.setText(content.getWeek());
+        header.setText(content.getHeader());
+        maincontent.setText(content.getMainContent());
     }
 
     @Override
@@ -53,7 +59,8 @@ public class ContentCard extends UiPart<Region> {
         }
 
         // state check
-        ContentCard content = (ContentCard) other;
-        return this.content.getContent().equals(content.content.getContent());
+        ContentCard contents = (ContentCard) other;
+        return id.getText().equals(contents.id.getText())
+                && content.equals(contents.content);
     }
 }

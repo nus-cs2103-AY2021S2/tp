@@ -81,8 +81,9 @@ public class SampleDataUtil {
 
     public static Content[] getSampleContent() {
         return new Content[] {
-            new Content("Week 1: OOP programming."),
-            new Content("Week #: Some Topic")
+            new Content("Week 1", "OOP programming.",
+                    "Object-Oriented Programming (OOP) is a programming paradigm."),
+            new Content("Week #", "Some Topic", "some content")
         };
     }
 

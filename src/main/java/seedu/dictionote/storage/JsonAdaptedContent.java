@@ -11,23 +11,31 @@ import seedu.dictionote.model.dictionary.Content;
  */
 class JsonAdaptedContent {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Note's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Content's %s field is missing!";
 
-    private final String content;
+    private final String week;
+    private final String header;
+    private final String maincontent;
 
     /**
      * Constructs a {@code JsonAdaptedContent} with the given person d.
      */
     @JsonCreator
-    public JsonAdaptedContent(@JsonProperty("content") String content) {
-        this.content = content;
+    public JsonAdaptedContent(@JsonProperty("week") String week,
+                              @JsonProperty("header") String header,
+                              @JsonProperty("maincontent") String maincontent) {
+        this.week = week;
+        this.header = header;
+        this.maincontent = maincontent;
     }
 
     /**
      * Converts a given {@code Content} into this class for Jackson use.
      */
     public JsonAdaptedContent(Content source) {
-        content = source.getContent();
+        week = source.getWeek();
+        header = source.getHeader();
+        maincontent = source.getMainContent();
     }
 
     /**
@@ -36,10 +44,16 @@ class JsonAdaptedContent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted content.
      */
     public Content toModelType() throws IllegalValueException {
-        if (content == null) {
+        if (week == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Content.class.getSimpleName()));
         }
-        return new Content(content);
+        if (header == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Content.class.getSimpleName()));
+        }
+        if (maincontent == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Content.class.getSimpleName()));
+        }
+        return new Content(week, header, maincontent);
     }
 
 }
