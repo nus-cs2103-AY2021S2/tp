@@ -4,8 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Email;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 import seedu.address.model.util.SampleDataUtil;
 
 /**

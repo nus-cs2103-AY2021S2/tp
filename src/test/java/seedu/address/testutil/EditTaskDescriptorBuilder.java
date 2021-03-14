@@ -6,8 +6,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Email;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.
