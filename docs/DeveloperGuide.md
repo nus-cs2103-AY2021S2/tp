@@ -262,8 +262,10 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1.  User requests to view appointment
-2.  TutorTracker shows a list of appointments 
+1.  User requests to view the list of tuition appointments.
+2.  TutorTracker displays the list of tuition appointments to the user. 
+3.  User requests to view an appointment by index.
+2.  TutorTracker displays the appointment.
     
     Use case ends.
 
@@ -273,6 +275,12 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     * 1a1. TutorTracker shows a message that there are no appointments. 
       
     Use case ends.
+
+* 3a. The index is invalid.
+    * 3a1. TutorTrackers shows an error message.
+
+    User case ends.
+
       
 <hr/>
 
@@ -280,10 +288,33 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1.  User requests to list appointments
-2.  TutorTracker shows a list of appointments
-3.  User requests to delete a specific appointment in the list
+1.  User requests to list appointments.
+2.  TutorTracker shows a list of appointments.
+3.  User requests to delete a specific appointment in the list.
 4.  TutorTracker deletes that specific appointment.
+
+<hr/>
+
+**Use Case UC0007: View tutor**
+
+**MSS**
+
+1.  User requests to list the list of all tutors.
+2.  TutorTracker shows a list of tutors.
+3.  User requests to view a tutor by index.
+4.  TutorTracker displays the tutor.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. TutorTracker shows a message that there are no tutors.
+
+  Use case ends.
+
+* 3a. The index is invalid.
+    * 3a1. TutorTrackers shows an error message.
+    
+  User case ends.
 
 <hr/>
 

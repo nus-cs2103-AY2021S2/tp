@@ -25,9 +25,10 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, ObservableList<Person> tutorToView, boolean showHelp, boolean exit) {
+
+    public CommandResult(String feedbackToUser, ObservableList<Person> tutorsToView, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.tutorsToView = tutorToView;
+        this.tutorsToView = tutorsToView;
         this.showHelp = showHelp;
         this.exit = exit;
     }

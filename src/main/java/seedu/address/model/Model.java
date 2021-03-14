@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,31 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+    /**
+     * Checks if Appointment exists in appointment list.
+     * @param appointment Appointment to check
+     * @return True if appointment is already in appointment list
+     */
+    boolean hasAppointment(Appointment appointment);
+
+    /**
+     * @param appointment Appointment to add (appointment must not already exist)
+     */
+    void addAppointment(Appointment appointment);
+
+    /**
+     * Removes appointment from appointment list.
+     * @param appointment Appointment to remove must be present
+     */
+    void removeAppointment(Appointment appointment);
+
+    /**
+     * Method that removes appointment based on index
+     * @param indexToRemove
+     */
+    void removeAppointmentIndex(int indexToRemove);
+
+
 }

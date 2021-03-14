@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.appointmentcommands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
@@ -10,7 +11,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * Adds an appointment to the appointment list.
@@ -38,11 +41,35 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the list";
 
+    private final Appointment toAdd;
+
     /**
-     * More to be implemented
+     * Primary constructor to accept an appointment and add it to appointment list.
+     * @param appointment Appointment to add
+     */
+    public AddAppointmentCommand(Appointment appointment) {
+        requireNonNull(appointment);
+        toAdd = appointment;
+    }
+
+
+    /**
+     * Main execute method that creates adds a new appointment to the appointment list
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult indicating success or failure of add operation
+     * @throws CommandException
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        requireNonNull(model);
+
+        if (model.hasAppointment(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        } else {
+            model.addAppointment(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
+
     }
+
 }
