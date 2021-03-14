@@ -69,9 +69,14 @@ public interface Model {
 
     /**
      * Adds the given task.
-     * {@code task} must not already exist in the address book.
+     * {@code task} must not already exist in Taskify.
      */
     void addTask(Task task);
+
+    /**
+     * Sort tasks in Taskify by deadline.
+     */
+    void sortTask();
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.

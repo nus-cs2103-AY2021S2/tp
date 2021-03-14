@@ -20,7 +20,7 @@ import seedu.taskify.model.task.Task;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[]{
-            new Task(new Name("Alex Yeoh"), new Description("2106 lab on threads"), new Status(),
+            new Task(new Name("CS2106 lab"), new Description("on synchronization"), new Status(),
                     new Address("Blk 30 Geylang Street 29, #06-40"), new Date("2020-04-13 09:30"),
                     getTagSet("friends")),
             new Task(new Name("Bernice Yu"), new Description("2106 lab on threads"), new Status(),

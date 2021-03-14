@@ -112,7 +112,7 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("; Description: ")
                 .append(getDescription())
                 .append("; Status: ")
                 .append(getStatus())

@@ -67,8 +67,16 @@ public class Taskify implements ReadOnlyTaskify {
     }
 
     /**
-     * Adds a task to the address book.
-     * The task must not already exist in the address book.
+     * Sort task in Taskify starting from the earliest.
+     */
+
+    public void sortTask() {
+        tasks.sortTask();
+    }
+
+    /**
+     * Adds a task to the Taskify.
+     * The task must not already exist in Taskify.
      */
     public void addTask(Task p) {
         tasks.add(p);
@@ -84,6 +92,7 @@ public class Taskify implements ReadOnlyTaskify {
 
         tasks.setTask(target, editedTask);
     }
+
 
     /**
      * Removes {@code key} from this {@code TaskifyParser}.

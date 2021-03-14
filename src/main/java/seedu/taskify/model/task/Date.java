@@ -68,4 +68,8 @@ public class Date {
     public int hashCode() {
         return localDateTime.hashCode();
     }
+
+    public int compareTo(Date date) {
+        return this.localDateTime.compareTo(date.localDateTime);
+    }
 }

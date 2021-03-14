@@ -12,13 +12,13 @@ import seedu.taskify.model.Model;
 import seedu.taskify.model.task.Task;
 
 /**
- * Adds a task to the address book.
+ * Adds a task to the Taskify.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the Taskify. "
                                                        + "Parameters: "
                                                        + PREFIX_NAME + "NAME "
                                                        + PREFIX_DESCRIPTION + "DESCRIPTION "
@@ -26,12 +26,11 @@ public class AddCommand extends Command {
                                                        + PREFIX_DATE + "DATE "
                                                        + "[" + PREFIX_TAG + "TAG]...\n"
                                                        + "Example: " + COMMAND_WORD + " "
-                                                       + PREFIX_NAME + "John Doe "
-                                                       + PREFIX_DESCRIPTION + "98765432 "
+                                                       + PREFIX_NAME + "Finish 2103T Tutorial "
+                                                       + PREFIX_DESCRIPTION + "Draw UML diagram "
                                                        + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
                                                        + PREFIX_DATE + "2020-04-13 10:30 "
-                                                       + PREFIX_TAG + "friends "
-                                                       + PREFIX_TAG + "owesMoney";
+                                                       + PREFIX_TAG + "CS2103T ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
