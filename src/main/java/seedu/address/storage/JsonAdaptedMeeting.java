@@ -1,0 +1,131 @@
+package seedu.address.storage;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParseDateUtil;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.Name;
+import seedu.address.model.meeting.Priority;
+import seedu.address.model.tag.Tag;
+
+
+/**
+ * Jackson-friendly version of {@link seedu.address.model.meeting.Meeting}.
+ */
+
+public class JsonAdaptedMeeting {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meeting's %s field is missing!";
+
+    private final String name;
+    private final String startDateTime;
+    private final String endDateTime;
+    private final String description;
+    private final String priority;
+
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+
+    /**
+     * Constructs a {@code JsonAdoptedMeeting} with the given meeting details.
+     */
+
+    @JsonCreator
+    public JsonAdaptedMeeting(@JsonProperty("name") String name,
+                              @JsonProperty("startDateTime") String startDateTime,
+                              @JsonProperty("endDateTime") String endDateTime,
+                              @JsonProperty("description") String description,
+                              @JsonProperty("priority") String priority,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        this.name = name;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.description = description;
+        this.priority = priority;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+    }
+
+
+    /**
+     * Converts a given {@code Meeting} into this class for Jackson use.
+     */
+    public JsonAdaptedMeeting(Meeting source) {
+        name = source.getName().fullName;
+        startDateTime = ParseDateUtil.formatDateTime(source.getStart().value);
+        endDateTime = ParseDateUtil.formatDateTime(source.getTerminate().value);
+        description = source.getDescription().fullDescription;
+        priority = source.getPriority().toString();
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * Converts this Jackson-friendly adapted meeting object into the model's {@code Meeting} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
+     */
+
+    public Meeting toModelType() throws IllegalValueException {
+        final List<Tag> meetingTags = new ArrayList<>();
+        for (JsonAdaptedTag tag: tagged) {
+            meetingTags.add(tag.toModelType());
+        }
+
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        final Name modelName = new Name(name);
+
+        if (startDateTime == null || endDateTime == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
+        }
+        if (!DateTime.isValidDateTime(startDateTime) || !DateTime.isValidDateTime(endDateTime)) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        final DateTime modelStart = new DateTime(startDateTime);
+        final DateTime modelTerminate = new DateTime(endDateTime);
+
+        if (description == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+        }
+
+        final Description modelDescription = new Description(description);
+
+
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
+        }
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        final Priority modelPriority = new Priority(priority);
+        final Set<Tag> modelTags = new HashSet<>(meetingTags);
+        try {
+            return new Meeting(modelName, modelStart, modelTerminate,
+                    modelPriority, modelDescription, modelTags);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
+    }
+
+}
+

@@ -1,11 +1,14 @@
 package seedu.address.model.meeting;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import seedu.address.logic.parser.ParseDateUtil;
 
 
 /**
@@ -16,11 +19,11 @@ public class DateTime implements Comparable<DateTime> {
 
 
     public static final String MESSAGE_CONSTRAINTS = "DateTime should use YYYY-MM-DD HH:MM format";
-    public static final DateTimeFormatter VALIDATION_DATETIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter VALIDATION_DATETIME_FORMAT = ParseDateUtil.ISO_DATE_FORMATTER_NO_SECONDS;
     public final LocalDateTime value;
 
     /**
-     * Constructs a {@code DateTime}.
+     * Constructs a {@code DateTime}.{}
      *
      * @param dateTime A valid DateTime number.
      */
@@ -28,6 +31,16 @@ public class DateTime implements Comparable<DateTime> {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         value = LocalDateTime.parse(dateTime, VALIDATION_DATETIME_FORMAT);
+    }
+
+    /**
+     * Constructs a {@code DateTime}
+     * @param value a LocalDateTime object
+     */
+
+    public DateTime(LocalDateTime value) {
+        requireNonNull(value);
+        this.value = value;
     }
 
     /**
@@ -40,6 +53,15 @@ public class DateTime implements Comparable<DateTime> {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Formats the LocalDateTime attribute,
+     * @return the ISO formatted string of LocalDateTime
+     */
+
+    public String toIsoFormatString() {
+        return ParseDateUtil.formatDateTime(value);
     }
 
     @Override
