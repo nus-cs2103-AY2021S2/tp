@@ -183,13 +183,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void emailContact(Contact contact) {
+        requireNonNull(contact);
+        addressBook.emailContact(contact);
+    }
+
+    @Override
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
 
         addressBook.setContact(target, editedContact);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of

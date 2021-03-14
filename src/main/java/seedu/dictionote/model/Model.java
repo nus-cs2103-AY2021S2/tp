@@ -15,8 +15,9 @@ import seedu.dictionote.model.note.Note;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
-    Predicate<Content> PREDICATE_SHOW_ALL_CONTENT = unused -> true;
+    Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
 
+    //#region
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -104,6 +105,12 @@ public interface Model {
      * {@code person} must not already exist in the dictionote book.
      */
     void addContact(Contact contact);
+
+    /**
+     * Invokes the user's OS email client to send a new email to the given contact.
+     * {@code contact} must exist in the contacts list.
+     */
+    void emailContact(Contact contact);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

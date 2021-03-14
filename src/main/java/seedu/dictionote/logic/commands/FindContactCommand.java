@@ -5,6 +5,8 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.dictionote.commons.core.Messages;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
@@ -50,7 +52,8 @@ public class FindContactCommand extends Command {
         // satisfy both name- and tag-matching.
         model.updateFilteredContactList(namePredicate.and(tagsPredicate));
         return new CommandResult(
-                String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredContactList().size()));
+                String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredContactList().size()),
+                UiAction.OPEN, UiActionOption.CONTACT);
     }
 
     @Override

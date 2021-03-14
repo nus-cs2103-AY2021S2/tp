@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
@@ -45,7 +47,7 @@ public class AddNoteCommand extends Command {
         }
 
         model.addNote(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
 
     @Override

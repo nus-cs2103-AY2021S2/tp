@@ -12,9 +12,9 @@ import seedu.dictionote.model.contact.Contact;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ContactCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ContactListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -44,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Contact contact, int displayedIndex) {
+    public ContactCard(Contact contact, int displayedIndex) {
         super(FXML);
         this.contact = contact;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ContactCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        ContactCard card = (ContactCard) other;
         return id.getText().equals(card.id.getText())
                 && contact.equals(card.contact);
     }
