@@ -24,7 +24,7 @@ import seedu.address.model.meeting.Meeting;
  */
 public class TypicalMeetings {
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Meeting's details found in {@code CommandTestUtil}
     public static final Meeting MEETING1 = new MeetingBuilder().withName(VALID_NAME_MEETING1).withStart(VALID_START_MEETING1)
             .withTerminate(VALID_TERMINATE_MEETING1).withPriority(VALID_PRIORITY_MEETING1).withDescription(VALID_DESCRIPTION_MEETING1)
             .withGroups(VALID_TAG_MEETING1).build();
