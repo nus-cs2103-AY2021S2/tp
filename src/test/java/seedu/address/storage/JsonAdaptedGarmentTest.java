@@ -27,7 +27,7 @@ public class JsonAdaptedGarmentTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_SIZE = BENSON.getSize().toString();
     private static final String VALID_COLOUR = BENSON.getColour().toString();
-    private static final String VALID_DRESSCODE = BENSON.getDressCode().toString();
+    private static final String VALID_DRESSCODE = "FORMAL";//BENSON.getDressCode().toString();
     private static final List<JsonAdaptedDescription> VALID_DESCRIPTIONS = BENSON.getDescriptions().stream()
             .map(JsonAdaptedDescription::new)
             .collect(Collectors.toList());
@@ -57,7 +57,7 @@ public class JsonAdaptedGarmentTest {
     @Test
     public void toModelType_invalidSize_throwsIllegalValueException() {
         JsonAdaptedGarment garment =
-                new JsonAdaptedGarment(VALID_NAME, INVALID_SIZE, VALID_COLOUR, VALID_DRESSCODE, VALID_DESCRIPTIONS);
+                new JsonAdaptedGarment(VALID_NAME, INVALID_SIZE, VALID_COLOUR, "", VALID_DESCRIPTIONS);
         String expectedMessage = Size.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
     }

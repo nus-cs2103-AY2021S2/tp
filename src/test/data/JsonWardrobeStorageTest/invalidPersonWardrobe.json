@@ -1,7 +1,7 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
+  "garments": [ {
+    "name": "Garment with invalid name field: Ha!ns Mu@ster",
+    "size": "9482424",
     "colour": "hans@example.com",
     "dresscode": "FORMAL"
   } ]
