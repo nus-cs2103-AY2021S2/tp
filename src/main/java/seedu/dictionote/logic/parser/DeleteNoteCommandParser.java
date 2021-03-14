@@ -1,6 +1,6 @@
 package seedu.dictionote.logic.parser;
 
-import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_NOTE_FORMAT;
 
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
@@ -23,7 +23,7 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
             return new DeleteNoteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_NOTE_FORMAT, DeleteContactCommand.MESSAGE_USAGE), pe);
         }
     }
 

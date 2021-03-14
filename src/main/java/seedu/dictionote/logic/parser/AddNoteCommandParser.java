@@ -30,7 +30,7 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
 
-        String noteContent = ParserUtil.parseNote(argMultimap.getValue(PREFIX_CONTENT).get());
+        String noteContent = ParserUtil.parseNote(argMultimap.getValue(PREFIX_CONTENT).get()).getNote();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Note note = new Note(noteContent, tagList);

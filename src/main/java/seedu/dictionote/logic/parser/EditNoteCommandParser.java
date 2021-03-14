@@ -30,7 +30,7 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
     public EditNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CONTENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_CONTENT, PREFIX_TAG);
         Index index;
 
         try {
@@ -41,6 +41,9 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
         }
 
         EditNoteDescriptor editNoteDescriptor = new EditNoteDescriptor();
+        if (argMultimap.getValue(PREFIX_CONTENT).isPresent()) {
+            editNoteDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_CONTENT).get()));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editNoteDescriptor::setTags);
 
         if (!editNoteDescriptor.isAnyFieldEdited()) {

@@ -18,7 +18,7 @@ import seedu.dictionote.model.tag.Tag;
 public class Note {
     private final String note;
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
     private LocalDateTime createTime;
     private LocalDateTime lastEditTime;
     private Boolean isDone;
@@ -26,6 +26,20 @@ public class Note {
     /**
      * Every field must be present and not null.
      */
+
+    public Note(String note) {
+        requireAllNonNull(note, tags);
+        this.note = note;
+        this.tags = new HashSet<>();
+        this.createTime = now();
+        this.lastEditTime = now();
+        this.isDone = false;
+    }
+
+    /**
+     * Constructor with the note and tag
+     */
+
     public Note(String note, Set<Tag> tags) {
         requireAllNonNull(note, tags);
         this.note = note;
