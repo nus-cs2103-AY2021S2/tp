@@ -2,7 +2,6 @@ package seedu.address.model.session;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +18,7 @@ public class Session {
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
     private static int sessionCount = 1;
+    public static final String VALIDATION_REGEX = " [c][\\/]\\d";
 
     private final String classId;
     private final Day day;
@@ -84,9 +84,6 @@ public class Session {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-
-
-    public static final String VALIDATION_REGEX = " [c][\\/]\\d";
 
 
     /**

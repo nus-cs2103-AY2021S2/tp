@@ -1,18 +1,16 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.session.Session;
-
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 
-public class DeleteSessionCommand extends Command{
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.session.Session;
+
+public class DeleteSessionCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_session";
 
@@ -39,9 +37,10 @@ public class DeleteSessionCommand extends Command{
 
         List<Session> lastShownList = model.getFilteredSessionList();
 
-        Optional<Session> sessionToDelete = lastShownList.stream().filter(x-> x.getClassId().equals(targetClassId)).findAny();
+        Optional<Session> sessionToDelete = lastShownList.stream()
+                .filter(x-> x.getClassId().equals(targetClassId)).findAny();
 
-        if(sessionToDelete.isPresent()){
+        if (sessionToDelete.isPresent()) {
             model.deleteSession(sessionToDelete.get());
             return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete.get()));
         } else {
