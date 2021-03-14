@@ -1,5 +1,6 @@
 package seedu.module.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.testutil.Assert.assertThrows;
@@ -36,5 +37,12 @@ public class WorkloadTest {
         assertTrue(Workload.isValidWorkload("1")); // 1
         assertTrue(Workload.isValidWorkload("2")); // 2
         assertTrue(Workload.isValidWorkload("3")); // 3
+    }
+
+    @Test
+    public void testDisplayUi() {
+        assertEquals(new Workload("1").displayUi(), Workload.LOW_WORKLOAD);
+        assertEquals(new Workload("2").displayUi(), Workload.MEDIUM_WORKLOAD);
+        assertEquals(new Workload("3").displayUi(), Workload.HIGH_WORKLOAD);
     }
 }
