@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.FindAppointmentCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
