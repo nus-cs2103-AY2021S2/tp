@@ -55,12 +55,24 @@ Format: `help`
 
 Adds a new card to the card list.
 
-Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/ TAG]` <br />
+Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]` <br />
 Note: The TAG is optional when adding a new card.
 
 Examples:
 * `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`  
 * `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
+
+### Editing a card: `edit`
+
+Edits an existing flash card in the card list.
+
+Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY]` <br />
+`[p/NEW PRIORITY] [t/TAG]`
+
+* Edits the card at the specified `INDEX`.
+* The index refers to the index number shown in the displayed card list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least 1 updated card field must be provided for modification.
 
 
 ### Listing all cards : `list`
@@ -139,6 +151,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br> e.g., `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
+**Edit** | `edit INDEX` <br> e.g., `edit 3 a/NEW ANSWER p/NEW PRIORITY`
 **View** | `view INDEX` <br> e.g., `view 2`
 **Clear** | `clear`
 **List** | `list`
