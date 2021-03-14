@@ -5,15 +5,17 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
+    Predicate<Content> PREDICATE_SHOW_ALL_CONTENT = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,34 +37,17 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Returns the user prefs' dictionote book file path.
-     */
-//    Path getNoteBookFilePath();
-
-    /**
-     * Sets the user prefs' dictionote book file path.
-     */
-//    void setNoteBookFilePath(Path noteBookFilePath);
-
-    /**
-     * Replaces dictionote book data with the data in {@code noteBook}.
-     */
-//    void setNoteBook(ReadOnlyNoteBook noteBook);
-
     /** Returns the NoteBook */
     ReadOnlyNoteBook getNoteBook();
+
+    /** Returns the Dictionary */
+    ReadOnlyDictionary getDictionary();
 
     /**
      * Returns true if a note with the same content as {@code note} exists in the dictionote book.
      */
     boolean hasNote(Note note);
 
-    /**
-     * Deletes the given note.
-     * The person must exist in the dictionote book.
-     */
-//    void deleteNote(Note target);
 
     /**
      * Adds the given note.
@@ -70,37 +55,22 @@ public interface Model {
      */
     void addNote(Note note);
 
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the dictionote book.
-     * The person identity of {@code editedPerson} must not be the same as
-     * another existing person in tpersonhe dictionote book.
-     */
-//    void setNote(Note target, Note editedNote);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Note> getFilteredNoteList();
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Returns the user prefs' dictionote book file path.
      */
     Path getAddressBookFilePath();
     Path getNoteBookFilePath();
+    Path getDictionaryFilePath();
 
     /**
      * Sets the user prefs' dictionote book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
     void setNoteBookFilePath(Path noteBookFilePath);
+    void setDictionaryFilePath(Path getDictionaryFilePath);
 
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.
@@ -113,19 +83,27 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the dictionote book.
      */
-    boolean hasPerson(Person person);
+    boolean hasContact(Contact contact);
+
+    boolean hasContent(Content content);
 
     /**
      * Deletes the given person.
      * The person must exist in the dictionote book.
      */
-    void deletePerson(Person target);
+    void deleteContact(Contact target);
+
+    /**
+     * Deletes the given note.
+     * The note must exist in the dictionote book.
+     */
+    void deleteNote(Note target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the dictionote book.
      */
-    void addPerson(Person person);
+    void addContact(Contact contact);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -133,5 +111,32 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as
      * another existing person in the dictionote book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setContact(Contact target, Contact editedContact);
+
+
+    /**
+     * Replaces the given note {@code target} with {@code editedNote}.
+     * {@code target} must exist in the dictionote book.
+     */
+    void setNote(Note target, Note editedNote);
+
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Contact> getFilteredContactList();
+    ObservableList<Content> getFilteredContentList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredContactList(Predicate<Contact> predicate);
+
+    /**
+     * Updates the filter of the filtered note list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredNoteList(Predicate<Note> predicate);
+
+    void updateFilteredContentList(Predicate<Content> predicate);
+
 }

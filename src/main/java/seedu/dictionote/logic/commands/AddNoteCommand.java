@@ -1,31 +1,36 @@
 package seedu.dictionote.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
+import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
+
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
-
+/**
+ * Adds a note to the dictionote book.
+ */
 public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "addnote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a note to the dictionote book. "
             + "Parameters: "
             + PREFIX_CONTENT + "CONTENT "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_CONTENT + "I love you";
+            + PREFIX_CONTENT + "I love you"
+            + PREFIX_TAG + "CS2103 Test Tag";
 
     public static final String MESSAGE_SUCCESS = "New note added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This note already exists in the dictionote book";
 
     private final Note toAdd;
 
+    /** Initializes a command to add the given note
+     *
+     * @param note
+     */
     public AddNoteCommand(Note note) {
         requireNonNull(note);
         toAdd = note;

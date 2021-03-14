@@ -286,23 +286,24 @@ _{Explain here how the data archiving feature will be implemented}_
 
 (For all use cases below, the **System** is the `Dictionote` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Close Contact Panel**
+**Use case: UC01 - Close Panel**
 
 **MSS**
-1.  User requests to close Contact Panel
-2.  Dictionote close the Contact Panel
-    
+1.  User requests to close a specific display panel
+2.  Dictionote close the display Panel
+
     Use case ends.
 
 **Extensions**
 
-* 1a. Contact Panel is already closed.
+* 1a. The given display panel is invalid.
+    * 1a1. Dictionote shows an error message
 
-  Use case ends.
+      Use case ends.
 
 
 
-    
+
 **Use case: Delete a person**
 
 **MSS**

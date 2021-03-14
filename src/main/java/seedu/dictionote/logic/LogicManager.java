@@ -15,8 +15,9 @@ import seedu.dictionote.logic.parser.DictionoteParser;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.person.Person;
 import seedu.dictionote.storage.Storage;
 
 /**
@@ -49,8 +50,7 @@ public class LogicManager implements Logic {
         try {
             if (command instanceof AddNoteCommand) {
                 storage.saveNoteBook(model.getNoteBook());
-            }
-            else{
+            } else {
                 storage.saveAddressBook(model.getAddressBook());
             }
         } catch (IOException ioe) {
@@ -66,13 +66,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Contact> getFilteredContactList() {
+        return model.getFilteredContactList();
     }
 
     @Override
     public ObservableList<Note> getFilteredNoteList() {
         return model.getFilteredNoteList();
+    }
+
+    @Override
+    public ObservableList<Content> getFilteredContentList() {
+        return model.getFilteredContentList();
     }
 
     @Override

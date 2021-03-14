@@ -10,9 +10,10 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.commons.util.StringUtil;
 import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-import seedu.dictionote.model.person.Email;
-import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Phone;
+import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.Name;
+import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -72,6 +73,15 @@ public class ParserUtil {
      * @throws ParseException if the given {@code dictionote} is invalid.
      */
 
+    public static Address parseAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (!Address.isValidAddress(trimmedAddress)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Address(trimmedAddress);
+    }
+
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -123,6 +133,18 @@ public class ParserUtil {
     public static String parseNote(String noteContent) throws ParseException {
         requireNonNull(noteContent);
         String trimmedName = noteContent.trim();
+        return trimmedName;
+    }
+
+    /**
+     * Parses a {@code String dictionaryContent} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static String parseContent(String dictionaryContent) throws ParseException {
+        requireNonNull(dictionaryContent);
+        String trimmedName = dictionaryContent.trim();
         return trimmedName;
     }
 

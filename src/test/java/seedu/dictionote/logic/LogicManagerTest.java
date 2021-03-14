@@ -1,14 +1,14 @@
 package seedu.dictionote.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.dictionote.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.dictionote.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.dictionote.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.dictionote.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalPersons.AMY;
+import static seedu.dictionote.testutil.TypicalContacts.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,21 +17,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.dictionote.logic.commands.AddCommand;
+import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.CommandResult;
-import seedu.dictionote.logic.commands.ListCommand;
+import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.storage.JsonAddressBookStorage;
+import seedu.dictionote.storage.JsonDictionaryStorage;
 import seedu.dictionote.storage.JsonNoteBookStorage;
 import seedu.dictionote.storage.JsonUserPrefsStorage;
 import seedu.dictionote.storage.StorageManager;
-import seedu.dictionote.testutil.PersonBuilder;
+import seedu.dictionote.testutil.ContactBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -47,9 +48,12 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        JsonNoteBookStorage noteBookStorage = 
+        JsonNoteBookStorage noteBookStorage =
                 new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage);
+        JsonDictionaryStorage dictionaryStorage =
+                new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                noteBookStorage, dictionaryStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -61,14 +65,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteContactCommand = "deletecontact 9";
+        assertCommandException(deleteContactCommand, MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListContactCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListContactCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -78,24 +82,27 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        JsonNoteBookStorage noteBookStorage = 
+        JsonNoteBookStorage noteBookStorage =
                 new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage);
+        JsonDictionaryStorage dictionaryStorage =
+                new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                noteBookStorage, dictionaryStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddContactCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Contact expectedContact = new ContactBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addContact(expectedContact);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredContactList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredContactList().remove(0));
     }
 
     /**
@@ -134,7 +141,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getNoteBook());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getNoteBook(), model.getDictionary());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

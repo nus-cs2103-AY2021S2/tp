@@ -1,23 +1,31 @@
 package seedu.dictionote.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.note.UniqueNoteList;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
-public class NoteBook implements ReadOnlyNoteBook{
+/**
+ * Wraps all data at the notebook level
+ * Duplicates are not allowed (by .isSamePerson comparison)
+ */
+public class NoteBook implements ReadOnlyNoteBook {
     private final UniqueNoteList notes;
-    
+
     {
         notes = new UniqueNoteList();
     }
-    
+
     public NoteBook() {}
-    
+
+    /** Make a notebook
+     *
+     * @param toBeCopied ReadOnlyNotebook
+     */
+
     public NoteBook(ReadOnlyNoteBook toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -60,6 +68,15 @@ public class NoteBook implements ReadOnlyNoteBook{
         notes.add(n);
     }
 
+    public void deleteNote(Note n) {
+        notes.delete(n);
+    }
+
+    public void setNote(Note target, Note editedNote) {
+        requireNonNull(editedNote);
+        notes.setNote(target, editedNote);
+    }
+
     //// util methods
 
     @Override
@@ -84,5 +101,5 @@ public class NoteBook implements ReadOnlyNoteBook{
     public int hashCode() {
         return notes.hashCode();
     }
-    
+
 }

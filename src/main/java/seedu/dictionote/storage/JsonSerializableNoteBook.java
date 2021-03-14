@@ -9,12 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.dictionote.commons.exceptions.IllegalValueException;
-import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.NoteBook;
-import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.person.Person;
 
 /**
  * An Immutable NoteBook that is serializable to JSON format.

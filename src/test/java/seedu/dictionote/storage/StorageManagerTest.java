@@ -2,7 +2,7 @@ package seedu.dictionote.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.dictionote.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import java.nio.file.Path;
@@ -30,7 +30,8 @@ public class StorageManagerTest {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonNoteBookStorage noteBookStorage = new JsonNoteBookStorage(getTempFilePath("nb"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage);
+        JsonDictionaryStorage dictionaryStorage = new JsonDictionaryStorage(getTempFilePath("dc"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage, dictionaryStorage);
     }
 
     private Path getTempFilePath(String fileName) {

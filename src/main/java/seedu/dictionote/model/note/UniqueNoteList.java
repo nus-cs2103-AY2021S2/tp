@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.person.exceptions.DuplicatePersonException;
+import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
+import seedu.dictionote.model.contact.exceptions.NoteNotFoundException;
 
 /**
  * A list of notes that enforces uniqueness between its elements and does not allow nulls.
@@ -43,31 +43,18 @@ public class UniqueNoteList implements Iterable<Note> {
     public void add(Note toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateContactException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the note {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the list.
-     * The note identity of {@code editedNote} must not be the same as another existing note in the list.
+     * Deletes a note from the list.
      */
-//    public void setPerson(Person target, Person editedPerson) {
-//        requireAllNonNull(target, editedPerson);
-//
-//        int index = internalList.indexOf(target);
-//        if (index == -1) {
-//            throw new PersonNotFoundException();
-//        }
-//
-//        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-//            throw new DuplicatePersonException();
-//        }
-//
-//        internalList.set(index, editedPerson);
-//    }
-
+    public void delete(Note toRemove) {
+        requireNonNull(toRemove);
+        internalList.remove(toRemove);
+    }
 
     /**
      * Replaces the contents of this list with {@code notes}.
@@ -76,10 +63,22 @@ public class UniqueNoteList implements Iterable<Note> {
     public void setNotes(List<Note> notes) {
         requireAllNonNull(notes);
         if (!notesAreUnique(notes)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateContactException();
         }
 
         internalList.setAll(notes);
+    }
+
+
+    public void setNote(Note target, Note editedNote) {
+        requireAllNonNull(target, editedNote);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new NoteNotFoundException();
+        }
+
+        internalList.set(index, editedNote);
     }
 
     /**

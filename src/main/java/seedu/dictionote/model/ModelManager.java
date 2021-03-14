@@ -11,8 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
-import seedu.dictionote.model.person.Person;
 
 /**
  * Represents the in-memory model of the dictionote book data.
@@ -22,31 +23,36 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Note> filteredNote;
     private final NoteBook noteBook;
+    private final FilteredList<Contact> filteredContacts;
+    private final Dictionary dictionary;
+    private final FilteredList<Content> filteredContent;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyNoteBook noteBook) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary) {
         super();
         requireAllNonNull(addressBook, userPrefs, noteBook);
 
-        logger.fine("Initializing with dictionote book: " + addressBook + 
-                " and user prefs " + userPrefs + 
-                "and note book" + noteBook);
+        logger.fine("Initializing with dictionote book: " + addressBook
+                + " and user prefs " + userPrefs
+                + " and note book " + noteBook
+                + " and dictionary content " + dictionary);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.noteBook = new NoteBook(noteBook);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.dictionary = new Dictionary(dictionary);
         filteredNote = new FilteredList<>(this.noteBook.getNoteList());
-
+        filteredContacts = new FilteredList<>(this.addressBook.getContactList());
+        filteredContent = new FilteredList<>(this.dictionary.getContentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new NoteBook());
+        this(new AddressBook(), new UserPrefs(), new NoteBook(), new Dictionary());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -94,6 +100,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(noteBookFilePath);
     }
 
+    @Override
+    public Path getDictionaryFilePath() {
+        return userPrefs.getDictionaryFilePath();
+    }
+
+    @Override
+    public void setDictionaryFilePath(Path dictionaryFilePath) {
+        requireNonNull(dictionaryFilePath);
+        userPrefs.setAddressBookFilePath(dictionaryFilePath);
+    }
+
     //=========== NoteBook ===================================================================================
     @Override
     public boolean hasNote(Note note) {
@@ -104,15 +121,38 @@ public class ModelManager implements Model {
     @Override
     public void addNote(Note note) {
         noteBook.addNote(note);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+    }
+
+    @Override
+    public void deleteNote(Note note) {
+        noteBook.deleteNote(note);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     @Override
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
     }
-    
-    
+
+    @Override
+    public void setNote(Note target, Note editedContact) {
+        requireAllNonNull(target, editedContact);
+        noteBook.setNote(target, editedContact);
+    }
+
+    //=========== Dictionary ===================================================================================
+    @Override
+    public boolean hasContent(Content content) {
+        requireNonNull(content);
+        return dictionary.hasContent(content);
+    }
+
+    @Override
+    public ReadOnlyDictionary getDictionary() {
+        return dictionary;
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -126,27 +166,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return addressBook.hasContact(contact);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteContact(Contact target) {
+        addressBook.removeContact(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addContact(Contact contact) {
+        addressBook.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setContact(Contact target, Contact editedContact) {
+        requireAllNonNull(target, editedContact);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setContact(target, editedContact);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -156,8 +196,8 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
     }
 
     @Override
@@ -166,9 +206,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public ObservableList<Content> getFilteredContentList() {
+        return filteredContent;
+    }
+
+    @Override
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredContacts.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredNoteList(Predicate<Note> predicate) {
+        requireNonNull(predicate);
+        filteredNote.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredContentList(Predicate<Content> predicate) {
+        requireNonNull(predicate);
+        filteredContent.setPredicate(predicate);
     }
 
     @Override
@@ -187,7 +244,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredContacts.equals(other.filteredContacts);
     }
-
 }
