@@ -83,6 +83,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String residence} into a {@code SchoolResidence}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code residence} is invalid.
+     */
+    public static SchoolResidence parseResidence(String residence) throws ParseException {
+        requireNonNull(residence);
+        String trimmedResidence = residence.trim();
+        if (!SchoolResidence.isValidResidence(trimmedResidence)) {
+            throw new ParseException(SchoolResidence.MESSAGE_CONSTRAINTS);
+        }
+        return new SchoolResidence(trimmedResidence);
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *

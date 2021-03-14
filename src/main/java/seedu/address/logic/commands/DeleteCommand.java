@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * @param personList List of persons currently shown in the GUI.
+     * @param personList List of all students in Vax@NUS system.
      * @param matricNum Matriculation Number of the student you want to delete.
      * @return Person you want to delete, null if the matriculation number does not exist in System.
      */
@@ -57,9 +57,9 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> studentList = model.getAddressBook().getPersonList();
 
-        Person personToDelete = getPerson(lastShownList, matriculationNumber);
+        Person personToDelete = getPerson(studentList, matriculationNumber);
         if (personToDelete == null) {
             throw new CommandException(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
         }
