@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -11,6 +15,8 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    private final ObservableList<Person> tutorsToView;
+
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
@@ -20,8 +26,9 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, ObservableList<Person> tutorToView, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.tutorsToView = tutorToView;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -31,12 +38,18 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, null, false, false);
+    }
+
+    public CommandResult(String feedbackToUser, ObservableList<Person> tutorsToView) {
+        this(feedbackToUser, tutorsToView, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
+
+    public ObservableList<Person> getTutorsToView() { return tutorsToView;}
 
     public boolean isShowHelp() {
         return showHelp;
@@ -59,13 +72,14 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && tutorsToView.equals(otherCommandResult.tutorsToView)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, tutorsToView, showHelp, exit);
     }
 
 }
