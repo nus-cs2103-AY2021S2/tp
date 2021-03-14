@@ -9,6 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionId;
 
 public class DeleteSessionCommand extends Command {
 
@@ -21,13 +22,13 @@ public class DeleteSessionCommand extends Command {
 
     public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: Session ID: %1$s";
 
-    private final String targetClassId;
+    private final SessionId targetClassId;
 
-    public DeleteSessionCommand(String targetClassId) {
+    public DeleteSessionCommand(SessionId targetClassId) {
         this.targetClassId = targetClassId;
     }
 
-    public String getTargetClassId() {
+    public SessionId getTargetClassId() {
         return targetClassId;
     }
 

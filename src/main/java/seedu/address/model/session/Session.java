@@ -18,10 +18,10 @@ public class Session {
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
     public static final String VALIDATION_REGEX = " [c][\\/]\\d";
-    private static int sessionCount = 1;
+    private static int sessionCount = 0;
 
 
-    private final String classId;
+    private final SessionId classId;
     private final Day day;
     private final Timeslot timeslot;
     private final Subject subject;
@@ -35,7 +35,7 @@ public class Session {
     public Session(Day day, Timeslot timeslot, Subject subject, Set<Tag> tags) {
         sessionCount++;
         requireAllNonNull(day, timeslot, subject);
-        this.classId = "c/" + sessionCount;
+        this.classId = new SessionId(sessionCount);
         this.day = day;
         this.timeslot = timeslot;
         this.subject = subject;
@@ -50,7 +50,7 @@ public class Session {
      * @param subject
      * @param tags
      */
-    public Session(String classId, Day day, Timeslot timeslot, Subject subject, Set<Tag> tags) {
+    public Session(SessionId classId, Day day, Timeslot timeslot, Subject subject, Set<Tag> tags) {
         this.classId = classId;
         this.day = day;
         this.timeslot = timeslot;
@@ -58,7 +58,14 @@ public class Session {
         this.tags.addAll(tags);
     }
 
-    public String getClassId() {
+    public static void setSessionCount(String storedSessionCount) {
+        sessionCount = Integer.valueOf(storedSessionCount);
+    }
+
+    public static String getSessionCount() {
+        return String.valueOf(sessionCount);
+    }
+    public SessionId getClassId() {
         return classId;
     }
 
@@ -110,14 +117,6 @@ public class Session {
     }
 
     /**
-     * Returns true if a given string is a valid session ID.
-     */
-    public static boolean isValidSessionId(String test) {
-        System.out.println(test);
-        return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
      * Returns true if both sessions have the same session ID and data fields.
      * This defines a stronger notion of equality between two sessions.
      */
@@ -144,7 +143,8 @@ public class Session {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(this.getClassId())
+        builder.append(" Session ID: ")
+                .append(this.getClassId())
                 .append("; Subject: ")
                 .append(this.getSubject())
                 .append("; Day: ")

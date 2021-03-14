@@ -22,13 +22,16 @@ class JsonSerializableSession {
     public static final String MESSAGE_DUPLICATE_SESSION = "Session list contains duplicate session(s).";
 
     private final List<JsonAdaptedSession> sessions = new ArrayList<>();
+    private final String sessionCounter;
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableSession(@JsonProperty("sessions") List<JsonAdaptedSession> sessions) {
+    public JsonSerializableSession(@JsonProperty("sessions") List<JsonAdaptedSession> sessions, @JsonProperty("sessionCounter") String sessionCounter) {
         this.sessions.addAll(sessions);
+        Session.setSessionCount(sessionCounter);
+        this.sessionCounter = sessionCounter;
     }
 
     /**
@@ -38,6 +41,7 @@ class JsonSerializableSession {
      */
     public JsonSerializableSession(ReadOnlyAddressBook source) {
         sessions.addAll(source.getSessionList().stream().map(JsonAdaptedSession::new).collect(Collectors.toList()));
+        sessionCounter = Session.getSessionCount();
     }
 
     /**

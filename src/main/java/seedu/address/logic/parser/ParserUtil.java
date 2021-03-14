@@ -14,10 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
-import seedu.address.model.session.Day;
-import seedu.address.model.session.Session;
-import seedu.address.model.session.Subject;
-import seedu.address.model.session.Timeslot;
+import seedu.address.model.session.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -197,12 +194,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static String parseSessionId(String sessionId) throws ParseException {
+    public static SessionId parseSessionId(String sessionId) throws ParseException {
         requireNonNull(sessionId);
-        String trimmedClassId = sessionId.trim();
-        if (!Session.isValidSessionId(sessionId)) {
+        String trimmedSessionId = sessionId.trim();
+        if (!SessionId.isValidSessionId(sessionId)) {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
-        return trimmedClassId;
+        return new SessionId(trimmedSessionId);
     }
 }

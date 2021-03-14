@@ -10,10 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.session.Day;
-import seedu.address.model.session.Session;
-import seedu.address.model.session.Subject;
-import seedu.address.model.session.Timeslot;
+import seedu.address.model.session.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,7 +46,7 @@ class JsonAdaptedSession {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedSession(Session source) {
-        classId = source.getClassId();
+        classId = source.getClassId().toString();
         day = source.getDay().toString();
         timeslot = source.getTimeslot().toString();
         subject = source.getSubject().subject;
@@ -72,7 +69,7 @@ class JsonAdaptedSession {
         if (classId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "class Id"));
         }
-        final String classId = this.classId;
+        final SessionId modelClassId = new SessionId(classId);
 
         if (day == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName()));
@@ -98,7 +95,7 @@ class JsonAdaptedSession {
         }
         final Subject modelSubject = new Subject(subject);
         final Set<Tag> modelTags = new HashSet<>(sessionTags);
-        return new Session(classId, modelDay, modelTimeslot, modelSubject, modelTags);
+        return new Session(modelClassId, modelDay, modelTimeslot, modelSubject, modelTags);
     }
 
 }

@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.DeleteSessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.session.SessionId;
 
 public class DeleteSessionCommandParser implements Parser<DeleteSessionCommand> {
 
@@ -14,7 +15,7 @@ public class DeleteSessionCommandParser implements Parser<DeleteSessionCommand> 
      */
     public DeleteSessionCommand parse(String args) throws ParseException {
         try {
-            String targetClassId = ParserUtil.parseSessionId(args);
+            SessionId targetClassId = ParserUtil.parseSessionId(args);
             return new DeleteSessionCommand(targetClassId);
         } catch (ParseException pe) {
             throw new ParseException(
