@@ -1,21 +1,21 @@
 package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
+import seedu.address.model.appointment.exceptions.OverlappingAppointmentException;
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
- * An appointment is considered unique by comparing using {@code Appointment#isSameAppointment(Appointment)}. As such, adding and updating of
- * appointments uses Appointment#isSameAppointment(Appointment) for equality so as to ensure that the appointment being added or updated is
- * unique in terms of identity in the UniqueAppointmentList. However, the removal of an appointment uses Appointment#equals(Object) so
+ * An appointment is considered unique by comparing using {@code Appointment#isSameAppointment(Appointment)}.
+ * As such, adding and updating of appointments uses Appointment#isSameAppointment(Appointment) for equality so as to
+ * ensure that the appointment being added or updated is unique in terms of identity in the UniqueAppointmentList.
+ * However, the removal of an appointment uses Appointment#equals(Object) so
  * as to ensure that the appointment with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -29,13 +29,16 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent appointment as the given argument.
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameAppointment);
     }
 
+    /**
+     * Returns true if the list contains an appointment that overlaps with the given argument.
+     */
     public boolean hasOverlappingAppointment(Appointment toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::doesTimeOverlap);

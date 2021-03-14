@@ -78,9 +78,9 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        for (int i = 0 ; i < 2 ; i++) {
+        for (int i = 0; i < 2; i++) {
             ColumnConstraints cc = new ColumnConstraints();
-            cc.setPercentWidth(100.0/2.0);
+            cc.setPercentWidth(100.0 / 2.0);
             cc.setHgrow(Priority.ALWAYS);
             dataDisplayContainer.getColumnConstraints().add(cc);
         }

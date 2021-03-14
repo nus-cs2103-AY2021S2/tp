@@ -98,23 +98,40 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
     //// appointment-level operations
 
+    /**
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the address book.
+     */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointments.contains(appointment);
     }
 
+    /**
+     * Returns true if an appointment with overlapping time with {@code appointment} exists in the address book.
+     */
     public boolean hasOverlappingAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointments.hasOverlappingAppointment(appointment);
     }
 
+    /**
+     * Adds an appointment to the address book.
+     * The appointment must not already exist in the address book.
+     */
     public void addAppointment(Appointment a) {
         appointments.add(a);
         System.out.println(getAppointmentList());
     }
 
+    /**
+     * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
+     * {@code target} must exist in the address book.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing
+     * appointment in the address book.
+     */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
 
@@ -135,7 +152,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Appointment> getAppointmentList() { return appointments.asUnmodifiableObservableList(); }
+    public ObservableList<Appointment> getAppointmentList() {
+        return appointments.asUnmodifiableObservableList();
+    }
 
     @Override
     public boolean equals(Object other) {

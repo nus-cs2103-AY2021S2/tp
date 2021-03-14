@@ -26,7 +26,8 @@ public class Appointment {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(MatriculationNumber matriculationNumber, LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public Appointment(MatriculationNumber matriculationNumber, LocalDate date, LocalTime startTime,
+                       LocalTime endTime) {
         requireAllNonNull(matriculationNumber, date, startTime, endTime);
         this.matriculationNumber = matriculationNumber;
         this.date = date;
@@ -46,7 +47,9 @@ public class Appointment {
         return endTime;
     }
 
-    public MatriculationNumber getMatriculationNumber() { return matriculationNumber; }
+    public MatriculationNumber getMatriculationNumber() {
+        return matriculationNumber;
+    }
 
     /**
      * Returns true if both appointments have the matriculation number.
@@ -60,6 +63,9 @@ public class Appointment {
         return otherAppointment != null && otherAppointment.matriculationNumber.equals(matriculationNumber);
     }
 
+    /**
+     * Returns true if appointments overlap.
+     */
     public boolean doesTimeOverlap(Appointment otherAppointment) {
         if (otherAppointment == this) {
             return true;
