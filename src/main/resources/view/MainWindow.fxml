@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root minHeight="200.0" minWidth="400.0" onCloseRequest="#handleExit" title="Dictionote" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="200.0" minWidth="200.0" onCloseRequest="#handleExit" title="Dictionote" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -28,16 +28,16 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <SplitPane fx:id="contactSplitPanel" dividerPositions="0.0" VBox.vgrow="ALWAYS">
+            <SplitPane fx:id="contactSplitPanel" dividerPositions="0.25" VBox.vgrow="ALWAYS">
               <items>
-                <AnchorPane fx:id="contactDisplay" minHeight="0.0" minWidth="0.0" prefWidth="100.0" visible="false" SplitPane.resizableWithParent="false">
+                <AnchorPane fx:id="contactDisplay" minHeight="0.0" minWidth="100.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                      <children>
 
-                    <VBox fx:id="personList" minWidth="100.0" prefWidth="100.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <VBox minWidth="100.0" prefWidth="100.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                       </padding>
-                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                      <StackPane fx:id="contactListPanelPlaceholder" VBox.vgrow="ALWAYS" />
 
                        <StackPane fx:id="statusbarPlaceholder" />
                     </VBox>
