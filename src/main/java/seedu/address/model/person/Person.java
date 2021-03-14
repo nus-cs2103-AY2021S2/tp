@@ -33,7 +33,20 @@ public class Person {
     private final List<Event> meetings = new ArrayList<>();
 
     /**
-     * Every field must be present and not null.
+     * Bare minimum fields to create a Person. Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, Set<Tag> tags) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.birthday = birthday;
+        this.address = address;
+        this.picture = null;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Used for immutable editing
      */
     public Person(Name name, Phone phone, Email email, Birthday birthday, Address address, Picture picture,
             Set<Tag> tags, List<Event> dates, List<Event> meetings) {

@@ -8,4 +8,8 @@ public class Picture {
     public Picture(Path filePath) {
         this.filePath = filePath;
     }
+
+    public Path getFilePath() {
+        return filePath;
+    }
 }
