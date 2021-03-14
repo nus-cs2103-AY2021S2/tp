@@ -8,11 +8,26 @@ import java.util.List;
 
 public class Faculty {
 
-    private static final List<String> listFaculty = Arrays.asList("FASS", "BIZ", "COM", "SCALE", "DEN", "SDE", "DNUS",
+    public enum FacultyAbbreviation {
+        FASS, BIZ, COM, SCALE, DEN, SDE, DNUS, ENG, ISEP, LAW, MED, MUSIC, SPH, SPP, SCI, USP, YNC
+    }
+
+    public static final List<FacultyAbbreviation> LIST_FACULTY = Arrays.asList(FacultyAbbreviation.FASS,
+            FacultyAbbreviation.BIZ, FacultyAbbreviation.COM, FacultyAbbreviation.SCALE, FacultyAbbreviation.DEN,
+            FacultyAbbreviation.SDE, FacultyAbbreviation.DNUS, FacultyAbbreviation.ENG, FacultyAbbreviation.ISEP,
+            FacultyAbbreviation.LAW, FacultyAbbreviation.MED, FacultyAbbreviation.MUSIC, FacultyAbbreviation.SPH,
+            FacultyAbbreviation.SPP, FacultyAbbreviation.SCI, FacultyAbbreviation.USP, FacultyAbbreviation.YNC);
+
+
+    private static final String stringFaculties = "\"FASS\", \"BIZ\", \"COM\", \"SCALE\", \"DEN\", \"SDE\", \"DNUS\",\n"
+            + "\"ENG\", \"ISEP\", \"LAW\", \"MED\", \"MUSIC\", \"SPH\", \"SPP\", \"SCI\", \"USP\", \"YNC\"";
+
+    private static final List<String> listFaculties = Arrays.asList("FASS", "BIZ", "COM", "SCALE", "DEN", "SDE", "DNUS",
             "ENG", "ISEP", "LAW", "MED", "MUSIC", "SPH", "SPP", "SCI", "USP", "YNC");
 
     public static final String MESSAGE_CONSTRAINTS = "The faculty entered should be one of the following: \n"
-            + listFaculty.toString();
+            + LIST_FACULTY.toString();
+
 
     public final String value;
 
@@ -27,6 +42,14 @@ public class Faculty {
         value = faculty;
     }
 
+    public static String getStringFaculties() {
+        return stringFaculties;
+    }
+
+    public static List<String> getListFaculties() {
+        return listFaculties;
+    }
+
     /**
      * Returns true if the given string is a valid faculty.
      *
@@ -34,7 +57,11 @@ public class Faculty {
      * @return true if test is a valid faculty, false otherwise.
      */
     public static boolean isValidFaculty(String test) {
-        return listFaculty.contains(test.toUpperCase());
+        try {
+            return LIST_FACULTY.contains(FacultyAbbreviation.valueOf(test.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     @Override
