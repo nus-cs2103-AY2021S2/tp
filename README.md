@@ -3,8 +3,8 @@
 ![Ui](docs/images/Ui.png)
 
 # iSCAM
-Welcome to iSCAM, your new client management app. It helps catalogue and manage your clients' information, including upcoming 
-appointments with them, and allows you to retrieve these data efficiently. iSCAM also presents your daily scheduled appointments 
+Welcome to iSCAM, your new client management app. It helps catalogue and manage your clients' information, including upcoming
+appointments with them, and allows you to retrieve these data efficiently. iSCAM also presents your daily scheduled appointments
 in a one-page solution, where you can easily see your schedule for the day.
 
 ## For Users
