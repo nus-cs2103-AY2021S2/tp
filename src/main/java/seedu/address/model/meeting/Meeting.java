@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +20,7 @@ import seedu.address.model.tag.Tag;
 public class Meeting {
     // Identity fields
     private Client client;
+    private Name name;
     private LocalDateTime dateTime;
 
     // Data fields
@@ -33,6 +35,20 @@ public class Meeting {
     public Meeting(Client client, LocalDateTime dateTime, Address address, Description description, Set<Tag> tags) {
         requireAllNonNull(client, dateTime, address, description, tags);
         this.client = client;
+        this.dateTime = dateTime;
+
+        this.address = address;
+        this.description = description;
+        this.tags = tags;
+        this.isDone = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Meeting(Name name, LocalDateTime dateTime, Address address, Description description, Set<Tag> tags) {
+        requireAllNonNull(name, dateTime, address, description, tags);
+        this.name = name;
         this.dateTime = dateTime;
 
         this.address = address;
@@ -56,6 +72,8 @@ public class Meeting {
     public Description getDescription() {
         return description;
     }
+
+    public boolean getIsDone() { return isDone; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
