@@ -1,6 +1,5 @@
 package seedu.dictionote.logic.commands;
 
-import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.model.Model;
 
 /**
