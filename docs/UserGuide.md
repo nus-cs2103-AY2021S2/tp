@@ -39,7 +39,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 - Deleting a client : `delete`
 - Exiting the program : `exit`
 - Locking ClientBook: `lock`
-- Unlocking ClientBook: `unlock`  
+- Unlocking ClientBook: `unlock`
 - Saving the data
 
 --------------------------------------------------------------------------------------------------------------------
