@@ -14,8 +14,11 @@ import java.util.stream.Stream;
 
 import seedu.iScam.logic.commands.AddMeetingCommand;
 import seedu.iScam.logic.parser.exceptions.ParseException;
-import seedu.iScam.model.client.*;
+import seedu.iScam.model.client.Client;
+import seedu.iScam.model.client.Email;
 import seedu.iScam.model.client.Location;
+import seedu.iScam.model.client.Name;
+import seedu.iScam.model.client.Phone;
 import seedu.iScam.model.meeting.Description;
 import seedu.iScam.model.meeting.Meeting;
 import seedu.iScam.model.tag.Tag;

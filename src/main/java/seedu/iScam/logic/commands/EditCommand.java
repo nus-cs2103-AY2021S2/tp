@@ -19,8 +19,11 @@ import seedu.iScam.commons.core.index.Index;
 import seedu.iScam.commons.util.CollectionUtil;
 import seedu.iScam.logic.commands.exceptions.CommandException;
 import seedu.iScam.model.Model;
-import seedu.iScam.model.client.*;
+import seedu.iScam.model.client.Client;
+import seedu.iScam.model.client.Email;
 import seedu.iScam.model.client.Location;
+import seedu.iScam.model.client.Name;
+import seedu.iScam.model.client.Phone;
 import seedu.iScam.model.tag.Tag;
 
 /**

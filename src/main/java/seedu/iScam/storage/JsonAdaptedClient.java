@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.iScam.commons.exceptions.IllegalValueException;
-import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Client;
 import seedu.iScam.model.client.Email;
+import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Name;
 import seedu.iScam.model.client.Phone;
 import seedu.iScam.model.tag.Tag;
@@ -95,9 +95,10 @@ class JsonAdaptedClient {
         final Email modelEmail = new Email(email);
 
         if (location == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Location.class.getSimpleName()));
         }
-        if (! Location.isValidLocation(location)) {
+        if (!Location.isValidLocation(location)) {
             throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
         final Location modelLocation = new Location(location);

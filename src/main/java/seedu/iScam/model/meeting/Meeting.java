@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Client;
+import seedu.iScam.model.client.Location;
 import seedu.iScam.model.tag.Tag;
 
 /**
