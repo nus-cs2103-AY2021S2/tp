@@ -6,12 +6,12 @@ public class SessionId {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
-    public static final String VALIDATION_REGEX = " [c][\\/]\\d";
+    public static final String VALIDATION_REGEX = " [c][/]\\d";
 
-    public final String sessionId;
+    private final String sessionId;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code SessionId} from {Integer id}.
      *
      * @param id A valid ID.
      */
@@ -20,6 +20,11 @@ public class SessionId {
         sessionId = "c/" + id;
     }
 
+    /**
+     * Constructs a {@code SessionId} from {String id}.
+     *
+     * @param id A valid ID.
+     */
     public SessionId(String id) {
         requireNonNull(id);
         sessionId = id;
