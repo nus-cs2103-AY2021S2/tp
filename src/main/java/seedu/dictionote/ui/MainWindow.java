@@ -346,11 +346,6 @@ public class MainWindow extends UiPart<Stage> {
         setupDisplayPanel();
         commandBox.requestFocus();
 
-        resultDisplay.setFeedbackToUser(logic.getGuiSettings().getContactSplitRatio() + ":"
-                + logic.getGuiSettings().getDictionarySplitRatio() + ":"
-                + logic.getGuiSettings().getNoteSplitRatio() + ":"
-                + logic.getGuiSettings().getMainSplitRatio());
-
         addSplitPaneListener();
     }
 
