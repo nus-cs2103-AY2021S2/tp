@@ -21,6 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
+import seedu.address.model.util.History;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -148,6 +150,29 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Plan> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public History getHistory() throws CommandException {
+            return null;
+        }
+
+        @Override
+        public Plan getMasterPlan() throws CommandException {
+            return null;
+        }
+
+        @Override
+        public Semester getCurrentSemester() throws CommandException {
+            return null;
+        }
+
+        @Override
+        public void setCurrentSemester(int currentSemesterNumber) throws CommandException {
+        }
+
+        @Override
+        public void setMasterPlan(Plan plan) throws CommandException {
         }
     }
 

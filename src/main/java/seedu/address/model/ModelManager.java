@@ -11,7 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
+import seedu.address.model.util.History;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +26,13 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Plan> filteredPlans;
+
+    private boolean hasMasterPlan = false;
+    private boolean hasCurrentSemester = false;
+
+    private History history;
+    private Plan masterPlan;
+    private int currentSemesterNumber; // Semesters are indexed by ID
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -127,6 +138,82 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Plan> predicate) {
         requireNonNull(predicate);
         filteredPlans.setPredicate(predicate);
+    }
+
+    @Override
+    public History getHistory() throws CommandException {
+        if (history == null) {
+            history = createHistory();
+        }
+        return history;
+    }
+
+    private History createHistory() throws CommandException {
+        if (!hasMasterPlan) {
+            throw new CommandException("You must set a master plan first!");
+        }
+        if (!hasCurrentSemester) {
+            throw new CommandException("You must set a current semester first!");
+        }
+        return new History(getMasterPlan(), getCurrentSemester());
+    }
+
+    @Override
+    public Plan getMasterPlan() throws CommandException {
+        if (!hasMasterPlan) {
+            throw new CommandException("You must set a master plan first!");
+        }
+
+        return masterPlan;
+    }
+
+    @Override
+    public Semester getCurrentSemester() throws CommandException {
+        if (!hasCurrentSemester) {
+            throw new CommandException("You must set a current semester first!");
+        }
+
+        Semester currentSem = null;
+        for (Semester semester : getMasterPlan().getSemesters()) {
+            if (semester.getSemNumber() == currentSemesterNumber) {
+                currentSem = semester;
+                break;
+            }
+        }
+
+        // If the currentSem is still null it is possible that currentSemesterNumber no longer
+        // matches any existing semesters, suggesting it may have been deleted.
+        if (currentSem == null) {
+            hasCurrentSemester = false;
+            throw new CommandException("Set the current semester again, it may have been removed or deleted.");
+        }
+        return currentSem;
+    }
+
+    @Override
+    public void setCurrentSemester(int currentSemesterNumber) throws CommandException {
+        Plan masterPlan = getMasterPlan();
+        int maxSemesterNumber = 0;
+        for (Semester semester : masterPlan.getSemesters()) {
+            if (semester.getSemNumber() > maxSemesterNumber) {
+                maxSemesterNumber = semester.getSemNumber();
+            }
+        }
+
+        if (currentSemesterNumber <= 0 || currentSemesterNumber > maxSemesterNumber) {
+            String semNumOutOfBounds = "The argument provided to current semester must be between 1 and " +
+                    maxSemesterNumber;
+            throw new CommandException(semNumOutOfBounds);
+        }
+
+        this.currentSemesterNumber = currentSemesterNumber;
+        this.hasCurrentSemester = true;
+    }
+
+    @Override
+    public void setMasterPlan(Plan plan) {
+        this.masterPlan = plan;
+        this.hasMasterPlan = true;
     }
 
     @Override

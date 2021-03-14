@@ -45,6 +45,10 @@ public class Plan {
         return description;
     }
 
+    public List<Semester> getSemesters() {
+        return List.copyOf(semesters);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

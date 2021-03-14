@@ -5,7 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
+import seedu.address.model.util.History;
 
 /**
  * The API of the Model component.
@@ -84,4 +87,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Plan> predicate);
+
+    History getHistory() throws CommandException;
+
+    Plan getMasterPlan() throws CommandException;
+
+    Semester getCurrentSemester() throws CommandException;
+
+    void setCurrentSemester(int currentSemesterNumber) throws CommandException;
+
+    void setMasterPlan(Plan plan) throws CommandException;
 }

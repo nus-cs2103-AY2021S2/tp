@@ -140,9 +140,6 @@ Marks the given plan as the master plan, and this plan should contain all the mo
 Example output:
 [IMG]
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 ## Semester commands
 
 ### Show the number of MCs the user is currently taking: `show MCs`
@@ -173,8 +170,8 @@ Constraints:
 * Trying to delete a semester that does not exist will not be allowed
 
 
-### Set Semester as in-progress: `semester current`
-Format: `sem s/SEM_NUMBER current/`
+### Set Semester as in-progress: `current semester`
+Format: `current s/SEM_NUMBER`
 
 Marks the supplied semester as the current semester of the master plan.
 This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
@@ -216,7 +213,6 @@ The details to output are as follows:
 * Semester number
 * Module code
 
-=======
 ## Semester commands
 
 ### Show the number of MCs the user is currently taking: `show MCs`
@@ -299,13 +295,11 @@ Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
 
 ### View module info: `info`
-=======
 Format: `info m/MODULE_CODE`    
 > Tip: A user can also add a module to a plan/semester (See `add/delete`)  
 
-By default, this command takes in one optional argument, `MODULE_CODE`,
-=======
-Format: `info m/MODULE_CODE`
+By default, this command takes in one optional argument, `MODULE_CODE`  
+Format: `info m/MODULE_CODE`  
 Tip: A user can also add a module to a plan/semester (See `add/delete`)
 By default, this command takes in one optional argument, `MODULE_CODE`,
 and outputs the module information including:  
