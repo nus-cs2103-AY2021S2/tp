@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.human.person.IsAssignedDriverPredicate;
 import seedu.address.model.human.person.Person;
 
 /**
@@ -121,6 +122,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Person> getFilteredPersonListByDriverStatus(Boolean isAssigned) {
+        return filteredPersons.filtered(new IsAssignedDriverPredicate(isAssigned));
     }
 
     @Override

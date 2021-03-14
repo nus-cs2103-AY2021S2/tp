@@ -10,9 +10,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Address App" minWidth="820" minHeight="800" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -45,12 +49,30 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        <VBox VBox.vgrow="ALWAYS">
+          <GridPane VBox.vgrow="ALWAYS">
+            <columnConstraints>
+              <ColumnConstraints percentWidth="50" />
+              <ColumnConstraints percentWidth="50" />
+            </columnConstraints>
+            <rowConstraints>
+              <RowConstraints percentHeight="100" />
+            </rowConstraints>
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" fx:id="personList" styleClass="pane-with-border" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <children>
+              <StackPane fx:id="freePersonListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </children>
+            </VBox>
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="pane-with-border" HBox.hgrow="ALWAYS" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <StackPane fx:id="takenPersonListPanelPlaceholder" />
+            </VBox>
+          </GridPane>
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
