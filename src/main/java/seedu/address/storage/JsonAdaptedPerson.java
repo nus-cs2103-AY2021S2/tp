@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -23,7 +22,6 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String birthday;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -31,7 +29,6 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name,
-            @JsonProperty("birthday") String birthday,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.birthday = birthday;
         this.name = name;
@@ -45,7 +42,6 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        birthday = source.getBirthday().getBirthday().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -71,20 +67,8 @@ class JsonAdaptedPerson {
 
         final Name modelName = new Name(name);
 
-        if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Birthday.class.getSimpleName()));
-        }
-
-        if (!Birthday.isValidBirthday(birthday)) {
-            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
-        }
-
-        final Birthday modelBirthday = new Birthday(birthday);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-
-        return new Person(modelName, modelBirthday, modelTags);
+        return new Person(modelName, modelTags);
     }
 
 }

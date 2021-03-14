@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -17,17 +16,17 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Birthday("1999-12-12"),
+            new Person(new Name("Alex Yeoh"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Birthday("1998-10-05"),
+            new Person(new Name("Bernice Yu"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Birthday("2001-01-07"),
+            new Person(new Name("Charlotte Oliveiro"),
                 getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Birthday("1965-09-07"),
+            new Person(new Name("David Li"),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Birthday("1983-05-04"),
+            new Person(new Name("Irfan Ibrahim"),
                 getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Birthday("1977-11-11"),
+            new Person(new Name("Roy Balakrishnan"),
                 getTagSet("colleagues"))
         };
     }

@@ -17,26 +17,20 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Birthday birthday;
 
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Birthday birthday, Set<Tag> tags) {
-        requireAllNonNull(name, birthday, tags);
+    public Person(Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
         this.name = name;
-        this.birthday = birthday;
         this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
-    }
-
-    public Birthday getBirthday() {
-        return birthday;
     }
 
     /**
@@ -76,7 +70,6 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getBirthday().equals(getBirthday())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -89,9 +82,7 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Birthday:")
-                .append(getBirthday());
+        builder.append(getName());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
