@@ -1,27 +1,28 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.FacultyContainsKeywords;
+import seedu.address.model.person.SchoolResidenceContainsKeywords;
+import seedu.address.model.person.VaccinationStatusContainsKeywords;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
-    private static final List<String> VaccinatedStatus = Arrays.asList("vaccinated", "unvaccinated");
+    private static final List<String> VACCINATED_STATUS = Arrays.asList("vaccinated", "unvaccinated");
+
     private static final List<String> FACULTY = Arrays.asList("FASS", "BIZ", "COM", "SCALE", "DEN", "SDE", "DNUS",
-            "ENG", "ISEP", "LAW", "MED", "MUSIC", "SPH", "SPP", "SCI", "USP", "YNC");
-    ;
+            "ENG", "ISEP", "LAW", "MED", "MUSIC", "SPH", "SPP", "SCI", "USP", "YNC");;
+
     private static final List<String> SCHOOL_RESIDENCE = Arrays.asList("PGPH", "PGPR", "KE7H", "SH", "KRH", "TH", "EH",
             "RH", "RVRC", "YNC", "TC", "CAPT", "RC4", "USP", "UTR", "DOES NOT LIVE ON CAMPUS");
-
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
@@ -31,14 +32,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
 
-        String filter_condition = args.trim();
+        String condition = args.trim();
 
-        if (VaccinatedStatus.contains(filter_condition)) {
-            return new FilterCommand(new VaccinationStatusContainsKeywords(filter_condition));
-        } else if (FACULTY.contains(filter_condition)) {
-            return new FilterCommand(new FacultyContainsKeywords(filter_condition));
-        } else if (SCHOOL_RESIDENCE.contains(filter_condition)) {
-            return new FilterCommand(new SchoolResidenceContainsKeywords(filter_condition));
+        if (VACCINATED_STATUS.contains(condition)) {
+            return new FilterCommand(new VaccinationStatusContainsKeywords(condition));
+        } else if (FACULTY.contains(condition)) {
+            return new FilterCommand(new FacultyContainsKeywords(condition));
+        } else if (SCHOOL_RESIDENCE.contains(condition)) {
+            return new FilterCommand(new SchoolResidenceContainsKeywords(condition));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));

@@ -1,15 +1,12 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.person.Person;
 
 /**
  * Finds and lists all persons in address book whose student entries field matches the argument keyword.
@@ -18,11 +15,6 @@ import static java.util.Objects.requireNonNull;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
-    private static final List<String> VaccinatedStatus = Arrays.asList("vaccinated", "nonvaccinated");
-    private static final List<String> FACULTY = Arrays.asList("FASS", "BIZ", "COM", "SCALE", "DEN", "SDE", "DNUS",
-            "ENG", "ISEP", "LAW", "MED", "MUSIC", "SPH", "SPP", "SCI", "USP", "YNC");;
-    private static final List<String> SCHOOL_RESIDENCE = Arrays.asList("PGPH", "PGPR", "KE7H", "SH", "KRH", "TH", "EH",
-            "RH", "RVRC", "YNC", "TC", "CAPT", "RC4", "USP", "UTR");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds student entry with "
             + "fields that matches the specified keyword (case-sensitive) and displays the student.\n"
