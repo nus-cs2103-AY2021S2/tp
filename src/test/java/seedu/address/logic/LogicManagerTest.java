@@ -46,8 +46,10 @@ public class LogicManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonAddressBookStorage sessionStorage =
+                new JsonAddressBookStorage(temporaryFolder.resolve("session.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, sessionStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -65,8 +67,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListCommand.COMMAND_WORD + " persons";
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS_PERSONS, model);
     }
 
     @Test
@@ -76,7 +78,9 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonAddressBookStorage sessionStorage =
+                new JsonAddressBookStorage(temporaryFolder.resolve("session.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, sessionStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

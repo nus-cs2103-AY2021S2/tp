@@ -109,6 +109,14 @@ public class AddPersonCommandTest {
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public ObservableList<Session> getFilteredSessionList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredSessionList(Predicate<Session> predicate) {
+        }
 
         @Override
         public void addPerson(Person person) {

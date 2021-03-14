@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Session> filteredSessions;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredSessions = new FilteredList<>(this.addressBook.getSessionList());
     }
 
     public ModelManager() {
@@ -135,6 +137,18 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    public ObservableList<Session> getFilteredSessionList() { return filteredSessions; }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
+     * {@code versionedAddressBook}
+     * @param predicate
+     */
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
+        requireNonNull(predicate);
+        filteredSessions.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object obj) {
