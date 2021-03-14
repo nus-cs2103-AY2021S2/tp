@@ -98,7 +98,7 @@ public class MainApp extends Application {
         }
 
         try {
-            eventBookOptional = storage.readEventBook(); //Implement this
+            eventBookOptional = storage.readEventBook();
             if (!eventBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EventBook");
             }
