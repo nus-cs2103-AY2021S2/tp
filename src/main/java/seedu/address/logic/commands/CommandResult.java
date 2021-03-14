@@ -1,12 +1,11 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the result of a command execution.
@@ -53,7 +52,9 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    public ObservableList<Person> getTutorsToView() { return tutorsToView;}
+    public ObservableList<Person> getTutorsToView() {
+        return tutorsToView;
+    }
 
     public boolean isShowHelp() {
         return showHelp;
