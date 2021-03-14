@@ -2,6 +2,7 @@ package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -38,6 +39,14 @@ public class ParticipantListTest {
         participants.add(ALICE);
         ParticipantList participantList = new ParticipantList(participants);
         assertEquals(participants, participantList.getParticipants());
+    }
+
+    @Test
+    public void getCopyOf_validParticipantList_copyOfOriginal() {
+        ParticipantList participantList = new ParticipantList();
+        ParticipantList participantListCopy = participantList.getCopy();
+        assertEquals(participantList, participantListCopy);
+        assertFalse(participantList == participantListCopy);
     }
 
 }

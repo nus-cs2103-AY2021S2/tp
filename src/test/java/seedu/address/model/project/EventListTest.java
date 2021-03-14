@@ -2,6 +2,7 @@ package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -41,5 +42,13 @@ public class EventListTest {
         events.add(event);
         EventList eventList = new EventList(events);
         assertEquals(events, eventList.getAsObservableList());
+    }
+
+    @Test
+    public void getCopyOf_validEventList_copyOfOriginal() {
+        EventList eventList = new EventList();
+        EventList eventListCopy = eventList.getCopy();
+        assertEquals(eventList, eventListCopy);
+        assertFalse(eventList == eventListCopy);
     }
 }

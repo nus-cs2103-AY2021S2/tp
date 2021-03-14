@@ -43,6 +43,14 @@ public class EventList {
     }
 
     /**
+     * Returns a copy of this {@code EventList}
+     * @return A copy of this {@code EventList}
+     */
+    public EventList getCopy() {
+        return new EventList(getEvents());
+    }
+
+    /**
      * Returns a sequential stream with this {@code EventList} as its source.
      * @return a sequential Stream over the events in this {@code EventList}.
      */

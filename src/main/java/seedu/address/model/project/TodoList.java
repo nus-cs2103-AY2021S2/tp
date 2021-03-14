@@ -52,6 +52,14 @@ public class TodoList {
     }
 
     /**
+     * Returns a copy of this {@code TodoList}
+     * @return A copy of this {@code TodoList}
+     */
+    public TodoList getCopy() {
+        return new TodoList(getTodos());
+    }
+
+    /**
      * Returns a sequential stream with this {@code TodoList} as its source.
      * @return a sequential Stream over the Todos in this {@code TodoList}.
      */

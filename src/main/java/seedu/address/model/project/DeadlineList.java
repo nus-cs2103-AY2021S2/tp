@@ -52,7 +52,17 @@ public class DeadlineList {
     }
 
     /**
+     * Returns a copy of this {@code DeadLineList}
+     *
+     * @return A copy of this {@code DeadlineList}
+     */
+    public DeadlineList getCopy() {
+        return new DeadlineList(getDeadlines());
+    }
+
+    /**
      * Returns a sequential stream with this {@code DeadlineList} as its source.
+     *
      * @return a sequential Stream over the completables in this {@code DeadlineList}.
      */
     public Stream<CompletableDeadline> stream() {
