@@ -12,7 +12,7 @@ public class DietPlan {
 
     private final String planName;
     private final String description;
-
+    private final PlanType planType;
     private final MacroNutrientComposition macroNutrientComposition;
 
     /**
@@ -21,12 +21,15 @@ public class DietPlan {
      * @param planName The name of the plan.
      * @param description The description of the plan.
      * @param dietComposition The macronutrient composition.
+     * @param planType The purpose of the diet plan.
      */
-    public DietPlan(String planName, String description, MacroNutrientComposition dietComposition) {
+    public DietPlan(String planName, String description, MacroNutrientComposition dietComposition,
+                    PlanType planType) {
         requireAllNonNull(planName, description, dietComposition);
         this.planName = planName;
         this.description = description;
         this.macroNutrientComposition = dietComposition;
+        this.planType = planType;
     }
 
     /**
@@ -64,6 +67,15 @@ public class DietPlan {
      */
     public MacroNutrientComposition getMacroNutrientComposition() {
         return macroNutrientComposition;
+    }
+
+    /**
+     * Returns the purpose of the diet plan.
+     *
+     * @return The diet plan's purpose
+     */
+    public PlanType getPlanType() {
+        return planType;
     }
 
     @Override

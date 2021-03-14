@@ -8,9 +8,12 @@ public class DietPlanTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DietPlan(null, "", null));
-        assertThrows(NullPointerException.class, () -> new DietPlan("", null, null));
-        assertThrows(NullPointerException.class, () -> new DietPlan("", "", null));
+        assertThrows(NullPointerException.class, () -> new DietPlan(null, "", null,
+                null));
+        assertThrows(NullPointerException.class, () -> new DietPlan("", null, null,
+                null));
+        assertThrows(NullPointerException.class, () -> new DietPlan("", "", null,
+                null));
     }
 
 }

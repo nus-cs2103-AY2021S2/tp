@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import seedu.address.model.diet.DietPlan;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.person.Name;
@@ -20,11 +21,12 @@ public class User {
     private final Gender gender;
     private final IdealWeight idealWeight;
     private final LocalDate lastUpdated;
+    private final Bmi bmi;
 
     // Data fields
-    private final Bmi bmi;
     private final List<Food> foodList;
     private final FoodIntakeList foodIntakeList;
+    private DietPlan activeDietPlan;
 
     /**
      * Creates a representation of the user with the given parameters.
@@ -44,6 +46,7 @@ public class User {
         this.gender = gender;
         this.idealWeight = idealWeight;
         this.lastUpdated = LocalDate.now();
+        this.activeDietPlan = null;
     }
 
     /**
@@ -63,6 +66,7 @@ public class User {
         this.idealWeight = idealWeight;
         this.lastUpdated = LocalDate.now();
         this.foodIntakeList = foodIntakeList;
+        this.activeDietPlan = null;
     }
 
     public Name getName() {
@@ -91,6 +95,14 @@ public class User {
 
     public IdealWeight getIdealWeight() {
         return this.idealWeight;
+    }
+
+    public DietPlan getActiveDietPlan() {
+        return this.activeDietPlan;
+    }
+
+    public void setActiveDietPlan(DietPlan dietPlan) {
+        this.activeDietPlan = dietPlan;
     }
 
     public String getLastUpdated() {

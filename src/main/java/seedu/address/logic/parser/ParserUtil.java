@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.Food;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -159,6 +160,22 @@ public class ParserUtil {
         }
 
         return Double.parseDouble(trimmedWeight);
+    }
+
+    /**
+     * Parses a {@code String indexString} into an Integer.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static int parsePlan(String indexString) throws ParseException {
+        requireNonNull(indexString);
+        String trimmedIndex = indexString.trim();
+        if (!DietPlanList.isValidIndex(trimmedIndex)) {
+            throw new ParseException(DietPlanList.MESSAGE_CONSTRAINTS);
+        }
+
+        return Integer.parseInt(trimmedIndex);
     }
 
     // *********************************************************************************

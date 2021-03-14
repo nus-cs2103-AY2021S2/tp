@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,7 +15,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
+import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
@@ -243,6 +248,29 @@ public class ModelManager implements Model {
         return details;
     }
 
+    @Override
+    public PlanType getUserGoal() {
+        User user = addressBook.getUser();
+        Bmi bmi = user.getBmi();
+
+        if (bmi.getWeight() <= bmi.getLowerBoundWeight()) {
+            return PlanType.WEIGHTGAIN;
+        } else if (bmi.getWeight() >= bmi.getUpperBoundWeight()) {
+            return PlanType.WEIGHTLOSS;
+        } else {
+            return PlanType.WEIGHTMAINTAIN;
+        }
+
+    }
+
+    @Override
+    public double getUserBmi() {
+        User user = addressBook.getUser();
+        Bmi bmi = user.getBmi();
+
+        return bmi.getBmi();
+    }
+
     //=========== FoodIntakeList Accessors =============================================================
 
     @Override
@@ -260,6 +288,31 @@ public class ModelManager implements Model {
     @Override
     public DietPlanList getDietPlanList() {
         return dietPlanList;
+    }
+
+    @Override
+    public void setActiveDiet(DietPlan dietPlan) {
+        User user = addressBook.getUser();
+        user.setActiveDietPlan(dietPlan);
+    }
+
+    @Override
+    public DietPlan getActiveDiet() {
+        User user = addressBook.getUser();
+        return user.getActiveDietPlan();
+    }
+
+    @Override
+    public List<DietPlan> recommendDiets(PlanType planType) {
+        List<DietPlan> recommendedDiets = new ArrayList<>();
+        Iterator<DietPlan> iterator = dietPlanList.iterator();
+        while (iterator.hasNext()) {
+            DietPlan dietPlan = iterator.next();
+            if (dietPlan.getPlanType() == planType) {
+                recommendedDiets.add(dietPlan);
+            }
+        }
+        return recommendedDiets;
     }
 
 }

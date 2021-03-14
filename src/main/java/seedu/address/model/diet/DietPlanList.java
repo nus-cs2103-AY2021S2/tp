@@ -12,6 +12,9 @@ import javafx.collections.ObservableList;
  * Collection of {@code DietPlan} instances.
  */
 public class DietPlanList implements Iterable<DietPlan> {
+    public static final String MESSAGE_CONSTRAINTS =
+            "The index should only contain numbers greater than or equal to 1!";
+    private static final String VALIDATION_REGEX = "^[1-9](\\d+)?$";
 
     private ObservableList<DietPlan> planList;
 
@@ -42,6 +45,13 @@ public class DietPlanList implements Iterable<DietPlan> {
 
         planList.add(dietPlan);
         return String.format("Successfully added %s to the list!", dietPlan);
+    }
+
+    /**
+     * Returns true if a given string is a valid index.
+     */
+    public static boolean isValidIndex(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

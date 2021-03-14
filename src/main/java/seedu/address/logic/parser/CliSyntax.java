@@ -27,4 +27,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
     public static final Prefix PREFIX_AGE = new Prefix("a/");
     public static final Prefix PREFIX_IDEAL_WEIGHT = new Prefix("i/");
+
+    /* Prefix definitions for plan */
+    public static final Prefix PREFIX_PLAN = new Prefix("p/");
+
 }

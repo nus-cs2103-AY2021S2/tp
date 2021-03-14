@@ -72,7 +72,7 @@ DieTrack is a **desktop app with a Command-Line Interface (CLI) that allows user
 On application's first launch, the user is prompted to enter his/her height, weight and ideal weight.
 Other commands will be unavailable until this command is first input.
 
-**Format:** `bmi g/gender a/age h/height(cm) w/weight(kg) i/ideal_weight(kg)`
+**Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
 **Example:** `bmi g/M a/43 h/170 w/70 i/80`
 
@@ -90,16 +90,16 @@ The user can query their weight and height everyday to see their progress.
 
 Below is your current height and weight:\
 Last Updated: 2021-02-28\
-Weight: 100kg\
-Height: 170cm\
-BMI: 34.6 (High Risk)
+Weight: 100 kg\
+Height: 170 cm\
+BMI: 34.6 (High Risk of Obesity-related diseases)
 
 ### 1.3 Update weight, height and ideal weight
 
 The user can update their weight and height everyday to track their progress. 
 This is recommended, so the user will have a more accurate view of their BMI status.
 
-**Format:** `bmi_update g/gender a/age h/height(cm) w/weight(kg) i/ideal_weight(kg)`
+**Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
 **Example:** `bmi_update g/M a/43 h/170 w/70 i/80`
 
@@ -113,18 +113,18 @@ Success in updating user information
 
 Gets a recommended diet plan based on the user's current BMI stored in the system.
 
-**Format:** `plan recommended`
+**Format:** `plan_recommend`
 
 **Expected output:**
 
-Here is the recommended diet plan for your BMI of 29.4:
-1) Weight Loss Diet (Less-carbs)
+Here are the recommended weight loss diet plans based on your BMI of 24.22:
+1. Weight Loss Diet (Less-carbs)
 
 ### 2.2 View active diet plan
 
 Shows the current active diet plan previously selected by the user.
 
-**Format:** `plan current`
+**Format:** `plan_current`
 
 **Expected output:**
 
@@ -139,9 +139,9 @@ Daily Fat intake: 55 g
 
 Changes the current active diet plan to the newly specified plan.
 
-**Format:** `plan active p/plan`
+**Format:** `plan_set p/ID`
 
-**Example:** `plan active p/1`
+**Example:** `plan_set p/1`
 
 **Expected output:**
 
@@ -156,22 +156,23 @@ Daily Fat intake: 55 g
 
 Displays a list of available diet plans.
 
-**Format:** `plan list`
+**Format:** `plan_list`
 
 **Expected output:**
 
 Here are the available diet plans:
-1) Weight Loss Diet
-2) Weight Gain Diet
-3) Muscle Gain Diet
+
+1. Weight Loss Diet
+2. Weight Gain Diet
+3. Muscle Gain Diet
 
 ### 2.5 View information about a particular diet plan
 
 Displays information about a particular diet plan.
 
-**Format:** `plan t/ID`
+**Format:** `plan p/ID`
 
-**Example:** `plan t/1`
+**Example:** `plan p/1`
 
 **Expected output:**
 

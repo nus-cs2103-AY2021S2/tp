@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.MacroNutrientComposition;
+import seedu.address.model.diet.PlanType;
 
 /**
  * Jackson-friendly version of {@link DietPlan}.
@@ -18,6 +19,7 @@ public class JsonAdaptedDietPlan {
     private final String name;
     private final String description;
     private final MacroNutrientComposition macroNutrientComposition;
+    private final PlanType planType;
 
     /**
      * Constructs a {@code DietPlan} with the given details.
@@ -25,10 +27,12 @@ public class JsonAdaptedDietPlan {
     @JsonCreator
     public JsonAdaptedDietPlan(@JsonProperty("name") String name, @JsonProperty("description") String description,
                                @JsonProperty("fats") double fats, @JsonProperty("carbos") double carbos,
-                               @JsonProperty("proteins") double proteins) {
+                               @JsonProperty("proteins") double proteins,
+                               @JsonProperty("plantype") PlanType planType) {
         this.name = name;
         this.description = description;
         this.macroNutrientComposition = new MacroNutrientComposition(fats, carbos, proteins);
+        this.planType = planType;
     }
 
     /**
@@ -38,6 +42,7 @@ public class JsonAdaptedDietPlan {
         this.name = dietPlan.getPlanName();
         this.description = dietPlan.getDescription();
         this.macroNutrientComposition = dietPlan.getMacroNutrientComposition();
+        this.planType = dietPlan.getPlanType();
     }
 
     /**
@@ -55,7 +60,7 @@ public class JsonAdaptedDietPlan {
                     DietPlan.class.getSimpleName(), "description"));
         }
 
-        return new DietPlan(name, description, macroNutrientComposition);
+        return new DietPlan(name, description, macroNutrientComposition, planType);
     }
 
 }

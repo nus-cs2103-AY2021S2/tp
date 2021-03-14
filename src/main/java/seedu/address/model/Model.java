@@ -2,11 +2,14 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
+import seedu.address.model.diet.PlanType;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
@@ -100,7 +103,17 @@ public interface Model {
 
     //=========== DietPlanList Accessors ==============================================================
 
+    /** Returns the list of diet plans */
     DietPlanList getDietPlanList();
+
+    /** Set active diet plan */
+    void setActiveDiet(DietPlan dietPlan);
+
+    /** Get active diet plan */
+    DietPlan getActiveDiet();
+
+    /** Recommend diet plan based on user's goals*/
+    List<DietPlan> recommendDiets(PlanType planType);
 
     //=========== FoodIntakeList Accessors ==============================================================
 
@@ -139,6 +152,16 @@ public interface Model {
      * Lists the user object.
      */
     String listUser();
+
+    /**
+     * Calculate user goal
+     */
+    PlanType getUserGoal();
+
+    /**
+     * Get user BMI
+     */
+    double getUserBmi();
 
     /**
      * Deletes the given person.
