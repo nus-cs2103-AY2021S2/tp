@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteFieldCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
@@ -47,10 +48,18 @@ public class PlannerParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_delete_task() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
                 DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_delete_field() throws Exception {
+        DeleteFieldCommand command = (DeleteFieldCommand) parser.parseCommand(
+                DeleteFieldCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()
+                + " d/");
+        assertEquals(new DeleteFieldCommand(INDEX_FIRST_TASK, "d/"), command);
     }
 
     @Test

@@ -1,7 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
@@ -35,7 +39,7 @@ public class DeleteFieldCommand extends Command {
             + "[" + PREFIX_PHONE + "]"
             + "[" + PREFIX_TAG + "]... \n"
             + "Exactly one prefix is to be specified.\n"
-            + "Example: " + COMMAND_WORD + " 1" + "tags/";
+            + "Example: " + COMMAND_WORD + " 1" + " tags/";
 
     public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Deleted Field in Task: %1$s";
 
@@ -43,12 +47,12 @@ public class DeleteFieldCommand extends Command {
 
     private final Prefix targetField;
 
-    public DeleteFieldCommand(Index targetIndex, Prefix targetField) {
+    public DeleteFieldCommand(Index targetIndex, String targetField) {
         requireNonNull(targetIndex);
         requireNonNull(targetField);
 
         this.targetIndex = targetIndex;
-        this.targetField = targetField;
+        this.targetField = new Prefix(targetField);
     }
 
     @Override
