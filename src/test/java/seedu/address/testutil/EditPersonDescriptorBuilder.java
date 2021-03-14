@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.description.Description;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Size;
@@ -35,7 +35,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setSize(person.getSize());
         descriptor.setColour(person.getColour());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setDressCode(person.getDressCode());
         descriptor.setDescriptions(person.getDescriptions());
     }
 
@@ -66,8 +66,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withDressCode(String dressCode) {
+        descriptor.setDressCode(new DressCode(dressCode));
         return this;
     }
 

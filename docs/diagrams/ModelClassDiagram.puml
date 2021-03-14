@@ -17,7 +17,7 @@ Class ReadOnlyUserPrefs
 
 Package Person {
 Class Person
-Class Address
+Class DressCode
 Class Colour
 Class Name
 Class Size
@@ -45,11 +45,11 @@ UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Size
 Person *--> Colour
-Person *--> Address
+Person *--> DressCode
 Person *--> "*" Description
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+Phone -[hidden]right-> DressCode
 Address -[hidden]right-> Colour
 
 ModelManager ----->" ~* filtered list" Person

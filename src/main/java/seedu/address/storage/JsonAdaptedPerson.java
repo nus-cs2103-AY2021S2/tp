@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.description.Description;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Colour;
+import seedu.address.model.person.DressCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Size;
@@ -27,7 +27,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String size;
     private final String colour;
-    private final String address;
+    private final String dresscode;
     private final List<JsonAdaptedDescription> descriptions = new ArrayList<>();
 
     /**
@@ -35,12 +35,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("size") String size,
-            @JsonProperty("colour") String colour, @JsonProperty("address") String address,
+            @JsonProperty("colour") String colour, @JsonProperty("dresscode") String dresscode,
             @JsonProperty("addedDescriptions") List<JsonAdaptedDescription> addedDescriptions) {
         this.name = name;
         this.size = size;
         this.colour = colour;
-        this.address = address;
+        this.dresscode = dresscode;
         if (addedDescriptions != null) {
             this.descriptions.addAll(addedDescriptions);
         }
@@ -53,7 +53,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         size = source.getSize().value;
         colour = source.getColour().colour;
-        address = source.getAddress().value;
+        dresscode = source.getDressCode().value;
         descriptions.addAll(source.getDescriptions().stream()
                 .map(JsonAdaptedDescription::new)
                 .collect(Collectors.toList()));
@@ -91,13 +91,14 @@ class JsonAdaptedPerson {
         }
         final Colour modelColour = new Colour(colour);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (dresscode == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DressCode.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!DressCode.isValidDressCode(dresscode)) {
+            throw new IllegalValueException(DressCode.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final DressCode modelAddress = new DressCode(dresscode);
 
         final Set<Description> modelDescriptions = new HashSet<>(garmentDescriptions);
         return new Person(modelName, modelSize, modelColour, modelAddress, modelDescriptions);

@@ -35,7 +35,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label size;
     @FXML
-    private Label address;
+    private Label dresscode;
     @FXML
     private Label colour;
     @FXML
@@ -50,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         size.setText(person.getSize().value);
-        address.setText(person.getAddress().value);
+        dresscode.setText(person.getDressCode().value);
         colour.setText(person.getColour().colour);
         person.getDescriptions().stream()
                 .sorted(Comparator.comparing(description -> description.descriptionName))
