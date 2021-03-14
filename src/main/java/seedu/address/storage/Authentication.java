@@ -2,12 +2,25 @@ package seedu.address.storage;
 
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.InvalidKeyException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -24,9 +37,11 @@ import seedu.address.commons.core.LogsCenter;
 public class Authentication {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final String ENCRYPTION_KEY = "wQhgIpxA2KAds5PF2bJc32";
+    private static final String PASSWORD_FILE_NAME = "keystore";
 
     /** Path of the .json file containing the serialized address book */
-    private Path filePath;
+    private final Path filePath;
     private Optional<String> password = Optional.empty();
 
 
@@ -43,6 +58,7 @@ public class Authentication {
      */
     public Authentication() {
         this.filePath = Paths.get("/data/addressbook.json");
+        this.password = Optional.empty();
     }
 
     /**
@@ -138,12 +154,30 @@ public class Authentication {
         return this.password.isPresent();
     }
 
-    public void setPassword(String password) {
-        this.password = Optional.of(password);
+    public void setPassword(Optional<String> password) throws NoSuchPaddingException,
+            NoSuchAlgorithmException, IOException, BadPaddingException,
+            IllegalBlockSizeException, InvalidKeyException {
+        this.password = password;
+        encryptAndStorePassword();
     }
 
     public void removePassword() {
         this.password = Optional.empty();
+    }
+
+    /**
+     * Reads the password from the password file if any and set it to this.password.
+     */
+    public void readPasswordFileAndSetPassword() throws IOException, IllegalBlockSizeException,
+            InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+        //Decrypt the password file if it exists.
+        File passwordFile = new File(this.getPasswordFilePath());
+        if (!passwordFile.exists()) {
+            this.password = Optional.empty();
+        }
+        byte[] encryptedPasswordBytes = Files.readAllBytes(passwordFile.toPath());
+        this.password = Optional.of(decryptPassword(encryptedPasswordBytes));
+        encryptAndStorePassword();
     }
 
     private void deleteJson() {
@@ -193,6 +227,49 @@ public class Authentication {
         return folderPath;
     }
 
+    private String getPasswordFilePath() {
+        return this.getFolderPath() + "/" + PASSWORD_FILE_NAME;
+    }
+
+    private SecretKey getSecretKeyFromEncryptionKey() throws NoSuchAlgorithmException {
+        byte[] encodedKey = ENCRYPTION_KEY.getBytes(StandardCharsets.UTF_8);
+        //Hash the encodedkey
+        byte[] encodedKeyDigest = MessageDigest.getInstance("SHA-1").digest(encodedKey);
+        //Get first 16 byte = 128 bits to be used as key.
+        encodedKeyDigest = Arrays.copyOf(encodedKeyDigest, 16);
+        return new SecretKeySpec(encodedKeyDigest, "AES");
+    }
+
+    //@@authoer swayongshen-rused
+    //Resused from https://howtodoinjava.com/java/java-security/java-aes-encryption-example/
+    private void encryptAndStorePassword() throws IOException, NoSuchPaddingException,
+            NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
+        //Encrypt this.password using DES into a byte[].
+        SecretKey myKey = getSecretKeyFromEncryptionKey();
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, myKey);
+        byte[] passwordBytes = this.getPassword().getBytes(StandardCharsets.UTF_8);
+        byte[] passwordEncrypted = cipher.doFinal(passwordBytes);
+
+        //Write the encrypted password byte[] into the password file.
+        File passwordFile = new File(this.getPasswordFilePath());
+        FileOutputStream outputStream = new FileOutputStream(passwordFile);
+        outputStream.write(passwordEncrypted);
+    }
+
+    //@@authoer swayongshen-rused
+    //Resused from https://howtodoinjava.com/java/java-security/java-aes-encryption-example/
+    /**
+     * Decrypts the bytes of the encrypted password which was read from the password file.
+     */
+    private String decryptPassword(byte[] encryptedPasswordBytes) throws NoSuchPaddingException,
+            NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+        SecretKey myKey = this.getSecretKeyFromEncryptionKey();
+        cipher.init(Cipher.DECRYPT_MODE, myKey);
+        byte[] textDecrypted = cipher.doFinal(encryptedPasswordBytes);
+        return new String(textDecrypted);
+    }
 
 
 }

@@ -21,8 +21,13 @@ public class LockCommand extends Command {
 
     public static final String MESSAGE_INCORRECT_PASSWORD = "You have entered the wrong password.";
 
+    public static final String MESSAGE_FAIL_TO_READ_PASSWORD_FILE = "Failed to read password file, please enter "
+            + "a password to lock ClientBook.";
+
+    public static final String MESSAGE_FAILED_TO_STORE_PASSWORD = "Failed to store password file.";
+
     private final Optional<String> currentPassword;
-    private final String newPassword;
+    private final Optional<String> newPassword;
 
     /**
      * Instantiates a LockCommand object with the new password.
@@ -30,7 +35,7 @@ public class LockCommand extends Command {
      */
     public LockCommand(String newPassword) {
         this.currentPassword = Optional.empty();
-        this.newPassword = newPassword;
+        this.newPassword = Optional.of(newPassword);
     }
 
     /**
@@ -40,7 +45,16 @@ public class LockCommand extends Command {
      */
     public LockCommand(String currentPassword, String newPassword) {
         this.currentPassword = Optional.of(currentPassword);
-        this.newPassword = newPassword;
+        this.newPassword = Optional.of(newPassword);
+    }
+
+    /**
+     * Instantiates a LockCommand object with no passwords. The LockCommand will check for any previously used
+     * password in the form of a password file.
+     */
+    public LockCommand() {
+        this.currentPassword = Optional.empty();
+        this.newPassword = Optional.empty();
     }
 
 
@@ -52,11 +66,27 @@ public class LockCommand extends Command {
         //There is an existing password
         if (authentication.isPasswordPresent()) {
             //Verify that the current password entered by user is the same as the existing password.
-            if (!this.currentPassword.isPresent() || !authentication.getPassword().equals(this.currentPassword.get())) {
+            if (this.currentPassword.isEmpty() || !authentication.getPassword().equals(this.currentPassword.get())) {
                 throw new CommandException(MESSAGE_INCORRECT_PASSWORD);
             }
         }
-        authentication.setPassword(this.newPassword);
+        //If newPassword is not entered, check for password in password file.
+        if (this.newPassword.isEmpty()) {
+            try {
+                authentication.readPasswordFileAndSetPassword();
+            } catch (Exception e) {
+                throw new CommandException(MESSAGE_FAIL_TO_READ_PASSWORD_FILE, e);
+            }
+            return new CommandResult(MESSAGE_LOCK_SUCCESS);
+        }
+
+        //New password is entered, use this to lock the zip.
+        try {
+            authentication.setPassword(this.newPassword);
+        } catch (Exception e) {
+            System.err.println(e);
+            throw new CommandException(MESSAGE_FAILED_TO_STORE_PASSWORD, e);
+        }
         return new CommandResult(MESSAGE_LOCK_SUCCESS);
     }
 
