@@ -166,7 +166,7 @@ Example:
 * `view c/1` views the details of the class with class ID 1.
 
 
-### Editing a person : `edit`
+### Editing a person : `edit` (coming soon)
 
 Edits an existing person in the address book.
 
@@ -183,7 +183,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name: `find` (coming soon)
 
 Finds persons whose names contain any of the given keywords.
 
