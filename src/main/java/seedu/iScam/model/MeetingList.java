@@ -1,12 +1,12 @@
-package seedu.address.model;
+package seedu.iScam.model;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.UniqueMeetingList;
+import seedu.iScam.model.meeting.Meeting;
+import seedu.iScam.model.meeting.UniqueMeetingList;
 
 /**
  * Wraps all data at the address-book level

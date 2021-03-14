@@ -86,7 +86,7 @@ public class EditMeetingCommand extends Command {
 
         Client updatedClient = editMeetingDescriptor.getClient().orElse(meetingToEdit.getClient());
         LocalDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
-        Location updatedLocation = editMeetingDescriptor.getAddress().orElse(meetingToEdit.getAddress());
+        Location updatedLocation = editMeetingDescriptor.getAddress().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
 

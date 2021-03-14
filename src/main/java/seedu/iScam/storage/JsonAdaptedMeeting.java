@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.iScam.storage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.Name;
-import seedu.address.model.meeting.Description;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.tag.Tag;
+import seedu.iScam.commons.exceptions.IllegalValueException;
+import seedu.iScam.model.client.Location;
+import seedu.iScam.model.client.Client;
+import seedu.iScam.model.client.Name;
+import seedu.iScam.model.meeting.Description;
+import seedu.iScam.model.meeting.Meeting;
+import seedu.iScam.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Meeting}.
@@ -28,7 +28,7 @@ class JsonAdaptedMeeting {
 
     private final String client;
     private final String dateTime;
-    private final String address;
+    private final String location;
     private final String description;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String isDone;
@@ -38,11 +38,11 @@ class JsonAdaptedMeeting {
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("client") String client, @JsonProperty("dateTime") String dateTime,
-                             @JsonProperty("address") String address, @JsonProperty("description") String description,
+                             @JsonProperty("location") String location, @JsonProperty("description") String description,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("isDone") String isDone) {
         this.client = client;
         this.dateTime = dateTime;
-        this.address = address;
+        this.location = location;
         this.description = description;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -56,7 +56,7 @@ class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(Meeting source) {
         client = source.getClient().getName().fullName;
         dateTime = source.getDateTime().toString();
-        address = source.getAddress().value;
+        location = source.getLocation().value;
         description = source.getDescription().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -93,13 +93,13 @@ class JsonAdaptedMeeting {
         //        }
         final LocalDateTime modelDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.BASIC_ISO_DATE);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (location == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Location.isValidLocation(location)) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Location modelLocation = new Location(location);
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -112,7 +112,7 @@ class JsonAdaptedMeeting {
 
         final Set<Tag> modelTags = new HashSet<>(meetingTags);
 
-        return new Meeting(modelClient, modelDateTime, modelAddress, modelDescription, modelTags);
+        return new Meeting(modelClient, modelDateTime, modelLocation, modelDescription, modelTags);
     }
 
 }

@@ -1,6 +1,6 @@
-package seedu.address.model.meeting;
+package seedu.iScam.model.meeting;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.iScam.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -24,7 +24,7 @@ public class Meeting {
     private LocalDateTime dateTime;
 
     // Data fields
-    private Address address;
+    private Location location;
     private Description description;
     private Set<Tag> tags = new HashSet<>();
     private boolean isDone;
@@ -32,12 +32,12 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Client client, LocalDateTime dateTime, Address address, Description description, Set<Tag> tags) {
-        requireAllNonNull(client, dateTime, address, description, tags);
+    public Meeting(Client client, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
+        requireAllNonNull(client, dateTime, location, description, tags);
         this.client = client;
         this.dateTime = dateTime;
 
-        this.address = address;
+        this.location = location;
         this.description = description;
         this.tags = tags;
         this.isDone = false;
@@ -46,12 +46,12 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Name name, LocalDateTime dateTime, Address address, Description description, Set<Tag> tags) {
-        requireAllNonNull(name, dateTime, address, description, tags);
+    public Meeting(Name name, LocalDateTime dateTime, Location location, Description description, Set<Tag> tags) {
+        requireAllNonNull(name, dateTime, location, description, tags);
         this.name = name;
         this.dateTime = dateTime;
 
-        this.address = address;
+        this.location = location;
         this.description = description;
         this.tags = tags;
         this.isDone = false;
@@ -65,8 +65,8 @@ public class Meeting {
         return dateTime;
     }
 
-    public Address getAddress() {
-        return address;
+    public Location getLocation() {
+        return location;
     }
 
     public Description getDescription() {
@@ -84,11 +84,11 @@ public class Meeting {
     }
 
     /**
-     * Update the address where the meeting takes place.
-     * @param newAddress A validated new address.
+     * Update the location where the meeting takes place.
+     * @param newLocation A validated new location.
      */
-    public void relocate(Address newAddress) {
-        this.address = newAddress;
+    public void relocate(Location newLocation) {
+        this.location = newLocation;
     }
 
     /**
@@ -135,7 +135,7 @@ public class Meeting {
         Meeting otherMeeting = (Meeting) other;
         return otherMeeting.getClient().equals(this.client)
                 && otherMeeting.getDateTime().isEqual(this.dateTime)
-                && otherMeeting.getAddress().equals(this.address)
+                && otherMeeting.getLocation().equals(this.location)
                 && otherMeeting.getDescription().equals(this.description)
                 && otherMeeting.getTags().equals(this.tags);
     }
@@ -143,7 +143,7 @@ public class Meeting {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(client, dateTime, address, description, tags, isDone);
+        return Objects.hash(client, dateTime, location, description, tags, isDone);
     }
 
     @Override
@@ -152,8 +152,8 @@ public class Meeting {
         builder.append(client.getName())
                 .append("; Date & Time: ")
                 .append(dateTime.toString())
-                .append("; Address: ")
-                .append(address.toString())
+                .append("; Location: ")
+                .append(location.toString())
                 .append("; Description: ")
                 .append(description.toString());
 

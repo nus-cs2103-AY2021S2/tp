@@ -1,15 +1,15 @@
-package seedu.address.model.meeting;
+package seedu.iScam.model.meeting;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.iScam.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.client.exceptions.ClientNotFoundException;
-import seedu.address.model.client.exceptions.DuplicateClientException;
+import seedu.iScam.model.client.exceptions.ClientNotFoundException;
+import seedu.iScam.model.client.exceptions.DuplicateClientException;
 
 public class UniqueMeetingList implements Iterable<Meeting> {
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
