@@ -81,26 +81,26 @@ class JsonAdaptedTask {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        //if (!Phone.isValidPhone(phone)) {
-          //  throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        //}
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
-        //if (!Email.isValidEmail(email)) {
-        //    throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        //}
+        if (!Email.isValidEmail(email)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
         final Email modelEmail = new Email(email);
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
-        //if (!Description.isValidDescription(description)) {
-        //    throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
-        //}
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);

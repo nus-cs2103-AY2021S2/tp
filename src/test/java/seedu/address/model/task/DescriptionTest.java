@@ -12,13 +12,13 @@ public class DescriptionTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Description(null));
     }
-
+    /*
     @Test
     public void constructor_invalidDescription_throwsIllegalArgumentException() {
         String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
     }
-
+    */
     @Test
     public void isValidDescription() {
         // null description

@@ -37,11 +37,11 @@ public class DeleteFieldCommand extends Command {
             + "Exactly one prefix is to be specified.\n"
             + "Example: " + COMMAND_WORD + " 1" + "tags/";
 
-    public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Deleted Field in Task: %1$s"; //check
+    public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Deleted Field in Task: %1$s";
 
     private final Index targetIndex;
 
-    private final Prefix targetField; //field to delete
+    private final Prefix targetField;
 
     public DeleteFieldCommand(Index targetIndex, Prefix targetField) {
         requireNonNull(targetIndex);
@@ -51,7 +51,6 @@ public class DeleteFieldCommand extends Command {
         this.targetField = targetField;
     }
 
-    // to change
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -68,7 +67,6 @@ public class DeleteFieldCommand extends Command {
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS, taskWithFieldDeleted));
     }
-    //to change
 
     /**
      * Creates and returns a {@code Task} with the {@code field}
@@ -85,12 +83,10 @@ public class DeleteFieldCommand extends Command {
 
         if (field.equals(PREFIX_TITLE)) {
             throw new CommandException("Cannot delete title field.");
-        } else if (field.equals(PREFIX_PHONE)) {
-            Phone updatedPhone = new Phone("");
-            return new Task(title, updatedPhone, oldEmail, oldDescription, oldTags);
-        } else if (field.equals(PREFIX_EMAIL)) {
-            Email updatedEmail = new Email("");
-            return new Task(title, oldPhone, updatedEmail, oldDescription, oldTags);
+        } else if (field.equals(PREFIX_PHONE)) { //not implemented
+            return new Task(title, oldPhone, oldEmail, oldDescription, oldTags);
+        } else if (field.equals(PREFIX_EMAIL)) { //not implemented
+            return new Task(title, oldPhone, oldEmail, oldDescription, oldTags);
         } else if (field.equals(PREFIX_DESCRIPTION)) {
             Description updatedDescription = new Description("");
             return new Task(title, oldPhone, oldEmail, updatedDescription, oldTags);
