@@ -119,15 +119,16 @@ public class ModelManager implements Model {
     public boolean hasSemester(int planNumber, Semester semester) {
         requireAllNonNull(planNumber, semester);
         Plan plan = addressBook.getPersonList().get(planNumber);
-        return plan.getSemesters().stream().anyMatch((currentSemester) -> {
-            return currentSemester.getSemNumber() == semester.getSemNumber();
-        });
+        return plan.getSemesters().stream().anyMatch((currentSemester) ->
+            currentSemester.getSemNumber() == semester.getSemNumber()
+        );
     }
 
-    //    @Override
-    //    public void deleteSemester(Plan plan, Semester target) {
-    //        addressBook.removeSemester(plan, target);
-    //    }
+    @Override
+    public void deleteSemester(Plan plan, Semester target) {
+        addressBook.setPlan(plan, plan.removeSemester(target));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
 
     @Override
     public void addSemester(int planNumber, Semester semester) {

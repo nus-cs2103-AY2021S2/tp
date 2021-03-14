@@ -30,7 +30,7 @@ public class AddPlanCommand extends Command {
     private final Plan toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Plan}
+     * Creates an AddPlanCommand to add the specified {@code Plan}
      */
     public AddPlanCommand(Plan plan) {
         requireNonNull(plan);

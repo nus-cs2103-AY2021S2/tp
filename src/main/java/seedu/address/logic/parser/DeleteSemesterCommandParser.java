@@ -2,39 +2,41 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeletePlanCommand;
+import seedu.address.logic.commands.DeleteSemesterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeletePlanCommand object
+ * Parses input arguments and creates a new DeleteSemesterCommand object
  */
-public class DeletePlanCommandParser implements Parser<DeletePlanCommand> {
+public class DeleteSemesterCommandParser implements Parser<DeleteSemesterCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeletePlanCommand
-     * and returns a DeletePlanCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteSemesterCommand
+     * and returns a DeleteSemesterCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeletePlanCommand parse(String args) throws ParseException {
+    public DeleteSemesterCommand parse(String args) throws ParseException {
         try {
             ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args, PREFIX_PLAN_NUMBER);
+                    ArgumentTokenizer.tokenize(args, PREFIX_PLAN_NUMBER, PREFIX_SEM_NUMBER);
 
-            if (!arePrefixesPresent(argMultimap, PREFIX_PLAN_NUMBER)
+            if (!arePrefixesPresent(argMultimap, PREFIX_PLAN_NUMBER, PREFIX_SEM_NUMBER)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        DeletePlanCommand.MESSAGE_USAGE));
+                        DeleteSemesterCommand.MESSAGE_USAGE));
             }
 
             Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PLAN_NUMBER).get());
-            return new DeletePlanCommand(index);
+            int semNumber = ParserUtil.parseSemesterNumber(argMultimap.getValue(PREFIX_SEM_NUMBER).get());
+            return new DeleteSemesterCommand(index, semNumber);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePlanCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteSemesterCommand.MESSAGE_USAGE), pe);
         }
     }
 

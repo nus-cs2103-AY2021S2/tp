@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 
 import java.util.List;
 
@@ -9,8 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.plan.Plan;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 
 /**
  * Deletes a plan identified using it's displayed index from the address book.
@@ -30,6 +29,9 @@ public class DeletePlanCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeletePlanCommand to delete the specified {@code Plan}
+     */
     public DeletePlanCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -45,7 +47,8 @@ public class DeletePlanCommand extends Command {
 
         Plan planToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePlan(planToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, targetIndex.getOneBased() + planToDelete.toString()));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                targetIndex.getOneBased() + planToDelete.toString()));
     }
 
     @Override
