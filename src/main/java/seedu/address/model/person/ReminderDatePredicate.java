@@ -8,11 +8,10 @@ import java.util.function.Predicate;
  */
 public class ReminderDatePredicate implements Predicate<Person> {
 
-    private static final long DELIVERY_DATE_REMIND = 4L;
+    private long days;
 
-    // Constructor is empty because the command "remind" is not dependent on
-    // any variable that is parsed in.
-    public ReminderDatePredicate() {
+    public ReminderDatePredicate(long days) {
+        this.days = days;
     }
 
     @Override
@@ -26,7 +25,9 @@ public class ReminderDatePredicate implements Predicate<Person> {
     public boolean isWithinThreeDays(Person person) {
         LocalDate toTest = person.getDeliveryDate().getValue();
         LocalDate dateToday = LocalDate.now();
-        LocalDate acceptableDate = dateToday.plusDays(DELIVERY_DATE_REMIND);
+        LocalDate acceptableDate = dateToday.plusDays(days + 1);
         return toTest.isEqual(dateToday) || toTest.isBefore(acceptableDate);
     }
+
 }
+

@@ -15,6 +15,11 @@ public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders whose delivery dates "
+            + "are within X days from the current date, as a list with index numbers.\n"
+            + "Parameters: DAYS\n"
+            + "Example: " + COMMAND_WORD + " 3";
+
     private final ReminderDatePredicate predicate;
 
     public RemindCommand(ReminderDatePredicate predicate) {
