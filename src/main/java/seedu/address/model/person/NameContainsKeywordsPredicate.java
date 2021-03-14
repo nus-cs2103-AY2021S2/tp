@@ -49,7 +49,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Person>, Compara
                 .map(keyword -> match(o2.getName().fullName, keyword))
                 .max(Integer::compare)
                 .orElse(0);
-        return o2Similarity - o1Similarity;
+        return o2Similarity - o1Similarity == 0
+                ? o1.getName().fullName.compareTo(o2.getName().fullName)
+                : o2Similarity - o1Similarity;
     }
 
     @Override
