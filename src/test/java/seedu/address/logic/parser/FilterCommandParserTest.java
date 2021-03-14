@@ -25,11 +25,11 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommandByVaccinationStatus() {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommandByVaccinationStatus =
-                new FilterCommand(new VaccinationStatusContainsKeywords("unvaccinated"));
-        assertParseSuccess(parser, "unvaccinated", expectedFilterCommandByVaccinationStatus);
+                new FilterCommand(new VaccinationStatusContainsKeywords("NOT_VACCINATED"));
+        assertParseSuccess(parser, "NOT_VACCINATED", expectedFilterCommandByVaccinationStatus);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n unvaccinated \n \t", expectedFilterCommandByVaccinationStatus);
+        assertParseSuccess(parser, " \n NOT_VACCINATED \n \t", expectedFilterCommandByVaccinationStatus);
     }
 
     @Test

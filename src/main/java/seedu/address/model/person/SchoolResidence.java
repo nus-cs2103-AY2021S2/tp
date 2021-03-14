@@ -5,11 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class SchoolResidence {
 
     public enum ResidenceAbbreviation {
-        PGPH, PGPR, KE7H, SH, KRH, TH, EH, RH, RVRC, YNC, TC, CAPT, RC4, USP, UTR;
+        PGPH, PGPR, KE7H, SH, KRH, TH, EH, RH, RVRC, YNC, TC, CAPT, RC4, USP, UTR, DOES_NOT_LIVE_ON_CAMPUS;
     }
 
     public static final List<ResidenceAbbreviation> LIST_RESIDENCES = Arrays.asList(
@@ -63,6 +64,12 @@ public class SchoolResidence {
 
     public static String getStringResidences() {
         return stringResidences;
+    }
+
+    public static List<String> getResidenceAbbreviation() {
+        String[] residenceArray = Stream.of(SchoolResidence.ResidenceAbbreviation.values())
+                .map(SchoolResidence.ResidenceAbbreviation::name).toArray(String[]::new);
+        return Arrays.asList(residenceArray);
     }
 
     @Override

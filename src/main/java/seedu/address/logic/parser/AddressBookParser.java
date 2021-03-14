@@ -63,7 +63,6 @@ public class AddressBookParser {
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
-            
         case StatsCommand.COMMAND_WORD:
             return new StatsCommandParser().parse(arguments);
 

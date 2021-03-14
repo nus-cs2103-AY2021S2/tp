@@ -70,7 +70,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_filter() throws Exception {
-        String keywords = "unvaccinated";
+        String keywords = "NOT_VACCINATED";
         FilterCommand command = (FilterCommand) parser.parseCommand(
                 FilterCommand.COMMAND_WORD + " " + keywords);
         assertEquals(new FilterCommand(new VaccinationStatusContainsKeywords(keywords)), command);

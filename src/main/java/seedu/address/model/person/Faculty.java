@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Faculty {
 
@@ -64,10 +65,17 @@ public class Faculty {
         }
     }
 
+    public static List<String> getFacultyAbbreviation() {
+        String[] facultyArray = Stream.of(FacultyAbbreviation.values()).map(FacultyAbbreviation::name)
+                .toArray(String[]::new);
+        return Arrays.asList(facultyArray);
+    }
+
     @Override
     public String toString() {
         return value;
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -80,4 +88,5 @@ public class Faculty {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
