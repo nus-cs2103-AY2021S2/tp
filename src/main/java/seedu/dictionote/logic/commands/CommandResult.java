@@ -17,7 +17,6 @@ public class CommandResult {
     /** The action UI should take.*/
     private final UiAction uiAction;
 
-
     /** The option of the action UI.*/
     private final UiActionOption uiActionOption;
 
@@ -80,5 +79,6 @@ public class CommandResult {
     public int hashCode() {
         return Objects.hash(feedbackToUser, uiAction, uiActionOption);
     }
+
 
 }

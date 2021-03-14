@@ -10,6 +10,8 @@ import java.util.Optional;
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.commons.util.CollectionUtil;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
@@ -65,7 +67,8 @@ public class EditNoteCommand extends Command {
 
         model.setNote(noteToEdit, editedNote);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_NOTE_SUCCESS, editedNote));
+        return new CommandResult(String.format(MESSAGE_EDIT_NOTE_SUCCESS, editedNote),
+            UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
 
     /**
