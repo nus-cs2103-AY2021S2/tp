@@ -5,6 +5,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.LockCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+
 public class LockCommandParser implements Parser<LockCommand> {
 
     @Override
@@ -16,7 +17,7 @@ public class LockCommandParser implements Parser<LockCommand> {
             return new LockCommand();
         }
 
-        if (passwords.length < 1 || passwords.length > 2) {
+        if (passwords.length > 2) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, LockCommand.MESSAGE_USAGE));
         }
 
