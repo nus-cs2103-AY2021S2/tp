@@ -28,6 +28,11 @@ public class DeleteTodoCommand extends Command {
     private final Index projectIndex;
     private final Index targetTodoIndex;
 
+    /**
+     * Creates a DeleteTodoCommand to delete the specified {@code Todo} from {@code Project}.
+     * @param projectIndex Index of project that {@code Todo} is to be deleted from.
+     * @param targetTodoIndex Index of todo that is to be deleted form {@code Project}.
+     */
     public DeleteTodoCommand(Index projectIndex, Index targetTodoIndex) {
         this.projectIndex = projectIndex;
         this.targetTodoIndex = targetTodoIndex;
@@ -42,7 +47,8 @@ public class DeleteTodoCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased()).getTodos().getTodos().size()) {
+        if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
+                .getTodos().getTodos().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 
