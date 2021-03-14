@@ -155,14 +155,14 @@ public class StringUtilTest {
 
     @Test
     public void sentenceContainsPartWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-                -> StringUtil.sentenceContainsPartWordIgnoreCase("typical sentence", "  "));
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", () ->
+                StringUtil.sentenceContainsPartWordIgnoreCase("typical sentence", "  "));
     }
 
     @Test
     public void sentenceContainsPartWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-                -> StringUtil.sentenceContainsPartWordIgnoreCase("typical sentence", "aaa BBB"));
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", () ->
+                StringUtil.sentenceContainsPartWordIgnoreCase("typical sentence", "aaa BBB"));
     }
 
     @Test

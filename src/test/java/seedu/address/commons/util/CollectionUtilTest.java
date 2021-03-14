@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.*;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tag.Tag;
 
 public class CollectionUtilTest {
@@ -121,15 +122,15 @@ public class CollectionUtilTest {
 
     @Test
     public void tagContainsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-                -> CollectionUtil.tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", () ->
+                CollectionUtil.tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
                 .asList(new Tag("typical"), new Tag("sentence"))), "  "));
     }
 
     @Test
     public void tagContainsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-                -> CollectionUtil.tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", () ->
+                CollectionUtil.tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
                 .asList(new Tag("typical"), new Tag("sentence"))), "aaa BBB"));
     }
 
