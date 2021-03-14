@@ -232,3 +232,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
 **List** | `list [LOCATION]`<br> e.g., `list fridge`
 **Find** | `find KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch`
+**Reminder** | `reminder numOfDays`<br> e.g., `reminder 7`
+
