@@ -61,6 +61,11 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Viewing Command List : `listcommand`
+
+Shows a list of available command
+
+Format: `listcommand`
 
 ### Opening UI Panel: `open`
 
