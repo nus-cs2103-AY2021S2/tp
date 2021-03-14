@@ -4,12 +4,14 @@
     "deadline": "9482424",
     "module": "CS1010X",
     "description": "4th street",
+    "workload": "1",
     "doneStatus": "false"
   }, {
     "name": "Task With Invalid Deadline Field",
     "deadline": "948asdf2424",
     "module": "CS1010X",
     "description": "4th street",
+    "workload": "2",
     "doneStatus": "false"
   } ]
 }

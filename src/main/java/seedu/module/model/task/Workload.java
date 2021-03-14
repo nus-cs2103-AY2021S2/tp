@@ -16,7 +16,7 @@ public class Workload {
     public static final String MESSAGE_CONSTRAINTS =
             "Workload level should be an integer in range 1-3 inclusive";
 
-    public final int workloadLevel;
+    public final Integer workloadLevel;
 
     /**
      * Constructs a {@code Workload}.
@@ -45,8 +45,12 @@ public class Workload {
         }
     }
 
-    @Override
-    public String toString() {
+    /**
+     * Converts workloadLevel into a string for display on Ui.
+     *
+     * @return String describing workload.
+     */
+    public String displayUi() {
         switch(workloadLevel) {
         case 1:
             return LOW_WORKLOAD;
@@ -57,6 +61,23 @@ public class Workload {
         default:
             throw new InputMismatchException(MESSAGE_CONSTRAINTS);
         }
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(workloadLevel);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Workload // instanceof handles nulls
+                && workloadLevel.equals(((Workload) other).workloadLevel)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return workloadLevel.hashCode();
     }
 
 }

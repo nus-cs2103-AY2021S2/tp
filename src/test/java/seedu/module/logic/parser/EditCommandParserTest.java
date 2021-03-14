@@ -10,6 +10,7 @@ import static seedu.module.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DE
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.INVALID_WORKLOAD_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -24,6 +25,10 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_WORKLOAD_1;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_WORKLOAD_2;
+import static seedu.module.logic.commands.CommandTestUtil.WORKLOAD_DESC_1;
+import static seedu.module.logic.commands.CommandTestUtil.WORKLOAD_DESC_2;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -41,6 +46,7 @@ import seedu.module.model.task.Deadline;
 import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Workload;
 import seedu.module.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -84,6 +90,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
         assertParseFailure(parser, "1" + INVALID_MODULE_DESC, Module.MESSAGE_CONSTRAINTS); // invalid module
+        // invalid workload
+        assertParseFailure(parser, "1" + INVALID_WORKLOAD_DESC, Workload.MESSAGE_CONSTRAINTS);
         // invalid description
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -103,18 +111,18 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_MODULE_DESC
-                + VALID_DESCRIPTION_AMY + VALID_DEADLINE_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_DESCRIPTION_AMY + VALID_DEADLINE_AMY + VALID_WORKLOAD_1, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + TAG_DESC_HIGH
-                + MODULE_DESC_AMY + DESCRIPTION_DESC_AMY + NAME_DESC_AMY + TAG_DESC_LOW;
+                + MODULE_DESC_AMY + DESCRIPTION_DESC_AMY + NAME_DESC_AMY + WORKLOAD_DESC_1 + TAG_DESC_LOW;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY)
-                .withTags(VALID_TAG_HIGH, VALID_TAG_LOW).build();
+                .withWorkload(VALID_WORKLOAD_1).withTags(VALID_TAG_HIGH, VALID_TAG_LOW).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -159,6 +167,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // workload
+        userInput = targetIndex.getOneBased() + WORKLOAD_DESC_2;
+        descriptor = new EditTaskDescriptorBuilder().withWorkload(VALID_WORKLOAD_2).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_LOW;
         descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_LOW).build();
@@ -170,11 +184,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY + MODULE_DESC_AMY
-                + TAG_DESC_LOW + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY + MODULE_DESC_AMY + TAG_DESC_LOW
-                + DEADLINE_DESC_BOB + DESCRIPTION_DESC_BOB + MODULE_DESC_BOB + TAG_DESC_HIGH;
+                + TAG_DESC_LOW + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY + MODULE_DESC_AMY + WORKLOAD_DESC_1
+                + TAG_DESC_LOW + DEADLINE_DESC_BOB + DESCRIPTION_DESC_BOB + MODULE_DESC_BOB + WORKLOAD_DESC_2
+                + TAG_DESC_HIGH;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
-                .withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
+                .withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB).withWorkload(VALID_WORKLOAD_2)
                 .withTags(VALID_TAG_LOW, VALID_TAG_HIGH)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

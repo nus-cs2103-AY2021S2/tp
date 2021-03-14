@@ -11,6 +11,7 @@ import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Workload;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.
@@ -36,6 +37,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setDeadline(task.getDeadline());
         descriptor.setModule(task.getModule());
         descriptor.setDescription(task.getDescription());
+        descriptor.setWorkload(task.getWorkload());
         descriptor.setTags(task.getTags());
     }
 
@@ -64,10 +66,18 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Description} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(new Description(description));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Workload} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withWorkload(String workload) {
+        descriptor.setWorkload(new Workload(workload));
         return this;
     }
 

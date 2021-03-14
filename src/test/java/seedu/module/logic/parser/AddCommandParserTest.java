@@ -10,6 +10,7 @@ import static seedu.module.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DE
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.INVALID_WORKLOAD_DESC;
 import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -24,6 +25,9 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_LOW;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_WORKLOAD_2;
+import static seedu.module.logic.commands.CommandTestUtil.WORKLOAD_DESC_1;
+import static seedu.module.logic.commands.CommandTestUtil.WORKLOAD_DESC_2;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.module.testutil.TypicalTasks.AMY;
@@ -38,6 +42,7 @@ import seedu.module.model.task.Description;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
 import seedu.module.model.task.Task;
+import seedu.module.model.task.Workload;
 import seedu.module.testutil.TaskBuilder;
 
 public class AddCommandParserTest {
@@ -49,37 +54,41 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_AMY + DEADLINE_DESC_BOB + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple modules - last module accepted
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_AMY + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_LOW, new AddCommand(expectedTask));
 
-        // multiple descriptiones - last description accepted
+        // multiple descriptions - last description accepted
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_AMY
-                + DESCRIPTION_DESC_BOB + TAG_DESC_LOW, new AddCommand(expectedTask));
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_LOW, new AddCommand(expectedTask));
+
+        // multiple workloads - last workload accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
+                + WORKLOAD_DESC_1 + WORKLOAD_DESC_2 + TAG_DESC_LOW, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
         Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_LOW, VALID_TAG_HIGH)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HIGH + TAG_DESC_LOW, new AddCommand(expectedTaskMultipleTags));
+                + WORKLOAD_DESC_2 + TAG_DESC_HIGH + TAG_DESC_LOW, new AddCommand(expectedTaskMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + DEADLINE_DESC_AMY + MODULE_DESC_AMY + DESCRIPTION_DESC_AMY,
-                new AddCommand(expectedTask));
+        assertParseSuccess(parser, NAME_DESC_AMY + DEADLINE_DESC_AMY + MODULE_DESC_AMY + DESCRIPTION_DESC_AMY
+                + WORKLOAD_DESC_1, new AddCommand(expectedTask));
     }
 
     @Test
@@ -87,55 +96,64 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2, expectedMessage);
 
         // missing deadline prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_DEADLINE_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + VALID_DEADLINE_BOB + MODULE_DESC_BOB
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2, expectedMessage);
 
         // missing module prefix
-        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + VALID_MODULE_BOB + DESCRIPTION_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + VALID_MODULE_BOB
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2, expectedMessage);
 
         // missing description prefix
-        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + VALID_DESCRIPTION_BOB,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
+                + VALID_DESCRIPTION_BOB + WORKLOAD_DESC_2, expectedMessage);
+
+        // missing workload prefix
+        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
+                + DESCRIPTION_DESC_BOB + VALID_WORKLOAD_2, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_DEADLINE_BOB + VALID_MODULE_BOB + VALID_DESCRIPTION_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_DEADLINE_BOB + VALID_MODULE_BOB
+                + VALID_DESCRIPTION_BOB + VALID_WORKLOAD_2, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HIGH + TAG_DESC_LOW, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + MODULE_DESC_BOB
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_HIGH + TAG_DESC_LOW, Name.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DEADLINE_DESC + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HIGH + TAG_DESC_LOW, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DEADLINE_DESC + MODULE_DESC_BOB
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_HIGH + TAG_DESC_LOW, Deadline.MESSAGE_CONSTRAINTS);
 
         // invalid module
-        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + INVALID_MODULE_DESC + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HIGH + TAG_DESC_LOW, Module.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + INVALID_MODULE_DESC
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_HIGH + TAG_DESC_LOW, Module.MESSAGE_CONSTRAINTS);
 
         // invalid description
-        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + INVALID_DESCRIPTION_DESC
-                + TAG_DESC_HIGH + TAG_DESC_LOW, Description.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
+                + INVALID_DESCRIPTION_DESC + WORKLOAD_DESC_2 + TAG_DESC_HIGH
+                + TAG_DESC_LOW, Description.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_LOW, Tag.MESSAGE_CONSTRAINTS);
+                + WORKLOAD_DESC_2 + INVALID_TAG_DESC + VALID_TAG_LOW, Tag.MESSAGE_CONSTRAINTS);
+
+        // invalid workload
+        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB + DESCRIPTION_DESC_BOB
+                + INVALID_WORKLOAD_DESC + TAG_DESC_HIGH + TAG_DESC_LOW, Workload.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + MODULE_DESC_BOB + INVALID_DESCRIPTION_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + MODULE_DESC_BOB
+                + INVALID_DESCRIPTION_DESC + WORKLOAD_DESC_2, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_HIGH + TAG_DESC_LOW,
+                + DESCRIPTION_DESC_BOB + WORKLOAD_DESC_2 + TAG_DESC_HIGH + TAG_DESC_LOW,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

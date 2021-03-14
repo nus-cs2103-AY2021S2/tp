@@ -41,7 +41,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
             @JsonProperty("module") String module, @JsonProperty("description") String description,
-            @JsonProperty("doneStatus") String doneStatus, @JsonProperty("workload") String workload,
+            @JsonProperty("workload") String workload, @JsonProperty("doneStatus") String doneStatus,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.deadline = deadline;
@@ -62,7 +62,7 @@ class JsonAdaptedTask {
         deadline = source.getDeadline().value;
         module = source.getModule().value;
         description = source.getDescription().value;
-        workload = Integer.toString(source.getWorkload().workloadLevel);
+        workload = source.getWorkload().toString();
         doneStatus = source.getDoneStatus().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

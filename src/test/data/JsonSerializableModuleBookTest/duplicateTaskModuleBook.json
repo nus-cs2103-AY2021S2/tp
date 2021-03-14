@@ -4,6 +4,7 @@
     "deadline": "2021-02-01 12:00",
     "module": "CS3243",
     "description": "hmmm",
+    "workload": "2",
     "doneStatus": "false",
     "tagged": [ "median" ]
   }, {
@@ -11,6 +12,7 @@
     "deadline": "2021-01-12 13:00",
     "module": "CS3243",
     "description": "Is it easy?",
+    "workload": "2",
     "doneStatus": "false"
   } ]
 }

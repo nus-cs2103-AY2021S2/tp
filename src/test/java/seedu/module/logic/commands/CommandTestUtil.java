@@ -7,6 +7,7 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import static seedu.module.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_BOB = "CS3244";
     public static final String VALID_DESCRIPTION_AMY = "Finish this ASAP.";
     public static final String VALID_DESCRIPTION_BOB = "Need to figure out the concept.";
+    public static final String VALID_WORKLOAD_1 = "1";
+    public static final String VALID_WORKLOAD_2 = "2";
     public static final String VALID_TAG_HIGH = "priorityHigh";
     public static final String VALID_TAG_LOW = "priorityLow";
 
@@ -45,6 +48,8 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_BOB = " " + PREFIX_MODULE + VALID_MODULE_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
+    public static final String WORKLOAD_DESC_1 = " " + PREFIX_WORKLOAD + VALID_WORKLOAD_1;
+    public static final String WORKLOAD_DESC_2 = " " + PREFIX_WORKLOAD + VALID_WORKLOAD_2;
     public static final String TAG_DESC_LOW = " " + PREFIX_TAG + VALID_TAG_LOW;
     public static final String TAG_DESC_HIGH = " " + PREFIX_TAG + VALID_TAG_HIGH;
 
@@ -52,6 +57,7 @@ public class CommandTestUtil {
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "911a"; // 'a' not allowed in deadlines
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty
+    public static final String INVALID_WORKLOAD_DESC = " " + PREFIX_WORKLOAD + "4"; // workload should be in range 1-3
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -63,10 +69,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withDeadline(VALID_DEADLINE_AMY).withModule(VALID_MODULE_AMY).withDescription(VALID_DESCRIPTION_AMY)
-                .withTags(VALID_TAG_LOW).build();
+                .withWorkload(VALID_WORKLOAD_1).withTags(VALID_TAG_LOW).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withDeadline(VALID_DEADLINE_BOB).withModule(VALID_MODULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
-                .withTags(VALID_TAG_HIGH, VALID_TAG_LOW).build();
+                .withWorkload(VALID_WORKLOAD_2).withTags(VALID_TAG_HIGH, VALID_TAG_LOW).build();
     }
 
     /**

@@ -4,6 +4,7 @@
     "deadline": "2021-10-21 14:30",
     "module": "CS2030S",
     "description": "4th street",
+    "workload": "1",
     "doneStatus": "false"
   } ]
 }
