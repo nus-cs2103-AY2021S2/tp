@@ -33,25 +33,26 @@ import seedu.address.testutil.PersonUtil;
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
+    private final UniqueAliasMap emptyAliases = new UniqueAliasMap();
 
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person), new UniqueAliasMap());
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person), emptyAliases);
         assertEquals(new AddCommand(person), command);
     }
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, new UniqueAliasMap()) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, emptyAliases) instanceof ClearCommand);
         assertTrue(parser.parseCommand(
-                ClearCommand.COMMAND_WORD + " 3", new UniqueAliasMap()) instanceof ClearCommand);
+                ClearCommand.COMMAND_WORD + " 3", emptyAliases) instanceof ClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), new UniqueAliasMap());
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), emptyAliases);
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -61,15 +62,14 @@ public class AddressBookParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
-                + PersonUtil.getEditPersonDescriptorDetails(descriptor), new UniqueAliasMap());
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor), emptyAliases);
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, new UniqueAliasMap()) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(
-                ExitCommand.COMMAND_WORD + " 3", new UniqueAliasMap()) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, emptyAliases) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3", emptyAliases) instanceof ExitCommand);
     }
 
     @Test
@@ -77,33 +77,32 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " "
-                        + keywords.stream().collect(Collectors.joining(" ")), new UniqueAliasMap());
+                        + keywords.stream().collect(Collectors.joining(" ")), emptyAliases);
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, new UniqueAliasMap()) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(
-                HelpCommand.COMMAND_WORD + " 3", new UniqueAliasMap()) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, emptyAliases) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3", emptyAliases) instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, new UniqueAliasMap()) instanceof ListCommand);
-        assertTrue(parser.parseCommand(
-                ListCommand.COMMAND_WORD + " 3", new UniqueAliasMap()) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, emptyAliases) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3", emptyAliases) instanceof ListCommand);
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand("", new UniqueAliasMap()));
+            -> parser.parseCommand("", emptyAliases));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
-                "unknownCommand", new UniqueAliasMap()));
+                "unknownCommand", emptyAliases));
     }
+
 }
