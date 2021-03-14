@@ -18,9 +18,9 @@ as this application is catered to people who are used to typing on the keyboard 
 ### 1. Adding Task: `addTask`  
 Adds a task and its description to the list.
 
-Format: `addTask TITLE d/DESCRIPTION`
+Format: `addTask TITLE -d DESCRIPTION`
 
-Examples: `addTask assignment d/Math quiz 2`
+Examples: `addTask assignment -d Math quiz 2`
 
 
 ### 2. Deleting Task: `deleteTask`
@@ -41,9 +41,9 @@ Examples: `viewTasks`
 
 Adds a member and his/ her contract number to contact list
 
-Format: `addMember NAME`
+Format: `addMember NAME -p PHONE NUMBER -e email`
 
-Examples: `addMember Dylan 64529356`
+Examples: `addMember Dylan -p 64529356 -e test@test.com`
 
 ### 5. Delete Member: `deleteMember`
 
