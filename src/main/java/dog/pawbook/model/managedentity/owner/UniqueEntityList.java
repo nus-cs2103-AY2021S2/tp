@@ -31,7 +31,7 @@ public class UniqueEntityList<T extends Entity> implements Iterable<T> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent owner as the given argument.
+     * Returns true if the list contains an equivalent entity as the given argument.
      */
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
@@ -39,8 +39,8 @@ public class UniqueEntityList<T extends Entity> implements Iterable<T> {
     }
 
     /**
-     * Adds a owner to the list.
-     * The owner must not already exist in the list.
+     * Adds an entity to the list.
+     * The entity must not already exist in the list.
      */
     public void add(T toAdd) {
         requireNonNull(toAdd);
@@ -51,28 +51,28 @@ public class UniqueEntityList<T extends Entity> implements Iterable<T> {
     }
 
     /**
-     * Replaces the owner {@code target} in the list with {@code editedOwner}.
+     * Replaces the owner {@code target} in the list with {@code editedEntity}.
      * {@code target} must exist in the list.
-     * The owner identity of {@code editedOwner} must not be the same as another existing owner in the list.
+     * The entity identity of {@code editedEntity} must not be the same as another existing entity in the list.
      */
-    public void setOwner(T target, T editedOwner) {
-        requireAllNonNull(target, editedOwner);
+    public void setEntity(T target, T editedEntity) {
+        requireAllNonNull(target, editedEntity);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new OwnerNotFoundException();
         }
 
-        if (!target.isSameEntity(editedOwner) && contains(editedOwner)) {
+        if (!target.isSameEntity(editedEntity) && contains(editedEntity)) {
             throw new DuplicateOwnerException();
         }
 
-        internalList.set(index, editedOwner);
+        internalList.set(index, editedEntity);
     }
 
     /**
-     * Removes the equivalent owner from the list.
-     * The owner must exist in the list.
+     * Removes the equivalent entity from the list.
+     * The entity must exist in the list.
      */
     public void remove(T toRemove) {
         requireNonNull(toRemove);
@@ -81,18 +81,18 @@ public class UniqueEntityList<T extends Entity> implements Iterable<T> {
         }
     }
 
-    public void setOwners(UniqueEntityList replacement) {
+    public void setEntities(UniqueEntityList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code owners}.
-     * {@code owners} must not contain duplicate owners.
+     * Replaces the contents of this list with {@code entities}.
+     * {@code entities} must not contain duplicate entities.
      */
-    public void setOwners(List<T> owners) {
+    public void setEntities(List<T> owners) {
         requireAllNonNull(owners);
-        if (!ownersAreUnique(owners)) {
+        if (!entitiesAreUnique(owners)) {
             throw new DuplicateOwnerException();
         }
 
@@ -124,12 +124,13 @@ public class UniqueEntityList<T extends Entity> implements Iterable<T> {
     }
 
     /**
-     * Returns true if {@code owners} contains only unique owners.
+     * Returns true if {@code entities} contains only unique entities.
+     * @param entities
      */
-    private boolean ownersAreUnique(List<T> owners) {
-        for (int i = 0; i < owners.size() - 1; i++) {
-            for (int j = i + 1; j < owners.size(); j++) {
-                if (owners.get(i).isSameEntity(owners.get(j))) {
+    private boolean entitiesAreUnique(List<T> entities) {
+        for (int i = 0; i < entities.size() - 1; i++) {
+            for (int j = i + 1; j < entities.size(); j++) {
+                if (entities.get(i).isSameEntity(entities.get(j))) {
                     return false;
                 }
             }
