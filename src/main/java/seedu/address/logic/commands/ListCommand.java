@@ -14,6 +14,10 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Hey Doc, here are your patients!";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Shows a list of all your saved patient contacts.\n"
+            + "Parameters: None\n"
+            + "Example: " + COMMAND_WORD;
 
     @Override
     public CommandResult execute(Model model) {
