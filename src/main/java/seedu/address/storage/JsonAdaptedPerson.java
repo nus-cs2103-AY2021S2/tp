@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Done;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -26,7 +27,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
+    private final String done;
     private final String name;
     private final String phone;
     private final String email;
@@ -40,13 +41,15 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("remark") String remark,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("done") String done) {
 
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
+        this.done = done;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -64,6 +67,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        done = source.getDone().value;
     }
 
     /**
@@ -116,7 +120,10 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+
+        final Done modelDone = new Done(done);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelDone);
     }
 
 }
