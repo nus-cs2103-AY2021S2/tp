@@ -17,10 +17,12 @@ Class ReadOnlyUserPrefs
 
 Package Task {
 Class Task
-Class Address
+Class Description
 Class Module
 Class Name
 Class Deadline
+Class DoneStatus
+Class Workload
 Class UniqueTaskList
 }
 
@@ -45,12 +47,16 @@ UniqueTaskList o--> "*" Task
 Task *--> Name
 Task *--> Deadline
 Task *--> Module
-Task *--> Address
+Task *--> Description
+Task *--> Workload
+Task *--> DoneStatus
 Task *--> "*" Tag
 
 Name -[hidden]right-> Deadline
-Deadline -[hidden]right-> Address
-Address -[hidden]right-> Module
+Deadline -[hidden]right-> Description
+Description -[hidden]right-> Module
+Module -[hidden]right-> DoneStatus
+DoneStatus -[hidden]right-> Workload
 
 ModelManager ----->" ~* filtered list" Task
 @enduml
