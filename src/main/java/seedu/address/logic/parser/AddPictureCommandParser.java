@@ -3,11 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.AddPictureCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

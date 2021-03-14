@@ -13,7 +13,7 @@ public class Picture {
     public static final String MESSAGE_CONSTRAINTS = "An image file should exist at specified path. "
             + MESSAGE_ACCEPTED_FILE_EXTENSIONS;
 
-    Path filePath;
+    private final Path filePath;
 
     public Picture(Path filePath) {
         this.filePath = filePath;
@@ -27,6 +27,9 @@ public class Picture {
         return filePath.toAbsolutePath().toString();
     }
 
+    /**
+     * Checks if the given @{code str} is a valid file path to an image file
+     */
     public static boolean isValidFilePath(String str) {
         try {
             ParserUtil.parsePictureFilePath(str);
