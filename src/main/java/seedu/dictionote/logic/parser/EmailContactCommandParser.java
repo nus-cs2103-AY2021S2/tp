@@ -1,10 +1,10 @@
 package seedu.dictionote.logic.parser;
 
+import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-
-import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new EmailContactCommand object

@@ -1,18 +1,5 @@
 package seedu.dictionote.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.dictionote.commons.core.Messages;
-import seedu.dictionote.commons.core.index.Index;
-import seedu.dictionote.model.Model;
-import seedu.dictionote.model.ModelManager;
-import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.ReadOnlyUserPrefs;
-import seedu.dictionote.model.ReadOnlyNoteBook;
-import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.contact.Contact;
-
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -23,6 +10,18 @@ import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.dictionote.commons.core.Messages;
+import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.model.Model;
+import seedu.dictionote.model.ModelManager;
+import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyNoteBook;
+import seedu.dictionote.model.ReadOnlyUserPrefs;
+import seedu.dictionote.model.UserPrefs;
+import seedu.dictionote.model.contact.Contact;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code EmailContactCommand}.
@@ -32,7 +31,7 @@ public class EmailContactCommandTest {
     private Model model = new ModelManagerStub(getTypicalAddressBook(), new UserPrefs(), getTypicalNoteBook());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() throws IOException {
+    public void execute_validIndexUnfilteredList_success() {
         Contact contactToEmail = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
         EmailContactCommand emailContactCommand = new EmailContactCommand(INDEX_FIRST_CONTACT);
 

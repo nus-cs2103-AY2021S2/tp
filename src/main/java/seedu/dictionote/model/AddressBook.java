@@ -2,13 +2,12 @@ package seedu.dictionote.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.UniquePersonList;
 import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;

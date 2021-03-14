@@ -1,14 +1,14 @@
 package seedu.dictionote.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Opens a new window to send an email to a contact identified using it's displayed index from the contacts list.
