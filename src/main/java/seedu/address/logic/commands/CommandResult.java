@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -11,6 +14,8 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    private final ObservableList<Person> tutorsToView;
+
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
@@ -20,8 +25,9 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, ObservableList<Person> tutorsToView, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.tutorsToView = tutorsToView;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -31,11 +37,19 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, null, false, false);
+    }
+
+    public CommandResult(String feedbackToUser, ObservableList<Person> tutorsToView) {
+        this(feedbackToUser, tutorsToView, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public ObservableList<Person> getTutorsToView() {
+        return tutorsToView;
     }
 
     public boolean isShowHelp() {
