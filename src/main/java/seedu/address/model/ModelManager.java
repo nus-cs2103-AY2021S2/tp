@@ -136,7 +136,7 @@ public class ModelManager implements Model {
     @Override
     public void addOrder(Order order) {
         addressBook.addOrder(order);
-        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDER);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
     }
 
     @Override
@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     @Override
     public void addCheese(Cheese cheese) {
         addressBook.addCheese(cheese);
-        updateFilteredCheeseList(PREDICATE_SHOW_ALL_CHEESE);
+        updateFilteredCheeseList(PREDICATE_SHOW_ALL_CHEESES);
     }
 
     @Override
@@ -221,6 +221,22 @@ public class ModelManager implements Model {
         filteredCheeses.setPredicate(predicate);
     }
 
+    //=========== For Toggling UI Panel ==================================================================
+
+    @Override
+    public void setPanelToCustomerList() {
+        getGuiSettings().setPanelToCustomerList();
+    }
+
+    @Override
+    public void setPanelToCheeseList() {
+        getGuiSettings().setPanelToCheeseList();
+    }
+
+    @Override
+    public void setPanelToOrderList() {
+        getGuiSettings().setPanelToOrderList();
+    }
 
     @Override
     public boolean equals(Object obj) {

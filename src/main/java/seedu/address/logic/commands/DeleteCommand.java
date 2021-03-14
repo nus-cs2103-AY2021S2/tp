@@ -41,6 +41,8 @@ public class DeleteCommand extends Command {
 
         Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCustomer(customerToDelete);
+        model.setPanelToCustomerList();
+
         return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
     }
 

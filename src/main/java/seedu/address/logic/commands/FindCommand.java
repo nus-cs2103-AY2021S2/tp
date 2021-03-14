@@ -29,6 +29,7 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCustomerList(predicate);
+        model.setPanelToCustomerList();
         return new CommandResult(
                 String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
     }

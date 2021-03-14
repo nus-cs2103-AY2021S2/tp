@@ -6,6 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseType;
+import seedu.address.model.cheese.ExpiryDate;
+import seedu.address.model.cheese.ManufactureDate;
+import seedu.address.model.cheese.MaturityDate;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -57,4 +62,14 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Cheese[] getSampleCheeses() {
+        return new Cheese[]{
+            new Cheese(CheeseType.getCheeseType("Brie"), new ManufactureDate("2021-03-10"),
+                new MaturityDate("2021-04-10"), new ExpiryDate("2022-04-10")),
+            new Cheese(CheeseType.getCheeseType("Gouda"), new ManufactureDate("2021-03-10"),
+                new MaturityDate("2021-05-10"), new ExpiryDate("2022-05-10")),
+            new Cheese(CheeseType.getCheeseType("Parmesan"), new ManufactureDate("2021-03-10"),
+                new MaturityDate("2021-04-10"), new ExpiryDate("2022-04-10")),
+        };
+    }
 }

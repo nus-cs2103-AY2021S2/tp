@@ -21,7 +21,9 @@ import seedu.address.logic.commands.EditCommandStub;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListCheesesCommand;
+import seedu.address.logic.commands.ListCustomersCommand;
+import seedu.address.logic.commands.ListOrdersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.CustomerIdStub;
 import seedu.address.model.customer.Customer;
@@ -85,9 +87,21 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_listCustomers() throws Exception {
+        assertTrue(parser.parseCommand(ListCustomersCommand.COMMAND_WORD) instanceof ListCustomersCommand);
+        assertTrue(parser.parseCommand(ListCustomersCommand.COMMAND_WORD + " 3") instanceof ListCustomersCommand);
+    }
+
+    @Test
+    public void parseCommand_listCheeses() throws Exception {
+        assertTrue(parser.parseCommand(ListCheesesCommand.COMMAND_WORD) instanceof ListCheesesCommand);
+        assertTrue(parser.parseCommand(ListCheesesCommand.COMMAND_WORD + " 3") instanceof ListCheesesCommand);
+    }
+
+    @Test
+    public void parseCommand_listOrders() throws Exception {
+        assertTrue(parser.parseCommand(ListOrdersCommand.COMMAND_WORD) instanceof ListOrdersCommand);
+        assertTrue(parser.parseCommand(ListOrdersCommand.COMMAND_WORD + " 3") instanceof ListOrdersCommand);
     }
 
     @Test
