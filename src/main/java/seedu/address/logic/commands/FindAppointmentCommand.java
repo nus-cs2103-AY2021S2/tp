@@ -29,9 +29,11 @@ public class FindAppointmentCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
+        int appointmentListSize = model.getFilteredAppointmentList().size();
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW, model.getFilteredAppointmentList().size()));
-                //TODO edit this part
+                String.format(appointmentListSize > 1
+                        ? Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW
+                        : Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, appointmentListSize));
     }
 
     @Override
