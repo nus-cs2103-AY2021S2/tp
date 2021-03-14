@@ -30,7 +30,7 @@ public class NoteListPanel extends UiPart<Region> {
     }
 
     /**r
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Note} using a {@code NoteCard}.
      */
     class NoteListViewCell extends ListCell<Note> {
         @Override

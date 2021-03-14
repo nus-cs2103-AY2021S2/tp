@@ -48,7 +48,7 @@ public class NoteCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof NoteCard)) {
             return false;
         }
 
