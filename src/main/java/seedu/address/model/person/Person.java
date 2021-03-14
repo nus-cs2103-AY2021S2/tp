@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -82,7 +83,9 @@ public class Person {
         return address;
     }
 
-    public Picture getPicture() { return picture; }
+    public Optional<Picture> getPicture() {
+        return Optional.ofNullable(picture);
+    }
 
     public Person setPicture(Picture picture) {
         return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
@@ -141,12 +144,12 @@ public class Person {
 
         Person otherPerson = (Person) other;
 
-        // TODO: Add checking for two pictures
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getBirthday().equals(getBirthday())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getPicture().equals(getPicture())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getDates().equals(getDates())
                 && otherPerson.getMeetings().equals(getMeetings());

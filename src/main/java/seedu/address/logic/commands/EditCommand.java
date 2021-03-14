@@ -105,7 +105,7 @@ public class EditCommand extends Command {
         Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        Picture picture = personToEdit.getPicture();
+        Picture picture = personToEdit.getPicture().orElse(null);
         List<Event> dates = personToEdit.getDates();
         List<Event> meetings = personToEdit.getMeetings();
 

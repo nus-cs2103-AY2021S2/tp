@@ -66,7 +66,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         birthday = personToCopy.getBirthday();
         address = personToCopy.getAddress();
-        picture = personToCopy.getPicture();
+        picture = personToCopy.getPicture().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
         dates = new ArrayList<>(personToCopy.getDates());
         meetings = new ArrayList<>(personToCopy.getMeetings());

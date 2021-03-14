@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Comparator;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -75,10 +76,9 @@ public class PersonCard extends UiPart<Region> {
         // Temporary UI to test meetings
         person.getMeetings().forEach(meeting -> meetings.getChildren().add(new Label(meeting.toUi())));
 
-        Picture personPicture = person.getPicture();
-        if (personPicture != null) {
-            
-            File imgFile = new File(person.getPicture().getAbsoluteFilePath());
+        Optional<Picture> personPicture = person.getPicture();
+        if (personPicture.isPresent()) {
+            File imgFile = new File(personPicture.get().getAbsoluteFilePath());
             try {
                 Image userImage = new Image(new FileInputStream(imgFile));
                 picture.setImage(userImage);

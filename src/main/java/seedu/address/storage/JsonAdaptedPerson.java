@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -75,12 +76,8 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
 
-        Picture srcPic = source.getPicture();
-        if (srcPic == null) {
-            picture = null;
-        } else {
-            picture = new JsonAdaptedPicture(srcPic);
-        }
+        Optional<Picture> srcPic = source.getPicture();
+        picture = srcPic.isEmpty() ? null : new JsonAdaptedPicture(srcPic.get());
 
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
