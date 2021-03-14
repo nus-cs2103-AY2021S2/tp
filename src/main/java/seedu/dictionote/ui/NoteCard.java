@@ -1,8 +1,12 @@
 package seedu.dictionote.ui;
 
 
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.dictionote.model.note.Note;
@@ -12,6 +16,7 @@ import seedu.dictionote.model.note.Note;
  */
 public class NoteCard extends UiPart<Region> {
 
+    private static final String DONE_STYLE_CLASS = "done";
     private static final String FXML = "NoteListCard.fxml";
 
     /**
@@ -29,15 +34,40 @@ public class NoteCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label notecontent;
+    @FXML
+    private Label create;
+    @FXML
+    private Label update;
+    @FXML
+    private Label done;
+    @FXML
+    private FlowPane tags;
+
+    private DateTimeFormatter displayFormat;
 
     /**
      * Creates a {@code NoteCard} with the given {@code Note} and index to display.
      */
     public NoteCard(Note note, int displayedIndex) {
         super(FXML);
+        displayFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         this.note = note;
         id.setText(displayedIndex + ". ");
         notecontent.setText(note.getNote());
+        create.setText("Created: " + displayFormat.format(note.getCreateTime()));
+        update.setText(" Updated: " + displayFormat.format(note.getLastEditTime()));
+        note.getTags().stream()
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (note.isDone()) {
+            done.setText("✓");
+            notecontent.getStyleClass().add(DONE_STYLE_CLASS);
+            create.getStyleClass().add(DONE_STYLE_CLASS);
+            update.getStyleClass().add(DONE_STYLE_CLASS);
+            id.getStyleClass().add(DONE_STYLE_CLASS);
+            done.getStyleClass().add(DONE_STYLE_CLASS);
+        }
     }
 
     @Override
