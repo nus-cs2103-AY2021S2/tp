@@ -9,6 +9,8 @@ import static seedu.dictionote.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +24,7 @@ import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.note.Note;
+import seedu.dictionote.model.tag.Tag;
 import seedu.dictionote.testutil.NoteBuilder;
 
 public class AddNoteCommandTest {
@@ -43,8 +46,9 @@ public class AddNoteCommandTest {
 
     @Test
     public void equals() {
-        Note note = new NoteBuilder(new Note("2103")).build();
-        Note otherNote = new NoteBuilder(new Note("cs2103T")).build();
+        Set<Tag> tags = new HashSet<>();
+        Note note = new NoteBuilder(new Note("2103", tags)).build();
+        Note otherNote = new NoteBuilder(new Note("cs2103T", tags)).build();
         AddNoteCommand addNoteCommand = new AddNoteCommand(note);
         AddNoteCommand addOtherNoteCommand = new AddNoteCommand(otherNote);
 

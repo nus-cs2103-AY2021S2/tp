@@ -62,9 +62,9 @@ public class SampleDataUtil {
 
     public static Note[] getSampleNotes() {
         return new Note[] {
-            new Note("CS2103T exam is coming."),
-            new Note("My friend is an idiot."),
-            new Note("My Teacher Best Teacher")
+            new Note("CS2103T exam is coming.", getTagSet("Exam")),
+            new Note("My friend is an idiot.", getTagSet("Friends")),
+            new Note("My Teacher Best Teacher", getTagSet("Teacher"))
         };
     }
 
