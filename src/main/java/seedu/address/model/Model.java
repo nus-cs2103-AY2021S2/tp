@@ -14,6 +14,8 @@ import seedu.address.model.session.Session;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -87,4 +89,8 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void addSession(Session session);
+
+    public ObservableList<Session> getFilteredSessionList();
+
+    public void updateFilteredSessionList(Predicate<Session> predicate);
 }

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+
 /**
  * A list of sessions tht does not allow nulls.
  *
@@ -22,6 +23,14 @@ public class SessionList {
     public void add(Session toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent session as the given argument.
+     */
+    public boolean contains(Session toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameSession);
     }
 
     /**
