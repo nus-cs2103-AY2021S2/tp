@@ -69,10 +69,10 @@ public class GuiSettings implements Serializable {
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
 
-        this.contactSplitRatio = contactSplitRatio;
-        this.dictionarySplitRatio = dictionarySplitRatio;
-        this.noteSplitRatio = noteSplitRatio;
-        this.mainSplitRatio = mainSplitRatio;
+        setContactSplitRatio(contactSplitRatio);
+        setDictionarySplitRatio(dictionarySplitRatio);
+        setNoteSplitRatio(noteSplitRatio);
+        setMainSplitRatio(mainSplitRatio);
 
         this.isContactPanelVisible = isContactPanelVisible;
         this.isDictionaryContentPanelVisible = isDictionaryContentPanelVisible;
@@ -131,30 +131,34 @@ public class GuiSettings implements Serializable {
 
     public void setContactSplitRatio(double contactSplitRatio) {
         if (isValidSplitRatio(contactSplitRatio)) {
-            this.contactSplitRatio = contactSplitRatio;
+            this.contactSplitRatio = getRoundedValue(contactSplitRatio);
         }
     }
 
     public void setDictionarySplitRatio(double dictionarySplitRatio) {
         if (isValidSplitRatio(dictionarySplitRatio)) {
-            this.dictionarySplitRatio = dictionarySplitRatio;
+            this.dictionarySplitRatio = getRoundedValue(dictionarySplitRatio);
         }
     }
 
     public void setNoteSplitRatio(double noteSplitRatio) {
         if (isValidSplitRatio(noteSplitRatio)) {
-            this.noteSplitRatio = noteSplitRatio;
+            this.noteSplitRatio = getRoundedValue(noteSplitRatio);
         }
     }
 
     public void setMainSplitRatio(double mainSplitRatio) {
         if (isValidSplitRatio(mainSplitRatio)) {
-            this.mainSplitRatio = mainSplitRatio;
+            this.mainSplitRatio = getRoundedValue(mainSplitRatio);
         }
     }
 
     private boolean isValidSplitRatio(double ratio) {
         return ratio >= MIN_SPLIT_RATIO && ratio <= MAX_SPLIT_RATIO;
+    }
+
+    private double getRoundedValue(double d) {
+        return ((double) Math.round(d * 10000)) / 10000;
     }
 
     @Override

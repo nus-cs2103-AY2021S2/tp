@@ -29,12 +29,6 @@ public class CommandResultTest {
 
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different")));
-
-        // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", UiAction.HELP)));
-
-        // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", UiAction.EXIT)));
     }
 
     @Test

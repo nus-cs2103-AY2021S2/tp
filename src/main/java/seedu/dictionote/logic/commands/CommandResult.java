@@ -70,9 +70,7 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && uiAction == otherCommandResult.uiAction
-                && uiActionOption == otherCommandResult.uiActionOption;
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser);
     }
 
     @Override
