@@ -29,4 +29,3 @@ public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentC
     }
 
 }
-
