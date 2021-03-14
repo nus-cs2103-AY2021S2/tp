@@ -83,6 +83,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.eventListFilePath = eventListFilePath;
     }
 
+    public void setSocheduleFilePath(Path socheduleFilePath) {
+        requireNonNull(socheduleFilePath);
+        this.socheduleFilePath = socheduleFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

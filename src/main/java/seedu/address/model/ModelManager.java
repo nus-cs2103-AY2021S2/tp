@@ -201,18 +201,18 @@ public class ModelManager implements Model {
         return sochedule;
     }
 
+    @Override
+    public Path getSocheduleFilePath() {
+        return userPrefs.getSocheduleFilePath();
+    }
+
+    @Override
+    public void setSocheduleFilePath(Path socheduleFilePath) {
+        requireAllNonNull(socheduleFilePath);
+        userPrefs.setSocheduleFilePath(socheduleFilePath);
+    }
+
     //=========== task ==================================================================================
-
-    @Override
-    public Path getTaskListFilePath() {
-        return userPrefs.getTaskListFilePath();
-    }
-
-    @Override
-    public void setTaskListFilePath(Path taskListFilePath) {
-        requireAllNonNull(taskListFilePath);
-        userPrefs.setTaskListFilePath(taskListFilePath);
-    }
 
     @Override
     public boolean hasTask(Task task) {
@@ -239,7 +239,7 @@ public class ModelManager implements Model {
 
     @Override
     public void doneTask(Task target) {
-        sochedule.removeTask(target);
+        target.markTaskAsDone();
     }
 
     /**
@@ -257,17 +257,6 @@ public class ModelManager implements Model {
     }
 
     //=========== event ==================================================================================
-
-    @Override
-    public Path getEventListFilePath() {
-        return userPrefs.getTaskListFilePath();
-    }
-
-    @Override
-    public void setEventListFilePath(Path eventListFilePath) {
-        requireAllNonNull(eventListFilePath);
-        userPrefs.setEventListFilePath(eventListFilePath);
-    }
 
     @Override
     public boolean hasEvent(Event event) {
