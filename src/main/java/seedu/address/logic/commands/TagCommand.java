@@ -71,7 +71,7 @@ public class TagCommand extends Command {
         Person personToTag = lastShownList.get(index.getZeroBased());
         Person taggedPerson;
         if (isReplace) {
-            taggedPerson= createReplacedTaggedPerson(personToTag);
+            taggedPerson = createReplacedTaggedPerson(personToTag);
             model.setPerson(personToTag, taggedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_TAG_REPLACE_PERSON_SUCCESS, taggedPerson));
