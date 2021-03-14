@@ -29,6 +29,7 @@ import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
+import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
@@ -91,6 +92,18 @@ public class DictionoteParserTest {
     }
 
     @Test
+    public void parseCommand_listContact() throws Exception {
+        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD) instanceof ListContactCommand);
+        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommand() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD) instanceof ListCommandCommand);
+        assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -119,11 +132,6 @@ public class DictionoteParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
-    @Test
-    public void parseCommand_listContact() throws Exception {
-        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD) instanceof ListContactCommand);
-        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
-    }
 
     @Test
     public void parseCommand_open() throws Exception {
