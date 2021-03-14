@@ -11,8 +11,8 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Plan objects.
  */
-public class PersonBuilder {
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+public class PlanBuilder {
+    public static final String DEFAULT_DESCRIPTION = "Networking";
 
     private Description description;
     private Set<Tag> tags;
@@ -20,30 +20,23 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
-        description = new Description(DEFAULT_ADDRESS);
+    public PlanBuilder() {
+        description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code planToCopy}.
      */
-    public PersonBuilder(Plan planToCopy) {
+    public PlanBuilder(Plan planToCopy) {
         description = planToCopy.getDescription();
         tags = new HashSet<>(planToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Plan} that we are building.
-     */
-    public PersonBuilder withName(String name) {
-        return this;
-    }
-
-    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Plan} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PlanBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -51,8 +44,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Description} of the {@code Plan} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.description = new Description(address);
+    public PlanBuilder withDescription(String description) {
+        this.description = new Description(description);
         return this;
     }
 

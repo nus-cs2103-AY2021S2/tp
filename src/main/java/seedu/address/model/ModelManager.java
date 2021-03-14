@@ -69,7 +69,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getPlanFilePath() {
+    public Path getPlansFilePath() {
         return userPrefs.getPlansFilePath();
     }
 
@@ -79,14 +79,13 @@ public class ModelManager implements Model {
         userPrefs.setPlansFilePath(plansFilePath);
     }
 
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setPl(ReadOnlyAddressBook addressBook) {
+    //=========== Plan ================================================================================
+    public void setPlans(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
-    public ReadOnlyAddressBook getAddressBook() {
+    @Override
+    public ReadOnlyAddressBook getPlans() {
         return addressBook;
     }
 
@@ -105,13 +104,43 @@ public class ModelManager implements Model {
     public void addPerson(Plan plan) {
         addressBook.addPerson(plan);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PLANS);
+        addressBook.removePlan(target);
     }
 
     @Override
-    public void setPerson(Plan target, Plan editedPlan) {
+    public void addPlan(Plan plan) {
+        addressBook.addPlan(plan);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
+
+    @Override
+    public void setPlan(Plan target, Plan editedPlan) {
         requireAllNonNull(target, editedPlan);
 
-        addressBook.setPerson(target, editedPlan);
+        addressBook.setPlan(target, editedPlan);
+    }
+
+    //=========== Semester ================================================================================
+
+    @Override
+    public boolean hasSemester(int planNumber, Semester semester) {
+        requireAllNonNull(planNumber, semester);
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        return plan.getSemesters().stream().anyMatch((currentSemester) -> {
+            return currentSemester.getSemNumber() == semester.getSemNumber();
+        });
+    }
+
+    //    @Override
+    //    public void deleteSemester(Plan plan, Semester target) {
+    //        addressBook.removeSemester(plan, target);
+    //    }
+
+    @Override
+    public void addSemester(int planNumber, Semester semester) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        addressBook.setPlan(plan, plan.addSemester(semester));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
     //=========== Filtered Plan List Accessors =============================================================
@@ -121,12 +150,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Plan> getFilteredPersonList() {
+    public ObservableList<Plan> getFilteredPlanList() {
         return filteredPlans;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Plan> predicate) {
+    public void updateFilteredPlanList(Predicate<Plan> predicate) {
         requireNonNull(predicate);
         filteredPlans.setPredicate(predicate);
     }
