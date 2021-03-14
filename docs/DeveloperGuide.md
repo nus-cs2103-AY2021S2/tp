@@ -246,7 +246,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * save time by generating a consolidation of meetings and deadlines with the clients
 * target clients better by receiving reminders and tips before a client meeting (client's favourite food, profile)
 * increase customer retention by receiving reminders of when the client's insurance is expiring
@@ -289,16 +289,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. iScam detects an error in the given client.
     * 1a1. iScam requests for correction.
     * 1a2. User corrected the client info.
-    * Steps 1a1-1a2 are repeated until the data entered are correct. 
-      
-      Use case resumes from step 2.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    
+    Use case resumes from step 2.
 
 
 * 3a. User chooses to cancel the addition.
     * 3a1. iScam requests to confirm the cancellation.
     * 3a2. User confirms the cancellation.
       
-      Use case ends.
+    Use case ends.
 
 **Use case: List clients**
 
