@@ -10,6 +10,8 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
+
+
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
@@ -19,6 +21,13 @@ public class GuiSettings implements Serializable {
     private float noteSplitRatio = 0.3f;
     private float mainSplitRatio = 0.5f;
 
+    private final boolean isContactPanelVisible;
+    private final boolean isNoteListPanelVisible;
+    private final boolean isNoteContentPanelVisible;
+    private final boolean isDictionaryListPanelVisible;
+    private final boolean isDictionaryContentPanelVisible;
+
+
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
      */
@@ -26,13 +35,22 @@ public class GuiSettings implements Serializable {
         windowWidth = 0;
         windowHeight = 0;
         windowCoordinates = null; // null represent no coordinates
+
+        isContactPanelVisible = true;
+        isDictionaryContentPanelVisible = true;
+        isDictionaryListPanelVisible = true;
+        isNoteContentPanelVisible = true;
+        isNoteListPanelVisible = true;
     }
 
     /**
      * Constructs a {@code GuiSettings} with the specified height, width and position.
      */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, float contactSplitRatio,
-                       float dictionarySplitRatio, float noteSplitRatio, float mainSplitRatio) {
+                       float dictionarySplitRatio, float noteSplitRatio, float mainSplitRatio,
+                       boolean isContactPanelVisible, boolean isDictionaryContentPanelVisible,
+                       boolean isDictionaryListPanelVisible, boolean isNoteContentPanelVisible,
+                       boolean isNoteListPanelVisible) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
@@ -40,6 +58,12 @@ public class GuiSettings implements Serializable {
         this.dictionarySplitRatio = dictionarySplitRatio;
         this.noteSplitRatio = noteSplitRatio;
         this.mainSplitRatio = mainSplitRatio;
+
+        this.isContactPanelVisible = isContactPanelVisible;
+        this.isDictionaryContentPanelVisible = isDictionaryContentPanelVisible;
+        this.isDictionaryListPanelVisible = isDictionaryListPanelVisible;
+        this.isNoteContentPanelVisible = isNoteContentPanelVisible;
+        this.isNoteListPanelVisible = isNoteListPanelVisible;
     }
 
     public double getWindowWidth() {
@@ -52,6 +76,26 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public boolean isContactPanelVisible() {
+        return isContactPanelVisible;
+    }
+
+    public boolean isNoteListPanelVisible() {
+        return isNoteListPanelVisible;
+    }
+
+    public boolean isNoteContentPanelVisible() {
+        return isNoteContentPanelVisible;
+    }
+
+    public boolean isDictionaryListPanelVisible() {
+        return isDictionaryListPanelVisible;
+    }
+
+    public boolean isDictionaryContentPanelVisible() {
+        return isDictionaryContentPanelVisible;
     }
 
     @Override
@@ -115,4 +159,5 @@ public class GuiSettings implements Serializable {
     public void setMainSplitRatio(float mainSplitRatio) {
         this.mainSplitRatio = mainSplitRatio;
     }
+
 }

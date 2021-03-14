@@ -3,10 +3,12 @@ package seedu.dictionote.ui;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import seedu.dictionote.MainApp;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.commons.util.StringUtil;
@@ -44,7 +46,13 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            mainWindow.configSplit();
+
+            //config window later
+            Platform.runLater(new Runnable() {
+                public void run() {
+                    mainWindow.handleShown();
+                }
+            });
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

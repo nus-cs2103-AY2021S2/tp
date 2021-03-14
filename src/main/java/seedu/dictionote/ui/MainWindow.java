@@ -44,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private NoteListPanel noteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -177,7 +178,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
     }
@@ -282,12 +283,13 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
             (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getGuiSettings().getContactSplitRatio(),
             logic.getGuiSettings().getDictionarySplitRatio(), logic.getGuiSettings().getNoteSplitRatio(),
-            logic.getGuiSettings().getMainSplitRatio());
+            logic.getGuiSettings().getMainSplitRatio(), contactDisplay.isVisible(),
+            dictionaryContentDisplay.isVisible(), dictionaryListDisplay.isVisible(),
+            noteContentDisplay.isVisible(), noteListDisplay.isVisible());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
-
 
     /**
      * Set the visiable of the panel.
@@ -298,6 +300,25 @@ public class MainWindow extends UiPart<Stage> {
         pane.setVisible(visible);
     }
 
+    /**
+     * Setup display panel.
+     */
+    private void setupDisplayPanel() {
+        setPanelVisibility(contactDisplay, logic.getGuiSettings().isContactPanelVisible());
+        setPanelVisibility(dictionaryListDisplay, logic.getGuiSettings().isDictionaryListPanelVisible());
+        setPanelVisibility(dictionaryContentDisplay, logic.getGuiSettings().isDictionaryContentPanelVisible());
+        setPanelVisibility(noteListDisplay, logic.getGuiSettings().isNoteListPanelVisible());
+        setPanelVisibility(noteContentDisplay, logic.getGuiSettings().isNoteContentPanelVisible());
+        configSplit();
+    }
+
+    /**
+     * Configure window after shown
+     */
+    public void handleShown() {
+        setupDisplayPanel();
+        commandBox.requestFocus();
+    }
 
     /**
      * * Set the visiable of the panels.

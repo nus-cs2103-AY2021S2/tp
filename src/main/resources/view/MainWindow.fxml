@@ -28,18 +28,21 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <SplitPane fx:id="contactSplitPanel" dividerPositions="0.25" VBox.vgrow="ALWAYS">
+            <SplitPane fx:id="contactSplitPanel" dividerPositions="1.0" VBox.vgrow="ALWAYS">
               <items>
-                <AnchorPane fx:id="contactDisplay" minHeight="0.0" minWidth="100.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+                <AnchorPane fx:id="contactDisplay" minHeight="0.0" minWidth="0.0" SplitPane.resizableWithParent="false">
                      <children>
 
-                    <VBox minWidth="100.0" prefWidth="100.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <VBox styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                       </padding>
                       <StackPane fx:id="contactListPanelPlaceholder" VBox.vgrow="ALWAYS" />
 
                        <StackPane fx:id="statusbarPlaceholder" />
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis>
                     </VBox>
                      </children>
                   </AnchorPane>
