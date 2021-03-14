@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 import java.util.List;
 
@@ -36,7 +38,10 @@ public class ViewCommand extends Command {
         }
 
         Person tutorToView = updatedTutorList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView));
+        UniquePersonList tutorsList = new UniquePersonList();
+        tutorsList.add(tutorToView);
+        ObservableList<Person> tutorsToView = tutorsList.asUnmodifiableObservableList();
+        return new CommandResult(String.format(MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView.getName()), tutorsToView);
     }
 
     @Override
