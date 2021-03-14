@@ -66,7 +66,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
@@ -74,7 +74,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -192,5 +192,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James & Jake`
-**List** | `list`
+**List** | `list [-ATTRIBUTE]`<br> e.g., `list -policy`
 **Help** | `help`
