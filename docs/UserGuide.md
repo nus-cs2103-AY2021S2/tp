@@ -221,13 +221,13 @@ Total Calories Intake: 510 kcal
 
 Action | Format, Examples
 --------|------------------
-**Input weight, height and ideal weight** | `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)​` <br> e.g., `bmi g/M a/43 h/170 w/70 i/80`
-**Query weight, height and BMI** | `bmi_query`
-**Update weight, height and ideal weight** | `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`<br> e.g., `bmi_update g/M a/43 h/170 w/70 i/80`
-**Get diet recommendation based on current BMI** | `plan_recommend`
-**View active diet plan** | `plan_current`
-**Select active diet plan** | `plan_set p/ID`<br> e.g., `plan_set p/1`
-**List all available diet plans** | `plan_list`
-**View information about a particular diet plan** | `plan p/ID​`<br> e.g.,`plan p/1`
+**Input weight, height and ideal weight** | `bmi h/height(cm) w/weight(kg) i/ideal_weight(kg)​` <br> e.g., `bmi h/170 w/70 i/80`
+**Query weight, height and BMI** | `bmi query`
+**Update weight, height and ideal weight** | `bmi update h/height(cm) w/weight(kg) i/ideal_weight(kg)`<br> e.g., `bmi update h/170 w/70 i/80`
+**Get diet recommendation based on current BMI** | `plan recommended`
+**View active diet plan** | `plan current`
+**Select active diet plan** | `plan active p/plan`<br> e.g., `plan active p/1`
+**List all available diet plans** | `plan list`
+**View information about a particular diet plan** | `plan t/ID​`<br> e.g.,`plan t/1`
 **Input carbohydrates, fats and protein intake** | `food d/DATE n/NAME p/PROTEINS c/CARBOHYDRATES f/FATS`<br> e.g., `food d/today n/tomatoes p/10 c/10 f/10`
 **List food intake for certain days** | `food query d/DATE`<br> e.g., `food query d/today`
