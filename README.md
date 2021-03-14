@@ -1,11 +1,11 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2021S2-CS2103T-W14-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-W14-3/tp/actions/workflows/gradle.yml)
 
 ![Ui](docs/images/Ui.png)
 
 Are you a CCA leader that has to keep track of multiple CCA members, tasks and upcoming deadlines but can't seem to remember everything? Well HEY MATEz is the solution for you!
 
 ## About Us
-Refer to the [AboutUs](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/docs/AboutUs.md) section
+Refer to the [About Us](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/docs/AboutUs.md) section
 
 ## Developer Guide
 Refer to the [Developer Guide](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/docs/DeveloperGuide.md) section
