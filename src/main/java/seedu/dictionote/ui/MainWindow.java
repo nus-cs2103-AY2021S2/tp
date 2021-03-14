@@ -34,18 +34,13 @@ public class MainWindow extends UiPart<Stage> {
     private static final float DEFAULT_WINDOW_WIDTH_RATIO = 0.5f;
     private static final float DEFAULT_WINDOW_HEIGHT_RATIO = 0.66f;
 
-    private static final float CONTACT_SPLIT = 0.25f;
-    private static final float DICTIONARY_SPLIT = 0.3f;
-    private static final float NOTE_SPLIT = 0.3f;
-    private static final float MAIN_SPLIT = 0.5f;
-
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ContactListPanel contactListPanel;
     private NoteListPanel noteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -57,7 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane contactListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -125,7 +120,6 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-
     }
 
 
@@ -171,8 +165,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredContactList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
 
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         noteListPlaceholder.getChildren().add(noteListPanel.getRoot());
@@ -200,7 +194,6 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             primaryStage.setHeight(Screen.getPrimary().getBounds().getHeight() * DEFAULT_WINDOW_HEIGHT_RATIO);
             primaryStage.setWidth(Screen.getPrimary().getBounds().getWidth() * DEFAULT_WINDOW_WIDTH_RATIO);
-            System.out.println(Screen.getPrimary().getBounds().getHeight() + ":" + Screen.getPrimary().getBounds().getWidth());
         }
     }
 
@@ -219,7 +212,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void configContactSplit() {
         if (contactDisplay.isVisible()) {
-            contactSplitPanel.setDividerPositions(CONTACT_SPLIT);
+            contactSplitPanel.setDividerPositions(logic.getGuiSettings().getContactSplitRatio());
         } else {
             contactSplitPanel.setDividerPositions(0);
         }
@@ -234,7 +227,7 @@ public class MainWindow extends UiPart<Stage> {
         } else if (dictionaryListDisplay.isVisible() && !dictionaryContentDisplay.isVisible()) {
             dictionarySplitPanel.setDividerPositions(1);
         } else {
-            dictionarySplitPanel.setDividerPositions(DICTIONARY_SPLIT);
+            dictionarySplitPanel.setDividerPositions(logic.getGuiSettings().getDictionarySplitRatio());
         }
     }
 
@@ -247,7 +240,7 @@ public class MainWindow extends UiPart<Stage> {
         } else if (noteListDisplay.isVisible() && !noteContentDisplay.isVisible()) {
             noteSplitPanel.setDividerPositions(1);
         } else {
-            noteSplitPanel.setDividerPositions(NOTE_SPLIT);
+            noteSplitPanel.setDividerPositions(logic.getGuiSettings().getNoteSplitRatio());
         }
     }
 
@@ -260,7 +253,7 @@ public class MainWindow extends UiPart<Stage> {
         } else if (!dictionaryListDisplay.isVisible() && !dictionaryContentDisplay.isVisible()) {
             mainSplitPanel.setDividerPositions(0);
         } else {
-            mainSplitPanel.setDividerPositions(MAIN_SPLIT);
+            mainSplitPanel.setDividerPositions(logic.getGuiSettings().getMainSplitRatio());
         }
     }
 
@@ -287,7 +280,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-            (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getGuiSettings().getContactSplitRatio(),
+            logic.getGuiSettings().getDictionarySplitRatio(), logic.getGuiSettings().getNoteSplitRatio(),
+            logic.getGuiSettings().getMainSplitRatio());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -372,8 +367,8 @@ public class MainWindow extends UiPart<Stage> {
         handlePanelVisibility(uiActionOption, false);
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ContactListPanel getContactListPanel() {
+        return contactListPanel;
     }
 
     /**

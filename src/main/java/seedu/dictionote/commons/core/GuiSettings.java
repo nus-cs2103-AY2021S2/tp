@@ -10,29 +10,36 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
-    private static final double DEFAULT_HEIGHT = 600;
-    private static final double DEFAULT_WIDTH = 1000;
-
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+
+    private float contactSplitRatio = 0.25f;
+    private float dictionarySplitRatio = 0.3f;
+    private float noteSplitRatio = 0.3f;
+    private float mainSplitRatio = 0.5f;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
      */
     public GuiSettings() {
-        windowWidth = DEFAULT_WIDTH;
-        windowHeight = DEFAULT_HEIGHT;
+        windowWidth = 0;
+        windowHeight = 0;
         windowCoordinates = null; // null represent no coordinates
     }
 
     /**
      * Constructs a {@code GuiSettings} with the specified height, width and position.
      */
-    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, float contactSplitRatio,
+                       float dictionarySplitRatio, float noteSplitRatio, float mainSplitRatio) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
+        this.contactSplitRatio = contactSplitRatio;
+        this.dictionarySplitRatio = dictionarySplitRatio;
+        this.noteSplitRatio = noteSplitRatio;
+        this.mainSplitRatio = mainSplitRatio;
     }
 
     public double getWindowWidth() {
@@ -75,5 +82,37 @@ public class GuiSettings implements Serializable {
         sb.append("Height : " + windowHeight + "\n");
         sb.append("Position : " + windowCoordinates);
         return sb.toString();
+    }
+
+    public float getContactSplitRatio() {
+        return contactSplitRatio;
+    }
+
+    public void setContactSplitRatio(float contactSplitRatio) {
+        this.contactSplitRatio = contactSplitRatio;
+    }
+
+    public float getDictionarySplitRatio() {
+        return dictionarySplitRatio;
+    }
+
+    public void setDictionarySplitRatio(float dictionarySplitRatio) {
+        this.dictionarySplitRatio = dictionarySplitRatio;
+    }
+
+    public float getNoteSplitRatio() {
+        return noteSplitRatio;
+    }
+
+    public void setNoteSplitRatio(float noteSplitRatio) {
+        this.noteSplitRatio = noteSplitRatio;
+    }
+
+    public float getMainSplitRatio() {
+        return mainSplitRatio;
+    }
+
+    public void setMainSplitRatio(float mainSplitRatio) {
+        this.mainSplitRatio = mainSplitRatio;
     }
 }
