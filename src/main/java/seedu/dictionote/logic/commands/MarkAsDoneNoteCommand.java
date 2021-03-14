@@ -6,29 +6,23 @@ import java.util.List;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
-import seedu.dictionote.logic.commands.enums.UiAction;
-import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
-/**
- * Deletes a note identified using it's displayed index from the notes list.
- */
-public class DeleteNoteCommand extends Command {
-
-    public static final String COMMAND_WORD = "deletenote";
+public class MarkAsDoneNoteCommand extends Command {
+    public static final String COMMAND_WORD = "markasdonenote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the note identified by the index number used in the displayed note list.\n"
+            + ": Mark a note as done.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note: %1$s";
+    public static final String MESSAGE_MARK_AS_DONE_NOTE_SUCCESS = "Mark as done note: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteNoteCommand(Index targetIndex) {
+    public MarkAsDoneNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -41,16 +35,18 @@ public class DeleteNoteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_NOTE_DISPLAYED_INDEX);
         }
 
-        Note noteToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteNote(noteToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_NOTE_SUCCESS, noteToDelete),
-            UiAction.OPEN, UiActionOption.NOTE_LIST);
+        Note noteToMarkAsDone = lastShownList.get(targetIndex.getZeroBased());
+        Note markAsDoneNote = noteToMarkAsDone.markAsDoneNote(noteToMarkAsDone.getNote(),
+                noteToMarkAsDone.getTags(), noteToMarkAsDone.getCreateTime());
+
+        model.setNote(noteToMarkAsDone, markAsDoneNote);
+        return new CommandResult(String.format(MESSAGE_MARK_AS_DONE_NOTE_SUCCESS, markAsDoneNote));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteNoteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteNoteCommand) other).targetIndex)); // state check
+                || (other instanceof MarkAsDoneNoteCommand // instanceof handles nulls
+                && targetIndex.equals(((MarkAsDoneNoteCommand) other).targetIndex)); // state check
     }
 }
