@@ -27,8 +27,7 @@ public class WorkloadTest {
         // invalid name
         assertFalse(Workload.isValidWorkload("")); // empty string
         assertFalse(Workload.isValidWorkload(" ")); // spaces only
-        assertFalse(Workload.isValidWorkload("^")); // only non-alphanumeric characters
-        assertFalse(Workload.isValidWorkload("peter*")); // contains non-alphanumeric characters
+        assertFalse(Workload.isValidWorkload("1 a")); // contains letters
         assertFalse(Workload.isValidWorkload("0")); // contains 0
         assertFalse(Workload.isValidWorkload("-1")); // contains negative
         assertFalse(Workload.isValidWorkload("4")); // beyond 3

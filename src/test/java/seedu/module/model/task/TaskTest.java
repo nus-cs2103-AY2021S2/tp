@@ -9,6 +9,7 @@ import static seedu.module.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_HIGH;
+import static seedu.module.logic.commands.CommandTestUtil.VALID_WORKLOAD_2;
 import static seedu.module.testutil.Assert.assertThrows;
 import static seedu.module.testutil.TypicalTasks.BOB;
 import static seedu.module.testutil.TypicalTasks.PRACTICAL;
@@ -96,6 +97,14 @@ public class TaskTest {
 
         // different description -> returns false
         editedAlice = new TaskBuilder(QUIZ).withDescription(VALID_DESCRIPTION_BOB).build();
+        assertFalse(QUIZ.equals(editedAlice));
+
+        // different workload -> returns false
+        editedAlice = new TaskBuilder(QUIZ).withWorkload(VALID_WORKLOAD_2).build();
+        assertFalse(QUIZ.equals(editedAlice));
+
+        // different done status -> returns false
+        editedAlice = new TaskBuilder(QUIZ).withDoneStatus(String.valueOf(Boolean.TRUE)).build();
         assertFalse(QUIZ.equals(editedAlice));
 
         // different tags -> returns false
