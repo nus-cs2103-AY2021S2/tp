@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.UniqueFoodList;
 
 /**
@@ -21,6 +22,7 @@ public class StorageManager implements Storage {
 
     private AddressBookStorage addressBookStorage;
     private UniqueFoodListStorage uniqueFoodListStorage;
+    private DietPlanListStorage dietPlanListStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
@@ -28,10 +30,11 @@ public class StorageManager implements Storage {
      * and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UniqueFoodListStorage uniqueFoodListStorage,
-                          UserPrefsStorage userPrefsStorage) {
+                          DietPlanListStorage dietPlanListStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.uniqueFoodListStorage = uniqueFoodListStorage;
+        this.dietPlanListStorage = dietPlanListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -108,6 +111,35 @@ public class StorageManager implements Storage {
     public void saveFoodList(UniqueFoodList foodList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         uniqueFoodListStorage.saveFoodList(foodList, filePath);
+    }
+
+    // ================ DietPlanList methods ==============================
+
+    @Override
+    public Path getDietPlanListFilePath() {
+        return dietPlanListStorage.getDietPlanListFilePath();
+    }
+
+    @Override
+    public Optional<DietPlanList> readDietPlanList() throws DataConversionException, IOException {
+        return readDietPlanList(dietPlanListStorage.getDietPlanListFilePath());
+    }
+
+    @Override
+    public Optional<DietPlanList> readDietPlanList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return dietPlanListStorage.readDietPlanList();
+    }
+
+    @Override
+    public void saveDietPlanList(DietPlanList dietPlanList) throws IOException {
+        saveDietPlanList(dietPlanList, dietPlanListStorage.getDietPlanListFilePath());
+    }
+
+    @Override
+    public void saveDietPlanList(DietPlanList dietPlanList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        dietPlanListStorage.saveDietPlanList(dietPlanList, filePath);
     }
 
 }

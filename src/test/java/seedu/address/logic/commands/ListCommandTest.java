@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.UniqueFoodList;
 
 /**
@@ -23,8 +24,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UniqueFoodList(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UniqueFoodList(),
+                new DietPlanList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getAddressBook(), new UniqueFoodList(),
+                new DietPlanList(), new UserPrefs());
     }
 
     @Test
