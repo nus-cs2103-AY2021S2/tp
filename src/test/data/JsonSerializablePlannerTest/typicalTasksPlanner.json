@@ -2,43 +2,43 @@
   "_comment": "PlanIt save file which contains the same Task values as in TypicalTasks#getTypicalPlanner()",
   "tasks" : [ {
     "title" : "Assignment 79",
-    "phone" : "94351253",
+    "deadline" : "94351253",
     "email" : "alice@example.com",
     "description": "Build the next Google",
     "tagged" : [ "priorities" ]
   }, {
     "title" : "Build a gaming PC",
-    "phone" : "98765432",
+    "deadline" : "98765432",
     "email" : "johnd@example.com",
     "description": "buy: coffee, 3080, 40-inch monitor",
     "tagged" : [ "findMoney", "priorities" ]
   }, {
     "title" : "Countdown to finals",
-    "phone" : "95352563",
+    "deadline" : "95352563",
     "email" : "heinz@example.com",
     "description": "aiken doeet",
     "tagged" : [ ]
   }, {
     "title" : "Demo our amazing product",
-    "phone" : "87652533",
+    "deadline" : "87652533",
     "email" : "cornelia@example.com",
     "description": "Number 1 for real",
     "tagged" : [ "fact" ]
   }, {
     "title" : "Ensure that I eat lunch",
-    "phone" : "9482224",
+    "deadline" : "9482224",
     "email" : "werner@example.com",
     "description": "budget 3$",
     "tagged" : [ ]
   }, {
     "title" : "Final project consult again",
-    "phone" : "9482427",
+    "deadline" : "9482427",
     "email" : "lydia@example.com",
     "description": "at COM2",
     "tagged" : [ ]
   }, {
     "title" : "Get ready for 2101 presentation",
-    "phone" : "9482442",
+    "deadline" : "9482442",
     "email" : "anna@example.com",
     "description": "remember to shave",
     "tagged" : [ ]

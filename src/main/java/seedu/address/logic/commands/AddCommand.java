@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -21,13 +21,13 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the planner. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
-            + "[" + PREFIX_PHONE + "PHONE "
+            + "[" + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "This is a task "
-            + PREFIX_PHONE + "98765432 "
+            + PREFIX_DEADLINE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_DESCRIPTION + "This is the task's description "
             + PREFIX_TAG + "tag1 "
