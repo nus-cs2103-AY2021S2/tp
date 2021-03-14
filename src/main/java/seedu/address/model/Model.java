@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
@@ -100,7 +101,11 @@ public interface Model {
 
     //=========== DietPlanList Accessors ==============================================================
 
+    /** Returns the list of diet plans */
     DietPlanList getDietPlanList();
+
+    /** Set active diet plan */
+    void setActiveDiet(DietPlan dietPlan);
 
     //=========== FoodIntakeList Accessors ==============================================================
 

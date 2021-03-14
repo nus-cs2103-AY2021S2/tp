@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
@@ -260,6 +261,12 @@ public class ModelManager implements Model {
     @Override
     public DietPlanList getDietPlanList() {
         return dietPlanList;
+    }
+
+    @Override
+    public void setActiveDiet(DietPlan dietPlan) {
+        User user = addressBook.getUser();
+        user.setActiveDietPlan(dietPlan);
     }
 
 }

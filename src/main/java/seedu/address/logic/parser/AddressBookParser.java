@@ -24,6 +24,7 @@ import seedu.address.logic.commands.ListDietPlansCommand;
 import seedu.address.logic.commands.ListFoodItemCommand;
 import seedu.address.logic.commands.ListUserCommand;
 import seedu.address.logic.commands.QueryFoodIntakeCommand;
+import seedu.address.logic.commands.SetActiveDietCommand;
 import seedu.address.logic.commands.UpdateFoodItemCommand;
 import seedu.address.logic.commands.ViewPlanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -111,6 +112,9 @@ public class AddressBookParser {
 
         case ViewPlanCommand.COMMAND_WORD:
             return new ViewPlanCommandParser().parse(arguments);
+
+        case SetActiveDietCommand.COMMAND_WORD:
+            return new SetActiveDietCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

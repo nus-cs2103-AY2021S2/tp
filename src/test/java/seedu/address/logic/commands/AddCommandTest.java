@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntakeList;
@@ -137,6 +138,11 @@ public class AddCommandTest {
 
         @Override
         public DietPlanList getDietPlanList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setActiveDiet(DietPlan dietPlan) {
             throw new AssertionError("This method should not be called.");
         }
 
