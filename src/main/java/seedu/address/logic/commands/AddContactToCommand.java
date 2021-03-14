@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
@@ -35,6 +36,7 @@ public class AddContactToCommand extends Command {
      * Creates an AddContactToCommand to add the specified {@code Person} to the specified {@code Project}
      */
     public AddContactToCommand(Index projectIndex, Index contactIndex) {
+        requireAllNonNull(projectIndex, contactIndex);
         projectToAddToIndex = projectIndex;
         personToAddIndex = contactIndex;
     }
@@ -71,6 +73,15 @@ public class AddContactToCommand extends Command {
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, personToAdd.getName(), projectToAddTo.getProjectName())
         );
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddContactToCommand // instanceof handles nulls
+                && projectToAddToIndex.equals(((AddContactToCommand) other).projectToAddToIndex)
+                && personToAddIndex.equals(((AddContactToCommand) other).personToAddIndex)
+            );
     }
 
     private Project createEditedProject(Project projectToEdit, Person personToAdd) {
