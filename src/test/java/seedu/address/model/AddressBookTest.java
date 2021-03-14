@@ -20,7 +20,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 public class AddressBookTest {
 
@@ -48,8 +52,10 @@ public class AddressBookTest {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
+        Task dummyTask = new TaskBuilder(new Task(new Title("Task1"), new Description("Some Description"))).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Task> tasks = Arrays.asList(dummyTask);
+        AddressBookStub newData = new AddressBookStub(newPersons, tasks);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -88,14 +94,20 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Person> persons, Collection<Task> tasks) {
+            this.tasks.setAll(tasks);
             this.persons.setAll(persons);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+        @Override
+        public ObservableList<Task> getTaskList() {
+            return tasks;
         }
     }
 
