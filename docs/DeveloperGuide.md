@@ -399,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. ClientBook shows an error message. Use case resumes at step 1.
 * 1b. ClientBook is already locked and user entered the incorrect current password.
     * 1b1. ClientBook shows an error message. Use case resumes at step 1.
-    
+
 **Use case: Unlock ClientBook**
 
 **MSS**
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. User enters the incorrect current password that is used to lock ClientBook.
     * 1a1. ClientBook shows an error message. Use case resumes at step 1.
-    
+
 *{More to be added}*
 
 ### Non-Functional Requirements
