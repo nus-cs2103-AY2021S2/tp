@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyClientBook getSampleAddressBook() {
+    public static ReadOnlyClientBook getSampleClientBook() {
         ClientBook sampleAb = new ClientBook();
         for (Client sampleClient : getSampleClients()) {
             sampleAb.addClient(sampleClient);

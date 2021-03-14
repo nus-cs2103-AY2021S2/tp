@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        ClientBookStorage clientBookStorage = new JsonClientBookStorage(userPrefs.getAddressBookFilePath());
+        ClientBookStorage clientBookStorage = new JsonClientBookStorage(userPrefs.getClientBookFilePath());
         storage = new StorageManager(clientBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty iScam book will be used instead if errors occur when reading {@code storage}'s iScam book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyClientBook> addressBookOptional;
+        Optional<ReadOnlyClientBook> clientBookOptional;
         ReadOnlyClientBook initialData;
         try {
-            addressBookOptional = storage.readClientBook();
-            if (!addressBookOptional.isPresent()) {
+            clientBookOptional = storage.readClientBook();
+            if (!clientBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ClientBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = clientBookOptional.orElseGet(SampleDataUtil:: getSampleClientBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ClientBook");
             initialData = new ClientBook();

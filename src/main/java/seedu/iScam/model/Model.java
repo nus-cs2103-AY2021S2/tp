@@ -42,12 +42,12 @@ public interface Model {
     /**
      * Sets the user prefs' iScam book file path.
      */
-    void setClientBookFilePath(Path addressBookFilePath);
+    void setClientBookFilePath(Path clientBookFilePath);
 
     /**
-     * Replaces iScam book data with the data in {@code addressBook}.
+     * Replaces iScam book data with the data in {@code clientBook}.
      */
-    void setClientBook(ReadOnlyClientBook addressBook);
+    void setClientBook(ReadOnlyClientBook clientBook);
 
     /** Returns the ClientBook */
     ReadOnlyClientBook getClientBook();
