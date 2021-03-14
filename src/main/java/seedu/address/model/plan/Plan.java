@@ -41,6 +41,15 @@ public class Plan {
         this.tags.addAll(tags);
     }
 
+    public Plan addSemester(Semester semester) {
+        semesters.add(semester);
+        return this;
+    }
+
+    public List<Semester> getSemesters() {
+        return semesters;
+    }
+
     public Description getDescription() {
         return description;
     }

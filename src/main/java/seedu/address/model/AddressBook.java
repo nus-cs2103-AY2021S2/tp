@@ -148,4 +148,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    /**
+     * Returns true if a plan with the same identity as {@code plan} exists in the address book.
+     */
+    public boolean hasPlan(Plan plan) {
+        requireNonNull(plan);
+        return persons.contains(plan);
+    }
+
+    /**
+     * Adds a plan to the address book.
+     * The plan must not already exist in the address book.
+     */
+    public void addPlan(Plan p) {
+        persons.add(p);
+    }
+
 }

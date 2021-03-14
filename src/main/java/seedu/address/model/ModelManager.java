@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.plan.Module;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -66,43 +69,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPlanFilePath() {
+        return userPrefs.getPlansFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPlansFilePath(Path plansFilePath) {
+        requireNonNull(plansFilePath);
+        userPrefs.setPlansFilePath(plansFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setPl(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
-    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
 
     @Override
-    public boolean hasPerson(Plan plan) {
+    public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
-        return addressBook.hasPerson(plan);
+        return addressBook.hasPlan(plan);
     }
 
     @Override
-    public void deletePerson(Plan target) {
+    public void deletePlan(Plan target) {
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Plan plan) {
         addressBook.addPerson(plan);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PLANS);
     }
 
     @Override
@@ -148,4 +150,21 @@ public class ModelManager implements Model {
                 && filteredPlans.equals(other.filteredPlans);
     }
 
+    @Override
+    public boolean hasModule(int planNumber, int semNumber, Module module) {
+        requireAllNonNull(semNumber, module);
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        Semester semester = plan.getSemesters().get(semNumber);
+        return semester.getModules().stream().anyMatch((currentModule) -> {
+            return currentModule.getModuleCode() == module.getModuleCode();
+        });
+    }
+
+    @Override
+    public void addModule(int planNumber, int semNumber, Module module) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        Semester semester = plan.getSemesters().get(semNumber);
+        semester.addModule(module);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PLANS);
+    }
 }

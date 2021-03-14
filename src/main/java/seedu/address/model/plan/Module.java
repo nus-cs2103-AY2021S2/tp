@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import org.json.simple.parser.JSONParser;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
 import seedu.address.model.plan.exceptions.ModuleExceptions;
+import seedu.address.storage.JsonModule;
 
 public class Module {
 
@@ -153,8 +156,18 @@ public class Module {
         }
     }
 
-    public Module seekModule(String moduleCode) throws ModuleExceptions {
-        JSONParser jsonParser = new JSONParser();
+    public static Module seekModule(String moduleCode) throws ModuleExceptions{
+        JsonModule[] moduleInfo = Model.getAddressBook().getModuleInfo();
+        int l = moduleInfo.length;
+        for (int i = 0; i < l; i++) {
+            if (moduleInfo[i].getModuleCode().equals(moduleCode)) {
+                String moduleTitle = moduleInfo[i].getModuleTitle();
+                String code = moduleInfo[i].getModuleCode();
+                int moduleCredit = Integer.parseInt(moduleInfo[i].getNumMc());
+                return new Module(moduleTitle, code, moduleCredit);
+            }
+        }
+        throw new ModuleExceptions("Cannot find module");
     }
 
     @Override

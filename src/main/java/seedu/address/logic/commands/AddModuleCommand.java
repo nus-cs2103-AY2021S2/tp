@@ -51,7 +51,7 @@ public class AddModuleCommand extends Command{
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (model.hasModule(planNumber.getZeroBased(), toAdd)) {
+        if (model.hasModule(planNumber.getZeroBased(), semNumber.getZeroBased(), toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
