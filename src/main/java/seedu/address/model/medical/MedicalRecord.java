@@ -50,7 +50,7 @@ public class MedicalRecord {
         this.date = appointment.getDate();
         this.zoomMeetingUrl = appointment.getZoomMeetingUrl();
         this.sections = new ArrayList<>();
-        for (String section : sections){
+        for (String section : sections) {
             this.sections.add(new Section(section));
         }
     }
