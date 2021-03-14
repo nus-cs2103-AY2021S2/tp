@@ -10,11 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.human.Name;
+import seedu.address.model.human.Phone;
+import seedu.address.model.human.person.Address;
+import seedu.address.model.human.person.Person;
+import seedu.address.model.human.person.TripDay;
+import seedu.address.model.human.person.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,8 +27,9 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
-    private final String email;
     private final String address;
+    private final String tripDay;
+    private final String tripTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +37,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDay,
+            @JsonProperty("tripTime") String tripTime, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
-        this.email = email;
         this.address = address;
+        this.tripDay = tripDay;
+        this.tripTime = tripTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -52,8 +55,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
         address = source.getAddress().value;
+        tripDay = source.getTripDay().value.toString();
+        tripTime = source.getTripTime().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -86,14 +90,6 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -102,8 +98,25 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (tripDay == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TripDay.class.getSimpleName()));
+        }
+        if (!TripDay.isValidTripDay(tripDay)) {
+            throw new IllegalValueException(TripDay.MESSAGE_CONSTRAINTS);
+        }
+        final TripDay modelTripDay = new TripDay(tripDay);
+
+        if (tripTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TripTime.class.getSimpleName()));
+        }
+        if (!TripTime.isValidTripTime(tripTime)) {
+            throw new IllegalValueException(TripTime.MESSAGE_CONSTRAINTS);
+        }
+        final TripTime modelTripTime = new TripTime(tripTime);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
     }
 
 }
