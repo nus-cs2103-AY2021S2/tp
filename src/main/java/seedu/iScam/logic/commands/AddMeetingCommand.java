@@ -1,9 +1,9 @@
 package seedu.iScam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.iScam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.iScam.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -19,13 +19,13 @@ public class AddMeetingCommand extends Command {
             + "Parameters: "
             + PREFIX_CLIENT + "CLIENT_ID "
             + PREFIX_ON + "DATE-TIME "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_LOCATION + "ADDRESS "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT + "1 "
             + PREFIX_ON + "12-10-2020 10PM "
-            + PREFIX_ADDRESS + "Starbucks, Tampines Hub "
+            + PREFIX_LOCATION + "Starbucks, Tampines Hub "
             + PREFIX_DESCRIPTION + "Discuss insurance policy "
             + PREFIX_TAG + "Urgent "
             + PREFIX_TAG + "Premium";

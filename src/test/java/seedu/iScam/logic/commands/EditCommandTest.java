@@ -10,7 +10,7 @@ import static seedu.iScam.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.iScam.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.iScam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iScam.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.iScam.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.iScam.testutil.TypicalClients.getTypicalLocationBook;
 import static seedu.iScam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.iScam.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 
@@ -32,7 +32,7 @@ import seedu.iScam.testutil.EditClientDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalLocationBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
         expectedModel.setClient(lastClient, editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +92,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -112,7 +112,7 @@ public class EditCommandTest {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
 
         // edit client in filtered list into a duplicate in iScam book
-        Client clientInList = model.getAddressBook().getClientList().get(INDEX_SECOND_CLIENT.getZeroBased());
+        Client clientInList = model.getClientBook().getClientList().get(INDEX_SECOND_CLIENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
                 new EditClientDescriptorBuilder(clientInList).build());
 
@@ -137,7 +137,7 @@ public class EditCommandTest {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
         Index outOfBoundIndex = INDEX_SECOND_CLIENT;
         // ensures that outOfBoundIndex is still in bounds of iScam book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getClientList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getClientBook().getClientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());

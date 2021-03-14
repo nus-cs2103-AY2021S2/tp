@@ -3,8 +3,8 @@ package seedu.iScam.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.iScam.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.iScam.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.iScam.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.iScam.logic.commands.CommandTestUtil.LOCATION_DESC_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.iScam.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.iScam.testutil.Assert.assertThrows;
@@ -80,7 +80,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + LOCATION_DESC_AMY;
         Client expectedClient = new ClientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addClient(expectedClient);
@@ -129,7 +129,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
+        public void saveClientBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

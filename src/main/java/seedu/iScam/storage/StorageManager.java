@@ -50,30 +50,30 @@ public class StorageManager implements Storage {
     // ================ ClientBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return clientBookStorage.getAddressBookFilePath();
+    public Path getClientBookFilePath() {
+        return clientBookStorage.getClientBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyClientBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(clientBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyClientBook> readClientBook() throws DataConversionException, IOException {
+        return readClientBook(clientBookStorage.getClientBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyClientBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyClientBook> readClientBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return clientBookStorage.readAddressBook(filePath);
+        return clientBookStorage.readClientBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyClientBook addressBook) throws IOException {
-        saveAddressBook(addressBook, clientBookStorage.getAddressBookFilePath());
+    public void saveClientBook(ReadOnlyClientBook clientBook) throws IOException {
+        saveClientBook(clientBook, clientBookStorage.getClientBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
+    public void saveClientBook(ReadOnlyClientBook clientBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        clientBookStorage.saveAddressBook(addressBook, filePath);
+        clientBookStorage.saveClientBook(clientBook, filePath);
     }
 
 }

@@ -3,11 +3,11 @@ package seedu.iScam.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.iScam.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.iScam.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.iScam.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.iScam.testutil.Assert.assertThrows;
 import static seedu.iScam.testutil.TypicalClients.ALICE;
-import static seedu.iScam.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.iScam.testutil.TypicalClients.getTypicalLocationBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class ClientBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        ClientBook newData = getTypicalAddressBook();
+        ClientBook newData = getTypicalLocationBook();
         clientBook.resetData(newData);
         assertEquals(newData, clientBook);
     }
@@ -46,7 +46,7 @@ public class ClientBookTest {
     @Test
     public void resetData_withDuplicateClients_throwsDuplicateClientException() {
         // Two clients with the same identity fields
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
         ClientBookStub newData = new ClientBookStub(newClients);
@@ -73,7 +73,7 @@ public class ClientBookTest {
     @Test
     public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
         clientBook.addClient(ALICE);
-        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(clientBook.hasClient(editedAlice));
     }

@@ -8,10 +8,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.Name;
-import seedu.address.model.tag.Tag;
+import seedu.iScam.model.client.Client;
+import seedu.iScam.model.client.Location;
+import seedu.iScam.model.client.Name;
+import seedu.iScam.model.tag.Tag;
 
 /**
  * Represents a Meeting in the address book.

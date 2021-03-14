@@ -2,7 +2,7 @@ package seedu.iScam.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.iScam.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.iScam.testutil.TypicalClients.getTypicalLocationBook;
 
 import java.nio.file.Path;
 
@@ -54,15 +54,15 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        ClientBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyClientBook retrieved = storageManager.readAddressBook().get();
+        ClientBook original = getTypicalLocationBook();
+        storageManager.saveClientBook(original);
+        ReadOnlyClientBook retrieved = storageManager.readClientBook().get();
         assertEquals(original, new ClientBook(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getClientBookFilePath());
     }
 
 }

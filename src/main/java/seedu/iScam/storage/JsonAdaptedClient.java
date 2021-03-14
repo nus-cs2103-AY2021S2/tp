@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.Email;
-import seedu.address.model.client.Name;
-import seedu.address.model.client.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.iScam.commons.exceptions.IllegalValueException;
+import seedu.iScam.model.client.Client;
+import seedu.iScam.model.client.Email;
+import seedu.iScam.model.client.Location;
+import seedu.iScam.model.client.Name;
+import seedu.iScam.model.client.Phone;
+import seedu.iScam.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Client}.
@@ -93,12 +93,12 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (location == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Location.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Location.isValidLocation(location)) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName()));
         }
         final Address modelAddress = new Address(address);
 

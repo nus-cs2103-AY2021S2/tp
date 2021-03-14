@@ -9,8 +9,8 @@ import java.util.Set;
 import seedu.iScam.commons.core.index.Index;
 import seedu.iScam.commons.util.StringUtil;
 import seedu.iScam.logic.parser.exceptions.ParseException;
-import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Email;
+import seedu.iScam.model.client.Location;
 import seedu.iScam.model.client.Name;
 import seedu.iScam.model.client.Phone;
 import seedu.iScam.model.tag.Tag;
@@ -74,7 +74,7 @@ public class ParserUtil {
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
         String trimmedLocation = location.trim();
-        if (! Location.isValidLocation(trimmedLocation)) {
+        if (!Location.isValidLocation(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
         return new Location(trimmedLocation);

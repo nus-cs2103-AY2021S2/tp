@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.iScam.model.ClientBook;
 import seedu.iScam.model.ReadOnlyClientBook;
-import seedu.iScam.model.client.*;
+import seedu.iScam.model.client.Client;
+import seedu.iScam.model.client.Email;
 import seedu.iScam.model.client.Location;
+import seedu.iScam.model.client.Name;
+import seedu.iScam.model.client.Phone;
 import seedu.iScam.model.tag.Tag;
 
 /**
@@ -37,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyClientBook getSampleAddressBook() {
+    public static ReadOnlyClientBook getSampleClientBook() {
         ClientBook sampleAb = new ClientBook();
         for (Client sampleClient : getSampleClients()) {
             sampleAb.addClient(sampleClient);

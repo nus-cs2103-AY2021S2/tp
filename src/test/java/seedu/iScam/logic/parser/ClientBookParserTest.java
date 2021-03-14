@@ -31,7 +31,7 @@ import seedu.iScam.testutil.EditClientDescriptorBuilder;
 
 public class ClientBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ClientBookParser parser = new ClientBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
