@@ -1,12 +1,15 @@
 package dog.pawbook.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import dog.pawbook.commons.exceptions.DataConversionException;
 import dog.pawbook.testutil.SerializableTestClass;
 import dog.pawbook.testutil.TestUtil;
 
@@ -39,7 +42,29 @@ public class JsonUtilTest {
         assertEquals(serializableTestClass.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
     }
 
-    //TODO: @Test jsonUtil_readJsonStringToObjectInstance_correctObject()
+    @Test
+    public void jsonUtil_readJsonStringToObjectInstance_correctObject() throws IOException {
+        SerializableTestClass serializableTestClass = new SerializableTestClass();
+        serializableTestClass.setTestValues();
 
-    //TODO: @Test jsonUtil_writeThenReadObjectToJson_correctObject()
+        SerializableTestClass object =
+                JsonUtil.fromJsonString(SerializableTestClass.JSON_STRING_REPRESENTATION, SerializableTestClass.class);
+
+        assertEquals(object, serializableTestClass);
+    }
+
+    @Test
+    public void jsonUtil_writeThenReadObjectToJson_correctObject() throws IOException, DataConversionException {
+        SerializableTestClass writtenSerializableTestObject = new SerializableTestClass();
+        writtenSerializableTestObject.setTestValues();
+
+        JsonUtil.saveJsonFile(writtenSerializableTestObject, SERIALIZATION_FILE);
+
+        Optional<SerializableTestClass> optionalObjectFromFile =
+                JsonUtil.readJsonFile(SERIALIZATION_FILE, SerializableTestClass.class);
+
+        assertTrue(optionalObjectFromFile.isPresent());
+
+        assertEquals(optionalObjectFromFile.get(), writtenSerializableTestObject);
+    }
 }
