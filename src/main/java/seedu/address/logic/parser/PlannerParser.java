@@ -70,7 +70,7 @@ public class PlannerParser {
             return new HelpCommand();
 
         case DoneCommand.COMMAND_WORD:
-            return new DoneCommand();
+            return new DoneCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
