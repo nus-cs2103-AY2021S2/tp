@@ -21,7 +21,7 @@ public class DeleteSessionCommand extends Command{
             + "Parameters: C/ID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " c/1";
 
-    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: %1$s";
+    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: Session ID: %1$s";
 
     private final String targetClassId;
 
@@ -43,7 +43,7 @@ public class DeleteSessionCommand extends Command{
 
         if(sessionToDelete.isPresent()){
             model.deleteSession(sessionToDelete.get());
-            return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete));
+            return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete.get()));
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }

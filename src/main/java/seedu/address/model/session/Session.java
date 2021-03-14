@@ -69,11 +69,8 @@ public class Session {
         return Collections.unmodifiableSet(tags);
     }
 
-    /*
-     * The first character of the session ID must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "c/\\d+";
+
+    public static final String VALIDATION_REGEX = " [c][\\/]\\d";
 
     /**
      * Adds a student to the session
@@ -101,6 +98,7 @@ public class Session {
      * Returns true if a given string is a valid session ID.
      */
     public static boolean isValidSessionId(String test) {
+        System.out.println(test);
         return test.matches(VALIDATION_REGEX);
     }
 
