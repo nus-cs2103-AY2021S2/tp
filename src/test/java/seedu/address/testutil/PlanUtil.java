@@ -9,7 +9,7 @@ import seedu.address.model.plan.Plan;
 /**
  * A utility class for Plan.
  */
-public class PersonUtil {
+public class PlanUtil {
 
     /**
      * Returns an add command string for adding the {@code plan}.

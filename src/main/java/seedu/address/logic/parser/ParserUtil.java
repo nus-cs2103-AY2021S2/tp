@@ -59,7 +59,7 @@ public class ParserUtil {
         int planNum = 0;
         try {
             planNum = Integer.parseInt(trimmedPlanNumber);
-        } catch(NumberFormatException error) {
+        } catch (NumberFormatException error) {
             throw new ParseException("Invalid Plan Number");
         }
         return planNum;
@@ -104,7 +104,7 @@ public class ParserUtil {
         int semesterNum = 0;
         try {
             semesterNum = Integer.parseInt(trimmedDescription);
-        } catch(NumberFormatException error) {
+        } catch (NumberFormatException error) {
             throw new ParseException("Invalid Semester Number");
         }
         return semesterNum;

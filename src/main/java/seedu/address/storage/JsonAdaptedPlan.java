@@ -36,7 +36,7 @@ class JsonAdaptedPlan {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if(semesters != null) {
+        if (semesters != null) {
             this.semesters.addAll(semesters);
         }
     }
@@ -66,7 +66,7 @@ class JsonAdaptedPlan {
         }
 
         final List<Semester> planSemesters = new ArrayList<>();
-        for(JsonAdaptedSemester sem : semesters) {
+        for (JsonAdaptedSemester sem : semesters) {
             planSemesters.add(sem.toModelType());
         }
 

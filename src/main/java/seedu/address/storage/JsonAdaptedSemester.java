@@ -1,11 +1,7 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.plan.Semester;
@@ -38,9 +34,9 @@ class JsonAdaptedSemester {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Semester toModelType() throws IllegalValueException {
-//        if (!Semester.isValidSemester(semNumber)) {
-//            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
-//        }
+        //        if (!Semester.isValidSemester(semNumber)) {
+        //            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        //        }
         return new Semester(semNumber);
     }
 

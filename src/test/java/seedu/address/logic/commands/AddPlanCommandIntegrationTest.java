@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPlans.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.plan.Plan;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PlanBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -27,7 +27,7 @@ public class AddPlanCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Plan validPlan = new PersonBuilder().build();
+        Plan validPlan = new PlanBuilder().build();
 
         Model expectedModel = new ModelManager(model.getPlans(), new UserPrefs());
         expectedModel.addPlan(validPlan);

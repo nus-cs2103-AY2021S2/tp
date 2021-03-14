@@ -22,7 +22,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PlanBuilder;
 
 public class AddPlanCommandTest {
 
@@ -34,7 +34,7 @@ public class AddPlanCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Plan validPlan = new PersonBuilder().build();
+        Plan validPlan = new PlanBuilder().build();
 
         CommandResult commandResult = new AddPlanCommand(validPlan).execute(modelStub);
 
@@ -44,11 +44,12 @@ public class AddPlanCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Plan validPlan = new PersonBuilder().build();
+        Plan validPlan = new PlanBuilder().build();
         AddPlanCommand addPlanCommand = new AddPlanCommand(validPlan);
         ModelStub modelStub = new ModelStubWithPerson(validPlan);
 
-        assertThrows(CommandException.class, AddPlanCommand.MESSAGE_DUPLICATE_PLAN, () -> addPlanCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+            AddPlanCommand.MESSAGE_DUPLICATE_PLAN, () -> addPlanCommand.execute(modelStub));
     }
 
     /*

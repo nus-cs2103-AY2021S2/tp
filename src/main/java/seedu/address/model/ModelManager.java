@@ -124,10 +124,10 @@ public class ModelManager implements Model {
         });
     }
 
-//    @Override
-//    public void deleteSemester(Plan plan, Semester target) {
-//        addressBook.removeSemester(plan, target);
-//    }
+    //    @Override
+    //    public void deleteSemester(Plan plan, Semester target) {
+    //        addressBook.removeSemester(plan, target);
+    //    }
 
     @Override
     public void addSemester(int planNumber, Semester semester) {
