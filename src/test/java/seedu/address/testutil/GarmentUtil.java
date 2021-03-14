@@ -30,19 +30,11 @@ public class GarmentUtil {
      */
     public static String getGarmentDetails(Garment garment) {
         StringBuilder sb = new StringBuilder();
-<<<<<<< HEAD:src/test/java/seedu/address/testutil/GarmentUtil.java
         sb.append(PREFIX_NAME + garment.getName().fullName + " ");
         sb.append(PREFIX_SIZE + garment.getSize().value + " ");
         sb.append(PREFIX_COLOUR + garment.getColour().colour + " ");
-        sb.append(PREFIX_ADDRESS + garment.getAddress().value + " ");
+        sb.append(PREFIX_DRESSCODE + garment.getDressCode().value + " ");
         garment.getDescriptions().stream().forEach(
-=======
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_SIZE + person.getSize().value + " ");
-        sb.append(PREFIX_COLOUR + person.getColour().colour + " ");
-        sb.append(PREFIX_DRESSCODE + person.getDressCode().value + " ");
-        person.getDescriptions().stream().forEach(
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/test/java/seedu/address/testutil/PersonUtil.java
             s -> sb.append(PREFIX_DESCRIPTION + s.descriptionName + " ")
         );
         return sb.toString();

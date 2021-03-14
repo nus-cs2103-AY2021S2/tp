@@ -32,15 +32,9 @@ public class GarmentTest {
         assertFalse(ALICE.isSameGarment(null));
 
         // same name, all other attributes different -> returns true
-<<<<<<< HEAD:src/test/java/seedu/address/model/garment/GarmentTest.java
         Garment editedAlice = new GarmentBuilder(ALICE).withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withDescriptions(VALID_DESCRIPTION_HUSBAND).build();
-        assertTrue(ALICE.isSameGarment(editedAlice));
-=======
-        Person editedAlice = new PersonBuilder(ALICE).withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB)
                 .withDressCode(VALID_DRESSCODE_BOB).withDescriptions(VALID_DESCRIPTION_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/test/java/seedu/address/model/person/PersonTest.java
+        assertTrue(ALICE.isSameGarment(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new GarmentBuilder(ALICE).withName(VALID_NAME_BOB).build();
@@ -87,11 +81,7 @@ public class GarmentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-<<<<<<< HEAD:src/test/java/seedu/address/model/garment/GarmentTest.java
-        editedAlice = new GarmentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-=======
-        editedAlice = new PersonBuilder(ALICE).withDressCode(VALID_DRESSCODE_BOB).build();
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/test/java/seedu/address/model/person/PersonTest.java
+        editedAlice = new GarmentBuilder(ALICE).withDressCode(VALID_DRESSCODE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different descriptions -> returns false

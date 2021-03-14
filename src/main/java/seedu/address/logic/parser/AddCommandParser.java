@@ -13,20 +13,11 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
-<<<<<<< HEAD
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
-=======
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Size;
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
-
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -51,14 +42,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Size size = ParserUtil.parseSize(argMultimap.getValue(PREFIX_SIZE).get());
         Colour colour = ParserUtil.parseColour(argMultimap.getValue(PREFIX_COLOUR).get());
-        DressCode dresscode = ParserUtil.parseDresscode(argMultimap.getValue(PREFIX_DRESSCODE).get());
+        DressCode dresscode = ParserUtil.parseDressCode(argMultimap.getValue(PREFIX_DRESSCODE).get());
         Set<Description> descriptionList = ParserUtil.parseDescriptions(argMultimap.getAllValues(PREFIX_DESCRIPTION));
 
-<<<<<<< HEAD
-        Garment garment = new Garment(name, size, colour, address, descriptionList);
-=======
-        Person person = new Person(name, size, colour, dresscode, descriptionList);
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+        Garment garment = new Garment(name, size, colour, dresscode, descriptionList);
 
         return new AddCommand(garment);
     }

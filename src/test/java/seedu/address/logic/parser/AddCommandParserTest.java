@@ -33,21 +33,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.description.Description;
-<<<<<<< HEAD
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
 import seedu.address.testutil.GarmentBuilder;
-=======
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Size;
-import seedu.address.testutil.PersonBuilder;
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -58,71 +49,38 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
-<<<<<<< HEAD
-                + ADDRESS_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
+                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
-                + ADDRESS_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
-=======
-                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPerson));
-
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB
-                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPerson));
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
 
         // multiple sizes - last size accepted
         assertParseSuccess(parser, NAME_DESC_BOB + SIZE_DESC_AMY + SIZE_DESC_BOB + COLOUR_DESC_BOB
-<<<<<<< HEAD
-                + ADDRESS_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
-=======
-                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPerson));
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_AMY + COLOUR_DESC_BOB
-<<<<<<< HEAD
-                + ADDRESS_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
-
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
-=======
-                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPerson));
+                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_AMY
-                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPerson));
-
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+                + DRESSCODE_DESC_BOB + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarment));
 
         // multiple tags - all accepted
         Garment expectedGarmentMultipleTags = new GarmentBuilder(BOB)
                 .withDescriptions(VALID_DESCRIPTION_FRIEND, VALID_DESCRIPTION_HUSBAND)
                 .build();
-<<<<<<< HEAD
-        assertParseSuccess(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarmentMultipleTags));
-=======
-
         assertParseSuccess(parser, NAME_DESC_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB
-                + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+                + DESCRIPTION_DESC_HUSBAND + DESCRIPTION_DESC_FRIEND, new AddCommand(expectedGarmentMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-<<<<<<< HEAD
         Garment expectedGarment = new GarmentBuilder(AMY).withDescriptions().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + SIZE_DESC_AMY + COLOUR_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedGarment));
-=======
-        Person expectedPerson = new PersonBuilder(AMY).withDescriptions().build();
         assertParseSuccess(parser, NAME_DESC_AMY + SIZE_DESC_AMY + COLOUR_DESC_AMY + DRESSCODE_DESC_AMY,
-                new AddCommand(expectedPerson));
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+                new AddCommand(expectedGarment));
     }
 
     @Test
@@ -131,14 +89,9 @@ public class AddCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + SIZE_DESC_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB,
                 expectedMessage);
-<<<<<<< HEAD
 
         // missing size prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_SIZE_BOB + COLOUR_DESC_BOB + ADDRESS_DESC_BOB,
-=======
-        // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_SIZE_BOB + COLOUR_DESC_BOB + DRESSCODE_DESC_BOB,
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
                 expectedMessage);
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + SIZE_DESC_BOB + VALID_COLOUR_BOB + DRESSCODE_DESC_BOB,

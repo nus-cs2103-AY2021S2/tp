@@ -44,17 +44,10 @@ public class WardrobeTest {
     }
 
     @Test
-<<<<<<< HEAD
     public void resetData_withDuplicateGarments_throwsDuplicateGarmentException() {
         // Two garments with the same identity fields
         Garment editedAlice = new GarmentBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
-=======
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE)
                 .withDressCode(VALID_DRESSCODE_BOB)
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND)
                 .build();
         List<Garment> newGarments = Arrays.asList(ALICE, editedAlice);
@@ -80,17 +73,10 @@ public class WardrobeTest {
     }
 
     @Test
-<<<<<<< HEAD
     public void hasGarment_garmentWithSameIdentityFieldsInWardrobe_returnsTrue() {
         wardrobe.addGarment(ALICE);
         Garment editedAlice = new GarmentBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
-=======
-    public void hasPerson_personWithSameIdentityFieldsInWardrobe_returnsTrue() {
-        wardrobe.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE)
                 .withDressCode(VALID_DRESSCODE_BOB)
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND)
                 .build();
         assertTrue(wardrobe.hasGarment(editedAlice));

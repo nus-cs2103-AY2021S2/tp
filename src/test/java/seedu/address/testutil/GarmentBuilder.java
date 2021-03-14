@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.description.Description;
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
@@ -19,12 +19,12 @@ public class GarmentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_SIZE = "25";
     public static final String DEFAULT_COLOUR = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DRESSCODE = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Size size;
     private Colour colour;
-    private Address address;
+    private DressCode address;
     private Set<Description> descriptions;
 
     /**
@@ -34,7 +34,7 @@ public class GarmentBuilder {
         name = new Name(DEFAULT_NAME);
         size = new Size(DEFAULT_SIZE);
         colour = new Colour(DEFAULT_COLOUR);
-        address = new Address(DEFAULT_ADDRESS);
+        address = new DressCode(DEFAULT_DRESSCODE);
         descriptions = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class GarmentBuilder {
         name = garmentToCopy.getName();
         size = garmentToCopy.getSize();
         colour = garmentToCopy.getColour();
-        address = garmentToCopy.getAddress();
+        address = garmentToCopy.getDressCode();
         descriptions = new HashSet<>(garmentToCopy.getDescriptions());
     }
 
@@ -67,10 +67,10 @@ public class GarmentBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Garment} that we are building.
+     * Sets the {@code DressCode} of the {@code Garment} that we are building.
      */
-    public GarmentBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public GarmentBuilder withDressCode(String address) {
+        this.address = new DressCode(address);
         return this;
     }
 

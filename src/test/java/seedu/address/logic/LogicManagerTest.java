@@ -80,13 +80,8 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + SIZE_DESC_AMY + COLOUR_DESC_AMY
-<<<<<<< HEAD
-                + ADDRESS_DESC_AMY;
-        Garment expectedGarment = new GarmentBuilder(AMY).withDescriptions().build();
-=======
                 + DRESSCODE_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withDescriptions().build();
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+        Garment expectedGarment = new GarmentBuilder(AMY).withDescriptions().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGarment(expectedGarment);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

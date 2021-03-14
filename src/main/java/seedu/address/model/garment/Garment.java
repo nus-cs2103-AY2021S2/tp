@@ -87,21 +87,12 @@ public class Garment {
             return false;
         }
 
-<<<<<<< HEAD:src/main/java/seedu/address/model/garment/Garment.java
         Garment otherGarment = (Garment) other;
         return otherGarment.getName().equals(getName())
                 && otherGarment.getSize().equals(getSize())
                 && otherGarment.getColour().equals(getColour())
                 && otherGarment.getDressCode().equals(getDressCode())
                 && otherGarment.getDescriptions().equals(getDescriptions());
-=======
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getSize().equals(getSize())
-                && otherPerson.getColour().equals(getColour())
-                && otherPerson.getDressCode().equals(getDressCode())
-                && otherPerson.getDescriptions().equals(getDescriptions());
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/main/java/seedu/address/model/person/Person.java
     }
 
     @Override

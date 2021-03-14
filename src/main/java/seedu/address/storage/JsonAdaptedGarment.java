@@ -11,19 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.description.Description;
-<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedGarment.java
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
-=======
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Size;
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
 
 /**
  * Jackson-friendly version of {@link Garment}.
@@ -42,13 +34,8 @@ class JsonAdaptedGarment {
      * Constructs a {@code JsonAdaptedGarment} with the given garment details.
      */
     @JsonCreator
-<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedGarment.java
     public JsonAdaptedGarment(@JsonProperty("name") String name, @JsonProperty("size") String size,
-            @JsonProperty("colour") String colour, @JsonProperty("address") String address,
-=======
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("size") String size,
             @JsonProperty("colour") String colour, @JsonProperty("dresscode") String dresscode,
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
             @JsonProperty("addedDescriptions") List<JsonAdaptedDescription> addedDescriptions) {
         this.name = name;
         this.size = size;

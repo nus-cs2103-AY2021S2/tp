@@ -67,16 +67,9 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new GarmentBuilder().withName("Alice Bob").build()));
 
-<<<<<<< HEAD:src/test/java/seedu/address/model/garment/NameContainsKeywordsPredicateTest.java
         // Keywords match size, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new GarmentBuilder().withName("Alice").withSize("12345")
-                .withColour("alice@colour.com").withAddress("Main Street").build()));
-=======
-        // Keywords match phone, colour and dresscode, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@colour.com", "FORMAL"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withSize("12345")
                 .withColour("alice@colour.com").withDressCode("FORMAL").build()));
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/test/java/seedu/address/model/person/NameContainsKeywordsPredicateTest.java
     }
 }

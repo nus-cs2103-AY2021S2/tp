@@ -15,13 +15,13 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
+Package Garment {
+Class Garment
 Class DressCode
 Class Colour
 Class Name
 Class Size
-Class UniquePersonList
+Class UniqueGarmentList
 }
 
 Package Tag {
@@ -40,26 +40,17 @@ ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Size
-Person *--> Colour
-<<<<<<< HEAD
-Person *--> Colour
-Person *--> Address
-Person *--> "*" Description
+AddressBook *--> "1" UniqueGarmentList
+UniqueGarmentList o--> "*" Garment
+Garment *--> Name
+Garment *--> Size
+Garment *--> Colour
+Garment *--> DressCode
+Garment *--> "*" Description
 
 Name -[hidden]right-> Size
-Size -[hidden]right-> Address
-=======
-Person *--> DressCode
-Person *--> "*" Description
+Size -[hidden]right-> DressCode
+DressCode -[hidden]right-> Colour
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> DressCode
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
-Address -[hidden]right-> Colour
-
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Garment
 @enduml

@@ -48,19 +48,11 @@ public class GarmentCard extends UiPart<Region> {
         super(FXML);
         this.garment = garment;
         id.setText(displayedIndex + ". ");
-<<<<<<< HEAD:src/main/java/seedu/address/ui/GarmentCard.java
         name.setText(garment.getName().fullName);
         size.setText(garment.getSize().value);
-        address.setText(garment.getAddress().value);
+        dresscode.setText(garment.getDressCode().value);
         colour.setText(garment.getColour().colour);
         garment.getDescriptions().stream()
-=======
-        name.setText(person.getName().fullName);
-        size.setText(person.getSize().value);
-        dresscode.setText(person.getDressCode().value);
-        colour.setText(person.getColour().colour);
-        person.getDescriptions().stream()
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/main/java/seedu/address/ui/PersonCard.java
                 .sorted(Comparator.comparing(description -> description.descriptionName))
                 .forEach(description -> descriptions.getChildren()
                         .add(new Label("<" + description.descriptionName + ">")));

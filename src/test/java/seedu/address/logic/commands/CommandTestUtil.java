@@ -49,15 +49,9 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_HUSBAND = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-<<<<<<< HEAD
     public static final String INVALID_SIZE_DESC = " " + PREFIX_SIZE + "911a"; // 'a' not allowed in sizes
     public static final String INVALID_COLOUR_DESC = " " + PREFIX_COLOUR + " "; // missing colour
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-=======
-    public static final String INVALID_SIZE_DESC = " " + PREFIX_SIZE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_COLOUR_DESC = " " + PREFIX_COLOUR + " "; // missing '@' symbol
-    public static final String INVALID_DRESSCODE_DESC = " " + PREFIX_DRESSCODE;
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+    public static final String INVALID_DRESSCODE_DESC = " " + PREFIX_DRESSCODE; // empty string not allowed for addresses
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION
             + "hubby*"; // '*' not allowed in descriptions
 
@@ -68,19 +62,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditGarmentDescriptor DESC_BOB;
 
     static {
-<<<<<<< HEAD
         DESC_AMY = new EditGarmentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withSize(VALID_SIZE_AMY).withColour(VALID_COLOUR_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withDescriptions(VALID_DESCRIPTION_FRIEND).build();
-        DESC_BOB = new EditGarmentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB).withAddress(VALID_ADDRESS_BOB)
-=======
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withSize(VALID_SIZE_AMY).withColour(VALID_COLOUR_AMY).withDressCode(VALID_DRESSCODE_AMY)
                 .withDescriptions(VALID_DESCRIPTION_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditGarmentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB).withDressCode(VALID_DRESSCODE_BOB)
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND, VALID_DESCRIPTION_FRIEND).build();
     }
 

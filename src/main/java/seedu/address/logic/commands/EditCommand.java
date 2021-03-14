@@ -20,19 +20,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.description.Description;
-<<<<<<< HEAD
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
-=======
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Size;
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
 
 /**
  * Edits the details of an existing garment in the wardrobe.
@@ -101,25 +93,14 @@ public class EditCommand extends Command {
     private static Garment createEditedGarment(Garment garmentToEdit, EditGarmentDescriptor editGarmentDescriptor) {
         assert garmentToEdit != null;
 
-<<<<<<< HEAD
         Name updatedName = editGarmentDescriptor.getName().orElse(garmentToEdit.getName());
         Size updatedSize = editGarmentDescriptor.getSize().orElse(garmentToEdit.getSize());
         Colour updatedColour = editGarmentDescriptor.getColour().orElse(garmentToEdit.getColour());
-        Address updatedAddress = editGarmentDescriptor.getAddress().orElse(garmentToEdit.getAddress());
+        DressCode updatedDressCode = editGarmentDescriptor.getDressCode().orElse(garmentToEdit.getDressCode());
         Set<Description> updatedDescriptions = editGarmentDescriptor.getDescriptions()
                 .orElse(garmentToEdit.getDescriptions());
 
-        return new Garment(updatedName, updatedSize, updatedColour, updatedAddress, updatedDescriptions);
-=======
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Colour updatedColour = editPersonDescriptor.getColour().orElse(personToEdit.getColour());
-        Size updatedSize = editPersonDescriptor.getSize().orElse(personToEdit.getSize());
-        DressCode updatedDressCode = editPersonDescriptor.getDressCode().orElse(personToEdit.getDressCode());
-        Set<Description> updatedDescriptions = editPersonDescriptor.getDescriptions()
-                .orElse(personToEdit.getDescriptions());
-
-        return new Person(updatedName, updatedSize, updatedColour, updatedDressCode, updatedDescriptions);
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+        return new Garment(updatedName, updatedSize, updatedColour, updatedDressCode, updatedDescriptions);
     }
 
     @Override

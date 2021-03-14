@@ -3,7 +3,7 @@ package seedu.address.model.garment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGarments.ALICE;
@@ -43,7 +43,7 @@ public class UniqueGarmentListTest {
     public void contains_garmentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueGarmentList.add(ALICE);
         Garment editedAlice = new GarmentBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
+                .withDressCode(VALID_DRESSCODE_BOB)
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND)
                 .build();
         assertTrue(uniqueGarmentList.contains(editedAlice));
@@ -88,7 +88,7 @@ public class UniqueGarmentListTest {
     public void setGarment_editedGarmentHasSameIdentity_success() {
         uniqueGarmentList.add(ALICE);
         Garment editedAlice = new GarmentBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
+                .withDressCode(VALID_DRESSCODE_BOB)
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND)
                 .build();
         uniqueGarmentList.setGarment(ALICE, editedAlice);

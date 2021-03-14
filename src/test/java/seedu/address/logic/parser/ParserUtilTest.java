@@ -15,17 +15,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
-<<<<<<< HEAD
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
-=======
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Size;
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -111,25 +104,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseDressCode_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDresscode((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDressCode((String) null));
     }
 
     @Test
     public void parseDressCode_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDresscode(INVALID_DRESSCODE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDressCode(INVALID_DRESSCODE));
     }
 
     @Test
     public void parseDressCode_validValueWithoutWhitespace_returnsAddress() throws Exception {
         DressCode expectedDressCode = new DressCode(VALID_DRESSCODE);
-        assertEquals(expectedDressCode, ParserUtil.parseDresscode(VALID_DRESSCODE));
+        assertEquals(expectedDressCode, ParserUtil.parseDressCode(VALID_DRESSCODE));
     }
 
     @Test
     public void parseDressCode_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_DRESSCODE + WHITESPACE;
         DressCode expectedDressCode = new DressCode(VALID_DRESSCODE);
-        assertEquals(expectedDressCode, ParserUtil.parseDresscode(addressWithWhitespace));
+        assertEquals(expectedDressCode, ParserUtil.parseDressCode(addressWithWhitespace));
     }
 
     @Test

@@ -48,11 +48,7 @@ public class EditGarmentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/EditGarmentDescriptorTest.java
-        editedAmy = new EditGarmentDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-=======
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDressCode(VALID_DRESSCODE_BOB).build();
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f:src/test/java/seedu/address/logic/commands/EditPersonDescriptorTest.java
+        editedAmy = new EditGarmentDescriptorBuilder(DESC_AMY).withDressCode(VALID_DRESSCODE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

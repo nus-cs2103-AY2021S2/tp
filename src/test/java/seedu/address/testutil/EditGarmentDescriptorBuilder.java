@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditGarmentDescriptor;
 import seedu.address.model.description.Description;
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
@@ -35,7 +35,7 @@ public class EditGarmentDescriptorBuilder {
         descriptor.setName(garment.getName());
         descriptor.setSize(garment.getSize());
         descriptor.setColour(garment.getColour());
-        descriptor.setAddress(garment.getAddress());
+        descriptor.setDressCode(garment.getDressCode());
         descriptor.setDescriptions(garment.getDescriptions());
     }
 
@@ -64,10 +64,10 @@ public class EditGarmentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditGarmentDescriptor} that we are building.
+     * Sets the {@code DressCode} of the {@code EditGarmentDescriptor} that we are building.
      */
-    public EditGarmentDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditGarmentDescriptorBuilder withDressCode(String address) {
+        descriptor.setDressCode(new DressCode(address));
         return this;
     }
 

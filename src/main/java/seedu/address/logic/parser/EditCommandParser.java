@@ -53,13 +53,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
             editGarmentDescriptor.setColour(ParserUtil.parseColour(argMultimap.getValue(PREFIX_COLOUR).get()));
         }
-<<<<<<< HEAD
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editGarmentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-=======
         if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
-            editPersonDescriptor.setDressCode(ParserUtil.parseDresscode(argMultimap.getValue(PREFIX_DRESSCODE).get()));
->>>>>>> a619ff895d28ff145a1161fbe2a7e1656407e12f
+            editGarmentDescriptor.setDressCode(ParserUtil.parseDressCode(argMultimap.getValue(PREFIX_DRESSCODE).get()));
         }
         parseDescriptionsForEdit(argMultimap.getAllValues(PREFIX_DESCRIPTION))
                 .ifPresent(editGarmentDescriptor::setDescriptions);
