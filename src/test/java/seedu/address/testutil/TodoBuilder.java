@@ -49,6 +49,7 @@ public class TodoBuilder {
 
     /**
      * Builds the {@code Todo} object.
+     *
      * @return {@code Todo}.
      */
     public Todo build() {
