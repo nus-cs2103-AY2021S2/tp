@@ -1,9 +1,5 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
@@ -13,8 +9,16 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Tutor;
-import seedu.address.model.session.*;
+import seedu.address.model.session.Day;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionId;
+import seedu.address.model.session.Subject;
+import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
+
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
