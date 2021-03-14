@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.ResidenceTracker;
-import seedu.address.model.person.Person;
+import seedu.address.model.residence.Residence;
 
 /**
  * An Immutable ResidenceTracker that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "residencetracker")
 class JsonSerializableResidenceTracker {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Residences list contains duplicate residences(s).";
+    public static final String MESSAGE_DUPLICATE_RESIDENCE = "Residences list contains duplicate residences(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedResidence> residences = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableResidenceTracker} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableResidenceTracker(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableResidenceTracker(@JsonProperty("residences") List<JsonAdaptedResidence> residences) {
+        this.residences.addAll(residences);
     }
 
     /**
@@ -37,7 +37,8 @@ class JsonSerializableResidenceTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableResidenceTracker}.
      */
     public JsonSerializableResidenceTracker(ReadOnlyResidenceTracker source) {
-        persons.addAll(source.getResidenceList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        residences.addAll(source.getResidenceList()
+                .stream().map(JsonAdaptedResidence::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +48,12 @@ class JsonSerializableResidenceTracker {
      */
     public ResidenceTracker toModelType() throws IllegalValueException {
         ResidenceTracker residenceTracker = new ResidenceTracker();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (residenceTracker.hasResidence(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedResidence jsonAdaptedResidence : residences) {
+            Residence residence = jsonAdaptedResidence.toModelType();
+            if (residenceTracker.hasResidence(residence)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_RESIDENCE);
             }
-            residenceTracker.addResidence(person);
+            residenceTracker.addResidence(residence);
         }
         return residenceTracker;
     }

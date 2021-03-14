@@ -6,11 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.residence.Residence;
 
 /**
@@ -29,16 +30,16 @@ public class AddCommand extends Command {
             + "[" + PREFIX_CLEAN_STATUS_TAG + "y or n]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_RESIDENCE_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_RESIDENCE_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_CLEAN_STATUS_TAG + "y"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the residence tracker";
+    public static final String MESSAGE_DUPLICATE_RESIDENCE = "This residence already exists in the residence tracker";
 
     private final Residence toAdd;
 
@@ -55,7 +56,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasResidence(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_RESIDENCE);
         }
 
         model.addResidence(toAdd);

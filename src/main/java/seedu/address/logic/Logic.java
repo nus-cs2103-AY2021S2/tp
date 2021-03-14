@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyResidenceTracker;
-import seedu.address.model.person.Person;
+import seedu.address.model.residence.Residence;
 
 /**
  * API of the Logic component
@@ -34,7 +34,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the filtered list of persons
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Residence> getFilteredResidenceList();
 
     /**
      * Returns the user prefs' residence tracker file path.

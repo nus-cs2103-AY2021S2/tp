@@ -74,14 +74,18 @@ public interface Model {
     /**
      * Replaces the given residence {@code target} with {@code editedResidence}.
      * {@code target} must exist in the residence tracker.
-     * The residence identity of {@code editedPerson} must not be the same as another existing residence in the residence
-     * tracker.
+     * The residence identity of {@code editedPerson} must not be the same as another existing residence in the
+     * residence tracker.
      */
 
     void setResidence(Residence target, Residence editedResidence);
 
     /** Returns an unmodifiable view of the filtered residence list */
     ObservableList<Residence> getFilteredResidenceList();
+
+    //Add just to prevent breaking
+    ObservableList<Person> getFilteredPersonList();
+
 
     /**
      * Updates the filter of the filtered residence list to filter by the given {@code predicate}.

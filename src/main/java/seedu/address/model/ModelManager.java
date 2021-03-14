@@ -36,6 +36,7 @@ public class ModelManager implements Model {
         this.residenceTracker = new ResidenceTracker(residenceTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidences = new FilteredList<>(this.residenceTracker.getResidenceList());
+
     }
 
     public ModelManager() {
@@ -122,6 +123,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Residence> getFilteredResidenceList() {
         return filteredResidences;
+    }
+
+    @Override
+    //add just to prevent breaking
+    public ObservableList<Person> getFilteredPersonList() {
+        return null;
     }
 
     @Override
