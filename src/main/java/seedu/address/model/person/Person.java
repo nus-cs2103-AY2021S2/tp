@@ -136,11 +136,11 @@ public class Person {
         return builder.toString();
     }
 
-    public void addAppointment(Appointment appointment){
+    public void addAppointment(Appointment appointment) {
         this.appointments.add(appointment);
     }
 
-    public void addMedicalRecord(MedicalRecord record){
+    public void addMedicalRecord(MedicalRecord record) {
         this.records.add(record);
     }
 }

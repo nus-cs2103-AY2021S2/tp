@@ -34,7 +34,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
         System.out.println("index: " + index.toString());
@@ -42,7 +43,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAppointmentCommand.MESSAGE_USAGE));
         }
         System.out.println("prefix date: " + date.toString());
         return new AddAppointmentCommand(index, date);

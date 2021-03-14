@@ -64,8 +64,8 @@ public class DriveStorage {
      */
     public static void run() throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
-        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+        final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+        Drive service = new Drive.Builder(httpTransport, JSON_FACTORY, getCredentials(httpTransport))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
 

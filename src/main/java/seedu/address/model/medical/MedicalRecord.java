@@ -19,9 +19,7 @@ public class MedicalRecord {
     private Person person;
     private LocalDateTime date;
     private String zoomMeetingUrl;
-
-    // related to the medical record
-    List<Section> sections;
+    private List<Section> sections;
 
     /**
      * Every field must be present and not null.
@@ -30,18 +28,31 @@ public class MedicalRecord {
         this.person = person;
         this.date = date;
         this.sections = new ArrayList<>();
-        for (String section : sections){
+        for (String section : sections) {
             this.sections.add(new Section(section));
         }
     }
 
-//TODO REMOVE PERSON FROM MEDICAL RECORD
+    //TODO REMOVE PERSON FROM MEDICAL RECORD
     /**
      * Every field must be present and not null.
      */
     public MedicalRecord(LocalDateTime date, List<Section> sections) {
         this.date = date;
         this.sections = sections;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public MedicalRecord(Appointment appointment, List<String> sections) {
+        this.person = appointment.getPerson();
+        this.date = appointment.getDate();
+        this.zoomMeetingUrl = appointment.getZoomMeetingUrl();
+        this.sections = new ArrayList<>();
+        for (String section : sections){
+            this.sections.add(new Section(section));
+        }
     }
 
     public Person getPerson() {
@@ -56,16 +67,7 @@ public class MedicalRecord {
         return zoomMeetingUrl;
     }
 
-    // create medical record from appointment
-    public MedicalRecord(Appointment appointment, List<String> sections) {
-        this.person = appointment.getPerson();
-        this.date = appointment.getDate();
-        this.zoomMeetingUrl = appointment.getZoomMeetingUrl();
-        this.sections = new ArrayList<>();
-        for (String section : sections){
-            this.sections.add(new Section(section));
-        }
-    }
+    public List<Section> getSections() { return Collections.unmodifiableList(sections); }
 
     // for storage into JSON
     public String getDateStorage() {
@@ -76,6 +78,4 @@ public class MedicalRecord {
     public String getDateDisplay() {
         return date.format(DATE_FORMAT_DISPLAY);
     }
-
-    public List<Section> getSections() { return Collections.unmodifiableList(sections); }
 }

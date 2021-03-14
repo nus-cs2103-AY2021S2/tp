@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -13,8 +15,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.medical.Appointment;
 import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.medical.Section;
-
-import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
 
 public class JsonAdaptedRecord {
     private final String dateString;
