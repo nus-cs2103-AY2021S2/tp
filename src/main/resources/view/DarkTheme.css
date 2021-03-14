@@ -127,14 +127,18 @@
     -fx-border-color: #0eb4e3;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+.list-cell:filled:even:selected {
+    -fx-border-color: #e0643c;
 }
 
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+.list-cell:filled:odd:selected {
+    -fx-border-color: #1368cf;
 }
+
+.list-cell:filled:selected {
+    -fx-border-width: 1.5;
+}
+
 
 .list-cell .label {
     -fx-text-fill: grey;
