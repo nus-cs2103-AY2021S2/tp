@@ -41,6 +41,24 @@ public class Plan {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Adds a semester to the Plan.
+     */
+    public Plan addSemester(Semester semester) {
+        semesters.add(semester);
+        return this;
+    }
+
+    /**
+     * Returns List of Semesters.
+     */
+    public List<Semester> getSemesters() {
+        return semesters;
+    }
+
+    /**
+     * Returns Description of Plan.
+     */
     public Description getDescription() {
         return description;
     }

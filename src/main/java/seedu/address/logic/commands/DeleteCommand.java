@@ -33,14 +33,14 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Plan> lastShownList = model.getFilteredPersonList();
+        List<Plan> lastShownList = model.getFilteredPlanList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
         }
 
         Plan planToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(planToDelete);
+        model.deletePlan(planToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, planToDelete));
     }
 
