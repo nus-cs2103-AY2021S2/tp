@@ -83,7 +83,7 @@ public class EditAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        model.setAppointment(appointmentToEdit, editedAppointment);
+        model.setAppointment(appointmentToEdit, editedAppointment);     /// if remove the previous line, would result in error here
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
@@ -94,7 +94,7 @@ public class EditAppointmentCommand extends Command {
      */
     private static Appointment createEditedAppointment(Appointment appointmentToEdit, EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
-
+//// probably here
         Person updatedPatient = appointmentToEdit.getPatient();
         String updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
