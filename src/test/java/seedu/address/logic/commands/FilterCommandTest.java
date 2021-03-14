@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
 
 class FilterCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_modelUpdated_success() throws Exception {
@@ -34,5 +34,37 @@ class FilterCommandTest {
 
         // after executing
         assertEquals(model.getDisplayFilter(), displayFilterPredicate);
+    }
+
+    @Test
+    public void equals() {
+        final ArgumentMultimap addressMultimap = new ArgumentMultimap();
+        addressMultimap.put(PREFIX_ADDRESS, "");
+        final DisplayFilterPredicate addressOnlyPredicate = new DisplayFilterPredicate(
+                addressMultimap);
+        final FilterCommand standardCommand = new FilterCommand(new DisplayFilterPredicate());
+        final FilterCommand addressPredicateCommand = new FilterCommand(addressOnlyPredicate);
+        final FilterCommand dupeAddressPredicateCommand = new FilterCommand(addressOnlyPredicate);
+        final FilterCommand commandWithSameValues = new FilterCommand(new DisplayFilterPredicate());
+
+        // same predicate, default -> returns true
+        assertEquals(commandWithSameValues, standardCommand);
+
+        // same predicate, address -> returns true
+        assertEquals(addressPredicateCommand, dupeAddressPredicateCommand);
+
+        // same object -> returns true
+        assertEquals(standardCommand, standardCommand);
+        assertEquals(addressPredicateCommand, addressPredicateCommand);
+
+        // null -> returns false
+        assertNotEquals(standardCommand, null);
+        assertNotEquals(addressPredicateCommand, null);
+
+        // different command types -> returns false
+        assertNotEquals(new ClearCommand(), standardCommand);
+
+        // different predicate -> returns false
+        assertNotEquals(addressPredicateCommand, standardCommand);
     }
 }
