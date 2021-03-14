@@ -55,7 +55,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        SocheduleStorage socheduleStorage = new JsonSocheduleStorage(userPrefs.getAddressBookFilePath());
+        SocheduleStorage socheduleStorage = new JsonSocheduleStorage(userPrefs.getSocheduleFilePath());
         storage = new StorageManager(socheduleStorage, userPrefsStorage);
 
         initLogging(config);
