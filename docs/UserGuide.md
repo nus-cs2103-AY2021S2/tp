@@ -14,10 +14,8 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
   * [Ending the session: `end`](#ending-the-session-end)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Asking for help: `help`](#asking-for-help-help)
-    
 * [FAQ](#faq)
-* [Command Summary](#command-summary) 
-
+* [Command Summary](#command-summary)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start

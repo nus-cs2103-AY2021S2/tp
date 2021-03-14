@@ -44,12 +44,14 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
+            mainWindow.displayGreetings(); //Greet user at app startup
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
+
+
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));

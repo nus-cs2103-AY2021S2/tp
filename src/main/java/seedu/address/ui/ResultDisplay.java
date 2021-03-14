@@ -20,6 +20,14 @@ public class ResultDisplay extends UiPart<Region> {
         super(FXML);
     }
 
+    /**
+     * Greets the user.
+     */
+    public void greetUser() {
+        resultDisplay.setText("Hi! Welcome to WeebLingo, your personal Japanese tutor. Type 'learn' or 'quiz' \n"
+                + "to enter learn or quiz mode.");
+    }
+
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
