@@ -11,7 +11,6 @@
 
 .background {
     -fx-background-color: -COLOR_PRIMARY_LIGHT;
-    background-color: -COLOR_PRIMARY_LIGHT; /* Used in the default.html file */
 }
 
 .label {
@@ -423,14 +422,4 @@
 
 .white-text > * {
     -fx-text-fill: white;
-}
-
-.project-display-panel-vbox {
-    -fx-alignment: center;
-}
-
-.project-display-panel-header {
-    -fx-text-fill: white;
-    -fx-font-size: 24;
-    -fx-text-alignment: center;
 }

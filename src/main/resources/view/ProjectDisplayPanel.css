@@ -1,0 +1,13 @@
+.project-display-panel-vbox {
+    -fx-alignment: center;
+}
+
+.label-header {
+    -fx-text-fill: white;
+    -fx-font-size: 24;
+    -fx-text-alignment: center;
+}
+
+#cardPane {
+    -fx-background-color: -COLOR_PRIMARY_LIGHT;
+}
