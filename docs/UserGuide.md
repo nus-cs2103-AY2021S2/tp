@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Cake Collate is a **desktop app for managing cake orders, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Cake Collate can get your order management tasks done faster than traditional GUI apps.
+CakeCollate is a **desktop app for managing cake orders, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +14,7 @@ Cake Collate is a **desktop app for managing cake orders, optimized for use via 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `cakecollate.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
 
@@ -24,13 +24,13 @@ Cake Collate is a **desktop app for managing cake orders, optimized for use via 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all orders in the Cake Collate database.
+   * **`list`** : Lists all orders in the CakeCollate database.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 /o strawberry cake 3` : Adds an order with a contact named `John Doe` to CakeCollate.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
 
-   * **`clear`** : Deletes all order in the Cake Collate database.
+   * **`clear`** : Deletes all order in the CakeCollate database.
 
    * **`exit`** : Exits the app.
 
@@ -58,6 +58,8 @@ Cake Collate is a **desktop app for managing cake orders, optimized for use via 
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* `d/DELIVERY_DATE` should specify a date at least 3 days after the date the command is executed.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -128,7 +130,7 @@ Examples:
 
 ### Deleting an order : `delete`
 
-Deletes the specified order from the address book.
+Deletes the specified order from the CakeCollate database.
 
 Format: `delete ID...`
 
@@ -141,7 +143,7 @@ Examples:
 * `list` followed by `delete 2` deletes the order with `ID` 2 from the CakeCollate database.
 * `delete 2 3` deletes the orders with ids 2 and 3 from the CakeCollate database.
 
-### Clear all existing orders: `clear`
+### Clearing all existing orders: `clear`
 
 Deletes all existing orders in the CakeCollate database.
 
@@ -157,14 +159,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CakeCollate data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+CakeCollate data is saved as a JSON file `[JAR file location]/data/cakecollate.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, CakeCollate will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -176,7 +178,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CakeCollate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

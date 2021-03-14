@@ -46,15 +46,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/pavz02)]
 [[portfolio](team/pavz02.md)]
 
-* Role: Developer
-* Responsibilities: Code quality
+* Role: Developer, Code quality
+* Responsibilities: Ui and JavaFX
 
 ### Bhadani Simran
 
 <img src="images/simran-bhadani3.png" width="200px">
 
 [[github](http://github.com/simran-bhadani3)]
-[[portfolio](team/simran-bhadani3)]
+[[portfolio](team/simran-bhadani3.md)]
 
-* Role: Developer
-* Responsibilities: Integration
+* Role: Developer, Integration
+* Responsibilities: Storage
