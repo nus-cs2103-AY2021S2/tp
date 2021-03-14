@@ -115,12 +115,14 @@ class JsonAdaptedPerson {
         if (birthday.equals(Birthday.EMPTY_BIRTHDAY_STRING)) {
             modelBirthday = Birthday.EMPTY_BIRTHDAY;
         }
-        try {
-            modelBirthday = new Birthday(birthday);
-        } catch (DateTimeException err) { // birthday year exceeds current year
-            throw new IllegalValueException((Birthday.MESSAGE_YEAR_CONSTRAINTS));
-        } catch (IllegalArgumentException err) { // date in wrong format
-            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        else {
+            try {
+                modelBirthday = new Birthday(birthday);
+            } catch (DateTimeException err) { // birthday year exceeds current year
+                throw new IllegalValueException((Birthday.MESSAGE_YEAR_CONSTRAINTS));
+            } catch (IllegalArgumentException err) { // date in wrong format
+                throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+            }
         }
 
         Address modelAddress;
