@@ -1,13 +1,19 @@
 package seedu.address.ui;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Picture;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -46,6 +52,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane dates;
     @FXML
     private FlowPane meetings;
+    @FXML
+    private ImageView picture;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -66,6 +74,18 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(date -> dates.getChildren().add(new Label(date.toString())));
         // Temporary UI to test meetings
         person.getMeetings().forEach(meeting -> meetings.getChildren().add(new Label(meeting.toUi())));
+
+        Picture personPicture = person.getPicture();
+        if (personPicture != null) {
+            
+            File imgFile = new File(person.getPicture().getAbsoluteFilePath());
+            try {
+                Image userImage = new Image(new FileInputStream(imgFile));
+                picture.setImage(userImage);
+            } catch (IOException e) {
+                throw new RuntimeException("Unable to read input stream for person");
+            }
+        }
     }
 
     @Override
