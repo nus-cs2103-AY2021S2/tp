@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Group {
 
     public static final String MESSAGE_CONSTRAINTS = "Group names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s]+";
 
     public final String groupName;
 
