@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.AddContactToCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
@@ -28,9 +28,9 @@ public class AddContactToCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToAdd = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
+        Person personToAdd = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
+        Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST, INDEX_FIRST);
 
         String expectedMessage = String.format(MESSAGE_SUCCESS, personToAdd.getName(), projectToAddTo.getProjectName());
 
@@ -47,7 +47,7 @@ public class AddContactToCommandTest {
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_THIRD_PERSON, INDEX_FIRST_PERSON);
+        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_THIRD, INDEX_FIRST);
 
         assertThrows(
                 CommandException.class,
@@ -57,7 +57,7 @@ public class AddContactToCommandTest {
 
     @Test
     public void execute_invalidContactIndex_throwsCommandException() {
-        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST_PERSON, Index.fromOneBased(8));
+        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST, Index.fromOneBased(8));
 
         assertThrows(
                 CommandException.class,
@@ -67,9 +67,9 @@ public class AddContactToCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personToAdd = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
+        Person personToAdd = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
+        Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        AddContactToCommand addContactToCommand = new AddContactToCommand(INDEX_FIRST, INDEX_FIRST);
 
         model.setProject(
                 projectToAddTo,
@@ -87,14 +87,14 @@ public class AddContactToCommandTest {
 
     @Test
     public void equals() {
-        AddContactToCommand addOneToOneCommand = new AddContactToCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
-        AddContactToCommand addOneToTwoCommand = new AddContactToCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
+        AddContactToCommand addOneToOneCommand = new AddContactToCommand(INDEX_FIRST, INDEX_FIRST);
+        AddContactToCommand addOneToTwoCommand = new AddContactToCommand(INDEX_SECOND, INDEX_FIRST);
 
         // same object -> returns true
         assertEquals(addOneToOneCommand, addOneToOneCommand);
 
         // same values -> returns true
-        AddContactToCommand addOneToOneCommandCopy = new AddContactToCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
+        AddContactToCommand addOneToOneCommandCopy = new AddContactToCommand(INDEX_FIRST, INDEX_FIRST);
         assertEquals(addOneToOneCommandCopy, addOneToOneCommand);
 
         // different types -> returns false
