@@ -13,5 +13,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_READER = new Prefix("r/");
     public static final Prefix PREFIX_BOOK = new Prefix("b/");
+    public static final Prefix PREFIX_AUTHOR = new Prefix("a/");
+    public static final Prefix PREFIX_PUBLISHER = new Prefix("p/");
+    public static final Prefix PREFIX_ISBN = new Prefix("i/");
 
 }

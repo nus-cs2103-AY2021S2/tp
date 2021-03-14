@@ -7,15 +7,20 @@ import seedu.smartlib.commons.core.name.Name;
  */
 public class Author {
 
-    private final Name fullName;
+    private final String fullName;
 
     /**
      * Constructs an {@code Author}.
      *
      * @param fullName A valid full name of the author.
      */
-    Author(Name fullName) {
+    public Author(String fullName) {
         this.fullName = fullName;
+    }
+
+    // todo: REGEX
+    public static boolean isValidAuthor(String test) {
+        return true;
     }
 
     @Override

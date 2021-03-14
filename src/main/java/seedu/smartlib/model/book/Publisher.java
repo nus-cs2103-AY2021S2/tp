@@ -7,14 +7,14 @@ import seedu.smartlib.commons.core.name.Name;
  */
 public class Publisher {
 
-    private final Name fullName;
+    private final String fullName;
 
     /**
      * Constructs an {@code Publisher}.
      *
      * @param fullName A valid full name of the publisher.
      */
-    Publisher(Name fullName) {
+    public Publisher(String fullName) {
         this.fullName = fullName;
     }
 
