@@ -1,7 +1,6 @@
 package seedu.address.model.meeting;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.meeting.DateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
