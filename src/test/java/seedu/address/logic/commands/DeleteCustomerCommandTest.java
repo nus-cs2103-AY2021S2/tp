@@ -38,8 +38,6 @@ public class DeleteCustomerCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCustomer(customerToDelete);
 
-        System.out.println(expectedMessage);
-        System.out.println(expectedModel.getFilteredCustomerList().get(0));
         assertCommandSuccess(deleteCustomerCommand, model, expectedMessage, expectedModel);
     }
 
