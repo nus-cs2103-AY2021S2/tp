@@ -52,7 +52,7 @@ public class FindCommandParserTest {
         // empty arguments after given search criteria
         assertParseFailure(parser, "q/ ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
-        
+
         assertParseFailure(parser, "q/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindCommand.MESSAGE_USAGE));
 
