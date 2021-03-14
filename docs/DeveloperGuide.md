@@ -55,7 +55,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                      | I want to …​                     | So that I can …​                                                        |
 | -------- | ----------------------------| ------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | New user                    | Input a new order |  |
-| `* * *`  | New user                    | Remove an existing order |  |
+| `* * *`  | New user                    | Delete an existing order |  |
 | `* * *`  | New user                    | Add cheese entries |  |
 | `* * *`  | New user                    | Mark a sample order as delivered |  |
 | `* * *`  | New user                    | Search for a customer | Find the customer’s contact information |
@@ -131,12 +131,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Remove an Order
+#### Use case: Delete an Order
 
 **MSS**
 
-1. User enters an order number to remove.
-2. CHIM removes the order from the list of orders.
+1. User enters an order number to delete.
+2. CHIM deletes the order from the list of orders.
 
    Use case ends.
 
@@ -146,12 +146,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Remove a cheese
+#### Use case: Delete a cheese
 
 **MSS**
 
-1. User enters the index of cheese to be removed.
-2. CHIM removes the cheese from the list of cheese.
+1. User enters the index of cheese to be deleted.
+2. CHIM deletes the cheese from the list of cheese.
 
    Use case ends.
 
@@ -165,11 +165,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 1.
 
-#### Use case: Remove a customer
+#### Use case: Delete a customer
 
 **MSS**
 
-1. User enters the index of the customer to be removed.
+1. User enters the index of the customer to be deleted.
 2. CHIM deletes the customer.
 
    Use case ends.

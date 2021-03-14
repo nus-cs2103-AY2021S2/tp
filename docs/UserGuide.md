@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Chesse Inventory Management (CHIM) is a desktop app for managing the contacts, inventory, and orders of a home-based
+Cheese Inventory Management (CHIM) is a desktop app for managing the contacts, inventory, and orders of a home-based
 cheese making business.
 
 The app is optimized for use via a Command Line Interface (CLI) while still having the
@@ -76,32 +76,32 @@ Format: `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER a/ADDRESS`
 
 Example: `addcustomer n/John Doe p/65555555 a/Blk 436 Serangoon Gardens St 26 #01-01`
 
-### Remove an order: `removeorder`
+### Delete an order: `deleteorder`
 
-Removes a specific order from CHIM, identified by its index.
+Deletes a specific order from CHIM, identified by its index.
 
-Format: `removeorder ORDER_INDEX`
-* Removes the order at the specified `ORDER_INDEX`. The index must be a positive integer.
+Format: `deleteorder ORDER_INDEX`
+* Deletes the order at the specified `ORDER_INDEX`. The index must be a positive integer.
 
-Example: `removeorder 2`
-* Removes the second order in the list of orders.
+Example: `deleteorder 2`
+* Deletes the second order in the list of orders.
 
-### Remove cheese from inventory: `removecheese`
+### Delete cheese from inventory: `deletecheese`
 
-Removes some specified quantity of a specified cheese type from the inventory.
+Deletes some specified quantity of a specified cheese type from the inventory.
 
-Format: `removecheese CHEESE_INDEX`
-* Removes the cheese at the specified `CHEESE_INDEX`. The index must be a positive integer.
+Format: `deletecheese CHEESE_INDEX`
+* Deletes the cheese at the specified `CHEESE_INDEX`. The index must be a positive integer.
 
-Example: `removecheese 2`
+Example: `deletecheese 2`
 
-### Remove customer: `removecustomer`
+### Delete customer: `deletecustomer`
 
-Removes a customer from the list of customers, using their phone number as identifier.
+Deletes a customer from the list of customers, using their phone number as identifier.
 
-Format: `removecustomer p/PHONE_NUMBER`
+Format: `deletecustomer p/PHONE_NUMBER`
 
-Example: `removecustomer p/65555555`
+Example: `deletecustomer p/65555555`
 
 
 ### Listing orders: `listorder`
@@ -158,7 +158,7 @@ Format: `exit`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CHIM home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,9 +169,9 @@ Action | Format, Examples
 **Add Order** | `addorder t/CHEESE_TYPE q/QUANTITY p/PHONE_NUMBER` <br> e.g. `addorder t/Parmesan q/2 p/65555555`
 **Add Cheese** | `addcheese t/CHEESE_TYPE q/QUANTITY` <br> e.g. `addcheese t/CHEESE_TYPE q/QUANTITY`
 **Add Customer** | `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER a/ADDRESS` <br> e.g. `addcustomer n/John Doe p/65555555 a/Blk 436 Serangoon Gardens St 26 #01-01`
-**Remove Order** | `removeorder ORDER_INDEX` <br> e.g. `removeorder 2`
-**Remove Cheese** | `removecheese CHEESE_INDEX` <br> Example: `removecheese 5`
-**Remove Customer**| `removecustomer p/PHONE_NUMBER` <br> Example: `removecustomer p/65555555`
+**Delete Order** | `deleteorder ORDER_INDEX` <br> e.g. `deleteorder 2`
+**Delete Cheese** | `deletecheese CHEESE_INDEX` <br> Example: `deletecheese 5`
+**Delete Customer**| `deletecustomer p/PHONE_NUMBER` <br> Example: `deletecustomer p/65555555`
 **List Orders** | `listorder`
 **List Cheese** | `listcheese [t/CHEESE_TYPE]` <br> e.g. `listcheese t/Mozzarella`
 **List Customer** | `listcustomer`

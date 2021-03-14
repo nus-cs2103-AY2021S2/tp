@@ -73,9 +73,9 @@ public class UniqueCheeseList implements Iterable<Cheese> {
      * Removes the equivalent cheese from the list.
      * The cheese must exist in the list.
      */
-    public void remove(Cheese toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+    public void delete(Cheese toDelete) {
+        requireNonNull(toDelete);
+        if (!internalList.remove(toDelete)) {
             throw new CheeseNotFoundException();
         }
     }

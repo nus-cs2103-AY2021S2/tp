@@ -104,7 +104,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteCustomer(Customer target) {
-        addressBook.removeCustomer(target);
+        addressBook.deleteCustomer(target);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteOrder(Order target) {
-        addressBook.removeOrder(target);
+        addressBook.deleteOrder(target);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteCheese(Cheese target) {
-        addressBook.removeCheese(target);
+        addressBook.deleteCheese(target);
     }
 
     @Override

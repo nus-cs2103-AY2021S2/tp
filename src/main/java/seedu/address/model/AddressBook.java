@@ -116,8 +116,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeOrder(Order key) {
-        orders.remove(key);
+    public void deleteOrder(Order key) {
+        orders.delete(key);
     }
 
     //// customer-level operations
@@ -154,8 +154,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeCustomer(Customer key) {
-        customers.remove(key);
+    public void deleteCustomer(Customer key) {
+        customers.delete(key);
     }
 
     //// cheese-level operations
@@ -192,8 +192,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeCheese(Cheese key) {
-        cheeses.remove(key);
+    public void deleteCheese(Cheese key) {
+        cheeses.delete(key);
     }
 
 
