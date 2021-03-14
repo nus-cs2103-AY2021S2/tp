@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Vax@NUS is a **one stop management app to efficiently track and and schedule COVID-19 vaccinations for NUS students.** It is a desktop app **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vax@NUS can get your appointment management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `VaxAtNUS.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -24,14 +24,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
+   * **`list students`** : Lists all contacts.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -156,18 +149,18 @@ Format: `search /MATRICULATION_NUMBER`
 Examples:
 * `search A1234567X` returns `John Doe`
 
-### Deleting a student by their matriculation number: `delete`
+### Deleting a student by their matriculation number: `deleteStud`
 
 Deletes the specified person from the address book.
 
-Format: `delete /MATRICULATION NUMBER`
+Format: `deleteStud /MATRICULATION NUMBER`
 
-* If the matriculation number does not exist in the records, a popup message will be displayed to inform users that 
+* If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
   the matriculation number is not found
   
 
 Examples:
-* `delete /A7654321J` deletes Betsy Crowe from the records.
+* `deleteStud /A7654321J` deletes Betsy Crowe from the records.
 
 ### Clearing all student entries : `clear`
 
@@ -193,12 +186,25 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: What do I do if I accidentally deleted a student? 
+<br>
+**A**: We regret to inform you that deletion is permanent. You will have to manually re-add the student.
 
+**Q**: What can be included in medical details?
+<br>
+**A**: Allergies and past medical history. 
+
+**Q**: Will I be able to amend a student’s details?
+<br>
+**A**: Unfortunately, this feature is not available at the moment, but plans are in the works to make this a reality.
+
+**Q** : Will I be able to add other types of appointments besides vaccination appointments?
+<br>
+**A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
+ 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
@@ -206,6 +212,4 @@ Action | Format, Examples
 **edit** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **List Students** | `list students`
 **Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
-**Delete** | `delete /MATRICULATION_NUMBER` <br> e.g., `delete A1234567X`
-**Clear** | `clear`
-
+**Delete Student** | `deleteStud /MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`
