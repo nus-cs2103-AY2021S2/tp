@@ -24,6 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final JsonModule[] moduleInfo = readModuleInfo();
+    private int currentSemesterNumber;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -33,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        currentSemesterNumber = 0;
     }
 
     public AddressBook() {}
@@ -62,6 +64,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        currentSemesterNumber = newData.getCurrentSemesterNumber();
     }
 
     //// plan-level operations
@@ -99,6 +102,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePlan(Plan key) {
         persons.remove(key);
+    }
+
+    /**
+     * Replaces the current semester number {@code currentSemesterNumber} with
+     * an updated {@code currentSemesterNumber}.
+     * {@code currentSemesterNumber} must exist in the address book.
+     */
+    public void setCurrentSemesterNumber(int currentSemesterNumber) {
+        requireNonNull(currentSemesterNumber);
+        this.currentSemesterNumber = currentSemesterNumber;
+    }
+
+    /**
+     * Returns the currentSemesterNumber.
+     * @return current semester number
+     */
+    public int getCurrentSemesterNumber() {
+        return currentSemesterNumber;
     }
 
     //// util methods

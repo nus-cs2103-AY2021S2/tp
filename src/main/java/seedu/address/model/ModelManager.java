@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
@@ -231,6 +230,7 @@ public class ModelManager implements Model {
 
         this.currentSemesterNumber = currentSemesterNumber;
         this.hasCurrentSemester = true;
+        addressBook.setCurrentSemesterNumber(currentSemesterNumber);
     }
 
     @Override
