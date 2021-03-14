@@ -135,7 +135,7 @@ Format: `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
 * You must select at least 1 person to drive with one command
 
 **Examples**:
-* `find tag/female` followed by `drive n/Ben p/91234567 2 3 4` selects the the *2nd*, *3rd* and *4th* person in the results of `find tag/female` command, and assigns *Ben* with number *91234567* to be their driver
+* `find tag/female` followed by `drive n/Ben p/91234567 c/2 c/3 c/4` selects the the *2nd*, *3rd* and *4th* person in the results of `find tag/female` command, and assigns *Ben* with number *91234567* to be their driver
 
 
 ### Clearing all entries : `clear`
@@ -181,5 +181,5 @@ Action | Format, Examples
 **list** | `list`
 **edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
 **delete** | `delete INDEX`<br> e.g.,`delete 3`
-**drive** | `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 2 3 4`
+**drive** | `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
 **find** | `find a/ADDRESS` or `find n/NAME` or `find p/PHONE NUMBER` or `find tag/TAG` <br> e.g., `find tag/female`
