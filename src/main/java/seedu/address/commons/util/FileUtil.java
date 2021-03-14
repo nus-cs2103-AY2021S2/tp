@@ -1,10 +1,13 @@
 package seedu.address.commons.util;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Writes and reads files
@@ -84,6 +87,6 @@ public class FileUtil {
      * Assumes source file exists
      */
     public static void copyFile(Path source, Path dest) throws IOException {
-        Files.copy(source, dest);
+        Files.copy(source, dest, REPLACE_EXISTING);
     }
 }

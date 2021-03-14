@@ -53,8 +53,8 @@ public class AddPictureCommand extends Command {
 
         ReadOnlyUserPrefs userPrefs = model.getUserPrefs();
         Path pictureDir = userPrefs.getPictureStorageDirPath();
-        // Could rename to person's name for easier editing
-        Path newFilePath = pictureDir.resolve(filePath.getFileName());
+        // TODO: Rename to person's name for easier editing
+        Path newFilePath = pictureDir.toAbsolutePath().resolve(filePath.getFileName());
 
         try {
             FileUtil.copyFile(filePath, newFilePath);

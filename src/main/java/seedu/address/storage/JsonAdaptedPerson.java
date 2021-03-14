@@ -17,6 +17,7 @@ import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Picture;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,7 +33,7 @@ class JsonAdaptedPerson {
     private final String birthday;
 
     private final String address;
-    private final Picture picture;
+    private final JsonAdaptedPicture picture;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedEvent> dates = new ArrayList<>();
     private final List<JsonAdaptedEvent> meetings = new ArrayList<>();
@@ -42,16 +43,17 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("birthday") String birthday,
+            @JsonProperty("email") String email, @JsonProperty("birthday") String birthday,
+            @JsonProperty("address") String address, @JsonProperty("picture") JsonAdaptedPicture picture,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("dates") List<JsonAdaptedEvent> dates,
             @JsonProperty("meetings") List<JsonAdaptedEvent> meetings) {
 
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.birthday = birthday;
+        this.address = address;
+        this.picture = picture;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -72,6 +74,14 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
+
+        Picture srcPic = source.getPicture();
+        if (srcPic == null) {
+            picture = null;
+        } else {
+            picture = new JsonAdaptedPicture(srcPic);
+        }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -113,14 +123,6 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         if (birthday == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Birthday.class.getSimpleName()));
@@ -129,6 +131,19 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         }
         final Birthday modelBirthday = new Birthday(birthday);
+
+        if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Address modelAddress = new Address(address);
+
+        Picture modelPicture = null;
+        if (picture != null) {
+            modelPicture = picture.toModelType();
+        }
 
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
@@ -146,7 +161,7 @@ class JsonAdaptedPerson {
             modelMeetings.add(meeting.toModelType());
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
+        return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelAddress, modelPicture,
                 modelTags, modelDates, modelMeetings);
     }
 }
