@@ -16,19 +16,19 @@ import seedu.address.model.plan.Plan;
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "plans")
+class JsonSerializablePlans {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate plan(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPlan> plans = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializablePlans(@JsonProperty("plans") List<JsonAdaptedPlan> plans) {
+        this.plans.addAll(plans);
     }
 
     /**
@@ -36,8 +36,8 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonSerializablePlans(ReadOnlyAddressBook source) {
+        plans.addAll(source.getPersonList().stream().map(JsonAdaptedPlan::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Plan plan = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(plan)) {
+        for (JsonAdaptedPlan jsonAdaptedPlan : plans) {
+            Plan plan = jsonAdaptedPlan.toModelType();
+            if (addressBook.hasPlan(plan)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(plan);
+            addressBook.addPlan(plan);
         }
         return addressBook;
     }

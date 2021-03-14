@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 
 import java.util.stream.Stream;
 
@@ -21,14 +21,14 @@ public class MasterPlanCommandParser implements Parser<MasterPlanCommand> {
      */
     public MasterPlanCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PLAN);
+                ArgumentTokenizer.tokenize(args, PREFIX_PLAN_NUMBER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PLAN)
+        if (!arePrefixesPresent(argMultimap, PREFIX_PLAN_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MasterPlanCommand.MESSAGE_USAGE));
         }
 
-        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PLAN).get());
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PLAN_NUMBER).get());
         return new MasterPlanCommand(index);
     }
 

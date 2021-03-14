@@ -12,15 +12,15 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 */
 
 // import java.util.Arrays;
-import java.util.Collection;
+//import java.util.Collection;
 import java.util.Collections;
 // import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.plan.Plan;
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;
+//import seedu.address.model.plan.Plan;
 // import seedu.address.model.plan.exceptions.DuplicatePersonException;
 // import seedu.address.testutil.PersonBuilder;
 
@@ -61,37 +61,40 @@ public class DescriptionBookTest {
     /*
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasPlan(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasPlan(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        addressBook.addPlan(ALICE);
+        assertTrue(addressBook.hasPlan(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        addressBook.addPlan(ALICE);
         Plan editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasPlan(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
-     */
 
+    */
+
+    /*
     /**
      * A stub ReadOnlyAddressBook whose plans list can violate interface constraints.
      */
+    /*
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Plan> plans = FXCollections.observableArrayList();
 
@@ -103,6 +106,9 @@ public class DescriptionBookTest {
         public ObservableList<Plan> getPersonList() {
             return plans;
         }
-    }
 
+        @Override
+        public get
+    }
+    */
 }

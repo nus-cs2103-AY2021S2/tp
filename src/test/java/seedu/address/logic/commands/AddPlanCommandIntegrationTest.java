@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPlans.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,12 +11,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.plan.Plan;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PlanBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddPlanCommandIntegrationTest {
 
     private Model model;
 
@@ -27,19 +27,19 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Plan validPlan = new PersonBuilder().build();
+        Plan validPlan = new PlanBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPlan);
+        Model expectedModel = new ModelManager(model.getPlans(), new UserPrefs());
+        expectedModel.addPlan(validPlan);
 
-        assertCommandSuccess(new AddCommand(validPlan), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPlan), expectedModel);
+        assertCommandSuccess(new AddPlanCommand(validPlan), model,
+                String.format(AddPlanCommand.MESSAGE_SUCCESS, validPlan), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Plan planInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(planInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Plan planInList = model.getPlans().getPersonList().get(0);
+        assertCommandFailure(new AddPlanCommand(planInList), model, AddPlanCommand.MESSAGE_DUPLICATE_PLAN);
     }
 
 }

@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the plan in the {@code model}'s plan list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredPlanList().size() / 2);
     }
 
     /**
      * Returns the last index of the plan in the {@code model}'s plan list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredPlanList().size());
     }
 
     /**
      * Returns the plan in the {@code model}'s plan list at {@code index}.
      */
     public static Plan getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+        return model.getFilteredPlanList().get(index.getZeroBased());
     }
 }

@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SEMESTER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
 
 import java.util.stream.Stream;
 
@@ -20,14 +20,14 @@ public class CurrentSemesterCommandParser implements Parser<CurrentSemesterComma
      */
     public CurrentSemesterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_SEMESTER);
+                ArgumentTokenizer.tokenize(args, PREFIX_SEM_NUMBER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SEMESTER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_SEM_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CurrentSemesterCommand.MESSAGE_USAGE));
         }
 
-        int currentSemesterNumber = Integer.valueOf(argMultimap.getValue(PREFIX_SEMESTER).get());
+        int currentSemesterNumber = Integer.valueOf(argMultimap.getValue(PREFIX_SEM_NUMBER).get());
         return new CurrentSemesterCommand(currentSemesterNumber);
     }
 

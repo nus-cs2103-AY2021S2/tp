@@ -36,10 +36,10 @@ public class MasterPlanCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Plan> lastShownList = model.getFilteredPersonList();
+        List<Plan> lastShownList = model.getFilteredPlanList();
 
         if (masterPlanIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
         }
 
 

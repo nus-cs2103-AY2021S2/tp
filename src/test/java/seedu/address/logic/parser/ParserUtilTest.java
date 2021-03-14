@@ -49,25 +49,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePlan((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePlan(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Description expectedDescription = new Description(VALID_ADDRESS);
-        assertEquals(expectedDescription, ParserUtil.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedDescription, ParserUtil.parsePlan(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Description expectedDescription = new Description(VALID_ADDRESS);
-        assertEquals(expectedDescription, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedDescription, ParserUtil.parsePlan(addressWithWhitespace));
     }
 
     @Test

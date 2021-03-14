@@ -2,11 +2,19 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.UniquePersonList;
+import seedu.address.storage.JsonModule;
 
 /**
  * Wraps all data at the address-book level
@@ -15,7 +23,7 @@ import seedu.address.model.plan.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-
+    private final JsonModule[] moduleInfo = readModuleInfo();
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -61,7 +69,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
      */
-    public boolean hasPerson(Plan plan) {
+    public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
         return persons.contains(plan);
     }
@@ -70,7 +78,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a plan to the address book.
      * The plan must not already exist in the address book.
      */
-    public void addPerson(Plan p) {
+    public void addPlan(Plan p) {
         persons.add(p);
     }
 
@@ -79,7 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The plan identity of {@code editedPlan} must not be the same as another existing plan in the address book.
      */
-    public void setPerson(Plan target, Plan editedPlan) {
+    public void setPlan(Plan target, Plan editedPlan) {
         requireNonNull(editedPlan);
 
         persons.setPerson(target, editedPlan);
@@ -89,11 +97,34 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Plan key) {
+    public void removePlan(Plan key) {
         persons.remove(key);
     }
 
     //// util methods
+
+    /**
+     * reads the moduleinfo.json located in data folder and creates an array from the info
+     * @return array of module information
+     */
+    private JsonModule[] readModuleInfo() {
+        JsonModule[] md = null;
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Path addressBookFilePath = Paths.get("data", "moduleinfo.json");
+            String json = Files.readAllLines(addressBookFilePath).get(0);
+            Optional<JsonModule[]> opt = JsonUtil.readJsonFile(addressBookFilePath, JsonModule[].class);
+            md = opt.get();
+        } catch (Exception e) {
+            System.out.println("There is an error in reading moduleinfo.json file please check");
+            System.out.println(e.getMessage());
+        }
+        return md;
+    }
+
+    public JsonModule[] getModuleInfo() {
+        return moduleInfo;
+    }
 
     @Override
     public String toString() {

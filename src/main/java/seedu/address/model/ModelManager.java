@@ -77,50 +77,73 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPlansFilePath() {
+        return userPrefs.getPlansFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setPlansFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setPlansFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Plan ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setPlans(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyAddressBook getPlans() {
         return addressBook;
     }
 
     @Override
-    public boolean hasPerson(Plan plan) {
+    public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
-        return addressBook.hasPerson(plan);
+        return addressBook.hasPlan(plan);
     }
 
     @Override
-    public void deletePerson(Plan target) {
-        addressBook.removePerson(target);
+    public void deletePlan(Plan target) {
+        addressBook.removePlan(target);
     }
 
     @Override
-    public void addPerson(Plan plan) {
-        addressBook.addPerson(plan);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addPlan(Plan plan) {
+        addressBook.addPlan(plan);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
     @Override
-    public void setPerson(Plan target, Plan editedPlan) {
+    public void setPlan(Plan target, Plan editedPlan) {
         requireAllNonNull(target, editedPlan);
 
-        addressBook.setPerson(target, editedPlan);
+        addressBook.setPlan(target, editedPlan);
+    }
+
+    //=========== Semester ================================================================================
+
+    @Override
+    public boolean hasSemester(int planNumber, Semester semester) {
+        requireAllNonNull(planNumber, semester);
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        return plan.getSemesters().stream().anyMatch((currentSemester) -> {
+            return currentSemester.getSemNumber() == semester.getSemNumber();
+        });
+    }
+
+    //    @Override
+    //    public void deleteSemester(Plan plan, Semester target) {
+    //        addressBook.removeSemester(plan, target);
+    //    }
+
+    @Override
+    public void addSemester(int planNumber, Semester semester) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        addressBook.setPlan(plan, plan.addSemester(semester));
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 
     //=========== Filtered Plan List Accessors =============================================================
@@ -130,12 +153,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Plan> getFilteredPersonList() {
+    public ObservableList<Plan> getFilteredPlanList() {
         return filteredPlans;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Plan> predicate) {
+    public void updateFilteredPlanList(Predicate<Plan> predicate) {
         requireNonNull(predicate);
         filteredPlans.setPredicate(predicate);
     }
