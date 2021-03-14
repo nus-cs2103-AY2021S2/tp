@@ -3,7 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -20,9 +19,6 @@ import seedu.address.model.user.User;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-
-    private static final String DATE_FORMAT = "d MMM yyyy";
-
     private final UniquePersonList persons;
 
     private User user;
@@ -34,8 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         foodList = new UniqueFoodList();
-        foodIntakeList = new FoodIntakeList(LocalDate.parse("11 Mar 2021",
-                DateTimeFormatter.ofPattern(DATE_FORMAT)));
+        foodIntakeList = new FoodIntakeList(LocalDate.now());
     }
 
     public AddressBook() {
@@ -50,12 +45,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}, and adds the associated {@code FoodList}.
+     * Creates an AddressBook using the Persons in the {@code toBeCopied}. Adds
+     * the associated {@code FoodList} {@code FoodIntakeList}.
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied, UniqueFoodList uniqueFoodList) {
+    public AddressBook(ReadOnlyAddressBook toBeCopied, UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList) {
         this();
         resetData(toBeCopied);
         this.foodList = uniqueFoodList;
+        this.foodIntakeList = foodIntakeList;
     }
 
     //// list overwrite operations

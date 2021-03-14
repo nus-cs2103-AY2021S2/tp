@@ -2,6 +2,7 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -22,12 +23,15 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.DietPlanListStorage;
+import seedu.address.storage.FoodIntakeListStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonDietPlanListStorage;
+import seedu.address.storage.JsonFoodIntakeListStorage;
 import seedu.address.storage.JsonUniqueFoodListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -65,8 +69,11 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         UniqueFoodListStorage uniqueFoodListStorage =
                 new JsonUniqueFoodListStorage(userPrefs.getUniqueFoodListFilePath());
+        FoodIntakeListStorage foodIntakeListStorage =
+                new JsonFoodIntakeListStorage(userPrefs.getFoodIntakeListFilePath());
         DietPlanListStorage dietPlanListStorage = new JsonDietPlanListStorage(userPrefs.getDietPlanListFilePath());
-        storage = new StorageManager(addressBookStorage, uniqueFoodListStorage, dietPlanListStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, uniqueFoodListStorage,
+                foodIntakeListStorage, dietPlanListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -88,11 +95,14 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         Optional<UniqueFoodList> uniqueFoodListOptional;
         UniqueFoodList uniqueFoodList;
+        Optional<FoodIntakeList> foodIntakeListOptional;
+        FoodIntakeList foodIntakeList;
         Optional<DietPlanList> dietPlanListOptional;
         DietPlanList dietPlanList;
         try {
             addressBookOptional = storage.readAddressBook();
             uniqueFoodListOptional = storage.readFoodList();
+            foodIntakeListOptional = storage.readFoodIntakeList();
             dietPlanListOptional = storage.readDietPlanList();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
@@ -100,25 +110,31 @@ public class MainApp extends Application {
             if (!uniqueFoodListOptional.isPresent()) {
                 logger.info("Food data file not found. Will be starting fresh");
             }
+            if (!foodIntakeListOptional.isPresent()) {
+                logger.info("Food intake data file not found. Will be starting fresh");
+            }
             if (!dietPlanListOptional.isPresent()) {
                 logger.info("Diet plans file not found. Will be starting fresh");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             uniqueFoodList = uniqueFoodListOptional.orElse(new UniqueFoodList());
+            foodIntakeList = foodIntakeListOptional.orElse(new FoodIntakeList(LocalDate.now()));
             dietPlanList = dietPlanListOptional.orElse(new DietPlanList());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             uniqueFoodList = new UniqueFoodList();
+            foodIntakeList = new FoodIntakeList(LocalDate.now());
             dietPlanList = new DietPlanList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             uniqueFoodList = new UniqueFoodList();
+            foodIntakeList = new FoodIntakeList(LocalDate.now());
             dietPlanList = new DietPlanList();
         }
 
-        return new ModelManager(initialData, uniqueFoodList, dietPlanList, userPrefs);
+        return new ModelManager(initialData, uniqueFoodList, foodIntakeList, dietPlanList, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,13 +29,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonDietPlanListStorage;
-import seedu.address.storage.JsonUniqueFoodListStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManager;
+import seedu.address.storage.*;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -54,9 +52,11 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonUniqueFoodListStorage uniqueFoodListStorage =
                 new JsonUniqueFoodListStorage(temporaryFolder.resolve("uniqueFoods.json"));
+        JsonFoodIntakeListStorage foodIntakeListStorage =
+                new JsonFoodIntakeListStorage(temporaryFolder.resolve("foodIntakes.json"));
         JsonDietPlanListStorage dietPlanListStorage =
                 new JsonDietPlanListStorage(temporaryFolder.resolve("dietPlans.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, uniqueFoodListStorage,
+        StorageManager storage = new StorageManager(addressBookStorage, uniqueFoodListStorage, foodIntakeListStorage,
                 dietPlanListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
@@ -100,7 +100,9 @@ public class LogicManagerTest {
                 new JsonUniqueFoodListStorage(temporaryFolder.resolve("ioExceptionUniqueFoods.json"));
         JsonDietPlanListStorage dietPlanListStorage =
                 new JsonDietPlanListStorage(temporaryFolder.resolve("ioExceptionDietPlans.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, uniqueFoodListStorage,
+        JsonFoodIntakeListStorage foodIntakeListStorage =
+                new JsonFoodIntakeListStorage(temporaryFolder.resolve("ioExceptionFoodIntakeList.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, uniqueFoodListStorage, foodIntakeListStorage,
                 dietPlanListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
@@ -156,7 +158,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UniqueFoodList(),
-                new DietPlanList(), new UserPrefs());
+                new FoodIntakeList(LocalDate.now()), new DietPlanList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
