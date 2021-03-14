@@ -105,17 +105,35 @@ Shows a list of all students in the records.
 
 Format: `list students`
 
-### Searching for a student by matriculation number: `search`
+### Finding a student by matriculation number: `find`
 
 Shows all the details in the records of the student with the matching matriculation number.
 
-Format: `search /MATRICULATION_NUMBER`
+Format: `find /MATRICULATION_NUMBER`
 
 >**NOTE:** The matriculation number of a student is a unique 9-character alphanumeric sequence that begins with A.
 
 
 Examples:
-* `search A1234567X` returns `John Doe`
+* `Find A1234567X` returns `John Doe` from the record.
+
+### Filtering the student entries by vaccination status, faculty or school residence : `filter`
+
+Shows all the details in the records of the student entries with the matching filtered by condition.
+
+Format: `filter CONDITION`
+
+>**NOTE:** The list of condition used for the filter command is as follows. 
+
+**Filter By**  | **Condition**
+--------|-----------------
+**Vaccination Status** | `filter vaccinated ` or  `filter unvaccinated `
+**Faculty** | `filter FASS `,  `filter BIZ `, `filter COM `, `filter SCALE `, `filter DEN `, `filter SDE `, `filter DNUS `, `filter ENG `,`filter ISEP `,`filter LAW `,`filter MED `,`filter MUSIC `, `filter SPH `, `filter SPP `, `filter SCI `, `filter USP `, `filter YNC `, `filter DOES NOT LIVE ON CAMPUS `
+**School Residence** | `filter PGPH `,  `filter PGPR `, `filter KE7H `, `filter SH `, `filter KRH `, `filter TH `, `filter EH `, `filter RH `,`filter RVRC `,`filter YNC `,`filter TC `,`filter CAPT `, `filter RC4 `, `filter USP `, `filter UTR `
+
+Examples:
+* `filter vaccinated` shows a list of student from the records who has been vaccinated.
+
 
 ### Deleting a student by their matriculation number: `deleteStud`
 
@@ -180,5 +198,6 @@ _Details coming soon ..._
 --------|-----------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS ` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **List Students** | `list students`
-**Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
+**Find** | `find MATRICULATION_NUMBER ` <br> e.g., `find A1234567X`
+**Filter** | `filter CONDITON ` <br> e.g., `filter COM`
 **Delete Student** | `deleteStud /MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`
