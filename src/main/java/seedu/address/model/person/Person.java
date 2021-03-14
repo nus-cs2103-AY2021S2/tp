@@ -24,8 +24,8 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     // Medical fields
-    private List<MedicalRecord> records;
-    private List<Appointment> appointments;
+    private final List<MedicalRecord> records = new ArrayList<>();
+    private final List<Appointment> appointments = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -62,6 +62,10 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    public List<Appointment> getAppointments() { return Collections.unmodifiableList(appointments);}
+
+    public List<MedicalRecord> getRecords() { return Collections.unmodifiableList(records);}
 
     /**
      * Returns true if both persons have the same name.
@@ -123,4 +127,10 @@ public class Person {
         return builder.toString();
     }
 
+    public void addAppointment(Appointment appt){
+        this.appointments.add(appt);
+    }
+    public void addMedicalRecord(MedicalRecord record){
+        this.records.add(record);
+    }
 }
