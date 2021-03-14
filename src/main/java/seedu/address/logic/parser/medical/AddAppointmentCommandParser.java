@@ -5,6 +5,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.medical.AddAppointmentCommand;
 import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
@@ -50,5 +51,4 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }
