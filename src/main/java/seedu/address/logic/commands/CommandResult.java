@@ -44,6 +44,10 @@ public class CommandResult {
         this(feedbackToUser, tutorsToView, false, false);
     }
 
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, null, showHelp, exit);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
