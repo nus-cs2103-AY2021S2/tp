@@ -134,7 +134,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyUniqueAliasMap getAliasMap() {
+    public ReadOnlyUniqueAliasMap getAliases() {
         return aliases;
     }
 

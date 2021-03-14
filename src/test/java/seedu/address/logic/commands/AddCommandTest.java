@@ -152,7 +152,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyUniqueAliasMap getAliasMap() {
+        public ReadOnlyUniqueAliasMap getAliases() {
             throw new AssertionError("This method should not be called.");
         }
 

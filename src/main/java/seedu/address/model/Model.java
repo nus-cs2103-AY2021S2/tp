@@ -87,8 +87,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns the AliasMap */
-    ReadOnlyUniqueAliasMap getAliasMap();
+    /** Returns the map aliases */
+    ReadOnlyUniqueAliasMap getAliases();
 
     /**
      * Adds the given command alias.
