@@ -9,10 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
+import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +123,54 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String cheeseType} into a {@code CheeseType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cheeseType} is invalid.
+     */
+    public static CheeseType parseCheeseType(String cheeseType) throws ParseException {
+        requireNonNull(cheeseType);
+        String trimmedCheeseType = cheeseType.trim();
+        if (!CheeseType.isValidType(trimmedCheeseType)) {
+            throw new ParseException(CheeseType.MESSAGE_CONSTRAINTS);
+        }
+        return CheeseType.getCheeseType(trimmedCheeseType);
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        int quantityInt = Integer.parseInt(trimmedQuantity);
+        if (!Quantity.isValidQuantity(quantityInt)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(quantityInt);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code OrderDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static OrderDate parseOrderDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!OrderDate.isValidDate(trimmedDate)) {
+            throw new ParseException(OrderDate.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderDate(trimmedDate);
     }
 }

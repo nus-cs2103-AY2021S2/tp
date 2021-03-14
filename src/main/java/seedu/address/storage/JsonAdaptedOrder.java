@@ -64,7 +64,7 @@ class JsonAdaptedOrder {
         cheeseType = source.getCheeseType().value;
         quantity = source.getQuantity().value;
         orderDate = source.getOrderDate().toJsonString();
-        completedDate = source.getCompletedDate().map(x -> x.toJsonString()).orElse(null);
+        completedDate = source.getCompletedDate().map(CompletedDate::toJsonString).orElse(null);
         customerId = source.getCustomerId().value;
         cheeseIds.addAll(source.getCheeses().stream()
                     .map(x -> x.value)

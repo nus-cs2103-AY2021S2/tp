@@ -16,7 +16,7 @@ import seedu.address.testutil.CustomerBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCustomerCommand}.
  */
-public class AddCustomerCommandIntegrationTest {
+public class AddCommandIntegrationTest {
 
     private Model model;
 
@@ -39,7 +39,8 @@ public class AddCustomerCommandIntegrationTest {
     @Test
     public void execute_duplicateCustomer_throwsCommandException() {
         Customer customerInList = model.getAddressBook().getCustomerList().get(0);
-        assertCommandFailure(new AddCustomerCommand(customerInList), model, AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
+        assertCommandFailure(new AddCustomerCommand(customerInList), model,
+                AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
 
 }

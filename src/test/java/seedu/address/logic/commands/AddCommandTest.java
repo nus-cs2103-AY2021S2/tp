@@ -31,7 +31,7 @@ import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
 import seedu.address.testutil.CustomerBuilder;
 
-public class AddCustomerCommandTest {
+public class AddCommandTest {
 
     @Test
     public void constructor_nullCustomer_throwsNullPointerException() {
@@ -45,7 +45,8 @@ public class AddCustomerCommandTest {
 
         CommandResult commandResult = new AddCustomerCommand(validCustomer).execute(modelStub);
 
-        assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCustomer), modelStub.customersAdded);
         assertTrue(modelStub.getGuiSettings().isShowCustomerListPanel());
     }
@@ -243,15 +244,15 @@ public class AddCustomerCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-		@Override
-		public boolean hasCustomerWithPhone(Phone phone) {
+        @Override
+        public boolean hasCustomerWithPhone(Phone phone) {
             throw new AssertionError("This method should not be called.");
-		}
+        }
 
-		@Override
-		public Customer getCustomerWithPhone(Phone phone) {
+        @Override
+        public Customer getCustomerWithPhone(Phone phone) {
             throw new AssertionError("This method should not be called.");
-		}
+        }
     }
 
     /**

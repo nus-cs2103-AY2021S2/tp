@@ -13,6 +13,13 @@ import seedu.address.model.AbstractDate;
 public class OrderDate extends AbstractDate {
 
     /**
+     * Constructs a {@code OrderDate} with current date time.
+     */
+    private OrderDate() {
+        super();
+    }
+
+    /**
      * Constructs a {@code OrderDate}.
      *
      * @param date A valid order date.
@@ -24,5 +31,9 @@ public class OrderDate extends AbstractDate {
 
     public boolean isValidOrderDate(LocalDateTime value) {
         return true;
+    }
+
+    public static OrderDate now() {
+        return new OrderDate();
     }
 }
