@@ -5,14 +5,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class VaccinationStatus {
 
-    enum VacStatusEnum {
+    public enum VacStatusEnum {
         VACCINATED, NOT_VACCINATED
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Vaccination status should only be of the format 'vaccinated' "
             + "or 'not vaccinated' ";
 
-    public final String value;
+    public final VacStatusEnum status; // enum for Vaccination status
+    public final String textUI; // string to display on the GUI
 
     /**
      * Constructs an {@code VaccinationStatus}.
@@ -22,7 +23,13 @@ public class VaccinationStatus {
     public VaccinationStatus(String vaccinationStatus) {
         requireNonNull(vaccinationStatus);
         checkArgument(isValidStatus(vaccinationStatus), MESSAGE_CONSTRAINTS);
-        value = vaccinationStatus;
+        if (vaccinationStatus.equals("vaccinated")) {
+            status = VacStatusEnum.VACCINATED;
+            textUI = vaccinationStatus;
+        } else {
+            status = VacStatusEnum.NOT_VACCINATED;
+            textUI = vaccinationStatus;
+        }
     }
 
     /**
@@ -44,18 +51,18 @@ public class VaccinationStatus {
 
     @Override
     public String toString() {
-        return value;
+        return status.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof VaccinationStatus // instanceof handles nulls
-                && value.equals(((VaccinationStatus) other).value)); // state check
+                && status == ((VaccinationStatus) other).status); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return status.hashCode();
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SchoolResidence {
 
-    enum ResidenceAbbreviation {
+    public enum ResidenceAbbreviation {
         PGPH, PGPR, KE7H, SH, KRH, TH, EH, RH, RVRC, YNC, TC, CAPT, RC4, USP, UTR;
     }
 
@@ -18,6 +18,12 @@ public class SchoolResidence {
             ResidenceAbbreviation.RH, ResidenceAbbreviation.RVRC, ResidenceAbbreviation.YNC, ResidenceAbbreviation.TC,
             ResidenceAbbreviation.CAPT, ResidenceAbbreviation.RC4, ResidenceAbbreviation.USP, ResidenceAbbreviation.UTR
     );
+
+    private static final String stringResidences = "\"PGPH\", \"PGPR\", \"KE7H\", \"SH\", \"KRH\", \"TH\", \"EH\",\n"
+            + "\"RH\", \"RVRC\", \"YNC\", \"TC\", \"CAPT\", \"RC4\", \"USP\", \"UTR\"";
+
+    private static final List<String> listResidences = Arrays.asList("PGPH", "PGPR", "KE7H", "SH", "KRH", "TH", "EH",
+            "RH", "RVRC", "YNC", "TC", "CAPT", "RC4", "USP", "UTR");
 
     public static final String MESSAGE_CONSTRAINTS = "The residence entered should be one of the following: \n"
             + LIST_RESIDENCES.toString();
@@ -49,6 +55,14 @@ public class SchoolResidence {
         } catch (IllegalArgumentException e) {
             return false;
         }
+    }
+
+    public static List<String> getListResidences() {
+        return listResidences;
+    }
+
+    public static String getStringResidences() {
+        return stringResidences;
     }
 
     @Override
