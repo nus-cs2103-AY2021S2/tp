@@ -17,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path taskListFilePath = Paths.get("data", "taskList.json");
     private Path eventListFilePath = Paths.get("data", "eventList.json");
+    private Path socheduleFilePath = Paths.get("data", "sochedule.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -68,6 +69,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return eventListFilePath;
     }
 
+    public Path getSocheduleFilePath() {
+        return socheduleFilePath;
+    }
+
     public void setTaskListFilePath(Path taskListFilePath) {
         requireNonNull(taskListFilePath);
         this.taskListFilePath = taskListFilePath;
@@ -76,6 +81,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setEventListFilePath(Path eventListFilePath) {
         requireNonNull(eventListFilePath);
         this.eventListFilePath = eventListFilePath;
+    }
+
+    public void setSocheduleFilePath(Path socheduleFilePath) {
+        requireNonNull(socheduleFilePath);
+        this.socheduleFilePath = socheduleFilePath;
     }
 
     @Override

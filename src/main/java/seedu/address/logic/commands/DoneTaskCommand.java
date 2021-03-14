@@ -30,6 +30,12 @@ public class DoneTaskCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during command execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -39,10 +45,10 @@ public class DoneTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        // This need to be update!
-        // model.deleteTask(taskToMark);
-        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToMark));
+        Task taskToComplete = lastShownList.get(targetIndex.getZeroBased());
+
+        model.doneTask(taskToComplete);
+        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToComplete));
     }
 
     @Override
