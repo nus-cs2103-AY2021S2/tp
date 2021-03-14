@@ -75,7 +75,7 @@ public class CollectionUtil {
         int i = 0;
 
         for (Tag tag : tags) {
-            stringArr[i] = tag.getTagName();
+            stringArr[i] = tag.tagName;
             i++;
         }
 
