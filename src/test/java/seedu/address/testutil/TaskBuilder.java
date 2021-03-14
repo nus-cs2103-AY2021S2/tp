@@ -19,7 +19,6 @@ public class TaskBuilder {
     public static final String DEFAULT_DATE = "2020-01-01";
     public static final String DEFAULT_PRIORITY = "5";
 
-
     private Name name;
     private Date deadline;
     private Priority priority;
@@ -27,7 +26,7 @@ public class TaskBuilder {
     private Set<Category> categories;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
         name = new Name(DEFAULT_NAME);

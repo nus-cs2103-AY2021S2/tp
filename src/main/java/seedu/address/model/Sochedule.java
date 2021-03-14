@@ -117,6 +117,14 @@ public class Sochedule implements ReadOnlySochedule {
         tasks.remove(key);
     }
 
+    /**
+     * Completes {@code key} from {@code Sochedule}.
+     * {@code task} must exist in Sochedule.
+     */
+    public void doneTask(Task task) {
+        task.markTaskAsDone();
+    }
+
     //// event-level operations
 
     /**
