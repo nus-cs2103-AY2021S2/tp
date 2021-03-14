@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +86,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the person list to show only the particular given {@code attribute}.
+     * @throws NullPointerException if {@code attribute} is null.
+     */
+    void updatePersonListByAttribute(Attribute attributeType);
+
+    /**
+     * Undoes the last modification done on the person list.
+     * If list has not been modified, this method does nothing.
+     */
+    void undoListModification();
 }

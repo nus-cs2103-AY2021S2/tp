@@ -1,15 +1,16 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -113,7 +114,7 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override
@@ -133,5 +134,12 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns the backing list as a modifiable {@code ObservableList}.
+     */
+    public ObservableList<Person> asModifiableObservableList() {
+        return internalList;
     }
 }
