@@ -14,8 +14,7 @@ import seedu.address.model.food.Food;
 public class AddFoodIntakeCommand extends Command {
     public static final String COMMAND_WORD = "foodintake";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens up the macronutrients tracker.\n"
-            + "This tracker helps to track the food intake made per day.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": This adds the food intake for the day.\n"
             + "Command usage: foodintake d/ d MMM yyyy n/food name";
 
     public static final String MESSAGE_SUCCESS = "Success adding food item (";

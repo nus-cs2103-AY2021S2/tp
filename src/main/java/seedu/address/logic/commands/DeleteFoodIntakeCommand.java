@@ -17,9 +17,8 @@ public class DeleteFoodIntakeCommand extends Command {
     public static final String COMMAND_WORD = "foodintakedelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the food intake identified by its name and date.\n"
-            + "Parameters: name of food and date\n"
-            + "Example: " + COMMAND_WORD + " n/tomato d/6 May 2020";
+            + ": This deletes the food intake identified by its name and date.\n"
+            + "Command usage: foodintakedelete d/ d MMM yyyy n/food name";
 
     public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Successfully deleted food intake: ";
 
