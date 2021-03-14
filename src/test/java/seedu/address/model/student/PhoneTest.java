@@ -33,10 +33,13 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
         assertFalse(Phone.isValidPhone("73121534")); // wrong first digit
         assertFalse(Phone.isValidPhone("124293842033123")); // long phone numbers
+        assertFalse(Phone.isValidPhone("624293842033123")); // long phone numbers with starting 6
+        assertFalse(Phone.isValidPhone("824293842033123")); // long phone numbers with starting 8
+        assertFalse(Phone.isValidPhone("924293842033123")); // long phone numbers with starting 9
 
         // valid phone numbers
-        assertTrue(Phone.isValidPhone("63121534")); // exactly 8 numbers w starting 6
-        assertTrue(Phone.isValidPhone("81121534")); // exactly 8 numbers w starting 8
-        assertTrue(Phone.isValidPhone("91120093")); // exactly 8 numbers w starting 9
+        assertTrue(Phone.isValidPhone("63121534")); // exactly 8 numbers with starting 6
+        assertTrue(Phone.isValidPhone("81121534")); // exactly 8 numbers with starting 8
+        assertTrue(Phone.isValidPhone("91120093")); // exactly 8 numbers with starting 9
     }
 }
