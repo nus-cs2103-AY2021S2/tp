@@ -6,10 +6,10 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.customer.CustomerClearCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.PersonBook;
 
 public class CustomerClearCommandTest {
 
@@ -25,7 +25,7 @@ public class CustomerClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+        expectedModel.setAddressBook(new PersonBook());
 
         assertCommandSuccess(new CustomerClearCommand(), model, CustomerClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
