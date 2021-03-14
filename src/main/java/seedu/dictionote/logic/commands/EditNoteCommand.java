@@ -89,7 +89,7 @@ public class EditNoteCommand extends Command {
         Note updatedNote = editNoteDescriptor.getNote().orElse(noteToEdit);
         Set<Tag> updatedTags = editNoteDescriptor.getTags().orElse(noteToEdit.getTags());
         return updatedNote.createEditedNote(updatedNote.getNote(), updatedTags,
-                updatedNote.getCreateTime(), updatedNote.getIsDone());
+                updatedNote.getCreateTime(), updatedNote.isDone());
     }
 
     @Override
