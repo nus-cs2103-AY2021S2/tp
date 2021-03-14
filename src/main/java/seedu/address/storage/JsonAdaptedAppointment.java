@@ -1,15 +1,15 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.medical.Appointment;
+import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.medical.Appointment;
 
 public class JsonAdaptedAppointment {
     private final String dateString;

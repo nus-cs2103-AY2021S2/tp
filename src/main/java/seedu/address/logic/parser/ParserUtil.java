@@ -127,7 +127,9 @@ public class ParserUtil {
         return tagSet;
     }
 
-    //  TODO make this not so shit
+    /**
+     * Parses {@code String unsortedDate} into a {@code LocalDateTime}.
+     */
     public static LocalDateTime parseDate(String unsortedDate) throws ParseException {
         LocalDateTime date;
         if (unsortedDate.length() == 12) { // following the format DDMMYYYYhhmm
@@ -141,7 +143,7 @@ public class ParserUtil {
             } catch (NumberFormatException | DateTimeException e) {
                 throw new ParseException(MESSAGE_INVALID_DATE_NUMBER);
             }
-        } else if (unsortedDate.length() == 8) {// following the format DDMMhhmm
+        } else if (unsortedDate.length() == 8) { // following the format DDMMhhmm
             try {
                 int day = Integer.parseInt(unsortedDate.substring(0, 2));
                 int month = Integer.parseInt(unsortedDate.substring(2, 4));

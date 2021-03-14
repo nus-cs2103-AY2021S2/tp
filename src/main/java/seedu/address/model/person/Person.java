@@ -2,7 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.medical.Appointment;
 import seedu.address.model.medical.MedicalRecord;
@@ -63,9 +68,13 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public List<Appointment> getAppointments() { return Collections.unmodifiableList(appointments);}
+    public List<Appointment> getAppointments() {
+        return Collections.unmodifiableList(appointments);
+    }
 
-    public List<MedicalRecord> getRecords() { return Collections.unmodifiableList(records);}
+    public List<MedicalRecord> getRecords() {
+        return Collections.unmodifiableList(records);
+    }
 
     /**
      * Returns true if both persons have the same name.
@@ -127,9 +136,10 @@ public class Person {
         return builder.toString();
     }
 
-    public void addAppointment(Appointment appt){
-        this.appointments.add(appt);
+    public void addAppointment(Appointment appointment){
+        this.appointments.add(appointment);
     }
+
     public void addMedicalRecord(MedicalRecord record){
         this.records.add(record);
     }

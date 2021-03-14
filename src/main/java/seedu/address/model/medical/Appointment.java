@@ -1,31 +1,48 @@
 package seedu.address.model.medical;
 
-import seedu.address.model.person.Person;
-
-import java.time.LocalDateTime;
-
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_DISPLAY;
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
 
-public class Appointment {
-    Person person;
-    String zoomMeetingURL;
+import java.time.LocalDateTime;
 
-    LocalDateTime date;
+import seedu.address.model.person.Person;
+
+/**
+ * Represents a Appointment of a Patient.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
+public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS_MIN_DATE = "Date must be in the future";
-    public static final String MESSAGE_CONSTRAINTS_DATE_FORMAT =
-            "Date format: DDMMYYYYhhmm " +
-                "or DDMMhhmm. If the year is omitted, the current year is" +
-                "assumed.";
+    public static final String MESSAGE_CONSTRAINTS_DATE_FORMAT = "Date format: "
+            + "DDMMYYYYhhmm or DDMMhhmm. If the year is omitted, the current year is"
+            + "assumed.";
 
+    private Person person;
+    private String zoomMeetingUrl;
+    private LocalDateTime date;
+
+    /**
+     * Every field must be present and not null.
+     */
     public Appointment(Person person, LocalDateTime date) {
         this.person = person;
         this.date = date;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Appointment(LocalDateTime date) {
         this.date = date;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public String getZoomMeetingUrl() {
+        return zoomMeetingUrl;
     }
 
     public LocalDateTime getDate() {

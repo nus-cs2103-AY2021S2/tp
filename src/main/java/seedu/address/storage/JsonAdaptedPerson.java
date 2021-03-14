@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.medical.Appointment;
-import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,7 +38,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
                              @JsonProperty("records") List<JsonAdaptedRecord> records) {
         this.name = name;
         this.phone = phone;
