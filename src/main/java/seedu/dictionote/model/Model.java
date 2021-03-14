@@ -97,6 +97,12 @@ public interface Model {
     void addContact(Contact contact);
 
     /**
+     * Invokes the user's OS email client to send a new email to the given contact.
+     * {@code contact} must exist in the contacts list.
+     */
+    void emailContact(Contact contact);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the dictionote book.
      * The person identity of {@code editedPerson} must not be the same as

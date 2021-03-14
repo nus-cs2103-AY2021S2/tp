@@ -2,11 +2,16 @@ package seedu.dictionote.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.UniquePersonList;
+import seedu.dictionote.model.contact.exceptions.InvalidContactMailtoLinkException;
 
 /**
  * Wraps all data at the dictionote-book level
@@ -79,6 +84,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setContact(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
         persons.setPerson(target, editedContact);
+    }
+
+    /**
+     * Invokes the user's OS email client to send a new email to the given contact.
+     * {@code contact} must exist in the contacts list.
+     */
+    public void emailContact(Contact contact) throws InvalidContactMailtoLinkException {
+        URI contactMailtoLink = URI.create("mailto:" + contact.getEmail());
+        Desktop userDesktop = Desktop.getDesktop();
+
+        // credit to TorstenH. and alexey_s from CodeProject for the URL invocation code.
+        // link to the posts: https://www.codeproject.com/questions/398241/how-to-open-url-in-java
+        try {
+            userDesktop.mail(contactMailtoLink); // invoke user's OS default mail client.
+        } catch (IOException e) {
+            throw new InvalidContactMailtoLinkException();
+        }
     }
 
     /**
