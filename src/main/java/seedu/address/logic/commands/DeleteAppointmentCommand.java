@@ -51,4 +51,3 @@ public class DeleteAppointmentCommand extends Command {
                 && targetIndex.equals(((DeleteAppointmentCommand) other).targetIndex)); // state check
     }
 }
-
