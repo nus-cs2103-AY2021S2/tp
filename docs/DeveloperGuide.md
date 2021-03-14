@@ -285,13 +285,14 @@ individual quantities and respective expiry dates.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                     | I want to …​            | So that I can…​                                        |
-| -------- | ------------------------------ | -------------------------- | --------------------------------------------------------- |
-| `* * *`  | user                           | delete an item             | remove it when it is expired or used up                   |
-| `* * *`  | impulsive buyer                | add a new item             | keep track of it                                          |
-| `* *`    | well-organized user            | list down all items        | ensure that my items are in the correct location          |
-| `* * *`  | forgetful user with many items | search for an item quickly | locate them easily                                        |
-| `*`      | user who stocks up items daily | update my items            | change the items' expiry dates and quantities accordingly |
+| Priority | As a …​                     | I want to …​              | So that I can…​                                        |
+| -------- | ------------------------------ | --------------------------   | --------------------------------------------------------- |
+| `* * *`  | user                           | delete an item               | remove it when it is expired or used up                   |
+| `* * *`  | impulsive buyer                | add a new item               | keep track of it                                          |
+| `* *`    | well-organized user            | list down all items          | ensure that my items are in the correct location          |
+| `* * *`  | forgetful user with many items | search for an item quickly   | locate them easily                                        |
+| `*`      | user who stocks up items daily | update my items              | change the items' expiry dates and quantities accordingly
+| '* *'    | forgetful user                 | be aware of my expiring items| replace them before it is expired
 
 _**(more to be added)**_
 
@@ -396,6 +397,15 @@ otherwise)
     * 3a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 3.
+
+**Use case: UC6 - Check for expiring items**
+
+**MSS**
+
+1. User wants to look for items that are expiring soon.
+2. StoreMando returns a list of expiring items.
+
+    Use case ends.
 
 *{More to be added}*
 
