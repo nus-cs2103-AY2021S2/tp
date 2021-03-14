@@ -143,7 +143,7 @@ Format: `list students`
 
 Shows all the details in the records of the student with the matching matriculation number.
 
-Format: `find /MATRICULATION_NUMBER`
+Format: `find MATRICULATION_NUMBER`
 
 
 Examples:
@@ -153,32 +153,35 @@ Examples:
 
 Shows all the details in the records of the student entries with the matching filtered by condition.
 
-Format: `filter CONDITION`
+Format: <br>
+`filter VACCINATION_STATUS`
+`filter FACULTY`
+`filter SCHOOL_RESIDENCE`
 
 >**NOTE:** The list of condition used for the filter command is as follows. 
 
 **Filter By**  | **Condition**
 --------|-----------------
-**Vaccination Status** | `filter vaccinated ` or  `filter unvaccinated `
-**Faculty** | `filter FASS `,  `filter BIZ `, `filter COM `, `filter SCALE `, `filter DEN `, `filter SDE `, `filter DNUS `, `filter ENG `,`filter ISEP `,`filter LAW `,`filter MED `,`filter MUSIC `, `filter SPH `, `filter SPP `, `filter SCI `, `filter USP `, `filter YNC `, `filter DOES NOT LIVE ON CAMPUS `
+**Vaccination Status** | `filter VACCINATED ` or  `filter NOT_VACCINATED `
+**Faculty** | `filter FASS `,  `filter BIZ `, `filter COM `, `filter SCALE `, `filter DEN `, `filter SDE `, `filter DNUS `, `filter ENG `,`filter ISEP `,`filter LAW `,`filter MED `,`filter MUSIC `, `filter SPH `, `filter SPP `, `filter SCI `, `filter USP `, `filter YNC `, `filter DOES_NOT_LIVE_ON_CAMPUS `
 **School Residence** | `filter PGPH `,  `filter PGPR `, `filter KE7H `, `filter SH `, `filter KRH `, `filter TH `, `filter EH `, `filter RH `,`filter RVRC `,`filter YNC `,`filter TC `,`filter CAPT `, `filter RC4 `, `filter USP `, `filter UTR `
 
 Examples:
-* `filter vaccinated` shows a list of student from the records who has been vaccinated.
+* `filter VACCINATED` shows a list of student from the records who has been vaccinated.
 
 
 ### Deleting a student by their matriculation number: `deleteStud`
 
 Deletes the specified person from the address book.
 
-Format: `deleteStud /MATRICULATION NUMBER`
+Format: `deleteStud MATRICULATION NUMBER`
 
 * If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
   the matriculation number is not found
   
 
 Examples:
-* `deleteStud /A7654321J` deletes Betsy Crowe from the records.
+* `deleteStud A7654321J` deletes Betsy Crowe from the records.
 
 ### Viewing statistics: `stats`
 
@@ -186,18 +189,18 @@ Displays the statistics of the requested Faculty/School Residence, the whole of 
 and School Residences. 
 
 Format: <br>
-`stats /FACULTY`
-`stats /SCHOOL_RESIDENCE`
+`stats FACULTY`
+`stats SCHOOL_RESIDENCE`
 `stats NUS`
 `stats all`
 
-* If there is no available data for the requested Faculty or School Residence, an message will be displayed to inform
+* If there is no available data for the requested Faculty or School Residence, a message will be displayed to inform
   users that the requested Faculty or School Residence has no available data.
   
 
 Examples:
-* `stats /COM` displays the percentage of vaccinated students in School of Computing.
-* `stats /RC4` displays the percentage of vaccinated students in RC4.
+* `stats COM` displays the percentage of vaccinated students in School of Computing.
+* `stats RC4` displays the percentage of vaccinated students in RC4.
 * `stats NUS` displays the percentage of vaccinated students in NUS.
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
 
@@ -245,6 +248,6 @@ Action | Format, Examples
 **edit** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **List Students** | `list students`
 **Find** | `find MATRICULATION_NUMBER ` <br> e.g., `find A1234567X`
-**Filter** | `filter CONDITON ` <br> e.g., `filter COM`
-**Delete Student** | `deleteStud /MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`
-**View Statistics** | `stats /FACULTY` e.g., `stats COM` <br> `stats /SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**Filter** | `filter VACCINATION_STATUS `  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE ` e.g., `filter RVRC` 
+**Delete Student** | `deleteStud MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`
+**View Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
