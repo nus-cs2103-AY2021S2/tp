@@ -2,10 +2,11 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.deadline.Deadline;
 
@@ -14,7 +15,7 @@ import seedu.address.model.task.deadline.Deadline;
  */
 public class DeadlineList {
 
-    private final List<CompletableDeadline> deadlines = new ArrayList<>();
+    private final ObservableList<CompletableDeadline> deadlines = FXCollections.observableArrayList();
 
     /**
      * Constructs a empty {@code DeadlineList}.
@@ -42,7 +43,11 @@ public class DeadlineList {
         this.deadlines.add(deadline);
     }
 
-    public List<CompletableDeadline> getDeadlines() {
+    /**
+     * Returns {@code deadlines} as an {@code ObservableList<CompletableDeadline>}
+     * @return An {@code ObservableList<CompletableDeadline>}
+     */
+    public ObservableList<CompletableDeadline> getAsObservableList() {
         return this.deadlines;
     }
 

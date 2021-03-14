@@ -58,7 +58,7 @@ public class AddDeadlineCommand extends Command {
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
 
-        for (CompletableDeadline deadline: projectToEdit.getDeadlines().getDeadlines()) {
+        for (CompletableDeadline deadline: projectToEdit.getDeadlines().getAsObservableList()) {
             if (this.toAdd.equals(deadline)) {
                 throw new CommandException(Messages.MESSAGE_DUPLICATE_DEADLINE);
             }

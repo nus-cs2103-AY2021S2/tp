@@ -12,6 +12,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
 
@@ -27,6 +28,9 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Event> eventListView;
+
+    @FXML
+    private ListView<CompletableDeadline> completableDeadlineListView;
 
     @FXML
     private ListView<CompletableTodo> completableTodoListView;
@@ -51,6 +55,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         eventListView.setItems(new FilteredList<>(project.getEvents().getAsObservableList()));
         eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
 
+        completableDeadlineListView.setItems(new FilteredList<>(project.getDeadlines().getAsObservableList()));
+        completableDeadlineListView.setCellFactory(listView ->
+                new ProjectDisplayPanel.CompletableDeadlineListViewCell());
+
         completableTodoListView.setItems(new FilteredList<>(project.getTodos().getAsObservableList()));
         completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
 
@@ -71,6 +79,24 @@ public class ProjectDisplayPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new EventCard(event, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code CompletableDeadline} using
+     * a {@code CompletableDeadlineCard}.
+     */
+    class CompletableDeadlineListViewCell extends ListCell<CompletableDeadline> {
+        @Override
+        protected void updateItem(CompletableDeadline completableDeadline, boolean empty) {
+            super.updateItem(completableDeadline, empty);
+
+            if (empty || completableDeadline == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new CompletableDeadlineCard(completableDeadline, getIndex() + 1).getRoot());
             }
         }
     }

@@ -2,7 +2,6 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -16,7 +15,7 @@ import seedu.address.model.task.todo.Todo;
  */
 public class TodoList {
 
-    private final List<CompletableTodo> todos = new ArrayList<>();
+    private final ObservableList<CompletableTodo> todos = FXCollections.observableArrayList();
 
     /**
      * Constructs a empty {@code TodoList}.
@@ -44,16 +43,12 @@ public class TodoList {
         this.todos.add(todo);
     }
 
-    public List<CompletableTodo> getTodos() {
-        return this.todos;
-    }
-
     /**
-     * Returns {@code CompletableTodo} as a {@code ObservableList<CompletableTodo>}
+     * Returns {@code TodoList} as an {@code ObservableList<CompletableTodo>}
      * @return An {@code ObservableList<CompletableTodo>}
      */
     public ObservableList<CompletableTodo> getAsObservableList() {
-        return FXCollections.observableList(todos);
+        return this.todos;
     }
 
     /**

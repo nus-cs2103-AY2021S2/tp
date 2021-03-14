@@ -17,7 +17,7 @@ public class TodoListTest {
     @Test
     public void constructor_empty_createEmptyTodoList() {
         TodoList emptyTodoList = new TodoList();
-        assertTrue(emptyTodoList.getTodos().isEmpty());
+        assertTrue(emptyTodoList.getAsObservableList().isEmpty());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class TodoListTest {
         ArrayList<CompletableTodo> todos = new ArrayList<>();
         todos.add(todo);
         TodoList todoList = new TodoList(todos);
-        assertEquals(todos, todoList.getTodos());
+        assertEquals(todos, todoList.getAsObservableList());
     }
 
 }

@@ -49,7 +49,7 @@ public class AddTodoCommand extends Command {
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
 
-        for (CompletableTodo todo: projectToEdit.getTodos().getTodos()) {
+        for (CompletableTodo todo: projectToEdit.getTodos().getAsObservableList()) {
             if (this.toAdd.equals(todo)) {
                 throw new CommandException(Messages.MESSAGE_DUPLICATE_TODO);
             }

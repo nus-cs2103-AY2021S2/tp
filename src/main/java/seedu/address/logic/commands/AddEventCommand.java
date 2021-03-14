@@ -59,7 +59,7 @@ public class AddEventCommand extends Command {
         Project projectToEdit = lastShownList.get(index.getZeroBased());
         assert projectToEdit != null;
 
-        for (Event event: projectToEdit.getEvents().getEvents()) {
+        for (Event event: projectToEdit.getEvents().getAsObservableList()) {
             if (this.toAdd.equals(event)) {
                 throw new CommandException(Messages.MESSAGE_DUPLICATE_EVENT);
             }

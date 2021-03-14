@@ -18,7 +18,7 @@ public class DeadlineListTest {
     @Test
     public void constructor_empty_createEmptyDeadlineList() {
         DeadlineList emptyDeadlineList = new DeadlineList();
-        assertTrue(emptyDeadlineList.getDeadlines().isEmpty());
+        assertTrue(emptyDeadlineList.getAsObservableList().isEmpty());
     }
 
     @Test
@@ -42,6 +42,6 @@ public class DeadlineListTest {
         ArrayList<CompletableDeadline> deadlines = new ArrayList<>();
         deadlines.add(deadline);
         DeadlineList deadlineList = new DeadlineList(deadlines);
-        assertEquals(deadlines, deadlineList.getDeadlines());
+        assertEquals(deadlines, deadlineList.getAsObservableList());
     }
 }
