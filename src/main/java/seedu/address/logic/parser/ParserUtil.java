@@ -2,8 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -19,6 +23,7 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Picture;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -164,5 +169,36 @@ public class ParserUtil {
             indexArray.add(parseIndex(s));
         }
         return indexArray;
+    }
+
+    /**
+     * Parses a {@code String} into a {@code Path}
+     *
+     * @throws ParseException if the given {@code pathStr} is invalid
+     */
+    public static Path parsePictureFilePath(String pathStr) throws ParseException {
+        if (!FileUtil.isValidPath(pathStr)) {
+            throw new ParseException("Invalid file path supplied");
+        }
+        Path path = Paths.get(pathStr);
+
+        if (!FileUtil.isFileExists(path)) {
+            throw new ParseException("Cannot find file at specified path");
+        }
+
+        // Check extension
+        String fileName = path.toString();
+        int lastIndexOf = fileName.lastIndexOf('.');
+        String ext = fileName.substring(lastIndexOf);
+
+        String[] acceptedExtensions = Picture.ACCEPTED_FILE_EXTENSIONS;
+        boolean hasCorrectExt = Arrays.stream(acceptedExtensions)
+                .map(ext::equals)
+                .reduce(false, (x, y) -> x || y);
+        if (!hasCorrectExt) {
+            throw new ParseException("Given file is not an image. " + Picture.MESSAGE_ACCEPTED_FILE_EXTENSIONS);
+        }
+
+        return path;
     }
 }

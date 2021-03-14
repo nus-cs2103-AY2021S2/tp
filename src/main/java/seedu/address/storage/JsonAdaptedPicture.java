@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Picture;
 
 /**
@@ -30,9 +31,13 @@ public class JsonAdaptedPicture {
     }
 
     /**
-     * COnverts this Jackson-friendly adapted picture object into the model's {@code Picture} object.
+     * Converts this Jackson-friendly adapted picture object into the model's {@code Picture} object.
      */
-    public Picture toModelType() {
+    public Picture toModelType() throws IllegalValueException {
+        if (!Picture.isValidFilePath(filePath.toAbsolutePath().toString())) {
+            throw new IllegalValueException(Picture.MESSAGE_CONSTRAINTS);
+        }
+
         return new Picture(filePath);
     }
 }

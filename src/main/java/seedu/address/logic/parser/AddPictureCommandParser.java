@@ -35,29 +35,7 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
             throwParseException();
         }
 
-        if (!FileUtil.isValidPath(argArr[1])) {
-            throw new ParseException("Invalid file path supplied");
-        }
-        Path path = Paths.get(argArr[1]);
-
-        if (!FileUtil.isFileExists(path)) {
-            throw new ParseException("Cannot find file at specified path");
-        }
-
-        // Check extension
-        String fileName = path.toString();
-        int lastIndexOf = fileName.lastIndexOf('.');
-        String ext = fileName.substring(lastIndexOf);
-
-        String[] allowedExtensions = { ".png", ".jpeg", ".jpg" };
-        boolean hasCorrectExt = Arrays.stream(allowedExtensions)
-                .map(ext::equals)
-                .reduce(false, (x, y) -> x || y);
-        if (!hasCorrectExt) {
-            throw new ParseException("Given file is not an image. Accepted extensions: "
-                    + String.join(", ", allowedExtensions) );
-        }
-
+        Path path = ParserUtil.parsePictureFilePath(argArr[1]);
         return new AddPictureCommand(index, path);
     }
 }
