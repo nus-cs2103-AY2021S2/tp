@@ -234,29 +234,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Private tuition teachers
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* has a need to manage a significant number of student contacts
+* has to plan lessons based on each student's profile
+* is comfortable carrying a laptop around
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage many contacts with a lot of different details
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| -------- | ------------------------------------------ | ------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   |                                   |
+| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering             |                     |
+| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed.    |
+| `* *`    | user                                       | find a student by name          | locate details of students without having to go through the entire list|
+| `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        |
+| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     |
+| `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes  |
+| `*`      | expert user                                | add customized tags to contacts | I will be able to access each group of students more easily
+| `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program|
+| `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
 
 *{More to be added}*
 
@@ -389,13 +392,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should work without requiring an installer.
+5.  Should not depend on remote server.
+6.  Everything should be packaged into a single JAR file.
+7.  JAR file should not exceed 100MB.
+8.  System should be usable and understandable by a novice.
+9.  System should be able to run even if the data file has errors arising from a user manually editing it.
+10. Users should be comfortable with the system even after not using it for a period of time.
+11. System should be able to store up to 500 contacts.
+12. System should be able to function if a user overwrites the data file with another data file that is named the same.
 
 *{More to be added}*
 
 ### Glossary
 
+* **Private tuition teachers**: Freelance tuition teachers not belonging to any organisations
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Novice**: A user that is new to using TutorsPet
 
 --------------------------------------------------------------------------------------------------------------------
 
