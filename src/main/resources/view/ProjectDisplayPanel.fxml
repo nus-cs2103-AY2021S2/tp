@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -17,9 +16,14 @@
           <ListView fx:id="eventListView"/>
         </content>
       </Tab>
-      <Tab text="Tasks">
+      <Tab text="Deadlines">
         <content>
-          <AnchorPane/>
+          <ListView fx:id="deadlineListView"/>
+        </content>
+      </Tab>
+      <Tab text="Todos">
+        <content>
+          <ListView fx:id="completableTodoListView"/>
         </content>
       </Tab>
       <Tab text="Participants">

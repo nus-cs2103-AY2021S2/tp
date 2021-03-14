@@ -12,6 +12,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
 
 /**
@@ -26,6 +27,9 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Event> eventListView;
+
+    @FXML
+    private ListView<CompletableTodo> completableTodoListView;
 
     @FXML
     private ListView<Person> participantListView;
@@ -47,6 +51,9 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         eventListView.setItems(new FilteredList<>(project.getEvents().getAsObservableList()));
         eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());
 
+        completableTodoListView.setItems(new FilteredList<>(project.getTodos().getAsObservableList()));
+        completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
+
         participantListView.setItems(new FilteredList<>(project.getParticipants().getAsObservableList()));
         participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
     }
@@ -64,6 +71,24 @@ public class ProjectDisplayPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new EventCard(event, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code CompletableTodo} using
+     * a {@code CompletableTodoCard}.
+     */
+    class CompletableTodoListViewCell extends ListCell<CompletableTodo> {
+        @Override
+        protected void updateItem(CompletableTodo completableTodo, boolean empty) {
+            super.updateItem(completableTodo, empty);
+
+            if (empty || completableTodo == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new CompletableTodoCard(completableTodo, getIndex() + 1).getRoot());
             }
         }
     }

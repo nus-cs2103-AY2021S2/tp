@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.todo.Todo;
 
@@ -47,6 +49,14 @@ public class TodoList {
     }
 
     /**
+     * Returns {@code CompletableTodo} as a {@code ObservableList<CompletableTodo>}
+     * @return An {@code ObservableList<CompletableTodo>}
+     */
+    public ObservableList<CompletableTodo> getAsObservableList() {
+        return FXCollections.observableList(todos);
+    }
+
+    /**
      * Returns a sequential stream with this {@code TodoList} as its source.
      * @return a sequential Stream over the Todos in this {@code TodoList}.
      */
@@ -65,4 +75,5 @@ public class TodoList {
     public int hashCode() {
         return todos.hashCode();
     }
+
 }
