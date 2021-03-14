@@ -40,8 +40,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code attribute string} into an {@code Attribute} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code attribute string} into an {@code Attribute} and returns it. Leading and trailing whitespaces will
+     * be trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Attribute parseAttribute(String attribute) throws ParseException {
