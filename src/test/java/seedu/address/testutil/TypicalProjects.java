@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
+import seedu.address.model.ProjectsFolder;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.CompletableTaskList;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.ParticipantList;
@@ -29,5 +32,16 @@ public class TypicalProjects {
 
     public static List<Project> getTypicalProjects() {
         return new ArrayList<>(Arrays.asList(CS2103T_PROJECT, CS1101S));
+    }
+
+    /**
+     * Returns an {@code ProjectsFolder} with all the typical projects.
+     */
+    public static ProjectsFolder getTypicalProjectsFolder() {
+        ProjectsFolder pf = new ProjectsFolder();
+        for (Project project : getTypicalProjects()) {
+            pf.addProject(project);
+        }
+        return pf;
     }
 }
