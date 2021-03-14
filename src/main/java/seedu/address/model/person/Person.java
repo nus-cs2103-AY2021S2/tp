@@ -2,15 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.tag.Tag;
+
+import java.util.*;
 
 /**
  * Represents a Person in the address book.
@@ -20,23 +17,23 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Optional<Phone> phone;
+    private final Optional<Email> email;
 
     // Data fields
-    private final Address address;
+    private final Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
     private final List<InsurancePolicy> policies = new ArrayList<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field is present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<InsurancePolicy> policies) {
         requireAllNonNull(name, phone, email, address, tags, policies);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.phone = Optional.of(phone);
+        this.email = Optional.of(email);
+        this.address = Optional.of(address);
         this.tags.addAll(tags);
         this.policies.addAll(policies);
     }
@@ -47,26 +44,49 @@ public class Person {
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.phone = Optional.of(phone);
+        this.email = Optional.of(email);
+        this.address = Optional.of(address);
         this.tags.addAll(tags);
     }
 
+    public Person(Person person, Attribute attribute) {
+        requireAllNonNull(person, attribute);
+        this.name = person.name;
+        if (attribute.equals(Attribute.POLICY_ID)) {
+            this.phone = Optional.empty();
+            this.email = Optional.empty();
+            this.address = Optional.empty();
+            this.policies.addAll(person.policies);
+        } else if (attribute.equals(Attribute.PHONE)) {
+            this.phone = Optional.of(person.getPhone().get());
+            this.email = Optional.empty();
+            this.address = Optional.empty();
+        } else if (attribute.equals(Attribute.ADDRESS)) {
+            this.phone = Optional.empty();
+            this.email = Optional.empty();
+            this.address = Optional.of(person.getAddress().get());
+        } else {
+            this.phone = Optional.empty();
+            this.email = Optional.of(person.getEmail().get());
+            this.address = Optional.empty();
+        }
+        this.tags.addAll(person.tags);
+    }
 
     public Name getName() {
         return name;
     }
 
-    public Phone getPhone() {
+    public Optional<Phone> getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public Optional<Email> getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 
@@ -131,13 +151,16 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getName());
+        if (this.phone.isPresent()) {
+            builder.append("; Phone: ").append(phone.get());
+        }
+        if (this.email.isPresent()) {
+            builder.append("; Email: ").append(email.get());
+        }
+        if (this.address.isPresent()) {
+            builder.append("; Address: ").append(address.get());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -147,7 +170,7 @@ public class Person {
 
         List<InsurancePolicy> policies = getPolicies();
         if (!policies.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Policies: ");
             policies.forEach(builder::append);
         }
         return builder.toString();
