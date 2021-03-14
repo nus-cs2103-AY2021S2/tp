@@ -11,10 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Garment;
+import seedu.address.model.garment.Garment;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the wardrobe data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -30,11 +30,11 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(wardrobe, userPrefs);
 
-        logger.fine("Initializing with address book: " + wardrobe + " and user prefs " + userPrefs);
+        logger.fine("Initializing with wardrobe: " + wardrobe + " and user prefs " + userPrefs);
 
         this.wardrobe = new Wardrobe(wardrobe);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredGarments = new FilteredList<>(this.wardrobe.getPersonList());
+        filteredGarments = new FilteredList<>(this.wardrobe.getGarmentList());
     }
 
     public ModelManager() {
@@ -91,7 +91,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasGarment(Garment garment) {
         requireNonNull(garment);
-        return wardrobe.hasPerson(garment);
+        return wardrobe.hasGarment(garment);
     }
 
     @Override
@@ -112,10 +112,10 @@ public class ModelManager implements Model {
         wardrobe.setGarment(target, editedGarment);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Garment List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Garment} backed by the internal list of
      * {@code versionedWardrobe}
      */
     @Override

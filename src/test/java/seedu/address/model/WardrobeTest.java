@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalWardrobe;
+import static seedu.address.testutil.TypicalGarments.ALICE;
+import static seedu.address.testutil.TypicalGarments.getTypicalWardrobe;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.exceptions.DuplicateGarmentException;
+import seedu.address.testutil.GarmentBuilder;
 
 public class WardrobeTest {
 
@@ -28,7 +28,7 @@ public class WardrobeTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), wardrobe.getPersonList());
+        assertEquals(Collections.emptyList(), wardrobe.getGarmentList());
     }
 
     @Test
@@ -44,62 +44,62 @@ public class WardrobeTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE)
+    public void resetData_withDuplicateGarments_throwsDuplicateGarmentException() {
+        // Two garments with the same identity fields
+        Garment editedAlice = new GarmentBuilder(ALICE)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        WardrobeStub newData = new WardrobeStub(newPersons);
+        List<Garment> newGarments = Arrays.asList(ALICE, editedAlice);
+        WardrobeStub newData = new WardrobeStub(newGarments);
 
-        assertThrows(DuplicatePersonException.class, () -> wardrobe.resetData(newData));
+        assertThrows(DuplicateGarmentException.class, () -> wardrobe.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> wardrobe.hasPerson(null));
+    public void hasGarment_nullGarment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> wardrobe.hasGarment(null));
     }
 
     @Test
-    public void hasPerson_personNotInWardrobe_returnsFalse() {
-        assertFalse(wardrobe.hasPerson(ALICE));
+    public void hasGarment_garmentNotInWardrobe_returnsFalse() {
+        assertFalse(wardrobe.hasGarment(ALICE));
     }
 
     @Test
-    public void hasPerson_personInWardrobe_returnsTrue() {
-        wardrobe.addPerson(ALICE);
-        assertTrue(wardrobe.hasPerson(ALICE));
+    public void hasGarment_garmentInWardrobe_returnsTrue() {
+        wardrobe.addGarment(ALICE);
+        assertTrue(wardrobe.hasGarment(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInWardrobe_returnsTrue() {
-        wardrobe.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE)
+    public void hasGarment_garmentWithSameIdentityFieldsInWardrobe_returnsTrue() {
+        wardrobe.addGarment(ALICE);
+        Garment editedAlice = new GarmentBuilder(ALICE)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withDescriptions(VALID_DESCRIPTION_HUSBAND)
                 .build();
-        assertTrue(wardrobe.hasPerson(editedAlice));
+        assertTrue(wardrobe.hasGarment(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> wardrobe.getPersonList().remove(0));
+    public void getGarmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> wardrobe.getGarmentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyWardrobe whose persons list can violate interface constraints.
+     * A stub ReadOnlyWardrobe whose garments list can violate interface constraints.
      */
     private static class WardrobeStub implements ReadOnlyWardrobe {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Garment> garments = FXCollections.observableArrayList();
 
-        WardrobeStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        WardrobeStub(Collection<Garment> garments) {
+            this.garments.setAll(garments);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Garment> getGarmentList() {
+            return garments;
         }
     }
 

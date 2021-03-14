@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Garment;
+import seedu.address.model.garment.Garment;
 
 /**
  * The API of the Model component.
@@ -58,29 +58,29 @@ public interface Model {
     boolean hasGarment(Garment garment);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the wardrobe.
+     * Deletes the given garment.
+     * The garment must exist in the wardrobe.
      */
     void deleteGarment(Garment target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the wardrobe.
+     * Adds the given garment.
+     * {@code garment} must not already exist in the wardrobe.
      */
     void addGarment(Garment garment);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given garment {@code target} with {@code editedGarment}.
      * {@code target} must exist in the wardrobe.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The garment identity of {@code editedGarment} must not be the same as another existing garment in the wardrobe.
      */
     void setGarment(Garment target, Garment editedGarment);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered garment list */
     ObservableList<Garment> getFilteredGarmentList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered garment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredGarmentList(Predicate<Garment> predicate);

@@ -4,15 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.description.Description;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.Garment;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Size;
+import seedu.address.model.garment.Address;
+import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.Name;
+import seedu.address.model.garment.Size;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Garment objects.
  */
 public class GarmentBuilder {
 
@@ -28,7 +28,7 @@ public class GarmentBuilder {
     private Set<Description> descriptions;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code GarmentBuilder} with the default details.
      */
     public GarmentBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -50,7 +50,7 @@ public class GarmentBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Garment} that we are building.
      */
     public GarmentBuilder withName(String name) {
         this.name = new Name(name);
@@ -59,7 +59,7 @@ public class GarmentBuilder {
 
     /**
      * Parses the {@code descriptions} into a {@code Set<Description>}
-     * and set it to the {@code Person} that we are building.
+     * and set it to the {@code Garment} that we are building.
      */
     public GarmentBuilder withDescriptions(String ... descriptions) {
         this.descriptions = SampleDataUtil.getDescriptionSet(descriptions);
@@ -67,7 +67,7 @@ public class GarmentBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Garment} that we are building.
      */
     public GarmentBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -75,7 +75,7 @@ public class GarmentBuilder {
     }
 
     /**
-     * Sets the {@code Size} of the {@code Person} that we are building.
+     * Sets the {@code Size} of the {@code Garment} that we are building.
      */
     public GarmentBuilder withSize(String size) {
         this.size = new Size(size);
@@ -83,7 +83,7 @@ public class GarmentBuilder {
     }
 
     /**
-     * Sets the {@code Colour} of the {@code Person} that we are building.
+     * Sets the {@code Colour} of the {@code Garment} that we are building.
      */
     public GarmentBuilder withColour(String colour) {
         this.colour = new Colour(colour);
