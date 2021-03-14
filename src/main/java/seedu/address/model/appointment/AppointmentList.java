@@ -59,7 +59,7 @@ public class AppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Removes the equivalent appointment from the list.
+     * Removes the equivalent appointment from the list. (By appointment)
      * The appointment must exist in the list.
      */
     public void remove(Appointment toRemove) {
@@ -67,6 +67,14 @@ public class AppointmentList implements Iterable<Appointment> {
         if (!internalList.remove(toRemove)) {
             throw new AppointmentNotFoundException();
         }
+    }
+
+    /**
+     * Removes the equivalent appointment from the list (must be present).
+     * @param index Index of appointment to remove (0-based)
+     */
+    public void removeByIndex(int index) {
+        this.internalList.remove(index);
     }
 
     public void setAppointments(AppointmentList replacement) {
