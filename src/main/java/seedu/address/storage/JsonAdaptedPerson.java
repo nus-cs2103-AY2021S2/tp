@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.birthday = birthday;
+//        this.birthday = birthday;
         this.name = name;
         if (tagged != null) {
             this.tagged.addAll(tagged);
