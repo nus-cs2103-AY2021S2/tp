@@ -91,4 +91,6 @@ public interface Model {
     boolean hasOverlappingAppointment(Appointment appointment);
 
     void addAppointment(Appointment appointment);
+
+    ObservableList<Appointment> getFilteredAppointmentList();
 }
