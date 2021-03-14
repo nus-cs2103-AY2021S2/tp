@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
+import seedu.address.model.plan.Module;
 
 /**
  * The API of the Model component.
@@ -84,4 +86,25 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Plan> predicate);
+
+    /**
+     * Returns true if a plan with the same identity as {@code plan} exists in the address book.
+     */
+    boolean hasSemester(int planNumber, Semester semester);
+
+//    /**
+//     * Deletes the given plan.
+//     * The plan must exist in the address book.
+//     */
+//    void deleteSemester(Plan plan, Semester target);
+
+    /**
+     * Adds the given plan.
+     * {@code plan} must not already exist in the address book.
+     */
+    void addSemester(int planNumber, Semester semester);
+
+    boolean hasModule(int semNumber, Module module);
+
+    void addModule(int planNumber, int semNumber, Module module);
 }

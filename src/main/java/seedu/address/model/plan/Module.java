@@ -3,6 +3,7 @@ package seedu.address.model.plan;
 import java.util.ArrayList;
 import java.util.List;
 
+//import org.json.simple.parser.JSONParser;
 import seedu.address.model.plan.exceptions.ModuleExceptions;
 
 public class Module {
@@ -152,8 +153,16 @@ public class Module {
         }
     }
 
+    public Module seekModule(String moduleCode) throws ModuleExceptions {
+        JSONParser jsonParser = new JSONParser();
+    }
+
     @Override
     public String toString() {
         return getModuleCode() + " " + getModuleTitle();
+    }
+
+    public static void main(String args[]) {
+        System.out.println("helloworld");
     }
 }
