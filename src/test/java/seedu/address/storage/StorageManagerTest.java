@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.PersonBook;
 import seedu.address.model.person.ReadOnlyPersonBook;
-import seedu.address.storage.person.JsonAddressBookStorage;
+import seedu.address.storage.person.JsonPersonBookStorage;
 
 public class StorageManagerTest {
 
@@ -25,7 +25,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonPersonBookStorage addressBookStorage = new JsonPersonBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -56,14 +56,14 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
         PersonBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyPersonBook retrieved = storageManager.readAddressBook().get();
+        storageManager.savePersonBook(original);
+        ReadOnlyPersonBook retrieved = storageManager.readPersonBook().get();
         assertEquals(original, new PersonBook(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getPersonBookFilePath());
     }
 
 }

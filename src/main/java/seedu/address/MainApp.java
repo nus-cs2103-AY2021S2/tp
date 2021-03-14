@@ -19,18 +19,21 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.dish.DishBook;
 import seedu.address.model.dish.ReadOnlyDishBook;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.IngredientBook;
 import seedu.address.model.ingredient.ReadOnlyIngredientBook;
+import seedu.address.model.order.OrderBook;
 import seedu.address.model.order.ReadOnlyOrderBook;
 import seedu.address.model.person.PersonBook;
 import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
-import seedu.address.storage.person.AddressBookStorage;
-import seedu.address.storage.person.JsonAddressBookStorage;
+import seedu.address.storage.*;
+import seedu.address.storage.dish.JsonDishBookStorage;
+import seedu.address.storage.ingredient.JsonIngredientBookStorage;
+import seedu.address.storage.order.JsonOrderBookStorage;
+import seedu.address.storage.person.JsonPersonBookStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -59,8 +62,15 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        BookStorage<ReadOnlyPersonBook> addressBookStorage =
+                new JsonPersonBookStorage(userPrefs.getPersonBookFilePath());
+        BookStorage<ReadOnlyDishBook> dishBookStorage =
+                new JsonDishBookStorage(userPrefs.getDishBookFilePath());
+        BookStorage<ReadOnlyIngredientBook> ingredientBookStorage =
+                new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
+        BookStorage<ReadOnlyOrderBook> orderBookStorage =
+                new JsonOrderBookStorage(userPrefs.getOrderBookFilePath());
+        storage = new StorageManager(addressBookStorage, dishBookStorage, ingredientBookStorage, orderBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,18 +87,17 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPersonBook> addressBookOptional;
         ReadOnlyPersonBook initialPersonBook;
         ReadOnlyDishBook initialDishBook = null;
         ReadOnlyIngredientBook initialIngredientBook = null;
         ReadOnlyOrderBook initialOrderBook = null;
 
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            Optional<ReadOnlyPersonBook> personBookOptional = storage.readPersonBook();
+            if (!personBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialPersonBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialPersonBook = personBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialPersonBook = new PersonBook();
@@ -97,7 +106,32 @@ public class MainApp extends Application {
             initialPersonBook = new PersonBook();
         }
 
-        return new ModelManager(initialPersonBook, userPrefs);
+        try {
+            Optional<ReadOnlyDishBook> dishBookOptional = storage.readDishBook();
+            if (dishBookOptional.isPresent()) {
+                initialDishBook = dishBookOptional.get();
+            } else {
+                initialDishBook = new DishBook();
+            }
+
+            Optional<ReadOnlyIngredientBook> ingredientBookOptional = storage.readIngredientBook();
+            if (ingredientBookOptional.isPresent()) {
+                initialIngredientBook = ingredientBookOptional.get();
+            } else {
+                initialIngredientBook = new IngredientBook();
+            }
+
+            Optional<ReadOnlyOrderBook> orderBookOptional = storage.readOrderBook();
+            if (orderBookOptional.isPresent()) {
+                initialOrderBook = orderBookOptional.get();
+            } else {
+                initialOrderBook = new OrderBook();
+            }
+        } catch (Exception e) {
+
+        }
+
+        return new ModelManager(initialPersonBook, initialDishBook, initialIngredientBook, initialOrderBook, userPrefs);
     }
 
     private void initLogging(Config config) {
