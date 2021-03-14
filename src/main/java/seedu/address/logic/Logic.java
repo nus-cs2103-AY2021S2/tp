@@ -43,6 +43,11 @@ public interface Logic {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the user prefs' sochedule file path.
+     */
+    Path getSocheduleFilePath();
+
+    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
@@ -62,17 +67,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
-    /**
-     * Returns the user prefs' task list file path.
-     */
-    Path getTaskListFilePath();
-
 
     /** Returns an unmodifiable view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();
 
-    /**
-     * Returns the user prefs' event list file path.
-     */
-    Path getEventListFilePath();
 }

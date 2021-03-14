@@ -103,17 +103,19 @@ public interface Model {
     /** Returns the Sochedule */
     ReadOnlySochedule getSochedule();
 
+    /**
+     * Returns the user prefs' Sochedule file path.
+     */
+    Path getSocheduleFilePath();
+
+    /**
+     * Sets the user prefs' Sochedule file path.
+     */
+    void setSocheduleFilePath(Path socheduleFilePath);
+
+
+
     //=========== task ==================================================================================
-
-    /**
-     * Returns the user prefs' TaskList file path.
-     */
-    Path getTaskListFilePath();
-
-    /**
-     * Sets the user prefs' TaskList file path.
-     */
-    void setTaskListFilePath(Path taskListFilePath);
 
 
     /**
@@ -156,17 +158,6 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     //=========== event ==================================================================================
-
-    /**
-     * Returns the user prefs' EventList file path.
-     */
-    Path getEventListFilePath();
-
-    /**
-     * Sets the user prefs' EventList file path.
-     */
-    void setEventListFilePath(Path eventListFilePath);
-
 
     /**
      * Returns true if an event with the same identity as {@code event} exists in the Sochedule.

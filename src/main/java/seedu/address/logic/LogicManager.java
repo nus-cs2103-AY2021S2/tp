@@ -73,6 +73,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getSocheduleFilePath() {
+        return model.getSocheduleFilePath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
@@ -93,18 +98,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getTaskListFilePath() {
-        return model.getTaskListFilePath();
-    }
-
-
-    @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
-    }
-
-    @Override
-    public Path getEventListFilePath() {
-        return model.getEventListFilePath();
     }
 }
