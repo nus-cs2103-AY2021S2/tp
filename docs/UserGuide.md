@@ -6,22 +6,20 @@ title: User Guide
 
 FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
 * Table of Contents
-{:toc}
-* Quick start
-*  Features
-    * Viewing help: `help`
-    * Adding a new card: `add`
-    * Listing all cards: `list`
-    * Deleting a card: `delete`
-    * Viewing a card: `view`
-    * Finding cards: `find` 
-    * Clearing all cards: `clear`
-    * Exiting the program: `exit`
-    * Saving data
-    * Editing the data file
-    * Filtering cards: `[coming in v2.0]`
-* FAQ
-* Command Summary
+* [Quick start](#quick-start)
+*  [Features](#features)
+    * [Viewing help](#viewing-help-help): `help`
+    * [Adding a new card](#adding-a-new-card-add): `add`
+    * [Listing all cards](#listing-all-cards--list): `list`
+    * [Deleting a card](#deleting-a-card--delete): `delete`
+    * [Viewing a card](#viewing-a-card--view): `view`
+    * [Finding cards](#finding-cards--find): `find` 
+    * [Clearing all cards](#clearing-all-entries--clear): `clear`
+    * [Exiting the program](#exiting-the-program--exit): `exit`
+    * [Saving data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -107,16 +105,22 @@ Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
 * The search will be according to the `CRITERIA` given, does not support searching by more than one different criteria:
   * `q/` to search by questions.
   * `c/` to search by categories.
-  * `t/` to search by tags.
   * `p/` to search by priorities.
-* Partial words can be matched when searching by questions. e.g. `Wh` will match `What?`
-* Only full words will be matched when searching by categories, tags, or priorities. e.g. `Wh` will not match `What?`
-* Flashcards matching at least one keyword will be returned (i.e. `OR` search). e.g. `Newton's Equation` will return `Newton's Second Law of Motion` and `Einstein's Equation`
+  * `t/` to search by tags.
+* Partial words can be matched when searching by questions or priorities. e.g. `Wh` will match `What?`
+* Only full words will be matched when searching by categories or tags. e.g. `Wh` will not match `What?`
+* Flashcards matching at least one keyword will be returned. e.g. `find q/ Newton's Equation` will return flashcards with question of `Newton's Second Law of Motion` and `Einstein's Equation`
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
+You can list all flashcards again by using `list` command
+</div>
+
 
 Examples:
-* `find q/ equation` will return cards with `Einstein's Equation` and `Chemistry Equation` as the questions.
-* `find c/ computer` will return cards with `computer` in the category.<br>
+* `find q/ equation` will return flashcards with `Equation` or `equation` in its questions.
+* `find c/ computer` will return flashcards with `computer` in its category.<br>
 ![result for `find c/ computer`](images/findComputerResult.png)
+* `find p/ low` will return flashcards with `low` as its priority.
+* `find t/ trivia` will return flashcards with `trivia` in its tags.
 
 ### Clearing all entries : `clear`
 
@@ -163,7 +167,7 @@ Action | Format, Examples
 **Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br> e.g., `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
 **View** | `view INDEX` <br> e.g., `view 2`
-**Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`
+**Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`,<br> `find p/ low`, `find t/ random`
 **Clear** | `clear`
 **List** | `list`
 **Help** | `help`
