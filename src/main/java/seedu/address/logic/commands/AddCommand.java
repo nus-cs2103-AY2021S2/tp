@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,16 +24,19 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TRIPDAY + "DAY "
+            + PREFIX_TRIPTIME + "TIME "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
+            + PREFIX_NAME + "Jenny Talia "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_ADDRESS + "369, Yishun Ave 4, #02-25 "
+            + PREFIX_TRIPDAY + "wednesday "
+            + PREFIX_TRIPTIME + "1930 "
+            + PREFIX_TAG + "female ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the GME Terminal";
 
     private final Person toAdd;
 

@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -40,13 +42,16 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TRIPDAY + "DAY] "
+            + "[" + PREFIX_TRIPTIME + "TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 ";
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_TRIPDAY + "friday ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the GME Terminal.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
