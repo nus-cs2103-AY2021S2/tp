@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Finds and lists all flashcards in FlashBack with a search criteria containing any of the argument keywords.
@@ -12,6 +13,7 @@ public abstract class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all flashcards with questions or categories "
             + "that contains any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: " + PREFIX_QUESTION + " or " + PREFIX_CATEGORY + " KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: " + PREFIX_QUESTION + " or " + PREFIX_CATEGORY
+            + " or " + PREFIX_TAG + " KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_QUESTION + " equation";
 }
