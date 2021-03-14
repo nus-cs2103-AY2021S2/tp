@@ -12,7 +12,7 @@ public class GroupTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
+    public void constructor_invalidGroupName_throwsIllegalArgumentException() {
         String invalidGroupName = "";
         assertThrows(IllegalArgumentException.class, () -> new Group(invalidGroupName));
     }

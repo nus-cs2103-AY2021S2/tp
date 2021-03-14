@@ -23,7 +23,7 @@ public class MeetingBuilder {
     private DateTime terminate;
     private Priority priority;
     private Description description;
-    private Set<Group> tags;
+    private Set<Group> groups;
 
     /**
      * Creates a {@code MeetingBuilder} with the default details.
@@ -34,7 +34,7 @@ public class MeetingBuilder {
         terminate = new DateTime(DEFAULT_TERMINATE);
         priority = new Priority(DEFAULT_PRIORITY);
         description = new Description(DEFAULT_DESCRIPTION);
-        tags = new HashSet<>();
+        groups = new HashSet<>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class MeetingBuilder {
         terminate = meetingToCopy.getTerminate();
         priority = meetingToCopy.getPriority();
         description = meetingToCopy.getDescription();
-        tags = new HashSet<>(meetingToCopy.getGroups());
+        groups = new HashSet<>(meetingToCopy.getGroups());
     }
 
     /**
@@ -58,10 +58,10 @@ public class MeetingBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Meeting} that we are building.
+     * Parses the {@code groups} into a {@code Set<Group>} and set it to the {@code Meeting} that we are building.
      */
-    public MeetingBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getGroupSet(tags);
+    public MeetingBuilder withGroups(String ... groups) {
+        this.groups = SampleDataUtil.getGroupSet(groups);
         return this;
     }
 
@@ -98,7 +98,7 @@ public class MeetingBuilder {
     }
 
     public Meeting build() {
-        return new Meeting(name, start, terminate, priority, description, tags);
+        return new Meeting(name, start, terminate, priority, description, groups);
     }
 
 }

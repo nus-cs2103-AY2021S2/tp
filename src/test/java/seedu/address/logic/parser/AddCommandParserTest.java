@@ -67,16 +67,16 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + GROUP_DESC_FRIEND, new AddCommand(expectedPerson));
 
-        // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withGroups(VALID_GROUP_FRIEND, VALID_GROUP_HUSBAND)
+        // multiple groups - all accepted
+        Person expectedPersonMultipleGroups = new PersonBuilder(BOB).withGroups(VALID_GROUP_FRIEND, VALID_GROUP_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + GROUP_DESC_HUSBAND + GROUP_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + GROUP_DESC_HUSBAND + GROUP_DESC_FRIEND, new AddCommand(expectedPersonMultipleGroups));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
+        // zero group
         Person expectedPerson = new PersonBuilder(AMY).withGroups().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedPerson));
@@ -125,7 +125,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + GROUP_DESC_HUSBAND + GROUP_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // invalid group
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_GROUP_DESC + VALID_GROUP_FRIEND, Group.MESSAGE_CONSTRAINTS);
 

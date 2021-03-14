@@ -45,7 +45,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_GROUP;
+    private static final String GROUP_EMPTY = " " + PREFIX_GROUP;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -94,11 +94,11 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND + TAG_EMPTY, Group.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + TAG_EMPTY + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
+        // while parsing {@code PREFIX_GROUP} alone will reset the groups of the {@code Person} being edited,
+        // parsing it together with a valid group results in error
+        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND + GROUP_EMPTY, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_DESC_FRIEND + GROUP_EMPTY + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GROUP_EMPTY + GROUP_DESC_FRIEND + GROUP_DESC_HUSBAND, Group.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
@@ -201,7 +201,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_resetTags_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + GROUP_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withGroups().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
