@@ -74,7 +74,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane noteContentPlaceholder;
 
 
-    //For show/hide function
+    // For show/hide function
     @FXML
     private AnchorPane contactDisplay;
 
