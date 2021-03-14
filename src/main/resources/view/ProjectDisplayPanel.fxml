@@ -13,22 +13,34 @@
     <tabs>
       <Tab text="Events">
         <content>
-          <ListView fx:id="eventListView"/>
+          <VBox styleClass="project-display-panel-vbox">
+            <Label text="Events" styleClass="project-display-panel-header"/>
+            <ListView fx:id="eventListView" VBox.vgrow="ALWAYS"/>
+          </VBox>
         </content>
       </Tab>
       <Tab text="Deadlines">
         <content>
-          <ListView fx:id="completableDeadlineListView"/>
+          <VBox styleClass="project-display-panel-vbox">
+            <Label text="Deadlines" styleClass="project-display-panel-header"/>
+            <ListView fx:id="completableDeadlineListView" VBox.vgrow="ALWAYS"/>
+          </VBox>
         </content>
       </Tab>
       <Tab text="Todos">
         <content>
-          <ListView fx:id="completableTodoListView"/>
+          <VBox styleClass="project-display-panel-vbox">
+            <Label text="Todos" styleClass="project-display-panel-header"/>
+            <ListView fx:id="completableTodoListView" VBox.vgrow="ALWAYS"/>
+          </VBox>
         </content>
       </Tab>
       <Tab text="Participants">
         <content>
-          <ListView fx:id="participantListView"/>
+          <VBox styleClass="project-display-panel-vbox">
+            <Label text="Participants" styleClass="project-display-panel-header"/>
+            <ListView fx:id="participantListView" VBox.vgrow="ALWAYS"/>
+          </VBox>
         </content>
       </Tab>
     </tabs>
