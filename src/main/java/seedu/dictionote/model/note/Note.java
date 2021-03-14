@@ -90,7 +90,7 @@ public class Note {
         return lastEditTime;
     }
 
-    public Boolean getIsDone() {
+    public Boolean isDone() {
         return isDone;
     }
 

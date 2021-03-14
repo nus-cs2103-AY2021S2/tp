@@ -6,29 +6,28 @@ import java.util.List;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
-import seedu.dictionote.logic.commands.enums.UiAction;
-import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
 
 /**
- * Deletes a contact identified using it's displayed index from the contacts list.
+ * Opens a new window to send an email to a contact identified using it's displayed index from the contacts list.
  */
-public class DeleteContactCommand extends Command {
+public class EmailContactCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletecontact";
+    public static final String COMMAND_WORD = "emailcontact";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the contact identified by the index number used in the displayed contacts list.\n"
+            + ": Opens a new window to send an email to the contact identified by the index number used in the "
+            + "displayed contacts list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_CONTACT_SUCCESS = "Deleted contact: %1$s";
+    public static final String MESSAGE_EMAIL_CONTACT_SUCCESS = "New email window open: to %1$s";
 
     private final Index targetIndex;
 
-    public DeleteContactCommand(Index targetIndex) {
+    public EmailContactCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -41,16 +40,16 @@ public class DeleteContactCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        Contact contactToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteContact(contactToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete),
-            UiAction.OPEN, UiActionOption.CONTACT);
+        Contact contactToEmail = lastShownList.get(targetIndex.getZeroBased());
+        model.emailContact(contactToEmail);
+
+        return new CommandResult(String.format(MESSAGE_EMAIL_CONTACT_SUCCESS, contactToEmail));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteContactCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteContactCommand) other).targetIndex)); // state check
+                || (other instanceof EmailContactCommand // instanceof handles nulls
+                && targetIndex.equals(((EmailContactCommand) other).targetIndex)); // state check
     }
 }
