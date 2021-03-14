@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Appointment;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * Deletes an appointment identified using it's displayed index from the appointment list.
