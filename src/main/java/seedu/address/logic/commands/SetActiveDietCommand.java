@@ -23,7 +23,7 @@ public class SetActiveDietCommand extends Command {
     private int index;
 
     /**
-     * Creates a view plan command to get the details of a specific diet plan.
+     * Creates a set plan command to set the active diet plan for the user
      */
     public SetActiveDietCommand(int index) {
         this.index = index - 1;
@@ -36,8 +36,9 @@ public class SetActiveDietCommand extends Command {
         DietPlanList dietPlanList = model.getDietPlanList();
         try {
             DietPlan dietPlan = dietPlanList.getDietPlan(this.index);
-            String result = MESSAGE_SUCCESS + dietPlan.viewPlan();
-            return new CommandResult(result);
+            model.setActiveDiet(dietPlan);
+
+            return new CommandResult(MESSAGE_SUCCESS + dietPlan.viewPlan());
         } catch (IndexOutOfBoundsException outOfBounds) {
             throw new CommandException(MESSAGE_OUT_OF_BOUNDS);
         }

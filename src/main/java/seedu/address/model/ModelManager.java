@@ -269,4 +269,10 @@ public class ModelManager implements Model {
         user.setActiveDietPlan(dietPlan);
     }
 
+    @Override
+    public DietPlan getActiveDiet() {
+        User user = addressBook.getUser();
+        return user.getActiveDietPlan();
+    }
+
 }

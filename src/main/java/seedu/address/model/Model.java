@@ -107,6 +107,9 @@ public interface Model {
     /** Set active diet plan */
     void setActiveDiet(DietPlan dietPlan);
 
+    /** Get active diet plan */
+    DietPlan getActiveDiet();
+
     //=========== FoodIntakeList Accessors ==============================================================
 
     /**

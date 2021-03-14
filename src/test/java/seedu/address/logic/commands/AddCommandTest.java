@@ -147,6 +147,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public DietPlan getActiveDiet() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addFoodIntake(LocalDate date, Food food) {
             throw new AssertionError("This method should not be called.");
         }
