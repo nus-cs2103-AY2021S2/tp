@@ -1,10 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
@@ -12,14 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Optional;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -55,11 +49,10 @@ public class LockCommandTest {
     }
 
     @Test
-    public void execute_useSamePassword_success() throws CommandException {
+    public void execute_useSamePassword_success() throws CommandException, NoSuchPaddingException, NoSuchAlgorithmException, IOException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
         LockCommand setOldPassword = new LockCommand(DEFAULT_PASSWORD);
         setOldPassword.execute(model);
-        UnlockCommand removePassword = new UnlockCommand(DEFAULT_PASSWORD);
-        removePassword.execute(model);
+        model.getAuthentication().removePassword();
         LockCommand restorePassword = new LockCommand();
         restorePassword.execute(model);
         assertEquals(DEFAULT_PASSWORD, model.getAuthentication().getPassword());
