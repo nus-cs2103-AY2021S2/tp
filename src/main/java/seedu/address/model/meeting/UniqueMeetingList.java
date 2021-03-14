@@ -24,6 +24,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         return internalList.stream().anyMatch(toCheck::isInConflict);
     }
 
+    /**
+     * Temporary header
+     * @param toAdd
+     */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -32,6 +36,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Temporary
+     * @param target
+     * @param editedClient
+     */
     public void setMeeting(Meeting target, Meeting editedClient) {
         requireAllNonNull(target, editedClient);
 
@@ -47,6 +56,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         internalList.set(index, editedClient);
     }
 
+    /**
+     * Temporary
+     * @param toRemove
+     */
     public void remove(Meeting toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {

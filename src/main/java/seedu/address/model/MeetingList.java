@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -78,7 +77,8 @@ public class MeetingList implements ReadOnlyMeetingList {
     /**
      * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
      * {@code target} must exist in the address book.
-     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the meeting list.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting
+     * in the meeting list.
      */
     public void setMeetings(Meeting target, Meeting editedMeeting) {
         requireNonNull(editedMeeting);

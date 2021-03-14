@@ -12,13 +12,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.client.Client;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
-import seedu.address.model.tag.Tag;
-
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Meeting}.
@@ -85,12 +84,13 @@ class JsonAdaptedMeeting {
         final Name modelClient = new Name(client);
 
         if (dateTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LocalDateTime.class.getSimpleName()));
         }
 
-//        if (!Phone.isValidPhone(phone)) {
-//            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-//        }
+        //        if (!Phone.isValidPhone(phone)) {
+        //            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        //        }
         final LocalDateTime modelDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.BASIC_ISO_DATE);
 
         if (address == null) {
@@ -102,7 +102,8 @@ class JsonAdaptedMeeting {
         final Address modelAddress = new Address(address);
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
