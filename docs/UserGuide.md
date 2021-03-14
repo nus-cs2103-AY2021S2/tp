@@ -107,7 +107,6 @@ Examples:
 *`findbook fiction` returns books related to fiction
 *`findbook history [American History]` returns books related to history, especially American history.
 
-
 ### Listing all readers : `listreader`
 
 Shows a list of all readers in SmartLib.
