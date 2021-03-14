@@ -106,7 +106,7 @@ Format: `search CONSTRAINT`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The attribute searched is defined by the same prefixes used for adding people.
@@ -116,7 +116,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`
 
->**Examples**:
+>**Examples:**
 >* `find n/John` returns `john` and `John Doe`
 >* `find a/Clementi` returns `John Doe`, `Mary Apple`<br>
   ![result for 'find alex david'](images/findCommandExample.png)
