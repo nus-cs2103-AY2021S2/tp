@@ -1,7 +1,9 @@
 package seedu.dictionote.model.note;
 
+import static java.time.LocalDateTime.now;
 import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -17,6 +19,9 @@ public class Note {
     private final String note;
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
+    private LocalDateTime createTime;
+    private LocalDateTime lastEditTime;
+    private Boolean isDone;
 
     /**
      * Every field must be present and not null.
@@ -25,6 +30,44 @@ public class Note {
         requireAllNonNull(note, tags);
         this.note = note;
         this.tags.addAll(tags);
+        this.createTime = now();
+        this.lastEditTime = now();
+        this.isDone = false;
+    }
+
+    private Note(String note, Set<Tag> tags, LocalDateTime createdTime, Boolean isDone) {
+        requireAllNonNull(note, tags);
+        this.note = note;
+        this.tags.addAll(tags);
+        this.createTime = createdTime;
+        this.lastEditTime = now();
+        this.isDone = isDone;
+    }
+
+    private Note(String note, Set<Tag> tags, LocalDateTime createdTime) {
+        requireAllNonNull(note, tags);
+        this.note = note;
+        this.tags.addAll(tags);
+        this.createTime = createdTime;
+        this.lastEditTime = now();
+        this.isDone = true;
+    }
+
+    /**
+     * Method to call the above private constructor for note.
+     */
+
+    public Note createEditedNote(String note, Set<Tag> tags, LocalDateTime createdTime,
+                                 Boolean isDone) {
+        return new Note(note, tags, createdTime, isDone);
+    }
+
+    /**
+     * Method to call the above private constructor for note.
+     */
+
+    public Note markAsDoneNote(String note, Set<Tag> tags, LocalDateTime createdTime) {
+        return new Note(note, tags, createdTime);
     }
 
     public String getNote() {
@@ -38,9 +81,26 @@ public class Note {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public LocalDateTime getLastEditTime() {
+        return lastEditTime;
+    }
+
+    public Boolean getIsDone() {
+        return isDone;
+    }
+
+    public void setLastEditTime(LocalDateTime time) {
+        this.lastEditTime = time;
+    }
     /**
      * Returns true if both notes have the same note.
      */
+
     public boolean isSameNote(Note otherNote) {
         if (otherNote == this) {
             return true;
@@ -85,6 +145,11 @@ public class Note {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Time Created: ");
+        builder.append(this.createTime.toString());
+        builder.append("; Last Edited: ");
+        builder.append(this.lastEditTime.toString());
+
         return builder.toString();
     }
 }

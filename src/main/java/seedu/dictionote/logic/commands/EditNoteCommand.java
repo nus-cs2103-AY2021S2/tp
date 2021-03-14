@@ -1,5 +1,6 @@
 package seedu.dictionote.logic.commands;
 
+import static java.time.LocalDateTime.now;
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
@@ -64,6 +65,7 @@ public class EditNoteCommand extends Command {
 
         Note noteToEdit = lastShownList.get(index.getZeroBased());
         Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
+        editedNote.setLastEditTime(now());
 
         if (!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
@@ -83,7 +85,8 @@ public class EditNoteCommand extends Command {
 
         Note updatedNote = editNoteDescriptor.getNote().orElse(noteToEdit);
         Set<Tag> updatedTags = editNoteDescriptor.getTags().orElse(noteToEdit.getTags());
-        return new Note(updatedNote.getNote(), updatedTags);
+        return updatedNote.createEditedNote(updatedNote.getNote(), updatedTags,
+                updatedNote.getCreateTime(), updatedNote.getIsDone());
     }
 
     @Override
