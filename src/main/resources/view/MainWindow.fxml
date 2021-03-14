@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="600" minHeight="800" onCloseRequest="#handleExit">
+         title="Address App" minWidth="820" minHeight="800" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -66,12 +66,12 @@
               <StackPane fx:id="freePersonListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </children>
             </VBox>
-            <HBox GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="pane-with-border" HBox.hgrow="ALWAYS" minWidth="400" prefWidth="400">
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="pane-with-border" HBox.hgrow="ALWAYS" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
-              <StackPane fx:id="takenPersonListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
-            </HBox>
+              <StackPane fx:id="takenPersonListPanelPlaceholder" />
+            </VBox>
           </GridPane>
         </VBox>
 
