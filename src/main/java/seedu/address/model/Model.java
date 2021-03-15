@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.Schedule;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    boolean hasSchedule(Schedule toAdd);
+
+    void addSchedule(Schedule toAdd);
 }
