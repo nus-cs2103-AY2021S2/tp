@@ -123,14 +123,17 @@ public class ResultDisplay extends UiPart<Region> {
      */
     public void apiFeedbackHelper(String textFeedback, Endpoint endpoint) {
         Label method = new Label(String.format("Method: %s", endpoint.getMethod().toString()));
-        Label statusCode = new Label(String.format("Status: %s", endpoint.getResponse().getStatusCode()));
+        Label statusCode = new Label(String.format("Status: %s %s", endpoint.getResponse().getStatusCode(),
+                endpoint.getResponse().getReasonPhrase()));
         Label responseTime = new Label(String.format("Time: %s", endpoint.getResponse().getResponseTime()));
+        Label reasonPhrase = new Label(String.format("Time: %s", endpoint.getResponse().getResponseTime()));
         String colorCode = getColorCode(endpoint.getResponse().getStatusCode());
         method.setStyle(colorCode);
         statusCode.setStyle(colorCode);
         responseTime.setStyle(colorCode);
+        reasonPhrase.setStyle(colorCode);
         responseMeta.getChildren().clear();
-        responseMeta.getChildren().addAll(method, statusCode, responseTime);
+        responseMeta.getChildren().addAll(method, statusCode, responseTime, reasonPhrase);
         resultDisplay.setText(textFeedback);
     }
 
