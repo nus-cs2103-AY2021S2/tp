@@ -1,13 +1,5 @@
 package seedu.dictionote.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.dictionote.commons.core.Messages;
-import seedu.dictionote.commons.core.index.Index;
-import seedu.dictionote.model.Model;
-import seedu.dictionote.model.ModelManager;
-import seedu.dictionote.model.UserPrefs;
-import seedu.dictionote.model.note.Note;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -18,6 +10,15 @@ import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.dictionote.commons.core.Messages;
+import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.model.Model;
+import seedu.dictionote.model.ModelManager;
+import seedu.dictionote.model.UserPrefs;
+import seedu.dictionote.model.note.Note;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -85,7 +86,7 @@ public class ShowNoteCommandTest {
         ShowNoteCommand showSecondCommand = new ShowNoteCommand(INDEX_SECOND_NOTE);
 
         // same object -> returns true
-        assertTrue(showFirstCommand.equals(showSecondCommand));
+        assertTrue(showFirstCommand.equals(showFirstCommand));
 
         // same values -> returns true
         ShowNoteCommand showFirstCommandCopy = new ShowNoteCommand(INDEX_FIRST_NOTE);

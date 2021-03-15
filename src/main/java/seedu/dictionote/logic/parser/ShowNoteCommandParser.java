@@ -1,5 +1,6 @@
 package seedu.dictionote.logic.parser;
 
+import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_NOTE_FORMAT;
 
 import seedu.dictionote.commons.core.index.Index;
@@ -21,7 +22,7 @@ public class ShowNoteCommandParser implements Parser<ShowNoteCommand> {
             return new ShowNoteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_NOTE_FORMAT, ShowNoteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowNoteCommand.MESSAGE_USAGE), pe);
         }
     }
 }

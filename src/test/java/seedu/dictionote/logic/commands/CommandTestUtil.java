@@ -148,7 +148,7 @@ public class CommandTestUtil {
         Predicate<Note> showSelectedNotesPredicate = x -> x.equals(note);
         model.updateFilteredNoteList(showSelectedNotesPredicate);
 
-        assertEquals(1, model.getFilteredContactList().size());
+        assertEquals(1, model.getFilteredNoteList().size());
     }
 
 }

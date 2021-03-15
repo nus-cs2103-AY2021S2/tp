@@ -140,7 +140,8 @@ public class Note {
 
         Note otherNote = (Note) other;
         return otherNote.getNote().equals(getNote())
-                && otherNote.getTags().equals(getTags());
+                && otherNote.getTags().equals(getTags())
+                && otherNote.isDone().equals(isDone());
     }
 
     @Override

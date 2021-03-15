@@ -45,4 +45,11 @@ public class ShowNoteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SHOW_NOTE_SUCCESS, noteToShow),
                 UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
+    
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ShowNoteCommand // instanceof handles nulls
+                && targetIndex.equals(((ShowNoteCommand) other).targetIndex)); // state check
+    }
 }
