@@ -13,8 +13,8 @@ public class EmailCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        StringBuilder concatenatedEmails = new StringBuilder();
         requireNonNull(model);
+        StringBuilder concatenatedEmails = new StringBuilder();
         List<Student> studentList = model.getFilteredStudentList();
 
         for (Student stu : studentList) {
