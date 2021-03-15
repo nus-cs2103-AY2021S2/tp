@@ -12,7 +12,6 @@ import seedu.module.commons.core.index.Index;
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.logic.commands.Command;
 import seedu.module.logic.commands.DeleteTagCommand;
-import seedu.module.logic.commands.TagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 import seedu.module.model.tag.Tag;
 
