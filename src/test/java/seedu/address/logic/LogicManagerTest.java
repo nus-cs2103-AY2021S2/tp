@@ -31,7 +31,6 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentScheduleStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.AppointmentScheduleBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -68,8 +67,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListPatientCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListPatientCommand.MESSAGE_SUCCESS, model);
+        String listPatientCommand = ListPatientCommand.COMMAND_WORD;
+        assertCommandSuccess(listPatientCommand, ListPatientCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -135,7 +134,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(new AppointmentScheduleBuilder().build(), model.getAddressBook(),
+        Model expectedModel = new ModelManager(model.getAppointmentSchedule(), model.getAddressBook(),
                 new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }

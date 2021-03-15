@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAppointmentSchedule;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.testutil.AppointmentScheduleBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListPatientCommand.
@@ -23,9 +23,9 @@ public class ListPatientCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(new AppointmentScheduleBuilder().build(), getTypicalAddressBook(),
+        model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalAddressBook(),
                 new UserPrefs());
-        expectedModel = new ModelManager(new AppointmentScheduleBuilder().build(), model.getAddressBook(),
+        expectedModel = new ModelManager(getTypicalAppointmentSchedule(), model.getAddressBook(),
                 new UserPrefs());
     }
 
