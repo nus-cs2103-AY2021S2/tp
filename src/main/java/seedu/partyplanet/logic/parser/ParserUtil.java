@@ -140,10 +140,10 @@ public class ParserUtil {
         }
         try {
             return new Birthday(trimmedBirthday);
-        } catch (IllegalArgumentException err) { // birthday year exceeds current year
-            throw new ParseException((Birthday.MESSAGE_YEAR_CONSTRAINTS));
         } catch (DateTimeException err) { // date in wrong format
-            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+            throw new ParseException((Birthday.MESSAGE_CONSTRAINTS));
+        } catch (IllegalArgumentException err) { // birthday year exceeds current year
+            throw new ParseException(Birthday.MESSAGE_YEAR_CONSTRAINTS);
         }
     }
 
