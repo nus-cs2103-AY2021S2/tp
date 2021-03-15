@@ -156,16 +156,28 @@ Examples:
 
 Shows items that are expiring soon.
 
-Format: `reminder numOfDays`
+Format 1: `reminder numOfDays`
 
 * `reminder 7` will give you a list containing all items that are expiring in 7 days.
-*  Items without expiry date will not be shown.*
+*  Items without expiry date will not be shown.
 *  The numOfDays **must be a positive integer** 1, 2, 3, …​ 
 
 Examples:
 * Given today is 2020-03-10, and the inventory has 2 items: chocolate with expiry date of 2020-03-16 and banana with expiry date of 2020-03-19.
     * `reminder 7` returns chocolate with expiry date of 2020-03-16 only.
     * `reminder 10` returns both chocolate with expiry date of 2020-03-16 and banana with expiry date of 2020-03-19.
+    
+Format 2: `reminder numOfDays [TIME_UNIT]`
+
+* `reminder 2 weeks` will give you a list containing all items that are expiring in 2 weeks.
+*  Items without expiry date will not be shown.
+*  The numOfDays **must be a positive integer** 1, 2, 3, …​
+*  The time unit **must be days or weeks**
+
+Examples:
+* Given today is 2020-03-10, and the inventory has 2 items: chocolate with expiry date of 2020-03-23 and banana with expiry date of 2020-03-26.
+    * `reminder 2 weeks` returns chocolate with expiry date of 2020-03-23 only.
+    * `reminder 3 weeks` returns both chocolate with expiry date of 2020-03-23 and banana with expiry date of 2020-03-26.
 
 ### Clearing all entries : `clear`
 
