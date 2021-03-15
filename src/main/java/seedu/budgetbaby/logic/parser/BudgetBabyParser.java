@@ -7,10 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.budgetbaby.ablogic.commands.HelpCommand;
-import seedu.budgetbaby.logic.commands.AddFrCommand;
-import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
-import seedu.budgetbaby.logic.commands.DeleteFrCommand;
-import seedu.budgetbaby.logic.commands.SetBudgetCommand;
+import seedu.budgetbaby.logic.commands.*;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
 /**
@@ -48,6 +45,9 @@ public class BudgetBabyParser {
 
         case SetBudgetCommand.COMMAND_WORD:
             return new SetBudgetCommandParser().parse(arguments);
+
+        case CategoryFrCommand.COMMAND_WORD:
+            return new CategoryFrCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

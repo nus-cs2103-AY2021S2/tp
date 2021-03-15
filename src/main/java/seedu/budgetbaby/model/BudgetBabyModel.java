@@ -8,6 +8,7 @@ import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
+import seedu.budgetbaby.model.record.FinancialRecordList;
 
 /**
  * The API of the Model component.
@@ -116,6 +117,8 @@ public interface BudgetBabyModel {
      * Adds the given financial record.
      */
     void addFinancialRecord(FinancialRecord record);
+
+    void updateFinancialRecord(FinancialRecordList frList);
 
     /**
      * Replaces the given financial record {@code target} with {@code editedRecord}.
