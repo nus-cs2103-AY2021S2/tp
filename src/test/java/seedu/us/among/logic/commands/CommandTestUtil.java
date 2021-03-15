@@ -30,6 +30,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_RANDOM =
             "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2";
     public static final String VALID_ADDRESS_FACT = "https://cat-fact.herokuapp.com/facts";
+    public static final String VALID_DATA_PAIR = "{key: value}";
+    public static final String VALID_HEADER_PAIR = "\"key: value\"";
     public static final String VALID_TAG_CAT = "cat";
     public static final String VALID_TAG_COOL = "cool";
     public static final String VALID_TAG_1 = "tag1";
@@ -53,8 +55,9 @@ public class CommandTestUtil {
 
     static {
         DESC_GET = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET).withAddress(VALID_ADDRESS_RANDOM)
-                .withTags(VALID_TAG_COOL).build();
+                .withData(VALID_DATA_PAIR).withHeaders(VALID_HEADER_PAIR).withTags(VALID_TAG_COOL).build();
         DESC_POST = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).withAddress(VALID_ADDRESS_FACT)
+                .withData(VALID_DATA_PAIR).withHeaders(VALID_HEADER_PAIR)
                 .withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
     }
 
@@ -68,7 +71,6 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            System.out.println(result.getFeedbackToUser());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException | RequestException ce) {

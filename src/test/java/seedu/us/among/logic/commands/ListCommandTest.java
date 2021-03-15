@@ -37,5 +37,5 @@ public class ListCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    } //to-do uncomment when showEndpointAtIndex is fixed
+    }
 }

@@ -67,7 +67,7 @@ public class EndpointBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * Parses the {@code headers} into a {@code Set<Header>} and set it to the
      * {@code Endpoint} that we are building.
      */
     public EndpointBuilder withHeaders(String... headers) {

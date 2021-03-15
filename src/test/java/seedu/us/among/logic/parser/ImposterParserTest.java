@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_DATA_PAIR;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR;
 import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
 
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 //import seedu.us.among.logic.commands.AddCommand;
+import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.ClearCommand;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.commands.ExitCommand;
@@ -32,14 +35,12 @@ public class ImposterParserTest {
 
     private final ImposterParser parser = new ImposterParser();
 
-    /*
     @Test
     public void parseCommand_add() throws Exception {
         Endpoint endpoint = new EndpointBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(EndpointUtil.getAddCommand(endpoint));
         assertEquals(new AddCommand(endpoint), command);
     }
-    */
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -56,11 +57,11 @@ public class ImposterParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Endpoint endpoint = new EndpointBuilder().build();
+        Endpoint endpoint = new EndpointBuilder().withHeaders(VALID_HEADER_PAIR).withData(VALID_DATA_PAIR).build();
         EditCommand.EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder(endpoint).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_ENDPOINT.getOneBased() + " " + EndpointUtil.getEditEndpointDescriptorDetails(descriptor));
-        // assertEquals(new EditCommand(INDEX_FIRST_ENDPOINT, descriptor), command); //to-do
+        assertEquals(new EditCommand(INDEX_FIRST_ENDPOINT, descriptor), command); //to-do
     }
 
     @Test
