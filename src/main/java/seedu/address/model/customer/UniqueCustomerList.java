@@ -72,9 +72,9 @@ public class UniqueCustomerList implements Iterable<Customer> {
      * Removes the equivalent customer from the list.
      * The customer must exist in the list.
      */
-    public void remove(Customer toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+    public void delete(Customer toDelete) {
+        requireNonNull(toDelete);
+        if (!internalList.remove(toDelete)) {
             throw new CustomerNotFoundException();
         }
     }

@@ -111,18 +111,18 @@ public class UniqueCustomerListTest {
 
     @Test
     public void remove_nullCustomer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCustomerList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniqueCustomerList.delete(null));
     }
 
     @Test
     public void remove_customerDoesNotExist_throwsCustomerNotFoundException() {
-        assertThrows(CustomerNotFoundException.class, () -> uniqueCustomerList.remove(ALICE));
+        assertThrows(CustomerNotFoundException.class, () -> uniqueCustomerList.delete(ALICE));
     }
 
     @Test
     public void remove_existingCustomer_removesCustomer() {
         uniqueCustomerList.add(ALICE);
-        uniqueCustomerList.remove(ALICE);
+        uniqueCustomerList.delete(ALICE);
         UniqueCustomerList expectedUniqueCustomerList = new UniqueCustomerList();
         assertEquals(expectedUniqueCustomerList, uniqueCustomerList);
     }

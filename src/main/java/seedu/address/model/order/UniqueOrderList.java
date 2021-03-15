@@ -71,9 +71,9 @@ public class UniqueOrderList implements Iterable<Order> {
      * Removes the equivalent order from the list.
      * The order must exist in the list.
      */
-    public void remove(Order toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+    public void delete(Order toDelete) {
+        requireNonNull(toDelete);
+        if (!internalList.remove(toDelete)) {
             throw new OrderNotFoundException();
         }
     }
