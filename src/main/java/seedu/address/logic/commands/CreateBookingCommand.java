@@ -10,11 +10,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.person.Person;
+import seedu.address.model.venue.Venue;
 
 /**
  * Adds a person to the address book.
  */
-public class AddBookingCommand extends Command {
+public class CreateBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "create_booking";
 
@@ -22,8 +24,8 @@ public class AddBookingCommand extends Command {
             + "Parameters: "
             + PREFIX_BOOKER + "BOOKER "
             + PREFIX_VENUE + "VENUE "
-            + PREFIX_DESCRIPTION + "DATETIME"
-            + PREFIX_BOOKINGSTART + "DATETIME"
+            + PREFIX_DESCRIPTION + "DATETIME "
+            + PREFIX_BOOKINGSTART + "DATETIME "
             + PREFIX_BOOKINGEND + "DATETIME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_BOOKER + "John Doe "
@@ -33,16 +35,23 @@ public class AddBookingCommand extends Command {
             + PREFIX_BOOKINGEND + "2012-01-31 23:59:59";
 
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This booking already exists in the address book";
-
+    public static final String MESSAGE_DUPLICATE_PERSON = "This booking already exists in the address book.";
+    public static final String MESSAGE_INVALID_TIME =
+            "This booking's starting time is not earlier than the ending time.";
+    public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
+    public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
     private final Booking toAdd;
+    private final Venue venueInBooking;
+    private final Person personInBooking;
 
     /**
-     * Creates an AddBookingCommand to add the specified {@code Booking}
+     * Creates an CreateBookingCommand to add the specified {@code Booking}
      */
-    public AddBookingCommand(Booking booking) {
+    public CreateBookingCommand(Booking booking) {
         requireNonNull(booking);
         toAdd = booking;
+        venueInBooking = booking.getVenue();
+        personInBooking = booking.getBooker();
     }
 
 
@@ -54,6 +63,18 @@ public class AddBookingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (!toAdd.isValidTime()) {
+            throw new CommandException(MESSAGE_INVALID_TIME);
+        }
+
+        if (!model.hasVenue(venueInBooking)) {
+            throw new CommandException(MESSAGE_INVALID_VENUE);
+        }
+
+        if (!model.hasPerson(personInBooking)) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+
         model.addBooking(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
@@ -62,7 +83,7 @@ public class AddBookingCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddBookingCommand // instanceof handles nulls
-                && toAdd.equals(((AddBookingCommand) other).toAdd));
+                || (other instanceof CreateBookingCommand // instanceof handles nulls
+                && toAdd.equals(((CreateBookingCommand) other).toAdd));
     }
 }

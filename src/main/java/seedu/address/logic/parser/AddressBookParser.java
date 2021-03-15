@@ -6,11 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddBookingCommand;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddVenueCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateBookingCommand;
+import seedu.address.logic.commands.CreateVenueCommand;
 import seedu.address.logic.commands.DeleteBookingCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteVenueCommand;
@@ -84,11 +84,11 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddBookingCommand.COMMAND_WORD:
-            return new AddBookingCommandParser().parse(arguments);
+        case CreateBookingCommand.COMMAND_WORD:
+            return new CreateBookingCommandParser().parse(arguments);
 
-        case AddVenueCommand.COMMAND_WORD:
-            return new AddVenueCommandParser().parse(arguments);
+        case CreateVenueCommand.COMMAND_WORD:
+            return new CreateVenueCommandParser().parse(arguments);
 
         case DeleteBookingCommand.COMMAND_WORD:
             return new DeleteBookingCommandParser().parse(arguments);

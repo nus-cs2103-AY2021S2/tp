@@ -5,6 +5,8 @@ import static seedu.address.testutil.TypicalVenues.VENUE1;
 import java.time.LocalDateTime;
 
 import seedu.address.model.booking.Booking;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
 /**
@@ -12,14 +14,14 @@ import seedu.address.model.venue.Venue;
  */
 public class BookingBuilder {
 
-    public static final String DEFAULT_BOOKER = "John";
+    public static final Person DEFAULT_BOOKER = new Person(new Name("John"));
     public static final Venue DEFAULT_VENUE = VENUE1;
     private static final String DEFAULT_DESCRIPTION = "Good";
     private static final LocalDateTime DEFAULT_BOOKING_START = LocalDateTime.of(2021, 03, 01, 12, 30, 00);
     private static final LocalDateTime DEFAULT_BOOKING_END = LocalDateTime.of(2021, 03, 01, 12, 30, 00);
     private static final int DEFAULT_ID = 1;
 
-    private String booker;
+    private Person booker;
     private String description;
     private Venue venue;
     private LocalDateTime bookingStart;
@@ -53,7 +55,7 @@ public class BookingBuilder {
     /**
      * Sets the {@code booker} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withBooker(String booker) {
+    public BookingBuilder withBooker(Person booker) {
         this.booker = booker;
         return this;
     }
