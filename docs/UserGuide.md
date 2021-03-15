@@ -151,9 +151,9 @@ Restore FlashBack to the state before the previous command was executed.
 
 Examples:
 * `delete 3`  
-`delete 2`  
-`undo` will reverse the `delete 3` command  
-`undo` will reverse the `delete 2` command
+`clear`  
+`undo` will reverse the `clear` command  
+`undo` will reverse the `delete 3` command
 
 Format: `undo`
 
