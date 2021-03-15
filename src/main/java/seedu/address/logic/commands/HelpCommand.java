@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -65,8 +66,10 @@ public class HelpCommand extends Command {
         String plainCommandInfo = "";
 
         try {
-            String projectDir = System.getProperty("user.dir");
-            BufferedReader reader = new BufferedReader(new FileReader(projectDir + "/docs/UserGuide.md"));
+            // String projectDir = System.getProperty("user.dir");
+            // BufferedReader reader = new BufferedReader(new FileReader(projectDir + "/docs/UserGuide.md"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    HelpCommand.class.getClassLoader().getResourceAsStream("UserGuideCopy.md")));
 
             String currLine = reader.readLine();
             while (currLine != null && !currLine.equals(FEATURES_HEADING)) {
@@ -109,8 +112,10 @@ public class HelpCommand extends Command {
 
     private CommandResult executeNonSpecific() {
         try {
-            String projectDir = System.getProperty("user.dir");
-            BufferedReader reader = new BufferedReader(new FileReader(projectDir + "/docs/UserGuide.md"));
+            // String projectDir = System.getProperty("user.dir");
+            // BufferedReader reader = new BufferedReader(new FileReader(projectDir + "/docs/UserGuide.md"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    HelpCommand.class.getClassLoader().getResourceAsStream("UserGuideCopy.md")));
 
             String currLine = reader.readLine();
             while (currLine != null && !currLine.equals("--------|------------------")) {
