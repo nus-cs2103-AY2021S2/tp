@@ -27,7 +27,6 @@ public class AddFrCommand extends BudgetBabyCommand {
         + PREFIX_CATEGORY + "Food";
 
     public static final String MESSAGE_SUCCESS = "New financial record added: %1$s";
-    //    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final FinancialRecord toAdd;
 

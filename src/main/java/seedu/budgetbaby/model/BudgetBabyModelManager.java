@@ -25,6 +25,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     private final BudgetTracker budgetTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Month> filteredMonths;
+    private final Month currentDisplayMonth;
     private final FilteredList<FinancialRecord> filteredFinancialRecords;
 
     /**
@@ -39,6 +40,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         this.budgetTracker = new BudgetTracker(budgetTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMonths = new FilteredList<>(this.budgetTracker.getMonthList());
+        currentDisplayMonth = this.budgetTracker.getCurrentDisplayMonth();
         filteredFinancialRecords = new FilteredList<>(
             this.budgetTracker.getFinancialRecordListOfMonth(YearMonth.now()));
     }
@@ -146,6 +148,10 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         filteredMonths.setPredicate(predicate);
     }
 
+    @Override
+    public Month getCurrentDisplayMonth() {
+        return currentDisplayMonth;
+    }
 
     @Override
     public ObservableList<FinancialRecord> getFilteredFinancialRecordList() {

@@ -49,7 +49,11 @@ class JsonSerializableBudgetTracker {
         BudgetTracker budgetTracker = new BudgetTracker();
         for (JsonAdaptedMonth jsonAdaptedMonth : months) {
             Month month = jsonAdaptedMonth.toModelType();
-            budgetTracker.addMonth(month);
+            if (budgetTracker.hasMonth(month)) {
+                budgetTracker.setMonth(budgetTracker.findMonth(month.getMonth()), month);
+            } else {
+                budgetTracker.addMonth(month);
+            }
         }
         return budgetTracker;
     }
