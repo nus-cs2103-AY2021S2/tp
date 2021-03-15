@@ -1,10 +1,6 @@
 package seedu.address.logic.commands.editcommand;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.addcommand.AddAssignmentCommand;
-import seedu.address.logic.commands.addcommand.AddExamCommand;
-import seedu.address.logic.commands.addcommand.AddModuleCommand;
-import seedu.address.logic.commands.addcommand.AddPersonCommand;
 
 public abstract class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
