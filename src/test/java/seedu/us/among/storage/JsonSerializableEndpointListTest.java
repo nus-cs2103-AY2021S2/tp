@@ -30,7 +30,7 @@ public class JsonSerializableEndpointListTest {
         EndpointList endpointListFromFile = dataFromFile.toModelType();
         EndpointList typicalEndpointList = TypicalEndpoints.getTypicalEndpointList();
         assertEquals(endpointListFromFile, typicalEndpointList);
-    } //to-do
+    }
 
     @Test
     public void toModelType_invalidEndpointFile_throwsIllegalValueException() throws Exception {
