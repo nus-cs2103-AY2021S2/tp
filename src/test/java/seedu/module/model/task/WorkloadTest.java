@@ -45,4 +45,17 @@ public class WorkloadTest {
         assertEquals(new Workload("2").displayUi(), Workload.MEDIUM_WORKLOAD);
         assertEquals(new Workload("3").displayUi(), Workload.HIGH_WORKLOAD);
     }
+
+    @Test
+    public void equals() {
+        Workload firstWorkload = new Workload("1");
+        Workload secondWorkload = new Workload("1");
+        Workload thirdWorkload = new Workload("2");
+        String somethingElse = "Not Workload";
+
+        assertTrue(firstWorkload.equals(firstWorkload));
+        assertTrue(firstWorkload.equals(secondWorkload));
+        assertFalse(firstWorkload.equals(thirdWorkload));
+        assertFalse(firstWorkload.equals(somethingElse));
+    }
 }
