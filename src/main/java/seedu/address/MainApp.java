@@ -17,9 +17,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.ReadOnlyModulePlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.RemindMe;
+import seedu.address.model.ModulePlanner;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
@@ -58,9 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         RemindMeStorage remindMeStorage = new JsonRemindMeStorage(userPrefs.getRemindMeFilePath());
-        storage = new StorageManager(addressBookStorage, remindMeStorage, userPrefsStorage);
+        storage = new StorageManager(remindMeStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,8 +76,8 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyRemindMe> remindMeOptional;
-        ReadOnlyRemindMe initialData;
+        Optional<ReadOnlyModulePlanner> remindMeOptional;
+        ReadOnlyModulePlanner initialData;
         try {
             remindMeOptional = storage.readRemindMe();
             if (!remindMeOptional.isPresent()) {
@@ -88,10 +87,10 @@ public class MainApp extends Application {
             storage.saveRemindMe(initialData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new RemindMe();
+            initialData = new ModulePlanner();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new RemindMe();
+            initialData = new ModulePlanner();
         }
 
         return new ModelManager(initialData, userPrefs);

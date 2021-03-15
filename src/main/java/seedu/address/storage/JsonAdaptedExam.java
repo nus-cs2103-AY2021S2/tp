@@ -17,15 +17,15 @@ import seedu.address.model.module.Exam;
  * Jackson-friendly version of {@link Exam}.
  */
 class JsonAdaptedExam {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assignment's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Exam's %s field is missing!";
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedExam.class);
     public final String examDate;
 
     /**
-     * Constructs a {@code JsonAdaptedExam} with the given {@code deadline}.
+     * Constructs a {@code JsonAdaptedExam} with the given {@code examDate}.
      */
     @JsonCreator
-    public JsonAdaptedExam(@JsonProperty("deadline") String examDate) {
+    public JsonAdaptedExam(String examDate) {
         this.examDate = examDate;
     }
 
@@ -33,11 +33,8 @@ class JsonAdaptedExam {
      * Converts a given {@code source} into this class for Jackson use.
      */
     public JsonAdaptedExam(Exam source) {
-        if (source != null) {
-            examDate = source.examDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
-        } else {
-            examDate = "Empty";
-        }
+        examDate = source.examDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+
     }
 
 

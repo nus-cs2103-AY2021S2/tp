@@ -5,15 +5,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAY
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalRemindMe.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.logging.Logger;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
@@ -22,7 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.ReadOnlyModulePlanner;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -33,7 +35,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
-
+    private static final Logger logger = LogsCenter.getLogger(JsonRemindMeStorage.class);
     @TempDir
     public Path temporaryFolder;
 
@@ -42,11 +44,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonRemindMeStorage remindMeStorage = new JsonRemindMeStorage(temporaryFolder.resolve("remindMe.json"));
+        JsonRemindMeStorage remindMeStorage =
+            new JsonRemindMeStorage(temporaryFolder.resolve("remindMe.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, remindMeStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(remindMeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,18 +72,17 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+
         JsonRemindMeStorage remindMeStorage =
-                new JsonRemindMeIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionRemindMe.json"));
+            new JsonRemindMeIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionRemindMe.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, remindMeStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(remindMeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addPersonCommand = AddPersonCommand.COMMAND_WORD + NAME_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(ALICE).withTags().build();
+        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -113,7 +113,9 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
+
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
+
     }
 
     /**
@@ -170,7 +172,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveRemindMe(ReadOnlyRemindMe remindMeApp, Path filePath) throws IOException {
+        public void saveRemindMe(ReadOnlyModulePlanner readOnlyModulePlanner, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

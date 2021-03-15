@@ -179,7 +179,17 @@ public class ExamList {
             return false;
         }
 
-        ExamList otherExamList = (ExamList) other;
-        return otherExamList.getExams().equals(exams);
+        ExamList otherList = (ExamList) other;
+        if (exams.size() != otherList.size()) {
+            return false;
+        } else {
+            for (int i = 0; i < otherList.size(); i++) {
+                if (!exams.get(i).equals(otherList.exams.get(i))) {
+                    return false;
+                };
+            }
+        }
+
+        return true;
     }
 }

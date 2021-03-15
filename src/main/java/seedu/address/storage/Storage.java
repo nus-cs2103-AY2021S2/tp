@@ -6,14 +6,14 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.ReadOnlyModulePlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, RemindMeStorage, UserPrefsStorage {
+public interface Storage extends RemindMeStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -22,19 +22,10 @@ public interface Storage extends AddressBookStorage, RemindMeStorage, UserPrefsS
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Optional<ReadOnlyModulePlanner> readRemindMe() throws DataConversionException, IOException;
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
-
-    @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
-
-    @Override
-    Optional<ReadOnlyRemindMe> readRemindMe() throws DataConversionException, IOException;
-
-    @Override
-    void saveRemindMe(ReadOnlyRemindMe remindMeApp) throws IOException;
+    void saveRemindMe(ReadOnlyModulePlanner remindMeApp) throws IOException;
 
 
 }

@@ -3,15 +3,21 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalRemindMe.ALICE;
+import static seedu.address.testutil.TypicalRemindMe.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.RemindMeBuilder;
 
 public class ModelManagerTest {
 
@@ -21,7 +27,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new RemindMe(), new RemindMe(modelManager.getRemindMe()));
+        assertEquals(new ModulePlanner(), new ModulePlanner(modelManager.getRemindMe()));
     }
 
     @Test
@@ -61,7 +67,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setRemindMeFilePath_validPath_setRemindMeFilePath() {
+    public void setRemindMeFilePath_validPath_setsRemindMeFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setRemindMeFilePath(path);
         assertEquals(path, modelManager.getRemindMeFilePath());
@@ -88,17 +94,15 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
-    /*@Test
+    @Test
     public void equals() {
-        RemindMe remindMe = new RemindMeBuilder().withPerson(AlICE).withModule()
-        AddressBook addressBook = new RemindMeBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
-        RemindMe modulePlanner = new RemindMe();
+        ModulePlanner modulePlanner = new RemindMeBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        ModulePlanner differentModulePlanner = new ModulePlanner();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, modulePlanner, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, modulePlanner, userPrefs);
+        modelManager = new ModelManager(modulePlanner, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(modulePlanner, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -111,12 +115,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, modulePlanner, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentModulePlanner, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, modulePlanner, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(modulePlanner, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -124,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, modulePlanner, differentUserPrefs)));
-    }*/
+        assertFalse(modelManager.equals(new ModelManager(modulePlanner, differentUserPrefs)));
+    }
 }

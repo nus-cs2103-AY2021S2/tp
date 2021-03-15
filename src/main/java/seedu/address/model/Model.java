@@ -123,10 +123,10 @@ public interface Model {
     /**
      * Replaces remindMe data with the data in {@code remindMe}.
      */
-    void setRemindMe(RemindMe remindMe);
+    void setRemindMe(ModulePlanner modulePlanner);
 
     /** Returns the RemindMe */
-    ReadOnlyRemindMe getRemindMe();
+    ReadOnlyModulePlanner getRemindMe();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.

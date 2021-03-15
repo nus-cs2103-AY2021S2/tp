@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
-import seedu.address.model.RemindMe;
+import seedu.address.model.ModulePlanner;
 
 /**
  * Clears the address book.
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setRemindMe(new RemindMe());
+        model.setRemindMe(new ModulePlanner());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

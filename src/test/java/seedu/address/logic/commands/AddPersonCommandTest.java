@@ -17,10 +17,12 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.ModulePlanner;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyModulePlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.RemindMe;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
@@ -104,7 +106,6 @@ public class AddPersonCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-
         @Override
         public Path getRemindMeFilePath() {
             throw new AssertionError("This method should not be called.");
@@ -115,11 +116,11 @@ public class AddPersonCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
         @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
-
 
         @Override
         public boolean hasPerson(Person person) {
@@ -177,14 +178,15 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setRemindMe(RemindMe modulePlanner) {
+        public void setRemindMe(ModulePlanner modulePlanner) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyRemindMe getRemindMe() {
+        public ReadOnlyModulePlanner getRemindMe() {
             throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate) {

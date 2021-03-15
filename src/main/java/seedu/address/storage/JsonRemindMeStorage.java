@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.ReadOnlyModulePlanner;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -32,7 +32,7 @@ public class JsonRemindMeStorage implements RemindMeStorage {
     }
 
     @Override
-    public Optional<ReadOnlyRemindMe> readRemindMe() throws DataConversionException, IOException {
+    public Optional<ReadOnlyModulePlanner> readRemindMe() throws DataConversionException, IOException {
         return readRemindMe(filePath);
     }
 
@@ -42,11 +42,11 @@ public class JsonRemindMeStorage implements RemindMeStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyRemindMe> readRemindMe(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyModulePlanner> readRemindMe(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableRemindMeApp> jsonRemindMeApp = JsonUtil.readJsonFile(
-                filePath, JsonSerializableRemindMeApp.class);
+        Optional<JsonSerializableRemindMe> jsonRemindMeApp = JsonUtil.readJsonFile(
+                filePath, JsonSerializableRemindMe.class);
         if (!jsonRemindMeApp.isPresent()) {
             return Optional.empty();
         }
@@ -60,21 +60,21 @@ public class JsonRemindMeStorage implements RemindMeStorage {
     }
 
     @Override
-    public void saveRemindMe(ReadOnlyRemindMe remindMeApp) throws IOException {
-        saveRemindMe(remindMeApp, filePath);
+    public void saveRemindMe(ReadOnlyModulePlanner remindMe) throws IOException {
+        saveRemindMe(remindMe, filePath);
     }
 
     /**
-     * Similar to {@link #saveRemindMe(ReadOnlyRemindMe)}.
+     * Similar to {@link #saveRemindMe(ReadOnlyModulePlanner)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveRemindMe(ReadOnlyRemindMe remindMeApp, Path filePath) throws IOException {
+    public void saveRemindMe(ReadOnlyModulePlanner remindMeApp, Path filePath) throws IOException {
         requireNonNull(remindMeApp);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableRemindMeApp(remindMeApp), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableRemindMe(remindMeApp), filePath);
     }
 
 }

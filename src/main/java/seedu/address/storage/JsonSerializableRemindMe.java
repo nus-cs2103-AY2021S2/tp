@@ -9,29 +9,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ReadOnlyRemindMe;
-import seedu.address.model.RemindMe;
+import seedu.address.model.ModulePlanner;
+import seedu.address.model.ReadOnlyModulePlanner;
 import seedu.address.model.module.Module;
-
+import seedu.address.model.person.Person;
 
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "remindMe")
-class JsonSerializableRemindMeApp {
+class JsonSerializableRemindMe {
 
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate module(s).";
-
+    public static final String MESSAGE_DUPLICATE_PERSON = "Person list contains duplicate person(s).";
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
+    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
 
     /**
-     * Constructs a {@code JsonSerializableRemindMeApp} with the given modules.
+     * Constructs a {@code JsonSerializableRemindMeApp} with the given modules and persons.
      */
     @JsonCreator
-    public JsonSerializableRemindMeApp(@JsonProperty("modules") List<JsonAdaptedModule> modules) {
+    public JsonSerializableRemindMe(@JsonProperty("modules") List<JsonAdaptedModule> modules,
+                                       @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.modules.addAll(modules);
+        this.persons.addAll(persons);
     }
 
 
@@ -40,8 +43,9 @@ class JsonSerializableRemindMeApp {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableRemindMeApp}.
      */
-    public JsonSerializableRemindMeApp(ReadOnlyRemindMe source) {
+    public JsonSerializableRemindMe(ReadOnlyModulePlanner source) {
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,16 +53,23 @@ class JsonSerializableRemindMeApp {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public RemindMe toModelType() throws IllegalValueException {
-        RemindMe remindMe = new RemindMe();
+    public ModulePlanner toModelType() throws IllegalValueException {
+        ModulePlanner modulePlanner = new ModulePlanner();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (remindMe.hasModule(module)) {
+            if (modulePlanner.hasModule(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            remindMe.addModule(module);
+            modulePlanner.addModule(module);
         }
-        return remindMe;
+        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            Person person = jsonAdaptedPerson.toModelType();
+            if (modulePlanner.hasPerson(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            modulePlanner.addPerson(person);
+        }
+        return modulePlanner;
     }
 
 }

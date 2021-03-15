@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.RemindMe;
+import seedu.address.model.ModulePlanner;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
@@ -11,21 +11,21 @@ import seedu.address.model.person.Person;
  */
 public class RemindMeBuilder {
 
-    private RemindMe remindMe;
+    private ModulePlanner modulePlanner;
 
     public RemindMeBuilder() {
-        remindMe = new RemindMe();
+        modulePlanner = new ModulePlanner();
     }
 
-    public RemindMeBuilder(RemindMe remindMe) {
-        this.remindMe = remindMe;
+    public RemindMeBuilder(ModulePlanner modulePlanner) {
+        this.modulePlanner = modulePlanner;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public RemindMeBuilder withPerson(Person person) {
-        remindMe.addPerson(person);
+        modulePlanner.addPerson(person);
         return this;
     }
 
@@ -33,11 +33,11 @@ public class RemindMeBuilder {
      * Adds a new {@code Module} to the {@code RemindMe} that we are building.
      */
     public RemindMeBuilder withModule(Module module) {
-        remindMe.addModule(module);
+        modulePlanner.addModule(module);
         return this;
     }
 
-    public RemindMe build() {
-        return remindMe;
+    public ModulePlanner build() {
+        return modulePlanner;
     }
 }

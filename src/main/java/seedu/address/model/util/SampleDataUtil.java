@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.ReadOnlyRemindMe;
-import seedu.address.model.RemindMe;
+import seedu.address.model.ModulePlanner;
+import seedu.address.model.ReadOnlyModulePlanner;
 import seedu.address.model.module.AssignmentList;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
@@ -20,35 +20,39 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"),
+            new Person(new Name("Alice Pauline"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"),
-                getTagSet("colleagues"))
+            new Person(new Name("Benson Meier"),
+                getTagSet("owesMoney", "friends")),
+            new Person(new Name("Carl Kurz"),
+                getTagSet()),
+            new Person(new Name("Daniel Meier"),
+                getTagSet("friends")),
+            new Person(new Name("Elle Meyer"),
+                getTagSet()),
+            new Person(new Name("Fiona Kunz"),
+                getTagSet()),
+            new Person(new Name("George Best"),
+                getTagSet())
         };
     }
 
     public static Module[] getSampleModules() {
         return new Module[] {
-            new Module(new Title("cs2103T"), new AssignmentList(),
-                        new ExamList()),
-            new Module(new Title("cs2103"), new AssignmentList(),
+            new Module(new Title("CS2103"), new AssignmentList(),
                         new ExamList())
         };
     }
 
 
-    public static ReadOnlyRemindMe getSampleRemindMe() {
-        RemindMe sampleRm = new RemindMe();
+    public static ReadOnlyModulePlanner getSampleRemindMe() {
+        ModulePlanner sampleRm = new ModulePlanner();
         for (Module sampleMod : getSampleModules()) {
             sampleRm.addModule(sampleMod);
+        }
+
+        for (Person samplePerson : getSamplePersons()) {
+            sampleRm.addPerson(samplePerson);
         }
 
         return sampleRm;

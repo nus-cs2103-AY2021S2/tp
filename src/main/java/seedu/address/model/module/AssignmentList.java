@@ -105,6 +105,30 @@ public class AssignmentList {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AssignmentList)) {
+            return false;
+        }
+
+        AssignmentList otherList = (AssignmentList) other;
+        if (assignments.size() != otherList.size()) {
+            return false;
+        } else {
+            for (int i = 0; i < otherList.size(); i++) {
+                if (!assignments.get(i).equals(otherList.assignments.get(i))) {
+                    return false;
+                };
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < size(); i++) {

@@ -13,7 +13,7 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
-public class RemindMe implements ReadOnlyRemindMe {
+public class ModulePlanner implements ReadOnlyModulePlanner {
 
     private final UniqueModuleList modules;
     private final UniquePersonList persons;
@@ -30,12 +30,12 @@ public class RemindMe implements ReadOnlyRemindMe {
         persons = new UniquePersonList();
     }
 
-    public RemindMe() {}
+    public ModulePlanner() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public RemindMe(ReadOnlyRemindMe toBeCopied) {
+    public ModulePlanner(ReadOnlyModulePlanner toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -44,14 +44,25 @@ public class RemindMe implements ReadOnlyRemindMe {
         this.modules.setModules(modules);
     }
 
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setPersons(List<Person> persons) {
+        this.persons.setPersons(persons);
+    }
+
+
 
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ModulePlanner} with {@code newData}.
      */
-    public void resetData(ReadOnlyRemindMe newData) {
+    public void resetData(ReadOnlyModulePlanner newData) {
         requireNonNull(newData);
+        setPersons(newData.getPersonList());
         setModules(newData.getModuleList());
+
     }
 
     //// module-level operations
@@ -211,8 +222,8 @@ public class RemindMe implements ReadOnlyRemindMe {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof RemindMe // instanceof handles nulls
-                && modules.equals(((RemindMe) other).modules));
+                || (other instanceof ModulePlanner // instanceof handles nulls
+                && modules.equals(((ModulePlanner) other).modules));
     }
 
     @Override
