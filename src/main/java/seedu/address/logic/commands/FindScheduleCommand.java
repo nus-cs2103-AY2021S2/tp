@@ -30,7 +30,7 @@ public class FindScheduleCommand extends Command {
         requireNonNull(model);
         model.updateFilteredScheduleList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size()));
     }
 
     @Override
