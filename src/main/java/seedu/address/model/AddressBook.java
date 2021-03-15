@@ -2,14 +2,12 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.plan.Plan;
@@ -25,6 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final JsonModule[] moduleInfo = readModuleInfo();
     private Integer currentSemesterNumber;
+    private ObservableList<JsonModule> foundModule;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -37,7 +36,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         currentSemesterNumber = null;
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+        foundModule = FXCollections.observableArrayList();
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -45,6 +46,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+        foundModule = FXCollections.observableArrayList();
     }
 
     //// list overwrite operations
@@ -142,6 +144,15 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public JsonModule[] getModuleInfo() {
         return moduleInfo;
+    }
+
+    public void setFoundModule(JsonModule foundModule) {
+        this.foundModule.setAll(foundModule);
+    }
+
+    @Override
+    public ObservableList<JsonModule> getFoundModule() {
+        return foundModule;
     }
 
     @Override

@@ -12,7 +12,7 @@ import seedu.address.storage.JsonModule;
 
 public class InfoCommand extends Command {
     public static final String COMMAND_WORD = "info";
-
+    public static final String COMMAND_WORD_SINGLE_MODULE = "info_single";
     public static final String MESSAGE_SUCCESS = "Listed all modules";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all modules information or a specified one "
@@ -49,17 +49,18 @@ public class InfoCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
-        model.setCurrentCommand(COMMAND_WORD);
+        JsonModule foundModule = findMatchingModule(informationOfModules);
         if (noArgument()) {
-            StringBuilder str = new StringBuilder();
-            for (int i = 0; i < informationOfModules.length; i++) {
-                str.append(informationOfModules[i].toString());
-                str.append("\n\n");
-            }
-            return new CommandResult(str.toString() + MESSAGE_SUCCESS);
+            model.setCurrentCommand(COMMAND_WORD);
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else if (foundModule == null) {
+            return new CommandResult(MESSAGE_NOT_FOUND);
         } else {
-            return findMatchingModule(informationOfModules);
+            model.setCurrentCommand(COMMAND_WORD_SINGLE_MODULE);
+            model.getPlans().setFoundModule(foundModule);
+            return new CommandResult(MESSAGE_FOUND);
         }
+
     }
 
     /**
@@ -75,13 +76,13 @@ public class InfoCommand extends Command {
      * @param informationOfModules the array of module information to find the module fomr
      * @return the module information if found otherwise a module not found message
      */
-    private CommandResult findMatchingModule(JsonModule[] informationOfModules) {
+    private JsonModule findMatchingModule(JsonModule[] informationOfModules) {
         for (int i = 0; i < informationOfModules.length; i++) {
             if (informationOfModules[i].getModuleCode().equals(this.moduleCode)) {
-                return new CommandResult(informationOfModules[i].toString() + MESSAGE_FOUND);
+                return informationOfModules[i];
             }
         }
-        return new CommandResult(MESSAGE_NOT_FOUND);
+        return null;
     }
 }
 

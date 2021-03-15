@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -90,14 +88,16 @@ public class LogicManager implements Logic {
     public ObservableList<JsonModule> getModuleInfoList() {
         JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
         ObservableList<JsonModule> listOfModules = FXCollections.observableArrayList();
-        for(int i = 0; i < informationOfModules.length; i++) {
-            listOfModules.add(informationOfModules[1]);
-        }
+        listOfModules.setAll(informationOfModules);
         return listOfModules;
     }
 
     @Override
     public StringProperty getDisplayPanelListCommand() {
         return displayPanelListCommand;
+    }
+    @Override
+    public ObservableList<JsonModule> getSingleModuleInfoList() {
+        return model.getPlans().getFoundModule();
     }
 }

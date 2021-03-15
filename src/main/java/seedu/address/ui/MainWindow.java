@@ -40,9 +40,11 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private InfoListPanel infoListPanel;
+    private InfoListPanel singleFoundModulePanel;
 
     // Decides what panellist is shown
     private StringProperty displayPanelList;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -78,15 +80,16 @@ public class MainWindow extends UiPart<Stage> {
 
         this.displayPanelList = logic.getDisplayPanelListCommand();
 
-        /**if your command needs the plane to change, you can add it here
-         * Follow this sequence:
-         *  1. create a panel class for your info e.g. planlistpanel
-         *  2. create a card class for you info e.g. plancard
-         *  3. create observable list and add all the information you want to show
-         *  4. add model.setCurrentCommand(COMMAND_WORD); to your command when it succeeds
-         *  5. add the command in here
-         * */
         displayPanelList.addListener(new ChangeListener<String>() {
+
+            /**if your command needs the plane to change, you can add it here
+             * Follow this sequence:
+             *  1. create a panel class for your info e.g. planlistpanel
+             *  2. create a card class for you info e.g. plancard
+             *  3. create observable list and add all the information you want to show
+             *  4. add model.setCurrentCommand(COMMAND_WORD); to your command when it succeeds
+             *  5. add the command in here
+             * */
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 switch(newValue) {
@@ -96,6 +99,11 @@ public class MainWindow extends UiPart<Stage> {
                     case AddPlanCommand.COMMAND_WORD:
                         personListPanelPlaceholder.getChildren().setAll(planListPanel.getRoot());
                         break;
+                    case InfoCommand.COMMAND_WORD_SINGLE_MODULE:
+                        personListPanelPlaceholder.getChildren().setAll(singleFoundModulePanel.getRoot());
+                        break;
+                    default:
+                        personListPanelPlaceholder.getChildren().setAll(planListPanel.getRoot());
                 }
             }
         });
@@ -146,8 +154,9 @@ public class MainWindow extends UiPart<Stage> {
         planListPanel = new PlanListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(planListPanel.getRoot());
 
-        infoListPanel  = new InfoListPanel(logic.getModuleInfoList());
-//        personListPanelPlaceholder.getChildren().add(infoListPanel.getRoot());
+        infoListPanel = new InfoListPanel(logic.getModuleInfoList());
+
+        singleFoundModulePanel = new InfoListPanel(logic.getSingleModuleInfoList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

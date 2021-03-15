@@ -312,4 +312,5 @@ public class ModelManager implements Model {
         semester.addModule(module);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
+
 }

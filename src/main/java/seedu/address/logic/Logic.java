@@ -55,4 +55,7 @@ public interface Logic {
 
     /** Returns a command that would change the panel list view */
     public StringProperty getDisplayPanelListCommand();
+
+    /** Returns an unmodifiable view of a single module info */
+    ObservableList<JsonModule> getSingleModuleInfoList();
 }

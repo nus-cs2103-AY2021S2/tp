@@ -124,4 +124,5 @@ public interface Model {
     StringProperty getCurrentCommand();
 
     void setCurrentCommand(String command);
+
 }
