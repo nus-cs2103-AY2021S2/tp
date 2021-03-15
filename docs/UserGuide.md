@@ -80,7 +80,7 @@ Format: `help`
 
 Format: `validate [p/PLAN_NUMBER]`
 
-If the optional argument `[p/PLAN_NUMBER]` is provided:  
+If the optional argument `[p/PLAN_NUMBER]` is provided:
 - Shows header
     - Shows plan number
     - Shows how many MCs the plan has
@@ -91,7 +91,7 @@ If the optional argument `[p/PLAN_NUMBER]` is provided:
     - Each table has a header of how many MCs the semester will have
     - Each table shows module details
 
-Otherwise:  
+Otherwise:
 - Shows list of plans that are still valid
     - Each row is a plan
         - Each plan has 4 column attributes:
@@ -101,7 +101,7 @@ Otherwise:
             - Shows how many semesters remaining in plan
 
 > Tip: A plan is valid if the modules contained in its history match those of
-> the current Master Plan.  
+> the current Master Plan.
 > This ensures that any valid plan is a viable option for the user.
 
 ## Plan commands
@@ -153,7 +153,7 @@ Example output: `The current MCs you are taking is xxx`
 ### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
 Format: `Show CAP`
 
-This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP 
+This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP
 using this formula
 
 ![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
@@ -162,11 +162,11 @@ using this formula
 Example output `Current CAP is xxx`
 
 ### Add/Delete Semester to/from Plan: `add/delete`
-Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`  
-Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`  
+Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`
+Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`
 
-The output will show whether the operation was successful and include the 
-semester number in its output.  
+The output will show whether the operation was successful and include the
+semester number in its output.
 
 Constraints:
 * Trying to add a semester that already exist will not be allowed
@@ -188,10 +188,10 @@ Example output:
 
 Format: `history`
 
-The above command takes no arguments and shows the user a list of modules that 
+The above command takes no arguments and shows the user a list of modules that
 they have completed up until before the *current semester*.
 
-> Tip: The *current semester* is the semester that was marked using 
+> Tip: The *current semester* is the semester that was marked using
 > the `semester current` command.
 
 Example output:
@@ -204,19 +204,18 @@ Example output:
 
 ### Add/Delete module to/from semester: `add/delete`
 Format for adding: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
-Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`  
+Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 
 > Tip: A user can view module info to see more details about it. (See `info`)
 
-This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and 
-`SEM_NUMBER`, and outputs meta details about the module being 
-added/deleted, as well as whether the addition/deletion was successful or not.   
-The details to output are as follows:  
+This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and
+`SEM_NUMBER`, and outputs meta details about the module being
+added/deleted, as well as whether the addition/deletion was successful or not.
+The details to output are as follows:
 * Module addition/deletion success status
 * Semester number
 * Module code
 
-=======
 ## Semester commands
 
 ### Show the number of MCs the user is currently taking: `show MCs`
@@ -227,7 +226,7 @@ Example output: `The current MCs you are taking is xxx`
 ### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
 Format: `Show CAP`
 
-This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP 
+This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP
 using this formula
 
 ![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
@@ -236,11 +235,11 @@ using this formula
 Example output `Current CAP is xxx`
 
 ### Add/Delete Semester to/from Plan: `add/delete`
-Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`  
-Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`  
+Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`
+Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`
 
-The output will show whether the operation was successful and include the 
-semester number in its output.  
+The output will show whether the operation was successful and include the
+semester number in its output.
 
 Constraints:
 * Trying to add a semester that already exist will not be allowed
@@ -262,10 +261,10 @@ Example output:
 
 Format: `history`
 
-The above command takes no arguments and shows the user a list of modules that 
+The above command takes no arguments and shows the user a list of modules that
 they have completed up until before the *current semester*.
 
-> Tip: The *current semester* is the semester that was marked using 
+> Tip: The *current semester* is the semester that was marked using
 > the `semester current` command.
 
 Example output:
@@ -278,44 +277,44 @@ Example output:
 
 ### Add/Delete module to/from semester: `add/delete`
 Format for adding: `add m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
-Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`  
+Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 
 > Tip: A user can view module info to see more details about it. (See `info`)
 
-This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and 
-`SEM_NUMBER`, and outputs meta details about the module being 
-added/deleted, as well as whether the addition/deletion was successful or not.   
-The details to output are as follows:  
+This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and
+`SEM_NUMBER`, and outputs meta details about the module being
+added/deleted, as well as whether the addition/deletion was successful or not.
+The details to output are as follows:
 * Module addition/deletion success status
 * Semester number
 * Module code
 
-Constraints:  
+Constraints:
 * Trying to add a module that already exists will not be allowed
-* Trying to add/delete a nonexistent module code/plan number/semester 
-  number will not be allowed  
-  
-Prompts:  
+* Trying to add/delete a nonexistent module code/plan number/semester
+  number will not be allowed
+
+Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
 
 ### View module info: `info`
 =======
-Format: `info m/MODULE_CODE`    
-> Tip: A user can also add a module to a plan/semester (See `add/delete`)  
+Format: `info m/MODULE_CODE`
+> Tip: A user can also add a module to a plan/semester (See `add/delete`)
 
 By default, this command takes in one optional argument, `MODULE_CODE`,
 =======
 Format: `info m/MODULE_CODE`
 Tip: A user can also add a module to a plan/semester (See `add/delete`)
 By default, this command takes in one optional argument, `MODULE_CODE`,
-and outputs the module information including:  
+and outputs the module information including:
 * Brief Description
 * Number of MCs
 * Semesters available
 * Pre-requisites
-* Preclusions  
+* Preclusions
 
-Constraints:  
+Constraints:
 * Module has to exist
 
 ### Clearing all entries : `clear`
