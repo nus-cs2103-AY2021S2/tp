@@ -28,11 +28,7 @@ class JsonAdaptedFlashcard {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedFlashcard.java
-     * Constructs a {@code JsonAdaptedFlashcard} with the given person details.
-=======
      * Constructs a {@code JsonAdaptedFlashcard} with the given flash card details.
->>>>>>> c62b7fca8e6e2608d71e5cc2946c10944917bc3d:src/main/java/seedu/address/storage/JsonAdaptedPerson.java
      */
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
@@ -64,11 +60,7 @@ class JsonAdaptedFlashcard {
     }
 
     /**
-<<<<<<< HEAD:src/main/java/seedu/address/storage/JsonAdaptedFlashcard.java
      * Converts this Jackson-friendly adapted card object into the model's {@code Flashcard} object.
-=======
-     * Converts this Jackson-friendly adapted person object into the model's {@code Flashcard} object.
->>>>>>> 5b1346da262ccb99becdb0c95e9b01b2f4b6a06c:src/main/java/seedu/address/storage/JsonAdaptedFlashcard.java
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted card.
      */
