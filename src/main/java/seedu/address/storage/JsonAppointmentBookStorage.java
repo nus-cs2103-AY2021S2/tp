@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -53,9 +54,9 @@ public class JsonAppointmentBookStorage implements AppointmentBookStorage {
 
         try {
             return Optional.of(jsonAppointmentBook.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
+        } catch (IllegalValueException | DateTimeParseException e) {
+            logger.info("Illegal values found in " + filePath + ": " + e.getMessage());
+            throw new DataConversionException(e);
         }
     }
 

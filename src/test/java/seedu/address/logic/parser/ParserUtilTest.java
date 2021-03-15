@@ -368,8 +368,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAppointmentTime_null_returnsNull() throws Exception {
-        assertNull(ParserUtil.parseAppointmentTime((String) null));
+    public void parseAppointmentTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAppointmentTime((String) null));
     }
 
     @Test

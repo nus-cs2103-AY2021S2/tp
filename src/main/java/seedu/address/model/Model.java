@@ -9,6 +9,8 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 
+//TODO remove unused addressbook API
+
 /**
  * The API of the Model component.
  */
@@ -109,6 +111,11 @@ public interface Model {
      */
     ReadOnlyPropertyBook getPropertyBook();
 
+    /**
+     * Replaces property book data with the data in {@code propertyBook}.
+     */
+    void setPropertyBook(ReadOnlyPropertyBook propertyBook);
+
     void addProperty(Property property);
 
     int getPropertySize();
@@ -162,6 +169,10 @@ public interface Model {
      * in the appointment book.
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
+
+    Appointment getAppointment(int i);
+
+    int getAppointmentSize();
 
     /**
      * Returns the AppointmentBook

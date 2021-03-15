@@ -124,6 +124,11 @@ public class AddPropertyCommandTest {
         }
 
         @Override
+        public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -168,6 +173,20 @@ public class AddPropertyCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public int getPropertySize() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Property getProperty(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setProperty(int i, Property property) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteProperty(Property target) {
@@ -205,27 +224,22 @@ public class AddPropertyCommandTest {
         }
 
         @Override
-        public int getPropertySize() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Property getProperty(int i) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setProperty(int i, Property property) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setAppointment(Appointment target, Appointment editedAppointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Appointment getAppointment(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getAppointmentSize() {
             throw new AssertionError("This method should not be called.");
         }
 

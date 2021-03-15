@@ -70,6 +70,25 @@ public class ModelManager implements Model {
         filteredAppointments = new FilteredList<>(appointmentBook.getAppointmentList());
     }
 
+    /**
+     * Initializes a ModelManager with the given propertyBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyPropertyBook propertyBook, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(propertyBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + propertyBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook();
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        this.propertyBook = new PropertyBook(propertyBook);
+        this.filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+        this.appointmentBook = new AppointmentBook();
+        this.filteredAppointments = new FilteredList<>(this.appointmentBook.getAppointmentList());
+    }
+
 
     public ModelManager() {
         this(new AppointmentBook(), new UserPrefs());
@@ -127,6 +146,11 @@ public class ModelManager implements Model {
     public boolean hasProperty(Property property) {
         requireNonNull(property);
         return propertyBook.hasProperty(property);
+    }
+
+    @Override
+    public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+        this.propertyBook.resetData(propertyBook);
     }
 
     @Override
@@ -198,6 +222,16 @@ public class ModelManager implements Model {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         appointmentBook.setAppointment(target, editedAppointment);
+    }
+
+    @Override
+    public Appointment getAppointment(int i) {
+        return appointmentBook.getAppointmentList().get(i);
+    }
+
+    @Override
+    public int getAppointmentSize() {
+        return appointmentBook.getAppointmentList().size();
     }
 
     @Override
