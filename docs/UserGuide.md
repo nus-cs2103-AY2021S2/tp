@@ -15,6 +15,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
     * [Viewing a card](#viewing-a-card--view): `view`
     * [Finding cards](#finding-cards--find): `find` 
     * [Clearing all cards](#clearing-all-entries--clear): `clear`
+    * [Undo a command](#undo-a-command--undo): `undo`
     * [Exiting the program](#exiting-the-program--exit): `exit`
     * [Saving data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
@@ -143,6 +144,19 @@ Clears all entries from FlashBack.
 
 Format: `clear`
 
+### Undo a command : `undo`
+
+Restore FlashBack to the state before the previous command was executed.  
+**_NOTE:_**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
+
+Examples:
+* `delete 3`  
+`clear`  
+`undo` will reverse the `clear` command  
+`undo` will reverse the `delete 3` command
+
+Format: `undo`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -192,6 +206,7 @@ Action | Format, Examples
 **View** | `view INDEX` <br> e.g., `view 2`
 **Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`,<br> `find p/ low`, `find t/ random`
 **Clear** | `clear`
+**Undo** | `undo`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`

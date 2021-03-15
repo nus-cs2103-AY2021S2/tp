@@ -385,6 +385,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. FlashBack shows a list of flash cards
    
     Use case ends.
+    
+**Use case: Undo an undoable command**
+
+**MSS**
+
+1. User requests to delete a flash card from the list
+1. FlashBack deletes the specified flash card
+1. User requests to undo delete command
+1. FlashBack reverts to its previous state before delete command
+   
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -397,4 +408,5 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flash card**: A card that contains study materials with its topic name
+* **Undoable Command**: A command that modifies the content of FlashBack
 --------------------------------------------------------------------------------------------------------------------
