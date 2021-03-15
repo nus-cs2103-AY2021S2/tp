@@ -32,7 +32,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_itemAcceptedByModel_addSuccessful() throws CommandException {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
         Item validItem = new ItemBuilder().build();
 
@@ -43,7 +43,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_itemAcceptedByModel_addExpiredSuccessful() throws Exception {
+    public void execute_itemAcceptedByModel_addExpiredSuccessful() throws CommandException {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
         Item validItem = new ItemBuilder().withExpiryDate("2010-10-10").build();
 
