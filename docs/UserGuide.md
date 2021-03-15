@@ -37,6 +37,8 @@ test your APIs more conveniently than traditional GUI applications.
 
    - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
 
+   - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
+
    - **`remove 3`** : Removes the API endpoint with index `3` shown in the API endpoint list.
 
    - **`find pm25`** : Finds all the API endpoints with fields containing `pm25`.
@@ -133,6 +135,17 @@ Examples:
 - `edit 3 -x GET -t fresh -t food`
 
 **Tip:** Multiple tags must be unique and duplicates will be ignored.
+
+#### Show an API endpoint: `show`
+
+Description: Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
+be a positive integer).
+
+Format: `show INDEX`
+
+Examples:
+- `show 1`
+- `show 3`
 
 #### Show an API endpoint: `show`
 
