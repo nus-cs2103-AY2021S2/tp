@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonSmartLibStorage addressBookStorage =
-                new JsonSmartLibStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonSmartLibStorage smartLibStorage =
+                new JsonSmartLibStorage(temporaryFolder.resolve("smartLib.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(smartLibStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -70,12 +70,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonSmartLibStorage addressBookStorage =
-                new JsonSmartLibIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonSmartLibIoExceptionThrowingStub
+        JsonSmartLibStorage smartLibStorage =
+                new JsonSmartLibIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionSmartLib.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(smartLibStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveSmartLib(ReadOnlySmartLib addressBook, Path filePath) throws IOException {
+        public void saveSmartLib(ReadOnlySmartLib smartLib, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

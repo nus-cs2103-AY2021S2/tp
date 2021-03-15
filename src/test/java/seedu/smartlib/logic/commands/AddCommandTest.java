@@ -73,7 +73,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different reader -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
