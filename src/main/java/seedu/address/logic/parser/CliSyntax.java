@@ -6,8 +6,8 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     // Prefix definitions for sorting keys and sorting order
-    public static final Prefix PREFIX_SORTINGKEY = new Prefix("k/");
-    public static final Prefix PREFIX_SORTINGORDER = new Prefix("o/");
+    public static final Prefix PREFIX_SORTING_KEY = new Prefix("k/");
+    public static final Prefix PREFIX_SORTING_ORDER = new Prefix("o/");
 
     // Prefix definitions for name and remark
     public static final Prefix PREFIX_NAME = new Prefix("n/");
