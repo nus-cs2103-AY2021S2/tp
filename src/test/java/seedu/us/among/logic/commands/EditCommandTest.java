@@ -8,8 +8,7 @@ import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
-// import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
-//to-do to fix this class, fix showEndpointAtIndex
+import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_SECOND_ENDPOINT;
@@ -35,23 +34,22 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalEndpointList(), new UserPrefs());
 
-    /*
     //to-do fix test cases in this file
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Endpoint editedEndpoint = new EndpointBuilder().build();
+        Endpoint editedEndpoint = new EndpointBuilder().withData("{key: value}").withHeaders("\"key: value\"").build();
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder(editedEndpoint).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);
+        System.out.println(expectedMessage);
 
         Model expectedModel = new ModelManager(new EndpointList(model.getEndpointList()), new UserPrefs());
         expectedModel.setEndpoint(model.getFilteredEndpointList().get(0), editedEndpoint);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-    */
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
@@ -85,22 +83,22 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    // @Test
-    // public void execute_filteredList_success() {
-    //     showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
+    @Test
+    public void execute_filteredList_success() {
+        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
 
-    //     Endpoint endpointInFilteredList = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
-    //     Endpoint editedEndpoint = new EndpointBuilder(endpointInFilteredList).withMethod(VALID_METHOD_POST).build();
-    //     EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT,
-    //             new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).build());
+        Endpoint endpointInFilteredList = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
+        Endpoint editedEndpoint = new EndpointBuilder(endpointInFilteredList).withMethod(VALID_METHOD_POST).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT,
+             new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).build());
 
-    //     String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);
 
-    //     Model expectedModel = new ModelManager(new EndpointList(model.getEndpointList()), new UserPrefs());
-    //     expectedModel.setEndpoint(model.getFilteredEndpointList().get(0), editedEndpoint);
+        Model expectedModel = new ModelManager(new EndpointList(model.getEndpointList()), new UserPrefs());
+        expectedModel.setEndpoint(model.getFilteredEndpointList().get(0), editedEndpoint);
 
-    //     assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    // }
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_duplicateEndpointUnfilteredList_failure() {
@@ -111,16 +109,16 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ENDPOINT);
     }
 
-    // @Test
-    // public void execute_duplicateEndpointFilteredList_failure() {
-    //     showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
-    //     // edit endpoint in filtered list into a duplicate in the API endpoint list
-    //     Endpoint endpointInList = model.getEndpointList().getEndpointList()
-    //              .get(INDEX_SECOND_ENDPOINT.getZeroBased());
-    //     EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT,
-    //             new EditEndpointDescriptorBuilder(endpointInList).build());
-    //     assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ENDPOINT);
-    // }
+    @Test
+    public void execute_duplicateEndpointFilteredList_failure() {
+        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
+        // edit endpoint in filtered list into a duplicate in the API endpoint list
+        Endpoint endpointInList = model.getEndpointList().getEndpointList()
+              .get(INDEX_SECOND_ENDPOINT.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT,
+             new EditEndpointDescriptorBuilder(endpointInList).build());
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ENDPOINT);
+    }
 
     @Test
     public void execute_invalidEndpointIndexUnfilteredList_failure() {
@@ -135,18 +133,18 @@ public class EditCommandTest {
      * Edit filtered list where index is larger than size of filtered list, but
      * smaller than size of the API endpoint list
      */
-    // @Test
-    // public void execute_invalidEndpointIndexFilteredList_failure() {
-    //     showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
-    //     Index outOfBoundIndex = INDEX_SECOND_ENDPOINT;
-    //     // ensures that outOfBoundIndex is still in bounds of API endpoint list
-    //     assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
+    @Test
+    public void execute_invalidEndpointIndexFilteredList_failure() {
+        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
+        Index outOfBoundIndex = INDEX_SECOND_ENDPOINT;
+        // ensures that outOfBoundIndex is still in bounds of API endpoint list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
 
-    //     EditCommand editCommand = new EditCommand(outOfBoundIndex,
-    //             new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).build());
+        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+                new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).build());
 
-    //     assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
-    // }
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+    }
 
     @Test
     public void equals() {
