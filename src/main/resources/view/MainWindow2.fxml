@@ -61,7 +61,8 @@
                     </VBox>
                      </children>
                   </VBox>
-                  <ScrollPane fx:id="schedulePlaceholder" prefWidth="426.0" />
+                  <ScrollPane fx:id="schedulePlaceholder" prefWidth="426.0"
+                              style="-fx-background: derive(#1d1d1d, 20%)" />
                </items>
             </SplitPane>
           <StackPane fx:id="statusbarPlaceholder" />
