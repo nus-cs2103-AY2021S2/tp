@@ -213,7 +213,13 @@ _Details coming soon ..._
 
 ### Viewing help`[coming in v2.0]`
 
-_Details coming soon ..._
+Opens user guide of StoreMando on browser or displays the URL of user guide on help window.
+
+Format: `help`
+
+* Opens user guide on browser only if there is a supporting browser **and** internet connection.
+* Otherwise, displays a help window containing the URL of StoreMando's user guide.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
