@@ -11,7 +11,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class AddTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "addtask";
+    public static final String COMMAND_WORD = "tadd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " etc";
 
