@@ -18,8 +18,8 @@ public class Event {
 
     // Identity Fields
     private final EventName eventName;
-    private final EventTime timeStart;
-    private final EventTime timeEnd;
+    // private final EventTime timeStart; // commented out for v1.2
+    // private final EventTime timeEnd; // commented out for v1.2
     private final EventStatus status;
 
     // Data Fields
@@ -30,30 +30,32 @@ public class Event {
     /**
      * Every field must be present and not null.
      */
-    public Event(EventName eventName, EventTime timeStart, EventTime timeEnd,
-                 EventStatus status, Description description, Set<Tag> tags,
-                 Set<Person> persons) {
-        requireAllNonNull(eventName, timeStart, timeEnd, status, description, tags, persons);
+    public Event(EventName eventName, EventStatus status, Description description) {
+        requireAllNonNull(eventName, status, description);
         this.eventName = eventName;
-        this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
+        // this.timeStart = timeStart; // commented out for v1.2
+        // this.timeEnd = timeEnd; // commented out for v1.2
         this.status = status;
         this.description = description;
-        this.tags.addAll(tags);
-        this.persons.addAll(persons);
+        // this.tags.addAll(tags); // commented out for v1.2
+        // this.persons.addAll(persons); // commented out for v1.2
     }
 
     public EventName getName() {
         return this.eventName;
     }
 
+    /* Commented out for v1.2
     public EventTime getTimeStart() {
         return this.timeStart;
     }
+     */
 
+    /*
     public EventTime getTimeEnd() {
         return this.timeEnd;
     }
+     */
 
     public EventStatus getStatus() {
         return this.status;
@@ -80,7 +82,7 @@ public class Event {
     }
 
     /**
-     * Returns true if both events have the same name, start and end time.
+     * Returns true if both events have the same name.
      * This defines a weaker notion of equality between two Events.
      */
     public boolean isSameEvent(Event otherEvent) {
@@ -89,9 +91,7 @@ public class Event {
         }
 
         if (otherEvent != null) {
-            return otherEvent.getName().equals(getName())
-                    && otherEvent.getTimeStart().equals(getTimeStart())
-                    && otherEvent.getTimeEnd().equals(getTimeEnd());
+            return otherEvent.getName().equals(getName());
         }
 
         return false;
@@ -113,8 +113,6 @@ public class Event {
 
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
-                && otherEvent.getTimeStart().equals(getTimeStart())
-                && otherEvent.getTimeEnd().equals(getTimeEnd())
                 && otherEvent.getStatus().equals(getStatus())
                 && otherEvent.getDescription().equals(getDescription())
                 && otherEvent.getTags().equals(getTags())
@@ -124,7 +122,7 @@ public class Event {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(eventName, timeStart, timeEnd, status, description,
+        return Objects.hash(eventName, status, description,
                 tags, persons);
     }
 
@@ -132,10 +130,6 @@ public class Event {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Time Start: ")
-                .append(getTimeStart())
-                .append("; Time End: ")
-                .append(getTimeEnd())
                 .append("; Status: ")
                 .append(getStatus())
                 .append("; Description: ")
