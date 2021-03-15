@@ -1,15 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.RemindMe;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.person.Person;
 
 /**
@@ -32,20 +30,8 @@ public class TypicalPersons {
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .build();
 
-    // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
-            .build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
-            .build();
+    public static final Module CS2103 = new Module(new Title("CS2103"));
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
 
@@ -58,6 +44,21 @@ public class TypicalPersons {
             ab.addPerson(person);
         }
         return ab;
+    }
+
+    public static RemindMe getTypicalRemindMe() {
+        RemindMe rm = new RemindMe();
+        for (Person person : getTypicalPersons()) {
+            rm.addPerson(person);
+        }
+        for (Module module : getTypicalModules()) {
+            rm.addModule(module);
+        }
+        return rm;
+    }
+
+    public static ArrayList<Module> getTypicalModules() {
+        return new ArrayList<Module>(Arrays.asList(CS2103));
     }
 
     public static List<Person> getTypicalPersons() {
