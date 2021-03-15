@@ -57,10 +57,10 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
         setResidences(newData.getResidenceList());
     }
 
-    //// person-level operations
+    //// residence-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the residence tracker.
+     * Returns true if a residence with the same identity as {@code residence} exists in the residence tracker.
      */
     public boolean hasResidence(Residence residence) {
         requireNonNull(residence);
@@ -68,18 +68,19 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
     }
 
     /**
-     * Adds a person to the residence tracker.
-     * The person must not already exist in the residence tracker.
+     * Adds a residence to the residence tracker.
+     * The residence must not already exist in the residence tracker.
      */
     public void addResidence(Residence r) {
         residences.add(r);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given residence {@code target} in the list with {@code editedResidence}.
      * {@code target} must exist in the residence tracker.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the residence
-     * tracker.
+     * The residence identity of {@code editedResidence} must not be the same as another existing residence
+     * in the residence tracker.
+     *
      */
     public void setResidence(Residence target, Residence editedResidence) {
         requireNonNull(editedResidence);
