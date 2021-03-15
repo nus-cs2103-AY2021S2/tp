@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskDescription;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -65,6 +66,20 @@ public class ParserUtil {
             throw new ParseException(ScheduleDescription.MESSAGE_CONSTRAINTS);
         }
         return new ScheduleDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String task description} into a {@code TaskDescription}
+     *
+     * @throws ParseException if the given {@code description} is invalid
+     */
+    public static TaskDescription parseTaskDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!TaskDescription.isValidDescription(trimmedDescription)) {
+            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDescription(trimmedDescription);
     }
 
     /**
