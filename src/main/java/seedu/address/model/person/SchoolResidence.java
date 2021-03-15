@@ -11,19 +11,25 @@ public class SchoolResidence {
 
     public enum ResidenceAbbreviation {
         PGPH, PGPR, KE7H, SH, KRH, TH, EH, RH, RVRC, YNC, TC, CAPT, RC4, USP, UTR, DOES_NOT_LIVE_ON_CAMPUS;
+
+        @Override
+        public String toString() {
+            return this == DOES_NOT_LIVE_ON_CAMPUS ? "DOES NOT LIVE ON CAMPUS" : super.toString();
+        }
     }
 
     public static final List<ResidenceAbbreviation> LIST_RESIDENCES = Arrays.asList(
             ResidenceAbbreviation.PGPH, ResidenceAbbreviation.PGPR, ResidenceAbbreviation.KE7H,
             ResidenceAbbreviation.SH, ResidenceAbbreviation.KRH, ResidenceAbbreviation.TH, ResidenceAbbreviation.EH,
             ResidenceAbbreviation.RH, ResidenceAbbreviation.RVRC, ResidenceAbbreviation.YNC, ResidenceAbbreviation.TC,
-            ResidenceAbbreviation.CAPT, ResidenceAbbreviation.RC4, ResidenceAbbreviation.USP, ResidenceAbbreviation.UTR
+            ResidenceAbbreviation.CAPT, ResidenceAbbreviation.RC4, ResidenceAbbreviation.USP, ResidenceAbbreviation.UTR,
+            ResidenceAbbreviation.DOES_NOT_LIVE_ON_CAMPUS
     );
 
     public static final String MESSAGE_CONSTRAINTS = "The residence entered should be one of the following: \n"
             + getResidenceAbbreviation().toString();
 
-    public final String value;
+    public final ResidenceAbbreviation residenceAbbreviation;
 
     /**
      * Constructs an {@code SchoolResidence}.
@@ -33,7 +39,8 @@ public class SchoolResidence {
     public SchoolResidence(String schoolResidence) {
         requireNonNull(schoolResidence);
         checkArgument(isValidResidence(schoolResidence), MESSAGE_CONSTRAINTS);
-        value = schoolResidence;
+        // only takes in DOES_NOT_LIVE_ON_CAMPUS
+        residenceAbbreviation = ResidenceAbbreviation.valueOf(schoolResidence);
     }
 
     /**
@@ -44,8 +51,7 @@ public class SchoolResidence {
      */
     public static boolean isValidResidence(String test) {
         try {
-            boolean result = test.equalsIgnoreCase("Does not live on campus")
-                    || LIST_RESIDENCES.contains(ResidenceAbbreviation.valueOf(test.toUpperCase()));
+            boolean result = LIST_RESIDENCES.contains(ResidenceAbbreviation.valueOf(test.toUpperCase()));
             return result;
         } catch (IllegalArgumentException e) {
             return false;
@@ -56,7 +62,7 @@ public class SchoolResidence {
         return String.join(",", getResidenceAbbreviation());
     }
 
-    public static List<String> getResidenceAbbreviation() {
+    public static List<String> getResidenceAbbreviation() { // DOES_NOT_LIVE_ON_CAMPUS
         String[] residenceArray = Stream.of(SchoolResidence.ResidenceAbbreviation.values())
                 .map(SchoolResidence.ResidenceAbbreviation::name).toArray(String[]::new);
         return Arrays.asList(residenceArray);
@@ -64,18 +70,22 @@ public class SchoolResidence {
 
     @Override
     public String toString() {
-        return value;
+        return this.residenceAbbreviation.toString(); // "DOES NOT LIVE ON CAMPUS"
+    }
+
+    public String toSavingString() {
+        return this.residenceAbbreviation.name();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SchoolResidence // instanceof handles nulls
-                && value.equals(((SchoolResidence) other).value)); // state check
+                && residenceAbbreviation == ((SchoolResidence) other).residenceAbbreviation); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return residenceAbbreviation.hashCode();
     }
 }

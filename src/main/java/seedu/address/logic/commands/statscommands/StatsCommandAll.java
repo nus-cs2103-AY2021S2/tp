@@ -16,7 +16,7 @@ public class StatsCommandAll extends StatsCommand {
 
     private static final String PADDING = "   ";
 
-    private List<SchoolResidence.ResidenceAbbreviation> listResidences = SchoolResidence.LIST_RESIDENCES;
+    private List<String> listResidences = SchoolResidence.getResidenceAbbreviation();
     private List<String> listFaculties = Faculty.getFacultyAbbreviation();
 
     private StringBuilder sb = new StringBuilder("Percentage Vaccinated:" + "\n");
@@ -25,15 +25,15 @@ public class StatsCommandAll extends StatsCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> studentList = model.getAddressBook().getPersonList();
-        for (SchoolResidence.ResidenceAbbreviation residence : listResidences) {
-            SchoolResidence currResidence = new SchoolResidence(residence.toString());
+        for (String residence : listResidences) {
+            SchoolResidence currResidence = new SchoolResidence(residence);
             try {
                 float stats = StatsCommandResidence.calculateRatioVaccinated(studentList, currResidence);
                 if (Float.isNaN(stats)) {
                     sb.append(PADDING + currResidence + ": No available data" + "\n");
                     continue;
                 }
-                sb.append(PADDING + String.format(MESSAGE_STATS_SUCCESS, currResidence, stats * 100) + "\n");
+                sb.append(PADDING + String.format(MESSAGE_STATS_SUCCESS, currResidence.toString(), stats * 100) + "\n");
             } catch (Exception e) {
                 throw new CommandException(MESSAGE_STATS_FAILURE);
             }

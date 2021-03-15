@@ -36,7 +36,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_VACCINATION_STATUS = BENSON.getVaccinationStatus().toString();
     private static final String VALID_MEDICAL_DETAILS = BENSON.getMedicalDetails().value;
-    private static final String VALID_SCHOOL_RESIDENCE = BENSON.getSchoolResidence().value;
+    private static final String VALID_SCHOOL_RESIDENCE = BENSON.getSchoolResidence().toSavingString();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

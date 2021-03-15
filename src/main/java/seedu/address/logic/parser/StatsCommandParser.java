@@ -14,18 +14,18 @@ import seedu.address.model.person.Faculty;
 import seedu.address.model.person.SchoolResidence;
 
 public class StatsCommandParser implements Parser<StatsCommand> {
-    private List<String> listResidences = SchoolResidence.getResidenceAbbreviation();
+    private List<String> listResidences = SchoolResidence.getResidenceAbbreviation(); // "DOES_NOT_LIVE_ON_CAMPUS"
     private List<String> listFaculties = Faculty.getFacultyAbbreviation();
 
     @Override
     public StatsCommand parse(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
         if (listResidences.contains(trimmedUserInput)) { // user input a residence
-            SchoolResidence schoolResidence = ParserUtil.parseResidence(userInput);
+            SchoolResidence schoolResidence = ParserUtil.parseResidence(trimmedUserInput);
             return new StatsCommandResidence(schoolResidence);
         }
         if (listFaculties.contains(trimmedUserInput)) { // user input a faculty
-            Faculty faculty = ParserUtil.parseFaculty(userInput);
+            Faculty faculty = ParserUtil.parseFaculty(trimmedUserInput);
             return new StatsCommandFaculty(faculty);
         }
         if (trimmedUserInput.equals("NUS")) {
