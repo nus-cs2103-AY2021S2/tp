@@ -3,9 +3,9 @@
 	"endpoints" : [ {
 		"method" : "GET",
 		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{\"key\":\"value\"}",
+		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ "cat" ],
+		"tagged" : [ "tag1","cat" ],
 		"response" : {
 			"protocolVersion" : "No Data",
 			"statusCode" : "No Data",
@@ -17,9 +17,9 @@
 	}, {
 		"method" : "POST",
 		"address" : "https://cat-fact.herokuapp.com/facts",
-		"data" : "{\"key\":\"value\"}",
+		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ "cat", "fact" ],
+		"tagged" : [ "tag2", "cat", "fact" ],
 		"response" : {
 			"protocolVersion" : "No Data",
 			"statusCode" : "No Data",
@@ -31,9 +31,9 @@
 	}, {
 		"method" : "PUT",
 		"address" : "https://cat-fact.herokuapp.com/facts",
-		"data" : "{\"key\":\"value\"}",
+		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ ],
+		"tagged" : [ "tag3", "cat" ],
 		"response" : {
 			"protocolVersion" : "No Data",
 			"statusCode" : "No Data",
@@ -45,9 +45,9 @@
 	}, {
 		"method" : "DELETE",
 		"address" : "https://cat-fact.herokuapp.com/facts",
-		"data" : "{\"key\":\"value\"}",
+		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ ],
+		"tagged" : [ "tag4", "Fact" ],
 		"response" : {
 			"protocolVersion" : "No Data",
 			"statusCode" : "No Data",
@@ -59,9 +59,9 @@
 	}, {
 		"method" : "HEAD",
 		"address" : "https://cat-fact.herokuapp.com/facts",
-		"data" : "{\"key\":\"value\"}",
+		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ ],
+		"tagged" : [ "tag5", "cat" ],
 		"response" : {
 			"protocolVersion" : "No Data",
 			"statusCode" : "No Data",
@@ -73,9 +73,9 @@
 	}, {
 		"method" : "OPTIONS",
 		"address" : "https://cat-fact.herokuapp.com/facts",
-		"data" : "{\"key\":\"value\"}",
+		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ ],
+		"tagged" : [ "tag6", "cat" ],
 		"response" : {
 			"protocolVersion" : "No Data",
 			"statusCode" : "No Data",
@@ -87,9 +87,9 @@
 	}, {
 		"method" : "PATCH",
 		"address" : "https://cat-fact.herokuapp.com/facts",
-		"data" : "{\"key\":\"value\"}",
+		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ ],
+		"tagged" : [ "tag7", "cat" ],
 		"response" : {
 			"protocolVersion" : "No Data",
 			"statusCode" : "No Data",
@@ -100,24 +100,10 @@
 		}
 	}, {
 		"method" : "GET",
-		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{\"key\":\"value\"}",
+		"address" : "https://reqres.in/api/users/2",
+		"data" : "{\"key\": \"value\"}",
 		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ ],
-		"response" : {
-			"protocolVersion" : "No Data",
-			"statusCode" : "No Data",
-			"reasonPhrase" : "No Data",
-			"statusLine" : "No Data",
-			"responseEntity" : "No Data",
-			"responseTime" : "No Data"
-		}
-	}, {
-		"method" : "GET",
-		"address" : "https://cat-fact.herokuapp.com/facts",
-		"data" : "{\"key\":\"value\"}",
-		"headers" : [ "\"key: value\"" ],
-		"tagged" : [ ],
+		"tagged" : [ "tag8", "human" ],
 		"response" : {
 			"protocolVersion" : "No Data",
 			"statusCode" : "No Data",
