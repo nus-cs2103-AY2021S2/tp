@@ -90,6 +90,18 @@ public interface BudgetBabyModel {
     void updateFilteredMonthList(Predicate<Month> predicate);
 
     /**
+     * Returns an unmodifiable view of the filtered financial record list
+     */
+    ObservableList<FinancialRecord> getFilteredFinancialRecordList();
+
+    /**
+     * Updates the filter of the filtered financial record list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
+
+    /**
      * Deletes the given financial record.
      * The financial record must exist in the budegt tracker.
      */

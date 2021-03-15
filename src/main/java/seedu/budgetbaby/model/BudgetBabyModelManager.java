@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -24,6 +25,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     private final BudgetTracker budgetTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Month> filteredMonths;
+    private final FilteredList<FinancialRecord> filteredFinancialRecords;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         this.budgetTracker = new BudgetTracker(budgetTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMonths = new FilteredList<>(this.budgetTracker.getMonthList());
+        filteredFinancialRecords = new FilteredList<>(this.budgetTracker.getFinancialRecordListOfMonth(YearMonth.now()));
     }
 
     public BudgetBabyModelManager() {
@@ -129,12 +132,8 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         budgetTracker.setBudget(budget);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered List Accessors =============================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code FinancialRecord} backed by the internal list of
-     * {@code versionedBudgetTracker}
-     */
     @Override
     public ObservableList<Month> getFilteredMonthList() {
         return filteredMonths;
@@ -144,6 +143,18 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     public void updateFilteredMonthList(Predicate<Month> predicate) {
         requireNonNull(predicate);
         filteredMonths.setPredicate(predicate);
+    }
+
+
+    @Override
+    public ObservableList<FinancialRecord> getFilteredFinancialRecordList() {
+        return filteredFinancialRecords;
+    }
+
+    @Override
+    public void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate) {
+        requireNonNull(predicate);
+        filteredFinancialRecords.setPredicate(predicate);
     }
 
     @Override

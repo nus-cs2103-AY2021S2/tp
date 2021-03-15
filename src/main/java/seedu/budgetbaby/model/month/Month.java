@@ -1,5 +1,7 @@
 package seedu.budgetbaby.model.month;
 
+import javafx.collections.ObservableList;
+import seedu.budgetbaby.logic.parser.TimestampParser;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.exception.MonthMismatchException;
 import seedu.budgetbaby.model.record.FinancialRecord;
@@ -47,6 +49,10 @@ public class Month {
 
     public FinancialRecordList getFinancialRecords() {
         return records;
+    }
+
+    public ObservableList<FinancialRecord> getFinancialRecordList() {
+        return records.asUnmodifiableObservableList();
     }
 
     public Budget getBudget() {
@@ -140,6 +146,4 @@ public class Month {
         return month.toString();
     }
 
-    public void removeFinancialRecord(FinancialRecord editedRecord) {
-    }
 }

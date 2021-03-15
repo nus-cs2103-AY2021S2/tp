@@ -141,6 +141,13 @@ public class UniqueMonthList implements Iterable<Month> {
         internalList.setAll(months);
     }
 
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Month> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
     /// financial-record
 
     /**
@@ -185,7 +192,14 @@ public class UniqueMonthList implements Iterable<Month> {
     public void removeFinancialRecord(FinancialRecord key) {
         requireNonNull(key);
         Month month = findFinancialRecordMonth(key);
-        month.removeFinancialRecord(key);
+        month.deleteFinancialRecord(key);
+    }
+
+    /**
+     * Returns a specific month's financial record list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<FinancialRecord> getFinancialRecordOfMonth(YearMonth month) {
+        return find(month).getFinancialRecordList();
     }
 
     /// budget
@@ -199,13 +213,6 @@ public class UniqueMonthList implements Iterable<Month> {
         requireNonNull(budget);
         Month currentMonth = find(YearMonth.now());
         //TODO: implement setBudget methods for the current month and all the future month
-    }
-
-    /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
-    public ObservableList<Month> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
     }
 
     @Override

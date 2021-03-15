@@ -1,10 +1,16 @@
 package seedu.budgetbaby.model.budget;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents the abstraction of a budget set by the user.
  */
 public class Budget {
-    protected double amount;
+    public static final String MESSAGE_CONSTRAINTS =
+        "Budget should be a number, and it should not be blank";
+
+    protected Double amount;
 
     /**
      * Default constructor.
@@ -17,14 +23,37 @@ public class Budget {
      *
      * @param amount The amount specified by the user.
      */
-    public Budget(double amount) {
+    public Budget(Double amount) {
         this.amount = amount;
+    }
+
+    /**
+     * Constructs a {@code Budget}.
+     *
+     * @param amount A valid budget.
+     */
+    public Budget(String amount) {
+        requireNonNull(amount);
+        checkArgument(isValidBudget(amount), MESSAGE_CONSTRAINTS);
+        this.amount = Double.parseDouble(amount);
+    }
+
+    /**
+     * Returns true if a given string is a valid budget.
+     */
+    public static boolean isValidBudget(String test) {
+        try {
+            Double.parseDouble(test);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
     /**
      * @return The budget amount set by the user.
      */
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -33,7 +62,7 @@ public class Budget {
      *
      * @param amount The amount specified by the user.
      */
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

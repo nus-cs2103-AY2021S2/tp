@@ -36,6 +36,12 @@ public interface BudgetBabyLogic {
     ObservableList<Month> getFilteredMonthList();
 
     /**
+     * Returns an unmodifiable view of the filtered list of financial records
+     * Default showing all financial records of the current month.
+     */
+    ObservableList<FinancialRecord> getFilteredFinancialRecordList();
+
+    /**
      * Returns the user prefs' budget baby file path.
      */
     Path getBudgetBabyFilePath();

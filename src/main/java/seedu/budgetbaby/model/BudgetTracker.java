@@ -2,6 +2,7 @@ package seedu.budgetbaby.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.YearMonth;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -107,6 +108,15 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     }
 
     /**
+     * Returns an unmodifiable view of the financial record list of the given month.
+     */
+    ObservableList<FinancialRecord> getFinancialRecordListOfMonth(YearMonth month) {
+        return this.monthList.getFinancialRecordOfMonth(month);
+    }
+
+    //// budget-level operations
+
+    /**
      * Sets the budget for the following months.
      *
      * @param budget The specified budget to be set.
@@ -114,7 +124,6 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     public void setBudget(Budget budget) {
         monthList.setBudget(budget);
     }
-
 
     //// util methods
 

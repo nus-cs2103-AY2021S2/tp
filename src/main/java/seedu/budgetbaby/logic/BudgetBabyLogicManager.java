@@ -66,6 +66,11 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     }
 
     @Override
+    public ObservableList<FinancialRecord> getFilteredFinancialRecordList() {
+        return model.getFilteredFinancialRecordList();
+    }
+
+    @Override
     public Path getBudgetBabyFilePath() {
         return model.getBudgetBabyFilePath();
     }
