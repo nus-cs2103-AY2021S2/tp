@@ -50,7 +50,7 @@ public class TagSearchCommandTest {
         // null -> returns false
         assertFalse(tagSearchFirstCommand.equals(null));
 
-        // different task -> returns false
+        // different commands -> returns false
         assertFalse(tagSearchFirstCommand.equals(tagSearchSecondCommand));
     }
 

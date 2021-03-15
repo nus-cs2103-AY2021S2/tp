@@ -34,7 +34,7 @@ public class TagContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different task -> returns false
+        // different predicates -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -66,6 +66,10 @@ public class TagContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("Assignment"));
         assertFalse(predicate.test(new TaskBuilder().withTags("Module", "Tutorial").build()));
+
+        // Non-matching keyword
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("Module", "Tutorial"));
+        assertFalse(predicate.test(new TaskBuilder().withTags("ModuleTutorial").build()));
 
         // Keywords match description and address, but does not match tag
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("12345", "Main", "Street"));
