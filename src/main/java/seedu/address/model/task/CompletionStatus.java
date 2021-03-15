@@ -1,16 +1,16 @@
 package seedu.address.model.task;
 
-enum Status {
-    COMPLETE,
-    INCOMPLETE
-}
-
 public class CompletionStatus {
     public static final String VALIDATION_REGEX = "COMPLETE|INCOMPLETE";
     public static final String MESSAGE_CONSTRAINTS =
             "Completion Statuses should only either by \"COMPLETE\" or \"INCOMPLETE\"";
 
     private Status completionStatus;
+
+    enum Status {
+        COMPLETE,
+        INCOMPLETE
+    }
 
     /**
      * Constructs an {@code CompletionStatus}.
