@@ -2,6 +2,7 @@ package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -43,5 +44,13 @@ public class DeadlineListTest {
         deadlines.add(deadline);
         DeadlineList deadlineList = new DeadlineList(deadlines);
         assertEquals(deadlines, deadlineList.getDeadlines());
+    }
+
+    @Test
+    public void getCopyOf_validDeadlineList_copyOfOriginal() {
+        DeadlineList deadlineList = new DeadlineList();
+        DeadlineList deadlineListCopy = deadlineList.getCopy();
+        assertEquals(deadlineList, deadlineListCopy);
+        assertFalse(deadlineList == deadlineListCopy);
     }
 }

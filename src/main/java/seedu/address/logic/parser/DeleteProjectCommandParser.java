@@ -6,6 +6,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new DeleteProjectCommand object
+ */
 public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> {
 
     /**

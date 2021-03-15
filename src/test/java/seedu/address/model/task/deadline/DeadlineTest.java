@@ -1,6 +1,8 @@
 package seedu.address.model.task.deadline;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -8,7 +10,12 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.DeadlineBuilder;
+
 public class DeadlineTest {
+
+    private static final Deadline TEST_DEADLINE = new DeadlineBuilder().build();
+    private static final Deadline DIFFERENT_DEADLINE = new DeadlineBuilder().withDescription("DIFFERENT").build();
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -44,5 +51,34 @@ public class DeadlineTest {
         assertTrue(Deadline.isValidDescription("Blk 456, Den Road, #01-355"));
         assertTrue(Deadline.isValidDescription("-")); // one character
         assertTrue(Deadline.isValidDescription("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
+    }
+
+    @Test
+    public void equals() {
+        // same values -> returns true
+        Deadline tutorialCopy = new DeadlineBuilder(TEST_DEADLINE).build();
+        assertEquals(TEST_DEADLINE, tutorialCopy);
+
+        // same object -> returns true
+        assertEquals(TEST_DEADLINE, TEST_DEADLINE);
+
+        // null -> returns false
+        assertNotEquals(TEST_DEADLINE, null);
+
+        // different type -> returns false
+        assertNotEquals(TEST_DEADLINE, 5);
+
+        // different event -> returns false
+        assertNotEquals(DIFFERENT_DEADLINE, TEST_DEADLINE);
+
+        // different name -> returns false
+        Deadline editedTutorial = new DeadlineBuilder(TEST_DEADLINE).withDescription("NOT TEST_DEADLINE").build();
+        assertNotEquals(editedTutorial, TEST_DEADLINE);
+
+        // different by date -> returns false
+        editedTutorial = new DeadlineBuilder(TEST_DEADLINE)
+                .withByDate(LocalDate.of(2019, 2, 21)).build();
+        assertNotEquals(editedTutorial, TEST_DEADLINE);
+
     }
 }

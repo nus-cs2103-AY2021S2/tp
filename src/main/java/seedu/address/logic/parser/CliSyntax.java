@@ -16,5 +16,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEADLINE_DATE = new Prefix("by/");
     public static final Prefix PREFIX_REPEATABLE_INTERVAL = new Prefix("i/");
     public static final Prefix PREFIX_REPEATABLE_DATE = new Prefix("at/");
-
+    public static final Prefix PREFIX_REMOVE_TASK_INDEX = new Prefix("r/");
 }
