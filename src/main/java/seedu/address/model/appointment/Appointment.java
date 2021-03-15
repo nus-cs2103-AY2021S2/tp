@@ -86,7 +86,7 @@ public class Appointment implements Comparable<Appointment> {
      */
     public boolean hasEditConflict(Appointment toCheck) {
         return (patient.equals(toCheck.getPatient())
-                && doctor.equals(toCheck.getDoctor()))
+                || doctor.equals(toCheck.getDoctor()))
                 && getTimeslot().hasOverlap(toCheck.getTimeslot());
     }
 
