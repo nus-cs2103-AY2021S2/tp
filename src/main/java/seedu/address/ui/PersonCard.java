@@ -60,7 +60,7 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         insurancePolicies.setText(person.getPolicies().stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(", ")));
+                .collect(Collectors.joining("\n")));
     }
 
     @Override
