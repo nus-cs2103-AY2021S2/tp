@@ -196,6 +196,69 @@ Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
 
+### Add a new note: `addnote`
+
+Adds a note equipped with some tags.
+
+Format: `addnote [c/CONTENT]... [t/TAG]...`
+
+* Tags are optional.
+* In the current version, notes will be stored as a pure string.
+
+Examples:
+* `addnote c/Do Homework`
+* `addnote c/Study for Midterms t/CS2103` 
+
+### Delete a new note: `deletenote`
+
+Deletes the specified note from the note list.
+
+Format: `deletenote [INDEX]`
+
+* Deletes the note at the specified `INDEX`.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Mark a note as done: `markasdonenote`
+
+Marks a note in a list as done.
+
+Format: `markasdonenote [INDEX]`
+
+* Marks the note at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* After execution, the affected note will be marked with a green tick.
+
+### Editing a note : `editnote`
+
+Edits an existing note in the note list.
+
+Format: `editnote INDEX [c/CONTENT] [t/TAG]…​`
+
+* Edits the note at the specified `INDEX`. The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the note will be removed (i.e., adding of tags is not cumulative).
+
+Examples:
+*  `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
+
+### Show a contact : `shownote`
+
+Showcases a note.
+
+Format: `shownote INDEX​`
+
+* Shows the note at the specified `INDEX`. The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
+
+### List all notes : `editnote`
+
+Lists every note on the note list.
+
+Format: `listnote​`
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
