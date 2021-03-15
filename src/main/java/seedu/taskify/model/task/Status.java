@@ -1,15 +1,16 @@
 package seedu.taskify.model.task;
 
-import seedu.taskify.commons.exceptions.IllegalValueException;
-import seedu.taskify.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.taskify.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Task's status in the address book.
  * Guarantees: immutable; can only be one of 3 status as defined in StatusType.
  */
 public class Status {
+
+    public static final String MESSAGE_CONSTRAINTS = "Status should be 'not done', 'in progress' or 'completed'";
 
     private static final String NOT_DONE_STRING = "Not done";
     private static final String IN_PROGRESS_STRING = "In progress";
@@ -21,7 +22,6 @@ public class Status {
 
     private static final String NULL_STATUS_TYPE = "Error, status does not have a status type!";
 
-    public static final String MESSAGE_CONSTRAINTS = "Status should be 'not done', 'in progress' or 'completed'";
     private static final String INVALID_STATUS_STRING = "Invalid status!";
 
     public final StatusType status;
