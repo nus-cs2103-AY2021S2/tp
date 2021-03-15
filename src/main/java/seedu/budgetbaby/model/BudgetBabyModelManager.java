@@ -39,7 +39,8 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         this.budgetTracker = new BudgetTracker(budgetTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMonths = new FilteredList<>(this.budgetTracker.getMonthList());
-        filteredFinancialRecords = new FilteredList<>(this.budgetTracker.getFinancialRecordListOfMonth(YearMonth.now()));
+        filteredFinancialRecords = new FilteredList<>(
+            this.budgetTracker.getFinancialRecordListOfMonth(YearMonth.now()));
     }
 
     public BudgetBabyModelManager() {

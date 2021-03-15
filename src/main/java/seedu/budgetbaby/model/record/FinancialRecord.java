@@ -1,14 +1,13 @@
 package seedu.budgetbaby.model.record;
 
-
-import seedu.budgetbaby.logic.parser.TimestampParser;
-
 import java.time.YearMonth;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.budgetbaby.logic.parser.TimestampParser;
 
 /**
  * Represents a Financial Record in the budget tracker.

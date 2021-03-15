@@ -12,7 +12,6 @@ import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 import seedu.budgetbaby.model.month.Month;
-import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * An Immutable BudgetTracker that is serializable to JSON format.

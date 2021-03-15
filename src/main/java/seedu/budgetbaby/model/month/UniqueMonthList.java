@@ -1,22 +1,19 @@
 package seedu.budgetbaby.model.month;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.budgetbaby.abmodel.person.Person;
-import seedu.budgetbaby.abmodel.person.UniquePersonList;
-import seedu.budgetbaby.abmodel.person.exceptions.DuplicatePersonException;
-import seedu.budgetbaby.logic.parser.TimestampParser;
-import seedu.budgetbaby.model.budget.Budget;
-import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
-import seedu.budgetbaby.model.month.exception.MonthNotFoundException;
-import seedu.budgetbaby.model.record.FinancialRecord;
+import static java.util.Objects.requireNonNull;
+import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.YearMonth;
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.budgetbaby.logic.parser.TimestampParser;
+import seedu.budgetbaby.model.budget.Budget;
+import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
+import seedu.budgetbaby.model.month.exception.MonthNotFoundException;
+import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * A list of months that enforces uniqueness between its elements and does not allow nulls.

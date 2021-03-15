@@ -1,17 +1,16 @@
 package seedu.budgetbaby.model.month;
 
-import javafx.collections.ObservableList;
-import seedu.budgetbaby.logic.parser.TimestampParser;
-import seedu.budgetbaby.model.budget.Budget;
-import seedu.budgetbaby.model.month.exception.MonthMismatchException;
-import seedu.budgetbaby.model.record.FinancialRecord;
-import seedu.budgetbaby.model.record.FinancialRecordList;
+import static java.util.Objects.requireNonNull;
+import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.YearMonth;
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.ObservableList;
+import seedu.budgetbaby.model.budget.Budget;
+import seedu.budgetbaby.model.month.exception.MonthMismatchException;
+import seedu.budgetbaby.model.record.FinancialRecord;
+import seedu.budgetbaby.model.record.FinancialRecordList;
 
 /**
  * Represents a Month in the budget tracker.
