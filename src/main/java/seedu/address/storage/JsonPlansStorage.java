@@ -76,5 +76,4 @@ public class JsonPlansStorage implements AddressBookStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializablePlans(plans), filePath);
     }
-
 }

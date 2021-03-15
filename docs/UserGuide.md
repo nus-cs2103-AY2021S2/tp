@@ -210,7 +210,7 @@ Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 
 This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and
 `SEM_NUMBER`, and outputs meta details about the module being
-added/deleted, as well as whether the addition/deletion was successful or not. 
+added/deleted, as well as whether the addition/deletion was successful or not.
 The details to output are as follows:
 * Module addition/deletion success status
 * Semester number
@@ -293,7 +293,7 @@ Constraints:
 * Trying to add a module that already exists will not be allowed
 * Trying to add/delete a nonexistent module code/plan number/semester
   number will not be allowed
-  
+
 Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
 
