@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +50,15 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    public static ScheduleDescription parseScheduleDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!ScheduleDescription.isValidName(trimmedDescription)) {
+            throw new ParseException(ScheduleDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new ScheduleDescription(trimmedDescription);
     }
 
     /**
@@ -120,5 +131,10 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static LocalDate parseDate(String dateStr) {
+        requireNonNull(dateStr);
+        return LocalDate.parse(dateStr);
     }
 }
