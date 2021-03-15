@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,14 +17,20 @@ import seedu.address.model.appointment.Appointment;
 public class TypicalAppointments {
 
     public static final Appointment MEET_ALEX = new AppointmentBuilder().withName("Meet Alex")
-            .withRemark("At M Hotel").withDate(LocalDate.parse("2021-12-25"))
-            .withTime(LocalTime.parse("15:00")).build();
+        .withRemark("At M Hotel")
+        .withDate(LocalDate.parse("25-12-2021",
+            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
+        .withTime(LocalTime.parse("1500", DateTimeFormatter.ofPattern("HHmm"))).build();
     public static final Appointment MEET_BOB = new AppointmentBuilder().withName("Meet Bob")
-            .withRemark("At Plaza Sing Starbucks").withDate(LocalDate.parse("2021-02-25"))
-            .withTime(LocalTime.parse("20:00")).build();
+        .withRemark("At Plaza Sing Starbucks")
+        .withDate(LocalDate.parse("25-02-2021",
+            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
+        .withTime(LocalTime.parse("2000", DateTimeFormatter.ofPattern("HHmm"))).build();
     public static final Appointment MEET_CHARLIE = new AppointmentBuilder().withName("Meet Charlie")
-            .withRemark("At client's house").withDate(LocalDate.parse("2021-08-17"))
-            .withTime(LocalTime.parse("12:30")).build();
+        .withRemark("At client's house")
+        .withDate(LocalDate.parse("17-08-2021",
+            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
+        .withTime(LocalTime.parse("1230", DateTimeFormatter.ofPattern("HHmm"))).build();
 
     private TypicalAppointments() {} // prevents instantiation
 
