@@ -30,8 +30,11 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_RANDOM =
             "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2";
     public static final String VALID_ADDRESS_FACT = "https://cat-fact.herokuapp.com/facts";
+    public static final String VALID_DATA_PAIR = "{key: value}";
+    public static final String VALID_HEADER_PAIR = "\"key: value\"";
     public static final String VALID_TAG_CAT = "cat";
     public static final String VALID_TAG_COOL = "cool";
+    public static final String VALID_TAG_1 = "tag1";
 
     public static final String METHOD_DESC_GET = " " + PREFIX_METHOD + VALID_METHOD_GET;
     public static final String METHOD_DESC_POST = " " + PREFIX_METHOD + VALID_METHOD_POST;
@@ -52,8 +55,9 @@ public class CommandTestUtil {
 
     static {
         DESC_GET = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET).withAddress(VALID_ADDRESS_RANDOM)
-                .withTags(VALID_TAG_COOL).build();
+                .withData(VALID_DATA_PAIR).withHeaders(VALID_HEADER_PAIR).withTags(VALID_TAG_COOL).build();
         DESC_POST = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_POST).withAddress(VALID_ADDRESS_FACT)
+                .withData(VALID_DATA_PAIR).withHeaders(VALID_HEADER_PAIR)
                 .withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
     }
 
@@ -111,9 +115,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEndpointList().size());
 
         Endpoint endpoint = model.getFilteredEndpointList().get(targetIndex.getZeroBased());
-        final String[] splitName = endpoint.getMethod().methodName.split("\\s+");
-        //to-do fix this test case for NameContainsKeywordsPredicate (got changed with find command)
-        model.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitTags = endpoint.getTags().toString().split("\\s+");
+        model.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(splitTags[0])));
 
         assertEquals(1, model.getFilteredEndpointList().size());
     }
