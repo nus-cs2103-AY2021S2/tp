@@ -42,9 +42,9 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
      */
     public void add(Endpoint toAdd) {
         requireNonNull(toAdd);
-        // if (contains(toAdd)) {
-        //     throw new DuplicateApiEndpointException();
-        // }
+        if (contains(toAdd)) {
+            throw new DuplicateApiEndpointException();
+        }
         internalList.add(toAdd);
     }
 
@@ -61,9 +61,9 @@ public class UniqueEndpointList implements Iterable<Endpoint> {
             throw new EndpointNotFoundException();
         }
 
-        // if (!target.isSameEndpoint(editedEndpoint) && contains(editedEndpoint)) {
-        //     throw new DuplicateApiEndpointException();
-        // }
+        if (!target.isSameEndpoint(editedEndpoint) && contains(editedEndpoint)) {
+            throw new DuplicateApiEndpointException();
+        }
 
         internalList.set(index, editedEndpoint);
     }
