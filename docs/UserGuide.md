@@ -68,10 +68,9 @@ HeliBook is a **desktop app for managing you children's contacts, optimized for 
 
 Shows information about available commands and how they can be used.
 
-Format: `help`
+Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-  !['help message'](images/helpMessage.png)
 * If command is specified, detailed information about the command will be displayed. [coming soon]
 
 Examples:
@@ -126,7 +125,9 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -153,7 +154,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found<br>
+* `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found
+
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
@@ -233,4 +235,4 @@ Action | Format, Examples
 **List** | `list`
 **Tag** | `tag INDEX [OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort OPTION` <br> e.g., `sort -name`
-**Help** | `help`
+**Help** | `help [COMMAND]` <br> e.g, `help find`
