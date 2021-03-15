@@ -24,12 +24,12 @@ class SortCommandTest {
 
     @Test
     public void execute_sortedTask_showsSameList() {
-        assertCommandSuccess(new SortCommand(), expectedModel, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortCommand(), expectedModel, SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_unsortedTask_showsEverything() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_unsortedTask_showsSortedList() {
+        assertCommandSuccess(new SortCommand(), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

@@ -94,7 +94,7 @@ public class ModelManagerTest {
         modelManager.addTask(QUIZ);
         modelManager.sortTasks();
         assertEquals(QUIZ, modelManager.getFilteredTaskList().get(0));
-        assertEquals(QUIZ, modelManager.getFilteredTaskList().get(1));
+        assertEquals(MIDTERM, modelManager.getFilteredTaskList().get(1));
     }
 
     @Test
