@@ -206,34 +206,29 @@ Examples:
 |`unalias ls`| will remove the alias `ls`|
 |`unalias d`| will remove the alias `d`| -->
 
-### List options [coming soon]
+### Filter
 
-<!-- List options provide the user with the choice to tweak their list return result according to the specified option(s).
+Filter provides the user with the choice to tweak their result display according to the specified option(s).
 
-Format: each option should start with OPTION/ and be separated by a whitespace, where OPTION/ refers to the option Key.
-ie. `list [OPTION_1/ OPTION_2/ … OPTION_N/]`
+Format: `list [-OPTION] [-OPTION1]...`
+
+each option should start with a hyphen `-` e.g. `-OPTION` and be separated by a whitespace.
 
 Key:
+
 | Key | Description |
 | --------------- | -------- |
-|`n`|    Name|
 |`p`|     Phone number|
 |`e`|    Email|
 |`a`|    Address|
 |`t`|    Tag|
-|`b` |   Birthday (new)|
-|`g` |   Gender (new) |
-|`no`|    Notes (new) |
 
 Examples:
+
 | Example | Description |
 | --------------- | -------- |
-|`list -n `| returns the list of all contacts with name as the only field.|
-|`list -n -b -g`| returns the list of all contacts with name, birthday, gender as the only fields.|
-
-Tip:
-Combine the Alias feature with custom options to have a customized view. E.g. `alias list=”list -n  -p  -e  -t ` to only show the name, phone number, email and tags. -->
-
+|`list -a `| show the contact's name and address only.|
+|`list -a -p`| show the contact's name, address and phone number only.|
 
 ### Saving the data
 
@@ -265,6 +260,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…​`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter [-p] [-e] [-a] [-t]` <br> e.g., `filter -p -a` to see only the phone number and address
 **List** | `list`
 **Help** | `help`
 **Alias** | _[coming soon]_
