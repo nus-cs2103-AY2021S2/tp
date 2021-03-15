@@ -6,8 +6,8 @@ import java.util.List;
 
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
-import seedu.storemando.model.item.ItemComparatorByExpiryDate;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.ItemComparatorByExpiryDate;
 
 public class SortExpiryDateCommand extends SortCommand {
 
