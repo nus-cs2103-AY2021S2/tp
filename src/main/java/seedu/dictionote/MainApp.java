@@ -16,19 +16,23 @@ import seedu.dictionote.commons.util.StringUtil;
 import seedu.dictionote.logic.Logic;
 import seedu.dictionote.logic.LogicManager;
 import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.DefinitionBook;
 import seedu.dictionote.model.Dictionary;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.NoteBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.util.SampleDataUtil;
 import seedu.dictionote.storage.AddressBookStorage;
+import seedu.dictionote.storage.DefinitionBookStorage;
 import seedu.dictionote.storage.DictionaryStorage;
 import seedu.dictionote.storage.JsonAddressBookStorage;
+import seedu.dictionote.storage.JsonDefinitionBookStorage;
 import seedu.dictionote.storage.JsonDictionaryStorage;
 import seedu.dictionote.storage.JsonNoteBookStorage;
 import seedu.dictionote.storage.JsonUserPrefsStorage;
@@ -58,7 +62,8 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         logger.info("=============================[ Initializing NoteBook ]==============================");
-        logger.info("=============================[ Initializing Dictionary ]==============================");
+        logger.info("=============================[ Initializing Dictionary ]============================");
+        logger.info("=============================[ Initializing DefinitionBook ]========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -69,7 +74,10 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         NoteBookStorage noteBookStorage = new JsonNoteBookStorage(userPrefs.getNoteBookFilePath());
         DictionaryStorage dictionaryStorage = new JsonDictionaryStorage(userPrefs.getDictionaryFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage, dictionaryStorage);
+        DefinitionBookStorage definitionBookStorage =
+                new JsonDefinitionBookStorage(userPrefs.getDefinitionBookFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage,
+                dictionaryStorage, definitionBookStorage);
 
         initLogging(config);
 
@@ -92,6 +100,8 @@ public class MainApp extends Application {
         ReadOnlyNoteBook initialDataNote;
         Optional<ReadOnlyDictionary> dictionaryOptional;
         ReadOnlyDictionary initialDictionary;
+        Optional<ReadOnlyDefinitionBook> definitionBookOptional;
+        ReadOnlyDefinitionBook initialDataDefinition;
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -124,18 +134,33 @@ public class MainApp extends Application {
         try {
             dictionaryOptional = storage.readDictionary();
             if (!dictionaryOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample NoteBook");
+                logger.info("Data file not found. Will be starting with a sample Dictionary");
             }
             initialDictionary = dictionaryOptional.orElseGet(SampleDataUtil::getSampleDictionary);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty Dictionary");
             initialDictionary = new Dictionary();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Dictionary");
             initialDictionary = new Dictionary();
         }
 
-        return new ModelManager(initialDataAddress, userPrefs, initialDataNote, initialDictionary);
+        try {
+            definitionBookOptional = storage.readDefinitionBook();
+            if (!definitionBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample DefinitionBook");
+            }
+            initialDataDefinition = definitionBookOptional.orElseGet(SampleDataUtil::getSampleDefinitionBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty DefinitionBook");
+            initialDataDefinition = new DefinitionBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty DefinitionBook");
+            initialDataDefinition = new DefinitionBook();
+        }
+
+        return new ModelManager(initialDataAddress, userPrefs, initialDataNote,
+                initialDictionary, initialDataDefinition);
     }
 
     private void initLogging(Config config) {

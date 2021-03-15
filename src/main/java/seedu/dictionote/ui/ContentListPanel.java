@@ -15,7 +15,7 @@ import seedu.dictionote.model.dictionary.Content;
  */
 public class ContentListPanel extends UiPart<Region> {
     private static final String FXML = "ContentListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(NoteListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(ContentListPanel.class);
 
     @FXML
     private ListView<Content> contentListView;

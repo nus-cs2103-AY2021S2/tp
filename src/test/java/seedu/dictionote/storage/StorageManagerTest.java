@@ -31,7 +31,9 @@ public class StorageManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonNoteBookStorage noteBookStorage = new JsonNoteBookStorage(getTempFilePath("nb"));
         JsonDictionaryStorage dictionaryStorage = new JsonDictionaryStorage(getTempFilePath("dc"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage, dictionaryStorage);
+        JsonDefinitionBookStorage definitionBookStorage = new JsonDefinitionBookStorage(getTempFilePath("dbs"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage,
+                dictionaryStorage, definitionBookStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -87,5 +89,6 @@ public class StorageManagerTest {
     public void getNoteBookFilePath() {
         assertNotNull(storageManager.getNoteBookFilePath());
     }
+
 
 }
