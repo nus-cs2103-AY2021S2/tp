@@ -33,9 +33,7 @@ test your APIs more conveniently than traditional GUI applications.
 
    - **`add -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Adds an API endpoint to the API endpoint list.
 
-   - **`edit 1 -x -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the API endpoint list.
-
-   - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
+   - **`edit 1 -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the API endpoint list.
 
    - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
 
@@ -72,7 +70,7 @@ test your APIs more conveniently than traditional GUI applications.
   `edit INDEX [-x METHOD] [-u URL]` can be used as `edit 1 -x GET` or
   `edit 1 -u https://api.data.gov.sg/v1/environment/pm25`.
 
-- Items with `…`​ after them can be used multiple times including zero times.<br> e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as `find KEYWORD1` or `find KEYWORD1 KEYWORD2 KEYWORD3`.
+- Items with `…`​ after them can be used multiple times including zero times.<br> e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as `find github` or `find github cats`.
 
 - Parameters can be in any order.<br> e.g. both `-x METHOD -u URL` and `-u URL -x METHOD` are acceptable.
 
@@ -91,14 +89,16 @@ Description: Get the link to the user guide to the application in the form of a 
 Format: `help`
 
 ![help message](images/helpMessage.png)
+
 #### Toggle theme: `toggle`
 
-Description: Exit the application.
+Description: Toggle the theme for the application.
 
 Format: `toggle THEME`
 
 Example:
 - `toggle light`
+
 #### Exit program: `exit`
 
 Description: Exit the application.
@@ -116,7 +116,7 @@ Format: `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…`
 `DATA` must be in **JSON** format and `HEADER` must be enclosed in `" "` else an error message will be shown.
 
 Examples:
-- `add -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value1" -h "key: value2" -t local -t data`
+- `add -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key1: value1" -h "key2: value2" -t local -t data`
 - `add -x GET -u https://api.data.gov.sg/v1/environment/pm25`
 
 **Tip:** An endpoint can have any number of **unique** tags and headers (including 0).
@@ -135,17 +135,6 @@ Examples:
 - `edit 3 -x GET -t fresh -t food`
 
 **Tip:** Multiple tags must be unique and duplicates will be ignored.
-
-#### Show an API endpoint: `show`
-
-Description: Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
-be a positive integer).
-
-Format: `show INDEX`
-
-Examples:
-- `show 1`
-- `show 3`
 
 #### Show an API endpoint: `show`
 
@@ -200,6 +189,8 @@ Examples:
 
 - `send 1`
 
+**Tip:** You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>.
+
 #### Call an API endpoint directly without saving: `run`
 
 Description: Call an API endpoint on the fly (without saving). Two command formats are available. The first format 
@@ -220,6 +211,8 @@ Examples:
 
 - `run https://api.data.gov.sg/v1/environment/pm25`
 - `run https://api.data.gov.sg/v1/environment/uv-index"`
+
+**Tip:** You may cancel an API call with <kbd>ctrl</kbd> + <kbd>d</kbd>.
 
 ### Miscellaneous Information
 
@@ -258,6 +251,7 @@ with the file that contains the data of your previous imPoster home folder.
 | Action     | Format                                | Example                                |
 | ---------- | ------------------------------------- | -------------------------------------- |
 | **Help**   | `help`                                | `help`                                 |
+| **Toggle** | `toggle`                              | `toggle light`                         |
 | **Exit**   | `exit`                                | `exit`                                 |
 
 ### <ins>Endpoint Commands</ins>
