@@ -105,6 +105,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered venue list */
     ObservableList<Venue> getFilteredVenueList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -112,11 +113,11 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-<<<<<<< HEAD
      * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBookingList(Predicate<Booking> predicate);
+
     /**
      * Updates the filter of the filtered venue list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -135,6 +136,9 @@ public interface Model {
     void addVenue(Venue venue);
 
     /// logic related to bookings
-
+    /**
+     * Deletes the given booking.
+     * The booking must exist in the system.
+     */
     void deleteBooking(int bookingId);
 }

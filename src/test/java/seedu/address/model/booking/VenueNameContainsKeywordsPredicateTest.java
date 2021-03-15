@@ -65,6 +65,6 @@ public class VenueNameContainsKeywordsPredicateTest {
 
         // Non-matching keyword
         predicate = new VenueNameContainsKeywordsPredicate(Arrays.asList("Court"));
-        assertFalse(predicate.test(new VenueBuilder().withName("Sports Hall").build()));
+        assertFalse(predicate.test(new VenueBuilder().withName("Hall").build()));
     }
 }

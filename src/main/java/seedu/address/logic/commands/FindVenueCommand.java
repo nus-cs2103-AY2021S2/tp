@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.booking.VenueNameContainsKeywordsPredicate;
 
 /**
- * Finds and lists the venue in the system whose id corresponds to that of the argument keyword.
+ * Finds and lists the venue in the system whose name corresponds to that of the argument keyword.
  * Keyword matching is case insensitive.
  */
 public class FindVenueCommand extends Command {

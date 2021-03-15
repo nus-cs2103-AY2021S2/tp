@@ -18,7 +18,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.booking.VenueNameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindVenueCommand}.
  */
 public class FindVenueCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -47,7 +47,7 @@ public class FindVenueCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different venues -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -62,7 +62,7 @@ public class FindVenueCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code VenueNameContainsKeywordsPredicate}.
      */
     private VenueNameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new VenueNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
