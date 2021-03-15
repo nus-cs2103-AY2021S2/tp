@@ -32,6 +32,7 @@ public class AddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getFlashBack(), new UserPrefs());
         expectedModel.addFlashcard(validFlashcard);
+        expectedModel.commitFlashBack();
 
         assertCommandSuccess(new AddCommand(validFlashcard), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validFlashcard), expectedModel);
