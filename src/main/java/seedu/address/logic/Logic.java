@@ -28,15 +28,15 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getFlashBack()
      */
-    ReadOnlyFlashBack getAddressBook();
+    ReadOnlyFlashBack getFlashBack();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Flashcard> getFilteredPersonList();
+    ObservableList<Flashcard> getFilteredFlashcardList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getFlashBackFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
