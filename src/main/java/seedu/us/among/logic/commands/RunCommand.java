@@ -31,16 +31,16 @@ public class RunCommand extends Command {
 
     public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + "get "
-            + PREFIX_ADDRESS + "http://localhost:3000/ "
-            + PREFIX_DATA + "{some: data} "
-            + PREFIX_HEADER + "\"key: value\" "
-            + PREFIX_HEADER + "\"key: value\"\n";
+            + PREFIX_METHOD + " get "
+            + PREFIX_ADDRESS + " http://localhost:3000/ "
+            + PREFIX_DATA + " {some: data} "
+            + PREFIX_HEADER + " \"key: value\" "
+            + PREFIX_HEADER + " \"key: value\"\n";
 
     public static final String MESSAGE_API_EXAMPLE_2 = "2. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + "get "
-            + PREFIX_ADDRESS + "https://api.data.gov.sg/v1/environment/air-temperature\n";
+            + PREFIX_METHOD + " get "
+            + PREFIX_ADDRESS + " https://api.data.gov.sg/v1/environment/air-temperature\n";
 
     public static final String QUICK_RUN_COMMAND_SYNTAX = "Tip (Only for 10x developers):\n"
             + "Run command has a special syntax! Simply specify the API address to be tested"
@@ -60,7 +60,7 @@ public class RunCommand extends Command {
             + "[" + PREFIX_HEADER + " HEADER]...\n"
             + "Examples:\n"
             + MESSAGE_API_EXAMPLE_1
-            + MESSAGE_API_EXAMPLE_2
+            + MESSAGE_API_EXAMPLE_2 + "\n"
             + QUICK_RUN_COMMAND_SYNTAX;
 
 

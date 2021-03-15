@@ -33,17 +33,53 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
+    public static final String MESSAGE_API_EXAMPLE_1 = "1. "
+            + COMMAND_WORD + " " + " 1 "
+            + PREFIX_METHOD + " get \n";
+
+    public static final String MESSAGE_API_EXAMPLE_2 = "2. "
+            + COMMAND_WORD + " " + " 2 "
+            + PREFIX_ADDRESS + " http://localhost:3000/ \n";
+
+    public static final String MESSAGE_API_EXAMPLE_3 = "3. "
+            + COMMAND_WORD + " " + " 3 "
+            + PREFIX_DATA + " {\"some\": \"new data\"} \n";
+
+    public static final String MESSAGE_API_EXAMPLE_4 = "4. "
+            + COMMAND_WORD + " " + " 4 "
+            + PREFIX_HEADER + " \"new key1: new value1\" "
+            + PREFIX_HEADER + " \"new key2: new value2\" \n";
+
+    public static final String MESSAGE_API_EXAMPLE_5 = "5. "
+            + COMMAND_WORD + " " + " 5 "
+            + PREFIX_TAG + " newtagone "
+            + PREFIX_TAG + " newtagtwo \n";
+
+    public static final String MESSAGE_API_EXAMPLE_6 = "6. "
+            + COMMAND_WORD + " " + " 6 "
+            + PREFIX_HEADER + " //remove all headers \n";
+
+    public static final String MESSAGE_API_EXAMPLE_7 = "7. "
+            + COMMAND_WORD + " " + " 7 "
+            + PREFIX_TAG + " //removes all tags \n";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
             + "identified using it's displayed index from the API endpoint list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_METHOD + "METHOD] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_DATA + "DATA] "
-            + "[" + PREFIX_HEADER + "HEADER]...\n"
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ADDRESS + "wall street ";
+            + "[" + PREFIX_METHOD + " METHOD] "
+            + "[" + PREFIX_ADDRESS + " ADDRESS] "
+            + "[" + PREFIX_DATA + " DATA] "
+            + "[" + PREFIX_HEADER + " HEADER]... "
+            + "[" + PREFIX_TAG + " TAG]...\n"
+            + "Examples: \n"
+            + MESSAGE_API_EXAMPLE_1
+            + MESSAGE_API_EXAMPLE_2
+            + MESSAGE_API_EXAMPLE_3
+            + MESSAGE_API_EXAMPLE_4
+            + MESSAGE_API_EXAMPLE_5
+            + MESSAGE_API_EXAMPLE_6
+            + MESSAGE_API_EXAMPLE_7;
 
     public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
