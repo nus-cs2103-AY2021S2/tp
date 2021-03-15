@@ -1,0 +1,28 @@
+{
+  "tasks" : [ ],
+  "events" : [ {
+    "name" : "CS2103 Meeting",
+    "startDate" : "2021-02-27",
+    "startTime" : "15:00",
+    "endDate" : "2021-02-27",
+    "endTime" : "17:00",
+    "category" : [ "School" ],
+    "tagged" : [ "TeamProject" ]
+  }, {
+    "name" : "CS2105 Lecture",
+    "startDate" : "2021-02-28",
+    "startTime" : "15:00",
+    "endDate" : "2021-02-27",
+    "endTime" : "17:00",
+    "category" : [ "School" ],
+    "tagged" : [  ]
+  }, {
+    "name" : "CS2106 Tutorial",
+    "startDate" : "2021-02-28",
+    "startTime" : "17:00",
+    "endDate" : "2021-02-27",
+    "endTime" : "18:00",
+    "category" : [ "School" ],
+    "tagged" : [ "AtHome" ]
+  } ]
+}
