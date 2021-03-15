@@ -37,6 +37,7 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 - List all clients: `list`
 - Locating clients by name: `find`
 - Deleting a client : `delete`
+- Sorting the list of clients : `sort`
 - Exiting the program : `exit`
 - Saving the data 
 
@@ -170,6 +171,19 @@ Examples:
 * `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
 * `find Betsy` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
 
+### Sorting the list of clients : `sort`
+
+Sorts the list of clients in ClientBook by their names in alphabetical order.
+
+Format: `sort DIRECTION`
+
+* Sorts the list of clients according the specified `DIRECTION`.
+* The specified `DIRECTION` can be `-a` for ascending order or `-d` for descending order.
+
+Examples:
+* `sort -a` sorts the current list of clients in ascending order.
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -210,5 +224,6 @@ Action | Format, Examples
 **Policy** | `policy INDEX`<br> e.g., `policy 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James & Jake`
+**Sort** | `sort DIRECTION`
 **List** | `list`
 **Help** | `help`
