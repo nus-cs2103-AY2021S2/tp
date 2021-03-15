@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
@@ -155,12 +156,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Schedule> getFilteredScheduleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public boolean hasSchedule(Schedule toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSchedule(Schedule toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

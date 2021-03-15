@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.task.Task;
 
 /**
@@ -14,8 +15,13 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULES = unused -> true;
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -90,6 +96,23 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+    void addSchedule(Schedule toAdd);
+
+    /**
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the address book.
+     */
+    boolean hasSchedule(Schedule schedule);
+
+    /** Returns an unmodifiable view of the filtered schedule list */
+    ObservableList<Schedule> getFilteredScheduleList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredScheduleList(Predicate<Schedule> predicate);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();

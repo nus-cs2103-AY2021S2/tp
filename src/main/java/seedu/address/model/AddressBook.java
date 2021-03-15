@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.UniqueScheduleList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -17,6 +19,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueScheduleList schedules;
     private final UniqueTaskList tasks;
 
     /*
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         tasks = new UniqueTaskList();
         persons = new UniquePersonList();
+        schedules = new UniqueScheduleList();
     }
 
     public AddressBook() {}
@@ -97,6 +101,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// schedule methods
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasSchedule(Schedule schedule) {
+        requireNonNull(schedule);
+        return schedules.contains(schedule);
+    }
+
+    //// task methods
+
     /**
      * Returns true if a person with the same identity as {@code task} exists in the address book.
      */
@@ -119,6 +135,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Schedule> getScheduleList() {
+        return schedules.asUnmodifiableObservableList();
     }
 
     @Override
