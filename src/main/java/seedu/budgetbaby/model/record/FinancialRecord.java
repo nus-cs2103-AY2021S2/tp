@@ -30,7 +30,6 @@ public class FinancialRecord {
      * @param categories  A valid category.
      */
     public FinancialRecord(Description description, Amount amount, Set<Category> categories) {
-        //requireNonNull(tagName);
         //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.amount = amount;
@@ -73,6 +72,7 @@ public class FinancialRecord {
     public Set<Category> getTags() {
         return Collections.unmodifiableSet(categories);
     }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

@@ -8,7 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.abmodel.person.exceptions.FinancialRecordNotFoundException;
+import seedu.budgetbaby.model.record.exception.FinancialRecordNotFoundException;
 import seedu.budgetbaby.abmodel.person.exceptions.PersonNotFoundException;
 
 /**
