@@ -37,19 +37,15 @@ class JsonAdaptedAssignment {
      * Converts a given {@code source} into this class for Jackson use.
      */
     public JsonAdaptedAssignment(Assignment source) {
-        description = source.description.description;
-        deadline = source.deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        if (source != null) {
+            description = source.description.description;
+            deadline = source.deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        } else {
+            description = "Empty";
+            deadline = "Empty";
+        }
     }
 
-    @JsonValue
-    public String getAssignmentDescription() {
-        return description;
-    }
-
-    @JsonValue
-    public String getAssignmentDeadline() {
-        return deadline;
-    }
 
     /**
      * Converts this Jackson-friendly adapted assignment object into the model's {@code assignment} object.

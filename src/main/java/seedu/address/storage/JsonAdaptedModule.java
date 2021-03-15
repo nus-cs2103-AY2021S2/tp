@@ -1,9 +1,6 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -16,7 +13,6 @@ import seedu.address.model.module.Exam;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.module.Module;
 
 /**
@@ -25,10 +21,9 @@ import seedu.address.model.module.Module;
 class JsonAdaptedModule {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
-
     private String title;
-    private ArrayList<JsonAdaptedAssignment> assignmentList;
-    private ArrayList<JsonAdaptedExam> examList;
+    private ArrayList<JsonAdaptedAssignment> assignmentList = new ArrayList<>();
+    private ArrayList<JsonAdaptedExam> examList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given person details.
@@ -38,8 +33,12 @@ class JsonAdaptedModule {
                              @JsonProperty("assignmentList") ArrayList<JsonAdaptedAssignment> assignmentList,
                              @JsonProperty("examList") ArrayList<JsonAdaptedExam> examList) {
         this.title = title;
-        this.assignmentList = assignmentList;
-        this.examList = examList;
+        if (assignmentList != null) {
+            this.assignmentList.addAll(assignmentList);
+        }
+        if (examList != null) {
+            this.examList = examList;
+        }
     }
 
     /**
@@ -48,10 +47,11 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         title = source.getTitle().modTitle;
         assignmentList.addAll(source.getAssignments().getAssignments().stream()
-                .map(JsonAdaptedAssignment::new).collect(Collectors.toList()));
-
+                .map(JsonAdaptedAssignment::new)
+                .collect(Collectors.toList()));
         examList.addAll(source.getExams().getExams().stream()
-                .map(JsonAdaptedExam::new).collect(Collectors.toList()));
+                .map(JsonAdaptedExam::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -62,11 +62,15 @@ class JsonAdaptedModule {
     public Module toModelType() throws IllegalValueException {
         final ArrayList<Assignment> modelAssignments = new ArrayList<>();
         final ArrayList<Exam> modelExams = new ArrayList<>();
-        for (JsonAdaptedAssignment assignment : assignmentList) {
-            modelAssignments.add(assignment.toModelType());
+        if (assignmentList != null && !assignmentList.isEmpty()) {
+            for (JsonAdaptedAssignment assignment : assignmentList) {
+                modelAssignments.add(assignment.toModelType());
+            }
         }
-        for (JsonAdaptedExam exam : examList) {
-            modelExams.add(exam.toModelType());
+        if (examList != null && !examList.isEmpty()) {
+            for (JsonAdaptedExam exam : examList) {
+                modelExams.add(exam.toModelType());
+            }
         }
 
         if (title == null) {

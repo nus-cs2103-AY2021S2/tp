@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.person.Person;
 
 
 public class UniqueModuleList implements Iterable<Module> {
@@ -135,19 +136,17 @@ public class UniqueModuleList implements Iterable<Module> {
      * Returns true if {@code modules} contains only unique modules.
      */
     private boolean areModulesUnique(List<Module> modules) {
-        // todo trying something different, hope it works.
-        sort(modules);
-        for (int i = 0; i < modules.size(); i++) {
-            Module currModule = modules.get(i);
-            Module nextModule = modules.get(i + 1);
-            if (currModule.isSameModule(nextModule)) {
-                return false;
+
+        for (int i = 0; i < modules.size() - 1; i++) {
+            for (int j = i + 1; j < modules.size(); j++) {
+                if (modules.get(i).isSameModule(modules.get(j))) {
+                    return false;
+                }
             }
         }
+
         return true;
     }
 
-    private void sort(List<Module> modules) {
-        Collections.sort(modules);
-    }
+
 }
