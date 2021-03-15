@@ -81,6 +81,18 @@ public class Endpoint {
         this.response = response;
     }
 
+    /**
+     * Constructor for endpoint, with the details of {@code otherEndpoint} and response
+     */
+    public Endpoint(Endpoint otherEndpoint, Response response) {
+        this(otherEndpoint.getMethod(),
+                otherEndpoint.getAddress(),
+                otherEndpoint.getData(),
+                otherEndpoint.getHeaders(),
+                otherEndpoint.getTags(),
+                response);
+    }
+
     public Method getMethod() {
         return method;
     }
