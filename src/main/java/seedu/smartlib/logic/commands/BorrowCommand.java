@@ -14,8 +14,8 @@ public class BorrowCommand extends Command {
 
     public static final String COMMAND_WORD = "borrow";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Borrow command not implemented yet";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the reader identified "
+            + "by the index number used in the last reader listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_BOOK + "[REMARK]\n"

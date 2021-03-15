@@ -27,7 +27,7 @@ import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
 /**
- * Edits the details of an existing reader in the address book.
+ * Edits the details of an existing reader in the SmartLib.
  */
 public class EditCommand extends Command {
 
@@ -55,7 +55,7 @@ public class EditCommand extends Command {
 
     /**
      * @param index of the reader in the filtered reader list to edit
-     * @param editReaderDescriptor details to edit the person with
+     * @param editReaderDescriptor details to edit the reader with
      */
     public EditCommand(Index index, EditReaderDescriptor editReaderDescriptor) {
         requireNonNull(index);
@@ -121,8 +121,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the reader with. Each non-empty field value will replace the
+     * corresponding field value of the reader.
      */
     public static class EditReaderDescriptor {
         private Name name;
