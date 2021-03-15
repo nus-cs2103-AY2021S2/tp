@@ -18,6 +18,8 @@ import seedu.address.model.person.TagContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    public static final String KEYWORDS_REGEX = "\\s+&\\s+";
+    public static final String FLAG_REGEX = "/";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -31,34 +33,28 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String flag = trimmedArgs.split("\\s+")[0];
-        boolean hasFlag = flag.charAt(0) == '-';
-
-        if (hasFlag) {
-            trimmedArgs = trimmedArgs.substring(2).trim();
-        }
-
-        List<String> keywords = Arrays.asList(trimmedArgs.split("\\s+&\\s+"));
-
-        if (!hasFlag) {
-            return new FindCommand(new NameContainsKeywordsPredicate(keywords));
-        }
+        String[] splitArgs = trimmedArgs.split(FLAG_REGEX, 2);
+        String flag = splitArgs[0].trim();
+        List<String> keywords = Arrays.asList(splitArgs[1].trim().split(KEYWORDS_REGEX));
 
         switch (flag) {
 
-        case "-p":
+        case "n":
+            return new FindCommand(new NameContainsKeywordsPredicate(keywords));
+
+        case "p":
             return new FindCommand(new PhoneContainsKeywordsPredicate(keywords));
 
-        case "-e":
+        case "e":
             return new FindCommand(new EmailContainsKeywordsPredicate(keywords));
 
-        case "-a":
+        case "a":
             return new FindCommand(new AddressContainsKeywordsPredicate(keywords));
 
-        case "-t":
+        case "t":
             return new FindCommand(new TagContainsKeywordsPredicate(keywords));
 
-        case "-i":
+        case "i":
             return new FindCommand(new InsurancePolicyContainsKeywordsPredicate(keywords));
 
         default:
