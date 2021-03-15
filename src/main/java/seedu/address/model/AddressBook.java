@@ -29,7 +29,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         tasks = new UniqueTaskList();
         persons = new UniquePersonList();
-        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {}
