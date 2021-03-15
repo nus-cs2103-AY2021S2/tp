@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.flashcard.CategoryContainsKeywordsPredicate;
 import seedu.address.testutil.FlashcardBuilder;
 
 public class TagContainsKeywordsPredicateTest {
