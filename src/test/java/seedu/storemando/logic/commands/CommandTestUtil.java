@@ -10,7 +10,7 @@ import static seedu.storemando.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.storemando.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.storemando.commons.core.index.Index;
@@ -31,7 +31,6 @@ public class CommandTestUtil {
     public static final String VALID_QUANTITY_AMY = "1";
     public static final String VALID_QUANTITY_BOB = "2";
     public static final String VALID_EXPIRYDATE_AMY = "2020-10-11";
-    public static final String VALID_EXPIRED_EXPIRYDATE_AMY = "2019-10-11";
     public static final String VALID_EXPIRYDATE_BOB = "2019-08-10";
     public static final String VALID_EXPIRED_EXPIRYDATE_BOB = "2017-10-11";
     public static final String VALID_LOCATION_AMY = "Refrigerator";
@@ -124,7 +123,7 @@ public class CommandTestUtil {
 
         Item item = model.getFilteredItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getItemName().fullName.split("\\s+");
-        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredItemList().size());
     }
@@ -135,7 +134,7 @@ public class CommandTestUtil {
      */
     public static void showEmptyListAfterFind(Model model, Item item) {
         final String[] splitName = item.getItemName().fullName.split("\\s+");
-        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0]), false));
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(0, model.getFilteredItemList().size());
     }
