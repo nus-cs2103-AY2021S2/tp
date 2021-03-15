@@ -28,8 +28,8 @@ public class Birthday {
      */
     public Birthday(String birthdate) {
         requireNonNull(birthdate);
-        checkArgument(isValidBirthdayYear(birthdate), MESSAGE_YEAR_CONSTRAINTS);
         isValidBirthday(birthdate);
+        checkArgument(isValidBirthdayYear(birthdate), MESSAGE_YEAR_CONSTRAINTS);
         value = birthdate;
     }
 
