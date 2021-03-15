@@ -59,8 +59,22 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     /**
      * Adds a month to the budget tracker.
      */
-    public void addMonth(Month r) {
-        monthList.add(r);
+    public void addMonth(Month month) {
+        monthList.add(month);
+    }
+
+    /**
+     * Returns a boolean value showing if the month exists.
+     */
+    public boolean hasMonth(Month month) {
+        return monthList.contains(month);
+    }
+
+    /**
+     * Returns a month representing the given YearMonth.
+     */
+    public Month findMonth(YearMonth month) {
+        return monthList.find(month);
     }
 
     /**
