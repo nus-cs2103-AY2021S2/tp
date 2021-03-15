@@ -6,7 +6,7 @@ import seedu.address.model.FlashBack;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears all the cards in FlashBack.
  */
 public class ClearCommand extends Command {
 

@@ -31,7 +31,7 @@ public class DeleteCommandTest {
         Flashcard flashcardToDelete = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_FLASHCARD);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, flashcardToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFlashBack(), new UserPrefs());
         expectedModel.deleteFlashcard(flashcardToDelete);
@@ -55,7 +55,7 @@ public class DeleteCommandTest {
         Flashcard flashcardToDelete = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_FLASHCARD);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, flashcardToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete);
 
         Model expectedModel = new ModelManager(model.getFlashBack(), new UserPrefs());
         expectedModel.deleteFlashcard(flashcardToDelete);
