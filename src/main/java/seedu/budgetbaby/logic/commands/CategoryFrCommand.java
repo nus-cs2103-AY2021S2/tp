@@ -1,6 +1,7 @@
 package seedu.budgetbaby.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
@@ -16,9 +17,9 @@ public class CategoryFrCommand extends BudgetBabyCommand { // will extend into a
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters financial records by category. "
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "FR_CATEGORY\n"
+            + PREFIX_CATEGORY + "FR_CATEGORY\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DESCRIPTION + "Food ";
+            + PREFIX_CATEGORY + "Food ";
 
     public static final String MESSAGE_SUCCESS = "Financial Records list is now filtered to %1$s";
 
