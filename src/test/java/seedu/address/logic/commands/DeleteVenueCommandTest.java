@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_VENUE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalVenues.VENUE1;
 import static seedu.address.testutil.TypicalVenues.VENUE2;
@@ -29,7 +29,7 @@ public class DeleteVenueCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         //remove this after we create a stub
         model.addVenue(VENUE1);
-        Venue venueToDelete = model.getFilteredVenueList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Venue venueToDelete = model.getFilteredVenueList().get(INDEX_FIRST_VENUE.getZeroBased());
         DeleteVenueCommand deleteVenueCommand = new DeleteVenueCommand(VENUE1);
 
         String expectedMessage = String.format(DeleteVenueCommand.MESSAGE_DELETE_VENUE_SUCCESS,
