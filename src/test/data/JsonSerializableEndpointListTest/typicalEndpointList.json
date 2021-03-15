@@ -1,42 +1,132 @@
 {
 	"_comment": "imPoster save file which contains the same Endpoint values as in TypicalEndpoints#getTypicalEndpointList()",
-	"endpoints": [
-		{
-			"name": "GET Pauline",
-			"address": "123, Jurong West Ave 6, #08-111",
-			"tagged": ["friends"]
-		},
-		{
-			"name": "Benson Meier",
-			"address": "311, Clementi Ave 2, #02-25",
-			"tagged": ["owesMoney", "friends"]
-		},
-		{
-			"name": "Carl Kurz",
-			"address": "wall street",
-			"tagged": []
-		},
-		{
-			"name": "Daniel Meier",
-			"address": "10th street",
-			"tagged": ["friends"]
-		},
-		{
-			"name": "Elle Meyer",
-			"address": "michegan ave",
-			"tagged": []
-		},
-		{
-			"name": "Fiona Kunz",
-			"address": "little tokyo",
-			"tagged": []
-		},
-		{
-			"name": "George Best",
-			"address": "4th street",
-			"tagged": []
+	"endpoints" : [ {
+		"method" : "GET",
+		"address" : "https://reqbin.com/echo",
+		"data" : "",
+		"headers" : [ ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
 		}
-	]
+	}, {
+		"method" : "GET",
+		"address" : "https://reqbin.com/echo/get/json",
+		"data" : "",
+		"headers" : [ ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "GET",
+		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+		"data" : "{key: value}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ "cat" ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "POST",
+		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+		"data" : "{key: value}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ "cat", "fact" ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "PUT",
+		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+		"data" : "{key: value}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "DELETE",
+		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+		"data" : "{key: value}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "HEAD",
+		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+		"data" : "{key: value}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "OPTIONS",
+		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+		"data" : "{key: value}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "PATCH",
+		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+		"data" : "{key: value}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}]
 }
 
 //to-do if we ever use this endpointlist

@@ -1,6 +1,16 @@
 {
-  "endpoints": [ {
-    "name": "Hans Muster@$!<> changed to invalid name as invalid phone and email no longer exist",
-    "address": "4th street"
+  "endpoints" : [ {
+    "address" : "https://reqbin.com/echo",
+    "data" : "",
+    "headers" : [ ],
+    "tagged" : [ "missingmethod" ],
+    "response" : {
+      "protocolVersion" : "No Data",
+      "statusCode" : "No Data",
+      "reasonPhrase" : "No Data",
+      "statusLine" : "No Data",
+      "responseEntity" : "No Data",
+      "responseTime" : "No Data"
+    }
   } ]
 }

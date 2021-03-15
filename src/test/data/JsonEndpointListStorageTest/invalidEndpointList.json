@@ -1,6 +1,16 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "address": "4th street"
+  "endpoints" : [ {
+    "method" : "POST",
+    "data" : "",
+    "headers" : [ ],
+    "tagged" : [ "missingurl" ],
+    "response" : {
+      "protocolVersion" : "No Data",
+      "statusCode" : "No Data",
+      "reasonPhrase" : "No Data",
+      "statusLine" : "No Data",
+      "responseEntity" : "No Data",
+      "responseTime" : "No Data"
+    }
   } ]
 }
