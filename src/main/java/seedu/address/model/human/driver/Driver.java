@@ -47,9 +47,9 @@ public class Driver extends Human {
         /* Driver::toString print in the format of %name; Phone: %phone, therefore length = 1 != 2 means
            the String driver is invalid */
         String[] driverParams = driver.split("; Phone: ");
-        if(driverParams.length == 1){
+        if (driverParams.length == 1) {
             return false;
-        }else if(!Name.isValidName(driverParams[0]) || !Phone.isValidPhone(driverParams[1])){
+        } else if (!Name.isValidName(driverParams[0]) || !Phone.isValidPhone(driverParams[1])) {
             return false;
         }
         return true;

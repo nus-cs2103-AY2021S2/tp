@@ -121,10 +121,10 @@ class JsonAdaptedPerson {
         final TripTime modelTripTime = new TripTime(tripTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        if (Driver.isValidDriver(driver)){
+        if (Driver.isValidDriver(driver)) {
             final Driver modelDriver = new Driver(driver);
             return new Person(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelDriver, modelTags);
-        }else {
+        } else {
             return new Person(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
         }
     }
