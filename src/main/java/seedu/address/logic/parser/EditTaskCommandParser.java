@@ -32,7 +32,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            editTaskDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NAME).get()));
+            editTaskDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
