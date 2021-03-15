@@ -29,6 +29,14 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
                 }
             }
         }
+        if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                person.getRating().value + "/5", keyword))) {
+            return true;
+        }
+        if (keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword))) {
+            return true;
+        }
         return false;
     }
 
