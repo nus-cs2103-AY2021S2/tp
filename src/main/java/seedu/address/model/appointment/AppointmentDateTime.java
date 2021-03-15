@@ -62,6 +62,18 @@ public class AppointmentDateTime {
         }
     }
 
+    public boolean equalsDateCheck(LocalDateTime other) {
+        return other == value // short circuit if same object
+                || (other != null // instanceof handles nulls
+                && value.toLocalDate().isEqual((other.toLocalDate()))); // state check
+    }
+
+    public boolean equalsDate(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AppointmentDateTime // instanceof handles nulls
+                && value.toLocalDate().isEqual(((AppointmentDateTime) other).value.toLocalDate())); // state check
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");

@@ -79,7 +79,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        calendarView = new CalendarView();
     }
 
     public Stage getPrimaryStage() {
@@ -136,7 +135,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        calendarViewPane.getChildren().add(new CalendarView().getRoot());
+        calendarView = new CalendarView(this::executeCommand);
+        calendarViewPane.getChildren().add(calendarView.getRoot());
     }
 
     /**
