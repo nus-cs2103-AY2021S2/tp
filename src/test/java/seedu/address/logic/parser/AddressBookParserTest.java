@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.DeleteMemberCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -49,9 +49,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
-                DeletePersonCommand.COMMAND_WORD + " " + VALID_NAME_AMY);
-        assertEquals(new DeletePersonCommand(ParserUtil.parseName(VALID_NAME_AMY)), command);
+        DeleteMemberCommand command = (DeleteMemberCommand) parser.parseCommand(
+                DeleteMemberCommand.COMMAND_WORD + " " + VALID_NAME_AMY);
+        assertEquals(new DeleteMemberCommand(ParserUtil.parseName(VALID_NAME_AMY)), command);
     }
 
     @Test
