@@ -6,9 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.commands.AliasCommand;
-import seedu.address.logic.commands.DeleteAliasCommand;
+import seedu.address.logic.commands.ListAliasCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,6 +43,9 @@ public class AliasCommandParser implements Parser<AliasCommand> {
 
         case AliasCommand.DELETE_SUB_COMMAND_WORD:
             return new DeleteAliasCommandParser().parse(arguments);
+
+        case AliasCommand.LIST_SUB_COMMAND_WORD:
+            return new ListAliasCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

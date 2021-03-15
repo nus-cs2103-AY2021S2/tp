@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -11,6 +12,7 @@ import seedu.address.model.alias.Command;
 import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.alias.exceptions.AliasNotFoundException;
 import seedu.address.model.alias.exceptions.DuplicateAliasException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A map of aliases to commands that enforces uniqueness between its elements and does not allow nulls.
@@ -19,6 +21,7 @@ import seedu.address.model.alias.exceptions.DuplicateAliasException;
 public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
 
     private final HashMap<Alias, CommandAlias> aliasMap = new HashMap<>();
+    private static final String EMPTY_ALIASES = "You currently have 0 alias";
 
     /**
      * Returns true if the map contains an equivalent alias as the given argument.
@@ -94,6 +97,19 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
         }
 
         return getCommand(alias).toString();
+    }
+
+    @Override
+    public String toString() {
+        if (aliasMap.isEmpty()) {
+            return EMPTY_ALIASES;
+        }
+        final StringBuilder builder = new StringBuilder();
+        for (CommandAlias commandAlias: aliasMap.values()) {
+            builder.append(commandAlias);
+            builder.append("\n");
+        }
+        return builder.toString();
     }
 
     @Override
