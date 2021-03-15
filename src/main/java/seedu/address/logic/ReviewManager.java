@@ -17,7 +17,7 @@ public class ReviewManager {
      */
     public ReviewManager(Logic logic) {
         this.logic = logic;
-        ObservableList<Flashcard> originalDeckOfCards = logic.getFilteredPersonList();
+        ObservableList<Flashcard> originalDeckOfCards = logic.getFilteredFlashcardList();
         this.shuffleDeckOfCards = new ArrayList<>(originalDeckOfCards);
         Collections.shuffle(shuffleDeckOfCards, new Random());
         this.currentIndex = 0;

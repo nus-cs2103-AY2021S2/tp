@@ -40,10 +40,12 @@ public class ReviewMode extends UiPart<Region> {
         this.resultDisplay = new ResultDisplay();
         resultDisplayPlaceholderReviewMode.getChildren().add(resultDisplay.getRoot());
         manager = new ReviewManager(logic);
-        FlashbackViewCard flashbackViewCard = new FlashbackViewCard(manager.getCurrentFlashcard());
-        flashbackViewCard.hideAnswer();
-        flashcardPlaceholderReviewMode.getChildren().add(flashbackViewCard.getRoot());
-        setProgress();
+        if (manager.getFlashcardDeckSize() > 0) {
+            FlashbackViewCard flashbackViewCard = new FlashbackViewCard(manager.getCurrentFlashcard());
+            flashbackViewCard.hideAnswer();
+            flashcardPlaceholderReviewMode.getChildren().add(flashbackViewCard.getRoot());
+            setProgress();
+        }
     }
     @FXML
     private void handleCommandEnteredReview() {
