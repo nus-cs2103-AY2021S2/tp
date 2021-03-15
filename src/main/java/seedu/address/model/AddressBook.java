@@ -29,7 +29,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         tasks = new UniqueTaskList();
         persons = new UniquePersonList();
-        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {}
@@ -120,10 +119,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
-    }
-
-    public ObservableList<Task> getTaskList() {
-        return tasks.asUnmodifiableObservableList();
     }
 
     @Override
