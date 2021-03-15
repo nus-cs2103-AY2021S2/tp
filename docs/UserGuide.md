@@ -33,9 +33,7 @@ test your APIs more conveniently than traditional GUI applications.
 
    - **`add -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Adds an API endpoint to the API endpoint list.
 
-   - **`edit 1 -x -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the API endpoint list.
-
-   - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
+   - **`edit 1 -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the API endpoint list.
 
    - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
 
@@ -72,7 +70,7 @@ test your APIs more conveniently than traditional GUI applications.
   `edit INDEX [-x METHOD] [-u URL]` can be used as `edit 1 -x GET` or
   `edit 1 -u https://api.data.gov.sg/v1/environment/pm25`.
 
-- Items with `…`​ after them can be used multiple times including zero times.<br> e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as `find KEYWORD1` or `find KEYWORD1 KEYWORD2 KEYWORD3`.
+- Items with `…`​ after them can be used multiple times including zero times.<br> e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as `find github` or `find github cats`.
 
 - Parameters can be in any order.<br> e.g. both `-x METHOD -u URL` and `-u URL -x METHOD` are acceptable.
 
@@ -253,6 +251,7 @@ with the file that contains the data of your previous imPoster home folder.
 | Action     | Format                                | Example                                |
 | ---------- | ------------------------------------- | -------------------------------------- |
 | **Help**   | `help`                                | `help`                                 |
+| **Toggle** | `toggle`                              | `toggle light`                         |
 | **Exit**   | `exit`                                | `exit`                                 |
 
 ### <ins>Endpoint Commands</ins>
