@@ -86,7 +86,7 @@ public class EditPropertyCommand extends Command {
         requireNonNull(model);
 
         if (index.getZeroBased() >= model.getPropertySize()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
         Property propertyToEdit = model.getProperty(index.getZeroBased());
@@ -105,7 +105,7 @@ public class EditPropertyCommand extends Command {
      * edited with {@code editPropertyDescriptor}.
      */
     private static Property createEditedProperty(Property propertyToEdit,
-                                               EditPropertyDescriptor editPropertyDescriptor) {
+                                                 EditPropertyDescriptor editPropertyDescriptor) {
         assert propertyToEdit != null;
 
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());

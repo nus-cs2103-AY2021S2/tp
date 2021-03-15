@@ -13,17 +13,19 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindAppointmentCommand;
+import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -34,8 +36,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearAppointmentCommand.COMMAND_WORD) instanceof ClearAppointmentCommand);
+        assertTrue(parser.parseCommand(ClearAppointmentCommand.COMMAND_WORD + " 3") instanceof ClearAppointmentCommand);
     }
 
     @Test
@@ -61,11 +63,21 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_find_appointment() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindAppointmentCommand command = (FindAppointmentCommand) parser.parseCommand(
+                FindAppointmentCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_find_property() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindPropertyCommand command = (FindPropertyCommand) parser.parseCommand(
+                FindPropertyCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPropertyCommand(new PropertyContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

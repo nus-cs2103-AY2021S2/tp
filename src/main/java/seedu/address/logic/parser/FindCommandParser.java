@@ -8,6 +8,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
+//TODO remove this class, currently kept as reference
 /**
  * Parses input arguments and creates a new FindCommand object
  */
