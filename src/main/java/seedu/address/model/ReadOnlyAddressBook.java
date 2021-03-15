@@ -16,6 +16,11 @@ public interface ReadOnlyAddressBook {
     ObservableList<Plan> getPersonList();
 
     /**
+     * Returns current semester number.
+     */
+    int getCurrentSemesterNumber();
+
+    /**
      * Returns　an array of module information from moduleinfo.json
      */
     JsonModule[] getModuleInfo();
