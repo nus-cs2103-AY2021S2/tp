@@ -48,7 +48,7 @@ public class InfoCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        JsonModule[] informationOfModules = model.getAddressBook().getModuleInfo();
+        JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
 
         if (noArgument()) {
             StringBuilder str = new StringBuilder();

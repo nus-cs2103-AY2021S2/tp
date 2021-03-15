@@ -6,13 +6,14 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.plan.Plan;
+import seedu.address.model.plan.Semester;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Plan> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Plan> PREDICATE_SHOW_ALL_PLANS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,51 +38,68 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPlansFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPlansFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPlans(ReadOnlyAddressBook addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyAddressBook getPlans();
 
     /**
      * Returns true if a plan with the same identity as {@code plan} exists in the address book.
      */
-    boolean hasPerson(Plan plan);
+    boolean hasPlan(Plan plan);
 
     /**
      * Deletes the given plan.
      * The plan must exist in the address book.
      */
-    void deletePerson(Plan target);
+    void deletePlan(Plan target);
 
     /**
      * Adds the given plan.
      * {@code plan} must not already exist in the address book.
      */
-    void addPerson(Plan plan);
+    void addPlan(Plan plan);
 
     /**
      * Replaces the given plan {@code target} with {@code editedPlan}.
      * {@code target} must exist in the address book.
      * The plan identity of {@code editedPlan} must not be the same as another existing plan in the address book.
      */
-    void setPerson(Plan target, Plan editedPlan);
+    void setPlan(Plan target, Plan editedPlan);
 
     /** Returns an unmodifiable view of the filtered plan list */
-    ObservableList<Plan> getFilteredPersonList();
+    ObservableList<Plan> getFilteredPlanList();
 
     /**
      * Updates the filter of the filtered plan list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Plan> predicate);
+    void updateFilteredPlanList(Predicate<Plan> predicate);
+
+    /**
+     * Returns true if a plan with the same identity as {@code plan} exists in the address book.
+     */
+    boolean hasSemester(int planNumber, Semester semester);
+
+    /**
+     * Deletes the given plan.
+     * The plan must exist in the address book.
+     */
+    void deleteSemester(Plan plan, Semester target);
+
+    /**
+     * Adds the given plan.
+     * {@code plan} must not already exist in the address book.
+     */
+    void addSemester(int planNumber, Semester semester);
 }
