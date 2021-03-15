@@ -14,5 +14,7 @@
     "address": "4th street",
     "personType" : "student",
     "personId" : "s/2"
-  } ]
+  } ],
+  "studentCounter" : "2",
+  "tutorCounter" : "0"
 }

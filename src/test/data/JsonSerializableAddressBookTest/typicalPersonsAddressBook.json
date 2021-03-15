@@ -56,5 +56,7 @@
     "tagged" : [ ],
     "personType" : "student",
     "personId" : "s/7"
-  } ]
+  } ],
+  "studentCounter" : "7",
+  "tutorCounter" : "0"
 }

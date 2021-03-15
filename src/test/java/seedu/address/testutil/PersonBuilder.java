@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_PERSON_TYPE = "student";
-    public static final String DEFAULT_PERSON_ID = "s/5";
+    public static final String DEFAULT_PERSON_ID = "s/1";
 
 
     private Name name;
@@ -46,6 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         personType = new PersonType(DEFAULT_PERSON_TYPE);
+        personId = new PersonId(DEFAULT_PERSON_ID);
     }
 
     /**
@@ -58,6 +59,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         personType = personToCopy.getPersonType();
+        personId = personToCopy.getPersonId();
     }
 
     /**

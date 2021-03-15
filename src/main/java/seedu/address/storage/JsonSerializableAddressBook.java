@@ -53,8 +53,6 @@ class JsonSerializableAddressBook {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         this.studentCounter = Student.getStudentCount();
         this.tutorCounter = Tutor.getTutorCount();
-        System.out.println("student counter:" + this.studentCounter);
-        System.out.println("tutor counter:" + this.tutorCounter);
     }
 
     /**

@@ -11,6 +11,7 @@ public class Student extends Person {
     /**
      * Every field must be present and not null.
      *
+     * @param personId
      * @param name
      * @param phone
      * @param email
@@ -20,13 +21,24 @@ public class Student extends Person {
     public Student(PersonId personId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.setPersonType(new PersonType("student"));
-        if (personId == null) {
-            studentCount++;
-            this.setPersonId(new PersonId("s/" + studentCount));
-        } else {
-            this.setPersonId(personId);
-        }
+        this.setPersonId(personId);
+    }
 
+    /**
+     * Every field must be present and not null.
+     *
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tags
+     */
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(name, phone, email, address, tags);
+        this.setPersonType(new PersonType("student"));
+
+        studentCount++;
+        this.setPersonId(new PersonId("s/" + studentCount));
     }
 
     public static void setStudentCount(String storedStudentCount) {

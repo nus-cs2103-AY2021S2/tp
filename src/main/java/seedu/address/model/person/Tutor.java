@@ -11,6 +11,7 @@ public class Tutor extends Person {
     /**
      * Every field must be present and not null.
      *
+     * @param personId
      * @param name
      * @param phone
      * @param email
@@ -20,12 +21,24 @@ public class Tutor extends Person {
     public Tutor(PersonId personId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.setPersonType(new PersonType("tutor"));
-        if (personId == null) {
-            tutorCount++;
-            this.setPersonId(new PersonId("t/" + tutorCount));
-        } else {
-            this.setPersonId(personId);
-        }
+        this.setPersonId(personId);
+    }
+
+    /**
+     * Every field must be present and not null.
+     *
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tags
+     */
+    public Tutor(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(name, phone, email, address, tags);
+        this.setPersonType(new PersonType("tutor"));
+
+        tutorCount++;
+        this.setPersonId(new PersonId("t/" + tutorCount));
     }
 
     public static void setTutorCount(String storedTutorCount) {

@@ -110,8 +110,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getPersonId().equals(getPersonId());
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
