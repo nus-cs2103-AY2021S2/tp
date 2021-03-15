@@ -90,7 +90,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void executeZeroKeywordsNoPersonFoundFilterByVaccination() {
+    public void execute_zeroKeywords_noPersonFoundFilterByVaccinationStatus() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         VaccinationStatusContainsKeywords vaccinationPredicate = new VaccinationStatusContainsKeywords("");
         FilterCommand command = new FilterCommand(vaccinationPredicate);
@@ -100,7 +100,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void executeZeroKeywordsNoPersonFoundFilterByFaculty() {
+    public void execute_zeroKeywords_noPersonFoundFilterByFaculty() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         FacultyContainsKeywords facultyPredicate = new FacultyContainsKeywords("");
         FilterCommand command = new FilterCommand(facultyPredicate);
@@ -110,7 +110,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void executeZeroKeywordsNoPersonFoundFilterBySchoolResidence() {
+    public void execute_zeroKeywords_noPersonFoundFilterBySchoolResidence() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         SchoolResidenceContainsKeywords schoolResidencePredicate = new SchoolResidenceContainsKeywords("");
         FilterCommand command = new FilterCommand(schoolResidencePredicate);
