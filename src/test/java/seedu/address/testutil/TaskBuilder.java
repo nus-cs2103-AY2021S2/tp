@@ -7,6 +7,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.util.SampleDataUtil;
@@ -20,11 +21,13 @@ public class TaskBuilder {
     public static final String DEFAULT_DEADLINE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_DESCRIPTION = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_STATUS = "not done";
 
     private Title title;
     private Deadline deadline;
     private Email email;
     private Description description;
+    private Status status;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class TaskBuilder {
         deadline = new Deadline(DEFAULT_DEADLINE);
         email = new Email(DEFAULT_EMAIL);
         description = new Description(DEFAULT_DESCRIPTION);
+        status = new Status(DEFAULT_STATUS);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class TaskBuilder {
         deadline = taskToCopy.getDeadline();
         email = taskToCopy.getEmail();
         description = taskToCopy.getDescription();
+        status = taskToCopy.getStatus();
         tags = new HashSet<>(taskToCopy.getTags());
     }
 
@@ -82,6 +87,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code Deadline} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withStatus(String status) {
+        this.status = new Status(status);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Task} that we are building.
      */
     public TaskBuilder withEmail(String email) {
@@ -90,7 +103,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(title, deadline, email, description, tags);
+        return new Task(title, deadline, email, description, status, tags);
     }
 
 }

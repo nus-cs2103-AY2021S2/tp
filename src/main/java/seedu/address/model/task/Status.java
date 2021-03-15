@@ -7,11 +7,18 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Status {
+
+    public static final String MESSAGE_CONSTRAINTS = "Status should be either 'done' or 'not done'.";
+
     public final String value;
 
     public Status(String status) {
         requireNonNull(status);
         value = status;
+    }
+
+    public static boolean isValidStatus(String value) {
+        return value.equals("done") || value.equals("not done");
     }
 
     @Override

@@ -22,17 +22,20 @@ public class Task {
 
     // Data fields
     private final Description description;
+    private final Status status;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Deadline deadline, Email email, Description description, Set<Tag> tags) {
-        requireAllNonNull(title, deadline, email, description, tags);
+    public Task(Title title, Deadline deadline, Email email, Description description,
+                Status status, Set<Tag> tags) {
+        requireAllNonNull(title, deadline, email, description, status, tags);
         this.title = title;
         this.deadline = deadline;
         this.email = email;
         this.description = description;
+        this.status = status;
         this.tags.addAll(tags);
     }
 
@@ -51,6 +54,8 @@ public class Task {
     public Description getDescription() {
         return description;
     }
+
+    public Status getStatus() { return status; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -92,13 +97,14 @@ public class Task {
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getEmail().equals(getEmail())
                 && otherTask.getDescription().equals(getDescription())
+                && otherTask.getStatus().equals(getStatus())
                 && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, email, description, tags);
+        return Objects.hash(title, deadline, email, description, status, tags);
     }
 
     @Override
@@ -110,7 +116,9 @@ public class Task {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Description: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Status: ")
+                .append(getStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

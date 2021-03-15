@@ -37,6 +37,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private Label status;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -51,6 +53,7 @@ public class TaskCard extends UiPart<Region> {
         title.setText(task.getTitle().fullTitle);
         deadline.setText(task.getDeadline().value);
         description.setText(task.getDescription().value);
+        status.setText(task.getStatus().value);
         email.setText(task.getEmail().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

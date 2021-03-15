@@ -23,6 +23,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -97,9 +98,11 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        Status updatedStatus = editTaskDescriptor.getStatus().orElse(taskToEdit.getStatus());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedDeadline, updatedEmail, updatedDescription, updatedTags);
+        return new Task(updatedTitle, updatedDeadline, updatedEmail, updatedDescription,
+                updatedStatus, updatedTags);
     }
 
     @Override
@@ -129,6 +132,7 @@ public class EditCommand extends Command {
         private Deadline deadline;
         private Email email;
         private Description description;
+        private Status status;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -142,6 +146,7 @@ public class EditCommand extends Command {
             setDeadline(toCopy.deadline);
             setEmail(toCopy.email);
             setDescription(toCopy.description);
+            setStatus(toCopy.status);
             setTags(toCopy.tags);
         }
 
@@ -184,6 +189,10 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
+        public void setStatus(Status status) { this.status = status; }
+
+        public Optional<Status> getStatus() { return Optional.ofNullable(status); }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -220,6 +229,7 @@ public class EditCommand extends Command {
                     && getDeadline().equals(e.getDeadline())
                     && getEmail().equals(e.getEmail())
                     && getDescription().equals(e.getDescription())
+                    && getStatus().equals(e.getStatus())
                     && getTags().equals(e.getTags());
         }
     }

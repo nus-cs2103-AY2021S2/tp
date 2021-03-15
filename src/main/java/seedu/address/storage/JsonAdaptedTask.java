@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -28,6 +29,7 @@ class JsonAdaptedTask {
     private final String deadline;
     private final String email;
     private final String description;
+    private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +38,12 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
             @JsonProperty("email") String email, @JsonProperty("description") String description,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("status") String status, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.deadline = deadline;
         this.email = email;
         this.description = description;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +57,7 @@ class JsonAdaptedTask {
         deadline = source.getDeadline().value;
         email = source.getEmail().value;
         description = source.getDescription().value;
+        status = source.getStatus().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -104,8 +108,16 @@ class JsonAdaptedTask {
         }
         final Description modelDescription = new Description(description);
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        if (!Status.isValidStatus(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final Status modelStatus = new Status(status);
+
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelDeadline, modelEmail, modelDescription, modelTags);
+        return new Task(modelTitle, modelDeadline, modelEmail, modelDescription, modelStatus, modelTags);
     }
 
 }
