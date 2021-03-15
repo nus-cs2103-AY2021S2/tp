@@ -1,11 +1,16 @@
 package seedu.address.commons.util;
 
+
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Stream;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Utility methods related to Collections
@@ -31,5 +36,49 @@ public class CollectionUtil {
      */
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
+    }
+
+    /**
+     * Returns true if the {@code tags} contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     *   <br>examples:<pre>
+     *       Set&#60;Tag&#62; tags = new HashSet<>(Arrays.asList("ABc", "def"));
+     *       containsWordIgnoreCase(tags, "abc") == true
+     *       containsWordIgnoreCase(tags, "DEF") == true
+     *       containsWordIgnoreCase(tags, "AB") == false //not a full word match
+     *       </pre>
+     * @param tags cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean tagContainsWordIgnoreCase(Set<Tag> tags, String word) {
+        requireNonNull(tags);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String[] wordsInTagSet = tagsToStringArray(tags);
+
+        return Arrays.stream(wordsInTagSet)
+                .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns a string array converted from a set of tags.
+     *
+     * @param tags set of tags to be converted into string array
+     * @return string array converted from set of tags
+     */
+    public static String[] tagsToStringArray(Set<Tag> tags) {
+        String[] stringArr = new String[tags.size()];
+        int i = 0;
+
+        for (Tag tag : tags) {
+            stringArr[i] = tag.tagName;
+            i++;
+        }
+
+        return stringArr;
     }
 }
