@@ -56,12 +56,12 @@
             <StackPane fx:id="favoriteVenueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <VBox style="-fx-background-color: #c4c4c4;" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>
             <Label fx:id="commandTitle" id="commandTitle" styleClass="cell_title_label" text="How can I help you?" />
-            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder">
             </StackPane>
           </VBox>
 
