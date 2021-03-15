@@ -19,12 +19,12 @@ public class GarmentBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_SIZE = "25";
     public static final String DEFAULT_COLOUR = "amy@gmail.com";
-    public static final String DEFAULT_DRESSCODE = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DRESSCODE = "FORMAL";
 
     private Name name;
     private Size size;
     private Colour colour;
-    private DressCode address;
+    private DressCode dresscode;
     private Set<Description> descriptions;
 
     /**
@@ -34,7 +34,7 @@ public class GarmentBuilder {
         name = new Name(DEFAULT_NAME);
         size = new Size(DEFAULT_SIZE);
         colour = new Colour(DEFAULT_COLOUR);
-        address = new DressCode(DEFAULT_DRESSCODE);
+        dresscode = new DressCode(DEFAULT_DRESSCODE);
         descriptions = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class GarmentBuilder {
         name = garmentToCopy.getName();
         size = garmentToCopy.getSize();
         colour = garmentToCopy.getColour();
-        address = garmentToCopy.getDressCode();
+        dresscode = garmentToCopy.getDressCode();
         descriptions = new HashSet<>(garmentToCopy.getDescriptions());
     }
 
@@ -69,8 +69,8 @@ public class GarmentBuilder {
     /**
      * Sets the {@code DressCode} of the {@code Garment} that we are building.
      */
-    public GarmentBuilder withDressCode(String address) {
-        this.address = new DressCode(address);
+    public GarmentBuilder withDressCode(String dresscode) {
+        this.dresscode = new DressCode(dresscode);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class GarmentBuilder {
     }
 
     public Garment build() {
-        return new Garment(name, size, colour, address, descriptions);
+        return new Garment(name, size, colour, dresscode, descriptions);
     }
 
 }

@@ -27,7 +27,7 @@ public class JsonAdaptedGarmentTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_SIZE = BENSON.getSize().toString();
     private static final String VALID_COLOUR = BENSON.getColour().toString();
-    private static final String VALID_DRESSCODE = "FORMAL";//BENSON.getDressCode().toString();
+    private static final String VALID_DRESSCODE = "FORMAL"; //BENSON.getDressCode().toString();
     private static final List<JsonAdaptedDescription> VALID_DESCRIPTIONS = BENSON.getDescriptions().stream()
             .map(JsonAdaptedDescription::new)
             .collect(Collectors.toList());

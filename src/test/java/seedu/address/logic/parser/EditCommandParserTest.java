@@ -174,12 +174,13 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_GARMENT;
         String userInput = targetIndex.getOneBased() + SIZE_DESC_AMY + DRESSCODE_DESC_AMY + COLOUR_DESC_AMY
-                + DESCRIPTION_DESC_FRIEND + SIZE_DESC_AMY + DRESSCODE_DESC_AMY + COLOUR_DESC_AMY + DESCRIPTION_DESC_FRIEND
+                + DESCRIPTION_DESC_FRIEND + SIZE_DESC_AMY + DRESSCODE_DESC_AMY
+                + COLOUR_DESC_AMY + DESCRIPTION_DESC_FRIEND
                 + SIZE_DESC_BOB + DRESSCODE_DESC_BOB + COLOUR_DESC_BOB + DESCRIPTION_DESC_HUSBAND;
 
         EditGarmentDescriptor descriptor = new EditGarmentDescriptorBuilder().withSize(VALID_SIZE_BOB)
-                .withColour(VALID_COLOUR_BOB).withDressCode(VALID_DRESSCODE_BOB).withDescriptions(VALID_DESCRIPTION_FRIEND,
-                        VALID_DESCRIPTION_HUSBAND)
+                .withColour(VALID_COLOUR_BOB).withDressCode(VALID_DRESSCODE_BOB)
+                .withDescriptions(VALID_DESCRIPTION_FRIEND, VALID_DESCRIPTION_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
