@@ -7,6 +7,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
@@ -27,7 +28,7 @@ import seedu.dictionote.model.contact.Contact;
 public class DeleteContactCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalNoteBook(), getTypicalDictionary());
+            getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -37,7 +38,7 @@ public class DeleteContactCommandTest {
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary());
+                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.deleteContact(contactToDelete);
 
         assertCommandSuccess(deleteContactCommand, model, expectedMessage, expectedModel);
@@ -61,7 +62,7 @@ public class DeleteContactCommandTest {
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary());
+                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.deleteContact(contactToDelete);
         showNoContact(expectedModel);
 

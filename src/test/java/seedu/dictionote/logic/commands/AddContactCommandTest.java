@@ -19,11 +19,13 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
 
@@ -149,6 +151,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public Path getDefinitionBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,6 +181,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void setDefinitionBookFilePath(Path path) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Contact> getFilteredContactList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -194,7 +206,12 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public ReadOnlyNoteBook getNoteBook() {
+        public void updateFilteredDefinitionList(Predicate<Definition> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyDictionary getDictionary() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -214,7 +231,27 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public ReadOnlyDictionary getDictionary() {
+        public ReadOnlyDefinitionBook getDefinitionBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDefinition(Definition definition) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDefinition(Definition definition) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Definition> getFilteredDefinitionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyNoteBook getNoteBook() {
             throw new AssertionError("This method should not be called.");
         }
 

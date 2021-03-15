@@ -13,6 +13,7 @@ import static seedu.dictionote.testutil.TypicalContacts.ELLE;
 import static seedu.dictionote.testutil.TypicalContacts.FIONA;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import java.util.Arrays;
@@ -32,9 +33,9 @@ import seedu.dictionote.testutil.TypicalContacts;
  */
 public class FindContactCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalNoteBook(), getTypicalDictionary());
+            getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalNoteBook(), getTypicalDictionary());
+            getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
     public void equals() {
