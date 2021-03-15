@@ -61,7 +61,7 @@ public class AddDateCommand extends Command {
         List<Event> datesToEdit = new ArrayList<>(personToEdit.getDates());
         datesToEdit.add(event);
 
-        Person editedPerson = personToEdit.setDates(datesToEdit);
+        Person editedPerson = personToEdit.withDates(datesToEdit);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

@@ -61,7 +61,7 @@ public class DeleteDateCommand extends Command {
         }
         dates.remove(dateIndex.getZeroBased());
 
-        Person editedPerson = personToEdit.setDates(dates);
+        Person editedPerson = personToEdit.withDates(dates);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

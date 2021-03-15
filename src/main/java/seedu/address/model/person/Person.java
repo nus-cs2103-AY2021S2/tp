@@ -87,7 +87,7 @@ public class Person {
         return Optional.ofNullable(picture);
     }
 
-    public Person setPicture(Picture picture) {
+    public Person withPicture(Picture picture) {
         return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
     }
 
@@ -103,7 +103,7 @@ public class Person {
         return Collections.unmodifiableList(dates);
     }
 
-    public Person setDates(List<Event> dates) {
+    public Person withDates(List<Event> dates) {
         return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
     }
 
@@ -111,7 +111,7 @@ public class Person {
         return Collections.unmodifiableList(meetings);
     }
 
-    public Person setMeetings(List<Event> meetings) {
+    public Person withMeetings(List<Event> meetings) {
         return new Person(name, phone, email, birthday, address, picture, tags, dates, meetings);
     }
 

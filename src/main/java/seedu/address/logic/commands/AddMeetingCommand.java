@@ -38,7 +38,7 @@ public class AddMeetingCommand extends Command {
     private final Event meeting;
 
     /**
-     * @param index   of the person in the filtered person list to add the meeting to
+     * @param index of the person in the filtered person list to add the meeting to
      * @param meeting the meeting to add
      */
     public AddMeetingCommand(Index index, Event meeting) {
@@ -53,7 +53,7 @@ public class AddMeetingCommand extends Command {
         List<Event> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
         meetingsToEdit.add(meeting);
 
-        return personToEdit.setMeetings(meetingsToEdit);
+        return personToEdit.withMeetings(meetingsToEdit);
     }
 
     @Override

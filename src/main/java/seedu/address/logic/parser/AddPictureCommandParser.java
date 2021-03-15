@@ -16,6 +16,11 @@ public class AddPictureCommandParser implements Parser<AddPictureCommand> {
         );
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of AddPictureCommand
+     * and returns an AddPictureCommand object for execution
+     * @throws ParseException if the user input does not conform to the expected format
+     */
     @Override
     public AddPictureCommand parse(String args) throws ParseException {
         String[] argArr = args.trim().split("\\s+");

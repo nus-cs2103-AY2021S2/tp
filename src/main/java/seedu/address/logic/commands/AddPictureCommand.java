@@ -77,7 +77,7 @@ public class AddPictureCommand extends Command {
         }
 
         Picture picture = new Picture(newFilePath);
-        Person editedPerson = personToEdit.setPicture(picture);
+        Person editedPerson = personToEdit.withPicture(picture);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
