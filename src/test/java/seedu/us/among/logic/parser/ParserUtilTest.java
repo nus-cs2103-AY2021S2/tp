@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.us.among.testutil.Assert.assertThrows;
@@ -141,5 +142,21 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void isUrlValid_validUrl_returnsTrue() {
+        boolean actualResult = ParserUtil.isUrlValid("https://google.com");
+        assertTrue(actualResult);
+    }
+
+    @Test
+    public void isUrlValid_invalidUrl_returnsFalse() {
+        boolean actualResult = ParserUtil.isUrlValid("google.com");
+        boolean actualResult2 = ParserUtil.isUrlValid("hts.com.csx");
+        boolean actualResult3 = ParserUtil.isUrlValid("httppp://g.com");
+        assertFalse(actualResult);
+        assertFalse(actualResult2);
+        assertFalse(actualResult3);
     }
 }
