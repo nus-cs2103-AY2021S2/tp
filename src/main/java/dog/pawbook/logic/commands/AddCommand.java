@@ -1,6 +1,14 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.logic.parser.CliSyntax.*;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 
 public abstract class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
@@ -19,7 +27,6 @@ public abstract class AddCommand extends Command {
             + PREFIX_SEX + "SEX "
             + PREFIX_OWNERID + "OWNER ID "
             + "[" + PREFIX_TAG + "TAG]...\n";
-
 
     public static final String MESSAGE_SUCCESS_FORMAT = "New %s added: ";
 }
