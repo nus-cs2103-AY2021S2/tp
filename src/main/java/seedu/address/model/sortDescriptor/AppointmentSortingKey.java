@@ -13,6 +13,10 @@ public class AppointmentSortingKey {
 
     private static final String VALIDATION_REGEX = "datetime|name";
 
+    private static final String DATETIME_STRING = "datetime";
+
+    private static final String NAME_STRING = "name";
+
     public final String value;
 
     /**
@@ -34,6 +38,24 @@ public class AppointmentSortingKey {
      */
     public static boolean isValidAppointmentSortingKey(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Tests whether the sorting key is datetime.
+     *
+     * @return True if the sorting key is datetime, otherwise false.
+     */
+    public boolean isDatetime() {
+        return this.value.equals(DATETIME_STRING);
+    }
+
+    /**
+     * Tests whether the sorting key is name.
+     *
+     * @return True if the sorting key is name, otherwise false.
+     */
+    public boolean isName() {
+        return this.value.equals(NAME_STRING);
     }
 
     @Override
