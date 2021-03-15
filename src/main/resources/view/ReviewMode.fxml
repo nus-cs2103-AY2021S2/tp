@@ -23,26 +23,8 @@
         <ProgressBar fx:id="progressBar" minHeight="20" prefHeight="20" prefWidth="300" />
         <Label fx:id="progressLabel" styleClass="label-bright" text="Label" />
     </VBox>
-    <GridPane fx:id="reviewModePane" styleClass="pane-no-border" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-        </padding>
-        <rowConstraints>
-            <RowConstraints percentHeight="75.0" />
-            <RowConstraints percentHeight="25.0" />
-        </rowConstraints>
-        <columnConstraints>
-            <ColumnConstraints percentWidth="15.0" />
-            <ColumnConstraints percentWidth="70.0" />
-            <ColumnConstraints percentWidth="15.0" />
-        </columnConstraints>
-
-        <VBox styleClass="pane-no-border" GridPane.columnIndex="1" GridPane.rowIndex="0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <StackPane fx:id="flashcardPlaceholder" VBox.vgrow="ALWAYS" />
-            <padding>
-                <Insets bottom="5" />
-            </padding>
-        </VBox>
-        <Button fx:id="exitButton" mnemonicParsing="false" text="Exit study mode" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-    </GridPane>
+    <StackPane fx:id="flashcardPlaceholderReviewMode" VBox.vgrow="ALWAYS">
+      <VBox.margin>
+         <Insets bottom="15.0" left="60.0" right="60.0" top="15.0" />
+      </VBox.margin></StackPane>
 </VBox>

@@ -137,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
 
         commandModePane.managedProperty().bind(commandModePane.visibleProperty());
 
-        ReviewMode reviewMode = new ReviewMode(this);
+        ReviewMode reviewMode = new ReviewMode(logic, this);
         reviewModePlaceholder.getChildren().add(reviewMode.getRoot());
         reviewModePlaceholder.setVisible(false);
         reviewModePlaceholder.managedProperty().bind(reviewModePlaceholder.visibleProperty());
