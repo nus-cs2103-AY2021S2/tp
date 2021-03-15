@@ -39,7 +39,9 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 - Deleting a client : `delete`
 - Sorting the list of clients : `sort`
 - Exiting the program : `exit`
-- Saving the data 
+- Locking ClientBook: `lock`
+- Unlocking ClientBook: `unlock`
+- Saving the data
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,6 +192,25 @@ Exits the program.
 
 Format: `exit`
 
+### Locking ClientBook : `lock`
+
+Locks ClientBook.
+
+Format: `lock [CURRENT_PASSWORD] [NEW_PASSWORD]`
+
+* Verifies the current password before locking ClientBook with the new password.
+* The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
+* When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
+
+### Unlocking ClientBook : `unlock`
+
+Unlocks ClientBook.
+
+Format: `unlock CURRENT_PASSWORD`
+
+* Verifies the current password before unlocking ClientBook.
+
+
 ### Saving the data
 
 ClientBook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -227,3 +248,6 @@ Action | Format, Examples
 **Sort** | `sort DIRECTION`
 **List** | `list`
 **Help** | `help`
+**Exit** | `exit`
+**Lock** | `lock [CURRENT_PASSWORD] NEW_PASSWORD`
+**Unlock** | `unlock [CURRENT_PASSWORD]`
