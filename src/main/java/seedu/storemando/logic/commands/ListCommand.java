@@ -22,8 +22,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all items";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the storemando. "
         + "Parameters: "
-        + "[" + PREFIX_LOCATION + "LOCATION] "
-        + "[" + PREFIX_TAG + "TAG]\n"
+        + "[" + PREFIX_LOCATION + "LOCATION] " + "/ [" + PREFIX_TAG + "TAG]\n"
         + "Example:\n"
         + "1. " + COMMAND_WORD + "\n"
         + "2. " + COMMAND_WORD + " l/bedroom\n"
