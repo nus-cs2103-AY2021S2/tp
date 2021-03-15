@@ -24,23 +24,23 @@ import seedu.storemando.model.item.Item;
 public class TypicalItems {
 
     public static final Item ALICE = new ItemBuilder().withName("Chocolate Milk")
-        .withLocation("Freezer").withExpiryDate("2023-08-03")
+        .withLocation("Freezer").withExpiryDate("2021-08-03")
         .withQuantity("10")
         .withTags("Expiring").build();
     public static final Item BENSON = new ItemBuilder().withName("Bread")
         .withLocation("Dining Table")
-        .withExpiryDate("2023-08-08").withQuantity("1")
+        .withExpiryDate("2020-08-08").withQuantity("1")
         .withTags("Expiring", "Favourite").build();
     public static final Item CARL = new ItemBuilder().withName("Oil").withQuantity("1")
         .withExpiryDate("2023-10-10").withLocation("Kitchen drawer").build();
     public static final Item DANIEL = new ItemBuilder().withName("Cadbury").withQuantity("2")
-        .withExpiryDate("2023-10-10").withLocation("Bedroom").withTags("Melt").build();
+        .withExpiryDate("2020-10-10").withLocation("Bedroom").withTags("Melt").build();
     public static final Item ELLE = new ItemBuilder().withName("Nescafe Powder").withQuantity("1")
-        .withExpiryDate("2021-05-10").withLocation("Kitchen drawer").build();
+        .withExpiryDate("2020-10-10").withLocation("Kitchen drawer").build();
     public static final Item FIONA = new ItemBuilder().withName("Lipton Tea Sachets").withQuantity("30")
-        .withExpiryDate("2021-05-11").withLocation("Kitchen Cabinet").build();
+        .withExpiryDate("2020-10-10").withLocation("Kitchen Cabinet").build();
     public static final Item GEORGE = new ItemBuilder().withName("Instant Prata").withQuantity("20")
-        .withExpiryDate("2021-05-12").withLocation("Freezer").build();
+        .withExpiryDate("2021-10-08").withLocation("Freezer").build();
 
     // Manually added
     public static final Item HOON = new ItemBuilder().withName("Hoon Meier").withQuantity("8482424")
@@ -64,7 +64,7 @@ public class TypicalItems {
     } // prevents instantiation
 
     /**
-     * Returns an {@code StoreMando} with all the typical itemss.
+     * Returns an {@code StoreMando} with all the typical items.
      */
     public static StoreMando getTypicalStoreMando() {
         StoreMando ab = new StoreMando();
@@ -74,7 +74,37 @@ public class TypicalItems {
         return ab;
     }
 
+    /**
+     * Returns an {@code StoreMando} with all the typical items sorted by quantity.
+     */
+    public static StoreMando getTypicalStoreMandoSortedByQuantity() {
+        StoreMando ab = new StoreMando();
+        for (Item item : getSortedByQuantityTypicalItems()) {
+            ab.addItem(item);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code StoreMando} with all the typical itemss.
+     */
+    public static StoreMando getTypicalStoreMandoSortedByExpiryDate() {
+        StoreMando ab = new StoreMando();
+        for (Item item : getSortedByExpiryDateTypicalItems()) {
+            ab.addItem(item);
+        }
+        return ab;
+    }
+
     public static List<Item> getTypicalItems() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Item> getSortedByQuantityTypicalItems() {
+        return new ArrayList<>(Arrays.asList(BENSON, ELLE, CARL, DANIEL, ALICE, GEORGE, FIONA));
+    }
+
+    public static List<Item> getSortedByExpiryDateTypicalItems() {
+        return new ArrayList<>(Arrays.asList(BENSON, ELLE, DANIEL, FIONA, ALICE, GEORGE, CARL));
     }
 }

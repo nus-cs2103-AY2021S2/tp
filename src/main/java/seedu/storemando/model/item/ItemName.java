@@ -56,4 +56,7 @@ public class ItemName {
         return fullName.hashCode();
     }
 
+    public int compare(ItemName anotherItemName) {
+        return this.fullName.compareTo(anotherItemName.fullName);
+    }
 }

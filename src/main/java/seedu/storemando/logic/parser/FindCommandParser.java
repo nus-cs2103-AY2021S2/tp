@@ -1,12 +1,15 @@
 package seedu.storemando.logic.parser;
 
 import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.storemando.logic.parser.CliSyntax.PREFIX_PARTIAL_NAME;
 
 import java.util.Arrays;
 
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
+import seedu.storemando.model.item.ItemName;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -20,20 +23,24 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PARTIAL_NAME);
+
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        if (trimmedArgs.charAt(0) == '*') {
-            trimmedArgs = trimmedArgs.substring(1);
-            String[] nameKeywords = trimmedArgs.split("\\s+");
-            return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords), true));
+        if (argMultimap.getValue(PREFIX_PARTIAL_NAME).isPresent() && !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getValue(PREFIX_PARTIAL_NAME).isPresent()) {
+            ItemName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARTIAL_NAME).get());
+            String[] nameKeywords = name.fullName.split("\\s+");
+            return new FindCommand(new ItemNameContainsPartialKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             String[] nameKeywords = trimmedArgs.split("\\s+");
-            return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords), false));
+            return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
+
 
     }
 

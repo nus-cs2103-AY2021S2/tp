@@ -13,8 +13,8 @@ still having the benefits of a Graphical User Interface (GUI). If you can type f
 management tasks done faster than traditional GUI apps.
 
 * If you are interested in using StoreMando, head over to the [_Quick Start_ section of the **User
-  Guide**](UserGuide.html#quick-start).
-* If you are interested about developing StoreMando, the [**Developer Guide**](DeveloperGuide.html) is a good place to
+  Guide**](UserGuide.md#quick-start).
+* If you are interested about developing StoreMando, the [**Developer Guide**](DeveloperGuide.md) is a good place to
   start.
 
 **Acknowledgements**
