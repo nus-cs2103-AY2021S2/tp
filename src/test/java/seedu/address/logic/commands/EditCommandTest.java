@@ -44,6 +44,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
+        expectedModel.commitFlashBack();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -66,6 +67,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(lastFlashcard, editedFlashcard);
+        expectedModel.commitFlashBack();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -78,6 +80,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedFlashcard);
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
+        expectedModel.commitFlashBack();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -96,6 +99,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new FlashBack(model.getFlashBack()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
+        expectedModel.commitFlashBack();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

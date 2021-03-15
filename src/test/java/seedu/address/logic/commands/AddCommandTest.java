@@ -205,6 +205,10 @@ public class AddCommandTest {
         public ReadOnlyFlashBack getFlashBack() {
             return new FlashBack();
         }
+
+        @Override
+        public void commitFlashBack() {
+        }
     }
 
 }
