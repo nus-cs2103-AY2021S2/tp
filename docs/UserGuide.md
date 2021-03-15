@@ -218,7 +218,7 @@ _Details coming soon ..._
 
 ### Viewing help`[coming in v2.0]`
 
-Opens user guide of StoreMando on browser or displays the URL of user guide on help window.
+Opens user guide of StoreMando on a browser or displays the URL of user guide on help window.
 
 Format: `help`
 
