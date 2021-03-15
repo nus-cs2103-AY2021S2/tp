@@ -44,6 +44,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_CLEAN = "Cleaned";
     public static final String VALID_TAG_UNCLEAN = "Uncleaned";
     public static final String VALID_TAG_RESERVED = "reserved";
+    public static final String VALID_TAG_BOOKED = "Booked";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_BOOKING_DETAILS = "4 Adults";
@@ -62,6 +63,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TAG_DESC_RESERVED = " " + PREFIX_TAG + VALID_TAG_RESERVED;
+    public static final String TAG_DESC_BOOKED = " " + PREFIX_TAG + VALID_TAG_BOOKED;
     public static final String BOOKING_DETAILS_DESC_RESIDENCE1 = " " + PREFIX_BOOKING_DETAILS + VALID_BOOKING_DETAILS;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
