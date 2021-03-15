@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +17,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +125,46 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String subjectName} into an {@code SubjectName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subjectName} is invalid.
+     */
+    public static SubjectName parseSubjectName(String subjectName) throws ParseException {
+        requireNonNull(subjectName);
+        String trimmedSubjectName = subjectName.trim();
+        if (!SubjectName.isValidName(trimmedSubjectName)) {
+            throw new ParseException(SubjectName.MESSAGE_CONSTRAINTS);
+        }
+        return new SubjectName(trimmedSubjectName);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into an {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+
+        // TODO: Temporary stub before merging AppointmentDateTime
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendPattern("yyyy-MM-dd HH:mma")
+                .toFormatter();
+        
+        LocalDateTime localDateTime;
+
+        try {
+            localDateTime = LocalDateTime.parse(trimmedDateTime, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("TODO REPLACE ERROR");
+        }
+
+        return localDateTime;
     }
 }

@@ -31,7 +31,7 @@ public class Appointment {
      * @param dateTime LocalDateTime
      * @param location Location of teaching venue
      */
-    Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
+    public Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
                 Address location) {
         this.email = email;
         this.subject = subject;
