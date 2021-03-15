@@ -37,6 +37,8 @@ test your APIs more conveniently than traditional GUI applications.
    - **`edit 1 -x -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the
      API endpoint list.
 
+   - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
+
    - **`remove 3`** : Removes the API endpoint with index `3` shown in the API endpoint list.
 
    - **`find pm25`** : Finds all the API endpoints with fields containing `pm25`.
@@ -126,6 +128,17 @@ Format: `edit INDEX [-x METHOD] [-u URL] [-t TAG]…`
 Examples:
 - `edit 1 -u https://api.data.gov.sg/v1/environment/pm25`
 - `edit 2 -x POST`
+
+#### Show an API endpoint: `show`
+
+Description: Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
+be a positive integer).
+
+Format: `show INDEX`
+
+Examples:
+- `show 1`
+- `show 3`
 
 #### Remove an API endpoint: `remove`
 
@@ -225,6 +238,7 @@ with the file that contains the data of your previous imPoster home folder.
 | ---------- | ------------------------------------- | -------------------------------------- |
 | **Add**    | `add -x METHOD -u URL [t/TAG]…` <br>  | `add -x GET -u https://api.data.gov.sg/v1/environment/pm25` |
 | **Edit**   | `edit INDEX [-x METHOD] [-u URL] [t/TAG]`<br> | `edit 1 -u https://api.data.gov.sg/v1/environment/pm25` |
+| **Show**   | `show INDEX`<br>                      | `show 1`                             |
 | **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br>  | `find maps`                            |
 | **List**   | `list`                                | `list`                                 |
