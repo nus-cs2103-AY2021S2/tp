@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -161,6 +162,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public boolean hasModule(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
@@ -182,6 +188,11 @@ public class AddPersonCommandTest {
 
         @Override
         public void addExam(Module module, Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editModule(int index, Title title) {
             throw new AssertionError("This method should not be called.");
         }
 

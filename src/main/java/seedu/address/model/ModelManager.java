@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -183,9 +184,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(int index) {
+        return modulePlanner.hasModule(index);
+    }
+
+    @Override
     public void addModule(Module module) {
         requireNonNull(module);
         modulePlanner.addModule(module);
+    }
+
+    @Override
+    public void editModule(int index, Title title) {
+        requireNonNull(title);
+        modulePlanner.editModule(index, title);
     }
 
     @Override
