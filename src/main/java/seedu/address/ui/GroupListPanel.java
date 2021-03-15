@@ -26,9 +26,12 @@ public class GroupListPanel extends UiPart<Region> {
      */
     public GroupListPanel(ObservableMap<Name, Group> groupMap) {
         super(FXML);
+        logger.info("Adding groups");
         groupListView.getItems().addAll(groupMap.keySet());
         groupMap.addListener((MapChangeListener<Name, Group>) change -> {
+
             if (change.wasAdded()) {
+                logger.info("Added Group");
                 groupListView.getItems().removeAll(change.getKey());
                 groupListView.getItems().add(change.getKey());
             }

@@ -51,9 +51,8 @@ public class AddGroupCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
-        HashMap<Name, Group> groupMap = new HashMap<>(model.getGroupMap());
 
-        Group group = groupMap.getOrDefault(groupName, new Group(groupName));
+        Group group = model.getGroupMap().getOrDefault(groupName, new Group(groupName));
         Set<Person> newPersonSet = new HashSet<>(group.getPersons());
 
         boolean isNewGroup = !model.hasGroup(group);

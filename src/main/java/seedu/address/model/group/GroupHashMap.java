@@ -6,10 +6,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashMap;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 /**
  * A HashMap mapping groupName to Group.
@@ -20,6 +22,8 @@ import seedu.address.model.person.Name;
 public class GroupHashMap {
 
     private final ObservableMap<Name, Group> internalMap = FXCollections.observableHashMap();
+    private final ObservableMap<Name, Group> internalUnmodifiableMap =
+            FXCollections.unmodifiableObservableMap(internalMap);
 
     /**
      * Returns true if the map contains an equivalent group as the given argument.
@@ -69,8 +73,7 @@ public class GroupHashMap {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this map with {@code groupHashMap}.
      */
     public void setGroups(HashMap<Name, Group> groupHashMap) {
         requireAllNonNull(groupHashMap);
@@ -79,10 +82,10 @@ public class GroupHashMap {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * Returns the backing Map as an unmodifiable {@code ObservableMap}.
      */
     public ObservableMap<Name, Group> asUnmodifiableObservableMap() {
-        return FXCollections.unmodifiableObservableMap(internalMap);
+        return internalUnmodifiableMap;
     }
 
     @Override
