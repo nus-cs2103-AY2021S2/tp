@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -14,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,11 +32,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private boolean inHelp = false;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private Panel personPanel;
+    private Panel helpPanel;
+    private Button helpPanelToMain;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -65,7 +70,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        initialiseHelpPanelAndButton();
     }
 
     public Stage getPrimaryStage() {
@@ -110,9 +115,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -121,6 +123,34 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void fillPersonListPanel() {
+        personPanel = new PersonListPanel(logic.getFilteredPersonList());
+        listPanelPlaceholder.getChildren().add(personPanel.getRoot());
+    }
+
+    void initialiseHelpPanelAndButton() {
+        helpPanel = new HelpListPanel(HelpCommand.getListOfCommands());
+        helpPanelToMain = new Button("Return to the order list");
+        helpPanelToMain.setOnAction(event -> {
+            resetMainWindow();
+        });
+    }
+
+    /**
+     * Transitions from the help window to the the main order list.
+     */
+    public void resetMainWindow() {
+        listPanelPlaceholder.getChildren().remove(0);
+        fillPersonListPanel();
+
+        resultDisplayPlaceholder.getChildren().remove(1);
+
+        logger.info("Result: " + HelpCommand.SHOWING_RETURN_MESSAGE);
+        resultDisplay.setFeedbackToUser(HelpCommand.SHOWING_RETURN_MESSAGE);
+
+        inHelp = false;
     }
 
     /**
@@ -140,10 +170,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
+        if (!inHelp) {
+            inHelp = true;
+
+            listPanelPlaceholder.getChildren().remove(0);
+            listPanelPlaceholder.getChildren().add(helpPanel.getRoot());
+
+            helpPanelToMain.setPrefWidth(resultDisplayPlaceholder.getWidth());
+            resultDisplayPlaceholder.getChildren().add(helpPanelToMain);
+            StackPane.setAlignment(helpPanelToMain, Pos.BOTTOM_CENTER);
         }
     }
 
@@ -159,12 +194,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
