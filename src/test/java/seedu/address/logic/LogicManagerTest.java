@@ -58,12 +58,11 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete_task 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        String deleteTaskCommand = "delete_task 9";
+        assertCommandException(deleteTaskCommand, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
-    // TODO: Temporarily disabled before new model is applied.
     @Disabled
     public void execute_validCommand_success() throws Exception {
         String listTaskCommand = ListTaskCommand.COMMAND_WORD;
@@ -71,7 +70,6 @@ public class LogicManagerTest {
     }
 
     @Test
-    // TODO: Temporarily disabled before storage is fixed.
     @Disabled
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
@@ -93,8 +91,9 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    @Disabled
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTaskList().remove(0));
     }
 
     /**
