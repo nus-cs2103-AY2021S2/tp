@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.module.AssignmentList;
+import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyRemindMe;
@@ -37,8 +39,9 @@ public class SampleDataUtil {
 
     public static Module[] getSampleModules() {
         return new Module[] {
-                new Module(new Title("cs2103T")),
-                new Module(new Title("cs2103"))
+                new Module(new Title("cs2103T"),
+                        new AssignmentList(), new ExamList()),
+                new Module(new Title("cs2103"), new AssignmentList(), new ExamList())
         };
     }
 
@@ -66,5 +69,7 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
+
+
 
 }

@@ -36,9 +36,9 @@ public class ModuleCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ModuleCard} with the given {@code Module} to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public ModuleCard(Module module) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
