@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page 
 title: Developer Guide
 ---
 
@@ -33,8 +33,8 @@ diagrams.
 
 **`Main`** has two classes
 called [`Main`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/Main.java)
-and [`MainApp`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/MainApp.java). It
-is responsible for,
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/MainApp.java).
+It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -347,7 +347,7 @@ otherwise)
     * 3b1. StoreMando shows an error message.
 
     * 3b2. StoreMando prompt the user for a correct input.
-      
+
       Use case resumes at step 3.
 
 **Use case: UC3 - List all items in a specific location**
@@ -455,10 +455,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting an item while all items are being shown
 
-   1. Prerequisites: List all household items using the `list` command. Multiple items in the list.
+    1. Prerequisites: List all household items using the `list` command. Multiple items in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First item is deleted from the list. Details of the deleted item shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First item is deleted from the list. Details of the deleted item shown in the status message. Timestamp
+       in the status bar is updated.
 
     1. Test case: `delete 0`<br>
        Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
