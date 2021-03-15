@@ -17,8 +17,8 @@ public class TimeTest {
     @Test
     public void testStringConversion() {
         assertEquals("9:00am",
-                new Time(LocalTime.parse("09:00")).toString());
+                new Time(LocalTime.parse("09:00")).toString().toLowerCase());
         assertEquals("11:59pm",
-                new Time(LocalTime.parse("23:59")).toString());
+                new Time(LocalTime.parse("23:59")).toString().toLowerCase());
     }
 }
