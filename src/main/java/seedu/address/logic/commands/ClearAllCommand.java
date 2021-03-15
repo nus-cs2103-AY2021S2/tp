@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.PropertyBook;
 
 /**
- * Clears the sample data in the property book.
+ * Clears the sample data in the appointment and property book.
  */
 public class ClearAllCommand extends Command {
 
