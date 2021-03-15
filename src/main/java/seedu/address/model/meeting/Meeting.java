@@ -20,7 +20,7 @@ public class Meeting {
             "The start date time of a meeting should be strictly earlier than the terminate date time.";
 
     // Identity fields
-    private final Name name;
+    private final MeetingName meetingName;
     private final DateTime start;
     private final DateTime terminate;
 
@@ -32,11 +32,11 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Name name, DateTime start, DateTime terminate, Priority priority,
+    public Meeting(MeetingName meetingName, DateTime start, DateTime terminate, Priority priority,
                    Description description, Set<Group> groups) {
-        requireAllNonNull(name, start, terminate, priority, description, groups);
+        requireAllNonNull(meetingName, start, terminate, priority, description, groups);
         checkArgument(isValidStartTerminate(start, terminate), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        this.meetingName = meetingName;
         this.start = start;
         this.terminate = terminate;
         this.priority = priority;
@@ -44,8 +44,8 @@ public class Meeting {
         this.groups.addAll(groups);
     }
 
-    public Name getName() {
-        return name;
+    public MeetingName getName() {
+        return meetingName;
     }
 
     public DateTime getStart() {
@@ -73,7 +73,7 @@ public class Meeting {
     }
 
     /**
-     * Returns true if both meetings have the same name, start and terminate time. (Use identify fields only)
+     * Returns true if both meetings have the same meetingName, start and terminate time. (Use identify fields only)
      * This defines a weaker notion of equality between two meetings.
      */
     public boolean isSameMeeting(Meeting otherMeeting) {
@@ -122,7 +122,7 @@ public class Meeting {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, start, terminate, priority, description, groups);
+        return Objects.hash(meetingName, start, terminate, priority, description, groups);
     }
 
     @Override

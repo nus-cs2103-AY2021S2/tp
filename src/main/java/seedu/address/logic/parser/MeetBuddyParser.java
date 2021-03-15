@@ -6,11 +6,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.meetings.AddMeetingCommand;
 import seedu.address.logic.commands.persons.*;
 import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.parser.meetings.AddMeetingCommandParser;
 import seedu.address.logic.parser.persons.AddPersonCommandParser;
 import seedu.address.logic.parser.persons.DeletePersonCommandParser;
 import seedu.address.logic.parser.persons.EditPersonCommandParser;
@@ -43,7 +45,7 @@ public class MeetBuddyParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
+        //============================= Person ==============================
         case AddPersonCommand.COMMAND_WORD:
             return new AddPersonCommandParser().parse(arguments);
 
@@ -62,6 +64,11 @@ public class MeetBuddyParser {
         case ListPersonCommand.COMMAND_WORD:
             return new ListPersonCommand();
 
+        //============================= Meeting ==============================
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().parse(arguments);
+
+        //============================= General ==============================
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
