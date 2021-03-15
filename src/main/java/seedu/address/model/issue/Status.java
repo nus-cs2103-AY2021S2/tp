@@ -78,7 +78,3 @@ public class Status {
     }
 
 }
-
-enum IssueStatus {
-    Pending, Closed,
-}

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Person;
 
 /**
@@ -21,6 +22,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Issue> filteredIssues;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredIssues = new FilteredList<>(this.addressBook.getIssueList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -41,7 +44,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -76,7 +79,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -112,7 +115,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -129,6 +132,31 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    // =========== Issues =====================================================================================
+
+    @Override
+    public void addIssue(Issue issue) {
+        addressBook.addIssue(issue);
+        updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
+
+    // =========== Filtered Issue List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Issue> getFilteredIssueList() {
+        return filteredIssues;
+    }
+
+    @Override
+    public void updateFilteredIssueList(Predicate<Issue> predicate) {
+        requireNonNull(predicate);
+        filteredIssues.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -143,9 +171,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
+        return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

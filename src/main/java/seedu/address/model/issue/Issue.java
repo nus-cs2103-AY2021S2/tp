@@ -2,9 +2,7 @@ package seedu.address.model.issue;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -21,20 +19,20 @@ public class Issue {
     private final Description description;
     private final Timestamp timestamp;
     private final Status status;
-    private final Set<Category> categories = new HashSet<>();
+    private final Category category;
 
     /**
      * Every field must be present and not null.
      */
     public Issue(RoomNumber roomNumber, Description description, Timestamp timestamp, Status status,
-            Set<Category> categories) {
-        requireAllNonNull(roomNumber, description, timestamp, status, categories);
+            Category category) {
+        requireAllNonNull(roomNumber, description, timestamp, status, category);
         this.id = UUID.randomUUID().toString();
         this.roomNumber = roomNumber;
         this.description = description;
         this.timestamp = timestamp;
         this.status = status;
-        this.categories.addAll(categories);
+        this.category = category;
     }
 
     public String getId() {
@@ -61,8 +59,8 @@ public class Issue {
      * Returns an immutable category set, which throws
      * {@code UnsupportedOperationException} if modification is attempted.
      */
-    public Set<Category> getCategories() {
-        return this.categories;
+    public Category getCategory() {
+        return this.category;
     }
 
     /**
@@ -95,26 +93,24 @@ public class Issue {
         return otherIssue.getId().equals(getId()) && otherIssue.getRoomNumber().equals(getRoomNumber())
                 && otherIssue.getDescription().equals(getDescription())
                 && otherIssue.getTimestamp().equals(getTimestamp()) && otherIssue.getStatus().equals(getStatus())
-                && otherIssue.getCategories().equals(getCategories());
+                && otherIssue.getCategory().equals(getCategory());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(roomNumber, description, timestamp, status, categories);
+        return Objects.hash(roomNumber, description, timestamp, status, category);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getRoomNumber()).append("; Description: ").append(getDescription()).append("; Timestamp: ")
-                .append(getTimestamp()).append("; Status: ").append(getStatus());
+        builder.append(getRoomNumber())
+                .append("; Description: ").append(getDescription())
+                .append("; Timestamp: ").append(getTimestamp())
+                .append("; Status: ").append(getStatus())
+                .append("; Category: ").append(getCategory());
 
-        Set<Category> categories = getCategories();
-        if (!categories.isEmpty()) {
-            builder.append("; Categories: ");
-            categories.forEach(builder::append);
-        }
         return builder.toString();
     }
 

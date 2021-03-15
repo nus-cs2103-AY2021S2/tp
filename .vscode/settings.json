@@ -15,5 +15,5 @@
         "org"
     ],
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.format.settings.url": "eclipse-formatter.xml",
+    "java.format.settings.url": "https://gist.githubusercontent.com/stein212/1eb6ed21d06c4a79d54a5a2cb074539b/raw/a2ff1d152a1bafd1b5000988724aa4400738abde/eclipse-formatter.xml",
 }

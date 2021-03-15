@@ -20,7 +20,7 @@ public class Timestamp {
      * (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}";
-    public static final String TIMESTAMP_PATTERN = "YYYY-MM-DD HH:mm:ss";
+    public static final String TIMESTAMP_PATTERN = "YYYY-MM-DD HH:mm";
 
     public final LocalDateTime value;
 
@@ -44,7 +44,7 @@ public class Timestamp {
 
     @Override
     public String toString() {
-        return value.toString();
+        return value.format(DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN));
     }
 
     @Override
