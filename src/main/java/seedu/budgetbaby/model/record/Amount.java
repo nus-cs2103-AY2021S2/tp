@@ -21,7 +21,7 @@ public class Amount {
     public Amount(String value) {
         requireNonNull(value);
         checkArgument(isValidAmount(value), MESSAGE_CONSTRAINTS);
-        this.value = Double.parseDouble(value);
+        this.value = parseValue(Double.parseDouble(value));
     }
 
     /**
@@ -34,6 +34,13 @@ public class Amount {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns an amount that has exactly 2 decimal places.
+     */
+    public static Double parseValue(Double value) {
+        return (double) (Math.round(value * 100.0) / 100.0);
     }
 
     @Override

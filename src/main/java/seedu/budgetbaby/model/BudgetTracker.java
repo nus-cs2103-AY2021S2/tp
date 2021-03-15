@@ -17,9 +17,11 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 public class BudgetTracker implements ReadOnlyBudgetTracker {
 
     private final UniqueMonthList monthList;
+    private Month currentDisplayMonth;
 
     {
         monthList = new UniqueMonthList();
+        currentDisplayMonth = monthList.find(YearMonth.now());
     }
 
     public BudgetTracker() {
@@ -57,8 +59,22 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     /**
      * Adds a month to the budget tracker.
      */
-    public void addMonth(Month r) {
-        monthList.add(r);
+    public void addMonth(Month month) {
+        monthList.add(month);
+    }
+
+    /**
+     * Returns a boolean value showing if the month exists.
+     */
+    public boolean hasMonth(Month month) {
+        return monthList.contains(month);
+    }
+
+    /**
+     * Returns a month representing the given YearMonth.
+     */
+    public Month findMonth(YearMonth month) {
+        return monthList.find(month);
     }
 
     /**
@@ -108,9 +124,17 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     }
 
     /**
+     * Returns the Month that is currently being displayed.
+     */
+    Month getCurrentDisplayMonth() {
+        return this.currentDisplayMonth;
+    }
+
+    /**
      * Returns an unmodifiable view of the financial record list of the given month.
      */
     ObservableList<FinancialRecord> getFinancialRecordListOfMonth(YearMonth month) {
+        currentDisplayMonth = monthList.find(month);
         return this.monthList.getFinancialRecordOfMonth(month);
     }
 

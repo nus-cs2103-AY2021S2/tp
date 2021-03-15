@@ -90,6 +90,11 @@ public interface BudgetBabyModel {
     void updateFilteredMonthList(Predicate<Month> predicate);
 
     /**
+     * Returns the Month that is currently being displayed.
+     */
+    Month getCurrentDisplayMonth();
+
+    /**
      * Returns an unmodifiable view of the filtered financial record list
      */
     ObservableList<FinancialRecord> getFilteredFinancialRecordList();
