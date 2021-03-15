@@ -68,7 +68,7 @@ public class DeleteCommandTest {
         showReaderAtIndex(model, INDEX_FIRST_READER);
 
         Index outOfBoundIndex = INDEX_SECOND_READER;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of smartLib list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getSmartLib().getReaderList().size());
 
         DeleteReaderCommand deleteCommand = new DeleteReaderCommand(outOfBoundIndex);
@@ -94,7 +94,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different reader -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
