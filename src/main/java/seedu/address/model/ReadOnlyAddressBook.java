@@ -16,7 +16,7 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     /**
-     * Returns an unmodifiable view of the persons list.
+     * Returns an unmodifiable view of the tasks list.
      * This list will not contain any duplicate persons.
      */
     ObservableList<Task> getTaskList();
