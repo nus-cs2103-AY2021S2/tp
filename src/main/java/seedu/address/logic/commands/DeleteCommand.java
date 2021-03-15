@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard: %1$s";
+    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard: \n%1$s";
 
     private final Index targetIndex;
 
