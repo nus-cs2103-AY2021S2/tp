@@ -1,7 +1,5 @@
 package seedu.address.model.tag;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a priority tag in the task
  *
@@ -10,7 +8,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class PriorityTag {
     private PriorityTagStatus status;
     public final String label;
-    public static final String MESSAGE_CONSTRAINTS = "Priority Tags names should be low, medium or high";
 
     /**
      * Enum class for the 3 priority types
@@ -29,7 +26,6 @@ public class PriorityTag {
      */
 
     public PriorityTag(String label) {
-        //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.label = label;
         if (label == "low") {
             this.status = PriorityTagStatus.LOW;
