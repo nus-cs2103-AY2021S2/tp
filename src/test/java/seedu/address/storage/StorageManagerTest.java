@@ -14,6 +14,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.PersonBook;
 import seedu.address.model.person.ReadOnlyPersonBook;
+import seedu.address.storage.dish.JsonDishBookStorage;
+import seedu.address.storage.ingredient.JsonIngredientBookStorage;
+import seedu.address.storage.order.JsonOrderBookStorage;
 import seedu.address.storage.person.JsonPersonBookStorage;
 
 public class StorageManagerTest {
@@ -25,9 +28,16 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPersonBookStorage addressBookStorage = new JsonPersonBookStorage(getTempFilePath("ab"));
+        JsonPersonBookStorage personBookStorage = new JsonPersonBookStorage(getTempFilePath("ab"));
+        JsonDishBookStorage dishBookStorage =
+                new JsonDishBookStorage(getTempFilePath("db"));
+        JsonIngredientBookStorage ingredientBookStorage =
+                new JsonIngredientBookStorage(getTempFilePath("ib"));
+        JsonOrderBookStorage orderBookStorage =
+                new JsonOrderBookStorage(getTempFilePath("ob"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(personBookStorage, dishBookStorage,
+                ingredientBookStorage, orderBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

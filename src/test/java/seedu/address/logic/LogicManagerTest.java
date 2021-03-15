@@ -30,6 +30,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.dish.JsonDishBookStorage;
+import seedu.address.storage.ingredient.JsonIngredientBookStorage;
+import seedu.address.storage.order.JsonOrderBookStorage;
 import seedu.address.storage.person.JsonPersonBookStorage;
 import seedu.address.testutil.PersonBuilder;
 
@@ -46,8 +49,15 @@ public class LogicManagerTest {
     public void setUp() {
         JsonPersonBookStorage addressBookStorage =
                 new JsonPersonBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonDishBookStorage dishBookStorage =
+                new JsonDishBookStorage(temporaryFolder.resolve("dishbook.json"));
+        JsonIngredientBookStorage ingredientBookStorage =
+                new JsonIngredientBookStorage(temporaryFolder.resolve("ingredientbook.json"));
+        JsonOrderBookStorage orderBookStorage =
+                new JsonOrderBookStorage(temporaryFolder.resolve("orderbook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, dishBookStorage,
+                ingredientBookStorage, orderBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,7 +86,7 @@ public class LogicManagerTest {
                 new JsonPersonBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, null, null, null, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

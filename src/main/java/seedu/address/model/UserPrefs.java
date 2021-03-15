@@ -39,6 +39,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setPersonBookFilePath(newUserPrefs.getPersonBookFilePath());
+        setDishBookFilePath(newUserPrefs.getDishBookFilePath());
+        setIngredientBookFilePath(newUserPrefs.getIngredientBookFilePath());
+        setOrderBookFilePath(newUserPrefs.getOrderBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -54,9 +57,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return personBookFilePath;
     }
 
-    public void setPersonBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.personBookFilePath = addressBookFilePath;
+    public void setPersonBookFilePath(Path personBookFilePath) {
+        requireNonNull(personBookFilePath);
+        this.personBookFilePath = personBookFilePath;
     }
 
     public Path getDishBookFilePath() {
