@@ -12,10 +12,10 @@ import seedu.address.logic.commands.HelpCommand;
 class HelpCommandParserTest {
     private HelpCommandParser parser = new HelpCommandParser();
 
-    //    @Test
-    //    void parse_commandNotSpecified_success() {
-    //        assertParseSuccess(parser, " ", new HelpCommand());
-    //    }
+    @Test
+    void parse_commandNotSpecified_success() {
+        assertParseSuccess(parser, " ", new HelpCommand());
+    }
 
     @Test
     void parse_commandSpecified_success() {
