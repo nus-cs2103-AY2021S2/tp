@@ -80,7 +80,7 @@ public class AddressBookParser {
             return new AddBookingCommandParser().parse(arguments);
 
         case AddVenueCommand.COMMAND_WORD:
-            return new AddVenueParser().parse(arguments);
+            return new AddVenueCommandParser().parse(arguments);
 
         case DeleteBookingCommand.COMMAND_WORD:
             return new DeleteBookingCommandParser().parse(arguments);

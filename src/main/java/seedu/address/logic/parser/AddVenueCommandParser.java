@@ -13,7 +13,7 @@ import seedu.address.model.venue.Venue;
 /**
  * Parses input arguments and creates a new AddVenue object
  */
-public class AddVenueParser {
+public class AddVenueCommandParser implements Parser<AddVenueCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddVenue
