@@ -33,7 +33,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed residence list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CLEAN_STATUS_TAG + "y/n] "
+            + "[" + PREFIX_CLEAN_STATUS_TAG + " y/n] "
             + "Example: " + COMMAND_WORD
             + PREFIX_CLEAN_STATUS_TAG + " y 1 ";
 
