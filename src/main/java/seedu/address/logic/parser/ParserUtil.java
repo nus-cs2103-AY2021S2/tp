@@ -156,7 +156,7 @@ public class ParserUtil {
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
                 .appendPattern("yyyy-MM-dd HH:mma")
                 .toFormatter();
-        
+
         LocalDateTime localDateTime;
 
         try {

@@ -41,7 +41,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_SUBJECT_NAME, PREFIX_DATE,
                 PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
         }
 
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
