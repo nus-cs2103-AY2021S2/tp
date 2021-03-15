@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,7 +17,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -154,9 +154,9 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the view window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleView(Person person) {
+    public void handleView(HashMap<String, Object> personDetails) {
         if (!viewWindow.isShowing()) {
-            viewWindow.setEntryContent(person);
+            viewWindow.setEntryContent(personDetails);
             viewWindow.show();
         } else {
             viewWindow.focus();
@@ -200,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isViewEntry()) {
-                handleView(commandResult.getPerson());
+                handleView(commandResult.getPersonDetails());
             }
 
             if (commandResult.isExit()) {

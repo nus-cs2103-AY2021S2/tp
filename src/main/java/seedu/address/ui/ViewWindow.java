@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -8,14 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Controller for a View page
  */
 public class ViewWindow extends UiPart<Stage> {
 
-    private static Person person;
+    private static HashMap<String, Object> personDetails;
 
     private static final Logger logger = LogsCenter.getLogger(ViewWindow.class);
     private static final String FXML = "ViewWindow.fxml";
@@ -40,8 +42,8 @@ public class ViewWindow extends UiPart<Stage> {
      */
     public ViewWindow(Stage root) {
         super(FXML, root);
-        if (person != null) {
-            setEntryContent(person);
+        if (personDetails != null) {
+            setEntryContent(personDetails);
         }
     }
 
@@ -97,15 +99,20 @@ public class ViewWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    public void setEntryContent(Person person) {
+    /**
+     * Sets the content entry to be ready for view.
+     *
+     * @param personDetails Entry details
+     */
+    public void setEntryContent(HashMap<String, Object> personDetails) {
         tags.getChildren().clear();
-        name.setText(person.getName().fullName);
-        rating.setText(String.format("Rating: %s / 5", person.getRating().value));
-        address.setText(person.getAddress().value + "\n\n");
-        review.setText(person.getReview().value + "\n\n");
-        person.getTags().stream()
+        name.setText(personDetails.get("name") + "\n\n");
+        rating.setText(String.format("Rating: %s / 5", personDetails.get("rating")));
+        address.setText(personDetails.get("address") + "\n\n");
+        review.setText(personDetails.get("review") + "\n\n");
+        Set<Tag> allTags = (Set<Tag>) personDetails.get("tags");
+        allTags.stream()
                 .sorted(Comparator.comparing(tag -> tag.tagCategory))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagCategory.titleCase())));
-
     }
 }

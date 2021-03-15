@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -42,9 +43,16 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToView = lastShownList.get(targetIndex.getZeroBased());
+        Person person = lastShownList.get(targetIndex.getZeroBased());
+        HashMap<String, Object> personDetails = new HashMap<>();
+        personDetails.put("name", person.getName().fullName);
+        personDetails.put("rating", person.getRating().value);
+        personDetails.put("address", person.getAddress().value);
+        personDetails.put("review", person.getReview().value);
+        personDetails.put("tags", person.getTags());
 
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, personToView), personToView, true, false);
+        return new CommandResult(personDetails, String.format(MESSAGE_VIEW_PERSON_SUCCESS, person),
+                false , true, false);
     }
 
     @Override
