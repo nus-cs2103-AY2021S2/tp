@@ -23,9 +23,9 @@ public class FindVenueCommandParser implements Parser<FindVenueCommand> {
     public FindVenueCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(trimmedArgs, PREFIX_VENUE);
+                ArgumentTokenizer.tokenize(args, PREFIX_VENUE);
         if (!arePrefixesPresent(argMultimap, PREFIX_VENUE)
-                || !argMultimap.getValue(PREFIX_VENUE).isEmpty()) {
+                || argMultimap.getValue(PREFIX_VENUE).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindVenueCommand.MESSAGE_USAGE));
         }
 

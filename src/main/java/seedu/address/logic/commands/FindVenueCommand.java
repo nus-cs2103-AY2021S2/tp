@@ -2,14 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.booking.Venue;
 import seedu.address.model.booking.VenueNameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists the venue in the system whose id corresponds to that of the argument keyword.
@@ -34,7 +29,6 @@ public class FindVenueCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredVenueList(predicate);
-        System.out.println(model.getFilteredVenueList());
         return new CommandResult(
                 String.format(Messages.MESSAGE_VENUE_DISPLAYED, model.getFilteredVenueList().size()));
     }
