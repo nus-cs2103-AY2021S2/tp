@@ -6,9 +6,8 @@ title: User Guide
 
 FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
 ## Table of Contents
-1. [Quick start](#1-quick-start)
-1. [GUI-layout](#2-gui-layout)
-1.  [Features](#3-features)
+* [Quick start](#quick-start)
+*  [Features](#features)
     * [Viewing help](#viewing-help-help): `help`
     * [Adding a new card](#adding-a-new-card-add): `add`
     * [Listing all cards](#listing-all-cards--list): `list`
@@ -21,18 +20,18 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
     * [Editing the data file](#editing-the-data-file)
     * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
     * [Review mode](#review-mode-coming-in-v13): `[coming in v1.3]`
-1. [FAQ](#4-faq)
-1. [Command Summary](#5-command-summary)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Quick start <a id="1-quick-start"></a>
+## Quick start
 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 1. Download the latest `FlashBack.jar`.
-1. Copy the file to the folder you want to use as the _home folder_ for your FlashBack.
+1. Copy the file to the folder you want to use as the home folder for your FlashBack.
 1. Double-click the file to start the app. The GUI should appear in a few seconds.
 ![GUI](./images/Ui.png)
 1. Below are some commands you can try, type the command in the command box and press Enter to execute it:
@@ -45,10 +44,33 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 
 --------------------------------------------------------------------------------------------------------------------
-## 2. GUI layout <a id="2-gui-layout"></a>
 
---------------------------------------------------------------------------------------------------------------------
-## 3. Features <a id="3-features"></a>
+## Features
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+* Words in UPPER_CASE are the parameters to be supplied by the user. <br>
+  eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is Fermat's Last Theorem?`.<br>
+
+* Items in square brackets are optional. <br>
+  eg. `q/QUESTION [t/TAG]` can be used as `q/What is Singapore Independence Day?` or as `q/What is Singapore Independence Day? t/Singapore`<br>
+
+* Items with `…​` after them can be used multiple times including zero times. <br>
+  e.g. `[t/TAG]…`​ can be used as ` ` (i.e. 0 times), `t/vocabulary`, `t/vocabulary t/SAT` etc.
+  
+* Parameters can be in any order. <br>
+  eg. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br><br>
+  
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `undo`, `exit` and `clear`) will be ignored. <br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* Prefixes are case-sensitive. <br>
+  `q/` is not the same as `Q/`
+  
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. <br>
+  e.g. if you specify `c/Geography c/History`, only `c/History` will be taken.
+
+</div>
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
@@ -59,8 +81,11 @@ Format: `help`
 
 Adds a new card to the card list.
 
-Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]` <br />
+Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
 Note: The TAG is optional when adding a new card.
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`. 
+</div> 
 
 Examples:
 * `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`  
@@ -100,12 +125,15 @@ Examples:
 
 ### Viewing a card : `view`
 
-Views a specific card from the card list.
+Views a specific card from the card list. <br>
+The image below shows what FlashBack looks like after you enter a view command.
+![UIView](./images/UiViewResult.png)
+
 
 Format: `view INDEX`
 
 * Views the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -177,7 +205,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ <a id="4-faq"></a>
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FlashBack home folder.
@@ -185,7 +213,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary <a id="5-command-summary"></a>
+## Command summary
 
 Action | Format, Examples
 --------|------------------
