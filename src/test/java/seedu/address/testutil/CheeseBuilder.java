@@ -22,6 +22,7 @@ public class CheeseBuilder {
     private MaturityDate maturityDate;
     private ExpiryDate expiryDate;
     private CheeseId cheeseId;
+    private boolean isAssigned;
 
     /**
      * Creates a {@code CheeseBuilder} with the default details.
@@ -32,6 +33,7 @@ public class CheeseBuilder {
         maturityDate = new MaturityDate(DEFAULT_MATURITY_DATE);
         expiryDate = new ExpiryDate(DEFAULT_EXPIRY_DATE);
         cheeseId = null;
+        isAssigned = false;
     }
 
     /**
@@ -44,6 +46,7 @@ public class CheeseBuilder {
         maturityDate = cheeseToCopy.getMaturityDate();
         expiryDate = cheeseToCopy.getExpiryDate();
         cheeseId = cheeseToCopy.getCheeseId();
+        isAssigned = cheeseToCopy.getAssignStatus();
     }
 
     /**
@@ -87,14 +90,22 @@ public class CheeseBuilder {
     }
 
     /**
+     * Sets the {@code isAssigned} of the {@code Cheese} that we are building.
+     */
+    public CheeseBuilder withAssignStatus(boolean isAssigned) {
+        this.isAssigned = isAssigned;
+        return this;
+    }
+
+    /**
      * Returns the immutable {@code Cheese} object representing the data we have.
      * @return an {@code Cheese} representation of data
      */
     public Cheese build() {
         if (cheeseId == null) {
-            return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate);
+            return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, isAssigned);
         } else {
-            return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId);
+            return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId, isAssigned);
         }
     }
 

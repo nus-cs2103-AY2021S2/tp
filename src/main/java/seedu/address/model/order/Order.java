@@ -58,6 +58,12 @@ public class Order {
         this(cheeseType, quantity, orderDate, completedDate, new HashSet<>(), orderId, customerId);
     }
 
+    public Order(Order orderToUpdate, CompletedDate completedDate) {
+        this(orderToUpdate.orderCheeseType, orderToUpdate.quantity,
+                orderToUpdate.orderDate, completedDate, orderToUpdate.cheeses,
+                orderToUpdate.orderId, orderToUpdate.customerId);
+    }
+
     /**
      * Every field must be present and not null.
      */

@@ -23,6 +23,7 @@ class JsonAdaptedCheese {
     private final String manufactureDate;
     private final String maturityDate;
     private final String expiryDate;
+    private final boolean isAssigned;
 
     /**
      * Constructs a {@code JsonAdaptedCheese} with the given cheese details.
@@ -32,12 +33,14 @@ class JsonAdaptedCheese {
                              @JsonProperty("cheeseType") String cheeseType,
                              @JsonProperty("manufactureDate") String manufactureDate,
                              @JsonProperty("maturityDate") String maturityDate,
-                             @JsonProperty("expiryDate") String expiryDate) {
+                             @JsonProperty("expiryDate") String expiryDate,
+                             @JsonProperty("isAssigned") boolean isAssigned) {
         this.cheeseId = cheeseId;
         this.cheeseType = cheeseType;
         this.manufactureDate = manufactureDate;
         this.maturityDate = maturityDate;
         this.expiryDate = expiryDate;
+        this.isAssigned = isAssigned;
     }
 
     /**
@@ -49,6 +52,7 @@ class JsonAdaptedCheese {
         manufactureDate = source.getManufactureDate().toJsonString();
         maturityDate = source.getMaturityDate().toJsonString();
         expiryDate = source.getExpiryDate().toJsonString();
+        isAssigned = source.getAssignStatus();
     }
 
     /**
@@ -95,7 +99,7 @@ class JsonAdaptedCheese {
         }
         final ExpiryDate modelExpiryDate = new ExpiryDate(expiryDate);
 
-        return new Cheese(modelCheeseType, modelManufactureDate, modelMaturityDate, modelExpiryDate, modelId);
+        return new Cheese(modelCheeseType, modelManufactureDate, modelMaturityDate, modelExpiryDate, modelId, isAssigned);
     }
 
 }

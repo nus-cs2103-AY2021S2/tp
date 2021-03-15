@@ -17,23 +17,25 @@ public class Cheese {
     private final ManufactureDate manufactureDate;
     private final MaturityDate maturityDate;
     private final ExpiryDate expiryDate;
+    private final boolean isAssigned;
 
     public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
                   ExpiryDate expiryDate) {
-        this(cheeseType, manufactureDate, maturityDate, expiryDate, CheeseId.getNextId());
+        this(cheeseType, manufactureDate, maturityDate, expiryDate, CheeseId.getNextId(), false);
     }
 
     /**
      * Every field must be present and not null.
      */
     public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
-                  ExpiryDate expiryDate, CheeseId cheeseId) {
+                  ExpiryDate expiryDate, CheeseId cheeseId, boolean isAssigned) {
         requireAllNonNull(cheeseType, manufactureDate, maturityDate, expiryDate);
         this.cheeseType = cheeseType;
         this.manufactureDate = manufactureDate;
         this.maturityDate = maturityDate;
         this.expiryDate = expiryDate;
         this.cheeseId = cheeseId;
+        this.isAssigned = isAssigned;
     }
 
     public CheeseType getCheeseType() {
@@ -55,6 +57,8 @@ public class Cheese {
     public CheeseId getCheeseId() {
         return cheeseId;
     }
+
+    public boolean getAssignStatus() {return isAssigned; }
 
     /**
      * Returns true if both cheeses have the same name.
