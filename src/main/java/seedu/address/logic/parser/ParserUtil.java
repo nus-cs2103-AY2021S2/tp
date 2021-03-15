@@ -52,7 +52,12 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
-    public static TaskDescription parseDescription(String description) throws ParseException {
+    /**
+     * Parses a {@code String task description} into a {@code TaskDescription}
+     *
+     * @throws ParseException if the given {@code description} is invalid
+     */
+    public static TaskDescription parseTaskDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!TaskDescription.isValidDescription(trimmedDescription)) {
@@ -133,6 +138,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String dateStr} into a {@code LocalDate}.
+     */
     public static LocalDate parseDate(String dateStr) {
         requireNonNull(dateStr);
         return LocalDate.parse(dateStr);

@@ -1,9 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.time.LocalDate;
+import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -11,14 +15,11 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
-import java.time.LocalDate;
-import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new AddTaskCommand object
  */
-public class AddTaskCommandParser implements  Parser<AddTaskCommand> {
+public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     @Override
     public AddTaskCommand parse(String args) throws ParseException {
@@ -29,7 +30,7 @@ public class AddTaskCommandParser implements  Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        TaskDescription taskDescription = ParserUtil.parseDescription((argMultimap.getValue(PREFIX_NAME).get()));
+        TaskDescription taskDescription = ParserUtil.parseTaskDescription((argMultimap.getValue(PREFIX_NAME).get()));
         LocalDate date = ParserUtil.parseDate((argMultimap.getValue(PREFIX_DATE).get()));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

@@ -97,6 +97,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code task} exists in the address book.
+     */
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return tasks.contains(task);
