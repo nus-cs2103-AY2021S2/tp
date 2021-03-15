@@ -61,6 +61,13 @@ public class Item {
     }
 
     /**
+     * Checks if the current item is expired.
+     */
+    public boolean isExpired() {
+        return expiryDate.isPastCurrentDate();
+    }
+
+    /**
      * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.
      */

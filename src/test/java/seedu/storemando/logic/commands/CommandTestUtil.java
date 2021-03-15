@@ -31,7 +31,9 @@ public class CommandTestUtil {
     public static final String VALID_QUANTITY_AMY = "1";
     public static final String VALID_QUANTITY_BOB = "2";
     public static final String VALID_EXPIRYDATE_AMY = "2020-10-11";
+    public static final String VALID_EXPIRED_EXPIRYDATE_AMY = "2019-10-11";
     public static final String VALID_EXPIRYDATE_BOB = "2019-08-10";
+    public static final String VALID_EXPIRED_EXPIRYDATE_BOB = "2017-10-11";
     public static final String VALID_LOCATION_AMY = "Refrigerator";
     public static final String VALID_LOCATION_BOB = "Kitchen";
     public static final String VALID_TAG_HUSBAND = "Essential";
