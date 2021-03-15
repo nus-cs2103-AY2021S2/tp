@@ -118,7 +118,7 @@ class JsonAdaptedPerson {
             try {
                 modelBirthday = new Birthday(birthday);
             } catch (DateTimeException err) { // date in wrong format
-                throw new DateTimeException(Birthday.MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
             } catch (IllegalArgumentException err) { // birthday year exceeds current year
                 throw new IllegalValueException(Birthday.MESSAGE_YEAR_CONSTRAINTS);
             }
