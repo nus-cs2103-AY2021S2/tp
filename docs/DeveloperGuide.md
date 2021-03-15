@@ -236,13 +236,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* Insurance agents specialising in medical insurance
+* has manu contacts to manage
+* has a need to edit and share contacts information
+* well versed in CLI
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: 
+
+* Ease insurance agents with details as its centralised
+* Can share information to medical officers and clients involved
+* For those proficient in typing, ease management of assets 
+
 
 
 ### User stories
@@ -251,12 +257,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | add clients contact.           | have a seperate place to store domain specific information.            |
+| `* * *`  | user                                       | delete client's contact        | remove unwanted contacts                                               |
+| `* * *`  | user                                       | view all my contacts           | view a list of all my contacts.                                        |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *`    | user                                       | see all the commands available | know what commands to use                |
 
 *{More to be added}*
 
@@ -264,36 +269,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Adding a new user**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+  1. User chooses to add a client.
+  2. Bob requests for details of the client.
+  3. User enters the requested details.
+  4. Bob requests for confirmation.
+  5. User confirms.
+  6. Bob adds the client and displays the new log of clients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+  *3a. Bob detects an error in the entered data.
+  *    3a1. Bob requests for the correct data.
+  *    3a2. User enters new data.
+  *    Steps 3a1-3a2 are repeated until the data entered are correct.
+  
+      Use case resumes from step 4.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+  *3b. User requests to edit the data of the client in a future date.
+  *    3b1. Bob requests for confirmation.
+  *    3b2. User confirms future transfer.
+  
+      Use case ends.
+      
+ *3c At any time, User chooses to delete the client.
+ *     3c1. OBS requests to confirm the deletion.
+ *     3c2. User confirms the deletion.
+ 
+ 
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Domain rules : at least 1 user added
+2. Constraints : System should be compatible with previous version and easily scalable to add new functionalities
+3. Technical requirement : System should be able to work on any processor i.e. 32 bit or 64 bit.
+4. Technical requirement : System should be scalable enough to be able to keep up with new processors (more than 64)
+5. Technical requirement : System should be able to work on an operating system (OS) i.e. MacOS, Windows, Linux etc.
+6. Performance requirement : System should have at most a tolerable lag time but not too long that it is off putting
+7. Quality requirement : System should be straightforward enough that a novice should at the very least be able to add, edit and delete users
+8. Process requirement : i.e. the project should adhere to the schedule pre decided (subject to minor adjustments within the agreed upon room for error)
+9. Miscellaneous : the program should not contain any offending imaginary and or vulgar words/language
+
 
 *{More to be added}*
 
