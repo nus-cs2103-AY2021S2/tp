@@ -28,7 +28,7 @@ public class ModelManager implements Model {
     private DisplayFilterPredicate displayFilterPredicate;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, userPrefs, aliases.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUniqueAliasMap aliases) {
         super();
@@ -152,8 +152,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addAlias(CommandAlias aliasCommandPair) {
-        aliases.addAlias(aliasCommandPair);
+    public void addAlias(CommandAlias commandAlias) {
+        aliases.addAlias(commandAlias);
     }
 
     @Override

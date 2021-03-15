@@ -92,23 +92,23 @@ public interface Model {
 
     /**
      * Adds the given command alias.
-     * {@code commandAlias} must not already exist in the address book.
+     * {@code commandAlias} must not already exist in the aliases.
      */
     void addAlias(CommandAlias commandAlias);
 
     /**
      * Deletes the given alias.
-     * The alias must exist in the address book.
+     * The alias must exist in the aliases.
      */
     void deleteAlias(Alias alias);
 
     /**
-     * Returns true if an alias with the same identity as {@code alias} exists in the address book.
+     * Returns true if an alias with the same identity as {@code alias} exists in the aliases.
      */
     boolean hasAlias(Alias alias);
 
     /**
-     * Returns true if a command alias with the same identity as {@code commandAlias} exists in the address book.
+     * Returns true if a command alias with the same identity as {@code commandAlias} exists in the aliases.
      */
     boolean hasAlias(CommandAlias commandAlias);
 

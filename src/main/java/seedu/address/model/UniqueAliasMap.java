@@ -24,7 +24,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
 
     private static final String EMPTY_ALIASES = "You currently have 0 alias";
 
-    private final HashMap<Alias, CommandAlias> aliasMap = new HashMap<>();
+    private final HashMap<Alias, CommandAlias> aliases = new HashMap<>();
 
     public UniqueAliasMap() {}
 
@@ -37,16 +37,16 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     /**
-     * Replaces the contents of the aliases with {@code aliasMap}.
-     * {@code aliasMap} must not contain duplicate aliases.
+     * Replaces the contents of the aliases with {@code aliases}.
+     * {@code aliases} must not contain duplicate aliases.
      */
     public void setPersons(Map<Alias, CommandAlias> aliases) {
         requireAllNonNull(aliases);
         if (!aliasesAreUnique(aliases)) {
             throw new DuplicatePersonException();
         }
-        this.aliasMap.clear();
-        this.aliasMap.putAll(aliases);
+        this.aliases.clear();
+        this.aliases.putAll(aliases);
     }
 
     /**
@@ -59,15 +59,15 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     /**
-     * Returns true if the map contains an equivalent alias as the given argument.
+     * Returns true if the aliases contains an equivalent alias as the given argument.
      */
     public boolean hasAlias(Alias alias) {
         requireNonNull(alias);
-        return aliasMap.containsKey(alias);
+        return aliases.containsKey(alias);
     }
 
     /**
-     * Returns true if the map contains an equivalent command alias as the given argument.
+     * Returns true if the aliases contains an equivalent command alias as the given argument.
      */
     public boolean hasAlias(CommandAlias commandAlias) {
         requireNonNull(commandAlias);
@@ -75,44 +75,44 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     /**
-     * Adds a command alias to the map.
-     * The alias must not already exist in the map.
+     * Adds a command alias to the aliases.
+     * The alias must not already exist in the aliases.
      */
     public void addAlias(CommandAlias toAdd) {
         requireNonNull(toAdd);
         if (hasAlias(toAdd)) {
             throw new DuplicateAliasException();
         }
-        aliasMap.put(toAdd.getAlias(), toAdd);
+        aliases.put(toAdd.getAlias(), toAdd);
     }
 
     /**
-     * Removes the equivalent alias from the map.
-     * The alias must exist in the map.
+     * Removes the equivalent alias from the aliases.
+     * The alias must exist in the aliases.
      */
     public void removeAlias(Alias toRemove) {
         requireNonNull(toRemove);
         if (!hasAlias(toRemove)) {
             throw new AliasNotFoundException();
         }
-        aliasMap.remove(toRemove);
+        aliases.remove(toRemove);
     }
 
     /**
-     * Returns command alias mapped to alias if alias is found in alias map.
+     * Returns command alias mapped to alias if alias is found in aliases.
      * If alias is not found, null is returned.
      *
-     * @param alias alias to search in alias map.
+     * @param alias alias to search in aliases.
      */
     public CommandAlias getCommandAlias(Alias alias) {
-        return aliasMap.get(alias);
+        return aliases.get(alias);
     }
 
     /**
-     * Returns command mapped to alias if alias is found in alias map.
+     * Returns command mapped to alias if alias is found in aliases.
      * If alias is not found, null is returned.
      *
-     * @param alias alias to search in alias map.
+     * @param alias alias to search in aliases.
      */
     public Command getCommand(Alias alias) {
         return getCommandAlias(alias).getCommand();
@@ -136,16 +136,16 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
 
     @Override
     public Map<Alias, CommandAlias> getAliases() {
-        return Collections.unmodifiableMap(aliasMap);
+        return Collections.unmodifiableMap(aliases);
     }
 
     @Override
     public String toString() {
-        if (aliasMap.isEmpty()) {
+        if (aliases.isEmpty()) {
             return EMPTY_ALIASES;
         }
         final StringBuilder builder = new StringBuilder();
-        for (CommandAlias commandAlias: aliasMap.values()) {
+        for (CommandAlias commandAlias: aliases.values()) {
             builder.append(commandAlias);
             builder.append("\n");
         }
@@ -156,12 +156,12 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueAliasMap // instanceof handles nulls
-                && aliasMap.equals(((UniqueAliasMap) other).aliasMap));
+                && aliases.equals(((UniqueAliasMap) other).aliases));
     }
 
     @Override
     public int hashCode() {
-        return aliasMap.hashCode();
+        return aliases.hashCode();
     }
 
     /**
