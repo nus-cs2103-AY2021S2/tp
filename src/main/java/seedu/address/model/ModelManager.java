@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.residence.Residence;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the residence tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final FilteredList<Residence> filteredResidences;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given residenceTracker and userPrefs.
      */
     public ModelManager(ReadOnlyResidenceTracker residenceTracker, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -69,16 +69,16 @@ public class ModelManager implements Model {
 
     @Override
     public Path getResidenceTrackerFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getResidenceTrackerFilePath();
     }
 
     @Override
     public void setResidenceTrackerFilePath(Path residenceTrackerFilePath) {
         requireNonNull(residenceTrackerFilePath);
-        userPrefs.setAddressBookFilePath(residenceTrackerFilePath);
+        userPrefs.setResidenceTrackerFilePath(residenceTrackerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ResidenceTracker ================================================================================
 
     @Override
     public void setResidenceTracker(ReadOnlyResidenceTracker residenceTracker) {
