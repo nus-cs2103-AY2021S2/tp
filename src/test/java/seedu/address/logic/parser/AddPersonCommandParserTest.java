@@ -19,7 +19,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -27,7 +27,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandParserTest {
-    private AddPersonCommandParser parser = new AddPersonCommandParser();
+    private AddMemberCommandParser parser = new AddMemberCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -35,22 +35,22 @@ public class AddPersonCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB_NEW + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                new AddPersonCommand(expectedPerson));;
+                new AddMemberCommand(expectedPerson));;
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB_NEW + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                new AddPersonCommand(expectedPerson));
+                new AddMemberCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB_NEW + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB,
-                new AddPersonCommand(expectedPerson));
+                new AddMemberCommand(expectedPerson));
 
 
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMemberCommand.MESSAGE_USAGE);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB_NEW + VALID_PHONE_BOB + EMAIL_DESC_BOB, expectedMessage);
