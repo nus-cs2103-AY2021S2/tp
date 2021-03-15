@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddVenueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 
 /**
  * Parses input arguments and creates a new AddVenue object
  */
-public class AddVenueParser {
+public class AddVenueCommandParser implements Parser<AddVenueCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddVenue

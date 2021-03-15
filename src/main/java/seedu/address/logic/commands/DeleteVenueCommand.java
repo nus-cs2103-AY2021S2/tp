@@ -7,7 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 
 /**
  * Deletes an existing venue from the system.
@@ -18,7 +18,7 @@ public class DeleteVenueCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the venue identified by the venue name used in the displayed list.\n"
-            + "Parameters: VENUE NAME\n"
+            + "Parameters: v/VENUE NAME\n"
             + "Example: " + COMMAND_WORD + " v/Sports Hall";
 
     public static final String MESSAGE_DELETE_VENUE_SUCCESS = "Deleted Venue: %1$s";
@@ -39,7 +39,7 @@ public class DeleteVenueCommand extends Command {
         }
 
         model.deleteVenue(targetVenue);
-        return new CommandResult(String.format(MESSAGE_DELETE_VENUE_SUCCESS, targetVenue));
+        return new CommandResult(String.format(MESSAGE_DELETE_VENUE_SUCCESS, targetVenue.getName()));
     }
 
     @Override

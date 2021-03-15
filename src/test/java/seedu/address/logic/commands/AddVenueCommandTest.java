@@ -24,57 +24,58 @@ import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.VenueBuilder;
 
-public class AddCommandTest {
+public class AddVenueCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullVenue_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddVenueCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_venueAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingVenueAdded modelStub = new ModelStubAcceptingVenueAdded();
+        Venue validVenue = new VenueBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddVenueCommand(validVenue).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddVenueCommand.MESSAGE_SUCCESS, validVenue), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validVenue), modelStub.venuesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateVenue_throwsCommandException() {
+        Venue validVenue = new VenueBuilder().build();
+        AddVenueCommand addVenueCommand = new AddVenueCommand(validVenue);
+        ModelStub modelStub = new ModelStubWithVenue(validVenue);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddVenueCommand.MESSAGE_DUPLICATE_VENUE, ()
+            -> addVenueCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Venue hall = new VenueBuilder().withName("Victoria Hall").build();
+        Venue field = new VenueBuilder().withName("Town Green").build();
+        AddVenueCommand addHallCommand = new AddVenueCommand(hall);
+        AddVenueCommand addFieldCommand = new AddVenueCommand(field);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addHallCommand.equals(addHallCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddVenueCommand addHallCommandCopy = new AddVenueCommand(hall);
+        assertTrue(addHallCommand.equals(addHallCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addHallCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addHallCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addHallCommand.equals(addFieldCommand));
     }
 
     /**
@@ -204,39 +205,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single venue.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithVenue extends ModelStub {
+        private final Venue venue;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithVenue(Venue venue) {
+            requireNonNull(venue);
+            this.venue = venue;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasVenue(Venue venue) {
+            requireNonNull(venue);
+            return this.venue.isSameVenue(venue);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the venue being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingVenueAdded extends ModelStub {
+        final ArrayList<Venue> venuesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasVenue(Venue venue) {
+            requireNonNull(venue);
+            return venuesAdded.stream().anyMatch(venue::isSameVenue);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addVenue(Venue venue) {
+            requireNonNull(venue);
+            venuesAdded.add(venue);
         }
 
         @Override

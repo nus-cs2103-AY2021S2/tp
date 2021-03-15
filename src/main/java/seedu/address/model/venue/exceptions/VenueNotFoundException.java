@@ -1,4 +1,4 @@
-package seedu.address.model.booking.exceptions;
+package seedu.address.model.venue.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified venue.

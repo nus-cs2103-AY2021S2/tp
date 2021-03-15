@@ -1,14 +1,14 @@
 package seedu.address.testutil;
 
-import seedu.address.model.booking.Venue;
+
+import seedu.address.model.venue.Venue;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Venue objects.
  */
 public class VenueBuilder {
-
     public static final String DEFAULT_NAME = "Victoria Hall";
-    public static final int DEFAULT_CAPACITY = 10;
+    public static final int DEFAULT_CAPACITY = 50;
 
     private String name;
     private int capacity;
@@ -22,7 +22,7 @@ public class VenueBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the VenueBuilder with the data of {@code venueToCopy}.
      */
     public VenueBuilder(Venue venueToCopy) {
         name = venueToCopy.getName();
