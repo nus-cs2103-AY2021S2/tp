@@ -53,7 +53,7 @@ public class Status {
         case COMPLETED:
             return COMPLETED_STRING;
         default:
-            return NULL_STATUS_TYPE; // Will not happen
+            return NULL_STATUS_TYPE; // Will not happen.
         }
     }
 
