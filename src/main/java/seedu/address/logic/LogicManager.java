@@ -13,7 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyModulePlanner;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -42,11 +43,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveRemindMe(model.getRemindMe());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -54,9 +57,11 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+
+
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyModulePlanner getRemindMe() {
+        return model.getRemindMe();
     }
 
     @Override
@@ -65,8 +70,14 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
+    }
+
+
+    @Override
+    public Path getRemindMeFilePath() {
+        return model.getRemindMeFilePath();
     }
 
     @Override

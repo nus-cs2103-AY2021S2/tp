@@ -17,6 +17,15 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Constructs a {@code Module} with {@code Title}, {@code AssignmentList} and {@code ExamList} as the inputs.
+     */
+    public Module(Title title, AssignmentList assignments, ExamList exams) {
+        this.title = title;
+        this.assignments = assignments;
+        this.exams = exams;
+    }
+
+    /**
      * Gets the title of the module.
      *
      * @return Module title.

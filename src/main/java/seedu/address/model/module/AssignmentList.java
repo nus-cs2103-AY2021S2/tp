@@ -1,6 +1,7 @@
 package seedu.address.model.module;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AssignmentList {
     private ArrayList<Assignment> assignments;
@@ -10,6 +11,15 @@ public class AssignmentList {
      */
     public AssignmentList() {
         this.assignments = new ArrayList<>();
+    }
+
+    /**
+     * Constructs an {@code AssignmentList} to store {@code Assignments} with given {@code ArrayList<Assignment>};
+     *
+     * @param assignments assignments to construct the AssignmentList.
+     */
+    public AssignmentList(ArrayList<Assignment> assignments) {
+        this.assignments = assignments;
     }
 
     /**
@@ -81,6 +91,10 @@ public class AssignmentList {
         return hasAssignment;
     }
 
+    public List<Assignment> getAssignments() {
+        return new ArrayList<>(assignments);
+    }
+
     /**
      * Gets the size of the list.
      *
@@ -88,6 +102,30 @@ public class AssignmentList {
      */
     public int size() {
         return assignments.size();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AssignmentList)) {
+            return false;
+        }
+
+        AssignmentList otherList = (AssignmentList) other;
+        if (assignments.size() != otherList.size()) {
+            return false;
+        } else {
+            for (int i = 0; i < otherList.size(); i++) {
+                if (!assignments.get(i).equals(otherList.assignments.get(i))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     @Override
