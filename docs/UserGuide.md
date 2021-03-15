@@ -259,6 +259,42 @@ Lists every note on the note list.
 Format: `listnote​`
 
 
+
+### Finding content in the Dictionary using keywords: `findcontent`
+
+Finds relevant content in the dictionary that matches the keywords.
+
+Format: `findcontent KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `programming` will match `PROGRAMMING` or `Programming`
+* The order of the keywords does not matter. e.g. `content some` will match `some content`
+* Only the content is searched, headers and week numbers are not included.
+* Only full words will be matched e.g. `prog` will not match `programming`
+* Contents matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `some different` will return `some content`, `different thing`
+
+Examples:
+* `findcontent programming` returns `Programming` and `PROGRAMMING LANGUAGE`
+* `findcontent some different` returns `some content`, `different thing`<br>
+
+
+### Finding definition in the Dictionary using keywords: `finddef`
+
+Finds relevant content in the dictionary that matches the keywords.
+
+Format: `finddef KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `programming` will match `PROGRAMMING` or `Programming`
+* The order of the keywords does not matter. e.g. `content some` will match `some content`
+* Only the content is searched, headers and week numbers are not included.
+* Only full words will be matched e.g. `prog` will not match `programming`
+* Contents matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `some different` will return `some content`, `different thing`
+
+Examples:
+* `finddef programming` returns `Programming Language` and `Object-Oriented Programming` <br>
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
