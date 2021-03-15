@@ -83,6 +83,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String residence} into a {@code SchoolResidence}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code residence} is invalid.
+     */
+    public static SchoolResidence parseResidence(String residence) throws ParseException {
+        requireNonNull(residence);
+        String trimmedResidence = residence.trim();
+        try {
+            return new SchoolResidence(trimmedResidence);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(SchoolResidence.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -167,7 +183,7 @@ public class ParserUtil {
     public static SchoolResidence parseSchoolRes(Optional<String> schoolResidence) throws ParseException {
         requireNonNull(schoolResidence);
         if (schoolResidence.isEmpty()) {
-            return new SchoolResidence("Does not live on campus");
+            return new SchoolResidence("DOES_NOT_LIVE_ON_CAMPUS");
         } else {
             String trimmedSchoolRes = schoolResidence.get().trim();
             if (!SchoolResidence.isValidResidence(trimmedSchoolRes)) {

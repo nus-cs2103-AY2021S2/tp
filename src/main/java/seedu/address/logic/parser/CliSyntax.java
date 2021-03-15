@@ -15,4 +15,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_VACCINATION_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_MEDICAL_DETAILS = new Prefix("m/");
     public static final Prefix PREFIX_SCHOOL_RESIDENCE = new Prefix("r/");
+    public static final Prefix PREFIX_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_START_TIME = new Prefix("ts/");
+    public static final Prefix PREFIX_END_TIME = new Prefix("te/");
+
 }

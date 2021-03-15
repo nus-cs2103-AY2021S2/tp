@@ -63,15 +63,17 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        vaccinationStatus.setText(person.getVaccinationStatus().value);
-        vaccinationStatus.setBackground(person.getVaccinationStatus().value.equals("vaccinated") ? vaccinatedBg
-                : notVaccinatedBg);
+        vaccinationStatus.setText(person.getVaccinationStatus().textUI);
+        vaccinationStatus.setBackground(
+                person.isVaccinated()
+                        ? vaccinatedBg
+                        : notVaccinatedBg);
         matriculationNumber.setText(person.getMatriculationNumber().value);
         faculty.setText(person.getFaculty().value);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        residence.setText(person.getSchoolResidence().value);
+        residence.setText(person.getSchoolResidence().toString());
         medicalDetails.setText(person.getMedicalDetails().value);
     }
 

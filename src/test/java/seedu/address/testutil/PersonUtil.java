@@ -36,9 +36,9 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_VACCINATION_STATUS + person.getVaccinationStatus().value + " ");
+        sb.append(PREFIX_VACCINATION_STATUS + person.getVaccinationStatus().textUI + " ");
         sb.append(PREFIX_MEDICAL_DETAILS + person.getMedicalDetails().value + " ");
-        sb.append(PREFIX_SCHOOL_RESIDENCE + person.getSchoolResidence().value + " ");
+        sb.append(PREFIX_SCHOOL_RESIDENCE + person.getSchoolResidence().toSavingString() + " ");
         return sb.toString();
     }
 
@@ -55,11 +55,11 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getVaccinationStatus().ifPresent(vaccinationStatus -> sb.append(PREFIX_VACCINATION_STATUS)
-                .append(vaccinationStatus.value).append(" "));
+                .append(vaccinationStatus.textUI).append(" "));
         descriptor.getMedicalDetails().ifPresent(medicalDetails -> sb.append(PREFIX_MEDICAL_DETAILS)
                 .append(medicalDetails.value).append(" "));
         descriptor.getSchoolResidence().ifPresent(schoolResidence -> sb.append(PREFIX_SCHOOL_RESIDENCE)
-                .append(schoolResidence.value).append(" "));
+                .append(schoolResidence.toSavingString()).append(" "));
         return sb.toString();
     }
 }

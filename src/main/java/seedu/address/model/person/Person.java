@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -33,13 +32,13 @@ public class Person {
         requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.matriculationNumber = matriculationNumber;
-        this.faculty = new Faculty(faculty.value.toUpperCase());
+        this.faculty = faculty;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.vaccinationStatus = vaccinationStatus;
         this.medicalDetails = medicalDetails;
-        this.schoolResidence = new SchoolResidence(schoolResidence.value.toUpperCase());
+        this.schoolResidence = schoolResidence;
     }
 
     public Name getName() {
@@ -89,6 +88,10 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getMatriculationNumber().equals(getMatriculationNumber());
+    }
+
+    public boolean isVaccinated() {
+        return this.vaccinationStatus.status == VaccinationStatus.VaccinationStatusAbbreviation.VACCINATED;
     }
 
     /**
@@ -144,7 +147,7 @@ public class Person {
                 .append("; Vaccination Status: ")
                 .append(getVaccinationStatus())
                 .append("; School Residence: ")
-                .append(getSchoolResidence());
+                .append(getSchoolResidence().toString()); // DOES NOT LIVE ON CAMPUS -> For UI
         return builder.toString();
     }
 
