@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonRemindMeStorage  remindMeStorage = new JsonRemindMeStorage(getTempFilePath("rm"));
+        JsonRemindMeStorage remindMeStorage = new JsonRemindMeStorage(getTempFilePath("rm"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(remindMeStorage, userPrefsStorage);
     }

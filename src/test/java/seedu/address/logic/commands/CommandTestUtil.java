@@ -9,24 +9,19 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModulePlanner;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonRemindMeStorage;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-    private static final Logger logger = LogsCenter.getLogger(CommandTestUtil.class);
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_TAG_HUSBAND = "husband";

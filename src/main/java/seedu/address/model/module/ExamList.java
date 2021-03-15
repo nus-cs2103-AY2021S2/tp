@@ -186,7 +186,7 @@ public class ExamList {
             for (int i = 0; i < otherList.size(); i++) {
                 if (!exams.get(i).equals(otherList.exams.get(i))) {
                     return false;
-                };
+                }
             }
         }
 

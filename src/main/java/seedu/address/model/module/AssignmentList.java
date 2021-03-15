@@ -121,7 +121,7 @@ public class AssignmentList {
             for (int i = 0; i < otherList.size(); i++) {
                 if (!assignments.get(i).equals(otherList.assignments.get(i))) {
                     return false;
-                };
+                }
             }
         }
 
