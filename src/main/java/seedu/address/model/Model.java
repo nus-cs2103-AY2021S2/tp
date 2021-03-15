@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Venue;
 import seedu.address.model.person.Person;
+import seedu.address.model.venue.Venue;
 
 /**
  * The API of the Model component.
@@ -112,7 +112,6 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-<<<<<<< HEAD
      * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */

@@ -1,4 +1,4 @@
-package seedu.address.model.booking.exceptions;
+package seedu.address.model.venue.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Venues (Venues are considered duplicates if they have the same
