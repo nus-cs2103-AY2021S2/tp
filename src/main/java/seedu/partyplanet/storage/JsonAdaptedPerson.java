@@ -114,8 +114,7 @@ class JsonAdaptedPerson {
         }
         if (birthday.equals(Birthday.EMPTY_BIRTHDAY_STRING)) {
             modelBirthday = Birthday.EMPTY_BIRTHDAY;
-        }
-        else {
+        } else {
             try {
                 modelBirthday = new Birthday(birthday);
             } catch (DateTimeException err) { // date in wrong format
