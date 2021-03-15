@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.us.among.logic.commands.FindCommand;
-import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
+import seedu.us.among.model.endpoint.EndPointContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -24,7 +24,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand = new FindCommand(
-                new NameContainsKeywordsPredicate(Arrays.asList("GET", "POST")));
+                new EndPointContainsKeywordsPredicate(Arrays.asList("GET", "POST")));
         assertParseSuccess(parser, "GET POST", expectedFindCommand);
 
         // multiple whitespaces between keywords

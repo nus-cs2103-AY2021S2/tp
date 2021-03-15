@@ -2,9 +2,11 @@ package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.us.among.commons.core.Messages;
 import seedu.us.among.model.Model;
-import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
+import seedu.us.among.model.endpoint.Endpoint;
 
 /**
  * Finds and lists all API endpoints whose fields contain any of the argument keywords.
@@ -19,9 +21,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " get facebook google";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Endpoint> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate<Endpoint> predicate) {
         this.predicate = predicate;
     }
 

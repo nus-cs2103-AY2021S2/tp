@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
@@ -16,8 +17,8 @@ import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.EndpointList;
 import seedu.us.among.model.Model;
+import seedu.us.among.model.endpoint.EndPointContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
 import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 
 /**
@@ -116,7 +117,7 @@ public class CommandTestUtil {
 
         Endpoint endpoint = model.getFilteredEndpointList().get(targetIndex.getZeroBased());
         final String[] splitTags = endpoint.getTags().toString().split("\\s+");
-        model.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(splitTags[0])));
+        model.updateFilteredEndpointList(new EndPointContainsKeywordsPredicate(Arrays.asList(splitTags[0])));
 
         assertEquals(1, model.getFilteredEndpointList().size());
     }

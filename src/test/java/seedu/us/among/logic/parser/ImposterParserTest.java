@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -25,8 +26,8 @@ import seedu.us.among.logic.commands.HelpCommand;
 import seedu.us.among.logic.commands.ListCommand;
 import seedu.us.among.logic.commands.RemoveCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.model.endpoint.EndPointContainsKeywordsPredicate;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.NameContainsKeywordsPredicate;
 import seedu.us.among.testutil.EditEndpointDescriptorBuilder;
 import seedu.us.among.testutil.EndpointBuilder;
 import seedu.us.among.testutil.EndpointUtil;
@@ -75,7 +76,7 @@ public class ImposterParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new EndPointContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
