@@ -287,8 +287,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to view the members
 2.  HEY MATEz lists the members in the list and their contact details
 
-  Use case ends.
-  
+    Use case ends.
+
 **Use case: Delete member**
 
 **MSS**
