@@ -52,6 +52,12 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String description} into a {@code ScheduleDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
     public static ScheduleDescription parseScheduleDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
@@ -133,6 +139,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String dateStr} into a {@code LocalDate}.
+     */
     public static LocalDate parseDate(String dateStr) {
         requireNonNull(dateStr);
         return LocalDate.parse(dateStr);
