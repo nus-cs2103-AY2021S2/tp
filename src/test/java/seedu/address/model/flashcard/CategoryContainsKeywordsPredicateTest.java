@@ -18,17 +18,17 @@ public class CategoryContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        QuestionContainsKeywordsPredicate firstPredicate =
-                new QuestionContainsKeywordsPredicate(firstPredicateKeywordList);
-        QuestionContainsKeywordsPredicate secondPredicate =
-                new QuestionContainsKeywordsPredicate(secondPredicateKeywordList);
+        CategoryContainsKeywordsPredicate firstPredicate =
+                new CategoryContainsKeywordsPredicate(firstPredicateKeywordList);
+        CategoryContainsKeywordsPredicate secondPredicate =
+                new CategoryContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        QuestionContainsKeywordsPredicate firstPredicateCopy =
-                new QuestionContainsKeywordsPredicate(firstPredicateKeywordList);
+        CategoryContainsKeywordsPredicate firstPredicateCopy =
+                new CategoryContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -37,12 +37,12 @@ public class CategoryContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different flashcard -> returns false
+        // different object -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_categoryContainsKeywords_returnsTrue() {
         // One keyword
         CategoryContainsKeywordsPredicate predicate =
                 new CategoryContainsKeywordsPredicate(Collections.singletonList("Alice"));
@@ -62,7 +62,7 @@ public class CategoryContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_categoryDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         CategoryContainsKeywordsPredicate predicate = new CategoryContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new FlashcardBuilder().withCategory("Alice").build()));
@@ -71,9 +71,16 @@ public class CategoryContainsKeywordsPredicateTest {
         predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new FlashcardBuilder().withCategory("Alice Bob").build()));
 
-        // Keywords match answer, category and priority, but does not match question
-        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Theorem", "Test", "Mid", "Math"));
+        // Non-matching partial keyword
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Ali"));
+        assertFalse(predicate.test(new FlashcardBuilder().withCategory("Alice Bob").build()));
+
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Bo"));
+        assertFalse(predicate.test(new FlashcardBuilder().withCategory("Alice Bob").build()));
+
+        // Keywords match question, answer, priority and tag, but does not match category
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Theorem", "Test", "Mid", "Math", "Equation"));
         assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Theorem").withAnswer("Test")
-                .withCategory("Random").withPriority("Mid").build()));
+                .withCategory("Random").withPriority("Mid").withTags("Equation").build()));
     }
 }
