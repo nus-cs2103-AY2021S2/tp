@@ -26,6 +26,8 @@ public class AddExamCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New exam added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists at this date";
+    public static final String MESSAGE_MODULE_NOT_FOUND = "Module for exam has to be created "
+            + "first";
 
     private final Module target;
     private final Exam toAdd;
@@ -50,6 +52,9 @@ public class AddExamCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.hasModule(target)) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
         if (model.hasExam(target, toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXAM);
         }

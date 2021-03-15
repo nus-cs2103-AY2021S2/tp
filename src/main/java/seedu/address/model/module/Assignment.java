@@ -8,7 +8,8 @@ import java.util.Objects;
 
 public class Assignment {
     // todo change message constraints
-    public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted DD/MM/YYYY TIME";
+    public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted "
+            + "to a valid DD/MM/YYYY TIME";
 
     public final Description description;
     public final LocalDateTime deadline;
