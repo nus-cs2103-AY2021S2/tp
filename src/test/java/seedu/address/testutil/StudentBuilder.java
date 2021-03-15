@@ -18,11 +18,11 @@ import seedu.address.model.student.Student;
 public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_PHONE = "83501122";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "Blk 136 Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STUDY_LEVEL = "Secondary 5";
-    public static final String DEFAULT_GUARDIAN_PHONE = "91234567";
+    public static final String DEFAULT_GUARDIAN_PHONE = "90112344";
     public static final String DEFAULT_RELATIONSHIP = "Mother";
 
     private Name name;
