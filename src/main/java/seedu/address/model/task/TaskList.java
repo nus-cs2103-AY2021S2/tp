@@ -65,6 +65,17 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
+     * Removes the equivalent task from the list.
+     * The task must exist in the list.
+     */
+    public void remove(Task toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new TaskNotFoundException();
+        }
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
