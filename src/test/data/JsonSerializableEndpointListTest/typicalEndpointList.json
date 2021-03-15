@@ -2,36 +2,8 @@
 	"_comment": "imPoster save file which contains the same Endpoint values as in TypicalEndpoints#getTypicalEndpointList()",
 	"endpoints" : [ {
 		"method" : "GET",
-		"address" : "https://reqbin.com/echo",
-		"data" : "",
-		"headers" : [ ],
-		"tagged" : [ ],
-		"response" : {
-			"protocolVersion" : "No Data",
-			"statusCode" : "No Data",
-			"reasonPhrase" : "No Data",
-			"statusLine" : "No Data",
-			"responseEntity" : "No Data",
-			"responseTime" : "No Data"
-		}
-	}, {
-		"method" : "GET",
-		"address" : "https://reqbin.com/echo/get/json",
-		"data" : "",
-		"headers" : [ ],
-		"tagged" : [ ],
-		"response" : {
-			"protocolVersion" : "No Data",
-			"statusCode" : "No Data",
-			"reasonPhrase" : "No Data",
-			"statusLine" : "No Data",
-			"responseEntity" : "No Data",
-			"responseTime" : "No Data"
-		}
-	}, {
-		"method" : "GET",
 		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{key: value}",
+		"data" : "{\"key\":\"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "cat" ],
 		"response" : {
@@ -44,8 +16,8 @@
 		}
 	}, {
 		"method" : "POST",
-		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{key: value}",
+		"address" : "https://cat-fact.herokuapp.com/facts",
+		"data" : "{\"key\":\"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "cat", "fact" ],
 		"response" : {
@@ -58,8 +30,8 @@
 		}
 	}, {
 		"method" : "PUT",
-		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{key: value}",
+		"address" : "https://cat-fact.herokuapp.com/facts",
+		"data" : "{\"key\":\"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ ],
 		"response" : {
@@ -72,8 +44,8 @@
 		}
 	}, {
 		"method" : "DELETE",
-		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{key: value}",
+		"address" : "https://cat-fact.herokuapp.com/facts",
+		"data" : "{\"key\":\"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ ],
 		"response" : {
@@ -86,8 +58,8 @@
 		}
 	}, {
 		"method" : "HEAD",
-		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{key: value}",
+		"address" : "https://cat-fact.herokuapp.com/facts",
+		"data" : "{\"key\":\"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ ],
 		"response" : {
@@ -100,8 +72,8 @@
 		}
 	}, {
 		"method" : "OPTIONS",
-		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{key: value}",
+		"address" : "https://cat-fact.herokuapp.com/facts",
+		"data" : "{\"key\":\"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ ],
 		"response" : {
@@ -114,8 +86,36 @@
 		}
 	}, {
 		"method" : "PATCH",
+		"address" : "https://cat-fact.herokuapp.com/facts",
+		"data" : "{\"key\":\"value\"}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "GET",
 		"address" : "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
-		"data" : "{key: value}",
+		"data" : "{\"key\":\"value\"}",
+		"headers" : [ "\"key: value\"" ],
+		"tagged" : [ ],
+		"response" : {
+			"protocolVersion" : "No Data",
+			"statusCode" : "No Data",
+			"reasonPhrase" : "No Data",
+			"statusLine" : "No Data",
+			"responseEntity" : "No Data",
+			"responseTime" : "No Data"
+		}
+	}, {
+		"method" : "GET",
+		"address" : "https://cat-fact.herokuapp.com/facts",
+		"data" : "{\"key\":\"value\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ ],
 		"response" : {
@@ -128,4 +128,3 @@
 		}
 	}]
 }
-//to-do if we ever use this endpointlist in test cases
