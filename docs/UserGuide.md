@@ -206,6 +206,7 @@ Action | Format, Examples
 **View** | `view INDEX` <br> e.g., `view 2`
 **Find** | `find CRITERIA KEYWORD [MORE_KEYWORDS]`<br> e.g., `find q/ equation`, `find c/ computer science`,<br> `find p/ low`, `find t/ random`
 **Clear** | `clear`
+**Undo** | `undo`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
