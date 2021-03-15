@@ -5,9 +5,10 @@ title: User Guide
 
 
 FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
-* Table of Contents
-* [Quick start](#quick-start)
-*  [Features](#features)
+## Table of Contents
+1. [Quick start](#quick-start)
+1. [GUI-layout](#gui-layout)
+1.  [Features](#features)
     * [Viewing help](#viewing-help-help): `help`
     * [Adding a new card](#adding-a-new-card-add): `add`
     * [Listing all cards](#listing-all-cards--list): `list`
@@ -20,18 +21,18 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
     * [Editing the data file](#editing-the-data-file)
     * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
     * [Review mode](#review-mode-coming-in-v13): `[coming in v1.3]`
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+1. [FAQ](#faq)
+1. [Command Summary](#command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 
-1. Ensure you have Java 11 or above installed in your Computer.
-1. Download the latest FlashBack.jar.
-1. Copy the file to the folder you want to use as the home folder for your FlashBack.
+1. Ensure you have Java `11` or above installed in your Computer.
+1. Download the latest `FlashBack.jar`.
+1. Copy the file to the folder you want to use as the _home folder_ for your FlashBack.
 1. Double-click the file to start the app. The GUI should appear in a few seconds.
 ![GUI](./images/Ui.png)
 1. Below are some commands you can try, type the command in the command box and press Enter to execute it:
@@ -44,8 +45,10 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 
 --------------------------------------------------------------------------------------------------------------------
+## 2. GUI layout
 
-## Features
+--------------------------------------------------------------------------------------------------------------------
+## 3. Features
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
@@ -174,7 +177,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FlashBack home folder.
@@ -182,7 +185,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 5. Command summary
 
 Action | Format, Examples
 --------|------------------
