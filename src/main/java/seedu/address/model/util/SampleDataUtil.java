@@ -14,7 +14,7 @@ import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ResidenceTracker} with sample data.
  */
 public class SampleDataUtil {
     public static Residence[] getSampleResidence() {
@@ -24,7 +24,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyResidenceTracker getSampleAddressBook() {
+    public static ReadOnlyResidenceTracker getSampleResidenceTracker() {
         ResidenceTracker sampleAb = new ResidenceTracker();
         for (Residence sampleResidence : getSampleResidence()) {
             sampleAb.addResidence(sampleResidence);

@@ -57,7 +57,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ResidenceTrackerStorage residenceTrackerStorage =
-            new JsonResidenceTrackerStorage(userPrefs.getAddressBookFilePath());
+            new JsonResidenceTrackerStorage(userPrefs.getResidenceTrackerFilePath());
         storage = new StorageManager(residenceTrackerStorage, userPrefsStorage);
 
         initLogging(config);
@@ -82,7 +82,7 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleResidenceTracker);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new ResidenceTracker();
