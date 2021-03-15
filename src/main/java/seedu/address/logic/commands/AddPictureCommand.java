@@ -59,10 +59,10 @@ public class AddPictureCommand extends Command {
         Optional<Picture> oldPic = personToEdit.getPicture();
         if (oldPic.isPresent()) {
             try {
+                // We still let the user change picture even if the deletion did not go because it is not that crucial
+                // for the old picture to be deleted.
                 oldPic.get().deleteFile();
-            } catch (IOException e) {
-                throw new CommandException("Unable to delete old picture. Please try again.");
-            }
+            } catch (IOException ignore) {}
         }
 
         UUID uuid = UUID.randomUUID();
