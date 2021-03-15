@@ -19,7 +19,7 @@ public class Appointment {
 
     private final Email email;
     private final SubjectName subject;
-    private final LocalDateTime dateTime;
+    private final AppointmentDateTime dateTime;
     private final Address location;
 
     private final String formatter = "dd MM yyyy";
@@ -31,7 +31,7 @@ public class Appointment {
      * @param dateTime LocalDateTime
      * @param location Location of teaching venue
      */
-    public Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
+    public Appointment(Email email, SubjectName subject, AppointmentDateTime dateTime,
                        Address location) {
         this.email = email;
         this.subject = subject;
@@ -47,7 +47,7 @@ public class Appointment {
         return subject;
     }
 
-    public LocalDateTime getDateTime() {
+    public AppointmentDateTime getDateTime() {
         return dateTime;
     }
 
@@ -90,7 +90,7 @@ public class Appointment {
         }
 
         return otherAppointment != null
-                && this.dateTime.isEqual(otherAppointment.dateTime);
+                && this.dateTime.equals(otherAppointment.dateTime);
     }
 
     @Override

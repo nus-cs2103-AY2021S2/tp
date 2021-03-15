@@ -1,13 +1,17 @@
 package seedu.address.model.util;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentBook;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -62,9 +66,9 @@ public class SampleDataUtil {
     public static Appointment[] getSampleAppointment() {
         return new Appointment[] {
             new Appointment(new Email("alexyeoh@example.com"), new SubjectName("Mathematics"),
-                    LocalDateTime.parse("2020-02-24 14:00", DATETIME_FORMAT), new Address("Geylang")),
+                    new AppointmentDateTime("2020-02-24 14:00"), new Address("Geylang")),
             new Appointment(new Email("bernice@example.com"), new SubjectName("Science"),
-                    LocalDateTime.parse("2020-02-27 15:00", DATETIME_FORMAT), new Address("Hougang"))
+                    new AppointmentDateTime("2020-02-27 15:00"), new Address("Hougang"))
         };
     }
 

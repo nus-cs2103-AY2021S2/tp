@@ -20,7 +20,7 @@ public class DateFindPredicate implements Predicate<Appointment> {
     @Override
     public boolean test(Appointment appointment) {
         return dates.stream()
-                .anyMatch(date -> appointment.getDateTime().toLocalDate().equals(date));
+                .anyMatch(date -> appointment.getDateTime().value.toLocalDate().equals(date));
     }
 
     @Override

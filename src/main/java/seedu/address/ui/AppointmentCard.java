@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.time.format.DateTimeFormatter;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -49,8 +47,7 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         subject.setText(appointment.getSubject().name);
         name.setText(appointment.getEmail().value);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
-        datetime.setText(appointment.getDateTime().format(formatter));
+        datetime.setText(appointment.getDateTime().toString());
         address.setText(appointment.getLocation().value);
     }
 
