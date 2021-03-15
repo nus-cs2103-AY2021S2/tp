@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -16,7 +13,7 @@ import seedu.address.model.schedule.Schedule;
  */
 public class AddScheduleCommand extends Command {
 
-    public static final String COMMAND_WORD = "addSchedule";
+    public static final String COMMAND_WORD = "sadd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a schedule to the address book. "
             + "Parameters: "
@@ -27,7 +24,7 @@ public class AddScheduleCommand extends Command {
             + PREFIX_TAG + "is added";
 
     public static final String MESSAGE_SUCCESS = "New schedule added: %1$s";
-    public static final String MESSAGE_DUPLICATE_Schedule = "This schedule already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule already exists in the address book";
 
     private final Schedule toAdd;
 
@@ -44,7 +41,7 @@ public class AddScheduleCommand extends Command {
         requireNonNull(model);
 
         if (model.hasSchedule(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_Schedule);
+            throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
         }
 
         model.addSchedule(toAdd);
