@@ -37,12 +37,12 @@ public class QuestionContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different flashcard -> returns false
+        // different object -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_questionContainsKeywords_returnsTrue() {
         // One keyword
         QuestionContainsKeywordsPredicate predicate =
                 new QuestionContainsKeywordsPredicate(Collections.singletonList("Alice"));
@@ -59,10 +59,18 @@ public class QuestionContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new FlashcardBuilder().withQuestion("Alice Bob").build()));
+
+        // Partial keywords
+        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("ali", "b"));
+        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("Alice Bob").build()));
+
+        // Partial mixed-case keywords
+        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("alI", "bO"));
+        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("Alice Bob").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_questionDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         QuestionContainsKeywordsPredicate predicate = new QuestionContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Alice").build()));
@@ -71,9 +79,9 @@ public class QuestionContainsKeywordsPredicateTest {
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Alice Bob").build()));
 
-        // Keywords match answer, category and priority, but does not match question
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Test", "Random", "Mid", "Math"));
+        // Keywords match answer, category, priority and tag, but does not match question
+        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Test", "Random", "Mid", "Math", "Equation"));
         assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Theorem").withAnswer("Test")
-                .withCategory("Random").withPriority("Mid").build()));
+                .withCategory("Random").withPriority("Mid").withTags("Equation").build()));
     }
 }
