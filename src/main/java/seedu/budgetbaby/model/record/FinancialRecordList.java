@@ -30,6 +30,20 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
     }
 
     /**
+     * Filters financial records according to category.
+     */
+    public ObservableList<FinancialRecord> filterByCategory(FinancialRecordList frList, Category category) {
+        requireNonNull(frList);
+        ObservableList<FinancialRecord> filteredList = FXCollections.observableArrayList();
+        for (FinancialRecord fr : frList) {
+            if (fr.getTags().contains(category)) {
+                filteredList.add(fr);
+            }
+        }
+        return filteredList;
+    }
+
+    /**
      * Replaces the financial record {@code target} in the list with {@code editedFinancialRecord}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
