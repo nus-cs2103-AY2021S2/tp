@@ -7,6 +7,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.dictionote.logic.commands.CommandTestUtil.showNoteAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
@@ -27,7 +28,7 @@ import seedu.dictionote.model.note.Note;
 public class DeleteNoteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalNoteBook(), getTypicalDictionary());
+            getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -37,7 +38,7 @@ public class DeleteNoteCommandTest {
         String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_DELETE_NOTE_SUCCESS, noteToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary());
+                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.deleteNote(noteToDelete);
 
         assertCommandSuccess(deleteNoteCommand, model, expectedMessage, expectedModel);
@@ -62,7 +63,7 @@ public class DeleteNoteCommandTest {
                 noteToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary());
+                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.deleteNote(noteToDelete);
         showNoNote(expectedModel);
 

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.commons.exceptions.DataConversionException;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
@@ -24,6 +25,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private NoteBookStorage noteBookStorage;
     private DictionaryStorage dictionaryStorage;
+    private DefinitionBookStorage definitionBookStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -31,12 +33,14 @@ public class StorageManager implements Storage {
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
                           NoteBookStorage noteBookStorage,
-                          DictionaryStorage dictionaryStorage) {
+                          DictionaryStorage dictionaryStorage,
+                          DefinitionBookStorage definitionBookStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.noteBookStorage = noteBookStorage;
         this.dictionaryStorage = dictionaryStorage;
+        this.definitionBookStorage = definitionBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -141,5 +145,35 @@ public class StorageManager implements Storage {
     public void saveDictionary(ReadOnlyDictionary dictionary, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         dictionaryStorage.saveDictionary(dictionary, filePath);
+    }
+
+    // ================ DefinitionBook methods ==============================
+
+    @Override
+    public Path getDefinitionBookFilePath() {
+        return definitionBookStorage.getDefinitionBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyDefinitionBook> readDefinitionBook() throws DataConversionException, IOException {
+        return readDefinitionBook(definitionBookStorage.getDefinitionBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyDefinitionBook> readDefinitionBook(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return definitionBookStorage.readDefinitionBook(filePath);
+    }
+
+    @Override
+    public void saveDefinitionBook(ReadOnlyDefinitionBook definitionBook) throws IOException {
+        saveDefinitionBook(definitionBook, definitionBookStorage.getDefinitionBookFilePath());
+    }
+
+    @Override
+    public void saveDefinitionBook(ReadOnlyDefinitionBook definitionBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        definitionBookStorage.saveDefinitionBook(definitionBook, filePath);
     }
 }
