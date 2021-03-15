@@ -28,13 +28,14 @@ public class SchoolResidenceTest {
         assertFalse(SchoolResidence.isValidResidence("")); // empty string
         assertFalse(SchoolResidence.isValidResidence(" ")); // spaces only
         assertFalse(SchoolResidence.isValidResidence("ke7"));
-        assertFalse(SchoolResidence.isValidResidence("kevii"));
         assertFalse(SchoolResidence.isValidResidence("sheares"));
-        assertFalse(SchoolResidence.isValidResidence("Tembusu"));
+        assertFalse(SchoolResidence.isValidResidence("capt"));
+        assertFalse(SchoolResidence.isValidResidence("sH"));
+        assertFalse(SchoolResidence.isValidResidence("PgpH"));
 
         // valid school residences
-        assertTrue(SchoolResidence.isValidResidence("CapT"));
-        assertTrue(SchoolResidence.isValidResidence("sH"));
-        assertTrue(SchoolResidence.isValidResidence("pgph"));
+        assertTrue(SchoolResidence.isValidResidence("CAPT"));
+        assertTrue(SchoolResidence.isValidResidence("SH"));
+        assertTrue(SchoolResidence.isValidResidence("PGPH"));
     }
 }
