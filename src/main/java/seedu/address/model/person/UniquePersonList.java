@@ -134,4 +134,11 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    /**
+     * Returns the backing list as a modifiable {@code ObservableList}.
+     */
+    public ObservableList<Person> asModifiableObservableList() {
+        return internalList;
+    }
 }
