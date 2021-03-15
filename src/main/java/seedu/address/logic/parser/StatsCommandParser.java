@@ -14,8 +14,8 @@ import seedu.address.model.person.Faculty;
 import seedu.address.model.person.SchoolResidence;
 
 public class StatsCommandParser implements Parser<StatsCommand> {
-    private List<String> listResidences = SchoolResidence.getListResidences();
-    private List<String> listFaculties = Faculty.getListFaculties();
+    private List<String> listResidences = SchoolResidence.getResidenceAbbreviation();
+    private List<String> listFaculties = Faculty.getFacultyAbbreviation();
 
     @Override
     public StatsCommand parse(String userInput) throws ParseException {

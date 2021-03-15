@@ -5,11 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class SchoolResidence {
 
     public enum ResidenceAbbreviation {
-        PGPH, PGPR, KE7H, SH, KRH, TH, EH, RH, RVRC, YNC, TC, CAPT, RC4, USP, UTR;
+        PGPH, PGPR, KE7H, SH, KRH, TH, EH, RH, RVRC, YNC, TC, CAPT, RC4, USP, UTR, DOES_NOT_LIVE_ON_CAMPUS;
     }
 
     public static final List<ResidenceAbbreviation> LIST_RESIDENCES = Arrays.asList(
@@ -19,14 +20,8 @@ public class SchoolResidence {
             ResidenceAbbreviation.CAPT, ResidenceAbbreviation.RC4, ResidenceAbbreviation.USP, ResidenceAbbreviation.UTR
     );
 
-    private static final String stringResidences = "\"PGPH\", \"PGPR\", \"KE7H\", \"SH\", \"KRH\", \"TH\", \"EH\",\n"
-            + "\"RH\", \"RVRC\", \"YNC\", \"TC\", \"CAPT\", \"RC4\", \"USP\", \"UTR\"";
-
-    private static final List<String> listResidences = Arrays.asList("PGPH", "PGPR", "KE7H", "SH", "KRH", "TH", "EH",
-            "RH", "RVRC", "YNC", "TC", "CAPT", "RC4", "USP", "UTR");
-
     public static final String MESSAGE_CONSTRAINTS = "The residence entered should be one of the following: \n"
-            + LIST_RESIDENCES.toString();
+            + getResidenceAbbreviation().toString();
 
     public final String value;
 
@@ -57,12 +52,14 @@ public class SchoolResidence {
         }
     }
 
-    public static List<String> getListResidences() {
-        return listResidences;
+    public static String getStringResidences() {
+        return String.join(",", getResidenceAbbreviation());
     }
 
-    public static String getStringResidences() {
-        return stringResidences;
+    public static List<String> getResidenceAbbreviation() {
+        String[] residenceArray = Stream.of(SchoolResidence.ResidenceAbbreviation.values())
+                .map(SchoolResidence.ResidenceAbbreviation::name).toArray(String[]::new);
+        return Arrays.asList(residenceArray);
     }
 
     @Override

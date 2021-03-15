@@ -17,7 +17,7 @@ public class StatsCommandAll extends StatsCommand {
     private static final String PADDING = "   ";
 
     private List<SchoolResidence.ResidenceAbbreviation> listResidences = SchoolResidence.LIST_RESIDENCES;
-    private List<Faculty.FacultyAbbreviation> listFaculties = Faculty.LIST_FACULTY;
+    private List<String> listFaculties = Faculty.getFacultyAbbreviation();
 
     private StringBuilder sb = new StringBuilder("Percentage Vaccinated:" + "\n");
 
@@ -38,8 +38,8 @@ public class StatsCommandAll extends StatsCommand {
                 throw new CommandException(MESSAGE_STATS_FAILURE);
             }
         }
-        for (Faculty.FacultyAbbreviation fac : listFaculties) {
-            Faculty currFaculty = new Faculty(fac.toString());
+        for (String fac : listFaculties) {
+            Faculty currFaculty = new Faculty(fac);
             try {
                 float stats = StatsCommandFaculty.calculateRatioVaccinated(studentList, currFaculty);
                 if (Float.isNaN(stats)) {
