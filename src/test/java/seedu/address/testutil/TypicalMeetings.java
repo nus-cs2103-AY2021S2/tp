@@ -1,17 +1,17 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_NAME_MEETING1;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_NAME_MEETING2;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_START_MEETING1;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_START_MEETING2;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_TERMINATE_MEETING1;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_TERMINATE_MEETING2;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_PRIORITY_MEETING1;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_PRIORITY_MEETING2;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_DESCRIPTION_MEETING1;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_DESCRIPTION_MEETING2;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_TAG_MEETING1;
-import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_TAG_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_NAME_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_NAME_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_PRIORITY_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_PRIORITY_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_DESCRIPTION_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_DESCRIPTION_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TAG_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TAG_MEETING2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import seedu.address.model.meeting.Meeting;
  */
 public class TypicalMeetings {
 
-    // Manually added - Meeting's details found in {@code CommandTestUtil}
+    // Manually added - Meeting's details found in {@code PersonCommandTestUtil}
     public static final Meeting MEETING1 = new MeetingBuilder().withName(VALID_NAME_MEETING1).withStart(VALID_START_MEETING1)
             .withTerminate(VALID_TERMINATE_MEETING1).withPriority(VALID_PRIORITY_MEETING1).withDescription(VALID_DESCRIPTION_MEETING1)
             .withGroups(VALID_TAG_MEETING1).build();

@@ -11,7 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyAddressBook;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +27,10 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
+    // TODO: Modify the signature of ModelManager so that we can add meetings inside it.
+    private final MeetingBook meetingBook = new MeetingBook();
+    private final FilteredList<Meeting> filteredMeetings = new FilteredList<Meeting>(this.meetingBook.getMeetingList());
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -112,6 +121,41 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== MeetingBook ================================================================================
+
+    @Override
+    public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
+        this.meetingBook.resetData(meetingBook);
+    }
+
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return meetingBook;
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetingBook.hasMeeting(meeting);
+    }
+
+    @Override
+    public void deleteMeeting(Meeting target) {
+        meetingBook.removeMeeting(target);
+    }
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        meetingBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        meetingBook.setMeeting(target, editedMeeting);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -129,6 +173,24 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedMeetingBook}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
+    //=========== Other methods =============================================================
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -145,7 +207,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && meetingBook.equals(other.meetingBook)
+                && filteredMeetings.equals(other.filteredMeetings);
     }
 
 }

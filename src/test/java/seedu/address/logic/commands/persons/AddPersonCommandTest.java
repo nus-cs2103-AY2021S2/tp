@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.persons;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,11 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.persons.AddPersonCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.person.AddressBook;
+import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -33,7 +35,7 @@ public class AddPersonCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        PersonModelStubAcceptingAdded modelStub = new PersonModelStubAcceptingAdded();
         Person validPerson = new PersonBuilder().build();
 
         CommandResult commandResult = new AddPersonCommand(validPerson).execute(modelStub);
@@ -46,7 +48,7 @@ public class AddPersonCommandTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
         AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        ModelStub modelStub = new PersonModelStubWith(validPerson);
 
         assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addPersonCommand.execute(modelStub));
     }
@@ -148,15 +150,55 @@ public class AddPersonCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMeetingBook getMeetingBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(Meeting target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeeting(Meeting target, Meeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class PersonModelStubWith extends ModelStub {
         private final Person person;
 
-        ModelStubWithPerson(Person person) {
+        PersonModelStubWith(Person person) {
             requireNonNull(person);
             this.person = person;
         }
@@ -171,7 +213,7 @@ public class AddPersonCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class PersonModelStubAcceptingAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override

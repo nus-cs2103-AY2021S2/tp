@@ -1,29 +1,29 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.persons;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_GROUP_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.GROUP_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_HUSBAND;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_GROUP_DESC;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_FRIEND;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_HUSBAND;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_FRIEND;
+import static seedu.address.logic.commands.persons.PersonCommandTestUtil.VALID_GROUP_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -36,10 +36,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.persons.EditPersonCommand;
 import seedu.address.logic.commands.persons.EditPersonCommand.EditPersonDescriptor;
-import seedu.address.logic.parser.persons.EditPersonCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.group.Group;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -82,7 +81,7 @@ public class EditPersonCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, PersonName.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
@@ -103,7 +102,7 @@ public class EditPersonCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+                PersonName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

@@ -7,7 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,7 +29,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 
@@ -37,6 +40,16 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+
+    /**
+     * Returns the MeetingBook.
+     *
+     * @see Model#getMeetingBook()
+     */
+    ReadOnlyMeetingBook getMeetingBook();
+
+    /** Returns an unmodifiable view of the filtered list of meetings */
+    ObservableList<Meeting> getFilteredMeetingList();
 
     /**
      * Returns the user prefs' GUI settings.
