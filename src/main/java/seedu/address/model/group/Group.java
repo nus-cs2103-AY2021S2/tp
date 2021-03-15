@@ -44,6 +44,10 @@ public class Group {
         return groupName.hashCode();
     }
 
+    public String getGroupName() {
+        return this.groupName;
+    }
+
     /**
      * Format state as text for viewing.
      */
