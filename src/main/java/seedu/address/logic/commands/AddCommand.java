@@ -30,10 +30,9 @@ public class AddCommand extends Command {
             + PREFIX_ANSWER + "William Shakespeare "
             + PREFIX_CATEGORY + "English Literature "
             + PREFIX_PRIORITY + "Mid "
-            + PREFIX_TAG + "boring "
-            + PREFIX_TAG + "easy";
-    public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This person already exists in FlashBack.";
+            + PREFIX_TAG + "tragedy";
+    public static final String MESSAGE_SUCCESS = "New flashcard added:\n %1$s";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This card already exists in FlashBack.";
 
     private final Flashcard toAdd;
 
