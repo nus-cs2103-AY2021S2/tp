@@ -14,12 +14,12 @@ import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.dictionary.Content;
 
 /**
- * An Immutable NoteBook that is serializable to JSON format.
+ * An Immutable Dictionary that is serializable to JSON format.
  */
 @JsonRootName(value = "dictionary")
 class JsonSerializableDictionary {
 
-    public static final String MESSAGE_CONTENT_NOT_FOUND = "It seems like no such content exists.";
+    public static final String MESSAGE_DUPLICATE_CONTENT = "Content list contains duplicate content.";
 
     private final List<JsonAdaptedContent> contents = new ArrayList<>();
 
@@ -49,8 +49,8 @@ class JsonSerializableDictionary {
         Dictionary dictionary = new Dictionary();
         for (JsonAdaptedContent jsonAdaptedContent : contents) {
             Content content = jsonAdaptedContent.toModelType();
-            if (!dictionary.hasContent(content)) {
-                throw new IllegalValueException(MESSAGE_CONTENT_NOT_FOUND);
+            if (dictionary.hasContent(content)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CONTENT);
             }
             dictionary.addContent(content);
         }

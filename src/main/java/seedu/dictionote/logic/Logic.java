@@ -39,6 +39,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of notes */
     ObservableList<Note> getFilteredNoteList();
 
+    /** Returns an unmodifiable view of the filtered list of content */
     ObservableList<Content> getFilteredContentList();
 
 

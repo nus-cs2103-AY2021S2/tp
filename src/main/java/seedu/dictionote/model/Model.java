@@ -15,6 +15,8 @@ import seedu.dictionote.model.note.Note;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Content> PREDICATE_SHOW_ALL_CONTENTS = unused -> true;
     Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
 
     //#region
@@ -86,6 +88,9 @@ public interface Model {
      */
     boolean hasContact(Contact contact);
 
+    /**
+     * Returns true if a text with the same content as {@code content} exists in the dictionote book.
+     */
     boolean hasContent(Content content);
 
     /**
@@ -105,6 +110,12 @@ public interface Model {
      * {@code person} must not already exist in the dictionote book.
      */
     void addContact(Contact contact);
+
+    /**
+     * Adds the given content.
+     * {@code content} must not already exist in the dictionote book.
+     */
+    void addContent(Content content);
 
     /**
      * Invokes the user's OS email client to send a new email to the given contact.
@@ -130,6 +141,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Contact> getFilteredContactList();
+
+    /** Returns an unmodifiable view of the filtered list of content */
     ObservableList<Content> getFilteredContentList();
 
     /**
@@ -144,6 +157,10 @@ public interface Model {
      */
     void updateFilteredNoteList(Predicate<Note> predicate);
 
+    /**
+     * Updates the filter of the filtered content list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredContentList(Predicate<Content> predicate);
 
 }
