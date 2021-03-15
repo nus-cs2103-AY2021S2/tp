@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
@@ -120,6 +119,7 @@ public class ModelManager implements Model {
         addressBook.addSession(session, name);
     }
 
+    @Override
     public boolean hasName(Name name) {
         requireNonNull(name);
         return addressBook.hasName(name);

@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 import seedu.address.model.session.exceptions.SessionException;
-import seedu.address.model.student.Student;
 
 /**
  * Represents the date and time of the session
@@ -50,7 +49,7 @@ public class SessionDate {
 
         SessionDate sessionDate = (SessionDate) other;
 
-        return this.dateTime.toLocalDate().equals(sessionDate.dateTime.toLocalDate()) &&
-        this.dateTime.toLocalTime().equals(sessionDate.dateTime.toLocalTime());
+        return this.dateTime.toLocalDate().equals(sessionDate.dateTime.toLocalDate())
+                && this.dateTime.toLocalTime().equals(sessionDate.dateTime.toLocalTime());
     }
 }
