@@ -47,9 +47,9 @@ public class MeetingCard extends UiPart<Region> {
         endDate.setText(meeting.getTerminate().toString());
         description.setText(meeting.getDescription().toString());
         priority.setText(meeting.getPriority().toString());
-        meeting.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        meeting.getGroups().stream()
+                .sorted(Comparator.comparing(tag -> tag.groupName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.groupName)));
     }
 
     @Override

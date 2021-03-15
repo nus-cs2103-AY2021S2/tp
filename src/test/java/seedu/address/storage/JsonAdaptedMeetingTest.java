@@ -33,8 +33,8 @@ public class JsonAdaptedMeetingTest {
     private static final String VALID_PRIORITY = MEETING1.getPriority().toString();
 
 
-    private static final List<JsonAdaptedTag> VALID_TAGS = MEETING1.getTags().stream()
-            .map(JsonAdaptedTag::new)
+    private static final List<JsonAdaptedGroup> VALID_TAGS = MEETING1.getGroups().stream()
+            .map(JsonAdaptedGroup::new)
             .collect(Collectors.toList());
     @Test
     public void toModelType_validMeetingDetails_success() throws Exception {
@@ -129,11 +129,11 @@ public class JsonAdaptedMeetingTest {
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidJsonTags = new ArrayList<>(VALID_TAGS);
-        invalidJsonTags.add(new JsonAdaptedTag(INVALID_TAG));
+        List<JsonAdaptedGroup> invalidJsonGroups = new ArrayList<>(VALID_TAGS);
+        invalidJsonGroups.add(new JsonAdaptedGroup(INVALID_TAG));
         JsonAdaptedMeeting jsonMeeting =
                 new JsonAdaptedMeeting(VALID_NAME, VALID_START, VALID_END,
-                        VALID_DESCRIPTION, VALID_PRIORITY, invalidJsonTags);
+                        VALID_DESCRIPTION, VALID_PRIORITY, invalidJsonGroups);
         String expectedMessage = Priority.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, jsonMeeting::toModelType);
     }

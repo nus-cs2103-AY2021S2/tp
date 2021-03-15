@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.group.Group;
 
 /**
  * Represents a meeting in MeetBuddy.
@@ -27,21 +27,21 @@ public class Meeting {
     // Data fields
     private final Priority priority;
     private final Description description;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Group> groups = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Meeting(Name name, DateTime start, DateTime terminate, Priority priority,
-                   Description description, Set<Tag> tags) {
-        requireAllNonNull(name, start, terminate, priority, description, tags);
+                   Description description, Set<Group> groups) {
+        requireAllNonNull(name, start, terminate, priority, description, groups);
         checkArgument(isValidStartTerminate(start, terminate), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.start = start;
         this.terminate = terminate;
         this.priority = priority;
         this.description = description;
-        this.tags.addAll(tags);
+        this.groups.addAll(groups);
     }
 
     public Name getName() {
@@ -65,11 +65,11 @@ public class Meeting {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable group set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Group> getGroups() {
+        return Collections.unmodifiableSet(groups);
     }
 
     /**
@@ -116,13 +116,13 @@ public class Meeting {
                 && otherMeeting.getTerminate().equals(getTerminate())
                 && otherMeeting.getPriority().equals(getPriority())
                 && otherMeeting.getDescription().equals(getDescription())
-                && otherMeeting.getTags().equals(getTags());
+                && otherMeeting.getGroups().equals(getGroups());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, start, terminate, priority, description, tags);
+        return Objects.hash(name, start, terminate, priority, description, groups);
     }
 
     @Override
@@ -138,10 +138,10 @@ public class Meeting {
                 .append("; Description: ")
                 .append(getDescription());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Group> groups = getGroups();
+        if (!groups.isEmpty()) {
+            builder.append("; Groups: ");
+            groups.forEach(builder::append);
         }
         return builder.toString();
     }
