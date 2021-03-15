@@ -261,6 +261,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                        | add a new appointment                    |                                                                     |
 | `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
 | `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
+| `* * *`  | user                                        | edit a patient by specific fields        | update the patient information without having to delete and add a new patient |
+| `* * *`  | user                                        | edit an appointment by specific fields   | update the appointment information without having to delete and add a new appointment |
 | `* *`    | user                                        | lookup previous records of a patient     | fill in missing information where ommitted by the patient           |
 | `* *`    | user with many appointments in the schedule | be reminded of overdue appointments      | take the appropriate action to resolve the issues                   |
 | `* *`    | user with many appointments in the schedule | tag appointments with urgency categories | more urgent appointments can take priority                          |
@@ -315,9 +317,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
     Use case ends.
 
-### UC04: Edit an appointment
+### UC04: Edit a patient
 **MSS**
-1. User <u>enters the `edit` command and corresponding subcommands (UC01)</u>
+1. User <u>enters the `edit-patient` command and corresponding subcommands (UC01)</u>
+2. App-Ointment changes the details of the patient.
+
+**Extensions**
+* **1a.** App-Ointment detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **1b.** The currently displayed list of patients is empty.
+    * **1b1.** App-Ointment prompts user that there are no patients in the current display.<br>
+      Use case ends.
+
+* **2a.** The index out of the bounds of the displayed list of patients.
+    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br>
+      Steps 2a1 is repeated until the index entered is correct/free from errors.
+      Use case resumes from step 2.
+
+
+### UC05: Edit an appointment
+**MSS**
+1. User <u>enters the `edit-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the details of the appointment.
 
 **Extensions**
@@ -335,12 +358,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 2a1 is repeated until the index entered is correct/free from errors.
     Use case resumes from step 2.
 
-* **2b.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
+* **2b.** App-Ointment detects an existing appointment having conflict with the new appointment.
     * **2b1.** App-Ointment warns user about the conflicting appointment.<br>
-    * **2b2.** App-Ointment suggest user to either change the other existing appointment details through a separate `edit` command, before editing the current appointment again, or change the edit details of the current appointment.<br>
+    * **2b2.** App-Ointment suggest user to either change the other existing appointment details through a separate `edit-appt` command, before editing the current appointment again, or change the edit details of the current appointment.<br>
     Use case ends.
 
-### UC05: Find appointments by search fields
+### UC06: Find appointments by search fields
 **MSS**
 1. User <u>enters the `find` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the displayed list of appointments to fit.
@@ -355,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
     Use case ends.
 
-### UC06: Delete an appointment
+### UC07: Delete an appointment
 **MSS**
 1. User <u>enters the `delete` command and corresponding subcommands (UC01)</u>
 2. App-Ointment removes the appointment from the appointment schedule
