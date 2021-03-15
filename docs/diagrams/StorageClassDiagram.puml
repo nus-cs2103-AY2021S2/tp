@@ -22,4 +22,5 @@ JsonAddressBookStorage .left.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
 JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
 JsonSerializablePerson .right.> JsonAdaptedTag
+JsonSerializablePerson .up.> JsonAdaptedInsurancePolicy
 @enduml
