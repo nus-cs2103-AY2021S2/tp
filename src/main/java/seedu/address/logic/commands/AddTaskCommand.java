@@ -17,7 +17,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to dashboard. "
             + "Parameters: "
-            + PREFIX_TITLE + "TITLE "
+            + "TITLE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Plan board meeting "

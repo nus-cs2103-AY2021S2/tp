@@ -84,8 +84,7 @@ public class Person {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ");
+                .append(getEmail());
 
         return builder.toString();
     }
