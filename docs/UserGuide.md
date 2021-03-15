@@ -46,6 +46,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -73,8 +74,9 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 </div>
 
 ### Viewing help: `help`
-Shows a message explaining how to access the help page.<br>
-![HelpMessage](./images/helpMessage.png) <br>
+
+Shows a message explaining how to access the help page.<br><br>
+![HelpMessage](./images/helpMessage.png) <br><br>
 Format: `help`
 
 ### Adding a new card: `add`
@@ -104,9 +106,10 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY]` <br />
 * At least 1 updated card field must be provided for modification.
 
 Examples:
-* `edit 1 p/Low`
-![UIEdit](./images/UiEditResult.png)
+* `edit 1 p/Low` <br><br>
+![UIEdit](./images/UiEditResult.png) <br><br>
 * `edit 3 q/What is the time complexity for Quick Sort? t/Algorithms`
+
 ### Listing all cards : `list`
 
 Shows all cards in the card list.
@@ -129,6 +132,7 @@ Before executing command `delete 2`:
 ![UIBeforeDelete](./images/UiBeforeDelete.png) <br><br>
 After executing command `delete 2`:
 ![UIAfterDelete](./images/UiAfterDelete.png)
+
 ### Viewing a card : `view`
 
 Views a specific card from the card list. <br>
@@ -140,7 +144,7 @@ Format: `view INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `view 3` shows the 3rd flashcard (in the displayed flashcard list).
+* `view 3` shows the 3rd flashcard (in the displayed flashcard list). <br><br>
 ![UIView](./images/UiViewResult.png)
 
 ### Finding cards : `find`
@@ -167,8 +171,8 @@ Format: `find CRITERIA KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find q/ equation` will return flashcards with `Equation` or `equation` in its questions.
-* `find c/ computer` will return flashcards with `computer` in its category.<br>
-![result for `find c/ computer`](images/findComputerResult.png)
+* `find c/ computer` will return flashcards with `computer` in its category.<br><br>
+![result for `find c/ computer`](images/findComputerResult.png) <br><br>
 * `find p/ low` will return flashcards with `low` as its priority.
 * `find t/ trivia` will return flashcards with `trivia` in its tags.
 
@@ -221,7 +225,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
+**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
 **Edit** | `edit INDEX` <br> e.g., `edit 3 a/NEW ANSWER p/NEW PRIORITY`
 **View** | `view INDEX` <br> e.g., `view 2`
