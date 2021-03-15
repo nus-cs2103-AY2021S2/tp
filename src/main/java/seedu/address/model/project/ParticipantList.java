@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
@@ -56,6 +57,27 @@ public class ParticipantList {
      */
     public ObservableList<Person> getAsObservableList() {
         return FXCollections.observableList(participants);
+    }
+
+    /**
+     * Adds a person to this {@code ParticipantList} and return that new {@code ParticipantList}.
+     *
+     * @param person {@code Person} to add.
+     */
+    public ParticipantList addParticipant(Person person) {
+        return new ParticipantList(Stream.concat(participants.stream(), Stream.of(person))
+                .collect(Collectors.toList())
+        );
+    }
+
+    /**
+     * Returns true if this {@code ParticipantList} has the provided {@code Person}.
+     *
+     * @param person the person to test.
+     * @return whether the {@code Person} is in this {@code ParticipantList}.
+     */
+    public boolean contains(Person person) {
+        return stream().anyMatch(person::isSamePerson);
     }
 
     @Override
