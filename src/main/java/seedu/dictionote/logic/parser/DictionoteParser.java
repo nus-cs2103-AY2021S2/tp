@@ -21,6 +21,7 @@ import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.FindContentCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
+import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
@@ -107,6 +108,9 @@ public class DictionoteParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ListCommandCommand.COMMAND_WORD:
+            return new ListCommandCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
