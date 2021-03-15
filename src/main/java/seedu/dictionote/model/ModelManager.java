@@ -131,6 +131,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void showNote(Note note) {
+        Predicate<Note> showSelectedNotesPredicate = x -> x.equals(note);
+        updateFilteredNoteList(showSelectedNotesPredicate);
+    }
+
+    @Override
     public ReadOnlyNoteBook getNoteBook() {
         return noteBook;
     }
