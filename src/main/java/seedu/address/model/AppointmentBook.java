@@ -2,10 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.appointment.UniqueAppointmentList;
-
 import java.util.List;
+
+import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentList;
 
 /**
  * Wraps all data at the appointment-book level
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class AppointmentBook implements ReadOnlyAppointmentBook {
 
-    private final UniqueAppointmentList appointments;
+    private final AppointmentList appointments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -23,10 +24,11 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      *   among constructors.
      */
     {
-        appointments = new UniqueAppointmentList();
+        appointments = new AppointmentList();
     }
 
-    public AppointmentBook() {}
+    public AppointmentBook() {
+    }
 
     /**
      * Creates an AppointmentBook using the Appointments in the {@code toBeCopied}
@@ -92,6 +94,13 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
         appointments.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AppointmentBook}.
+     * {@code key} must exist in the appointment book.
+     */
+    public void removeAppointment(int key) {
+        appointments.remove(key);
+    }
     //// util methods
 
     @Override

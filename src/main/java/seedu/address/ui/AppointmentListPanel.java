@@ -8,8 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.Appointment;
-import seedu.address.model.AppointmentStub;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * Panel containing the list of persons.

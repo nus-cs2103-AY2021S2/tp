@@ -22,8 +22,6 @@ import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
-import static seedu.address.commons.util.DateTimeUtil.DATETIME_FORMAT;
-
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */

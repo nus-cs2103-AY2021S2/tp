@@ -7,10 +7,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-<<<<<<< HEAD
-import seedu.address.model.Appointment;
-=======
->>>>>>> a5e2bf0... Add AppointmentDateTime.java and update relevant classes
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
