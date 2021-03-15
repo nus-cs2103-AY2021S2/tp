@@ -177,6 +177,19 @@ Format: `deleteStud MATRICULATION NUMBER`
 Examples:
 * `deleteStud A7654321J` deletes Betsy Crowe from the records.
 
+
+### Adding an appointment: `addAppt`
+
+Adds an appointment to the records. The student that the appointment is for must exist in the records before the appointment can be created.
+
+Format: `addAppt i/MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM te/END_TIME_HH:MM`
+
+
+Examples:
+* `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00`
+* `addAppt i/A7654321J d/2021-12-13 ts/14:00 te/14:30`
+
+
 ### Viewing statistics: `stats`
 
 Displays the statistics of the requested Faculty/School Residence, the whole of NUS or statistics of all Faculties
