@@ -35,6 +35,13 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Changes the title of the module with the given {@code title}
+     */
+    public void editTitle(Title title) {
+        this.title = title;
+    }
+
+    /**
      * Gets the assignment list in the module.
      *
      * @return List of module assignments.

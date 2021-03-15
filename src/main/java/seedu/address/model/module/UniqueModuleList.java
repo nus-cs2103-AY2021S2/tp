@@ -55,6 +55,17 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Gets the module at {@code index}
+     * {@code index} must be within the bounds of the list size.
+     */
+    public Module getModule(int index) {
+        if (index - 1 >= 0 && index - 1 < size()) {
+            return internalList.get(index - 1);
+        } else {
+            throw new ModuleNotFoundException();
+        }
+    }
+    /**
      * Replaces the module {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The module identity of {@code editedModule} must not be the same as another existing
@@ -67,7 +78,7 @@ public class UniqueModuleList implements Iterable<Module> {
         Module foundModule = getModule(target);
         int index = internalList.indexOf(foundModule);
 
-        boolean hasDuplicate = !target.isSameModule(editedModule) && contains(editedModule);
+        boolean hasDuplicate = !foundModule.equals(editedModule) && contains(editedModule);
         if (hasDuplicate) {
             throw new DuplicateModuleException();
         }
@@ -110,6 +121,13 @@ public class UniqueModuleList implements Iterable<Module> {
     // todo not sure if we need this
     public ObservableList<Module> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns the number of items in the list.
+     */
+    public int size() {
+        return internalList.size();
     }
 
     @Override

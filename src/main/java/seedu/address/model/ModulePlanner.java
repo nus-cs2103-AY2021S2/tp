@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -73,6 +74,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return modules.contains(module);
+    }
+
+    /**
+     * Returns true if the {@code index} is a valid index within the range of the module planner.
+     */
+    public boolean hasModule(int index) {
+        return index > 0 && index <= modules.size();
     }
 
     /**
@@ -199,6 +207,17 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
         Module editedModule = modules.getModule(module);
         editedModule.deleteExam(key);
         setModule(module, editedModule);
+    }
+
+    /**
+     * Edits module at {@code index} and changes its title to {@code title} in the module planner.
+     * {@code index} must be within the bounds of the module planner.
+     */
+    public void editModule(int index, Title title) {
+        Module target = modules.getModule(index);
+        Module editedModule = target;
+        editedModule.editTitle(title);
+        setModule(target, editedModule);
     }
 
     //// util methods

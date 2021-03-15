@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -151,6 +152,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public boolean hasModule(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
@@ -181,10 +187,14 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ReadOnlyModulePlanner getRemindMe() {
+        public void editModule(int index, Title title) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ReadOnlyModulePlanner getRemindMe() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate) {

@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -91,10 +92,21 @@ public interface Model {
     boolean hasModule(Module module);
 
     /**
+     * Returns true if there exists a module in the module list at {@code index}
+     */
+    boolean hasModule(int index);
+
+    /**
      * Adds the given module.
      * {@code module} must not already exists in RemindMe.
      */
     void addModule(Module module);
+
+    /**
+     * Edits the given module.
+     * {@code module} must already exists in RemindMe.
+     */
+    void editModule(int index, Title title);
 
     /**
      * Returns true if an assignment that has the same description and deadline

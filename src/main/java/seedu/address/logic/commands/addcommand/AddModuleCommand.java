@@ -11,12 +11,12 @@ import seedu.address.model.module.Module;
 
 public class AddModuleCommand extends Command {
 
-    public static final String COMMNAD_WORD = "add";
+    public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMNAD_WORD + ": Adds a module to RemindMe."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to RemindMe."
             + "Parameters: "
             + PREFIX_MODULE + "MODULE TITLE\n"
-            + "Example: " + COMMNAD_WORD + " "
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
