@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddPatientCommand;
+import seedu.address.logic.commands.ClearAppointmentCommand;
 import seedu.address.logic.commands.ClearPatientCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -44,9 +46,17 @@ public class UserInputParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        // Appointments
         case AddAppointmentCommand.COMMAND_WORD:
             return new AddAppointmentCommandParser().parse(arguments);
 
+        case ClearAppointmentCommand.COMMAND_WORD:
+            return new ClearAppointmentCommand();
+
+        case ListAppointmentCommand.COMMAND_WORD:
+            return new ListAppointmentCommand();
+
+        // Patients
         case AddPatientCommand.COMMAND_WORD:
             return new AddPatientCommandParser().parse(arguments);
 
@@ -65,6 +75,7 @@ public class UserInputParser {
         case ListPatientCommand.COMMAND_WORD:
             return new ListPatientCommand();
 
+        // Common Commands
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
