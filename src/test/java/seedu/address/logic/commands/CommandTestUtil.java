@@ -3,13 +3,16 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -49,6 +52,13 @@ public class CommandTestUtil {
     public static final String VALID_RESIDENCE_AMY = "RC4";
     public static final String VALID_RESIDENCE_BOB = "CAPT";
 
+    public static final String VALID_DATE_AMY_APPOINTMENT = "2021-01-01";
+    public static final String VALID_DATE_BOB_APPOINTMENT = "2021-01-02";
+    public static final String VALID_START_TIME_AMY_APPOINTMENT = "16:00";
+    public static final String VALID_START_TIME_BOB_APPOINTMENT = "17:00";
+    public static final String VALID_END_TIME_AMY_APPOINTMENT = "16:30";
+    public static final String VALID_END_TIME_BOB_APPOINTMENT = "17:30";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String MATRIC_DESC_AMY = " " + PREFIX_MATRICULATION_NUMBER + VALID_MATRIC_AMY;
@@ -68,6 +78,17 @@ public class CommandTestUtil {
     public static final String RESIDENCE_DESC_AMY = " " + PREFIX_SCHOOL_RESIDENCE + VALID_RESIDENCE_AMY;
     public static final String RESIDENCE_DESC_BOB = " " + PREFIX_SCHOOL_RESIDENCE + VALID_RESIDENCE_BOB;
 
+    public static final String DATE_DESC_AMY_APPOINTMENT = " " + PREFIX_DATE + VALID_DATE_AMY_APPOINTMENT;
+    public static final String DATE_DESC_BOB_APPOINTMENT = " " + PREFIX_DATE + VALID_DATE_BOB_APPOINTMENT;
+    public static final String START_TIME_DESC_AMY_APPOINTMENT = " " + PREFIX_START_TIME
+            + VALID_START_TIME_AMY_APPOINTMENT;
+    public static final String START_TIME_DESC_BOB_APPOINTMENT = " " + PREFIX_START_TIME
+            + VALID_START_TIME_BOB_APPOINTMENT;
+    public static final String END_TIME_DESC_AMY_APPOINTMENT = " " + PREFIX_END_TIME
+            + VALID_END_TIME_AMY_APPOINTMENT;
+    public static final String END_TIME_DESC_BOB_APPOINTMENT = " " + PREFIX_END_TIME
+            + VALID_END_TIME_BOB_APPOINTMENT;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_MATRIC_DESC = " " + PREFIX_MATRICULATION_NUMBER
             + "A01Z34567F"; // 'Z' not allowed in matriculation number
@@ -78,6 +99,10 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_DETAILS_DESC = " " + PREFIX_MEDICAL_DETAILS;
     public static final String INVALID_RESIDENCE_DESC = " " + PREFIX_SCHOOL_RESIDENCE + "rc5";
+
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "next week";
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "twelve o'clock";
+    public static final String INVALID_END_TIME_DESC = " " + PREFIX_END_TIME + "30min later";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
