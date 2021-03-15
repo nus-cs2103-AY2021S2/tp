@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -90,4 +91,10 @@ public interface Model {
      * Returns an Authentication object needed to lock and unlock ClientBook.
      */
     Authentication getAuthentication();
+
+    /**
+     * Updates the comparator of the sorted person list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedPersonList(Comparator<Person> comparator);
 }

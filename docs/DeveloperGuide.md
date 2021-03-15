@@ -267,10 +267,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                            | link contact to portfolio      | access them easily                                                     |
 | `* * *`  | insurance agent                            | edit individual client details | update their particulars if they change                                |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
+| `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
+| `* *`    | insurance agent                            | sort my clients by name        | see my clients in a more organized way                                 |
 | `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              |
 | `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information
 | `* *`    | insurance agent on the go                  | lock Clientbook with a password| prevent the leakage of my clients' information
-| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily|
 
 *{More to be added}*
 
@@ -315,6 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The user input does not follow the format required.
 
   * 1a1. ClientBook shows an error message.
+    
     Use case resumes at step 1.
 
 **Use case: List all clients**
@@ -376,6 +379,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to filter clients with details
 2.  ClientBook shows a list of clients that matches details
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of matched clients is empty.
+
+  Use case ends.
+
+**Use case: Sort list of clients**
+
+**MSS**
+
+1.  User requests to sort clients with the specified direction
+2.  ClientBook shows the sorted list of clients.
 
     Use case ends.
 
