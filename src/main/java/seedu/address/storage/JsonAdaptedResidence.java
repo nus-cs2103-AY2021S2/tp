@@ -25,7 +25,7 @@ public class JsonAdaptedResidence {
     private final String residenceName;
     private final String residenceAddress;
     private final String bookingDetails;
-    private final String cleanStatusTagged;
+    private final JsonAdaptedCleanStatusTag cleanStatusTagged;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,7 +35,7 @@ public class JsonAdaptedResidence {
     public JsonAdaptedResidence(@JsonProperty("name") String residenceName,
                                 @JsonProperty("address") String residenceAddress,
                                 @JsonProperty("bookingDetails") String bookingDetails,
-                                @JsonProperty("cleanStatusTagged") String cleanStatusTagged,
+                                @JsonProperty("cleanStatusTagged") JsonAdaptedCleanStatusTag cleanStatusTagged,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.residenceName = residenceName;
         this.residenceAddress = residenceAddress;
@@ -53,7 +53,7 @@ public class JsonAdaptedResidence {
         residenceName = source.getResidenceName().fullName;
         residenceAddress = source.getResidenceAddress().value;
         bookingDetails = source.getBookingDetails().value;
-        cleanStatusTagged = source.getCleanStatusTag().cleanStatus;
+        cleanStatusTagged = new JsonAdaptedCleanStatusTag(source.getCleanStatusTag().cleanStatus);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -91,7 +91,7 @@ public class JsonAdaptedResidence {
         //might need to do valid and null check for booking details but skip first
         final BookingDetails modelBookingDetails = new BookingDetails(bookingDetails);
 
-        final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(cleanStatusTagged);
+        final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(cleanStatusTagged.getCleanStatus());
 
         final Set<Tag> modelTags = new HashSet<>(residenceTags);
         return new Residence(modelName, modelAddress, modelBookingDetails, modelCleanStatusTag, modelTags);

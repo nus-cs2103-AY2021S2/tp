@@ -39,8 +39,8 @@ public class ResidenceCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(residence.getResidenceName().fullName);
         address.setText(residence.getResidenceAddress().value);
-        bookingDetails.setText(residence.getBookingDetails().toString());
-        residence.getCleanStatusTag();
+        bookingDetails.setText(residence.getBookingDetails().value);
+        cleanStatusTags.getChildren().add(new Label(residence.getCleanStatusTag().cleanStatus));
 
         residence.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
