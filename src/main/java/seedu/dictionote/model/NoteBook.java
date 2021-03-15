@@ -46,7 +46,6 @@ public class NoteBook implements ReadOnlyNoteBook {
      */
     public void resetData(ReadOnlyNoteBook newData) {
         requireNonNull(newData);
-
         setNotes(newData.getNoteList());
     }
 
