@@ -20,9 +20,25 @@ public class ReminderCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsReminderCommand() {
+    public void parse_validSingleArg_returnsReminderCommand() {
         long numOfDays = 3;
         ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(numOfDays));
         assertParseSuccess(parser, "3", expectedReminderCommand);
+    }
+
+    @Test
+    public void parse_validSMultipleArg_returnsReminderCommand() {
+        long numOfDays = 14;
+        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(numOfDays));
+        assertParseSuccess(parser, "2 weeks", expectedReminderCommand);
+    }
+
+    @Test
+    public void parse_inValidArgs_throwsParseException() {
+        assertParseFailure(parser, "chocolate",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "2 chocolate",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
     }
 }
