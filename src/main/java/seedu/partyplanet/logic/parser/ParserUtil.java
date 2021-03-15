@@ -94,7 +94,7 @@ public class ParserUtil {
      * Returns default empty remark if remark is not specified.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code remark} is invalid.
+     * @throws ParseException if the given {@code Remark} is invalid.
      */
     public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
