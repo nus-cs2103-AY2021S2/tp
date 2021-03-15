@@ -35,7 +35,8 @@ public class AddBookingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This booking already exists in the address book.";
-    public static final String MESSAGE_INVALID_TIME = "This booking's starting time is not earlier than the ending time.";
+    public static final String MESSAGE_INVALID_TIME =
+            "This booking's starting time is not earlier than the ending time.";
     public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
     private final Booking toAdd;
     private final Venue venueInBooking;
