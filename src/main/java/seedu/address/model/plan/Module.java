@@ -150,7 +150,7 @@ public class Module {
      * Add preclusions to module.
      * @param preclu a preclusion to the module.
      */
-    public void addPreclusions (Module ... preclu) {
+    public void addPreclusions(Module ... preclu) {
         for (Module m : preclu) {
             preclusions.add(m);
         }

@@ -40,6 +40,10 @@ public class Semester {
         return totalMCs;
     }
 
+    public void addModule(Module module) {
+        modules.add(module);
+    }
+
     /**
      * Returns true if both Semesters contain the same modules.
      */

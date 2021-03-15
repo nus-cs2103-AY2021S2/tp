@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.plan.Module;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
 import seedu.address.model.util.History;
@@ -273,4 +274,25 @@ public class ModelManager implements Model {
                 && filteredPlans.equals(other.filteredPlans);
     }
 
+    @Override
+    public boolean hasModule(int planNumber, int semNumber, Module module) throws CommandException {
+        requireAllNonNull(semNumber, module);
+        try {
+            Plan plan = addressBook.getPersonList().get(planNumber);
+            Semester semester = plan.getSemesters().get(semNumber);
+            return semester.getModules().stream().anyMatch((currentModule) -> {
+                return currentModule.getModuleCode() == module.getModuleCode();
+            });
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException("Plan or Semester index is invalid", e);
+        }
+    }
+
+    @Override
+    public void addModule(int planNumber, int semNumber, Module module) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        Semester semester = plan.getSemesters().get(semNumber);
+        semester.addModule(module);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
 }
