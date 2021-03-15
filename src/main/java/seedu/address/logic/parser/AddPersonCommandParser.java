@@ -50,7 +50,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         PersonType personType = ParserUtil.parsePersonType(argMultimap.getValue(PREFIX_PERSON_TYPE).get());
-        PersonId personId = new PersonId("s/12345");
+        PersonId personId = null;
         Person person = returnPersonBasedOnType(personType.toString(), personId, name, phone, email, address, tagList);
         return new AddPersonCommand(person);
     }

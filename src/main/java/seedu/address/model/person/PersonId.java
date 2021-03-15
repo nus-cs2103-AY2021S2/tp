@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class PersonId {
 
@@ -9,15 +8,15 @@ public class PersonId {
             "PersonId should only be s/[ID] or t/[ID], and cannot be blank.";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * The first character must be s or t, followed by /,
+     * and followed by numbers with at least 1 digit.
      */
-    public static final String VALIDATION_REGEX = "[st][/]\\d";
+    public static final String VALIDATION_REGEX = "[st][/]\\d{1,}";
 
     public final String personId;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code PersonId}.
      *
      * @param id A valid ID.
      */
@@ -26,6 +25,12 @@ public class PersonId {
         personId = id;
     }
 
+    /**
+     * Checks if Person ID is in the correct format.
+     *
+     * @param test Person ID to be checked.
+     * @return True if Person ID is in the correct format.
+     */
     public static boolean isValidPersonId(String test) {
         if (test.matches(VALIDATION_REGEX)) {
             return true;
