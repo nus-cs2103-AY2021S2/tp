@@ -17,14 +17,18 @@ public class LockCommand extends Command {
             + "Parameters: CURRENT_PASSWORD(if any) NEW_PASSWORD\n"
             + "Example: " + COMMAND_WORD + " 12345";
 
-    public static final String MESSAGE_LOCK_SUCCESS = "Locked ClientBook.";
+    public static final String MESSAGE_LOCK_SUCCESS_NEW_PASSWORD = "Locked ClientBook using new password.";
 
-    public static final String MESSAGE_INCORRECT_PASSWORD = "You have entered the wrong password.";
+    public static final String MESSAGE_LOCK_SUCCESS_OLD_PASSWORD = "Locked ClientBook using your previous password.";
+
+    public static final String MESSAGE_ALREADY_LOCKED_INCORRECT_PASSWORD = "ClientBook is already locked, please "
+            + "enter the current password\nand a new password to change the password.";
 
     public static final String MESSAGE_FAIL_TO_READ_PASSWORD_FILE = "Failed to read password file, please enter "
-            + "a password to lock ClientBook.";
+            + "a new password to lock ClientBook.";
 
     public static final String MESSAGE_FAILED_TO_STORE_PASSWORD = "Failed to store password file.";
+
 
     private final Optional<String> currentPassword;
     private final Optional<String> newPassword;
@@ -67,7 +71,7 @@ public class LockCommand extends Command {
         if (authentication.isPasswordPresent()) {
             //Verify that the current password entered by user is the same as the existing password.
             if (this.currentPassword.isEmpty() || !authentication.getPassword().equals(this.currentPassword.get())) {
-                throw new CommandException(MESSAGE_INCORRECT_PASSWORD);
+                throw new CommandException(MESSAGE_ALREADY_LOCKED_INCORRECT_PASSWORD);
             }
         }
         //If newPassword is not entered, check for password in password file.
@@ -77,7 +81,7 @@ public class LockCommand extends Command {
             } catch (Exception e) {
                 throw new CommandException(MESSAGE_FAIL_TO_READ_PASSWORD_FILE, e);
             }
-            return new CommandResult(MESSAGE_LOCK_SUCCESS);
+            return new CommandResult(MESSAGE_LOCK_SUCCESS_NEW_PASSWORD);
         }
 
         //New password is entered, use this to lock the zip.
@@ -87,7 +91,7 @@ public class LockCommand extends Command {
             System.err.println(e);
             throw new CommandException(MESSAGE_FAILED_TO_STORE_PASSWORD, e);
         }
-        return new CommandResult(MESSAGE_LOCK_SUCCESS);
+        return new CommandResult(MESSAGE_LOCK_SUCCESS_OLD_PASSWORD);
     }
 
     @Override
