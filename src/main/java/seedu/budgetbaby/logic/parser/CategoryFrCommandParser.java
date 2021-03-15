@@ -32,11 +32,9 @@ public class CategoryFrCommandParser implements BudgetBabyCommandParser<Category
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CategoryFrCommand.MESSAGE_USAGE));
         }
 
-        Set<Category> categoryList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY));
+        Category category = ParserUtil.parseTag(argMultimap.getValue(PREFIX_CATEGORY).get());
 
-        FinancialRecordList frList = new FinancialRecordList();
-
-        return new CategoryFrCommand(frList);
+        return new CategoryFrCommand(category);
     }
 
     /**

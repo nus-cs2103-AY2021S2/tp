@@ -32,15 +32,9 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
     /**
      * Filters financial records according to category.
      */
-    public ObservableList<FinancialRecord> filterByCategory(FinancialRecordList frList, Category category) {
-        requireAllNonNull(frList, category);
-        ObservableList<FinancialRecord> filteredList = FXCollections.observableArrayList();
-        for (FinancialRecord fr : frList) {
-            if (fr.getTags().contains(category)) {
-                filteredList.add(fr);
-            }
-        }
-        return filteredList;
+    public void filterByCategory(Category category) {
+        requireAllNonNull(category);
+        internalList.filtered(fr -> fr.getTags().contains(category));
     }
 
     /**
