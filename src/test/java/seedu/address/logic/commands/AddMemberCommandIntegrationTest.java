@@ -16,7 +16,7 @@ import seedu.address.testutil.PersonBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddPersonCommand}.
  */
-public class AddPersonCommandIntegrationTest {
+public class AddMemberCommandIntegrationTest {
 
     private Model model;
 
@@ -28,18 +28,17 @@ public class AddPersonCommandIntegrationTest {
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
-
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
-        assertCommandSuccess(new AddPersonCommand(validPerson), model,
-                String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddMemberCommand(validPerson), model,
+                String.format(AddMemberCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddPersonCommand(personInList), model, AddPersonCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddMemberCommand(personInList), model, AddMemberCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

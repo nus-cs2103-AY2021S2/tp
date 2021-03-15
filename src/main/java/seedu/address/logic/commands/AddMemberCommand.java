@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -12,19 +11,19 @@ import seedu.address.model.person.Person;
 /**
  * Adds a person to the address book.
  */
-public class AddPersonCommand extends Command {
+public class AddMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "addMember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com ";
+            + PREFIX_PHONE + " PHONE "
+            + PREFIX_EMAIL + " EMAIL "
+            + "Example: " + COMMAND_WORD
+            + " John Doe "
+            + PREFIX_PHONE + " 98765432 "
+            + PREFIX_EMAIL + " johnd@example.com ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
@@ -34,7 +33,7 @@ public class AddPersonCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddPersonCommand(Person person) {
+    public AddMemberCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -54,7 +53,7 @@ public class AddPersonCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddPersonCommand // instanceof handles nulls
-                && toAdd.equals(((AddPersonCommand) other).toAdd));
+                || (other instanceof AddMemberCommand // instanceof handles nulls
+                && toAdd.equals(((AddMemberCommand) other).toAdd));
     }
 }
