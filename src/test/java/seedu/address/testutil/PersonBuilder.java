@@ -98,8 +98,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code policies} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPolicies(String ... policyIds) {
-        this.policies = SampleDataUtil.getPolicyList(policyIds);
+    public PersonBuilder withPolicies(String ... policies) {
+        this.policies = SampleDataUtil.getPolicyList(policies);
         return this;
     }
 
