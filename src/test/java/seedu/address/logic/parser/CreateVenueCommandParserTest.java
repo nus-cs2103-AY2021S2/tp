@@ -13,12 +13,12 @@ import static seedu.address.testutil.TypicalVenues.HALL;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddVenueCommand;
+import seedu.address.logic.commands.CreateVenueCommand;
 import seedu.address.model.venue.Venue;
 import seedu.address.testutil.VenueBuilder;
 
-public class AddVenueCommandParserTest {
-    private AddVenueCommandParser parser = new AddVenueCommandParser();
+public class CreateVenueCommandParserTest {
+    private CreateVenueCommandParser parser = new CreateVenueCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -26,12 +26,12 @@ public class AddVenueCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + VENUE_NAME_DESC_HALL + VENUE_CAPACITY_DESC_HALL,
-                new AddVenueCommand(expectedVenue));
+                new CreateVenueCommand(expectedVenue));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, VENUE_NAME_DESC_FIELD + VENUE_NAME_DESC_HALL
                 + VENUE_CAPACITY_DESC_HALL,
-                new AddVenueCommand(expectedVenue));
+                new CreateVenueCommand(expectedVenue));
     }
 
     /*
@@ -46,7 +46,7 @@ public class AddVenueCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVenueCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateVenueCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_VENUE_NAME_HALL + VENUE_CAPACITY_DESC_HALL,
