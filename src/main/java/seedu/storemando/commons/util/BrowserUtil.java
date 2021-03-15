@@ -55,7 +55,7 @@ public class BrowserUtil {
     /** Checks if the desktop is supported and there is internet connection.
      *
      */
-    public static boolean canOpenBrowser(){
+    public static boolean canOpenBrowser() {
         return isBrowserAccessible() && isConnectedToInternet();
     }
 
