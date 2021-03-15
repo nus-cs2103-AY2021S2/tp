@@ -27,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        tasks = new UniqueTaskList();
         persons = new UniquePersonList();
         tasks = new UniqueTaskList();
     }
@@ -97,6 +98,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code task} exists in the address book.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
+    public void addTask(Task t) {
+        tasks.add(t);
+    }
+
     //// util methods
 
     @Override
@@ -126,4 +138,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }
