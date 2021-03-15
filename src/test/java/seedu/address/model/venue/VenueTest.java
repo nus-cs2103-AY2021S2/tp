@@ -1,13 +1,16 @@
-package seedu.address.model.booking;
+package seedu.address.model.venue;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVenues.VENUE1;
 import static seedu.address.testutil.TypicalVenues.VENUE2;
 import static seedu.address.testutil.TypicalVenues.VENUE3;
 import static seedu.address.testutil.TypicalVenues.VENUE4;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 class VenueTest {
 

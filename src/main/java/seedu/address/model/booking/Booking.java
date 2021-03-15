@@ -1,5 +1,7 @@
 package seedu.address.model.booking;
 
+import seedu.address.model.venue.Venue;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;

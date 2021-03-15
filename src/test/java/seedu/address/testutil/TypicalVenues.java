@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 
 /**
  * A utility class containing a list of {@code Venue} objects to be used in tests.

@@ -1,4 +1,4 @@
-package seedu.address.model.booking;
+package seedu.address.model.venue;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,9 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.booking.exceptions.DuplicateVenueException;
-import seedu.address.model.booking.exceptions.VenueNotFoundException;
-
+import seedu.address.model.venue.exceptions.DuplicateVenueException;
+import seedu.address.model.venue.exceptions.VenueNotFoundException;
 
 
 /**

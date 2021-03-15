@@ -1,4 +1,4 @@
-package seedu.address.model.booking;
+package seedu.address.model.venue;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
