@@ -23,41 +23,46 @@ public class TypicalEndpoints {
     public static final Endpoint GET = new EndpointBuilder().withMethod("GET")
             .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
             .withData("{key: value}")
-            .withTags("cat")
+            .withTags("tag1", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint POST = new EndpointBuilder().withMethod("POST")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{key: value}").withTags("cat", "fact")
+            .withData("{key: value}")
+            .withTags("tag2", "cat", "fact")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint PUT = new EndpointBuilder().withMethod("PUT")
             .withAddress("https://cat-fact.herokuapp.com/facts")
             .withData("{key: value}")
+            .withTags("tag3", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint DELETE = new EndpointBuilder().withMethod("DELETE")
             .withAddress("https://cat-fact.herokuapp.com/facts")
             .withData("{key: value}")
-            .withTags("Fact")
+            .withTags("tag4", "Fact")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint HEAD = new EndpointBuilder()
             .withMethod("HEAD")
             .withAddress("https://cat-fact.herokuapp.com/facts")
             .withData("{key: value}")
+            .withTags("tag5", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint OPTIONS = new EndpointBuilder()
             .withMethod("OPTIONS")
             .withAddress("https://cat-fact.herokuapp.com/facts")
             .withData("{key: value}")
+            .withTags("tag6", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint PATCH = new EndpointBuilder()
             .withMethod("PATCH")
             .withAddress("https://cat-fact.herokuapp.com/facts")
             .withData("{key: value}")
+            .withTags("tag7", "cat")
             .withHeaders("\"key: value\"")
             .build();
 
@@ -84,6 +89,7 @@ public class TypicalEndpoints {
             .withMethod("GET")
             .withAddress("https://reqres.in/api/users/2")
             .withData("{key: value}")
+            .withTags("tag8", "human")
             .withHeaders("\"key: value\"")
             .build();
 

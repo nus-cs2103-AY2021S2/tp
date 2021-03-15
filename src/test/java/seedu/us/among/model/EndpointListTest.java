@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_1;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalEndpoints.GET;
@@ -77,7 +78,7 @@ public class EndpointListTest {
     public void hasEndpoint_endpointWithSameIdentityFieldsInEndpointList_returnsTrue() {
         endpointList.addEndpoint(GET);
         Endpoint editedGet = new EndpointBuilder(GET)
-                .withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_CAT).build();
+                .withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_1, VALID_TAG_CAT).build();
         System.out.println(endpointList.getEndpointList());
         assertTrue(endpointList.hasEndpoint(editedGet));
     }

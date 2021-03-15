@@ -32,6 +32,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_FACT = "https://cat-fact.herokuapp.com/facts";
     public static final String VALID_TAG_CAT = "cat";
     public static final String VALID_TAG_COOL = "cool";
+    public static final String VALID_TAG_1 = "tag1";
 
     public static final String METHOD_DESC_GET = " " + PREFIX_METHOD + VALID_METHOD_GET;
     public static final String METHOD_DESC_POST = " " + PREFIX_METHOD + VALID_METHOD_POST;
@@ -111,9 +112,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEndpointList().size());
 
         Endpoint endpoint = model.getFilteredEndpointList().get(targetIndex.getZeroBased());
-        final String[] splitName = endpoint.getMethod().methodName.split("\\s+");
+        final String[] splitTags = endpoint.getTags().toString().split("\\s+");
         //to-do fix this test case for NameContainsKeywordsPredicate (got changed with find command)
-        model.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredEndpointList(new NameContainsKeywordsPredicate(Arrays.asList(splitTags[0])));
 
         assertEquals(1, model.getFilteredEndpointList().size());
     }
