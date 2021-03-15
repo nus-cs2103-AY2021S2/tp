@@ -10,21 +10,21 @@ import java.time.LocalDate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
-import seedu.address.logic.commands.DateCommand;
+import seedu.address.logic.commands.AddDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Event;
 
 /**
  * Parses input arguments and creates a new DateCommand object
  */
-public class DateCommandParser implements Parser<DateCommand> {
+public class AddDateCommandParser implements Parser<AddDateCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DateCommand
-     * and returns a DateCommand object for execution
+     * Parses the given {@code String} of arguments in the context of the AddDateCommand
+     * and returns a AddDateCommand object for execution
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DateCommand parse(String args) throws ParseException {
+    public AddDateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_DESCRIPTION);
@@ -34,16 +34,16 @@ public class DateCommandParser implements Parser<DateCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DateCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDateCommand.MESSAGE_USAGE), pe);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_DESCRIPTION)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DateCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDateCommand.MESSAGE_USAGE));
         }
 
         LocalDate date = DateUtil.fromDateInput(argMultimap.getValue(PREFIX_DATE).get());
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
 
-        return new DateCommand(index, new Event(date, description));
+        return new AddDateCommand(index, new Event(date, description));
     }
 }

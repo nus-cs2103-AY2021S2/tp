@@ -12,4 +12,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_ARGUMENT_FORMAT = "Invalid argument format! \n%1$s";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! \n%1$s";
     public static final String MESSAGE_INVALID_TIME_FORMAT = "Invalid time format! \n%1$s";
+    public static final String MESSAGE_INVALID_INDEX_ARGUMENT = "The \"i/\" index provided is invalid";
 }
