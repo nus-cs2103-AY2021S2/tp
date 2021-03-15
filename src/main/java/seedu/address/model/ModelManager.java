@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -186,6 +187,12 @@ public class ModelManager implements Model {
     public void addModule(Module module) {
         requireNonNull(module);
         modulePlanner.addModule(module);
+    }
+
+    @Override
+    public void editModule(Module module, Title title) {
+        requireAllNonNull(module, title);
+        modulePlanner.editModule(module, title);
     }
 
     @Override

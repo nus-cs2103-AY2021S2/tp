@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Title;
 import seedu.address.model.module.UniqueModuleList;
 
 public class ModulePlanner implements ReadOnlyModulePlanner {
@@ -144,6 +145,16 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public void removeExam(Module module, Exam key) {
         Module editedModule = modules.getModule(module);
         editedModule.deleteExam(key);
+        setModule(module, editedModule);
+    }
+
+    /**
+     * Edits {@code module} and changes its title to {@code title} in the module planner.
+     * {@code module} must exist in the module planner.
+     */
+    public void editModule(Module module, Title title) {
+        Module editedModule = modules.getModule(module);
+        editedModule.editTitle(title);
         setModule(module, editedModule);
     }
 
