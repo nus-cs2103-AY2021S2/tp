@@ -38,7 +38,7 @@ public class SampleDataUtil {
                     new Remark("hates blue"),getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Birthday("2002-10-27"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    new Remark("hates black"),getTagSet("colleagues")),
+                    new Remark("hates black"),getTagSet("colleagues"))
         };
     }
 
