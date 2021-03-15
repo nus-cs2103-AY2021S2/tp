@@ -118,23 +118,24 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds clients whose names/fields contain any of the given keywords.
+Finds clients whose chosen field contains any of the given keywords.
 
-Format: `find [FLAG] KEYWORD [& MORE_KEYWORDS]`
+Format: `find FLAG/KEYWORD [& MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g hans will match Hans.
 * The order of the keywords does not matter.
-* The name field is searched when there is no flag.
-* The other fields can searched when a flag is used.
-* The flags are `-p`, `-e`, `-a`, `-t` and `-i`, representing phone, email, address, tags and policies respectively.
-* The delimiter `&` between keywords is used to indicate multiple keywords.
-* Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans & Bo will return Hans Sum, Bo Yang.
+* Only one `FLAG` can be used in each find command.
+* The `FLAG` can only be from: `n`, `p`, `e`, `a`, `t` and `i`, representing name, phone, email, address, tags and insurance policies respectively.
+* The delimiter `&` between keywords is used to search using multiple keywords. e.g. `Aaron & Tan` will return all persons with either `Aaron` or `Tan` in their names.
+* Without the use of delimiter `&`, all keywords following the `FLAG` will be used in the search. e.g. `Aaron Tan` will only return persons with `Aaron Tan` in their names.
+* Clients whose chosen field contains at least one keyword will be returned (i.e. OR search). e.g. Hans & Bo will return Hans Sum, Bo Yang.
 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex & david` returns `Alex Yeoh`, `David Li`
-* `find -a orchard` returns `Alex Yeoh` whose address is `Orchard Road`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex David`
+* `find n/alex & david` returns `Alex Yeoh`, `David Li`
+* `find a/orchard` returns `Alex Yeoh` whose address is `Orchard Road`<br>
 
 ### Deleting a person : `delete`
 
