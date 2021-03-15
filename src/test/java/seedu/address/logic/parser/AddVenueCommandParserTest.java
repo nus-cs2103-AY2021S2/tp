@@ -1,7 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_HALL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_NAME_HALL;
+import static seedu.address.logic.commands.CommandTestUtil.VENUE_CAPACITY_DESC_HALL;
+import static seedu.address.logic.commands.CommandTestUtil.VENUE_NAME_DESC_FIELD;
+import static seedu.address.logic.commands.CommandTestUtil.VENUE_NAME_DESC_HALL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalVenues.HALL;

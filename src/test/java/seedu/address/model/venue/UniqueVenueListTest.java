@@ -1,14 +1,5 @@
 package seedu.address.model.venue;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.venue.exceptions.DuplicateVenueException;
-import seedu.address.model.venue.exceptions.VenueNotFoundException;
-import seedu.address.testutil.VenueBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,6 +7,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVenues.VENUE1;
 import static seedu.address.testutil.TypicalVenues.VENUE2;
 import static seedu.address.testutil.TypicalVenues.VENUE3;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.venue.exceptions.DuplicateVenueException;
+import seedu.address.model.venue.exceptions.VenueNotFoundException;
+import seedu.address.testutil.VenueBuilder;
 
 public class UniqueVenueListTest {
 
@@ -32,7 +33,7 @@ public class UniqueVenueListTest {
     }
 
     @Test
-    public void contains_VenueInList_returnsTrue() {
+    public void contains_venueInList_returnsTrue() {
         uniqueVenueList.add(VENUE1);
         assertTrue(uniqueVenueList.contains(VENUE1));
     }
@@ -159,6 +160,6 @@ public class UniqueVenueListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueVenueList.asUnmodifiableObservableList().remove(0));
+            -> uniqueVenueList.asUnmodifiableObservableList().remove(0));
     }
 }

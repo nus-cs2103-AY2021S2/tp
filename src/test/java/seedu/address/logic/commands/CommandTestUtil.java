@@ -65,8 +65,10 @@ public class CommandTestUtil {
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
 
-    public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "911a"; // non-numerics not allowed
-    public static final String INVALID_VENUE_CAPACITY_DESC2 = " " + PREFIX_CAPACITY + "-2"; // capacity cannot be negative
+    // non-numerics not allowed
+    public static final String INVALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "911a";
+    // capacity cannot be negative
+    public static final String INVALID_VENUE_CAPACITY_DESC2 = " " + PREFIX_CAPACITY + "-2";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

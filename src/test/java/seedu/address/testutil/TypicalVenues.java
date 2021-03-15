@@ -1,9 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.venue.Venue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_FIELD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_HALL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_NAME_FIELD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_NAME_HALL;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import seedu.address.model.venue.Venue;
 
 /**
  * A utility class containing a list of {@code Venue} objects to be used in tests.

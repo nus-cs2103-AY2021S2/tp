@@ -19,7 +19,9 @@ public class Venue {
      */
     public Venue(String name, int capacity) {
         requireAllNonNull(name);
-        if (capacity <= 0) throw new IllegalArgumentException("Capacity cannot be 0 or less.");
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Capacity cannot be 0 or less.");
+        }
         this.name = name;
         this.capacity = capacity;
     }

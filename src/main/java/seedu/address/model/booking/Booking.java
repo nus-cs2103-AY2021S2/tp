@@ -1,12 +1,12 @@
 package seedu.address.model.booking;
 
-import seedu.address.model.venue.Venue;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
+
+import seedu.address.model.venue.Venue;
 
 /**
  * Represents a booking in the booking list.
