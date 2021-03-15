@@ -17,6 +17,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,7 +29,7 @@ public class DeleteMemberCommandTest {
     @Test
     public void execute_validNameUnfilteredList_success() throws ParseException {
         Person personToDelete = null;
-        Name parsedNameAlice = ParserUtil.parseName("Alice Pauline");
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
         DeleteMemberCommand deleteCommand = new DeleteMemberCommand(parsedNameAlice);
 
         for (Person person : model.getFilteredPersonList()) {
@@ -58,7 +59,7 @@ public class DeleteMemberCommandTest {
 
     @Test
     public void execute_validNameFilteredList_success() throws ParseException {
-        Name parsedNameAlice = ParserUtil.parseName("Alice Pauline");
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
         showPersonAtName(model, parsedNameAlice);
         Person personToDelete = null;
 
@@ -83,10 +84,10 @@ public class DeleteMemberCommandTest {
 
     @Test
     public void execute_invalidNameFilteredList_throwsCommandException() throws ParseException {
-        Name parsedNameAlice = ParserUtil.parseName("Alice Pauline");
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
         showPersonAtName(model, parsedNameAlice);
 
-        Name invalidName = ParserUtil.parseName("Benson Meier");
+        Name invalidName = TypicalPersons.BENSON.getName();
         DeleteMemberCommand deleteCommand = new DeleteMemberCommand(invalidName);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
@@ -94,8 +95,8 @@ public class DeleteMemberCommandTest {
 
     @Test
     public void equals() throws ParseException {
-        Name parsedNameAlice = ParserUtil.parseName("Alice Pauline");
-        Name parsedNameBenson = ParserUtil.parseName("Benson Meier");
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
+        Name parsedNameBenson = TypicalPersons.BENSON.getName();
 
         DeleteMemberCommand deleteFirstCommand = new DeleteMemberCommand(parsedNameAlice);
         DeleteMemberCommand deleteSecondCommand = new DeleteMemberCommand(parsedNameBenson);
