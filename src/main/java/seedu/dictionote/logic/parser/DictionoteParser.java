@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
+import seedu.dictionote.logic.commands.AddContentCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
@@ -59,6 +60,9 @@ public class DictionoteParser {
 
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser().parse(arguments);
+
+        case AddContentCommand.COMMAND_WORD:
+            return new AddContentCommandParser().parse(arguments);
 
         case EditContactCommand.COMMAND_WORD:
             return new EditContactCommandParser().parse(arguments);
