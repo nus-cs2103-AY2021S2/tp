@@ -44,7 +44,6 @@ public class ClearAllCommandTest {
     public void execute_nonEmptyPropertyBook_success() {
         Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
-        expectedModel.setPropertyBook(new PropertyBook());
 
         assertCommandSuccess(new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS,
                 expectedModel);
