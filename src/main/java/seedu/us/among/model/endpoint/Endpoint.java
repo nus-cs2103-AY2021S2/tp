@@ -93,6 +93,13 @@ public class Endpoint {
                 response);
     }
 
+    /**
+     * Constructor for a default GET request endpoint, with the address
+     */
+    public Endpoint(Address address) {
+        this(new Method("GET"), address, new HashSet<>(), new HashSet<>());
+    }
+
     public Method getMethod() {
         return method;
     }

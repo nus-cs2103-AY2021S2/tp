@@ -8,7 +8,6 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.us.among.logic.commands.RunCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
@@ -34,7 +33,15 @@ public class RunCommandParser implements Parser<RunCommand> {
                 PREFIX_HEADER,
                 PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_METHOD, PREFIX_ADDRESS)
+        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS, PREFIX_DATA, PREFIX_HEADER,
+                PREFIX_TAG)
+                && !argMultimap.getPreamble().isEmpty()
+                && ParserUtil.isUrlValid(argMultimap.getPreamble())) {
+            // handle quick run command
+            Address address = new Address(argMultimap.getPreamble());
+            Endpoint endpoint = new Endpoint(address);
+            return new RunCommand(endpoint);
+        } else if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RunCommand.MESSAGE_USAGE));
         }
@@ -56,13 +63,6 @@ public class RunCommandParser implements Parser<RunCommand> {
         return new RunCommand(endpoint);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values
-     * in the given {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
 
 }

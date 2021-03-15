@@ -202,7 +202,10 @@ Examples:
 
 #### Call an API endpoint directly without saving: `run`
 
-Description: Call an API endpoint on the fly (without saving).
+Description: Call an API endpoint on the fly (without saving). Two command formats are available. The first format 
+performs a 
+standard call to an API endpoint. The second format performs a GET request to a valid API URL address, without 
+specifying any prefixes or any other parts of an API endpoint.
 
 Format: `run -x METHOD -u URL [-d DATA] [-h HEADER]…`
 
@@ -210,6 +213,13 @@ Examples:
 
 - `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`
 - `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"`
+
+Format: `run URL`
+
+Examples:
+
+- `run https://api.data.gov.sg/v1/environment/pm25`
+- `run https://api.data.gov.sg/v1/environment/uv-index"`
 
 ### Miscellaneous Information
 
@@ -262,4 +272,4 @@ with the file that contains the data of your previous imPoster home folder.
 | **List**   | `list`                                | `list`                                 |
 | **Clear**  | `clear`                               | `clear`                                |
 | **Send**   | `send INDEX` <br>                     | `send 1`                               |
-| **Run**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…`  | `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"` |
+| **Run**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…` <br> OR <br>`run URL`  | `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"` <br> `run https://api.data.gov.sg/v1/environment/uv-index` |
