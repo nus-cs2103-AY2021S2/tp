@@ -39,5 +39,4 @@ public interface BookStorage<T extends Book> {
      * @see #saveBook(T)
      */
     void saveBook(T book, Path filePath) throws IOException;
-
 }
