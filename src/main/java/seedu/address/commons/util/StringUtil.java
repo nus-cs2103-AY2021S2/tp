@@ -35,12 +35,11 @@ public class StringUtil {
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(str -> containsIgnoreCase(str,preppedWord));
+                .anyMatch(str -> containsIgnoreCase(str, preppedWord));
     }
 
     /**
      * Checks if String {@code str} contains String {@code preppedWord}, ignoring case considerations.
-     * 
      * @param str
      * @param preppedWord
      * @return true if {@code str} is not null and it contains {@code preppedWord}; false otherwise

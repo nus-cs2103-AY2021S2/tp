@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -84,7 +84,7 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
     }
-    
+
     @Test
     public void execute_multiplePartOfNamesKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
@@ -96,7 +96,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_SomePartOfNamesSomeFullNamesKeywords_multiplePersonsFound() {
+    public void execute_somePartOfNamesSomeFullNamesKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Carl Kunz");
         FindCommand command = new FindCommand(predicate);
@@ -114,7 +114,7 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
     }
-    
+
     @Test
     public void execute_multipleIncompleteKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
@@ -134,7 +134,7 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, DANIEL, ELLE, FIONA), model.getFilteredPersonList());
     }
-    
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
