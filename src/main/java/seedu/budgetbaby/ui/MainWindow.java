@@ -116,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // TODO:
+        // TODO: use Month month = logic.getCurrentDisplayMonth() for month and month.getBudget().toString() for budget
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
         financialRecordListPanelPlaceholder.getChildren().add(financialRecordListPanel.getRoot());
 
