@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
-    private StudentListPanel sessionListPanel;
+    private StudentListPanel sessionListPanel; //TODO: Update StudentListPanel to SessionListPanel
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -117,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
+        //TODO: Update StudentListPanel to SessionListPanel
         sessionListPanel = new StudentListPanel(logic.getFilteredStudentList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
