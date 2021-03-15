@@ -21,7 +21,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_PRIORITY + "PRIORITY "
-            + "[" + PREFIX_CATEGORY + "CATEGORY] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Homework 1 "
