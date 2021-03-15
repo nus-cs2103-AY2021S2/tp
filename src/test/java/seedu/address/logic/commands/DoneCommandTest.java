@@ -2,15 +2,17 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.address.model.AbstractDate.TO_JSON_STRING_FORMATTER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_COMPLETED_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
-import static seedu.address.testutil.TypicalIndexes.INDEX_COMPLETED_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_UNCOMPLETED_ORDER;
 import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +23,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Order;
 import seedu.address.testutil.OrderBuilder;
-import java.time.LocalDateTime;
 
 public class DoneCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -29,15 +30,17 @@ public class DoneCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Order order = model.getFilteredOrderList().get(INDEX_UNCOMPLETED_ORDER.getZeroBased());
+        Model dupModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
         Order updatedOrder = new OrderBuilder(order)
                 .withCompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER))
+                .withCheeses(dupModel.getUnassignedCheeses(order.getCheeseType(), order.getQuantity()))
                 .build();
         DoneCommand doneCommand = new DoneCommand(INDEX_UNCOMPLETED_ORDER);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ORDER_DONE_SUCCESS,
                 updatedOrder);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(dupModel.getAddressBook(), new UserPrefs());
         expectedModel.setOrder(order , updatedOrder);
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
@@ -54,15 +57,17 @@ public class DoneCommandTest {
     public void execute_validIndexfilteredList_success() {
         showOrderAtIndex(model, INDEX_UNCOMPLETED_ORDER);
         Order order = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
+        Model dupModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
         Order updatedOrder = new OrderBuilder(order)
                 .withCompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER))
+                .withCheeses(dupModel.getUnassignedCheeses(order.getCheeseType(), order.getQuantity()))
                 .build();
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ORDER);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ORDER_DONE_SUCCESS,
                 updatedOrder);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(dupModel.getAddressBook(), new UserPrefs());
         expectedModel.setOrder(order , updatedOrder);
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }

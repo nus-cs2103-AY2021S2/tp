@@ -3,13 +3,16 @@ package seedu.address.model.cheese;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.cheese.exceptions.CheeseNotFoundException;
 import seedu.address.model.cheese.exceptions.DuplicateCheeseException;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
 
@@ -91,6 +94,20 @@ public class UniqueCheeseList implements Iterable<Cheese> {
         }
 
         internalList.setAll(cheeses);
+    }
+
+    public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
+        Set<CheeseId> cheeses = new HashSet<>();
+
+        for (int i = 0; i < internalList.size() && quantity != null; i++) {
+            Cheese cheese = internalList.get(i);
+            if (!cheese.getAssignStatus() && cheese.isSameType(cheeseType)) {
+                quantity = quantity.decreaseQuantity();
+                cheeses.add(cheese.getCheeseId());
+                setCheese(cheese, cheese.assignToOrder());
+            }
+        }
+        return cheeses;
     }
 
     /**

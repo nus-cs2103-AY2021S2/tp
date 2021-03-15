@@ -62,9 +62,9 @@ public class Order {
      * Initializes a complete order with existing order ,
      * date of completion and the IDs of cheeses used to fulfil the order.
      */
-    public Order(Order orderToUpdate, CompletedDate completedDate) {
+    public Order(Order orderToUpdate, CompletedDate completedDate, Set<CheeseId> cheeses) {
         this(orderToUpdate.orderCheeseType, orderToUpdate.quantity,
-                orderToUpdate.orderDate, completedDate, orderToUpdate.cheeses,
+                orderToUpdate.orderDate, completedDate, cheeses,
                 orderToUpdate.orderId, orderToUpdate.customerId);
     }
 
@@ -170,7 +170,7 @@ public class Order {
             .append("; Order Date: ")
             .append(getOrderDate())
             .append("; Completed Date: ")
-            .append(getCompletedDate().get())
+            .append(getCompletedDate().map(x -> x.toString()).orElse("-"))
             .append("; Customer ID: ")
             .append(getCustomerId())
             .append("; Cheese IDs: ")

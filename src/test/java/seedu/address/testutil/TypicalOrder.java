@@ -1,12 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_BRIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_FETA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPLETED_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPLETED_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DATE_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_5;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
@@ -25,7 +26,7 @@ import seedu.address.model.order.Order;
 public class TypicalOrder {
     public static final Order ORDER_BRIE = new OrderBuilder()
             .withCheeseType(VALID_CHEESE_TYPE_BRIE).withQuantity(VALID_QUANTITY_1)
-            .withOrderDate(VALID_ORDER_DATE_2).withCompletedDate(null)
+            .withOrderDate(VALID_ORDER_DATE_3).withCompletedDate(null)
             .withCustomerId(CARL.getId()).withOrderId(1)
             .build();
 

@@ -6,13 +6,16 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.order.CompletedDate;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Quantity;
 
 public class DoneCommand extends Command {
 
@@ -44,7 +47,12 @@ public class DoneCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_COMPLETE);
         }
 
-        Order updatedOrder = createDoneOrder(orderToUpdate);
+        Order updatedOrder = createDoneOrder(orderToUpdate, model);
+        Quantity expectedQuantity = orderToUpdate.getQuantity();
+        int numAssignedCheeses = updatedOrder.getCheeses().size();
+        if (!expectedQuantity.isSameQuantity(numAssignedCheeses)) {
+            throw new CommandException(Messages.MESSAGE_INSUFFICIENT_CHEESES_FOR_ORDER);
+        }
         model.setOrder(orderToUpdate, updatedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_MARK_ORDER_DONE_SUCCESS, updatedOrder));
@@ -54,10 +62,11 @@ public class DoneCommand extends Command {
      * Creates and returns a {@code order} with the details of {@code orderToUpdate}
      * Only the CompletedDate is updated to current time
      */
-    public Order createDoneOrder(Order orderToUpdate) {
+    public Order createDoneOrder(Order orderToUpdate, Model model) {
         CompletedDate completedDate = new CompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER));
-        //TODO assign cheeses
-        return new Order(orderToUpdate, completedDate);
+        Set<CheeseId> getUnassignedCheeses = model.getUnassignedCheeses(orderToUpdate.getCheeseType(),
+                orderToUpdate.getQuantity());
+        return new Order(orderToUpdate, completedDate, getUnassignedCheeses);
     }
 
     @Override

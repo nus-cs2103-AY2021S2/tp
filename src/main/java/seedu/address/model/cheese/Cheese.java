@@ -24,6 +24,11 @@ public class Cheese {
         this(cheeseType, manufactureDate, maturityDate, expiryDate, CheeseId.getNextId(), false);
     }
 
+    private Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
+                   ExpiryDate expiryDate, CheeseId cheeseId) {
+        this(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId, true);
+    }
+
     /**
      * Every field must be present and not null.
      */
@@ -60,6 +65,14 @@ public class Cheese {
 
     public boolean getAssignStatus() {
         return isAssigned;
+    }
+
+    public boolean isSameType(CheeseType cheeseType) {
+        return this.cheeseType.equals(cheeseType);
+    }
+
+    public Cheese assignToOrder() {
+        return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId);
     }
 
     /**

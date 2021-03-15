@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,8 +13,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseId;
+import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Quantity;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -144,6 +148,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrder);
 
         addressBook.setOrder(target, editedOrder);
+        setPanelToOrderList();
     }
 
     //=========== Cheese Operations ==========================================================================
@@ -170,6 +175,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedCheese);
 
         addressBook.setCheese(target, editedCheese);
+    }
+
+    @Override
+    public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
+        return addressBook.getUnassignedCheeses(cheeseType, quantity);
     }
 
 

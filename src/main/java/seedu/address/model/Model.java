@@ -1,13 +1,17 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseId;
+import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Quantity;
 
 /**
  * The API of the Model component.
@@ -126,6 +130,11 @@ public interface Model {
      * {@code cheese} must not already exist in the address book.
      */
     void addCheese(Cheese cheese);
+
+    /**
+     * Return Unassigned cheeses with given cheeseType.
+     */
+    Set<CheeseId> getUnassignedCheeses(CheeseType cheesetype, Quantity quantity);
 
     /**
      * Replaces the given cheese {@code target} with {@code editedCheese}.

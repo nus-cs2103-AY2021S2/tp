@@ -3,13 +3,17 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseId;
+import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.UniqueCheeseList;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.UniqueCustomerList;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Quantity;
 import seedu.address.model.order.UniqueOrderList;
 
 /**
@@ -196,6 +200,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         cheeses.delete(key);
     }
 
+    public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
+        return cheeses.getUnassignedCheeses(cheeseType, quantity);
+    }
 
     //// util methods
 

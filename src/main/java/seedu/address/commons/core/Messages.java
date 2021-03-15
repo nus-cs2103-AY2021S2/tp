@@ -15,4 +15,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ORDER_INDEX = "The order index provided is invalid";
     public static final String MESSAGE_INVALID_ORDER_COMPLETE = "The order index provided is already completed";
     public static final String MESSAGE_CUSTOMERS_LISTED_OVERVIEW = "%1$d customers listed!";
+    public static final String MESSAGE_INSUFFICIENT_CHEESES_FOR_ORDER = "There is insufficient cheese "
+            + "to complete the order";
 }

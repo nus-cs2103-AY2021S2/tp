@@ -55,20 +55,29 @@
     "cheeseType": "Camembert",
     "manufactureDate": "2021-03-04 07:00",
     "maturityDate": "2021-04-04 07:00",
-    "expiryDate": "2022-03-04 06:00"
+    "expiryDate": "2022-03-04 06:00",
+    "isAssigned": true
   }, {
     "cheeseId": 2,
     "cheeseType": "Feta",
     "manufactureDate": "2021-03-06 07:00",
     "maturityDate": "2021-04-06 07:00",
-    "expiryDate": "2023-04-04 06:00"
+    "expiryDate": "2023-04-04 06:00",
+    "isAssigned": true
+  }, {
+    "cheeseId": 3,
+    "cheeseType": "Brie",
+    "manufactureDate": "2021-03-10 07:00",
+    "maturityDate": "2021-04-10 07:00",
+    "expiryDate": "2024-04-10 06:00",
+    "isAssigned": false
   } ],
   "orders": [
     {
       "orderId": 1,
       "cheeseType": "Brie",
       "quantity": 1,
-      "orderDate": "2021-03-06 08:00",
+      "orderDate": "2021-03-07 08:00",
       "completedDate": null,
       "customerId": 3,
       "cheeseIds": []
@@ -79,7 +88,7 @@
     "orderDate": "2021-02-05 07:00",
     "completedDate": "2022-02-10 13:00",
     "customerId": 1,
-    "cheeseIds": []
+    "cheeseIds": [1]
   }, {
     "orderId": 3,
     "cheeseType": "Feta",
@@ -87,6 +96,6 @@
     "orderDate": "2021-03-06 08:00",
     "completedDate": "2022-03-06 10:00",
     "customerId": 2,
-    "cheeseIds": []
+    "cheeseIds": [2]
   } ]
 }
