@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.dictionote.model.DefinitionBook;
-import seedu.dictionote.model.Dictionary;
-import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
 
 
@@ -16,8 +14,8 @@ import seedu.dictionote.model.dictionary.Definition;
 public class TypicalDefinition {
 
     public static final Definition OOP = new Definition("OOP\n", "Object Orientated Programming\n");
-    public static final Definition Integer = new Definition("Integer\n", "A data type, involving numbers.\n");
-    public static final Definition Java = new Definition("Java\n", "A programming language.\n");
+    public static final Definition INTEGER = new Definition("Integer\n", "A data type, involving numbers.\n");
+    public static final Definition JAVA = new Definition("Java\n", "A programming language.\n");
 
     private TypicalDefinition() {} // prevents instantiation
 
@@ -33,6 +31,6 @@ public class TypicalDefinition {
     }
 
     public static List<Definition> getTypicalDefinition() {
-        return new ArrayList<>(Arrays.asList(OOP, Integer, Java));
+        return new ArrayList<>(Arrays.asList(OOP, INTEGER, JAVA));
     }
 }
