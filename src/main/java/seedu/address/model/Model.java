@@ -82,7 +82,7 @@ public interface Model {
     /**
      * Adds the session to the target student
      */
-    void addSession(Session session, Name name);
+    void addSession(Name name, Session session);
 
     /**
      * Returns true if a student with this name exists in the unique student list

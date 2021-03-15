@@ -114,9 +114,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addSession(Session session, Name name) {
+    public void addSession(Name name, Session session) {
         requireAllNonNull(session, name);
-        addressBook.addSession(session, name);
+        addressBook.addSession(name, session);
     }
 
     @Override

@@ -58,7 +58,7 @@ public class AddSessionCommand extends Command {
         if (model.hasSession(name, sessionToAdd)) {
             throw new CommandException(SESSION_ALREADY_EXIST_ERROR);
         }
-        model.addSession(sessionToAdd, name);
+        model.addSession(name, sessionToAdd);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

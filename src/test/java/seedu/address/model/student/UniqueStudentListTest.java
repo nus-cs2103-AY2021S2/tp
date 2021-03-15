@@ -176,13 +176,13 @@ public class UniqueStudentListTest {
     @Test
     public void hasName_nameDoesNotExist_returnsFalse() {
         uniqueStudentList.add(ALICE);
-        assertFalse(uniqueStudentList.hasName(new Name("Bob")));
+        assertFalse(uniqueStudentList.hasName(BOB.getName()));
     }
 
     @Test
     public void hasName_nameExists_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        assertTrue(uniqueStudentList.hasName(new Name("Alice Pauline")));
+        assertTrue(uniqueStudentList.hasName(ALICE.getName()));
     }
 
     @Test

@@ -142,7 +142,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void addSession(Session session, Name name) {
+        public void addSession(Name name, Session session) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -101,8 +101,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Adds session to the target student
+     * Guarantees that student is non null
      */
-    public void addSession(Session session, Name name) {
+    public void addSession(Name name, Session session) {
         requireAllNonNull(session, name);
         Student student = students.getStudentWithName(name);
         student.addSession(session);
