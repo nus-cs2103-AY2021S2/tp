@@ -6,12 +6,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashMap;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 
 /**
  * A HashMap mapping groupName to Group.
