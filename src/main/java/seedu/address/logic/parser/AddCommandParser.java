@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -18,8 +18,8 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.StartTime;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 

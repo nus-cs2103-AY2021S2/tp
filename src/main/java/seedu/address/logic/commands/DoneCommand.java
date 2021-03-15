@@ -80,8 +80,10 @@ public class DoneCommand extends Command {
 
     @Override
     public boolean equals(Object otherCommand) {
-        if (otherCommand == this) { return true; }
+        if (otherCommand == this) {
+            return true;
+        }
 
         return otherCommand instanceof DoneCommand && index.equals(((DoneCommand) otherCommand).index);
     }
- }
+}

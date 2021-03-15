@@ -24,8 +24,8 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.StartTime;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -203,9 +203,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setStatus(Status status) { this.status = status; }
+        public void setStatus(Status status) {
+            this.status = status;
+        }
 
-        public Optional<Status> getStatus() { return Optional.ofNullable(status); }
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

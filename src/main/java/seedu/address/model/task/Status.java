@@ -12,11 +12,23 @@ public class Status {
 
     public final String value;
 
+    /**
+     * Constructs a Status object.
+     *
+     * @param status A valid status.
+     */
     public Status(String status) {
         requireNonNull(status);
         value = status;
     }
 
+    /**
+     * Checks if a status value is valid.
+     * Only 'done' and 'not done' are valid.
+     *
+     * @param value valid String value for status
+     * @return boolean value indicating if value is a valid status value.
+     */
     public static boolean isValidStatus(String value) {
         return value.equals("done") || value.equals("not done");
     }
