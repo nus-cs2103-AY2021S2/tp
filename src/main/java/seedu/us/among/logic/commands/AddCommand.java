@@ -20,18 +20,18 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + "get "
-            + PREFIX_ADDRESS + "http://localhost:3000/ "
-            + PREFIX_DATA + "{\"some\": \"data\"} "
-            + PREFIX_HEADER + "\"key: value\" "
-            + PREFIX_HEADER + "\"key: value\" "
-            + PREFIX_TAG + "local "
-            + PREFIX_TAG + "data\n";
+            + PREFIX_METHOD + " get "
+            + PREFIX_ADDRESS + " http://localhost:3000/ "
+            + PREFIX_DATA + " {\"some\": \"data\"} "
+            + PREFIX_HEADER + " \"key1: value1\" "
+            + PREFIX_HEADER + " \"key2: value2\" "
+            + PREFIX_TAG + " local "
+            + PREFIX_TAG + " data\n";
 
     public static final String MESSAGE_API_EXAMPLE_2 = "2. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + "get "
-            + PREFIX_ADDRESS + "https://api.data.gov.sg/v1/environment/air-temperature ";
+            + PREFIX_METHOD + " get "
+            + PREFIX_ADDRESS + " https://api.data.gov.sg/v1/environment/air-temperature ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an API endpoint to the API endpoint list.\n"
