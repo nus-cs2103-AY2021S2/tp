@@ -54,4 +54,8 @@ public class Location {
         return value.hashCode();
     }
 
+    public int compare(Location anotherLocation) {
+        return this.value.compareTo(anotherLocation.value);
+    }
+
 }

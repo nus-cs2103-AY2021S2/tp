@@ -127,4 +127,15 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredItemList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show an empty list based on the given {@code item}
+     * which is not in the {@code model}'s StoreMando.
+     */
+    public static void showEmptyListAfterFind(Model model, Item item) {
+        final String[] splitName = item.getItemName().fullName.split("\\s+");
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0]), false));
+
+        assertEquals(0, model.getFilteredItemList().size());
+    }
+
 }

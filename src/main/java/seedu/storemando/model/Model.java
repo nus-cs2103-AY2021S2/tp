@@ -1,6 +1,8 @@
 package seedu.storemando.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -81,6 +83,11 @@ public interface Model {
     void setItem(Item target, Item editedItem);
 
     /**
+     * Replaces every item in StoreMando's uniqueItemList with items in {@code itemList}.
+     */
+    void setItems(List<Item> itemList);
+
+    /**
      * Returns an unmodifiable view of the filtered item list
      */
     ObservableList<Item> getFilteredItemList();
@@ -91,4 +98,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredItemList(Predicate<Item> predicate);
+
+    /**
+     * Returns an unmodifiable view of the sorted item list
+     */
+    ObservableList<Item> getSortedItemList();
+
+    /**
+     * Sorts the list
+     *
+     * @param comparator
+     */
+    void updateSortedItemList(Comparator<Item> comparator);
 }

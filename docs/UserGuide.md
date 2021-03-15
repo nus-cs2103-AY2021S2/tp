@@ -59,12 +59,12 @@ Adds an item to the inventory.
 
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An item can have any number of tags (including 0)
 
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Expiry date of an item is optional.
 
 </div>
@@ -85,8 +85,7 @@ Format: `list [LOCATION]`
 * Only location will be searched.
 * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
 * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living room 1' will not match 'Living room'
-### Updating an item's details : `update`
-=======
+
 
 ### Editing an item's details : `edit`
 
@@ -102,9 +101,9 @@ Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/T
     specifying any tags after it.
 
 Examples:
-*  `edit 1 q/10 e/2020-10-11` Edits the quantity of the 1st item to be `10` and expiry date of the 1st item to be `2020-10-11` 
+*  `edit 1 q/10 e/2020-10-11` Edits the quantity of the 1st item to be `10` and expiry date of the 1st item to be `2020-10-11`
    if the existing quantity and expiry date of the 1st item are both not `10` and `2020-10-11` respectively.
-*  `edit 2 n/Chocolate Bread t/` Edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if 
+*  `edit 2 n/Chocolate Bread t/` Edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
    there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
 
 ### Locating items by name: `find`
@@ -150,6 +149,27 @@ Examples:
 * `list` followed by `delete 2` deletes the second item in the entire inventory.
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
+
+### sorting the inventory: `sort`
+
+Sorts the items from the inventory based on quantity or expiry date.
+
+Format 1: `sort quantity`
+
+* `sort quantity` display the items in the inventory in ascending order of quantity
+
+
+
+
+Format 2: `sort expiryDate`
+
+* `sort expiryDate` displays items in the inventory from the earliest expiry date to the latest.
+*  Items without expiry date will pushed to the back of the sorted list.
+
+Examples:
+* `find Chocolate` followed by `sort quantity` sorts the items from the result of the `find` command.
+* `list Room 2` followed by `sort expiryDate` sorts the recorded list of items in Room 2 by expiry date.
+
 
 ### Clearing all entries : `clear`
 
