@@ -10,18 +10,30 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Content {
-    private final String content;
+    private final String week;
+    private final String header;
+    private final String maincontent;
 
     /**
      * Every field must be present and not null.
      */
-    public Content(String content) {
-        requireAllNonNull(content);
-        this.content = content;
+    public Content(String week, String header, String maincontent) {
+        requireAllNonNull(week, header, maincontent);
+        this.week = week;
+        this.header = header;
+        this.maincontent = maincontent;
     }
 
-    public String getContent() {
-        return content;
+    public String getMainContent() {
+        return maincontent;
+    }
+
+    public String getWeek() {
+        return week;
+    }
+
+    public String getHeader() {
+        return header;
     }
 
     /**
@@ -33,7 +45,9 @@ public class Content {
         }
 
         return otherContent != null
-                && otherContent.getContent().equals(getContent());
+                && otherContent.getWeek().equals(getWeek())
+                && otherContent.getHeader().equals(getHeader())
+                && otherContent.getMainContent().equals(getMainContent());
     }
 
     /**
@@ -51,19 +65,23 @@ public class Content {
         }
 
         Content otherContent = (Content) other;
-        return otherContent.getContent().equals(getContent());
+        return otherContent.getWeek().equals(getWeek())
+                && otherContent.getHeader().equals(getHeader())
+                && otherContent.getMainContent().equals(getMainContent());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(content);
+        return Objects.hash(week, header, maincontent);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getContent());
+        builder.append(getWeek())
+            .append(getHeader())
+            .append(getMainContent());
         return builder.toString();
     }
 }

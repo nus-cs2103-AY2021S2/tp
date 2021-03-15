@@ -36,8 +36,8 @@ public class UniqueContentList implements Iterable<Content> {
     }
 
     /**
-     * Adds a note to the list.
-     * The note must not already exist in the list.
+     * Adds content to the list.
+     * The content must not already exist in the list.
      */
     public void add(Content toAdd) {
         requireNonNull(toAdd);

@@ -149,6 +149,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addContent(Content content) {
+        requireNonNull(content);
+        updateFilteredContentList(PREDICATE_SHOW_ALL_CONTENTS);
+    }
+
+    @Override
     public ReadOnlyDictionary getDictionary() {
         return dictionary;
     }
