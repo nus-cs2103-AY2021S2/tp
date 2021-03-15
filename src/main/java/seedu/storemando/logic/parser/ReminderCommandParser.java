@@ -10,6 +10,23 @@ import seedu.storemando.model.item.ItemExpiringPredicate;
  * Parses input arguments and creates a new ReminderCommand object
  */
 public class ReminderCommandParser implements Parser<ReminderCommand> {
+    /**
+     * Convert the given number and the time unit to the number of days.
+     * @param num The number use to covert to days
+     * @param timeUnit The time unit in terms of days and weeks
+     * @return The number of days
+     * @throws ParseException if the user input does not conform the expected keyword
+     */
+    private long timeConversation(long num, String timeUnit) throws ParseException {
+        switch (timeUnit) {
+        case "days":
+            return num;
+        case "weeks":
+            return num * 7;
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+        }
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the ReminderCommand
@@ -19,17 +36,26 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
      */
     @Override
     public ReminderCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        String[] numOfArgs = trimmedArgs.split(" ");
-        if (trimmedArgs.isEmpty() || numOfArgs.length > 1) {
+        try {
+            long numOfDayFromToday = 0;
+            String trimmedArgs = args.trim();
+            String[] stringArgsArr = trimmedArgs.split(" ");
+            if (stringArgsArr.length == 1) {
+                numOfDayFromToday = Long.parseLong(stringArgsArr[0]);
+            } else if (stringArgsArr.length == 2) {
+                Long timeValue = Long.parseLong(stringArgsArr[0]);
+                String timeUnit = stringArgsArr[1];
+                numOfDayFromToday = timeConversation(timeValue, timeUnit);
+            }
+
+            if (trimmedArgs.isEmpty() || stringArgsArr.length > 2 || numOfDayFromToday <= 0) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+            }
+
+            return new ReminderCommand(new ItemExpiringPredicate(numOfDayFromToday));
+        } catch (NumberFormatException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Long numOfDayFromToday = Long.parseLong(numOfArgs[0]);
-            return new ReminderCommand(new ItemExpiringPredicate(numOfDayFromToday));
-        } catch (NumberFormatException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
-        }
     }
 }
