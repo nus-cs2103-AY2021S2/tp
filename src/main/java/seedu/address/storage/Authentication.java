@@ -78,7 +78,7 @@ public class Authentication {
                 String attemptPassword = scanner.nextLine();
                 if (attemptUnzip(attemptPassword)) {
                     this.password = Optional.of(attemptPassword);
-                    System.out.println("Password is verified. Launching Clientbook.");
+                    System.out.println("Password is verified. Launching ClientBook.");
                     break;
                 } else {
                     System.out.println("Password is incorrect, please try again.");
