@@ -44,7 +44,7 @@ public class UniqueEndpointListTest {
     @Test
     public void contains_methodWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEndpointList.add(GET);
-        Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_RANDOM).withData("{key: value}")
+        Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_RANDOM).withData("{\"key\": \"value\"}")
                 .withHeaders("\"key: value\"").withTags(VALID_TAG_1, VALID_TAG_CAT).build();
         assertTrue(uniqueEndpointList.contains(editedGet));
     }

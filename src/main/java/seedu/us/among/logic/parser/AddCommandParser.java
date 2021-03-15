@@ -8,7 +8,6 @@ import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
@@ -38,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_HEADER,
                 PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_METHOD, PREFIX_ADDRESS)
+        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -58,14 +57,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         return new AddCommand(endpoint);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values
-     * in the given {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
