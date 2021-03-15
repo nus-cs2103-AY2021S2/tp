@@ -1,9 +1,8 @@
 package seedu.dictionote.logic.parser;
 
-import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_NOTE_FORMAT;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.dictionote.commons.core.index.Index;
-import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
@@ -13,8 +12,8 @@ import seedu.dictionote.logic.parser.exceptions.ParseException;
 public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteNoteCommand
+     * and returns a DeleteNoteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteNoteCommand parse(String args) throws ParseException {
@@ -23,7 +22,7 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
             return new DeleteNoteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_NOTE_FORMAT, DeleteContactCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteNoteCommand.MESSAGE_USAGE), pe);
         }
     }
 

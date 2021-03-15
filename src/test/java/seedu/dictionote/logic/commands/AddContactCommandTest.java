@@ -271,6 +271,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void showNote(Note target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Note> getFilteredNoteList() {
             throw new AssertionError("This method should not be called.");
         }
