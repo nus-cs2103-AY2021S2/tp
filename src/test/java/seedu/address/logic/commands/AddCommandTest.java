@@ -130,11 +130,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasSchedule(Schedule schedule) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -156,6 +151,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSchedule(Schedule toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSchedule(Schedule toAdd) {
             throw new AssertionError("This method should not be called.");
         }
 

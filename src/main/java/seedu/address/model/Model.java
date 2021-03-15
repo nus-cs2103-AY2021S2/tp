@@ -89,6 +89,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void addSchedule(Schedule toAdd);
+
     /**
      * Returns true if a schedule with the same identity as {@code schedule} exists in the address book.
      */
