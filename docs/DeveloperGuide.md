@@ -290,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User indicates that they will be adding a delivery entry.
-2.  Delivery App requests for details of the delivery entry.    
+2.  Delivery App requests for details of the delivery entry.
 3.  User enters the delivery entry to be added to the list.
 4.  Delivery App adds the delivery entry to the list and informs the User.
 
@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The delivery entry to be added has an invalid format.   
+* 3a. The delivery entry to be added has an invalid format.
     * 3a1. Delivery App requests for a valid delivery entry.
     * 3a2. User enters new delivery entry details.
       
@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3b. The delivery entry to be added already exists in the list.
     * 3b1. Delivery App informs the User of the duplicate.
-      
+
     Use case ends.
 
 **Software System: Delivery App**
@@ -334,15 +334,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The list is empty.
     * 1a1. Delivery App informs the User that the list is empty.
-      
+
     Use case ends.
 
 * 3a. The number of the delivery entry is invalid.
     * 3a1. Delivery App requests for a valid entry number.
     * 3a2. User enters new entry number.
-    
+
     Steps 3a1-3a2 are repeated until the valid entry number is entered.
-    
+
     Use case resumes from step 4.
 
 **Software System: Delivery App**
@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Delivery App informs the User that the list is empty.
 
   Use case ends.
-  
+
 * 3a. The number of the delivery entry is invalid.
     * 3a1. Delivery App requests for a valid entry number.
     * 3a2. User enters new entry number.
@@ -521,9 +521,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The list is empty.
     * 1a1. Delivery App informs the User that the list is empty.
-    
+  
   Use case ends.
-    
+
 * 1b. There are more than 1 delivery entry with the same urgency.
     * 1b1. Delivery App ranks them based on timing then alphabetical order.
 
@@ -897,7 +897,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Delivery App shows samples of delivery entries.
 
     Use case ends.
-      
+
 *{More to be added}*
 
 ### Non-Functional Requirements

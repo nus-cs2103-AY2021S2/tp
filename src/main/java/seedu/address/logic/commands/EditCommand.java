@@ -20,12 +20,14 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Done;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -99,8 +101,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Remark updatedRemark = personToEdit.getRemark();
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
+        Done updatedDone = editPersonDescriptor.getDone().orElse(personToEdit.getDone());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedRemark, updatedTags, updatedDone);
     }
 
     @Override
@@ -130,6 +134,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Remark remark;
+        private Done done;
 
         public EditPersonDescriptor() {}
 
@@ -143,6 +149,8 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setRemark(toCopy.remark);
+            setDone(toCopy.done);
         }
 
         /**
@@ -184,6 +192,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
+        public void setDone(Done done) {
+            this.done = done;
+        }
+
+        public Optional<Done> getDone() {
+            return Optional.ofNullable(done);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -220,7 +244,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getDone().equals(e.getDone());
         }
     }
 }
