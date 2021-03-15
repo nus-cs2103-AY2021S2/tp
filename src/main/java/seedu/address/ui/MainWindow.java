@@ -8,11 +8,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -59,6 +57,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
+    private VBox container;
+
+    @FXML
     private GridPane dataDisplayContainer;
 
     /**
@@ -78,15 +79,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        for (int i = 0; i < 2; i++) {
-            ColumnConstraints cc = new ColumnConstraints();
-            cc.setPercentWidth(100.0 / 2.0);
-            cc.setHgrow(Priority.ALWAYS);
-            dataDisplayContainer.getColumnConstraints().add(cc);
-        }
-        RowConstraints rc = new RowConstraints();
-        rc.setVgrow(Priority.ALWAYS);
-        dataDisplayContainer.getRowConstraints().add(rc);
+        dataDisplayContainer.prefHeightProperty().bind(container.heightProperty());
     }
 
     public Stage getPrimaryStage() {
