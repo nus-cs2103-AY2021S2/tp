@@ -190,11 +190,6 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public boolean hasEditConflictingAppointment(Appointment appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
         }

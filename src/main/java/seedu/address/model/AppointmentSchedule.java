@@ -68,15 +68,6 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     }
 
     /**
-     * Returns true if an appointment with the same identity as {@code appointment} exists
-     * in the appointment schedule.
-     */
-    public boolean hasEditAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-        return appointments.editContains(appointment);
-    }
-
-    /**
      * Returns true if an appointment has a conflict with {@code appointment} exists
      * in the appointment schedule.
      */
