@@ -62,9 +62,8 @@ public class DoneCommand extends Command {
      * Creates and returns a {@code Task} which retains all the values of the previous attributes
      * from {@code taskToBeDone} but only updating the Status attribute from 'not done' to 'done.
      */
-    private static Task setTaskStatusAsDone(Task taskToBeDone) {
+    public static Task setTaskStatusAsDone(Task taskToBeDone) {
         assert taskToBeDone != null;
-        assert !taskToBeDone.getStatus().equals("done");
 
         Title previousTitle = taskToBeDone.getTitle();
         Deadline previousDeadline = taskToBeDone.getDeadline();
@@ -75,5 +74,12 @@ public class DoneCommand extends Command {
 
         return new Task(previousTitle, previousDeadline, previousEmail, previousDescription,
                 doneStatus, previousTags);
+    }
+
+    @Override
+    public boolean equals(Object otherCommand) {
+        if (otherCommand == this) { return true; }
+
+        return otherCommand instanceof DoneCommand && index.equals(((DoneCommand) otherCommand).index);
     }
  }

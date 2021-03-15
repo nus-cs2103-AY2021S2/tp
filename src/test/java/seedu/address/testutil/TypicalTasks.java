@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
@@ -25,11 +27,11 @@ public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withTitle("Assignment 79")
             .withDescription("Build the next Google").withEmail("alice@example.com")
-            .withDeadline("94351253")
+            .withDeadline("94351253").withStatus("done")
             .withTags("priorities").build();
     public static final Task BENSON = new TaskBuilder().withTitle("Build a gaming PC")
             .withDescription("buy: coffee, 3080, 40-inch monitor")
-            .withEmail("johnd@example.com").withDeadline("98765432")
+            .withEmail("johnd@example.com").withDeadline("98765432").withStatus("not done")
             .withTags("findMoney", "priorities").build();
     public static final Task CARL = new TaskBuilder().withTitle("Countdown to finals").withDeadline("95352563")
             .withEmail("heinz@example.com").withDescription("aiken doeet").build();
@@ -50,9 +52,10 @@ public class TypicalTasks {
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDeadline(VALID_DEADLINE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withDescription(VALID_DESCRIPTION_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withDescription(VALID_DESCRIPTION_AMY)
+            .withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Task BOB = new TaskBuilder().withTitle(VALID_TITLE_BOB).withDeadline(VALID_DEADLINE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withDescription(VALID_DESCRIPTION_BOB)
+            .withEmail(VALID_EMAIL_BOB).withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
