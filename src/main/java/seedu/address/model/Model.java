@@ -84,10 +84,6 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();
 
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
-
-    void updateFilteredAppointmentList(int index);
-
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -124,5 +120,7 @@ public interface Model {
     void updateFilteredAppointmentList(Predicate<Person> predicate);
 
     void updateFilteredAppointmentList(int index);
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
     void updateFilteredAppointmentListByName(Predicate<Person> predicate);
+
 }

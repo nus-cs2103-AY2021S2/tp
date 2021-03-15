@@ -173,24 +173,16 @@ public class ModelManager implements Model {
      * @return True if appointment is already in appointment list
      */
     @Override
-    public void updateFilteredAppointmentListByName(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        updateFilteredAppointmentList(getEmailPredicate(predicate));
-    }
-
-    @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointment.setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredAppointmentList(int index) {
-        requireAllNonNull(index);
-        Appointment appt = filteredAppointment.get(index);
-        filteredAppointment.setPredicate(appointment -> appointment.equals(appt));
+    public void updateFilteredAppointmentListByName(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        updateFilteredAppointmentList(getEmailPredicate(predicate));
     }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
