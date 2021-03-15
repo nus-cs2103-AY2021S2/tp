@@ -58,4 +58,5 @@ public class AddIssueCommand extends Command {
                 || (other instanceof AddIssueCommand // instanceof handles nulls
                         && toAdd.equals(((AddIssueCommand) other).toAdd));
     }
+
 }

@@ -195,7 +195,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code category} is invalid.
      */
     public static Category parseCategory(String category) throws ParseException {
-        requireNonNull(category);
+        if (category == null) {
+            return null;
+        }
+
         String trimmedCategory = category.trim();
         if (!Category.isValidCategory(trimmedCategory)) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);

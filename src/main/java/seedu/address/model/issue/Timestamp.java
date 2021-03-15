@@ -19,10 +19,17 @@ public class Timestamp {
      * The first character of the timestamp must not be a whitespace, otherwise " "
      * (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}";
-    public static final String TIMESTAMP_PATTERN = "YYYY-MM-DD HH:mm";
+    public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
+    public static final String TIMESTAMP_PATTERN = "yyyy-MM-dd HH:mm";
 
     public final LocalDateTime value;
+
+    /**
+     * Constructs a {@code Timestamp}.
+     */
+    public Timestamp() {
+        value = LocalDateTime.now();
+    }
 
     /**
      * Constructs a {@code Timestamp}.

@@ -14,6 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.issue.Category;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueStatus;
 import seedu.address.model.issue.RoomNumber;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Timestamp;
@@ -40,9 +41,12 @@ public class AddIssueCommandParser implements Parser<AddIssueCommand> {
 
         RoomNumber roomNumber = ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NO).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Timestamp timestamp = ParserUtil.parseTimestamp(argMultimap.getValue(PREFIX_TIMESTAMP).get());
-        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+        Timestamp timestamp = ParserUtil
+                .parseTimestamp(argMultimap.getValue(PREFIX_TIMESTAMP).orElse(new Timestamp().toString()));
+        Status status = ParserUtil
+                .parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse(IssueStatus.Pending.toString()));
+        Category category = ParserUtil
+                .parseCategory(argMultimap.getValue(PREFIX_CATEGORY).orElse(Category.NO_CATEGORY_NAME));
 
         Issue issue = new Issue(roomNumber, description, timestamp, status, category);
 

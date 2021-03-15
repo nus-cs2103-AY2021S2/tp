@@ -11,6 +11,8 @@ public class Category {
 
     public static final String MESSAGE_CONSTRAINTS = "Categories should only contain alphanumeric "
             + "characters and spaces, and it should not be blank";
+    public static final String NO_CATEGORY_NAME = "No category";
+    public static final Category NO_CATEGORY = new Category(NO_CATEGORY_NAME);
 
     /*
      * The first character of the category must not be a whitespace, otherwise " "
