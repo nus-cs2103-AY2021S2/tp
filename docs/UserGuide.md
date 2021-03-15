@@ -31,11 +31,11 @@ test your APIs more conveniently than traditional GUI applications.
 
    - **`help`** : Opens a help window that shows a link for the application's user guide.
 
-   - **`add -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Adds an API endpoint to the
-     API endpoint list.
+   - **`add -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Adds an API endpoint to the API endpoint list.
 
-   - **`edit 1 -x -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the
-     API endpoint list.
+   - **`edit 1 -x -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the API endpoint list.
+
+   - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
 
    - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
 
@@ -43,15 +43,15 @@ test your APIs more conveniently than traditional GUI applications.
 
    - **`find pm25`** : Finds all the API endpoints with fields containing `pm25`.
 
-   - **`send 2`** : Calls the API endpoint with index `2` shown in the API
-     endpoint list.
+   - **`send 2`** : Calls the API endpoint with index `2` shown in the API endpoint list.
 
-   - **`run -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Calls the API endpoint with information 
-     given in the command box.
+   - **`run -x GET -u https://api.data.gov.sg/v1/environment/pm25`** : Calls the API endpoint with information given in the command box.
 
    - **`list`** : Lists all API endpoints in the API endpoint list.
 
    - **`clear`** : Clears all API endpoints in the API endpoint list.
+
+   - **`toggle light`** : Toggles the theme of the application to one of the presets.
 
    - **`exit`** : Exits the application.
 
@@ -72,20 +72,13 @@ test your APIs more conveniently than traditional GUI applications.
   `edit INDEX [-x METHOD] [-u URL]` can be used as `edit 1 -x GET` or
   `edit 1 -u https://api.data.gov.sg/v1/environment/pm25`.
 
-- Items with `…`​ after them can be used multiple times including zero
-  times.<br> e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as
-  `find KEYWORD1` or `find KEYWORD1 KEYWORD2 KEYWORD3`.
+- Items with `…`​ after them can be used multiple times including zero times.<br> e.g. `find [KEYWORD 1] [KEYWORD 2]…​` can be used as `find KEYWORD1` or `find KEYWORD1 KEYWORD2 KEYWORD3`.
 
-- Parameters can be in any order.<br> e.g. if the command specifies
-  `-x METHOD -u URL`, `-u URL -x METHOD` is also acceptable.
+- Parameters can be in any order.<br> e.g. both `-x METHOD -u URL` and `-u URL -x METHOD` are acceptable.
 
-- If a parameter is expected only once in the command but you specified it
-  multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `-x GET -x POST`, only `-x POST` will be taken.
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br> e.g. if you specify `-x GET -x POST`, only `-x POST` will be taken.
 
-- Extraneous parameters for commands that do not take in parameters (such as
-  `help`, `list`, `exit` and `clear`) will be ignored.<br> e.g. if the command
-  specifies `help 123`, it will be interpreted as `help`.
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br> e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -98,7 +91,14 @@ Description: Get the link to the user guide to the application in the form of a 
 Format: `help`
 
 ![help message](images/helpMessage.png)
+#### Toggle theme: `toggle`
 
+Description: Exit the application.
+
+Format: `toggle THEME`
+
+Example:
+- `toggle light`
 #### Exit program: `exit`
 
 Description: Exit the application.
@@ -111,23 +111,41 @@ Format: `exit`
 
 Description: Add an API endpoint to the API endpoint list.
 
-Format: `add -x METHOD -u URL -t TAG`
+Format: `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…`
+
+`DATA` must be in **JSON** format and `HEADER` must be enclosed in `" "` else an error message will be shown.
 
 Examples:
+- `add -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value1" -h "key: value2" -t local -t data`
 - `add -x GET -u https://api.data.gov.sg/v1/environment/pm25`
-- `add -x GET -u https://api.data.gov.sg/v1/environment/pm25 -t important`
 
-**Tip:** An endpoint can have any number of tags (including 0)
+**Tip:** An endpoint can have any number of **unique** tags and headers (including 0).
+
+**Tip 2:** An endpoint can only have 0 or 1 data.
 
 #### Edit an API endpoint: `edit`
 
 Description: Edit the API endpoint at the specified index shown in the API endpoint list (at least one optional argument must be provided).
 
-Format: `edit INDEX [-x METHOD] [-u URL] [-t TAG]…`
+Format: `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`
 
 Examples:
-- `edit 1 -u https://api.data.gov.sg/v1/environment/pm25`
+- `edit 1 -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value" -h "key: value" -t local -t data`
 - `edit 2 -x POST`
+- `edit 3 -x GET -t fresh -t food`
+
+**Tip:** Multiple tags must be unique and duplicates will be ignored.
+
+#### Show an API endpoint: `show`
+
+Description: Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
+be a positive integer).
+
+Format: `show INDEX`
+
+Examples:
+- `show 1`
+- `show 3`
 
 #### Show an API endpoint: `show`
 
@@ -151,9 +169,9 @@ Examples:
 
 #### Find a saved API endpoint: `find`
 
-Description: Find API routes containing the search word in any of its fields.
+Description: Find API routes containing the search word in any of its fields except for URL.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]…`
 
 Examples:
 
@@ -186,12 +204,12 @@ Examples:
 
 Description: Call an API endpoint on the fly (without saving).
 
-Format: `run -x METHOD -u URL`
+Format: `run -x METHOD -u URL [-d DATA] [-h HEADER]…`
 
 Examples:
 
 - `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`
-- `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index`
+- `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"`
 
 ### Miscellaneous Information
 
@@ -236,13 +254,12 @@ with the file that contains the data of your previous imPoster home folder.
 
 | Action     | Format                                | Example                                |
 | ---------- | ------------------------------------- | -------------------------------------- |
-| **Add**    | `add -x METHOD -u URL [t/TAG]…` <br>  | `add -x GET -u https://api.data.gov.sg/v1/environment/pm25` |
-| **Edit**   | `edit INDEX [-x METHOD] [-u URL] [t/TAG]`<br> | `edit 1 -u https://api.data.gov.sg/v1/environment/pm25` |
+| **Add**    | `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…` <br>  | `add -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value1" -h "key: value2" -t local -t data` |
+| **Edit**   | `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`<br> | `edit 1 -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value" -h "key: value" -t local -t data` |
 | **Show**   | `show INDEX`<br>                      | `show 1`                             |
 | **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br>  | `find maps`                            |
 | **List**   | `list`                                | `list`                                 |
 | **Clear**  | `clear`                               | `clear`                                |
 | **Send**   | `send INDEX` <br>                     | `send 1`                               |
-| **Run**    | `run -x METHOD -u URL` <br>           | `run -x GET -u https://api.data.gov.sg/v1/environment/pm25`  |
-
+| **Run**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…`  | `run -x GET -u https://api.data.gov.sg/v1/environment/uv-index -d {"some": "data"} -h "key: value"` |
