@@ -7,6 +7,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContactAtIndex;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
@@ -18,6 +19,7 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
@@ -34,7 +36,8 @@ public class EmailContactCommandTest {
             getTypicalAddressBook(),
             new UserPrefs(),
             getTypicalNoteBook(),
-            getTypicalDictionary()
+            getTypicalDictionary(),
+            getTypicalDefinitionBook()
     );
 
     @Test
@@ -48,7 +51,8 @@ public class EmailContactCommandTest {
                 model.getAddressBook(),
                 new UserPrefs(),
                 getTypicalNoteBook(),
-                getTypicalDictionary()
+                getTypicalDictionary(),
+                getTypicalDefinitionBook()
         );
 
         expectedModel.emailContact(contactToEmail);
@@ -77,7 +81,8 @@ public class EmailContactCommandTest {
                 model.getAddressBook(),
                 new UserPrefs(),
                 getTypicalNoteBook(),
-                getTypicalDictionary()
+                getTypicalDictionary(),
+                getTypicalDefinitionBook()
         );
 
         expectedModel.emailContact(contactToEmail);
@@ -127,8 +132,9 @@ public class EmailContactCommandTest {
      */
     private static class ModelManagerStub extends ModelManager {
         public ModelManagerStub(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                                ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary) {
-            super(addressBook, userPrefs, noteBook, dictionary);
+                                ReadOnlyNoteBook noteBook, ReadOnlyDictionary dictionary,
+                                ReadOnlyDefinitionBook definitionBook) {
+            super(addressBook, userPrefs, noteBook, dictionary, definitionBook);
         }
 
         @Override

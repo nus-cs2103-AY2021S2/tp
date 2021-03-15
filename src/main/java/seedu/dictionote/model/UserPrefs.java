@@ -17,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path noteBookFilePath = Paths.get("data" , "notebook.json");
     private Path dictionaryFilePath = Paths.get("data", "dictionarybook.json");
+    private Path definitionBookFilePath = Paths.get("data", "definitionbook.json");
     private final String localPath = "\nLocal data file location : ";
 
     /**
@@ -41,6 +42,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setNoteBookFilePath(newUserPrefs.getNoteBookFilePath());
         setDictionaryFilePath(newUserPrefs.getDictionaryFilePath());
+        setDefinitionBookFilePath(newUserPrefs.getDefinitionBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -79,6 +81,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.dictionaryFilePath = dictionaryFilePath;
     }
 
+    public Path getDefinitionBookFilePath() {
+        return definitionBookFilePath;
+    }
+
+    public void setDefinitionBookFilePath(Path definitionBookFilePath) {
+        requireNonNull(definitionBookFilePath);
+        this.definitionBookFilePath = definitionBookFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -93,12 +104,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
                 && noteBookFilePath.equals(o.noteBookFilePath)
-                && dictionaryFilePath.equals(o.dictionaryFilePath);
+                && dictionaryFilePath.equals(o.dictionaryFilePath)
+                && definitionBookFilePath.equals(o.definitionBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, noteBookFilePath, dictionaryFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, noteBookFilePath,
+                dictionaryFilePath, definitionBookFilePath);
     }
 
     @Override
@@ -108,6 +121,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append(localPath + addressBookFilePath);
         sb.append(localPath + noteBookFilePath);
         sb.append(localPath + dictionaryFilePath);
+        sb.append(localPath + definitionBookFilePath);
         return sb.toString();
     }
 

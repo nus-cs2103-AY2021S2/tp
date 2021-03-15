@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
@@ -24,7 +25,7 @@ import seedu.dictionote.model.UserPrefs;
 public class MarkAsDoneNoteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalNoteBook(), getTypicalDictionary());
+            getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {

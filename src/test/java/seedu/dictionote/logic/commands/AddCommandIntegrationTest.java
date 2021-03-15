@@ -4,6 +4,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailu
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
+import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +26,7 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary());
+                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
     }
 
     @Test
@@ -33,7 +34,7 @@ public class AddCommandIntegrationTest {
         Contact validContact = new ContactBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary());
+                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.addContact(validContact);
 
         assertCommandSuccess(new AddContactCommand(validContact), model,

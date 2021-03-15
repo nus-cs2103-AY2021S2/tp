@@ -10,6 +10,7 @@ import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.note.Note;
 
 
@@ -41,6 +42,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of content */
     ObservableList<Content> getFilteredContentList();
+
+    /** Returns an unmodifiable view of the filtered list of definitions */
+    ObservableList<Definition> getFilteredDefinitionList();
 
 
     /**
