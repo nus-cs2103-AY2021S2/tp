@@ -82,7 +82,7 @@ public class AddModuleCommand extends Command{
      * @param informationOfModules The array of module information to search for a module in.
      * @return True if the given module code is found in the JsonModule array and false otherwise.
      */
-    private Module findMatchingModule(JsonModule[] informationOfModules, String moduleCode) {
+    private Module findMatchingModule (JsonModule[] informationOfModules, String moduleCode) {
         for (int i = 0; i < informationOfModules.length; i++) {
             if (informationOfModules[i].getModuleCode().equals(moduleCode)) {
                 // TODO: Change this line so that it returns the module that was found
