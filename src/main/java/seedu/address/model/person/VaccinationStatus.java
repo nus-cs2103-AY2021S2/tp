@@ -3,16 +3,20 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 public class VaccinationStatus {
 
-    public enum VacStatusEnum {
+    public enum VaccinationStatusAbbreviation {
         VACCINATED, NOT_VACCINATED
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Vaccination status should only be of the format 'vaccinated' "
             + "or 'not vaccinated' ";
 
-    public final VacStatusEnum status; // enum for Vaccination status
+    public final VaccinationStatusAbbreviation status; // enum for Vaccination status
     public final String textUI; // string to display on the GUI
 
     /**
@@ -24,10 +28,10 @@ public class VaccinationStatus {
         requireNonNull(vaccinationStatus);
         checkArgument(isValidStatus(vaccinationStatus), MESSAGE_CONSTRAINTS);
         if (vaccinationStatus.equals("vaccinated")) {
-            status = VacStatusEnum.VACCINATED;
+            status = VaccinationStatusAbbreviation.VACCINATED;
             textUI = vaccinationStatus;
         } else {
-            status = VacStatusEnum.NOT_VACCINATED;
+            status = VaccinationStatusAbbreviation.NOT_VACCINATED;
             textUI = vaccinationStatus;
         }
     }
@@ -41,12 +45,18 @@ public class VaccinationStatus {
     public static boolean isValidStatus(String test) {
         test = test.replaceAll(" ", "_").toUpperCase();
         try {
-            boolean result = VacStatusEnum.valueOf(test) == VacStatusEnum.NOT_VACCINATED
-                    || VacStatusEnum.valueOf(test) == VacStatusEnum.VACCINATED;
+            boolean result = VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.NOT_VACCINATED
+                    || VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.VACCINATED;
             return result;
         } catch (IllegalArgumentException e) {
             return false;
         }
+    }
+
+    public static List<String> getVaccinationStatusAbbreviation() {
+        String[] statusArray = Stream.of(VaccinationStatus.VaccinationStatusAbbreviation.values())
+                .map(VaccinationStatus.VaccinationStatusAbbreviation::name).toArray(String[]::new);
+        return Arrays.asList(statusArray);
     }
 
     @Override
