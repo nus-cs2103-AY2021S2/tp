@@ -19,7 +19,7 @@ public class ShowCAPCommand extends ShowCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Plan currentPlan = model.getCurrentPlan();
+        Plan currentPlan = model.getMasterPlan();
         double currentCAP = currentPlan.getCurrentCAP();
         return new CommandResult(String.format(MESSAGE_SUCCESS_CAP, currentCAP));
     }

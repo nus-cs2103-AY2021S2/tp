@@ -50,6 +50,10 @@ public class Module {
         return grade;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
     /**
      * Custom method to compare modules.
      * @param otherModule The module to compare to.

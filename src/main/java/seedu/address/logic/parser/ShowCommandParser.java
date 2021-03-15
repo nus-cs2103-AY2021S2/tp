@@ -21,16 +21,14 @@ public class ShowCommandParser implements Parser<ShowCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ShowCommand parse(String args) throws ParseException {
+        String strippedArgs = args.strip();
         ShowCommand showCommand;
 
-        switch (args) {
-        case MCS:
+        if (strippedArgs.equals(MCS)) {
             showCommand = new ShowMCCommand();
-            break;
-        case CAP:
+        } else if (strippedArgs.equals(CAP)) {
             showCommand = new ShowCAPCommand();
-            break;
-        default:
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.MESSAGE_USAGE));
         }
 

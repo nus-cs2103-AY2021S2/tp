@@ -18,7 +18,7 @@ public abstract class ShowCommand extends Command {
             + "Parameters: mcs | cap";
 
     public static final String MESSAGE_SUCCESS_MCS = "Current MCs this semester: %1$d";
-    public static final String MESSAGE_SUCCESS_CAP = "Current CAP is: %1$f";
+    public static final String MESSAGE_SUCCESS_CAP = "Current CAP is: %1$.2f";
 
 
     @Override
