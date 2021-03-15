@@ -113,74 +113,151 @@ Examples:
 * `close -a`
     * close all panel
 
-### Adding a person: `add`
+### Adding a contact: `addcontact`
 
-Adds a person to the address book.
+Adds a contact to the contacts list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A contact can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addcontact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addcontact n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all contacts : `listcontact`
 
-Shows a list of all persons in the address book.
+Shows a list of all contacts in the contacts list.
 
-Format: `list`
+Format: `listcontact`
 
-### Editing a person : `edit`
+### Editing a contact : `editcontact`
 
-Edits an existing person in the address book.
+Edits an existing contact in the contacts list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editcontact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contacts list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the contact will be removed (i.e., adding of tags is not cumulative).
+* You can remove all of the contact’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editcontact 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+*  `editcontact 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating contacts: `findcontact`
 
-Finds persons whose names contain any of the given keywords.
+Finds contacts whose names contain any of—or tags contain all of—the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findcontact [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g `n/hans` will match the name `Hans`
+* The order of the keywords does not matter. e.g. `n/Hans n/Bo` will match the name `Bo Hans`
+* Only the name and tags are searched.
+* Names and tags will be matched if they contain the given keywords e.g. `n/Han` will match the name `Hans`
+* Contacts matching at least one name keyword will be returned (i.e. `OR` search).
+  e.g. `n/Hans n/Bo` will return `Hans Gruber`, `Bo Yang`
+* Contacts matching all of the given tag keywords will be returned (i.e. `AND` search).
+  e.g. `t/friends` will return all contacts that are tagged with `Friends`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `findcontact n/John` returns `john` and `John Doe`
+* `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a contact : `deletecontact`
 
-Deletes the specified person from the address book.
+Deletes the specified contact from the contacts list.
 
-Format: `delete INDEX`
+Format: `deletecontact INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contacts list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Sending an email to a contact : `emailcontact`
+
+Opens a new window to send an email to the specified contact from the contacts list.
+
+Format: `emailcontact INDEX`
+
+* Opens a new message composition window with the *to* field containing the email address of the contact at the specified `INDEX`.
+* The application uses the user's default mailing application to provide email features.
+* The application **does not guarantee** the success of sending an email, as it is handled by the mailing application used.
+* The index refers to the index number shown in the displayed contacts list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
+* `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
+
+### Add a new note: `addnote`
+
+Adds a note equipped with some tags.
+
+Format: `addnote [c/CONTENT]... [t/TAG]...`
+
+* Tags are optional.
+* In the current version, notes will be stored as a pure string.
+
+Examples:
+* `addnote c/Do Homework`
+* `addnote c/Study for Midterms t/CS2103` 
+
+### Delete a new note: `deletenote`
+
+Deletes the specified note from the note list.
+
+Format: `deletenote [INDEX]`
+
+* Deletes the note at the specified `INDEX`.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Mark a note as done: `markasdonenote`
+
+Marks a note in a list as done.
+
+Format: `markasdonenote [INDEX]`
+
+* Marks the note at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* After execution, the affected note will be marked with a green tick.
+
+### Editing a note : `editnote`
+
+Edits an existing note in the note list.
+
+Format: `editnote INDEX [c/CONTENT] [t/TAG]…​`
+
+* Edits the note at the specified `INDEX`. The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the note will be removed (i.e., adding of tags is not cumulative).
+
+Examples:
+*  `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
+
+### Show a contact : `shownote`
+
+Showcases a note.
+
+Format: `shownote INDEX​`
+
+* Shows the note at the specified `INDEX`. The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
+
+### List all notes : `editnote`
+
+Lists every note on the note list.
+
+Format: `listnote​`
+
 
 
 ### Finding content in the Dictionary using keywords: `findcontent`
@@ -259,12 +336,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Close** | `close Option` <br> e.g., `close -c`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
+**Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
+**Find contacts** | `findcontact [n/NAME_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James t/family`
+**List all contacts** | `listcontact`
 **ListCommand** | `listcommand`
 **Help** | `help`
 **Open** | `open Option` <br> e.g., `open -c`
