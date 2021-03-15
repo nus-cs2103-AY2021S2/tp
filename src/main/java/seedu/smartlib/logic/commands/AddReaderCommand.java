@@ -39,7 +39,7 @@ public class AddReaderCommand extends Command {
     private final Reader toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Reader}
      */
     public AddReaderCommand(Reader reader) {
         requireNonNull(reader);
