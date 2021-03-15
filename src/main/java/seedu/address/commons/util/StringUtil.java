@@ -23,7 +23,7 @@ public class StringUtil {
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean sentenceContainsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
@@ -36,6 +36,31 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case and a full word match is not required.
+     *   <br>examples:<pre>
+     *       containsPartWordIgnoreCase("ABc def", "abc") == true
+     *       containsPartWordIgnoreCase("ABc def", "DEF") == true
+     *       containsPartWordIgnoreCase("ABc def", "AB") == true
+     *       </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean sentenceContainsPartWordIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        preppedWord = preppedWord.toLowerCase();
+        String preppedSentence = sentence.toLowerCase();
+
+        return preppedSentence.contains(preppedWord);
     }
 
     /**
