@@ -21,8 +21,7 @@ public class LockCommand extends Command {
 
     public static final String MESSAGE_LOCK_SUCCESS_OLD_PASSWORD = "Locked ClientBook using your previous password.";
 
-    public static final String MESSAGE_LOCK_SUCCESS_UPDATE_PASSWORD = "ClientBook's password has been successfully "
-            + "updated.";
+    public static final String MESSAGE_LOCK_SUCCESS_UPDATE_PASSWORD = "Successfully updated the password.";
 
     public static final String MESSAGE_ALREADY_LOCKED_INCORRECT_PASSWORD = "ClientBook is already locked, please "
             + "enter the current password\nand a new password to change the password.";
@@ -85,7 +84,14 @@ public class LockCommand extends Command {
 
         //New password is entered, use this to lock the zip.
         setNewPassword(authentication);
-        return new CommandResult(MESSAGE_LOCK_SUCCESS_NEW_PASSWORD);
+
+        //Case of updating password, since current password and new password are present.
+        if (this.currentPassword.isPresent()) {
+            return new CommandResult(MESSAGE_LOCK_SUCCESS_UPDATE_PASSWORD);
+        //Case of a new lock without current password.
+        } else {
+            return new CommandResult(MESSAGE_LOCK_SUCCESS_NEW_PASSWORD);
+        }
 
     }
 
