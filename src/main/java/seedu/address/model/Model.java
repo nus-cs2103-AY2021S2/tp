@@ -9,6 +9,8 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 
+//TODO remove unused addressbook API
+
 /**
  * The API of the Model component.
  */
