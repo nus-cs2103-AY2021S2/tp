@@ -1,12 +1,14 @@
 package seedu.address.model.person;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Picture {
-    public static final String[] ACCEPTED_FILE_EXTENSIONS = { ".png", ".jpeg", ".jpg" };
+    public static final String[] ACCEPTED_FILE_EXTENSIONS = {".png", ".jpeg", ".jpg"};
     public static final String MESSAGE_ACCEPTED_FILE_EXTENSIONS = "Accepted file extensions: "
             + String.join(", ", ACCEPTED_FILE_EXTENSIONS);
 
@@ -19,14 +21,6 @@ public class Picture {
         this.filePath = filePath;
     }
 
-    public Path getFilePath() {
-        return filePath;
-    }
-
-    public String getAbsoluteFilePath() {
-        return filePath.toAbsolutePath().toString();
-    }
-
     /**
      * Checks if the given @{code str} is a valid file path to an image file
      */
@@ -37,6 +31,18 @@ public class Picture {
         } catch (ParseException pe) {
             return false;
         }
+    }
+
+    public Path getFilePath() {
+        return filePath;
+    }
+
+    public String getAbsoluteFilePath() {
+        return filePath.toAbsolutePath().toString();
+    }
+
+    public void deleteFile() throws IOException {
+        Files.delete(filePath);
     }
 
     @Override

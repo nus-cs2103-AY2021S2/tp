@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
@@ -41,8 +42,6 @@ public class AddPictureCommand extends Command {
         this.filePath = filePath;
     }
 
-
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -57,8 +56,13 @@ public class AddPictureCommand extends Command {
         ReadOnlyUserPrefs userPrefs = model.getUserPrefs();
         Path pictureDir = userPrefs.getPictureStorageDirPath();
 
-        if (personToEdit.getPicture().isPresent()) {
-            
+        Optional<Picture> oldPic = personToEdit.getPicture();
+        if (oldPic.isPresent()) {
+            try {
+                oldPic.get().deleteFile();
+            } catch (IOException e) {
+                throw new CommandException("Unable to delete old picture. Please try again.");
+            }
         }
 
         UUID uuid = UUID.randomUUID();
@@ -69,7 +73,7 @@ public class AddPictureCommand extends Command {
         try {
             FileUtil.copyFile(filePath, newFilePath);
         } catch (IOException e) {
-            throw new CommandException("Error copying file to picture storage directory. Please run the command again");
+            throw new CommandException("Error copying file to picture storage directory. Please try again.");
         }
 
         Picture picture = new Picture(newFilePath);

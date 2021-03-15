@@ -104,5 +104,4 @@ public class FileUtil {
         int lastIndexOf = fileName.lastIndexOf('.');
         return fileName.substring(lastIndexOf);
     }
-
 }
