@@ -143,8 +143,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (BrowserUtil.isBrowserAccessible() && BrowserUtil.isConnectedToInternet()) {
-            BrowserUtil.displayWebsite(HelpWindow.USERGUIDE_URL);
+        if (BrowserUtil.canOpenBrowser()) {
+            BrowserUtil.displayUserGuideWebsite();
         } else {
             helpWindow.displayUrl();
         }

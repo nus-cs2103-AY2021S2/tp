@@ -8,12 +8,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import seedu.storemando.ui.HelpWindow;
 
 /**
  * A container for Browser specific utility functions
  */
 public class BrowserUtil {
+
+    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-2.github.io/tp/UserGuide.html";
 
     /**
      * Checks if the user has a browser installed.
@@ -30,7 +31,7 @@ public class BrowserUtil {
      */
     public static boolean isConnectedToInternet() {
         try {
-            URL url = new URL(HelpWindow.USERGUIDE_URL);
+            URL url = new URL(USERGUIDE_URL);
             URLConnection connection = url.openConnection();
             connection.connect();
             return true;
@@ -42,15 +43,20 @@ public class BrowserUtil {
     /**
      * Opens the specified url in user's browser.
      *
-     * @param url link of the website to visit.
      */
-    public static void displayWebsite(String url) {
+    public static void displayUserGuideWebsite() {
         try {
-            Desktop.getDesktop().browse(new URI(url));
+            Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
         } catch (IOException | URISyntaxException e) {
             //This exceptions will only be raised when the supplied url is invalid.
         }
     }
 
+    /** Checks if the desktop is supported and there is internet connection.
+     *
+     */
+    public static boolean canOpenBrowser(){
+        return isBrowserAccessible() && isConnectedToInternet();
+    }
 
 }
