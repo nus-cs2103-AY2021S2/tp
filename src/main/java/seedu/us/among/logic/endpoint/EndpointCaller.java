@@ -46,7 +46,7 @@ public class EndpointCaller {
             response = new DeleteRequest(endpointToSend).send();
             break;
         case HEAD:
-            //to-do
+            response = new HeadRequest(endpointToSend).send();
             break;
         case OPTIONS:
             //to-do
