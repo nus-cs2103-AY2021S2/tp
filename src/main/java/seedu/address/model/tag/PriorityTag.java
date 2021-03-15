@@ -11,6 +11,7 @@ public class PriorityTag {
 
     /**
      * Enum class for the 3 priority types
+     * LOW, MEDIUM AND HIGH
      *
      */
     public enum PriorityTagStatus {
