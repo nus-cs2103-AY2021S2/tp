@@ -233,8 +233,8 @@ public class ModelManager implements Model {
         }
 
         if (currentSemesterNumber <= 0 || currentSemesterNumber > maxSemesterNumber) {
-            String semNumOutOfBounds = "The argument provided to current semester must be between 1 and " +
-                    maxSemesterNumber;
+            String semNumOutOfBounds = "The argument provided to current semester must be between 1 and "
+                    + maxSemesterNumber;
             throw new CommandException(semNumOutOfBounds);
         }
 

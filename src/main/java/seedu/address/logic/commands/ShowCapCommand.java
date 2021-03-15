@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.plan.Plan;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Concrete implementation of ShowCommand to show CAP.
@@ -15,17 +16,17 @@ import static java.util.Objects.requireNonNull;
  * The CAP is calculated by taking a weighted average of each grade the user got,
  * weighted by the number of MCs the module is worth.
  */
-public class ShowCAPCommand extends ShowCommand {
+public class ShowCapCommand extends ShowCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Plan currentPlan = model.getMasterPlan();
-        double currentCAP = currentPlan.getCurrentCAP();
-        return new CommandResult(String.format(MESSAGE_SUCCESS_CAP, currentCAP));
+        double currentCap = currentPlan.getCurrentCap();
+        return new CommandResult(String.format(MESSAGE_SUCCESS_CAP, currentCap));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this || other instanceof ShowCAPCommand;
+        return other == this || other instanceof ShowCapCommand;
     }
 }

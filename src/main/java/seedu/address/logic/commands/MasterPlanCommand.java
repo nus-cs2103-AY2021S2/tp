@@ -2,13 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.plan.Plan;
 
-import java.util.List;
 
 /**
  * Marks a Semester as the current semester.
@@ -17,8 +18,8 @@ public class MasterPlanCommand extends Command {
 
     public static final String COMMAND_WORD = "master";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "p/PLAN_NUMBER\n: " +
-            "Marks the supplied plan as the master one.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "p/PLAN_NUMBER\n: "
+            + "Marks the supplied plan as the master one.";
 
     public static final String MESSAGE_SUCCESS = "Successfully marked plan as master: %1$d";
 
@@ -44,7 +45,7 @@ public class MasterPlanCommand extends Command {
 
         Plan masterPlan;
         try {
-             masterPlan = lastShownList.get(masterPlanIndex.getZeroBased());
+            masterPlan = lastShownList.get(masterPlanIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("Set a new Master Plan as the old one is no longer valid.");
         }

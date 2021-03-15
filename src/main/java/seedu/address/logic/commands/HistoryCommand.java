@@ -13,10 +13,10 @@ public class HistoryCommand extends Command {
 
     public static final String COMMAND_WORD = "history";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the user a list of modules that they " +
-            "have completed up until before the current semester. " +
-            "\nNote that the current semester is the semester that was " +
-            "marked using the `semester current` command.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the user a list of modules that they "
+            + "have completed up until before the current semester. "
+            + "\nNote that the current semester is the semester that was "
+            + "marked using the `semester current` command.";
 
     public static final String MESSAGE_SUCCESS = "History: %1$s";
 

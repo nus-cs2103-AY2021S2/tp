@@ -174,27 +174,27 @@ public class Plan {
         return builder.toString();
     }
 
-    public double getCurrentCAP() {
-        int totalMCs = 0;
-        double undividedCAP = 0;
+    public double getCurrentCap() {
+        int totalMcs = 0;
+        double undividedCap = 0;
         for (Semester semester : getSemesters()) {
             for (Module module : semester.getModules()) {
                 if (!module.isDone()) {
                     continue;
                 }
                 int moduleMC = module.getMCs();
-                double multipliedCAP = moduleMC * module.convertGradeToCap();
-                undividedCAP += multipliedCAP;
-                totalMCs += moduleMC;
+                double multipliedCap = moduleMC * module.convertGradeToCap();
+                undividedCap += multipliedCap;
+                totalMcs += moduleMC;
             }
         }
 
         // Guard clause for if the user has not done any modules
-        if (totalMCs == 0) {
+        if (totalMcs == 0) {
             return 0;
         }
 
-        double CAP = undividedCAP / totalMCs;
-        return CAP;
+        double cap = undividedCap / totalMcs;
+        return cap;
     }
 }

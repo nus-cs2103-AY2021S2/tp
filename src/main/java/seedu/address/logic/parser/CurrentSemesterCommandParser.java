@@ -24,7 +24,8 @@ public class CurrentSemesterCommandParser implements Parser<CurrentSemesterComma
 
         if (!arePrefixesPresent(argMultimap, PREFIX_SEM_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CurrentSemesterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CurrentSemesterCommand.MESSAGE_USAGE));
         }
 
         int currentSemesterNumber = Integer.valueOf(argMultimap.getValue(PREFIX_SEM_NUMBER).get());

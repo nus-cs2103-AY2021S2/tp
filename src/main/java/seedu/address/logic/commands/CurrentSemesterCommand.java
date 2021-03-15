@@ -14,8 +14,8 @@ public class CurrentSemesterCommand extends Command {
 
     public static final String COMMAND_WORD = "current";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "s/SEM_NUMBER\n: " +
-            "Marks the supplied semester as the current one.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "s/SEM_NUMBER\n: "
+            + "Marks the supplied semester as the current one.";
 
     public static final String MESSAGE_SUCCESS = "Successfully marked current semester: %1$d";
 
@@ -42,8 +42,8 @@ public class CurrentSemesterCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_SUCCESS, currentSemesterNumber));
             }
         }
-        throw new CommandException("The provided SEM_NUMBER does not match any existing semesters in the " +
-                "master plan.");
+        throw new CommandException("The provided SEM_NUMBER does not match any existing semesters in the "
+                + "master plan.");
     }
 
     @Override

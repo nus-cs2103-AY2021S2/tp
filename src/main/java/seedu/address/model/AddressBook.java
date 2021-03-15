@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.logic.parser.Parser;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.UniquePersonList;
 import seedu.address.storage.JsonModule;
