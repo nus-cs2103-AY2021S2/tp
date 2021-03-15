@@ -12,8 +12,7 @@ import seedu.dictionote.model.UserPrefs;
 /**
  * A class to access UserPrefs stored in the hard disk as a json file
  */
-public class
-JsonUserPrefsStorage implements UserPrefsStorage {
+public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     private Path filePath;
 

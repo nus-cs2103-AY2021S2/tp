@@ -67,6 +67,10 @@ public class Note {
         this.isDone = true;
     }
 
+    /**
+     * Constructor with the note and tag
+     */
+
     public Note(String note, Set<Tag> tags, LocalDateTime createdTime,
                  LocalDateTime lastEditTime, Boolean isDone) {
         requireAllNonNull(note, tags);
