@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.commons.core.LogsCenter;
+import seedu.storemando.commons.util.BrowserUtil;
 import seedu.storemando.logic.Logic;
 import seedu.storemando.logic.commands.CommandResult;
 import seedu.storemando.logic.commands.exceptions.CommandException;
@@ -146,14 +147,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens storemando's user guide on user's browser if user's desktop supports it.
+     * Otherwise, opens the help window or focuses on it if it's already opened.
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
+        if (BrowserUtil.canOpenBrowser()) {
+            BrowserUtil.displayUserGuideWebsite();
         } else {
-            helpWindow.focus();
+            helpWindow.displayUrl();
         }
     }
 

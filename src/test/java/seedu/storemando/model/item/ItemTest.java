@@ -60,6 +60,21 @@ public class ItemTest {
     }
 
     @Test
+    public void isExpiredItem() {
+        //Item with expired expiry date
+        Item editedAlice = new ItemBuilder(ALICE).withExpiryDate("2020-10-10").build();
+        assertTrue(editedAlice.isExpired());
+
+        //Item with non expired expiry date
+        Item editedBob = new ItemBuilder(BOB).withExpiryDate("2021-10-10").build();
+        assertFalse(editedBob.isExpired());
+
+        //Item with no expiry date
+        Item item = new ItemBuilder().withExpiryDate("No Expiry Date").build();
+        assertFalse(item.isExpired());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Item aliceCopy = new ItemBuilder(ALICE).build();

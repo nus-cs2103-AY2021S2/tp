@@ -11,5 +11,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_EXPIRYDATE = new Prefix("e/");
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_PARTIAL_NAME = new Prefix("*/");
 
 }
