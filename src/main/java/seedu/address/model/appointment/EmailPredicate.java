@@ -21,10 +21,7 @@ public class EmailPredicate implements Predicate<Appointment> {
 
     @Override
     public boolean test(Appointment appointment) {
-        return emails.stream().anyMatch(email -> {
-            System.out.println(email.value);
-            return email.equals(appointment.getEmail());
-        });
+        return emails.stream().anyMatch(email -> email.equals(appointment.getEmail()));
     }
 
     @Override

@@ -117,4 +117,6 @@ public interface Model {
 
 
     void updateFilteredAppointmentList(Predicate<Person> predicate);
+
+    void updateFilteredAppointmentList(int index);
 }

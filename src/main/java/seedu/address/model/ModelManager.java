@@ -14,6 +14,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.EmailPredicate;
 import seedu.address.model.person.Email;
 import seedu.address.model.appointment.Appointment;
@@ -177,35 +179,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasAppointment(Appointment appointment) {
-        return appointmentList.contains(appointment);
+    public void updateFilteredAppointmentList(int index) {
+        requireAllNonNull(index);
+        Appointment appt = filteredAppointment.get(index);
+        filteredAppointment.setPredicate(appointment -> appointment.equals(appt));
     }
-
-    /**
-     * @param appointment Appointment to add (appointment must not already exist)
-     */
-    @Override
-    public void addAppointment(Appointment appointment) {
-        appointmentList.add(appointment);
-    }
-
-    /**
-     * Removes appointment from appointment list.
-     * @param appointment Appointment to remove must be present
-     */
-    @Override
-    public void removeAppointment(Appointment appointment) {
-        appointmentList.remove(appointment);
-    }
-
-    /**
-     * Method that removes appointment based on index
-     * @param indexToRemove
-     */
-    public void removeAppointmentIndex(int indexToRemove) {
-        appointmentList.removeByIndex(indexToRemove);
-    }
-
 
     @Override
     public boolean equals(Object obj) {
