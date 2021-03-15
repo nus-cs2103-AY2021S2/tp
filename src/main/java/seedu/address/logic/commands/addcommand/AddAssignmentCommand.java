@@ -28,6 +28,8 @@ public class AddAssignmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the module";
+    public static final String MESSAGE_MODULE_NOT_FOUND = "Module for assignment has to be "
+            + "created first";
 
     private final Module target;
     private final Assignment toAdd;
@@ -45,6 +47,9 @@ public class AddAssignmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.hasModule(target)) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
         if (model.hasAssignment(target, toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }

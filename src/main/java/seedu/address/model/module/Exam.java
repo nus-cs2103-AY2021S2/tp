@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class Exam implements Comparable<Exam> {
     // todo change message constraints
     public static final String MESSAGE_CONSTRAINTS = "Exam names should be numerical and not "
-            + "empty. It should follow a DD/MM/YYYY HHMM";
+            + "empty. It should follow a valid DD/MM/YYYY HHMM";
     public static final String VALIDATION_REGEX = "^[0-9]{4}-[01-12]{2}-[00-31]{2}T[00-23]{2}:[00-59]{2}$";
     private static final DateTimeFormatter EXAM_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd"
             + "-MM-yyyy HH:mm");
