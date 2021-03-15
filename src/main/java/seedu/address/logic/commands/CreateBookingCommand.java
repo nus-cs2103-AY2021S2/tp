@@ -16,7 +16,7 @@ import seedu.address.model.venue.Venue;
 /**
  * Adds a person to the address book.
  */
-public class AddBookingCommand extends Command {
+public class CreateBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "create_booking";
 
@@ -45,9 +45,9 @@ public class AddBookingCommand extends Command {
     private final Person personInBooking;
 
     /**
-     * Creates an AddBookingCommand to add the specified {@code Booking}
+     * Creates an CreateBookingCommand to add the specified {@code Booking}
      */
-    public AddBookingCommand(Booking booking) {
+    public CreateBookingCommand(Booking booking) {
         requireNonNull(booking);
         toAdd = booking;
         venueInBooking = booking.getVenue();
@@ -83,7 +83,7 @@ public class AddBookingCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddBookingCommand // instanceof handles nulls
-                && toAdd.equals(((AddBookingCommand) other).toAdd));
+                || (other instanceof CreateBookingCommand // instanceof handles nulls
+                && toAdd.equals(((CreateBookingCommand) other).toAdd));
     }
 }

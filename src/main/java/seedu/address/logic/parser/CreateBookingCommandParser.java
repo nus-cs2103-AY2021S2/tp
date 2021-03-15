@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddBookingCommand;
+import seedu.address.logic.commands.CreateBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
@@ -19,15 +19,14 @@ import seedu.address.model.venue.Venue;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddBookingCommandParser implements Parser<AddBookingCommand> {
-
+public class CreateBookingCommandParser implements Parser<CreateBookingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddBookingCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddBookingCommand parse(String args) throws ParseException {
+    public CreateBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_BOOKER, PREFIX_VENUE,
                         PREFIX_DESCRIPTION, PREFIX_BOOKINGSTART, PREFIX_BOOKINGEND);
@@ -36,7 +35,7 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
                 PREFIX_DESCRIPTION, PREFIX_BOOKINGSTART, PREFIX_BOOKINGEND)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddBookingCommand.MESSAGE_USAGE));
+                    CreateBookingCommand.MESSAGE_USAGE));
         }
 
         Person booker = ParserUtil.parseBooker(argMultimap.getValue(PREFIX_BOOKER).get());
@@ -48,7 +47,7 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
         Booking booking = new Booking(booker, venue, description,
                 bookingStart, bookingEnd, Booking.getNewBookingId());
 
-        return new AddBookingCommand(booking);
+        return new CreateBookingCommand(booking);
     }
 
     /**

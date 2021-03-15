@@ -6,27 +6,27 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddVenueCommand;
+import seedu.address.logic.commands.CreateVenueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.venue.Venue;
 
 /**
  * Parses input arguments and creates a new AddVenue object
  */
-public class AddVenueParser {
+public class CreateVenueCommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddVenue
      * and returns an AddVenue object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddVenueCommand parse(String args) throws ParseException {
+    public CreateVenueCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CAPACITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CAPACITY)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVenueCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateVenueCommand.MESSAGE_USAGE));
         }
 
         String name = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_NAME).get());
@@ -34,7 +34,7 @@ public class AddVenueParser {
 
         Venue venue = new Venue(name, capacity);
 
-        return new AddVenueCommand(venue);
+        return new CreateVenueCommand(venue);
     }
 
     /**
