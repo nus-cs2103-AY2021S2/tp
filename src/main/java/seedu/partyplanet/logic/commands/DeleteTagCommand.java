@@ -73,6 +73,7 @@ public class DeleteTagCommand extends DeleteCommand {
                     person.getEmail(),
                     person.getBirthday(),
                     person.getAddress(),
+                    person.getRemark(),
                     tags);
 
             model.setPerson(person, editedPerson);

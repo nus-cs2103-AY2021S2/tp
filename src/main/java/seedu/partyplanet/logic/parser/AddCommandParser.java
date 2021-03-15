@@ -6,6 +6,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -19,6 +20,7 @@ import seedu.partyplanet.model.person.Email;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
+import seedu.partyplanet.model.person.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 /**
@@ -34,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_BIRTHDAY, PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_BIRTHDAY, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,9 +50,11 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).orElse(Birthday.EMPTY_BIRTHDAY_STRING));
         Address address =
                 ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(Address.EMPTY_ADDRESS_STRING));
+        Remark remark =
+            ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(Remark.EMPTY_REMARK_STRING));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, birthday, address, tagList);
+        Person person = new Person(name, phone, email, birthday, address, remark, tagList);
 
         return new AddCommand(person);
     }

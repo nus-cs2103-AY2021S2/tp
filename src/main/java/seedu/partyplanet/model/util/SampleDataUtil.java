@@ -12,6 +12,7 @@ import seedu.partyplanet.model.person.Email;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
+import seedu.partyplanet.model.person.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 /**
@@ -22,22 +23,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Birthday("1995-02-01"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                    new Remark("hates vegetables"), getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Birthday("1997-03-07"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                    new Remark("likes red"),getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Birthday("1998-05-20"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                    new Remark("hates pink"),getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Birthday("1999-11-21"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                    new Remark("loves meat"),getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Birthday("2000-08-23"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                    new Remark("hates blue"),getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Birthday("2002-10-27"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues")),
+                    new Remark("hates black"),getTagSet("colleagues")),
         };
     }
 

@@ -17,6 +17,7 @@ import seedu.partyplanet.model.person.Email;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
+import seedu.partyplanet.model.person.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String birthday;
     private final String address;
+    private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +41,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("birthday") String birthday,
-            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("address") String address, @JsonProperty("remark") String remark,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.birthday = birthday;
         this.address = address;
+        this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +63,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         birthday = source.getBirthday().value;
         address = source.getAddress().value;
+        remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -135,8 +140,20 @@ class JsonAdaptedPerson {
             modelAddress = new Address(address);
         }
 
+        Remark modelRemark;
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        if (remark.equals(Remark.EMPTY_REMARK_STRING)) {
+            modelRemark = Remark.EMPTY_REMARK;
+        } else if (!Remark.isValidRemark(remark)) {
+            throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+        } else {
+            modelRemark = new Remark(remark);
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelAddress, modelRemark, modelTags);
     }
 
 }

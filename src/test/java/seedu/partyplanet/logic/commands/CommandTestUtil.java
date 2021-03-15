@@ -7,6 +7,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.partyplanet.testutil.Assert.assertThrows;
 
@@ -36,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_BIRTHDAY_BOB = "1990-11-15";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_REMARK_AMY = "loves purple";
+    public static final String VALID_REMARK_BOB = "loves white";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -49,6 +52,8 @@ public class CommandTestUtil {
     public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + " " + VALID_BIRTHDAY_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + " " + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + " " + VALID_ADDRESS_BOB;
+    public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + " " + VALID_REMARK_AMY;
+    public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + " " + VALID_REMARK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + " " + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + " " + VALID_TAG_HUSBAND;
 

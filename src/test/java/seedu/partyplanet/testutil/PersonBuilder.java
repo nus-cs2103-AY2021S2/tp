@@ -9,6 +9,7 @@ import seedu.partyplanet.model.person.Email;
 import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
+import seedu.partyplanet.model.person.Remark;
 import seedu.partyplanet.model.tag.Tag;
 import seedu.partyplanet.model.util.SampleDataUtil;
 
@@ -22,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_BIRTHDAY = "1999-10-27";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REMARK = "loves pink";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Birthday birthday;
     private Address address;
+    private Remark remark;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         birthday = personToCopy.getBirthday();
         address = personToCopy.getAddress();
+        remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -79,6 +84,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -103,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, birthday, address, tags);
+        return new Person(name, phone, email, birthday, address, remark, tags);
     }
 
 }
