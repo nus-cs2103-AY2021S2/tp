@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -19,14 +20,18 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private AliasesStorage aliasesStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UserPrefStorage}
+     * and {@code AliasesStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          AliasesStorage aliasesStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.aliasesStorage = aliasesStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -74,6 +79,35 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ Aliases methods ==============================
+
+    @Override
+    public Path getAliasesFilePath() {
+        return aliasesStorage.getAliasesFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyUniqueAliasMap> readAliases() throws DataConversionException, IOException {
+        return readAliases(aliasesStorage.getAliasesFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyUniqueAliasMap> readAliases(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return aliasesStorage.readAliases(filePath);
+    }
+
+    @Override
+    public void saveAliases(ReadOnlyUniqueAliasMap aliases) throws IOException {
+        saveAliases(aliases, aliasesStorage.getAliasesFilePath());
+    }
+
+    @Override
+    public void saveAliases(ReadOnlyUniqueAliasMap aliases, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        aliasesStorage.saveAliases(aliases, filePath);
     }
 
 }

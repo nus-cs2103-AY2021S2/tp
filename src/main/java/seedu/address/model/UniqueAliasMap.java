@@ -1,8 +1,11 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -11,6 +14,7 @@ import seedu.address.model.alias.Command;
 import seedu.address.model.alias.CommandAlias;
 import seedu.address.model.alias.exceptions.AliasNotFoundException;
 import seedu.address.model.alias.exceptions.DuplicateAliasException;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A map of aliases to commands that enforces uniqueness between its elements and does not allow nulls.
@@ -21,6 +25,38 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     private static final String EMPTY_ALIASES = "You currently have 0 alias";
 
     private final HashMap<Alias, CommandAlias> aliasMap = new HashMap<>();
+
+    public UniqueAliasMap() {}
+
+    /**
+     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     */
+    public UniqueAliasMap(ReadOnlyUniqueAliasMap toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
+    /**
+     * Replaces the contents of the aliases with {@code aliasMap}.
+     * {@code aliasMap} must not contain duplicate aliases.
+     */
+    public void setPersons(Map<Alias, CommandAlias> aliases) {
+        requireAllNonNull(aliases);
+        if (!aliasesAreUnique(aliases)) {
+            throw new DuplicatePersonException();
+        }
+        this.aliasMap.clear();
+        this.aliasMap.putAll(aliases);
+    }
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyUniqueAliasMap newData) {
+        requireNonNull(newData);
+
+        setPersons(newData.getAliases());
+    }
 
     /**
      * Returns true if the map contains an equivalent alias as the given argument.
@@ -99,6 +135,11 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     @Override
+    public Map<Alias, CommandAlias> getAliases() {
+        return Collections.unmodifiableMap(aliasMap);
+    }
+
+    @Override
     public String toString() {
         if (aliasMap.isEmpty()) {
             return EMPTY_ALIASES;
@@ -121,6 +162,20 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     @Override
     public int hashCode() {
         return aliasMap.hashCode();
+    }
+
+    /**
+     * Returns true if {@code aliases} contains only unique aliases.
+     */
+    private boolean aliasesAreUnique(Map<Alias, CommandAlias> aliases) {
+        UniqueAliasMap checkDuplicate = new UniqueAliasMap();
+        for (CommandAlias commandAlias : aliases.values()) {
+            if (checkDuplicate.hasAlias(commandAlias)) {
+                return false;
+            }
+            checkDuplicate.addAlias(commandAlias);
+        }
+        return true;
     }
 
 }

@@ -25,9 +25,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonAliasesStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -46,7 +48,9 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonAliasesStorage aliasesStorage =
+                new JsonAliasesStorage(temporaryFolder.resolve("aliases.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, aliasesStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -75,7 +79,9 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonAliasesStorage aliasesStorage =
+                new JsonAliasesIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, aliasesStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -156,6 +162,20 @@ public class LogicManagerTest {
 
         @Override
         public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonAliasesIoExceptionThrowingStub extends JsonAliasesStorage {
+        private JsonAliasesIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveAliases(ReadOnlyUniqueAliasMap aliases, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
