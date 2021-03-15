@@ -72,7 +72,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         completableTodoListView.setItems(new FilteredList<>(project.getTodos().getTodos()));
         completableTodoListView.setCellFactory(listView -> new ProjectDisplayPanel.CompletableTodoListViewCell());
 
-        participantListView.setItems(new FilteredList<>(project.getParticipants().getAsObservableList()));
+        participantListView.setItems(new FilteredList<>(project.getParticipants().getParticipants()));
         participantListView.setCellFactory(listView -> new ProjectDisplayPanel.ParticipantListViewCell());
     }
 

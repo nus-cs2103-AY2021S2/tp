@@ -71,8 +71,7 @@ public class AddContactToCommand extends Command {
         }
 
         // logic goes here
-        Project editedProject = createEditedProject(projectToAddTo, personToAdd);
-        model.setProject(projectToAddTo, editedProject);
+        projectToAddTo.addParticipant(personToAdd);
         model.updateFilteredProjectList(model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(
@@ -87,11 +86,5 @@ public class AddContactToCommand extends Command {
                 && projectToAddToIndex.equals(((AddContactToCommand) other).projectToAddToIndex)
                 && personToAdd.equals(((AddContactToCommand) other).personToAdd)
             );
-    }
-
-    private Project createEditedProject(Project projectToEdit, Person personToAdd) {
-        requireNonNull(projectToEdit);
-
-        return projectToEdit.addParticipant(personToAdd);
     }
 }
