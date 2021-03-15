@@ -3,8 +3,6 @@ package seedu.address.commons.core.index;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.address.logic.commands.DeleteCommand;
-
 public class IndexList {
     private List<Index> indexList;
 
@@ -12,6 +10,9 @@ public class IndexList {
         this.indexList = indexList;
     }
 
+    /**
+     * Sorts {@code IndexList} in descending order.
+     */
     public void sortList() {
         Collections.sort(this.indexList);
         Collections.reverse(this.indexList);
@@ -25,13 +26,17 @@ public class IndexList {
         return this.indexList;
     }
 
+    /** Checks whether two @code IndexList}s are equal.
+     * @param other {@code IndexList} to compare to.
+     * @return true if the two {@code IndexList}s are equal and false otherwise.
+     */
     public boolean checkIfEqual(IndexList other) {
         boolean equal = true;
-        if(this.indexList.size() != other.getIndexList().size()) {
+        if (this.indexList.size() != other.getIndexList().size()) {
             return false;
         } else {
-            for(int i = 0; i < other.getIndexList().size(); i++) {
-                if(!this.indexList.get(i).equals(other.indexList.get(i))) {
+            for (int i = 0; i < other.getIndexList().size(); i++) {
+                if (!this.indexList.get(i).equals(other.indexList.get(i))) {
                     equal = false;
                 }
             }

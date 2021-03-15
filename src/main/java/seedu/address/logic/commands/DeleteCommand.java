@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
     }
 
     public static String getResultString(List<Person> peopleToDelete) {
-        if(peopleToDelete.size() == 1) {
+        if (peopleToDelete.size() == 1) {
             return String.format(MESSAGE_DELETE_PERSON_SUCCESS, peopleToDelete.get(0));
         }
         String convertedToString = "";

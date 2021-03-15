@@ -38,6 +38,13 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+
+    /**
+     * Parses {@code oneBasedIndexList} from String into an {@code IndexList} and returns it.
+     * @param oneBasedIndexList one based indices input by the user.
+     * @return list of indices sorted in descending order.
+     * @throws ParseException if one of the specified indices is invalid.
+     */
     public static IndexList parseIndexList(String oneBasedIndexList) throws ParseException {
         String[] indexListSplit = oneBasedIndexList.trim().split(" ");
         IndexList indexList = new IndexList(new ArrayList<Index>());

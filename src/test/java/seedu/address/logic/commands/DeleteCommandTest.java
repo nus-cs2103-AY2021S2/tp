@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -64,7 +63,8 @@ public class DeleteCommandTest {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ArrayList<Index> arrayFirstPerson = new ArrayList<Index>();
         arrayFirstPerson.add(INDEX_FIRST_PERSON);
-        IndexList indexList = new IndexList(arrayFirstPerson);        DeleteCommand deleteCommand = new DeleteCommand(indexList);
+        IndexList indexList = new IndexList(arrayFirstPerson);
+        DeleteCommand deleteCommand = new DeleteCommand(indexList);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -84,7 +84,8 @@ public class DeleteCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
         ArrayList<Index> array = new ArrayList<Index>();
         array.add(outOfBoundIndex);
-        IndexList outOfBoundIndexList = new IndexList(array);        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndexList);
+        IndexList outOfBoundIndexList = new IndexList(array);
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndexList);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
