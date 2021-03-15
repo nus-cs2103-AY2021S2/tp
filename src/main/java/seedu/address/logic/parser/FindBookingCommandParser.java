@@ -4,16 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 
+import java.util.stream.Stream;
 
-import java.util.Arrays;
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.DeleteBookingCommand;
 import seedu.address.logic.commands.FindBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.BookingIdContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindBookingCommand object.
@@ -30,14 +25,25 @@ public class FindBookingCommandParser implements Parser<FindBookingCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOKING);
 
-        int bookingId;
-        try {
-            bookingId = ParserUtil.parseBookingId(argMultimap.getValue(PREFIX_BOOKING).get());
-            return new FindBookingCommand(new BookingIdContainsKeywordsPredicate(bookingId));
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindBookingCommand.MESSAGE_USAGE), ive);
+        String bookingId;
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKING)
+                || argMultimap.getValue(PREFIX_BOOKING).isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBookingCommand.MESSAGE_USAGE));
         }
 
+        bookingId = String.valueOf(ParserUtil
+                .parseBookingId(argMultimap.getValue(PREFIX_BOOKING).get()));
+        return new FindBookingCommand(new BookingIdContainsKeywordsPredicate(bookingId));
     }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
 }
