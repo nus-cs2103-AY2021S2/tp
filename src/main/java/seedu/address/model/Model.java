@@ -6,16 +6,16 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.person.Person;
+import seedu.address.model.resident.Resident;
+import seedu.address.model.room.Room;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
-    /** {@code Predicate} that always evaluate to true */
+    Predicate<Resident> PREDICATE_SHOW_ALL_RESIDENTS = unused -> true;
+    Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
     Predicate<Issue> PREDICATE_SHOW_ALL_ISSUES = unused -> true;
 
     /**
@@ -53,45 +53,83 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in
-     * the address book.
+     * Returns true if a resident with the same identity as {@code resident} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasResident(Resident resident);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given resident.
+     * The resident must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteResident(Resident target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given resident.
+     * {@code resident} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addResident(Resident resident);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given resident {@code target} with {@code editedResident}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the address book.
+     * The resident identity of {@code editedResident} must not be the same
+     * as another existing resident in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void setResident(Resident target, Resident editedResident);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given
-     * {@code predicate}.
+     * Returns an unmodifiable view of the filtered resident list
+     */
+    ObservableList<Resident> getFilteredResidentList();
+
+    /**
+     * Updates the filter of the filtered resident list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredResidentList(Predicate<Resident> predicate);
+
+    /**
+     * Returns true if a room with the same room number as {@code room} exists in SunRez.
+     */
+    boolean hasRoom(Room room);
+
+    /**
+     * Deletes the given room.
+     * The room must exist in SunRez.
+     */
+    void deleteRoom(Room target);
+
+    /**
+     * Adds the given room.
+     * {@code room} must not already exist in SunRez.
+     */
+    void addRoom(Room room);
+
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in SunRez.
+     * The Room identity of {@code editedRoom} must not be the same as another existing room in SunRez.
+     */
+    void setRoom(Room target, Room editedRoom);
+
+    /**
+     * Returns an unmodifiable view of the filtered room list
+     */
+    ObservableList<Room> getFilteredRoomList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
      * Deletes the given issue.
@@ -110,7 +148,9 @@ public interface Model {
      */
     void setIssue(Issue target, Issue editedPerson);
 
-    /** Returns an unmodifiable view of the filtered issue list */
+    /**
+     * Returns an unmodifiable view of the filtered issue list
+     */
     ObservableList<Issue> getFilteredIssueList();
 
     /**

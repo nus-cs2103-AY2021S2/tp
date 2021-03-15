@@ -7,38 +7,38 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.resident.Resident;
+import seedu.address.model.resident.UniqueResidentList;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.UniqueRoomList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameResident comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private final UniqueResidentList residents;
+    private final UniqueRoomList rooms;
     private final IssueList issues;
-    private final UniquePersonList persons;
-
     /*
-     * The 'unusual' code block below is a non-static initialization block,
-     * sometimes used to avoid duplication
-     * between constructors. See
-     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other
-     * ways to avoid duplication
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      * among constructors.
      */
     {
+        residents = new UniqueResidentList();
+        rooms = new UniqueRoomList();
         issues = new IssueList();
-        persons = new UniquePersonList();
     }
 
     public AddressBook() {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Residents in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -48,11 +48,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the resident list with {@code residents}.
+     * {@code residents} must not contain duplicate residents.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setResidents(List<Resident> residents) {
+        this.residents.setResidents(residents);
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms.setRooms(rooms);
     }
 
     /**
@@ -63,54 +67,93 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.issues.setIssues(issues);
     }
 
+    //// resident-level operations
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Returns true if a resident with the same identity as {@code resident} exists in the address book.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
-        requireNonNull(newData);
-
-        setPersons(newData.getPersonList());
-        setIssues(newData.getIssueList());
-    }
-
-    //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in
-     * the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasResident(Resident resident) {
+        requireNonNull(resident);
+        return residents.contains(resident);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a resident to the address book.
+     * The resident must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addResident(Resident p) {
+        residents.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with
-     * {@code editedPerson}.
+     * Replaces the given resident {@code target} in the list with {@code editedResident}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the address book.
+     * The resident identity of {@code editedResident} must not be the same
+     * as another existing resident in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setResident(Resident target, Resident editedResident) {
+        requireNonNull(editedResident);
 
-        persons.setPerson(target, editedPerson);
+        residents.setResident(target, editedResident);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeResident(Resident key) {
+        residents.remove(key);
+    }
+
+    //// room-level operations
+
+    /**
+     * Returns true if a room with the same identity as {@code room} exists SunRez.
+     */
+    public boolean hasRoom(Room room) {
+        requireNonNull(room);
+        return rooms.contains(room);
+    }
+
+    /**
+     * Adds a room to SunRez.
+     * The room must not already exist in SunRez.
+     */
+    public void addRoom(Room room) {
+        rooms.add(room);
+    }
+
+    /**
+     * Replaces the given room {@code target} in the list with {@code editedRoom}.
+     * {@code target} must exist in SunRez.
+     * The room identity of {@code editedRoom} must not be the same as another existing room in SunRez.
+     */
+    public void setRoom(Room target, Room editedRoom) {
+        requireNonNull(editedRoom);
+
+        rooms.setRoom(target, editedRoom);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code Room} must exist in SunRez.
+     */
+    public void removeRoom(Room key) {
+        rooms.remove(key);
+    }
+
+    //// meta methods
+
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
+    public void resetData(ReadOnlyAddressBook newData) {
+        requireNonNull(newData);
+
+        setResidents(newData.getResidentList());
+        setRooms(newData.getRoomList());
+        setIssues(newData.getIssueList());
     }
 
     //// issue-level operations
@@ -148,14 +191,20 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons\n"
+        return residents.asUnmodifiableObservableList().size() + " residents\n"
+                + rooms.asUnmodifiableObservableList().size() + " rooms\n"
                 + issues.asUnmodifiableObservableList().size() + " issues";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Resident> getResidentList() {
+        return residents.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Room> getRoomList() {
+        return rooms.asUnmodifiableObservableList();
     }
 
     @Override
@@ -167,11 +216,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && persons.equals(((AddressBook) other).persons));
+                        && residents.equals(((AddressBook) other).residents)
+                        && rooms.equals(((AddressBook) other).rooms)
+                        && issues.equals(((AddressBook) other).issues));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return residents.hashCode();
     }
 }
