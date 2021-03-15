@@ -52,7 +52,8 @@ public class EndpointCaller {
             response = new OptionsRequest(endpointToSend).send();
             break;
         case PATCH:
-            //to-do
+            response = new PatchRequest(endpointToSend).send();
+            break;
         default:
             break;
         }

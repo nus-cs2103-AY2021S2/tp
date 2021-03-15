@@ -10,7 +10,7 @@ import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Response;
 
 /**
- * Contains the logic for sending get requests.
+ * Contains the logic for sending head requests.
  */
 public class HeadRequest extends Request {
 
