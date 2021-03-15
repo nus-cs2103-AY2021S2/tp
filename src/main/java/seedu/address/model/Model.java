@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.session.Session;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
@@ -76,6 +79,11 @@ public interface Model {
      * existing student in the address book.
      */
     void setStudent(Student target, Student editedStudent);
+
+    /**
+     * Adds the session to the target student
+     */
+    void addSession(Session session, Name name);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

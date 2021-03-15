@@ -97,6 +97,16 @@ public class UniqueStudentList implements Iterable<Student> {
         internalList.setAll(students);
     }
 
+    public Student findStudent(Name name) {
+        requireNonNull(name);
+        for (Student student : internalList) {
+            if (student.getName().equals(name)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
