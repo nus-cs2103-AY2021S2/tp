@@ -30,6 +30,7 @@ import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.CompressionMethod;
 import net.lingala.zip4j.model.enums.EncryptionMethod;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.FileUtil;
 
 /**
  * Handles the encryption and decryption of the data .json file.
@@ -258,6 +259,7 @@ public class Authentication {
 
         //Write the encrypted password byte[] into the password file.
         File passwordFile = new File(this.getPasswordFilePath());
+        FileUtil.createParentDirsOfFile(passwordFile.toPath());
         FileOutputStream outputStream = new FileOutputStream(passwordFile);
         outputStream.write(passwordEncrypted);
     }
