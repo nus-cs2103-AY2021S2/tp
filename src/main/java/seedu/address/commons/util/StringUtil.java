@@ -35,7 +35,18 @@ public class StringUtil {
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+                .anyMatch(str -> containsIgnoreCase(str, preppedWord));
+    }
+
+    /**
+     * Checks if String {@code str} contains String {@code preppedWord}, ignoring case considerations.
+     * @param str
+     * @param preppedWord
+     * @return true if {@code str} is not null and it contains {@code preppedWord}; false otherwise
+     */
+    public static boolean containsIgnoreCase(String str, String preppedWord) {
+        return (str == null) ? false
+                : str.toLowerCase().contains(preppedWord.toLowerCase());
     }
 
     /**
