@@ -150,13 +150,10 @@ Restore FlashBack to the state before the previous command was executed.
 **_NOTE:_**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
 
 Examples:
-* `delete 1`  
-`view 1`  
-`undo` (reverse the `delete 1` command)
 * `delete 3`  
 `delete 2`  
-`undo` (reverse the `delete 3` command)  
-`undo` (reverse the `delete 2` command)
+`undo` will reverse the `delete 3` command  
+`undo` will reverse the `delete 2` command
 
 Format: `undo`
 
