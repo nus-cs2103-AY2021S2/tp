@@ -36,11 +36,11 @@ public class DeleteTagCommandParser implements Parser {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    TagCommand.MESSAGE_USAGE), ive);
+                    DeleteTagCommand.MESSAGE_USAGE), ive);
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isEmpty()) {
-            throw new ParseException(TagCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(DeleteTagCommand.MESSAGE_NOT_EDITED);
         }
 
         String tagName = argMultimap.getValue(PREFIX_TAG).orElse("");

@@ -31,7 +31,7 @@ public class DeleteTagCommand extends Command {
             + "t/Midterm";
 
     public static final String MESSAGE_DELETE_TAG_TASK_SUCCESS = "Deleted Tag from Task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to tag must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one tag must be provided to delete.";
     public static final String MESSAGE_TAG_NOT_EXISTS = "This tag does not exist.";
 
     private final Index index;
