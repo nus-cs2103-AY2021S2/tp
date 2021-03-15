@@ -17,14 +17,14 @@ public class SortCommandParser implements Parser<SortCommand> {
      * and returns a ListCommand object for execution.
      */
     public SortCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim().toLowerCase();
-        if (trimmedArgs.equals(QUANTITY_KEYWORD)) {
-            System.out.println("1");
-            return new SortQuantityCommand();
-        } else if (trimmedArgs.equals(EXPIRYDATE_KEYWORD)) {
-            return new SortExpiryDateCommand();
-        } else {
+        String trimmedArgs = args.trim();
+        if (!trimmedArgs.equalsIgnoreCase(QUANTITY_KEYWORD)
+            && !trimmedArgs.equalsIgnoreCase(EXPIRYDATE_KEYWORD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        } else if (trimmedArgs.equalsIgnoreCase(QUANTITY_KEYWORD)) {
+            return new SortQuantityCommand();
+        } else {
+            return new SortExpiryDateCommand();
         }
     }
 }

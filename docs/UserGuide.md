@@ -152,16 +152,18 @@ Examples:
 
 ### sorting the inventory: `sort`
 
-Sorts the inventory from the inventory based on quantity or expiry date.
+Sorts the items from the inventory based on quantity or expiry date.
 
 Format 1: `sort quantity`
 
-* `sort quantity` will sort the inventory according to individual item's quantity.
+* `sort quantity` display the items in the inventory in ascending order of quantity
+
+
 
 
 Format 2: `sort expiryDate`
 
-* `sort expiryDate` will sort the inventory according to individual item's expiry date.
+* `sort expiryDate` displays items in the inventory from the earliest expiry date to the latest.
 *  Items without expiry date will pushed to the back of the sorted list.
 
 Examples:
