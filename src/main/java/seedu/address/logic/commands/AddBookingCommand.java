@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
 /**
@@ -38,8 +39,10 @@ public class AddBookingCommand extends Command {
     public static final String MESSAGE_INVALID_TIME =
             "This booking's starting time is not earlier than the ending time.";
     public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
+    public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
     private final Booking toAdd;
     private final Venue venueInBooking;
+    private final Person personInBooking;
 
     /**
      * Creates an AddBookingCommand to add the specified {@code Booking}
@@ -48,6 +51,7 @@ public class AddBookingCommand extends Command {
         requireNonNull(booking);
         toAdd = booking;
         venueInBooking = booking.getVenue();
+        personInBooking = booking.getBooker();
     }
 
 
@@ -65,6 +69,10 @@ public class AddBookingCommand extends Command {
 
         if (!model.hasVenue(venueInBooking)) {
             throw new CommandException(MESSAGE_INVALID_VENUE);
+        }
+
+        if (!model.hasPerson(personInBooking)) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
         model.addBooking(toAdd);

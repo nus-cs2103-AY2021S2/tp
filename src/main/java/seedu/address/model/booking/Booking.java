@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
+
 
 /**
  * Represents a booking in the booking list.
@@ -17,8 +19,7 @@ public class Booking {
     private static final Random BOOKING_RANDOM = new Random();
 
     // Data fields
-    private final String booker;
-    //private final Person booker;
+    private final Person booker;
     private final Venue venue;
     private final String description;
     private final LocalDateTime bookingStart;
@@ -29,7 +30,7 @@ public class Booking {
      * Every field must be present and not null.
      * Booking id is provided.
      */
-    public Booking(String booker, Venue venue, String description,
+    public Booking(Person booker, Venue venue, String description,
                    LocalDateTime bookingStart, LocalDateTime bookingEnd, int id) {
         requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
         this.booker = booker;
@@ -44,7 +45,7 @@ public class Booking {
      * Every field must be present and not null.
      * Booking id is not provided.
      */
-    public Booking(String booker, Venue venue, String description,
+    public Booking(Person booker, Venue venue, String description,
                    LocalDateTime bookingStart, LocalDateTime bookingEnd) {
         requireAllNonNull(booker, venue, description, bookingStart, bookingEnd);
         this.booker = booker;
@@ -55,7 +56,7 @@ public class Booking {
         this.id = getNewBookingId();
     }
 
-    public String getBooker() {
+    public Person getBooker() {
         return booker;
     }
 
@@ -92,9 +93,6 @@ public class Booking {
             return true;
         }
         if (otherBooking == null) {
-            return false;
-        }
-        if (!otherBooking.venue.equals(venue)) {
             return false;
         }
         return !this.bookingStart.isBefore(otherBooking.bookingEnd)
@@ -148,7 +146,7 @@ public class Booking {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Booker: ")
-                .append(getBooker())
+                .append(getBooker().getName())
                 .append("; Venue: ")
                 .append(getVenue())
                 .append("; Description: ")

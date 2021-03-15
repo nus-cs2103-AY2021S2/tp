@@ -10,6 +10,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.venue.Venue;
 
@@ -95,19 +96,15 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
-
-
-
-
     /**
      * Parses a {@code String booker} into a {@code String trimmedBooker}.
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static String parseBooker(String booker) {
+    public static Person parseBooker(String booker) {
         requireNonNull(booker);
         String trimmedBooker = booker.trim();
-        return trimmedBooker;
+        return new Person(new Name(trimmedBooker));
     }
 
 

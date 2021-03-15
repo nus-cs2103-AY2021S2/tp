@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
 /**
@@ -38,8 +39,7 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
                     AddBookingCommand.MESSAGE_USAGE));
         }
 
-
-        String booker = ParserUtil.parseBooker(argMultimap.getValue(PREFIX_BOOKER).get());
+        Person booker = ParserUtil.parseBooker(argMultimap.getValue(PREFIX_BOOKER).get());
         Venue venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         LocalDateTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKINGSTART).get());
@@ -47,7 +47,6 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
 
         Booking booking = new Booking(booker, venue, description,
                 bookingStart, bookingEnd, Booking.getNewBookingId());
-
 
         return new AddBookingCommand(booking);
     }
