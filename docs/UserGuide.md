@@ -211,7 +211,7 @@ Format: `delete_person s/ID`
 * The s/ID refers to the student ID shown in the displayed person list.
 
 Examples:
-* `list persons` followed by `delete s/2` deletes the student with student ID s/2 in the address book.
+* `delete_person s/2` deletes the student with student ID s/2 in the address book.
 
 ### Deleting a tutor : `delete`
 
@@ -223,29 +223,10 @@ Format: `delete_person t/ID`
 * The t/ID refers to the tutor ID shown in the displayed person list.
 
 Examples:
-* `list persons` followed by `delete t/1` deletes the tutor with tutor ID t/1 in the address book.
+* `delete_person t/1` deletes the tutor with tutor ID t/1 in the address book.
 
 ### Deleting a session : `delete`
 
-<<<<<<< HEAD
-Deletes the specified person from the list of tutors/students or deletes the specified class from the list of classes.
-
-Format:<br>
-`delete_person t/ID` for tutors<br>
-`delete_person s/ID` for students<br>
-`delete_session c/ID` for classes
-
-* Deletes the tutor/student at the specified ID from the list of tutors/students. Or deletes the class at the specified ID from the list of classes.
-* The index refers to the ID shown in the displayed tutor/student/class list.
-* The index must be a in the format of:<br>
-`t/ID` for tutors<br>
-`s/ID` for students<br>
-`c/ID` for classes
-
-Examples:
-* `delete_person t/1` deletes the tutor with the ID `t/1` from the tutor list.
-* `delete_session c/25` deletes the class with the ID `c/25` from the class list.
-=======
 Deletes the specified session from the address book.
 
 Format: `delete_session c/ID`
@@ -254,8 +235,7 @@ Format: `delete_session c/ID`
 * The c/ID refers to the session ID shown in the displayed session list.
 
 Examples:
-* `list sessions` followed by `delete c/2` deletes the session with session ID c/2 in the address book.
->>>>>>> 065d41c5beb56f55bd609db8c15dc3b359ccad5d
+* `delete_session c/2` deletes the session with session ID c/2 in the address book.
 
 ### Clearing all entries : `clear`
 
