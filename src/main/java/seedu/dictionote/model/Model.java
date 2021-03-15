@@ -127,6 +127,12 @@ public interface Model {
     void deleteNote(Note target);
 
     /**
+     * Show the given note.
+     * The note must exist in the dictionote book.
+     */
+    void showNote(Note target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the dictionote book.
      */

@@ -139,13 +139,19 @@ public class ModelManager implements Model {
     @Override
     public void addNote(Note note) {
         noteBook.addNote(note);
-        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
     }
 
     @Override
     public void deleteNote(Note note) {
         noteBook.deleteNote(note);
-        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+    }
+
+    @Override
+    public void showNote(Note note) {
+        Predicate<Note> showSelectedNotesPredicate = x -> x.equals(note);
+        updateFilteredNoteList(showSelectedNotesPredicate);
     }
 
     @Override
