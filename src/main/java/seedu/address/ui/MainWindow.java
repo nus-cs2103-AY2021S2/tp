@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -32,6 +33,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private BookingListPanel upcomingBookingListPanel;
+    private VenueListPanel venueListPanel;
     private BookingListPanel bookingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -46,7 +49,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane bookingListPanelPlaceholder;
+    private StackPane upcomingBookingListPanelPlaceholder;
+
+    @FXML
+    private StackPane resultListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,11 +120,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        /*personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());*/
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        bookingListPanel = new BookingListPanel(logic.getUpcomingBookingList());
-        bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+        upcomingBookingListPanel = new BookingListPanel(logic.getUpcomingBookingList());
+        upcomingBookingListPanelPlaceholder.getChildren().add(upcomingBookingListPanel.getRoot());
+
+        venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
+        resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

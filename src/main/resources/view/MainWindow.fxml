@@ -41,11 +41,11 @@
 
           <Label fx:id="title" styleClass="cell_title_label" text="Good Day! Here are the upcoming bookings:" />
 
-          <VBox fx:id="bookingList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <VBox fx:id="upcomingBookingList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
-            <StackPane fx:id="bookingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="upcomingBookingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
           <VBox fx:id="favorite" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
@@ -71,6 +71,13 @@
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>
           </StackPane>
+
+          <VBox fx:id="resultList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="resultListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
 
           <!--<VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
             <padding>
