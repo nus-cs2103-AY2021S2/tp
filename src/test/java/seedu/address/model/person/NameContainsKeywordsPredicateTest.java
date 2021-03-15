@@ -66,6 +66,7 @@ public class NameContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Macdonalds"));
         assertFalse(predicate.test(new PersonBuilder().withName("Techno Edge").build()));
+
         // Keywords match review, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Great!"));
         assertFalse(predicate.test(new PersonBuilder().withName("Frontier").withReview("Food is Great!").build()));
