@@ -13,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -26,6 +25,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
@@ -57,7 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
 
-        List<TutorSubject> tutorSubjects = ParserUtil.parseTutorSubjects(
+        SubjectList subjectList = (SubjectList) ParserUtil.parseTutorSubjects(
                 argMultimap.getAllValues(PREFIX_SUBJECT_NAME),
                 argMultimap.getAllValues(PREFIX_EDUCATION_LEVEL),
                 argMultimap.getAllValues(PREFIX_RATE),
@@ -65,7 +65,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 argMultimap.getAllValues(PREFIX_QUALIFICATION)
         );
 
-        Person person = new Person(name, gender, phone, email, address, tutorSubjects, tagList);
+        Person person = new Person(name, gender, phone, email, address, (List<TutorSubject>) subjectList, tagList);
 
         return new AddCommand(person);
     }
