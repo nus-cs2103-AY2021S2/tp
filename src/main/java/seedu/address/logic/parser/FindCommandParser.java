@@ -30,4 +30,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns true if arguments are valid to be aliased.
+     */
+    @Override
+    public boolean isValidCommandToAlias(String userInput) {
+        return true;
+    }
+
 }

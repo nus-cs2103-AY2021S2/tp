@@ -26,4 +26,22 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeleteCommand
+     * and returns true if arguments are valid to be aliased.
+     */
+    @Override
+    public boolean isValidCommandToAlias(String userInput) {
+        if (userInput.trim().isEmpty()) {
+            return true;
+        }
+
+        try {
+            ParserUtil.parseIndex(userInput);
+            return true;
+        } catch (ParseException pe) {
+            return false;
+        }
+    }
+
 }

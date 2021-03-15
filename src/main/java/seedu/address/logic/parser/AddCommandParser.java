@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -55,6 +58,59 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddCommand
+     * and returns true if arguments are valid to be aliased. Only the argument in the
+     * last prefix is allowed to be empty in order to be valid for aliasing, and all
+     * other prefixes than the last should be valid input values.
+     */
+    @Override
+    public boolean isValidCommandToAlias(String userInput) {
+        if (userInput.trim().isEmpty()) {
+            return true;
+        }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+                userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        // Returns false if preamble exist, which should not be for AddCommand
+        if (!argMultimap.getPreamble().isEmpty()) {
+            return false;
+        }
+
+        // Checks if only the last prefix argument is empty, and all other prefixes have valid input values
+        Optional<Prefix> optionalPrefix = ArgumentTokenizer.getLastPrefix(
+                userInput, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        if (optionalPrefix.isEmpty()) {
+            return true;
+        }
+
+        final Prefix lastPrefix = optionalPrefix.get();
+        try {
+            if (argMultimap.getValue(PREFIX_NAME).isPresent() && lastPrefix != PREFIX_NAME) {
+                ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            }
+            if (argMultimap.getValue(PREFIX_PHONE).isPresent() && lastPrefix != PREFIX_PHONE) {
+                ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            }
+            if (argMultimap.getValue(PREFIX_EMAIL).isPresent() && lastPrefix != PREFIX_EMAIL) {
+                ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            }
+            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent() && lastPrefix != PREFIX_ADDRESS) {
+                ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+            }
+            if (lastPrefix != PREFIX_TAG) {
+                ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            } else {
+                ParserUtil.parseTagsExceptLast(argMultimap.getAllValues(PREFIX_TAG));
+            }
+            return true;
+        } catch (ParseException pe) {
+            return false;
+        }
     }
 
 }

@@ -50,4 +50,35 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         }
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AliasCommand
+     * and returns true if arguments are valid to be aliased.
+     */
+    @Override
+    public boolean isValidCommandToAlias(String userInput) {
+        if (userInput.trim().isEmpty()) {
+            return true;
+        }
+
+        final Matcher matcher = ALIAS_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            return false;
+        }
+
+        final String subCommandWord = matcher.group("subCommandWord");
+        final String arguments = matcher.group("arguments");
+
+        switch (subCommandWord) {
+
+        case AliasCommand.ADD_SUB_COMMAND_WORD:
+            return new AddAliasCommandParser().isValidCommandToAlias(arguments);
+
+        case AliasCommand.DELETE_SUB_COMMAND_WORD:
+            return new DeleteAliasCommandParser().isValidCommandToAlias(arguments);
+
+        default:
+            return false;
+        }
+    }
+
 }

@@ -3,7 +3,7 @@ package seedu.address.model.alias;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.logic.parser.CommandValidator;
+import seedu.address.logic.parser.AddressBookParser;
 
 /**
  * Represents a Command in the address book.
@@ -31,7 +31,7 @@ public class Command {
      * Returns true if a given string is a valid command word.
      */
     public static boolean isValidCommand(String test) {
-        return CommandValidator.isValidCommand(test);
+        return new AddressBookParser().isValidCommandToAlias(test);
     }
 
     @Override

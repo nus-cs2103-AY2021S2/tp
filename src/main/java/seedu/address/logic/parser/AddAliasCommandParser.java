@@ -42,4 +42,15 @@ public class AddAliasCommandParser implements Parser<AddAliasCommand> {
 
         return new AddAliasCommand(commandAlias);
     }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddAliasCommand
+     * and returns true if arguments are valid to be aliased. Alias cannot be aliased to
+     * adding another alias as it may cause infinite looping.
+     */
+    @Override
+    public boolean isValidCommandToAlias(String userInput) {
+        return userInput.trim().isEmpty();
+    }
+
 }
