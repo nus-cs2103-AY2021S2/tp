@@ -71,7 +71,7 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the tasks in the list by deadline.
+     * Sorts the tasks in the list by deadline.
      */
     public void sortTasks() {
         internalList.sort(new Task.DeadlineComparator());
