@@ -123,6 +123,65 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+
+    //---------------- Tests for containsPrefixWordIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for word: null, empty, multiple words
+     * Invalid equivalence partitions for sentence: null
+     * The four test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void containsPrefixWordIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, ()
+            -> StringUtil.containsPrefixWordIgnoreCase("typical sentence", null));
+    }
+
+    @Test
+    public void containsPrefixWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+            -> StringUtil.containsPrefixWordIgnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsPrefixWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
+            -> StringUtil.containsPrefixWordIgnoreCase("typical sentence", "aaa BBB"));
+    }
+
+    @Test
+    public void containsPrefixWordIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsPrefixWordIgnoreCase(null, "abc"));
+    }
+
+    @Test
+    public void containsPrefixWordIgnoreCase_validInputs_correctResult() {
+
+        // Empty sentence
+        assertFalse(StringUtil.containsPrefixWordIgnoreCase("", "abc")); // Boundary case
+        assertFalse(StringUtil.containsPrefixWordIgnoreCase("    ", "123"));
+
+        // Matches a prefix word
+        assertTrue(StringUtil.containsPrefixWordIgnoreCase("aaa bab ccc", "ba"));
+        assertTrue(StringUtil.containsPrefixWordIgnoreCase("aca bbb ccc", "ac"));
+
+        // Matches a suffix word
+        assertFalse(StringUtil.containsPrefixWordIgnoreCase("aaa bab ccc", "ab"));
+        assertFalse(StringUtil.containsPrefixWordIgnoreCase("aca bbb ccc", "ca"));
+
+        // Matches word in the sentence, different upper/lower case letters
+        assertTrue(StringUtil.containsPrefixWordIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
+        assertTrue(StringUtil.containsPrefixWordIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
+        assertTrue(StringUtil.containsPrefixWordIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
+        assertTrue(StringUtil.containsPrefixWordIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
+        assertTrue(StringUtil.containsPrefixWordIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+
+        // Matches multiple words in sentence
+        assertTrue(StringUtil.containsPrefixWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+    }
+
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*

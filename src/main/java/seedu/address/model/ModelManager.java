@@ -5,11 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Set;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cheese.Cheese;
@@ -19,6 +19,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
+import seedu.address.model.util.FilteredAndSortedList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,9 +29,9 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Customer> filteredCustomers;
-    private final FilteredList<Order> filteredOrders;
-    private final FilteredList<Cheese> filteredCheeses;
+    private final FilteredAndSortedList<Customer> filteredAndSortedCustomers;
+    private final FilteredAndSortedList<Order> filteredAndSortedOrders;
+    private final FilteredAndSortedList<Cheese> filteredAndSortedCheeses;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,9 +44,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
-        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
-        filteredCheeses = new FilteredList<>(this.addressBook.getCheeseList());
+        filteredAndSortedCustomers = new FilteredAndSortedList<>(this.addressBook.getCustomerList());
+        filteredAndSortedOrders = new FilteredAndSortedList<>(this.addressBook.getOrderList());
+        filteredAndSortedCheeses = new FilteredAndSortedList<>(this.addressBook.getCheeseList());
     }
 
     public ModelManager() {
@@ -128,6 +129,7 @@ public class ModelManager implements Model {
     public void addCustomer(Customer customer) {
         addressBook.addCustomer(customer);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        updateSortedCustomerList(COMPARATOR_NORMAL_CUSTOMER);
     }
 
     @Override
@@ -154,6 +156,7 @@ public class ModelManager implements Model {
     public void addOrder(Order order) {
         addressBook.addOrder(order);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        updateSortedOrderList(COMPARATOR_NORMAL_ORDER);
     }
 
     @Override
@@ -180,6 +183,7 @@ public class ModelManager implements Model {
     public void addCheese(Cheese cheese) {
         addressBook.addCheese(cheese);
         updateFilteredCheeseList(PREDICATE_SHOW_ALL_CHEESES);
+        updateSortedCheeseList(COMPARATOR_NORMAL_CHEESE);
     }
 
     @Override
@@ -208,7 +212,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Customer> getFilteredCustomerList() {
-        return filteredCustomers;
+        return filteredAndSortedCustomers.getObservableList();
     }
 
     /**
@@ -217,7 +221,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Order> getFilteredOrderList() {
-        return filteredOrders;
+        return filteredAndSortedOrders.getObservableList();
     }
 
     /**
@@ -226,25 +230,43 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Cheese> getFilteredCheeseList() {
-        return filteredCheeses;
+        return filteredAndSortedCheeses.getObservableList();
     }
 
     @Override
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);
-        filteredCustomers.setPredicate(predicate);
+        filteredAndSortedCustomers.setPredicate(predicate);
     }
 
     @Override
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
-        filteredOrders.setPredicate(predicate);
+        filteredAndSortedOrders.setPredicate(predicate);
     }
 
     @Override
     public void updateFilteredCheeseList(Predicate<Cheese> predicate) {
         requireNonNull(predicate);
-        filteredCheeses.setPredicate(predicate);
+        filteredAndSortedCheeses.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedCustomerList(Comparator<Customer> comparator) {
+        requireNonNull(comparator);
+        filteredAndSortedCustomers.setComparator(comparator);
+    }
+
+    @Override
+    public void updateSortedOrderList(Comparator<Order> comparator) {
+        requireNonNull(comparator);
+        filteredAndSortedOrders.setComparator(comparator);
+    }
+
+    @Override
+    public void updateSortedCheeseList(Comparator<Cheese> comparator) {
+        requireNonNull(comparator);
+        filteredAndSortedCheeses.setComparator(comparator);
     }
 
     //=========== For Toggling UI Panel ==================================================================
@@ -280,9 +302,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredCustomers.equals(other.filteredCustomers)
-                && filteredOrders.equals(other.filteredOrders)
-                && filteredCheeses.equals(other.filteredCheeses);
+                && filteredAndSortedCustomers.equals(other.filteredAndSortedCustomers)
+                && filteredAndSortedOrders.equals(other.filteredAndSortedOrders)
+                && filteredAndSortedCheeses.equals(other.filteredAndSortedCheeses);
     }
 
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -164,6 +165,21 @@ public class ModelStub implements Model {
 
     @Override
     public void setPanelToOrderList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateSortedCustomerList(Comparator<Customer> comparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateSortedOrderList(Comparator<Order> comparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateSortedCheeseList(Comparator<Cheese> comparator) {
         throw new AssertionError("This method should not be called.");
     }
 
