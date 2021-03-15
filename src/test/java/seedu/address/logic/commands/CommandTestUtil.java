@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -72,6 +73,8 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_MEET_BOB = "At Plaza Sing Starbucks";
     public static final String VALID_DATE_MEET_ALEX = "25-12-2021";
     public static final String VALID_DATE_MEET_BOB = "25-02-2021";
+    public static final String VALID_TIME_MEET_ALEX = "1500";
+    public static final String VALID_TIME_MEET_BOB = "2000";
 
     public static final String NAME_DESC_MEET_ALEX = " " + PREFIX_NAME + VALID_NAME_MEET_ALEX;
     public static final String NAME_DESC_MEET_BOB = " " + PREFIX_NAME + VALID_NAME_MEET_BOB;
@@ -79,6 +82,8 @@ public class CommandTestUtil {
     public static final String REMARK_DESC_MEET_BOB = " " + PREFIX_REMARK + VALID_REMARK_MEET_BOB;
     public static final String DATE_DESC_MEET_ALEX = " " + PREFIX_DATE + VALID_DATE_MEET_ALEX;
     public static final String DATE_DESC_MEET_BOB = " " + PREFIX_DATE + VALID_DATE_MEET_BOB;
+    public static final String TIME_DESC_MEET_ALEX = " " + PREFIX_TIME + VALID_TIME_MEET_ALEX;
+    public static final String TIME_DESC_MEET_BOB = " " + PREFIX_TIME + VALID_TIME_MEET_BOB;
 
     public static final String INVALID_APPOINTMENT_NAME_DESC =
             " " + PREFIX_NAME + "Meet Alex&"; // '&' not allowed in names
@@ -86,6 +91,8 @@ public class CommandTestUtil {
             " " + PREFIX_REMARK; // empty string not allowed for remark
     public static final String INVALID_APPOINTMENT_DATE_DESC =
             " " + PREFIX_DATE + "31-04-2021"; // 31st April not valid
+    public static final String INVALID_APPOINTMENT_TIME_DESC =
+        " " + PREFIX_TIME + "1260"; // 60 is not valid for the minute component
 
     // For testing of persons (to be removed)
     public static final String VALID_NAME_AMY = "Amy Bee";
