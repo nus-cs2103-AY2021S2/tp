@@ -173,8 +173,17 @@ public class EditCommand extends Command {
          * Sets {@code cleanStatusTag} to this object's {@code cleanStatusTag}.
          * A defensive copy of {@code cleanStatusTag} is used internally.
          */
-        public void setCleanStatusTag(Set<CleanStatusTag> cleanStatusTag) {
-            this.cleanStatusTag = (cleanStatusTag != null) ? new HashSet<>(cleanStatusTag) : null;
+        public void setCleanStatusTag(CleanStatusTag cleanStatusTag) {
+            this.cleanStatusTag = cleanStatusTag;
+        }
+
+        /**
+         * Returns an unmodifiable cleanStatusTag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code cleanStatusTag} is null.
+         */
+        public Optional<CleanStatusTag> getCleanStatusTag() {
+            return Optional.ofNullable(cleanStatusTag);
         }
 
         /**
@@ -183,16 +192,6 @@ public class EditCommand extends Command {
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable cleanStatusTag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code cleanStatusTag} is null.
-         */
-        public Optional<Set<CleanStatusTag>> getCleanStatusTag() {
-            return (cleanStatusTag != null) ? Optional.of(
-                    Collections.unmodifiableSet(cleanStatusTag)) : Optional.empty();
         }
 
         /**
