@@ -164,7 +164,7 @@ Format: `lock [CURRENT_PASSWORD] [NEW_PASSWORD]`
 
 * Verifies the current password before locking ClientBook with the new password.
 * The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
-* The `NEW_PASSWORD` field can be omitted if you wish to use the last used password.
+* When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
 
 ### Unlocking ClientBook : `unlock`
 
