@@ -102,16 +102,16 @@ Examples:
 
 Adds or replaces tags to the specified person by index.
 
-Format: `tag INDEX [OPTIONS]…​ [t/TAG]…​`
+Format: `tag INDEX [o/OPTIONS]…​ [t/TAG]…​`
 
 * Tags the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 
 Currently available options include:
-* `-rt` Replaces the currently existing tags with the given new set of tags 
+* `rt` Replaces the currently existing tags with the given new set of tags 
   
 Examples:
 *  `tag 4 t/School t/English` Adds the tags School and English to the 4th person.
-*  `tag 2 -rt t/AStar Tuition t/English` Replaces all existing tags of the 2nd person to the tags AStar Tuition and English.
+*  `tag 2 o/rt t/AStar Tuition t/English` Replaces all existing tags of the 2nd person to the tags AStar Tuition and English.
 
 
 ### Listing all persons : `list`
@@ -231,6 +231,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Tag** | `tag INDEX [OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
+**Tag** | `tag INDEX [o/OPTIONS]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort OPTION` <br> e.g., `sort -name`
 **Help** | `help`
