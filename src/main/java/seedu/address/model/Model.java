@@ -6,9 +6,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.plan.Module;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
-import seedu.address.model.plan.Module;
 
 /**
  * The API of the Model component.

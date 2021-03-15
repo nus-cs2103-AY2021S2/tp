@@ -111,9 +111,15 @@ public class ParserUtil {
         return semesterNum;
     }
 
-    public static String parseModuleCode(String moduleCode) throws ParseException{
+    /**
+     * Parses a {@code String module code} into an {@code Integer}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module code} is invalid.
+     */
+    public static String parseModuleCode(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
-        String code = moduleCode.trim();
+        String code = moduleCode.trim().toUpperCase();
         return code;
     }
 }

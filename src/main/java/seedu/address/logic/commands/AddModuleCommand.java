@@ -8,12 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.storage.JsonModule;
 import seedu.address.model.plan.Module;
+import seedu.address.storage.JsonModule;
 
-import java.util.Objects;
-
-public class AddModuleCommand extends Command{
+public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addm";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a module to this semester. "
@@ -41,6 +39,12 @@ public class AddModuleCommand extends Command{
         this.moduleCode = moduleCode;
     }
 
+    /**
+     * Returns a command result from add module command.
+     *
+     * @param model USER'S MODEL.
+     * @return add module command result.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
