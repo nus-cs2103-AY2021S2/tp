@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
 // import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
+import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_SECOND_ENDPOINT;
@@ -47,34 +48,35 @@ public class RemoveCommandTest {
         assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
     }
 
-    // @Test //to-do uncomment these when showEndpointAtIndex is fixed
-    // public void execute_validIndexFilteredList_success() {
-    //     showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
 
-    //     Endpoint endpointToDelete = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
-    //     RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_ENDPOINT);
+        Endpoint endpointToDelete = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
+        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_ENDPOINT);
 
-    //     String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ENDPOINT_SUCCESS, endpointToDelete);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ENDPOINT_SUCCESS, endpointToDelete);
 
-    //     Model expectedModel = new ModelManager(model.getEndpointList(), new UserPrefs());
-    //     expectedModel.removeEndpoint(endpointToDelete);
-    //     showNoEndpoint(expectedModel);
+        Model expectedModel = new ModelManager(model.getEndpointList(), new UserPrefs());
+        expectedModel.removeEndpoint(endpointToDelete);
+        showNoEndpoint(expectedModel);
 
-    //     assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
-    // }
+        assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
+    }
 
-    // @Test
-    // public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //     showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
 
-    //     Index outOfBoundIndex = INDEX_SECOND_ENDPOINT;
-    //     // ensures that outOfBoundIndex is still in bounds of API endpoint list
-    //     assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
+        Index outOfBoundIndex = INDEX_SECOND_ENDPOINT;
 
-    //     RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
+        // ensures that outOfBoundIndex is still in bounds of API endpoint list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
 
-    //     assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
-    // }
+        RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
+
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+    }
 
     @Test
     public void equals() {

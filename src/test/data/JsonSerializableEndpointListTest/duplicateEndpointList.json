@@ -1,31 +1,18 @@
 {
-	"endpoints" : [ {
-		"method" : "GET",
-		"address" : "https://reqbin.com/echo",
-		"data" : "",
-		"headers" : [ ],
-		"tagged" : [ ],
-		"response" : {
-			"protocolVersion" : "No Data",
-			"statusCode" : "No Data",
-			"reasonPhrase" : "No Data",
-			"statusLine" : "No Data",
-			"responseEntity" : "No Data",
-			"responseTime" : "No Data"
-		}
-	}, {
-		"method" : "GET",
-		"address" : "https://reqbin.com/echo",
-		"data" : "",
-		"headers" : [ ],
-		"tagged" : [ ],
-		"response" : {
-			"protocolVersion" : "No Data",
-			"statusCode" : "No Data",
-			"reasonPhrase" : "No Data",
-			"statusLine" : "No Data",
-			"responseEntity" : "No Data",
-			"responseTime" : "No Data"
-		}
-	} ]
+	"endpoints": [
+		{
+			"method": "GET",
+			"address": "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+			"data": "{key: value}",
+			"header": "\"key: value\"",
+			"tagged": ["tag1", "cat"]
+		},
+		{
+			"method": "GET",
+			"address": "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2",
+			"data": "{key: value}",
+			"header": "\"key: value\"",
+			"tagged": ["tag1", "cat"]
+    }
+	]
 }

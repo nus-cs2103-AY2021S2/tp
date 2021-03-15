@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_1;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.testutil.Assert.assertThrows;
 import static seedu.us.among.testutil.TypicalEndpoints.GET;
@@ -39,24 +41,24 @@ public class UniqueEndpointListTest {
         assertTrue(uniqueEndpointList.contains(GET));
     }
 
-    // @Test
-    // public void contains_methodWithSameIdentityFieldsInList_returnsTrue() {
-    //     uniqueEndpointList.add(GET);
-    //     Endpoint editedGet = new EndpointBuilder(GET)
-    //     .withAddress(VALID_ADDRESS_FACT).withTags(VALID_TAG_CAT).build();
-    //     assertTrue(uniqueEndpointList.contains(editedGet));
-    // } //to-do update this class properly
+    @Test
+    public void contains_methodWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueEndpointList.add(GET);
+        Endpoint editedGet = new EndpointBuilder(GET).withAddress(VALID_ADDRESS_RANDOM).withData("{\"key\": \"value\"}")
+                .withHeaders("\"key: value\"").withTags(VALID_TAG_1, VALID_TAG_CAT).build();
+        assertTrue(uniqueEndpointList.contains(editedGet));
+    }
 
     @Test
     public void add_nullMethod_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEndpointList.add(null));
     }
 
-    // @Test
-    // public void add_duplicateMethod_throwsDuplicateMethodException() {
-    //     uniqueEndpointList.add(GET);
-    //     assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.add(GET));
-    // }
+    @Test
+    public void add_duplicateMethod_throwsDuplicateMethodException() {
+        uniqueEndpointList.add(GET);
+        assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.add(GET));
+    }
 
     @Test
     public void setMethod_nullTargetMethod_throwsNullPointerException() {
@@ -101,12 +103,12 @@ public class UniqueEndpointListTest {
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
-    // @Test
-    // public void setMethod_editedMethodHasNonUniqueIdentity_throwsDuplicateMethodException() {
-    //     uniqueEndpointList.add(GET);
-    //     uniqueEndpointList.add(POST);
-    //     assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.setEndpoint(GET, POST));
-    // }
+    @Test
+    public void setMethod_editedMethodHasNonUniqueIdentity_throwsDuplicateMethodException() {
+        uniqueEndpointList.add(GET);
+        uniqueEndpointList.add(POST);
+        assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.setEndpoint(GET, POST));
+    }
 
     @Test
     public void remove_nullMethod_throwsNullPointerException() {

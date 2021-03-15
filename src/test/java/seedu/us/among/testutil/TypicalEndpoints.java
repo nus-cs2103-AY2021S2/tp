@@ -22,42 +22,47 @@ public class TypicalEndpoints {
 
     public static final Endpoint GET = new EndpointBuilder().withMethod("GET")
             .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
-            .withData("{\"key\":\"value\"}")
-            .withTags("cat")
+            .withData("{\"key\": \"value\"}")
+            .withTags("tag1", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint POST = new EndpointBuilder().withMethod("POST")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{\"key\":\"value\"}").withTags("cat", "fact")
+            .withData("{\"key\": \"value\"}")
+            .withTags("tag2", "cat", "fact")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint PUT = new EndpointBuilder().withMethod("PUT")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{\"key\":\"value\"}")
+            .withData("{\"key\": \"value\"}")
+            .withTags("tag3", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint DELETE = new EndpointBuilder().withMethod("DELETE")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{\"key\":\"value\"}")
-            .withTags("Fact")
+            .withData("{\"key\": \"value\"}")
+            .withTags("tag4", "Fact")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint HEAD = new EndpointBuilder()
             .withMethod("HEAD")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{\"key\":\"value\"}")
+            .withData("{\"key\": \"value\"}")
+            .withTags("tag5", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint OPTIONS = new EndpointBuilder()
             .withMethod("OPTIONS")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{\"key\":\"value\"}")
+            .withData("{\"key\": \"value\"}")
+            .withTags("tag6", "cat")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint PATCH = new EndpointBuilder()
             .withMethod("PATCH")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{\"key\":\"value\"}")
+            .withData("{\"key\": \"value\"}")
+            .withTags("tag7", "cat")
             .withHeaders("\"key: value\"")
             .build();
 
@@ -65,20 +70,20 @@ public class TypicalEndpoints {
     public static final Endpoint GET1 = new EndpointBuilder()
             .withMethod("GET")
             .withAddress("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2")
-            .withData("{\"key\":\"value\"}")
+            .withData("{\"key\": \"value\"}")
             .withHeaders("\"key: value\"")
             .build();
     public static final Endpoint GET2 = new EndpointBuilder()
             .withMethod("GET")
             .withAddress("https://cat-fact.herokuapp.com/facts")
-            .withData("{\"key\":\"value\"}")
+            .withData("{\"key\": \"value\"}")
             .withHeaders("\"key: value\"")
             .build();
 
     // Manually added - Endpoint's details found in {@code CommandTestUtil}
     public static final Endpoint GET3 = new EndpointBuilder().withMethod(VALID_METHOD_GET)
             .withAddress(VALID_ADDRESS_RANDOM)
-            .withData("{\"key\":\"value\"}")
+            .withData("{\"key\": \"value\"}")
             .withTags(VALID_TAG_COOL)
             .build();
 
@@ -86,7 +91,8 @@ public class TypicalEndpoints {
     public static final Endpoint GET4 = new EndpointBuilder()
             .withMethod("GET")
             .withAddress("https://reqres.in/api/users/2")
-            .withData("{key: value}")
+            .withData("{\"key\": \"value\"}")
+            .withTags("tag8", "human")
             .withHeaders("\"key: value\"")
             .build();
 

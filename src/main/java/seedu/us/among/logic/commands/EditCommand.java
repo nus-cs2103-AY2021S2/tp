@@ -22,6 +22,7 @@ import seedu.us.among.model.endpoint.Address;
 import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
 import seedu.us.among.model.endpoint.Method;
+import seedu.us.among.model.endpoint.Response;
 import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
@@ -166,6 +167,7 @@ public class EditCommand extends Command {
         private Data data;
         private Set<Header> headers;
         private Set<Tag> tags;
+        private Response response;
 
         public EditEndpointDescriptor() {
         }
@@ -179,6 +181,7 @@ public class EditCommand extends Command {
             setData(toCopy.data);
             setHeaders(toCopy.headers);
             setTags(toCopy.tags);
+            setResponse(toCopy.response);
         }
 
         /**
@@ -244,6 +247,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setResponse(Response response) {
+            this.response = response;
+        }
+
+        public Optional<Response> getResponse() {
+            return Optional.ofNullable(response);
         }
 
         @Override

@@ -1,6 +1,8 @@
 package seedu.us.among.testutil;
 
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -9,6 +11,7 @@ import java.util.Set;
 import seedu.us.among.logic.commands.AddCommand;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.model.endpoint.Endpoint;
+import seedu.us.among.model.endpoint.header.Header;
 import seedu.us.among.model.tag.Tag;
 
 /**
@@ -42,12 +45,22 @@ public class EndpointUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getMethod().ifPresent(name -> sb.append(PREFIX_METHOD).append(name.methodName).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getData().ifPresent(data -> sb.append(PREFIX_DATA).append(data.value).append(" "));
+
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getHeaders().isPresent()) {
+            Set<Header> headers = descriptor.getHeaders().get();
+            if (headers.isEmpty()) {
+                sb.append(PREFIX_HEADER);
+            } else {
+                headers.forEach(s -> sb.append(PREFIX_HEADER).append(s.headerName).append(" "));
             }
         }
         return sb.toString();
