@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GARMENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,21 +20,21 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.description.Description;
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Size;
+import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.Name;
+import seedu.address.model.garment.Size;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing garment in the wardrobe.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the garment identified "
+            + "by the index number used in the displayed garment list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -46,61 +46,61 @@ public class EditCommand extends Command {
             + PREFIX_SIZE + "36 "
             + PREFIX_COLOUR + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_GARMENT_SUCCESS = "Edited Garment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_GARMENT = "This garment already exists in the wardrobe.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditGarmentDescriptor editGarmentDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the garment in the filtered garment list to edit
+     * @param editGarmentDescriptor details to edit the garment with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditGarmentDescriptor editGarmentDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editGarmentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editGarmentDescriptor = new EditGarmentDescriptor(editGarmentDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Garment> lastShownList = model.getFilteredGarmentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_GARMENT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Garment garmentToEdit = lastShownList.get(index.getZeroBased());
+        Garment editedGarment = createEditedGarment(garmentToEdit, editGarmentDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!garmentToEdit.isSameGarment(editedGarment) && model.hasGarment(editedGarment)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GARMENT);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setGarment(garmentToEdit, editedGarment);
+        model.updateFilteredGarmentList(PREDICATE_SHOW_ALL_GARMENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_GARMENT_SUCCESS, editedGarment));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Garment} with the details of {@code garmentToEdit}
+     * edited with {@code editGarmentDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Garment createEditedGarment(Garment garmentToEdit, EditGarmentDescriptor editGarmentDescriptor) {
+        assert garmentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Colour updatedColour = editPersonDescriptor.getColour().orElse(personToEdit.getColour());
-        Size updatedSize = editPersonDescriptor.getSize().orElse(personToEdit.getSize());
-        DressCode updatedDressCode = editPersonDescriptor.getDressCode().orElse(personToEdit.getDressCode());
-        Set<Description> updatedDescriptions = editPersonDescriptor.getDescriptions()
-                .orElse(personToEdit.getDescriptions());
+        Name updatedName = editGarmentDescriptor.getName().orElse(garmentToEdit.getName());
+        Size updatedSize = editGarmentDescriptor.getSize().orElse(garmentToEdit.getSize());
+        Colour updatedColour = editGarmentDescriptor.getColour().orElse(garmentToEdit.getColour());
+        DressCode updatedDressCode = editGarmentDescriptor.getDressCode().orElse(garmentToEdit.getDressCode());
+        Set<Description> updatedDescriptions = editGarmentDescriptor.getDescriptions()
+                .orElse(garmentToEdit.getDescriptions());
 
-        return new Person(updatedName, updatedSize, updatedColour, updatedDressCode, updatedDescriptions);
+        return new Garment(updatedName, updatedSize, updatedColour, updatedDressCode, updatedDescriptions);
     }
 
     @Override
@@ -118,28 +118,28 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editGarmentDescriptor.equals(e.editGarmentDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with.
+     * Stores the details to edit the garment with.
      * Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * corresponding field value of the garment.
      */
-    public static class EditPersonDescriptor {
+    public static class EditGarmentDescriptor {
         private Name name;
         private Size size;
         private Colour colour;
         private DressCode dresscode;
         private Set<Description> descriptions;
 
-        public EditPersonDescriptor() {}
+        public EditGarmentDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code descriptions} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditGarmentDescriptor(EditGarmentDescriptor toCopy) {
             setName(toCopy.name);
             setSize(toCopy.size);
             setColour(toCopy.colour);
@@ -211,12 +211,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditGarmentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditGarmentDescriptor e = (EditGarmentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getSize().equals(e.getSize())

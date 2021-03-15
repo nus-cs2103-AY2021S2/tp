@@ -15,7 +15,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditGarmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
 
@@ -43,27 +43,27 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditGarmentDescriptor editGarmentDescriptor = new EditGarmentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editGarmentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_SIZE).isPresent()) {
-            editPersonDescriptor.setSize(ParserUtil.parseSize(argMultimap.getValue(PREFIX_SIZE).get()));
+            editGarmentDescriptor.setSize(ParserUtil.parseSize(argMultimap.getValue(PREFIX_SIZE).get()));
         }
         if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
-            editPersonDescriptor.setColour(ParserUtil.parseColour(argMultimap.getValue(PREFIX_COLOUR).get()));
+            editGarmentDescriptor.setColour(ParserUtil.parseColour(argMultimap.getValue(PREFIX_COLOUR).get()));
         }
         if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
-            editPersonDescriptor.setDressCode(ParserUtil.parseDresscode(argMultimap.getValue(PREFIX_DRESSCODE).get()));
+            editGarmentDescriptor.setDressCode(ParserUtil.parseDressCode(argMultimap.getValue(PREFIX_DRESSCODE).get()));
         }
         parseDescriptionsForEdit(argMultimap.getAllValues(PREFIX_DESCRIPTION))
-                .ifPresent(editPersonDescriptor::setDescriptions);
+                .ifPresent(editGarmentDescriptor::setDescriptions);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editGarmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editGarmentDescriptor);
     }
 
     /**

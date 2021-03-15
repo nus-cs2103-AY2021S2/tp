@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalWardrobe;
+import static seedu.address.testutil.TypicalGarments.ALICE;
+import static seedu.address.testutil.TypicalGarments.HOON;
+import static seedu.address.testutil.TypicalGarments.IDA;
+import static seedu.address.testutil.TypicalGarments.getTypicalWardrobe;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonWardrobeStorageTest {
     }
 
     @Test
-    public void readWardrobe_invalidPersonWardrobe_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readWardrobe("invalidPersonWardrobe.json"));
+    public void readWardrobe_invalidGarmentWardrobe_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readWardrobe("invalidGarmentWardrobe.json"));
     }
 
     @Test
-    public void readWardrobe_invalidAndValidPersonWardrobe_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readWardrobe("invalidAndValidPersonWardrobe.json"));
+    public void readWardrobe_invalidAndValidGarmentWardrobe_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readWardrobe("invalidAndValidGarmentWardrobe.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonWardrobeStorageTest {
         assertEquals(original, new Wardrobe(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addGarment(HOON);
+        original.removeGarment(ALICE);
         jsonWardrobeStorage.saveWardrobe(original, filePath);
         readBack = jsonWardrobeStorage.readWardrobe(filePath).get();
         assertEquals(original, new Wardrobe(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addGarment(IDA);
         jsonWardrobeStorage.saveWardrobe(original); // file path not specified
         readBack = jsonWardrobeStorage.readWardrobe().get(); // file path not specified
         assertEquals(original, new Wardrobe(readBack));

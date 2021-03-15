@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Description in the address book.
+ * Represents a Description in the wardrobe.
  * Guarantees: immutable; name is valid as declared in {@link #isValidDescriptionName(String)}
  */
 public class Description {

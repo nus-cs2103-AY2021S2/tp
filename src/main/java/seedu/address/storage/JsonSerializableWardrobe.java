@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyWardrobe;
 import seedu.address.model.Wardrobe;
-import seedu.address.model.person.Person;
+import seedu.address.model.garment.Garment;
 
 /**
  * An Immutable Wardrobe that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "wardrobe")
 class JsonSerializableWardrobe {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_GARMENT = "Garments list contains duplicate garment(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedGarment> garments = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableWardrobe} with the given persons.
+     * Constructs a {@code JsonSerializableWardrobe} with the given garments.
      */
     @JsonCreator
-    public JsonSerializableWardrobe(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableWardrobe(@JsonProperty("garments") List<JsonAdaptedGarment> garments) {
+        this.garments.addAll(garments);
     }
 
     /**
@@ -37,22 +37,22 @@ class JsonSerializableWardrobe {
      * @param source future changes to this will not affect the created {@code JsonSerializableWardrobe}.
      */
     public JsonSerializableWardrobe(ReadOnlyWardrobe source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        garments.addAll(source.getGarmentList().stream().map(JsonAdaptedGarment::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code Wardrobe} object.
+     * Converts this wardrobe into the model's {@code Wardrobe} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Wardrobe toModelType() throws IllegalValueException {
         Wardrobe wardrobe = new Wardrobe();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (wardrobe.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedGarment jsonAdaptedGarment : garments) {
+            Garment garment = jsonAdaptedGarment.toModelType();
+            if (wardrobe.hasGarment(garment)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_GARMENT);
             }
-            wardrobe.addPerson(person);
+            wardrobe.addGarment(garment);
         }
         return wardrobe;
     }

@@ -13,12 +13,11 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.description.Description;
-import seedu.address.model.person.Colour;
-import seedu.address.model.person.DressCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Size;
-
+import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.Name;
+import seedu.address.model.garment.Size;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
@@ -43,12 +42,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Size size = ParserUtil.parseSize(argMultimap.getValue(PREFIX_SIZE).get());
         Colour colour = ParserUtil.parseColour(argMultimap.getValue(PREFIX_COLOUR).get());
-        DressCode dresscode = ParserUtil.parseDresscode(argMultimap.getValue(PREFIX_DRESSCODE).get());
+        DressCode dresscode = ParserUtil.parseDressCode(argMultimap.getValue(PREFIX_DRESSCODE).get());
         Set<Description> descriptionList = ParserUtil.parseDescriptions(argMultimap.getAllValues(PREFIX_DESCRIPTION));
 
-        Person person = new Person(name, size, colour, dresscode, descriptionList);
+        Garment garment = new Garment(name, size, colour, dresscode, descriptionList);
 
-        return new AddCommand(person);
+        return new AddCommand(garment);
     }
 
     /**
