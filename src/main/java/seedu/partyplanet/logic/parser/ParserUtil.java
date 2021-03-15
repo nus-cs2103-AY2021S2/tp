@@ -90,7 +90,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String remark} into a {@code remark}.
+     * Parses a {@code String remark} into a {@code Remark}.
      * Returns default empty remark if remark is not specified.
      * Leading and trailing whitespaces will be trimmed.
      *
