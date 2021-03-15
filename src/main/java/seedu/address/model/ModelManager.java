@@ -120,6 +120,17 @@ public class ModelManager implements Model {
         addressBook.addSession(session, name);
     }
 
+    public boolean hasName(Name name) {
+        requireNonNull(name);
+        return addressBook.hasName(name);
+    }
+
+    @Override
+    public boolean hasSession(Name name, Session session) {
+        requireNonNull(session);
+        return addressBook.hasSession(name, session);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

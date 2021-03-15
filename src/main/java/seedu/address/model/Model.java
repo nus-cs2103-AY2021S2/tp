@@ -85,6 +85,17 @@ public interface Model {
      */
     void addSession(Session session, Name name);
 
+    /**
+     * Returns true if a student with this name exists in the unique student list
+     */
+    boolean hasName(Name name);
+
+    /**
+     * Returns true if {@code name} exists in unique student list and if
+     * {@code session} with same date and time exists in the session list of the student with the {@code name}.
+     */
+    boolean hasSession(Name name, Session session);
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 

@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 import seedu.address.model.session.exceptions.SessionException;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the date and time of the session
@@ -33,5 +34,23 @@ public class SessionDate {
         } catch (DateTimeParseException e) {
             throw new SessionException(INCORRECT_DATE_TIME_FORMAT_ERROR_MESSAGE + e, e);
         }
+    }
+
+    /**
+     * Returns true if LocalTime and LocalDate of both objects are the same
+     */
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof SessionDate)) {
+            return false;
+        }
+
+        SessionDate sessionDate = (SessionDate) other;
+
+        return this.dateTime.toLocalDate().equals(sessionDate.dateTime.toLocalDate()) &&
+        this.dateTime.toLocalTime().equals(sessionDate.dateTime.toLocalTime());
     }
 }

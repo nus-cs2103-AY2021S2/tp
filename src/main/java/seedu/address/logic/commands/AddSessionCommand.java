@@ -13,12 +13,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Student;
 
 public class AddSessionCommand extends Command {
 
     public static final String COMMAND_WORD = "add_session";
-    public static final String MESSAGE_SUCCESS = "New session added: ";
+    public static final String MESSAGE_SUCCESS = "New session added";
+    public static final String STUDENT_DOES_NOT_EXIST_ERROR = "Student does not exist";
+    public static final String SESSION_ALREADY_EXIST_ERROR = "Session already exists";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to a particular student. "
             + "Parameters: "
@@ -49,10 +50,16 @@ public class AddSessionCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if(!model.hasName(name)) {
+            throw new CommandException(STUDENT_DOES_NOT_EXIST_ERROR);
+        }
+        if (!model.hasSession(name, sessionToAdd)) {
+            throw new CommandException(SESSION_ALREADY_EXIST_ERROR);
+        }
         model.addSession(sessionToAdd, name);
-        return new CommandResult(MESSAGE_SUCCESS + sessionToAdd + " for " + name);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
 

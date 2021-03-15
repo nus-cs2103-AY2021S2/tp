@@ -90,6 +90,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.setStudent(target, editedStudent);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeStudent(Student key) {
+        students.remove(key);
+    }
+
     //// session operations
 
     /**
@@ -97,26 +105,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addSession(Session session, Name name) {
         requireAllNonNull(session, name);
-        Student student = findStudent(name);
-        if (student.equals(null)) {
-            // how to handle the error
-        }
+        Student student = students.getStudentWithName(name);
         student.addSession(session);
     }
 
-    /**
-     * Finds the student in the unique student list and returns a student that matches
-     */
-    public Student findStudent(Name name) {
-        return students.findStudent(name);
+    public boolean hasName(Name name) {
+        return students.hasName(name);
     }
 
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeStudent(Student key) {
-        students.remove(key);
+    public boolean hasSession(Name name, Session session) {
+        return students.hasSession(name, session);
     }
 
     //// util methods
