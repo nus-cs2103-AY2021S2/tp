@@ -36,23 +36,28 @@ public class TypicalTasks {
             .withEmail("johnd@example.com").withDeadline("98765432").withStartTime("1230")
             .withStatus("not done").withTags("findMoney", "priorities").build();
     public static final Task CARL = new TaskBuilder().withTitle("Countdown to finals").withDeadline("95352563")
-            .withStartTime("1230").withEmail("heinz@example.com").withDescription("aiken doeet").build();
+            .withStartTime("1230").withEmail("heinz@example.com").withDescription("aiken doeet")
+            .withStatus("done").build();
     public static final Task DANIEL = new TaskBuilder().withTitle("Demo our amazing product").withDeadline("87652533")
-            .withStartTime("1230").withEmail("cornelia@example.com")
+            .withStartTime("1230").withEmail("cornelia@example.com").withStatus("done")
             .withDescription("Number 1 for real").withTags("fact").build();
     public static final Task ELLE = new TaskBuilder().withTitle("Ensure that I eat lunch").withDeadline("9482224")
-            .withStartTime("1230").withEmail("werner@example.com").withDescription("budget 3$").build();
+            .withStartTime("1230").withEmail("werner@example.com").withDescription("budget 3$")
+            .withStatus("done").build();
     public static final Task FIONA = new TaskBuilder().withTitle("Final project consult again").withDeadline("9482427")
-            .withStartTime("1230").withEmail("lydia@example.com").withDescription("at COM2").build();
+            .withStartTime("1230").withEmail("lydia@example.com").withDescription("at COM2")
+            .withStatus("done").build();
     public static final Task GEORGE = new TaskBuilder().withTitle("Get ready for 2101 presentation")
-            .withStartTime("1230").withDeadline("9482442").withEmail("anna@example.com")
+            .withStartTime("1230").withDeadline("9482442").withEmail("anna@example.com").withStatus("done")
             .withDescription("remember to shave").build();
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDeadline("8482424")
-            .withStartTime("1230").withEmail("stefan@example.com").withDescription("little india").build();
+            .withStartTime("1230").withEmail("stefan@example.com").withDescription("little india")
+            .withStatus("done").build();
     public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDeadline("8482131")
-            .withStartTime("1230").withEmail("hans@example.com").withDescription("chicago ave").build();
+            .withStartTime("1230").withEmail("hans@example.com").withDescription("chicago ave")
+            .withStatus("done").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDeadline(VALID_DEADLINE_AMY)

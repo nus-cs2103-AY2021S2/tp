@@ -40,7 +40,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
                            @JsonProperty("starttime") String starttime, @JsonProperty("email") String email,
-                           @JsonProperty("description") String description, @JsonProperty("status") String status
+                           @JsonProperty("description") String description, @JsonProperty("status") String status,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.deadline = deadline;
@@ -131,7 +131,8 @@ class JsonAdaptedTask {
         final Status modelStatus = new Status(status);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelDeadline, modelStartTime modelEmail, modelDescription, modelStatus, modelTags);
+        return new Task(modelTitle, modelDeadline, modelStartTime, modelEmail,
+                modelDescription, modelStatus, modelTags);
     }
 
 }

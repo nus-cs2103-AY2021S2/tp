@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -62,7 +60,7 @@ public class DoneCommandTest {
 
         assertFalse(standardCommand.equals(null));
 
-        assertFalse(standardCommand.equals(new DeleteCommand(INDEX_FIRST_TASK)));
+        assertFalse(standardCommand.equals(new DeleteTaskCommand(INDEX_FIRST_TASK)));
 
         assertFalse(standardCommand.equals(new DoneCommand(INDEX_SECOND_TASK)));
     }

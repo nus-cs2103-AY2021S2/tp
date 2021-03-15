@@ -14,6 +14,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
+import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -69,10 +70,11 @@ public class DoneCommand extends Command {
         Deadline previousDeadline = taskToBeDone.getDeadline();
         Email previousEmail = taskToBeDone.getEmail();
         Description previousDescription = taskToBeDone.getDescription();
+        StartTime previousStartTime = taskToBeDone.getStartTime();
         Status doneStatus = new Status("done");
         Set<Tag> previousTags = taskToBeDone.getTags();
 
-        return new Task(previousTitle, previousDeadline, previousEmail, previousDescription,
+        return new Task(previousTitle, previousDeadline, previousStartTime, previousEmail, previousDescription,
                 doneStatus, previousTags);
     }
 
