@@ -132,6 +132,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.setTask(target, editedTask);
     }
 
+    /**
+     * Removes {@code key} from this {@code TaskList}.
+     * {@code key} must exist in the task list.
+     */
+    public void removeTask(Task key) {
+        tasks.remove(key);
+    }
+
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();
