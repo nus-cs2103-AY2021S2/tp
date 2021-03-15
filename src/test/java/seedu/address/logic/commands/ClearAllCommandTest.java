@@ -27,7 +27,6 @@ public class ClearAllCommandTest {
     public void execute_nonEmptyAppointmentBook_success() {
         Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
-        expectedModel.setAppointmentBook(new AppointmentBook());
 
         assertCommandSuccess(new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS,
                 expectedModel);
