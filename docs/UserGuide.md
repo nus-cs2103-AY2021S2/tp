@@ -158,16 +158,10 @@ Format: <br>
 `filter FACULTY`
 `filter SCHOOL_RESIDENCE`
 
->**NOTE:** The list of condition used for the filter command is as follows. 
-
-**Filter By**  | **Condition**
---------|-----------------
-**Vaccination Status** | `filter VACCINATED ` or  `filter NOT_VACCINATED `
-**Faculty** | `filter FASS `,  `filter BIZ `, `filter COM `, `filter SCALE `, `filter DEN `, `filter SDE `, `filter DNUS `, `filter ENG `,`filter ISEP `,`filter LAW `,`filter MED `,`filter MUSIC `, `filter SPH `, `filter SPP `, `filter SCI `, `filter USP `, `filter YNC `, `filter DOES_NOT_LIVE_ON_CAMPUS `
-**School Residence** | `filter PGPH `,  `filter PGPR `, `filter KE7H `, `filter SH `, `filter KRH `, `filter TH `, `filter EH `, `filter RH `,`filter RVRC `,`filter YNC `,`filter TC `,`filter CAPT `, `filter RC4 `, `filter USP `, `filter UTR `
-
 Examples:
-* `filter VACCINATED` shows a list of student from the records who has been vaccinated.
+* `filter VACCINATED` 
+* `filter COM` 
+* `filter RVRC` 
 
 
 ### Deleting a student by their matriculation number: `deleteStud`
