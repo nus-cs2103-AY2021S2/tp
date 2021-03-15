@@ -2,12 +2,12 @@ package seedu.address.logic.parser.appointmentparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.appointmentcommands.FindAppointmentCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -17,6 +17,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
     /**
      * Parses the given {@code String} of arguments in the context of the FindAppointmentCommand
      * and returns a FindAppointmentCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindAppointmentCommand parse(String args) throws ParseException {

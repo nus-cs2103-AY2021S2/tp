@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
 import seedu.address.model.subject.SubjectName;
 
 /**
@@ -26,8 +25,9 @@ public class Appointment {
 
     /**
      * Primary constructor for appointment class.
-     * @param email Email of tutor.
-     * @param subject Subject tutor is teaching to tutee.
+     *
+     * @param email    Email of tutor.
+     * @param subject  Subject tutor is teaching to tutee.
      * @param dateTime LocalDateTime
      * @param location Location of teaching venue
      */
@@ -57,6 +57,7 @@ public class Appointment {
 
     /**
      * Helper method to parse date time.
+     *
      * @param date Date in string
      * @param time 24 hr time in integer
      * @return LocalDateTime for given date and time

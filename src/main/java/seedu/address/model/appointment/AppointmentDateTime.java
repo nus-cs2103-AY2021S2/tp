@@ -2,7 +2,6 @@ package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.DateTimeUtil.DATETIME_FORMAT;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 
 /**
- * Represents a Person's address in the address book.
+ * Represents an Appointment's datetime in the AppointmentList.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class AppointmentDateTime {
@@ -20,8 +19,6 @@ public class AppointmentDateTime {
             + "and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
      * DateTime make use of formatter to validate instead of Regex for DateTime accuracy.
      */
     public static final DateTimeFormatter VALIDATION_PATTERN = new DateTimeFormatterBuilder()
@@ -47,36 +44,41 @@ public class AppointmentDateTime {
     public AppointmentDateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        value = LocalDateTime.parse(dateTime, DATETIME_FORMAT);
+        value = LocalDateTime.parse(dateTime, VALIDATION_PATTERN);
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid DateTime.
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test, DATETIME_FORMAT);
+            LocalDateTime.parse(test, VALIDATION_PATTERN);
             return true;
         } catch (DateTimeParseException e) {
             return false;
         }
     }
 
+    /**
+     * Performs a quick {@code LocalDateTime} equality check
+     */
     public boolean equalsDateCheck(LocalDateTime other) {
         return other == value // short circuit if same object
                 || (other != null // instanceof handles nulls
                 && value.toLocalDate().isEqual((other.toLocalDate()))); // state check
     }
 
-    public boolean equalsDate(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AppointmentDateTime // instanceof handles nulls
-                && value.toLocalDate().isEqual(((AppointmentDateTime) other).value.toLocalDate())); // state check
-    }
-
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");
+        return value.format(formatter);
+    }
+
+    /**
+     * Returns a date only string for display purpose
+     */
+    public String toDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
         return value.format(formatter);
     }
 

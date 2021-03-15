@@ -24,4 +24,9 @@ public class DateViewPredicate implements Predicate<Appointment> {
                 || (other instanceof DateViewPredicate // instanceof handles nulls
                 && date.equals(((DateViewPredicate) other).date)); // state check
     }
+
+    @Override
+    public String toString() {
+        return date.toDateString();
+    }
 }

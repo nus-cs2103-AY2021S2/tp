@@ -2,11 +2,6 @@ package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,7 +31,7 @@ public class ViewAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
-        return new CommandResult(String.format(MESSAGE_VIEW_APPOINTMENT_SUCCESS, "abc"));
+        return new CommandResult(String.format(MESSAGE_VIEW_APPOINTMENT_SUCCESS, predicate.toString()));
     }
 
     @Override
