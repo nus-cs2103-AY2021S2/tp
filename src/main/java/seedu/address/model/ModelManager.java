@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 import seedu.address.model.person.Person;
 
 /**

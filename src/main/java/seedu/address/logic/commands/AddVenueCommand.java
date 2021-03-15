@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 
 /**
  * Adds a booking venue to the system.
