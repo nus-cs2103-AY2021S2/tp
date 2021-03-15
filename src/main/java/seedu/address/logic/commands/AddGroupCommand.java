@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSONS;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,9 +50,8 @@ public class AddGroupCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
-        HashMap<Name, Group> groupMap = new HashMap<>(model.getGroupMap());
 
-        Group group = groupMap.getOrDefault(groupName, new Group(groupName));
+        Group group = model.getGroupMap().getOrDefault(groupName, new Group(groupName));
         Set<Person> newPersonSet = new HashSet<>(group.getPersons());
 
         boolean isNewGroup = !model.hasGroup(group);
