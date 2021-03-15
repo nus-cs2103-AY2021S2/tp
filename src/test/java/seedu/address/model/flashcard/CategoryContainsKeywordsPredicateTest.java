@@ -71,7 +71,7 @@ public class CategoryContainsKeywordsPredicateTest {
         predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new FlashcardBuilder().withCategory("Alice Bob").build()));
 
-        // Keywords match phone, email and address, but does not match name
+        // Keywords match answer, category and priority, but does not match question
         predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Theorem", "Test", "Mid", "Math"));
         assertFalse(predicate.test(new FlashcardBuilder().withQuestion("Theorem").withAnswer("Test")
                 .withCategory("Random").withPriority("Mid").build()));
