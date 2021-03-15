@@ -38,7 +38,7 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_VACCINATION_STATUS + person.getVaccinationStatus().textUI + " ");
         sb.append(PREFIX_MEDICAL_DETAILS + person.getMedicalDetails().value + " ");
-        sb.append(PREFIX_SCHOOL_RESIDENCE + person.getSchoolResidence().value + " ");
+        sb.append(PREFIX_SCHOOL_RESIDENCE + person.getSchoolResidence().toSavingString() + " ");
         return sb.toString();
     }
 
@@ -59,7 +59,7 @@ public class PersonUtil {
         descriptor.getMedicalDetails().ifPresent(medicalDetails -> sb.append(PREFIX_MEDICAL_DETAILS)
                 .append(medicalDetails.value).append(" "));
         descriptor.getSchoolResidence().ifPresent(schoolResidence -> sb.append(PREFIX_SCHOOL_RESIDENCE)
-                .append(schoolResidence.value).append(" "));
+                .append(schoolResidence.toSavingString()).append(" "));
         return sb.toString();
     }
 }

@@ -27,7 +27,7 @@ public class StatsCommandResidence extends StatsCommand {
             if (Float.isNaN(stats) || stats > 1) {
                 throw new CommandException(MESSAGE_STATS_FAILURE);
             }
-            return new CommandResult(String.format(MESSAGE_STATS_SUCCESS, residence, stats * 100));
+            return new CommandResult(String.format(MESSAGE_STATS_SUCCESS, residence.toString(), stats * 100));
         } catch (Exception e) {
             throw new CommandException(MESSAGE_STATS_FAILURE);
         }

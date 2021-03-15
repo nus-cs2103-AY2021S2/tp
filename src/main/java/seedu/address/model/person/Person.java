@@ -32,13 +32,13 @@ public class Person {
         requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.matriculationNumber = matriculationNumber;
-        this.faculty = new Faculty(faculty.value.toUpperCase());
+        this.faculty = faculty;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.vaccinationStatus = vaccinationStatus;
         this.medicalDetails = medicalDetails;
-        this.schoolResidence = new SchoolResidence(schoolResidence.value.toUpperCase());
+        this.schoolResidence = schoolResidence;
     }
 
     public Name getName() {
@@ -147,7 +147,7 @@ public class Person {
                 .append("; Vaccination Status: ")
                 .append(getVaccinationStatus())
                 .append("; School Residence: ")
-                .append(getSchoolResidence());
+                .append(getSchoolResidence().toString()); // DOES NOT LIVE ON CAMPUS -> For UI
         return builder.toString();
     }
 
