@@ -9,7 +9,6 @@ import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
-import seedu.budgetbaby.model.record.FinancialRecordList;
 
 /**
  * The API of the Model component.

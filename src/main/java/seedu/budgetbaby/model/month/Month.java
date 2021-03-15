@@ -85,6 +85,9 @@ public class Month {
         records.setFinancialRecord(target, editedRecord);
     }
 
+    /**
+     * Filters the financial records to a specified category.
+     */
     public void filterByCategory(Category category) {
         requireNonNull(category);
         records.filterByCategory(category);

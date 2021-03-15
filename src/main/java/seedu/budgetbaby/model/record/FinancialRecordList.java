@@ -30,14 +30,6 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
     }
 
     /**
-     * Filters financial records according to category.
-     */
-    public void filterByCategory(Category category) {
-        requireAllNonNull(category);
-        internalList.filtered(fr -> fr.getTags().contains(category));
-    }
-
-    /**
      * Replaces the financial record {@code target} in the list with {@code editedFinancialRecord}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
@@ -76,6 +68,14 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
         requireAllNonNull(records);
 
         internalList.setAll(records);
+    }
+
+    /**
+     * Filters financial records according to category.
+     */
+    public void filterByCategory(Category category) {
+        requireAllNonNull(category);
+        internalList.filtered(fr -> fr.getTags().contains(category));
     }
 
     /**
