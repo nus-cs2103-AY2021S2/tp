@@ -154,11 +154,6 @@ public class AddPropertyCommandTest {
         }
 
         @Override
-        public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyPropertyBook getPropertyBook() {
             throw new AssertionError("This method should not be called.");
         }

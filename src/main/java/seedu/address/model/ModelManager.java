@@ -124,11 +124,6 @@ public class ModelManager implements Model {
     //=========== PropertyBook ================================================================================
 
     @Override
-    public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
-        this.propertyBook.resetData(propertyBook);
-    }
-
-    @Override
     public boolean hasProperty(Property property) {
         requireNonNull(property);
         return propertyBook.hasProperty(property);
