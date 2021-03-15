@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents an ISBN(International Standard Book Number) of a book in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidIsbn(String)}
  */
 public class Isbn {
@@ -26,17 +26,18 @@ public class Isbn {
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs an {@code ISBN}.
      *
-     * @param phone A valid phone number.
+     * @param isbn A valid ISBN number.
      */
-    public Isbn(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidIsbn(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Isbn(String isbn) {
+        requireNonNull(isbn);
+        checkArgument(isValidIsbn(isbn), MESSAGE_CONSTRAINTS);
+        value = isbn;
     }
 
     /**
+     *
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidIsbn(String test) {

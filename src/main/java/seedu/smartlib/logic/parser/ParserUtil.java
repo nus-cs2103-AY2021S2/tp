@@ -10,6 +10,9 @@ import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.util.StringUtil;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
+import seedu.smartlib.model.book.Author;
+import seedu.smartlib.model.book.Isbn;
+import seedu.smartlib.model.book.Publisher;
 import seedu.smartlib.model.reader.Address;
 import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
@@ -120,5 +123,47 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String author} into a {@code Author}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Author parseAuthor(String author) throws ParseException {
+        requireNonNull(author);
+        String trimmedAuthor = author.trim();
+        if (!Name.isValidName(trimmedAuthor)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Author(trimmedAuthor);
+    }
+
+    /**
+     * Parses a {@code String Isbn} into a {@code ISBN}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Isbn parseIsbn(String isbn) throws ParseException {
+        requireNonNull(isbn);
+        String trimmedIsbn = isbn.trim();
+        if (!Isbn.isValidIsbn(trimmedIsbn)) {
+            throw new ParseException(Isbn.MESSAGE_CONSTRAINTS);
+        }
+        return new Isbn(trimmedIsbn);
+    }
+
+    /**
+     * Parses a {@code String Isbn} into a {@code ISBN}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Publisher parsePublisher(String publisher) throws ParseException {
+        requireNonNull(publisher);
+        String trimmedPublisher = publisher.trim();
+        return new Publisher(trimmedPublisher);
     }
 }

@@ -41,7 +41,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
-    // the line below should not be replaced with "readerListPanelPlaceholder"
     @FXML
     private StackPane readerListPanelPlaceholder;
 

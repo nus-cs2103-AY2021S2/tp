@@ -23,7 +23,7 @@ public class Book {
     /**
      * Every field must be present and not null.
      */
-    Book(Name name, Author author, Publisher publisher, Isbn isbn) {
+    public Book(Name name, Author author, Publisher publisher, Isbn isbn) {
         requireAllNonNull(name, author, publisher, isbn);
         this.name = name;
         this.author = author;

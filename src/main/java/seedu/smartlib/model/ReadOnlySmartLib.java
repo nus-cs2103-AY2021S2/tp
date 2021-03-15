@@ -18,7 +18,7 @@ public interface ReadOnlySmartLib {
 
     /**
      * Returns an unmodifiable view of the readers list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate readers.
      */
     ObservableList<Reader> getReaderList();
 
