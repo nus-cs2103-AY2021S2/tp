@@ -77,6 +77,7 @@ public class EditAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
         Person patient = displayedPatientRecords.get(editAppointmentDescriptor.patientIndex.getZeroBased());
+
         List<Appointment> appointmentList = model.getFilteredAppointmentList();
         if (index.getZeroBased() >= appointmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
@@ -84,7 +85,8 @@ public class EditAppointmentCommand extends Command {
         Appointment appointmentToEdit = appointmentList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(patient, appointmentToEdit, editAppointmentDescriptor);
 
-        if (model.hasEditConflictingAppointment(editedAppointment)) {
+        if (appointmentToEdit.hasEditConflict(editedAppointment)
+                || model.hasEditConflictingAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
         // if remove the previous line, would result in error here
@@ -100,12 +102,11 @@ public class EditAppointmentCommand extends Command {
     private static Appointment createEditedAppointment(Person patient, Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
-        Person updatedPatient = patient;
         String updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
         Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
 
-        return new Appointment(updatedPatient, updatedDoctor, updatedTimeslot, updatedTags);
+        return new Appointment(patient, updatedDoctor, updatedTimeslot, updatedTags);
     }
 
     @Override

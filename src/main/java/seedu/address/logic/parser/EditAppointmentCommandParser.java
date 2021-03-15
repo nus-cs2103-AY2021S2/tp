@@ -34,13 +34,13 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                 ArgumentTokenizer.tokenize(args, PREFIX_PATIENT, PREFIX_DOCTOR,
                         PREFIX_TIMESLOT_START, PREFIX_TIMESLOT_END, PREFIX_TIMESLOT_DURATION, PREFIX_TAG);
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE), pe);
         }
+
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
         if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
             editAppointmentDescriptor
