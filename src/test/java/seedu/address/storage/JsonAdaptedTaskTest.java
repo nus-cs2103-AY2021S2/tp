@@ -22,8 +22,7 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@chel";
     private static final String INVALID_DEADLINE = " ";
     private static final String INVALID_STARTTIME = " ";
-    private static final String INVALID_DESCRIPTION = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    //private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
@@ -92,6 +91,7 @@ public class JsonAdaptedTaskTest {
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
+    /*
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedTask task =
@@ -100,6 +100,7 @@ public class JsonAdaptedTaskTest {
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
+     */
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
