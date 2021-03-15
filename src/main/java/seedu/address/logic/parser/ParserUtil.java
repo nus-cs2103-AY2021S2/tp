@@ -2,13 +2,26 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
-import seedu.address.model.subject.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectExperience;
+import seedu.address.model.subject.SubjectLevel;
+import seedu.address.model.subject.SubjectName;
+import seedu.address.model.subject.SubjectQualification;
+import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
 /**
