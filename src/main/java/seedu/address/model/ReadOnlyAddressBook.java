@@ -17,7 +17,6 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     /**
-<<<<<<< HEAD
      * Returns an unmodifiable view of the bookings list.
      * This list will not contain any duplicate bookings.
      */

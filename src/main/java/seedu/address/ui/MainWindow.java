@@ -127,6 +127,7 @@ public class MainWindow extends UiPart<Stage> {
 
         venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
         resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
+        resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
