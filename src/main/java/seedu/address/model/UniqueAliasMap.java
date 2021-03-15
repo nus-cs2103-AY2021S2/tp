@@ -29,7 +29,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     public UniqueAliasMap() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an UniqueAliasMap using the aliases in the {@code toBeCopied}
      */
     public UniqueAliasMap(ReadOnlyUniqueAliasMap toBeCopied) {
         this();
@@ -40,7 +40,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
      * Replaces the contents of the aliases with {@code aliases}.
      * {@code aliases} must not contain duplicate aliases.
      */
-    public void setPersons(Map<Alias, CommandAlias> aliases) {
+    public void setAliases(Map<Alias, CommandAlias> aliases) {
         requireAllNonNull(aliases);
         if (!aliasesAreUnique(aliases)) {
             throw new DuplicatePersonException();
@@ -50,12 +50,12 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code UniqueAliasMap} with {@code newData}.
      */
     public void resetData(ReadOnlyUniqueAliasMap newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getAliases());
+        setAliases(newData.getAliases());
     }
 
     /**
