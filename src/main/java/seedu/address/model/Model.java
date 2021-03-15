@@ -84,4 +84,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the display filter for PersonCard controls.
+     * @param displayFilterPredicate that returns true if prefix linked control should be hidden
+     */
+    void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate);
+
+    /**
+     * Returns the display filter for PersonCard controls.
+     * @return predicate that returns true if prefix linked control should be hidden
+     */
+    DisplayFilterPredicate getDisplayFilter();
 }
