@@ -155,7 +155,7 @@ Examples:
 `undo` (reverse the `delete 1` command)
 * `delete 3`  
 `delete 2`  
-`undo` (reverse the `delete 3` command)
+`undo` (reverse the `delete 3` command)  
 `undo` (reverse the `delete 2` command)
 
 Format: `undo`
