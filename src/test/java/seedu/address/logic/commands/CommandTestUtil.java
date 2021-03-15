@@ -116,9 +116,19 @@ public class CommandTestUtil {
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage} and a {@code uiCommand}.
      */
-    public static void assertCommandSuccessWithUiCommand(Command command, Model actualModel, String expectedMessage,
-            UiCommand uiCommand, Model expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            UiCommand uiCommand, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, uiCommand);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}, {@code uiCommand} and (@code index}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            UiCommand uiCommand, Index index, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, uiCommand, index);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

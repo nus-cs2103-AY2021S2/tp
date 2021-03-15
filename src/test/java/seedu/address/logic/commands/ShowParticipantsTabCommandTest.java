@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccessWithUiCommand;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class ShowParticipantsTabCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccessWithUiCommand(new ShowParticipantsTabCommand(), model,
+        assertCommandSuccess(new ShowParticipantsTabCommand(), model,
                 ShowParticipantsTabCommand.MESSAGE_SUCCESS, UiCommand.SHOW_PARTICIPANTS, expectedModel);
     }
 

@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccessWithUiCommand;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class ShowTodosTabCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccessWithUiCommand(new ShowTodosTabCommand(), model, ShowTodosTabCommand.MESSAGE_SUCCESS,
+        assertCommandSuccess(new ShowTodosTabCommand(), model, ShowTodosTabCommand.MESSAGE_SUCCESS,
                 UiCommand.SHOW_TODOS, expectedModel);
     }
 
