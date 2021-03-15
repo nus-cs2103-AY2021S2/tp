@@ -6,8 +6,10 @@ import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.UserPrefs;
 
 public class ClearAllCommandTest {
@@ -25,6 +27,7 @@ public class ClearAllCommandTest {
     public void execute_nonEmptyAppointmentBook_success() {
         Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        expectedModel.setAppointmentBook(new AppointmentBook());
 
         assertCommandSuccess(new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS,
                 expectedModel);
@@ -43,6 +46,7 @@ public class ClearAllCommandTest {
     public void execute_nonEmptyPropertyBook_success() {
         Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        expectedModel.setPropertyBook(new PropertyBook());
 
         assertCommandSuccess(new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS,
                 expectedModel);

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +23,8 @@ public class ClearAppointmentCommandTest {
 
     @Test
     public void execute_nonEmptyAppointmentBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
         expectedModel.setAppointmentBook(new AppointmentBook());
 
         assertCommandSuccess(new ClearAppointmentCommand(), model, ClearAppointmentCommand.MESSAGE_SUCCESS,
