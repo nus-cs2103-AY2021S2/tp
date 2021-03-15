@@ -37,8 +37,11 @@ ClientBook is a desktop app for managing client contacts, optimized for use via 
 - List all clients: `list`
 - Locating clients by name: `find`
 - Deleting a client : `delete`
+- Sorting the list of clients : `sort`
 - Exiting the program : `exit`
-- Saving the data 
+- Locking ClientBook: `lock`
+- Unlocking ClientBook: `unlock`
+- Saving the data
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -85,15 +88,19 @@ Format: `help`
 
 Adds a client to ClientBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID[>POLICY_URL]] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags and insurance policies (including 0)
 </div>
 
+* It is perfectly fine to not include the URL to the insurance policy document!
+* To include the URL, remember to use '>' to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
+
 Examples:
-* (example with policy)`add n/John Doe p/98765432 e/johnd@example.com a/Ochard i/Policy_1273 t/basic`
-* (example with no policy)`add n/Betsy Crowe e/betsycrowe@example.com a/Kent Ridge t/nopolicy`
+* (example of a client with insurance policy but no URL)`add n/John Doe p/98765432 e/johnd@example.com a/Orchard i/Policy_1273 t/basic`
+* (example of a client with insurance policy and URL)`add n/Tom Tan p/91234567 e/tomt@example.com a/Orchard i/Policy_1274>www.myinsurancecompany.com/policy_1274 t/basic`
+* (example with no insurance policy and no tag)`add n/Betsy Crowe e/betsycrowe@example.com a/Kent Ridge`
 
 ### Listing all persons : `list`
 
@@ -151,12 +158,62 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Viewing a contact's policies: `policy`
+
+Launches a popup window to show all the policies associated with the selected contact, if the selected contact has any policies.
+
+![without policy URL](images/without_policy_URL.png)
+![with policy URL](images/with_policy_URL.png)
+
+Format: `policy INDEX`
+
+* Selects the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Policy ID cannot contain '>' character!
+* Note that your URLs with should not contain '>' characters either! They are not valid URLs by the Internet's definition.
+
+Examples:
+* `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
+* `find Betsy` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
+
+### Sorting the list of clients : `sort`
+
+Sorts the list of clients in ClientBook by their names in alphabetical order.
+
+Format: `sort DIRECTION`
+
+* Sorts the list of clients according the specified `DIRECTION`.
+* The specified `DIRECTION` can be `-a` for ascending order or `-d` for descending order.
+
+Examples:
+* `sort -a` sorts the current list of clients in ascending order.
+
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Locking ClientBook : `lock`
+
+Locks ClientBook.
+
+Format: `lock [CURRENT_PASSWORD] [NEW_PASSWORD]`
+
+* Verifies the current password before locking ClientBook with the new password.
+* The `CURRENT_PASSWORD` field can be omitted if ClientBook is not yet locked.
+* When `CURRENT_PASSWORD` and `NEW_PASSWORD` fields are both omitted, ClientBook will attempt to lock itself using the last used password that is safely stored on your device.
+
+### Unlocking ClientBook : `unlock`
+
+Unlocks ClientBook.
+
+Format: `unlock CURRENT_PASSWORD`
+
+* Verifies the current password before unlocking ClientBook.
+
 
 ### Saving the data
 
@@ -189,7 +246,12 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Policy** | `policy INDEX`<br> e.g., `policy 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [FLAG] KEYWORD [& MORE_KEYWORDS]`<br> e.g., `find -a Bedok & Clementi`
+**Find** | `find FLAG/KEYWORD [& MORE_KEYWORDS]`<br> e.g., `find a/Bedok & Clementi`
+**Sort** | `sort DIRECTION`
 **List** | `list`
 **Help** | `help`
+**Exit** | `exit`
+**Lock** | `lock [CURRENT_PASSWORD] NEW_PASSWORD`
+**Unlock** | `unlock [CURRENT_PASSWORD]`
