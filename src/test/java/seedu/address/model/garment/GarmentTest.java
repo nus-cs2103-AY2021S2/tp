@@ -2,9 +2,9 @@ package seedu.address.model.garment;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COLOUR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DRESSCODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -33,7 +33,7 @@ public class GarmentTest {
 
         // same name, all other attributes different -> returns true
         Garment editedAlice = new GarmentBuilder(ALICE).withSize(VALID_SIZE_BOB).withColour(VALID_COLOUR_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withDescriptions(VALID_DESCRIPTION_HUSBAND).build();
+                .withDressCode(VALID_DRESSCODE_BOB).withDescriptions(VALID_DESCRIPTION_HUSBAND).build();
         assertTrue(ALICE.isSameGarment(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,7 +81,7 @@ public class GarmentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new GarmentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new GarmentBuilder(ALICE).withDressCode(VALID_DRESSCODE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different descriptions -> returns false

@@ -21,18 +21,18 @@ public class Garment {
     private final Colour colour;
 
     // Data fields
-    private final Address address;
+    private final DressCode dresscode;
     private final Set<Description> descriptions = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Garment(Name name, Size size, Colour colour, Address address, Set<Description> descriptions) {
-        requireAllNonNull(name, size, colour, address, descriptions);
+    public Garment(Name name, Size size, Colour colour, DressCode dresscode, Set<Description> descriptions) {
+        requireAllNonNull(name, size, colour, dresscode, descriptions);
         this.name = name;
         this.size = size;
         this.colour = colour;
-        this.address = address;
+        this.dresscode = dresscode;
         this.descriptions.addAll(descriptions);
     }
 
@@ -48,8 +48,8 @@ public class Garment {
         return colour;
     }
 
-    public Address getAddress() {
-        return address;
+    public DressCode getDressCode() {
+        return dresscode;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Garment {
         return otherGarment.getName().equals(getName())
                 && otherGarment.getSize().equals(getSize())
                 && otherGarment.getColour().equals(getColour())
-                && otherGarment.getAddress().equals(getAddress())
+                && otherGarment.getDressCode().equals(getDressCode())
                 && otherGarment.getDescriptions().equals(getDescriptions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, size, colour, address, descriptions);
+        return Objects.hash(name, size, colour, dresscode, descriptions);
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Garment {
                 .append(getSize())
                 .append("; Colour: ")
                 .append(getColour())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; DressCode: ")
+                .append(getDressCode());
 
         Set<Description> descriptions = getDescriptions();
         if (!descriptions.isEmpty()) {

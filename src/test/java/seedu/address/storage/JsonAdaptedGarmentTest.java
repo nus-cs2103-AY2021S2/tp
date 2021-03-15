@@ -12,22 +12,22 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
 
 public class JsonAdaptedGarmentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_SIZE = "+22";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_DRESSCODE = " ";
     private static final String INVALID_COLOUR = " ";
     private static final String INVALID_DESCRIPTION = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_SIZE = BENSON.getSize().toString();
     private static final String VALID_COLOUR = BENSON.getColour().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_DRESSCODE = "FORMAL"; //BENSON.getDressCode().toString();
     private static final List<JsonAdaptedDescription> VALID_DESCRIPTIONS = BENSON.getDescriptions().stream()
             .map(JsonAdaptedDescription::new)
             .collect(Collectors.toList());
@@ -41,14 +41,14 @@ public class JsonAdaptedGarmentTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedGarment garment =
-                new JsonAdaptedGarment(INVALID_NAME, VALID_SIZE, VALID_COLOUR, VALID_ADDRESS, VALID_DESCRIPTIONS);
+                new JsonAdaptedGarment(INVALID_NAME, VALID_SIZE, VALID_COLOUR, VALID_DRESSCODE, VALID_DESCRIPTIONS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedGarment garment = new JsonAdaptedGarment(null, VALID_SIZE, VALID_COLOUR, VALID_ADDRESS,
+        JsonAdaptedGarment garment = new JsonAdaptedGarment(null, VALID_SIZE, VALID_COLOUR, VALID_DRESSCODE,
                 VALID_DESCRIPTIONS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
@@ -57,14 +57,14 @@ public class JsonAdaptedGarmentTest {
     @Test
     public void toModelType_invalidSize_throwsIllegalValueException() {
         JsonAdaptedGarment garment =
-                new JsonAdaptedGarment(VALID_NAME, INVALID_SIZE, VALID_COLOUR, VALID_ADDRESS, VALID_DESCRIPTIONS);
+                new JsonAdaptedGarment(VALID_NAME, INVALID_SIZE, VALID_COLOUR, "", VALID_DESCRIPTIONS);
         String expectedMessage = Size.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
     }
 
     @Test
     public void toModelType_nullSize_throwsIllegalValueException() {
-        JsonAdaptedGarment garment = new JsonAdaptedGarment(VALID_NAME, null, VALID_COLOUR, VALID_ADDRESS,
+        JsonAdaptedGarment garment = new JsonAdaptedGarment(VALID_NAME, null, VALID_COLOUR, VALID_DRESSCODE,
                 VALID_DESCRIPTIONS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Size.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
@@ -73,32 +73,32 @@ public class JsonAdaptedGarmentTest {
     @Test
     public void toModelType_invalidColour_throwsIllegalValueException() {
         JsonAdaptedGarment garment =
-                new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, INVALID_COLOUR, VALID_ADDRESS, VALID_DESCRIPTIONS);
+                new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, INVALID_COLOUR, VALID_DRESSCODE, VALID_DESCRIPTIONS);
         String expectedMessage = Colour.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
     }
 
     @Test
     public void toModelType_nullColour_throwsIllegalValueException() {
-        JsonAdaptedGarment garment = new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, null, VALID_ADDRESS,
+        JsonAdaptedGarment garment = new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, null, VALID_DRESSCODE,
                 VALID_DESCRIPTIONS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Colour.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
     }
 
     @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
+    public void toModelType_invalidDressCode_throwsIllegalValueException() {
         JsonAdaptedGarment garment =
-                new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, VALID_COLOUR, INVALID_ADDRESS, VALID_DESCRIPTIONS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, VALID_COLOUR, INVALID_DRESSCODE, VALID_DESCRIPTIONS);
+        String expectedMessage = DressCode.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
     }
 
     @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
+    public void toModelType_nullDressCode_throwsIllegalValueException() {
         JsonAdaptedGarment garment = new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, VALID_COLOUR, null,
                 VALID_DESCRIPTIONS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DressCode.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, garment::toModelType);
     }
 
@@ -107,7 +107,7 @@ public class JsonAdaptedGarmentTest {
         List<JsonAdaptedDescription> invalidDescriptions = new ArrayList<>(VALID_DESCRIPTIONS);
         invalidDescriptions.add(new JsonAdaptedDescription(INVALID_DESCRIPTION));
         JsonAdaptedGarment garment =
-                new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, VALID_COLOUR, VALID_ADDRESS,
+                new JsonAdaptedGarment(VALID_NAME, VALID_SIZE, VALID_COLOUR, VALID_DRESSCODE,
                         invalidDescriptions);
         assertThrows(IllegalValueException.class, garment::toModelType);
     }

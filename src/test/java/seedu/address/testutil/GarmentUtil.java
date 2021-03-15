@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
@@ -33,7 +33,7 @@ public class GarmentUtil {
         sb.append(PREFIX_NAME + garment.getName().fullName + " ");
         sb.append(PREFIX_SIZE + garment.getSize().value + " ");
         sb.append(PREFIX_COLOUR + garment.getColour().colour + " ");
-        sb.append(PREFIX_ADDRESS + garment.getAddress().value + " ");
+        sb.append(PREFIX_DRESSCODE + garment.getDressCode().value + " ");
         garment.getDescriptions().stream().forEach(
             s -> sb.append(PREFIX_DESCRIPTION + s.descriptionName + " ")
         );
@@ -48,7 +48,9 @@ public class GarmentUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getSize().ifPresent(size -> sb.append(PREFIX_SIZE).append(size.value).append(" "));
         descriptor.getColour().ifPresent(colour -> sb.append(PREFIX_COLOUR).append(colour.colour).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getDressCode().ifPresent(dresscode -> sb.append(PREFIX_DRESSCODE)
+                .append(dresscode.value).append(" "));
+
         if (descriptor.getDescriptions().isPresent()) {
             Set<Description> descriptions = descriptor.getDescriptions().get();
             if (descriptions.isEmpty()) {

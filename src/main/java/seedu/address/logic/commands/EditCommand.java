@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_GARMENTS;
@@ -20,8 +20,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.description.Description;
-import seedu.address.model.garment.Address;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
 import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Name;
 import seedu.address.model.garment.Size;
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_SIZE + "SIZE] "
             + "[" + PREFIX_COLOUR + "COLOUR] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DRESSCODE + "DRESSCODE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SIZE + "36 "
@@ -96,11 +96,11 @@ public class EditCommand extends Command {
         Name updatedName = editGarmentDescriptor.getName().orElse(garmentToEdit.getName());
         Size updatedSize = editGarmentDescriptor.getSize().orElse(garmentToEdit.getSize());
         Colour updatedColour = editGarmentDescriptor.getColour().orElse(garmentToEdit.getColour());
-        Address updatedAddress = editGarmentDescriptor.getAddress().orElse(garmentToEdit.getAddress());
+        DressCode updatedDressCode = editGarmentDescriptor.getDressCode().orElse(garmentToEdit.getDressCode());
         Set<Description> updatedDescriptions = editGarmentDescriptor.getDescriptions()
                 .orElse(garmentToEdit.getDescriptions());
 
-        return new Garment(updatedName, updatedSize, updatedColour, updatedAddress, updatedDescriptions);
+        return new Garment(updatedName, updatedSize, updatedColour, updatedDressCode, updatedDescriptions);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class EditCommand extends Command {
         private Name name;
         private Size size;
         private Colour colour;
-        private Address address;
+        private DressCode dresscode;
         private Set<Description> descriptions;
 
         public EditGarmentDescriptor() {}
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setSize(toCopy.size);
             setColour(toCopy.colour);
-            setAddress(toCopy.address);
+            setDressCode(toCopy.dresscode);
             setDescriptions(toCopy.descriptions);
         }
 
@@ -151,7 +151,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, size, colour, address, descriptions);
+            return CollectionUtil.isAnyNonNull(name, size, colour, dresscode, descriptions);
         }
 
         public void setName(Name name) {
@@ -178,12 +178,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(colour);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setDressCode(DressCode dresscode) {
+            this.dresscode = dresscode;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<DressCode> getDressCode() {
+            return Optional.ofNullable(dresscode);
         }
 
         /**
@@ -221,7 +221,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getSize().equals(e.getSize())
                     && getColour().equals(e.getColour())
-                    && getAddress().equals(e.getAddress())
+                    && getDressCode().equals(e.getDressCode())
                     && getDescriptions().equals(e.getDescriptions());
         }
     }

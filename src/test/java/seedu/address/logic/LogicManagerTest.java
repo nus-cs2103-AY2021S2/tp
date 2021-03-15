@@ -3,8 +3,8 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GARMENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.COLOUR_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DRESSCODE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SIZE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -80,7 +80,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + SIZE_DESC_AMY + COLOUR_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + DRESSCODE_DESC_AMY;
         Garment expectedGarment = new GarmentBuilder(AMY).withDescriptions().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGarment(expectedGarment);
