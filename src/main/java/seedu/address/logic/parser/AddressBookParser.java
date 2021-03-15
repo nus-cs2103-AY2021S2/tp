@@ -86,7 +86,7 @@ public class AddressBookParser {
 
         case FindPropertyCommand.COMMAND_WORD:
             return new FindPropertyCommandParser().parse(arguments);
-            
+
         case DeleteAppointmentCommand.COMMAND_WORD:
             return new DeleteAppointmentCommandParser().parse(arguments);
 
