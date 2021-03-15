@@ -82,6 +82,28 @@ public class Project {
     }
 
     /**
+     * Adds a participant to the {@code ParticipantList}.
+     *
+     * @param person {@code Person} to add.
+     */
+    public Project addParticipant(Person person) {
+        requireNonNull(person);
+        ParticipantList participants = this.participants.addParticipant(person);
+        return new Project(this.getProjectName(),
+                this.getEvents(), this.getTodos(), this.getDeadlines(), participants);
+    }
+
+    /**
+     * Returns true if a participant with the same identity as {@code person} exists
+     * in this {@code Project}'s {@code participants}.
+     *
+     * @param person the {@code Person} to compare.
+     * @return true if a participant with the same identity as {@code person} exists under this {@code Project}.
+     */
+    public boolean hasParticipant(Person person) {
+        return participants.contains(person);
+    }
+    /**
      * Adds a deadline to {@code DeadlineList} field of this {@code Project}.
      *
      * @param deadline {@code Deadline} to add.
