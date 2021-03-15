@@ -39,12 +39,7 @@ public class Method {
             throw new NullPointerException();
         }
 
-        for (MethodType e : MethodType.values()) {
-            if (e.name().equalsIgnoreCase(test)) {
-                return true;
-            }
-        }
-        return false;
+        return MethodType.getIfPresent(test);
     }
 
     /**
@@ -53,12 +48,7 @@ public class Method {
      * @return a MethodType enum
      */
     public MethodType parseMethodType(String test) {
-        for (MethodType e : MethodType.values()) {
-            if (e.name().equalsIgnoreCase(test)) {
-                return e;
-            }
-        }
-        return null;
+        return MethodType.getMethod(test);
     }
 
     public MethodType getMethodType() {

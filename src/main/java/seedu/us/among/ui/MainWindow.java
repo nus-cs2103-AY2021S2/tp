@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.us.among.commons.core.GuiSettings;
 import seedu.us.among.commons.core.LogsCenter;
+import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.Logic;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
@@ -199,6 +200,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.getToggleTheme() != null) {
+                updateTheme(commandResult.getToggleTheme());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException | RequestException e) {
             //stop loading spinner (if any)
@@ -213,5 +218,30 @@ public class MainWindow extends UiPart<Stage> {
         } finally {
             System.out.println(Thread.activeCount());
         }
+    }
+
+    /**
+     * Updates theme for the application.
+     *
+     * @param theme theme to update with
+     */
+    public void updateTheme(String theme) {
+        for (ThemeType e : ThemeType.values()) {
+            if (!e.name().equalsIgnoreCase(theme)) {
+                getRoot().getScene().getStylesheets().remove(getThemeFilePath(e.name()));
+            } else {
+                getRoot().getScene().getStylesheets().add(getThemeFilePath(theme));
+            }
+        }
+    }
+
+    /**
+     * Gets the file path for the theme.
+     *
+     * @param theme theme to get file path for
+     * @return
+     */
+    public String getThemeFilePath(String theme) {
+        return "view/" + StringUtil.toTitleCase(theme) + "Theme.css";
     }
 }

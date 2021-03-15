@@ -81,6 +81,15 @@ public class TypicalEndpoints {
             .withData("{\"key\":\"value\"}")
             .withTags(VALID_TAG_COOL)
             .build();
+
+    // Manually added - Endpoint's details found in {@code SendCommandTest}
+    public static final Endpoint GET4 = new EndpointBuilder()
+            .withMethod("GET")
+            .withAddress("https://reqres.in/api/users/2")
+            .withData("{key: value}")
+            .withHeaders("\"key: value\"")
+            .build();
+
     public static final Endpoint POST1 = new EndpointBuilder().withMethod(VALID_METHOD_POST)
             .withAddress(VALID_ADDRESS_FACT)
             .withData("{\"key\":\"value\"}")
@@ -104,6 +113,6 @@ public class TypicalEndpoints {
     }
 
     public static List<Endpoint> getTypicalEndpoints() {
-        return new ArrayList<>(Arrays.asList(GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH));
+        return new ArrayList<>(Arrays.asList(GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH, GET4));
     }
 }
