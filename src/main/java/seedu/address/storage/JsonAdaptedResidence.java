@@ -25,7 +25,7 @@ public class JsonAdaptedResidence {
     private final String residenceName;
     private final String residenceAddress;
     private final String bookingDetails;
-    private final List<JsonAdaptedCleanStatusTag> cleanStatusTagged = new ArrayList<>();
+    private final String cleanStatusTagged;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,14 +35,12 @@ public class JsonAdaptedResidence {
     public JsonAdaptedResidence(@JsonProperty("name") String residenceName,
                                 @JsonProperty("address") String residenceAddress,
                                 @JsonProperty("bookingDetails") String bookingDetails,
-                                @JsonProperty("cleanStatusTagged") List<JsonAdaptedCleanStatusTag> cleanStatusTagged,
+                                @JsonProperty("cleanStatusTagged") String cleanStatusTagged,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.residenceName = residenceName;
         this.residenceAddress = residenceAddress;
         this.bookingDetails = bookingDetails;
-        if (cleanStatusTagged != null) {
-            this.cleanStatusTagged.addAll(cleanStatusTagged);
-        }
+        this.cleanStatusTagged = cleanStatusTagged;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,10 +52,8 @@ public class JsonAdaptedResidence {
     public JsonAdaptedResidence(Residence source) {
         residenceName = source.getResidenceName().fullName;
         residenceAddress = source.getResidenceAddress().value;
-        bookingDetails = source.getBookingDetails().bookingDetails;
-        cleanStatusTagged.addAll(source.getCleanStatusTag().stream()
-                .map(JsonAdaptedCleanStatusTag::new)
-                .collect(Collectors.toList()));
+        bookingDetails = source.getBookingDetails().value;
+        cleanStatusTagged = source.getCleanStatusTag().cleanStatus;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -71,7 +67,7 @@ public class JsonAdaptedResidence {
     public Residence toModelType() throws IllegalValueException {
         final List<CleanStatusTag> residenceCleanStatusTag = new ArrayList<>();
         final List<Tag> residenceTags = new ArrayList<>();
-        for (JsonAdaptedCleanStatusTag cleanStatusTag : cleanStatusTagged) {
+        for (String cleanStatusTag : cleanStatusTagged) {
             residenceCleanStatusTag.add(cleanStatusTag.toModelType());
         }
         for (JsonAdaptedTag tag : tagged) {

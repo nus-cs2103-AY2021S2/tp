@@ -21,7 +21,9 @@ import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ResidenceTracker;
 import seedu.address.model.person.Person;
+import seedu.address.model.residence.Residence;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ResidenceBuilder;
 
 public class AddCommandTest {
 
@@ -33,12 +35,12 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Residence validResidence = new ResidenceBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validResidence).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validResidence), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validResidence), modelStub.personsAdded);
     }
 
     @Test
@@ -47,7 +49,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESIDENCE, () -> addCommand.execute(modelStub));
     }
 
     @Test

@@ -18,11 +18,12 @@ public class ResidenceBuilder {
     public static final String DEFAULT_RESIDENCE_NAME = "Amber Park";
     public static final String DEFAULT_RESIDENCE_ADDRESS = "14 Amber Gardens, 439960";
     public static final String DEFAULT_BOOKING_DETAILS = "4 adults";
+    public static final String DEFAULT_CLEAN_STATUS = "y";
 
     private ResidenceName name;
     private ResidenceAddress address;
     private BookingDetails bookingDetails;
-    private Set<CleanStatusTag> cleanStatusTag;
+    private CleanStatusTag cleanStatusTag;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +35,7 @@ public class ResidenceBuilder {
         name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
         bookingDetails = new BookingDetails(DEFAULT_BOOKING_DETAILS);
-        cleanStatusTag = new HashSet<>();
+        cleanStatusTag = new CleanStatusTag(DEFAULT_CLEAN_STATUS);
         tags = new HashSet<>();
     }
 
@@ -45,7 +46,7 @@ public class ResidenceBuilder {
         name = residenceToCopy.getResidenceName();
         address = residenceToCopy.getResidenceAddress();
         bookingDetails = residenceToCopy.getBookingDetails();
-        cleanStatusTag = new HashSet<>(residenceToCopy.getCleanStatusTag());
+        cleanStatusTag = residenceToCopy.getCleanStatusTag();
         tags = new HashSet<>(residenceToCopy.getTags());
     }
 
@@ -78,7 +79,7 @@ public class ResidenceBuilder {
      * that we are building.
      */
     public ResidenceBuilder withCleanStatusTags(String cleanStatusTag) {
-        this.cleanStatusTag = SampleDataUtil.getCleanStatusTagSet(cleanStatusTag);
+        this.cleanStatusTag = SampleDataUtil.getCleanStatusTag(cleanStatusTag);
         return this;
     }
 

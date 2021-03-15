@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,8 +19,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a residence to the residence tracker. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_RESIDENCE_NAME + "NAME "
+            + PREFIX_RESIDENCE_ADDRESS + "ADDRESS "
             + "[" + PREFIX_CLEAN_STATUS_TAG + "y or n]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "

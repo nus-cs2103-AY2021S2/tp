@@ -19,8 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ResidenceTracker;
+import seedu.address.model.residence.NameContainsKeywordsPredicate;
 import seedu.address.model.residence.Residence;
-import seedu.address.model.residence.ResidenceNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditResidenceDescriptorBuilder;
 
 /**
@@ -137,7 +137,7 @@ public class CommandTestUtil {
 
         Residence residence = model.getFilteredResidenceList().get(targetIndex.getZeroBased());
         final String[] splitName = residence.getResidenceName().fullName.split("\\s+");
-        model.updateFilteredResidenceList(new ResidenceNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredResidenceList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredResidenceList().size());
     }
