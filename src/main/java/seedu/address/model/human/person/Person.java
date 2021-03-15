@@ -75,6 +75,7 @@ public class Person extends Human {
     }
 
     public String getDriverStr() {
+        System.out.println(driver.map(Driver::toString));
         return driver.map(Driver::toString).orElse(MESSAGE_NO_ASSIGNED_DRIVER);
     }
 

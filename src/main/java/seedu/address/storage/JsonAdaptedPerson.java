@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
+import seedu.address.model.human.driver.Driver;
 import seedu.address.model.human.person.Address;
 import seedu.address.model.human.person.Person;
 import seedu.address.model.human.person.TripDay;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String tripDay;
     private final String tripTime;
+    private final String driver;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,12 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("address") String address, @JsonProperty("tripDay") String tripDay,
-            @JsonProperty("tripTime") String tripTime, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tripTime") String tripTime, @JsonProperty("driver") String driver,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.tripDay = tripDay;
         this.tripTime = tripTime;
+        this.driver = driver;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -58,6 +62,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         tripDay = source.getTripDay().value.toString();
         tripTime = source.getTripTime().value;
+        driver = source.getDriverStr();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,7 +121,12 @@ class JsonAdaptedPerson {
         final TripTime modelTripTime = new TripTime(tripTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
+        if (Driver.isValidDriver(driver)){
+            final Driver modelDriver = new Driver(driver);
+            return new Person(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelDriver, modelTags);
+        }else {
+            return new Person(modelName, modelPhone, modelAddress, modelTripDay, modelTripTime, modelTags);
+        }
     }
 
 }
