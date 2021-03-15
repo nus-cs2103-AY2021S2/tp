@@ -35,7 +35,7 @@ public class JsonAdaptedPicture {
      */
     public Picture toModelType() throws IllegalValueException {
         if (!Picture.isValidFilePath(filePath.toAbsolutePath().toString())) {
-            throw new IllegalValueException(Picture.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(this.filePath + " " + Picture.MESSAGE_CONSTRAINTS);
         }
 
         return new Picture(filePath);

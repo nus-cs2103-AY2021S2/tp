@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FileUtil;
@@ -22,19 +24,17 @@ import seedu.address.model.person.Picture;
 public class AddPictureCommand extends Command {
 
     public static final String COMMAND_WORD = "add-picture";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a picture to the person identified "
             + "by the index number used in the last person listing. \n"
             + "Parameters: INDEX (must be a positive integer) PICTURE_FILE_PATH \n"
             + "Example: " + COMMAND_WORD + " 1 /Users/john/img_of_friend.jpg";
-
     public static final String MESSAGE_ADD_PICTURE_SUCCESS = "Added picture for %1$s";
-
+    private static final Logger logger = LogsCenter.getLogger(AddPictureCommand.class);
     private final Index index;
     private final Path filePath;
 
     /**
-     * @param index of the person in the filtered person list to add a picture to
+     * @param index    of the person in the filtered person list to add a picture to
      * @param filePath of the picture to add
      */
     public AddPictureCommand(Index index, Path filePath) {
@@ -62,7 +62,9 @@ public class AddPictureCommand extends Command {
                 // We still let the user change picture even if the deletion did not go because it is not that crucial
                 // for the old picture to be deleted.
                 oldPic.get().deleteFile();
-            } catch (IOException ignore) {}
+            } catch (IOException e) {
+                logger.warning("Unable to delete original picture file for " + oldPic.toString());
+            }
         }
 
         UUID uuid = UUID.randomUUID();
