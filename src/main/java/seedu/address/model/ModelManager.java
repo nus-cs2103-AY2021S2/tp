@@ -220,6 +220,7 @@ public class ModelManager implements Model {
         if (currentSemesterNumber == null) {
             this.currentSemesterNumber = null;
             addressBook.setCurrentSemesterNumber(this.currentSemesterNumber);
+            history = null;
             return;
         }
 
@@ -239,10 +240,12 @@ public class ModelManager implements Model {
 
         this.currentSemesterNumber = currentSemesterNumber;
         addressBook.setCurrentSemesterNumber(currentSemesterNumber);
+        history = null;
     }
 
     @Override
     public void setMasterPlan(Plan plan) throws CommandException {
+        history = null;
         requireNonNull(plan);
         if (hasMasterPlan()) {
             Plan oldMasterPlan = getMasterPlan();
