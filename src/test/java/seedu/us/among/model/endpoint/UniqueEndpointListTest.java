@@ -103,12 +103,12 @@ public class UniqueEndpointListTest {
         assertEquals(expectedUniqueEndpointList, uniqueEndpointList);
     }
 
-    // @Test
-    // public void setMethod_editedMethodHasNonUniqueIdentity_throwsDuplicateMethodException() {
-    //     uniqueEndpointList.add(GET);
-    //     uniqueEndpointList.add(POST);
-    //     assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.setEndpoint(GET, POST));
-    // }
+    @Test
+    public void setMethod_editedMethodHasNonUniqueIdentity_throwsDuplicateMethodException() {
+        uniqueEndpointList.add(GET);
+        uniqueEndpointList.add(POST);
+        assertThrows(DuplicateApiEndpointException.class, () -> uniqueEndpointList.setEndpoint(GET, POST));
+    }
 
     @Test
     public void remove_nullMethod_throwsNullPointerException() {
