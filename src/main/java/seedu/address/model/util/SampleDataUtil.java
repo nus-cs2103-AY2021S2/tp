@@ -5,7 +5,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.module.Module;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
+import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -31,6 +35,13 @@ public class SampleDataUtil {
         };
     }
 
+    public static Module[] getSampleModules() {
+        return new Module[] {
+                new Module(new Title("cs2103T")),
+                new Module(new Title("cs2103"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -39,6 +50,14 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    public static ReadOnlyRemindMe getSampleRemindMe() {
+        RemindMe sampleRm = new RemindMe();
+        for (Module sampleMod : getSampleModules()) {
+            sampleRm.addModule(sampleMod);
+        }
+
+        return sampleRm;
+    }
     /**
      * Returns a tag set containing the list of strings given.
      */

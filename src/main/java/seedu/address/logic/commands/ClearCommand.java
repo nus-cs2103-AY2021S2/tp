@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.RemindMeApp;
+import seedu.address.model.RemindMe;
 
 /**
  * Clears the address book.
@@ -18,8 +18,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
-        model.setRemindMeApp(new RemindMeApp());
+        model.setRemindMe(new RemindMe());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

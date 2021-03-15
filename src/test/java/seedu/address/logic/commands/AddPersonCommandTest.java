@@ -19,7 +19,8 @@ import seedu.address.logic.commands.addcommand.AddPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.RemindMeApp;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Assignment;
@@ -105,13 +106,14 @@ public class AddPersonCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getRemindMeFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setRemindMeFilePath(Path remindMeFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -120,15 +122,6 @@ public class AddPersonCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public boolean hasPerson(Person person) {
@@ -186,7 +179,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setRemindMeApp(RemindMeApp modulePlanner) {
+        public void setRemindMe(RemindMe modulePlanner) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyRemindMe getRemindMe() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -237,10 +235,6 @@ public class AddPersonCommandTest {
             personsAdded.add(person);
         }
 
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
     }
 
 }

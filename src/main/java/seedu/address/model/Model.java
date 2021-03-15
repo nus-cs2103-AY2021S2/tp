@@ -38,23 +38,18 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+
+
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' remind me file path.
      */
-    Path getAddressBookFilePath();
+    Path getRemindMeFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setRemindMeFilePath(Path remindMeFilePath);
 
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -126,9 +121,12 @@ public interface Model {
     void addExam(Module module, Exam exam);
 
     /**
-     * Replaces module planner data with the data in {@code modulePlanner}.
+     * Replaces remindMe data with the data in {@code remindMe}.
      */
-    void setRemindMeApp(RemindMeApp modulePlanner);
+    void setRemindMe(RemindMe remindMe);
+
+    /** Returns the RemindMe */
+    ReadOnlyRemindMe getRemindMe();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.

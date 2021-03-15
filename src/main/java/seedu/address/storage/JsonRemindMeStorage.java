@@ -12,8 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyRemindMeApp;
+import seedu.address.model.ReadOnlyRemindMe;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -33,7 +32,7 @@ public class JsonRemindMeStorage implements RemindMeStorage {
     }
 
     @Override
-    public Optional<ReadOnlyRemindMeApp> readRemindMe() throws DataConversionException, IOException {
+    public Optional<ReadOnlyRemindMe> readRemindMe() throws DataConversionException, IOException {
         return readRemindMe(filePath);
     }
 
@@ -43,7 +42,7 @@ public class JsonRemindMeStorage implements RemindMeStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyRemindMeApp> readRemindMe(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyRemindMe> readRemindMe(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableRemindMeApp> jsonRemindMeApp = JsonUtil.readJsonFile(
@@ -61,16 +60,16 @@ public class JsonRemindMeStorage implements RemindMeStorage {
     }
 
     @Override
-    public void saveRemindMe(ReadOnlyRemindMeApp remindMeApp) throws IOException {
+    public void saveRemindMe(ReadOnlyRemindMe remindMeApp) throws IOException {
         saveRemindMe(remindMeApp, filePath);
     }
 
     /**
-     * Similar to {@link #saveRemindMe(ReadOnlyRemindMeApp)}.
+     * Similar to {@link #saveRemindMe(ReadOnlyRemindMe)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveRemindMe(ReadOnlyRemindMeApp remindMeApp, Path filePath) throws IOException {
+    public void saveRemindMe(ReadOnlyRemindMe remindMeApp, Path filePath) throws IOException {
         requireNonNull(remindMeApp);
         requireNonNull(filePath);
 

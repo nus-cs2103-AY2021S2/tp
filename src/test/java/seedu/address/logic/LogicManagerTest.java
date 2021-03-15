@@ -21,8 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyRemindMeApp;
-import seedu.address.model.RemindMeApp;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
@@ -131,7 +131,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new RemindMeApp(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new RemindMe(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -171,7 +171,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveRemindMe(ReadOnlyRemindMeApp remindMeApp, Path filePath) throws IOException {
+        public void saveRemindMe(ReadOnlyRemindMe remindMeApp, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyRemindMeApp;
+import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -31,10 +31,10 @@ public interface Storage extends AddressBookStorage, RemindMeStorage, UserPrefsS
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     @Override
-    Optional<ReadOnlyRemindMeApp> readRemindMe() throws DataConversionException, IOException;
+    Optional<ReadOnlyRemindMe> readRemindMe() throws DataConversionException, IOException;
 
     @Override
-    void saveRemindMe(ReadOnlyRemindMeApp remindMeApp) throws IOException;
+    void saveRemindMe(ReadOnlyRemindMe remindMeApp) throws IOException;
 
 
 }

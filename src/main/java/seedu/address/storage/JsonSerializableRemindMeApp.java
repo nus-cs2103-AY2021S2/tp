@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
-import seedu.address.model.ReadOnlyRemindMeApp;
-import seedu.address.model.RemindMeApp;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
 
 
 /**
@@ -39,7 +39,7 @@ class JsonSerializableRemindMeApp {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableRemindMeApp}.
      */
-    public JsonSerializableRemindMeApp(ReadOnlyRemindMeApp source) {
+    public JsonSerializableRemindMeApp(ReadOnlyRemindMe source) {
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
@@ -48,16 +48,16 @@ class JsonSerializableRemindMeApp {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public RemindMeApp toModelType() throws IllegalValueException {
-        RemindMeApp remindMeApp = new RemindMeApp();
+    public RemindMe toModelType() throws IllegalValueException {
+        RemindMe remindMe = new RemindMe();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (remindMeApp.hasModule(module)) {
+            if (remindMe.hasModule(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            remindMeApp.addModule(module);
+            remindMe.addModule(module);
         }
-        return remindMeApp;
+        return remindMe;
     }
 
 }
