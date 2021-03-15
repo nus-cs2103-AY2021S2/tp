@@ -330,7 +330,7 @@ public class EditPropertyCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPropertyDescriptor)) {
+            if (!(other instanceof EditClientDescriptor)) {
                 return false;
             }
 
