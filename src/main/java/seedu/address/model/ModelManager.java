@@ -143,12 +143,6 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-    //=========== Bookings ================================================================================
-    @Override
-    public void deleteBooking(int bookingId) {
-        addressBook.removeBooking(bookingId);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -164,12 +158,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredBookingList(Predicate<Booking> predicate) {
-        requireNonNull(predicate);
-        filteredBookings.setPredicate(predicate);
     }
 
     @Override
@@ -213,5 +201,29 @@ public class ModelManager implements Model {
     public void updateFilteredVenueList(Predicate<Venue> predicate) {
         requireNonNull(predicate);
         filteredVenues.setPredicate(predicate);
+    }
+
+    //=========== Bookings ================================================================================
+
+    @Override
+    public void deleteBooking(int bookingId) {
+        addressBook.removeBooking(bookingId);
+    }
+
+    //=========== Filtered Booking List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Bookings} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Booking> getFilteredBookingList() {
+        return filteredBookings;
+    }
+
+    @Override
+    public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        requireNonNull(predicate);
+        filteredBookings.setPredicate(predicate);
     }
 }
