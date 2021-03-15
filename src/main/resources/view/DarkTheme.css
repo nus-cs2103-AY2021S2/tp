@@ -1,6 +1,7 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: derive(#FFFAFA, 20%);
+    background-color: #FFFAFA; /* Used in the default.html file */
+
 }
 
 .label {
@@ -41,7 +42,7 @@
 
 .table-view {
     -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
+    -fx-control-inner-background: #FAEBD7;
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
@@ -90,7 +91,8 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#f10404, 20%);
+
 }
 
 .list-cell {
@@ -101,10 +103,18 @@
 
 .list-cell:filled:even {
     -fx-background-color: #3c3e3f;
+    -fx-background-image:url(/images/background.png);
+    -fx-background-repeat:no-repeat ;
+    -fx-background-size:100% 100%;
+    -fx-background-attachment: fixed;
 }
 
 .list-cell:filled:odd {
     -fx-background-color: #515658;
+    -fx-background-image:url(/images/background.png);
+    -fx-background-repeat:no-repeat ;
+    -fx-background-size:100% 100%;
+    -fx-background-attachment: fixed;
 }
 
 .list-cell:filled:selected {
@@ -113,11 +123,12 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-width: 4;
+    -fx-border-style: dashed;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .cell_big_label {
@@ -128,29 +139,37 @@
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-text-fill: #010504;
 }
 
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-image:url(/images/background.png);
+    -fx-background-repeat:no-repeat ;
+    -fx-background-size:100% 100%;
+    -fx-background-attachment: fixed;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: transparent;
+     -fx-border-color: transparent;
+    -fx-background-image:url(/images/background.png);
+    -fx-background-repeat:no-repeat ;
+    -fx-background-size:100% 100%;
+    -fx-background-attachment: fixed;
+     -fx-border-top-width: 2px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #53868B;
 }
 
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;;
 }
 
 .result-display .label {
@@ -193,7 +212,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #528B8B;
 }
 
 .menu-bar .label {
@@ -282,11 +301,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#BFCDE7, 30%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#F4E8F6, 50%);
     -fx-background-insets: 3;
 }
 
@@ -309,7 +328,7 @@
 
 #cardPane {
     -fx-background-color: transparent;
-    -fx-border-width: 0;
+    -fx-border-width: 2;
 }
 
 #commandTypeLabel {
@@ -318,14 +337,14 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #F0F8FF;
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: #452e52;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -333,7 +352,14 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: 	transparent;
+    -fx-background-image:url(/images/resultBar.png);
+    -fx-background-repeat:no-repeat ;
+    -fx-background-size:100% 100%;
+    -fx-background-attachment: fixed;
+    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-insets: 0;
+    -fx-border-width: 1;
     -fx-background-radius: 0;
 }
 
@@ -344,11 +370,11 @@
 
 #cleanStatusTags .label {
     -fx-text-fill: white;
-    -fx-background-color: #9b95c9;
+    -fx-background-color: #65357e;
     -fx-padding: 1 3 1 5;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 13;
 }
 
 #tags {
@@ -362,5 +388,5 @@
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 13;
 }
