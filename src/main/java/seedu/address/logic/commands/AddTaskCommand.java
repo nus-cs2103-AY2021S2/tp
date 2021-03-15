@@ -11,7 +11,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-
+/**
+ * Adds a task to the Sochedule.
+ */
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add_task";
