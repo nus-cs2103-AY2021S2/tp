@@ -35,13 +35,15 @@ public class CurrentSemesterCommand extends Command {
         requireNonNull(model);
 
         Plan masterPlan = model.getMasterPlan();
+
         for (Semester semester : masterPlan.getSemesters()) {
             if (semester.getSemNumber() == currentSemesterNumber) {
-                model.setCurrentSemester(semester.getSemNumber());
-                break;
+                model.setCurrentSemester(Integer.valueOf(semester.getSemNumber()));
+                return new CommandResult(String.format(MESSAGE_SUCCESS, currentSemesterNumber));
             }
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, currentSemesterNumber));
+        throw new CommandException("The provided SEM_NUMBER does not match any existing semesters in the " +
+                "master plan.");
     }
 
     @Override

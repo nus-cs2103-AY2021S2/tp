@@ -111,7 +111,7 @@ public interface Model {
 
     Semester getCurrentSemester() throws CommandException;
 
-    void setCurrentSemester(int currentSemesterNumber) throws CommandException;
+    void setCurrentSemester(Integer currentSemesterNumber) throws CommandException;
 
     void setMasterPlan(Plan plan) throws CommandException;
 }

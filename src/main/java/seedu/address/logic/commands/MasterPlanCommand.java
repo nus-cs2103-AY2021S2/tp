@@ -42,8 +42,12 @@ public class MasterPlanCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
         }
 
-
-        Plan masterPlan = lastShownList.get(masterPlanIndex.getZeroBased());
+        Plan masterPlan;
+        try {
+             masterPlan = lastShownList.get(masterPlanIndex.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException("Set a new Master Plan as the old one is no longer valid.");
+        }
         model.setMasterPlan(masterPlan);
         return new CommandResult(String.format(MESSAGE_SUCCESS, masterPlanIndex.getOneBased()));
     }
