@@ -1,13 +1,13 @@
-package seedu.address.model.meeting;
+package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Meeting's name in the meeting book.
+ * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class PersonName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -21,11 +21,11 @@ public class Name {
     public final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code PersonName}.
      *
      * @param name A valid name.
      */
-    public Name(String name) {
+    public PersonName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
@@ -47,8 +47,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.meeting.Name // instanceof handles nulls
-                && fullName.equals(((seedu.address.model.meeting.Name) other).fullName)); // state check
+                || (other instanceof PersonName // instanceof handles nulls
+                && fullName.equals(((PersonName) other).fullName)); // state check
     }
 
     @Override

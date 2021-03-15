@@ -117,9 +117,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower g/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing groups.
+*  `edit 2 n/Betsy Crower g/` Edits the personName of the 2nd person to be `Betsy Crower` and clears all existing groups.
 
-### Locating persons by name: `find`
+### Locating persons by personName: `find`
 
 Finds persons whose names or whose groups contain any of the given keywords.
 
@@ -127,9 +127,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Both the name and group are searched.
+* Both the personName and group are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons whose name or group matching at least one keyword will be returned (i.e. `OR` search).
+* Persons whose personName or group matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -160,7 +160,7 @@ FormatL `sort FIELDNAME`
 
 * Sorts according to the field specified by `FIELDNAME`
 * `FIELDNAME` is only restricted to the following cases:
-    * Sort by name : `name`
+    * Sort by personName : `personName`
     * Sort by priority (Coming in v1.3) : `priority`
     * Sort by last seen date (Coming in v1.3) : `lastSeenDate`
 
