@@ -2,16 +2,22 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCategoryCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindPriorityCommand;
 import seedu.address.logic.commands.FindQuestionCommand;
+import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.flashcard.CategoryContainsKeywordsPredicate;
+import seedu.address.model.flashcard.PriorityContainsKeywordsPredicate;
 import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -49,8 +55,10 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @return True if search criteria is not valid. False if search criteria is valid.
      */
     public boolean invalidSearchCriteria(String searchCriteria) {
-        return (!isQuestion(searchCriteria)
-                && !isCategory(searchCriteria));
+        return !isQuestion(searchCriteria)
+                && !isCategory(searchCriteria)
+                && !isTag(searchCriteria)
+                && !isPriority(searchCriteria);
     }
 
     /**
@@ -74,6 +82,26 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
+     * Returns a boolean stating whether the search criteria is according to tag.
+     *
+     * @param searchCriteria Field that the user wants to search by.
+     * @return True if search criteria is according to tag. False otherwise.
+     */
+    public boolean isTag(String searchCriteria) {
+        return searchCriteria.equals(PREFIX_TAG.getPrefix());
+    }
+
+    /**
+     * Returns a boolean stating whether the search criteria is according to priority.
+     *
+     * @param searchCriteria Field that the user wants to search by.
+     * @return True if search criteria is according to tag. False otherwise.
+     */
+    public boolean isPriority(String searchCriteria) {
+        return searchCriteria.equals(PREFIX_PRIORITY.getPrefix());
+    }
+
+    /**
      * Returns the FindCommand object according to the search criteria.
      *
      * @param searchCriteria Field that the user wants to search by.
@@ -83,8 +111,12 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand findCommandByCriteria(String searchCriteria, String[] nameKeywords) {
         if (isQuestion(searchCriteria)) {
             return new FindQuestionCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else {
+        } else if (isCategory(searchCriteria)) {
             return new FindCategoryCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else if (isTag(searchCriteria)) {
+            return new FindTagCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else {
+            return new FindPriorityCommand(new PriorityContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
     }
 

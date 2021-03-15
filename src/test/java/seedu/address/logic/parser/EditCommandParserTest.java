@@ -81,20 +81,20 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_CATEGORY_DESC, Category.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS); // invalid question
+        assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS); // invalid answer
+        assertParseFailure(parser, "1" + INVALID_CATEGORY_DESC, Category.MESSAGE_CONSTRAINTS); // invalid category
+        assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS); // invalid priority
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid phone followed by valid email
+        // invalid answer followed by valid category
         assertParseFailure(parser, "1" + INVALID_ANSWER_DESC + CATEGORY_DESC_EINSTEIN, Answer.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid answer followed by invalid answer. The test case for invalid answer followed by valid answer
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + ANSWER_DESC_OCTOPUS + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Flashcard} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_GENERAL + TAG_DESC_EQUATION
                 + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
@@ -139,7 +139,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // name
+        // question
         Index targetIndex = INDEX_THIRD_FLASHCARD;
         String userInput = targetIndex.getOneBased() + QUESTION_DESC_EINSTEIN;
         EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
@@ -147,19 +147,19 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
+        // answer
         userInput = targetIndex.getOneBased() + ANSWER_DESC_EINSTEIN;
         descriptor = new EditCardDescriptorBuilder().withAnswer(VALID_ANSWER_EINSTEIN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // category
         userInput = targetIndex.getOneBased() + CATEGORY_DESC_EINSTEIN;
         descriptor = new EditCardDescriptorBuilder().withCategory(VALID_CATEGORY_EINSTEIN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // priority
         userInput = targetIndex.getOneBased() + PRIORITY_DESC_EINSTEIN;
         descriptor = new EditCardDescriptorBuilder().withPriority(VALID_PRIORITY_EINSTEIN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

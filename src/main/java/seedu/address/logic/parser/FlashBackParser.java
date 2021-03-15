@@ -65,6 +65,9 @@ public class FlashBackParser {
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommand();
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

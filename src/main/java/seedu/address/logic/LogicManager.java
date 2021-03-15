@@ -55,17 +55,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyFlashBack getAddressBook() {
+    public ReadOnlyFlashBack getFlashBack() {
         return model.getFlashBack();
     }
 
     @Override
-    public ObservableList<Flashcard> getFilteredPersonList() {
+    public ObservableList<Flashcard> getFilteredFlashcardList() {
         return model.getFilteredFlashcardList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getFlashBackFilePath() {
         return model.getFlashBackFilePath();
     }
 
