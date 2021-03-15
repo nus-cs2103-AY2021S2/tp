@@ -46,7 +46,7 @@ class JsonAdaptedIssue {
     public JsonAdaptedIssue(Issue source) {
         roomNumber = source.getRoomNumber().value;
         description = source.getDescription().value;
-        timestamp = source.getTimestamp().value.toString();
+        timestamp = source.getTimestamp().toString();
         status = source.getStatus().value.toString();
         category = source.getCategory().value;
     }

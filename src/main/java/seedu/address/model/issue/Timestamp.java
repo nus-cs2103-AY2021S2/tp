@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an issue's timestamp in SunRez. Guarantees: immutable; is valid as
@@ -12,15 +13,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class Timestamp {
 
-    public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
-            + "YYYY-MM-DD HH:mm:ss, and it should not be blank";
+    public static final String TIMESTAMP_PATTERN = "yyyy/M/d h:mma";
 
-    /*
-     * The first character of the timestamp must not be a whitespace, otherwise " "
-     * (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
-    public static final String TIMESTAMP_PATTERN = "yyyy-MM-dd HH:mm";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN);
+
+    public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
+            + TIMESTAMP_PATTERN + ", and it should not be blank";
 
     public final LocalDateTime value;
 
@@ -38,20 +36,26 @@ public class Timestamp {
      */
     public Timestamp(String timestamp) {
         requireNonNull(timestamp);
+        timestamp = timestamp.toUpperCase();
         checkArgument(isValidTimestamp(timestamp), MESSAGE_CONSTRAINTS);
-        this.value = LocalDateTime.parse(timestamp, DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN));
+        this.value = LocalDateTime.parse(timestamp, FORMATTER);
     }
 
     /**
      * Returns true if a given string is a valid timestamp.
      */
     public static boolean isValidTimestamp(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDateTime.parse(test.toUpperCase(), FORMATTER);
+            return true;
+        } catch (DateTimeParseException dtpe) {
+            return false;
+        }
     }
 
     @Override
     public String toString() {
-        return value.format(DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN));
+        return value.format(FORMATTER);
     }
 
     @Override
