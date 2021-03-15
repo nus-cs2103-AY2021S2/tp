@@ -7,6 +7,7 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
  * Represents the abstraction of a budget set by the user.
  */
 public class Budget {
+    public static final Double DEFAULT_BUDGET = 100.0;
     public static final String MESSAGE_CONSTRAINTS =
         "Budget should be a number, and it should not be blank";
 
@@ -16,6 +17,7 @@ public class Budget {
      * Default constructor.
      */
     public Budget() {
+        this.amount = DEFAULT_BUDGET;
     }
 
     /**
