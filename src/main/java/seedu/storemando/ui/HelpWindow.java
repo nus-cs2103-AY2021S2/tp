@@ -90,6 +90,17 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the help window if it is not already open. If the help window is already open, focuses on the help window.
+     */
+    public void displayUrl() {
+        if (!isShowing()) {
+            show();
+        } else {
+            focus();
+        }
+    }
+
+    /**
      * Copies the URL to the user guide to the clipboard.
      */
     @FXML

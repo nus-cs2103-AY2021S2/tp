@@ -31,7 +31,9 @@ public class CommandTestUtil {
     public static final String VALID_QUANTITY_AMY = "1";
     public static final String VALID_QUANTITY_BOB = "2";
     public static final String VALID_EXPIRYDATE_AMY = "2020-10-11";
+    public static final String VALID_EXPIRED_EXPIRYDATE_AMY = "2019-10-11";
     public static final String VALID_EXPIRYDATE_BOB = "2019-08-10";
+    public static final String VALID_EXPIRED_EXPIRYDATE_BOB = "2017-10-11";
     public static final String VALID_LOCATION_AMY = "Refrigerator";
     public static final String VALID_LOCATION_BOB = "Kitchen";
     public static final String VALID_TAG_HUSBAND = "Essential";
@@ -122,9 +124,20 @@ public class CommandTestUtil {
 
         Item item = model.getFilteredItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getItemName().fullName.split("\\s+");
-        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0]), false));
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredItemList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show an empty list based on the given {@code item}
+     * which is not in the {@code model}'s StoreMando.
+     */
+    public static void showEmptyListAfterFind(Model model, Item item) {
+        final String[] splitName = item.getItemName().fullName.split("\\s+");
+        model.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(splitName[0]), false));
+
+        assertEquals(0, model.getFilteredItemList().size());
     }
 
 }

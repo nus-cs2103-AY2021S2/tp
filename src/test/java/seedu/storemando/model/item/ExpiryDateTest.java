@@ -57,4 +57,22 @@ public class ExpiryDateTest {
         assertTrue(ExpiryDate.isValidExpiryDate("0000-10-10"));
 
     }
+
+    @Test
+    public void isExpiryDatePastCurrentDate() {
+        // no expiryDate
+        assertFalse(new ExpiryDate("No Expiry Date").isPastCurrentDate());
+
+        // expiryDates not past current date
+        assertFalse(new ExpiryDate("2021-12-02").isPastCurrentDate());
+        assertFalse(new ExpiryDate("2023-10-10").isPastCurrentDate());
+        assertFalse(new ExpiryDate("2021-11-21").isPastCurrentDate());
+        assertFalse(new ExpiryDate("2021-10-09").isPastCurrentDate());
+        assertFalse(new ExpiryDate("2022-11-01").isPastCurrentDate());
+
+        // expiryDates past current date
+        assertTrue(new ExpiryDate("2012-01-01").isPastCurrentDate());
+        assertTrue(new ExpiryDate("2017-11-20").isPastCurrentDate());
+        assertTrue(new ExpiryDate("2021-03-11").isPastCurrentDate());
+    }
 }

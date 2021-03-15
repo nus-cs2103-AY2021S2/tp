@@ -21,6 +21,8 @@ import seedu.storemando.logic.commands.ExitCommand;
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.commands.HelpCommand;
 import seedu.storemando.logic.commands.ListCommand;
+import seedu.storemando.logic.commands.SortCommand;
+import seedu.storemando.logic.commands.SortQuantityCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
@@ -72,7 +74,7 @@ public class StoreMandoParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
             FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new ItemNameContainsKeywordsPredicate(keywords, false)), command);
+        assertEquals(new FindCommand(new ItemNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -85,6 +87,13 @@ public class StoreMandoParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " expiryDate") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity") instanceof SortQuantityCommand);
+
     }
 
     @Test

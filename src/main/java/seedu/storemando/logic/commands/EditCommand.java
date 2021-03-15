@@ -52,6 +52,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in storemando.";
     public static final String MESSAGE_NO_CHANGE = "Item not edited! Specified change in item details same as "
         + "original.";
+    public static final String MESSAGE_ITEM_EXPIRED_WARNING = "\nWarning: Item has already expired!";
+
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
 
@@ -87,7 +89,13 @@ public class EditCommand extends Command {
         }
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
+
+        String feedback = String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+        if (editedItem.isExpired()) {
+            feedback += MESSAGE_ITEM_EXPIRED_WARNING;
+        }
+
+        return new CommandResult(feedback);
     }
 
     /**
