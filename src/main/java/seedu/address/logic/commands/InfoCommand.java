@@ -49,7 +49,7 @@ public class InfoCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
-
+        model.setCurrentCommand(COMMAND_WORD);
         if (noArgument()) {
             StringBuilder str = new StringBuilder();
             for (int i = 0; i < informationOfModules.length; i++) {

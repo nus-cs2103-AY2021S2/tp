@@ -44,7 +44,7 @@ public class AddPlanCommand extends Command {
         if (model.hasPlan(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PLAN);
         }
-
+        model.setCurrentCommand(COMMAND_WORD);
         model.addPlan(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredPlanList().size() + toAdd.toString()));
     }

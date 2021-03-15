@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
 
     private History history;
     private Integer currentSemesterNumber; // Semesters are indexed by ID
+    private StringProperty currentCommand;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +46,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPlans = new FilteredList<>(this.addressBook.getPersonList());
         currentSemesterNumber = addressBook.getCurrentSemesterNumber();
+        this.currentCommand = new SimpleStringProperty("");
     }
 
     public ModelManager() {
@@ -252,6 +256,16 @@ public class ModelManager implements Model {
             oldMasterPlan.setMasterPlan(false);
         }
         plan.setMasterPlan(true);
+    }
+
+    @Override
+    public StringProperty getCurrentCommand() {
+        return currentCommand;
+    }
+
+    @Override
+    public void setCurrentCommand(String command) {
+        this.currentCommand.set(command);
     }
 
     private boolean hasMasterPlan() {
