@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the passenger in the {@code model}'s passenger list at {@code index}.
      */
-    public static Passenger getPerson(Model model, Index index) {
+    public static Passenger getPassenger(Model model, Index index) {
         return model.getFilteredPassengerList().get(index.getZeroBased());
     }
 }

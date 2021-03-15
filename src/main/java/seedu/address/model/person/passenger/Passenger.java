@@ -91,7 +91,7 @@ public class Passenger extends Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both passengers have the same name.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePassenger(Passenger otherPassenger) {
@@ -104,8 +104,8 @@ public class Passenger extends Person {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both passengers have the same identity and data fields.
+     * This defines a stronger notion of equality between two passengers.
      */
     @Override
     public boolean equals(Object other) {

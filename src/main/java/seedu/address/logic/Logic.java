@@ -30,11 +30,15 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of passengers */
+    /**
+     * Returns an unmodifiable view of the filtered list of passengers.
+     **/
     ObservableList<Passenger> getFilteredPassengerList();
 
-    /** Returns an unmodifiable view of the filtered list of persons whether it is assigned to a driver already*/
-    ObservableList<Person> getFilteredPersonListByDriverStatus(Boolean isAssigned);
+    /**
+     * Returns an unmodifiable view of the filtered list of passengers whether it is assigned to a driver already.
+     **/
+    ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned);
 
     /**
      * Returns the user prefs' address book file path.

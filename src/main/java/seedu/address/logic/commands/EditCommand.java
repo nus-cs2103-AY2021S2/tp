@@ -51,7 +51,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PASSENGER_SUCCESS = "Edited Passenger: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PASSENGER = "This person already exists in the GME Terminal.";
+    public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
