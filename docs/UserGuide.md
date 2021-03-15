@@ -6,9 +6,9 @@ title: User Guide
 
 FlashBack is a **desktop application for managing notes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This application allows the improvement of student performance via improved accessibility and organisation of notes, together with interactive sessions that enhance memory retention.
 ## Table of Contents
-1. [Quick start](#quick-start)
-1. [GUI-layout](#gui-layout)
-1.  [Features](#features)
+1. [Quick start](#1-quick-start)
+1. [GUI-layout](#2-gui-layout)
+1.  [Features](#3-features)
     * [Viewing help](#viewing-help-help): `help`
     * [Adding a new card](#adding-a-new-card-add): `add`
     * [Listing all cards](#listing-all-cards--list): `list`
@@ -21,8 +21,8 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
     * [Editing the data file](#editing-the-data-file)
     * [Filtering cards](#filtering-cards-coming-in-v13): `[coming in v1.3]`
     * [Review mode](#review-mode-coming-in-v13): `[coming in v1.3]`
-1. [FAQ](#faq)
-1. [Command Summary](#command-summary)
+1. [FAQ](#4-faq)
+1. [Command Summary](#5-command-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
