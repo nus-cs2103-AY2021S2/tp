@@ -12,8 +12,6 @@ import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.module.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.module.commons.core.Messages;
@@ -26,60 +24,61 @@ import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.TaskBuilder;
 
-
-
-class TagCommandTest {
-
-    private static final String TAG_STUB = "TAG";
+class DeleteTagCommandTest {
 
     private final Model model = new ModelManager(getTypicalModuleBook(), new UserPrefs());
 
     @Test
-    void execute_addTagUnfilteredList_success() {
+    void execute_deleteTagUnfilteredList_success() {
+        //get first task
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        String[] expectedTags = new String[firstTask.getTags().size() + 1];
-        for (int i = 0; i < firstTask.getTags().size(); i++) {
+        int sz = firstTask.getTags().size();
+        //get last tag of first task
+        Tag lastTag = (Tag) firstTask.getTags().toArray()[sz - 1];
+        String[] expectedTags = new String[firstTask.getTags().size() - 1];
+        for (int i = 0; i < sz - 1; i++) { //omit the last tag
             expectedTags[i] = firstTask.getTags().iterator().next().tagName;
         }
-        expectedTags[firstTask.getTags().size()] = TAG_STUB;
         Task editedTask = new TaskBuilder(firstTask).withTags(expectedTags).build();
 
-        TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, new Tag(TAG_STUB));
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_TASK, lastTag);
 
-        String expectedMessage = String.format(TagCommand.MESSAGE_TAG_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
         expectedModel.setTask(firstTask, editedTask);
 
-        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    void execute_addTagFilteredList_success() {
+    void execute_deleteTagFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Set<Tag> tags = firstTask.getTags();
-        String[] expectedTags = new String[tags.size() + 1];
-        for (int i = 0; i < tags.size(); i++) {
-            expectedTags[i] = tags.iterator().next().tagName;
+        int sz = firstTask.getTags().size();
+        //get last tag of first task
+        Tag lastTag = (Tag) firstTask.getTags().toArray()[sz - 1];
+        String[] expectedTags = new String[sz - 1];
+        for (int i = 0; i < sz - 1; i++) {
+            expectedTags[i] = firstTask.getTags().iterator().next().tagName;
         }
-        expectedTags[tags.size()] = TAG_STUB;
+
         Task editedTask = new TaskBuilder(firstTask).withTags(expectedTags).build();
 
-        TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK, new Tag(TAG_STUB));
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_TASK, lastTag);
 
-        String expectedMessage = String.format(TagCommand.MESSAGE_TAG_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
         expectedModel.setTask(firstTask, editedTask);
 
-        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        TagCommand remarkCommand = new TagCommand(outOfBoundIndex, new Tag(VALID_TAG_HIGH));
+        DeleteTagCommand remarkCommand = new DeleteTagCommand(outOfBoundIndex, new Tag(VALID_TAG_HIGH));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -91,17 +90,17 @@ class TagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of module book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleBook().getTaskList().size());
 
-        TagCommand remarkCommand = new TagCommand(outOfBoundIndex, new Tag(VALID_TAG_HIGH));
+        DeleteTagCommand remarkCommand = new DeleteTagCommand(outOfBoundIndex, new Tag(VALID_TAG_HIGH));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final TagCommand standardCommand = new TagCommand(INDEX_FIRST_TASK,
+        final DeleteTagCommand standardCommand = new DeleteTagCommand(INDEX_FIRST_TASK,
                 new Tag(VALID_TAG_HIGH));
         // same values -> returns true
-        TagCommand commandWithSameValues = new TagCommand(INDEX_FIRST_TASK,
+        DeleteTagCommand commandWithSameValues = new DeleteTagCommand(INDEX_FIRST_TASK,
                 new Tag(VALID_TAG_HIGH));
         assertEquals(standardCommand, commandWithSameValues);
         // same object -> returns true
@@ -111,10 +110,10 @@ class TagCommandTest {
         // different types -> returns false
         assertNotEquals(standardCommand, new ClearCommand());
         // different index -> returns false
-        assertNotEquals(standardCommand, new TagCommand(INDEX_SECOND_TASK,
+        assertNotEquals(standardCommand, new DeleteTagCommand(INDEX_SECOND_TASK,
                 new Tag(VALID_TAG_HIGH)));
         // different remark -> returns false
-        assertNotEquals(standardCommand, new TagCommand(INDEX_FIRST_TASK,
+        assertNotEquals(standardCommand, new DeleteTagCommand(INDEX_FIRST_TASK,
                 new Tag(VALID_TAG_LOW)));
     }
 }

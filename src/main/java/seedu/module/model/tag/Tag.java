@@ -19,7 +19,7 @@ public class Tag {
      *
      * @param tagName A valid tag name.
      */
-    public Tag(String tagName) {
+    public Tag (String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
@@ -33,7 +33,7 @@ public class Tag {
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals (Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
                 && tagName.equals(((Tag) other).tagName)); // state check
