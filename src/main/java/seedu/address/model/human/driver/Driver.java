@@ -50,7 +50,7 @@ public class Driver extends Human {
         String[] driverParams = driver.split("; Phone: ");
         if (driverParams.length == 1) {
             return false;
-        } else if (!Name.isValidName(driverParams[0])){
+        } else if (!Name.isValidName(driverParams[0])) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         } else if (!Phone.isValidPhone(driverParams[1])) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
