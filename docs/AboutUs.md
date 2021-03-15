@@ -24,7 +24,7 @@ You can reach us at the email `e0406245@u.nus.edu`
 [[portfolio](team/picasdan9.md)]
 
 * Role: Developer
-* Responsibilities: DevOps
+* Responsibilities: In charge of appointments and UI
 
 ### Lim Si Ting
 
@@ -34,7 +34,7 @@ You can reach us at the email `e0406245@u.nus.edu`
 [[portfolio](team/sitingst.md)]
 
 * Role: Developer
-* Responsibilities: Data  
+* Responsibilities: In charge of storage and user guide  
 
 ### Keith Low Jun
 
@@ -43,7 +43,7 @@ You can reach us at the email `e0406245@u.nus.edu`
 [[github](http://github.com/fairyinabottle4)] [[portfolio](team/fairyinabottle4.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of students and model 
 
 ### Yoong Yi En
 
@@ -53,5 +53,5 @@ You can reach us at the email `e0406245@u.nus.edu`
 [[portfolio](team/yienyoong.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: In charge of logic and developer guide 
 
