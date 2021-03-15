@@ -45,25 +45,25 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditResidenceDescriptor editPersonDescriptor = new EditResidenceDescriptor();
+        EditResidenceDescriptor editResidenceDescriptor = new EditResidenceDescriptor();
         if (argMultimap.getValue(PREFIX_RESIDENCE_NAME).isPresent()) {
-            editPersonDescriptor.setResidenceName(
+            editResidenceDescriptor.setResidenceName(
                     ParserUtil.parseName(argMultimap.getValue(PREFIX_RESIDENCE_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).isPresent()) {
-            editPersonDescriptor.setResidenceAddress(
+            editResidenceDescriptor.setResidenceAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get()));
         }
         parseCleanStatusTagForEdit(argMultimap.getAllValues(PREFIX_CLEAN_STATUS_TAG)).ifPresent(
-                editPersonDescriptor::setCleanStatusTag);
+                editResidenceDescriptor::setCleanStatusTag);
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editResidenceDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editResidenceDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editResidenceDescriptor);
     }
 
     /**

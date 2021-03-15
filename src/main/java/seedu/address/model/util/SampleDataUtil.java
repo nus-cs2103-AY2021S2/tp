@@ -14,17 +14,19 @@ import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ResidenceTracker} with sample data.
  */
 public class SampleDataUtil {
     public static Residence[] getSampleResidence() {
         return new Residence[]{
             new Residence(new ResidenceName("HDB"), new ResidenceAddress("Blk 30 Geylang Street 29, #06-40"),
-                    new BookingDetails("someone is coming"), getCleanStatusTagSet("n"), getTagSet("booked")),
+                    new BookingDetails("someone is coming"), getCleanStatusTagSet("n"), getTagSet("Booked")),
+            new Residence(new ResidenceName("Condo"), new ResidenceAddress("Blk 45 Tampines Street 29, #08-01"),
+                    new BookingDetails("4 adults"), getCleanStatusTagSet("y"), getTagSet("Reserved")),
         };
     }
 
-    public static ReadOnlyResidenceTracker getSampleAddressBook() {
+    public static ReadOnlyResidenceTracker getSampleResidenceTracker() {
         ResidenceTracker sampleAb = new ResidenceTracker();
         for (Residence sampleResidence : getSampleResidence()) {
             sampleAb.addResidence(sampleResidence);

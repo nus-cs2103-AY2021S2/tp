@@ -15,25 +15,26 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Residence objects.
  */
 public class ResidenceBuilder {
-
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_BOOKING_DETAILS = "Booking details";
+    public static final String DEFAULT_RESIDENCE_NAME = "Amber Park";
+    public static final String DEFAULT_RESIDENCE_ADDRESS = "14 Amber Gardens, 439960";
+    public static final String DEFAULT_BOOKING_DETAILS = "4 adults";
 
     private ResidenceName name;
     private ResidenceAddress address;
     private BookingDetails bookingDetails;
-    private Set<CleanStatusTag> cleanStatusTags;
+    private Set<CleanStatusTag> cleanStatusTag;
     private Set<Tag> tags;
 
     /**
      * Creates a {@code ResidenceBuilder} with the default details.
      */
     public ResidenceBuilder() {
-        name = new ResidenceName(DEFAULT_NAME);
-        address = new ResidenceAddress(DEFAULT_ADDRESS);
+        name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
+        address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
+        name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
+        address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
         bookingDetails = new BookingDetails(DEFAULT_BOOKING_DETAILS);
-        cleanStatusTags = new HashSet<>();
+        cleanStatusTag = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -43,12 +44,13 @@ public class ResidenceBuilder {
     public ResidenceBuilder(Residence residenceToCopy) {
         name = residenceToCopy.getResidenceName();
         address = residenceToCopy.getResidenceAddress();
-        cleanStatusTags = new HashSet<>(residenceToCopy.getCleanStatusTag());
+        bookingDetails = residenceToCopy.getBookingDetails();
+        cleanStatusTag = new HashSet<>(residenceToCopy.getCleanStatusTag());
         tags = new HashSet<>(residenceToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Residence} that we are building.
+     * Sets the {@code ResidenceName} of the {@code Residence} that we are building.
      */
     public ResidenceBuilder withName(String name) {
         this.name = new ResidenceName(name);
@@ -56,7 +58,7 @@ public class ResidenceBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Residence} that we are building.
+     * Sets the {@code ResidenceAddress} of the {@code Residence} that we are building.
      */
     public ResidenceBuilder withAddress(String address) {
         this.address = new ResidenceAddress(address);
@@ -75,8 +77,8 @@ public class ResidenceBuilder {
      * Parses the {@code cleanStatusTags} into a {@code Set<cleanStatusTag>} and set it to the {@code Residence}
      * that we are building.
      */
-    public ResidenceBuilder withCleanStatusTags(String... cleanStatusTags) {
-        this.cleanStatusTags = SampleDataUtil.getCleanStatusTagSet(cleanStatusTags);
+    public ResidenceBuilder withCleanStatusTags(String cleanStatusTag) {
+        this.cleanStatusTag = SampleDataUtil.getCleanStatusTagSet(cleanStatusTag);
         return this;
     }
 
@@ -89,7 +91,7 @@ public class ResidenceBuilder {
     }
 
     public Residence build() {
-        return new Residence(name, address, bookingDetails, cleanStatusTags, tags);
+        return new Residence(name, address, bookingDetails, cleanStatusTag, tags);
     }
 
 }

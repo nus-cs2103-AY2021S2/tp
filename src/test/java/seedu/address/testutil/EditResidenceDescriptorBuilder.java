@@ -34,6 +34,8 @@ public class EditResidenceDescriptorBuilder {
         descriptor = new EditResidenceDescriptor();
         descriptor.setResidenceName(residence.getResidenceName());
         descriptor.setResidenceAddress(residence.getResidenceAddress());
+        descriptor.setBookingDetails(residence.getBookingDetails());
+        descriptor.setCleanStatusTag(residence.getCleanStatusTag());
         descriptor.setTags(residence.getTags());
     }
 
@@ -71,7 +73,7 @@ public class EditResidenceDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditResidenceDescriptor}
      * that we are building.
      */
     public EditResidenceDescriptorBuilder withTags(String... tags) {
