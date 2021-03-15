@@ -50,37 +50,36 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 **:information_source: Notes about the command format:**<br>
 * Words in UPPER_CASE are the parameters to be supplied by the user. <br>
-  eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is Fermat's Last Theorem?`.<br>
+  eg. In `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is Fermat's Last Theorem?`.<br>
 
 * Items in square brackets are optional. <br>
   eg. `q/QUESTION [t/TAG]` can be used as `q/What is Singapore Independence Day?` or as `q/What is Singapore Independence Day? t/Singapore`<br>
 
 * Items with `…​` after them can be used multiple times including zero times. <br>
-  e.g. `[t/TAG]…`​ can be used as ` ` (i.e. 0 times), `t/vocabulary`, `t/vocabulary t/SAT` etc.
+  e.g. `[t/TAG]…`​ can be used as `t/vocabulary`, `t/vocabulary t/SAT` etc.
   
 * Parameters can be in any order. <br>
-  eg. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br><br>
+  eg. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `undo`, `exit` and `clear`) will be ignored. <br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. If the command specifies `help 123`, it will be interpreted as `help`.
 
 * Prefixes are case-sensitive. <br>
-  `q/` is not the same as `Q/`
+  e.g. `q/` is not the same as `Q/`.
   
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. <br>
-  e.g. if you specify `c/Geography c/History`, only `c/History` will be taken.
+  e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
 
 </div>
 
 ### Viewing help: `help`
-Shows a message explaining how to access the help page.
-
+Shows a message explaining how to access the help page.<br>
+![HelpMessage](./images/helpMessage.png) <br>
 Format: `help`
 
 ### Adding a new card: `add`
 
-Adds a new card to the card list.
-
+Adds a new card to the card list.<br>
 Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
 Note: The TAG is optional when adding a new card.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
@@ -88,7 +87,8 @@ Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 </div> 
 
 Examples:
-* `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`  
+* `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High` 
+![UIAdd](./images/UiAddResult.png) 
 * `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
 
 ### Editing a card: `edit`
@@ -103,7 +103,10 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY]` <br />
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least 1 updated card field must be provided for modification.
 
-
+Examples:
+* `edit 1 p/Low`
+![UIEdit](./images/UiEditResult.png)
+* `edit 3 q/What is the time complexity for Quick Sort? t/Algorithms`
 ### Listing all cards : `list`
 
 Shows all cards in the card list.
@@ -121,14 +124,14 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd card in the card list.
-
+* `list` followed by `delete 2` deletes the 2nd card in the card list. <br>
+Before executing command `delete 2`:
+![UIBeforeDelete](./images/UiBeforeDelete.png) <br><br>
+After executing command `delete 2`:
+![UIAfterDelete](./images/UiAfterDelete.png)
 ### Viewing a card : `view`
 
 Views a specific card from the card list. <br>
-The image below shows what FlashBack looks like after you enter a view command.
-![UIView](./images/UiViewResult.png)
-
 
 Format: `view INDEX`
 
@@ -137,7 +140,8 @@ Format: `view INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `view 1` shows the 1st flashcard (in the displayed flashcard list).
+* `view 3` shows the 3rd flashcard (in the displayed flashcard list).
+![UIView](./images/UiViewResult.png)
 
 ### Finding cards : `find`
 
