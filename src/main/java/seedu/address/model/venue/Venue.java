@@ -18,8 +18,8 @@ public class Venue {
      * Every field must be present and not null.
      */
     public Venue(String name, int capacity) {
-        requireAllNonNull(name);
-        if (capacity <= 0) {
+        requireAllNonNull(name, capacity);
+        if (capacity <= -1) {
             throw new IllegalArgumentException("Capacity cannot be 0 or less.");
         }
         this.name = name;
@@ -75,11 +75,14 @@ public class Venue {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getName())
-                .append("; Capacity: ")
-                .append(getCapacity());
+                .append(getName());
+
+        int capacity = getCapacity();
+        if (capacity != 0) {
+            builder.append("; Capacity: ")
+                    .append(getCapacity());
+        }
 
         return builder.toString();
     }
-
 }

@@ -3,6 +3,7 @@ package seedu.address.model.venue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_FIELD;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVenues.VENUE1;
 import static seedu.address.testutil.TypicalVenues.VENUE2;
@@ -38,15 +39,13 @@ public class UniqueVenueListTest {
         assertTrue(uniqueVenueList.contains(VENUE1));
     }
 
-    /*
     @Test
     public void contains_venueWithSameIdentityFieldsInList_returnsTrue() {
         uniqueVenueList.add(VENUE1);
-        Venue editedVenue1 = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Venue editedVenue1 = new VenueBuilder(VENUE1).withCapacity(VALID_VENUE_CAPACITY_FIELD)
                 .build();
         assertTrue(uniqueVenueList.contains(editedVenue1));
     }
-    */
 
     @Test
     public void add_nullVenue_throwsNullPointerException() {
