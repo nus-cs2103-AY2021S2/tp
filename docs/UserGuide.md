@@ -139,28 +139,56 @@ Shows a list of all students in the records.
 
 Format: `list students`
 
-### Searching for a student by matriculation number: `search`
+### Finding a student by matriculation number: `find`
 
 Shows all the details in the records of the student with the matching matriculation number.
 
-Format: `search /MATRICULATION_NUMBER`
+Format: `find MATRICULATION_NUMBER`
 
 
 Examples:
-* `search A1234567X` returns `John Doe`
+* `Find A1234567X` returns `John Doe` from the record.
+
+### Filtering the student entries by vaccination status, faculty or school residence : `filter`
+
+Shows all the details in the records of the student entries with the matching filtered by condition.
+
+Format: <br>
+`filter VACCINATION_STATUS`
+`filter FACULTY`
+`filter SCHOOL_RESIDENCE`
+
+Examples:
+* `filter VACCINATED` 
+* `filter COM` 
+* `filter RVRC` 
+
 
 ### Deleting a student by their matriculation number: `deleteStud`
 
 Deletes the specified person from the address book.
 
-Format: `deleteStud /MATRICULATION NUMBER`
+Format: `deleteStud MATRICULATION NUMBER`
 
 * If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
   the matriculation number is not found
   
 
 Examples:
-* `deleteStud /A7654321J` deletes Betsy Crowe from the records.
+* `deleteStud A7654321J` deletes Betsy Crowe from the records.
+
+
+### Adding an appointment: `addAppt`
+
+Adds an appointment to the records. The student that the appointment is for must exist in the records before the appointment can be created.
+
+Format: `addAppt i/MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM te/END_TIME_HH:MM`
+
+
+Examples:
+* `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00`
+* `addAppt i/A7654321J d/2021-12-13 ts/14:00 te/14:30`
+
 
 ### Viewing statistics: `stats`
 
@@ -168,18 +196,18 @@ Displays the statistics of the requested Faculty/School Residence, the whole of 
 and School Residences. 
 
 Format: <br>
-`stats /FACULTY`
-`stats /SCHOOL_RESIDENCE`
+`stats FACULTY`
+`stats SCHOOL_RESIDENCE`
 `stats NUS`
 `stats all`
 
-* If there is no available data for the requested Faculty or School Residence, an message will be displayed to inform
+* If there is no available data for the requested Faculty or School Residence, a message will be displayed to inform
   users that the requested Faculty or School Residence has no available data.
   
 
 Examples:
-* `stats /COM` displays the percentage of vaccinated students in School of Computing.
-* `stats /RC4` displays the percentage of vaccinated students in RC4.
+* `stats COM` displays the percentage of vaccinated students in School of Computing.
+* `stats RC4` displays the percentage of vaccinated students in RC4.
 * `stats NUS` displays the percentage of vaccinated students in NUS.
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
 
@@ -226,6 +254,7 @@ Action | Format, Examples
 **Add** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., ` add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **edit** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **List Students** | `list students`
-**Search** | `search /MATRICULATION_NUMBER ` <br> e.g., `search A1234567X`
-**Delete Student** | `deleteStud /MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`
-**View Statistics** | `stats /FACULTY` e.g., `stats COM` <br> `stats /SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**Find** | `find MATRICULATION_NUMBER ` <br> e.g., `find A1234567X`
+**Filter** | `filter VACCINATION_STATUS `  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE ` e.g., `filter RVRC` 
+**Delete Student** | `deleteStud MATRICULATION_NUMBER` <br> e.g., `deleteStud A1234567X`
+**View Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
