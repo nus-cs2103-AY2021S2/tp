@@ -6,8 +6,8 @@ package seedu.address.model.tag;
  */
 
 public class PriorityTag {
-    private PriorityTagStatus status;
     public final String label;
+    private PriorityTagStatus status;
 
     /**
      * Enum class for the 3 priority types
