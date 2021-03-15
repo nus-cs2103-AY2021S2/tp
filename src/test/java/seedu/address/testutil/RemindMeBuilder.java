@@ -1,8 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.module.Module;
 import seedu.address.model.RemindMe;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 /**
