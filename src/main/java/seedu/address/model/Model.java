@@ -93,11 +93,11 @@ public interface Model {
      */
     boolean hasSemester(int planNumber, Semester semester);
 
-    //    /**
-    //     * Deletes the given plan.
-    //     * The plan must exist in the address book.
-    //     */
-    //    void deleteSemester(Plan plan, Semester target);
+    /**
+     * Deletes the given plan.
+     * The plan must exist in the address book.
+     */
+    void deleteSemester(Plan plan, Semester target);
 
     /**
      * Adds the given plan.

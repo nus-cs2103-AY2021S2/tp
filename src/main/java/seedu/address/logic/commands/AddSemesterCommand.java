@@ -14,7 +14,7 @@ import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
 
 /**
- * Adds a plan to the address book.
+ * Adds a semester to a plan in the address book.
  */
 public class AddSemesterCommand extends Command {
 
@@ -28,14 +28,14 @@ public class AddSemesterCommand extends Command {
             + PREFIX_PLAN_NUMBER + "1 "
             + PREFIX_SEM_NUMBER + "2 ";
 
-    public static final String MESSAGE_SUCCESS = "New semester added to \"Plan %1$s\": %2$s";
+    public static final String MESSAGE_SUCCESS = "New semester added to Plan %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_PLAN = "This semester already exists";
 
     private final Semester toAdd;
     private final Index toAddTo; // plan number
 
     /**
-     * Creates an AddCommand to add the specified {@code Plan}
+     * Creates an AddSemesterCommand to add the specified {@code Semester}
      */
     public AddSemesterCommand(Index planNumber, Semester semester) {
         requireNonNull(semester);

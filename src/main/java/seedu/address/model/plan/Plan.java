@@ -2,6 +2,7 @@ package seedu.address.model.plan;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +29,7 @@ public class Plan {
         requireAllNonNull(description, tags);
         this.description = description;
         this.tags.addAll(tags);
+        this.semesters = new ArrayList<>();
     }
 
     /**
@@ -50,12 +52,49 @@ public class Plan {
     }
 
     /**
+     * Deletes a semester from the Plan.
+     */
+    public Plan removeSemester(Semester semester) {
+        for (int i = 0; i < semesters.size(); i++) {
+            if (semesters.get(i).getSemNumber() == semester.getSemNumber()) {
+                semesters.remove(i);
+                break;
+            }
+        }
+        return this;
+    }
+
+    /**
      * Returns List of Semesters.
+     * @return List of Semesters
      */
     public List<Semester> getSemesters() {
         return List.copyOf(semesters);
     }
 
+
+    /**
+     * Returns Semester matching semester number provided.
+     * @return Semester
+     */
+    public Semester getSemester(int semNumber) {
+        for (Semester semester : semesters) {
+            if (semester.getSemNumber() == semNumber) {
+                return semester;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Check whether Semester exists.
+     * @return if Semester exists, true, else false
+     */
+    public boolean hasSemester(int semNumber) {
+        return semesters.stream().anyMatch(semester ->
+            semester.getSemNumber() == semNumber
+        );
+    }
 
     /**
      * Returns Description of Plan.
