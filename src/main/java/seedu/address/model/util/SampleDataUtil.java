@@ -20,7 +20,9 @@ public class SampleDataUtil {
     public static Residence[] getSampleResidence() {
         return new Residence[]{
             new Residence(new ResidenceName("HDB"), new ResidenceAddress("Blk 30 Geylang Street 29, #06-40"),
-                    new BookingDetails("someone is coming"), getCleanStatusTagSet("n"), getTagSet("booked")),
+                    new BookingDetails("someone is coming"), getCleanStatusTagSet("n"), getTagSet("Booked")),
+            new Residence(new ResidenceName("Condo"), new ResidenceAddress("Blk 45 Tampines Street 29, #08-01"),
+                    new BookingDetails("4 adults"), getCleanStatusTagSet("y"), getTagSet("Reserved")),
         };
     }
 

@@ -87,11 +87,11 @@
     -fx-border-width: 1;
     -fx-background-color: derive(#1d1d1d, 20%);
 }
-
+//////
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#f10404, 20%);
+    -fx-background-color: derive(#C2DAF2, 20%);
 
 }
 
