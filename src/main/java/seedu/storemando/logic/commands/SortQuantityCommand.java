@@ -7,7 +7,7 @@ import java.util.List;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.QuantityComparator;
+import seedu.storemando.model.item.ItemComparatorByQuantity;
 
 public class SortQuantityCommand extends SortCommand {
 
@@ -20,7 +20,7 @@ public class SortQuantityCommand extends SortCommand {
             throw new CommandException(MESSAGE_NO_ITEMS_TO_SORT);
         }
 
-        QuantityComparator comparator = new QuantityComparator();
+        ItemComparatorByQuantity comparator = new ItemComparatorByQuantity();
         model.updateSortedItemList(comparator);
         model.setItems(model.getSortedItemList());
         return new CommandResult(MESSAGE_SUCCESS);
