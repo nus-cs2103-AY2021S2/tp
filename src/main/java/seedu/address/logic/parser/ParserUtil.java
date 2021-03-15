@@ -53,6 +53,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String description} into a {@code ScheduleDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static ScheduleDescription parseScheduleDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!ScheduleDescription.isValidName(trimmedDescription)) {
+            throw new ParseException(ScheduleDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new ScheduleDescription(trimmedDescription);
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -122,21 +137,6 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses a {@code String description} into a {@code ScheduleDescription}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code description} is invalid.
-     */
-    public static ScheduleDescription parseScheduleDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!ScheduleDescription.isValidName(trimmedDescription)) {
-            throw new ParseException(ScheduleDescription.MESSAGE_CONSTRAINTS);
-        }
-        return new ScheduleDescription(trimmedDescription);
     }
 
     /**
