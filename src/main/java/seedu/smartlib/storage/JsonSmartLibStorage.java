@@ -15,7 +15,7 @@ import seedu.smartlib.commons.util.JsonUtil;
 import seedu.smartlib.model.ReadOnlySmartLib;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access SmartLib data stored as a json file on the hard disk.
  */
 public class JsonSmartLibStorage implements SmartLibStorage {
 
@@ -45,14 +45,14 @@ public class JsonSmartLibStorage implements SmartLibStorage {
     public Optional<ReadOnlySmartLib> readSmartLib(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableSmartLib> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableSmartLib> jsonSmartLib = JsonUtil.readJsonFile(
                 filePath, JsonSerializableSmartLib.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonSmartLib.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonSmartLib.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,8 +60,8 @@ public class JsonSmartLibStorage implements SmartLibStorage {
     }
 
     @Override
-    public void saveSmartLib(ReadOnlySmartLib addressBook) throws IOException {
-        saveSmartLib(addressBook, filePath);
+    public void saveSmartLib(ReadOnlySmartLib smartLib) throws IOException {
+        saveSmartLib(smartLib, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonSmartLibStorage implements SmartLibStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveSmartLib(ReadOnlySmartLib addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveSmartLib(ReadOnlySmartLib smartLib, Path filePath) throws IOException {
+        requireNonNull(smartLib);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableSmartLib(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableSmartLib(smartLib), filePath);
     }
 
 }

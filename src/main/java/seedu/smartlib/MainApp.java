@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing SmartLib ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -69,24 +69,24 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s SmartLib and {@code userPrefs}. <br>
+     * The data from the sample SmartLib will be used instead if {@code storage}'s SmartLib is not found,
+     * or an empty SmartLib will be used instead if errors occur when reading {@code storage}'s SmartLib.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlySmartLib> addressBookOptional;
+        Optional<ReadOnlySmartLib> smartLibOptional;
         ReadOnlySmartLib initialData;
         try {
-            addressBookOptional = storage.readSmartLib();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            smartLibOptional = storage.readSmartLib();
+            if (!smartLibOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample SmartLib");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleSmartLib);
+            initialData = smartLibOptional.orElseGet(SampleDataUtil::getSampleSmartLib);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty SmartLib");
             initialData = new SmartLib();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty SmartLib");
             initialData = new SmartLib();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty SmartLib");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting SmartLib " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping SmartLib ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

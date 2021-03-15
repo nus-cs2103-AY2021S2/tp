@@ -43,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // the line below should not be replaced with "readerListPanelPlaceholder"
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane readerListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         readerListPanel = new ReaderListPanel(logic.getFilteredReaderList());
-        personListPanelPlaceholder.getChildren().add(readerListPanel.getRoot());
+        readerListPanelPlaceholder.getChildren().add(readerListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
