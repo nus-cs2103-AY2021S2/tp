@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.AddContentCommand;
+import seedu.dictionote.logic.commands.AddDefinitionCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
@@ -20,8 +21,10 @@ import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.FindContentCommand;
+import seedu.dictionote.logic.commands.FindDefinitionCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
+import seedu.dictionote.logic.commands.ListContentCommand;
 import seedu.dictionote.logic.commands.ListNoteCommand;
 import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
@@ -63,6 +66,9 @@ public class DictionoteParser {
         case AddContentCommand.COMMAND_WORD:
             return new AddContentCommandParser().parse(arguments);
 
+        case AddDefinitionCommand.COMMAND_WORD:
+            return new AddDefinitionCommandParser().parse(arguments);
+
         case EditContactCommand.COMMAND_WORD:
             return new EditContactCommandParser().parse(arguments);
 
@@ -84,6 +90,9 @@ public class DictionoteParser {
         case FindContentCommand.COMMAND_WORD:
             return new FindContentCommandParser().parse(arguments);
 
+        case FindDefinitionCommand.COMMAND_WORD:
+            return new FindDefinitionCommandParser().parse(arguments);
+
         case ListContactCommand.COMMAND_WORD:
             return new ListContactCommand();
 
@@ -92,6 +101,9 @@ public class DictionoteParser {
 
         case ListNoteCommand.COMMAND_WORD:
             return new ListNoteCommand();
+
+        case ListContentCommand.COMMAND_WORD:
+            return new ListContentCommand();
 
         case MarkAsDoneNoteCommand.COMMAND_WORD:
             return new MarkAsDoneNoteCommandParser().parse(arguments);

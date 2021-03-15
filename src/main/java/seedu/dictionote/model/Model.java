@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.note.Note;
 
 /**
@@ -17,7 +18,11 @@ public interface Model {
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
     /** {@code Predicate} that always evaluate to true */
     Predicate<Content> PREDICATE_SHOW_ALL_CONTENTS = unused -> true;
+    /**{@code Predicate} that always evaluate to true */
+    Predicate<Definition> PREDICATE_SHOW_ALL_DEFINITION = unused -> true;
+    /**{@code Predicate} that always evaluate to true */
     Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
+
 
     //#region
     /**
@@ -46,11 +51,13 @@ public interface Model {
     /** Returns the Dictionary */
     ReadOnlyDictionary getDictionary();
 
+    /** Returns the DefinitionBook */
+    ReadOnlyDefinitionBook getDefinitionBook();
+
     /**
      * Returns true if a note with the same content as {@code note} exists in the dictionote book.
      */
     boolean hasNote(Note note);
-
 
     /**
      * Adds the given note.
@@ -62,11 +69,24 @@ public interface Model {
     ObservableList<Note> getFilteredNoteList();
 
     /**
+     * Returns true if a definition with the same content as {@code definition} exists in the dictionote book.
+     */
+    boolean hasDefinition(Definition definition);
+
+    /**
+     * Adds the given definition.
+     * {@code definition} must not already exist in the dictionote book.
+     */
+    void addDefinition(Definition definition);
+
+
+    /**
      * Returns the user prefs' dictionote book file path.
      */
     Path getAddressBookFilePath();
     Path getNoteBookFilePath();
     Path getDictionaryFilePath();
+    Path getDefinitionBookFilePath();
 
     /**
      * Sets the user prefs' dictionote book file path.
@@ -74,6 +94,7 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
     void setNoteBookFilePath(Path noteBookFilePath);
     void setDictionaryFilePath(Path getDictionaryFilePath);
+    void setDefinitionBookFilePath(Path getDefinitionBookFilePath);
 
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.
@@ -145,6 +166,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered list of content */
     ObservableList<Content> getFilteredContentList();
 
+    /** Returns an unmodifiable view of the filtered list of definitions */
+    ObservableList<Definition> getFilteredDefinitionList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -162,5 +186,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredContentList(Predicate<Content> predicate);
+
+    /**
+     * Updates the filter of the filtered definition list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDefinitionList(Predicate<Definition> predicate);
 
 }

@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
+import seedu.dictionote.logic.commands.AddContentCommand;
+import seedu.dictionote.logic.commands.AddDefinitionCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.Command;
 import seedu.dictionote.logic.commands.CommandResult;
@@ -17,6 +19,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.storage.Storage;
 
@@ -50,6 +53,10 @@ public class LogicManager implements Logic {
         try {
             if (command instanceof AddNoteCommand) {
                 storage.saveNoteBook(model.getNoteBook());
+            } else if (command instanceof AddContentCommand) {
+                storage.saveDictionary(model.getDictionary());
+            } else if (command instanceof AddDefinitionCommand) {
+                storage.saveDefinitionBook(model.getDefinitionBook());
             } else {
                 storage.saveAddressBook(model.getAddressBook());
             }
@@ -79,6 +86,12 @@ public class LogicManager implements Logic {
     public ObservableList<Content> getFilteredContentList() {
         return model.getFilteredContentList();
     }
+
+    @Override
+    public ObservableList<Definition> getFilteredDefinitionList() {
+        return model.getFilteredDefinitionList();
+    }
+
 
     @Override
     public Path getAddressBookFilePath() {

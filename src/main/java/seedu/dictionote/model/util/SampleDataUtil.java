@@ -5,9 +5,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.dictionote.model.AddressBook;
+import seedu.dictionote.model.DefinitionBook;
 import seedu.dictionote.model.Dictionary;
 import seedu.dictionote.model.NoteBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
+import seedu.dictionote.model.ReadOnlyDefinitionBook;
 import seedu.dictionote.model.ReadOnlyDictionary;
 import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.contact.Address;
@@ -16,6 +18,7 @@ import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.dictionary.Content;
+import seedu.dictionote.model.dictionary.Definition;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
@@ -93,5 +96,20 @@ public class SampleDataUtil {
             sampleCt.addContent(sampleContent);
         }
         return sampleCt;
+    }
+
+    public static Definition[] getSampleDefinition() {
+        return new Definition[] {
+            new Definition("Object-Oriented Programming (OOP)", "a programming paradigm."),
+            new Definition("term", "Some Definition")
+        };
+    }
+
+    public static ReadOnlyDefinitionBook getSampleDefinitionBook() {
+        DefinitionBook sampleDb = new DefinitionBook();
+        for (Definition sampleDefinition : getSampleDefinition()) {
+            sampleDb.addDefinition(sampleDefinition);
+        }
+        return sampleDb;
     }
 }

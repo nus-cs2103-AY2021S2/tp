@@ -12,5 +12,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_NOTE_DISPLAYED_INDEX = "The note index provided is invalid";
     public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "%1$d contacts listed!";
     public static final String MESSAGE_CONTENTS_LISTED_OVERVIEW = "%1$d relevant content listed!";
+    public static final String MESSAGE_DEFINITIONS_LISTED_OVERVIEW = "%1$d relevant definition found!";
 
 }
