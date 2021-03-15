@@ -51,7 +51,7 @@ public class FindCategoryCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different card -> returns false
+        // different object -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
