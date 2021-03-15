@@ -40,9 +40,9 @@ Examples: `viewTasks`
 ### 4. Edit Task: `editTask`
 Edit task details 
 
-Format: `editTask INDEX n/NEW TITLE d/NEW DESCRIPTION`
+Format: `editTask INDEX -n NEW TITLE -d NEW DESCRIPTION`
 
-Examples: `editTask 1 n/Plan meeting d/Plan board meeting`
+Examples: `editTask 1 -n Plan meeting -d Plan board meeting`
 
 ### 5. Adding Member: `addMember`
 
