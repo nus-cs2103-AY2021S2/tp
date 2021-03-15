@@ -30,6 +30,7 @@
             <FlowPane fx:id="tags" />
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
             <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
+            <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus" />
             <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
         </VBox>
     </GridPane>
