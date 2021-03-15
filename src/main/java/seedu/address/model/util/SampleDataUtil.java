@@ -15,6 +15,7 @@ import seedu.address.model.person.Student;
 import seedu.address.model.person.Tutor;
 import seedu.address.model.session.Day;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionId;
 import seedu.address.model.session.Subject;
 import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
@@ -55,8 +56,10 @@ public class SampleDataUtil {
     }
     public static ReadOnlyAddressBook getSampleSessions() {
         AddressBook sampleSession = new AddressBook();
-        sampleSession.addSession(new Session("1", new Day("WEDNESDAY"), new Timeslot("12:30 to 13:00"),
+        sampleSession.addSession(new Session(new SessionId("c/1"),
+                new Day("WEDNESDAY"), new Timeslot("12:30 to 13:00"),
                 new Subject("Piano"), getTagSet("Morning")));
+        Session.setSessionCount("1");
         return sampleSession;
     }
 

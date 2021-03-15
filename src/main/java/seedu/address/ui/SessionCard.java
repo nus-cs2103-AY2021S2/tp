@@ -44,7 +44,7 @@ public class SessionCard extends UiPart<Region> {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
-        classId.setText(session.getClassId());
+        classId.setText(session.getClassId().toString());
         day.setText(session.getDay().toString());
         timeslot.setText(session.getTimeslot().toString());
         subject.setText(session.getSubject().toString());

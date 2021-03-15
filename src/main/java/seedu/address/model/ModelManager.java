@@ -121,6 +121,27 @@ public class ModelManager implements Model {
         addressBook.addSession(session);
     }
 
+    @Override
+    public void deleteSession(Session target) {
+        addressBook.removeSession(target);
+    }
+
+    //=========== Filtered Session List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return filteredSessions;
+    }
+
+    @Override
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
+        requireNonNull(predicate);
+        filteredSessions.setPredicate(predicate);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -137,19 +158,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-    public ObservableList<Session> getFilteredSessionList() {
-        return filteredSessions;
-    }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
-     * {@code versionedAddressBook}
-     * @param predicate
-     */
-    public void updateFilteredSessionList(Predicate<Session> predicate) {
-        requireNonNull(predicate);
-        filteredSessions.setPredicate(predicate);
-    }
 
 
     @Override

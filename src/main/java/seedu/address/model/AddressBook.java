@@ -113,6 +113,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a session with the same identity as {@code session} exists in the address book.
+     */
+    public boolean hasSession(Session session) {
+        requireNonNull(session);
+        return sessions.contains(session);
+    }
+
+    /**
      * Adds a session to the address book.
      * The session must not already exist in the address book.
      */
@@ -121,12 +129,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code session} exists in the address book.
+<<<<<<< HEAD
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
      */
-    public boolean hasSession(Session session) {
-        requireNonNull(session);
-        return sessions.contains(session);
+    public void removeSession(Session key) {
+        sessions.remove(key);
     }
+
 
     @Override
     public ObservableList<Session> getSessionList() {

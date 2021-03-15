@@ -69,7 +69,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
         helpWindow = new HelpWindow();
     }
 
@@ -116,6 +115,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         sessionListPanelPlaceholder.setVisible(false);
+        personListPanelPlaceholder.setVisible(true);
+        personListPanelPlaceholder.setDisable(false);
+        sessionListPanelPlaceholder.toFront();
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -211,6 +213,10 @@ public class MainWindow extends UiPart<Stage> {
             }
             if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_SESSIONS)) {
                 fillInnerPartsWithSessions();
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_PERSONS)) {
+                fillInnerParts();
             }
 
             return commandResult;

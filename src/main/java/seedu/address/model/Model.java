@@ -90,6 +90,17 @@ public interface Model {
 
     void addSession(Session session);
 
+    /**
+     * Deletes the given session.
+     * The session must exist in the address book.
+     */
+    void deleteSession(Session session);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+
     public ObservableList<Session> getFilteredSessionList();
 
     public void updateFilteredSessionList(Predicate<Session> predicate);

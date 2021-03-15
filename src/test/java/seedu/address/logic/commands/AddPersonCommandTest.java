@@ -162,6 +162,11 @@ public class AddPersonCommandTest {
         public void addSession(Session session) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
