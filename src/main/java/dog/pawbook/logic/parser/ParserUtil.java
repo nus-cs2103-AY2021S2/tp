@@ -10,6 +10,9 @@ import dog.pawbook.commons.core.index.Index;
 import dog.pawbook.commons.util.StringUtil;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.dog.Breed;
+import dog.pawbook.model.managedentity.dog.DateOfBirth;
+import dog.pawbook.model.managedentity.dog.Sex;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
 import dog.pawbook.model.managedentity.owner.Phone;
@@ -111,6 +114,61 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String breed} into a {@code Breed}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code breed} is invalid.
+     */
+    public static Breed parseBreed(String breed) throws ParseException {
+        requireNonNull(breed);
+        String trimmedBreed = breed.trim();
+        if (!Breed.isValidBreed(trimmedBreed)) {
+            throw new ParseException(Breed.MESSAGE_CONSTRAINTS);
+        }
+        return new Breed(trimmedBreed);
+    }
+
+    /**
+     * Parses a {@code String dob} into a {@code DateOfBirth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dob} is invalid.
+     */
+    public static DateOfBirth parseDob(String dob) throws ParseException {
+        requireNonNull(dob);
+        String trimmedDob = dob.trim();
+        if (!DateOfBirth.isValidDob(trimmedDob)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedDob);
+    }
+
+    /**
+     * Parses a {@code String sex} into a {@code Sex}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sex} is invalid.
+     */
+    public static Sex parseSex(String sex) throws ParseException {
+        requireNonNull(sex);
+        String trimmedSex = sex.trim();
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        return new Sex(trimmedSex);
+    }
+
+    /**
+     * Parses a {@code String ownerID} into a {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static int parseOwnerId(String ownerID) {
+        requireNonNull(ownerID);
+        String trimmedOwnerId = ownerID.trim();
+        return Integer.valueOf(trimmedOwnerId);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -121,4 +179,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }
