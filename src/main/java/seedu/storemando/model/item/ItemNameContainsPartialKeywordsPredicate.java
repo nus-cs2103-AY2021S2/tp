@@ -8,27 +8,30 @@ import seedu.storemando.commons.util.StringUtil;
 /**
  * Tests that a {@code Item}'s {@code Name} matches any of the keywords given.
  */
-public class ItemNameContainsKeywordsPredicate implements Predicate<Item> {
+public class ItemNameContainsPartialKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
 
     /**
      * @param keywords a list of words to check
      */
-    public ItemNameContainsKeywordsPredicate(List<String> keywords) {
+    public ItemNameContainsPartialKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Item item) {
         return keywords.stream()
-            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getItemName().fullName, keyword));
+            .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(item.getItemName().fullName, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof ItemNameContainsKeywordsPredicate // instanceof handles nulls
-            && keywords.equals(((ItemNameContainsKeywordsPredicate) other).keywords)); // state check
+            || (other instanceof ItemNameContainsPartialKeywordsPredicate // instanceof handles nulls
+            && keywords.equals(((ItemNameContainsPartialKeywordsPredicate) other).keywords)); // state check
     }
 
 }
+
+
+

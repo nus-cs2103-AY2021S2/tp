@@ -110,30 +110,25 @@ Examples:
 
 Finds items whose names contain any of the given keywords, either in full or partially.
 
+* The search is case-insensitive. e.g. `milk` will match `Milk`
+* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
+* Only the item name is searched.
+* Items matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Chocolate Milk` will return `Cadbury Chocolate`, `Almond Milk`
+  
 Format 1: `find KEYWORD [MORE_KEYWORDS]`
 
 * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`
-* The search is case-insensitive. e.g. `milk` will match `Milk`
-* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
-* Only the item name is searched.
-* Items matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Chocolate Milk` will return `Cadbury Chocolate`, `Almond Milk`
 
-Format 2: `find *KEYWORD [MORE_KEYWORDS]`
+Format 2: `find */KEYWORD [MORE_KEYWORDS]`
 
 * Partial words will be matched e.g. `Choco` will match `Chocolates`
-* The search is case-insensitive. e.g. `milk` will match `Milk`
-* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
-* Only the item name is searched.
-* Items matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Chocolate Milk` will return `Cadbury Chocolate`, `Almond Milk`
 
 Examples:
 * `find Chocolate` returns `chocolate` and `Chocolate Milk`
 * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
-* `find *Burger` returns `CheeseBurger` and `fishburger`
-* `find *cheese egg` returns `MacAndCheese` and `eggs`
-
+* `find */Burger` returns `CheeseBurger` and `fishburger`
+* `find */cheese egg` returns `MacAndCheese` and `eggs`
 
 ### Deleting an item : `delete`
 
@@ -241,4 +236,4 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Edit** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.,`update 1 l/freezer q/2 `
 **List** | `list [LOCATION]`<br> e.g., `list fridge`
-**Find** | `find KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch`
+**Find** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g, `find koko krunch` `find */choco`
