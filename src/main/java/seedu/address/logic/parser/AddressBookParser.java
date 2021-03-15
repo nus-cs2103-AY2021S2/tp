@@ -6,20 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-<<<<<<< HEAD
 import seedu.address.logic.commands.*;
-import seedu.address.logic.commands.AddCommand;
-=======
-import seedu.address.logic.commands.AddPlanCommand;
-import seedu.address.logic.commands.AddSemesterCommand;
->>>>>>> 3d49dd485089143070617a7d9f2fcd597e1d9183
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.InfoCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -48,8 +35,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case AddModuleCommand
-                .COMMAND_WORD:
+        case AddModuleCommand.COMMAND_WORD:
             return new AddModuleCommandParser().parse(arguments);
 
         case AddPlanCommand.COMMAND_WORD:

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
 import seedu.address.model.plan.Module;
@@ -98,7 +99,7 @@ public interface Model {
      */
     void addSemester(int planNumber, Semester semester);
 
-    boolean hasModule(int planNumber, int semNumber, Module module);
+    boolean hasModule(int planNumber, int semNumber, Module module) throws CommandException;
 
     void addModule(int planNumber, int semNumber, Module module);
 }

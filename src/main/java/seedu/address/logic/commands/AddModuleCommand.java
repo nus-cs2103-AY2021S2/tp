@@ -5,15 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.plan.Module;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.plan.Semester;
-import seedu.address.model.plan.Plan;
+import seedu.address.storage.JsonModule;
+import seedu.address.model.plan.Module;
+
+import java.util.Objects;
 
 public class AddModuleCommand extends Command{
     public static final String COMMAND_WORD = "addm";
@@ -26,44 +24,75 @@ public class AddModuleCommand extends Command{
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PLAN_NUMBER + "1 "
             + PREFIX_SEM_NUMBER + "2 "
-            + PREFIX_MODULE_CODE + "1010";
+            + PREFIX_MODULE_CODE + "CS1010S";
 
-    public static final String MESSAGE_SUCCESS = "New module added to \"Plan %1$s\": %2$s";
+    public static final String MESSAGE_SUCCESS = "New module added to Plan %1$s\t Semester: %2$s\t Module Code: %3$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exist in this current semester";
+    public static final String MESSAGE_INVALID_MODULE_CODE = "The module code provided is not recognised.";
 
-    private final Module toAdd;
-    private final Index semNumber;
-    private final Index planNumber;
+    private final Index planIndex;
+    private final Index semIndex;
+    private final String moduleCode;
 
 
-    public AddModuleCommand(Module module, Index semNumber, Index planNumber) {
-        this.toAdd = module;
-        this.planNumber = planNumber;
-        this.semNumber = semNumber;
+    public AddModuleCommand(Index planIndex, Index semIndex, String moduleCode) {
+        this.planIndex = planIndex;
+        this.semIndex = semIndex;
+        this.moduleCode = moduleCode;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Plan> lastShownPlan = model.getFilteredPlanList();
-
-        if (planNumber.getZeroBased() >= lastShownPlan.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
+        // 1. Read in all modules
+        JsonModule[] informationOfModules = model.getPlans().getModuleInfo();
+        // 2. Check if the moduleCode is valid
+        Module matchingModule = findMatchingModule(informationOfModules, moduleCode);
+        // 3. Use ModelManager::addModule(int, int, Module)
+        if (matchingModule == null) {
+            throw new CommandException(MESSAGE_INVALID_MODULE_CODE);
         }
-
-        if (model.hasModule(planNumber.getZeroBased(), semNumber.getZeroBased(), toAdd)) {
+        // 4. Use modelManager::hasModule to check if it already exists.
+        if (model.hasModule(planIndex.getZeroBased(), semIndex.getZeroBased(), matchingModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
-
-        model.addModule(planNumber.getZeroBased(), semNumber.getZeroBased(), toAdd);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, planNumber.getOneBased(), toAdd));
+        // 5. Add module
+        model.addModule(planIndex.getZeroBased(), semIndex.getZeroBased(), matchingModule);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, planIndex.toString(), semIndex.toString(), moduleCode));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddModuleCommand // instanceof handles nulls
-                && toAdd.equals(((AddModuleCommand) other).toAdd));
+        if (other == this) {
+            return true;
+        } else if (other instanceof AddModuleCommand) {
+            AddModuleCommand o = (AddModuleCommand) other;
+            boolean isSamePlanNumber = this.planIndex.equals(o.planIndex);
+            boolean isSameSemNumber = this.semIndex.equals(o.semIndex);
+            boolean isSameModuleCode = this.moduleCode.equals(o.moduleCode);
+            return (isSameModuleCode && isSameSemNumber && isSamePlanNumber);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if the given module code is found in the provided JsonModule[].
+     *
+     * @param informationOfModules The array of module information to search for a module in.
+     * @return True if the given module code is found in the JsonModule array and false otherwise.
+     */
+    private Module findMatchingModule(JsonModule[] informationOfModules, String moduleCode) {
+        for (int i = 0; i < informationOfModules.length; i++) {
+            if (informationOfModules[i].getModuleCode().equals(moduleCode)) {
+                // TODO: Change this line so that it returns the module that was found
+                JsonModule moduleFound = informationOfModules[i];
+                String moduleTitle = moduleFound.getModuleTitle();
+                String code = moduleFound.getModuleCode();
+                int moduleCredit = Integer.parseInt(moduleFound.getNumMc());
+                return new Module(moduleTitle, code, moduleCredit);
+            }
+        }
+        return null;
     }
 }
