@@ -35,6 +35,8 @@ test your APIs more conveniently than traditional GUI applications.
 
    - **`edit 1 -x -u https://api.data.gov.sg/v1/environment/uv-index`** : Edits the API endpoint with index `1` shown in the API endpoint list.
 
+   - **`show 3`** : Shows the details of the API endpoint with index `3` shown in the API endpoint list.
+
    - **`remove 3`** : Removes the API endpoint with index `3` shown in the API endpoint list.
 
    - **`find pm25`** : Finds all the API endpoints with fields containing `pm25`.
@@ -131,6 +133,17 @@ Examples:
 - `edit 3 -x GET -t fresh -t food`
 
 **Tip:** Multiple tags must be unique and duplicates will be ignored.
+
+#### Show an API endpoint: `show`
+
+Description: Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
+be a positive integer).
+
+Format: `show INDEX`
+
+Examples:
+- `show 1`
+- `show 3`
 
 #### Remove an API endpoint: `remove`
 
@@ -230,6 +243,7 @@ with the file that contains the data of your previous imPoster home folder.
 | ---------- | ------------------------------------- | -------------------------------------- |
 | **Add**    | `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…` <br>  | `add -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value1" -h "key: value2" -t local -t data` |
 | **Edit**   | `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`<br> | `edit 1 -x GET -u http://localhost:3000/ -d {"some": "data"} -h "key: value" -h "key: value" -t local -t data` |
+| **Show**   | `show INDEX`<br>                      | `show 1`                             |
 | **Remove** | `remove INDEX`<br>                    | `remove 3`                             |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br>  | `find maps`                            |
 | **List**   | `list`                                | `list`                                 |
