@@ -11,7 +11,9 @@ public class SortingOrder {
     public static final String MESSAGE_CONSTRAINTS = "SortingOrder can take value of either asc or des" +
             ", and it should not be any other values";
 
-    private static final String VALIDATION_REGEX = "asc|des";
+    private static final String ASC_ORDER_STRING = "asc";
+
+    private static final String DES_ORDER_STRING = "des";
 
     public final String value;
 
@@ -33,7 +35,15 @@ public class SortingOrder {
      * @return True if the given string is a valid value, otherwise false.
      */
     public static boolean isValidSortingOrder(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.equals(ASC_ORDER_STRING) || test.equals(DES_ORDER_STRING);
+    }
+
+    public boolean isAscendingOrder() {
+        return value.equals(ASC_ORDER_STRING);
+    }
+
+    public boolean isDescendingOrder() {
+        return value.equals(DES_ORDER_STRING);
     }
 
     @Override
