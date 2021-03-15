@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -46,7 +46,7 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
         LocalDateTime bookingEnd = ParserUtil.parseBookingEnd(argMultimap.getValue(PREFIX_BOOKINGEND).get());
 
         Booking booking = new Booking(booker, venue, description,
-                bookingStart, bookingEnd, 1);
+                bookingStart, bookingEnd, Booking.getNewBookingId());
 
 
         return new AddBookingCommand(booking);
