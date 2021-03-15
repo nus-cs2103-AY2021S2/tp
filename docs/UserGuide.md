@@ -27,9 +27,9 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
+   * **`add_person`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
-   * **`delete`**`t/3` : Deletes the tutor with the ID `t/3` from the tutor list.
+   * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the tutor list.
      
    * **`assign`** : Assigns student or tutor to a specific class (Coming Soon!).
 
@@ -175,14 +175,14 @@ Examples:
 
 ### Deleting a tutor/student/class : `delete`
 
-Deletes the specified person from the list of tutors, students or classes.
+Deletes the specified person from the list of tutors/students or deletes the specified class from the list of classes.
 
 Format:<br>
-`delete t/ID` for tutors<br>
-`delete s/ID` for students<br>
-`delete c/ID` for classes
+`delete_person t/ID` for tutors<br>
+`delete_person s/ID` for students<br>
+`delete_session c/ID` for classes
 
-* Deletes the tutor/student/class at the specified ID from the list of tutors/students/classes.
+* Deletes the tutor/student at the specified ID from the list of tutors/students. Or deletes the class at the specified ID from the list of classes.
 * The index refers to the ID shown in the displayed tutor/student/class list.
 * The index must be a in the format of:<br>
 `t/ID` for tutors<br>
@@ -190,8 +190,8 @@ Format:<br>
 `c/ID` for classes
 
 Examples:
-* `delete t/1` deletes the tutor with the ID `t/1` from the tutor list.
-* `delete c/25` deletes the class with the ID `c/25` from the class list.
+* `delete_person t/1` deletes the tutor with the ID `t/1` from the tutor list.
+* `delete_session c/25` deletes the class with the ID `c/25` from the class list.
 
 ### Clearing all entries : `clear`
 
@@ -236,7 +236,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
 **Clear** | `clear`
-**Delete** | Tutor <br> `delete t/ID`<br> e.g., `delete t/8`<br><br> Student <br> `delete s/ID`<br> e.g., `delete s/22` <br><br> Class<br>`delete c/ID` <br> e.g., `delete c/9`
+**Delete** | Tutor <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> Student <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> Class<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
