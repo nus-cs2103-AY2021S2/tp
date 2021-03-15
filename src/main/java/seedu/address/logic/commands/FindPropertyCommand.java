@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.property.PropertyContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all properties in address book containing any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindPropertyCommand extends Command {
