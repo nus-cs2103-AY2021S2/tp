@@ -40,5 +40,8 @@ public class ReminderCommandParserTest {
 
         assertParseFailure(parser, "2 chocolate",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "2 chocolate factory",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
     }
 }
