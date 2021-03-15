@@ -8,8 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.abmodel.person.exceptions.FinancialRecordNotFoundException;
-import seedu.budgetbaby.abmodel.person.exceptions.PersonNotFoundException;
+import seedu.budgetbaby.model.record.exception.FinancialRecordNotFoundException;
 
 /**
  * A list of financial records.
@@ -40,7 +39,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new FinancialRecordNotFoundException();
         }
 
         internalList.set(index, editedFinancialRecord);

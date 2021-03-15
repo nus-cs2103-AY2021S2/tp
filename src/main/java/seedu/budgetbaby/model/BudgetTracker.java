@@ -2,30 +2,31 @@ package seedu.budgetbaby.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.YearMonth;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.model.budget.Budget;
+import seedu.budgetbaby.model.month.Month;
+import seedu.budgetbaby.model.month.UniqueMonthList;
 import seedu.budgetbaby.model.record.FinancialRecord;
-import seedu.budgetbaby.model.record.FinancialRecordList;
 
 /**
  * Wraps all data at the budget-tracker level
  */
 public class BudgetTracker implements ReadOnlyBudgetTracker {
 
-    private final FinancialRecordList records;
-    private Budget budget;
+    private final UniqueMonthList monthList;
 
     {
-        records = new FinancialRecordList();
+        monthList = new UniqueMonthList();
     }
 
     public BudgetTracker() {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an BudgetTracker using the Months in the {@code toBeCopied}
      */
     public BudgetTracker(ReadOnlyBudgetTracker toBeCopied) {
         this();
@@ -35,11 +36,11 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the financial record list with {@code records}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the month list with {@code months}.
+     * {@code months} must not contain duplicate months.
      */
-    public void setFinancialRecords(List<FinancialRecord> records) {
-        this.records.setFinancialRecords(records);
+    public void setMonthList(List<Month> months) {
+        this.monthList.setMonths(months);
     }
 
     /**
@@ -48,68 +49,105 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     public void resetData(ReadOnlyBudgetTracker newData) {
         requireNonNull(newData);
 
-        setFinancialRecords(newData.getFinancialRecordList());
+        setMonthList(newData.getMonthList());
+    }
+
+    //// month-level operations
+
+    /**
+     * Adds a month to the budget tracker.
+     */
+    public void addMonth(Month r) {
+        monthList.add(r);
+    }
+
+    /**
+     * Replaces the given month {@code target} in the list with {@code editedMonth}.
+     * {@code target} must exist in the budegt tracker.
+     * The month identity of {@code editedRecord} must not be the same as another existing month in the budget tracker.
+     */
+    public void setMonth(Month target, Month editedMonth) {
+        requireNonNull(editedMonth);
+
+        monthList.setMonth(target, editedMonth);
+    }
+
+    /**
+     * Removes {@code key} from this {@code BudgetTracker}.
+     * {@code key} must exist in the budget tracker.
+     */
+    public void removeMonth(Month key) {
+        monthList.remove(key);
     }
 
     //// financial-record-level operations
 
     /**
      * Adds a financial record to the budget tracker.
+     * Adds a month to the budgt tracker.
      */
     public void addFinancialRecord(FinancialRecord r) {
-        records.add(r);
+        monthList.addFinancialRecord(r);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given financial record {@code target} in the list with {@code editedRecord}.
+     * {@code target} must exist in the budegt tracker.
      */
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireNonNull(editedRecord);
-
-        records.setFinancialRecord(target, editedRecord);
+        monthList.setFinancialRecord(target, editedRecord);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code BudgetTracker}.
+     * {@code key} must exist in the budget tracker.
      */
     public void removeFinancialRecord(FinancialRecord key) {
-        records.remove(key);
+        monthList.removeFinancialRecord(key);
     }
+
+    /**
+     * Returns an unmodifiable view of the financial record list of the given month.
+     */
+    ObservableList<FinancialRecord> getFinancialRecordListOfMonth(YearMonth month) {
+        return this.monthList.getFinancialRecordOfMonth(month);
+    }
+
+    //// budget-level operations
 
     /**
      * Sets the budget for the following months.
+     *
      * @param budget The specified budget to be set.
      */
     public void setBudget(Budget budget) {
-        this.budget = budget;
+        monthList.setBudget(budget);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return records.asUnmodifiableObservableList().size() + " financial records";
+        return monthList.asUnmodifiableObservableList().size() + " months";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<FinancialRecord> getFinancialRecordList() {
-        return records.asUnmodifiableObservableList();
+    public ObservableList<Month> getMonthList() {
+        return monthList.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof BudgetTracker // instanceof handles nulls
-            && records.equals(((BudgetTracker) other).records));
+            && monthList.equals(((BudgetTracker) other).monthList));
     }
 
     @Override
     public int hashCode() {
-        return records.hashCode();
+        return monthList.hashCode();
     }
 }
 

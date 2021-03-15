@@ -8,6 +8,7 @@ import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
+import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -30,7 +31,13 @@ public interface BudgetBabyLogic {
     ReadOnlyBudgetTracker getBudgetTracker();
 
     /**
+     * Returns an unmodifiable view of the filtered list of months
+     */
+    ObservableList<Month> getFilteredMonthList();
+
+    /**
      * Returns an unmodifiable view of the filtered list of financial records
+     * Default showing all financial records of the current month.
      */
     ObservableList<FinancialRecord> getFilteredFinancialRecordList();
 

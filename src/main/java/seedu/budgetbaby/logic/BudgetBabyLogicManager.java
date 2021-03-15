@@ -14,6 +14,7 @@ import seedu.budgetbaby.logic.parser.BudgetBabyParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
+import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.storage.BudgetBabyStorage;
 
@@ -57,6 +58,11 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     @Override
     public ReadOnlyBudgetTracker getBudgetTracker() {
         return model.getBudgetTracker();
+    }
+
+    @Override
+    public ObservableList<Month> getFilteredMonthList() {
+        return model.getFilteredMonthList();
     }
 
     @Override

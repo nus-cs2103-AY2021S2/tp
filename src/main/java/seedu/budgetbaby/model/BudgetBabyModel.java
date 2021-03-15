@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.model.budget.Budget;
+import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -15,7 +16,7 @@ public interface BudgetBabyModel {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<FinancialRecord> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
+    Predicate<Month> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -60,8 +61,49 @@ public interface BudgetBabyModel {
     ReadOnlyBudgetTracker getBudgetTracker();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given month.
+     * The month must exist in the address book.
+     */
+    void deleteMonth(Month target);
+
+    /**
+     * Adds the given month.
+     */
+    void addMonth(Month month);
+
+    /**
+     * Replaces the given month{@code target} with {@code editedMonth}.
+     * {@code target} must exist in the budget tracker.
+     */
+    void setMonth(Month target, Month editedMonth);
+
+    /**
+     * Returns an unmodifiable view of the filtered month list
+     */
+    ObservableList<Month> getFilteredMonthList();
+
+    /**
+     * Updates the filter of the filtered month list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMonthList(Predicate<Month> predicate);
+
+    /**
+     * Returns an unmodifiable view of the filtered financial record list
+     */
+    ObservableList<FinancialRecord> getFilteredFinancialRecordList();
+
+    /**
+     * Updates the filter of the filtered financial record list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
+
+    /**
+     * Deletes the given financial record.
+     * The financial record must exist in the budegt tracker.
      */
     void deleteFinancialRecord(FinancialRecord target);
 
@@ -77,19 +119,8 @@ public interface BudgetBabyModel {
     void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord);
 
     /**
-     * Returns an unmodifiable view of the filtered financial record list
-     */
-    ObservableList<FinancialRecord> getFilteredFinancialRecordList();
-
-    /**
-     * Updates the filter of the filtered financial record list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate);
-
-    /**
      * Sets the budget for the following months.
+     *
      * @param budget The specified budget to be set.
      */
     void setBudget(Budget budget);

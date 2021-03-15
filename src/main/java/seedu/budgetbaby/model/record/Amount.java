@@ -9,7 +9,6 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
  */
 public class Amount {
 
-
     public static final String MESSAGE_CONSTRAINTS =
         "Amount should be a number, and it should not be blank";
     public final Double value;

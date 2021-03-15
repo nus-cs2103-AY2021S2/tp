@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
-import seedu.budgetbaby.model.record.FinancialRecord;
+import seedu.budgetbaby.model.month.Month;
 
 /**
  * An Immutable BudgetTracker that is serializable to JSON format.
@@ -19,14 +19,15 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 @JsonRootName(value = "budgetbaby")
 class JsonSerializableBudgetTracker {
 
-    private final List<JsonAdaptedFinancialRecord> records = new ArrayList<>();
+    private final List<JsonAdaptedMonth> months = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableBudgetTracker(@JsonProperty("records") List<JsonAdaptedFinancialRecord> records) {
-        this.records.addAll(records);
+    public JsonSerializableBudgetTracker(@JsonProperty("months") List<JsonAdaptedMonth> months) {
+        this.months.addAll(months);
     }
 
     /**
@@ -35,8 +36,8 @@ class JsonSerializableBudgetTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableBudgetTracker(ReadOnlyBudgetTracker source) {
-        records.addAll(source.getFinancialRecordList().stream()
-            .map(JsonAdaptedFinancialRecord::new).collect(Collectors.toList()));
+        months.addAll(source.getMonthList().stream()
+            .map(JsonAdaptedMonth::new).collect(Collectors.toList()));
     }
 
     /**
@@ -46,9 +47,9 @@ class JsonSerializableBudgetTracker {
      */
     public BudgetTracker toModelType() throws IllegalValueException {
         BudgetTracker budgetTracker = new BudgetTracker();
-        for (JsonAdaptedFinancialRecord jsonAdaptedFinancialRecord : records) {
-            FinancialRecord record = jsonAdaptedFinancialRecord.toModelType();
-            budgetTracker.addFinancialRecord(record);
+        for (JsonAdaptedMonth jsonAdaptedMonth : months) {
+            Month month = jsonAdaptedMonth.toModelType();
+            budgetTracker.addMonth(month);
         }
         return budgetTracker;
     }

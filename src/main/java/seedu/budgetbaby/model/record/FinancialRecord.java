@@ -1,11 +1,13 @@
 package seedu.budgetbaby.model.record;
 
-
+import java.time.YearMonth;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.budgetbaby.logic.parser.TimestampParser;
 
 /**
  * Represents a Financial Record in the budget tracker.
@@ -30,7 +32,6 @@ public class FinancialRecord {
      * @param categories  A valid category.
      */
     public FinancialRecord(Description description, Amount amount, Set<Category> categories) {
-        //requireNonNull(tagName);
         //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.amount = amount;
@@ -66,6 +67,10 @@ public class FinancialRecord {
         return timestamp;
     }
 
+    public YearMonth getMonth() {
+        return TimestampParser.getYearMonth(this.timestamp);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -73,6 +78,7 @@ public class FinancialRecord {
     public Set<Category> getTags() {
         return Collections.unmodifiableSet(categories);
     }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
