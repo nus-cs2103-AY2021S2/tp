@@ -7,7 +7,6 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.List;
-import java.util.Set;
 import javax.net.ssl.SSLException;
 
 import org.apache.http.NoHttpResponseException;
@@ -21,13 +20,9 @@ import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.endpoint.EndpointCaller;
 import seedu.us.among.logic.endpoint.exceptions.RequestException;
 import seedu.us.among.model.Model;
-import seedu.us.among.model.endpoint.Address;
-import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Endpoint;
-import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.endpoint.Response;
-import seedu.us.among.model.endpoint.header.Header;
-import seedu.us.among.model.tag.Tag;
+
 
 /**
  * Calls a saved API endpoint using it's displayed index from the API endpoints list.
@@ -90,7 +85,7 @@ public class SendCommand extends Command {
             throw new RequestException(MESSAGE_GENERAL_ERROR);
         }
 
-        Endpoint endpointWithResponse = createEndpointWithResponse(endpointToSend, response);
+        Endpoint endpointWithResponse = new Endpoint(endpointToSend, response);
 
         model.setEndpoint(endpointToSend, endpointWithResponse);
 
@@ -99,22 +94,6 @@ public class SendCommand extends Command {
                 false,
                 false,
                 true);
-    }
-
-    /**
-     * Creates and returns a {@code Endpoint} with the details of {@code endpointToSend}
-     * edited with {@code endpointResponse}.
-     */
-    private static Endpoint createEndpointWithResponse(Endpoint endpointToSend, Response endpointResponse) {
-        assert endpointToSend != null;
-
-        Method method = endpointToSend.getMethod();
-        Address address = endpointToSend.getAddress();
-        Data data = endpointToSend.getData();
-        Set<Header> headers = endpointToSend.getHeaders();
-        Set<Tag> tags = endpointToSend.getTags();
-
-        return new Endpoint(method, address, data, headers, tags, endpointResponse);
     }
 
     @Override
