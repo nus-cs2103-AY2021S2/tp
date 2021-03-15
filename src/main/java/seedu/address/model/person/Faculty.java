@@ -13,21 +13,8 @@ public class Faculty {
         FASS, BIZ, COM, SCALE, DEN, SDE, DNUS, ENG, ISEP, LAW, MED, MUSIC, SPH, SPP, SCI, USP, YNC
     }
 
-    public static final List<FacultyAbbreviation> LIST_FACULTY = Arrays.asList(FacultyAbbreviation.FASS,
-            FacultyAbbreviation.BIZ, FacultyAbbreviation.COM, FacultyAbbreviation.SCALE, FacultyAbbreviation.DEN,
-            FacultyAbbreviation.SDE, FacultyAbbreviation.DNUS, FacultyAbbreviation.ENG, FacultyAbbreviation.ISEP,
-            FacultyAbbreviation.LAW, FacultyAbbreviation.MED, FacultyAbbreviation.MUSIC, FacultyAbbreviation.SPH,
-            FacultyAbbreviation.SPP, FacultyAbbreviation.SCI, FacultyAbbreviation.USP, FacultyAbbreviation.YNC);
-
-
-    private static final String stringFaculties = "\"FASS\", \"BIZ\", \"COM\", \"SCALE\", \"DEN\", \"SDE\", \"DNUS\",\n"
-            + "\"ENG\", \"ISEP\", \"LAW\", \"MED\", \"MUSIC\", \"SPH\", \"SPP\", \"SCI\", \"USP\", \"YNC\"";
-
-    private static final List<String> listFaculties = Arrays.asList("FASS", "BIZ", "COM", "SCALE", "DEN", "SDE", "DNUS",
-            "ENG", "ISEP", "LAW", "MED", "MUSIC", "SPH", "SPP", "SCI", "USP", "YNC");
-
     public static final String MESSAGE_CONSTRAINTS = "The faculty entered should be one of the following: \n"
-            + LIST_FACULTY.toString();
+            + getFacultyAbbreviation().toString();
 
 
     public final String value;
@@ -44,11 +31,7 @@ public class Faculty {
     }
 
     public static String getStringFaculties() {
-        return stringFaculties;
-    }
-
-    public static List<String> getListFaculties() {
-        return listFaculties;
+        return String.join(",", getFacultyAbbreviation());
     }
 
     /**
@@ -59,7 +42,7 @@ public class Faculty {
      */
     public static boolean isValidFaculty(String test) {
         try {
-            return LIST_FACULTY.contains(FacultyAbbreviation.valueOf(test.toUpperCase()));
+            return getFacultyAbbreviation().contains(test.toUpperCase());
         } catch (IllegalArgumentException e) {
             return false;
         }

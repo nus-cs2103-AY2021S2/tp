@@ -73,7 +73,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        residence.setText(person.getSchoolResidence().value);
+        residence.setText(person.getSchoolResidence().toString());
         medicalDetails.setText(person.getMedicalDetails().value);
     }
 

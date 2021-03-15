@@ -67,7 +67,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         vaccinationStatus = source.getVaccinationStatus().textUI;
         medicalDetails = source.getMedicalDetails().value;
-        schoolResidence = source.getSchoolResidence().value;
+        schoolResidence = source.getSchoolResidence().residenceAbbreviation.name();
     }
 
     /**

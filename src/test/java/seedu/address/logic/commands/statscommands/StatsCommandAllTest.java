@@ -38,6 +38,7 @@ public class StatsCommandAllTest {
                 + "   RC4: No available data\n"
                 + "   USP: 100.00%\n"
                 + "   UTR: No available data\n"
+                + "   DOES NOT LIVE ON CAMPUS: No available data\n"
                 + "   FASS: No available data\n"
                 + "   BIZ: 0.00%\n"
                 + "   COM: 0.00%\n"
