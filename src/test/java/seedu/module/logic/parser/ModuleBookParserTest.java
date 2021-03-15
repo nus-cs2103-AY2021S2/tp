@@ -8,7 +8,9 @@ import static seedu.module.testutil.Assert.assertThrows;
 import static seedu.module.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -111,10 +113,14 @@ public class ModuleBookParserTest {
 
     @Test
     public void parseCommand_tag() throws Exception {
+        Set<Tag> stubTags = new HashSet<>();
         Tag stubTag = new Tag("Stub");
+        stubTags.add(stubTag);
+        TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK);
+        tagCommand.setTags(stubTags);
         TagCommand command = (TagCommand) parser.parseCommand(TagCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getTagDetails(stubTag));
-        assertEquals(new TagCommand(INDEX_FIRST_TASK, stubTag), command);
+        assertEquals(tagCommand, command);
     }
 
     @Test

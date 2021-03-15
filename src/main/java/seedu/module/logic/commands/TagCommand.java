@@ -35,17 +35,15 @@ public class TagCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This tag already exists.";
 
     private final Index index;
-    private final Tag tag;
+    private Set<Tag> tags;
 
     /**
      * @param index of the person in the filtered person list to edit the remark
-     * @param tag of the person to be added
      */
-    public TagCommand(Index index, Tag tag) {
-        requireAllNonNull(index, tag);
+    public TagCommand(Index index) {
+        requireAllNonNull(index);
 
         this.index = index;
-        this.tag = tag;
     }
 
     @Override
@@ -59,7 +57,7 @@ public class TagCommand extends Command {
 
         Task taskToTag = lastShownList.get(index.getZeroBased());
         Set<Tag> oldTags = taskToTag.getTags();
-        Set<Tag> newTags = addTags(oldTags, this.tag);
+        Set<Tag> newTags = addTags(oldTags, this.tags);
         Task editedTask = new Task(taskToTag.getName(), taskToTag.getDeadline(),
                 taskToTag.getModule(), taskToTag.getDescription(),
                 taskToTag.getDoneStatus(), newTags);
@@ -77,24 +75,21 @@ public class TagCommand extends Command {
      * Add tag to set of old tags, duplicated tag will not be added
      *
      * @param oldTags set of old tags
-     * @param newTag new Tag to be added
+     * @param newTags new Tags to be added
      * @return set of new tags
      */
-    private Set<Tag> addTags(Set<Tag> oldTags, Tag newTag) {
-        Set<Tag> newTags = new HashSet<>(oldTags);
-        boolean isEqual = false;
-        for (Tag item : oldTags) {
-            if (item.equals(newTag)) {
-                isEqual = true;
-                break;
-            }
-        }
-        if (isEqual) {
-            return newTags;
-        } else {
-            newTags.add(newTag);
-            return newTags;
-        }
+    private Set<Tag> addTags(Set<Tag> oldTags, Set<Tag> newTags) {
+        Set<Tag> resultTags = new HashSet<>(oldTags);
+        resultTags.addAll(newTags);
+        return resultTags;
+    }
+
+    /**
+     * Sets {@code tags} to this object's {@code tags}.
+     * A defensive copy of {@code tags} is used internally.
+     */
+    public void setTags(Set<Tag> tags) {
+        this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
     @Override
@@ -112,6 +107,6 @@ public class TagCommand extends Command {
         // state check
         TagCommand e = (TagCommand) other;
         return index.equals(e.index)
-                && tag.equals(e.tag);
+                && tags.equals(e.tags);
     }
 }

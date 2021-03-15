@@ -8,6 +8,11 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.module.commons.core.index.Index;
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.logic.commands.Command;
@@ -31,6 +36,7 @@ public class TagCommandParser implements Parser {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME,
                 PREFIX_DEADLINE, PREFIX_MODULE, PREFIX_DESCRIPTION, PREFIX_TAG);
         Index index;
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
@@ -38,20 +44,30 @@ public class TagCommandParser implements Parser {
                     TagCommand.MESSAGE_USAGE), ive);
         }
 
+        TagCommand tagCommand = new TagCommand(index);
+
         if (argMultimap.getValue(PREFIX_TAG).isEmpty()) {
             throw new ParseException(TagCommand.MESSAGE_NOT_EDITED);
         }
 
-        String tagName = argMultimap.getValue(PREFIX_TAG).orElse("");
+        parseTagsForTag(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(tagCommand::setTags);
 
-        Tag tag;
-        try {
-            tag = new Tag(tagName);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        return tagCommand;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<Tag>> parseTagsForTag(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
         }
-
-        return new TagCommand(index, tag);
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
 }
