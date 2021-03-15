@@ -21,12 +21,12 @@ public class DeleteSemesterCommand extends Command {
     public static final String COMMAND_WORD = "deletes";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a semester from the plan identified by the index number used in the displayed plan list.\n"
+            + ": Deletes a semester from the plan identified by the plan number.\n"
             + "Parameters: "
-            + PREFIX_PLAN_NUMBER + "PLAN NUMBER (must be a valid plan number)"
-            + PREFIX_SEM_NUMBER + "SEM NUMBER (must be a valid plan number)\n"
+            + PREFIX_PLAN_NUMBER + "PLAN NUMBER"
+            + PREFIX_SEM_NUMBER + "SEM NUMBER\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PLAN_NUMBER + "1"
+            + PREFIX_PLAN_NUMBER + "1 "
             + PREFIX_SEM_NUMBER + "1";
 
     public static final String MESSAGE_DELETE_SEMESTER_SUCCESS = "Semester deleted from Plan %1$s: %2$s";
