@@ -24,15 +24,18 @@ class JsonAdaptedPlan {
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedSemester> semesters = new ArrayList<>();
+    private final boolean isMasterPlan;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given plan details.
      */
     @JsonCreator
     public JsonAdaptedPlan(@JsonProperty("description") String address,
+                           @JsonProperty("isMasterPlan") boolean isMasterPlan,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                            @JsonProperty("semesters") List<JsonAdaptedSemester> semesters) {
         this.description = address;
+        this.isMasterPlan = isMasterPlan;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -46,6 +49,7 @@ class JsonAdaptedPlan {
      */
     public JsonAdaptedPlan(Plan source) {
         description = source.getDescription().value;
+        isMasterPlan = source.isMasterPlan();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -72,7 +76,7 @@ class JsonAdaptedPlan {
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Description.class.getSimpleName()));
+                    Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -80,7 +84,9 @@ class JsonAdaptedPlan {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(planTags);
-        return new Plan(modelDescription, modelTags, planSemesters);
+        Plan plan = new Plan(modelDescription, modelTags, planSemesters);
+        plan.setMasterPlan(isMasterPlan);
+        return plan;
     }
 
 }

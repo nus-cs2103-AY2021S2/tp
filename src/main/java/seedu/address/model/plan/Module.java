@@ -50,6 +50,10 @@ public class Module {
         return grade;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
     /**
      * Custom method to compare modules.
      * @param otherModule The module to compare to.
@@ -146,7 +150,7 @@ public class Module {
      * Add preclusions to module.
      * @param preclu a preclusion to the module.
      */
-    public void addPreclusions (Module ... preclu) {
+    public void addPreclusions(Module ... preclu) {
         for (Module m : preclu) {
             preclusions.add(m);
         }
@@ -154,6 +158,10 @@ public class Module {
 
     @Override
     public String toString() {
-        return getModuleCode() + " " + getModuleTitle();
+        if (grade == null) {
+            return getModuleCode() + " - " + getModuleTitle();
+        } else {
+            return getModuleCode() + " - " + getModuleTitle() + "\t" + getGrade();
+        }
     }
 }

@@ -22,13 +22,16 @@ class JsonSerializablePlans {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate plan(s).";
 
     private final List<JsonAdaptedPlan> plans = new ArrayList<>();
+    private final Integer currentSemesterNumber;
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializablePlans(@JsonProperty("plans") List<JsonAdaptedPlan> plans) {
+    public JsonSerializablePlans(@JsonProperty("plans") List<JsonAdaptedPlan> plans,
+                                 @JsonProperty("currentSemesterNumber") Integer currentSemesterNumber) {
         this.plans.addAll(plans);
+        this.currentSemesterNumber = currentSemesterNumber;
     }
 
     /**
@@ -38,6 +41,7 @@ class JsonSerializablePlans {
      */
     public JsonSerializablePlans(ReadOnlyAddressBook source) {
         plans.addAll(source.getPersonList().stream().map(JsonAdaptedPlan::new).collect(Collectors.toList()));
+        currentSemesterNumber = source.getCurrentSemesterNumber();
     }
 
     /**
@@ -54,6 +58,7 @@ class JsonSerializablePlans {
             }
             addressBook.addPlan(plan);
         }
+        addressBook.setCurrentSemesterNumber(currentSemesterNumber);
         return addressBook;
     }
 

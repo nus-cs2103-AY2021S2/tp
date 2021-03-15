@@ -20,6 +20,7 @@ public class Plan {
     private List<Semester> semesters;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
+    private boolean isMasterPlan;
 
     /**
      * Every field must be present and not null.
@@ -30,6 +31,7 @@ public class Plan {
         this.description = description;
         this.tags.addAll(tags);
         this.semesters = new ArrayList<>();
+        isMasterPlan = false;
     }
 
     /**
@@ -65,12 +67,34 @@ public class Plan {
     }
 
     /**
+     * Returns a boolean indicating whether this Plan object is a master plan.
+     *
+     * @return A boolean indicating whether this Plan object is a master plan.
+     */
+    public boolean isMasterPlan() {
+        return isMasterPlan;
+    }
+
+    /**
+     * Sets the isMasterPlan boolean flag for this Plan object.
+     *
+     * @param b The boolean value to be set for the isMasterPlan flag.
+     */
+    public void setMasterPlan(boolean b) {
+        isMasterPlan = b;
+    }
+
+    /**
      * Returns List of Semesters.
      * @return List of Semesters
      */
     public List<Semester> getSemesters() {
-        return semesters;
+        if (semesters == null) {
+            return Collections.emptyList();
+        }
+        return List.copyOf(semesters);
     }
+
 
     /**
      * Returns Semester matching semester number provided.
@@ -101,6 +125,7 @@ public class Plan {
     public Description getDescription() {
         return description;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -149,4 +174,27 @@ public class Plan {
         return builder.toString();
     }
 
+    public double getCurrentCap() {
+        int totalMcs = 0;
+        double undividedCap = 0;
+        for (Semester semester : getSemesters()) {
+            for (Module module : semester.getModules()) {
+                if (!module.isDone()) {
+                    continue;
+                }
+                int moduleMC = module.getMCs();
+                double multipliedCap = moduleMC * module.convertGradeToCap();
+                undividedCap += multipliedCap;
+                totalMcs += moduleMC;
+            }
+        }
+
+        // Guard clause for if the user has not done any modules
+        if (totalMcs == 0) {
+            return 0;
+        }
+
+        double cap = undividedCap / totalMcs;
+        return cap;
+    }
 }

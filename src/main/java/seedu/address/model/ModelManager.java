@@ -11,8 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.plan.Module;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
+import seedu.address.model.util.History;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +26,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Plan> filteredPlans;
+
+    private History history;
+    private Integer currentSemesterNumber; // Semesters are indexed by ID
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +42,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPlans = new FilteredList<>(this.addressBook.getPersonList());
+        currentSemesterNumber = addressBook.getCurrentSemesterNumber();
     }
 
     public ModelManager() {
@@ -155,6 +162,103 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public History getHistory() throws CommandException {
+        if (history == null) {
+            history = createHistory();
+        }
+        return history;
+    }
+
+    private boolean hasCurrentSemester() {
+        return currentSemesterNumber != null;
+    }
+
+    private History createHistory() throws CommandException {
+        if (!hasMasterPlan()) {
+            throw new CommandException("You must set a master plan first!");
+        }
+        if (!hasCurrentSemester()) {
+            throw new CommandException("You must set a current semester first!");
+        }
+        return new History(getMasterPlan(), getCurrentSemester());
+    }
+
+    @Override
+    public Plan getMasterPlan() throws CommandException {
+        if (!hasMasterPlan()) {
+            throw new CommandException("You must set a master plan first!");
+        }
+        return getFilteredPlanList().stream().filter(p -> p.isMasterPlan()).findFirst().get();
+    }
+
+    @Override
+    public Semester getCurrentSemester() throws CommandException {
+        if (!hasCurrentSemester()) {
+            throw new CommandException("You must set a current semester first!");
+        }
+
+        Semester currentSem = null;
+        for (Semester semester : getMasterPlan().getSemesters()) {
+            if (currentSemesterNumber.equals(semester.getSemNumber())) {
+                currentSem = semester;
+                break;
+            }
+        }
+
+        // If the currentSem is still null it is possible that currentSemesterNumber no longer
+        // matches any existing semesters, suggesting it may have been deleted.
+        if (currentSem == null) {
+            currentSemesterNumber = null;
+            throw new CommandException("Set the current semester again, it may have been removed or deleted.");
+        }
+        return currentSem;
+    }
+
+    @Override
+    public void setCurrentSemester(Integer currentSemesterNumber) throws CommandException {
+        // Null means to remove currentSemester
+        if (currentSemesterNumber == null) {
+            this.currentSemesterNumber = null;
+            addressBook.setCurrentSemesterNumber(this.currentSemesterNumber);
+            history = null;
+            return;
+        }
+
+        Plan masterPlan = getMasterPlan();
+        Integer maxSemesterNumber = 0;
+        for (Semester semester : masterPlan.getSemesters()) {
+            if (semester.getSemNumber() > maxSemesterNumber) {
+                maxSemesterNumber = semester.getSemNumber();
+            }
+        }
+
+        if (currentSemesterNumber <= 0 || currentSemesterNumber > maxSemesterNumber) {
+            String semNumOutOfBounds = "The argument provided to current semester must be between 1 and "
+                    + maxSemesterNumber;
+            throw new CommandException(semNumOutOfBounds);
+        }
+
+        this.currentSemesterNumber = currentSemesterNumber;
+        addressBook.setCurrentSemesterNumber(currentSemesterNumber);
+        history = null;
+    }
+
+    @Override
+    public void setMasterPlan(Plan plan) throws CommandException {
+        history = null;
+        requireNonNull(plan);
+        if (hasMasterPlan()) {
+            Plan oldMasterPlan = getMasterPlan();
+            oldMasterPlan.setMasterPlan(false);
+        }
+        plan.setMasterPlan(true);
+    }
+
+    private boolean hasMasterPlan() {
+        return getFilteredPlanList().stream().anyMatch(p -> p.isMasterPlan());
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -173,4 +277,25 @@ public class ModelManager implements Model {
                 && filteredPlans.equals(other.filteredPlans);
     }
 
+    @Override
+    public boolean hasModule(int planNumber, int semNumber, Module module) throws CommandException {
+        requireAllNonNull(semNumber, module);
+        try {
+            Plan plan = addressBook.getPersonList().get(planNumber);
+            Semester semester = plan.getSemesters().get(semNumber);
+            return semester.getModules().stream().anyMatch((currentModule) -> {
+                return currentModule.getModuleCode() == module.getModuleCode();
+            });
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException("Plan or Semester index is invalid", e);
+        }
+    }
+
+    @Override
+    public void addModule(int planNumber, int semNumber, Module module) {
+        Plan plan = addressBook.getPersonList().get(planNumber);
+        Semester semester = plan.getSemesters().get(semNumber);
+        semester.addModule(module);
+        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
+    }
 }

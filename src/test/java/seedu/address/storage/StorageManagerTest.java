@@ -44,7 +44,6 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getPlansFilePath());

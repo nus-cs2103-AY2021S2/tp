@@ -29,7 +29,7 @@ public class Semester {
     }
 
     public List<Module> getModules() {
-        return modules;
+        return List.copyOf(modules);
     }
 
     public int getTotalMCs() {
@@ -38,6 +38,10 @@ public class Semester {
             totalMCs += mod.getMCs();
         }
         return totalMCs;
+    }
+
+    public void addModule(Module module) {
+        modules.add(module);
     }
 
     /**
@@ -52,9 +56,11 @@ public class Semester {
             return false;
         }
         Semester otherSemester = (Semester) other;
+        boolean isSameSemNumber = getSemNumber() == otherSemester.getSemNumber();
         HashSet<Module> thisModuleSet = new HashSet<>(getModules());
         HashSet<Module> otherModuleSet = new HashSet<>(otherSemester.getModules());
-        return thisModuleSet.equals(otherModuleSet);
+        boolean hasSameModules = thisModuleSet.equals(otherModuleSet);
+        return isSameSemNumber && hasSameModules;
     }
 
     @Override
@@ -66,10 +72,10 @@ public class Semester {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        String formattedSemesterDescription = String.format(semesterDescription, getSemNumber(), getTotalMCs(), "\n");
-        stringBuilder.append(formattedSemesterDescription);
+        String formattedSemesterDescription = String.format(semesterDescription, getSemNumber(), getTotalMCs());
+        stringBuilder.append(formattedSemesterDescription + "\n");
         for (Module mod : modules) {
-            stringBuilder.append(mod.toString());
+            stringBuilder.append(mod.toString() + "\n");
         }
         return stringBuilder.toString();
     }

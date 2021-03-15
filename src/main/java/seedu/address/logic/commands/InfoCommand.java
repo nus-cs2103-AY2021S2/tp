@@ -60,7 +60,6 @@ public class InfoCommand extends Command {
         } else {
             return findMatchingModule(informationOfModules);
         }
-
     }
 
     /**

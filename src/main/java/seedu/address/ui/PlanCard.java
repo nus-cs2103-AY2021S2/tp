@@ -12,9 +12,9 @@ import seedu.address.model.plan.Plan;
 /**
  * An UI component that displays information of a {@code Plan}.
  */
-public class PersonCard extends UiPart<Region> {
+public class PlanCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "PlanListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -38,11 +38,14 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Plan} and index to display.
      */
-    public PersonCard(Plan plan, int displayedIndex) {
+    public PlanCard(Plan plan, int displayedIndex) {
         super(FXML);
         this.plan = plan;
         id.setText(displayedIndex + ". ");
-        description.setText(plan.getDescription().value);
+        description.setText("Description: " + plan.getDescription().value
+                + "\nNumber of Semesters: " + plan.getSemesters().size()
+                + "\nNumber of Modules: "
+                + "\nIs Valid: ");
         plan.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -56,12 +59,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof PlanCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        PlanCard card = (PlanCard) other;
         return id.getText().equals(card.id.getText())
                 && plan.equals(card.plan);
     }
