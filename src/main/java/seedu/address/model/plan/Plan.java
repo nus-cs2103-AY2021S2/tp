@@ -20,6 +20,7 @@ public class Plan {
     private List<Semester> semesters;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
+    private boolean isMasterPlan;
 
     /**
      * Every field must be present and not null.
@@ -30,6 +31,7 @@ public class Plan {
         this.description = description;
         this.tags.addAll(tags);
         this.semesters = new ArrayList<>();
+        isMasterPlan = false;
     }
 
     /**
@@ -62,6 +64,24 @@ public class Plan {
             }
         }
         return this;
+    }
+
+    /**
+     * Returns a boolean indicating whether this Plan object is a master plan.
+     *
+     * @return A boolean indicating whether this Plan object is a master plan.
+     */
+    public boolean isMasterPlan() {
+        return isMasterPlan;
+    }
+
+    /**
+     * Sets the isMasterPlan boolean flag for this Plan object.
+     *
+     * @param b The boolean value to be set for the isMasterPlan flag.
+     */
+    public void setMasterPlan(boolean b) {
+        isMasterPlan = b;
     }
 
     /**

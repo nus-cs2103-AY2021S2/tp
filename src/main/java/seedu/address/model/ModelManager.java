@@ -27,11 +27,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Plan> filteredPlans;
 
-    private boolean hasMasterPlan = false;
     private boolean hasCurrentSemester = false;
 
     private History history;
-    private Plan masterPlan;
     private int currentSemesterNumber; // Semesters are indexed by ID
 
     /**
@@ -173,7 +171,7 @@ public class ModelManager implements Model {
     }
 
     private History createHistory() throws CommandException {
-        if (!hasMasterPlan) {
+        if (!hasMasterPlan()) {
             throw new CommandException("You must set a master plan first!");
         }
         if (!hasCurrentSemester) {
@@ -184,11 +182,10 @@ public class ModelManager implements Model {
 
     @Override
     public Plan getMasterPlan() throws CommandException {
-        if (!hasMasterPlan) {
+        if (!hasMasterPlan()) {
             throw new CommandException("You must set a master plan first!");
         }
-
-        return masterPlan;
+        return getFilteredPlanList().stream().filter(p -> p.isMasterPlan()).findFirst().get();
     }
 
     @Override
@@ -235,9 +232,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setMasterPlan(Plan plan) {
-        this.masterPlan = plan;
-        this.hasMasterPlan = true;
+    public void setMasterPlan(Plan plan) throws CommandException {
+        requireNonNull(plan);
+        if (hasMasterPlan()) {
+            Plan oldMasterPlan = getMasterPlan();
+            oldMasterPlan.setMasterPlan(false);
+        }
+        plan.setMasterPlan(true);
+    }
+
+    private boolean hasMasterPlan() {
+        return getFilteredPlanList().stream().anyMatch(p -> p.isMasterPlan());
     }
 
     @Override
