@@ -184,15 +184,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(int index) {
+        return modulePlanner.hasModule(index);
+    }
+
+    @Override
     public void addModule(Module module) {
         requireNonNull(module);
         modulePlanner.addModule(module);
     }
 
     @Override
-    public void editModule(Module module, Title title) {
-        requireAllNonNull(module, title);
-        modulePlanner.editModule(module, title);
+    public void editModule(int index, Title title) {
+        requireNonNull(title);
+        modulePlanner.editModule(index, title);
     }
 
     @Override

@@ -7,7 +7,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 
 public class EditModuleCommand extends Command {
@@ -22,18 +21,18 @@ public class EditModuleCommand extends Command {
             + PREFIX_MODULE + "CS2103 "
             + PREFIX_MODULE + "CS2103T";
 
-    public static final String MESSAGE_SUCCESS = "Module added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Module edited: %1$s";
     public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";
 
-    private final Module toEdit;
+    private final int toEdit;
     private final Title edit;
 
     /**
      * Creates an EditModuleCommand to edit the specified {@code Module}.
      */
-    public EditModuleCommand(Module module, Title title) {
-        requireNonNull(module);
-        toEdit = module;
+    public EditModuleCommand(int index, Title title) {
+        requireNonNull(title);
+        toEdit = index;
         edit = title;
     }
 
@@ -46,13 +45,14 @@ public class EditModuleCommand extends Command {
         }
 
         model.editModule(toEdit, edit);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, edit));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof EditModuleCommand)
-                && toEdit.equals(((EditModuleCommand) other).toEdit);
+                && edit.equals(((EditModuleCommand) other).edit)
+                && toEdit == ((EditModuleCommand) other).toEdit;
     }
 }

@@ -60,6 +60,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
+     * Returns true if the {@code index} is a valid index within the range of the module planner.
+     */
+    public boolean hasModule(int index) {
+        return index > 0 && index <= modules.size();
+    }
+
+    /**
      * Returns true if {@code module} has an assignment with the same description and date as {@code assignment}.
      */
     public boolean hasAssignment(Module module, Assignment assignment) {
@@ -149,13 +156,14 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     }
 
     /**
-     * Edits {@code module} and changes its title to {@code title} in the module planner.
-     * {@code module} must exist in the module planner.
+     * Edits module at {@code index} and changes its title to {@code title} in the module planner.
+     * {@code index} must be within the bounds of the module planner.
      */
-    public void editModule(Module module, Title title) {
-        Module editedModule = modules.getModule(module);
+    public void editModule(int index, Title title) {
+        Module target = modules.getModule(index);
+        Module editedModule = target;
         editedModule.editTitle(title);
-        setModule(module, editedModule);
+        setModule(target, editedModule);
     }
 
     //// util methods
