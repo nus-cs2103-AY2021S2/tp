@@ -30,6 +30,10 @@ public class Author {
                 && fullName.equals(((Author) other).fullName)); // state check
     }
 
+    /**
+     * Calculates hashCode of this Author object
+     * @return hashCode of Author
+     */
     @Override
     public int hashCode() {
         return fullName.hashCode();

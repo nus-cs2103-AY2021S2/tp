@@ -6,14 +6,13 @@ import seedu.smartlib.commons.core.name.Name;
  * Record of borrowing activity
  */
 public class Record {
-    //Needs to update when reading internal memory,
-    // read the largest record id and set overallId = largest record id + 1;
-    private static int overallId = 0;
 
-    private int recordId;
-    private Name bookName;
-    private Name readerName;
-    private DateBorrowed dateBorrowed;
+
+    private final Name bookName;
+    private final Name readerName;
+    // null when creating an returning record to mark existing record as returned
+    private final DateBorrowed dateBorrowed;
+    // null when creating an borrowing record, is a returned record when dateReturned non-null
     private DateReturned dateReturned;
 
     /**
@@ -60,14 +59,6 @@ public class Record {
         this.dateReturned = dateReturned;
     }
 
-    public static int getOverallId() {
-        return overallId;
-    }
-
-    public int getRecordId() {
-        return recordId;
-    }
-
     public Name getBookName() {
         return bookName;
     }
@@ -90,7 +81,12 @@ public class Record {
 
     /**
      * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * This defines a weaker notion of equality between two records.
+     * To facilitate checking when recording record
+     * Whenever getDateReturned not equal or getDateBorrowed not equal,
+     * they are not equal,
+     * if any field missing,
+     * then they are equal
      */
     public boolean isSameRecord(Record otherRecord) {
         if (otherRecord == this) {
@@ -120,6 +116,9 @@ public class Record {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
+        }
+        if (other.getClass() != getClass()) {
+            return false;
         }
         Record otherRecord = (Record) other;
         return isSameRecord(otherRecord);
