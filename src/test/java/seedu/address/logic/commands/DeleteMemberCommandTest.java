@@ -10,26 +10,26 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteMemberCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validNameUnfilteredList_success() throws ParseException {
         Person personToDelete = null;
-        Name parsedNameAlice = ParserUtil.parseName("Alice Pauline");
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(parsedNameAlice);
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
+        DeleteMemberCommand deleteCommand = new DeleteMemberCommand(parsedNameAlice);
 
         for (Person person : model.getFilteredPersonList()) {
             Name currentName = person.getName();
@@ -40,7 +40,7 @@ public class DeleteCommandTest {
             }
         }
 
-        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteMemberCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -51,14 +51,14 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
         Name invalidName = new Name("John");
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(invalidName);
+        DeleteMemberCommand deleteCommand = new DeleteMemberCommand(invalidName);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
     }
 
     @Test
     public void execute_validNameFilteredList_success() throws ParseException {
-        Name parsedNameAlice = ParserUtil.parseName("Alice Pauline");
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
         showPersonAtName(model, parsedNameAlice);
         Person personToDelete = null;
 
@@ -71,8 +71,8 @@ public class DeleteCommandTest {
             }
         }
 
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(parsedNameAlice);
-        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        DeleteMemberCommand deleteCommand = new DeleteMemberCommand(parsedNameAlice);
+        String expectedMessage = String.format(DeleteMemberCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -83,28 +83,28 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidNameFilteredList_throwsCommandException() throws ParseException {
-        Name parsedNameAlice = ParserUtil.parseName("Alice Pauline");
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
         showPersonAtName(model, parsedNameAlice);
 
-        Name invalidName = ParserUtil.parseName("Benson Meier");
-        DeletePersonCommand deleteCommand = new DeletePersonCommand(invalidName);
+        Name invalidName = TypicalPersons.BENSON.getName();
+        DeleteMemberCommand deleteCommand = new DeleteMemberCommand(invalidName);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
     }
 
     @Test
     public void equals() throws ParseException {
-        Name parsedNameAlice = ParserUtil.parseName("Alice Pauline");
-        Name parsedNameBenson = ParserUtil.parseName("Benson Meier");
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
+        Name parsedNameBenson = TypicalPersons.BENSON.getName();
 
-        DeletePersonCommand deleteFirstCommand = new DeletePersonCommand(parsedNameAlice);
-        DeletePersonCommand deleteSecondCommand = new DeletePersonCommand(parsedNameBenson);
+        DeleteMemberCommand deleteFirstCommand = new DeleteMemberCommand(parsedNameAlice);
+        DeleteMemberCommand deleteSecondCommand = new DeleteMemberCommand(parsedNameBenson);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeletePersonCommand deleteFirstCommandCopy = new DeletePersonCommand(parsedNameAlice);
+        DeleteMemberCommand deleteFirstCommandCopy = new DeleteMemberCommand(parsedNameAlice);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

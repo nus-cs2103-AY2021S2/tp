@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeletePersonCommand extends Command {
+public class DeleteMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteMember";
 
@@ -26,7 +26,7 @@ public class DeletePersonCommand extends Command {
 
     private final Name name;
 
-    public DeletePersonCommand(Name name) {
+    public DeleteMemberCommand(Name name) {
         this.name = name;
     }
 
@@ -46,7 +46,7 @@ public class DeletePersonCommand extends Command {
         }
 
         if (personToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
         }
 
         model.deletePerson(personToDelete);
@@ -56,7 +56,7 @@ public class DeletePersonCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeletePersonCommand // instanceof handles nulls
-                && name.equals(((DeletePersonCommand) other).name)); // state check
+                || (other instanceof DeleteMemberCommand // instanceof handles nulls
+                && name.equals(((DeleteMemberCommand) other).name)); // state check
     }
 }

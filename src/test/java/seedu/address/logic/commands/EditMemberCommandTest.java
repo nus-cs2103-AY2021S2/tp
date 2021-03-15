@@ -17,7 +17,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.EditMemberCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditMemberCommand.EditMemberDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -41,7 +41,7 @@ public class EditMemberCommandTest {
         Name parsedNameAlice = TypicalPersons.ALICE.getName();
 
         Person editedPerson = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditMemberCommand editMemberCommand = new EditMemberCommand(parsedNameAlice, descriptor);
 
         String expectedMessage = String.format(EditMemberCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -61,7 +61,7 @@ public class EditMemberCommandTest {
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditMemberCommand.EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
         EditMemberCommand editMemberCommand = new EditMemberCommand(nameLastPerson, descriptor);
 
@@ -77,7 +77,8 @@ public class EditMemberCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() throws ParseException {
         Name parsedNameAlice = TypicalPersons.ALICE.getName();
 
-        EditMemberCommand editMemberCommand = new EditMemberCommand(parsedNameAlice, new EditPersonDescriptor());
+        EditMemberCommand editMemberCommand = new EditMemberCommand(parsedNameAlice,
+                new EditMemberCommand.EditMemberDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditMemberCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -121,7 +122,7 @@ public class EditMemberCommandTest {
         Person firstPerson = TypicalPersons.ALICE;
         Name secondPerson = TypicalPersons.BENSON.getName();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
+        EditMemberDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditMemberCommand editMemberCommand = new EditMemberCommand(secondPerson, descriptor);
 
         assertCommandFailure(editMemberCommand, model, EditMemberCommand.MESSAGE_DUPLICATE_PERSON);
@@ -154,10 +155,11 @@ public class EditMemberCommandTest {
     @Test
     public void execute_invalidPersonNameUnfilteredList_failure() {
         Name invalidName = new Name("John");
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditMemberCommand.EditMemberDescriptor descriptor =
+                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditMemberCommand editMemberCommand = new EditMemberCommand(invalidName, descriptor);
 
-        assertCommandFailure(editMemberCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editMemberCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
     }
 
     /**
@@ -173,7 +175,7 @@ public class EditMemberCommandTest {
         EditMemberCommand editMemberCommand = new EditMemberCommand(invalidName,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editMemberCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editMemberCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
     }
 
     @Test
@@ -184,7 +186,7 @@ public class EditMemberCommandTest {
         final EditMemberCommand standardCommand = new EditMemberCommand(parsedNameAlice, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditMemberCommand.EditMemberDescriptor copyDescriptor = new EditMemberCommand.EditMemberDescriptor(DESC_AMY);
         EditMemberCommand commandWithSameValues = new EditMemberCommand(parsedNameAlice, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

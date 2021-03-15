@@ -39,17 +39,17 @@ public class EditMemberCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Name name;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditMemberDescriptor editMemberDescriptor;
 
     /**
      * @param name of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editMemberDescriptor details to edit the person with
      */
-    public EditMemberCommand(Name name, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(editPersonDescriptor);
+    public EditMemberCommand(Name name, EditMemberDescriptor editMemberDescriptor) {
+        requireNonNull(editMemberDescriptor);
 
         this.name = name;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editMemberDescriptor = new EditMemberDescriptor(editMemberDescriptor);
     }
 
     @Override
@@ -68,10 +68,10 @@ public class EditMemberCommand extends Command {
         }
 
         if (personToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
         }
 
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPerson(personToEdit, editMemberDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -86,12 +86,12 @@ public class EditMemberCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditMemberDescriptor editMemberDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Name updatedName = editMemberDescriptor.getName().orElse(personToEdit.getName());
+        Phone updatedPhone = editMemberDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Email updatedEmail = editMemberDescriptor.getEmail().orElse(personToEdit.getEmail());
 
         return new Person(updatedName, updatedPhone, updatedEmail);
     }
@@ -111,25 +111,25 @@ public class EditMemberCommand extends Command {
         // state check
         EditMemberCommand e = (EditMemberCommand) other;
         return name.equals(e.name)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editMemberDescriptor.equals(e.editMemberDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditMemberDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
 
-        public EditPersonDescriptor() {}
+        public EditMemberDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditMemberDescriptor(EditMemberDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -175,12 +175,12 @@ public class EditMemberCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditMemberDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditMemberDescriptor e = (EditMemberDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
