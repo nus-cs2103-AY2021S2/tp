@@ -55,12 +55,6 @@ public class AddressBookParser {
         // To satisfy the condition of "extraneous parameters will be ignored" in command format description
         if (commandWord.startsWith(HelpCommand.COMMAND_WORD)) {
             return new HelpCommand();
-        } else if (commandWord.startsWith(ClearAppointmentCommand.COMMAND_WORD)) {
-            return new ClearAppointmentCommand();
-        } else if (commandWord.startsWith(ClearPropertyCommand.COMMAND_WORD)) {
-            return new ClearPropertyCommand();
-        } else if (commandWord.startsWith(ClearAllCommand.COMMAND_WORD)) {
-            return new ClearAllCommand();
         } else if (commandWord.startsWith(ListCommand.COMMAND_WORD)) {
             return new ListCommand();
         } else if (commandWord.startsWith(ExitCommand.COMMAND_WORD)) {
@@ -98,6 +92,15 @@ public class AddressBookParser {
 
         case DeletePropertyCommand.COMMAND_WORD:
             return new DeletePropertyCommandParser().parse(arguments);
+
+        case ClearAllCommand.COMMAND_WORD:
+            return new ClearAllCommand();
+
+        case ClearAppointmentCommand.COMMAND_WORD:
+            return new ClearAppointmentCommand();
+
+        case ClearPropertyCommand.COMMAND_WORD:
+            return new ClearPropertyCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
