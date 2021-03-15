@@ -57,7 +57,7 @@
         </bottom>
 
         <left>
-        <VBox fx:id="personList" prefWidth="222.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="personList" prefHeight="450.0" prefWidth="330.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
@@ -66,7 +66,7 @@
         </left>
 
           <center>
-               <StackPane fx:id = "meetingDashboardPlaceholder"  BorderPane.alignment="CENTER" />
+               <StackPane fx:id="meetingDashboardPlaceholder" BorderPane.alignment="CENTER" />
           </center>
         
       </BorderPane>
