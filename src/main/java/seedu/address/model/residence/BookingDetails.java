@@ -2,9 +2,9 @@ package seedu.address.model.residence;
 
 public class BookingDetails {
 
-    public final String bookingDetails;
+    public final String value;
 
     public BookingDetails(String bookingDetails) {
-        this.bookingDetails = bookingDetails;
+        this.value = bookingDetails;
     }
 }

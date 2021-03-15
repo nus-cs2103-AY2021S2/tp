@@ -9,8 +9,12 @@ import seedu.address.model.residence.BookingDetails;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
+import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A utility class to help with building EditPersonDescriptor objects.
+ */
 public class EditResidenceDescriptorBuilder {
 
     private EditResidenceDescriptor descriptor;
@@ -52,19 +56,19 @@ public class EditResidenceDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code BookingDetails} of the {@code EditResidenceDescriptor} that wer are building.
+     * Sets the {@code BookingDetails} of the {@code EditResidenceDescriptor} that we are building.
      */
-    public EditResidenceDescriptorBuilder withBookingDetails(String details) {
-        descriptor.setBookingDetails(new BookingDetails(details));
+    public EditResidenceDescriptorBuilder withBookingDatails(String bookingDatails) {
+        descriptor.setBookingDetails(new BookingDetails(bookingDatails));
         return this;
     }
 
     /**
-     * parses the {@code cleanStatus} into a {@code Set<Tag>} and set it to the {@code EditResidenceDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
      */
-    public EditResidenceDescriptorBuilder withCleanStatusTags(String cleanStatus) {
-        Set<Tag> tagSet = Stream.of(cleanStatus).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditResidenceDescriptorBuilder withCleanStatusTag(String cleanStatusTag) {
+        descriptor.setCleanStatusTag(new CleanStatusTag(cleanStatusTag));
         return this;
     }
 
@@ -81,5 +85,4 @@ public class EditResidenceDescriptorBuilder {
     public EditResidenceDescriptor build() {
         return descriptor;
     }
-
 }

@@ -60,12 +60,13 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Todo: person to keep in RT? currently no addPerson method
+     * Returns an {@code ResidenceTracker} with all the typical persons.
      */
     public static ResidenceTracker getTypicalAddressBook() {
         ResidenceTracker ab = new ResidenceTracker();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            // ab.addPerson(person);
         }
         return ab;
     }

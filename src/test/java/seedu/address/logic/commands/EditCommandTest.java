@@ -56,7 +56,7 @@ public class EditCommandTest {
         Residence editedResidence = residenceInList.withName(VALID_NAME_RESIDENCE1).withCleanStatusTags(VALID_TAG_CLEAN).build();
 
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
-                .withCleanStatusTags(VALID_TAG_UNCLEAN).build();
+                .withCleanStatusTag(VALID_TAG_UNCLEAN).build();
 
 
         EditCommand editCommand = new EditCommand(indexLastResidence, descriptor);

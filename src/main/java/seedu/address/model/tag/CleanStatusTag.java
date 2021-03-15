@@ -5,22 +5,23 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class CleanStatusTag {
 
-    private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status ";
+    private static String MESSAGE_CONSTRAINTS = "should use y or n to show clean status";
 
     public final String cleanStatus;
+    public final String defaultCleanStatus = "Clean";
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code CleanStatusTag}.
      *
      * @param cleanStatus define the clean status by y or n .
      */
     public CleanStatusTag(String cleanStatus) {
         requireNonNull(cleanStatus);
         checkArgument(isValidCleanStatusTag(cleanStatus), MESSAGE_CONSTRAINTS);
-        if (cleanStatus.equals("y") || cleanStatus.equals("Cleaned")) {
-            this.cleanStatus = "Cleaned";
+        if (cleanStatus.equals("y") || cleanStatus.equalsIgnoreCase("clean")) {
+            this.cleanStatus = "Clean";
         } else {
-            this.cleanStatus = "Uncleaned";
+            this.cleanStatus = "Unclean";
         }
     }
 
@@ -28,8 +29,8 @@ public class CleanStatusTag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidCleanStatusTag(String test) {
-        return test.equals("y") || test.equals("Cleaned")
-                || test.equals("n") || test.equals("Uncleaned");
+        return test.equalsIgnoreCase("y") || test.equalsIgnoreCase("clean")
+                || test.equalsIgnoreCase("n") || test.equalsIgnoreCase("unclean");
     }
 
     @Override

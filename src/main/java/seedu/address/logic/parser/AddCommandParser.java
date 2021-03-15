@@ -35,16 +35,16 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_RESIDENCE_NAME, PREFIX_RESIDENCE_ADDRESS,
                         PREFIX_BOOKING_DETAILS, PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_RESIDENCE_NAME, PREFIX_RESIDENCE_ADDRESS, PREFIX_CLEAN_STATUS_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_RESIDENCE_NAME, PREFIX_RESIDENCE_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         ResidenceName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_RESIDENCE_NAME).get());
         ResidenceAddress address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get());
-        BookingDetails bookingDetails = new BookingDetails("test");
-        Set<CleanStatusTag> cleanStatusTag = ParserUtil.parseCleanStatusTags(
-                argMultimap.getAllValues(PREFIX_CLEAN_STATUS_TAG));
+        BookingDetails bookingDetails = new BookingDetails("temporary");
+        CleanStatusTag cleanStatusTag = ParserUtil.parseCleanStatusTag(
+                argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Residence residence = new Residence(name, address, bookingDetails, cleanStatusTag, tagList);

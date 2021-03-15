@@ -22,19 +22,19 @@ public class Residence {
     // Data fields
     private final ResidenceAddress residenceAddress;
     private final BookingDetails bookingDetails;
-    private final Set<CleanStatusTag> cleanStatusTag = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
+    private CleanStatusTag cleanStatusTag = new CleanStatusTag("clean");
 
     /**
      * Every field must be present and not null.
      */
     public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress, BookingDetails bookingDetails,
-                     Set<CleanStatusTag> cleanStatusTag, Set<Tag> tags) {
+                     CleanStatusTag cleanStatusTag, Set<Tag> tags) {
         this.bookingDetails = bookingDetails;
         requireAllNonNull(residenceName, residenceAddress, cleanStatusTag, tags);
         this.residenceName = residenceName;
         this.residenceAddress = residenceAddress;
-        this.cleanStatusTag.addAll(cleanStatusTag);
+        this.cleanStatusTag = cleanStatusTag;
         this.tags.addAll(tags);
     }
 
@@ -53,9 +53,10 @@ public class Residence {
     /**
      * Returns an immutable clean status tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     * @return
      */
-    public Set<CleanStatusTag> getCleanStatusTag() {
-        return Collections.unmodifiableSet(cleanStatusTag);
+    public CleanStatusTag getCleanStatusTag() {
+        return cleanStatusTag;
     }
 
 
@@ -115,13 +116,9 @@ public class Residence {
                 .append("; Residence Address: ")
                 .append(getResidenceAddress())
                 .append("; Booking Details: ")
-                .append(getBookingDetails());
-
-        Set<CleanStatusTag> cleanStatusTags = getCleanStatusTag();
-        if (!cleanStatusTags.isEmpty()) {
-            builder.append("; CleanStatus: ");
-            cleanStatusTags.forEach(builder::append);
-        }
+                .append(getBookingDetails())
+                .append("; Clean Status: ")
+                .append(getCleanStatusTag());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

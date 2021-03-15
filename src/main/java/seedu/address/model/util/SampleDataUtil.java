@@ -20,9 +20,9 @@ public class SampleDataUtil {
     public static Residence[] getSampleResidence() {
         return new Residence[]{
             new Residence(new ResidenceName("HDB"), new ResidenceAddress("Blk 30 Geylang Street 29, #06-40"),
-                    new BookingDetails("someone is coming"), getCleanStatusTagSet("n"), getTagSet("Booked")),
+                    new BookingDetails("someone is coming"), getCleanStatusTag("n"), getTagSet("Booked")),
             new Residence(new ResidenceName("Condo"), new ResidenceAddress("Blk 45 Tampines Street 29, #08-01"),
-                    new BookingDetails("4 adults"), getCleanStatusTagSet("y"), getTagSet("Reserved")),
+                    new BookingDetails("4 adults"), getCleanStatusTag("y"), getTagSet("Reserved")),
         };
     }
 
@@ -35,12 +35,10 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a CleanStatusTag set containing the list of strings given.
+     * Returns a CleanStatusTag containing the list of strings given.
      */
-    public static Set<CleanStatusTag> getCleanStatusTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(CleanStatusTag::new)
-                .collect(Collectors.toSet());
+    public static CleanStatusTag getCleanStatusTag(String status) {
+        return new CleanStatusTag(status);
     }
 
     /**
