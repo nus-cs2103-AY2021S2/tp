@@ -65,11 +65,7 @@ public class JsonAdaptedResidence {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Residence toModelType() throws IllegalValueException {
-        final List<CleanStatusTag> residenceCleanStatusTag = new ArrayList<>();
         final List<Tag> residenceTags = new ArrayList<>();
-        for (String cleanStatusTag : cleanStatusTagged) {
-            residenceCleanStatusTag.add(cleanStatusTag.toModelType());
-        }
         for (JsonAdaptedTag tag : tagged) {
             residenceTags.add(tag.toModelType());
         }
@@ -95,7 +91,8 @@ public class JsonAdaptedResidence {
         //might need to do valid and null check for booking details but skip first
         final BookingDetails modelBookingDetails = new BookingDetails(bookingDetails);
 
-        final Set<CleanStatusTag> modelCleanStatusTag = new HashSet<>(residenceCleanStatusTag);
+        final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(cleanStatusTagged);
+
         final Set<Tag> modelTags = new HashSet<>(residenceTags);
         return new Residence(modelName, modelAddress, modelBookingDetails, modelCleanStatusTag, modelTags);
     }

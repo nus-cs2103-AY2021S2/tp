@@ -54,8 +54,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editResidenceDescriptor.setResidenceAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get()));
         }
-        parseCleanStatusTagForEdit(argMultimap.getAllValues(PREFIX_CLEAN_STATUS_TAG)).ifPresent(
-                editResidenceDescriptor::setCleanStatusTag);
+        if (argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).isPresent()) {
+            editResidenceDescriptor.setCleanStatusTag(
+                    ParserUtil.parseCleanStatusTag(argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).get()));
+        }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editResidenceDescriptor::setTags);
 
@@ -64,24 +66,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editResidenceDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> CleanStatusTag} into a {@code Set<CleanStatusTag>} if {@code CleanStatusTag}
-     * is non-empty.
-     * If {@code CleanStatusTag} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<CleanStatusTag>} containing zero tags.
-     */
-    private Optional<Set<CleanStatusTag>> parseCleanStatusTagForEdit(
-            Collection<String> cleanStatusTag) throws ParseException {
-        assert cleanStatusTag != null;
-
-        if (cleanStatusTag.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> cleanStatusTagSet = cleanStatusTag.size() == 1 && cleanStatusTag.contains("")
-                ? Collections.emptySet() : cleanStatusTag;
-        return Optional.of(ParserUtil.parseCleanStatusTags(cleanStatusTagSet));
     }
 
     /**
