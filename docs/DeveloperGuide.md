@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Developer Guide
 ---
 
@@ -347,7 +347,7 @@ otherwise)
     * 3b1. StoreMando shows an error message.
 
     * 3b2. StoreMando prompt the user for a correct input.
-    
+      
       Use case resumes at step 3.
 
 **Use case: UC3 - List all items in a specific location**

@@ -2,9 +2,13 @@ package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
+import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
 
 /**
  * Finds and lists all items in storemando whose item name contains any of the argument keywords.
@@ -16,12 +20,18 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose names contain any of "
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-        + "Example: " + COMMAND_WORD + " alice bob charlie";
+        + "Parameters: [*/]KEYWORD [MORE_KEYWORDS]...\n"
+        + "Examples:\n"
+        + "1. " + COMMAND_WORD + " alice bob charlie \n"
+        + "2. " + COMMAND_WORD + " */alice bob charlie";
 
-    private final ItemNameContainsKeywordsPredicate predicate;
+    private final Predicate<Item> predicate;
 
     public FindCommand(ItemNameContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    public FindCommand(ItemNameContainsPartialKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
