@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
 import seedu.address.model.subject.SubjectName;
 
 /**
@@ -23,7 +24,6 @@ public class Appointment {
 
     private final String formatter = "dd MM yyyy";
 
-
     /**
      * Primary constructor for appointment class.
      * @param email Email of tutor.
@@ -31,12 +31,28 @@ public class Appointment {
      * @param dateTime LocalDateTime
      * @param location Location of teaching venue
      */
-    Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
-                Address location) {
+    public Appointment(Email email, SubjectName subject, LocalDateTime dateTime,
+                       Address location) {
         this.email = email;
         this.subject = subject;
         this.dateTime = dateTime;
         this.location = location;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    public SubjectName getSubject() {
+        return subject;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public Address getLocation() {
+        return location;
     }
 
     /**
@@ -62,6 +78,19 @@ public class Appointment {
         return String.format("Appointment with Tutor (%s) at %s", this.email.value,
                 LocalDateTime.parse(this.dateTime.toString(),
                         DateTimeFormatter.ofPattern(formatter)));
+    }
+
+    /**
+     * Returns true if both appointment have the same datetime.
+     * This defines a weaker notion of equality between two appointments.
+     */
+    public boolean isSameAppointment(Appointment otherAppointment) {
+        if (otherAppointment == this) {
+            return true;
+        }
+
+        return otherAppointment != null
+                && this.dateTime.isEqual(otherAppointment.dateTime);
     }
 
     @Override
