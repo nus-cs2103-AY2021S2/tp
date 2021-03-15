@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,7 +32,9 @@ public class AddModuleCommand extends Command {
     private final Index semIndex;
     private final String moduleCode;
 
-
+    /**
+     * Create a addmodulecommand object with plan index, sem index and module code
+     */
     public AddModuleCommand(Index planIndex, Index semIndex, String moduleCode) {
         this.planIndex = planIndex;
         this.semIndex = semIndex;
@@ -65,6 +67,9 @@ public class AddModuleCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, planIndex.toString(), semIndex.toString(), moduleCode));
     }
 
+    /**
+     * Check if two addmodule commands are equal
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

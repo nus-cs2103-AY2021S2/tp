@@ -8,14 +8,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-/**
- * Parses a {add module command}
- * Leading and trailing whitespaces will be trimmed.
- *
- * @throws ParseException if the given {@code semNumber} is invalid.
- */
 public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 
+    /**
+     * Parses a {add module command}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code semNumber} is invalid.
+     */
     public AddModuleCommand parse(String args) throws ParseException {
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PLAN_NUMBER, PREFIX_SEM_NUMBER, PREFIX_MODULE_CODE);
