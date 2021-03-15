@@ -38,10 +38,20 @@ public class SortingOrder {
         return test.equals(ASC_ORDER_STRING) || test.equals(DES_ORDER_STRING);
     }
 
+    /**
+     * Tests whether the sorting order is ascending.
+     *
+     * @return True if the sorting order is ascending, or otherwise false.
+     */
     public boolean isAscendingOrder() {
         return value.equals(ASC_ORDER_STRING);
     }
 
+    /**
+     * Tests whether the sorting order is descending.
+     *
+     * @return True if the sorting order is descending, or otherwise false.
+     */
     public boolean isDescendingOrder() {
         return value.equals(DES_ORDER_STRING);
     }
