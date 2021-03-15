@@ -17,6 +17,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_OWNERID = new Prefix("o/");
     public static final Prefix PREFIX_DATEOFBIRTH = new Prefix("d/");
     public static final Prefix PREFIX_SEX = new Prefix("s/");
-
-
 }
