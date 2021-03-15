@@ -139,6 +139,7 @@ public class ModelManager implements Model {
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
         filteredSchedules.setPredicate(predicate);
+    }
 
     //=========== Filtered Task List Accessors ==========================================================
 
