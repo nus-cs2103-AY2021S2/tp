@@ -28,10 +28,11 @@ public class DeleteAppointmentCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Appointment appointmentToDelete = model.getFilteredAppointmentList().get(INDEX_FIRST_APPOINTMENT.getZeroBased());
+        Appointment appointmentToDelete = model.getFilteredAppointmentList().
+                get(INDEX_FIRST_APPOINTMENT.getZeroBased());
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_APPOINTMENT);
 
-        String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS, 
+        String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 appointmentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -52,10 +53,12 @@ public class DeleteAppointmentCommandTest {
     public void execute_validIndexFilteredList_success() {
         showAppointmentAtIndex(model, INDEX_FIRST_APPOINTMENT);
 
-        Appointment appointmentToDelete = model.getFilteredAppointmentList().get(INDEX_FIRST_APPOINTMENT.getZeroBased());
+        Appointment appointmentToDelete = model.getFilteredAppointmentList().
+                get(INDEX_FIRST_APPOINTMENT.getZeroBased());
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_APPOINTMENT);
 
-        String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete);
+        String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+                appointmentToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteAppointment(appointmentToDelete);
