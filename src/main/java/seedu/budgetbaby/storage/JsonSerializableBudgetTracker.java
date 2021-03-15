@@ -35,7 +35,7 @@ class JsonSerializableBudgetTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableBudgetTracker(ReadOnlyBudgetTracker source) {
-        records.addAll(source.getFinancialRecordList().stream()
+        records.addAll(source.getMonthList().stream()
             .map(JsonAdaptedFinancialRecord::new).collect(Collectors.toList()));
     }
 

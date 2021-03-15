@@ -1,7 +1,7 @@
 package seedu.budgetbaby.model;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.model.record.FinancialRecord;
+import seedu.budgetbaby.model.month.Month;
 
 /**
  * Unmodifiable view of a budget tracker
@@ -9,8 +9,8 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 public interface ReadOnlyBudgetTracker {
 
     /**
-     * Returns an unmodifiable view of the financial record list.
+     * Returns an unmodifiable view of the month list.
      */
-    ObservableList<FinancialRecord> getFinancialRecordList();
+    ObservableList<Month> getMonthList();
 
 }

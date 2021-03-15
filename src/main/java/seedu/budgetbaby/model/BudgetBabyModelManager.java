@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.budget.Budget;
+import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -22,7 +23,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
     private final BudgetTracker budgetTracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<FinancialRecord> filteredFinancialRecords;
+    private final FilteredList<Month> filteredMonths;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,7 +36,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         this.budgetTracker = new BudgetTracker(budgetTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFinancialRecords = new FilteredList<>(this.budgetTracker.getFinancialRecordList());
+        filteredMonths = new FilteredList<>(this.budgetTracker.getMonthList());
     }
 
     public BudgetBabyModelManager() {
@@ -90,6 +91,24 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
+    public void deleteMonth(Month target) {
+        budgetTracker.removeMonth(target);
+    }
+
+    @Override
+    public void addMonth(Month month) {
+        budgetTracker.addMonth(month);
+        updateFilteredMonthList(PREDICATE_SHOW_ALL_RECORDS);
+    }
+
+    @Override
+    public void setMonth(Month target, Month editedMonth) {
+        requireAllNonNull(target, editedMonth);
+
+        budgetTracker.setMonth(target, editedMonth);
+    }
+
+    @Override
     public void deleteFinancialRecord(FinancialRecord target) {
         budgetTracker.removeFinancialRecord(target);
     }
@@ -97,19 +116,16 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     @Override
     public void addFinancialRecord(FinancialRecord record) {
         budgetTracker.addFinancialRecord(record);
-        updateFilteredFinancialRecordList(PREDICATE_SHOW_ALL_RECORDS);
     }
 
     @Override
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireAllNonNull(target, editedRecord);
-
         budgetTracker.setFinancialRecord(target, editedRecord);
     }
 
     @Override
     public void setBudget(Budget budget) {
-        requireNonNull(budget);
         budgetTracker.setBudget(budget);
     }
 
@@ -120,14 +136,14 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
      * {@code versionedBudgetTracker}
      */
     @Override
-    public ObservableList<FinancialRecord> getFilteredFinancialRecordList() {
-        return filteredFinancialRecords;
+    public ObservableList<Month> getFilteredMonthList() {
+        return filteredMonths;
     }
 
     @Override
-    public void updateFilteredFinancialRecordList(Predicate<FinancialRecord> predicate) {
+    public void updateFilteredMonthList(Predicate<Month> predicate) {
         requireNonNull(predicate);
-        filteredFinancialRecords.setPredicate(predicate);
+        filteredMonths.setPredicate(predicate);
     }
 
     @Override
@@ -146,7 +162,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         BudgetBabyModelManager other = (BudgetBabyModelManager) obj;
         return budgetTracker.equals(other.budgetTracker)
             && userPrefs.equals(other.userPrefs)
-            && filteredFinancialRecords.equals(other.filteredFinancialRecords);
+            && filteredMonths.equals(other.filteredMonths);
     }
 
 }

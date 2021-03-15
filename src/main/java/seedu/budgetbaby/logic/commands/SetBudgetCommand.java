@@ -12,13 +12,14 @@ import seedu.budgetbaby.model.budget.Budget;
 public class SetBudgetCommand extends BudgetBabyCommand {
     public static final String COMMAND_WORD = "set-bg";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the budget for the following months."
-            + "Parameters: BG_AMOUNT";
+        + "Parameters: BG_AMOUNT";
     public static final String MESSAGE_SUCCESS = "New budget set: %s";
 
     private final Budget toSet;
 
     /**
      * Creates a SetBudgetCommand to set the specified {@code Budget}
+     *
      * @param budget The specified Budget.
      */
     public SetBudgetCommand(Budget budget) {
@@ -36,7 +37,7 @@ public class SetBudgetCommand extends BudgetBabyCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SetBudgetCommand // instanceof handles nulls
-                && toSet.equals(((SetBudgetCommand) other).toSet));
+            || (other instanceof SetBudgetCommand // instanceof handles nulls
+            && toSet.equals(((SetBudgetCommand) other).toSet));
     }
 }

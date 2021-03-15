@@ -2,8 +2,14 @@ package seedu.budgetbaby.model.month;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.budgetbaby.abmodel.person.Person;
+import seedu.budgetbaby.abmodel.person.UniquePersonList;
+import seedu.budgetbaby.abmodel.person.exceptions.DuplicatePersonException;
+import seedu.budgetbaby.logic.parser.TimestampParser;
+import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
 import seedu.budgetbaby.model.month.exception.MonthNotFoundException;
+import seedu.budgetbaby.model.record.FinancialRecord;
 
 import java.time.YearMonth;
 import java.util.Iterator;
@@ -43,6 +49,19 @@ public class UniqueMonthList implements Iterable<Month> {
     public boolean contains(YearMonth yearMonth) {
         requireNonNull(yearMonth);
         return internalList.stream().anyMatch(m -> m.isSameMonth(yearMonth));
+    }
+
+    /**
+     * Finds the month representing the given YearMonth in the list.
+     */
+    public Month find(YearMonth yearMonth) {
+        requireNonNull(yearMonth);
+        if (!contains(yearMonth)) {
+            add(yearMonth);
+        }
+        return internalList.stream()
+            .filter(m -> m.isSameMonth(yearMonth))
+            .findFirst().get();
     }
 
     /**
@@ -98,6 +117,88 @@ public class UniqueMonthList implements Iterable<Month> {
         if (!internalList.remove(toRemove)) {
             throw new MonthNotFoundException();
         }
+    }
+
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code months} must not contain duplicate persons.
+     */
+    public void setMonths(UniqueMonthList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code months}.
+     * {@code months} must not contain duplicate persons.
+     */
+    public void setMonths(List<Month> months) {
+        requireAllNonNull(months);
+        if (!monthsAreUnique(months)) {
+            throw new DuplicateMonthException();
+        }
+
+        internalList.setAll(months);
+    }
+
+    /// financial-record
+
+    /**
+     * Finds the month which the given financial record belongs to.
+     * If the month does not exit in the list, a new month will be added.
+     */
+    public Month findFinancialRecordMonth(FinancialRecord r) {
+        requireNonNull(r);
+        YearMonth yearMonth = TimestampParser.getYearMonth(r.getTimestamp());
+        if (!contains(yearMonth)) {
+            add(yearMonth);
+        }
+        return find(yearMonth);
+    }
+
+    /**
+     * Adds a financial record to the budget tracker.
+     * Adds a month to the budgt tracker.
+     */
+    public void addFinancialRecord(FinancialRecord r) {
+        requireNonNull(r);
+        Month month = findFinancialRecordMonth(r);
+        month.addFinancialRecord(r);
+    }
+
+    /**
+     * Replaces the given financial record {@code target} in the list with {@code editedRecord}.
+     * {@code target} must exist in the budegt tracker.
+     */
+    public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
+        requireNonNull(editedRecord);
+        Month targetMonth = findFinancialRecordMonth(target);
+        Month editedMonth = findFinancialRecordMonth(editedRecord);
+        targetMonth.deleteFinancialRecord(editedRecord);
+        editedMonth.addFinancialRecord(editedRecord);
+    }
+
+    /**
+     * Removes {@code key} from this {@code BudgetTracker}.
+     * {@code key} must exist in the budget tracker.
+     */
+    public void removeFinancialRecord(FinancialRecord key) {
+        requireNonNull(key);
+        Month month = findFinancialRecordMonth(key);
+        month.removeFinancialRecord(key);
+    }
+
+    /// budget
+
+    /**
+     * Sets the budget for the following months.
+     *
+     * @param budget The specified budget to be set.
+     */
+    public void setBudget(Budget budget) {
+        requireNonNull(budget);
+        Month currentMonth = find(YearMonth.now());
+        //TODO: implement setBudget methods for the current month and all the future month
     }
 
     /**

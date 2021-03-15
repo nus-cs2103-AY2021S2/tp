@@ -1,17 +1,15 @@
 package seedu.budgetbaby.model.month;
 
-import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.model.budget.Budget;
-import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
 import seedu.budgetbaby.model.month.exception.MonthMismatchException;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.model.record.FinancialRecordList;
 
-import java.time.Year;
 import java.time.YearMonth;
 import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Month in the budget tracker.
@@ -63,12 +61,31 @@ public class Month {
      * Adds a financial record to the month.
      * The timestamp of the financial record must match the month.
      */
-    public void add(FinancialRecord toAdd) {
+    public void addFinancialRecord(FinancialRecord toAdd) {
         requireNonNull(toAdd);
         if (!toAdd.getMonth().equals(this.month)) {
             throw new MonthMismatchException();
         }
         records.add(toAdd);
+    }
+
+    public void deleteFinancialRecord(FinancialRecord target) {
+        records.remove(target);
+    }
+
+    public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
+        requireAllNonNull(target, editedRecord);
+
+        records.setFinancialRecord(target, editedRecord);
+    }
+
+    /**
+     * Sets the budget for the following months.
+     *
+     * @param budget The specified budget to be set.
+     */
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
     /**
@@ -123,4 +140,6 @@ public class Month {
         return month.toString();
     }
 
+    public void removeFinancialRecord(FinancialRecord editedRecord) {
+    }
 }
