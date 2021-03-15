@@ -113,7 +113,7 @@ public class EditPropertyCommand extends Command {
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
         PostalCode updatedPostalCode = editPropertyDescriptor.getPostalCode().orElse(propertyToEdit.getPostalCode());
         Deadline updatedDeadline = editPropertyDescriptor.getDeadline().orElse(propertyToEdit.getDeadline());
-        Remark updatedRemark = editPropertyDescriptor.getRemark().orElse(propertyToEdit.getRemarks());
+        Remark updatedRemark = editPropertyDescriptor.getRemarks().orElse(propertyToEdit.getRemarks());
 
         Client updatedClient = createEditedClient(propertyToEdit.getClient(),
                 editPropertyDescriptor.getClientDescriptor());
@@ -173,7 +173,7 @@ public class EditPropertyCommand extends Command {
             setAddress(toCopy.address);
             setPostalCode(toCopy.postalCode);
             setDeadline(toCopy.deadline);
-            setRemark(toCopy.remark);
+            setRemarks(toCopy.remark);
             setClientDescriptor(toCopy.editClientDescriptor);
         }
 
@@ -224,11 +224,11 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(deadline);
         }
 
-        public void setRemark(Remark remark) {
+        public void setRemarks(Remark remark) {
             this.remark = remark;
         }
 
-        public Optional<Remark> getRemark() {
+        public Optional<Remark> getRemarks() {
             return Optional.ofNullable(remark);
         }
 
@@ -260,7 +260,7 @@ public class EditPropertyCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getPostalCode().equals(e.getPostalCode())
                     && getDeadline().equals(e.getDeadline())
-                    && getRemark().equals(e.getRemark())
+                    && getRemarks().equals(e.getRemarks())
                     && getClientDescriptor().equals(e.getClientDescriptor());
         }
     }
