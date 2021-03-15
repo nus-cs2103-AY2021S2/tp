@@ -26,33 +26,37 @@ public class TypicalFlashcards {
     public static final Flashcard PYTHAGOREAN = new FlashcardBuilder().withQuestion("Pythagorean theorem")
             .withPriority("Low").withCategory("Maths")
             .withAnswer("a^2 + b^2 = c^2").withRemark("")
-            .withTags("Equation").build();
+            .withTags("Equation", "Common", "Easy").build();
     public static final Flashcard EINSTEIN = new FlashcardBuilder().withQuestion("Einstein's Equation")
             .withPriority("Mid")
             .withCategory("Physics").withAnswer("e = mc^2").withRemark("")
-            .withTags("Equation").build();
+            .withTags("Equation", "Common", "Famous").build();
     public static final Flashcard NEWTON = new FlashcardBuilder().withQuestion("Newton's Second Law of Motion")
             .withAnswer("Force = Mass * Acceleration").withCategory("Physics").withPriority("Low")
-            .withRemark("").build();
+            .withRemark("").withTags("Famous", "Common").build();
     public static final Flashcard ATP = new FlashcardBuilder().withQuestion("What is ATP?")
             .withAnswer("Adenosine Triphosphate").withCategory("Biology").withPriority("Low")
-            .withTags("Acronym").withRemark("").build();
+            .withTags("Acronym", "Biology").withRemark("").build();
     public static final Flashcard MERGE = new FlashcardBuilder()
             .withQuestion("What is the time complexity of merge sort?").withAnswer("O(nlogn)")
-            .withCategory("Computer Science").withPriority("High").withRemark("").build();
+            .withCategory("Computer Science").withPriority("High").withRemark("")
+            .withTags("Runtime", "Sort").build();
     public static final Flashcard RECURSION = new FlashcardBuilder().withQuestion("What is recursion?")
-            .withAnswer("recursion").withCategory("Computer Science").withPriority("Low").withRemark("").build();
+            .withAnswer("recursion").withCategory("Computer Science").withPriority("Low").withRemark("")
+            .withTags("Random", "Fun").build();
     public static final Flashcard ACID = new FlashcardBuilder()
             .withQuestion("What is the formula for hydrochloric acid?").withAnswer("HCl")
-            .withCategory("Chemistry").withPriority("High").withRemark("").build();
+            .withCategory("Chemistry").withPriority("High").withRemark("")
+            .withTags("Formula", "Acid").build();
 
     // Manually added
     public static final Flashcard DARWIN = new FlashcardBuilder()
             .withQuestion("When did Charles Darwin stop believing in Christianity?")
             .withAnswer("After the Voyage of the Beagle")
-            .withCategory("History").withPriority("Mid").withRemark("").build();
+            .withCategory("History").withPriority("Mid").withRemark("")
+            .withTags("Darwin", "Religion").build();
     public static final Flashcard IDA = new FlashcardBuilder().withQuestion("What is no in German?").withAnswer("nein")
-            .withCategory("German").withPriority("Low").withRemark("").build();
+            .withCategory("German").withPriority("Low").withRemark("").withTags("Language", "Common").build();
 
     // Manually added - Flashcard's details found in {@code CommandTestUtil}
     public static final Flashcard EINS = new FlashcardBuilder().withQuestion(VALID_QUESTION_EINSTEIN)

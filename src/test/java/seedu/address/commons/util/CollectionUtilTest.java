@@ -8,9 +8,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.tag.Tag;
 
 public class CollectionUtilTest {
     @Test
@@ -105,4 +108,107 @@ public class CollectionUtilTest {
     private void assertNullPointerExceptionNotThrown(Collection<?> collection) {
         requireAllNonNull(collection);
     }
+
+    //---------------- Tests for tagContainsWordIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for word: null, empty, multiple words
+     * Invalid equivalence partitions for tags: null
+     * The four test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void tagContainsWordIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("typical"), new Tag("sentence"))), null));
+    }
+
+    @Test
+    public void tagContainsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", () ->
+                CollectionUtil.tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                .asList(new Tag("typical"), new Tag("sentence"))), "  "));
+    }
+
+    @Test
+    public void tagContainsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", () ->
+                CollectionUtil.tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                .asList(new Tag("typical"), new Tag("sentence"))), "aaa BBB"));
+    }
+
+    @Test
+    public void tagContainsWordIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> CollectionUtil
+                .tagContainsWordIgnoreCase(null, "abc"));
+    }
+
+    /*
+     * Valid equivalence partitions for word:
+     *   - any word
+     *   - word with leading/trailing spaces
+     *
+     * Valid equivalence partitions for tags:
+     *   - one tag
+     *   - multiple tags
+     *
+     * Possible scenarios returning true:
+     *   - matches first tag
+     *   - last tag in tags
+     *   - middle tag in tags
+     *   - matches multiple tags
+     *
+     * Possible scenarios returning false:
+     *   - query word matches part of a tag word
+     *   - tag word matches part of the query word
+     *   - query word not in tags
+     *
+     * The test method below tries to verify all above with a reasonably low number of test cases.
+     */
+
+    @Test
+    public void tagContainsWordIgnoreCase_validInputs_correctResult() {
+        // Query word not in tags
+        assertFalse(CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("aaa"), new Tag("bbb"), new Tag("ccc"))), "eee"));
+
+        // Matches a partial word only
+        assertFalse(CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("aaa"), new Tag("bbb"),
+                                new Tag("ccc"))), "bb")); // Sentence word bigger than query word
+        assertFalse(CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("aaa"), new Tag("bbb"),
+                                new Tag("ccc"))), "bbbb")); // Query word bigger than sentence word
+
+        // Matches word in the tags, different upper/lower case letters
+        assertTrue(CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("aaa"), new Tag("bBb"),
+                                new Tag("ccc"))), "aAa")); // First word (boundary case)
+        assertTrue(CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("aaa"), new Tag("bBb"),
+                                new Tag("ccc"))), "Bbb"));
+        assertTrue(CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("aaa"), new Tag("bBb"),
+                                new Tag("ccC"))), "CCc")); // Last word (boundary case)
+        assertTrue(CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("Aaa"))), "aaa")); // Only one word in sentence (boundary case)
+        assertTrue(CollectionUtil
+                .tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                        .asList(new Tag("aaa"), new Tag("bbb"),
+                                new Tag("ccc"))), "  ccc  ")); // Leading/trailing spaces
+
+        // Matches multiple words in tags
+        assertTrue(CollectionUtil.tagContainsWordIgnoreCase(new HashSet<Tag>(Arrays
+                .asList(new Tag("AAA"), new Tag("bBb"),
+                        new Tag("ccc"), new Tag("bbb"))), "bbB"));
+    }
+
 }
