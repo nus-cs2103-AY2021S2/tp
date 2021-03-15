@@ -269,7 +269,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `* *`    | impatient user                             | access specific client quickly | spend less time searching through my list                              | 
 | `* *`    | disorganised user                          | display only properties queried| avoid cluttering the screen with unnecessary information               |
-| `*`      | user with many persons in the address book | sort clients by name           | locate a client easily                                                 |
+| `* *`    | insurance agent                            | sort my clients by name        | see my clients in a more organized way                                 |
 
 *{More to be added}*
 
@@ -384,7 +384,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list of matched clients is empty.
 
   Use case ends.
-    
+
+**Use case: Sort list of clients**
+
+**MSS**
+
+1.  User requests to sort clients with the specified direction
+2.  ClientBook shows the sorted list of clients.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of matched clients is empty.
+
+  Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
