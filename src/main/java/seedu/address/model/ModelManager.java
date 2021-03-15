@@ -154,12 +154,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
-    @Override
-    public boolean hasSchedule(Schedule toAdd) {
-        return false;
-    }
-
+    
     @Override
     public void addSchedule(Schedule toAdd) {
 
