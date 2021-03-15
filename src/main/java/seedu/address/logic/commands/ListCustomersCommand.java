@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.COMPARATOR_NORMAL_CUSTOMER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import seedu.address.model.Model;
@@ -19,7 +18,6 @@ public class ListCustomersCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        model.updateSortedCustomerList(COMPARATOR_NORMAL_CUSTOMER);
         model.setPanelToCustomerList();
         return new CommandResult(MESSAGE_SUCCESS);
     }

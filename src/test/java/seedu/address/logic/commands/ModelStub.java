@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -17,6 +15,7 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
+import seedu.address.model.util.ModelPredicate;
 
 /**
  *
@@ -139,17 +138,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+    public void updateFilteredCustomerList(ModelPredicate<Customer> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredOrderList(Predicate<Order> predicate) {
+    public void updateFilteredOrderList(ModelPredicate<Order> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredCheeseList(Predicate<Cheese> predicate) {
+    public void updateFilteredCheeseList(ModelPredicate<Cheese> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -165,21 +164,6 @@ public class ModelStub implements Model {
 
     @Override
     public void setPanelToOrderList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateSortedCustomerList(Comparator<Customer> comparator) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateSortedOrderList(Comparator<Order> comparator) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateSortedCheeseList(Comparator<Cheese> comparator) {
         throw new AssertionError("This method should not be called.");
     }
 

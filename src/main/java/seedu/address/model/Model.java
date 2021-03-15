@@ -1,9 +1,9 @@
 package seedu.address.model;
 
+import static seedu.address.model.util.ModelPredicate.getDefaultPredicate;
+
 import java.nio.file.Path;
 import java.util.Set;
-import java.util.Comparator;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -14,21 +14,19 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Quantity;
+import seedu.address.model.util.ModelPredicate;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
+
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
-    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
-    Predicate<Cheese> PREDICATE_SHOW_ALL_CHEESES = unused -> true;
-
-    Comparator<Customer> COMPARATOR_NORMAL_CUSTOMER = Comparator.comparing(x -> x.getId().value);
-    Comparator<Order> COMPARATOR_NORMAL_ORDER = Comparator.comparing(x -> x.getOrderId().value);
-    Comparator<Cheese> COMPARATOR_NORMAL_CHEESE = Comparator.comparing(x -> x.getCheeseId().value);
+    ModelPredicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = getDefaultPredicate();
+    ModelPredicate<Order> PREDICATE_SHOW_ALL_ORDERS = getDefaultPredicate();
+    ModelPredicate<Cheese> PREDICATE_SHOW_ALL_CHEESES = getDefaultPredicate();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -186,21 +184,21 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredCustomerList(Predicate<Customer> predicate);
+    void updateFilteredCustomerList(ModelPredicate<Customer> predicate);
 
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredOrderList(Predicate<Order> predicate);
+    void updateFilteredOrderList(ModelPredicate<Order> predicate);
 
     /**
      * Updates the filter of the filtered cheese list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredCheeseList(Predicate<Cheese> predicate);
+    void updateFilteredCheeseList(ModelPredicate<Cheese> predicate);
 
     /**
      * Sets the list panel in the UI to show the filtered customers list.
@@ -217,21 +215,4 @@ public interface Model {
      */
     void setPanelToOrderList();
 
-    /**
-     * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateSortedCustomerList(Comparator<Customer> comparator);
-
-    /**
-     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateSortedOrderList(Comparator<Order> comparator);
-
-    /**
-     * Updates the filter of the filtered cheese list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateSortedCheeseList(Comparator<Cheese> comparator);
 }
