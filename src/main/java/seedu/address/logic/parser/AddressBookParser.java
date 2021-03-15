@@ -8,14 +8,19 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddPropertyCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearAllCommand;
+import seedu.address.logic.commands.ClearAppointmentCommand;
+import seedu.address.logic.commands.ClearPropertyCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeletePropertyCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditPropertyCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindAppointmentCommand;
+import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -29,7 +34,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandWord>\\S+(\\s(appointment|property))?)(?<arguments>.*)");
+            Pattern.compile("(?<commandWord>\\S+(\\s(appointment|property|all))?)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -50,8 +55,6 @@ public class AddressBookParser {
         // To satisfy the condition of "extraneous parameters will be ignored" in command format description
         if (commandWord.startsWith(HelpCommand.COMMAND_WORD)) {
             return new HelpCommand();
-        } else if (commandWord.startsWith(ClearCommand.COMMAND_WORD)) {
-            return new ClearCommand();
         } else if (commandWord.startsWith(ListCommand.COMMAND_WORD)) {
             return new ListCommand();
         } else if (commandWord.startsWith(ExitCommand.COMMAND_WORD)) {
@@ -78,8 +81,26 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindAppointmentCommand.COMMAND_WORD:
+            return new FindAppointmentCommandParser().parse(arguments);
+
+        case FindPropertyCommand.COMMAND_WORD:
+            return new FindPropertyCommandParser().parse(arguments);
+
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
+
+        case DeletePropertyCommand.COMMAND_WORD:
+            return new DeletePropertyCommandParser().parse(arguments);
+
+        case ClearAllCommand.COMMAND_WORD:
+            return new ClearAllCommand();
+
+        case ClearAppointmentCommand.COMMAND_WORD:
+            return new ClearAppointmentCommand();
+
+        case ClearPropertyCommand.COMMAND_WORD:
+            return new ClearPropertyCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
