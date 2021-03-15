@@ -3,19 +3,24 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.customer.Customer;
-
+import seedu.address.model.customer.exceptions.DuplicateCustomerException;
+import seedu.address.testutil.CustomerBuilder;
 
 public class AddressBookTest {
 
@@ -39,6 +44,17 @@ public class AddressBookTest {
     }
 
     @Test
+    public void resetData_withDuplicateCustomers_throwsDuplicateCustomerException() {
+        // Two customers with the same identity fields
+        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .build();
+        List<Customer> newCustomers = Arrays.asList(ALICE, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newCustomers);
+
+        assertThrows(DuplicateCustomerException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
     public void hasCustomer_nullCustomer_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasCustomer(null));
     }
@@ -52,6 +68,14 @@ public class AddressBookTest {
     public void hasCustomer_customerInAddressBook_returnsTrue() {
         addressBook.addCustomer(ALICE);
         assertTrue(addressBook.hasCustomer(ALICE));
+    }
+
+    @Test
+    public void hasCustomer_customerWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addCustomer(ALICE);
+        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertTrue(addressBook.hasCustomer(editedAlice));
     }
 
     @Test

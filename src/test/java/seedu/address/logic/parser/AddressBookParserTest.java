@@ -33,6 +33,7 @@ public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
+    //BUG HERE - failed test case
     @Test
     public void parseCommand_add() throws Exception {
         Customer customer = new CustomerBuilder().build();
