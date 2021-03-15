@@ -1,15 +1,16 @@
 package seedu.address.storage.ingredient;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientBook;
 import seedu.address.model.ingredient.ReadOnlyIngredientBook;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * An immutable IngredientBook that is serializable to JSON format.
@@ -29,6 +30,11 @@ public class JsonSerializableIngredientBook {
         ingredients.addAll(source.getIngredientList());
     }
 
+    /**
+     * Returns model type
+     * @return IngredientBook model
+     * @throws IllegalValueException
+     */
     public IngredientBook toModelType() throws IllegalValueException {
         IngredientBook ingredientBook = new IngredientBook();
         ingredientBook.setIngredients(ingredients);

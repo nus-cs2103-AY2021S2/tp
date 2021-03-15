@@ -1,15 +1,16 @@
 package seedu.address.storage.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderBook;
 import seedu.address.model.order.ReadOnlyOrderBook;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * An immutable OrderBook that is serializable to JSON format.
@@ -29,6 +30,11 @@ public class JsonSerializableOrderBook {
         orders.addAll(source.getOrderList());
     }
 
+    /**
+     * To model type
+     * @return OrderBook model type
+     * @throws IllegalValueException
+     */
     public OrderBook toModelType() throws IllegalValueException {
         OrderBook orderBook = new OrderBook();
         orderBook.setOrders(orders);

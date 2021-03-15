@@ -17,10 +17,8 @@ import seedu.address.model.person.ReadOnlyPersonBook;
  */
 public interface Storage extends UserPrefsStorage {
 
-    
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
-    
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     //========= Address Book ========
@@ -35,7 +33,6 @@ public interface Storage extends UserPrefsStorage {
     public void savePersonBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException;
 
     // ================ DishBook methods ==============================
-
     public Path getDishBookFilePath();
 
     public Optional<ReadOnlyDishBook> readDishBook() throws DataConversionException, IOException;
@@ -47,19 +44,18 @@ public interface Storage extends UserPrefsStorage {
     public void saveDishBook(ReadOnlyDishBook dishBook, Path filePath) throws IOException;
 
     // ================ IngredientBook methods ==============================
-
     public Path getIngredientBookFilePath();
 
     public Optional<ReadOnlyIngredientBook> readIngredientBook() throws DataConversionException, IOException;
 
-    public Optional<ReadOnlyIngredientBook> readIngredientBook(Path filePath) throws DataConversionException, IOException;
+    public Optional<ReadOnlyIngredientBook> readIngredientBook(Path filePath)
+            throws DataConversionException, IOException;
 
     public void saveIngredientBook(ReadOnlyIngredientBook addressBook) throws IOException;
-    
+
     public void saveIngredientBook(ReadOnlyIngredientBook ingredientBook, Path filePath) throws IOException;
 
     // ================ OrderBook methods ==============================
-    
     public Path getOrderBookFilePath();
 
     public Optional<ReadOnlyOrderBook> readOrderBook() throws DataConversionException, IOException;

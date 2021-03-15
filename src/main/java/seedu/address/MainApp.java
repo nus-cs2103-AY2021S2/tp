@@ -21,7 +21,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.dish.DishBook;
 import seedu.address.model.dish.ReadOnlyDishBook;
-import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientBook;
 import seedu.address.model.ingredient.ReadOnlyIngredientBook;
 import seedu.address.model.order.OrderBook;
@@ -29,7 +28,11 @@ import seedu.address.model.order.ReadOnlyOrderBook;
 import seedu.address.model.person.PersonBook;
 import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.*;
+import seedu.address.storage.BookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.dish.JsonDishBookStorage;
 import seedu.address.storage.ingredient.JsonIngredientBookStorage;
 import seedu.address.storage.order.JsonOrderBookStorage;
@@ -70,7 +73,8 @@ public class MainApp extends Application {
                 new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
         BookStorage<ReadOnlyOrderBook> orderBookStorage =
                 new JsonOrderBookStorage(userPrefs.getOrderBookFilePath());
-        storage = new StorageManager(addressBookStorage, dishBookStorage, ingredientBookStorage, orderBookStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, dishBookStorage,
+                ingredientBookStorage, orderBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -128,7 +132,7 @@ public class MainApp extends Application {
                 initialOrderBook = new OrderBook();
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         return new ModelManager(initialPersonBook, initialDishBook, initialIngredientBook, initialOrderBook, userPrefs);

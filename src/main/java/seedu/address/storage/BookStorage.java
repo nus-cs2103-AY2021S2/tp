@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Book;
-import seedu.address.model.person.ReadOnlyPersonBook;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.Book;
+import seedu.address.model.person.ReadOnlyPersonBook;
 
 public interface BookStorage<T extends Book> {
 

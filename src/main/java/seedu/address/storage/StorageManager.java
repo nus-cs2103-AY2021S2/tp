@@ -29,9 +29,11 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(BookStorage<ReadOnlyPersonBook> personBookStorage, BookStorage<ReadOnlyDishBook> dishBookStorage,
+    public StorageManager(BookStorage<ReadOnlyPersonBook> personBookStorage,
+                          BookStorage<ReadOnlyDishBook> dishBookStorage,
                           BookStorage<ReadOnlyIngredientBook> ingredientBookStorage,
-                          BookStorage<ReadOnlyOrderBook> orderBookStorage, UserPrefsStorage userPrefsStorage) {
+                          BookStorage<ReadOnlyOrderBook> orderBookStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.personBookStorage = personBookStorage;
         this.dishBookStorage = dishBookStorage;
@@ -129,7 +131,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyIngredientBook> readIngredientBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyIngredientBook> readIngredientBook(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return ingredientBookStorage.readBook(filePath);
     }
