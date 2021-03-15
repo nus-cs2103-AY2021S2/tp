@@ -409,4 +409,5 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Flash card**: A card that contains study materials with its topic name
 * **Undoable Command**: A command that modifies the content of FlashBack
+
 --------------------------------------------------------------------------------------------------------------------
