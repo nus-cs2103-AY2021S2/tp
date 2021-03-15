@@ -259,7 +259,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | long-time user                             | delete an old card             | remove some notes that I no longer need                               
 | `* * *`  | student                                    | view all my notes   | easily refer to all my study materials               |                                                
 | `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly 
-| `* * * ` | impatient student | quickly edit my notes | use time saved to do other stuff 
+| `* * * ` | careless user | modify the details of a flash card | avoid having to delete and add a new card when I wish to update card information
 | `* *` | multi-discipline student | put my notes under different tags and categories | easily organize them
 | `* *`     | angry student   | undo my actions| my emotion will not cloud my judgements
 | `* *` | student | review my own performance after each study session | know what to improve on
@@ -311,7 +311,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. FlashBack shows an error message.
     
         Use case resumes at step 1.
-      
+    
+**Use case: Edit a flash card**
+
+**MSS**
+
+1. FlashBack shows a list of flash cards
+2. User requests to edit a specific flash card on the list
+3. User enters the details of updated flash card
+4. FlashBack updates the flash card with the given details
+
+    Use case ends
+
+**Extensions**
+* 1a. The list is empty.
+
+    Use case ends.
+
+* 2a. The given index is invalid
+    * 2a1. FlashBack shows an error message.
+    
+        Use case resumes at step 1.
+    
+* 3a. The updated flash card is a duplicate of an existing card.
+    * 3a1. FlashBack shows an error message.
+
+        Use case resumes at step 1.
+    
 **Use case: View a flash card**
 
 **MSS**

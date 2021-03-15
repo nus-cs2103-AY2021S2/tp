@@ -18,7 +18,8 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
     * Exiting the program: `exit`
     * Saving data
     * Editing the data file
-    * Filtering cards: `[coming in v2.0]`
+    * Filtering cards: `[coming in v1.3]`
+    * Review mode: `[coming in v1.3]`
 * FAQ
 * Command Summary
 
@@ -35,7 +36,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 ![GUI](./images/Ui.png)
 1. Type the command in the command box and press Enter to execute it:
     * **`help`** : Opens the help window.
-    * **`add`**`k/ Einstein’s Equation d/ e=mc^2 t/ Physics`: Adds a new flashcard named `Einstein's Equation` to FlashBack.
+    * **`add`**`q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`: Adds a new flashcard named `What is the Einstein's Equation?` to FlashBack.
     * **`delete`**`1`: Deletes the 1st card shown in the current list.
     * **`clear`**: Deletes all cards. 
     * **`exit`**: Exits the application.
@@ -55,12 +56,24 @@ Format: `help`
 
 Adds a new card to the card list.
 
-Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/ TAG]` <br />
+Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]` <br />
 Note: The TAG is optional when adding a new card.
 
 Examples:
 * `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`  
 * `add q/Independence day of Singapore a/August 9th 1965 c/History p/Mid t/Singapore`
+
+### Editing a card: `edit`
+
+Edits an existing flash card in the card list.
+
+Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY]` <br />
+`[p/NEW PRIORITY] [t/TAG]`
+
+* Edits the card at the specified `INDEX`.
+* The index refers to the index number shown in the displayed card list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least 1 updated card field must be provided for modification.
 
 
 ### Listing all cards : `list`
@@ -119,7 +132,11 @@ FlashBack data are saved as a JSON file `[JAR file location]/data/flashback.json
 If your changes to the data file makes its format invalid, FlashBack will discard all data and start with an empty data file at the next run.
 </div>
 
-### Filtering cards: `[coming in v2.0]`
+### Filtering cards: `[coming in v1.3]`
+
+_Details coming soon ..._
+
+### Review mode: `[coming in v1.3]`
 
 _Details coming soon ..._
 
@@ -137,8 +154,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br> e.g., `add q/Einstein’s Equation a/e=mc^2 c/Physics p/High`
+**Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]` <br> e.g., `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
 **Delete** | `delete INDEX` <br> e.g., `delete 1`
+**Edit** | `edit INDEX` <br> e.g., `edit 3 a/NEW ANSWER p/NEW PRIORITY`
 **View** | `view INDEX` <br> e.g., `view 2`
 **Clear** | `clear`
 **List** | `list`
