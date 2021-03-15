@@ -4,13 +4,11 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ReadOnlyRemindMe;
+import seedu.address.model.RemindMe;
 import seedu.address.model.module.AssignmentList;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyRemindMe;
-import seedu.address.model.RemindMe;
 import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -39,19 +37,13 @@ public class SampleDataUtil {
 
     public static Module[] getSampleModules() {
         return new Module[] {
-                new Module(new Title("cs2103T"),
-                        new AssignmentList(), new ExamList()),
-                new Module(new Title("cs2103"), new AssignmentList(), new ExamList())
+            new Module(new Title("cs2103T"), new AssignmentList(),
+                        new ExamList()),
+            new Module(new Title("cs2103"), new AssignmentList(),
+                        new ExamList())
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
-        }
-        return sampleAb;
-    }
 
     public static ReadOnlyRemindMe getSampleRemindMe() {
         RemindMe sampleRm = new RemindMe();

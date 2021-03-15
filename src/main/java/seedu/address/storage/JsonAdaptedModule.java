@@ -11,9 +11,10 @@ import seedu.address.model.module.Assignment;
 import seedu.address.model.module.AssignmentList;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.ExamList;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 import seedu.address.model.person.Name;
-import seedu.address.model.module.Module;
+
 
 /**
  * Jackson-friendly version of {@link Module}.
