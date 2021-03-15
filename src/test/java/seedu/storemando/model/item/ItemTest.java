@@ -9,6 +9,7 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BAN
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.BANANA;
+import static seedu.storemando.testutil.TypicalItems.BREAD;
 import static seedu.storemando.testutil.TypicalItems.MILK;
 
 import org.junit.jupiter.api.Test;
@@ -57,6 +58,21 @@ public class ItemTest {
         String nameWithTrailingSpaces = VALID_NAME_BANANA + " ";
         editedBanana = new ItemBuilder(BANANA).withName(nameWithTrailingSpaces).build();
         assertFalse(BANANA.isSameItem(editedBanana));
+    }
+
+    @Test
+    public void isExpiredItem() {
+        //Item with expired expiry date
+        Item editedAlice = new ItemBuilder(MILK).withExpiryDate("2020-10-10").build();
+        assertTrue(editedAlice.isExpired());
+
+        //Item with non expired expiry date
+        Item editedBob = new ItemBuilder(BREAD).withExpiryDate("2021-10-10").build();
+        assertFalse(editedBob.isExpired());
+
+        //Item with no expiry date
+        Item item = new ItemBuilder().withExpiryDate("No Expiry Date").build();
+        assertFalse(item.isExpired());
     }
 
     @Test

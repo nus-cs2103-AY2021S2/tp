@@ -118,7 +118,8 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = MILK.getItemName().fullName.split("\\s+");
-        modelManager.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(keywords), false));
+        modelManager.updateFilteredItemList(new ItemNameContainsKeywordsPredicate(Arrays.asList(keywords)));
+
         assertFalse(modelManager.equals(new ModelManager(storeMando, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

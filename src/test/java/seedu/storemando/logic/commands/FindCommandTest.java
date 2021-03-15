@@ -20,6 +20,7 @@ import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,11 +30,38 @@ public class FindCommandTest {
     private final Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
 
     @Test
-    public void equals() {
+    public void equalsKeywords() {
         ItemNameContainsKeywordsPredicate firstPredicate =
-            new ItemNameContainsKeywordsPredicate(Collections.singletonList("first"), false);
+            new ItemNameContainsKeywordsPredicate(Collections.singletonList("first"));
         ItemNameContainsKeywordsPredicate secondPredicate =
-            new ItemNameContainsKeywordsPredicate(Collections.singletonList("second"), false);
+            new ItemNameContainsKeywordsPredicate(Collections.singletonList("second"));
+
+        FindCommand findFirstCommand = new FindCommand(firstPredicate);
+        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+
+        // same object -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // same values -> returns true
+        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(findFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(findFirstCommand.equals(null));
+
+        // different item -> returns false
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
+
+    @Test
+    public void equalsPartialKeywords() {
+        ItemNameContainsPartialKeywordsPredicate firstPredicate =
+            new ItemNameContainsPartialKeywordsPredicate(Collections.singletonList("first"));
+        ItemNameContainsPartialKeywordsPredicate secondPredicate =
+            new ItemNameContainsPartialKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -79,6 +107,6 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code ItemNameContainsKeywordsPredicate}.
      */
     private ItemNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new ItemNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")), false);
+        return new ItemNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

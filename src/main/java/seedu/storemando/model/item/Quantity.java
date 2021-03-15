@@ -52,4 +52,7 @@ public class Quantity {
         return value.hashCode();
     }
 
+    public int compare(Quantity anotherQuantity) {
+        return Integer.parseInt(this.value) - Integer.parseInt(anotherQuantity.value);
+    }
 }
