@@ -124,8 +124,8 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns true if {@code name} exists in unique student list and if
-     * {@code session} with same date and time exists in the session list of the student with the {@code name}
+     * Returns true if {@code session} with same date and time exists in the session list of the
+     * student with the {@code name}
      * guarantees that student will not be null
      */
     public boolean hasSession(Name name, Session session) {
@@ -135,10 +135,10 @@ public class UniqueStudentList implements Iterable<Student> {
         SessionDate sessionDate = session.getSessionDate();
         for (Session existingSession : sessionList) {
             if (existingSession.getSessionDate().equals(sessionDate)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**
