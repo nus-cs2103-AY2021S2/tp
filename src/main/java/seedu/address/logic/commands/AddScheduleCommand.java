@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.schedule.Schedule;
 
 /**
- * Adds a person to the address book.
+ * Adds a schedule to the address book.
  */
 public class AddScheduleCommand extends Command {
 
@@ -29,7 +29,7 @@ public class AddScheduleCommand extends Command {
     private final Schedule toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Schedule}
      */
     public AddScheduleCommand(Schedule schedule) {
         requireNonNull(schedule);
