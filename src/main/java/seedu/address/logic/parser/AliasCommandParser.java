@@ -78,6 +78,9 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         case AliasCommand.DELETE_SUB_COMMAND_WORD:
             return new DeleteAliasCommandParser().isValidCommandToAlias(arguments);
 
+        case AliasCommand.LIST_SUB_COMMAND_WORD:
+            return true;
+
         default:
             return false;
         }
