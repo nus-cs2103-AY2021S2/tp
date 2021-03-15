@@ -35,7 +35,7 @@ public class ArgumentTokenizer {
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
      * @param prefixes   Prefixes to tokenize the arguments string with
-     * @return           Optional<Prefix> object that contains the last prefix in the arguments
+     * @return           {@code Optional<Prefix>} object that contains the last prefix in the arguments
      */
     public static Optional<Prefix> getLastPrefix(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
