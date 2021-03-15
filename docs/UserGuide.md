@@ -151,8 +151,7 @@ Example output: `Current MCs this semester: xxx`
 ### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
 Format: `Show CAP`
 
-This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP 
-using this formula
+This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP using this formula:
 
 ![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
 
@@ -162,7 +161,7 @@ Example output `Current CAP is: xxx`
 ### Add/Delete Semester to/from Plan: `add/delete`
 Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`
 
-Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`  
+Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`
 
 The output will show whether the operation was successful and include the semester number in its output.
 
@@ -204,7 +203,9 @@ Format for deleting: `delete m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 > Tip: A user can view module info to see more details about it. (See `info`)
 
 This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and `SEM_NUMBER`, and outputs meta details about the module being added/deleted, as well as whether the addition/deletion was successful or not.   
+
 The details to output are as follows:
+
 * Module addition/deletion success status
 * Semester number
 * Module code
@@ -229,7 +230,7 @@ Format for adding: `add p/PLAN_NUMBER s/SEM_NUMBER`
 
 Format for deleting: `delete p/PLAN_NUMBER s/SEM_NUMBER`
 
-The output will show whether the operation was successful and include the semester number in its output.  
+The output will show whether the operation was successful and include the semester number in its output.
 
 Constraints:
 * Trying to add a semester that already exist will not be allowed
