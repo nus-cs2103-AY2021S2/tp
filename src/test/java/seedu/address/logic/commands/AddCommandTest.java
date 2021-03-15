@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.order.Order;
@@ -41,6 +42,7 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCustomer), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCustomer), modelStub.customersAdded);
+        assertTrue(modelStub.getGuiSettings().isShowCustomerListPanel());
     }
 
     @Test
@@ -210,6 +212,21 @@ public class AddCommandTest {
         public void updateFilteredCheeseList(Predicate<Cheese> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setPanelToCustomerList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPanelToCheeseList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPanelToOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -235,6 +252,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingCustomerAdded extends ModelStub {
         final ArrayList<Customer> customersAdded = new ArrayList<>();
+        private final ReadOnlyUserPrefs userPrefs = new UserPrefs();
 
         @Override
         public boolean hasCustomer(Customer customer) {
@@ -246,6 +264,16 @@ public class AddCommandTest {
         public void addCustomer(Customer customer) {
             requireNonNull(customer);
             customersAdded.add(customer);
+        }
+
+        @Override
+        public GuiSettings getGuiSettings() {
+            return userPrefs.getGuiSettings();
+        }
+
+        @Override
+        public void setPanelToCustomerList() {
+            getGuiSettings().setPanelToCustomerList();
         }
 
         @Override

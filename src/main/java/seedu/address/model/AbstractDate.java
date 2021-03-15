@@ -25,7 +25,8 @@ public abstract class AbstractDate {
         .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
         .toFormatter(Locale.ENGLISH);
 
-    public static final DateTimeFormatter TO_STRING_FORMATTER = DateTimeFormatter.ofPattern("yyyy-M-d HH:mm");
+    public static final DateTimeFormatter TO_STRING_FORMATTER = DateTimeFormatter.ofPattern("d MMM yy");
+    public static final DateTimeFormatter TO_JSON_STRING_FORMATTER = DateTimeFormatter.ofPattern("yyyy-M-d HH:mm");
 
     public final LocalDateTime value;
 
@@ -59,6 +60,10 @@ public abstract class AbstractDate {
      */
     public static boolean isValidDate(String dateText) {
         return parseDate(dateText) != null;
+    }
+
+    public String toJsonString() {
+        return value.format(TO_JSON_STRING_FORMATTER);
     }
 
     @Override

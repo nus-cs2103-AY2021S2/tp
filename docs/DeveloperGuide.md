@@ -200,7 +200,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: List cheese
+#### Use case: List cheeses
 
 **MSS**
 

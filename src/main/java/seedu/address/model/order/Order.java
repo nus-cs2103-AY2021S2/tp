@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.cheese.CheeseId;
@@ -25,7 +26,7 @@ public class Order {
 
     // Data fields
     private final OrderDate orderDate;
-    private final CompletedDate completedDate;
+    private final Optional<CompletedDate> completedDate;
 
     // Set of cheese IDs for this order
     private final Set<CheeseId> cheeses = new HashSet<>();
@@ -35,6 +36,18 @@ public class Order {
         this(cheeseType, quantity, orderDate, completedDate, new HashSet<>(), customerId);
     }
 
+    /**
+     * Initializes an incomplete order.
+     * Completed date is set to null to indicate the order is incomplete.
+     */
+    public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CustomerId customerId) {
+        this(cheeseType, quantity, orderDate, null, new HashSet<>(),
+                OrderId.getNextId(), customerId);
+    }
+
+    /**
+     * Initializes a complete order with date of completion and the IDs of cheeses used to fulfil the order.
+     */
     public Order(CheeseType cheeseType, Quantity quantity, OrderDate orderDate, CompletedDate completedDate,
                  Set<CheeseId> cheeses, CustomerId customerId) {
         this(cheeseType, quantity, orderDate, completedDate, cheeses, OrderId.getNextId(), customerId);
@@ -54,7 +67,7 @@ public class Order {
         this.orderCheeseType = cheeseType;
         this.quantity = quantity;
         this.orderDate = orderDate;
-        this.completedDate = completedDate;
+        this.completedDate = Optional.ofNullable(completedDate);
         this.orderId = orderId;
         this.customerId = customerId;
         this.cheeses.addAll(cheeses);
@@ -72,8 +85,13 @@ public class Order {
         return orderDate;
     }
 
-    public CompletedDate getCompletedDate() {
+    public Optional<CompletedDate> getCompletedDate() {
         return completedDate;
+    }
+
+    public boolean isComplete() {
+        // If an order is incomplete, the date must have been set to empty
+        return completedDate.isPresent();
     }
 
     public OrderId getOrderId() {

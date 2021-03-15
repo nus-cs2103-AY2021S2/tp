@@ -35,7 +35,7 @@ faster than traditional GUI apps.
   as `addcustomer n/John Doe ...`.
 
 * Items in square brackets are optional.<br>
-  e.g. `listcheese [t/CHEESE_TYPE]` can be used as `listcheese` or as `listcheese t/Brie`.
+  e.g. `listcheeses [t/CHEESE_TYPE]` can be used as `listcheeses` or as `listcheeses t/Brie`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/CUSTOMER_NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/CUSTOMER_NAME` is also acceptable.
@@ -44,8 +44,9 @@ faster than traditional GUI apps.
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+* Extraneous parameters for commands that do not take in parameters (such as `listcustomers` and `exit`) will be 
+  ignored.<br>
+  e.g. if the command specifies `listcustomers 123`, it will be interpreted as `listcustomers`.
 
 </div>
 
@@ -104,25 +105,25 @@ Format: `deletecustomer p/PHONE_NUMBER`
 Example: `deletecustomer p/65555555`
 
 
-### Listing orders: `listorder`
+### Listing orders: `listorders`
 
 Displays all incomplete orders in CHIM.
 
-Format: `listorder`
+Format: `listorders`
 
-### Listing cheese: `listcheese`
+### Listing cheese: `listcheeses`
 
 Displays the current inventory count. If a cheese type is specified, then display the current inventory count for that particular cheese.
 
-Format: `listcheese [t/CHEESE_TYPE]`
+Format: `listcheeses [t/CHEESE_TYPE]`
 
-Example: `listcheese t/Mozzarella`
+Example: `listcheeses t/Mozzarella`
 
-### Listing customers: `listcustomer`
+### Listing customers: `listcustomers`
 
 Displays the customers in CHIM.
 
-Format: `listcustomer`
+Format: `listcustomers`
 
 ### Marking an order as complete: `done`
 
