@@ -108,18 +108,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @return array of module information
      */
     private JsonModule[] readModuleInfo() {
-        JsonModule[] md = null;
+        JsonModule[] moduleInfo = null;
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            Path addressBookFilePath = Paths.get("data", "moduleinfo.json");
-            String json = Files.readAllLines(addressBookFilePath).get(0);
-            Optional<JsonModule[]> opt = JsonUtil.readJsonFile(addressBookFilePath, JsonModule[].class);
-            md = opt.get();
+            Path moduleInfoFilePath = Paths.get("data", "moduleinfo.json");
+            Optional<JsonModule[]> opt = JsonUtil.readJsonFile(moduleInfoFilePath, JsonModule[].class);
+            moduleInfo = opt.get();
         } catch (Exception e) {
             System.out.println("There is an error in reading moduleinfo.json file please check");
             System.out.println(e.getMessage());
         }
-        return md;
+        return moduleInfo;
     }
 
     public JsonModule[] getModuleInfo() {
