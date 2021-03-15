@@ -21,7 +21,8 @@ public class EmailCommandTest {
 
     @Test
     public void execute_getEmails_success() throws CommandException {
-        CommandResult commandResult = new EmailCommand().execute(model);
+        EmailCommand emailCommand = new EmailCommand();
+        CommandResult commandResult = emailCommand.execute(model);
         String[] emails = commandResult.getFeedbackToUser().split(";");
 
         // first layer: check if length matches
