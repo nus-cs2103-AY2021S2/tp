@@ -35,25 +35,25 @@ public class EditFlashcardDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_EINSTEIN.equals(DESC_ATP));
 
-        // different name -> returns false
-        EditCommand.EditCardDescriptor editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN)
+        // different question -> returns false
+        EditCommand.EditCardDescriptor editedEinstein = new EditCardDescriptorBuilder(DESC_EINSTEIN)
                 .withQuestion(VALID_QUESTION_OCTOPUS).build();
-        assertFalse(DESC_EINSTEIN.equals(editedAmy));
+        assertFalse(DESC_EINSTEIN.equals(editedEinstein));
 
-        // different phone -> returns false
-        editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN).withAnswer(VALID_ANSWER_OCTOPUS).build();
-        assertFalse(DESC_EINSTEIN.equals(editedAmy));
+        // different answer -> returns false
+        editedEinstein = new EditCardDescriptorBuilder(DESC_EINSTEIN).withAnswer(VALID_ANSWER_OCTOPUS).build();
+        assertFalse(DESC_EINSTEIN.equals(editedEinstein));
 
-        // different email -> returns false
-        editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN).withCategory(VALID_CATEGORY_OCTOPUS).build();
-        assertFalse(DESC_EINSTEIN.equals(editedAmy));
+        // different category -> returns false
+        editedEinstein = new EditCardDescriptorBuilder(DESC_EINSTEIN).withCategory(VALID_CATEGORY_OCTOPUS).build();
+        assertFalse(DESC_EINSTEIN.equals(editedEinstein));
 
-        // different address -> returns false
-        editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN).withPriority(VALID_PRIORITY_OCTOPUS).build();
-        assertFalse(DESC_EINSTEIN.equals(editedAmy));
+        // different priority -> returns false
+        editedEinstein = new EditCardDescriptorBuilder(DESC_EINSTEIN).withPriority(VALID_PRIORITY_OCTOPUS).build();
+        assertFalse(DESC_EINSTEIN.equals(editedEinstein));
 
         // different tags -> returns false
-        editedAmy = new EditCardDescriptorBuilder(DESC_EINSTEIN).withTags(VALID_TAG_EQUATION).build();
-        assertFalse(DESC_EINSTEIN.equals(editedAmy));
+        editedEinstein = new EditCardDescriptorBuilder(DESC_EINSTEIN).withTags(VALID_TAG_EQUATION).build();
+        assertFalse(DESC_EINSTEIN.equals(editedEinstein));
     }
 }
