@@ -129,6 +129,11 @@ public class ModelManager implements Model {
         addressBook.setTask(target, editedTask);
     }
 
+    @Override
+    public void deleteTask(Task target) {
+        addressBook.removeTask(target);
+    }
+
 
 
 
