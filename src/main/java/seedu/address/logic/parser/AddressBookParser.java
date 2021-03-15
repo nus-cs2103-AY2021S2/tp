@@ -72,7 +72,7 @@ public class AddressBookParser {
 
         case PolicyCommand.COMMAND_WORD:
             return new PolicyCommandParser().parse(arguments);
-            
+
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
