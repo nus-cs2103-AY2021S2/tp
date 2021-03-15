@@ -165,7 +165,7 @@ public class SmartLib implements ReadOnlySmartLib {
 
     @Override
     public String toString() {
-        return readers.asUnmodifiableObservableList().size() + " persons"
+        return readers.asUnmodifiableObservableList().size() + " readers"
                 + "\n" + records.asUnmodifiableObservableList().size() + " records";
         // TODO: refine later
     }
