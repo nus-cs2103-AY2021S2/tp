@@ -85,7 +85,6 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
     }
     
-
     @Test
     public void execute_multiplePartOfNamesKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
