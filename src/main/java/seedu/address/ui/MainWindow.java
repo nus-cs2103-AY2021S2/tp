@@ -38,8 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane commandBoxPlaceholder;
 
-    @FXML
-    private MenuItem helpMenuItem;
+    //    @FXML
+    //    private MenuItem helpMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -63,7 +63,7 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
+        // setAccelerators();
 
         helpWindow = new HelpWindow();
     }
@@ -72,9 +72,9 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
+    //    private void setAccelerators() {
+    //        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    //    }
 
     /**
      * Sets the accelerator of a MenuItem.
