@@ -173,9 +173,15 @@ public class ModelManager implements Model {
      * @return True if appointment is already in appointment list
      */
     @Override
-    public void updateFilteredAppointmentList(Predicate<Person> predicate) {
+    public void updateFilteredAppointmentListByName(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredAppointment.setPredicate(getEmailPredicate(predicate));
+        updateFilteredAppointmentList(getEmailPredicate(predicate));
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointment.setPredicate(predicate);
     }
 
     @Override
