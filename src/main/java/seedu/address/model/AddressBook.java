@@ -12,7 +12,6 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.venue.UniqueVenueList;
 import seedu.address.model.venue.Venue;
 
-
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)

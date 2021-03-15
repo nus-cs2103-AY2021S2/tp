@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
@@ -106,6 +107,10 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered venue list */
     ObservableList<Venue> getFilteredVenueList();
+
+    /** Returns an unmodifiable view of the filtered booking list */
+    ObservableList<Booking> getFilteredBookingList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -117,11 +122,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBookingList(Predicate<Booking> predicate);
+
     /**
      * Updates the filter of the filtered venue list to filter by the given {@code predicate}.
+     *
+     * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredVenueList(Predicate<Venue> predicate);
+    void updateFilteredVenueList(VenueNameContainsKeywordsPredicate predicate);
 
     /**
      * Returns true if a venue with the same name as {@code venue} exists in the system.
@@ -135,6 +143,10 @@ public interface Model {
     void addVenue(Venue venue);
 
     /// logic related to bookings
-
+    /**
+     * Deletes the given booking.
+     * The booking must exist in the system.
+     */
     void deleteBooking(int bookingId);
+
 }

@@ -14,7 +14,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.venue.Venue;
 
-
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */

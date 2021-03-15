@@ -9,7 +9,6 @@ import java.util.Random;
 import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
-
 /**
  * Represents a booking in the booking list.
  * Guarantees: details are present and not null, field values are validated, immutable.
