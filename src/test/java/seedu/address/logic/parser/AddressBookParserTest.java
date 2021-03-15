@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.INDEX_DESC_ONE;
-import static seedu.address.logic.commands.CommandTestUtil.INDEX_STANDALONE_ONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -15,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactToCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -45,9 +44,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addCto() throws Exception {
-        assertTrue(parser.parseCommand(
-                AddContactToCommand.COMMAND_WORD + INDEX_STANDALONE_ONE + INDEX_DESC_ONE
-        ) instanceof AddContactToCommand);
+        Person person = new PersonBuilder().build();
+        Index projectIndex = Index.fromOneBased(1);
+        AddContactToCommand command = (AddContactToCommand) parser.parseCommand(
+                PersonUtil.getAddCtoCommand(projectIndex, person)
+        );
+        assertEquals(new AddContactToCommand(projectIndex, person), command);
     }
 
     @Test
