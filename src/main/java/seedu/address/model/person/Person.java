@@ -2,12 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -17,27 +12,45 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final MatriculationNumber matriculationNumber;
+    private final Faculty faculty;
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final VaccinationStatus vaccinationStatus;
+    private final MedicalDetails medicalDetails;
+    private final SchoolResidence schoolResidence;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, MatriculationNumber matriculationNumber, Faculty faculty, Phone phone, Email email,
+                  Address address, VaccinationStatus vaccinationStatus, MedicalDetails medicalDetails,
+                  SchoolResidence schoolResidence) {
+        requireAllNonNull(name, phone, email, address);
         this.name = name;
+        this.matriculationNumber = matriculationNumber;
+        this.faculty = faculty;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.vaccinationStatus = vaccinationStatus;
+        this.medicalDetails = medicalDetails;
+        this.schoolResidence = schoolResidence;
     }
 
     public Name getName() {
         return name;
+    }
+
+    public MatriculationNumber getMatriculationNumber() {
+        return this.matriculationNumber;
+    }
+
+    public Faculty getFaculty() {
+        return this.faculty;
     }
 
     public Phone getPhone() {
@@ -52,16 +65,20 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public VaccinationStatus getVaccinationStatus() {
+        return vaccinationStatus;
+    }
+
+    public MedicalDetails getMedicalDetails() {
+        return medicalDetails;
+    }
+
+    public SchoolResidence getSchoolResidence() {
+        return schoolResidence;
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same matriculation number.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,7 +87,11 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getMatriculationNumber().equals(getMatriculationNumber());
+    }
+
+    public boolean isVaccinated() {
+        return this.vaccinationStatus.status == VaccinationStatus.VaccinationStatusAbbreviation.VACCINATED;
     }
 
     /**
@@ -92,13 +113,17 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getMatriculationNumber().equals(getMatriculationNumber())
+                && otherPerson.getFaculty().equals(getFaculty())
+                && otherPerson.getMedicalDetails().equals(getMedicalDetails())
+                && otherPerson.getVaccinationStatus().equals(getVaccinationStatus())
+                && otherPerson.getSchoolResidence().equals(getSchoolResidence());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address);
     }
 
     @Override
@@ -110,13 +135,19 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
+                .append(getAddress())
+                .append("; Matriculation Number: ")
+                .append(getMatriculationNumber())
+                .append("; Faculty: ")
+                .append(getFaculty())
+                .append("; Vaccination Status: ")
+                .append(getVaccinationStatus())
+                .append("; Medical Details: ")
+                .append(getMedicalDetails())
+                .append("; Vaccination Status: ")
+                .append(getVaccinationStatus())
+                .append("; School Residence: ")
+                .append(getSchoolResidence().toString()); // DOES NOT LIVE ON CAMPUS -> For UI
         return builder.toString();
     }
 

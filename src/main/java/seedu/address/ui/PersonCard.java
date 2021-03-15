@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,6 +17,10 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final Background vaccinatedBg = new Background(new BackgroundFill(Color.web("#0277BD"),
+            new CornerRadii(5.0), new Insets(-5.0)));
+    private static final Background notVaccinatedBg = new Background(new BackgroundFill(Color.web("#DD2C00"),
+            new CornerRadii(5.0), new Insets(-5.0)));
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -31,7 +37,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label vaccinationStatus;
+    @FXML
     private Label id;
+    @FXML
+    private Label matriculationNumber;
+    @FXML
+    private Label faculty;
     @FXML
     private Label phone;
     @FXML
@@ -39,7 +51,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private Label residence;
+    @FXML
+    private Label medicalDetails;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,12 +63,18 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        vaccinationStatus.setText(person.getVaccinationStatus().textUI);
+        vaccinationStatus.setBackground(
+                person.isVaccinated()
+                        ? vaccinatedBg
+                        : notVaccinatedBg);
+        matriculationNumber.setText(person.getMatriculationNumber().value);
+        faculty.setText(person.getFaculty().value);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        residence.setText(person.getSchoolResidence().toString());
+        medicalDetails.setText(person.getMedicalDetails().value);
     }
 
     @Override
