@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 /**
  * Clears the sample data in the appointment book.
  */
-public class ClearCommand extends Command {
+public class ClearAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Appointment book has been cleared!";

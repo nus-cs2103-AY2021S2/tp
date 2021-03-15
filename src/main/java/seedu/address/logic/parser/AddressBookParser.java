@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddPropertyCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearAppointmentCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -51,8 +51,8 @@ public class AddressBookParser {
         // To satisfy the condition of "extraneous parameters will be ignored" in command format description
         if (commandWord.startsWith(HelpCommand.COMMAND_WORD)) {
             return new HelpCommand();
-        } else if (commandWord.startsWith(ClearCommand.COMMAND_WORD)) {
-            return new ClearCommand();
+        } else if (commandWord.startsWith(ClearAppointmentCommand.COMMAND_WORD)) {
+            return new ClearAppointmentCommand();
         } else if (commandWord.startsWith(ListCommand.COMMAND_WORD)) {
             return new ListCommand();
         } else if (commandWord.startsWith(ExitCommand.COMMAND_WORD)) {
