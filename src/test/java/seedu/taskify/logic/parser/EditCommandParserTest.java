@@ -11,6 +11,7 @@ import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.taskify.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.taskify.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -41,6 +42,7 @@ import seedu.taskify.model.task.Address;
 import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
+import seedu.taskify.model.task.Status;
 import seedu.taskify.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -85,6 +87,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
                 Description.MESSAGE_CONSTRAINTS); // invalid description
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_STATUS_DESC, Status.MESSAGE_CONSTRAINTS); // invalid status
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 

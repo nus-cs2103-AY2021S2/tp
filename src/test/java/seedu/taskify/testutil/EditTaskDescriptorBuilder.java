@@ -37,7 +37,7 @@ public class EditTaskDescriptorBuilder {
         descriptor = new EditTaskDescriptor();
         descriptor.setName(task.getName());
         descriptor.setDescription(task.getDescription());
-        //descriptor.setStatus(task.getStatus()); // To be reviewed after adding functionality to change status
+        descriptor.setStatus(task.getStatus());
         descriptor.setAddress(task.getAddress());
         descriptor.setDate(task.getDate());
         descriptor.setTags(task.getTags());

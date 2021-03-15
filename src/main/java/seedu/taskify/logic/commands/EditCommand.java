@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -40,6 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "91234567 ";

@@ -1,5 +1,8 @@
 package seedu.taskify.model.task;
 
+import seedu.taskify.commons.exceptions.IllegalValueException;
+import seedu.taskify.logic.parser.exceptions.ParseException;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -12,7 +15,14 @@ public class Status {
     private static final String IN_PROGRESS_STRING = "In progress";
     private static final String COMPLETED_STRING = "Completed";
 
+    private static final String NOT_DONE_VALID_INPUT = "not done";
+    private static final String IN_PROGRESS_VALID_INPUT = "in progress";
+    private static final String COMPLETED_VALID_INPUT = "completed";
+
     private static final String NULL_STATUS_TYPE = "Error, status does not have a status type!";
+
+    public static final String MESSAGE_CONSTRAINTS = "Status should be 'not done', 'in progress' or 'completed'";
+    private static final String INVALID_STATUS_STRING = "Invalid status!";
 
     public final StatusType status;
 
@@ -44,6 +54,30 @@ public class Status {
             return COMPLETED_STRING;
         default:
             return NULL_STATUS_TYPE; // Will not happen
+        }
+    }
+
+    /**
+     * Returns true if a given String is a valid status.
+     */
+    public static boolean isValidStatus(String statusString) {
+        return (statusString.equals(NOT_DONE_VALID_INPUT)) || (statusString.equals(IN_PROGRESS_VALID_INPUT))
+                || (statusString.equals(COMPLETED_VALID_INPUT));
+    }
+
+    /**
+     * Parses input String and returns one of the corresponding StatusType.
+     */
+    public static StatusType getStatusType(String statusString) throws ParseException {
+        switch (statusString) {
+        case NOT_DONE_VALID_INPUT:
+            return StatusType.NOT_DONE;
+        case IN_PROGRESS_VALID_INPUT:
+            return StatusType.IN_PROGRESS;
+        case COMPLETED_VALID_INPUT:
+            return StatusType.COMPLETED;
+        default:
+            throw new ParseException(INVALID_STATUS_STRING);
         }
     }
 
