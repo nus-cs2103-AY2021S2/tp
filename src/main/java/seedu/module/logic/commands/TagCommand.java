@@ -2,6 +2,7 @@ package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
@@ -22,11 +23,11 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a tag to task identified "
-            + "by the index number used in the last person listing. "
-            + "If multiple tags are found, only the last one will be added.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add one or multiple tags to task identified "
+            + "by the index number used in the last person listing.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "t/[TAG]\n"
+            + PREFIX_TAG + "TAG "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "t/Midterm";
 
@@ -72,7 +73,7 @@ public class TagCommand extends Command {
     }
 
     /**
-     * Add tag to set of old tags, duplicated tag will not be added
+     * Add tags to set of old tags, duplicated tag will not be added
      *
      * @param oldTags set of old tags
      * @param newTags new Tags to be added
