@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.note.Note;
 
 /**
@@ -14,7 +15,11 @@ import seedu.dictionote.model.note.Note;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Content> PREDICATE_SHOW_ALL_CONTENTS = unused -> true;
+    Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
 
+    //#region
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -38,6 +43,9 @@ public interface Model {
     /** Returns the NoteBook */
     ReadOnlyNoteBook getNoteBook();
 
+    /** Returns the Dictionary */
+    ReadOnlyDictionary getDictionary();
+
     /**
      * Returns true if a note with the same content as {@code note} exists in the dictionote book.
      */
@@ -58,12 +66,14 @@ public interface Model {
      */
     Path getAddressBookFilePath();
     Path getNoteBookFilePath();
+    Path getDictionaryFilePath();
 
     /**
      * Sets the user prefs' dictionote book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
     void setNoteBookFilePath(Path noteBookFilePath);
+    void setDictionaryFilePath(Path getDictionaryFilePath);
 
     /**
      * Replaces dictionote book data with the data in {@code addressBook}.
@@ -77,6 +87,11 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the dictionote book.
      */
     boolean hasContact(Contact contact);
+
+    /**
+     * Returns true if a text with the same content as {@code content} exists in the dictionote book.
+     */
+    boolean hasContent(Content content);
 
     /**
      * Deletes the given person.
@@ -97,6 +112,18 @@ public interface Model {
     void addContact(Contact contact);
 
     /**
+     * Adds the given content.
+     * {@code content} must not already exist in the dictionote book.
+     */
+    void addContent(Content content);
+
+    /**
+     * Invokes the user's OS email client to send a new email to the given contact.
+     * {@code contact} must exist in the contacts list.
+     */
+    void emailContact(Contact contact);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the dictionote book.
      * The person identity of {@code editedPerson} must not be the same as
@@ -115,6 +142,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Contact> getFilteredContactList();
 
+    /** Returns an unmodifiable view of the filtered list of content */
+    ObservableList<Content> getFilteredContentList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -126,5 +156,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredNoteList(Predicate<Note> predicate);
+
+    /**
+     * Updates the filter of the filtered content list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredContentList(Predicate<Content> predicate);
 
 }

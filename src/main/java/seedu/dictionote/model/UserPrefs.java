@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path noteBookFilePath = Paths.get("data" , "notebook.json");
+    private Path dictionaryFilePath = Paths.get("data", "dictionarybook.json");
     private final String localPath = "\nLocal data file location : ";
 
     /**
@@ -39,6 +40,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setNoteBookFilePath(newUserPrefs.getNoteBookFilePath());
+        setDictionaryFilePath(newUserPrefs.getDictionaryFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -68,6 +70,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.noteBookFilePath = noteBookFilePath;
     }
 
+    public Path getDictionaryFilePath() {
+        return dictionaryFilePath;
+    }
+
+    public void setDictionaryFilePath(Path dictionaryFilePath) {
+        requireNonNull(dictionaryFilePath);
+        this.dictionaryFilePath = dictionaryFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -81,12 +92,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
-                && noteBookFilePath.equals(o.noteBookFilePath);
+                && noteBookFilePath.equals(o.noteBookFilePath)
+                && dictionaryFilePath.equals(o.dictionaryFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, noteBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, noteBookFilePath, dictionaryFilePath);
     }
 
     @Override
@@ -95,6 +107,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("Gui Settings : " + guiSettings);
         sb.append(localPath + addressBookFilePath);
         sb.append(localPath + noteBookFilePath);
+        sb.append(localPath + dictionaryFilePath);
         return sb.toString();
     }
 

@@ -14,6 +14,7 @@ import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -130,10 +131,46 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code note} is invalid.
      */
-    public static String parseNote(String noteContent) throws ParseException {
+    public static Note parseNote(String noteContent) throws ParseException {
         requireNonNull(noteContent);
-        String trimmedName = noteContent.trim();
-        return trimmedName;
+        Note note = new Note(noteContent);
+        return note;
+    }
+
+    /**
+     * Parses a {@code String week} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code week} is invalid.
+     */
+    public static String parseWeek(String week) throws ParseException {
+        requireNonNull(week);
+        String trimmedWeek = week.trim();
+        return trimmedWeek;
+    }
+
+    /**
+     * Parses a {@code String header} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code header} is invalid.
+     */
+    public static String parseHeader(String header) throws ParseException {
+        requireNonNull(header);
+        String trimmedHeader = header.trim();
+        return trimmedHeader;
+    }
+
+    /**
+     * Parses a {@code String maincontent} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code maincontent} is invalid.
+     */
+    public static String parseMainContent(String maincontent) throws ParseException {
+        requireNonNull(maincontent);
+        String trimmedMainContent = maincontent.trim();
+        return trimmedMainContent;
     }
 
     /** Parses a {@code String option} into a {@code UiOptionAction}.

@@ -28,6 +28,7 @@ import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.storage.JsonAddressBookStorage;
+import seedu.dictionote.storage.JsonDictionaryStorage;
 import seedu.dictionote.storage.JsonNoteBookStorage;
 import seedu.dictionote.storage.JsonUserPrefsStorage;
 import seedu.dictionote.storage.StorageManager;
@@ -49,7 +50,10 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonNoteBookStorage noteBookStorage =
                 new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage);
+        JsonDictionaryStorage dictionaryStorage =
+                new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                noteBookStorage, dictionaryStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -80,7 +84,10 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonNoteBookStorage noteBookStorage =
                 new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage);
+        JsonDictionaryStorage dictionaryStorage =
+                new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                noteBookStorage, dictionaryStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -134,7 +141,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getNoteBook());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                model.getNoteBook(), model.getDictionary());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

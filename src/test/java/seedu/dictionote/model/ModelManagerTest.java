@@ -38,7 +38,9 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAddressBookFilePath(Paths.get("dictionote/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4, 5,
+            6, 7, 8, true, false,
+            true, false, true));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
@@ -55,7 +57,9 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4, 5,
+            6, 7, 8, true, false,
+            true, false, true);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }
@@ -99,10 +103,11 @@ public class ModelManagerTest {
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
         NoteBook noteBook = new NoteBook();
+        Dictionary dictionary = new Dictionary();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, noteBook);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, noteBook);
+        modelManager = new ModelManager(addressBook, userPrefs, noteBook, dictionary);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, noteBook, dictionary);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -115,12 +120,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, noteBook)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, noteBook, dictionary)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredContactList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, noteBook)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, noteBook, dictionary)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
@@ -128,6 +133,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, noteBook)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, noteBook, dictionary)));
     }
 }

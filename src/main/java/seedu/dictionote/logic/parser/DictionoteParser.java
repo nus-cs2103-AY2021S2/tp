@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
+import seedu.dictionote.logic.commands.AddContentCommand;
 import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
@@ -15,10 +16,15 @@ import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.DeleteNoteCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditNoteCommand;
+import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
+import seedu.dictionote.logic.commands.FindContentCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
+import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
+import seedu.dictionote.logic.commands.ListNoteCommand;
+import seedu.dictionote.logic.commands.MarkAsDoneNoteCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
@@ -55,6 +61,9 @@ public class DictionoteParser {
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser().parse(arguments);
 
+        case AddContentCommand.COMMAND_WORD:
+            return new AddContentCommandParser().parse(arguments);
+
         case EditContactCommand.COMMAND_WORD:
             return new EditContactCommandParser().parse(arguments);
 
@@ -62,7 +71,7 @@ public class DictionoteParser {
             return new EditNoteCommandParser().parse(arguments);
 
         case DeleteContactCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteContactCommandParser().parse(arguments);
 
         case DeleteNoteCommand.COMMAND_WORD:
             return new DeleteNoteCommandParser().parse(arguments);
@@ -73,8 +82,20 @@ public class DictionoteParser {
         case FindContactCommand.COMMAND_WORD:
             return new FindContactCommandParser().parse(arguments);
 
+        case FindContentCommand.COMMAND_WORD:
+            return new FindContentCommandParser().parse(arguments);
+
         case ListContactCommand.COMMAND_WORD:
             return new ListContactCommand();
+
+        case EmailContactCommand.COMMAND_WORD:
+            return new EmailContactCommandParser().parse(arguments);
+
+        case ListNoteCommand.COMMAND_WORD:
+            return new ListNoteCommand();
+
+        case MarkAsDoneNoteCommand.COMMAND_WORD:
+            return new MarkAsDoneNoteCommandParser().parse(arguments);
 
         case OpenCommand.COMMAND_WORD:
             return new OpenCommandParser().parse(arguments);
@@ -87,6 +108,9 @@ public class DictionoteParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ListCommandCommand.COMMAND_WORD:
+            return new ListCommandCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

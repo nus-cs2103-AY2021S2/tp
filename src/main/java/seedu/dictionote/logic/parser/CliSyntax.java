@@ -12,6 +12,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_CONTENT = new Prefix("c/");
+    public static final Prefix PREFIX_WEEK = new Prefix("/week");
+    public static final Prefix PREFIX_HEADER = new Prefix("/header");
+    public static final Prefix PREFIX_MAINCONTENT = new Prefix("/maincontent");
 
 
     /* Option Syntax for UI Command*/

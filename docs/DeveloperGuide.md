@@ -257,14 +257,15 @@ _{Explain here how the data archiving feature will be implemented}_
 ### User stories
 
 #### User Stories : Main/UI
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        | Category       |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                     | Category       |
 | -------- | ------------------------------- | ----------------------------------------- | -------------------------------------------------------------- | -------------------- |
-| `* *`    | CS2103 Student                  | View note and dictionary side-by-side     | Easily copy a note from dictionary | Main/UI/UX         |
-| `* *`    | CS2103 Student                  | Open and close Contact panel              | Have more space for other content  | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Dictionary panel           | Have more space for other content  | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Dictionary manager panel   | Have more space for other content  | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Note panel                 | Have more space for other content  | Main/Non-essential |
-| `* *`    | CS2103 Student                  | Open and close Note Manager panel         | Have more space for other content  | Main/Non-essential |
+| `* *`    | CS2103 Student                  | View note and dictionary side-by-side     | Easily copy a note from dictionary   | Main/UI/UX         |
+| `* *`    | CS2103 Student                  | Open and close Contact panel              | Have more space for other content    | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Dictionary panel           | Have more space for other content    | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Dictionary manager panel   | Have more space for other content    | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Note panel                 | Have more space for other content    | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Open and close Note Manager panel         | Have more space for other content    | Main/Non-essential |
+| `* *`    | CS2103 Student                  | Save user UI configuratio                 | Save my time on re-adjust the Ui     | Main/Non-essential |
 | | | | | |
 | `* * *`  | Template for must have user stories        | Template                       | Template                                                | Dictionary/<insert>  |
 | `* *`    | Template for nice to have                  | Template                       | Template                                                | Dictionary/<insert>  |
@@ -277,6 +278,10 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* * *`  | Template for must have user stories        | Template                       | Template                                                | Contact/<insert>  |
 | `* *`    | Template for nice to have                  | Template                       | Template                                                | Contact/<insert>  |
 | `*`      | Template for unlikely to have              | Template                       | Template                                                | Contact/<insert>  |
+| | | | | |
+| `* * *`  | CS2103T student who uses commands often    | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for them | Guide/Essential  |
+| `* *`    | Template for nice to have                  | Template                       | Template                                                | Guide/<insert>  |
+| `*`      | Template for unlikely to have              | Template                       | Template                                                | Guide/<insert>  |
 
 
 *{More to be added}*
@@ -291,19 +296,19 @@ _{Explain here how the data archiving feature will be implemented}_
 **MSS**
 1.  User requests to close a specific display panel
 2.  Dictionote close the display Panel
-    
+
     Use case ends.
 
 **Extensions**
 
 * 1a. The given display panel is invalid.
     * 1a1. Dictionote shows an error message
-      
-        Use case ends.
+
+      Use case ends.
 
 
 
-    
+
 **Use case: Delete a person**
 
 **MSS**

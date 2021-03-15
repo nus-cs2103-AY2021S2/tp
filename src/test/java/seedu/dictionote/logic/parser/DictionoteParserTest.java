@@ -12,6 +12,7 @@ import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
 import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,9 +25,11 @@ import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
+import seedu.dictionote.logic.commands.EmailContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindContactCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
+import seedu.dictionote.logic.commands.ListCommandCommand;
 import seedu.dictionote.logic.commands.ListContactCommand;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
@@ -54,7 +57,7 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_addNote() throws Exception {
-        Note note = new Note("this is a sample CS2103 note haha");
+        Note note = new Note("this is a sample CS2103 note haha", new HashSet<>());
         AddNoteCommand command = (AddNoteCommand) parser.parseCommand(NoteUtil.getAddNoteCommand(note));
         assertEquals(new AddNoteCommand(note), command);
     }
@@ -79,6 +82,25 @@ public class DictionoteParserTest {
         EditContactCommand command = (EditContactCommand) parser.parseCommand(EditContactCommand.COMMAND_WORD + " "
             + INDEX_FIRST_CONTACT.getOneBased() + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
         assertEquals(new EditContactCommand(INDEX_FIRST_CONTACT, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_emailContact() throws Exception {
+        EmailContactCommand command = (EmailContactCommand) parser.parseCommand(
+                EmailContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
+        assertEquals(new EmailContactCommand(INDEX_FIRST_CONTACT), command);
+    }
+
+    @Test
+    public void parseCommand_listContact() throws Exception {
+        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD) instanceof ListContactCommand);
+        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
+    }
+
+    @Test
+    public void parseCommand_listCommand() throws Exception {
+        assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD) instanceof ListCommandCommand);
+        assertTrue(parser.parseCommand(ListCommandCommand.COMMAND_WORD + " 3") instanceof ListCommandCommand);
     }
 
     @Test
@@ -110,11 +132,6 @@ public class DictionoteParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
-    @Test
-    public void parseCommand_listContact() throws Exception {
-        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD) instanceof ListContactCommand);
-        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
-    }
 
     @Test
     public void parseCommand_open() throws Exception {
