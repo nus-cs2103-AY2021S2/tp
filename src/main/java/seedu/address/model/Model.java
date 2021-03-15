@@ -80,6 +80,10 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered passenger list */
     ObservableList<Passenger> getFilteredPassengerList();
 
+    /** Returns an unmodifiable view of the filtered person list whether
+     * the person is assigned to a driver already */
+    ObservableList<Person> getFilteredPersonListByDriverStatus(Boolean isAssigned);
+
     /**
      * Updates the filter of the filtered passenger list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

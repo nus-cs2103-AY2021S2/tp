@@ -146,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+
         public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
             throw new AssertionError("This method should not be called.");
         }

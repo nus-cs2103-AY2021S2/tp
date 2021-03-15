@@ -65,6 +65,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Person> getFilteredPersonListByDriverStatus(Boolean isAssigned) {
+        return model.getFilteredPersonListByDriverStatus(isAssigned);
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
