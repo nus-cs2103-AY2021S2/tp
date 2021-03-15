@@ -6,10 +6,12 @@ import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.smartlib.logic.commands.AddBookCommand;
 import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.Command;
+import seedu.smartlib.logic.commands.DeleteBookCommand;
 import seedu.smartlib.logic.commands.DeleteReaderCommand;
 import seedu.smartlib.logic.commands.EditCommand;
 import seedu.smartlib.logic.commands.ExitCommand;
@@ -63,6 +65,12 @@ public class SmartLibParser {
 
         case ListReaderCommand.COMMAND_WORD:
             return new ListReaderCommand();
+
+        case AddBookCommand.COMMAND_WORD:
+            return new AddBookCommandParser().parse(arguments);
+
+        case DeleteBookCommand.COMMAND_WORD:
+            return new DeleteBookCommandParser().parse(arguments);
 
         case BorrowCommand.COMMAND_WORD:
             return new BorrowCommandParser().parse(arguments);

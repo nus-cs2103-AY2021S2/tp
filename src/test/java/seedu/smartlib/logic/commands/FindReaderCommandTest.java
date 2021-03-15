@@ -50,7 +50,7 @@ public class FindReaderCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different reader -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 

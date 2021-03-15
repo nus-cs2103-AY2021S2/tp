@@ -19,7 +19,7 @@ public interface SmartLibStorage {
     Path getSmartLibFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlySmartLib}.
+     * Returns SmartLib data as a {@link ReadOnlySmartLib}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -33,14 +33,14 @@ public interface SmartLibStorage {
 
     /**
      * Saves the given {@link ReadOnlySmartLib} to the storage.
-     * @param addressBook cannot be null.
+     * @param smartLib cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveSmartLib(ReadOnlySmartLib addressBook) throws IOException;
+    void saveSmartLib(ReadOnlySmartLib smartLib) throws IOException;
 
     /**
      * @see #saveSmartLib(ReadOnlySmartLib)
      */
-    void saveSmartLib(ReadOnlySmartLib addressBook, Path filePath) throws IOException;
+    void saveSmartLib(ReadOnlySmartLib smartLib, Path filePath) throws IOException;
 
 }

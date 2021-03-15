@@ -11,6 +11,10 @@ import seedu.smartlib.commons.util.StringUtil;
 public class NameContainsKeywordsPredicate implements Predicate<Reader> {
     private final List<String> keywords;
 
+    /**
+     * Creates a NameContainsKeywordPredicate
+     * @param keywords list of keywords
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

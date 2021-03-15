@@ -50,16 +50,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredReaderList().size());
-        Reader lastReader = model.getFilteredReaderList().get(indexLastPerson.getZeroBased());
+        Index indexLastReader = Index.fromOneBased(model.getFilteredReaderList().size());
+        Reader lastReader = model.getFilteredReaderList().get(indexLastReader.getZeroBased());
 
-        ReaderBuilder personInList = new ReaderBuilder(lastReader);
-        Reader editedReader = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        ReaderBuilder readerInList = new ReaderBuilder(lastReader);
+        Reader editedReader = readerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastReader, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
 
@@ -111,7 +111,7 @@ public class EditCommandTest {
     public void execute_duplicateReaderFilteredList_failure() {
         showReaderAtIndex(model, INDEX_FIRST_READER);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit reader in filtered list into a duplicate in SmartLib
         Reader readerInList = model.getSmartLib().getReaderList().get(INDEX_SECOND_READER.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_READER,
                 new EditReaderDescriptorBuilder(readerInList).build());
@@ -131,13 +131,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of smartLib
      */
     @Test
     public void execute_invalidReaderIndexFilteredList_failure() {
         showReaderAtIndex(model, INDEX_FIRST_READER);
         Index outOfBoundIndex = INDEX_SECOND_READER;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of SmartLib list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getSmartLib().getReaderList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,

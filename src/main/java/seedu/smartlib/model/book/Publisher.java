@@ -1,20 +1,18 @@
 package seedu.smartlib.model.book;
 
-import seedu.smartlib.commons.core.name.Name;
-
 /**
  * Represents a publisher in SmartLib.
  */
 public class Publisher {
 
-    private final Name fullName;
+    private final String fullName;
 
     /**
      * Constructs an {@code Publisher}.
      *
      * @param fullName A valid full name of the publisher.
      */
-    Publisher(Name fullName) {
+    public Publisher(String fullName) {
         this.fullName = fullName;
     }
 

@@ -49,7 +49,7 @@ public class SmartLibTest {
 
     @Test
     public void resetData_withDuplicateReaders_throwsDuplicateReaderException() {
-        // Two persons with the same identity fields
+        // Two readers with the same identity fields
         Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
@@ -90,7 +90,7 @@ public class SmartLibTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlySmartLib whose reader list can violate interface constraints.
      */
     private static class SmartLibStub implements ReadOnlySmartLib {
         private final ObservableList<Book> books = FXCollections.observableArrayList();

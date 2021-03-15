@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ SmartLib methods ==============================
 
     @Override
     public Path getSmartLibFilePath() {

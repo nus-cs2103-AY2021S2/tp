@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setSmartLibFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setSmartLibFilePath(Paths.get("smartLib/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setSmartLibFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setSmartLibFilePath(Paths.get("new/smartLib/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -67,7 +67,7 @@ public class ModelManagerTest {
 
     @Test
     public void setSmartLibFilePath_validPath_setsSmartLibFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("smartLib/file/path");
         modelManager.setSmartLibFilePath(path);
         assertEquals(path, modelManager.getSmartLibFilePath());
     }
@@ -113,7 +113,7 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different smartLib -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentSmartLib, userPrefs)));
 
         // different filteredList -> returns false

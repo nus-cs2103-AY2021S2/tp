@@ -1,21 +1,24 @@
 package seedu.smartlib.model.book;
 
-import seedu.smartlib.commons.core.name.Name;
-
 /**
  * Represents an author in SmartLib.
  */
 public class Author {
 
-    private final Name fullName;
+    private final String fullName;
 
     /**
      * Constructs an {@code Author}.
      *
      * @param fullName A valid full name of the author.
      */
-    Author(Name fullName) {
+    public Author(String fullName) {
         this.fullName = fullName;
+    }
+
+    // todo: REGEX
+    public static boolean isValidAuthor(String test) {
+        return true;
     }
 
     @Override
@@ -30,6 +33,10 @@ public class Author {
                 && fullName.equals(((Author) other).fullName)); // state check
     }
 
+    /**
+     * Calculates hashCode of this Author object
+     * @return hashCode of Author
+     */
     @Override
     public int hashCode() {
         return fullName.hashCode();

@@ -19,6 +19,11 @@ import seedu.smartlib.model.tag.Tag;
  * Contains utility methods for populating {@code SmartLib} with sample data.
  */
 public class SampleDataUtil {
+
+    /**
+     * Gets an array of sample readers
+     * @return an array of sample readers
+     */
     public static Reader[] getSampleReaders() {
         return new Reader[] {
             new Reader(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -42,6 +47,10 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Gets an array of sample records
+     * @return an array of sample records
+     */
     public static Record[] getSampleRecords() {
         return new Record[] {
             new Record(new Name("Cloud Atlas"), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23")),
@@ -49,6 +58,10 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Gets a Stub of SmartLib
+     * @return SmartLib Sample
+     */
     public static ReadOnlySmartLib getSampleSmartLib() {
         SmartLib sampleAb = new SmartLib();
         for (Reader sampleReader : getSampleReaders()) {

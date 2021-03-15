@@ -11,7 +11,7 @@ import seedu.smartlib.commons.core.LogsCenter;
 import seedu.smartlib.model.reader.Reader;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of readers.
  */
 public class ReaderListPanel extends UiPart<Region> {
     private static final String FXML = "ReaderListPanel.fxml";
@@ -21,7 +21,7 @@ public class ReaderListPanel extends UiPart<Region> {
     private ListView<Reader> readerListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ReaderListPanel} with the given {@code ObservableList}.
      */
     public ReaderListPanel(ObservableList<Reader> readerList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ReaderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Reader} using a {@code ReaderCard}.
      */
     class ReaderListViewCell extends ListCell<Reader> {
         @Override
