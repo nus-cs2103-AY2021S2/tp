@@ -61,9 +61,7 @@ public class DeleteMeetingCommand extends Command {
         }
         meetings.remove(meetingIndex.getZeroBased());
 
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getBirthday(), personToEdit.getTags(), personToEdit.getDates(),
-                meetings);
+        Person editedPerson = personToEdit.withMeetings(meetings);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

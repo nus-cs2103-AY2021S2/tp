@@ -48,6 +48,14 @@ public class AddMeetingCommand extends Command {
         this.meeting = meeting;
     }
 
+    private static Person createEditedPerson(Person personToEdit, Event meeting) {
+        assert personToEdit != null;
+        List<Event> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
+        meetingsToEdit.add(meeting);
+
+        return personToEdit.withMeetings(meetingsToEdit);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -63,16 +71,6 @@ public class AddMeetingCommand extends Command {
         model.setPerson(person, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_MEETING_SUCCESS, editedPerson.getName()));
-    }
-
-    private static Person createEditedPerson(Person personToEdit, Event meeting) {
-        assert personToEdit != null;
-        List<Event> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
-        meetingsToEdit.add(meeting);
-
-        return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getBirthday(), personToEdit.getTags(), personToEdit.getDates(),
-                meetingsToEdit);
     }
 
     @Override

@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import seedu.address.model.person.Event;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Picture;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,8 +31,10 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
     private final String birthday;
+
+    private final String address;
+    private final JsonAdaptedPicture picture;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedEvent> dates = new ArrayList<>();
     private final List<JsonAdaptedEvent> meetings = new ArrayList<>();
@@ -40,16 +44,17 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("birthday") String birthday,
+            @JsonProperty("email") String email, @JsonProperty("birthday") String birthday,
+            @JsonProperty("address") String address, @JsonProperty("picture") JsonAdaptedPicture picture,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("dates") List<JsonAdaptedEvent> dates,
             @JsonProperty("meetings") List<JsonAdaptedEvent> meetings) {
 
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.birthday = birthday;
+        this.address = address;
+        this.picture = picture;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -70,6 +75,10 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
+
+        Optional<Picture> srcPic = source.getPicture();
+        picture = srcPic.isEmpty() ? null : new JsonAdaptedPicture(srcPic.get());
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -111,14 +120,6 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         if (birthday == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Birthday.class.getSimpleName()));
@@ -127,6 +128,19 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         }
         final Birthday modelBirthday = new Birthday(birthday);
+
+        if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Address modelAddress = new Address(address);
+
+        Picture modelPicture = null;
+        if (picture != null) {
+            modelPicture = picture.toModelType();
+        }
 
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
@@ -144,7 +158,7 @@ class JsonAdaptedPerson {
             modelMeetings.add(meeting.toModelType());
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
+        return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelAddress, modelPicture,
                 modelTags, modelDates, modelMeetings);
     }
 }
