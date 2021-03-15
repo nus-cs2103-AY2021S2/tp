@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a sortingOrder.
+ * Represents a value.
  * Guarantees: immutable; is valid as declared in {@link #isValidSortingOrder(String)}.
  */
 public class SortingOrder {
@@ -13,24 +13,24 @@ public class SortingOrder {
 
     private static final String VALIDATION_REGEX = "asc|des";
 
-    public final String sortingOrder;
+    public final String value;
 
     /**
      * Constructs a {@code SortingOrder}.
      *
-     * @param sortingOrder A valid sortingOrder.
+     * @param value A valid value.
      */
-    public SortingOrder(String sortingOrder) {
-        requireNonNull(sortingOrder);
-        checkArgument(isValidSortingOrder(sortingOrder), MESSAGE_CONSTRAINTS);
-        this.sortingOrder = sortingOrder;
+    public SortingOrder(String value) {
+        requireNonNull(value);
+        checkArgument(isValidSortingOrder(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
-     * Returns true if a given string is a valid sortingOrder.
+     * Returns true if a given string is a valid value.
      *
      * @param test The string to test.
-     * @return True if the given string is a valid sortingOrder, otherwise false.
+     * @return True if the given string is a valid value, otherwise false.
      */
     public static boolean isValidSortingOrder(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -38,7 +38,7 @@ public class SortingOrder {
 
     @Override
     public String toString() {
-        return sortingOrder;
+        return value;
     }
 
     @Override
@@ -50,11 +50,11 @@ public class SortingOrder {
             return false;
         }
         SortingOrder otherSortingOrder = (SortingOrder) other;
-        return sortingOrder.equals(otherSortingOrder.sortingOrder);
+        return value.equals(otherSortingOrder.value);
     }
 
     @Override
     public int hashCode() {
-        return sortingOrder.hashCode();
+        return value.hashCode();
     }
 }
