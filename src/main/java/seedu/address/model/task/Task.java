@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+//import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class Task {
     private final Title title;
     private final Deadline deadline;
     private final Email email;
+    private final StartTime starttime;
 
     // Data fields
     private final Description description;
@@ -26,13 +28,14 @@ public class Task {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Title field must be present and not null.
      */
-    public Task(Title title, Deadline deadline, Email email, Description description,
-                Status status, Set<Tag> tags) {
-        requireAllNonNull(title, deadline, email, description, status, tags);
+    public Task(Title title, Deadline deadline, StartTime starttime, Email email,
+                Description description, Status status, Set<Tag> tags) {
+        requireNonNull(title);
         this.title = title;
         this.deadline = deadline;
+        this.starttime = starttime;
         this.email = email;
         this.description = description;
         this.status = status;
@@ -45,6 +48,10 @@ public class Task {
 
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public StartTime getStartTime() {
+        return starttime;
     }
 
     public Email getEmail() {
@@ -95,6 +102,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getStartTime().equals(getStartTime())
                 && otherTask.getEmail().equals(getEmail())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getStatus().equals(getStatus())
@@ -104,7 +112,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, email, description, status, tags);
+        return Objects.hash(title, deadline, starttime, email, description, status, tags);
     }
 
     @Override
@@ -113,6 +121,8 @@ public class Task {
         builder.append(getTitle())
                 .append("; Deadline: ")
                 .append(getDeadline())
+                .append("; StartTime: ")
+                .append(getStartTime())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Description: ")

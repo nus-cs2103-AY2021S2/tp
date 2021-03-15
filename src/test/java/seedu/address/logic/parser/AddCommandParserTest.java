@@ -10,10 +10,13 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.STARTTIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
@@ -34,7 +37,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -48,38 +50,42 @@ public class AddCommandParserTest {
         Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
+                + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple titles - last title accepted
-        assertParseSuccess(parser, TITLE_DESC_AMY + TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+        assertParseSuccess(parser, TITLE_DESC_AMY + TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
+                + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple deadlines - last deadline accepted
-        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_AMY + DEADLINE_DESC_BOB + EMAIL_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_AMY + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
+                + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+
+        // multiple starttimes - last starttime accepted
+        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_AMY + STARTTIME_DESC_BOB
+                + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
+                + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple description - last description accepted
-        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB + DESCRIPTION_DESC_AMY
-                + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
+                + DESCRIPTION_DESC_AMY + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
         Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedTaskMultipleTags));
+        assertParseSuccess(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
+                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedTaskMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, TITLE_DESC_AMY + DEADLINE_DESC_AMY + EMAIL_DESC_AMY + DESCRIPTION_DESC_AMY,
-                new AddCommand(expectedTask));
+        assertParseSuccess(parser, TITLE_DESC_AMY + DEADLINE_DESC_AMY + STARTTIME_DESC_BOB + EMAIL_DESC_AMY
+                        + DESCRIPTION_DESC_AMY, new AddCommand(expectedTask));
     }
 
     @Test
@@ -87,8 +93,8 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing title prefix
-        assertParseFailure(parser, VALID_TITLE_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_TITLE_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
+                        + DESCRIPTION_DESC_BOB, expectedMessage);
 
         /*
         // missing deadline prefix
@@ -112,32 +118,32 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid title
-        assertParseFailure(parser, INVALID_TITLE_DESC + DEADLINE_DESC_BOB + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TITLE_DESC + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
+                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Title.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
-        assertParseFailure(parser, TITLE_DESC_BOB + INVALID_DEADLINE_DESC + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_BOB + INVALID_DEADLINE_DESC + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
+                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
+
+        // invalid starttime
+        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + INVALID_STARTTIME_DESC + EMAIL_DESC_BOB
+                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + INVALID_EMAIL_DESC + DESCRIPTION_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid description
-        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB + INVALID_DESCRIPTION_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + INVALID_EMAIL_DESC
+                + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
+                + DESCRIPTION_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_TITLE_DESC + DEADLINE_DESC_BOB + EMAIL_DESC_BOB + INVALID_DESCRIPTION_DESC,
-                Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TITLE_DESC + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
+                        + INVALID_DESCRIPTION_DESC, Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_BOB + DEADLINE_DESC_BOB + EMAIL_DESC_BOB
-                        + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB
+                        + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

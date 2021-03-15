@@ -8,6 +8,7 @@ import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Email;
 import seedu.address.model.task.Status;
+import seedu.address.model.task.StartTime;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.util.SampleDataUtil;
@@ -19,12 +20,14 @@ public class TaskBuilder {
 
     public static final String DEFAULT_TITLE = "Amy Bee";
     public static final String DEFAULT_DEADLINE = "85355255";
+    public static final String DEFAULT_STARTTIME = "1530";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_DESCRIPTION = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "not done";
 
     private Title title;
     private Deadline deadline;
+    private StartTime starttime;
     private Email email;
     private Description description;
     private Status status;
@@ -36,6 +39,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
         deadline = new Deadline(DEFAULT_DEADLINE);
+        starttime = new StartTime(DEFAULT_STARTTIME);
         email = new Email(DEFAULT_EMAIL);
         description = new Description(DEFAULT_DESCRIPTION);
         status = new Status(DEFAULT_STATUS);
@@ -48,6 +52,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         title = taskToCopy.getTitle();
         deadline = taskToCopy.getDeadline();
+        starttime = taskToCopy.getStartTime();
         email = taskToCopy.getEmail();
         description = taskToCopy.getDescription();
         status = taskToCopy.getStatus();
@@ -95,6 +100,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code StartTime} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withStartTime(String starttime) {
+        this.starttime = new StartTime(starttime);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Task} that we are building.
      */
     public TaskBuilder withEmail(String email) {
@@ -103,7 +116,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(title, deadline, email, description, status, tags);
+        return new Task(title, deadline, starttime, email, description, status, tags);
     }
 
 }

@@ -11,8 +11,12 @@ public class Deadline {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Deadline numbers should only contain numbers, and should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
+            "Deadline should not be before today";
+
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     public final String value;
 
     /**
