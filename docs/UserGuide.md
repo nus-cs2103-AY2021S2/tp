@@ -101,11 +101,16 @@ Example: `view_tutor 1`
 
 Example Output:<br>
 ```
-Name: John Doe <br> Phone Number: 98765432
-Email Address: johnd@example.com
-Address: John street, block 123, #01-01
-Subject Expertise: English, Mathematics (Sec 3, 4)
-Hourly Rate: SGD60/hr <br> Years of Experience: 6
+John Doe
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+1. English
+    Level: Sec 3
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bacholar of English Literature
 ```
 
 ### Adding an appointment : `appointment`
