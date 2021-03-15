@@ -29,6 +29,7 @@ public class GroupListPanel extends UiPart<Region> {
         groupListView.getItems().addAll(groupMap.keySet());
         groupMap.addListener((MapChangeListener<Name, Group>) change -> {
             if (change.wasAdded()) {
+                groupListView.getItems().removeAll(change.getKey());
                 groupListView.getItems().add(change.getKey());
             }
             Platform.runLater(() -> {
