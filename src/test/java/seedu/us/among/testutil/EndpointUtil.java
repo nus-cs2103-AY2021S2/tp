@@ -43,16 +43,25 @@ public class EndpointUtil {
      */
     public static String getEditEndpointDescriptorDetails(EditCommand.EditEndpointDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getMethod().ifPresent(name -> sb.append(PREFIX_METHOD).append(name.methodName).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getData().ifPresent(data -> sb.append(PREFIX_DATA).append(data.value).append(" "));
+        descriptor.getMethod().ifPresent(name -> sb.append(PREFIX_METHOD)
+                .append(" ")
+                .append(name.methodName)
+                .append(" "));
+        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS)
+                .append(" ")
+                .append(address.value)
+                .append(" "));
+        descriptor.getData().ifPresent(data -> sb.append(PREFIX_DATA)
+                .append(" ")
+                .append(data.value)
+                .append(" "));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(" ").append(s.tagName).append(" "));
             }
         }
         if (descriptor.getHeaders().isPresent()) {
@@ -60,7 +69,7 @@ public class EndpointUtil {
             if (headers.isEmpty()) {
                 sb.append(PREFIX_HEADER);
             } else {
-                headers.forEach(s -> sb.append(PREFIX_HEADER).append(s.headerName).append(" "));
+                headers.forEach(s -> sb.append(PREFIX_HEADER).append(" ").append(s.headerName).append(" "));
             }
         }
         return sb.toString();
