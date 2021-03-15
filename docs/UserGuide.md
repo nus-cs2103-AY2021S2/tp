@@ -27,7 +27,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Quick start
+## 1. Quick start <a id="1-quick-start"></a>
 
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -45,10 +45,10 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 
 --------------------------------------------------------------------------------------------------------------------
-## 2. GUI layout
+## 2. GUI layout <a id="2-gui-layout"></a>
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. Features
+## 3. Features <a id="3-features"></a>
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
@@ -177,7 +177,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ
+## 4. FAQ <a id="4-faq"></a>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FlashBack home folder.
@@ -185,7 +185,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary
+## 5. Command summary <a id="5-command-summary"></a>
 
 Action | Format, Examples
 --------|------------------
