@@ -202,7 +202,6 @@ public class ModelManager implements Model {
         return filteredCheeses;
     }
 
-
     @Override
     public void updateFilteredCustomerList(Predicate<Customer> predicate) {
         requireNonNull(predicate);

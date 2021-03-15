@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.AbstractDate.INPUT_DATE_TIME_FORMATTER;
 import static seedu.address.model.AbstractDate.TO_JSON_STRING_FORMATTER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
@@ -36,7 +35,7 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Order> lastShownList = model.getFilteredOrderList();
 
-        if(targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_INDEX);
         }
 
@@ -51,8 +50,20 @@ public class DoneCommand extends Command {
         return new CommandResult(String.format(MESSAGE_MARK_ORDER_DONE_SUCCESS, updatedOrder));
     }
 
+    /**
+     * Creates and returns a {@code order} with the details of {@code orderToUpdate}
+     * Only the CompletedDate is updated to current time
+     */
     public Order createDoneOrder(Order orderToUpdate) {
         CompletedDate completedDate = new CompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER));
+        //TODO assign cheeses
         return new Order(orderToUpdate, completedDate);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DoneCommand // instanceof handles nulls
+                && targetIndex.equals(((DoneCommand) other).targetIndex)); // state check
     }
 }

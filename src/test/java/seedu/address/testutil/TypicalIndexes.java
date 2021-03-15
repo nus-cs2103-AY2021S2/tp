@@ -13,4 +13,6 @@ public class TypicalIndexes {
     public static final Index INDEX_THIRD_CUSTOMER = Index.fromOneBased(3);
     public static final Index INDEX_FIRST_ORDER = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_ORDER = Index.fromOneBased(2);
+    public static final Index INDEX_UNCOMPLETED_ORDER = Index.fromOneBased(1);
+    public static final Index INDEX_COMPLETED_ORDER = Index.fromOneBased(2);
 }

@@ -174,5 +174,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredOrderList().size());
     }
-
 }

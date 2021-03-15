@@ -99,7 +99,8 @@ class JsonAdaptedCheese {
         }
         final ExpiryDate modelExpiryDate = new ExpiryDate(expiryDate);
 
-        return new Cheese(modelCheeseType, modelManufactureDate, modelMaturityDate, modelExpiryDate, modelId, isAssigned);
+        return new Cheese(modelCheeseType, modelManufactureDate,
+                modelMaturityDate, modelExpiryDate, modelId, isAssigned);
     }
 
 }

@@ -58,7 +58,9 @@ public class Cheese {
         return cheeseId;
     }
 
-    public boolean getAssignStatus() {return isAssigned; }
+    public boolean getAssignStatus() {
+        return isAssigned;
+    }
 
     /**
      * Returns true if both cheeses have the same name.
@@ -107,7 +109,9 @@ public class Cheese {
             .append("; Maturity Date: ")
             .append(getMaturityDate())
             .append("; Expiry Date: ")
-            .append(getExpiryDate());
+            .append(getExpiryDate())
+            .append("; isAssigned: ")
+            .append(getAssignStatus() ? "True" : "False");
 
         return builder.toString();
     }

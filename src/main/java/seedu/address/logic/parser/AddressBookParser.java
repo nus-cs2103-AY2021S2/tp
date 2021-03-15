@@ -12,6 +12,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCheeseCommand;
 import seedu.address.logic.commands.DeleteCustomerCommand;
 import seedu.address.logic.commands.DeleteOrderCommand;
+import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -19,7 +20,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCheesesCommand;
 import seedu.address.logic.commands.ListCustomersCommand;
 import seedu.address.logic.commands.ListOrdersCommand;
-import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

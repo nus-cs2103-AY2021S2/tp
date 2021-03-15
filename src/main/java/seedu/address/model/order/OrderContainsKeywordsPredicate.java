@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+<<<<<<< HEAD
 
 /**
  * Tests that a {@code Order}'s {@code Type} matches any of the keywords given.
+=======
+/**
+ * Tests that a {@code Cheese}'s {@code Type} matches any of the keywords given.
+>>>>>>> Include test cases for DoneCommand
  */
 public class OrderContainsKeywordsPredicate implements Predicate<Order> {
     private final List<String> keywords;
@@ -24,9 +29,8 @@ public class OrderContainsKeywordsPredicate implements Predicate<Order> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.order.OrderContainsKeywordsPredicate
-                && keywords.equals(((seedu.address.model.order.OrderContainsKeywordsPredicate) other).keywords));
+                || (other instanceof OrderContainsKeywordsPredicate
+                && keywords.equals(((OrderContainsKeywordsPredicate) other).keywords));
     }
-
 }
 

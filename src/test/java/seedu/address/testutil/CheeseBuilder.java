@@ -103,7 +103,7 @@ public class CheeseBuilder {
      */
     public Cheese build() {
         if (cheeseId == null) {
-            return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, isAssigned);
+            return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate);
         } else {
             return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId, isAssigned);
         }

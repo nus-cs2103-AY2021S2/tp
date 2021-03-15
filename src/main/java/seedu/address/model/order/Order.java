@@ -58,6 +58,10 @@ public class Order {
         this(cheeseType, quantity, orderDate, completedDate, new HashSet<>(), orderId, customerId);
     }
 
+    /**
+     * Initializes a complete order with existing order ,
+     * date of completion and the IDs of cheeses used to fulfil the order.
+     */
     public Order(Order orderToUpdate, CompletedDate completedDate) {
         this(orderToUpdate.orderCheeseType, orderToUpdate.quantity,
                 orderToUpdate.orderDate, completedDate, orderToUpdate.cheeses,
@@ -166,7 +170,7 @@ public class Order {
             .append("; Order Date: ")
             .append(getOrderDate())
             .append("; Completed Date: ")
-            .append(getCompletedDate())
+            .append(getCompletedDate().get())
             .append("; Customer ID: ")
             .append(getCustomerId())
             .append("; Cheese IDs: ")
