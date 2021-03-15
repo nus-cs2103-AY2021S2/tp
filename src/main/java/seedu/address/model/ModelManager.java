@@ -214,4 +214,17 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredVenues.setPredicate(predicate);
     }
+
+    //=========== Filtered Booking List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Bookings} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Booking> getFilteredBookingList() {
+        return filteredBookings;
+    }
+
+
 }

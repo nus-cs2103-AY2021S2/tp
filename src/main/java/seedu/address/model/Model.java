@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -105,6 +106,10 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered venue list */
     ObservableList<Venue> getFilteredVenueList();
+
+    /** Returns an unmodifiable view of the filtered booking list */
+    ObservableList<Booking> getFilteredBookingList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -137,4 +142,5 @@ public interface Model {
     /// logic related to bookings
 
     void deleteBooking(int bookingId);
+
 }

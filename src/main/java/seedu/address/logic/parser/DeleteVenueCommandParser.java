@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Venue;
 
 /**
- * Parses input arguments and creates a new DeleteVenueCommand object
+ * Parses input arguments and creates a new DeleteVenueCommand object.
  */
 public class DeleteVenueCommandParser implements Parser<DeleteVenueCommand> {
 
@@ -25,7 +25,6 @@ public class DeleteVenueCommandParser implements Parser<DeleteVenueCommand> {
         Venue venue;
         try {
             venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
-            System.out.println(venue);
             return new DeleteVenueCommand(venue);
         } catch (ParseException pe) {
             throw new ParseException(
