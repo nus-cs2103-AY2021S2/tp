@@ -24,6 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final JsonModule[] moduleInfo = readModuleInfo();
+    private Integer currentSemesterNumber;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -33,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        currentSemesterNumber = null;
     }
 
     public AddressBook() {}
@@ -62,6 +64,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        currentSemesterNumber = newData.getCurrentSemesterNumber();
     }
 
     //// plan-level operations
@@ -99,6 +102,23 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePlan(Plan key) {
         persons.remove(key);
+    }
+
+    /**
+     * Replaces the current semester number {@code currentSemesterNumber} with
+     * an updated {@code currentSemesterNumber}.
+     * {@code currentSemesterNumber} must exist in the address book.
+     */
+    public void setCurrentSemesterNumber(Integer currentSemesterNumber) {
+        this.currentSemesterNumber = currentSemesterNumber;
+    }
+
+    /**
+     * Returns the currentSemesterNumber.
+     * @return current semester number
+     */
+    public Integer getCurrentSemesterNumber() {
+        return currentSemesterNumber;
     }
 
     //// util methods
@@ -139,9 +159,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+        if (other == this) {
+            return true;
+        } else if (other instanceof AddressBook) {
+            AddressBook o = (AddressBook) other;
+            return persons.equals(o.persons);
+        } else {
+            return false;
+        }
     }
 
     @Override

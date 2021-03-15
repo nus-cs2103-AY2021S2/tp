@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.plan.Module;
 import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
+import seedu.address.model.util.History;
 
 /**
  * The API of the Model component.
@@ -108,4 +109,14 @@ public interface Model {
     boolean hasModule(int planNumber, int semNumber, Module module) throws CommandException;
 
     void addModule(int planNumber, int semNumber, Module module);
+
+    History getHistory() throws CommandException;
+
+    Plan getMasterPlan() throws CommandException;
+
+    Semester getCurrentSemester() throws CommandException;
+
+    void setCurrentSemester(Integer currentSemesterNumber) throws CommandException;
+
+    void setMasterPlan(Plan plan) throws CommandException;
 }
