@@ -55,26 +55,26 @@ public interface Model {
     ReadOnlyResidenceTracker getResidenceTracker();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a residence with the same identity as {@code residence} exists in the address book.
      */
     boolean hasResidence(Residence residence);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the residence tracker.
+     * Deletes the given residence.
+     * The residence must exist in the residence tracker.
      */
     void deleteResidence(Residence target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the residence tracker.
+     * Adds the given residence.
+     * {@code residence} must not already exist in the residence tracker.
      */
     void addResidence(Residence residence);
 
     /**
      * Replaces the given residence {@code target} with {@code editedResidence}.
      * {@code target} must exist in the residence tracker.
-     * The residence identity of {@code editedPerson} must not be the same as another existing residence in the
+     * The residence identity of {@code editedResidence} must not be the same as another existing residence in the
      * residence tracker.
      */
 

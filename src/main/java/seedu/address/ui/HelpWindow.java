@@ -17,7 +17,45 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://github.com/AY2021S2-CS2103-T16-3/"
                                              + "tp/blob/master/docs/UserGuide.md";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+
+    public static final String ADD_PROMPT = "add - Adds a residence into ResidenceTracker."
+                                          + "\nEnter \"add n/NAME_OF_RESIDENCE a/ADDRESS [clean/[y or n]] "
+                                          + "[book/[y or n]] [p/LOCK_PASSWORD] [d/BOOKING_DETAILS]]...\""
+                                          + "\nExample: add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 "
+                                          + "clean/n book/y\n\n";
+
+    public static final String CLEAR_PROMPT = "clear - Clears all entries from the residence tracker."
+                                            + "\nEnter \"clear\"\n\n";
+
+    public static final String DELETE_PROMPT = "delete - Deletes the specified residence from the list of residences."
+                                             + "based on index."
+                                             + "\nEnter \"delete INDEX\""
+                                             + "\nExample: delete 3\n\n";
+
+    public static final String EDIT_PROMPT = "edit - Edits the booking/cleaning status of an existing residence."
+                                           + "\nEnter \"edit INDEX clean/[y or n] \""
+                                           + "\nExample: edit u/unclean 2\n\n";
+
+    public static final String FIND_PROMPT = "find - Finds residences whose name contains the given keyword."
+                                           + "\nEnter \"find KEYWORD\""
+                                           + "\nExample: find Heights\n\n";
+
+    public static final String LIST_PROMPT = "list - Shows a list of all residences in ResidenceTracker app."
+                                           + "\n Enter \"list\"\n\n";
+
+    public static final String EXIT_PROMPT = "exit - Exits the program."
+                                           + "\n Enter \"exit\"\n\n";
+
+    public static final String HELP_MESSAGE = "List of commands:\n"
+                                            + ADD_PROMPT
+                                            + CLEAR_PROMPT
+                                            + DELETE_PROMPT
+                                            + EDIT_PROMPT
+                                            + FIND_PROMPT
+                                            + LIST_PROMPT
+                                            + EXIT_PROMPT;
+
+    public static final String URL_MESSAGE = "For more info, refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -28,6 +66,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private Label urlMessage;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -36,6 +77,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        urlMessage.setText(URL_MESSAGE);
     }
 
     /**

@@ -114,7 +114,7 @@ public class ModelManager implements Model {
         residenceTracker.setResidence(target, editedResidence);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Residence and Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Residence} backed by the internal list of

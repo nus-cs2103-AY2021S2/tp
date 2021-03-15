@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ResidenceTracker ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -70,24 +70,24 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s residence tracker and {@code userPrefs}. <br>
+     * The data from the sample residence tracker will be used instead if {@code storage}'s residence tracker is not found,
+     * or an empty residence tracker will be used instead if errors occur when reading {@code storage}'s residence tracker.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyResidenceTracker> addressBookOptional;
+        Optional<ReadOnlyResidenceTracker> residenceTrackerOptional;
         ReadOnlyResidenceTracker initialData;
         try {
-            addressBookOptional = storage.readResidenceTracker();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            residenceTrackerOptional = storage.readResidenceTracker();
+            if (!residenceTrackerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ResidenceTracker");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleResidenceTracker);
+            initialData = residenceTrackerOptional.orElseGet(SampleDataUtil::getSampleResidenceTracker);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty ResidenceTracker");
             initialData = new ResidenceTracker();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ResidenceTracker");
             initialData = new ResidenceTracker();
         }
 
@@ -152,7 +152,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ResidenceTracker");
             initializedPrefs = new UserPrefs();
         }
 
@@ -168,13 +168,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting ResidenceTracker " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping ResidenceTracker ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

@@ -6,13 +6,13 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the residence tracker to the user.
+ * Lists all residences in the residence tracker to the user.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all residences";
 
 
     @Override
