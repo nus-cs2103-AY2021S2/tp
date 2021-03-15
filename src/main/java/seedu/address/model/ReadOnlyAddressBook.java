@@ -18,7 +18,7 @@ public interface ReadOnlyAddressBook {
     /**
      * Returns current semester number.
      */
-    int getCurrentSemesterNumber();
+    Integer getCurrentSemesterNumber();
 
     /**
      * Returns　an array of module information from moduleinfo.json

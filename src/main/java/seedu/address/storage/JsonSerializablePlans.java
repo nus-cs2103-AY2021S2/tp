@@ -22,14 +22,14 @@ class JsonSerializablePlans {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate plan(s).";
 
     private final List<JsonAdaptedPlan> plans = new ArrayList<>();
-    private int currentSemesterNumber;
+    private final Integer currentSemesterNumber;
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializablePlans(@JsonProperty("plans") List<JsonAdaptedPlan> plans,
-                                 @JsonProperty("currentSemesterNumber") int currentSemesterNumber) {
+                                 @JsonProperty("currentSemesterNumber") Integer currentSemesterNumber) {
         this.plans.addAll(plans);
         this.currentSemesterNumber = currentSemesterNumber;
     }

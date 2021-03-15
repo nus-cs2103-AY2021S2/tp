@@ -26,10 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Plan> filteredPlans;
 
-    private boolean hasCurrentSemester = false;
-
     private History history;
-    private int currentSemesterNumber; // Semesters are indexed by ID
+    private Integer currentSemesterNumber; // Semesters are indexed by ID
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPlans = new FilteredList<>(this.addressBook.getPersonList());
+        currentSemesterNumber = addressBook.getCurrentSemesterNumber();
     }
 
     public ModelManager() {
@@ -169,11 +168,15 @@ public class ModelManager implements Model {
         return history;
     }
 
+    private boolean hasCurrentSemester() {
+        return currentSemesterNumber != null;
+    }
+
     private History createHistory() throws CommandException {
         if (!hasMasterPlan()) {
             throw new CommandException("You must set a master plan first!");
         }
-        if (!hasCurrentSemester) {
+        if (!hasCurrentSemester()) {
             throw new CommandException("You must set a current semester first!");
         }
         return new History(getMasterPlan(), getCurrentSemester());
@@ -189,13 +192,13 @@ public class ModelManager implements Model {
 
     @Override
     public Semester getCurrentSemester() throws CommandException {
-        if (!hasCurrentSemester) {
+        if (!hasCurrentSemester()) {
             throw new CommandException("You must set a current semester first!");
         }
 
         Semester currentSem = null;
         for (Semester semester : getMasterPlan().getSemesters()) {
-            if (semester.getSemNumber() == currentSemesterNumber) {
+            if (currentSemesterNumber.equals(semester.getSemNumber())) {
                 currentSem = semester;
                 break;
             }
@@ -204,16 +207,23 @@ public class ModelManager implements Model {
         // If the currentSem is still null it is possible that currentSemesterNumber no longer
         // matches any existing semesters, suggesting it may have been deleted.
         if (currentSem == null) {
-            hasCurrentSemester = false;
+            currentSemesterNumber = null;
             throw new CommandException("Set the current semester again, it may have been removed or deleted.");
         }
         return currentSem;
     }
 
     @Override
-    public void setCurrentSemester(int currentSemesterNumber) throws CommandException {
+    public void setCurrentSemester(Integer currentSemesterNumber) throws CommandException {
+        // Null means to remove currentSemester
+        if (currentSemesterNumber == null) {
+            this.currentSemesterNumber = null;
+            addressBook.setCurrentSemesterNumber(this.currentSemesterNumber);
+            return;
+        }
+
         Plan masterPlan = getMasterPlan();
-        int maxSemesterNumber = 0;
+        Integer maxSemesterNumber = 0;
         for (Semester semester : masterPlan.getSemesters()) {
             if (semester.getSemNumber() > maxSemesterNumber) {
                 maxSemesterNumber = semester.getSemNumber();
@@ -227,7 +237,6 @@ public class ModelManager implements Model {
         }
 
         this.currentSemesterNumber = currentSemesterNumber;
-        this.hasCurrentSemester = true;
         addressBook.setCurrentSemesterNumber(currentSemesterNumber);
     }
 
