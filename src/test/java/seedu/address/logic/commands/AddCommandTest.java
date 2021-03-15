@@ -155,6 +155,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteIssue(Issue target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setIssue(Issue target, Issue editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Issue> getFilteredIssueList() {
             throw new AssertionError("This method should not be called.");
         }

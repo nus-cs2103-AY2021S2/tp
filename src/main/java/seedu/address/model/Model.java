@@ -94,9 +94,21 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Deletes the given issue.
+     * The issue must exist in SunRez.
+     */
+    void deleteIssue(Issue target);
+
+    /**
      * Adds the given issue.
      */
     void addIssue(Issue issue);
+
+    /**
+     * Replaces the given Issue {@code target} with {@code editedIssue}.
+     * {@code target} must exist in the address book.
+     */
+    void setIssue(Issue target, Issue editedPerson);
 
     /** Returns an unmodifiable view of the filtered issue list */
     ObservableList<Issue> getFilteredIssueList();

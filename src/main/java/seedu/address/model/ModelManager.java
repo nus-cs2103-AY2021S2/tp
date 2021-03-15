@@ -135,9 +135,21 @@ public class ModelManager implements Model {
     // =========== Issues =====================================================================================
 
     @Override
+    public void deleteIssue(Issue target) {
+        addressBook.removeIssue(target);
+    }
+
+    @Override
     public void addIssue(Issue issue) {
         addressBook.addIssue(issue);
         updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
+
+    @Override
+    public void setIssue(Issue target, Issue editedIssue) {
+        requireAllNonNull(target, editedIssue);
+
+        addressBook.setIssue(target, editedIssue);
     }
 
     // =========== Filtered Issue List Accessors =============================================================
