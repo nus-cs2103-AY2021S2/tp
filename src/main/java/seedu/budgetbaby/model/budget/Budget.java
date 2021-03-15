@@ -9,10 +9,12 @@ public class Budget {
     /**
      * Default constructor.
      */
-    public Budget() {}
+    public Budget() {
+    }
 
     /**
      * Initializes a Budget with a specified amount.
+     *
      * @param amount The amount specified by the user.
      */
     public Budget(double amount) {
@@ -28,6 +30,7 @@ public class Budget {
 
     /**
      * Sets the budget to a specified amount.
+     *
      * @param amount The amount specified by the user.
      */
     public void setAmount(double amount) {
@@ -45,7 +48,7 @@ public class Budget {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof Budget
-                && Double.compare(amount, ((Budget) other).amount) == 0);
+            || (other instanceof Budget
+            && Double.compare(amount, ((Budget) other).amount) == 0);
     }
 }

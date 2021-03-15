@@ -1,6 +1,9 @@
 package seedu.budgetbaby.model.record;
 
 
+import seedu.budgetbaby.logic.parser.TimestampParser;
+
+import java.time.YearMonth;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -63,6 +66,10 @@ public class FinancialRecord {
 
     public Date getTimestamp() {
         return timestamp;
+    }
+
+    public YearMonth getMonth() {
+        return TimestampParser.getYearMonth(this.timestamp);
     }
 
     /**

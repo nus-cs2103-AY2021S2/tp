@@ -2,10 +2,16 @@ package seedu.budgetbaby.model.month;
 
 import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.model.budget.Budget;
+import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
+import seedu.budgetbaby.model.month.exception.MonthMismatchException;
+import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.model.record.FinancialRecordList;
 
+import java.time.Year;
 import java.time.YearMonth;
 import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Month in the budget tracker.
@@ -30,6 +36,17 @@ public class Month {
         this.month = yearMonth;
     }
 
+    /**
+     * Constructs a new {@code Month} with no records and default budget.
+     *
+     * @param yearMonth A valid year month.
+     */
+    public Month(YearMonth yearMonth) {
+        this.records = new FinancialRecordList();
+        this.budget = new Budget();
+        this.month = yearMonth;
+    }
+
     public FinancialRecordList getFinancialRecords() {
         return records;
     }
@@ -43,6 +60,18 @@ public class Month {
     }
 
     /**
+     * Adds a financial record to the month.
+     * The timestamp of the financial record must match the month.
+     */
+    public void add(FinancialRecord toAdd) {
+        requireNonNull(toAdd);
+        if (!toAdd.getMonth().equals(this.month)) {
+            throw new MonthMismatchException();
+        }
+        records.add(toAdd);
+    }
+
+    /**
      * Returns true if both months have the same.
      * This defines a weaker notion of equality between two months.
      */
@@ -53,6 +82,14 @@ public class Month {
 
         return otherMonth != null
             && otherMonth.getMonth().equals(getMonth());
+    }
+
+    /**
+     * Returns true if the month object is representing the YearMonth object.
+     */
+    public boolean isSameMonth(YearMonth yearMonth) {
+        return yearMonth != null
+            && getMonth().equals(yearMonth);
     }
 
     /**

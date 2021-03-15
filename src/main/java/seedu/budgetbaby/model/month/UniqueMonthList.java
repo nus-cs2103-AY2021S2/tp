@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
 import seedu.budgetbaby.model.month.exception.MonthNotFoundException;
 
+import java.time.YearMonth;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,6 +38,14 @@ public class UniqueMonthList implements Iterable<Month> {
     }
 
     /**
+     * Returns true if the list contains a month representing the given YearMonth.
+     */
+    public boolean contains(YearMonth yearMonth) {
+        requireNonNull(yearMonth);
+        return internalList.stream().anyMatch(m -> m.isSameMonth(yearMonth));
+    }
+
+    /**
      * Adds a month to the list.
      * The month must not already exist in the list.
      */
@@ -46,6 +55,18 @@ public class UniqueMonthList implements Iterable<Month> {
             throw new DuplicateMonthException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Adds a month representing the given YearMonth to the list.
+     * The month must not already exist in the list.
+     */
+    public void add(YearMonth yearMonth) {
+        requireNonNull(yearMonth);
+        if (contains(yearMonth)) {
+            throw new DuplicateMonthException();
+        }
+        internalList.add(new Month(yearMonth));
     }
 
     /**
