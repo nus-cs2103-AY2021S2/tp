@@ -3,6 +3,8 @@ package seedu.us.among.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
+import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_METHOD;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.us.among.testutil.Assert.assertThrows;
@@ -30,8 +32,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_RANDOM =
             "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=2";
     public static final String VALID_ADDRESS_FACT = "https://cat-fact.herokuapp.com/facts";
-    public static final String VALID_DATA_PAIR = "{key: value}";
+    public static final String VALID_DATA_PAIR = "{\"key\": \"value\"}";
+    public static final String VALID_DATA_PAIR_NEW = "{\"newkey\": \"newvalue\"}";
+
     public static final String VALID_HEADER_PAIR = "\"key: value\"";
+    public static final String VALID_HEADER_PAIR_NEW = "\"newkey: newvalue\"";
+
     public static final String VALID_TAG_CAT = "cat";
     public static final String VALID_TAG_COOL = "cool";
     public static final String VALID_TAG_1 = "tag1";
@@ -40,12 +46,21 @@ public class CommandTestUtil {
     public static final String METHOD_DESC_POST = " " + PREFIX_METHOD + VALID_METHOD_POST;
     public static final String ADDRESS_DESC_RANDOM = " " + PREFIX_ADDRESS + VALID_ADDRESS_RANDOM;
     public static final String ADDRESS_DESC_FACT = " " + PREFIX_ADDRESS + VALID_ADDRESS_FACT;
-    public static final String TAG_DESC_CAT = " " + PREFIX_TAG + VALID_TAG_COOL;
-    public static final String TAG_DESC_COOL = " " + PREFIX_TAG + VALID_TAG_CAT;
+    public static final String TAG_DESC_COOL = " " + PREFIX_TAG + VALID_TAG_COOL;
+    public static final String TAG_DESC_CAT = " " + PREFIX_TAG + VALID_TAG_CAT;
+    public static final String DATA_DESC_DEFAULT = " " + PREFIX_DATA + VALID_DATA_PAIR;
+    public static final String DATA_DESC_NEW = " " + PREFIX_DATA + VALID_DATA_PAIR_NEW;
+    public static final String HEADER_DESC_DEFAULT = " " + PREFIX_HEADER + VALID_HEADER_PAIR;
+    public static final String HEADER_DESC_NEW = " " + PREFIX_HEADER + VALID_HEADER_PAIR_NEW;
+
+
 
     public static final String INVALID_METHOD_DESC = " " + PREFIX_METHOD + "GOT"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_HEADER_DESC = " " + PREFIX_HEADER + "blahblah"; //header must be "x":"y"
+    public static final String INVALID_DATA_DESC = " " + PREFIX_DATA + "blahblah"; //header must be {"x":"y"}
+
 
     public static final String PREAMBLE_WHITESPACE = " ";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

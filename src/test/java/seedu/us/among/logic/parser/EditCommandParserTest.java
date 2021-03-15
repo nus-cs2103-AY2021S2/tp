@@ -76,9 +76,9 @@ public class EditCommandParserTest {
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code
         // Endpoint} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_CAT + TAG_DESC_COOL + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_CAT + TAG_EMPTY + TAG_DESC_COOL, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_CAT + TAG_DESC_COOL, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_COOL + TAG_DESC_CAT + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_COOL + TAG_EMPTY + TAG_DESC_CAT, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_COOL + TAG_DESC_CAT, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_METHOD_DESC + VALID_ADDRESS_RANDOM, Method.MESSAGE_CONSTRAINTS);
@@ -87,8 +87,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ENDPOINT;
-        String userInput = targetIndex.getOneBased() + TAG_DESC_COOL + ADDRESS_DESC_RANDOM + METHOD_DESC_GET
-                + TAG_DESC_CAT;
+        String userInput = targetIndex.getOneBased() + TAG_DESC_CAT + ADDRESS_DESC_RANDOM + METHOD_DESC_GET
+                + TAG_DESC_COOL;
 
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withName(VALID_METHOD_GET)
                 .withAddress(VALID_ADDRESS_RANDOM).withTags(VALID_TAG_CAT, VALID_TAG_COOL).build();
@@ -113,7 +113,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_CAT;
+        userInput = targetIndex.getOneBased() + TAG_DESC_COOL;
         descriptor = new EditEndpointDescriptorBuilder().withTags(VALID_TAG_COOL).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -122,8 +122,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ENDPOINT;
-        String userInput = targetIndex.getOneBased() + ADDRESS_DESC_RANDOM + TAG_DESC_CAT + ADDRESS_DESC_RANDOM
-                + TAG_DESC_CAT + ADDRESS_DESC_FACT + TAG_DESC_COOL;
+        String userInput = targetIndex.getOneBased() + ADDRESS_DESC_RANDOM + TAG_DESC_COOL + ADDRESS_DESC_RANDOM
+                + TAG_DESC_COOL + ADDRESS_DESC_FACT + TAG_DESC_CAT;
 
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withAddress(VALID_ADDRESS_FACT)
                 .withTags(VALID_TAG_COOL, VALID_TAG_CAT).build();
