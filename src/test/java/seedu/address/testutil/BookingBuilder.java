@@ -5,7 +5,7 @@ import static seedu.address.testutil.TypicalVenues.VENUE1;
 import java.time.LocalDateTime;
 
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 
 /**
  * A utility class to help with building Person objects.

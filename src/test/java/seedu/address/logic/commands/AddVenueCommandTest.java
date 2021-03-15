@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 import seedu.address.testutil.VenueBuilder;
@@ -177,6 +178,11 @@ public class AddVenueCommandTest {
         }
 
         @Override
+        public ObservableList<Booking> getFilteredBookingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -193,7 +199,7 @@ public class AddVenueCommandTest {
         }
 
         @Override
-        public void updateFilteredVenueList(Predicate<Venue> predicate) {
+        public void updateFilteredVenueList(VenueNameContainsKeywordsPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

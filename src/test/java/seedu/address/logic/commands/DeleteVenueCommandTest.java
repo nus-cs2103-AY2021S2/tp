@@ -16,7 +16,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.booking.Venue;
+import seedu.address.model.venue.Venue;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -70,15 +70,6 @@ public class DeleteVenueCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no venues.
-     */
-    private void showNoVenue(Model model) {
-        model.updateFilteredVenueList(p -> false);
-
-        assertTrue(model.getFilteredVenueList().isEmpty());
     }
 
 }

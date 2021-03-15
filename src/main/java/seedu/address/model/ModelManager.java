@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.venue.Venue;
 
@@ -202,7 +203,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Venues} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedBookCoinToTheMoon}
      */
     @Override
     public ObservableList<Venue> getFilteredVenueList() {
@@ -210,7 +211,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredVenueList(Predicate<Venue> predicate) {
+    public void updateFilteredVenueList(VenueNameContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);
         filteredVenues.setPredicate(predicate);
     }
