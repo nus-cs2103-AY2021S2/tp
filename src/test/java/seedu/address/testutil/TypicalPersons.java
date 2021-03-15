@@ -28,7 +28,7 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withPhone("98765432").withTripDay("FRIDAY").withTripTime("1800")
-            .withTags("owesMoney", "friends").buildWithDriver();
+            .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withTripDay("FRIDAY").withTripTime("1800")
             .withAddress("wall street").build();

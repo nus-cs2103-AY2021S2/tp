@@ -22,7 +22,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_TRIPDAY = "funday";
-    private static final String INVALID_DRIVER = "N$me.; Phone: ph0neNum";
+    private static final String INVALID_DRIVER = "Huyser Wang; Phone: ph0ne";
     private static final String INVALID_TRIPTIME = "21032103";
 
     private static final String VALID_NAME = BENSON.getName().toString();
@@ -89,14 +89,6 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_TRIPDAY,
                 VALID_TRIPTIME, VALID_DRIVER, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-    @Test
-    public void toModelType_invalidDriver_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_TRIPDAY,
-                        VALID_TRIPTIME, INVALID_DRIVER, VALID_TAGS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
