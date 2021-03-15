@@ -31,18 +31,34 @@ public class Book {
         this.isbn = isbn;
     }
 
+    /**
+     * Gets the Name of Book
+     * @return Name of Book
+     */
     public Name getName() {
         return name;
     }
 
+    /**
+     * Gets the Author of Book
+     * @return Author of Book
+     */
     public Author getAuthor() {
         return author;
     }
 
+    /**
+     * Gets the Publisher of Book
+     * @return Publisher of Book
+     */
     public Publisher getPublisher() {
         return publisher;
     }
 
+    /**
+     * Gets the Isbn of Book
+     * @return Isbn of Book
+     */
     public Isbn getIsbn() {
         return isbn;
     }
@@ -60,10 +76,6 @@ public class Book {
                 && otherBook.getName().equals(getName());
     }
 
-    /**
-     * Returns true if both books have the same identity and data fields.
-     * This defines a stronger notion of equality between two books.
-     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
