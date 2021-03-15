@@ -3,7 +3,7 @@ package seedu.module.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -21,7 +21,7 @@ public class Deadline {
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public final String value;
-    public final LocalTime time;
+    public final LocalDateTime time;
 
     /**
      * Constructs a {@code Deadline}.
@@ -32,7 +32,11 @@ public class Deadline {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = deadline;
-        time = LocalTime.parse(value, DATE_TIME_FORMATTER);
+        time = LocalDateTime.parse(value, DATE_TIME_FORMATTER);
+    }
+
+    public LocalDateTime getTime() {
+        return this.time;
     }
 
     /**
@@ -52,6 +56,10 @@ public class Deadline {
         return other == this // short circuit if same object
                 || (other instanceof Deadline // instanceof handles nulls
                 && value.equals(((Deadline) other).value)); // state check
+    }
+
+    public int compareTo(Deadline other) {
+        return time.compareTo(other.getTime());
     }
 
     @Override

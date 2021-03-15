@@ -76,6 +76,11 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
+    /**
+     * Sorts the tasks by deadline.
+     */
+    void sortTasks();
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 

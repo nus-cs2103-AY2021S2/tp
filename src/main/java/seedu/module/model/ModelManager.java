@@ -112,6 +112,12 @@ public class ModelManager implements Model {
         moduleBook.setTask(target, editedTask);
     }
 
+    @Override
+    public void sortTasks() {
+        moduleBook.sortTasks();
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**

@@ -1,5 +1,6 @@
 package seedu.module.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.testutil.Assert.assertThrows;
@@ -17,6 +18,17 @@ public class DeadlineTest {
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidDeadline = "";
         assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDeadline));
+    }
+
+    @Test
+    public void deadlineComparator_earlierDeadlineIsPutInFront() {
+        Deadline deadline1 = new Deadline("2021-01-01 12:00");
+        Deadline deadline2 = new Deadline("2021-01-02 12:00");
+        Deadline deadline3 = new Deadline("2021-01-02 11:00");
+        Deadline deadline4 = new Deadline("2020-12-02 23:59");
+        assertEquals(deadline1.compareTo(deadline2), -1);
+        assertEquals(deadline2.compareTo(deadline3), 1);
+        assertEquals(deadline3.compareTo(deadline4), 1);
     }
 
     @Test

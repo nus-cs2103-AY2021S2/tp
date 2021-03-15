@@ -48,6 +48,13 @@ public class ModuleBook implements ReadOnlyModuleBook {
     }
 
     /**
+     * Sorts the task list by deadline.
+     */
+    public void sortTasks() {
+        this.tasks.sortTasks();
+    }
+
+    /**
      * Resets the existing data of this {@code ModuleBook} with {@code newData}.
      */
     public void resetData(ReadOnlyModuleBook newData) {
