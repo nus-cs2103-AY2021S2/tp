@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.opentest4j.TestAbortedException;
-import seedu.address.logic.parser.Parser;
+
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -31,7 +31,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BIRTHDAY = "02-03-1995";
-
+    private final List<Event> dates;
+    private final List<Event> meetings;
     private Name name;
     private Phone phone;
     private Email email;
@@ -39,8 +40,6 @@ public class PersonBuilder {
     private Address address;
     private Picture picture;
     private Set<Tag> tags;
-    private final List<Event> dates;
-    private final List<Event> meetings;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -115,7 +114,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
