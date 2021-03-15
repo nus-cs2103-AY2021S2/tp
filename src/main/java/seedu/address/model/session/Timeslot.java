@@ -52,6 +52,6 @@ public class Timeslot {
 
     @Override
     public String toString() {
-        return this.start.toString() + " - " + this.end.toString();
+        return this.start.toString() + " to " + this.end.toString();
     }
 }
