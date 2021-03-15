@@ -91,6 +91,14 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+    @Test
+    public void toModelType_invalidDriver_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_TRIPDAY,
+                        VALID_TRIPTIME, INVALID_DRIVER, VALID_TAGS);
+        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {

@@ -2,6 +2,7 @@ package seedu.address.model.human.driver;
 
 import java.util.Objects;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.human.Human;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
@@ -43,14 +44,16 @@ public class Driver extends Human {
     /**
      * Returns true if a given string is a valid representation of Driver.
      */
-    public static boolean isValidDriver(String driver) {
+    public static boolean isValidDriver(String driver) throws IllegalValueException {
         /* Driver::toString print in the format of %name; Phone: %phone, therefore length = 1 != 2 means
            the String driver is invalid */
         String[] driverParams = driver.split("; Phone: ");
         if (driverParams.length == 1) {
             return false;
-        } else if (!Name.isValidName(driverParams[0]) || !Phone.isValidPhone(driverParams[1])) {
-            return false;
+        } else if (!Name.isValidName(driverParams[0])){
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        } else if (!Phone.isValidPhone(driverParams[1])) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         return true;
     }
