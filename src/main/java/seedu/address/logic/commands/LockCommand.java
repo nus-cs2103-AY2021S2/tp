@@ -21,6 +21,9 @@ public class LockCommand extends Command {
 
     public static final String MESSAGE_LOCK_SUCCESS_OLD_PASSWORD = "Locked ClientBook using your previous password.";
 
+    public static final String MESSAGE_LOCK_SUCCESS_UPDATE_PASSWORD = "ClientBook's password has been successfully "
+            + "updated.";
+
     public static final String MESSAGE_ALREADY_LOCKED_INCORRECT_PASSWORD = "ClientBook is already locked, please "
             + "enter the current password\nand a new password to change the password.";
 
@@ -76,14 +79,29 @@ public class LockCommand extends Command {
         }
         //If newPassword is not entered, check for password in password file.
         if (this.newPassword.isEmpty()) {
-            try {
-                authentication.readPasswordFileAndSetPassword();
-            } catch (Exception e) {
-                throw new CommandException(MESSAGE_FAIL_TO_READ_PASSWORD_FILE, e);
-            }
-            return new CommandResult(MESSAGE_LOCK_SUCCESS_NEW_PASSWORD);
+            useOldPassword(authentication);
+            return new CommandResult(MESSAGE_LOCK_SUCCESS_OLD_PASSWORD);
         }
 
+        //New password is entered, use this to lock the zip.
+        setNewPassword(authentication);
+        return new CommandResult(MESSAGE_LOCK_SUCCESS_NEW_PASSWORD);
+
+    }
+
+    /**
+     * Attempts to read the user's previous password from a password file and set the password to the model.
+     */
+    private void useOldPassword(Authentication authentication) throws CommandException {
+        try {
+            authentication.readPasswordFileAndSetPassword();
+        } catch (Exception e) {
+            throw new CommandException(MESSAGE_FAIL_TO_READ_PASSWORD_FILE, e);
+        }
+    }
+
+
+    private void setNewPassword(Authentication authentication) throws CommandException {
         //New password is entered, use this to lock the zip.
         try {
             authentication.setPassword(this.newPassword);
@@ -91,7 +109,6 @@ public class LockCommand extends Command {
             System.err.println(e);
             throw new CommandException(MESSAGE_FAILED_TO_STORE_PASSWORD, e);
         }
-        return new CommandResult(MESSAGE_LOCK_SUCCESS_OLD_PASSWORD);
     }
 
     @Override
