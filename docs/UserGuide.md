@@ -44,11 +44,10 @@ It allows for faster and more effective student management.
   * `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`: Adds a student John Doe to the Tutor Buddy application
   * `delete_student 3`: Deletes the 3rd student in the student list
 
-    **Tuition Session**
+   **Tuition Session**
   * `list_session`: List all tuition sessions
   * `add_session n/John Doe d/14-02-2021 t/1300 l/2 s/Biology f/40`: Adds a 2hr tuition session for John Doe happening on 14-02-2021
   * `delete_session n/John Doe i/1`: Deletes John Doe's first tuition session based on session list
-  <!---* `find_session James`: Finds and lists all tuition sessions that James have --->
 
    **General**
   * `exit`: Exits the application
