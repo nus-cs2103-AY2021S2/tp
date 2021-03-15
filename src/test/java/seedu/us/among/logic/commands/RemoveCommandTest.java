@@ -48,7 +48,7 @@ public class RemoveCommandTest {
         assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
     }
 
-    @Test //to-do uncomment these when showEndpointAtIndex is fixed
+    @Test
     public void execute_validIndexFilteredList_success() {
         showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
 

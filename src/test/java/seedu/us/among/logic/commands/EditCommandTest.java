@@ -34,8 +34,6 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalEndpointList(), new UserPrefs());
 
-    //to-do fix test cases in this file
-
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Endpoint editedEndpoint = new EndpointBuilder().withData("{key: value}").withHeaders("\"key: value\"").build();
@@ -85,7 +83,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
+        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
 
         Endpoint endpointInFilteredList = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
         Endpoint editedEndpoint = new EndpointBuilder(endpointInFilteredList).withMethod(VALID_METHOD_POST).build();
@@ -111,7 +109,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateEndpointFilteredList_failure() {
-        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
+        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
         // edit endpoint in filtered list into a duplicate in the API endpoint list
         Endpoint endpointInList = model.getEndpointList().getEndpointList()
               .get(INDEX_SECOND_ENDPOINT.getZeroBased());
@@ -135,7 +133,7 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidEndpointIndexFilteredList_failure() {
-        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT); //to-do to fix this test, fix showEndpointAtIndex
+        showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
         Index outOfBoundIndex = INDEX_SECOND_ENDPOINT;
         // ensures that outOfBoundIndex is still in bounds of API endpoint list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
