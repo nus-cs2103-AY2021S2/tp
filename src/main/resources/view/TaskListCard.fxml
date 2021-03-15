@@ -34,7 +34,6 @@
       <Label fx:id="starttime" styleClass="cell_small_label" text="\$starttime"/>
       <Separator></Separator>
       <Label fx:id="description" text="\$description" maxWidth="Infinity"/>
-      <Separator></Separator>
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
   </GridPane>

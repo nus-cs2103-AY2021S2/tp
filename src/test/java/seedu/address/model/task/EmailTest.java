@@ -1,6 +1,6 @@
 package seedu.address.model.task;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+//import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -30,7 +30,6 @@ public class EmailTest {
         // blank email
         assertFalse(Email.isValidEmail("")); // empty string
         assertFalse(Email.isValidEmail(" ")); // spaces only
-         */
 
         // missing parts
         assertFalse(Email.isValidEmail("@example.com")); // missing local part
@@ -51,6 +50,7 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@example.com.")); // domain name ends with a period
         assertFalse(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
+         */
 
         // valid email
         assertTrue(Email.isValidEmail("PeterJack_1190@example.com"));

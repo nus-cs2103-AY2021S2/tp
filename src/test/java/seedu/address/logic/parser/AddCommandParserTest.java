@@ -22,7 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+// import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Email;
+//import seedu.address.model.task.Email;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.testutil.TaskBuilder;
@@ -95,11 +95,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_TITLE_BOB + DEADLINE_DESC_BOB + STARTTIME_DESC_BOB + EMAIL_DESC_BOB
                         + DESCRIPTION_DESC_BOB, expectedMessage);
 
+        /*
         // missing deadline prefix
         assertParseFailure(parser, TITLE_DESC_BOB + VALID_DEADLINE_BOB + EMAIL_DESC_BOB + DESCRIPTION_DESC_BOB,
                 expectedMessage);
 
-        /*
         // missing email prefix
         assertParseFailure(parser, TITLE_DESC_BOB + DEADLINE_DESC_BOB + VALID_EMAIL_BOB + DESCRIPTION_DESC_BOB,
                 expectedMessage);

@@ -118,7 +118,7 @@ public class Task {
                 .append(getDeadline())
                 .append("; StartTime: ")
                 .append(getStartTime())
-                .append("; Email: ")
+                //.append("; Email: ")
                 .append(getEmail())
                 .append("; Description: ")
                 .append(getDescription());
