@@ -7,19 +7,23 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ReadOnlyUniqueAliasMap;
-import seedu.address.model.UniqueAliasMap;
 
 /**
  * Controller for an alias page
  */
 public class AliasWindow extends UiPart<Stage> {
 
+    private static final String HEADER = "Your aliases:";
+
     private static final Logger logger = LogsCenter.getLogger(AliasWindow.class);
     private static final String FXML = "AliasWindow.fxml";
 
     @FXML
     private Label aliasText;
-    private ReadOnlyUniqueAliasMap aliases = new UniqueAliasMap();
+    @FXML
+    private Label header;
+
+    private ReadOnlyUniqueAliasMap aliases;
 
     /**
      * Creates a new AliasWindow.
@@ -29,6 +33,7 @@ public class AliasWindow extends UiPart<Stage> {
     public AliasWindow(Stage root, ReadOnlyUniqueAliasMap aliases) {
         super(FXML, root);
         this.aliases = aliases;
+        header.setText(HEADER);
         updateAliases();
     }
 

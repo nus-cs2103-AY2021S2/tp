@@ -6,18 +6,27 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
 <fx:root resizable="false" title="Aliases" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
-            <VBox alignment="CENTER">
-                <Label fx:id="aliasText" text="Label" minWidth="300" />
+            <VBox minWidth="300">
+                <children>
+                    <Label fx:id="header" text="Label" style="-fx-font-weight: bold; -fx-font-size: 14">
+                        <VBox.margin>
+                            <Insets bottom="10.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label fx:id="aliasText" text="Label" style="-fx-font-size: 12">
+                        <VBox.margin>
+                            <Insets top="5.0" />
+                        </VBox.margin>
+                    </Label>
+                </children>
                 <opaqueInsets>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </opaqueInsets>
                 <padding>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
             </VBox>
         </Scene>
