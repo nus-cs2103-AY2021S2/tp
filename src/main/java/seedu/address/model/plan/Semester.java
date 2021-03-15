@@ -11,7 +11,7 @@ public class Semester {
      * 1. Implement SemesterParser
      * 2. Consider including isDone instance member to mark if the Semester has been completed
      */
-    private final String semesterDescription = "Semester: %1$2d\t\t Total MCs: %2$4d";
+    private final String semesterDescription = "Semester: %1$s; Total MCs: %2$s";
     private final int semNumber;
     private final List<Module> modules;
 
@@ -21,7 +21,7 @@ public class Semester {
      */
     public Semester(int semNumber) {
         this.semNumber = semNumber;
-        modules = new ArrayList<Module>(10);
+        modules = new ArrayList<>(10);
     }
 
     public int getSemNumber() {
