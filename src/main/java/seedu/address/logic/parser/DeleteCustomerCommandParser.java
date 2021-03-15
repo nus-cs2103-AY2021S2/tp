@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.DeleteCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,13 +20,24 @@ public class DeleteCustomerCommandParser implements Parser<DeleteCustomerCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCustomerCommand parse(String args) throws ParseException {
-        try {
-            Phone phone = ParserUtil.parsePhone(args);
-            return new DeleteCustomerCommand(phone);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCustomerCommand.MESSAGE_USAGE), pe);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_PHONE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteCustomerCommand.MESSAGE_USAGE));
         }
+
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        return new DeleteCustomerCommand(phone);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

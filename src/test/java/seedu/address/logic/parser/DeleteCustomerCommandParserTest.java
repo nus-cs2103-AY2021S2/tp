@@ -22,7 +22,8 @@ public class DeleteCustomerCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCustomerCommand() {
-        assertParseSuccess(parser, "94351253", new DeleteCustomerCommand(ALICE.getPhone()));
+        assertParseSuccess(parser, " p/94351253",
+                new DeleteCustomerCommand(ALICE.getPhone()));
     }
 
     @Test

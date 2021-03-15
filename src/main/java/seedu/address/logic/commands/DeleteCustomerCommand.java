@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class DeleteCustomerCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the customer identified by the phone used in the displayed customer list.\n"
-            + "Parameters: PHONE (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 61234567";
+            + "Parameters: " + PREFIX_PHONE + "PHONE (must be a valid phone number)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PHONE + "61234567";
 
     public static final String MESSAGE_DELETE_CUSTOMER_SUCCESS = "Deleted Customer: %1$s";
 
@@ -40,7 +41,7 @@ public class DeleteCustomerCommand extends DeleteCommand {
 
         // Gets index of customer with the provided phone number
         for (int i = 0; i < lastShownList.size(); i++) {
-            if (lastShownList.get(i).getPhone() == targetPhone) {
+            if (lastShownList.get(i).getPhone().equals(targetPhone)) {
                 targetIndex = Index.fromZeroBased(i);
                 break;
             }
@@ -52,6 +53,7 @@ public class DeleteCustomerCommand extends DeleteCommand {
 
         Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCustomer(customerToDelete);
+        model.setPanelToCustomerList(); // Display customer list
         return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
     }
 

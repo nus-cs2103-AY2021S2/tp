@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CHEESE;
@@ -57,7 +58,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteCustomer() throws Exception {
         DeleteCustomerCommand command = (DeleteCustomerCommand) parser.parseCommand(
-                DeleteCustomerCommand.COMMAND_WORD + " " + ALICE.getPhone());
+                DeleteCustomerCommand.COMMAND_WORD + " " + PREFIX_PHONE + ALICE.getPhone());
         assertEquals(new DeleteCustomerCommand(ALICE.getPhone()), command);
     }
 

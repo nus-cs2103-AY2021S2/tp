@@ -41,6 +41,7 @@ public class DeleteOrderCommand extends DeleteCommand {
 
         Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteOrder(orderToDelete);
+        model.setPanelToOrderList(); // Display order list
         return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
     }
 

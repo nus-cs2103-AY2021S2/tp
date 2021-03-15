@@ -35,6 +35,7 @@ public class DeleteCheeseCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCheese(cheeseToDelete);
+        expectedModel.setPanelToCheeseList();
 
         assertCommandSuccess(deleteCheeseCommand, model, expectedMessage, expectedModel);
     }
@@ -60,6 +61,7 @@ public class DeleteCheeseCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCheese(cheeseToDelete);
         showNoCheese(expectedModel);
+        expectedModel.setPanelToCheeseList();
 
         assertCommandSuccess(deleteCheeseCommand, model, expectedMessage, expectedModel);
     }

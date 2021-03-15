@@ -55,7 +55,8 @@ public class DeleteCustomerCommandTest {
         showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
 
         Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
-        DeleteCustomerCommand deleteCustomerCommand = new DeleteCustomerCommand(customerToDelete.getPhone());
+        DeleteCustomerCommand deleteCustomerCommand = new DeleteCustomerCommand(
+                new Phone(customerToDelete.getPhone().value));
 
         String expectedMessage = String.format(DeleteCustomerCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS,
                 customerToDelete);
