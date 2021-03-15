@@ -5,10 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Faculty {
 
-    enum FacultyAbbreviation {
+    public enum FacultyAbbreviation {
         FASS, BIZ, COM, SCALE, DEN, SDE, DNUS, ENG, ISEP, LAW, MED, MUSIC, SPH, SPP, SCI, USP, YNC
     }
 
@@ -18,8 +19,16 @@ public class Faculty {
             FacultyAbbreviation.LAW, FacultyAbbreviation.MED, FacultyAbbreviation.MUSIC, FacultyAbbreviation.SPH,
             FacultyAbbreviation.SPP, FacultyAbbreviation.SCI, FacultyAbbreviation.USP, FacultyAbbreviation.YNC);
 
+
+    private static final String stringFaculties = "\"FASS\", \"BIZ\", \"COM\", \"SCALE\", \"DEN\", \"SDE\", \"DNUS\",\n"
+            + "\"ENG\", \"ISEP\", \"LAW\", \"MED\", \"MUSIC\", \"SPH\", \"SPP\", \"SCI\", \"USP\", \"YNC\"";
+
+    private static final List<String> listFaculties = Arrays.asList("FASS", "BIZ", "COM", "SCALE", "DEN", "SDE", "DNUS",
+            "ENG", "ISEP", "LAW", "MED", "MUSIC", "SPH", "SPP", "SCI", "USP", "YNC");
+
     public static final String MESSAGE_CONSTRAINTS = "The faculty entered should be one of the following: \n"
             + LIST_FACULTY.toString();
+
 
     public final String value;
 
@@ -32,6 +41,14 @@ public class Faculty {
         requireNonNull(faculty);
         checkArgument(isValidFaculty(faculty), MESSAGE_CONSTRAINTS);
         value = faculty;
+    }
+
+    public static String getStringFaculties() {
+        return stringFaculties;
+    }
+
+    public static List<String> getListFaculties() {
+        return listFaculties;
     }
 
     /**
@@ -48,10 +65,17 @@ public class Faculty {
         }
     }
 
+    public static List<String> getFacultyAbbreviation() {
+        String[] facultyArray = Stream.of(FacultyAbbreviation.values()).map(FacultyAbbreviation::name)
+                .toArray(String[]::new);
+        return Arrays.asList(facultyArray);
+    }
+
     @Override
     public String toString() {
         return value;
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -64,4 +88,5 @@ public class Faculty {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
