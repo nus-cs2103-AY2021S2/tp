@@ -136,7 +136,9 @@ public class ModelManager implements Model {
     //=========== Sorted Filtered Person List Accessors ======================================================
 
     @Override
-    public ObservableList<Person> getSortedFilteredPersonList() { return sortedFilteredPersons; }
+    public ObservableList<Person> getSortedFilteredPersonList() {
+        return sortedFilteredPersons;
+    }
 
     @Override
     public void updateSortedFilteredPersonList(Comparator<Person> comparator) {

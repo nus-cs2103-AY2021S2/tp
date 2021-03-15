@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.LogicManager;
 
 /**
@@ -25,7 +24,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person>, Compara
     @Override
     public boolean test(Person person) {
         return keywords.stream().anyMatch(keyword -> {
-            int matchPercentage = match(person.getName().fullName,keyword);
+            int matchPercentage = match(person.getName().fullName, keyword);
 
             logger.fine(String.format("Name: %s, Word: %s, Match: %d",
                     person.getName().fullName, keyword, matchPercentage));
