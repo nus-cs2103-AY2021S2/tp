@@ -1,7 +1,5 @@
 package seedu.address.commons.util;
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -87,7 +85,24 @@ public class FileUtil {
     /**
      * Assumes source file exists
      */
-    public static void copyFile(Path source, Path dest) throws IOException {
-        Files.copy(source, dest, REPLACE_EXISTING);
+    public static void copyFile(Path source, Path destination) throws IOException {
+        Files.copy(source, destination);
     }
+
+    /**
+     * Extracts extension of file
+     */
+    public static String extractExtension(Path filePath) {
+        String fileName = filePath.toString();
+        return extractExtension(fileName);
+    }
+
+    /**
+     * Extracts extension of file
+     */
+    public static String extractExtension(String fileName) {
+        int lastIndexOf = fileName.lastIndexOf('.');
+        return fileName.substring(lastIndexOf);
+    }
+
 }

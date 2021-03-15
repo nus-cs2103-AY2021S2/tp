@@ -187,9 +187,7 @@ public class ParserUtil {
         }
 
         // Check extension
-        String fileName = path.toString();
-        int lastIndexOf = fileName.lastIndexOf('.');
-        String ext = fileName.substring(lastIndexOf);
+        String ext = FileUtil.extractExtension(path);
 
         String[] acceptedExtensions = Picture.ACCEPTED_FILE_EXTENSIONS;
         boolean hasCorrectExt = Arrays.stream(acceptedExtensions)
