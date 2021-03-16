@@ -19,29 +19,31 @@ import seedu.address.model.event.EventStatus;
 
 public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_TIME = "651234";
+    // private static final String INVALID_TIME = "651234"; commented out for v1.2
     private static final String INVALID_STATUS = "ASD";
     private static final String INVALID_DESCRIPTION = "@A!example.com";
-    private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_PERSON_NAME = "R@chel";
+    // private static final String INVALID_TAG = "#friend"; commented out for v1.2
+    // private static final String INVALID_PERSON_NAME = "R@chel"; commented out for v1.2
 
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
 
     private static final String VALID_NAME = CS2030.getName().toString();
-    private static final String VALID_TIME_START = "01/12/2019 10:00";
-    private static final String VALID_TIME_END = "02/01/2022 12:00";
+    // private static final String VALID_TIME_START = "01/12/2019 10:00"; commented out for v1.2
+    // private static final String VALID_TIME_END = "02/01/2022 12:00"; commented out for v1.2
     // private static final String VALID_TIME_START = changeEventTimeFormat(CS2030.getTimeStart().toString());
     // private static final String VALID_TIME_END = changeEventTimeFormat(CS2030.getTimeEnd().toString());
     private static final String VALID_STATUS = CS2030.getStatus().toString();
     private static final String VALID_DESCRIPTION = CS2030.getDescription().toString();
+    /* commented out for v1.2
     private static final List<JsonAdaptedTag> VALID_TAGS = CS2030.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedPerson> VALID_PERSONS = CS2030.getPersons().stream()
             .map(JsonAdaptedPerson::new)
             .collect(Collectors.toList());
+     */
 
     /*
     private static String changeEventTimeFormat(String eventTime) {
@@ -60,8 +62,7 @@ public class JsonAdaptedEventTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(INVALID_NAME, VALID_TIME_START,
-                        VALID_TIME_END, VALID_STATUS, VALID_DESCRIPTION, VALID_TAGS, VALID_PERSONS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(INVALID_NAME, VALID_STATUS, VALID_DESCRIPTION);
         String expectedMessage = EventName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
@@ -69,8 +70,7 @@ public class JsonAdaptedEventTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(null, VALID_TIME_START, VALID_TIME_END,
-                VALID_STATUS, VALID_DESCRIPTION, VALID_TAGS, VALID_PERSONS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(null, VALID_STATUS, VALID_DESCRIPTION);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, EventName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
@@ -117,35 +117,32 @@ public class JsonAdaptedEventTest {
 
     @Test
     public void toModelType_invalidStatus_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_TIME_START,
-                VALID_TIME_END, INVALID_STATUS, VALID_DESCRIPTION, VALID_TAGS, VALID_PERSONS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, INVALID_STATUS, VALID_DESCRIPTION);
         assertThrows(IllegalValueException.class, event::toModelType);
     }
 
     @Test
     public void toModelType_nullStatus_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_TIME_START,
-                VALID_TIME_END, null, VALID_DESCRIPTION, VALID_TAGS, VALID_PERSONS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, null, VALID_DESCRIPTION);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, EventStatus.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_TIME_START,
-                VALID_TIME_END, VALID_STATUS, INVALID_DESCRIPTION, VALID_TAGS, VALID_PERSONS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_STATUS, INVALID_DESCRIPTION);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_TIME_START,
-                VALID_TIME_END, VALID_STATUS, null, VALID_TAGS, VALID_PERSONS);
+        JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_NAME, VALID_STATUS, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
     }
 
+    /* commented out for v1.2
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
@@ -164,5 +161,6 @@ public class JsonAdaptedEventTest {
                 VALID_TIME_END, VALID_STATUS, INVALID_DESCRIPTION, VALID_TAGS, invalidPersons);
         assertThrows(IllegalValueException.class, event::toModelType);
     }
+     */
 
 }

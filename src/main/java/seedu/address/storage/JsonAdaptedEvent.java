@@ -25,8 +25,8 @@ class JsonAdaptedEvent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
 
     private final String eventName;
-    private String start;
-    private String end;
+    // private String start; //commented out for v1.2
+    // private String end; //commented out for v1.2
     private final String eventStatus;
     private final String eventDescription;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -36,22 +36,21 @@ class JsonAdaptedEvent {
      * Constructs a {@code JsonAdaptedEvent} with the given event details.
      */
     @JsonCreator
-    public JsonAdaptedEvent(@JsonProperty("name") String eventName, @JsonProperty("start") String timeStart,
-                            @JsonProperty("end") String timeEnd, @JsonProperty("status") String eventStatus,
-                            @JsonProperty("description") String description,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                            @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonAdaptedEvent(@JsonProperty("name") String eventName, @JsonProperty("status") String eventStatus,
+                            @JsonProperty("description") String description) {
         this.eventName = eventName;
-        this.start = timeStart;
-        this.end = timeEnd;
+        // this.start = timeStart; //commented out for v1.2
+        // this.end = timeEnd; //commented out for v1.2
         this.eventStatus = eventStatus;
         this.eventDescription = description;
+        /* commented out for v1.2
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
         if (persons != null) {
             this.persons.addAll(persons);
         }
+         */
     }
 
     /**
@@ -63,12 +62,14 @@ class JsonAdaptedEvent {
         // end = changeEventTimeFormat(source.getTimeEnd().eventTime.toString());
         eventStatus = source.getStatus().toString();
         eventDescription = source.getDescription().description;
+        /* commented out for v1.2
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         persons.addAll(source.getPersons().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
+         */
     }
 
     /* Commented out in v1.2
@@ -86,9 +87,10 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Event toModelType() throws IllegalValueException {
-        final List<Tag> eventTags = new ArrayList<>();
-        final List<Person> eventPersons = new ArrayList<>();
+        // final List<Tag> eventTags = new ArrayList<>(); // commented out for v1.2
+        // final List<Person> eventPersons = new ArrayList<>(); // commented out for v1.2
 
+        /* commented out for v1.2
         for (JsonAdaptedTag tag : tagged) {
             eventTags.add(tag.toModelType());
         }
@@ -96,6 +98,7 @@ class JsonAdaptedEvent {
         for (JsonAdaptedPerson person : persons) {
             eventPersons.add(person.toModelType());
         }
+         */
 
         if (eventName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -159,8 +162,8 @@ class JsonAdaptedEvent {
         }
         final Description modelDescription = new Description(eventDescription);
 
-        final Set<Person> modelPersons = new HashSet<>(eventPersons);
-        final Set<Tag> modelTags = new HashSet<>(eventTags);
+        // final Set<Person> modelPersons = new HashSet<>(eventPersons); //commented out for v1.2
+        // final Set<Tag> modelTags = new HashSet<>(eventTags); //commented out for v1.2
         return new Event(modelName, modelStatus, modelDescription);
     }
 
