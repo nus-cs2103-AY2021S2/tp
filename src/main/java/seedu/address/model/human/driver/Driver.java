@@ -2,6 +2,7 @@ package seedu.address.model.human.driver;
 
 import java.util.Objects;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.human.Human;
 import seedu.address.model.human.Name;
 import seedu.address.model.human.Phone;
@@ -20,6 +21,14 @@ public class Driver extends Human {
     }
 
     /**
+     * Takes in a string and parse as a name and a phone to be passed to parent constructor
+     */
+    public Driver(String driverToString) {
+        super(new Name(driverToString.split("; Phone: ")[0]),
+                new Phone(driverToString.split("; Phone: ")[1]));
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -30,6 +39,23 @@ public class Driver extends Human {
 
         return otherDriver != null
                 && otherDriver.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if a given string is a valid representation of Driver.
+     */
+    public static boolean isValidDriver(String driver) throws IllegalValueException {
+        /* Driver::toString print in the format of %name; Phone: %phone, therefore length = 1 != 2 means
+           the String driver is invalid */
+        String[] driverParams = driver.split("; Phone: ");
+        if (driverParams.length == 1) {
+            return false;
+        } else if (!Name.isValidName(driverParams[0])) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        } else if (!Phone.isValidPhone(driverParams[1])) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return true;
     }
 
     /**
