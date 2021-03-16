@@ -47,11 +47,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new customer             | add new customers to my existing customer base                         |
 | `* * *`  | user                                       | delete an existing customer     | remove customer entries that I no longer require                       |
 | `* * *`  | user                                       | find a customer by name        | locate details of customers without having to go through the entire list |
 | `* * *`  | user                                       | list my customers              | have an overview of my customer contacts                               |
+| `* * *`  | user                                       | clear all my customers contacts | start afresh with a empty customer database instead of trying to rectify a legacy database riddle with outdated data|
+| `* * *`  | user                                       | exit from the app              | safely exit the app, certain that my data is securely saved            |
+| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user with numerous customer contacts       | list customer by car type preference  | locate customers who prefer a specific car type easily          |
 | `* * *`  | user with numerous customer contacts       | list customer by car brand preference | locate customers who prefer a specific car brand easily         |
 | `* *`    | user with numerous ex-customers            | list customers with expiring COE   |  have a list of potential customers who might purchase a new car   |
