@@ -21,7 +21,7 @@ public class ScheduleListPanel extends UiPart<Region> {
     private ListView<Schedule> scheduleListView;
 
     /**
-     * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ScheduleListPanel} with the given {@code ObservableList}.
      */
     public ScheduleListPanel(ObservableList<Schedule> scheduleList) {
         super(FXML);
