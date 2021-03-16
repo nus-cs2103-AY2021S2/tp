@@ -15,7 +15,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -33,7 +32,9 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedTutorSubject> VALID_TUTOR_SUBJECTS= BENSON.getTutorSubjects().stream()
+    private static final List<JsonAdaptedTutorSubject> VALID_TUTOR_SUBJECTS = BENSON.getSubjectList()
+            .asUnmodifiableObservableList()
+            .stream()
             .map(JsonAdaptedTutorSubject::new)
             .collect(Collectors.toList());
 

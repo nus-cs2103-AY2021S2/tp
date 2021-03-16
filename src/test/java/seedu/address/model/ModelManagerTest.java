@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppointments.MATHS_APPOINTMENT;
-import static seedu.address.testutil.TypicalAppointments.SCIENCE_APPOINTMENT;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -24,9 +22,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.subject.SubjectName;
-import seedu.address.storage.AppointmentBookStorage;
 import seedu.address.testutil.AddressBookBuilder;
-import seedu.address.testutil.AppointmentBookBuilder;
 
 public class ModelManagerTest {
 
@@ -106,16 +102,12 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AppointmentBook appointmentBook = new AppointmentBookBuilder().withAppointment(MATHS_APPOINTMENT)
-                .withAppointment(SCIENCE_APPOINTMENT).build();
-
         AddressBook differentAddressBook = new AddressBook();
-        AppointmentBook differentAppointmentBook = new AppointmentBook();
         UserPrefs userPrefs = new UserPrefs();
         AppointmentBook appointmentBook = new AppointmentBook();
         AppointmentDateTime appointmentDateTime =
                 new AppointmentDateTime(LocalDateTime.of(2020, 10, 10,
-                10, 10).toString());
+                        10, 10).toString());
         Appointment diffAppointment = new Appointment(new Email("Trial"),
                 new SubjectName("Math"), appointmentDateTime, new Address("Clementi"));
         AppointmentBook differentAppointmentBook = new AppointmentBook();

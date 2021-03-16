@@ -13,7 +13,7 @@ public class AppointmentBuilder {
 
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_SUBJECT = "Mathematics";
-    public static final String DEFAULT_DATETIME = "2020-02-24 14:00";
+    public static final String DEFAULT_DATETIME = "2020-02-24 12:00PM";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Email email;
