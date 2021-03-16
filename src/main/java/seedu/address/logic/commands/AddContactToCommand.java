@@ -64,7 +64,7 @@ public class AddContactToCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        Project projectToAddTo = lastShownProjectList.get(projectToAddToIndex.getZeroBased());
+        Project projectToAddTo = requireNonNull(lastShownProjectList.get(projectToAddToIndex.getZeroBased()));
 
         if (projectToAddTo.hasParticipant(personToAdd)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_CONTACT, projectToAddTo.getProjectName()));

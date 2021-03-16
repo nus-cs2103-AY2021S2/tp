@@ -34,12 +34,14 @@ public class CommandResultTest {
         assertThrows(NullPointerException.class, () -> new CommandResult(null, null));
         assertThrows(NullPointerException.class, () -> new CommandResult("test", null));
         assertThrows(NullPointerException.class, () -> new CommandResult(null, UiCommand.NONE));
-        assertThrows(NullPointerException.class, () -> new CommandResult(null, null, null));
+        assertThrows(NullPointerException.class,
+                () -> new CommandResult(null, null, null));
     }
 
     @Test
-    public void constructor_indexIsNull_success() {
-        assertDoesNotThrow(() -> new CommandResult("test", UiCommand.NONE, null));
+    public void constructor_indexIsNull_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> new CommandResult("test", UiCommand.NONE, null));
     }
 
     @Test
