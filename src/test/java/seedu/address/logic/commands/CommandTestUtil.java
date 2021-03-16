@@ -154,10 +154,14 @@ public class CommandTestUtil {
     public static final String DESC_SORTING_ORDER = " " + PREFIX_SORTING_ORDER + VALID_SORTING_ORDER_DESC;
     public static final String DATETIME_APPOINTMENT_SORTING_KEY = " " + PREFIX_SORTING_KEY
             + VALID_SORTING_KEY_APPOINTMENT_DATETIME;
+    public static final String DEADLINE_PROPERTY_SORTING_KEY = " " + PREFIX_SORTING_KEY
+            + VALID_SORTING_KEY_PROPERTY_DEADLINE;
 
     public static final String INVALID_SORTING_ORDER = " " + PREFIX_SORTING_ORDER + "des"; // can only be desc and asc
     public static final String INVALID_APPOINTMENT_SORTING_KEY = " " + PREFIX_SORTING_KEY
             + "deadline"; // can only be datetime and name
+    public static final String INVALID_PROPERTY_SORTING_KEY = " " + PREFIX_SORTING_KEY
+            + "datetime"; // can only be name, price, postalcode, and deadline
 
     public static final SortAppointmentCommand.SortAppointmentDescriptor ASC_DATETIME;
     public static final SortAppointmentCommand.SortAppointmentDescriptor DESC_APPOINTMENT_NAME;
