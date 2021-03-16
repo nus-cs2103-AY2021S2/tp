@@ -24,7 +24,7 @@ public class CreateBookingCommand extends Command {
             + "Parameters: "
             + PREFIX_BOOKER + "BOOKER "
             + PREFIX_VENUE + "VENUE "
-            + PREFIX_DESCRIPTION + "DATETIME "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_BOOKINGSTART + "DATETIME "
             + PREFIX_BOOKINGEND + "DATETIME\n"
             + "Example: " + COMMAND_WORD + " "
