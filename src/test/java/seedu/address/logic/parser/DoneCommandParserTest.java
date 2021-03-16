@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DoneCommand;
 
 public class DoneCommandParserTest {
