@@ -49,4 +49,8 @@ public class Status {
     public int hashCode() {
         return value.hashCode();
     }
+
+    public boolean isDone() {
+        return value.equals("done");
+    }
 }

@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -81,6 +82,7 @@ public class TaskCardDetails extends UiPart<Region> {
     }
 
     private void setId(int displayedIndex) {
+        id.getStyleClass().add("cell_big_label");
         id.setText(displayedIndex + ". ");
     }
 
@@ -93,6 +95,7 @@ public class TaskCardDetails extends UiPart<Region> {
     private void setTitle(Task task) {
         String titleValue = task.getTitle().fullTitle;
         assert !titleValue.isBlank() : "Title cannot be displayed blank.";
+        title.getStyleClass().add("cell_big_label");
         title.setText(titleValue);
     }
 
@@ -105,6 +108,7 @@ public class TaskCardDetails extends UiPart<Region> {
     private void setDeadline(Task task) {
         String deadlineValue = task.getDeadline().value;
         assert !deadlineValue.isBlank() : "Deadline cannot be displayed blank.";
+        deadline.getStyleClass().add("cell_small_label");
         deadline.setText(deadlineValue);
     }
 
@@ -117,7 +121,28 @@ public class TaskCardDetails extends UiPart<Region> {
     private void setStartTime(Task task) {
         String startTimeValue = task.getStartTime().value;
         assert !startTimeValue.isBlank() : "StartTime cannot be displayed blank.";
+        starttime.getStyleClass().add("cell_small_label");
         starttime.setText(startTimeValue);
+    }
+
+    /**
+     * Sets text of the label to be status.
+     * Asserts that it is not blank because status cannot be created blank.
+     * Sets style class according to its value.
+     *
+     * @param task Task to be displayed.
+     */
+    private void setStatus(Task task) {
+        String statusValue = task.getStatus().value;
+        assert !statusValue.isBlank() : "Status cannot be displayed blank.";
+
+        boolean isStatusDone = task.getStatus().isDone();
+        if (isStatusDone) {
+            status.getStyleClass().add("status-green");
+        } else {
+            status.getStyleClass().add("status-red");
+        }
+        status.setText(statusValue);
     }
 
     /**
@@ -133,20 +158,10 @@ public class TaskCardDetails extends UiPart<Region> {
             return;
         }
 
+        details.getChildren().add(new Separator());
         description.setText(descriptionValue);
+        description.getStyleClass().add("description");
         details.getChildren().add(description);
-    }
-
-    /**
-     * Sets text of the label to be status.
-     * Asserts that it is not blank because status cannot be created blank.
-     *
-     * @param task Task to be displayed.
-     */
-    private void setStatus(Task task) {
-        String statusValue = task.getStatus().value;
-        assert !statusValue.isBlank() : "Status cannot be displayed blank.";
-        status.setText(statusValue);
     }
 
     /**
@@ -163,6 +178,7 @@ public class TaskCardDetails extends UiPart<Region> {
         }
 
         email.setText(emailValue);
+        email.getStyleClass().add("cell_small_label");
         details.getChildren().add(description);
     }
 
