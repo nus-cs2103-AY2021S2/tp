@@ -8,7 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Flashcard;
+import seedu.address.model.person.UniqueFlashcardList;
 
 /**
  * Class Quiz represents a quiz session.
@@ -47,6 +49,12 @@ public class Quiz {
         } else {
             return quizSessionQueue.poll();
         }
+    }
+
+    public ObservableList<Flashcard> getNextFlashcard() {
+        UniqueFlashcardList temp = new UniqueFlashcardList();
+        temp.setFlashcards(List.of(this.getNextQuestion()));
+        return temp.asUnmodifiableObservableList();
     }
 
     /**

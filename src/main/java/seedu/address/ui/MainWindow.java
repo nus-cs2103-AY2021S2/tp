@@ -177,6 +177,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Starts the quiz by generating the Quiz object and then showing the first question.
+     */
+    private void startQuiz() {
+        flashcardListPanel = new FlashcardListPanel(logic.startQuiz());
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -231,6 +240,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.equals("quiz")) {
                 enterQuizMode();
+            }
+
+            if (commandText.equals("start")) {
+                startQuiz();
             }
 
             if (commandResult.isShowHelp()) {

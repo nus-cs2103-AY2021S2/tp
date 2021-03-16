@@ -12,6 +12,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LearnCommand;
 import seedu.address.logic.commands.QuizCommand;
+import seedu.address.logic.commands.StartCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -49,6 +50,9 @@ public class AddressBookParser {
 
         case QuizCommand.COMMAND_WORD:
             return new QuizCommand();
+
+        case StartCommand.COMMAND_WORD:
+            return new StartCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

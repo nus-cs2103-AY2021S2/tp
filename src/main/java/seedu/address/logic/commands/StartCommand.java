@@ -1,19 +1,20 @@
 package seedu.address.logic.commands;
 
+import seedu.address.model.Model;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
-import seedu.address.model.Model;
-
 /**
- * Enter flashcard quiz mode.
+ * Starts the quiz.
  */
-public class QuizCommand extends Command {
+public class StartCommand extends Command {
 
-    public static final String COMMAND_WORD = "quiz";
+    public static final String COMMAND_WORD = "start";
 
-    public static final String MESSAGE_SUCCESS = "You are now in quiz mode.\n"
-            + "Enter \"start\" to start quiz.";
+    public static final String MESSAGE_SUCCESS = "Here is the first  question.\n"
+            + "Enter \"end\" to end the quiz, \"check\" to check the answer, "
+            + "and \"next\" to move to the next question.";
 
     @Override
     public CommandResult execute(Model model) {
