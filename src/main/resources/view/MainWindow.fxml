@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="2160.0" maxWidth="3840.0" minHeight="480" minWidth="680" onCloseRequest="#handleExit" title="CoLAB" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="2160.0" maxWidth="3840.0" minHeight="480" minWidth="680" onCloseRequest="#handleExit" title="CoLAB" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/colab_icon_500.png" />
   </icons>
