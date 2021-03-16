@@ -20,16 +20,18 @@ while still having the benefits of a Graphical User Interface (GUI).
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
-
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named 
      `John Doe`
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
+   * **`list`** : Lists all contacts.
+
    * **`clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
+   
+   * **`help`** : Get a legend of commands.    
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -64,7 +66,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 ### Adding a customer: `add`
 
-Adds a customer to the address book.
+Adds a customer to the contact list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PREFERRED_CAR [x/COE_EXPIRY_DATE] [t/TAG]…​`
 
@@ -78,12 +80,6 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/Honda City`
 * `add n/Betsy Crowe c/Honda City t/friend e/betsycrowe@example.com x/2011 03 27 a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all customers : `list`
-
-Shows a list of all customers in the system
-
-Format: `list`
-
 ### Deleting a customer : `delete`
 
 Deletes the specified customer from the contact list.
@@ -94,14 +90,31 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+### Listing all customers : `list`
+
+Shows a list of all customers in the system
+
+Format: `list`
+
+### Clear all customers : `clear`
+* **`clear`** : Deletes all customers in the system.
 
 
+### Exiting app: `exit`
+* **`exit`** : Exits the app.
+
+### Quick help: `help`
+* **`help`** : Overview of commands and input syntax.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PREFERRED_CAR [x/COE_EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/Honda Civic /x 2007 03 21 t/friend t/colleague`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**List** | `list`
+**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PREFERRED_CAR [x/COE_EXPIRY_DATE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/Honda Civic /x 2007 03 21 t/friend t/colleague`
+**delete** | `delete INDEX`<br> e.g., `delete 3`
+**list** | `list`
+**clear** | `clear`
+**exit** | `exit`
+**help** | `help`
+
