@@ -2,6 +2,8 @@ package seedu.address.model.cheese;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Optional;
+
 /**
  * Represents a Cheese in the Cheese Inventory Management System (CHIM)
  * Guarantees: immutable;
@@ -15,8 +17,8 @@ public class Cheese {
 
     // Data fields
     private final ManufactureDate manufactureDate;
-    private final MaturityDate maturityDate;
-    private final ExpiryDate expiryDate;
+    private final Optional<MaturityDate> maturityDate;
+    private final Optional<ExpiryDate> expiryDate;
     private final boolean isAssigned;
 
     public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
@@ -37,8 +39,8 @@ public class Cheese {
         requireAllNonNull(cheeseType, manufactureDate, maturityDate, expiryDate);
         this.cheeseType = cheeseType;
         this.manufactureDate = manufactureDate;
-        this.maturityDate = maturityDate;
-        this.expiryDate = expiryDate;
+        this.maturityDate = Optional.ofNullable(maturityDate);
+        this.expiryDate = Optional.ofNullable(expiryDate);
         this.cheeseId = cheeseId;
         this.isAssigned = isAssigned;
     }
@@ -51,11 +53,11 @@ public class Cheese {
         return manufactureDate;
     }
 
-    public MaturityDate getMaturityDate() {
+    public Optional<MaturityDate> getMaturityDate() {
         return maturityDate;
     }
 
-    public ExpiryDate getExpiryDate() {
+    public Optional<ExpiryDate> getExpiryDate() {
         return expiryDate;
     }
 
@@ -71,8 +73,12 @@ public class Cheese {
         return this.cheeseType.equals(cheeseType);
     }
 
+    /**
+     * Returns a cheese with same fields that is marked assigned.
+     */
     public Cheese assignToOrder() {
-        return new Cheese(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId);
+        return new Cheese(cheeseType, manufactureDate, maturityDate.orElse(null),
+                expiryDate.orElse(null), cheeseId);
     }
 
     /**

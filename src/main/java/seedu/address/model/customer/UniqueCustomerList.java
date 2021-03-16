@@ -45,7 +45,7 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
-     * Returns first {@code Customer} instance with equivalent phone as the given argument.
+     * Returns first {@code Customer} instance with equivalent phone as the given argument or null if it does not exist.
      */
     public Customer getCustomerWithPhone(Phone phone) {
         requireNonNull(phone);

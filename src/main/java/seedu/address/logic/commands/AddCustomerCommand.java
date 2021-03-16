@@ -14,7 +14,7 @@ import seedu.address.model.customer.Customer;
 /**
  * Adds a customer to the address book.
  */
-public class AddCustomerCommand extends Command {
+public class AddCustomerCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addcustomer";
 

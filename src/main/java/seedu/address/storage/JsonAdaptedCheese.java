@@ -50,8 +50,8 @@ class JsonAdaptedCheese {
         cheeseId = source.getCheeseId().value;
         cheeseType = source.getCheeseType().value;
         manufactureDate = source.getManufactureDate().toJsonString();
-        maturityDate = source.getMaturityDate().toJsonString();
-        expiryDate = source.getExpiryDate().toJsonString();
+        maturityDate = source.getMaturityDate().map(MaturityDate::toJsonString).orElse(null);
+        expiryDate = source.getExpiryDate().map(ExpiryDate::toJsonString).orElse(null);
         isAssigned = source.getAssignStatus();
     }
 

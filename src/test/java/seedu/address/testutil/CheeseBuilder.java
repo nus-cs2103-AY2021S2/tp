@@ -43,8 +43,8 @@ public class CheeseBuilder {
     public CheeseBuilder(Cheese cheeseToCopy) {
         cheeseType = cheeseToCopy.getCheeseType();
         manufactureDate = cheeseToCopy.getManufactureDate();
-        maturityDate = cheeseToCopy.getMaturityDate();
-        expiryDate = cheeseToCopy.getExpiryDate();
+        maturityDate = cheeseToCopy.getMaturityDate().orElse(null);
+        expiryDate = cheeseToCopy.getExpiryDate().orElse(null);
         cheeseId = cheeseToCopy.getCheeseId();
         isAssigned = cheeseToCopy.getAssignStatus();
     }

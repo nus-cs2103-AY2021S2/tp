@@ -10,6 +10,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cheese.CheeseType;
+import seedu.address.model.cheese.ExpiryDate;
+import seedu.address.model.cheese.ManufactureDate;
+import seedu.address.model.cheese.MaturityDate;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
@@ -172,5 +175,71 @@ public class ParserUtil {
             throw new ParseException(OrderDate.MESSAGE_CONSTRAINTS);
         }
         return new OrderDate(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String quantity} into an {@code Integer}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static int parseInteger(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        int quantityInt = Integer.parseInt(trimmedQuantity);
+        if (!Quantity.isValidQuantity(quantityInt)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return quantityInt;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code ManufactureDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static ManufactureDate parseManufactureDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!ManufactureDate.isValidDate(trimmedDate)) {
+            throw new ParseException(ManufactureDate.MESSAGE_CONSTRAINTS);
+        }
+        return new ManufactureDate(trimmedDate);
+    }
+
+    /**
+     *
+     * Parses a {@code String date} into a {@code MaturityDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static MaturityDate parseMaturityDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!MaturityDate.isValidDate(trimmedDate)) {
+            throw new ParseException(MaturityDate.MESSAGE_CONSTRAINTS);
+        }
+        return new MaturityDate(trimmedDate);
+    }
+
+    /**
+     *
+     * Parses a {@code String date} into a {@code ExpiryDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static ExpiryDate parseExpiryDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!ExpiryDate.isValidDate(trimmedDate)) {
+            throw new ParseException(ExpiryDate.MESSAGE_CONSTRAINTS);
+        }
+        return new ExpiryDate(trimmedDate);
     }
 }

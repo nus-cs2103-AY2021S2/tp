@@ -13,6 +13,13 @@ import seedu.address.model.AbstractDate;
 public class ManufactureDate extends AbstractDate {
 
     /**
+     * Constructs a {@code OrderDate} with current date time.
+     */
+    private ManufactureDate() {
+        super();
+    }
+
+    /**
      * Constructs a {@code ManufactureDate}.
      *
      * @param date A valid manufacture date.
@@ -24,5 +31,9 @@ public class ManufactureDate extends AbstractDate {
 
     public boolean isValidManufactureDate(LocalDateTime value) {
         return true;
+    }
+
+    public static ManufactureDate now() {
+        return new ManufactureDate();
     }
 }
