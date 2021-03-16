@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Quiz;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -177,6 +178,31 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Starts the quiz by generating the Quiz object and then showing the first question.
+     */
+    private void startQuiz() {
+        flashcardListPanel = new FlashcardListPanel(logic.startQuiz(), true);
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
+    /**
+     * Shows the next question in the quiz.
+     */
+    private void getNextFlashcard() {
+        if (Quiz.hasSessionEnded()) {
+            resultDisplay.setFeedbackToUser(Quiz.QUIZ_END_MESSAGE);
+            flashcardListPanelPlaceholder.setVisible(false);
+            return;
+        }
+
+        flashcardListPanel = new FlashcardListPanel(logic.getNextFlashcard(), true);
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        flashcardListPanelPlaceholder.setVisible(true);
+    }
+
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -231,6 +257,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandText.equals("quiz")) {
                 enterQuizMode();
+            }
+
+            if (commandText.equals("start")) {
+                startQuiz();
+            }
+
+            if (commandText.equals("next")) {
+                getNextFlashcard();
             }
 
             if (commandResult.isShowHelp()) {
