@@ -102,6 +102,12 @@ public interface Model {
     void addModule(Module module);
 
     /**
+     * Deletes the given module.
+     * The Module must exist in the RemindMe.
+     */
+    void deleteModule(Module target);
+
+    /**
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */

@@ -189,6 +189,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteModule(Module target) {
+        modulePlanner.removeModule(target);
+    }
+
+    @Override
     public boolean hasAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
         return modulePlanner.hasAssignment(module, assignment);
