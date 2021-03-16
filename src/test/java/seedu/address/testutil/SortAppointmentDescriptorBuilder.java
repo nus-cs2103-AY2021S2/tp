@@ -18,7 +18,6 @@ public class SortAppointmentDescriptorBuilder {
     public SortAppointmentDescriptorBuilder(SortAppointmentDescriptor descriptor) {
         this.descriptor = new SortAppointmentDescriptor(descriptor);
     }
-    
     /**
      * Sets the {@code SortingOrder} of the {@code SortAppointmentDescriptor} that we are building.
      */
