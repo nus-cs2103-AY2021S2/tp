@@ -87,6 +87,20 @@ public class Person {
     }
 
     /**
+     * Returns the person's insurance plan name.
+     */
+    public InsurancePlanName getPlanName() {
+        return planName;
+    }
+
+    /**
+     * Returns the person's insurance premium.
+     */
+    public InsurancePremium getPremium() {
+        return premium;
+    }
+
+    /**
      * Creates a Person object that is identical to the original, but contains a new Meeting.
      */
     public Person addMeeting(Meeting meeting) {
@@ -97,7 +111,7 @@ public class Person {
      * Creates a Person object that is identical to the original, but contains a new InsurancePlanName.
      */
     public Person addPlanName(InsurancePlanName newPlanName) {
-        return new Person(name, phone, email, address, tags, meeting, planName, premium);
+        return new Person(name, phone, email, address, tags, meeting, newPlanName, premium);
     }
 
     /**
@@ -139,13 +153,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && (otherPerson.getPlanName() == null ? getPlanName() == null : otherPerson.getPlanName().equals(getPlanName()))
+                && (otherPerson.getPremium() == null ? getPremium() == null : otherPerson.getPremium().equals(getPremium()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, planName, premium);
     }
 
     @Override
@@ -164,6 +180,10 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Plan Name: ")
+                .append(getPlanName())
+                .append("; Yearly Premium: ")
+                .append(getPremium());
         return builder.toString();
     }
 

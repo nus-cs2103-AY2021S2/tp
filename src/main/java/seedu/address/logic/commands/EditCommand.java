@@ -19,6 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.insurance.InsurancePlanName;
+import seedu.address.model.insurance.InsurancePremium;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -98,8 +100,14 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        InsurancePlanName updatedPlanName = editPersonDescriptor.getPlanName().orElse(personToEdit.getPlanName());
+        InsurancePremium updatedPremium = editPersonDescriptor.getPremium().orElse(personToEdit.getPremium());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        editedPerson = editedPerson.addPlanName(updatedPlanName);
+        editedPerson = editedPerson.addPremium(updatedPremium);
+
+        return editedPerson;
     }
 
     @Override
@@ -130,6 +138,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private InsurancePlanName planName;
+        private InsurancePremium premium;
 
         public EditPersonDescriptor() {}
 
@@ -143,13 +153,15 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPlanName(toCopy.planName);
+            setPremium(toCopy.premium);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, planName, premium);
         }
 
         public void setName(Name name) {
@@ -182,6 +194,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setPlanName(InsurancePlanName planName) {
+            this.planName = planName;
+        }
+
+        public Optional<InsurancePlanName> getPlanName() {
+            return Optional.ofNullable(planName);
+        }
+
+        public void setPremium(InsurancePremium premium) {
+            this.premium = premium;
+        }
+
+        public Optional<InsurancePremium> getPremium() {
+            return Optional.ofNullable(premium);
         }
 
         /**
@@ -220,7 +248,9 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getPlanName().equals(e.getPlanName())
+                    && getPremium().equals(e.getPremium());
         }
     }
 }
