@@ -35,6 +35,8 @@ public interface Logic {
 
     ObservableList<Flashcard> startQuiz();
 
+    ObservableList<Flashcard> getNextFlashcard();
+
     /**
      * Returns the user prefs' address book file path.
      */

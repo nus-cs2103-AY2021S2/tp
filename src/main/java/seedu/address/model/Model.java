@@ -87,4 +87,6 @@ public interface Model {
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
 
     ObservableList<Flashcard> startQuiz();
+
+    ObservableList<Flashcard> getNextFlashcard();
 }

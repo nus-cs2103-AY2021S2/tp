@@ -6,13 +6,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 /**
- * Starts the quiz.
+ * Gets the next flashcard.
  */
-public class StartCommand extends Command {
+public class NextCommand extends Command {
 
-    public static final String COMMAND_WORD = "start";
+    public static final String COMMAND_WORD = "next";
 
-    public static final String MESSAGE_SUCCESS = "Here is the first question.\n"
+    public static final String MESSAGE_SUCCESS = "Here is the next question.\n"
             + "Enter \"end\" to end the quiz, \"check\" to check the answer, "
             + "and \"next\" to move to the next question.";
 

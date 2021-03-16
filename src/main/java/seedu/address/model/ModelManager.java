@@ -158,4 +158,10 @@ public class ModelManager implements Model {
         this.quizInstance = new Quiz();
         return quizInstance.getNextFlashcard();
     }
+
+    @Override
+    public ObservableList<Flashcard> getNextFlashcard() {
+        requireNonNull(quizInstance);
+        return quizInstance.getNextFlashcard();
+    }
 }

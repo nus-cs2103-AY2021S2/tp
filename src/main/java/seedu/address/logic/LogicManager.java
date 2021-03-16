@@ -76,6 +76,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Flashcard> getNextFlashcard() {
+        return model.getNextFlashcard();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
