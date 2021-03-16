@@ -14,9 +14,9 @@ import seedu.address.model.person.Flashcard;
  * Panel containing the list of persons.
  */
 public class FlashcardListPanel extends UiPart<Region> {
+    public static final int QUIZ_LIST = -1;
     private static final String FXML = "FlashcardListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
-    public static final int QUIZ_LIST = -1;
 
     @FXML
     private ListView<Flashcard> flashcardListView;
@@ -33,10 +33,10 @@ public class FlashcardListPanel extends UiPart<Region> {
     /**
      * Creates a {@code FlashcardListPanel} with the given {@code ObservableList}.
      */
-    public FlashcardListPanel(ObservableList<Flashcard> flashcardList, boolean isNotAns, int currIndex) {
+    public FlashcardListPanel(ObservableList<Flashcard> flashcardList, boolean isQuestion, int currIndex) {
         super(FXML);
         flashcardListView.setItems(flashcardList);
-        flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz(currIndex, isNotAns));
+        flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz(currIndex, isQuestion));
 
     }
 
@@ -65,11 +65,11 @@ public class FlashcardListPanel extends UiPart<Region> {
      */
     class FlashcardListViewCellQuiz extends ListCell<Flashcard> {
         private int currIndex;
-        private boolean isNotAns;
+        private boolean isQuestion;
 
-        public FlashcardListViewCellQuiz(int currIndex, boolean isNotAns) {
+        public FlashcardListViewCellQuiz(int currIndex, boolean isQuestion) {
             this.currIndex = currIndex;
-            this.isNotAns = isNotAns;
+            this.isQuestion = isQuestion;
         }
 
         @Override
@@ -81,9 +81,9 @@ public class FlashcardListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 if (currIndex == QUIZ_LIST) {
-                    setGraphic(new FlashcardCard(flashcard, getIndex() + 1, isNotAns).getRoot());
+                    setGraphic(new FlashcardCard(flashcard, getIndex() + 1, isQuestion).getRoot());
                 } else {
-                    setGraphic(new FlashcardCard(flashcard, currIndex, isNotAns).getRoot());
+                    setGraphic(new FlashcardCard(flashcard, currIndex, isQuestion).getRoot());
 
                 }
             }
