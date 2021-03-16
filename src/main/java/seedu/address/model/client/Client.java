@@ -22,17 +22,19 @@ public class Client {
 
     // Data fields
     private Address address;
+    private InsurancePlan insurancePlan;
     private Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address, InsurancePlan plan, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.insurancePlan = plan;
         this.tags.addAll(tags);
     }
 
@@ -51,6 +53,8 @@ public class Client {
     public Address getAddress() {
         return address;
     }
+
+    public InsurancePlan getPlan() {return insurancePlan;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -92,6 +96,7 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
+                && otherClient.getPlan().equals(getPlan())
                 && otherClient.getTags().equals(getTags());
     }
 
@@ -110,7 +115,9 @@ public class Client {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Insurance Plan: ")
+                .append(getPlan());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

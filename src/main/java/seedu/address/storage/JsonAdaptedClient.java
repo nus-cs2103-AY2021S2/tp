@@ -15,6 +15,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.InsurancePlan;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
+    private final String insurancePlan;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +38,12 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.insurancePlan = insurancePlan;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +57,7 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        insurancePlan = source.getPlan().planName;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +106,17 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
+        if (insurancePlan == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePlan.class.getSimpleName()));
+        }
+        if (!InsurancePlan.isValidPlan(insurancePlan)) {
+            throw new IllegalValueException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+        final InsurancePlan modelPlan = new InsurancePlan(insurancePlan);
+
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelPlan, modelTags);
     }
 
 }
