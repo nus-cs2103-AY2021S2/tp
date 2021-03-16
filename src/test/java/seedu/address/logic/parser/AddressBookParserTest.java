@@ -31,6 +31,7 @@ import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 public class AddressBookParserTest {
 
+    private static final String VALID_NAME = "abc";
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
@@ -49,8 +50,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_CUSTOMER), command);
+            DeleteCommand.COMMAND_WORD + " " + VALID_NAME);
+
+
+        assertEquals(new DeleteCommand(VALID_NAME), command);
     }
 
     @Test
