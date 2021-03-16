@@ -24,7 +24,7 @@ Bob the Underwriting Insurance Agent is a **desktop app for managing insurance c
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will list out all available commands.<br>
    Some example commands you can try:
 
-   * **`list`** : List out all available commands.
+   * **`list`** : List out all contact cards available.
 
    * **`add`**`/nShrek p/66666666 a/69 l/Swamp` : Adds a client contact named `Shrek` to the contacts list.
 
