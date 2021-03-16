@@ -31,7 +31,7 @@ public class JsonAdaptedRoom {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
     public JsonAdaptedRoom(@JsonProperty("roomNumber") String roomNumber, @JsonProperty("roomType") String roomType,
@@ -57,9 +57,9 @@ public class JsonAdaptedRoom {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted room object into the model's {@code Room} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted room.
      */
     public Room toModelType() throws IllegalValueException {
         final List<Tag> roomTags = new ArrayList<>();

@@ -49,9 +49,9 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     /**
-     * Replaces the room {@code target} in the list with {@code editedPerson}.
+     * Replaces the room {@code target} in the list with {@code editedRoom}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The Room identity of {@code editedRoom} must not be the same as another existing room in the list.
      */
     public void setRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
@@ -85,8 +85,8 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code rooms}.
+     * {@code rooms} must not contain duplicate rooms.
      */
     public void setRooms(List<Room> rooms) {
         requireAllNonNull(rooms);
