@@ -24,7 +24,7 @@ import seedu.address.logic.parser.findcommandparser.FindCommandParser;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class RemindMeParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -61,6 +61,7 @@ public class AddressBookParser {
             return new ClearCommand();
 
         case CalendarCommand.COMMAND_WORD:
+        case CalendarCommand.COMMAND_CHAR:
             return new CalendarCommand();
 
         case FindCommand.COMMAND_WORD:
@@ -70,9 +71,11 @@ public class AddressBookParser {
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
+        case ExitCommand.COMMAND_CHAR:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+        case HelpCommand.COMMAND_CHAR:
             return new HelpCommand();
 
         default:
