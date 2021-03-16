@@ -9,10 +9,10 @@ public abstract class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Sorts the items in StoreMando by quantity or expiry date.\n"
-        + "Parameter (case-insensitive): quantity up, quantity down OR expirydate\n"
+        + "Parameter (case-insensitive): quantity asc, quantity desc OR expirydate\n"
         + "Examples: \n"
-        + "1. " + COMMAND_WORD + " quantity up\n"
-        + "2. " + COMMAND_WORD + " quantity down\n"
+        + "1. " + COMMAND_WORD + " quantity asc\n"
+        + "2. " + COMMAND_WORD + " quantity desc\n"
         + "3. " + COMMAND_WORD + " expirydate";
 
     public static final String MESSAGE_SUCCESS = "Sorted all items";

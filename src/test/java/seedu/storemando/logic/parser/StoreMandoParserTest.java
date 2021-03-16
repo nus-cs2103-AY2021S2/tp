@@ -91,8 +91,8 @@ public class StoreMandoParserTest {
     @Test
     public void parseCommand_sort() throws Exception {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " expiryDate") instanceof SortCommand);
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity up") instanceof SortQuantityCommand);
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity down") instanceof SortQuantityCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity asc") instanceof SortQuantityCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity desc") instanceof SortQuantityCommand);
     }
 
     @Test

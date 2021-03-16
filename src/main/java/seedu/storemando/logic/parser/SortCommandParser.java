@@ -9,8 +9,8 @@ import seedu.storemando.logic.parser.exceptions.ParseException;
 
 public class SortCommandParser implements Parser<SortCommand> {
 
-    public static final String QUANTITY_ASCENDING_KEYWORD = "quantity up";
-    public static final String QUANTITY_DESCENDING_KEYWORD = "quantity down";
+    public static final String QUANTITY_ASCENDING_KEYWORD = "quantity asc";
+    public static final String QUANTITY_DESCENDING_KEYWORD = "quantity desc";
     public static final String EXPIRYDATE_KEYWORD = "expirydate";
 
     /**
