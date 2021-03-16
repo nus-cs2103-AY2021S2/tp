@@ -75,11 +75,22 @@ public class TypicalItems {
     }
 
     /**
-     * Returns an {@code StoreMando} with all the typical items sorted by quantity.
+     * Returns an {@code StoreMando} with all the typical items sorted by increasing quantity.
      */
-    public static StoreMando getTypicalStoreMandoSortedByQuantity() {
+    public static StoreMando getTypicalStoreMandoSortedByIncreasingQuantity() {
         StoreMando ab = new StoreMando();
-        for (Item item : getSortedByQuantityTypicalItems()) {
+        for (Item item : getSortedByIncreasingQuantityTypicalItems()) {
+            ab.addItem(item);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code StoreMando} with all the typical items sorted by decreasing quantity.
+     */
+    public static StoreMando getTypicalStoreMandoSortedByDecreasingQuantity() {
+        StoreMando ab = new StoreMando();
+        for (Item item : getSortedByDecreasingQuantityTypicalItems()) {
             ab.addItem(item);
         }
         return ab;
@@ -100,8 +111,12 @@ public class TypicalItems {
         return new ArrayList<>(Arrays.asList(APPLE, BREAD, CREAM, DONUT, EGGS, FLOUR, GINGER));
     }
 
-    public static List<Item> getSortedByQuantityTypicalItems() {
+    public static List<Item> getSortedByIncreasingQuantityTypicalItems() {
         return new ArrayList<>(Arrays.asList(BREAD, CREAM, FLOUR, DONUT, APPLE, EGGS, GINGER));
+    }
+
+    public static List<Item> getSortedByDecreasingQuantityTypicalItems() {
+        return new ArrayList<>(Arrays.asList(GINGER, EGGS, APPLE, DONUT, FLOUR, BREAD, CREAM));
     }
 
     public static List<Item> getSortedByExpiryDateTypicalItems() {

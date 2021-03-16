@@ -7,8 +7,9 @@ import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
 import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
+import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByDecreasingQuantity;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByExpiryDate;
-import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByQuantity;
+import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByIncreasingQuantity;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,12 +20,22 @@ import seedu.storemando.model.UserPrefs;
 class SortQuantityCommandTest {
 
     @Test
-    void execute_sortNonEmptyStoreMandoByQuantity_success() {
+    void execute_sortNonEmptyStoreMandoByIncreasingQuantity_success() {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
-        expectedModel.setStoreMando(getTypicalStoreMandoSortedByQuantity());
+        expectedModel.setStoreMando(getTypicalStoreMandoSortedByIncreasingQuantity());
 
-        assertCommandSuccess(new SortQuantityCommand(), model,
+        assertCommandSuccess(new SortQuantityCommand(true), model,
+            SortCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    void execute_sortNonEmptyStoreMandoByDecreasingQuantity_success() {
+        Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
+        expectedModel.setStoreMando(getTypicalStoreMandoSortedByDecreasingQuantity());
+
+        assertCommandSuccess(new SortQuantityCommand(false), model,
             SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -32,25 +43,25 @@ class SortQuantityCommandTest {
     void execute_sortEmptyStoreMandoByQuantity_throwsCommandException() {
         Model model = new ModelManager();
 
-        assertCommandFailure(new SortQuantityCommand(), model,
+        assertCommandFailure(new SortQuantityCommand(true), model,
             SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
     }
 
     @Test
     void execute_sortSortedStoreMando_success() {
-        Model model = new ModelManager(getTypicalStoreMandoSortedByQuantity(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByQuantity(), new UserPrefs());
+        Model model = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
 
-        assertCommandSuccess(new SortQuantityCommand(), model,
+        assertCommandSuccess(new SortQuantityCommand(true), model,
             SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     void execute_sortStoreMandoSortedByExpiryDate_success() {
         Model model = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByQuantity(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
 
-        assertCommandSuccess(new SortQuantityCommand(), model,
+        assertCommandSuccess(new SortQuantityCommand(true), model,
             SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -59,13 +70,13 @@ class SortQuantityCommandTest {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
         showEmptyListAfterFind(model, HEATER);
 
-        assertCommandFailure(new SortQuantityCommand(), model,
+        assertCommandFailure(new SortQuantityCommand(true), model,
             SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
     }
 
     @Test
     void equals() {
-        final SortQuantityCommand standardCommand = new SortQuantityCommand();
+        final SortQuantityCommand standardCommand = new SortQuantityCommand(true);
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));

@@ -7,9 +7,18 @@ import java.util.List;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemComparatorByQuantity;
+import seedu.storemando.model.item.ItemComparatorByDecreasingQuantity;
+import seedu.storemando.model.item.ItemComparatorByIncreasingQuantity;
 
 public class SortQuantityCommand extends SortCommand {
+    private boolean isAscending;
+
+    /**
+     * Creates an SortQuantityCommand to sort the items according to {@code isAscending}
+     */
+    public SortQuantityCommand(boolean isAscending) {
+        this.isAscending = isAscending;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -20,10 +29,17 @@ public class SortQuantityCommand extends SortCommand {
             throw new CommandException(MESSAGE_NO_ITEMS_TO_SORT);
         }
 
-        ItemComparatorByQuantity comparator = new ItemComparatorByQuantity();
-        model.updateSortedItemList(comparator);
-        model.setItems(model.getSortedItemList());
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (this.isAscending) {
+            ItemComparatorByIncreasingQuantity comparator = new ItemComparatorByIncreasingQuantity();
+            model.updateSortedItemList(comparator);
+            model.setItems(model.getSortedItemList());
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            ItemComparatorByDecreasingQuantity comparator = new ItemComparatorByDecreasingQuantity();
+            model.updateSortedItemList(comparator);
+            model.setItems(model.getSortedItemList());
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 
     @Override
