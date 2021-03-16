@@ -35,13 +35,13 @@ public class SortAppointmentCommand extends Command {
     private static final Supplier<CommandException> invalidCommandExceptionSupplier = () -> new CommandException(
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
-    private final SortAppointmentCommand.SortAppointmentDescriptor sortAppointmentDescriptor;
+    private final SortAppointmentDescriptor sortAppointmentDescriptor;
 
     /**
      * Creates an SortAppointmentCommand to sort appointment list based on the information in
      * {@code sortAppointmentDescriptor}.
      */
-    public SortAppointmentCommand(SortAppointmentCommand.SortAppointmentDescriptor sortAppointmentDescriptor) {
+    public SortAppointmentCommand(SortAppointmentDescriptor sortAppointmentDescriptor) {
         requireNonNull(sortAppointmentDescriptor);
 
         this.sortAppointmentDescriptor = new SortAppointmentCommand
@@ -113,7 +113,7 @@ public class SortAppointmentCommand extends Command {
         /**
          * Copy constructor.
          */
-        public SortAppointmentDescriptor(SortAppointmentCommand.SortAppointmentDescriptor toCopy) {
+        public SortAppointmentDescriptor(SortAppointmentDescriptor toCopy) {
             setSortingOrder(toCopy.sortingOrder);
             setAppointmentSortingKey(toCopy.appointmentSortingKey);
         }
@@ -142,13 +142,13 @@ public class SortAppointmentCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof SortAppointmentCommand.SortAppointmentDescriptor)) {
+            if (!(other instanceof SortAppointmentDescriptor)) {
                 return false;
             }
 
             // state check
-            SortAppointmentCommand.SortAppointmentDescriptor e =
-                    (SortAppointmentCommand.SortAppointmentDescriptor) other;
+            SortAppointmentDescriptor e =
+                    (SortAppointmentDescriptor) other;
 
             return getSortingOrder().equals(e.getSortingOrder())
                     && getAppointmentSortingKey().equals(e.getAppointmentSortingKey());
