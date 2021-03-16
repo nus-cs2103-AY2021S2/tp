@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
+import java.util.Comparator;
+
 /**
  * An UI component that displays information of a {@code FinancialRecord}.
  */
@@ -33,6 +35,8 @@ public class FinancialRecordCard extends UiPart<Region> {
     @FXML
     private Label amount;
     @FXML
+    private Label timestamp;
+    @FXML
     private FlowPane categories;
 
     /**
@@ -44,9 +48,10 @@ public class FinancialRecordCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(financialRecord.getDescription().toString());
         amount.setText("$" + financialRecord.getAmount().toString());
-        // person.getTags().stream()
-        //     .sorted(Comparator.comparing(tag -> tag.tagName))
-        //     .forEach(tag -> categories.getChildren().add(new Label(tag.tagName)));
+        timestamp.setText(financialRecord.getTimestamp().toString());
+        financialRecord.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.getTagName()))
+                .forEach(tag -> categories.getChildren().add(new Label(tag.getTagName())));
     }
 
     @Override
