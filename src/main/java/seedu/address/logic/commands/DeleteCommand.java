@@ -24,9 +24,9 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s";
 
-    public static final String MESSAGE_DELETE_PEOPLE_SUCCESS = "Deleted People: %1$s";
+    public static final String MESSAGE_DELETE_ORDERS_SUCCESS = "Deleted Orders: %1$s";
 
     private final IndexList targetIndexList;
 
@@ -34,33 +34,33 @@ public class DeleteCommand extends Command {
         this.targetIndexList = targetIndexList;
     }
 
-    public static String getResultString(List<Person> peopleToDelete) {
-        if (peopleToDelete.size() == 1) {
-            return String.format(MESSAGE_DELETE_PERSON_SUCCESS, peopleToDelete.get(0));
+    public static String getResultString(List<Person> ordersToDelete) {
+        if (ordersToDelete.size() == 1) {
+            return String.format(MESSAGE_DELETE_ORDER_SUCCESS, ordersToDelete.get(0));
         }
         String convertedToString = "";
-        for (Person person: peopleToDelete) {
+        for (Person person: ordersToDelete) {
             convertedToString = convertedToString + String.format("\n%1$s", person);
         }
-        return String.format(MESSAGE_DELETE_PEOPLE_SUCCESS, convertedToString);
+        return String.format(MESSAGE_DELETE_ORDERS_SUCCESS, convertedToString);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        List<Person> peopleToDelete = new ArrayList<>();
+        List<Person> ordersToDelete = new ArrayList<>();
         for (Index targetIndex:this.targetIndexList.getIndexList()) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
 
-            Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            peopleToDelete.add(personToDelete);
-            model.deletePerson(personToDelete);
+            Person orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+            ordersToDelete.add(orderToDelete);
+            model.deletePerson(orderToDelete);
         }
 
-        return new CommandResult(getResultString(peopleToDelete));
+        return new CommandResult(getResultString(ordersToDelete));
     }
 
     @Override

@@ -37,7 +37,7 @@ public class DeleteCommandTest {
         IndexList indexList = new IndexList(arrayFirstPerson);
         DeleteCommand deleteCommand = new DeleteCommand(indexList);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -66,7 +66,7 @@ public class DeleteCommandTest {
         IndexList indexList = new IndexList(arrayFirstPerson);
         DeleteCommand deleteCommand = new DeleteCommand(indexList);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDER_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
