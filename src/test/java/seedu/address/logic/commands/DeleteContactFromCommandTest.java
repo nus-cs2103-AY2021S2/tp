@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.DeleteContactFromCommand.MESSAGE_DELETE_PROJECT_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.DeleteContactFromCommand.MESSAGE_DELETE_PROJECT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -37,11 +37,13 @@ public class DeleteContactFromCommandTest {
                 projectToEdit.addParticipant(personToDelete)
         );
 
-        Index lastContactIndex = Index.fromOneBased(model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+        Index lastContactIndex = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
 
         DeleteContactFromCommand deleteContactFromCommand = new DeleteContactFromCommand(INDEX_FIRST, lastContactIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS, personToDelete.getName(), projectToEdit.getProjectName());
+        String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
+                personToDelete.getName(), projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(
                 getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs()
@@ -60,7 +62,8 @@ public class DeleteContactFromCommandTest {
                 projectToEdit.addParticipant(personToDelete)
         );
 
-        Index lastContactIndex = Index.fromOneBased(model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+        Index lastContactIndex = Index.fromOneBased(model.getFilteredProjectList().get(
+                INDEX_FIRST.getZeroBased()).getParticipants().size());
 
         DeleteContactFromCommand deleteContactFromCommand = new DeleteContactFromCommand(INDEX_THIRD, lastContactIndex);
 
@@ -87,17 +90,22 @@ public class DeleteContactFromCommandTest {
                 project2ToEdit.addParticipant(personToDelete)
         );
 
-        Index lastContactFrom1Index = Index.fromOneBased(model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
-        Index lastContactFrom2Index = Index.fromOneBased(model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+        Index lastContactFrom1Index = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
+        Index lastContactFrom2Index = Index.fromOneBased(
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getParticipants().size());
 
-        DeleteContactFromCommand deleteContactFrom1Command = new DeleteContactFromCommand(INDEX_FIRST, lastContactFrom1Index);
-        DeleteContactFromCommand deleteContactFrom2Command = new DeleteContactFromCommand(INDEX_SECOND, lastContactFrom2Index);
+        DeleteContactFromCommand deleteContactFrom1Command = new DeleteContactFromCommand(
+                INDEX_FIRST, lastContactFrom1Index);
+        DeleteContactFromCommand deleteContactFrom2Command = new DeleteContactFromCommand(
+                INDEX_SECOND, lastContactFrom2Index);
 
         // same object -> returns true
         assertEquals(deleteContactFrom1Command, deleteContactFrom1Command);
 
         // same values -> returns true
-        DeleteContactFromCommand deleteContactFrom1CommandCopy = new DeleteContactFromCommand(INDEX_FIRST, lastContactFrom1Index);
+        DeleteContactFromCommand deleteContactFrom1CommandCopy = new DeleteContactFromCommand(
+                INDEX_FIRST, lastContactFrom1Index);
         assertEquals(deleteContactFrom1Command, deleteContactFrom1CommandCopy);
 
         // different types -> returns false
