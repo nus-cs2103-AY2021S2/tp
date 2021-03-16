@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.List;
 
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,8 +32,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SCHOOL);
 
-        String[] nameKeywords = new String[0];
-        String[] schoolKeywords = new String[0];
+        String[] nameKeywords = null;
+        String[] schoolKeywords = null;
 
         if (!argMultimap.getValue(PREFIX_NAME).isPresent()
                 && !argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
@@ -47,9 +47,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             schoolKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SCHOOL);
 
         }
-        String[] allKeywords = Stream.concat(Arrays.stream(schoolKeywords), Arrays.stream(nameKeywords))
-                .toArray(String[]::new);
-        return new SearchCommand(new NameAndSchoolContainsKeywordsPredicate(Arrays.asList(allKeywords)));
+        List<String> nameKeywordsList = nameKeywords == null ? null : Arrays.asList(nameKeywords);
+        List<String> schoolKeywordsList = schoolKeywords == null ? null : Arrays.asList(schoolKeywords);
+
+        return new SearchCommand(new NameAndSchoolContainsKeywordsPredicate(nameKeywordsList, schoolKeywordsList));
     }
 
     /**
