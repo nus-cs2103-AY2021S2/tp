@@ -21,12 +21,12 @@ public class AddSessionCommand extends Command {
     public static final String STUDENT_DOES_NOT_EXIST_ERROR = "Student does not exist";
     public static final String SESSION_ALREADY_EXIST_ERROR = "Session already exists";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to a particular student. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the student. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME "
-            + PREFIX_DURATION + "LENGTH OF SESSION "
+            + PREFIX_DURATION + "DURATION "
             + PREFIX_SUBJECT + "SUBJECT "
             + PREFIX_FEE + "FEE "
             + "Example: " + COMMAND_WORD + " "
