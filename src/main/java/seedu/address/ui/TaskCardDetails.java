@@ -136,7 +136,7 @@ public class TaskCardDetails extends UiPart<Region> {
         String statusValue = task.getStatus().value;
         assert !statusValue.isBlank() : "Status cannot be displayed blank.";
 
-        boolean isStatusDone = task.getStatus().isDone();
+        boolean isStatusDone = statusValue.equals("done");
         if (isStatusDone) {
             status.getStyleClass().add("status-green");
         } else {
