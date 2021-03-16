@@ -104,7 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// schedule methods
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule list.
      */
     public boolean hasSchedule(Schedule schedule) {
         requireNonNull(schedule);
@@ -119,10 +119,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         schedules.add(schedule);
     }
 
+    /**
+     * Removes a schedule {@code key} from the schedule list.
+     * {@code key} must exist in the schedule list.
+     */
+    public void removeSchedule(Schedule key) {
+        schedules.remove(key);
+    }
+
     //// task methods
 
     /**
-     * Returns true if a person with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
