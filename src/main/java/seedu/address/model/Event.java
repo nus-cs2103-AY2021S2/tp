@@ -3,6 +3,8 @@ package seedu.address.model;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import seedu.address.model.module.Description;
 
@@ -12,12 +14,12 @@ import seedu.address.model.module.Description;
 public abstract class Event implements Comparable<Event> {
 
     protected final Description description;
-    protected final LocalDate date;
+    protected final LocalDateTime dateTime;
 
-    protected Event(Description description, LocalDate date) {
-        requireAllNonNull(description, date);
+    protected Event(Description description, LocalDateTime dateTime) {
+        requireAllNonNull(description, dateTime);
         this.description = description;
-        this.date = date;
+        this.dateTime = dateTime;
     }
 
     public Description getDescription() {
@@ -25,7 +27,11 @@ public abstract class Event implements Comparable<Event> {
     }
 
     public LocalDate getDate() {
-        return date;
+        return dateTime.toLocalDate();
+    }
+
+    public LocalTime getTime() {
+        return dateTime.toLocalTime();
     }
 
     @Override
@@ -38,5 +44,7 @@ public abstract class Event implements Comparable<Event> {
     public abstract String toString();
 
     @Override
-    public abstract int compareTo(Event otherEvent);
+    public int compareTo(Event otherEvent) {
+        return dateTime.compareTo(otherEvent.dateTime);
+    }
 }
