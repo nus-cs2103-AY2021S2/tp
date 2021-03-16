@@ -13,13 +13,17 @@ import org.junit.jupiter.api.Test;
 
 import seedu.us.among.commons.exceptions.IllegalValueException;
 import seedu.us.among.model.endpoint.Address;
+import seedu.us.among.model.endpoint.Data;
 import seedu.us.among.model.endpoint.Method;
 import seedu.us.among.model.endpoint.Response;
+import seedu.us.among.model.endpoint.header.Header;
 
 public class JsonAdaptedEndpointTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATA = "{invaliddata";
+    private static final String INVALID_HEADER = "\"invalidheader";
 
     private static final String VALID_NAME = POST.getMethod().toString();
     private static final String VALID_ADDRESS = POST.getAddress().toString();
@@ -82,4 +86,31 @@ public class JsonAdaptedEndpointTest {
         assertThrows(IllegalValueException.class, endpoint::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidData_throwsIllegalValueException() {
+        JsonAdaptedEndpoint endpoint =
+                new JsonAdaptedEndpoint(VALID_NAME, VALID_ADDRESS, INVALID_DATA, VALID_HEADERS,  VALID_TAGS, EMPTY_RESPONSE);
+        String expectedMessage = Data.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, endpoint::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullData_throwsIllegalValueException() {
+        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(VALID_NAME, VALID_ADDRESS, null, VALID_HEADERS,
+                VALID_TAGS, EMPTY_RESPONSE);
+        String expectedMessage = String.format(JsonAdaptedEndpoint.MISSING_FIELD_MESSAGE_FORMAT,
+                Data.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, endpoint::toModelType);
+    }
+
+
+    @Test
+    public void toModelType_invalidHeaders_throwsIllegalValueException() {
+        List<JsonAdaptedHeader> invalidHeaders = new ArrayList<>(VALID_HEADERS);
+        invalidHeaders.add(new JsonAdaptedHeader(INVALID_HEADER));
+        JsonAdaptedEndpoint endpoint = new JsonAdaptedEndpoint(VALID_NAME, VALID_ADDRESS, VALID_DATA,
+                invalidHeaders, VALID_TAGS,
+                EMPTY_RESPONSE);
+        assertThrows(IllegalValueException.class, endpoint::toModelType);
+    }
 }
