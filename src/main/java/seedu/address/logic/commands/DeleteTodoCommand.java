@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Deletes a Todo identified using it's displayed index from the address book.
+ * Deletes a Todo identified using it's displayed index from CoLAB.
  */
 public class DeleteTodoCommand extends Command {
 

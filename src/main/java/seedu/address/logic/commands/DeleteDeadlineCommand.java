@@ -12,30 +12,30 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Deletes a Todo identified using it's displayed index from the address book.
+ * Deletes a Deadline identified using it's displayed index from CoLAB.
  */
-public class DeleteTodoCommand extends Command {
+public class DeleteDeadlineCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteT";
+    public static final String COMMAND_WORD = "deleteD";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the todo identified by it's index number within the displayed project.\n"
+            + ": Deletes the deadline identified by it's index number within the displayed project.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer)"
-            + PREFIX_REMOVE_TASK_INDEX + "TODO_INDEX \n"
+            + PREFIX_REMOVE_TASK_INDEX + "DEADLINE_INDEX \n"
             + "Example: " + COMMAND_WORD + " 1" + " "
             + PREFIX_REMOVE_TASK_INDEX + " 2";
 
     private final Index projectIndex;
-    private final Index targetTodoIndex;
+    private final Index targetDeadlineIndex;
 
     /**
-     * Creates a DeleteTodoCommand to delete the specified {@code Todo} from {@code Project}.
-     * @param projectIndex Index of project that {@code Todo} is to be deleted from.
-     * @param targetTodoIndex Index of todo that is to be deleted form {@code Project}.
+     * Creates a DeleteDeadlineCommand to delete the specified {@code Deadline} from {@code Project}.
+     * @param projectIndex Index of project that {@code Deadline} is to be deleted from.
+     * @param targetDeadlineIndex Index of Deadline that is to be deleted form {@code Project}.
      */
-    public DeleteTodoCommand(Index projectIndex, Index targetTodoIndex) {
+    public DeleteDeadlineCommand(Index projectIndex, Index targetDeadlineIndex) {
         this.projectIndex = projectIndex;
-        this.targetTodoIndex = targetTodoIndex;
+        this.targetDeadlineIndex = targetDeadlineIndex;
     }
 
     @Override
@@ -47,26 +47,26 @@ public class DeleteTodoCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getTodos().getTodos().size()) {
+        if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
+                .getDeadlines().getDeadlines().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
-        assert projectToEdit != null;
+        requireNonNull(projectToEdit);
 
-        projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
+        projectToEdit.deleteDeadline(targetDeadlineIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getZeroBased()));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_DEADLINE_SUCCESS, targetDeadlineIndex.getZeroBased()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteTodoCommand // instanceof handles nulls
-                && projectIndex.equals(((DeleteTodoCommand) other).projectIndex))
-                && targetTodoIndex.equals(((DeleteTodoCommand) other).targetTodoIndex); // state check
+                || (other instanceof DeleteDeadlineCommand // instanceof handles nulls
+                && projectIndex.equals(((DeleteDeadlineCommand) other).projectIndex))
+                && targetDeadlineIndex.equals(((DeleteDeadlineCommand) other).targetDeadlineIndex); // state check
     }
 
 }
