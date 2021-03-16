@@ -112,6 +112,11 @@ public interface Model {
      */
     ReadOnlyPropertyBook getPropertyBook();
 
+    /**
+     * Replaces property book data with the data in {@code propertyBook}.
+     */
+    void setPropertyBook(ReadOnlyPropertyBook propertyBook);
+
     void addProperty(Property property);
 
     int getPropertySize();

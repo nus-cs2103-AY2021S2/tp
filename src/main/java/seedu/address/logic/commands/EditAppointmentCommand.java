@@ -86,7 +86,7 @@ public class EditAppointmentCommand extends Command {
         assert appointmentToEdit != null;
 
         Name updatedName = editAppointmentDescriptor.getName().orElse(appointmentToEdit.getName());
-        Remark updatedRemark = editAppointmentDescriptor.getRemark().orElse(appointmentToEdit.getRemarks());
+        Remark updatedRemark = editAppointmentDescriptor.getRemarks().orElse(appointmentToEdit.getRemarks());
         Date updatedDate = editAppointmentDescriptor.getDate().orElse(appointmentToEdit.getDate());
         Time updatedTime = editAppointmentDescriptor.getTime().orElse(appointmentToEdit.getTime());
 
@@ -114,7 +114,7 @@ public class EditAppointmentCommand extends Command {
          */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
             setName(toCopy.name);
-            setRemark(toCopy.remark);
+            setRemarks(toCopy.remark);
             setDate(toCopy.date);
             setTime(toCopy.time);
         }
@@ -134,11 +134,11 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setRemark(Remark remark) {
+        public void setRemarks(Remark remark) {
             this.remark = remark;
         }
 
-        public Optional<Remark> getRemark() {
+        public Optional<Remark> getRemarks() {
             return Optional.ofNullable(remark);
         }
 
@@ -174,7 +174,7 @@ public class EditAppointmentCommand extends Command {
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getRemark().equals(e.getRemark())
+                    && getRemarks().equals(e.getRemarks())
                     && getDate().equals(e.getDate())
                     && getTime().equals(e.getTime());
         }

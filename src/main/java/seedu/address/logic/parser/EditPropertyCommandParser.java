@@ -66,7 +66,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                     ParserUtil.parsePropertyDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            editPropertyDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
+            editPropertyDescriptor.setRemarks(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
         }
 
         EditClientDescriptor editClientDescriptor = new EditClientDescriptor();
