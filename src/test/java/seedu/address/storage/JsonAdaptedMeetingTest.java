@@ -15,8 +15,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Priority;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonName;
 
 
 public class JsonAdaptedMeetingTest {
@@ -47,7 +48,7 @@ public class JsonAdaptedMeetingTest {
         JsonAdaptedMeeting jsonMeeting =
                 new JsonAdaptedMeeting(INVALID_NAME, VALID_START, VALID_END,
                         VALID_DESCRIPTION, VALID_PRIORITY, VALID_TAGS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PersonName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, jsonMeeting::toModelType);
     }
 
@@ -57,7 +58,7 @@ public class JsonAdaptedMeetingTest {
                 new JsonAdaptedMeeting(null, VALID_START, VALID_END,
                         VALID_DESCRIPTION, VALID_PRIORITY, VALID_TAGS);
         String expectedMessage = String.format(
-                JsonAdaptedMeeting.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+                JsonAdaptedMeeting.MISSING_FIELD_MESSAGE_FORMAT, MeetingName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, jsonMeeting::toModelType);
     }
 

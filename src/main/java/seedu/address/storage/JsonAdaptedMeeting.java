@@ -15,7 +15,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.Name;
+import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Priority;
 
 
@@ -83,13 +83,14 @@ public class JsonAdaptedMeeting {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MeetingName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!MeetingName.isValidName(name)) {
+            throw new IllegalValueException(MeetingName.MESSAGE_CONSTRAINTS);
         }
 
-        final Name modelName = new Name(name);
+        final MeetingName modelMeetingName = new MeetingName(name);
 
         if (startDateTime == null || endDateTime == null) {
             throw new IllegalValueException(
@@ -120,7 +121,7 @@ public class JsonAdaptedMeeting {
         final Priority modelPriority = new Priority(priority);
         final Set<Group> modelTags = new HashSet<>(meetingGroups);
         try {
-            return new Meeting(modelName, modelStart, modelTerminate,
+            return new Meeting(modelMeetingName, modelStart, modelTerminate,
                     modelPriority, modelDescription, modelTags);
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(e.getMessage());

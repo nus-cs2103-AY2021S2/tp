@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same personName as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -261,10 +261,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by personName          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `* *`    | user                                       | assign priorities for contacts | arrange my contacts and future tasks better                            |
-| `*`      | user with many persons in the MeetBuddy address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | user with many persons in the MeetBuddy address book | sort persons by personName           | locate a person easily                                                 |
 
 *{More to be added}*
 
@@ -319,7 +319,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 New features on V1.2
 5.  Assign priorities to contacts
 6.  Notes about the contact.
-7.  Sort contacts by (priorities/name/groups)
+7.  Sort contacts by (priorities/personName/groups)
 8.  Last meetup date for each contact
 
 ### Non-Functional Requirements

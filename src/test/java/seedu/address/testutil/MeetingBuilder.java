@@ -3,8 +3,12 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.meeting.*;
 import seedu.address.model.group.Group;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -18,7 +22,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_PRIORITY = "5";
     public static final String DEFAULT_DESCRIPTION = "Taught by Mr.Damith.";
 
-    private Name name;
+    private MeetingName meetingName;
     private DateTime start;
     private DateTime terminate;
     private Priority priority;
@@ -29,7 +33,7 @@ public class MeetingBuilder {
      * Creates a {@code MeetingBuilder} with the default details.
      */
     public MeetingBuilder() {
-        name = new Name(DEFAULT_NAME);
+        meetingName = new MeetingName(DEFAULT_NAME);
         start = new DateTime(DEFAULT_START);
         terminate = new DateTime(DEFAULT_TERMINATE);
         priority = new Priority(DEFAULT_PRIORITY);
@@ -41,7 +45,7 @@ public class MeetingBuilder {
      * Initializes the MeetingBuilder with the data of {@code MeetingToCopy}.
      */
     public MeetingBuilder(Meeting meetingToCopy) {
-        name = meetingToCopy.getName();
+        meetingName = meetingToCopy.getName();
         start = meetingToCopy.getStart();
         terminate = meetingToCopy.getTerminate();
         priority = meetingToCopy.getPriority();
@@ -50,10 +54,10 @@ public class MeetingBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Meeting} that we are building.
+     * Sets the {@code PersonName} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withName(String name) {
-        this.name = new Name(name);
+        this.meetingName = new MeetingName(name);
         return this;
     }
 
@@ -98,7 +102,7 @@ public class MeetingBuilder {
     }
 
     public Meeting build() {
-        return new Meeting(name, start, terminate, priority, description, groups);
+        return new Meeting(meetingName, start, terminate, priority, description, groups);
     }
 
 }

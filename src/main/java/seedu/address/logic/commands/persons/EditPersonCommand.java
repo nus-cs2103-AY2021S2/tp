@@ -3,9 +3,9 @@ package seedu.address.logic.commands.persons;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,12 +21,12 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
-import seedu.address.model.group.Group;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -95,13 +95,13 @@ public class EditPersonCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        PersonName updatedPersonName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGroups);
+        return new Person(updatedPersonName, updatedPhone, updatedEmail, updatedAddress, updatedGroups);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class EditPersonCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
+        private PersonName personName;
         private Phone phone;
         private Email email;
         private Address address;
@@ -140,7 +140,7 @@ public class EditPersonCommand extends Command {
          * A defensive copy of {@code groups} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
+            setName(toCopy.personName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -151,15 +151,15 @@ public class EditPersonCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, groups);
+            return CollectionUtil.isAnyNonNull(personName, phone, email, address, groups);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setName(PersonName personName) {
+            this.personName = personName;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<PersonName> getName() {
+            return Optional.ofNullable(personName);
         }
 
         public void setPhone(Phone phone) {
