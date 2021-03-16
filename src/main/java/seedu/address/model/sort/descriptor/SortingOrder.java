@@ -13,7 +13,7 @@ public class SortingOrder {
 
     private static final String ASC_ORDER_STRING = "asc";
 
-    private static final String DES_ORDER_STRING = "des";
+    private static final String DESC_ORDER_STRING = "desc";
 
     public final String value;
 
@@ -35,7 +35,7 @@ public class SortingOrder {
      * @return True if the given string is a valid value, otherwise false.
      */
     public static boolean isValidSortingOrder(String test) {
-        return test.equals(ASC_ORDER_STRING) || test.equals(DES_ORDER_STRING);
+        return test.equals(ASC_ORDER_STRING) || test.equals(DESC_ORDER_STRING);
     }
 
     /**
@@ -53,7 +53,7 @@ public class SortingOrder {
      * @return True if the sorting order is descending, or otherwise false.
      */
     public boolean isDescendingOrder() {
-        return value.equals(DES_ORDER_STRING);
+        return value.equals(DESC_ORDER_STRING);
     }
 
     @Override

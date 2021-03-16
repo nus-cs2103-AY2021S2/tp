@@ -30,6 +30,6 @@ public class SortingOrderTest {
 
         // valid sortingOrder
         assertTrue(SortingOrder.isValidSortingOrder("asc"));
-        assertTrue(SortingOrder.isValidSortingOrder("des")); // one character
+        assertTrue(SortingOrder.isValidSortingOrder("desc")); // one character
     }
 }

@@ -119,12 +119,12 @@ public class CommandTestUtil {
 
     // For testing of SortAppointmentDescriptor
     public static final String VALID_SORTING_ORDER_ASC = "asc";
-    public static final String VALID_SORTING_ORDER_DES = "des";
+    public static final String VALID_SORTING_ORDER_DESC = "desc";
     public static final String VALID_SORTING_KEY_APPOINTMENT_DATETIME = "datetime";
     public static final String VALID_SORTING_KEY_APPOINTMENT_NAME = "name";
 
     public static final SortAppointmentCommand.SortAppointmentDescriptor ASC_DATETIME;
-    public static final SortAppointmentCommand.SortAppointmentDescriptor DES_NAME;
+    public static final SortAppointmentCommand.SortAppointmentDescriptor DESC_NAME;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -141,7 +141,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         ASC_DATETIME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_ASC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME).build();
-        DES_NAME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_DES)
+        DESC_NAME = new SortAppointmentDescriptorBuilder().withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_NAME).build();
     }
 

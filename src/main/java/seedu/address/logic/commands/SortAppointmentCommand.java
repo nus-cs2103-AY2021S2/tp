@@ -27,7 +27,7 @@ public class SortAppointmentCommand extends Command {
             + PREFIX_SORTING_ORDER + "SORTING_ORDER "
             + PREFIX_SORTING_KEY + "SORTING_KEY \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SORTING_ORDER + "des "
+            + PREFIX_SORTING_ORDER + "desc "
             + PREFIX_SORTING_KEY + "datetime ";
 
     public static final String MESSAGE_SUCCESS = "Appointment list sorted in %1$sending order by %2$s";
@@ -55,8 +55,8 @@ public class SortAppointmentCommand extends Command {
         Comparator<Appointment> cmp = createAppointmentComparator(sortAppointmentDescriptor);
         model.sortAppointmentList(cmp);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                sortAppointmentDescriptor.getSortingOrder().orElseThrow(invalidCommandExceptionSupplier),
-                sortAppointmentDescriptor.getAppointmentSortingKey().orElseThrow(invalidCommandExceptionSupplier)));
+                sortAppointmentDescriptor.getSortingOrder().orElseThrow(invalidCommandExceptionSupplier).toString(),
+                sortAppointmentDescriptor.getAppointmentSortingKey().orElseThrow(invalidCommandExceptionSupplier).toString()));
     }
 
     /**
