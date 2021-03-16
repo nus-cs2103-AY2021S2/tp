@@ -30,10 +30,14 @@ public class ClientDetailFragment extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public ClientDetailFragment(ObservableClient obs) {
+    /**
+     * Creates a ClientDetailFragment that observes the given ObservableClient
+     * @param observableClient ObservableClient to monitor
+     */
+    public ClientDetailFragment(ObservableClient observableClient) {
         super(FXML);
-        this.obs = obs;
-        obs.addListener(new ClientListener());
+        this.obs = observableClient;
+        observableClient.addListener(new ClientListener());
     }
 
     public void setClientDetails(Client client) {

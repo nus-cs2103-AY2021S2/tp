@@ -31,8 +31,18 @@ public class ObservableClient implements ObservableObjectValue<Client> {
     }
 
     @Override
+    public void addListener(InvalidationListener listener) {
+
+    }
+
+    @Override
     public void removeListener(ChangeListener<? super Client> listener) {
         this.listeners.remove(listener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener listener) {
+
     }
 
     @Override
@@ -40,13 +50,6 @@ public class ObservableClient implements ObservableObjectValue<Client> {
         return client;
     }
 
-    @Override
-    public void addListener(InvalidationListener listener) {
 
-    }
 
-    @Override
-    public void removeListener(InvalidationListener listener) {
-
-    }
 }
