@@ -7,9 +7,9 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
  * Represents the abstraction of a budget set by the user.
  */
 public class Budget {
-    public static final Double DEFAULT_BUDGET = 100.0;
+    public static final Double DEFAULT_BUDGET = 1000.0;
     public static final String MESSAGE_CONSTRAINTS =
-        "Budget should be a number, and it should not be blank";
+        "Budget amount should be a positive number, and it should not be blank";
 
     protected Double amount;
 
@@ -44,12 +44,13 @@ public class Budget {
      * Returns true if a given string is a valid budget.
      */
     public static boolean isValidBudget(String test) {
+        double amount;
         try {
-            Double.parseDouble(test);
+            amount = Double.parseDouble(test);
         } catch (NumberFormatException e) {
             return false;
         }
-        return true;
+        return Double.compare(amount, 0.0) >= 0;
     }
 
     /**
