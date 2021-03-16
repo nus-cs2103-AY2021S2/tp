@@ -49,7 +49,7 @@ public class ProjectBuilder {
     /**
      * Sets the {@code EventList} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withName(EventList eventList) {
+    public ProjectBuilder withEventList(EventList eventList) {
         this.eventList = eventList.getCopy();
         return this;
     }
@@ -57,7 +57,7 @@ public class ProjectBuilder {
     /**
      * Sets the {@code TodoList} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withName(TodoList todoList) {
+    public ProjectBuilder withTodoList(TodoList todoList) {
         this.todoList = todoList.getCopy();
         return this;
     }
@@ -65,7 +65,7 @@ public class ProjectBuilder {
     /**
      * Sets the {@code DeadlineList} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withName(DeadlineList deadlineList) {
+    public ProjectBuilder withDeadlineList(DeadlineList deadlineList) {
         this.deadlineList = deadlineList.getCopy();
         return this;
     }
@@ -73,7 +73,7 @@ public class ProjectBuilder {
     /**
      * Sets the {@code ParticipantList} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withName(ParticipantList participantList) {
+    public ProjectBuilder withParticipantList(ParticipantList participantList) {
         this.participantList = participantList.getCopy();
         return this;
     }

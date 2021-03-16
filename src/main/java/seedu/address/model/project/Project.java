@@ -133,6 +133,26 @@ public class Project {
     }
 
     /**
+     *  Returns the {@code Person}. at the specified position in this {@code Project}'s {@code ParticipantList}.
+     *
+     * @return the {@code Person}. at the specified position in this {@code Project}'s {@code ParticipantList}.
+     */
+    public Person getParticipant(Integer i) {
+        requireNonNull(i);
+        return participants.get(i);
+    }
+
+    /**
+     *  Deletes a participant from {@code ParticipantList} field of this {@code Project}.
+     *
+     * @param i Index of {@code Person} to be deleted.
+     */
+    public void deleteParticipant(Integer i) {
+        requireNonNull(i);
+        this.participants.delete(i);
+    }
+
+    /**
      * Deletes a deadline from {@code DeadlineList} field of this {@code Project}.
      *
      * @param i Index of {@code Deadline} to be deleted.
