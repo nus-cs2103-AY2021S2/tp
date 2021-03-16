@@ -162,7 +162,7 @@ public class UniqueMonthList implements Iterable<Month> {
 
     /**
      * Adds a financial record to the budget tracker.
-     * Adds a month to the budgt tracker.
+     * Adds a month to the budget tracker.
      */
     public void addFinancialRecord(FinancialRecord r) {
         requireNonNull(r);
@@ -172,7 +172,7 @@ public class UniqueMonthList implements Iterable<Month> {
 
     /**
      * Replaces the given financial record {@code target} in the list with {@code editedRecord}.
-     * {@code target} must exist in the budegt tracker.
+     * {@code target} must exist in the budget tracker.
      */
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireNonNull(editedRecord);
@@ -208,8 +208,14 @@ public class UniqueMonthList implements Iterable<Month> {
      */
     public void setBudget(Budget budget) {
         requireNonNull(budget);
-        Month currentMonth = find(YearMonth.now());
+        YearMonth currYearMonth = YearMonth.now();
+        Month currentMonth = find(currYearMonth);
         //TODO: implement setBudget methods for the current month and all the future month
+        currentMonth.setBudget(budget);
+        for (int i = 1; i <= 12; i++) {
+            Month month = find(currYearMonth.plusMonths(i));
+            month.setBudget(budget);
+        }
     }
 
     @Override
