@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudents;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,17 +28,19 @@ public class EmailCommandTest {
         EmailCommand emailCommand = new EmailCommand();
         CommandResult commandResult = emailCommand.execute(model);
         String[] emails = commandResult.getFeedbackToUser().split(";");
+        List<Student> typicalStudents = getTypicalStudents();
 
         // first layer: check if length matches
-        assertEquals(emails.length, getTypicalStudents().size());
+        assertEquals(emails.length, typicalStudents.size());
 
         // second layer: check if all emails are in the response
-        for (Student stu : getTypicalStudents()) {
-            assertTrue(Arrays.asList(emails).contains(stu.getEmail().toString()));
+        for (Student student : typicalStudents) {
+            assertTrue(Arrays.asList(emails).contains(student.getEmail().toString()));
         }
 
         // third layer: check final message returned to user
-        String intendedMessage = Arrays.stream(emails).reduce("", (acc, el) -> acc + el + ";");
+        String intendedMessage = Arrays.stream(emails)
+                .reduce("", (accumulatedEmails, currentEmail) -> accumulatedEmails + currentEmail + ";");
         assertCommandSuccess(new EmailCommand(), model, intendedMessage, model);
     }
 }

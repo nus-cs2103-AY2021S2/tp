@@ -19,8 +19,8 @@ public class EmailCommand extends Command {
         StringBuilder concatenatedEmails = new StringBuilder();
         List<Student> studentList = model.getFilteredStudentList();
 
-        for (Student stu : studentList) {
-            concatenatedEmails.append(stu.getEmail()).append(";");
+        for (Student student : studentList) {
+            concatenatedEmails.append(student.getEmail()).append(";");
         }
 
         return new CommandResult(concatenatedEmails.toString());
