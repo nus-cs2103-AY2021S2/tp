@@ -134,11 +134,19 @@ public class Module implements Comparable<Module> {
     }
 
     /**
-     * Delete {@code assignment} from {@code assignments}
-     * {@code assignment} must exist in {@code assignments}
+     * Delete {@code exam} from {@code exams}
+     * {@code assignment} must exist in {@code exams}
      */
-    public Exam deleteExam(Exam exam) {
-        return exams.delete(exam);
+    public void deleteExam(Exam exam) {
+        this.exams.delete(exam);
+    }
+
+    /**
+     * Delete {@code index} from {@code exams}
+     * {@code index} must exist in {@code exams}
+     */
+    public void deleteExam(int index) {
+        this.exams.deleteAt(index);
     }
 
     /**

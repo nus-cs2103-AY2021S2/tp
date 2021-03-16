@@ -59,7 +59,6 @@ public class DeleteAssignmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_TITLE);
         }
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
-        System.out.println("index: " + indexOfModule);
         Module moduleToGet = lastShownList.get(indexOfModule);
         AssignmentList assignmentList = moduleToGet.getAssignments();
         if (assignmentIndex.getZeroBased() >= assignmentList.size()) {
@@ -109,6 +108,5 @@ public class DeleteAssignmentCommand extends Command {
                 && moduleTitle.equals(((DeleteAssignmentCommand) other).moduleTitle)
                 && assignmentIndex.equals(((DeleteAssignmentCommand) other).assignmentIndex)); // state check
     }
-
 
 }

@@ -13,7 +13,6 @@ import seedu.address.logic.commands.deleteCommand.DeletePersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
-import seedu.address.logic.parser.addcommandparser.AddExamCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,7 +35,7 @@ public class DeleteCommandParser {
         } else if (deleteAssignmentCondition(argMultimap)) {
             command = new DeleteAssignmentCommandParser().parse(args);
         } else if (deleteExamCondition(argMultimap)) {
-            command = new AddExamCommandParser().parse(args);
+            command = new DeleteExamCommandParser().parse(args);
         } else if (deletePersonCondition(argMultimap)) {
             command = new DeletePersonCommandParser().parse(args);
 

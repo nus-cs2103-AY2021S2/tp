@@ -13,7 +13,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.addcommand.AddCommand;
-import seedu.address.logic.commands.deleteCommand.DeletePersonCommand;
+import seedu.address.logic.commands.deleteCommand.DeleteCommand;
 import seedu.address.logic.commands.editcommand.EditCommand;
 import seedu.address.logic.commands.findcommand.FindCommand;
 import seedu.address.logic.parser.addcommandparser.AddCommandParser;
@@ -57,7 +57,7 @@ public class RemindMeParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parseCommand(arguments);
 
-        case DeletePersonCommand.COMMAND_WORD:
+        case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parseCommand(arguments);
 
         case ClearCommand.COMMAND_WORD:
