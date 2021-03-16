@@ -11,8 +11,10 @@ import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearAppointmentCommand;
 import seedu.address.logic.commands.ClearPatientCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
+import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.EditAppointmentCommand;
+import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -60,11 +62,17 @@ public class UserInputParser {
         case AddPatientCommand.COMMAND_WORD:
             return new AddPatientCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditPatientCommand.COMMAND_WORD:
+            return new EditPatientCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case EditAppointmentCommand.COMMAND_WORD:
+            return new EditAppointmentCommandParser().parse(arguments);
+
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
+
+        case DeletePatientCommand.COMMAND_WORD:
+            return new DeletePatientCommandParser().parse(arguments);
 
         case ClearPatientCommand.COMMAND_WORD:
             return new ClearPatientCommand();

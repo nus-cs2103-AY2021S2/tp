@@ -177,7 +177,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasConflictingAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return appointmentSchedule.hasConflict(appointment);
+        return appointmentSchedule.hasAppointment(appointment);
     }
 
     @Override
