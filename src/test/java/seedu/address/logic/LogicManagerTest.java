@@ -58,7 +58,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete rachel!";
+        String deleteCommand = "delete JAAAAAAAAASON";
         assertCommandException(deleteCommand, MESSAGE_NO_SUCH_NAME_IN_BOOK);
     }
 
