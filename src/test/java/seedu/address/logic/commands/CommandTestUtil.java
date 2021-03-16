@@ -161,7 +161,7 @@ public class CommandTestUtil {
     public static final String INVALID_APPOINTMENT_SORTING_KEY = " " + PREFIX_SORTING_KEY
             + "deadline"; // can only be datetime and name
     public static final String INVALID_PROPERTY_SORTING_KEY = " " + PREFIX_SORTING_KEY
-            + "datetime"; // can only be name, price, postalcode, and deadline
+            + "datetime"; // can only be name, price, postalcode, address, and deadline
 
     public static final SortAppointmentCommand.SortAppointmentDescriptor ASC_DATETIME;
     public static final SortAppointmentCommand.SortAppointmentDescriptor DESC_APPOINTMENT_NAME;
