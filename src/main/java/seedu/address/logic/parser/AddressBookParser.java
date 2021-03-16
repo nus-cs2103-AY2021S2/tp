@@ -7,8 +7,30 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.Alias;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AliasCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.resident.AddResidentCommand;
+import seedu.address.logic.commands.resident.DeleteResidentCommand;
+import seedu.address.logic.commands.resident.EditResidentCommand;
+import seedu.address.logic.commands.resident.FindResidentCommand;
+import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.room.AddRoomCommand;
+import seedu.address.logic.commands.room.DeleteRoomCommand;
+import seedu.address.logic.commands.room.EditRoomCommand;
+import seedu.address.logic.commands.room.FindRoomCommand;
+import seedu.address.logic.commands.room.ListRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.resident.AddResidentCommandParser;
+import seedu.address.logic.parser.resident.DeleteResidentCommandParser;
+import seedu.address.logic.parser.resident.EditResidentCommandParser;
+import seedu.address.logic.parser.resident.FindResidentCommandParser;
+import seedu.address.logic.parser.room.AddRoomCommandParser;
+import seedu.address.logic.parser.room.DeleteRoomCommandParser;
+import seedu.address.logic.parser.room.EditRoomCommandParser;
+import seedu.address.logic.parser.room.FindRoomCommandParser;
 import seedu.address.model.ReadOnlyUserPrefs;
 
 /**
@@ -38,23 +60,40 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddResidentCommand.COMMAND_WORD:
+            return new AddResidentCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditResidentCommand.COMMAND_WORD:
+            return new EditResidentCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteResidentCommand.COMMAND_WORD:
+            return new DeleteResidentCommandParser().parse(arguments);
 
+        case FindResidentCommand.COMMAND_WORD:
+            return new FindResidentCommandParser().parse(arguments);
+
+        case ListResidentCommand.COMMAND_WORD:
+            return new ListResidentCommand();
+
+        //====== Room Commands ======
+        case AddRoomCommand.COMMAND_WORD:
+            return new AddRoomCommandParser().parse(arguments);
+
+        case EditRoomCommand.COMMAND_WORD:
+            return new EditRoomCommandParser().parse(arguments);
+
+        case DeleteRoomCommand.COMMAND_WORD:
+            return new DeleteRoomCommandParser().parse(arguments);
+
+        case FindRoomCommand.COMMAND_WORD:
+            return new FindRoomCommandParser().parse(arguments);
+
+        case ListRoomCommand.COMMAND_WORD:
+            return new ListRoomCommand();
+
+        //====== System Commands ======
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

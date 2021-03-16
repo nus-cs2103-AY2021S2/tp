@@ -10,10 +10,14 @@ import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.resident.Email;
+import seedu.address.model.resident.Name;
+import seedu.address.model.resident.Phone;
+import seedu.address.model.resident.Room;
+import seedu.address.model.resident.Year;
+import seedu.address.model.room.IsOccupied;
+import seedu.address.model.room.RoomNumber;
+import seedu.address.model.room.RoomType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -67,21 +72,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -94,6 +84,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String year} into an {@code Year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code year} is invalid.
+     */
+    public static Year parseYear(String year) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!Year.isValidYear(trimmedYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return new Year(trimmedYear);
+    }
+
+    /**
+     * Parses a {@code String room} into an {@code Room}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code room} is invalid.
+     */
+    public static Room parseRoom(String room) throws ParseException {
+        requireNonNull(room);
+        String trimmedRoom = room.trim();
+        if (!Room.isValidRoom(trimmedRoom)) {
+            throw new ParseException(Room.MESSAGE_CONSTRAINTS);
+        }
+        return new Room(trimmedRoom);
     }
 
     /**
@@ -123,6 +143,54 @@ public class ParserUtil {
         return tagSet;
     }
 
+    //==========Room Parsing Methods========================================================
+
+    /**
+     * Parses a {@code String roomNumber} into a {@code RoomNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code roomNumber} is invalid.
+     */
+    public static RoomNumber parseRoomNumber(String roomNumber) throws ParseException {
+        requireNonNull(roomNumber);
+        String trimmedRoomNumber = roomNumber.trim();
+        if (!RoomNumber.isValidRoomNumber(trimmedRoomNumber)) {
+            throw new ParseException(RoomNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new RoomNumber(trimmedRoomNumber);
+    }
+
+    /**
+     * Parses a {@code String roomType} into a {@code RoomType}.
+     * Leading and trailing whitespaces will be trimmed, and text will be converted to uppercase.
+     *
+     * @throws ParseException if the given {@code roomType} is invalid.
+     */
+    public static RoomType parseRoomType(String roomType) throws ParseException {
+        requireNonNull(roomType);
+        String trimmedRoomType = roomType.toUpperCase().trim();
+        if (!RoomType.isValidRoomType(trimmedRoomType)) {
+            throw new ParseException(RoomType.MESSAGE_CONSTRAINTS);
+        }
+        return new RoomType(trimmedRoomType);
+    }
+
+    /**
+     * Parses a {@code String roomOccupancyStatus} into a {@code IsOccupied}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code roomOccupancyStatus} is invalid.
+     */
+    public static IsOccupied parseRoomOccupancyStatus(String roomOccupancyStatus) throws ParseException {
+        requireNonNull(roomOccupancyStatus);
+        String trimmedRoomOccupancyStatus = roomOccupancyStatus.trim();
+        if (!IsOccupied.isValidOccupancyStatus(trimmedRoomOccupancyStatus)) {
+            throw new ParseException(IsOccupied.MESSAGE_CONSTRAINTS);
+        }
+        return new IsOccupied(trimmedRoomOccupancyStatus);
+    }
+
+    //==========Alias Parsing Method========================================================
     public static Alias parseAlias(String aliasName, String command) throws ParseException {
         return new Alias(aliasName, command);
     }
