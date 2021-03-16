@@ -144,12 +144,13 @@
 
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
+    padding: 4px;
 }
 
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-size: 10.5pt;
     -fx-text-fill: white;
 }
 
