@@ -60,9 +60,23 @@ public interface Model {
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /**
-     * Returns the AddressBook
+     * Returns the Appointment book
      */
     ReadOnlyAppointmentBook getAppointmentBook();
+
+
+    void setAppointmentBook(ReadOnlyAppointmentBook readOnlyAppointmentBook);
+
+    /**
+     * @return File path of Appointment Book data file
+     */
+    Path getAppointmentBookFilePath();
+
+    /**
+     * Sets appointment book file path.
+     * @param appointmentBookFilePath To be supplied by user
+     */
+    void setAppointmentBookFilePath(Path appointmentBookFilePath);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

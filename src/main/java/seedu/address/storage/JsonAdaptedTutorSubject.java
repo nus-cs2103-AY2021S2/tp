@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
@@ -19,6 +20,9 @@ public class JsonAdaptedTutorSubject {
     private final String subjectQualification;
 
 
+    /**
+     *Primary Constructor
+     */
     @JsonCreator
     public JsonAdaptedTutorSubject(@JsonProperty("subjectName") String subjectName,
                                    @JsonProperty("subjectLevel") String subjectLevel,
@@ -34,6 +38,10 @@ public class JsonAdaptedTutorSubject {
 
     }
 
+    /**
+     * Creates a JsonAdaptedTutor subject from a {@code TutorSubject} object
+     * @param source Tutor Subject Object
+     */
     public JsonAdaptedTutorSubject(TutorSubject source) {
         subjectName = source.getName().toString();
         subjectLevel = source.getLevel().toString();
@@ -42,6 +50,10 @@ public class JsonAdaptedTutorSubject {
         subjectQualification = source.getQualification().toString();
     }
 
+    /**
+     * @return A {@code TutorSubject object representing the mapped attributes}
+     * @throws IllegalValueException
+     */
     public TutorSubject toModelType() throws IllegalValueException {
         if (!SubjectName.isValidName(subjectName)) {
             throw new IllegalValueException(SubjectName.MESSAGE_CONSTRAINTS);
