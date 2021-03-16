@@ -63,13 +63,14 @@ Examples:
 ### Clearing all data : `clear`
 
 Deprecated: essentially same function as `delete`
+
 Removes all contacts from the PartyPlanet's Contact List.
 
 Format: `clear`
 
 ### Deleting contacts : `delete`
 
-Deletes the specified person from the PartyPlanet's Contact List.
+Deletes person(s) from the PartyPlanet's Contact List.
 
 Format: `delete [{INDEX [INDEX]... | -t TAG [-t TAG]...}]`
 * If no parameters:
