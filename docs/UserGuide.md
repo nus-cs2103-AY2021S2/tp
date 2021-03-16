@@ -151,7 +151,7 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 * `FEE` should be the total tuition fee for the total duration
 
 Examples:
-* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80
+* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 
 ### Deleting a tuition session: `delete_session`
 
