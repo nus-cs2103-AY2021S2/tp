@@ -14,8 +14,9 @@ public class BookingIdContainsKeywordsPredicate implements Predicate<Booking> {
 
     @Override
     public boolean test(Booking booking) {
-        return keyword.equals(String.valueOf(booking.getId()).trim());
+        return keyword.equals(String.valueOf(booking.getId()));
     }
+
 
     @Override
     public boolean equals(Object other) {
