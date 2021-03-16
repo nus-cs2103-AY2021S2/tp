@@ -47,7 +47,7 @@ public class Dish implements Item {
 
         Dish otherDish = (Dish) other;
         return otherDish != null
-                && otherDish.getName().equals(otherDish.getName());
+                && this.getName().equals(otherDish.getName());
     }
 
     @Override

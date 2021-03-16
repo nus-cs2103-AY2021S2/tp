@@ -1,13 +1,25 @@
 package seedu.address.logic.parser.commands.menu;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.util.Pair;
+import seedu.address.logic.commands.customer.CustomerAddCommand;
 import seedu.address.logic.commands.menu.MenuAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.DishStub;
+import seedu.address.model.ingredient.Ingredient;
+
+import static java.lang.Double.parseDouble;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 /**
  * Parses input arguments and creates a new MenuAddCommand object
@@ -20,7 +32,19 @@ public class MenuAddCommandParser implements Parser<MenuAddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public MenuAddCommand parse(String args) throws ParseException {
-        DishStub dish = new DishStub();
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MenuAddCommand.MESSAGE_USAGE));
+        }
+
+        String name = argMultimap.getValue(PREFIX_NAME).get().trim();
+        double price = parseDouble(argMultimap.getValue(PREFIX_PRICE).get().trim());
+
+        List<Pair<Ingredient, Integer>> ingredientQuantityList = new ArrayList<>();
+        Dish dish = new Dish(name, price, ingredientQuantityList);
 
         return new MenuAddCommand(dish);
     }
