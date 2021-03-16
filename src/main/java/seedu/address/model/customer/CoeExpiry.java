@@ -18,7 +18,7 @@ public class CoeExpiry {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MM dd");
 
-    public final String value;
+    public final String expiryDate;
 
     /**
      * Constructs an {@code CoeExpiry}.
@@ -28,7 +28,7 @@ public class CoeExpiry {
     public CoeExpiry(String coeExpiry) {
         requireNonNull(coeExpiry);
         checkArgument(isValidCoeExpiry(coeExpiry), MESSAGE_CONSTRAINTS);
-        value = coeExpiry;
+        expiryDate = coeExpiry;
     }
 
     /**
@@ -45,19 +45,19 @@ public class CoeExpiry {
 
     @Override
     public String toString() {
-        return value;
+        return expiryDate;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CoeExpiry // instanceof handles nulls
-                && value.equals(((CoeExpiry) other).value)); // state check
+                && expiryDate.equals(((CoeExpiry) other).expiryDate)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return expiryDate.hashCode();
     }
 
 }

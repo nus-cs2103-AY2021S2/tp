@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Map;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.customer.Car;
+import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -17,9 +20,8 @@ public class CustomerCard extends UiPart<Region> {
     private static final String FXML = "CustomerListCard.fxml";
 
     /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
+     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI
+     * elements' variable names cannot be set to such keywords or an exception will be thrown by JavaFX during runtime.
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
@@ -39,6 +41,8 @@ public class CustomerCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label cars;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -51,10 +55,23 @@ public class CustomerCard extends UiPart<Region> {
         name.setText(customer.getName().fullName);
         phone.setText(customer.getPhone().value);
         email.setText(customer.getEmail().value);
+        address.setText(customer.getAddress().value);
         customer.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        cars.setText(getCarsAsTextRepresentation(customer.getCarsOwned()));
     }
+
+    private String getCarsAsTextRepresentation(Map<Car, CoeExpiry> cars) {
+        StringBuilder sb = new StringBuilder("Cars: ");
+        if (cars == null || cars.isEmpty()) {
+            sb.append("None");
+        } else {
+        }
+        cars.keySet().forEach(x -> sb.append(x + " "));
+        return sb.toString();
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -71,6 +88,6 @@ public class CustomerCard extends UiPart<Region> {
         // state check
         CustomerCard card = (CustomerCard) other;
         return id.getText().equals(card.id.getText())
-                && customer.equals(card.customer);
+            && customer.equals(card.customer);
     }
 }
