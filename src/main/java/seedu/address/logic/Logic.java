@@ -39,8 +39,10 @@ public interface Logic {
     /** Shows the next question in the Quiz */
     ObservableList<Flashcard> getNextFlashcard();
 
+    /** Shows the answer to current question in the Quiz */
     ObservableList<Flashcard> getCurrentFlashcard();
 
+    /** Returns the current question number in the Quiz */
     int getCurrentIndex();
 
     /**

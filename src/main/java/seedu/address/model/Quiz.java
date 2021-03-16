@@ -59,10 +59,18 @@ public class Quiz {
         }
     }
 
+    /**
+     * Gets the question number of the current question in the quiz.
+     */
     public int getCurrentQuizIndex() {
         return currentQuizIndex;
     }
 
+    /**
+     * Gets the current flashcard question shown to the user.
+     *
+     * @return The current flashcard shown.
+     */
     public Flashcard getCurrentQuestion() {
         return currentQuiz;
     }
@@ -78,6 +86,11 @@ public class Quiz {
         return temp.asUnmodifiableObservableList();
     }
 
+    /**
+     * Gets the current flashcard question to show to the user in the type accepted by MainWindow.
+     *
+     * @return The current flashcard in the queue as an UnmodifiableObservableList.
+     */
     public ObservableList<Flashcard> getCurrentFlashcard() {
         UniqueFlashcardList temp = new UniqueFlashcardList();
         temp.setFlashcards(List.of(this.getCurrentQuestion()));

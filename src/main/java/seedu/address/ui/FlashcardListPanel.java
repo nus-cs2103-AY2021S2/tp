@@ -15,6 +15,7 @@ import seedu.address.model.person.Flashcard;
  */
 public class FlashcardListPanel extends UiPart<Region> {
     private static final String FXML = "FlashcardListPanel.fxml";
+    private static final int QUIZ_LIST = -1;
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
 
     @FXML
@@ -35,11 +36,8 @@ public class FlashcardListPanel extends UiPart<Region> {
     public FlashcardListPanel(ObservableList<Flashcard> flashcardList, boolean isNotAns, int currIndex) {
         super(FXML);
         flashcardListView.setItems(flashcardList);
-        if (currIndex == -1) {
-            flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz(-1, isNotAns));
-        } else {
-            flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz(currIndex, isNotAns));
-        }
+        flashcardListView.setCellFactory(listView -> new FlashcardListViewCellQuiz(currIndex, isNotAns));
+
     }
 
 
@@ -82,7 +80,7 @@ public class FlashcardListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                if (currIndex == -1) {
+                if (currIndex == QUIZ_LIST) {
                     setGraphic(new FlashcardCard(flashcard, getIndex() + 1, isNotAns).getRoot());
                 } else {
                     setGraphic(new FlashcardCard(flashcard, currIndex, isNotAns).getRoot());

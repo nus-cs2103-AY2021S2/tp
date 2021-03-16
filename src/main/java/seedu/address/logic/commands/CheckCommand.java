@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import seedu.address.model.Model;
 
 /**
- * Reveals answer for current quiz
+ * Reveals answer for current quiz question
  */
 public class CheckCommand extends Command {
 

@@ -201,6 +201,9 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanelPlaceholder.setVisible(true);
     }
 
+    /**
+     * Shows the answer of current question in the quiz.
+     */
     private void checkAnswer() {
         flashcardListPanel = new FlashcardListPanel(logic.getCurrentFlashcard(), false, logic.getCurrentIndex());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
