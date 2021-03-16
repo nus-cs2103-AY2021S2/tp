@@ -79,6 +79,15 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
     }
 
     /**
+     * Returns total expenses incurred by financial records in the internal list.
+     */
+    public Double getTotalExpenses() {
+        return internalList.stream()
+                .mapToDouble(fr -> fr.getAmount().getValue())
+                .reduce(0.0, Double::sum);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<FinancialRecord> asUnmodifiableObservableList() {
