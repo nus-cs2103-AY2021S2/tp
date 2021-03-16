@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -104,6 +105,13 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      */
     public ObservableList<Appointment> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Sorts appointment list using the specified comparator {@code comparator}.
+     */
+    public void sortAppointments(Comparator<? super Appointment> comparator) {
+        internalList.sort(comparator);
     }
 
     @Override
