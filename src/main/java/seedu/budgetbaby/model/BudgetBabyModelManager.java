@@ -14,6 +14,7 @@ import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -128,6 +129,12 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireAllNonNull(target, editedRecord);
         budgetTracker.setFinancialRecord(target, editedRecord);
+    }
+
+    @Override
+    public void filterByCategory(Category category) {
+        requireAllNonNull(category);
+        budgetTracker.filterByCategory(category);
     }
 
     @Override

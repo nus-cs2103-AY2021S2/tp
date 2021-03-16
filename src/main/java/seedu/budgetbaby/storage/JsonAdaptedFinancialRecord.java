@@ -1,10 +1,14 @@
 package seedu.budgetbaby.storage;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.budgetbaby.abstorage.JsonAdaptedTag;
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Description;
@@ -21,7 +25,7 @@ class JsonAdaptedFinancialRecord {
     private final String description;
     private final String amount;
     private final Date timestamp;
-    //    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedFinancialRecord} with the given financial record details.
@@ -29,14 +33,14 @@ class JsonAdaptedFinancialRecord {
     @JsonCreator
     public JsonAdaptedFinancialRecord(@JsonProperty("description") String description,
                                       @JsonProperty("amount") String amount,
-                                      @JsonProperty("timestamp") Date timestamp) {
-        //                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                      @JsonProperty("timestamp") Date timestamp,
+                                      @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.description = description;
         this.amount = amount;
         this.timestamp = timestamp;
-        //        if (tagged != null) {
-        //            this.tagged.addAll(tagged);
-        //        }
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -46,9 +50,9 @@ class JsonAdaptedFinancialRecord {
         description = source.getDescription().description;
         amount = source.getAmount().value.toString();
         timestamp = source.getTimestamp();
-        //        tagged.addAll(source.getTags().stream()
-        //            .map(JsonAdaptedTag::new)
-        //            .collect(Collectors.toList()));
+        tagged.addAll(source.getTags().stream()
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
