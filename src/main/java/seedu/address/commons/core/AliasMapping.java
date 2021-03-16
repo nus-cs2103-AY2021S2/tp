@@ -55,7 +55,6 @@ public class AliasMapping implements Serializable {
 
     /**
      * Adds a new Alias object to the current mapping.
-     * @param alias
      */
     public void addAlias(Alias alias) {
         mapping.put(alias.getAliasName(), alias);
@@ -63,8 +62,6 @@ public class AliasMapping implements Serializable {
 
     /**
      * Checks if the current mapping contains an Alias based on alias name.
-     * @param aliasName
-     * @return
      */
     public boolean containsAlias(String aliasName) {
         return mapping.containsKey(aliasName);
@@ -72,8 +69,6 @@ public class AliasMapping implements Serializable {
 
     /**
      * Check if alias name is a reserved keyword.
-     * @param aliasName
-     * @return
      */
     public boolean isReservedKeyword(String aliasName) {
         switch (aliasName) {
@@ -112,8 +107,6 @@ public class AliasMapping implements Serializable {
 
     /**
      * Check if the command used is an existing alias.
-     * @param commandWord
-     * @return
      */
     public boolean isRecursiveKeyword(String commandWord) {
         return mapping.containsKey(commandWord);

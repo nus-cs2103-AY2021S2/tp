@@ -1,4 +1,4 @@
-//@@author briyanii-reused
+//Solution below adapted from https://github.com/briyanii/main
 package seedu.address.logic.commands.alias;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;

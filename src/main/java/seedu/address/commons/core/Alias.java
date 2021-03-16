@@ -30,8 +30,6 @@ public class Alias implements Serializable {
 
     /**
      * Creates an Alias object.
-     * @param aliasName
-     * @param command
      */
     public Alias(String aliasName, String command) {
         requireAllNonNull(aliasName, command);
@@ -43,7 +41,6 @@ public class Alias implements Serializable {
 
     /**
      * Validates alias name.
-     * @param aliasName
      */
     public static boolean isValidName(String aliasName) {
         return Pattern.matches(NAME_REGEX, aliasName);
