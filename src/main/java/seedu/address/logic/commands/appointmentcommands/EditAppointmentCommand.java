@@ -7,9 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +20,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.subject.SubjectName;
@@ -83,7 +83,7 @@ public class EditAppointmentCommand extends Command {
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
 
@@ -97,11 +97,11 @@ public class EditAppointmentCommand extends Command {
         assert appointmentToEdit != null;
 
         Email updatedEmail = editAppointmentDescriptor.getEmail().orElse(appointmentToEdit.getEmail());
-        SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName().orElse(appointmentToEdit.getSubjectName());
-        LocalDateTime updatedLocalDateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
+        SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName().orElse(appointmentToEdit.getSubject());
+        AppointmentDateTime updatedAppointmentDateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
         Address updatedAddress = editAppointmentDescriptor.getAddress().orElse(appointmentToEdit.getLocation());
 
-        return new Appointment(updatedEmail, updatedSubjectName, updatedLocalDateTime, updatedAddress);
+        return new Appointment(updatedEmail, updatedSubjectName, updatedAppointmentDateTime, updatedAddress);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EditAppointmentCommand extends Command {
     public static class EditAppointmentDescriptor {
         private Email email;
         private SubjectName subjectName;
-        private LocalDateTime dateTime;
+        private AppointmentDateTime dateTime;
         private Address address;
 
         public EditAppointmentDescriptor() {}
@@ -167,11 +167,11 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(subjectName);
         }
 
-        public void setDateTime(LocalDateTime dateTime) {
+        public void setDateTime(AppointmentDateTime dateTime) {
             this.dateTime = dateTime;
         }
 
-        public Optional<LocalDateTime> getDateTime() {
+        public Optional<AppointmentDateTime> getDateTime() {
             return Optional.ofNullable(dateTime);
         }
 

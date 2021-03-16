@@ -50,7 +50,11 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             editAppointmentDescriptor.setSubjectName(ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
         }
         // TODO: Implement better handling of date and times (and combinations)
-        if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
+        if (argMultimap.getValue(PREFIX_DATE).isPresent() || argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
+            if (!argMultimap.getValue(PREFIX_DATE).isPresent() || !argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
+                throw new ParseException("Both date and time must be specified.");
+            }
+
             String dateString = argMultimap.getValue(PREFIX_DATE).get();
             String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
             String dateTimeString = dateString + " " + timeFromString;
@@ -61,7 +65,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         }
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditAppointmentCommand(index, editAppointmentDescriptor);

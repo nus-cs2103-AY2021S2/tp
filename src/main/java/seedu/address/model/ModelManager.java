@@ -231,6 +231,13 @@ public class ModelManager implements Model {
         appointmentBook.removeAppointment(appointment);
     }
 
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        appointmentBook.setAppointment(target, editedAppointment);
+    }
+
     /**
      * Method that removes appointment based on index
      *
