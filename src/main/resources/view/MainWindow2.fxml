@@ -20,8 +20,8 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@dark/DarkTheme.css" />
-        <URL value="@dark/Extensions.css" />
+        <URL value="@yellow/YellowTheme.css" />
+        <URL value="@yellow/YellowExtensions.css" />
       </stylesheets>
 
       <VBox prefWidth="800.0">
