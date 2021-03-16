@@ -111,6 +111,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return schedules.contains(schedule);
     }
 
+    /**
+     * Adds a schedule to the schedule list.
+     * The schedule must not already exist in the schedule list.
+     */
     public void addSchedule(Schedule schedule) {
         schedules.add(schedule);
     }
@@ -124,6 +128,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(task);
         return tasks.contains(task);
     }
+
+    /**
+     * Adds a task to the task list.
+     * The task must not already exist in the task list.
+     */
     public void addTask(Task t) {
         tasks.add(t);
     }
