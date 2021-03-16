@@ -24,6 +24,11 @@ public class Semester {
         modules = new ArrayList<>(10);
     }
 
+    /**
+     * Constructor of Semester object.
+     * @param semNumber Number of Semester.
+     * @param modules List of modules in this semester
+     */
     public Semester(int semNumber, List<Module> modules) {
         this.semNumber = semNumber;
         this.modules = modules;

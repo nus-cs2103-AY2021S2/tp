@@ -18,8 +18,6 @@ import seedu.address.model.plan.Plan;
 import seedu.address.model.plan.Semester;
 import seedu.address.model.util.History;
 
-import javax.sound.midi.SysexMessage;
-
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -297,13 +295,6 @@ public class ModelManager implements Model {
             throw new CommandException("Plan or Semester index is invalid", e);
         }
     }
-
-//    @Override
-//    public void addSemester(int planNumber, Semester semester) {
-//        Plan plan = addressBook.getPersonList().get(planNumber);
-//        addressBook.setPlan(plan, plan.addSemester(semester));
-//        updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
-//    }
 
     @Override
     public void addModule(int planNumber, int semNumber, Module module) {

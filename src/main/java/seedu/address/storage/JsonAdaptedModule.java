@@ -22,6 +22,9 @@ public class JsonAdaptedModule {
     private List<JsonAdaptedModule> prerequisites = new ArrayList<>();
     private List<JsonAdaptedModule> preclusions = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedModule}.
+     */
     public JsonAdaptedModule(@JsonProperty("moduleTitle") String moduleTitle,
                              @JsonProperty("moduleCode") String moduleCode,
                              @JsonProperty("moduleCredits") int moduleCredits,
