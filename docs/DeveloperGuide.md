@@ -263,6 +263,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | restaurant owner               | remove food orders from the order list                     | remove the order if my customers changed their minds        |
 | `* * *`  | restaurant owner               | add the ingredients that I have restocked to the inventory | know which ingredients I have in stock                      |
 | `* * *`  | restaurant owner               | remove ingredients from the food inventory                 | remove an ingredient I have just used                       |
+| `* * *`  | restaurant owner               | view a list of ingredients from the food inventory         | so I know which ingredients I have in stock                 |
+| `* * *`  | restaurant owner               | add tasks to my shopping list        			 | so I can remember which items to restock                    |
+| `* * *`  | restaurant owner               | remove tasks from my shopping list    		         | so I can remove tasks I don't need anymore                  |
+| `* * *`  | restaurant owner               | view all tasks to my shopping list                         | so I can view which items to restock                        |
+| `* * *`  | restaurant owner               | add dishes to the menu list                                | so I can keep track of the dishes being offered             |
+| `* * *`  | restaurant owner               | remove dishes to the menu list                             | so I can remove dishes that are not being offered anymore   |
+| `* * *`  | restaurant owner               | view all dishes to the menu list                           | so I can view all the dishes being offered                  |
+| `* * *`  | restaurant owner               | view the list of food orders                               | so I know which dishes to prepare                           |
 | `* *`    | restaurant owner               | edit a customer's contact                                  | rectify typos for customer errors                           |
 | `* *`    | user with many contacts        | find a customer's contact                                  | quickly locate the contact details of a particular customer |
 | `* *`    | owner with a large menu        | find a dish on the menu                                    | quickly locate details of a dish on the menu                |
