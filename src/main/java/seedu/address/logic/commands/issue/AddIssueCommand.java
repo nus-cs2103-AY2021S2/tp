@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 
 /**
- * Adds a person to the address book.
+ * Adds a issue to the address book.
  */
 public class AddIssueCommand extends Command {
 
@@ -39,11 +39,11 @@ public class AddIssueCommand extends Command {
     private final Issue toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Issue}
      */
-    public AddIssueCommand(Issue person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddIssueCommand(Issue issue) {
+        requireNonNull(issue);
+        toAdd = issue;
     }
 
     @Override

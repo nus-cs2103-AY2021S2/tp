@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all issues in the address book to the user.
  */
 public class ListIssueCommand extends Command {
 

@@ -161,7 +161,7 @@ public interface Model {
      * Replaces the given Issue {@code target} with {@code editedIssue}.
      * {@code target} must exist in the address book.
      */
-    void setIssue(Issue target, Issue editedPerson);
+    void setIssue(Issue target, Issue editedIssue);
 
     /**
      * Returns an unmodifiable view of the filtered issue list

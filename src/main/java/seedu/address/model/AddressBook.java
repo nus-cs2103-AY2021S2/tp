@@ -60,8 +60,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the issue list with {@code issues}.
+     * {@code issues} must not contain duplicate issues.
      */
     public void setIssues(List<Issue> issues) {
         this.issues.setIssues(issues);
@@ -159,8 +159,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// issue-level operations
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a issue to the address book.
+     * The issue must not already exist in the address book.
      */
     public void addIssue(Issue issue) {
         issues.add(issue);
