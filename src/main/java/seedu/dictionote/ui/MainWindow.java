@@ -43,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private ContactListPanel contactListPanel;
     private NoteListPanel noteListPanel;
     private DictionaryListPanel dictionaryListPanel;
+    private DictionaryContentPanel dictionaryContentPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBox;
@@ -194,6 +195,10 @@ public class MainWindow extends UiPart<Stage> {
         dictionaryListPanel = new DictionaryListPanel(logic.getFilteredContentList(),
             logic.getFilteredDefinitionList());
         dictionaryListPlaceholder.getChildren().add(dictionaryListPanel.getRoot());
+
+        dictionaryContentPanel = new DictionaryContentPanel(dictionaryListPanel);
+        dictionaryContentPlaceholder.getChildren().add(dictionaryContentPanel.getRoot());
+        logic.setDictionaryContentConfig(dictionaryContentPanel);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

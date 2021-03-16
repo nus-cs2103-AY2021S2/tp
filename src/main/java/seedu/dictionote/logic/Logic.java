@@ -11,7 +11,9 @@ import seedu.dictionote.model.ReadOnlyAddressBook;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
+import seedu.dictionote.model.dictionary.DisplayableContent;
 import seedu.dictionote.model.note.Note;
+import seedu.dictionote.ui.DictionaryContentConfig;
 
 
 /**
@@ -46,6 +48,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of definitions */
     ObservableList<Definition> getFilteredDefinitionList();
 
+    /** Returns an unmodifiable view of the filtered list of current viewable list */
+    ObservableList<? extends DisplayableContent> getFilteredCurrentDictionaryList();
+
 
     /**
      * Returns the user prefs' dictionote book file path.
@@ -61,4 +66,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Set Dictionary UI Configuration Interface
+     */
+    void setDictionaryContentConfig(DictionaryContentConfig dictionaryContentConfig);
 }

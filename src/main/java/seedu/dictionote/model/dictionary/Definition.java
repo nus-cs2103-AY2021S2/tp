@@ -88,6 +88,6 @@ public class Definition implements DisplayableContent {
 
     @Override
     public String getDictionaryContent() {
-        return getTerm();
+        return getDefs();
     }
 }
