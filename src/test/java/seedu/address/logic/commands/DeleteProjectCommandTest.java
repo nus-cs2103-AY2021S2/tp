@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProjects.getTypicalProjectsFolder;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,13 +16,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ProjectsFolder;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 
 public class DeleteProjectCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new ProjectsFolder(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -30,7 +30,8 @@ public class DeleteProjectCommandTest {
 
         String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new ProjectsFolder(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(
+                getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
 
         assertCommandSuccess(deleteProjectCommand, model, expectedMessage, expectedModel);
@@ -53,7 +54,8 @@ public class DeleteProjectCommandTest {
 
         String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new ProjectsFolder(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(
+                getTypicalAddressBook(), getTypicalProjectsFolder(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
         showNoProject(expectedModel);
 
