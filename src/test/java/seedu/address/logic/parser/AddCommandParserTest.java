@@ -62,15 +62,15 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         Residence expectedResidence = new ResidenceBuilder(RESIDENCE1).withTags().build();
-        
+
         // zero bookings
         assertParseSuccess(parser, NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1
                 + CLEAN_STATUS_DESC + TAG_DESC_RESERVED, new AddCommand(expectedResidence));
-        
+
         // zero clean status tags
         assertParseSuccess(parser, NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1
                 + BOOKING_DETAILS_DESC_RESIDENCE1 + TAG_DESC_RESERVED, new AddCommand(expectedResidence));
-        
+
         // zero tags
         assertParseSuccess(parser, NAME_DESC_RESIDENCE1 + ADDRESS_DESC_RESIDENCE1
                 + BOOKING_DETAILS_DESC_RESIDENCE1 + CLEAN_STATUS_DESC, new AddCommand(expectedResidence));
