@@ -50,6 +50,7 @@ public class MasterPlanCommand extends Command {
             throw new CommandException("Set a new Master Plan as the old one is no longer valid.");
         }
         model.setMasterPlan(masterPlan);
+        masterPlan.setIsValid(true);
         return new CommandResult(String.format(MESSAGE_SUCCESS, masterPlanIndex.getOneBased()));
     }
 
