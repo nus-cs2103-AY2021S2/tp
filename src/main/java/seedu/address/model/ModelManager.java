@@ -339,9 +339,13 @@ public class ModelManager implements Model {
         try {
             Plan plan = addressBook.getPersonList().get(planNumber);
             Semester semester = plan.getSemesters().get(semNumber);
-            return semester.getModules().stream().anyMatch((currentModule) -> {
-                return currentModule.getModuleCode().equals(module.getModuleCode());
-            });
+            List<Module> addedModules = semester.getModules();
+            for (Module m : addedModules) {
+                if (m.getModuleCode().equals(module.getModuleCode())) {
+                    return true;
+                }
+            }
+            return false;
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("Plan or Semester index is invalid", e);
         }
@@ -351,7 +355,10 @@ public class ModelManager implements Model {
     public void addModule(int planNumber, int semNumber, Module module) {
         Plan plan = addressBook.getPersonList().get(planNumber);
         Semester semester = plan.getSemesters().get(semNumber);
+        //System.out.println("original");
+        //System.out.println(semester);
         semester.addModule(module);
+        //System.out.println(semester);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
 

@@ -25,8 +25,17 @@ public class Semester {
     }
 
     /**
-     * Command to get number of modules in semester.
-     * @return Number of modules in semester.
+     * Constructor of Semester object.
+     * @param semNumber Number of Semester.
+     * @param modules List of modules in this semester
+     */
+    public Semester(int semNumber, List<Module> modules) {
+        this.semNumber = semNumber;
+        this.modules = modules;
+    }
+
+    /** Command to get number of modules in semester.
+     * * @return Number of modules in semester.
      */
     public int getNumModules() {
         return modules.size();
