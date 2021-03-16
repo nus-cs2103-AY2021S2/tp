@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -160,5 +161,13 @@ public class ParserUtil {
     public static LocalDate parseDate(String dateStr) {
         requireNonNull(dateStr);
         return LocalDate.parse(dateStr);
+    }
+
+    /**
+     * Parses a {@code String dateTimeStr} into a {@code LocalDateTime}.
+     */
+    public static LocalDateTime parseDateTime(String dateTimeStr) {
+        requireNonNull(dateTimeStr);
+        return LocalDateTime.parse(dateTimeStr);
     }
 }

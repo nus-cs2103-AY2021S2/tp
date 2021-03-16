@@ -78,6 +78,17 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the task list.
+     */
+    void addTask(Task task);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -94,27 +105,27 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists
-     */
-    boolean hasTask(Task toAdd);
-
-    /**
-     * Adds the given task
-     */
-    void addTask(Task toAdd);
-
-    /**
      * Deletes the given task.
      * The task must exist in the address book.
      */
     void deleteTask(Task target);
 
-    void addSchedule(Schedule toAdd);
+    /**
+     * Adds the given schedule.
+     * {@code schedule} must not already exist in the schedule list.
+     */
+    void addSchedule(Schedule schedule);
 
     /**
-     * Returns true if a schedule with the same identity as {@code schedule} exists in the address book.
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule list.
      */
     boolean hasSchedule(Schedule schedule);
+
+    /**
+     * Deletes the given schedule.
+     * The schedule must exist in the schedule list.
+     */
+    void deleteSchedule(Schedule schedule);
 
     /** Returns an unmodifiable view of the filtered schedule list */
     ObservableList<Schedule> getFilteredScheduleList();
