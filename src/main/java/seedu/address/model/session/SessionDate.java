@@ -54,6 +54,12 @@ public class SessionDate {
                 && this.dateTime.toLocalTime().equals(sessionDate.dateTime.toLocalTime());
     }
 
+    /**
+     * Returns true if 2 given strings make a valid sessionDate.
+     * @param dateValue the string date
+     * @param timeValue the string value
+     * @return true if valid SessionDate
+     */
     public static boolean isValidSessionDate(String dateValue, String timeValue) {
         try {
             LocalDate localDate = LocalDate.parse(dateValue);
