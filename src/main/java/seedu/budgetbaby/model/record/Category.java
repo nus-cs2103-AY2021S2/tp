@@ -25,6 +25,10 @@ public class Category {
         this.category = tagName;
     }
 
+    public String getCategory() {
+        return this.category;
+    }
+
     /**
      * Returns true if a given string is a valid tag name.
      */

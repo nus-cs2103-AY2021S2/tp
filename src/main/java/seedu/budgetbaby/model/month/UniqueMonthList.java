@@ -13,6 +13,7 @@ import seedu.budgetbaby.logic.parser.TimestampParser;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.exception.DuplicateMonthException;
 import seedu.budgetbaby.model.month.exception.MonthNotFoundException;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -70,6 +71,11 @@ public class UniqueMonthList implements Iterable<Month> {
         if (contains(toAdd)) {
             throw new DuplicateMonthException();
         }
+        YearMonth prevYearMonth = toAdd.getMonth().minusMonths(1);
+        if (contains(prevYearMonth)) {
+            Month prevMonth = find(prevYearMonth);
+            toAdd.setBudget(prevMonth.getBudget());
+        }
         internalList.add(toAdd);
     }
 
@@ -82,7 +88,13 @@ public class UniqueMonthList implements Iterable<Month> {
         if (contains(yearMonth)) {
             throw new DuplicateMonthException();
         }
-        internalList.add(new Month(yearMonth));
+        Month toAdd = new Month(yearMonth);
+        YearMonth prevYearMonth = yearMonth.minusMonths(1);
+        if (contains(prevYearMonth)) {
+            Month prevMonth = find(prevYearMonth);
+            toAdd.setBudget(prevMonth.getBudget());
+        }
+        internalList.add(toAdd);
     }
 
     /**
@@ -162,7 +174,7 @@ public class UniqueMonthList implements Iterable<Month> {
 
     /**
      * Adds a financial record to the budget tracker.
-     * Adds a month to the budgt tracker.
+     * Adds a month to the budget tracker.
      */
     public void addFinancialRecord(FinancialRecord r) {
         requireNonNull(r);
@@ -172,7 +184,7 @@ public class UniqueMonthList implements Iterable<Month> {
 
     /**
      * Replaces the given financial record {@code target} in the list with {@code editedRecord}.
-     * {@code target} must exist in the budegt tracker.
+     * {@code target} must exist in the budget tracker.
      */
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireNonNull(editedRecord);
@@ -193,6 +205,17 @@ public class UniqueMonthList implements Iterable<Month> {
     }
 
     /**
+     * Removes {@code key} from this {@code BudgetTracker}.
+     * {@code key} must exist in the budget tracker.
+     */
+    public void filterByCategory(Category category) {
+        requireNonNull(category);
+        for (Month m : internalList) {
+            m.filterByCategory(category);
+        }
+    }
+
+    /**
      * Returns a specific month's financial record list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<FinancialRecord> getFinancialRecordOfMonth(YearMonth month) {
@@ -208,8 +231,13 @@ public class UniqueMonthList implements Iterable<Month> {
      */
     public void setBudget(Budget budget) {
         requireNonNull(budget);
-        Month currentMonth = find(YearMonth.now());
-        //TODO: implement setBudget methods for the current month and all the future month
+        YearMonth currYearMonth = YearMonth.now();
+        Month currentMonth = find(currYearMonth);
+        currentMonth.setBudget(budget);
+        for (int i = 1; i <= 12; i++) {
+            Month month = find(currYearMonth.plusMonths(i));
+            month.setBudget(budget);
+        }
     }
 
     @Override

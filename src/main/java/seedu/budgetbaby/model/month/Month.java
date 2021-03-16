@@ -9,6 +9,7 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.exception.MonthMismatchException;
+import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.model.record.FinancialRecordList;
 
@@ -85,12 +86,27 @@ public class Month {
     }
 
     /**
+     * Filters the financial records to a specified category.
+     */
+    public void filterByCategory(Category category) {
+        requireNonNull(category);
+        records.filterByCategory(category);
+    }
+
+    /**
      * Sets the budget for the following months.
      *
      * @param budget The specified budget to be set.
      */
     public void setBudget(Budget budget) {
         this.budget = budget;
+    }
+
+    /**
+     * Returns the remaining budget left for the month.
+     */
+    public Double getRemainingBudget() {
+        return budget.getAmount() - records.getTotalExpenses();
     }
 
     /**
