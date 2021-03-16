@@ -162,7 +162,7 @@ Shows items that are expiring soon.
 
 Format 1: `reminder numOfDays`
 
-* `reminder 7` will give you a list containing all items that are expiring in 7 days.
+* `reminder 7` will give you a list containing all items that are expiring within the next 7 days.
 *  Items without expiry date will not be shown.
 *  The numOfDays **must be a positive integer** 1, 2, 3, …​ 
 
@@ -173,7 +173,7 @@ Examples:
     
 Format 2: `reminder numOfDays [TIME_UNIT]`
 
-* `reminder 2 weeks` will give you a list containing all items that are expiring in 2 weeks.
+* `reminder 2 weeks` will give you a list containing all items that are expiring within the next 2 weeks.
 *  Items without expiry date will not be shown.
 *  The numOfDays **must be a positive integer** 1, 2, 3, …​
 *  The time unit **must be days or weeks**

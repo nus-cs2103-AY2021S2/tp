@@ -18,7 +18,8 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
      * @throws ParseException if the user input does not conform the expected keyword
      */
     private long timeConversation(long num, String timeUnit) throws ParseException {
-        switch (timeUnit) {
+        String timeUnitLowerCase = timeUnit.toLowerCase();
+        switch (timeUnitLowerCase) {
         case "days":
             return num;
         case "weeks":
