@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_FACT;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_DATA_PAIR_NEW;
+import static seedu.us.among.logic.commands.CommandTestUtil.VALID_HEADER_PAIR_NEW;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_GET;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
@@ -82,6 +84,14 @@ public class EndpointTest {
 
         // different tags -> returns false
         editedGet = new EndpointBuilder(GET1).withTags(VALID_TAG_CAT).build();
+        assertFalse(GET1.equals(editedGet));
+
+        // different data -> returns false
+        editedGet = new EndpointBuilder(GET1).withData(VALID_DATA_PAIR_NEW).build();
+        assertFalse(GET1.equals(editedGet));
+
+        // different headers -> returns false
+        editedGet = new EndpointBuilder(GET1).withHeaders(VALID_HEADER_PAIR_NEW).build();
         assertFalse(GET1.equals(editedGet));
     }
 }
