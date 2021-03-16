@@ -13,6 +13,11 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
+     * Prevents StringUtil from being instantiated.
+     */
+    private StringUtil() {}
+
+    /**
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
      *   <br>examples:<pre>

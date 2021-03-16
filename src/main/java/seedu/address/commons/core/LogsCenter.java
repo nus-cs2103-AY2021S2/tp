@@ -25,6 +25,11 @@ public class LogsCenter {
     private static ConsoleHandler consoleHandler;
 
     /**
+     * Prevent LogsCenter from being instantiated.
+     */
+    private LogsCenter() {}
+
+    /**
      * Initializes with a custom log level (specified in the {@code config} object)
      * Loggers obtained *AFTER* this initialization will have their logging level changed<br>
      * Logging levels for existing loggers will only be updated if the logger with the same name
