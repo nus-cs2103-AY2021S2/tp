@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
 
 /**
  * @@author {se-edu}-reused
- * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
  *
  * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
  */
@@ -28,6 +28,7 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Person>> {
     /**
      * Returns a handle to the selected {@code PersonCardHandle}.
      * A maximum of 1 item can be selected at any time.
+     *
      * @throws AssertionError if no card is selected, or more than 1 card is selected.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
@@ -102,6 +103,7 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Person>> {
 
     /**
      * Returns the person card handle of a person associated with the {@code index} in the list.
+     * 
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
     public PersonCardHandle getPersonCardHandle(int index) {

@@ -18,6 +18,7 @@ public class StatusBarFooterHandle extends NodeHandle<Node> {
 
     /**
      * Constructs a {@code StatusBarFooterHandle} handler object.
+     *
      * @param statusBarFooterNode Node of the {@code StatusBarFooter}.
      */
     public StatusBarFooterHandle(Node statusBarFooterNode) {
