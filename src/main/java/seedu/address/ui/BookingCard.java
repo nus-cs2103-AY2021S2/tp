@@ -50,7 +50,7 @@ public class BookingCard extends UiPart<Region> {
         this.booking = booking;
         id.setText(displayedIndex + ". ");
         title.setText(booking.getDescription());
-        booker.setText(booking.getBooker());
+        booker.setText(booking.getBooker().getName().fullName);
         time.setText(booking.getBookingStart().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         description.setText(booking.getDescription());
         /* person.getTags().stream()
