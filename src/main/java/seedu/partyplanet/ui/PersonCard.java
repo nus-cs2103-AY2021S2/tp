@@ -12,6 +12,7 @@ import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
+import seedu.partyplanet.model.person.Remark;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -45,7 +46,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label birthday;
     @FXML
+    private Label remark;
+    @FXML
     private FlowPane tags;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -66,6 +70,9 @@ public class PersonCard extends UiPart<Region> {
         }
         if (!Birthday.isEmptyBirthday(person.getBirthday())) {
             birthday.setText(person.getBirthday().value);
+        }
+        if (!Remark.isEmptyRemark(person.getRemark())) {
+            remark.setText(person.getRemark().value);
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

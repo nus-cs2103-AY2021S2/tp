@@ -5,6 +5,7 @@ import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -36,6 +37,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + " " + person.getEmail().value + " ");
         sb.append(PREFIX_BIRTHDAY + " " + person.getBirthday().value + " ");
         sb.append(PREFIX_ADDRESS + " " + person.getAddress().value + " ");
+        sb.append(PREFIX_REMARK + " " + person.getRemark().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + " " + s.tagName + " ")
         );
@@ -52,6 +54,7 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL + " " + email.value + " "));
         descriptor.getBirthday().ifPresent(birthday -> sb.append(PREFIX_BIRTHDAY + " " + birthday.value + " "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS + " " + address.value + " "));
+        descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK + " " + remark.value + " "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

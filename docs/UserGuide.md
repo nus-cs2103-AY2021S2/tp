@@ -53,11 +53,12 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 Adds a person to the PartyPlanet's Contacts List.
 
-Format: `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​`<br>
+Format: `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]​ [-r REMARK]​`<br>
 * The birthday must be in a valid date format, e.g. 13 Jan
 
 Examples:
-* `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan` Adds a new person James Ho with specified details.
+* `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -t friend -t colleague -b 1 Jan 
+  -r allergic to nuts` Adds a new person James Ho with specified details.
 
 ### Clearing all data : `clear`
 
@@ -88,7 +89,7 @@ Examples:
 
 Edits an existing person in the PartyPlanet's Contact List.
 
-Format: `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]`
+Format: `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list (not sorted). The index must be a positive integer that is a valid number in the list.
 * Existing values will be updated to the input values.
@@ -194,10 +195,10 @@ Retrieves previously entered input.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague`
+**Add** | `add -n NAME [-p PHONE_NUM] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
 **Clear** | `clear`
 **Delete** | `delete {INDEX [INDEX]... | -t TAG [-t TAG]...}`<br> e.g., `delete 3 4 5` <br> e.g., `delete -t colleague`
-**Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY]`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit 2 -n Betsy Crower -t colleague`
+**Edit** | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit 2 -n Betsy Crower -t colleague`
 **Find** | `find [-n NAME] [-t TAG]`<br> e.g., `find -n Bob -t cs2103`
 **List** | `list [-s SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
 **Find tags** | `tags [-f KEYWORD]`<br> e.g.,`tags`<br> e.g., `tags -f cs2103`
