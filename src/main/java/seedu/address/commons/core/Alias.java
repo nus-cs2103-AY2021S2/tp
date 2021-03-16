@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
  */
 public class Alias implements Serializable {
     public static final String MESSAGE_NAME_CONSTRAINTS = "Only alphanumeric characters are allowed in alias names";
+
     public static final String NAME_REGEX = "\\p{Alnum}+";
 
     private final String aliasName;

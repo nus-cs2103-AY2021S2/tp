@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalResidents.ALICE;
 import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.exceptions.DuplicateResidentException;
 import seedu.address.model.room.Room;
@@ -48,7 +50,9 @@ public class AddressBookTest {
         Resident editedAlice = new ResidentBuilder(ALICE)
                 .build();
         List<Resident> newResidents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newResidents);
+        List<Room> newRooms = new ArrayList<>();
+        List<Issue> newIssues = new ArrayList<>();
+        AddressBookStub newData = new AddressBookStub(newResidents, newRooms, newIssues);
 
         assertThrows(DuplicateResidentException.class, () -> addressBook.resetData(newData));
     }
@@ -88,9 +92,12 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Resident> residents = FXCollections.observableArrayList();
         private final ObservableList<Room> rooms = FXCollections.observableArrayList();
+        private final ObservableList<Issue> issues = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Resident> residents) {
+        AddressBookStub(Collection<Resident> residents, Collection<Room> rooms, Collection<Issue> issues) {
             this.residents.setAll(residents);
+            this.rooms.setAll(rooms);
+            this.issues.setAll(issues);
         }
 
         @Override
@@ -101,6 +108,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Room> getRoomList() {
             return rooms;
+        }
+
+        @Override
+        public ObservableList<Issue> getIssueList() {
+            return issues;
         }
     }
 

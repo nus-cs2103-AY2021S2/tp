@@ -1,16 +1,20 @@
 {
-  "residents": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "year": "1",
-    "room": "01-234"
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "year": "1",
-    "room": "01-234"
-  } ],
-  "rooms": []
+  "residents": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "year": "1",
+      "room": "01-234"
+    },
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "pauline@example.com",
+      "year": "1",
+      "room": "01-234"
+    }
+  ],
+  "rooms": [],
+  "issues": []
 }

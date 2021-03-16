@@ -14,6 +14,8 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.room.Room;
 import seedu.address.storage.Storage;
@@ -46,6 +48,8 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText, model.getUserPrefs());
         commandResult = command.execute(model);
 
+        model.appendCommandHistoryEntry(commandText);
+
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveUserPrefs(model.getUserPrefs());
@@ -72,6 +76,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Issue> getFilteredIssueList() {
+        return model.getFilteredIssueList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -84,5 +93,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ReadOnlyCommandHistory getCommandHistory() {
+        return model.getCommandHistory();
     }
 }

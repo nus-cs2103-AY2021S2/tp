@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.room.Room;
 
@@ -17,6 +19,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Resident> PREDICATE_SHOW_ALL_RESIDENTS = unused -> true;
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
+    Predicate<Issue> PREDICATE_SHOW_ALL_ISSUES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -83,11 +86,14 @@ public interface Model {
      */
     void setResident(Resident target, Resident editedResident);
 
-    /** Returns an unmodifiable view of the filtered resident list */
+    /**
+     * Returns an unmodifiable view of the filtered resident list
+     */
     ObservableList<Resident> getFilteredResidentList();
 
     /**
      * Updates the filter of the filtered resident list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredResidentList(Predicate<Resident> predicate);
@@ -129,6 +135,56 @@ public interface Model {
     void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+     * Returns an unmodifiable view of the command history.
+     *
+     * @return An unmodifiable view of the command history.
+     */
+    ReadOnlyCommandHistory getCommandHistory();
+
+    /**
+     * Appends a command history entry to the command history list.
+     *
+     * @param commandText The command text entry to append.
+     */
+    void appendCommandHistoryEntry(String commandText);
+
+    /**
+     * Deletes the given issue.
+     * The issue must exist in SunRez.
+     */
+    void deleteIssue(Issue target);
+
+    /**
+     * Adds the given issue.
+     */
+    void addIssue(Issue issue);
+
+    /**
+     * Replaces the given Issue {@code target} with {@code editedIssue}.
+     * {@code target} must exist in the address book.
+     */
+    void setIssue(Issue target, Issue editedPerson);
+
+    /**
+     * Returns an unmodifiable view of the filtered issue list
+     */
+    ObservableList<Issue> getFilteredIssueList();
+
+    /**
+     * Updates the filter of the filtered issue list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredIssueList(Predicate<Issue> predicate);
+
+    /**
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
      * Returns the current user's alias mapping.
      */
     AliasMapping getAliasMapping();

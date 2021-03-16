@@ -8,6 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.room.Room;
 
@@ -17,10 +19,11 @@ import seedu.address.model.room.Room;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
+     * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
@@ -37,6 +40,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of rooms */
     ObservableList<Room> getFilteredRoomList();
 
+    /** Returns an unmodifiable view of the filtered list of issues */
+    ObservableList<Issue> getFilteredIssueList();
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -51,4 +57,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the command history.
+     */
+    ReadOnlyCommandHistory getCommandHistory();
 }

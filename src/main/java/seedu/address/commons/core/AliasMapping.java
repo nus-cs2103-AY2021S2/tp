@@ -10,7 +10,13 @@ import java.util.Map;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ViewHistoryCommand;
 import seedu.address.logic.commands.alias.AliasCommand;
+import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.DeleteIssueCommand;
+import seedu.address.logic.commands.issue.EditIssueCommand;
+import seedu.address.logic.commands.issue.FindIssueCommand;
+import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.commands.resident.AddResidentCommand;
 import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
@@ -76,6 +82,7 @@ public class AliasMapping implements Serializable {
         case ClearCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
+        case ViewHistoryCommand.COMMAND_WORD:
 
         //====== Resident Commands ======
         case AddResidentCommand.COMMAND_WORD:
@@ -90,6 +97,13 @@ public class AliasMapping implements Serializable {
         case DeleteRoomCommand.COMMAND_WORD:
         case FindRoomCommand.COMMAND_WORD:
         case ListRoomCommand.COMMAND_WORD:
+
+        //====== Issue Commands ======
+        case AddIssueCommand.COMMAND_WORD:
+        case ListIssueCommand.COMMAND_WORD:
+        case FindIssueCommand.COMMAND_WORD:
+        case EditIssueCommand.COMMAND_WORD:
+        case DeleteIssueCommand.COMMAND_WORD:
             return true;
         default:
             return false;

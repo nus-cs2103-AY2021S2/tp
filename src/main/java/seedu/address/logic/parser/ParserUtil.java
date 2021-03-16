@@ -10,13 +10,16 @@ import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.issue.Category;
+import seedu.address.model.issue.Description;
+import seedu.address.model.issue.Status;
+import seedu.address.model.issue.Timestamp;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Room;
 import seedu.address.model.resident.Year;
 import seedu.address.model.room.IsOccupied;
-import seedu.address.model.room.RoomNumber;
 import seedu.address.model.room.RoomType;
 import seedu.address.model.tag.Tag;
 
@@ -143,21 +146,19 @@ public class ParserUtil {
         return tagSet;
     }
 
-    //==========Room Parsing Methods========================================================
-
     /**
      * Parses a {@code String roomNumber} into a {@code RoomNumber}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code roomNumber} is invalid.
      */
-    public static RoomNumber parseRoomNumber(String roomNumber) throws ParseException {
+    public static seedu.address.model.room.RoomNumber parseRoomNumber(String roomNumber) throws ParseException {
         requireNonNull(roomNumber);
         String trimmedRoomNumber = roomNumber.trim();
-        if (!RoomNumber.isValidRoomNumber(trimmedRoomNumber)) {
-            throw new ParseException(RoomNumber.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.room.RoomNumber.isValidRoomNumber(trimmedRoomNumber)) {
+            throw new ParseException(seedu.address.model.room.RoomNumber.MESSAGE_CONSTRAINTS);
         }
-        return new RoomNumber(trimmedRoomNumber);
+        return new seedu.address.model.room.RoomNumber(trimmedRoomNumber);
     }
 
     /**
@@ -188,6 +189,86 @@ public class ParserUtil {
             throw new ParseException(IsOccupied.MESSAGE_CONSTRAINTS);
         }
         return new IsOccupied(trimmedRoomOccupancyStatus);
+    }
+
+    //==========Issue Parsing Method========================================================
+
+    /**
+     * Parses a {@code String roomNumber} into a {@code RoomNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code roomNumber} is invalid.
+     */
+    public static seedu.address.model.issue.RoomNumber parseIssueRoomNumber(String roomNumber) throws ParseException {
+        requireNonNull(roomNumber);
+        String trimmedRoomNumber = roomNumber.trim();
+        if (!seedu.address.model.issue.RoomNumber.isValidRoomNumber(trimmedRoomNumber)) {
+            throw new ParseException(seedu.address.model.issue.RoomNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new seedu.address.model.issue.RoomNumber(trimmedRoomNumber);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String timestamp} into a {@code Timestamp}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code timestamp} is invalid.
+     */
+    public static Timestamp parseTimestamp(String timestamp) throws ParseException {
+        requireNonNull(timestamp);
+        String trimmedTimestamp = timestamp.trim();
+        if (!Timestamp.isValidTimestamp(trimmedTimestamp)) {
+            throw new ParseException(Timestamp.MESSAGE_CONSTRAINTS);
+        }
+        return new Timestamp(trimmedTimestamp);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String category} into a {@code Category}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code category} is invalid.
+     */
+    public static Category parseCategory(String category) throws ParseException {
+        if (category == null) {
+            return null;
+        }
+
+        String trimmedCategory = category.trim();
+        if (!Category.isValidCategory(trimmedCategory)) {
+            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
+        }
+        return new Category(trimmedCategory);
     }
 
     //==========Alias Parsing Method========================================================

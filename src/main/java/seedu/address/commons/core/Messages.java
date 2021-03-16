@@ -14,4 +14,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_ROOM_DISPLAYED_INDEX = "The room index provided is invalid";
     public static final String MESSAGE_ROOMS_LISTED_OVERVIEW = "%1$d rooms listed!";
 
+    public static final String MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX = "The issue index provided is invalid";
+    public static final String MESSAGE_ISSUES_LISTED_OVERVIEW = "%1$d issues listed!";
+
 }

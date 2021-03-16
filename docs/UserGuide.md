@@ -134,10 +134,10 @@ Example:
 
 Adds a room to the housing management system.
 
-Format: `oadd n/ROOM_NO t/TYPE o/OCCUPY_STATUS [g/TAG]`
+Format: `oadd r/ROOM_NO t/TYPE o/OCCUPY_STATUS [g/TAG]`
 
 Example:
-* `oadd n/10-112 t/single_no_ac o/Occupied g/SHN` Adds a room numbered `10-112` of type `single_no_ac` with the tag `SHN` and occupy status `Occupied`.
+* `oadd r/10-112 t/single_no_ac o/Occupied g/SHN` Adds a room numbered `10-112` of type `single_no_ac` with the tag `SHN` and occupy status `Occupied`.
 
 
 ### List all rooms : `olist`
@@ -167,7 +167,7 @@ Examples:
 
 Edits the existing room record at a specified index.
 
-Format: `oedit INDEX [n/ROOM_NO] [t/TYPE] [o/OCCUPY_STATUS] [g/TAG]`
+Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [o/OCCUPY_STATUS] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -220,7 +220,7 @@ Examples:
 
 ### Edit an issue record : `iedit`
 
-Edits the existing issue record at a specified index. 
+Edits the existing issue record at a specified index.
 
 Format: `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]`
 * `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
@@ -252,6 +252,16 @@ Format: `idel INDEX`
 Example:
 * `idel 1` Deletes the 1st issue.
 
+### View Command History : `history`
+
+Displays the user's valid command history, sorted from most to least recent.
+
+Format: `history [COUNT]`
+* `COUNT` refers to the number of most recent command entries to display. `COUNT` **must be a positive integer 1,2,3, ...**.
+
+Examples:
+* `history` Displays all command entries.
+* `history 5` Displays the 5 most recent command entries.
 
 ### Exit the program : `exit`
 
@@ -268,7 +278,7 @@ SunRez data is saved in the hard disk automatically after any command that chang
 
 SunRez data is saved as a JSON file `[JAR file location]/data/sunrez.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning"> 
+<div markdown="span" class="alert alert-warning">
 **Caution**: <br>
 If your changes to the data file makes its format invalid, SunRez will discard all data and start with an empty data file at the next run.
 </div>
@@ -303,4 +313,5 @@ Action | Format, Examples
 **Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY]` <br> e.g. `iedit 1 r/20-109 s/Closed`
 **Close an issue** | `iclose INDEX` <br> e.g. `iclose 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
+**View command history** | `history [COUNT]` <br> e.g. `history 5`
 **Exit the app** | `exit`
