@@ -125,9 +125,9 @@ public class ParserUtil {
 
     public static Map.Entry<Car, CoeExpiry> parseCarInfo(String info) throws ParseException {
         info = info.trim();
-        String[] parts = info.split("|");
+        String[] parts = info.split("\\|");
         if (parts.length != 2) {
-            throw new ParseException(Car.MESSAGE_CONSTRAINTS + " and " + CoeExpiry.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Car.MESSAGE_CONSTRAINTS + " and also " + CoeExpiry.MESSAGE_CONSTRAINTS + "\n" + info);
         }
 
         try {
@@ -141,7 +141,7 @@ public class ParserUtil {
         requireNonNull(allValues);
         final Map<Car, CoeExpiry> carsOwned = new HashMap<>();
         for (String carOwned : allValues) {
-            Map.Entry<Car, CoeExpiry> newEntry = null;
+            Map.Entry<Car, CoeExpiry> newEntry = parseCarInfo(carOwned);
             carsOwned.put(newEntry.getKey(), newEntry.getValue());
         }
         return carsOwned;
