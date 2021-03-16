@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMUTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 
 import java.util.List;
 import java.util.Set;
@@ -14,17 +14,17 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.driver.Driver;
-import seedu.address.model.human.person.Address;
-import seedu.address.model.human.person.Person;
-import seedu.address.model.human.person.TripDay;
-import seedu.address.model.human.person.TripTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
+import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.TripDay;
+import seedu.address.model.person.passenger.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
- * Associates a Driver with the selected Persons
+ * Associates a Driver with the selected Passengers.
  */
 public class DriveCommand extends Command {
     public static final String COMMAND_WORD = "drive";
@@ -45,64 +45,64 @@ public class DriveCommand extends Command {
     public static final String MESSAGE_DRIVE_SUCCESS = "Assigned %s to: %s";
 
     private final Driver driver;
-    private final Set<Index> persons;
+    private final Set<Index> passengers;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Passenger}
      */
-    public DriveCommand(Driver driver, Set<Index> persons) {
+    public DriveCommand(Driver driver, Set<Index> passengers) {
         requireNonNull(driver);
-        requireNonNull(persons);
+        requireNonNull(passengers);
         this.driver = driver;
-        this.persons = persons;
+        this.passengers = passengers;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (persons.size() == 0) {
+        if (passengers.size() == 0) {
             throw new CommandException(MESSAGE_NO_COMMUTERS);
         }
         StringJoiner joiner = new StringJoiner(", ");
 
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Passenger> lastShownList = model.getFilteredPassengerList();
 
-        for (Index idx : persons) {
+        for (Index idx : passengers) {
             if (idx.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
             }
         }
 
-        for (Index idx : persons) {
-            Person personToEdit = lastShownList.get(idx.getZeroBased());
-            Person editedPerson = assignDriverToPerson(personToEdit, driver);
-            joiner.add(editedPerson.getName().toString());
-            model.setPerson(personToEdit, editedPerson);
+        for (Index idx : passengers) {
+            Passenger passengerToEdit = lastShownList.get(idx.getZeroBased());
+            Passenger editedPassenger = assignDriverToPassenger(passengerToEdit, driver);
+            joiner.add(editedPassenger.getName().toString());
+            model.setPassenger(passengerToEdit, editedPassenger);
         }
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
 
         return new CommandResult(String.format(MESSAGE_DRIVE_SUCCESS, driver.toString(), joiner.toString()));
     }
 
     /**
-     * Assigns the given {@code Driver} to the given {@code Person}.
-     * @param personToEdit the {@code Person} to add the {@code Driver} to.
-     * @param driver the {@code Driver} to add to the {@code Person}.
-     * @return a new {@code Person}, with the given driver assigned.
+     * Assigns the given {@code Driver} to the given {@code Passenger}.
+     * @param passengerToEdit the {@code Passenger} to add the {@code Driver} to.
+     * @param driver the {@code Driver} to add to the {@code Passenger}.
+     * @return a new {@code Passenger}, with the given driver assigned.
      */
-    private static Person assignDriverToPerson(Person personToEdit, Driver driver) {
-        requireNonNull(personToEdit);
+    private static Passenger assignDriverToPassenger(Passenger passengerToEdit, Driver driver) {
+        requireNonNull(passengerToEdit);
         requireNonNull(driver);
 
-        Name updatedName = personToEdit.getName();
-        Phone updatedPhone = personToEdit.getPhone();
-        Address updatedAddress = personToEdit.getAddress();
-        Set<Tag> updatedTags = personToEdit.getTags();
-        TripDay updatedTripDay = personToEdit.getTripDay();
-        TripTime updatedTripTime = personToEdit.getTripTime();
+        Name updatedName = passengerToEdit.getName();
+        Phone updatedPhone = passengerToEdit.getPhone();
+        Address updatedAddress = passengerToEdit.getAddress();
+        Set<Tag> updatedTags = passengerToEdit.getTags();
+        TripDay updatedTripDay = passengerToEdit.getTripDay();
+        TripTime updatedTripTime = passengerToEdit.getTripTime();
 
-        return new Person(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, driver,
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, driver,
                 updatedTags);
     }
 
@@ -111,6 +111,6 @@ public class DriveCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DriveCommand // instanceof handles nulls
                 && (driver.equals(((DriveCommand) other).driver)
-                && persons.equals(((DriveCommand) other).persons)));
+                && passengers.equals(((DriveCommand) other).passengers)));
     }
 }

@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.driver.Driver;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
 
 /**
  * A utility class to help with building Driver objects.
@@ -24,11 +24,11 @@ public class DriverBuilder {
     }
 
     /**
-     * Initializes the DriverBuilder with the data of {@code personToCopy}.
+     * Initializes the DriverBuilder with the data of {@code passengerToCopy}.
      */
-    public DriverBuilder(Driver personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+    public DriverBuilder(Driver passengerToCopy) {
+        name = passengerToCopy.getName();
+        phone = passengerToCopy.getPhone();
     }
 
     /**

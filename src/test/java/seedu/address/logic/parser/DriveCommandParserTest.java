@@ -26,9 +26,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DriveCommand;
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.driver.Driver;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
 

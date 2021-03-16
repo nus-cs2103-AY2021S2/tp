@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.person.passenger.Passenger;
 
 /**
  * API of the Logic component
@@ -30,8 +30,15 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /**
+     * Returns an unmodifiable view of the filtered list of passengers.
+     **/
+    ObservableList<Passenger> getFilteredPassengerList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of passengers whether it is assigned to a driver already.
+     **/
+    ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned);
 
     /**
      * Returns the user prefs' address book file path.
