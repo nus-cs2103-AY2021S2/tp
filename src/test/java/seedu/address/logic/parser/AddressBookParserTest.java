@@ -87,8 +87,8 @@ public class AddressBookParserTest {
     public void parseCommand_deleteCfrom() throws Exception {
         Index projectIndex = Index.fromOneBased(1);
         DeleteContactFromCommand command = (DeleteContactFromCommand) parser.parseCommand(
-                DeleteContactFromCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "
-                + PREFIX_REMOVE_TASK_INDEX + " " + INDEX_FIRST.getOneBased()
+                DeleteContactFromCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
+                + PREFIX_REMOVE_TASK_INDEX + " " + projectIndex.getOneBased()
         );
         assertEquals(new DeleteContactFromCommand(INDEX_FIRST, INDEX_FIRST), command);
     }
