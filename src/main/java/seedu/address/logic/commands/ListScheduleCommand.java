@@ -9,9 +9,9 @@ import seedu.address.model.schedule.ListScheduleFormatPredicate;
 public class ListScheduleCommand extends Command {
     public static final String COMMAND_WORD = "slist";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all schedules by "
-            + "day or week and displays them as a list sorted by date.\n"
-            + "Parameters: day/week \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all schedules "
+            + "by displaying them as a list sorted by date. Schedules can also be listed by day/week.\n"
+            + "Possible parameters: day/week \n"
             + "Example: " + COMMAND_WORD + " week";
 
     private final ListScheduleFormatPredicate predicate;

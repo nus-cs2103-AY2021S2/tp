@@ -10,9 +10,9 @@ public class ListTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "tlist";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tasks by "
-            + "day or week and displays them as a list sorted by date.\n"
-            + "Parameters: day/week \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tasks "
+            + "by displaying them as a list sorted by date. Tasks can also be listed by day/week.\n"
+            + "Possible parameters: day/week \n"
             + "Example: " + COMMAND_WORD + " week";
 
     private final ListTaskFormatPredicate predicate;

@@ -18,8 +18,10 @@ public class ListTaskFormatPredicate implements Predicate<Task> {
         LocalDate lastday = today.plusDays(7);
         if (keyword.equals("day")) {
             return today.equals(task.getDate());
-        } else {
+        } else if (keyword.equals("week")) {
             return task.getDate().isAfter(yesterday) && task.getDate().isBefore(lastday);
+        } else {
+            return true;
         }
     }
 }

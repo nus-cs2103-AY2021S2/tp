@@ -20,8 +20,10 @@ public class ListScheduleFormatPredicate implements Predicate<Schedule> {
         LocalDate startDate = LocalDate.from(schedule.getStartDate());
         if (keyword.equals("day")) {
             return today.equals(startDate);
-        } else {
+        } else if (keyword.equals("week")) {
             return startDate.isAfter(yesterday) && startDate.isBefore(lastday);
+        } else {
+            return true;
         }
     }
 }

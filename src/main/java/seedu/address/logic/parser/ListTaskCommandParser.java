@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.logic.commands.ListScheduleCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.ListTaskFormatPredicate;
@@ -18,11 +19,14 @@ public class ListTaskCommandParser implements Parser<ListTaskCommand> {
      */
     public ListTaskCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty() || (!trimmedArgs.equals("day") && !trimmedArgs.equals("week"))) {
+        ListTaskCommand listTaskCommand = new ListTaskCommand(new ListTaskFormatPredicate(trimmedArgs));
+        if (trimmedArgs.equals("day") || trimmedArgs.equals("week")) {
+            return listTaskCommand;
+        } else if (trimmedArgs.isEmpty()) {
+            return listTaskCommand;
+        } else {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListTaskCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListScheduleCommand.MESSAGE_USAGE));
         }
-
-        return new ListTaskCommand(new ListTaskFormatPredicate(trimmedArgs));
     }
 }

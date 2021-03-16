@@ -18,11 +18,15 @@ public class ListScheduleCommandParser implements Parser<ListScheduleCommand> {
      */
     public ListScheduleCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty() || (!trimmedArgs.equals("day") && !trimmedArgs.equals("week"))) {
+        ListScheduleCommand listScheduleCommand = new ListScheduleCommand(
+                new ListScheduleFormatPredicate(trimmedArgs));
+        if (trimmedArgs.equals("day") || trimmedArgs.equals("week")) {
+            return listScheduleCommand;
+        } else if (trimmedArgs.isEmpty()) {
+            return listScheduleCommand;
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListScheduleCommand.MESSAGE_USAGE));
         }
-
-        return new ListScheduleCommand(new ListScheduleFormatPredicate(trimmedArgs));
     }
 }
