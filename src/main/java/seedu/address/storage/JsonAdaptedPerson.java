@@ -16,7 +16,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.subject.TutorSubject;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -109,9 +109,9 @@ class JsonAdaptedPerson {
         //TODO: Adapt storage for Gender
         final Gender modelGender = new Gender("Todo");
         // TODO: Adapt storage for Tutor Subjects
-        final List<TutorSubject> modelTutorSubjects = new ArrayList<>();
+        final SubjectList modelSubjectList = new SubjectList();
 
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTutorSubjects, modelTags);
+        return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelSubjectList, modelTags);
     }
 
 }
