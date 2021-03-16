@@ -70,8 +70,7 @@ public class AddCommand extends Command {
 
             model.addPerson(toAddPerson);
             return new CommandResult(String.format(MESSAGE_PERSON_SUCCESS, toAddPerson));
-        }
-        else {
+        } else {
             if (model.hasEvent(toAddEvent)) {
                 throw new CommandException(MESSAGE_DUPLICATE_EVENT);
             }
@@ -84,6 +83,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAddPerson.equals(((AddCommand) other).toAddPerson)) ;
+                && toAddPerson.equals(((AddCommand) other).toAddPerson));
     }
 }
