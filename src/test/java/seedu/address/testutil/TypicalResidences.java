@@ -9,6 +9,9 @@ import java.util.List;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_RESIDENCE2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS_RESIDENCE1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BOOKING_DETAILS_RESIDENCE2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REPAIR;

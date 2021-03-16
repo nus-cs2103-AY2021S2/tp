@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+
 import static seedu.address.testutil.TypicalResidences.RESIDENCE_A;
 import static seedu.address.testutil.TypicalResidences.EXTRA_R1;
 import static seedu.address.testutil.TypicalResidences.EXTRA_R2;
@@ -20,8 +21,7 @@ import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.ResidenceTracker;
 
 public class JsonResidenceTrackerStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
-            "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonResidenceTrackerStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -54,13 +54,12 @@ public class JsonResidenceTrackerStorageTest {
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readResidenceTracker("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readResidenceTracker("invalidResidenceResidenceTracker.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () ->
-                readResidenceTracker("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readResidenceTracker("invalidAndValidResidenceResidenceTracker.json"));
     }
 
     @Test
