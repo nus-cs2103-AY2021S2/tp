@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,6 +27,12 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_SHORT_DATE = "130521";
+    private static final String INVALID_DDMMYYYYhhmm_DATE_1 = "10102021ab14";
+    private static final String INVALID_DDMMYYYYhhmm_DATE_2 = "101420212359";
+    private static final String INVALID_DDMMhhmm_DATE_1 = "1010ab14";
+    private static final String INVALID_DDMMhhmm_DATE_2 = "40102259";
+    private static final String INVALID_PAST_DATE = "101020201430";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +40,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DDMMYYYYhhmm_DATE = "101020211430";
+    private static final String VALID_DDMMhhmm_DATE = "10091630";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +201,51 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDate_invalidCharactersInddmmyyyyhhmmDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DDMMYYYYhhmm_DATE_1));
+    }
+
+    @Test
+    public void parseDate_invalidCharactersInddmmhhmmDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DDMMhhmm_DATE_1));
+    }
+
+    @Test
+    public void parseDate_invalidDateTimeInddmmyyyyhhmmDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DDMMYYYYhhmm_DATE_2));
+    }
+
+    @Test
+    public void parseDate_invalidDateTimeInddmmhhmmDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DDMMhhmm_DATE_2));
+    }
+
+    @Test
+    public void parseDate_invalidDateFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_SHORT_DATE));
+    }
+
+    @Test
+    public void parseDate_invalidPastDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_PAST_DATE));
+    }
+
+    @Test
+    public void parseDate_validddmmyyyyhhmmDate_returnsLocalDateTime() throws Exception {
+        LocalDateTime actualDateTime = ParserUtil.parseDate(VALID_DDMMYYYYhhmm_DATE);
+        LocalDateTime expectedDateTime = LocalDateTime.of(2021, 10, 10, 14, 30);
+
+        assertEquals(expectedDateTime, actualDateTime);
+    }
+
+    @Test
+    public void parseDate_validddmmhhmmDate_returnsLocalDateTime() throws Exception {
+        LocalDateTime actualDateTime = ParserUtil.parseDate(VALID_DDMMhhmm_DATE);
+        LocalDateTime expectedDateTime = LocalDateTime.of(LocalDateTime.now().getYear(), 9, 10, 16, 30);
+
+        assertEquals(expectedDateTime, actualDateTime);
     }
 }
