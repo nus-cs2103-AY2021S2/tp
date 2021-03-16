@@ -15,19 +15,9 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AppointmentBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAppointmentBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AppointmentBookStorage;
-import seedu.address.storage.JsonAppointmentBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -59,8 +49,9 @@ public class MainApp extends Application {
         //AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         AppointmentBookStorage appointmentBookStorage = new JsonAppointmentBookStorage(
                 userPrefs.getAppointmentBookFilePath());
+        PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
         //storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        storage = new StorageManager(appointmentBookStorage, userPrefsStorage);
+        storage = new StorageManager(appointmentBookStorage, propertyBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -80,27 +71,36 @@ public class MainApp extends Application {
         /*Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;*/
         Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
-        ReadOnlyAppointmentBook initialData;
+        Optional<ReadOnlyPropertyBook> propertyBookOptional;
+        ReadOnlyPropertyBook initialPropertyData;
+        ReadOnlyAppointmentBook initialAppointmentData;
         try {
             //addressBookOptional = storage.readAddressBook();
             appointmentBookOptional = storage.readAppointmentBook();
+            propertyBookOptional = storage.readPropertyBook();
             //if (!addressBookOptional.isPresent()) {
             if (!appointmentBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample AppointmentBook");
+            }
+            if (!propertyBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample PropertyBook");
             }
             //initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            initialData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
+            initialAppointmentData = appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
+            initialPropertyData = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             //initialData = new AddressBook();
-            initialData = new AppointmentBook();
+            initialAppointmentData = new AppointmentBook();
+            initialPropertyData = new PropertyBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             //initialData = new AddressBook();
-            initialData = new AppointmentBook();
+            initialAppointmentData = new AppointmentBook();
+            initialPropertyData = new PropertyBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialAppointmentData, initialPropertyData, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -38,13 +38,14 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(appointmentBook, userPrefs);
 
-        logger.fine("Initializing with appointment book: " + appointmentBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with appointment book: " + appointmentBook +
+                " and user prefs " + userPrefs);
 
         addressBook = new AddressBook();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        propertyBook = new PropertyBook();
-        filteredProperties = new FilteredList<>(propertyBook.getPropertyList());
+        this.propertyBook = new PropertyBook();
+        filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.appointmentBook = new AppointmentBook(appointmentBook);
@@ -89,9 +90,28 @@ public class ModelManager implements Model {
         this.filteredAppointments = new FilteredList<>(this.appointmentBook.getAppointmentList());
     }
 
+    /**
+     * Initializes a ModelManager with the given appointmentBook, propertyBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyAppointmentBook appointmentBook, ReadOnlyPropertyBook propertyBook, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(appointmentBook, propertyBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + propertyBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook();
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        this.propertyBook = new PropertyBook(propertyBook);
+        this.filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+        this.appointmentBook = new AppointmentBook(appointmentBook);
+        this.filteredAppointments = new FilteredList<>(this.appointmentBook.getAppointmentList());
+    }
+
 
     public ModelManager() {
-        this(new AppointmentBook(), new UserPrefs());
+        this(new AppointmentBook(), new PropertyBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
