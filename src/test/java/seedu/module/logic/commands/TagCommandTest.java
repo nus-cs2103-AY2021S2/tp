@@ -60,7 +60,7 @@ class TagCommandTest {
     }
 
     @Test
-    void execute_addMultipleTagUnfilteredList_success() {
+    void execute_addTwoTagsUnfilteredList_success() {
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         String[] expectedTags = new String[firstTask.getTags().size() + 2];
         for (int i = 0; i < firstTask.getTags().size(); i++) {

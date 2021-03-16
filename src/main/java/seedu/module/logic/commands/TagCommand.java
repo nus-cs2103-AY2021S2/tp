@@ -87,10 +87,13 @@ public class TagCommand extends Command {
 
     /**
      * Sets {@code tags} to this object's {@code tags}.
-     * A defensive copy of {@code tags} is used internally.
+     *
+     * @param tags the set of tags to be set
      */
     public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        this.tags = (tags != null)
+                ? new HashSet<>(tags)
+                : null;
     }
 
     @Override
