@@ -17,9 +17,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.DeadlineDate;
+import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
@@ -90,11 +93,15 @@ public class EditCommand extends Command {
 
         ModuleName updatedModuleName = editTaskDescriptor.getModuleName().orElse(taskToEdit.getModuleName());
         ModuleCode updatedModuleCode = editTaskDescriptor.getModuleCode().orElse(taskToEdit.getModuleCode());
+        DeadlineDate updatedDeadlineDate = taskToEdit.getDeadlineDate(); // to be implemented
+        DeadlineTime updatedDeadlineTime = taskToEdit.getDeadlineTime(); // to be implemented
+        Status updatedStatus = taskToEdit.getStatus(); // to be implemented
         Weightage updatedWeightage = taskToEdit.getWeightage(); // edit command does not allow editing weightage
         Remark updatedRemark = taskToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedModuleName, updatedModuleCode, updatedWeightage,
+        return new Task(updatedModuleName, updatedModuleCode, updatedDeadlineDate,
+                updatedDeadlineTime, updatedStatus, updatedWeightage,
                 updatedRemark, updatedTags);
     }
 

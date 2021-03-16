@@ -15,7 +15,7 @@ public class DeadlineTime implements Comparable<DeadlineTime> {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline time should: \n 1.HH:mm (24h format), and\n 2.it should be a logical time\n";
 
-    public static final String VALIDATION_REGEX = "^([01][0-9]|2[1-3]):([0-5][1-9])$";
+    public static final String VALIDATION_REGEX = "^([01][0-9]|2[1-3]):([0-5][0-9])$";
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     private LocalTime deadlineTime;

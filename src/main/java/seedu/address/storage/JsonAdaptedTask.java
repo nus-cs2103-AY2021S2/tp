@@ -10,9 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.DeadlineDate;
+import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.ModuleName;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.Tag;
@@ -26,6 +29,9 @@ class JsonAdaptedTask {
 
     private final String moduleName;
     private final String moduleCode;
+    private final String deadlineDate;
+    private final String deadlineTime;
+    private final String status;
     private final Integer weightage;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -36,11 +42,17 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("moduleName") String moduleName,
                            @JsonProperty("moduleCode") String moduleCode,
+                           @JsonProperty("deadlineDate") String deadlineDate,
+                           @JsonProperty("deadlineTime") String deadlineTime,
+                           @JsonProperty("status") String status,
                            @JsonProperty("weightage") Integer weightage,
                            @JsonProperty("remark") String remark,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.moduleName = moduleName;
         this.moduleCode = moduleCode;
+        this.deadlineDate = deadlineDate;
+        this.deadlineTime = deadlineTime;
+        this.status = status;
         this.weightage = weightage;
         this.remark = remark;
         if (tagged != null) {
@@ -54,6 +66,9 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         moduleName = source.getModuleName().fullName;
         moduleCode = source.getModuleCode().moduleCode;
+        deadlineDate = source.getDeadlineDate().toString();
+        deadlineTime = source.getDeadlineTime().toString();
+        status = source.getStatus().toString();
         weightage = source.getWeightage().weightage;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
@@ -90,6 +105,30 @@ class JsonAdaptedTask {
         }
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
+        if (deadlineDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DeadlineDate.class.getSimpleName()));
+        }
+        if (!DeadlineDate.isValidDeadlineDate(deadlineDate)) {
+            throw new IllegalValueException(DeadlineDate.MESSAGE_CONSTRAINTS);
+        }
+        final DeadlineDate modelDeadlineDate = new DeadlineDate(deadlineDate);
+
+        if (deadlineTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DeadlineTime.class.getSimpleName()));
+        }
+        if (!DeadlineTime.isValidDeadlineTime(deadlineTime)) {
+            throw new IllegalValueException(DeadlineTime.MESSAGE_CONSTRAINTS);
+        }
+        final DeadlineTime modelDeadlineTime = new DeadlineTime(deadlineTime);
+
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Status.class.getSimpleName()));
+        }
+        final Status modelStatus = new Status(status);
+
         if (weightage == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Weightage.class.getSimpleName()));
@@ -105,8 +144,8 @@ class JsonAdaptedTask {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Task(modelModuleName, modelModuleCode, modelWeightage,
-                modelRemark, modelTags);
+        return new Task(modelModuleName, modelModuleCode, modelDeadlineDate,
+                modelDeadlineTime, modelStatus, modelWeightage, modelRemark, modelTags);
     }
 
 }

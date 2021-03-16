@@ -1,13 +1,21 @@
 {
   "tasks": [ {
-    "moduleName": "Valid Task",
+    "moduleName" : "Software Engineering",
     "moduleCode" : "CS2103",
-    "phone": "9482424",
-    "email": "hans@example.com"
+    "deadlineDate" : "10-04-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "core" ]
   }, {
-    "moduleName": "Person With Invalid module code",
-    "moduleCode" : "2103CS",
-    "phone": "948asdf2424",
-    "email": "hans@example.com"
+    "moduleName" : "Invalid Module Code",
+    "moduleCode" : "CS2103213",
+    "deadlineDate" : "10-04-2020",
+    "deadlineTime" : "10:10",
+    "status" : "Unfinished",
+    "weightage" : 0,
+    "remark" : "",
+    "tagged" : [ "core" ]
   } ]
 }
