@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DES_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.ASC_DATETIME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_ASC;
+import static seedu.address.logic.commands.CommandTestUtil.DES_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_KEY_APPOINTMENT_DATETIME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_ASC;
 
 import org.junit.jupiter.api.Test;
 
