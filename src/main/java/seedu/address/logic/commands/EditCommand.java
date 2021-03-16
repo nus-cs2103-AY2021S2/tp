@@ -26,6 +26,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.subject.SubjectList;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
 
@@ -135,10 +136,12 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private Gender gender;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private SubjectList subjectList;
 
         public EditPersonDescriptor() {}
 
@@ -148,17 +151,19 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setGender(toCopy.gender);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setSubjectList(toCopy.subjectList);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, gender, phone, email, address, tags, subjectList);
         }
 
         public void setName(Name name) {
@@ -167,6 +172,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
         }
 
         public void setPhone(Phone phone) {
@@ -210,6 +223,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setSubjectList(SubjectList subjectList) {
+            this.subjectList = subjectList;
+        }
+
+        public Optional<SubjectList> getSubjectList() {
+            return Optional.ofNullable(subjectList);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -226,10 +247,12 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getGender().equals(e.getGender())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getSubjectList().equals(e.getSubjectList());
         }
     }
 }
