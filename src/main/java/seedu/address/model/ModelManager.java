@@ -194,7 +194,7 @@ public class ModelManager implements Model {
         filteredRooms.setPredicate(predicate);
     }
 
-    //=========== Command History =============================================================
+    // =========== Command History =============================================================
     @Override
     public ReadOnlyCommandHistory getCommandHistory() {
         return commandHistory;

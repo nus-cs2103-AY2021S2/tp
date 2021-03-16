@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  * Represents an issue's timestamp in SunRez. Guarantees: immutable; is valid as
  * declared in {@link #isValidTimestamp(String)}
  */
-public class Timestamp {
+public class Timestamp implements Comparable<Timestamp> {
 
     public static final String TIMESTAMP_PATTERN = "yyyy/M/d h:mma";
 
@@ -68,6 +68,11 @@ public class Timestamp {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Timestamp o) {
+        return value.compareTo(o.value);
     }
 
 }
