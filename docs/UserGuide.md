@@ -201,9 +201,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`
-        | `appt INDEX /dDATE` <br> e.g., `appt 12 200420210930`
-**Delete** | `delete Name`<br> e.g., `delete Lord Farquaad`
-           | `delete INDEX` <br> e.g., `delete 1`
+**Add** | `add n/Name p/phoneNumber a/Age l/Location` <br> e.g., `add /nShrek p/66666666 a/69 l/Swamp`<br> `appt INDEX /dDATE` <br> e.g., `appt 12 200420210930`
+**Delete** | `delete Name`<br> e.g., `delete Lord Farquaad` <br> `delete INDEX` <br> e.g., `delete 1`
 **List** | `list`
 
