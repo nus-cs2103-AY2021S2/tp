@@ -8,6 +8,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableObjectValue;
 import seedu.iscam.model.client.Client;
 
+/**
+ * Observable Client object that will notify listeners when the client contained changes.
+ */
 public class ObservableClient implements ObservableObjectValue<Client> {
     private Client client;
     private final List<ChangeListener<? super Client>> listeners = new ArrayList<>();
