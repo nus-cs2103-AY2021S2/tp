@@ -20,6 +20,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Project;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -190,7 +191,6 @@ public class MainWindow extends UiPart<Stage> {
             handleHelp();
             break;
         case DISPLAY_PROJECT:
-            handleDisplayProject(commandResult.getIndexOfProject());
             handleSelectProject(commandResult.getIndexOfProject());
             break;
         case SHOW_CONTACTS:
@@ -243,18 +243,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Displays the project at the current index.
-     * @param index Index of project to display.
+     * Displays a project
+     * @param project Project to display.
      */
-    public void handleDisplayProject(Index index) {
-        requireNonNull(index);
+    public void handleDisplayProject(Project project) {
+        requireNonNull(project);
 
         if (projectDisplayPanel == null) {
             projectDisplayPanel = new ProjectDisplayPanel();
             infoDisplayPlaceholder.getChildren().add(projectDisplayPanel.getRoot());
         }
 
-        projectDisplayPanel.displayProject(logic.getFilteredProjectsList().get(index.getZeroBased()), index);
+        projectDisplayPanel.displayProject(project);
     }
 
     /**

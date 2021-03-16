@@ -60,8 +60,8 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      *
      * @param project Project to display.
      */
-    public void displayProject(Project project, Index index) {
-        this.projectName.setText(index.getOneBased() + ". " + project.getProjectName().toString());
+    public void displayProject(Project project) {
+        this.projectName.setText(project.getProjectName().toString());
 
         eventListView.setItems(new FilteredList<>(project.getEvents().getEvents()));
         eventListView.setCellFactory(listView -> new ProjectDisplayPanel.EventListViewCell());

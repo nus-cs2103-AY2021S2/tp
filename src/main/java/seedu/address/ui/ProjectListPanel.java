@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -29,14 +31,12 @@ public class ProjectListPanel extends UiPart<Region> {
     public ProjectListPanel(ObservableList<Project> projectList, MainWindow mainWindow) {
         super(FXML);
         projectListView.setItems(projectList);
-        projectListView.setCellFactory(listView -> {
-            ProjectListViewCell cell = new ProjectListViewCell();
-            cell.setOnMouseClicked(e -> {
-                Index index = Index.fromZeroBased(cell.getIndex());
-                mainWindow.handleDisplayProject(index);
-                e.consume();
-            });
-            return cell;
+        projectListView.setCellFactory(listview -> new ProjectListViewCell());
+        projectListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Project>() {
+            @Override
+            public void changed(ObservableValue<? extends Project> observable, Project oldValue, Project newValue) {
+                mainWindow.handleDisplayProject(newValue);
+            }
         });
     }
 
